@@ -1,0 +1,29 @@
+{
+  "name": "c20",
+  "version": "1.0.0",
+  "description": "This wiki is a comprehensive documentation of the Halo 1 Custom Edition editing kit, as well as tools created by users.",
+  "main": "build.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/csauve/c20.git"
+  },
+  "author": "csauve <connorsauve@gmail.com> (http://t3hz0r.com)",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/csauve/c20/issues"
+  },
+  "homepage": "https://github.com/csauve/c20#readme",
+  "dependencies": {
+    "common-tags": "^1.8.0",
+    "express": "^4.17.1",
+    "front-matter": "^3.1.0",
+    "glob": "^7.1.6",
+    "highlight.js": "^9.18.1",
+    "markdown-it": "^10.0.0",
+    "serve-static": "^1.14.1"
+  }
+}

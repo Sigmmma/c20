@@ -1,5 +1,5 @@
 const {html} = require("common-tags");
-const {wrapper, ul, pageAnchor} = require("./shared");
+const {wrapper} = require("./shared");
 
 module.exports = (page, metaIndex) => wrapper({
   page,
@@ -7,6 +7,5 @@ module.exports = (page, metaIndex) => wrapper({
   body: html`
     <h1>${page.title}</h1>
     ${page._md}
-    ${ul(metaIndex.pages.map((page) => pageAnchor(page)))}
   `
 });

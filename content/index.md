@@ -1,4 +1,5 @@
 ---
 title: Home
-type: home
+template: home
 ---
+Hello, world!

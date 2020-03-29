@@ -1,6 +1,5 @@
 ---
-type: tool
-edits: shader_environment, bitmap
+title: Guerilla
 ---
 
 Guerilla is great!
