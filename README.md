@@ -2,20 +2,12 @@
 
 This wiki is a comprehensive documentation of the Halo 1 Custom Edition editing kit, as well as tools created by users.
 
-# Essential files
-Essential files like the game and some good mods to start with can be found here:<br>
-[essential_files.md](essential_files.md)
-
-# Tools
-
-\<wip\>
-
-# Tag Types
-
-[bitmap](/tags/bitmap.md)
-
 ## Building the release
 
 ```sh
 node build.js
 ```
+
+## Todo
+* http://forum.halomaps.org/index.cfm?page=topic&topicID=50521
+* http://www.modacity.net/forums/showthread.php?18957-The-Ultimate-Halo-CE-Tutorial-Index

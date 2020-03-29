@@ -1,15 +1,3 @@
-@MrChromed The acutal loading screen graphic (not the dummy version) is stored in strings.dll if I recall correctly. If I am wrong I will be corrected. XD
-[12:05] Shelly 🦊: That's only the loading screen that appears before the main menu. The rest are in the maps
-[12:05] Darth Orm (savinpvtmike): I thaut it was a bik file ha
-
-
-
-
-
-
-
-
-
 Firing rates in the old games are fucked due to the low precision of 30hz.
 
 For player firing rate (AI don't respect the weapon tunings, they have their own overrides, which scale by difficulty). There's one or two timers in the weapon code that basically have to track a 'leftover/overflow' time (fire recovery time and locked recover time IIRC).
