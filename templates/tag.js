@@ -1,5 +1,5 @@
 const {html} = require("common-tags");
-const {wrapper, ul, pageAnchor, renderMarkdown} = require("./shared");
+const {wrapper, renderMarkdown} = require("./shared");
 
 module.exports = (page, metaIndex) => wrapper({
   page,
@@ -7,6 +7,7 @@ module.exports = (page, metaIndex) => wrapper({
   body: html`
     <h1>${page.title}</h1>
     ${renderMarkdown(page._md, metaIndex.mdFooter)}
-    ${ul(metaIndex.pages.map((page) => pageAnchor(page)))}
+    <h2 id="struct">Tag structure</h2>
+    <p>(todo)</p>
   `
 });

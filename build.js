@@ -1,6 +1,5 @@
 const glob = require("glob");
 const templates = require("./templates");
-const markdownIt = require("markdown-it");
 const fm = require("front-matter");
 const fs = require("fs").promises;
 const path = require("path");
@@ -18,7 +17,7 @@ async function findPaths(globPattern) {
 }
 
 async function buildMetaIndex(contentDir) {
-  const filePaths = await findPaths(`${contentDir}/**/index.md`);
+  const filePaths = await findPaths(`${contentDir}/**/readme.md`);
 
   const pages = await Promise.all(filePaths.map(async (filePath) => {
     return new Promise(async (resolve, reject) => {
@@ -30,10 +29,12 @@ async function buildMetaIndex(contentDir) {
         if (!attributes || !attributes.title) {
           reject(new Error(`File ${path} does not define a title`));
         } else {
+          const _dir = path.normalize(dir).split(path.sep).slice(1);
           resolve({
             ...attributes,
             _md: body,
-            _dir: path.normalize(dir).split(path.sep).slice(1)
+            _dir,
+            _dirUrl: "/" + _dir.join("/")
           });
         }
       } catch (err) {
@@ -42,7 +43,12 @@ async function buildMetaIndex(contentDir) {
     });
   }));
 
-  return {pages};
+  const mdFooter = pages
+    .filter(page => page._dir.length > 0)
+    .map(page => `[${page._dir[page._dir.length - 1]}]: ${page._dirUrl}`)
+    .join("\n");
+
+  return {pages, mdFooter};
 }
 
 async function renderContent(metaIndex, outputDir) {

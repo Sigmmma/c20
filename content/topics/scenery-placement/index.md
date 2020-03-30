@@ -1,4 +1,6 @@
 ---
 title: Scenery placement
-type: topic
+template: tag
 ---
+
+Scenery is defined in the [scenario][] tag.

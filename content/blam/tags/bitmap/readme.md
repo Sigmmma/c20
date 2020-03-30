@@ -1,3 +1,8 @@
+---
+title: Bitmap
+template: tag
+---
+
 Bitmaps are used for visuals that need textures or sprites like environments, objects, effects, menus, etc.
 
 # Basics
@@ -123,7 +128,7 @@ _NOTE: Having multiple cube maps in one bitmap does not randomize them._
 
 [Images still need to be uploaded]
 
-The sprite type allows a bitmap to contain a non-power-of-two texture, with support for animations with multiple permutations (sequences). Sprites are typically used for particles.  
+The sprite type allows a bitmap to contain a non-power-of-two texture, with support for animations with multiple permutations (sequences). Sprites are typically used for particles.
 
 ### Color Plate
 
@@ -144,16 +149,16 @@ Any amount of padding may be used as long as the sprite is isolated by at least 
 
 [Images still need to be uploaded]
 
-Budget size determines how big each texture page is (and thus how many sprites will appear on each page). Budget count sets how many texture pages there will be. Both of these values should be set for sprites. 
+Budget size determines how big each texture page is (and thus how many sprites will appear on each page). Budget count sets how many texture pages there will be. Both of these values should be set for sprites.
 
-When compiling a bitmap, tool will output how many pages were generated and the percentage of space filled by the sprites. Budget size and count should be tweaked to get this percentage as high as possible, as unused space is wasted memory.  
+When compiling a bitmap, tool will output how many pages were generated and the percentage of space filled by the sprites. Budget size and count should be tweaked to get this percentage as high as possible, as unused space is wasted memory.
 
-Budget sizes are limited to "square" dimensions like 256x256 and 512x512. Because of this, it is sometimes more memory efficient to split the sprites up across several pages. For example, putting a sprite sheet with seven 56x56 sprites on a single page would require a 512x512 budget size, because 512x512 is the smallest size that can fit all of the sprites. However, If that same sprite sheet was split up across two pages, each page would only need to be  256x256, cutting memory usage in half. 
+Budget sizes are limited to "square" dimensions like 256x256 and 512x512. Because of this, it is sometimes more memory efficient to split the sprites up across several pages. For example, putting a sprite sheet with seven 56x56 sprites on a single page would require a 512x512 budget size, because 512x512 is the smallest size that can fit all of the sprites. However, If that same sprite sheet was split up across two pages, each page would only need to be  256x256, cutting memory usage in half.
 
 _NOTE: Tool automatically uses at least 4 pixels of padding between each sprite. (This is so that there will always be at least one pixel of space between different sprites in all mipmaps, as tool also uses a default mipmap count of 2 for these. 4 -> 2 -> 1.) This means four 32x32 sprites will for instance not fit on a 64x64 page. Make sure to take this into account when choosing a budget size!_
 
 ### Sequences
-[Images still need to be uploaded] A sprite sheet with multiple sequences. Frames are lined up horizontally, and permutations are stacked vertically. Note the magenta line separating each sequence.]]A sequence is an animated sprite. Each sprite in a sequence represents a "frame" of the sprite's animation. A bitmap may contain multiple sequences, which allows for random and forced permutations. Each frame of a sequence is lined up left-to-right. Each sequence permutation is stacked vertically, top-to-bottom. 
+[Images still need to be uploaded] A sprite sheet with multiple sequences. Frames are lined up horizontally, and permutations are stacked vertically. Note the magenta line separating each sequence.]]A sequence is an animated sprite. Each sprite in a sequence represents a "frame" of the sprite's animation. A bitmap may contain multiple sequences, which allows for random and forced permutations. Each frame of a sequence is lined up left-to-right. Each sequence permutation is stacked vertically, top-to-bottom.
 
 If the source file has more than one sequence, each sequence should also have a sequence divider above it. A sequence divider is a straight line of solid color (using the color plate's second pixel's color) at least one pixel wide that spans the entire width of the image. The divider must be a different color than the sprite border. The sequence divider may be left out if the file only has one sequence or if it has no color plate.
 
@@ -187,42 +192,51 @@ Under "miscellaneous" there is a setting for how many mipmaps you want in your b
 # Tool Errors and Warnings
 Errors that are known and suggestions on how to fix them.
 ### --> !!WARNING!! failed to open TIFF: file does not exist <--
-
- - Cause<sup>1</sup>: The file is not where you told tool it is
- - Fix<sup>1</sup>: Make sure the file is somewhere in data or a subfolder and check your spelling of the path.
- - Cause<sup>2</sup>: The file is a TIFF file and not a TIF file
- - Fix<sup>2</sup>: save as a .TIF file
- - Info<sup>2</sup>: Tool doesn't understand .TIFF for some reason, but it does understand TIF.
+- Cause<sup>1</sup>: The file is not where you told tool it is
+- Fix<sup>1</sup>: Make sure the file is somewhere in data or a subfolder and check your spelling of the path.
+- Cause<sup>2</sup>: The file is a TIFF file and not a TIF file
+- Fix<sup>2</sup>: save as a .TIF file
+- Info<sup>2</sup>: Tool doesn't understand .TIFF for some reason, but it does understand TIF.
+-
 ### Unknown data compression algoritm # (0x#). --> !!WARNING!! failed to open TIFF: not a TIFF file <--
- - Cause: Your TIF file might be using a new algoritm that is not supported by tool
- - Fix: try saving it with a different program or with different settings.
- - Info: (Tool uses a version of libtiff from 2002/07/30, so it will not understand a lot of the new tiff specifications.
+- Cause: Your TIF file might be using a new algoritm that is not supported by tool
+- Fix: try saving it with a different program or with different settings.
+- Info: (Tool uses a version of libtiff from 2002/07/30, so it will not understand a lot of the new tiff specifications.
+
 ### skipping bitmap with non-power-of-two dimensions
- - Cause: Your source tif does not follow the power of two rule.
- - Fix: Make sure your source image has a resolution that can be devided by 2 without ending in a decimal. 2x2, 4x4, 8x8, 16x16, 32x32, 64x64, 128x128, 256x256, 512x512, 1024x1024, 2048x2048.
- - Alternative fix: If you are intending to make a sprite sheet or an interface bitmap, ignore this and set the type to the correct value in the .bitmap file, save, and put in the tool command again.
+- Cause: Your source tif does not follow the power of two rule.
+- Fix: Make sure your source image has a resolution that can be devided by 2 without ending in a decimal. 2x2, 4x4, 8x8, 16x16, 32x32, 64x64, 128x128, 256x256, 512x512, 1024x1024, 2048x2048.
+- Alternative fix: If you are intending to make a sprite sheet or an interface bitmap, ignore this and set the type to the correct value in the .bitmap file, save, and put in the tool command again.
+
 ### ### ERROR can't extract sprites without a valid plate
- - Cause:<sup>1</sup> You didn't add the three color plate pixels in the top-left corner of the source file.
- - Fix<sup>1</sup>: Add the color plate
- - Cause<sup>2</sup>: You have bitmaps of different size in a sequence.
- - Fix<sup>2</sup>: Use dummy space to pad the smaller sprites to match the bigger ones.
- - Cause<sup>3</sup>: One of your sprites is touching the plate.
- - Fix<sup>3</sup>: Move the sprite away from the plate by at least one pixel.
+- Cause:<sup>1</sup> You didn't add the three color plate pixels in the top-left corner of the source file.
+- Fix<sup>1</sup>: Add the color plate
+- Cause<sup>2</sup>: You have bitmaps of different size in a sequence.
+- Fix<sup>2</sup>: Use dummy space to pad the smaller sprites to match the bigger ones.
+- Cause<sup>3</sup>: One of your sprites is touching the plate.
+- Fix<sup>3</sup>: Move the sprite away from the plate by at least one pixel.
+
 ### ### ERROR one or more sprites do not fit in the requested page size
- - Cause<sup>1</sup>: The sprite page is too small to contain the sprite sheet.
- - Effect<sup>1</sup>: Not all bitmaps are processed if any.
- - Fix<sup>1</sup>: Set a bigger page size in the bitmap tag.
- - Cause<sup>2</sup>: A sequence divider has been interpreted as a sprite.
- - Fix<sup>2</sup>: Make sure your plate pixel that indicates the color of the dividers has the exact same color as the dividers.
- 
- _Reminder: Every sprite is padded with 4 pixels on each border, so while your sprites may fit in theory, they may not in practice._
+- Cause<sup>1</sup>: The sprite page is too small to contain the sprite sheet.
+- Effect<sup>1</sup>: Not all bitmaps are processed if any.
+- Fix<sup>1</sup>: Set a bigger page size in the bitmap tag.
+- Cause<sup>2</sup>: A sequence divider has been interpreted as a sprite.
+- Fix<sup>2</sup>: Make sure your plate pixel that indicates the color of the dividers has the exact same color as the dividers.
+
+_Reminder: Every sprite is padded with 4 pixels on each border, so while your sprites may fit in theory, they may not in practice._
+
 ### sprite budget met (  0%)
- - Cause: Tool is reading your source file, but not actually finding any textures.
- - Fix: Verify your color plate is set up correctly, and each sprite is properly isolated with border color.
+- Cause: Tool is reading your source file, but not actually finding any textures.
+- Fix: Verify your color plate is set up correctly, and each sprite is properly isolated with border color.
+
 ### ==> !!WARNING!! bitmap with greater than 1-bit alpha being compressed as DXT1 <==
- - Cause: You're compiling a source file that has a detailed alpha map into a bitmap with color key transparency.
- - Fix: You could ignore this, but chances are the alpha was important. Use interpolated or explicit alpha instead.
+- Cause: You're compiling a source file that has a detailed alpha map into a bitmap with color key transparency.
+- Fix: You could ignore this, but chances are the alpha was important. Use interpolated or explicit alpha instead.
+
 ### ### WARNING no sprite budget set
- - Cause: "sprite budget count" is not set in the bitmap tag
- - Effect: Tool picks a size for you, and you're probably not going to like it.
- - Fix: set the sprite budget count
+- Cause: "sprite budget count" is not set in the bitmap tag
+- Effect: Tool picks a size for you, and you're probably not going to like it.
+- Fix: set the sprite budget count
+
+### ### ERROR failed to add bitmap to group (tag resize failed)
+- Cause: unknown

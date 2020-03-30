@@ -1,13 +1,33 @@
 const path = require("path");
 const {html} = require("common-tags");
+const markdownIt = require("markdown-it");
+const hljs = require("highlight.js");
+
+const renderMarkdown = (md, mdFooter) => {
+  const renderer = markdownIt({
+    html: true,
+    linkify: true,
+    typographer: false,
+    breaks: false,
+    highlight: (code, lang) => {
+      if (lang && hljs.getLanguage(lang)) {
+        try {
+          return hljs.highlight(lang, code).value;
+        } catch (err) {
+          console.warn(`Failed to highlight code with language ${lang}`);
+        }
+      }
+      return code;
+    }
+  });
+  return renderer.render(md + "\n" + mdFooter);
+};
 
 const wrapper = ({page, metaIndex, body}) => {
   const breadcrumbs = [];
   for (let i = 0; i <= page._dir.length; i++) {
-    const parentLink = page._dir.slice(0, i).join("/");
-    const parent = metaIndex.pages.find((otherPage) =>
-      otherPage._dir.join("/") == parentLink
-    );
+    const parentUrl = "/" + page._dir.slice(0, i).join("/");
+    const parent = metaIndex.pages.find(otherPage => otherPage._dirUrl == parentUrl);
     if (parent) {
       breadcrumbs.push(parent);
     }
@@ -35,9 +55,7 @@ const anchor = ({href, body}) => html`
   <a href="${href}">${body}</a>
 `;
 
-const pageHref = (page) => `/${page._dir.join("/")}`;
-
-const pageAnchor = (page) => anchor({href: pageHref(page), body: page.title});
+const pageAnchor = (page) => anchor({href: page._dirUrl, body: page.title});
 
 const ul = (items) => html`
   <ul>
@@ -52,5 +70,5 @@ module.exports = {
   ul,
   pageAnchor,
   anchor,
-  pageHref,
+  renderMarkdown
 };
