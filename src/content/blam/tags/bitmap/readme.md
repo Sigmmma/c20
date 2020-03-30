@@ -1,6 +1,7 @@
 ---
 title: Bitmap
 template: tag
+img: bitmap_example.jpg
 ---
 
 Bitmaps are used for visuals that need textures or sprites like environments, objects, effects, menus, etc.

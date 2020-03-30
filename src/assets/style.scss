@@ -1,0 +1,91 @@
+$bg-header: #002a32;
+$bg: #191d22;
+$bg-content: #23292f;
+$fg: #ccc;
+$fg-strong: #eee;
+$fg-link: #4fbdff;
+$fg-link-visited: #ba9bdf;
+$border-color: #39434d;
+$border-radius: 2px;
+$padding-containers: 20px;
+$font-family: "Helvetica", sans-serif;
+$font-size: 12pt;
+$font-family-code: "Fira Code", monospace;
+$font-size-code: 10pt;
+
+body {
+  color: $fg;
+  background: $bg;
+  margin: 0;
+  font-family: $font-family;
+  font-size: $font-size;
+}
+
+a {
+  color: $fg-link;
+}
+main {
+  max-width: 60em;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+#breadcrumbs {
+  background: $bg-header;
+  padding: $padding-containers;
+  ul {
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    &::before {
+      content: '/';
+      padding: 0 8px;
+    }
+  }
+}
+
+#metabox {
+  float: right;
+  clear: right;
+  width: 20em;
+  height: 300px;
+  background: $bg;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+  margin: 0 0 $padding-containers $padding-containers;
+}
+
+#content {
+  padding: 0 $padding-containers;
+  display: flow-root;
+  background: $bg-content;
+  border: 1px solid $border-color;
+  border-radius: $border-radius;
+
+  h1, h2 {
+    border-bottom: 1px solid $border-color;
+    padding-bottom: 10px;
+    overflow: hidden;
+  }
+
+  p {
+    line-height: 1.5;
+  }
+
+  strong {
+    color: $fg-strong;
+  }
+
+  pre, code {
+    font-family: $font-family-code;
+    font-size: $font-size-code;
+    background: $bg;
+    border-radius: $border-radius;
+    border: 1px solid $border-color;
+  }
+}

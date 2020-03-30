@@ -1,5 +1,5 @@
 const glob = require("glob");
-const templates = require("./templates");
+const templates = require("./src/templates");
 const fm = require("front-matter");
 const fs = require("fs").promises;
 const path = require("path");
@@ -29,7 +29,8 @@ async function buildMetaIndex(contentDir) {
         if (!attributes || !attributes.title) {
           reject(new Error(`File ${path} does not define a title`));
         } else {
-          const _dir = path.normalize(dir).split(path.sep).slice(1);
+          const contentDirDepth = path.normalize(contentDir).split(path.sep).length;
+          const _dir = path.normalize(dir).split(path.sep).slice(contentDirDepth);
           resolve({
             ...attributes,
             _md: body,
@@ -76,4 +77,4 @@ async function build(contentDir, outputDir) {
   }
 }
 
-build("./content", "./dist");
+build("./src/content", "./dist");

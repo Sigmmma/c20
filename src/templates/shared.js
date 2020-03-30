@@ -3,6 +3,16 @@ const {html} = require("common-tags");
 const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
 
+const metabox = (page) => {
+  return html`
+    <aside id="metabox">
+      ${page.img && html`
+        <img src="${page.img}" alt=""/>
+      `}
+    </aside>
+  `;
+};
+
 const renderMarkdown = (md, mdFooter) => {
   const renderer = markdownIt({
     html: true,
@@ -36,16 +46,17 @@ const wrapper = ({page, metaIndex, body}) => {
     <html>
       <head>
         <title>${page.title} - c20</title>
-        <!-- <link rel="stylesheet" href="/main.css"/> -->
+        <link rel="stylesheet" href="/assets/style.css"/>
       </head>
       <body>
-        <nav>
-          Breadcrumbs
-          ${ul(breadcrumbs.map(pageAnchor))}
-        </nav>
-        <article>
-          ${body}
-        </article
+        <main>
+          <nav id="breadcrumbs">
+            ${ul(breadcrumbs.map(pageAnchor))}
+          </nav>
+          <article id="content">
+            ${body}
+          </article>
+        </main>
       </body>
     </html>
   `;
@@ -70,5 +81,6 @@ module.exports = {
   ul,
   pageAnchor,
   anchor,
-  renderMarkdown
+  renderMarkdown,
+  metabox
 };

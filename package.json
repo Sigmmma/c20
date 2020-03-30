@@ -4,7 +4,9 @@
   "description": "This wiki is a comprehensive documentation of the Halo 1 Custom Edition editing kit, as well as tools created by users.",
   "main": "build.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "npm run build-styles; npm run build-content",
+    "build-content": "node build.js",
+    "build-styles": "sass src/assets/style.scss dist/assets/style.css --no-source-map",
     "start": "node server.js"
   },
   "repository": {
@@ -24,6 +26,7 @@
     "glob": "^7.1.6",
     "highlight.js": "^9.18.1",
     "markdown-it": "^10.0.0",
+    "sass": "^1.26.3",
     "serve-static": "^1.14.1"
   }
 }

@@ -1,3 +1,9 @@
+---
+title: Tool
+---
+
+Tool, or sometimes called **tool.exe**, is a command line utility and part of the [HEK][].
+
 ### WARNING found nearly coplanar surfaces (red and green).
 reducing collision bsp...
 verifying collision geometry...
@@ -11,5 +17,3 @@ building render geometry...
 ### WARNING: a surface clipped to no leaves (see cyan in error geometry).
 building subclusters...
 building pvs... two fog planes intersected in a cluster (see black in error geometry).
-
-
