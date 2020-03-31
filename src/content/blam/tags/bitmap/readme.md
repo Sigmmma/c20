@@ -1,12 +1,16 @@
 ---
 title: Bitmap
 template: tag
-img: bitmap_example.jpg
+img: "bitmap_example.jpg"
+info: >
+  Bitmaps are pretty great!
+
+  * Edited by: [Guerilla][], [Tool][]
 ---
 
 Bitmaps are used for visuals that need textures or sprites like environments, objects, effects, menus, etc.
 
-# Basics
+## Basics
 To store textures and images in maps we use bitmap tags. Bitmap tags on their simplest are compiled from a .tif file in your data directory.
 
 ### Commands

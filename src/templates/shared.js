@@ -3,11 +3,21 @@ const {html} = require("common-tags");
 const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
 
-const metabox = (page) => {
+const metabox = (page, metaColor, mdFooter) => {
   return html`
     <aside id="metabox">
+      <section class="header" style="background: ${metaColor || "none"}">
+        <p><strong>${page.title} (${page.template})</strong></p>
+      </section>
       ${page.img && html`
-        <img src="${page.img}" alt=""/>
+        <section class="img">
+          <img src="${page.img}" alt=""/>
+        </section>
+      `}
+      ${page.info && html`
+        <section class="info">
+          ${renderMarkdown(page.info, mdFooter)}
+        </section>
       `}
     </aside>
   `;
@@ -30,7 +40,7 @@ const renderMarkdown = (md, mdFooter) => {
       return code;
     }
   });
-  return renderer.render(md + "\n" + mdFooter);
+  return renderer.render(mdFooter ? (md + "\n" + mdFooter) : md);
 };
 
 const wrapper = ({page, metaIndex, body}) => {
@@ -47,6 +57,7 @@ const wrapper = ({page, metaIndex, body}) => {
       <head>
         <title>${page.title} - c20</title>
         <link rel="stylesheet" href="/assets/style.css"/>
+        <link rel="stylesheet" href="/assets/atom-one-dark.css"/>
       </head>
       <body>
         <main>

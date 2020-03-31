@@ -1,5 +1,5 @@
 const glob = require("glob");
-const templates = require("./src/templates");
+const templates = require("./templates");
 const fm = require("front-matter");
 const fs = require("fs").promises;
 const path = require("path");
@@ -21,7 +21,6 @@ async function buildMetaIndex(contentDir) {
 
   const pages = await Promise.all(filePaths.map(async (filePath) => {
     return new Promise(async (resolve, reject) => {
-      console.log(`Indexing ${filePath}`);
       try {
         const fileContents = await fs.readFile(filePath, "utf8");
         const {dir} = path.parse(filePath);
@@ -53,28 +52,17 @@ async function buildMetaIndex(contentDir) {
 }
 
 async function renderContent(metaIndex, outputDir) {
-  return Promise.all(metaIndex.pages.map(async (page) => {
-    return new Promise(async (resolve, reject) => {
-      console.log(`Rendering '${page.title}'`);
-      const renderTemplate = templates[page.template || "default"];
-      try {
-        const result = renderTemplate(page, metaIndex);
-        await fs.mkdir(path.join(outputDir, ...page._dir), {recursive: true});
-        await fs.writeFile(path.join(outputDir, ...page._dir, "index.html"), result, "utf8");
-      } catch (err) {
-        reject(err);
-      }
-    });
+  await Promise.all(metaIndex.pages.map(async (page) => {
+    const renderTemplate = templates[page.template || "default"];
+    const result = renderTemplate(page, metaIndex);
+    await fs.mkdir(path.join(outputDir, ...page._dir), {recursive: true});
+    await fs.writeFile(path.join(outputDir, ...page._dir, "index.html"), result, "utf8");
   }));
 }
 
-async function build(contentDir, outputDir) {
-  try {
-    const metaIndex = await buildMetaIndex(contentDir);
-    await renderContent(metaIndex, outputDir);
-  } catch (err) {
-    console.error(err);
-  }
+async function buildContent(contentDir, outputDir) {
+  const metaIndex = await buildMetaIndex(contentDir);
+  await renderContent(metaIndex, outputDir);
 }
 
-build("./src/content", "./dist");
+module.exports = buildContent;
