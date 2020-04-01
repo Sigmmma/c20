@@ -2,10 +2,12 @@
 title: Bitmap
 template: tag
 img: "bitmap_example.jpg"
+imgCaption: A typical level texture bitmap, used for environment shaders
 info: >
-  Bitmaps are pretty great!
-
-  * Edited by: [Guerilla][], [Tool][]
+  Edited by:
+    * [Guerilla][]
+    * [Tool][]
+    * invader-bitmap
 ---
 
 Bitmaps are used for visuals that need textures or sprites like environments, objects, effects, menus, etc.

@@ -1,7 +1,12 @@
 $bg-header: #002a32;
-$bg: #191d22;
+$bg-page: #191d22;
+$bg-overlay: #293037;
 $bg-content: #23292f;
+$bg-inset: #191d22;
+$bg-info: #373457;
+$bg-danger: #53332c;
 $fg: #ccc;
+$fg-faded: #888;
 $fg-strong: #eee;
 $fg-link: #4fbdff;
 $fg-link-visited: #ba9bdf;
@@ -16,7 +21,7 @@ $width-content: 60em;
 
 body {
   color: $fg;
-  background: $bg;
+  background: $bg-page;
   background-image: url("/assets/bg.jpg");
   background-repeat: repeat;
   margin: 0;
@@ -36,6 +41,22 @@ main {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+}
+
+h1.page-title {
+  font-size: 2em;
+}
+
+.alert {
+  display: flow-root;
+  border-radius: $border-radius;
+  padding: 0 $padding-containers;
+  &.type-info {
+    background: $bg-info;
+  }
+  &.type-danger {
+    background: $bg-danger;
+  }
 }
 
 #breadcrumbs {
@@ -60,7 +81,7 @@ main {
   float: right;
   clear: right;
   width: 30%;
-  background: $bg;
+  background: $bg-overlay;
   border: 1px solid $border-color;
   border-bottom-width: 0;
   border-radius: $border-radius;
@@ -69,21 +90,22 @@ main {
   & section {
     display: flow-root;
     border-bottom: 1px solid $border-color;
+    padding: 0 $padding-containers;
   }
   & section.header {
     text-align: center;
   }
-  & section.info {
-    padding: 0 $padding-containers;
+  & section.img {
+    padding: 0;
   }
 }
 
 #content {
-  padding: 0 $padding-containers;
+  padding: 0 $padding-containers $padding-containers $padding-containers;
   display: flow-root;
   background: $bg-content;
   border: 1px solid $border-color;
-  border-radius: $border-radius;
+  border-radius: $border-radius $border-radius 0 0;
 
   h1, h2 {
     border-bottom: 1px solid $border-color;
@@ -102,7 +124,7 @@ main {
   pre, code {
     font-family: $font-family-code;
     font-size: $font-size-code;
-    background: $bg;
+    background: $bg-inset;
     border-radius: $border-radius;
     border: 1px solid $border-color;
   }
@@ -119,5 +141,21 @@ main {
       border: none;
       background: none;
     }
+  }
+}
+
+#content-footer {
+  margin-bottom: $padding-containers;
+  padding: 0 $padding-containers;
+  display: flow-root;
+  background: $bg-overlay;
+  border: 1px solid $border-color;
+  border-radius: 0 0 $border-radius $border-radius;
+  text-align: right;
+  border-top: 0;
+  color: $fg-faded;
+
+  a {
+    color: $fg-faded;
   }
 }

@@ -1,6 +1,8 @@
 ---
 title: Scenario structure BSP
 template: tag
+img: bsp.jpg
+imgCaption: The map a30 with all non-BSP objects removed
 ---
 
 Commonly referred to as the **BSP** (Binary Space Partitioning), this tag contains level geometry, weather data, material assignments, AI pathfinding information, lightmaps, and other data structures.

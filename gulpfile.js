@@ -3,13 +3,17 @@ const sass = require("sass");
 const fs = require("fs");
 const buildContent = require("./src/content");
 
-function assetStyles(done) {
-  sass.render({file: "./src/assets/style.scss"}, (err, res) => {
-    if (!err) {
-      fs.mkdirSync("./dist/assets/", {recursive: true});
-      fs.writeFileSync("./dist/assets/style.css", res.css, "utf8");
-      done();
-    }
+function assetStyles() {
+  return new Promise((resolve, reject) => {
+    sass.render({file: "./src/assets/style.scss"}, (err, res) => {
+      if (err) {
+        reject(err);
+      } else {
+        fs.mkdirSync("./dist/assets/", {recursive: true});
+        fs.writeFileSync("./dist/assets/style.css", res.css, "utf8");
+        resolve();
+      }
+    });
   });
 }
 

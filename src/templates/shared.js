@@ -3,6 +3,12 @@ const {html} = require("common-tags");
 const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
 
+const alert = ({type, body}) => html`
+  <div class="alert type-${type || "info"}">
+    ${body}
+  </div>
+`;
+
 const metabox = (page, metaColor, mdFooter) => {
   return html`
     <aside id="metabox">
@@ -11,7 +17,12 @@ const metabox = (page, metaColor, mdFooter) => {
       </section>
       ${page.img && html`
         <section class="img">
-          <img src="${page.img}" alt=""/>
+          <a href="${page.img}"><img src="${page.img}" alt="${page.imgCaption || ""}"/></a>
+        </section>
+      `}
+      ${page.imgCaption && html`
+        <section class="caption">
+          <p><em>${renderMarkdown(page.imgCaption, mdFooter)}</em></p>
         </section>
       `}
       ${page.info && html`
@@ -40,7 +51,7 @@ const renderMarkdown = (md, mdFooter) => {
       return code;
     }
   });
-  return renderer.render(mdFooter ? (md + "\n" + mdFooter) : md);
+  return renderer.render(mdFooter ? (md + "\n\n" + mdFooter) : md);
 };
 
 const wrapper = ({page, metaIndex, body}) => {
@@ -67,6 +78,9 @@ const wrapper = ({page, metaIndex, body}) => {
           <article id="content">
             ${body}
           </article>
+          <footer id="content-footer">
+            <p><small><a href="#">Go to top</a></small></p>
+          </footer>
         </main>
       </body>
     </html>
@@ -93,5 +107,6 @@ module.exports = {
   pageAnchor,
   anchor,
   renderMarkdown,
-  metabox
+  metabox,
+  alert
 };
