@@ -3,6 +3,8 @@ const {html} = require("common-tags");
 const markdownIt = require("markdown-it");
 const hljs = require("highlight.js");
 
+const REPO = "https://github.com/csauve/c20";
+
 const alert = ({type, body}) => html`
   <div class="alert type-${type || "info"}">
     ${body}
@@ -77,9 +79,21 @@ const wrapper = ({page, metaIndex, body}) => {
           </nav>
           <article id="content">
             ${body}
+            ${page.stub && html`
+              <hr/>
+              ${alert({type: "danger", body: html`
+                <p>This article is a stub. You can help expand it by submitting content in pull requests or issues in this wiki's <a href="${REPO}">source repo</a>.</p>
+              `})}
+            `}
           </article>
           <footer id="content-footer">
-            <p><small><a href="#">Go to top</a></small></p>
+            <p>
+              <small>
+                This text is available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0 license</a>
+                •
+                <a href="#">Go to top</a>
+              </small>
+            </p>
           </footer>
         </main>
       </body>

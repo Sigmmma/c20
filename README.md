@@ -9,3 +9,9 @@ npm install
 npm run build
 npm start
 ```
+
+## Todo
+* Anchor tags
+* Contents
+* Indexes
+* Better metabox title
