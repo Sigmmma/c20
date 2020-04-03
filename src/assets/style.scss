@@ -39,12 +39,32 @@ img {
 
 a {
   color: $fg-link;
+  text-decoration: none;
 }
+
+a[href^="mailto:"]:after {
+  content: "📧";
+  vertical-align: super;
+  font-size: 50%;
+}
+
+h1 {font-size: 1.50em;}
+h2 {font-size: 1.33em;}
+h3 {font-size: 1.17em;}
+h4 {font-size: 1.00em;}
+h5 {font-size: 0.83em;}
+h6 {font-size: 0.75em;}
+
 main {
   max-width: $width-content;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid $border-color;
 }
 
 h1.page-title {
@@ -84,7 +104,7 @@ h1.page-title {
 #metabox {
   float: right;
   clear: right;
-  width: 30%;
+  width: 33%;
   background: $bg-overlay;
   border: 1px solid $border-color;
   border-bottom-width: 0;
@@ -111,7 +131,7 @@ h1.page-title {
   border: 1px solid $border-color;
   border-radius: $border-radius $border-radius 0 0;
 
-  h1, h2 {
+  h1 {
     border-bottom: 1px solid $border-color;
     padding-bottom: 10px;
     overflow: hidden;

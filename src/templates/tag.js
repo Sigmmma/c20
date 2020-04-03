@@ -12,7 +12,7 @@ module.exports = (page, metaIndex) => {
       <h1 class="page-title">${page.title}</h1>
       ${metabox(page, "#530000", metaIndex.mdFooter)}
       ${renderMarkdown(page._md, metaIndex.mdFooter)}
-      <h2 id="struct">Tag structure</h2>
+      <h1 id="struct">Tag structure</h1>
       ${alert({type: "info", body: html`
         <p>
           🚧 Tag structures are not yet built into this wiki, but you can find a reference for this tag in

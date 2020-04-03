@@ -1,9 +1,11 @@
 ---
 title: Weapon
 template: tag
+img: weapons.jpg
+imgCaption: Weapons spawned using the command `cheat_all_weapons`
 ---
 
-## Firing rates
+# Firing rates
 Firing rates in the old games are fucked due to the low precision of 30hz.
 
 For player firing rate (AI don't respect the weapon tunings, they have their own overrides, which scale by difficulty). There's one or two timers in the weapon code that basically have to track a 'leftover/overflow' time (fire recovery time and locked recover time IIRC).
