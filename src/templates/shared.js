@@ -11,11 +11,11 @@ const alert = ({type, body}) => html`
   </div>
 `;
 
-const metabox = (page, metaColor, mdFooter) => {
+const metabox = (title, page, metaColor, mdFooter) => {
   return html`
     <aside id="metabox">
       <section class="header" style="background: ${metaColor || "none"}">
-        <p><strong>${page.title} (${page.template})</strong></p>
+        <p><strong>${title}</strong></p>
       </section>
       ${page.img && html`
         <section class="img">

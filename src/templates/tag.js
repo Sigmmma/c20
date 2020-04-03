@@ -10,7 +10,7 @@ module.exports = (page, metaIndex) => {
     metaIndex,
     body: html`
       <h1 class="page-title">${page.title}</h1>
-      ${metabox(page, "#530000", metaIndex.mdFooter)}
+      ${metabox(`\u{1F3F7} ${tagNameFull} (tag)`, page, "#530000", metaIndex.mdFooter)}
       ${renderMarkdown(page._md, metaIndex.mdFooter)}
       <h1 id="struct">Tag structure</h1>
       ${alert({type: "info", body: html`

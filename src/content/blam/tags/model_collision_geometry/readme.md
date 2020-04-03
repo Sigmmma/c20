@@ -1,7 +1,11 @@
 ---
-template: tag
 title: Model collision geometry
+template: tag
 ---
+
+mtl damange ratios
+health
+shield value
 
 # Pathfinding spheres
 In Halo CE AI can figure out where to go by checking the pathfinding data on the BSP. But when you place objects in a level this of course doesn't affect the BSP. The solution that Bungie came up with for this is pathfinding spheres.

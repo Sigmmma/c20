@@ -27,6 +27,7 @@ Often called **retail**, this edition is the classic port of Halo 1 to Windows P
 * Addition of the flame thrower, fuel rod gun, and rocket warthog
 * Addition of the multiplayer maps Death Island, Ice Fields, Gephyrophobia, Infinity, Timberland, and Danger Canyon
 * Addition of a dedicated server, `haloceded.exe`
+* The [model][] tag was modified into [gbxmodel][]
 * A new "jet" particle creation physics type was added to the [particle_system][] tag
 * Swapping of the [model][] tag for [gbxmodel][]
 * Regressions in visuals and assets due to platform differences and the port being based on a pre-release version of Xbox Halo 1

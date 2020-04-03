@@ -15,6 +15,18 @@ Bitmaps are used for visuals that need textures or sprites like environments, ob
 ## Basics
 To store textures and images in maps we use bitmap tags. Bitmap tags on their simplest are compiled from a .tif file in your data directory.
 
+diffuse map, bump map, multipurpose etc (i know detail map is like scratches overlay
+
+multipurpose handles detail masking, color change, self illumination and specularity
+detail is the red channel
+color change is the alpha channel, its a mask for color values specified in tags that get multiplied over the diffuse. color change source in shader model controls what values get used in things like biped or actor variant.
+self illum is green,
+specularity is blue, it masks cubemap reflections
+
+xbox channel sources are different. red is specular, blue is color change, and alpha is detail.
+
+you dont need to have a multi for detail maps to show
+
 ### Commands
 ```
 tool bitmap <source-file>

@@ -13,9 +13,9 @@ Resources are represented by [tags][].
 * Portal-based occlusion
 * BSP collisions
 * Mass point-based physics
-* Pathfinding
 * Weather volumes
-* AI
+* Scripting engine
+* AI and pathfinding
 
 ## Other games
 The Blam! engine was not just used for the Halo series. Bungie co-founder [Alex Seropian][alex] went on to found [Wideload Games][wideload] and used the engine for [Stubbs the Zombie in Rebel Without a Pulse][stubbs]. In fact, it is possible to extract [tags][] from Stubbs using [Refinery][mek] and recompile levels for Halo.

@@ -48,6 +48,18 @@ a[href^="mailto:"]:after {
   font-size: 50%;
 }
 
+a[href^="/blam/tags/"]:after {
+  content: "🏷️";
+  vertical-align: super;
+  font-size: 50%;
+}
+
+a[href^="/tools/"]:after {
+  content: "🔨";
+  vertical-align: super;
+  font-size: 50%;
+}
+
 h1 {font-size: 1.50em;}
 h2 {font-size: 1.33em;}
 h3 {font-size: 1.17em;}

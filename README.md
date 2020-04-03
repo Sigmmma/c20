@@ -5,7 +5,7 @@ This wiki is a comprehensive documentation of the Halo 1 Custom Edition editing 
 ## Usage
 
 ```sh
-npm install
+npm ci
 npm run build
 npm start
 ```
@@ -15,3 +15,6 @@ npm start
 * Contents
 * Indexes
 * Better metabox title
+
+## Writing guide
+Sentence case headers
