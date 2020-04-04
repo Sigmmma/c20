@@ -12,9 +12,6 @@ npm start
 
 ## Todo
 * Anchor tags
-* Contents
+* Table of contents
 * Indexes
-* Better metabox title
-
-## Writing guide
-Sentence case headers
+* Automatic metaboxes
