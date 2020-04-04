@@ -71,8 +71,10 @@ const wrapper = (page, metaIndex, body) => {
     }
   }
   return html`
-    <html>
+    <!DOCTYPE html>
+    <html lang="en">
       <head>
+        <meta charset="utf-8"/>
         <title>${page.title} - c20</title>
         <link rel="stylesheet" href="/assets/style.css"/>
         <link rel="stylesheet" href="/assets/atom-one-dark.css"/>
