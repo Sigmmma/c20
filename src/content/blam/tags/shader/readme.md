@@ -1,5 +1,5 @@
 ---
-title: Shader (abstract tag)
+title: shader (abstract tag)
 template: tag
 ---
 

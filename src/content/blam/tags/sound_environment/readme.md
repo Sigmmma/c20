@@ -1,5 +1,5 @@
 ---
-title: Sound environment
+title: sound_environment
 template: tag
 stub: true
 ---

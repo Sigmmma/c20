@@ -1,5 +1,5 @@
 ---
-title: weather
+title: projectile
 template: tag
 stub: true
 ---

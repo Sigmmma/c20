@@ -1,5 +1,5 @@
 ---
-title: Scenario structure BSP
+title: scenario_structure_bsp
 template: tag
 img: bsp.jpg
 imgCaption: The map a30's BSP with all objects removed using `object_destroy_all`
@@ -21,12 +21,38 @@ Note that it may still be desirable to reference weather for indoor clusters if 
 Areas of a map which need a fog layer can be marked using _fog planes_. These are 2D surfaces which reference [fog tags][fog], not to be confused with atmospheric fog which is part of the [sky tag][sky].
 
 # Weather polyhedra
+
+<figure>
+  <a href="weather-polys-aotcr.png">
+    <img src="weather-polys-aotcr.png" alt="Weather polys from AotCR"/>
+  </a>
+  <figcaption>
+    <p>Weather polys extracted from AotCR.</p>
+  </figcaption>
+</figure>
+
 Weather polyhedra are simple convex volumes where weather particles will not render. They can be used to mask rain or snow from under overhangs, doorways, and indoor spaces when the cluster has weather.
 
 When a JMS is compiled to BSP by [tool], connected convex faces with the material name `+weatherpoly` will generate _weather polyhedra_. Within the tag, the polyhedra are represented as a center point, bounding radius, and up to 16 planes which enclose a volume.
 
+# Lightmaps
 
+<figure>
+  <a href="lightmaps_example.jpg">
+    <img src="lightmaps_example.jpg" alt="Timberland with just lightmaps rendered"/>
+  </a>
+  <figcaption>
+    <p>Timberland's diffuse textures disabled by running <code>rasterizer_environment_diffuse_textures 0</code>,
+    showing just lightmap and specular components of the BSP</p>
+  </figcaption>
+</figure>
 
+Lightmaps are a special type of [bitmap][] referenced by the BSP which represents static lighting information. It is created using [Tool][] or [Sapien][] by the **[radiosity][]** process. A second set of UV coordinates is generated for the entire renderable BSP and a texture is rendered to apply levels of light to those surfaces.
+
+[Skies][sky], emissive [environment shaders][shader], [scenery][] with lights, and [light fixtures][device_light_fixture] can all be used as light sources to illuminate the BSP. Additionally, static objects like [scenery][] will cast shadows. Therefore you must to re-run radiosity any time these light sources change to see a change.
+
+Beyond just affecting the surface colour, the lightmap also encodes<sup>(how?)</sup> the primary light direction for each vertex which determines the shadow directions for dynamic objects like [vehicles][vehicle] and [bipeds][biped].
 
 [bsp]: https://en.wikipedia.org/wiki/Binary_space_partitioning
 [convex]: https://en.wikipedia.org/wiki/Convex_set
+[radiosity]: https://en.wikipedia.org/wiki/Radiosity_(computer_graphics)

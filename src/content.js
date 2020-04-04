@@ -53,7 +53,11 @@ async function buildMetaIndex(contentDir) {
 
 async function renderContent(metaIndex, outputDir) {
   await Promise.all(metaIndex.pages.map(async (page) => {
-    const renderTemplate = templates[page.template || "default"];
+    const templateName = page.template || "default";
+    const renderTemplate = templates[templateName];
+    if (!renderTemplate) {
+      throw new Error(`The template '${templateName}' does not exist`);
+    }
     const result = renderTemplate(page, metaIndex);
     await fs.mkdir(path.join(outputDir, ...page._dir), {recursive: true});
     await fs.writeFile(path.join(outputDir, ...page._dir, "index.html"), result, "utf8");

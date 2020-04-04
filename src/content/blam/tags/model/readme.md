@@ -1,5 +1,5 @@
 ---
-title: Model (Xbox)
+title: model (Xbox)
 template: tag
 stub: true
 ---

@@ -1,5 +1,5 @@
 ---
-title: weather
+title: sky
 template: tag
 stub: true
 ---

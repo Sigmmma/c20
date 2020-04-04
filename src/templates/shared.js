@@ -11,6 +11,11 @@ const alert = ({type, body}) => html`
   </div>
 `;
 
+const STUB_ALERT = alert({type: "danger", body: html`
+  <p>🚧 This article is a stub. You can help expand it by submitting content in
+  pull requests or issues in this wiki's <a href="${REPO}">source repo</a>.</p>
+`});
+
 const metabox = (title, page, metaColor, mdFooter) => {
   return html`
     <aside id="metabox">
@@ -56,7 +61,7 @@ const renderMarkdown = (md, mdFooter) => {
   return renderer.render(mdFooter ? (md + "\n\n" + mdFooter) : md);
 };
 
-const wrapper = ({page, metaIndex, body}) => {
+const wrapper = (page, metaIndex, body) => {
   const breadcrumbs = [];
   for (let i = 0; i <= page._dir.length; i++) {
     const parentUrl = "/" + page._dir.slice(0, i).join("/");
@@ -78,12 +83,11 @@ const wrapper = ({page, metaIndex, body}) => {
             ${ul(breadcrumbs.map(pageAnchor))}
           </nav>
           <article id="content">
+            <h1 class="page-title">${page.title}</h1>
             ${body}
             ${page.stub && html`
               <hr/>
-              ${alert({type: "danger", body: html`
-                <p>This article is a stub. You can help expand it by submitting content in pull requests or issues in this wiki's <a href="${REPO}">source repo</a>.</p>
-              `})}
+              ${STUB_ALERT}
             `}
           </article>
           <footer id="content-footer">
@@ -101,11 +105,11 @@ const wrapper = ({page, metaIndex, body}) => {
   `;
 };
 
-const anchor = ({href, body}) => html`
+const anchor = (href, body) => html`
   <a href="${href}">${body}</a>
 `;
 
-const pageAnchor = (page) => anchor({href: page._dirUrl, body: page.title});
+const pageAnchor = (page) => anchor(page._dirUrl, page.title);
 
 const ul = (items) => html`
   <ul>

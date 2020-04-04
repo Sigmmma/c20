@@ -18,7 +18,7 @@ function assetStyles() {
 }
 
 function assetImages() {
-  return gulp.src("./src/@(assets)/**/*.@(jpg|jpeg|png)")
+  return gulp.src("./src/@(assets)/**/*.@(jpg|jpeg|png|gif)")
     .pipe(gulp.dest("./dist"));
 }
 
@@ -28,7 +28,7 @@ function vendorAssets() {
 }
 
 function contentResources() {
-  return gulp.src("./src/content/**/*.@(jpg|jpeg|png)")
+  return gulp.src("./src/content/**/*.@(jpg|jpeg|png|gif)")
     .pipe(gulp.dest("./dist"));
 }
 

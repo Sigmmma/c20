@@ -17,7 +17,7 @@ $font-family: "Helvetica", sans-serif;
 $font-size: 12pt;
 $font-family-code: "Fira Code", monospace;
 $font-size-code: 10pt;
-$width-content: 60em;
+$width-content: 65em;
 
 body {
   color: $fg;
@@ -55,7 +55,7 @@ a[href^="/blam/tags/"]:after {
 }
 
 a[href^="/tools/"]:after {
-  content: "🔨";
+  content: "🔧";
   vertical-align: super;
   font-size: 50%;
 }
@@ -113,25 +113,28 @@ h1.page-title {
   }
 }
 
-#metabox {
+#metabox, figure, aside {
   float: right;
   clear: right;
-  width: 33%;
+  width: 35%;
   background: $bg-overlay;
   border: 1px solid $border-color;
   border-bottom-width: 0;
   border-radius: $border-radius;
   margin: 0 0 $padding-containers $padding-containers;
 
-  & section {
+  figcaption {
+    font-style: italic;
+  }
+  section, figcaption {
     display: flow-root;
     border-bottom: 1px solid $border-color;
     padding: 0 $padding-containers;
   }
-  & section.header {
+  section.header {
     text-align: center;
   }
-  & section.img {
+  section.img, img {
     padding: 0;
   }
 }
@@ -157,12 +160,20 @@ h1.page-title {
     color: $fg-strong;
   }
 
+  blockquote {
+    display: flow-root;
+    font-style: italic;
+    background: $bg-inset;
+    border-radius: $border-radius;
+    padding: 0 $padding-containers;
+    margin-left: 0;
+  }
+
   pre, code {
     font-family: $font-family-code;
     font-size: $font-size-code;
     background: $bg-inset;
     border-radius: $border-radius;
-    border: 1px solid $border-color;
   }
 
   code {

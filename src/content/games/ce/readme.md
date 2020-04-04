@@ -36,7 +36,7 @@ The game received several patches since its release to address remote exploits, 
 
 A **beta version** of Halo PC can also be found online. It has [unfinished versions of PC-exclusive content][pc-beta-2] and [weapon tuning][pc-beta-1] similar to pre-release Xbox versions.
 
-## Custom Edition
+## Custom Edition (PC)
 Custom edition, often called **Halo CE** or **CE** is a standalone version of Halo PC which supports custom maps created by the [HEK][], also released in 2003. Like Halo PC it features a server browser and its own `haloceded.exe` dedicated server, but lacks the campaign. [Maps][map] are incompatible between the editions.
 
 Compared to PC, CE has a few other differences:
@@ -56,8 +56,13 @@ The free demo versions of Halo 1 on Mac and PC include just the multiplayer map 
 
 The Mac demo has a mod called [Halo Mini Demo][halomd], or **HaloMD**, which allows it to be played on modern systems. The plugin [**Halo+**][halo-plus] by Samuco can be used to enhance to experience, and a [netcode translator][halomd-bridge] can be used to connect to Custom Editions servers.
 
-## Anniversary Edition & MCC (PC and Xbox 360+)
-...
+## Anniversary (Xbox 360)
+In 2011, Halo: Combat Evolved Anniversary was released for Xbox 360. It was developed by [343 Industries][343i] and [Saber Interactive][saber] as a remaster of the original Halo: Combat Evolved, and is derived from the Gearbox PC port. This edition contains the secondary _Saber3D_ engine for its remastered graphics mode.
+
+## MCC (PC and Xbox One)
+Halo: The Master Chief collection (MCC) is actively maintained by [343 Industries][343i] for both PC and Xbox One. It brings the Halo series under a single [Game as a Service][gaas], including unified matchmaking and progression experiences. The PC port uses [Unreal Engine][unreal] as a menu and input layer over the respective engines of each included Halo game.
+
+It is possible to compile custom maps for MCC PC using Invader and some [experimental tooling].
 
 [gearbox]: https://en.wikipedia.org/wiki/Gearbox_Software
 [bungie]: https://en.wikipedia.org/wiki/Bungie
@@ -75,3 +80,7 @@ The Mac demo has a mod called [Halo Mini Demo][halomd], or **HaloMD**, which all
 [halomd]: https://www.halomd.net/
 [halo-plus]: https://opencarnage.net/index.php?/topic/5174-halomd-halo/
 [halomd-bridge]: https://opencarnage.net/index.php?/topic/7082-misc-ce-development/&page=18#comment-83828
+[saber]: https://en.wikipedia.org/wiki/Saber_Interactive
+[343i]: https://en.wikipedia.org/wiki/343_Industries
+[gaas]: https://en.wikipedia.org/wiki/Games_as_a_service
+[unreal]: https://en.wikipedia.org/wiki/Unreal_Engine

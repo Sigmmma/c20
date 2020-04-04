@@ -1,5 +1,5 @@
 ---
-title: Object (abstract tag)
+title: object (abstract tag)
 template: tag
 ---
 

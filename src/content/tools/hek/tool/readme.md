@@ -1,19 +1,9 @@
 ---
 title: Tool
+template: tool
+stub: true
+img: tool.jpg
+imgCaption: "`tool structure` being used to compile a JMS"
 ---
 
-Tool, or sometimes called **tool.exe**, is a command line utility and part of the [HEK][].
-
-### WARNING found nearly coplanar surfaces (red and green).
-reducing collision bsp...
-verifying collision geometry...
-verifying collision bsp...
-building portals...
-### WARNING unearthed edge (magenta boxed lines).
-### WARNING unearthed edge (magenta boxed lines).
-### WARNING unearthed edge (magenta boxed lines).
-### ERROR: portal does not define two closed spaces. (see yellow in error geometry)
-building render geometry...
-### WARNING: a surface clipped to no leaves (see cyan in error geometry).
-building subclusters...
-building pvs... two fog planes intersected in a cluster (see black in error geometry).
+Tool, or sometimes called **tool.exe**, is a command line utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [HEK][].

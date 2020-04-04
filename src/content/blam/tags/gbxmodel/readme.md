@@ -1,5 +1,5 @@
 ---
-title: Gearbox model
+title: gbxmodel
 template: tag
 stub: true
 ---
