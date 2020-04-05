@@ -7,7 +7,7 @@ An explicit choice was made to avoid typical managed or self-hosted Wiki platfor
 
 The downside is that it is harder for contributors to add content like they would with a typical Wiki -- there is no login or edit button. While this may limit casual editing, previous attempts to create a Halo modding wiki have shown that content has not grown organically over time beyond a few passionate maintainers and that another approach is needed.
 
-Instead, the this library will be treated as a curated resource of high quality documentation assembled from research and interviews with the community's experts. That being said, we are happy to edit and include any content that you provide. **Pull requests are welcome**, and it is not necessary to ensure the build is working when submitting one. We also accept submissions by GitHub issue or email if that's easiest for you.
+Instead, this library will be treated as a curated resource of high quality documentation assembled from research and interviews with the community's experts. That being said, we are happy to edit and include any content that you provide. **Pull requests are welcome**, and it is not necessary to ensure the build is working when submitting one. We also accept submissions by GitHub issue or email if that's easiest for you.
 
 At a high level, we want to cover resources (data, tags, maps), tools (official and community), details of the Halo engine, and workflow guides. Our focus will be on Halo 1 modding, though content for later games (e.g. H2V) is also welcome.
 
