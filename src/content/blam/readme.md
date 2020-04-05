@@ -3,7 +3,7 @@ title: Blam!
 stub: true
 ---
 
-Blam! is the proprietary game engine powering [Halo][ce]. It was developed in-house at Bungie and has undergone significant evolution over the series' expansion. According to a [Jason Jones interview][jones-interview], the engine has its roots in [Myth][]:
+Blam! is the proprietary game engine powering [Halo][h1]. It was developed in-house at Bungie and has undergone significant evolution over the series' expansion. According to a [Jason Jones interview][jones-interview], the engine has its roots in [Myth][]:
 
 > Halo didn't begin as a strategy game but the engine it uses started out that way. The engine Halo uses began as a next-generation Myth terrain engine, with polygonal units.
 

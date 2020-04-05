@@ -19,10 +19,10 @@ Halo 1 uses Bungie's proprietary [Blam!][blam] engine, which also formed the bas
 
 <figure>
   <a href="games.svg">
-    <img src="games.svg" alt="Evolution of the Halo 1 editions"/>
+    <img src="games.svg" alt="Tree view of the Halo 1 editions"/>
   </a>
   <figcaption>
-    <p>Evolution of the Halo 1 editions</p>
+    <p>Evolution of the Halo 1 editions and versions, colour-coded by map cache versions</p>
   </figcaption>
 </figure>
 
@@ -78,7 +78,7 @@ In 2011, Halo: Combat Evolved Anniversary was released for Xbox 360. It was deve
 ## MCC (PC and Xbox One)
 Halo: The Master Chief collection (MCC) is actively maintained by [343 Industries][343i] for both PC and Xbox One. It brings the Halo series under a single [Game as a Service][gaas], including unified matchmaking and progression experiences. The PC port uses [Unreal Engine][unreal] as a menu and input layer over the respective engines of each included Halo game.
 
-It is possible to compile custom maps for MCC PC using Invader and some [experimental tooling].
+It is possible to compile custom maps for MCC PC using Invader and some [experimental tooling][opack].
 
 [gearbox]: https://en.wikipedia.org/wiki/Gearbox_Software
 [bungie]: https://en.wikipedia.org/wiki/Bungie

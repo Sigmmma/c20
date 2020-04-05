@@ -1,0 +1,63 @@
+digraph G {
+  # cache v5
+  node [style=filled color="#8fcc86"]
+  pre [label="Xbox pre-release\n(cache v5)"];
+  h1x [label="Xbox\n(cache v5)"];
+
+  # cache v6
+  node [style=filled color="#c8cc86"];
+  pc_beta [label="PC Beta\n(cache v6)"];
+  pc_rc [label="PC Release Candidate?\n(cache v6)"];
+  pc_demo [label="PC Demo\n(cache v6)"];
+  mac_demo [label="Mac Demo\n(cache v6)"];
+
+  # cache v7
+  node [style=filled color="#cc8686"];
+  pc_100 [label="PC Retail v1.0.0\n(cache v7)"];
+  pc_110 [label="PC Retail v1.0.10\n(cache v7)"];
+  mac [label="Mac v1.0.0\n(cache v7)"];
+
+  # cache v7 kinda (invader v563)
+  node [style=filled color="#cc86c9"];
+  ann [label="Anniversary (360)"]; #\n(cache v563)
+  mccx [label="MCC (Xbox One)"];
+  mccpc [label="MCC (PC)"];
+
+  # cache v609
+  node [style=filled color="#8686cc"];
+  ce_100 [label="Custom Edition v1.0.0\n(cache v609)"];
+  ce_110 [label="Custom Edition v1.0.10\n(cache v609)"];
+
+  #mods
+  node [style=filled color="#afafaf"];
+  h15 [label="Halo 1.5 (mod)"];
+  h1final [label="Halo 1 Final (mod)"];
+  nhe [label="Neutral Host Edition (mod)"];
+  halomd [label="HaloMD (mod)"];
+
+  pre -> h1x;
+
+  # gearbox pc lineage
+  pre -> pc_beta;
+  pc_beta -> pc_rc;
+  pc_rc -> pc_100;
+  pc_100 -> pc_110 [label="patches"];
+
+  # pc forks
+  pc_100 -> ce_100;
+  ce_100 -> ce_110 [label="patches"];
+  pc_100 -> mac;
+  pc_rc -> pc_demo;
+  pc_demo -> mac_demo;
+
+  #xbox mods
+  h1x -> h15;
+  h15 -> h1final;
+  h1final -> nhe;
+  mac_demo -> halomd;
+
+  # cea and mcc
+  pc_100 -> ann;
+  ann -> mccx;
+  mccx -> mccpc;
+}
