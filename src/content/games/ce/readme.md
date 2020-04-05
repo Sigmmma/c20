@@ -1,14 +1,30 @@
 ---
 title: "Halo: Combat Evolved"
-img: box-art.jpg
-imgCaption: "Halo's box art"
 ---
+
+<figure>
+  <a href="box-art.jpg">
+    <img src="box-art.jpg" alt="Halo's box art"/>
+  </a>
+  <figcaption>
+    <p>Halo's box art</p>
+  </figcaption>
+</figure>
 
 Halo: Combat Evolved, also known as **Halo 1** (hereafter called Halo 1), is the first installment of the Halo game series. It was created by [Bungie][bungie] and initially released on the original Xbox in 2001 by publisher/owner [Microsoft][]. In 2003, the game was released for Windows PC and Mac via different studios.
 
 Halo 1 uses Bungie's proprietary [Blam!][blam] engine, which also formed the basis of later games in the series.
 
 # Editions and versions
+
+<figure>
+  <a href="games.svg">
+    <img src="games.svg" alt="Evolution of the Halo 1 editions"/>
+  </a>
+  <figcaption>
+    <p>Evolution of the Halo 1 editions</p>
+  </figcaption>
+</figure>
 
 ## Xbox
 Sometimes called **h1x** or **OG Xbox**, this is the classic first release of Halo 1 for the original Xbox. It supports LAN multiplayer and spawned a competitive community which is still active. While original Xbox consoles are hard to come by, [emulation][xemu] is an emerging alternative. Low resolution aside, the Xbox edition offers a superior graphical experience compared to its ported cousins. Though it is a more involved process, custom maps created with the [HEK][] can be ported back to Xbox.

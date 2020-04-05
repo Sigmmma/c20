@@ -22,12 +22,15 @@
     "serve-static": "^1.14.1"
   },
   "devDependencies": {
-    "gulp": "^4.0.2",
+    "common-tags": "^1.8.0",
     "front-matter": "^3.1.0",
     "glob": "^7.1.6",
+    "gulp": "^4.0.2",
+    "gulp-rename": "^2.0.0",
+    "gulp-transform": "^3.0.5",
     "highlight.js": "^9.18.1",
     "markdown-it": "^10.0.0",
     "sass": "^1.26.3",
-    "common-tags": "^1.8.0"
+    "viz.js": "^2.1.2"
   }
 }
