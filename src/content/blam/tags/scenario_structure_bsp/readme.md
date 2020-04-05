@@ -9,6 +9,8 @@ Commonly referred to as the **BSP**, this tag contains level geometry, weather d
 
 While a [scenario][] can reference multiple BSPs, Halo can only have a single BSP loaded at a time. Transitions between BSPs can be scripted (`switch_bsp`), e.g. using trigger volumes. Objects in unloaded BSPs are not simulated.
 
+[[toc]]
+
 # Binary space partitioning
 BSP stands for **[Binary Space Partitioning](bsp)**, a technique where space within a sealed static mesh is recursively subdivided by planes into [convex][] _leaf nodes_. The resulting **BSP tree** can be used to efficiently answer geometric queries, such as which surfaces should be collision-tested for physics objects.
 

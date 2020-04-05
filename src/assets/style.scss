@@ -84,6 +84,19 @@ h1.page-title {
   font-size: 2em;
 }
 
+a.header-anchor {
+  color: $fg-faded;
+  opacity: 0;
+  padding: 0 0.5em;
+  transition: opacity 0.3s;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  &:hover a.header-anchor {
+    opacity: 1;
+  }
+}
+
 .alert {
   display: flow-root;
   border-radius: $border-radius;
@@ -96,7 +109,7 @@ h1.page-title {
   }
 }
 
-#breadcrumbs {
+.breadcrumbs {
   background: $bg-header;
   padding: $padding-containers;
   ul {
@@ -114,7 +127,7 @@ h1.page-title {
   }
 }
 
-#metabox, figure, aside {
+.metabox, figure, aside {
   float: right;
   clear: right;
   width: 35%;
@@ -140,7 +153,7 @@ h1.page-title {
   }
 }
 
-#content {
+.content {
   padding: 0 $padding-containers $padding-containers $padding-containers;
   display: flow-root;
   background: $bg-content;
@@ -192,7 +205,7 @@ h1.page-title {
   }
 }
 
-#content-footer {
+.content-footer {
   margin-bottom: $padding-containers;
   padding: 0 $padding-containers;
   display: flow-root;

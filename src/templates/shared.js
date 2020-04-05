@@ -1,9 +1,46 @@
 const path = require("path");
 const {html} = require("common-tags");
 const markdownIt = require("markdown-it");
+const markdownItAnchors = require("markdown-it-anchor");
+const markdownItToC = require("markdown-it-table-of-contents");
 const hljs = require("highlight.js");
 
-const REPO = "https://github.com/csauve/c20";
+const REPO = "https://github.com/Sigmmma/c20";
+
+const mdRenderer = markdownIt({
+  html: true,
+  linkify: true,
+  typographer: false,
+  breaks: false,
+  highlight: (code, lang) => {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, code).value;
+      } catch (err) {
+        console.warn(`Failed to highlight code with language ${lang}`);
+      }
+    }
+    return code;
+  }
+});
+
+//prevents protocol-less links from being turned into <a>
+mdRenderer.linkify.set({
+  fuzzyLink: false
+});
+
+//anchor options here: https://www.npmjs.com/package/markdown-it-anchor
+mdRenderer.use(markdownItAnchors, {
+  permalink: true,
+  permalinkSymbol: "#"
+});
+
+mdRenderer.use(markdownItToC, {
+  includeLevel: [1, 2],
+  containerHeaderHtml: html`
+    <h2>Table of contents</h2>
+  `
+});
 
 const alert = ({type, body}) => html`
   <div class="alert type-${type || "info"}">
@@ -18,7 +55,7 @@ const STUB_ALERT = alert({type: "danger", body: html`
 
 const metabox = (title, page, metaColor, mdFooter) => {
   return html`
-    <aside id="metabox">
+    <aside class="metabox">
       <section class="header" style="background: ${metaColor || "none"}">
         <p><strong>${title}</strong></p>
       </section>
@@ -42,23 +79,7 @@ const metabox = (title, page, metaColor, mdFooter) => {
 };
 
 const renderMarkdown = (md, mdFooter) => {
-  const renderer = markdownIt({
-    html: true,
-    linkify: true,
-    typographer: false,
-    breaks: false,
-    highlight: (code, lang) => {
-      if (lang && hljs.getLanguage(lang)) {
-        try {
-          return hljs.highlight(lang, code).value;
-        } catch (err) {
-          console.warn(`Failed to highlight code with language ${lang}`);
-        }
-      }
-      return code;
-    }
-  });
-  return renderer.render(mdFooter ? (md + "\n\n" + mdFooter) : md);
+  return mdRenderer.render(mdFooter ? (md + "\n\n" + mdFooter) : md);
 };
 
 const wrapper = (page, metaIndex, body) => {
@@ -81,10 +102,10 @@ const wrapper = (page, metaIndex, body) => {
       </head>
       <body>
         <main>
-          <nav id="breadcrumbs">
+          <nav class="breadcrumbs">
             ${ul(breadcrumbs.map(pageAnchor))}
           </nav>
-          <article id="content">
+          <article class="content">
             <h1 class="page-title">${page.title}</h1>
             ${body}
             ${page.stub && html`
@@ -92,7 +113,7 @@ const wrapper = (page, metaIndex, body) => {
               ${STUB_ALERT}
             `}
           </article>
-          <footer id="content-footer">
+          <footer class="content-footer">
             <p>
               <small>
                 This text is available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0 license</a>

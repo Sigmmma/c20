@@ -8,7 +8,10 @@ module.exports = (page, metaIndex) => {
   return wrapper(page, metaIndex, html`
     ${metabox(`\u{1F3F7} ${tagNameFull} (tag)`, page, "#530000", metaIndex.mdFooter)}
     ${renderMarkdown(page._md, metaIndex.mdFooter)}
-    <h1 id="struct">Tag structure</h1>
+    <h1 id="tag-structure">
+      Tag structure
+      <a href="#tag-structure" class="header-anchor">#</a>
+    </h1>
     ${alert({type: "info", body: html`
       <p>
         Tag structures are not yet built into this wiki, but you can find a reference for this tag in

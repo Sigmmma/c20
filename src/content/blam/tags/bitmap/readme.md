@@ -12,6 +12,8 @@ info: >
 
 Bitmaps are used for visuals that need textures or sprites like environments, objects, effects, menus, etc.
 
+[[toc]]
+
 ## Basics
 To store textures and images in maps we use bitmap tags. Bitmap tags on their simplest are compiled from a .tif file in your data directory.
 
