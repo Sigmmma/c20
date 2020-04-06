@@ -52,7 +52,8 @@ module.exports = (page, metaIndex) => {
     <ul>
       ${tagDependencies.map(tagClass => {
         if (tagClass == "*") {
-          return html`<li>(any)</li>`;
+          //sound, effect, damage effect, sound looping, model animations, actor variants, and objects
+          return html`<li>(any tags referenced by scripts)</li>`;
         } else {
           const tagPageUrl = `/blam/tags/${tagClass}`;
           return html`<li>${anchor(tagPageUrl, tagClass)}</li>`;
