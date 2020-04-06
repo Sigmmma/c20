@@ -1,6 +1,8 @@
 ---
 title: model_collision_geometry
 template: tag
+img: collisions.png
+imgCaption: "Collision geometry for many of Halo's vehicles, scenery, and bipeds"
 ---
 
 Model collision geometry tags contain collision data for an [object][]. This is in contrast to [model/gbxmodel][gbxmodel] tags, which contain the renderable data. Collision meshes tend to be less detailed than render meshes.
@@ -34,3 +36,6 @@ model_collision_geometry tags can only have up to 16 pathfinding spheres<sup>(co
 
 * `debug_objects_pathfinding_spheres 1`
   Can be used to view pathfinding spheres in Sapien.
+
+# Animation
+Unlike [BSPs][scenario_structure_bsp], collision geometry can have a self-intersecting mesh. However, this is only permitted between meshes parented by different nodes (e.g. limbs of a biped intersecting each other or the torso). Collision geometry cannot have weighted skinning for animations, so rigidly follows parent nodes in animations.

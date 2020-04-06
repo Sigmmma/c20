@@ -3,6 +3,7 @@ title: scenario_structure_bsp
 template: tag
 img: bsp.jpg
 imgCaption: The map a30's BSP with all objects removed using `object_destroy_all`
+tagClass: ScenarioStructureBSP
 ---
 
 Commonly referred to as the **BSP**, this tag contains level geometry, weather data, material assignments, AI pathfinding information, lightmaps, and other data structures. The name "BSP" is commonly used to refer to non-[object][] level geometry in general. Aside from sounds and [bitmaps][bitmap], the BSP tends to be one of the largest tags in a map.

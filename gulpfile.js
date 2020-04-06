@@ -48,7 +48,7 @@ function contentResources() {
 }
 
 async function contentPages() {
-  await buildContent("./src/content", "./dist");
+  await buildContent("./src/content", "./dist", "./lib/invader/src/tag/hek/definition/");
 }
 
 const assets = gulp.parallel(assetImages, assetStyles, vendorAssets);

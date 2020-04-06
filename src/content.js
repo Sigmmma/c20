@@ -16,10 +16,29 @@ async function findPaths(globPattern) {
   });
 }
 
-async function buildMetaIndex(contentDir) {
-  const filePaths = await findPaths(`${contentDir}/**/readme.md`);
+async function getTagMetadata(tagsDir) {
+  const filePaths = await findPaths(path.join(tagsDir, "*.json"));
+  const defsByFile = await Promise.all(filePaths.map(async (filePath) => {
+    return new Promise(async (resolve, reject) => {
+      try {
+        const fileContents = await fs.readFile(filePath, "utf8");
+        const defs = JSON.parse(fileContents);
+        resolve(defs);
+      } catch (err) {
+        reject(err);
+      }
+    });
+  }));
+  const defsByName = {};
+  for (let def of defsByFile.flat()) {
+    defsByName[def.name] = def;
+  }
+  return defsByName;
+}
 
-  const pages = await Promise.all(filePaths.map(async (filePath) => {
+async function getPageMetadata(contentDir) {
+  const filePaths = await findPaths(path.join(contentDir, "**/readme.md"));
+  return await Promise.all(filePaths.map(async (filePath) => {
     return new Promise(async (resolve, reject) => {
       try {
         const fileContents = await fs.readFile(filePath, "utf8");
@@ -42,13 +61,18 @@ async function buildMetaIndex(contentDir) {
       }
     });
   }));
+}
+
+async function buildMetaIndex(contentDir, tagsDir) {
+  const pages = await getPageMetadata(contentDir);
+  const tags = await getTagMetadata(tagsDir);
 
   const mdFooter = pages
     .filter(page => page._dir.length > 0)
     .map(page => `[${page._dir[page._dir.length - 1]}]: ${page._dirUrl}`)
     .join("\n");
 
-  return {pages, mdFooter};
+  return {pages, mdFooter, tags};
 }
 
 async function renderContent(metaIndex, outputDir) {
@@ -64,8 +88,8 @@ async function renderContent(metaIndex, outputDir) {
   }));
 }
 
-async function buildContent(contentDir, outputDir) {
-  const metaIndex = await buildMetaIndex(contentDir);
+async function buildContent(contentDir, outputDir, tagsDir) {
+  const metaIndex = await buildMetaIndex(contentDir, tagsDir);
   await renderContent(metaIndex, outputDir);
 }
 

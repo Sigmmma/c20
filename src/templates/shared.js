@@ -53,27 +53,32 @@ const STUB_ALERT = alert({type: "danger", body: html`
   pull requests or issues in this wiki's <a href="${REPO}">source repo</a>.</p>
 `});
 
-const metabox = (title, page, metaColor, mdFooter) => {
+const metabox = ({metaTitle, metaColour, img, imgCaption, mdSections, mdFooter, htmlSections}) => {
   return html`
     <aside class="metabox">
-      <section class="header" style="background: ${metaColor || "none"}">
-        <p><strong>${title}</strong></p>
+      <section class="header" style="background: ${metaColour || "none"}">
+        <p><strong>${metaTitle}</strong></p>
       </section>
-      ${page.img && html`
+      ${img && html`
         <section class="img">
-          <a href="${page.img}"><img src="${page.img}" alt="${page.imgCaption || ""}"/></a>
+          <a href="${img}"><img src="${img}" alt="${imgCaption || ""}"/></a>
         </section>
       `}
-      ${page.imgCaption && html`
+      ${imgCaption && html`
         <section class="caption">
-          <p><em>${renderMarkdown(page.imgCaption, mdFooter)}</em></p>
+          <p><em>${renderMarkdown(imgCaption, mdFooter)}</em></p>
         </section>
       `}
-      ${page.info && html`
+      ${mdSections && mdSections.filter(it => it).map(mdSection => html`
         <section class="info">
-          ${renderMarkdown(page.info, mdFooter)}
+          ${renderMarkdown(mdSection, mdFooter)}
         </section>
-      `}
+      `)}
+      ${htmlSections && htmlSections.filter(it => it).map(htmlSection => html`
+        <section class="info">
+          ${htmlSection}
+        </section>
+      `)}
     </aside>
   `;
 };

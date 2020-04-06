@@ -37,6 +37,7 @@ In order to see content as it will appear online, it must be built first. As a p
 
 ```sh
 # install dependencies
+git submodule update --init
 npm ci
 
 # build content into `./dist`
@@ -79,3 +80,9 @@ The website should make minimum use of client side JavaScript unless there are i
 
 ### Dependencies
 We should aim to reduce dependencies (e.g. NPM packages) where it makes sense. Though this is a static site and client side dependencies will be few if any, the proliferation of build dependencies could make this project harder to maintain.
+
+[Invader](https://github.com/Kavawuvi/invader) is included as a submodule for its tag definitions. It can be updated with:
+
+```sh
+git submodule update --remote
+```
