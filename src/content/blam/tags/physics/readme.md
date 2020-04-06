@@ -8,7 +8,7 @@ imgCaption: The mass points of a Warthog, extracted using [rec0's importer](http
 Physics tags characterize the dynamic physics and propulsion of [vehicles][vehicle]. They are essentially a collection of spherical _mass points_. Since vehicles can have both [model_collision_geometry][] and physics, each tag is used in different situations:
 
 * Physics are used in collisions between vehicles and is responsible for Halo 1's charactistic ["bouncy" vehicles][bouncy].
-* Physics are used in collisions with the [BSP][scenario_structure_bsp]. Because the mass points are somewhat "fuzzy" and are not continuous geometry, vehiles can become [stuck in thin BSP][stuck-bsp].
+* Physics are used in collisions with the [BSP][scenario_structure_bsp]. Because the mass points are somewhat "fuzzy" and are not continuous geometry, vehicles can become [stuck in thin BSP][stuck-bsp].
 * Physics are used in collisions with [devices][device] and [scenery][].
 * Collision geometry is used in collisions with [bipeds][biped], [items][item], and [projectiles][projectile].
 

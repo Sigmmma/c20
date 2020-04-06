@@ -16,7 +16,7 @@ While a [scenario][] can reference multiple BSPs, Halo can only have a single BS
 BSP stands for **[Binary Space Partitioning](bsp)**, a technique where space within a sealed static mesh is recursively subdivided by planes into [convex][] _leaf nodes_. The resulting **BSP tree** can be used to efficiently answer geometric queries, such as which surfaces should be collision-tested for physics objects.
 
 # Clusters and cluster data
-Clusters are sealed volumes of a BSP defined by portal planes. Clusters can independently reference the [weather][], [sound_environment][], and [sound_looping][] tags to define the atmospheric and ambience qualities of sections of the map.
+Clusters are sealed volumes of a BSP defined by portal planes. Clusters can independently reference the [weather_particle_system][], [wind][], [sound_environment][], and [sound_looping][] tags to define the atmospheric and ambience qualities of sections of the map.
 
 Note that it may still be desirable to reference weather for indoor clusters if there are outdoor areas visible from them, otherwise snow and rain particles will abruptly disappear. To mask weather in such clusters, use weather polyhedra.
 
