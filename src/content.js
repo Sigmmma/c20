@@ -45,7 +45,7 @@ async function getPageMetadata(contentDir) {
         const {dir} = path.parse(filePath);
         const {attributes, body} = fm(fileContents);
         if (!attributes || !attributes.title) {
-          reject(new Error(`File ${path} does not define a title`));
+          reject(new Error(`File ${filePath} does not define a title`));
         } else {
           const contentDirDepth = path.normalize(contentDir).split(path.sep).length;
           const _dir = path.normalize(dir).split(path.sep).slice(contentDirDepth);

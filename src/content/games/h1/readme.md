@@ -24,17 +24,17 @@ Halo 1 uses Bungie's proprietary [Blam!][blam] engine, which also formed the bas
     <img src="games.svg" alt="Tree view of the Halo 1 editions"/>
   </a>
   <figcaption>
-    <p>Evolution of the Halo 1 editions and versions, colour-coded by map cache versions</p>
+    <p>Evolution of the Halo 1 editions and versions, colour-coded by platform or major revision</p>
   </figcaption>
 </figure>
 
 ## Xbox
 Sometimes called **h1x** or **OG Xbox**, this is the classic first release of Halo 1 for the original Xbox. It supports LAN multiplayer and spawned a competitive community which is still active. While original Xbox consoles are hard to come by, [emulation][xemu] is an emerging alternative. Low resolution aside, the Xbox edition offers a superior graphical experience compared to its ported cousins. Though it is a more involved process, custom maps created with the [HEK][] can be ported back to Xbox.
 
-There exist two modded Xbox editions:
+Xbox has a rich history of modding, notably:
 
 * **Halo 1.5**, which adds [new competitive maps][h15]. [Custom edition ports][h15-maps-ce] of these maps are also available
-* [**Halo 1 Final**][h1final] (and its **Neutral Host Edition**) is a newer competitive mod with modified sounds, time callouts, and a selection of stock and custom 2v2-oriented maps
+* [**Halo 1 Final**][h1final] (and its **Neutral Host Edition**) is a newer competitive mod with modified sounds, time callouts, and a selection of stock and H1.5 2v2-oriented maps
 
 ## Halo PC
 Often called **retail**, this edition is the classic port of Halo 1 to Windows PC by developer [Gearbox Software][gearbox] and publisher [Microsoft Game Studios][microsoft]. Compared to the Xbox version, the PC port included a number of changes (for better and worse):
@@ -47,7 +47,6 @@ Often called **retail**, this edition is the classic port of Halo 1 to Windows P
 * Addition of a dedicated server, `haloceded.exe`
 * The [model][] tag was modified into [gbxmodel][]
 * A new "jet" particle creation physics type was added to the [particle_system][] tag
-* Swapping of the [model][] tag for [gbxmodel][]
 * Regressions in visuals and assets due to platform differences and the port being based on a pre-release version of Xbox Halo 1
 
 The game received several patches since its release to address remote exploits, remove the CD requirement, replace the GameSpy Arcade lobby, and other minor improvements. Its current version is `1.0.10` ([2014][patch]).
