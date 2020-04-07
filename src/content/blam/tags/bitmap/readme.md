@@ -195,9 +195,9 @@ Dummy space is space that is counted toward the size and position of your sprite
 
 ### Sprite Usage
 Under "... more sprite processing" there is a drop down box that controls the background color of the texture page. This is used to avoid color bleeding in from outside the sprite boundaries at runtime and creating outline-like artifacts.
-* **blend/add/subtract/max**: Makes the background black.
-* **multiply/min**: Makes the background white.
-* **double multiply**: Makes the background grey (50% grey).
+ - **blend/add/subtract/max**: Makes the background black.
+ - **multiply/min**: Makes the background white.
+ - **double multiply**: Makes the background grey (50% grey).
 
 # Interface bitmaps
 Interface bitmaps are textures that do not need to follow the power-of-two rule. They are used for menus (Not huds) and should never be used for anything else. They also generate without mipmaps and need to be 32-bit.
