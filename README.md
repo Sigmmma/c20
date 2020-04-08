@@ -33,7 +33,7 @@ Page text goes here
 The directory for a page can include other files related to that topic, like images or [Graphviz](https://graphviz.org/) files for generating diagrams.
 
 ## Building and testing
-In order to see content as it will appear online, it must be built first. As a pre-requisite, this project requires [Node.js](https://nodejs.org/en/). Run the following shell commands to build and locally serve the website:
+In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite, this project requires [Node.js](https://nodejs.org/en/). Run the following shell commands to build and locally serve the website:
 
 ```sh
 # install dependencies
@@ -41,13 +41,16 @@ git submodule update --init
 npm ci
 
 # build content into `./dist`
-npm run build
-
-# serve the site on port 8080
-npm start
+npm run dev
 ```
 
 You should be able to visit http://localhost:8080/ in a browser and see the built website. Note that if you make changes to source content, it will need to be rebuilt with `npm run build` before you see changes in the browser.
+
+If a different port is desired, set the environment variable `C20_PORT`:
+
+```sh
+C20_PORT=9001 npm run dev
+```
 
 ## Releasing
 The website is currently hosted as a static site in [AWS S3](https://aws.amazon.com/s3/), fronted by a [CloudFront](https://aws.amazon.com/cloudfront/) CDN distribution. To deploy a new version, simply sync the `dist` directory to S3:

@@ -5,8 +5,13 @@
   "main": "gulpfile.js",
   "scripts": {
     "build": "gulp",
-    "start": "node server.js"
+    "dev": "gulp dev",
+    "start": "node -e 'require(\"./server.js\")()'"
   },
+  "files": [
+    "dist",
+    "server.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/csauve/c20.git"
@@ -23,6 +28,7 @@
   },
   "devDependencies": {
     "common-tags": "^1.8.0",
+    "del": "^5.1.0",
     "front-matter": "^3.1.0",
     "glob": "^7.1.6",
     "gulp": "^4.0.2",
