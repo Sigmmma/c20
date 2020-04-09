@@ -9,21 +9,8 @@ const buildContent = require("./src/content");
 const Viz = require('viz.js');
 const vizRenderOpts = require('viz.js/full.render.js');
 
+const {paths} = require("./build-config.json");
 const runServer = require("./server");
-
-const paths = {
-  dist: "./dist",
-  distAssets: "./dist/assets/",
-  srcPages: "./src/content/**/readme.md",
-  srcResources: "./src/content/**/*.@(jpg|jpeg|png|gif)",
-  srcDiagrams: "./src/content/**/*.@(dot|neato|fdp|sfdp|twopi|circo)",
-  srcContentBase: "./src/content",
-  srcAssetImages: "./src/@(assets)/**/*.@(jpg|jpeg|png|gif)",
-  srcStyleEntry: "./src/assets/style.scss",
-  srcStylesAny: "./src/assets/**/*.scss",
-  vendorAssets: ["./node_modules/highlight.js/styles/atom-one-dark.css"],
-  invaderTagDefsBase: "./lib/invader/src/tag/hek/definition/",
-};
 
 //the dist directory may contain outdated content, so start clean
 function clean() {
