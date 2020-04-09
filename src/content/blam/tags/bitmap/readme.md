@@ -46,11 +46,11 @@ That would output `.bitmap` versions of these files in the respective tags folde
 
 # Type
 The bitmap type drop down box is used to tell tool how to process the image and what rules to apply.
- - **2D Textures**: A flat 2D texture. Mainly used for environments, objects. Also used for huds and effects.
- - **3D Textures**: A set of texture slices that when combined forms a texture cube. Used in the shader_transparent_plasma tag type.
- - **Cube maps**: A set of 6 textures that combines into a cube. Used for simulating reflections in shaders.
- - **Sprites**: A set of textures that have multiple sprites fitted on them. Used for effects and huds.
- - **Interface bitmaps**: Textures that don't have to follow the rule of needing to be power-of-two. Should only be used for menus.
+- **2D Textures**: A flat 2D texture. Mainly used for environments, objects. Also used for huds and effects.
+- **3D Textures**: A set of texture slices that when combined forms a texture cube. Used in the shader_transparent_plasma tag type.
+- **Cube maps**: A set of 6 textures that combines into a cube. Used for simulating reflections in shaders.
+- **Sprites**: A set of textures that have multiple sprites fitted on them. Used for effects and huds.
+- **Interface bitmaps**: Textures that don't have to follow the rule of needing to be power-of-two. Should only be used for menus.
 
 # Format
 The format of the bitmap determines what way it will be stored, how big the bitmap file ends up being in a map file and how it ends up looking.
@@ -195,9 +195,9 @@ Dummy space is space that is counted toward the size and position of your sprite
 
 ## Sprite Usage
 Under "... more sprite processing" there is a drop down box that controls the background color of the texture page. This is used to avoid color bleeding in from outside the sprite boundaries at runtime and creating outline-like artifacts.
- - **blend/add/subtract/max**: Makes the background black.
- - **multiply/min**: Makes the background white.
- - **double multiply**: Makes the background grey (50% grey).
+- **blend/add/subtract/max**: Makes the background black.
+- **multiply/min**: Makes the background white.
+- **double multiply**: Makes the background grey (50% grey).
 
 # Interface bitmaps
 Interface bitmaps are textures that do not need to follow the power-of-two rule. They are used for menus (Not huds) and should never be used for anything else. They also generate without mipmaps and need to be 32-bit.
@@ -211,48 +211,48 @@ Under "miscellaneous" there is a setting for how many mipmaps you want in your b
 Errors that are known and suggestions on how to fix them.
 ## --> !!WARNING!! failed to open TIFF: file does not exist <--
 
- - Cause<sup>1</sup>: The file is not where you told tool it is
- - Fix<sup>1</sup>: Make sure the file is somewhere in data or a subfolder and check your spelling of the path.
- - Cause<sup>2</sup>: The file is a TIFF file and not a TIF file
- - Fix<sup>2</sup>: save as a .TIF file
- - Info<sup>2</sup>: Tool doesn't understand .TIFF for some reason, but it does understand TIF.
+- Cause<sup>1</sup>: The file is not where you told tool it is
+- Fix<sup>1</sup>: Make sure the file is somewhere in data or a subfolder and check your spelling of the path.
+- Cause<sup>2</sup>: The file is a TIFF file and not a TIF file
+- Fix<sup>2</sup>: save as a .TIF file
+- Info<sup>2</sup>: Tool doesn't understand .TIFF for some reason, but it does understand TIF.
 
 ## Unknown data compression algoritm # (0x#). --> !!WARNING!! failed to open TIFF: not a TIFF file <--
- - Cause: Your TIF file might be using a new algoritm that is not supported by tool
- - Fix: try saving it with a different program or with different settings.
- - Info: (Tool uses a version of libtiff from 2002/07/30, so it will not understand a lot of the new tiff specifications.
+- Cause: Your TIF file might be using a new algoritm that is not supported by tool
+- Fix: try saving it with a different program or with different settings.
+- Info: (Tool uses a version of libtiff from 2002/07/30, so it will not understand a lot of the new tiff specifications.
 
 ## skipping bitmap with non-power-of-two dimensions
- - Cause: Your source tif does not follow the power of two rule.
- - Fix: Make sure your source image has a resolution that can be divided by 2 without ending in a decimal. 2x2, 4x4, 8x8, 16x16, 32x32, 64x64, 128x128, 256x256, 512x512, 1024x1024, 2048x2048.
- - Alternative fix: If you are intending to make a sprite sheet or an interface bitmap, ignore this and set the type to the correct value in the .bitmap file, save, and put in the tool command again.
+- Cause: Your source tif does not follow the power of two rule.
+- Fix: Make sure your source image has a resolution that can be divided by 2 without ending in a decimal. 2x2, 4x4, 8x8, 16x16, 32x32, 64x64, 128x128, 256x256, 512x512, 1024x1024, 2048x2048.
+- Alternative fix: If you are intending to make a sprite sheet or an interface bitmap, ignore this and set the type to the correct value in the .bitmap file, save, and put in the tool command again.
 
 ## ### ERROR can't extract sprites without a valid plate
- - Cause:<sup>1</sup> You didn't add the three color plate pixels in the top-left corner of the source file.
- - Fix<sup>1</sup>: Add the color plate
- - Cause<sup>2</sup>: You have bitmaps of different size in a sequence.
- - Fix<sup>2</sup>: Use dummy space to pad the smaller sprites to match the bigger ones.
- - Cause<sup>3</sup>: One of your sprites is touching the plate.
- - Fix<sup>3</sup>: Move the sprite away from the plate by at least one pixel.
+- Cause:<sup>1</sup> You didn't add the three color plate pixels in the top-left corner of the source file.
+- Fix<sup>1</sup>: Add the color plate
+- Cause<sup>2</sup>: You have bitmaps of different size in a sequence.
+- Fix<sup>2</sup>: Use dummy space to pad the smaller sprites to match the bigger ones.
+- Cause<sup>3</sup>: One of your sprites is touching the plate.
+- Fix<sup>3</sup>: Move the sprite away from the plate by at least one pixel.
 
 ## ### ERROR one or more sprites do not fit in the requested page size
- - Cause<sup>1</sup>: The sprite page is too small to contain the sprite sheet.
- - Effect<sup>1</sup>: Not all bitmaps are processed if any.
- - Fix<sup>1</sup>: Set a bigger page size in the bitmap tag.
- - Cause<sup>2</sup>: A sequence divider has been interpreted as a sprite.
- - Fix<sup>2</sup>: Make sure your plate pixel that indicates the color of the dividers has the exact same color as the dividers.
+- Cause<sup>1</sup>: The sprite page is too small to contain the sprite sheet.
+- Effect<sup>1</sup>: Not all bitmaps are processed if any.
+- Fix<sup>1</sup>: Set a bigger page size in the bitmap tag.
+- Cause<sup>2</sup>: A sequence divider has been interpreted as a sprite.
+- Fix<sup>2</sup>: Make sure your plate pixel that indicates the color of the dividers has the exact same color as the dividers.
 
  _Reminder: Every sprite is padded with 4 pixels on each border, so while your sprites may fit in theory, they may not in practice._
 
 ## sprite budget met (  0%)
- - Cause: Tool is reading your source file, but not actually finding any textures.
- - Fix: Verify your color plate is set up correctly, and each sprite is properly isolated with border color.
+- Cause: Tool is reading your source file, but not actually finding any textures.
+- Fix: Verify your color plate is set up correctly, and each sprite is properly isolated with border color.
 
 ## ==> !!WARNING!! bitmap with greater than 1-bit alpha being compressed as DXT1 <==
- - Cause: You're compiling a source file that has a detailed alpha map into a bitmap with color key transparency.
- - Fix: You could ignore this, but chances are the alpha was important. Use interpolated or explicit alpha instead.
+- Cause: You're compiling a source file that has a detailed alpha map into a bitmap with color key transparency.
+- Fix: You could ignore this, but chances are the alpha was important. Use interpolated or explicit alpha instead.
 
 ## ### WARNING no sprite budget set
- - Cause: "sprite budget count" is not set in the bitmap tag
- - Effect: Tool picks a size for you, and you're probably not going to like it.
- - Fix: set the sprite budget count
+- Cause: "sprite budget count" is not set in the bitmap tag
+- Effect: Tool picks a size for you, and you're probably not going to like it.
+- Fix: set the sprite budget count
