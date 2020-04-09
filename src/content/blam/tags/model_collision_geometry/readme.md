@@ -14,6 +14,21 @@ Beyond having a collision mesh, these tags can also contain:
 * Shield and health values
 
 # Pathfinding spheres
+
+<figure>
+  <a href="games.svg">
+    <img src="pathfinding-spheres.png" alt="Pathfinding spheres visible in Sapien"/>
+  </a>
+  <figcaption>
+
+Pathfinding spheres (blue) for a50 shown in [Sapien][] after running `debug_objects_pathfinding_spheres 1`
+
+  </figcaption>
+</figure>
+
+
+
+
 In Halo CE AI can figure out where to go by checking the pathfinding data on the BSP. But when you place objects in a level this of course doesn't affect the BSP. The solution that Bungie came up with for this is pathfinding spheres.
 
 Pathfinding spheres are spherical markers on objects that AI actively avoid walking into. This helps because it allows the author of the model to tell the AI exactly where not to go. So it won't walk into walls, or rocks or trees.
