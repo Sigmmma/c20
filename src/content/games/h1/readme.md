@@ -56,7 +56,7 @@ A **beta version** of Halo PC can also be found online. It has [unfinished versi
 ## Custom Edition (PC)
 Custom edition, often called **Halo CE** or **CE** is a standalone version of Halo PC which supports custom maps created by the [HEK][], also released in 2003. Like Halo PC it features a server browser and its own `haloceded.exe` dedicated server, but lacks the campaign. [Maps][map] are incompatible between the editions.
 
-Compared to PC, CE has a few other differences:
+CE has many more differences from PC. To name a few:
 
 * Regression in rendering of certain objects through fog
 * Addition of the the gamemode info menu (F2)
@@ -66,12 +66,12 @@ Compared to PC, CE has a few other differences:
 Custom Edition has become the de facto standard PC title due to its support of custom maps, actively maintained client and server mods, and [campaign ports][refined]. Like retail, its current version is `1.0.10` ([2014][patch]).
 
 ## Mac
-The Gearbox PC port (retail) was itself ported to Mac by _Westlake Interactive_ and published by _MacSoft_. No significant changes were made aside from platform compatibility, and maps are byte-for-byte identical to retail's. With _MacSoft's_ shutdown in 2011, this version has not been receiving patches. [Nil's fix][nil-fix] enables its continued use with intel GPUs on OSX Mavericks and the post-Gamespy lobby master server.
+The Gearbox PC port (retail) was itself ported to Mac by _Westlake Interactive_ and published by _MacSoft_. No significant changes were made aside from platform compatibility, and maps are byte-for-byte identical to retail's. With _MacSoft's_ shutdown in 2011, this version has not been receiving the latest patches. [Nil's fix][nil-fix] enables its continued use with intel GPUs on OSX Mavericks and the post-Gamespy lobby master server.
+
+The Mac edition has a mod called [Halo Mini Demo][halomd], or **HaloMD**, which allows it to be played on modern systems. The plugin [**Halo+**][halo-plus] by Samuco can be used to enhance to experience, and a [netcode translator][halomd-bridge] can be used to connect to Custom Editions servers.
 
 ## Demo (PC and Mac)
 The free demo versions of Halo 1 on Mac and PC include just the multiplayer map Blood Gulch and the campaign mission _The Silent Cartographer_ (b30). Upon closing the demo, players are presented with the [iconic Sergeant Johnson advertisement][demo-ad] (`demo.bik`).
-
-The Mac demo has a mod called [Halo Mini Demo][halomd], or **HaloMD**, which allows it to be played on modern systems. The plugin [**Halo+**][halo-plus] by Samuco can be used to enhance to experience, and a [netcode translator][halomd-bridge] can be used to connect to Custom Editions servers.
 
 ## Anniversary (Xbox 360)
 In 2011, Halo: Combat Evolved Anniversary was released for Xbox 360. It was developed by [343 Industries][343i] and [Saber Interactive][saber] as a remaster of the original Halo: Combat Evolved, and is derived from the Gearbox PC port. This edition contains the secondary _Saber3D_ engine for its remastered graphics mode.

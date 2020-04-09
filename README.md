@@ -1,5 +1,7 @@
 # The Reclaimers Library
 
+![](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiSktXSVdZa1hub1dPbGhieUpwcVRBWFRQQmFMRWVpaktNM0RqUXdJdkVuRFMySUQyeUp1TDBZd2hsckRadVdMa2dlV1NJbzRncEhOcXl1S1hDZ2lKUmZvPSIsIml2UGFyYW1ldGVyU3BlYyI6Inp5QVZqZHpYMGxQNG1EMWMiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+
 This repo contains the source content and build scripts for the Reclaimers Library (https://c20.reclaimers.net). It aims to document the immense tribal knowledge of the Halo 1 modding community and covers game engine details, the Halo Editing Kit, community tools, and guides for map-making.
 
 ## Project goals
@@ -53,13 +55,15 @@ C20_PORT=9001 npm run dev
 ```
 
 ## Releasing
-The website is currently hosted as a static site in [AWS S3](https://aws.amazon.com/s3/), fronted by a [CloudFront](https://aws.amazon.com/cloudfront/) CDN distribution. To deploy a new version, simply sync the `dist` directory to S3:
+The website is currently hosted as a static site in [AWS S3](https://aws.amazon.com/s3/), fronted by a [CloudFront](https://aws.amazon.com/cloudfront/) CDN distribution. To deploy a new version, simple make changes to the `master` branch and a build/deploy will be triggered automatically with CodeBuild.
+
+As a backup, users with bucket permission can simply sync the `dist` directory to S3:
 
 ```sh
 aws s3 sync --delete ./dist s3://reclaimers-c20/
 ```
 
-Because of cache TTLs, content may not appear updated immediately. An invalidation can be run in CloudFront to force updates, but it will not affect clients unless they clear their browser cache. TTLs are currently set at a minimum of 1 day and a maximum of 7.
+Because of cache TTLs, content may not appear updated immediately. An invalidation can be run in CloudFront to force updates, but it will not affect clients unless they clear their browser cache. TTLs are currently set at a minimum of 1 day and a maximum of 3. Live content can be seen by directly viewing the [S3 hosting origin][s3-origin].
 
 ## Development
 [Gulp](https://gulpjs.com/) is used as the main task runner for the build. It is triggered by the command `npm run build`, defined in `package.json`. Within the `gulpfile.js` there are several tasks defined to process stylesheets, build markdown pages, create diagrams, and copy other assets.
@@ -89,3 +93,5 @@ We should aim to reduce dependencies (e.g. NPM packages) where it makes sense. T
 ```sh
 git submodule update --remote
 ```
+
+[s3-origin]: http://reclaimers-c20.s3-website-us-east-1.amazonaws.com/
