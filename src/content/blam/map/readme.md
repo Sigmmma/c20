@@ -2,7 +2,7 @@
 title: Map cache file
 ---
 
-A map, also known as a **cache file**, is a bundle of compiled [tags][] which can be loaded and used by [Halo][ce]. As the name _cache_ suggests, Halo loads these into memory at game startup so that the tags within can be quickly read and accessed without having to load them from disk. With the exception of **resource maps** and **ui.map**, each map represents a playable campaign or multiplayer level.
+A map, also known as a **cache file**, is a bundle of compiled [tags][] which can be loaded and used by [Halo][h1]. As the name _cache_ suggests, Halo loads these into memory at game startup so that the tags within can be quickly read and accessed without having to load them from disk. With the exception of **resource maps** and **ui.map**, each map represents a playable campaign or multiplayer level.
 
 Maps are found in Halo's `maps` directory. Maps in subdirectories are not loaded by the game. Mods like Chimera and HAC2 store downloaded maps in a separate location and force the game to load them regardless.
 

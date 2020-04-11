@@ -6,7 +6,7 @@ module.exports = (page, metaIndex) => {
     ...page,
     metaTitle: `\u{1F527} ${page.title} (tool)`,
     metaColour: "navy",
-    mdFooter: metaIndex.mdFooter,
+    metaIndex,
     mdSections: [
       page.info
     ]
@@ -14,6 +14,6 @@ module.exports = (page, metaIndex) => {
 
   return wrapper(page, metaIndex, html`
     ${metabox(metaboxOpts)}
-    ${renderMarkdown(page._md, metaIndex.mdFooter)}
+    ${renderMarkdown(page._md, metaIndex)}
   `);
 };

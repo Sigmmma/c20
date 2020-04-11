@@ -41,6 +41,9 @@ img {
 a {
   color: $fg-link;
   text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 a[href^="mailto:"]:after {
@@ -78,6 +81,10 @@ main {
 hr {
   border: none;
   border-bottom: 1px solid $border-color;
+}
+
+details summary {
+  cursor: pointer;
 }
 
 h1.page-title {
