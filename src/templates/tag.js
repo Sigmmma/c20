@@ -1,36 +1,53 @@
 const {html} = require("common-tags");
 const {wrapper, renderMarkdown, metabox, alert, anchor} = require("./shared");
 
-function expandStructs(struct, tags) {
-  const structs = struct.fields
+function expandStructs(parentedStruct, tags) {
+  const {struct, parentName} = parentedStruct;
+  const results = struct.fields
     .filter(field => field.type == "TagReflexive" &&
       field.struct != "PredictedResource"
     )
-    .map(field => tags[field.struct]);
+    .map(field => ({struct: tags[field.struct], parentName}));
   if (struct.inherits) {
-    structs.push(tags[struct.inherits]);
+    results.push({
+      struct: tags[struct.inherits],
+      parentName: struct.inherits
+    });
   }
-  return structs;
+  return results;
 }
 
-function getTagDependencies(tagStruct, tags, dbg) {
+function getTagDependencies(tagStruct, tags) {
   if (!tagStruct) {
     return [];
   }
-  let deps = new Set();
-  let structStack = expandStructs(tagStruct, tags);
+
+  const resultsLevels = [];
+  let structStack = [{struct: tagStruct, parentName: null}];
+
   while (structStack.length > 0) {
-    const struct = structStack.pop();
+    const parentedStruct = structStack.pop();
+    const {struct, parentName} = parentedStruct;
     struct.fields
       .filter(field => field.type == "TagDependency")
       .flatMap(field => field.classes)
-      .forEach(tagClass => deps.add(tagClass));
+      .forEach(tagClass => {
+        const resultLevel = resultsLevels.find(level => level.parentName == parentName);
+        if (resultLevel) {
+          resultLevel.deps.add(tagClass);
+        } else {
+          resultsLevels.push({parentName, deps: new Set([tagClass])});
+        }
+      });
     structStack = [
       ...structStack,
-      ...expandStructs(struct, tags)
+      ...expandStructs(parentedStruct, tags)
     ];
   }
-  return [...deps].sort();
+  return resultsLevels.map(({parentName, deps}) => ({
+    parentName,
+    deps: [...deps].sort()
+  }));
 }
 
 module.exports = (page, metaIndex) => {
@@ -47,22 +64,38 @@ module.exports = (page, metaIndex) => {
 
   const tagDependencies = getTagDependencies(tagStruct, metaIndex.tags);
 
-  const tagDependenciesHtml = tagDependencies.length > 0 ? html`
-    <p>Dependencies:</p>
-    <ul>
-      ${tagDependencies.map(tagClass => {
-        if (tagClass == "*") {
-          //sound, effect, damage effect, sound looping, model animations, actor variants, and objects
-          return html`<li>(any tags referenced by scripts)</li>`;
-        } else {
-          const tagPageUrl = `/blam/tags/${tagClass}`;
-          return html`<li>${anchor(tagPageUrl, tagClass)}</li>`;
-        }
-      })}
-    </ul>
-  ` : html`
-    <p>Dependencies: None</p>
-  `;
+  const tagDependencySections = tagDependencies.map(depLevel => {
+    let parentTagClass = null;
+    let parentPage = null;
+
+    if (depLevel.parentName) {
+      parentTagClass = depLevel.parentName.toLowerCase();
+      parentPage = metaIndex.pages.find(page => page._slug == parentTagClass);
+    }
+
+    return html`
+      <p>
+        <details${depLevel.parentName ? "" : " open"}>
+          <summary>${parentPage ? anchor(parentPage._dirUrl, parentTagClass) : "Direct"} references</summary>
+          <ul>
+            ${depLevel.deps.map(tagClass => {
+              if (tagClass == "*") {
+                //sound, effect, damage effect, sound looping, model animations, actor variants, and objects
+                return html`<li>(any tags referenced by scripts)</li>`;
+              } else {
+                const tagPage = metaIndex.pages.find(page => page._slug == tagClass);
+                if (tagPage) {
+                  return html`<li>${anchor(tagPage._dirUrl, tagClass)}</li>`;
+                }
+                console.warn(`Unable to find the tag page for tag class ${tagClass}`);
+                return html`<li>${tagClass}</li>`;
+              }
+            })}
+          </ul>
+        </details>
+      </p>
+    `;
+  });
 
   const invaderSrcReference = `https://github.com/Kavawuvi/invader/blob/master/src/tag/hek/definition/${tagClassSnake}.json`;
 
@@ -70,18 +103,18 @@ module.exports = (page, metaIndex) => {
     ...page,
     metaTitle: `\u{1F3F7} ${tagClassSnake} (tag)`,
     metaColour: "#530000",
-    mdFooter: metaIndex.mdFooter,
+    metaIndex,
     mdSections: [
       page.info
     ],
     htmlSections: [
-      tagDependenciesHtml
+      ...tagDependencySections
     ]
   };
 
   return wrapper(page, metaIndex, html`
     ${metabox(metaboxOpts)}
-    ${renderMarkdown(page._md, metaIndex.mdFooter)}
+    ${renderMarkdown(page._md, metaIndex)}
     <h1 id="tag-structure">
       Tag structure
       <a href="#tag-structure" class="header-anchor">#</a>

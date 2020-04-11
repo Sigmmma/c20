@@ -53,7 +53,7 @@ const STUB_ALERT = alert({type: "danger", body: html`
   pull requests or issues in this wiki's <a href="${REPO}">source repo</a>.</p>
 `});
 
-const metabox = ({metaTitle, metaColour, img, imgCaption, mdSections, mdFooter, htmlSections}) => {
+const metabox = ({metaTitle, metaColour, img, imgCaption, mdSections, metaIndex, htmlSections}) => {
   return html`
     <aside class="metabox">
       <section class="header" style="background: ${metaColour || "none"}">
@@ -66,12 +66,12 @@ const metabox = ({metaTitle, metaColour, img, imgCaption, mdSections, mdFooter, 
       `}
       ${imgCaption && html`
         <section class="caption">
-          <p><em>${renderMarkdown(imgCaption, mdFooter)}</em></p>
+          <p><em>${renderMarkdown(imgCaption, metaIndex)}</em></p>
         </section>
       `}
       ${mdSections && mdSections.filter(it => it).map(mdSection => html`
         <section class="info">
-          ${renderMarkdown(mdSection, mdFooter)}
+          ${renderMarkdown(mdSection, metaIndex)}
         </section>
       `)}
       ${htmlSections && htmlSections.filter(it => it).map(htmlSection => html`
@@ -83,8 +83,8 @@ const metabox = ({metaTitle, metaColour, img, imgCaption, mdSections, mdFooter, 
   `;
 };
 
-const renderMarkdown = (md, mdFooter) => {
-  return mdRenderer.render(mdFooter ? (md + "\n\n" + mdFooter) : md);
+const renderMarkdown = (md, metaIndex) => {
+  return mdRenderer.render(metaIndex ? (md + "\n\n" + metaIndex.mdFooter) : md);
 };
 
 const wrapper = (page, metaIndex, body) => {

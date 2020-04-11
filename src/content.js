@@ -53,6 +53,7 @@ async function getPageMetadata(contentDir) {
             ...attributes,
             _md: body,
             _dir,
+            _slug: _dir[_dir.length - 1],
             _dirUrl: "/" + _dir.join("/")
           });
         }
@@ -69,7 +70,7 @@ async function buildMetaIndex(contentDir, tagsDir) {
 
   const mdFooter = pages
     .filter(page => page._dir.length > 0)
-    .map(page => `[${page._dir[page._dir.length - 1]}]: ${page._dirUrl}`)
+    .map(page => `[${page._slug}]: ${page._dirUrl}`)
     .join("\n");
 
   return {pages, mdFooter, tags};
