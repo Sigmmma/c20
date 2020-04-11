@@ -17,7 +17,7 @@ function expandStructs(parentedStruct, tags) {
   return results;
 }
 
-function getTagDependencies(tagStruct, tags, dbg) {
+function getTagDependencies(tagStruct, tags) {
   if (!tagStruct) {
     return [];
   }
@@ -62,7 +62,7 @@ module.exports = (page, metaIndex) => {
     console.warn(`Failed to find tag structure for ${page.title}`);
   }
 
-  const tagDependencies = getTagDependencies(tagStruct, metaIndex.tags, page.title == "scenery");
+  const tagDependencies = getTagDependencies(tagStruct, metaIndex.tags);
 
   const tagDependencySections = tagDependencies.map(depLevel => {
     let parentTagClass = null;
