@@ -8,7 +8,12 @@ Objects are a high-level abstract tag, meaning they serve as a base for many oth
 Some capabilities available to objects (though not used by every subtype) are:
 
 * Be rendered with a [model][gbxmodel]
-* Have physics and be collideable
+* Have [physics][] and be [collideable][model_collision_geometry]
 * Cast shadows using [lightmap data][scenario_structure_bsp]
 * Have attachments like [particles][particle_system], [sounds][sound_looping], and lights
 * Be attached to each other (e.g. pelicans carrying warthogs)
+
+# Shadows
+For most dynamic objects, Halo uses [shadow mapping][shadow-mapping] with their render [model][gbxmodel], unless the object's ["does not cast shadow"](#tag-structure) flag is true. However, with [scenery][], shadows are baked into the [lightmap][scenario_structure_bsp] using the object's [collision geometry][model_collision_geometry] instead, regardless of the "does not cast shadow" flag.
+
+[shadow-mapping]: https://en.wikipedia.org/wiki/Shadow_mapping
