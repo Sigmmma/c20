@@ -1,5 +1,4 @@
-const {html} = require("common-tags");
-const {wrapper, ul, pageAnchor, renderMarkdown} = require("./shared");
+const {wrapper, ul, pageAnchor, renderMarkdown, html} = require("./shared");
 
 module.exports = (page, metaIndex) => wrapper(page, metaIndex, html`
   ${renderMarkdown(page._md, metaIndex)}

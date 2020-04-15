@@ -1,5 +1,4 @@
-const {html} = require("common-tags");
-const {wrapper, renderMarkdown, metabox, alert, anchor} = require("./shared");
+const {html, wrapper, renderMarkdown, metabox, alert, anchor} = require("./shared");
 
 function expandStructs(parentedStruct, tags) {
   const {struct, parentName} = parentedStruct;

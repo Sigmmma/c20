@@ -1,5 +1,4 @@
-const {html} = require("common-tags");
-const {wrapper, renderMarkdown, metabox, alert} = require("./shared");
+const {wrapper, renderMarkdown, metabox, alert, html} = require("./shared");
 
 module.exports = (page, metaIndex) => {
   const metaboxOpts = {
