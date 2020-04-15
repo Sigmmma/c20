@@ -13,6 +13,7 @@ $fg-link-visited: #ba9bdf;
 $border-color: #39434d;
 $border-radius: 2px;
 $padding-containers: 20px;
+$padding-containers-small: 10px;
 $font-family: "Helvetica", sans-serif;
 $font-size: 12pt;
 $font-family-code: "Fira Code", monospace;
@@ -101,6 +102,18 @@ a.header-anchor {
 h1, h2, h3, h4, h5, h6 {
   &:hover a.header-anchor {
     opacity: 1;
+  }
+}
+
+table {
+  border-collapse: collapse;
+  td, th {
+    padding: $padding-containers-small;
+    border: 1px solid $border-color;
+  }
+  th {
+    text-align: left;
+    background: $bg-overlay;
   }
 }
 
