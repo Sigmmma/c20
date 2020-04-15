@@ -1,9 +1,11 @@
 const path = require("path");
-const {html} = require("common-tags");
+const commonTags = require("common-tags");
 const markdownIt = require("markdown-it");
 const markdownItAnchors = require("markdown-it-anchor");
 const markdownItToC = require("markdown-it-table-of-contents");
 const hljs = require("highlight.js");
+
+const html = commonTags.stripIndent(commonTags.html);
 
 const REPO = "https://github.com/Sigmmma/c20";
 
@@ -112,7 +114,7 @@ const wrapper = (page, metaIndex, body) => {
           </nav>
           <article class="content">
             <h1 class="page-title">${page.title}</h1>
-            ${body}
+    ${body}
             ${page.stub && html`
               <hr/>
               ${STUB_ALERT}
@@ -148,6 +150,7 @@ const ul = (items) => html`
 `;
 
 module.exports = {
+  html,
   wrapper,
   ul,
   pageAnchor,
