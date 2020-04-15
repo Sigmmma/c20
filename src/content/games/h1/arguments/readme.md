@@ -17,6 +17,7 @@ Windows users looking to avoid having to use the [command prompt][about-cmd] can
 </a>
 
 # Arguments list
+The following is a comprehensive list of arguments. Not all are not documented in Halo's `Readme.rtf` or `-help` output.
 
 ## Graphics options
 | Argument                      | Description
@@ -36,7 +37,7 @@ Windows users looking to avoid having to use the [command prompt][about-cmd] can
 ## Connection options
 | Argument                      | Description
 |-------------------------------|----------------
-|`-connect`                     | When fed with IP:PORT the game will automatically connect to that server after load.
+|`-connect ip:port`             | The game will automatically connect to the given server after loading.
 |`-cport x`                     | Client port address used when joining games. Defaults to **2303**. See the Network Setup settings under the In-Game Settings section.
 |`-ip x.x.x.x`                  | Server IP address used when you have multiple IP addresses (e.g. multiple network interfaces in your machine). Behind [NAT][about-nat], this should refer to the [private IP][about-ips] configured for port forwarding.
 |`-password`                    | The password for the server we're trying to connect to. Not to be confused with the `sv_password` command for dedicated servers, which goes in the file executed by the `-exec` argument.
@@ -49,14 +50,14 @@ Windows users looking to avoid having to use the [command prompt][about-cmd] can
 |`-console`                     | Enables the debugging console, which can be opened with the `~` (tilde) key. This console can be used to enter Halo script commands and is similar to Sapien's console, though many Sapien-related commands have no effect. Note that most client mods like HAC2 and Chimera enable this automatically.
 |`-devmode`                     | Enables developer mode commands ([Custom Edition][h1] only). In pre-1.10 versions, this also prevented Internet gameplay. Note that most client mods like HAC2 and Chimera enable this automatically.
 |`-exec example.txt`            | Causes the game or dedicated server to run the file of console commands on startup.
-|`-name`                        | Sets the name of the player profile
+|`-name <name>`                 | Sets the name of the player profile.
 |`-nogamma`                     | Disables adjustment of gamma. The in-game gamma slider will not affect the brightness of the game if this switch is used.
 |`-nojoystick`                  | Disables joystick/gamepads.
 |`-nonetwork`                   | Disables the Multiplayer menu item in the main menu. With a modified `ui.map` which adds a Campaign menu, this setting will actually disable that menu item instead.
 |`-nosound`                     | Disables all sound.
 |`-novideo`                     | Disables the videos which play at game startup (retail).
 |`-nowindowskey` or `-nowinkey` | Prevents the Windows key from opening the start menu and minimizing the game.
-|`-path`                        | Sets the path for which Halo looks for profiles and gametypes. Normally `%USERPROFILE%\Documents\My Games\Halo[ CE]`
+|`-path <path>`                 | Sets the path for which Halo looks for profiles and gametypes. Normally `%USERPROFILE%\Documents\My Games\Halo[ CE]`
 |`-safemode`                    | Disables as much as possible from the game in case you're experiencing crashes.
 |`-screenshot` or `-screenshots`| Enables the "Print Screen" key to generate [TGA format][about-tga] screenshots in Halo's `screenshots` directory.
 |`-timedemo`                    | A benchmarking mode which runs sped-up intro cinematics of several campaign levels (a30, b30, c10, d20) and writes out [timedemo.txt](#appendix%3A-timedemo-output). May crash or cause black screens with modified maps.
