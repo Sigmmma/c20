@@ -6,7 +6,7 @@
     "srcResources": "./src/content/**/*.@(jpg|jpeg|png|gif)",
     "srcDiagrams": "./src/content/**/*.@(dot|neato|fdp|sfdp|twopi|circo)",
     "srcContentBase": "./src/content",
-    "srcAssetImages": "./src/@(assets)/**/*.@(jpg|jpeg|png|gif)",
+    "srcStaticAssets": "./src/@(assets)/**/*.@(jpg|jpeg|png|gif|ttf)",
     "srcStyleEntry": "./src/assets/style.scss",
     "srcStylesAny": "./src/assets/**/*.scss",
     "vendorAssets": ["./node_modules/highlight.js/styles/atom-one-dark.css"],

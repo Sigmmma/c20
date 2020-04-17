@@ -20,7 +20,7 @@ function clean() {
 //build the stylesheet from SASS
 function assetStyles() {
   return new Promise((resolve, reject) => {
-    sass.render({file: paths.srcStyleEntry}, (err, res) => {
+    sass.render({file: paths.srcStyleEntry, outputStyle: "compressed"}, (err, res) => {
       if (err) {
         reject(err);
       } else {
@@ -32,9 +32,9 @@ function assetStyles() {
   });
 }
 
-//copies any static image assets over to the dist directory
-function assetImages() {
-  return gulp.src(paths.srcAssetImages)
+//copies any static image or font assets over to the dist directory
+function staticAssets() {
+  return gulp.src(paths.srcStaticAssets)
     .pipe(gulp.dest(paths.dist));
 }
 
@@ -67,7 +67,7 @@ async function contentPages() {
 }
 
 function watchSources() {
-  gulp.watch([paths.srcAssetImages], assetImages);
+  gulp.watch([paths.srcStaticAssets], staticAssets);
   gulp.watch([paths.srcStylesAny], assetStyles);
   gulp.watch([paths.srcPages], contentPages);
   gulp.watch([paths.srcResources], contentResources);
@@ -76,7 +76,7 @@ function watchSources() {
 }
 
 //composite tasks
-const assets = gulp.parallel(assetImages, assetStyles, vendorAssets);
+const assets = gulp.parallel(staticAssets, assetStyles, vendorAssets);
 const content = gulp.parallel(contentResources, contentPages, contentDiagrams);
 const buildAll = gulp.series(clean, gulp.parallel(assets, content));
 const dev = gulp.series(buildAll, watchSources);
