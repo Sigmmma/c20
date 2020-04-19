@@ -64,7 +64,7 @@ async function getPageMetadata(contentDir) {
   }));
 }
 
-async function buildMetaIndex(contentDir, tagsDir) {
+async function buildMetaIndex(contentDir, tagsDir, baseUrl) {
   const pages = await getPageMetadata(contentDir);
   const tags = await getTagMetadata(tagsDir);
 
@@ -73,7 +73,7 @@ async function buildMetaIndex(contentDir, tagsDir) {
     .map(page => `[${page._slug}]: ${page._dirUrl}`)
     .join("\n");
 
-  return {pages, mdFooter, tags};
+  return {pages, mdFooter, tags, baseUrl};
 }
 
 async function renderContent(metaIndex, outputDir) {
@@ -89,8 +89,8 @@ async function renderContent(metaIndex, outputDir) {
   }));
 }
 
-async function buildContent(contentDir, outputDir, tagsDir) {
-  const metaIndex = await buildMetaIndex(contentDir, tagsDir);
+async function buildContent(contentDir, outputDir, tagsDir, baseUrl) {
+  const metaIndex = await buildMetaIndex(contentDir, tagsDir, baseUrl);
   await renderContent(metaIndex, outputDir);
 }
 

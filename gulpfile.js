@@ -9,7 +9,7 @@ const buildContent = require("./src/content");
 const Viz = require('viz.js');
 const vizRenderOpts = require('viz.js/full.render.js');
 
-const {paths} = require("./build-config.json");
+const {paths, baseUrl} = require("./build-config.json");
 const runServer = require("./server");
 
 //the dist directory may contain outdated content, so start clean
@@ -63,7 +63,7 @@ function contentResources() {
 
 //index and render all readme.md files to HTML
 async function contentPages() {
-  await buildContent(paths.srcContentBase, paths.dist, paths.invaderTagDefsBase);
+  await buildContent(paths.srcContentBase, paths.dist, paths.invaderTagDefsBase, baseUrl);
 }
 
 function watchSources() {

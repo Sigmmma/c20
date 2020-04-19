@@ -30,12 +30,17 @@ $transition-time: 0.3s;
   font-weight: normal;
 }
 
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   color: $fg;
   background: $bg-page;
   background-image: url("/assets/bg.jpg");
   background-repeat: repeat;
-  margin: 0;
+  line-height: 1.3;
   font-family: $font-family;
   font-size: $font-size;
 }
@@ -131,10 +136,6 @@ h1 {
   border-bottom: 1px solid $border-color;
   padding-bottom: 10px;
   overflow: hidden;
-}
-
-p, li {
-  line-height: 1.5;
 }
 
 strong {
