@@ -10,6 +10,10 @@ const STUB_ALERT = alert({type: "danger", body: html`
 
 const wrapper = (page, metaIndex, body) => {
   const srcUrl = `${REPO_URL}/tree/master/src/content${page._dirUrl}`;
+  const imgAbsoluteUrl = page.img ?
+    `${metaIndex.baseUrl}${page._dirUrl}/${page.img}` :
+    `${metaIndex.baseUrl}/assets/librarian.png`;
+
   const breadcrumbs = [];
   for (let i = 0; i <= page._dir.length; i++) {
     const parentUrl = "/" + page._dir.slice(0, i).join("/");
@@ -30,7 +34,7 @@ const wrapper = (page, metaIndex, body) => {
         <meta property="og:type" content="website"/>
         <meta property="og:locale" content="en_US"/>
         <meta property="og:url" content="${metaIndex.baseUrl}${page._dirUrl}"/>
-        ${page.img && html`<meta property="og:image" content="${metaIndex.baseUrl}${page._dirUrl}/${page.img}"/>`}
+        <meta property="og:image" content="${imgAbsoluteUrl}"/>
         <title>${page.title} - c20</title>
         <link rel="icon" type="image/png" href="/assets/librarian.png">
         <link rel="stylesheet" href="/assets/style.css"/>
