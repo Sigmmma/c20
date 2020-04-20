@@ -22,7 +22,7 @@ $font-family-headers: "ConvectionRegular", "Helvetica", sans-serif;
 $font-family-code: "Fira Code", monospace;
 $font-size-code: 10pt;
 $width-content: 60em;
-$transition-time: 0.3s;
+$transition-time: 0.25s;
 
 @font-face {
   font-family: ConvectionRegular;
@@ -47,6 +47,10 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+ul, ol {
+  padding-left: 2em;
 }
 
 img {
@@ -115,7 +119,7 @@ details summary {
 }
 
 h1.page-title {
-  font-size: 2.5em;
+  font-size: 2em;
 }
 
 a.header-anchor {
@@ -123,6 +127,9 @@ a.header-anchor {
   opacity: 0;
   padding: 0 0.5em;
   transition: opacity $transition-time;
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -240,8 +247,12 @@ table {
 
 .content-sidebar {
   grid-area: sidebar;
-  padding: $padding-containers;
+  padding: 0 $padding-containers;
   max-width: 20em;
+
+  & > ul, ol {
+    padding-left: 1em;
+  }
 }
 
 .content-main {
@@ -252,7 +263,7 @@ table {
 
 .breadcrumbs {
   padding: $padding-containers;
-  ul {
+  ol {
     list-style: none;
     display: block;
     margin: 0;
@@ -327,7 +338,7 @@ table {
 .content-layout {
   display: grid;
   grid-template-rows: max-content 1fr;
-  grid-template-columns: 10% 80%;
+  grid-template-columns: 20% 80%;
   grid-template-areas:
     "sidebar main"
     "sidebar footer";
@@ -335,6 +346,10 @@ table {
 
 //mobile view
 @media all and (max-width: 40em) {
+  .top-header {
+    padding: $padding-containers-small;
+  }
+
   .content-layout {
     grid-template-columns: 100%;
     grid-template-areas: "main" "sidebar" "footer";

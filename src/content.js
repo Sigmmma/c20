@@ -1,5 +1,6 @@
 const glob = require("glob");
 const templates = require("./templates");
+const {findHeaders} = require("./templates/shared");
 const fm = require("front-matter");
 const fs = require("fs").promises;
 const path = require("path");
@@ -49,12 +50,14 @@ async function getPageMetadata(contentDir) {
         } else {
           const contentDirDepth = path.normalize(contentDir).split(path.sep).length;
           const _dir = path.normalize(dir).split(path.sep).slice(contentDirDepth);
+          const _headers = findHeaders(body);
           resolve({
             ...attributes,
             _md: body,
+            _headers,
             _dir,
             _slug: _dir[_dir.length - 1],
-            _dirUrl: "/" + _dir.join("/")
+            _dirUrl: "/" + _dir.join("/"),
           });
         }
       } catch (err) {
@@ -70,7 +73,10 @@ async function buildMetaIndex(contentDir, tagsDir, baseUrl) {
 
   const mdFooter = pages
     .filter(page => page._dir.length > 0)
-    .map(page => `[${page._slug}]: ${page._dirUrl}`)
+    .flatMap(page => [
+      `[${page._slug}]: ${page._dirUrl}`,
+      ...page._headers.map(header => `[${page._slug}#${header.id}]: ${page._dirUrl}#${header.id}`)
+    ])
     .join("\n");
 
   return {pages, mdFooter, tags, baseUrl};

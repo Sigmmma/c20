@@ -111,7 +111,16 @@ module.exports = (page, metaIndex) => {
     ]
   };
 
-  return wrapper(page, metaIndex, html`
+  //because we're adding headers to the page, should update the headers list for ToC
+  const pageMetaForWrapper = {
+    ...page,
+    _headers: [
+      ...page._headers,
+      {title: "Tag structure", id: "tag-structure", level: 1}
+    ]
+  };
+
+  return wrapper(pageMetaForWrapper, metaIndex, html`
     ${metabox(metaboxOpts)}
     ${renderMarkdown(page._md, metaIndex)}
     <h1 id="tag-structure">

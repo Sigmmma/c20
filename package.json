@@ -35,9 +35,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-transform": "^3.0.5",
     "highlight.js": "^9.18.1",
-    "markdown-it": "^10.0.0",
-    "markdown-it-anchor": "^5.2.7",
-    "markdown-it-table-of-contents": "^0.4.4",
+    "marked": "^0.8.2",
     "sass": "^1.26.3",
     "viz.js": "^2.1.2"
   }
