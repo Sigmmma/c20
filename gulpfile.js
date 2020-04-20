@@ -9,7 +9,7 @@ const buildContent = require("./src/content");
 const Viz = require('viz.js');
 const vizRenderOpts = require('viz.js/full.render.js');
 
-const {paths} = require("./build-config.json");
+const {paths, baseUrl} = require("./build-config.json");
 const runServer = require("./server");
 
 //the dist directory may contain outdated content, so start clean
@@ -20,7 +20,7 @@ function clean() {
 //build the stylesheet from SASS
 function assetStyles() {
   return new Promise((resolve, reject) => {
-    sass.render({file: paths.srcStyleEntry}, (err, res) => {
+    sass.render({file: paths.srcStyleEntry, outputStyle: "compressed"}, (err, res) => {
       if (err) {
         reject(err);
       } else {
@@ -32,9 +32,9 @@ function assetStyles() {
   });
 }
 
-//copies any static image assets over to the dist directory
-function assetImages() {
-  return gulp.src(paths.srcAssetImages)
+//copies any static image or font assets over to the dist directory
+function staticAssets() {
+  return gulp.src(paths.srcStaticAssets)
     .pipe(gulp.dest(paths.dist));
 }
 
@@ -63,11 +63,11 @@ function contentResources() {
 
 //index and render all readme.md files to HTML
 async function contentPages() {
-  await buildContent(paths.srcContentBase, paths.dist, paths.invaderTagDefsBase);
+  await buildContent(paths.srcContentBase, paths.dist, paths.invaderTagDefsBase, baseUrl);
 }
 
 function watchSources() {
-  gulp.watch([paths.srcAssetImages], assetImages);
+  gulp.watch([paths.srcStaticAssets], staticAssets);
   gulp.watch([paths.srcStylesAny], assetStyles);
   gulp.watch([paths.srcPages], contentPages);
   gulp.watch([paths.srcResources], contentResources);
@@ -76,7 +76,7 @@ function watchSources() {
 }
 
 //composite tasks
-const assets = gulp.parallel(assetImages, assetStyles, vendorAssets);
+const assets = gulp.parallel(staticAssets, assetStyles, vendorAssets);
 const content = gulp.parallel(contentResources, contentPages, contentDiagrams);
 const buildAll = gulp.series(clean, gulp.parallel(assets, content));
 const dev = gulp.series(buildAll, watchSources);
