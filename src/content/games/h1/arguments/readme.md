@@ -6,8 +6,6 @@ Halo accepts [command line/shortcut arguments][about-args] to customize how the 
 
 Many of these settings can be configured in-game, so it is not usually necessary to provide them as arguments.
 
-[[toc]]
-
 # How to add arguments to a shortcut (Windows)
 
 Windows users looking to avoid having to use the [command prompt][about-cmd] can create a shortcut to `halo.exe`, `haloce.exe`, or `haloceded.exe` and edit it's **target** to provide these arguments. Be sure to place them **after the EXE**, and **separate each argument with spaces**:

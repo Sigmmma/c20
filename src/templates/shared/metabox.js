@@ -1,5 +1,5 @@
 const {html} = require("./bits");
-const renderMarkdown = require("./markdown");
+const {renderMarkdown} = require("./markdown");
 
 const metabox = ({metaTitle, metaColour, img, imgCaption, mdSections, metaIndex, htmlSections}) => {
   return html`

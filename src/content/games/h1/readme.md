@@ -15,8 +15,6 @@ Halo: Combat Evolved, also known as **Halo 1** (hereafter called Halo 1), is the
 
 Halo 1 uses Bungie's proprietary [Blam!][blam] engine, which also formed the basis of later games in the series. PC versions of the game support a variety of command line/shortcut [arguments][] to configure and toggle features.
 
-[[toc]]
-
 # Editions and versions
 
 <figure>

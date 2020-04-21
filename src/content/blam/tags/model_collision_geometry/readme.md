@@ -13,7 +13,7 @@ Beyond having a collision mesh, these tags can also contain:
 * Damage ratios for each part of the object (e.g. weak points)
 * Shield and health values
 
-Collision geometry, rather than the [model][gbxmodel], is used to cast [scenery][] shadows in [lightmaps][scenario_structure_bsp].
+Collision geometry, rather than the [model][gbxmodel], is used to cast [scenery][] shadows in [lightmaps][scenario_structure_bsp#lightmaps].
 
 # Pathfinding spheres
 

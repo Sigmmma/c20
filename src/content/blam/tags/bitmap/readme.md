@@ -12,8 +12,6 @@ info: >
 
 Bitmaps are used for visuals that need textures or sprites like environments, objects, effects, menus, etc.
 
-[[toc]]
-
 # Basics
 To store textures and images in maps we use bitmap tags. Bitmap tags on their simplest are compiled from a `.tif` file in your data directory.
 
@@ -139,7 +137,7 @@ _NOTE: Having multiple cube maps in one bitmap does not randomize them._
 
 <img src="media/bitmap_sprites_source_vs_tag.png" width="600">
 
-The sprite type allows a bitmap to contain a non-power-of-two texture, with support for animations with multiple permutations (sequences). Sprites are typically used for particles.  
+The sprite type allows a bitmap to contain a non-power-of-two texture, with support for animations with multiple permutations (sequences). Sprites are typically used for particles.
 
 ## Color Plate
 
@@ -165,7 +163,7 @@ Any amount of padding may be used as long as the sprite is isolated by at least 
 
 Budget size determines how big each texture page is (and thus how many sprites will appear on each page). Budget count sets how many texture pages there will be. Both of these values should be set for sprites.
 
-When compiling a bitmap, tool will output how many pages were generated and the percentage of space filled by the sprites. Budget size and count should be tweaked to get this percentage as high as possible, as unused space is wasted memory.  
+When compiling a bitmap, tool will output how many pages were generated and the percentage of space filled by the sprites. Budget size and count should be tweaked to get this percentage as high as possible, as unused space is wasted memory.
 
 Budget sizes are limited to "square" dimensions like 256x256 and 512x512. Because of this, it is sometimes more memory efficient to split the sprites up across several pages. For example, putting a sprite sheet with seven 56x56 sprites on a single page would require a 512x512 budget size, because 512x512 is the smallest size that can fit all of the sprites. However, If that same sprite sheet was split up across two pages, each page would only need to be  256x256, cutting memory usage in half.
 

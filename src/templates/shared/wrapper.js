@@ -1,7 +1,15 @@
-const {html, alert, ol, pageAnchor} = require("./bits");
+const {html, alert, escapeHtml, REPO_URL, DISCORD_URL, ul, anchor} = require("./bits");
+const footer = require("./footer");
+const header = require("./header");
+const breadcrumbs = require("./breadcrumbs");
+const toc = require("./toc");
 
-const DISCORD_URL = "https://discord.reclaimers.net";
-const REPO_URL = "https://github.com/Sigmmma/c20";
+const TOC_MIN_HEADERS = 2;
+
+const topLevelTopics = [
+  ["/blam/tags", "Tags"],
+  ["/games/h1", "Halo"]
+];
 
 const STUB_ALERT = alert({type: "danger", body: html`
   <p>🚧 This article is a stub. You can help expand it by submitting content in
@@ -9,19 +17,12 @@ const STUB_ALERT = alert({type: "danger", body: html`
 `});
 
 const wrapper = (page, metaIndex, body) => {
-  const srcUrl = `${REPO_URL}/tree/master/src/content${page._dirUrl}`;
   const imgAbsoluteUrl = page.img ?
     `${metaIndex.baseUrl}${page._dirUrl}/${page.img}` :
     `${metaIndex.baseUrl}/assets/librarian.png`;
 
-  const breadcrumbs = [];
-  for (let i = 0; i <= page._dir.length; i++) {
-    const parentUrl = "/" + page._dir.slice(0, i).join("/");
-    const parent = metaIndex.pages.find(otherPage => otherPage._dirUrl == parentUrl);
-    if (parent) {
-      breadcrumbs.push(parent);
-    }
-  }
+  const showToc = page.toc !== undefined ? page.toc : page._headers.length > TOC_MIN_HEADERS;
+
   return html`
     <!DOCTYPE html>
     <html lang="en">
@@ -41,28 +42,19 @@ const wrapper = (page, metaIndex, body) => {
         <link rel="stylesheet" href="/assets/atom-one-dark.css"/>
       </head>
       <body>
-        <header class="top-header">
-          <a class="c20-logo" href="/">
-            <span class="c20-name-short">c20</span>
-            <span class="c20-name-long">The Reclaimers Library</span>
-          </a>
-          <nav class="c20-top-nav">
-            <input type="text" class="search" disabled placeholder="Search not implemented"></input>
-            <a href="${DISCORD_URL}">Discord</a>
-            <a href="${REPO_URL}">Contribute</a>
-          </nav>
-        </header>
+        ${header()}
         <div class="content-layout">
           <aside class="content-sidebar">
+            ${showToc && toc(page)}
+            <h2>Main topics</h2>
+            ${ul(topLevelTopics.map(topic => anchor(...topic)))}
           </aside>
           <main role="main" class="content-main">
             <nav class="breadcrumbs">
-              ${ol(breadcrumbs.map((page, i) =>
-                (i < breadcrumbs.length - 1) ? pageAnchor(page) : page.title
-              ))}
+              ${breadcrumbs(page, metaIndex)}
             </nav>
             <article class="content-article">
-              <h1 class="page-title">${page.title}</h1>
+              <h1 class="page-title">${escapeHtml(page.title)}</h1>
     ${body}
               ${page.stub && html`
                 <hr/>
@@ -70,17 +62,7 @@ const wrapper = (page, metaIndex, body) => {
               `}
             </article>
           </main>
-          <footer class="content-footer">
-            <p>
-              <small>
-                This text is available under the <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0 license</a>
-                •
-                <a href="${srcUrl}">Source</a>
-                •
-                <a href="#">Go to top</a>
-              </small>
-            </p>
-          </footer>
+          ${footer(page)}
         </div>
       </body>
     </html>
