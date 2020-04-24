@@ -19,7 +19,7 @@ const anchor = (href, body) => html`
   <a href="${href}">${body}</a>
 `;
 
-const pageAnchor = (page) => anchor(page._dirUrl, escapeHtml(page.title));
+const pageAnchor = (page) => anchor(page._path, escapeHtml(page.title));
 
 const ol = (items) => html`
   <ol>

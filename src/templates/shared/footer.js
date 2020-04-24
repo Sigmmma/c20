@@ -3,7 +3,7 @@ const {html, REPO_URL} = require("./bits");
 const LICENSE_URL = "https://creativecommons.org/licenses/by-sa/3.0/";
 
 const footer = (page) => {
-  const srcUrl = `${REPO_URL}/tree/master/src/content${page._dirUrl}`;
+  const srcUrl = `${REPO_URL}/tree/master/src/content${page._path}`;
   return html`
     <footer class="content-footer">
       <p>

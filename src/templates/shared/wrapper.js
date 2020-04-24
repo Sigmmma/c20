@@ -1,4 +1,4 @@
-const {html, alert, escapeHtml, REPO_URL, DISCORD_URL, ul, anchor} = require("./bits");
+const {html, alert, escapeHtml, REPO_URL, DISCORD_URL, ul, anchor, pageAnchor} = require("./bits");
 const footer = require("./footer");
 const header = require("./header");
 const breadcrumbs = require("./breadcrumbs");
@@ -18,7 +18,7 @@ const STUB_ALERT = alert({type: "danger", body: html`
 
 const wrapper = (page, metaIndex, body) => {
   const imgAbsoluteUrl = page.img ?
-    `${metaIndex.baseUrl}${page._dirUrl}/${page.img}` :
+    `${metaIndex.baseUrl}${page._path}/${page.img}` :
     `${metaIndex.baseUrl}/assets/librarian.png`;
 
   const showToc = page.toc !== undefined ? page.toc : page._headers.length > TOC_MIN_HEADERS;
@@ -34,7 +34,7 @@ const wrapper = (page, metaIndex, body) => {
         <meta property="og:site_name" content="The Reclaimers Library"/>
         <meta property="og:type" content="website"/>
         <meta property="og:locale" content="en_US"/>
-        <meta property="og:url" content="${metaIndex.baseUrl}${page._dirUrl}"/>
+        <meta property="og:url" content="${metaIndex.baseUrl}${page._path}"/>
         <meta property="og:image" content="${imgAbsoluteUrl}"/>
         <title>${page.title} - c20</title>
         <link rel="icon" type="image/png" href="/assets/librarian.png">
@@ -46,6 +46,10 @@ const wrapper = (page, metaIndex, body) => {
         <div class="content-layout">
           <aside class="content-sidebar">
             ${showToc && toc(page)}
+            ${page._childPages.length > 0 && html`
+              <h2>Child pages</h2>
+              ${ul(page._childPages.map(pageAnchor))}
+            `}
             <h2>Main topics</h2>
             ${ul(topLevelTopics.map(topic => anchor(...topic)))}
           </aside>

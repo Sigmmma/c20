@@ -50,7 +50,7 @@ function getTagDependencies(tagStruct, tags) {
 }
 
 module.exports = (page, metaIndex) => {
-  const tagClassSnake = page._dir[page._dir.length - 1];
+  const tagClassSnake = page._pathParts[page._pathParts.length - 1];
   const tagClassPascal = page.tagClass || tagClassSnake
     .split("_")
     .map(part => `${part[0].toUpperCase()}${part.substring(1)}`)
@@ -75,7 +75,7 @@ module.exports = (page, metaIndex) => {
     return html`
       <p>
         <details${depLevel.parentName ? "" : " open"}>
-          <summary>${parentPage ? anchor(parentPage._dirUrl, parentTagClass) : "Direct"} references</summary>
+          <summary>${parentPage ? anchor(parentPage._path, parentTagClass) : "Direct"} references</summary>
           <ul>
             ${depLevel.deps.map(tagClass => {
               if (tagClass == "*") {
@@ -84,7 +84,7 @@ module.exports = (page, metaIndex) => {
               } else {
                 const tagPage = metaIndex.pages.find(page => page._slug == tagClass);
                 if (tagPage) {
-                  return html`<li>${anchor(tagPage._dirUrl, tagClass)}</li>`;
+                  return html`<li>${anchor(tagPage._path, tagClass)}</li>`;
                 }
                 console.warn(`Unable to find the tag page for tag class ${tagClass}`);
                 return html`<li>${tagClass}</li>`;
