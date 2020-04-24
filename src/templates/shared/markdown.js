@@ -15,6 +15,10 @@ renderer.heading = function(text, level) {
 marked.setOptions({
   renderer,
   highlight: function(code, language) {
+    //clojure provides good highlighting for haloscript
+    if (language == "hsc") {
+      language = "clojure";
+    }
     const validLanguage = hljs.getLanguage(language) ? language : "plaintext";
     return hljs.highlight(validLanguage, code).value;
   },
