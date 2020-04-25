@@ -1,4 +1,4 @@
-const {html, wrapper, renderMarkdown, metabox, alert, anchor} = require("./shared");
+const {html, wrapper, renderMarkdown, metabox, alert, anchor, ul} = require("./shared");
 
 function expandStructs(parentedStruct, tags) {
   const {struct, parentName} = parentedStruct;
@@ -17,10 +17,6 @@ function expandStructs(parentedStruct, tags) {
 }
 
 function getTagDependencies(tagStruct, tags) {
-  if (!tagStruct) {
-    return [];
-  }
-
   const resultsLevels = [];
   let structStack = [{struct: tagStruct, parentName: null}];
 
@@ -49,52 +45,83 @@ function getTagDependencies(tagStruct, tags) {
   }));
 }
 
-module.exports = (page, metaIndex) => {
-  const tagClassSnake = page._pathParts[page._pathParts.length - 1];
-  const tagClassPascal = page.tagClass || tagClassSnake
+function getChildTags(tagStruct, tags) {
+  return Object.values(tags).filter(otherTagStruct =>
+    otherTagStruct.inherits == tagStruct.name
+  );
+}
+
+function getTagClassPascalCase(page) {
+  return page.tagClass || page._slug
     .split("_")
     .map(part => `${part[0].toUpperCase()}${part.substring(1)}`)
     .join("");
+}
+
+module.exports = (page, metaIndex) => {
+  const tagClassSnake = page._slug;
+  const tagClassPascal = getTagClassPascalCase(page);
+
+  const metaboxHtmlSections = [];
 
   const tagStruct = metaIndex.tags[tagClassPascal];
   if (!tagStruct) {
     console.warn(`Failed to find tag structure for ${page.title}`);
-  }
+  } else {
+    getTagDependencies(tagStruct, metaIndex.tags).forEach(depLevel => {
+      let parentTagClass = null;
+      let parentPage = null;
 
-  const tagDependencies = getTagDependencies(tagStruct, metaIndex.tags);
+      if (depLevel.parentName) {
+        parentTagClass = depLevel.parentName.toLowerCase();
+        parentPage = metaIndex.pages.find(page => page._slug == parentTagClass);
+      }
 
-  const tagDependencySections = tagDependencies.map(depLevel => {
-    let parentTagClass = null;
-    let parentPage = null;
-
-    if (depLevel.parentName) {
-      parentTagClass = depLevel.parentName.toLowerCase();
-      parentPage = metaIndex.pages.find(page => page._slug == parentTagClass);
-    }
-
-    return html`
-      <p>
-        <details${depLevel.parentName ? "" : " open"}>
-          <summary>${parentPage ? anchor(parentPage._path, parentTagClass) : "Direct"} references</summary>
-          <ul>
-            ${depLevel.deps.map(tagClass => {
-              if (tagClass == "*") {
-                //sound, effect, damage effect, sound looping, model animations, actor variants, and objects
-                return html`<li>(any tags referenced by scripts)</li>`;
-              } else {
-                const tagPage = metaIndex.pages.find(page => page._slug == tagClass);
-                if (tagPage) {
-                  return html`<li>${anchor(tagPage._path, tagClass)}</li>`;
+      metaboxHtmlSections.push(html`
+        <p>
+          <details${depLevel.parentName ? "" : " open"}>
+            <summary>${parentPage ? anchor(parentPage._path, parentTagClass) : "Direct"} references</summary>
+            <ul>
+              ${depLevel.deps.map(tagClass => {
+                if (tagClass == "*") {
+                  //sound, effect, damage effect, sound looping, model animations, actor variants, and objects
+                  return html`<li>(any tags referenced by scripts)</li>`;
+                } else {
+                  const tagPage = metaIndex.pages.find(page => page._slug == tagClass);
+                  if (tagPage) {
+                    return html`<li>${anchor(tagPage._path, tagPage.title)}</li>`;
+                  }
+                  console.warn(`Unable to find the tag page for tag class ${tagClass}`);
+                  return html`<li>${tagClass}</li>`;
                 }
-                console.warn(`Unable to find the tag page for tag class ${tagClass}`);
-                return html`<li>${tagClass}</li>`;
+              })}
+            </ul>
+          </details>
+        </p>
+      `);
+    });
+
+    const childTags = getChildTags(tagStruct, metaIndex.tags);
+    if (childTags.length > 0) {
+      metaboxHtmlSections.push(html`
+        <p>
+          <details>
+            <summary>Child tags</summary>
+            ${ul(childTags.map(childTag => {
+              const tagPage = metaIndex.pages.find(page =>
+                page.template == "tag" && getTagClassPascalCase(page) == childTag.name
+              );
+              if (tagPage) {
+                return anchor(tagPage._path, tagPage.title)
               }
-            })}
-          </ul>
-        </details>
-      </p>
-    `;
-  });
+              console.warn(`Unable to find the tag page for tag name ${childTag.name}`);
+              return childTag.name;
+            }))}
+          </details>
+        </p>
+      `);
+    }
+  }
 
   const invaderSrcReference = `https://github.com/Kavawuvi/invader/blob/master/src/tag/hek/definition/${tagClassSnake}.json`;
 
@@ -106,9 +133,7 @@ module.exports = (page, metaIndex) => {
     mdSections: [
       page.info
     ],
-    htmlSections: [
-      ...tagDependencySections
-    ]
+    htmlSections: metaboxHtmlSections
   };
 
   //because we're adding headers to the page, should update the headers list for ToC
