@@ -47,7 +47,11 @@ function getTagDependencies(tagStruct, tags) {
 
 function getChildTags(tagStruct, tags) {
   return Object.values(tags).filter(otherTagStruct =>
-    otherTagStruct.inherits == tagStruct.name
+    //Invader's BasicObject is the only inherited struct which is not a traditional tag type
+    otherTagStruct.name != "BasicObject" && (
+      otherTagStruct.inherits == tagStruct.name ||
+      tagStruct.name == "Object" && otherTagStruct.inherits == "BasicObject"
+    )
   );
 }
 
