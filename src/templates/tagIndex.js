@@ -1,27 +1,31 @@
 const {wrapper, tagAnchor, renderMarkdown, heading, html} = require("./shared");
 
-const tagsTable = (tags, metaIndex) => html`
-  <table>
-    <thead>
-      <tr>
-        <th>Tag name</th>
-        <th>Tag ID</th>
-        <th>Parent</th>
-        <th>Purpose</th>
-      </tr>
-    </thead>
-    <tbody>
-      ${tags.map(tag => html`
+const tagsTable = (tags, metaIndex) => {
+  const tagsSorted = [...tags];
+  tagsSorted.sort((a, b) => a.name.localeCompare(b.name));
+  return html`
+    <table>
+      <thead>
         <tr>
-          <td>${tagAnchor(tag, metaIndex)}</td>
-          <td>${tag.id}</td>
-          <td>${tag.parent && tagAnchor(tag.parent, metaIndex)}</td>
-          <td>${tag.descMd && renderMarkdown(tag.descMd, metaIndex)}</td>
+          <th>Tag name</th>
+          <th>Tag ID</th>
+          <th>Parent</th>
+          <th>Purpose</th>
         </tr>
-      `)}
-    </tbody>
-  </table>
-`;
+      </thead>
+      <tbody>
+        ${tagsSorted.map(tag => html`
+          <tr>
+            <td>${tagAnchor(tag, metaIndex)}</td>
+            <td>${tag.id}</td>
+            <td>${tag.parent && tagAnchor(tag.parent, metaIndex)}</td>
+            <td>${tag.descMd && renderMarkdown(tag.descMd, metaIndex)}</td>
+          </tr>
+        `)}
+      </tbody>
+    </table>
+  `;
+};
 
 module.exports = (page, metaIndex) => {
 
