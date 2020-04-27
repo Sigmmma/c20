@@ -1,5 +1,7 @@
 const {html, wrapper, renderMarkdown, metabox, alert, tagAnchor, ul, heading} = require("./shared");
 
+const INVADER_TAG_BASE = "https://github.com/Kavawuvi/invader/blob/master/src/tag/hek/definition";
+
 module.exports = (page, metaIndex) => {
   const tag = metaIndex.data.h1.tagsByName[page._slug];
   if (!tag) {
@@ -71,8 +73,6 @@ module.exports = (page, metaIndex) => {
     `);
   }
 
-  const invaderSrcReference = `https://github.com/Kavawuvi/invader/blob/master/src/tag/hek/definition/${tag.name}.json`;
-
   const metaboxOpts = {
     ...page,
     metaTitle: `\u{1F3F7} ${tag.name} (tag)`,
@@ -89,7 +89,9 @@ module.exports = (page, metaIndex) => {
     ...page,
     _headers: [
       ...page._headers,
-      {title: "Tag structure", id: "tag-structure", level: 1}
+      ...(!tag.invaderStructName ? [] : [
+        {title: "Tag structure", id: "tag-structure", level: 1}
+      ])
     ]
   };
 
@@ -102,12 +104,14 @@ module.exports = (page, metaIndex) => {
       </p>
     `)}
     ${renderMarkdown(page._md, metaIndex)}
-    ${heading("h1", "Tag structure")}
-    ${alert("info", html`
-      <p>
-        Tag structures are not yet built into this wiki, but you can find a reference for this tag in
-        <a href="${invaderSrcReference}">Invader's source</a>.
-      </p>
-    `)}
+    ${tag.invaderStructName && html`
+      ${heading("h1", "Tag structure")}
+      ${alert("info", html`
+        <p>
+          Tag structures are not yet built into this wiki, but you can find a reference for this tag in
+          <a href="${INVADER_TAG_BASE}/${tag.name}.json">Invader's source</a>.
+        </p>
+      `)}
+    `}
   `);
 };
