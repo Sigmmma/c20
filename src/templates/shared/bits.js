@@ -21,6 +21,18 @@ const anchor = (href, body) => html`
 
 const pageAnchor = (page) => anchor(page._path, escapeHtml(page.title));
 
+const tagAnchor = (tag, metaIndex) => {
+  const tagPage = metaIndex.findTagPageByName(tag.name);
+  return anchor(tagPage._path, tag.name);
+};
+
+const heading = (hTag, title) => html`
+  <${hTag} id="${slugify(title)}">
+    ${title}
+    <a href="#${slugify(title)}" class="header-anchor">#</a>
+  </${hTag}>
+`;
+
 const ol = (items) => html`
   <ol>
     ${items.map((item) => html`
@@ -37,7 +49,8 @@ const ul = (items) => html`
   </ul>
 `;
 
-const alert = ({type, body}) => html`
+//types: info, danger
+const alert = (type, body) => html`
   <div class="alert type-${type || "info"}">
     ${body}
   </div>
@@ -48,6 +61,8 @@ module.exports = {
   escapeHtml,
   anchor,
   pageAnchor,
+  tagAnchor,
+  heading,
   ul,
   ol,
   alert,

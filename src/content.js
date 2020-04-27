@@ -1,6 +1,7 @@
 const glob = require("glob");
 const templates = require("./templates");
 const {findHeaders} = require("./templates/shared");
+const buildData = require("./data");
 const fm = require("front-matter");
 const fs = require("fs").promises;
 const path = require("path");
@@ -17,8 +18,8 @@ async function findPaths(globPattern) {
   });
 }
 
-async function getTagMetadata(tagsDir) {
-  const filePaths = await findPaths(path.join(tagsDir, "*.json"));
+async function getInvaderStructDefs(invaderDefsDir) {
+  const filePaths = await findPaths(path.join(invaderDefsDir, "*.json"));
   const defsByFile = await Promise.all(filePaths.map(async (filePath) => {
     return new Promise(async (resolve, reject) => {
       try {
@@ -30,11 +31,11 @@ async function getTagMetadata(tagsDir) {
       }
     });
   }));
-  const defsByName = {};
+  const defsByStructName = {};
   for (let def of defsByFile.flat()) {
-    defsByName[def.name] = def;
+    defsByStructName[def.name] = def;
   }
-  return defsByName;
+  return defsByStructName;
 }
 
 function getPagePathParts(contentDir, readmeFilePath) {
@@ -103,9 +104,10 @@ async function getPageMetadata(contentDir) {
   return pages;
 }
 
-async function buildMetaIndex(contentDir, tagsDir, baseUrl) {
+async function buildMetaIndex(contentDir, invaderDefsDir, baseUrl) {
   const pages = await getPageMetadata(contentDir);
-  const tags = await getTagMetadata(tagsDir);
+  const invaderStructDefs = await getInvaderStructDefs(invaderDefsDir);
+  const data = buildData(invaderStructDefs);
 
   const mdFooter = pages
     .filter(page => page._pathParts.length > 0)
@@ -115,7 +117,19 @@ async function buildMetaIndex(contentDir, tagsDir, baseUrl) {
     ])
     .join("\n");
 
-  return {pages, mdFooter, tags, baseUrl};
+  const findTagPageByName = (tagName) => {
+    const page = pages.find(page => page._slug == tagName && page.template == "tag");
+    if (!page) throw new Error(`Failed to find tag page for ${tagName}. Please create one`);
+    return page;
+  };
+
+  return {
+    findTagPageByName,
+    pages,
+    mdFooter,
+    data,
+    baseUrl
+  };
 }
 
 async function renderContent(metaIndex, outputDir) {
@@ -131,8 +145,8 @@ async function renderContent(metaIndex, outputDir) {
   }));
 }
 
-async function buildContent(contentDir, outputDir, tagsDir, baseUrl) {
-  const metaIndex = await buildMetaIndex(contentDir, tagsDir, baseUrl);
+async function buildContent(contentDir, outputDir, invaderDefsDir, baseUrl) {
+  const metaIndex = await buildMetaIndex(contentDir, invaderDefsDir, baseUrl);
   await renderContent(metaIndex, outputDir);
 }
 

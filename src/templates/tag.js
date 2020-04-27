@@ -1,137 +1,81 @@
-const {html, wrapper, renderMarkdown, metabox, alert, anchor, ul} = require("./shared");
-
-function expandStructs(parentedStruct, tags) {
-  const {struct, parentName} = parentedStruct;
-  const results = struct.fields
-    .filter(field => field.type == "TagReflexive" &&
-      field.struct != "PredictedResource"
-    )
-    .map(field => ({struct: tags[field.struct], parentName}));
-  if (struct.inherits) {
-    results.push({
-      struct: tags[struct.inherits],
-      parentName: struct.inherits
-    });
-  }
-  return results;
-}
-
-function getTagDependencies(tagStruct, tags) {
-  const resultsLevels = [];
-  let structStack = [{struct: tagStruct, parentName: null}];
-
-  while (structStack.length > 0) {
-    const parentedStruct = structStack.pop();
-    const {struct, parentName} = parentedStruct;
-    struct.fields
-      .filter(field => field.type == "TagDependency")
-      .flatMap(field => field.classes)
-      .forEach(tagClass => {
-        const resultLevel = resultsLevels.find(level => level.parentName == parentName);
-        if (resultLevel) {
-          resultLevel.deps.add(tagClass);
-        } else {
-          resultsLevels.push({parentName, deps: new Set([tagClass])});
-        }
-      });
-    structStack = [
-      ...structStack,
-      ...expandStructs(parentedStruct, tags)
-    ];
-  }
-  return resultsLevels.map(({parentName, deps}) => ({
-    parentName,
-    deps: [...deps].sort()
-  }));
-}
-
-function getChildTags(tagStruct, tags) {
-  return Object.values(tags).filter(otherTagStruct =>
-    //Invader's BasicObject is the only inherited struct which is not a traditional tag type
-    otherTagStruct.name != "BasicObject" && (
-      otherTagStruct.inherits == tagStruct.name ||
-      tagStruct.name == "Object" && otherTagStruct.inherits == "BasicObject"
-    )
-  );
-}
-
-function getTagClassPascalCase(page) {
-  return page.tagClass || page._slug
-    .split("_")
-    .map(part => `${part[0].toUpperCase()}${part.substring(1)}`)
-    .join("");
-}
+const {html, wrapper, renderMarkdown, metabox, alert, tagAnchor, ul, heading} = require("./shared");
 
 module.exports = (page, metaIndex) => {
-  const tagClassSnake = page._slug;
-  const tagClassPascal = getTagClassPascalCase(page);
-
-  const metaboxHtmlSections = [];
-
-  const tagStruct = metaIndex.tags[tagClassPascal];
-  if (!tagStruct) {
-    console.warn(`Failed to find tag structure for ${page.title}`);
-  } else {
-    getTagDependencies(tagStruct, metaIndex.tags).forEach(depLevel => {
-      let parentTagClass = null;
-      let parentPage = null;
-
-      if (depLevel.parentName) {
-        parentTagClass = depLevel.parentName.toLowerCase();
-        parentPage = metaIndex.pages.find(page => page._slug == parentTagClass);
-      }
-
-      metaboxHtmlSections.push(html`
-        <p>
-          <details${depLevel.parentName ? "" : " open"}>
-            <summary>${parentPage ? anchor(parentPage._path, parentTagClass) : "Direct"} references</summary>
-            <ul>
-              ${depLevel.deps.map(tagClass => {
-                if (tagClass == "*") {
-                  //sound, effect, damage effect, sound looping, model animations, actor variants, and objects
-                  return html`<li>(any tags referenced by scripts)</li>`;
-                } else {
-                  const tagPage = metaIndex.pages.find(page => page._slug == tagClass);
-                  if (tagPage) {
-                    return html`<li>${anchor(tagPage._path, tagPage.title)}</li>`;
-                  }
-                  console.warn(`Unable to find the tag page for tag class ${tagClass}`);
-                  return html`<li>${tagClass}</li>`;
-                }
-              })}
-            </ul>
-          </details>
-        </p>
-      `);
-    });
-
-    const childTags = getChildTags(tagStruct, metaIndex.tags);
-    if (childTags.length > 0) {
-      metaboxHtmlSections.push(html`
-        <p>
-          <details>
-            <summary>Child tags</summary>
-            ${ul(childTags.map(childTag => {
-              const tagPage = metaIndex.pages.find(page =>
-                page.template == "tag" && getTagClassPascalCase(page) == childTag.name
-              );
-              if (tagPage) {
-                return anchor(tagPage._path, tagPage.title)
-              }
-              console.warn(`Unable to find the tag page for tag name ${childTag.name}`);
-              return childTag.name;
-            }))}
-          </details>
-        </p>
-      `);
-    }
+  const tag = metaIndex.data.h1.tagsByName[page._slug];
+  if (!tag) {
+    throw new Error(`Failed to find tag structure for ${page.title}`);
   }
 
-  const invaderSrcReference = `https://github.com/Kavawuvi/invader/blob/master/src/tag/hek/definition/${tagClassSnake}.json`;
+  const metaboxHtmlSections = [
+    html`<p>Tag ID: <strong>${tag.id}</strong></p>`
+  ];
+
+  let refDetailElements = [];
+  let refLevel = tag;
+  while (refLevel) {
+    if (refLevel.references.length > 0) {
+      const isDirect = refLevel.name == tag.name;
+      const refLevelSummary = isDirect ?
+        "Direct references" :
+        `${tagAnchor(refLevel, metaIndex)} references`;
+
+      refDetailElements.push(html`
+        <details${isDirect ? " open" : ""}>
+          <summary>${refLevelSummary}</summary>
+          ${ul(refLevel.references.map(refTag => {
+            if (refTag === "*") {
+              //sound, effect, damage effect, sound looping, model animations, actor variants, and objects
+              return "(any tags referenced by scripts)";
+            } else {
+              return tagAnchor(refTag, metaIndex);
+            }
+          }))}
+        </details>
+      `);
+    }
+    refLevel = refLevel.parent;
+  }
+
+  if (refDetailElements.length > 0) {
+    metaboxHtmlSections.push(
+      html`<p>${refDetailElements.join("\n")}</p>`
+    );
+  }
+
+  //todo: referenced by
+  if (tag.referencedBy.length > 0) {
+    metaboxHtmlSections.push(html`
+      <p>
+        <details open>
+          <summary>Referenced by</summary>
+          ${ul(tag.referencedBy.map(otherTag => tagAnchor(otherTag, metaIndex)))}
+        </details>
+      </p>
+    `);
+  }
+
+  if (tag.parent) {
+    metaboxHtmlSections.push(
+      html`<p>Parent tag: ${tagAnchor(tag.parent, metaIndex)}</p>`
+    );
+  }
+
+  if (tag.children.length > 0) {
+    metaboxHtmlSections.push(html`
+      <p>
+        <details>
+          <summary>Child tags</summary>
+          ${ul(tag.children.map(childTag => tagAnchor(childTag, metaIndex)))}
+        </details>
+      </p>
+    `);
+  }
+
+  const invaderSrcReference = `https://github.com/Kavawuvi/invader/blob/master/src/tag/hek/definition/${tag.name}.json`;
 
   const metaboxOpts = {
     ...page,
-    metaTitle: `\u{1F3F7} ${tagClassSnake} (tag)`,
+    metaTitle: `\u{1F3F7} ${tag.name} (tag)`,
     metaColour: "#530000",
     metaIndex,
     mdSections: [
@@ -151,16 +95,19 @@ module.exports = (page, metaIndex) => {
 
   return wrapper(pageMetaForWrapper, metaIndex, html`
     ${metabox(metaboxOpts)}
+    ${tag.unused && alert("danger", html`
+      <p>
+        <strong>This tag is unused!</strong><br/>
+        Although references to it exist in the engine or tools, it was removed during Halo's development.
+      </p>
+    `)}
     ${renderMarkdown(page._md, metaIndex)}
-    <h1 id="tag-structure">
-      Tag structure
-      <a href="#tag-structure" class="header-anchor">#</a>
-    </h1>
-    ${alert({type: "info", body: html`
+    ${heading("h1", "Tag structure")}
+    ${alert("info", html`
       <p>
         Tag structures are not yet built into this wiki, but you can find a reference for this tag in
         <a href="${invaderSrcReference}">Invader's source</a>.
       </p>
-    `})}
+    `)}
   `);
 };
