@@ -63,7 +63,7 @@ function contentResources() {
 
 //index and render all readme.md files to HTML
 async function contentPages() {
-  await buildContent(paths.srcContentBase, paths.dist, paths.invaderTagDefsBase, baseUrl);
+  await buildContent(paths.srcContentBase, paths.dist, paths.invaderDefsDir, baseUrl);
 }
 
 function watchSources() {

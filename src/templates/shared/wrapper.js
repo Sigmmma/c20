@@ -5,16 +5,17 @@ const breadcrumbs = require("./breadcrumbs");
 const toc = require("./toc");
 
 const TOC_MIN_HEADERS = 2;
+const COLLAPSE_CHILD_PAGES = 8;
 
 const topLevelTopics = [
   ["/blam/tags", "Tags"],
   ["/games/h1", "Halo"]
 ];
 
-const STUB_ALERT = alert({type: "danger", body: html`
+const STUB_ALERT = alert("danger", html`
   <p>🚧 This article is a stub. You can help expand it by submitting content in
   pull requests or issues in this wiki's <a href="${REPO_URL}">source repo</a>.</p>
-`});
+`);
 
 const wrapper = (page, metaIndex, body) => {
   const imgAbsoluteUrl = page.img ?
@@ -48,7 +49,14 @@ const wrapper = (page, metaIndex, body) => {
             ${showToc && toc(page)}
             ${page._childPages.length > 0 && html`
               <h2>Child pages</h2>
-              ${ul(page._childPages.map(pageAnchor))}
+              ${page._childPages.length >= COLLAPSE_CHILD_PAGES ? (html`
+                <details>
+                  <summary>See all (${page._childPages.length})</summary>
+                  ${ul(page._childPages.map(pageAnchor))}
+                </details>
+              `) : (
+                ul(page._childPages.map(pageAnchor))
+              )}
             `}
             <h2>Main topics</h2>
             ${ul(topLevelTopics.map(topic => anchor(...topic)))}
@@ -59,11 +67,8 @@ const wrapper = (page, metaIndex, body) => {
             </nav>
             <article class="content-article">
               <h1 class="page-title">${escapeHtml(page.title)}</h1>
+              ${page.stub && STUB_ALERT}
     ${body}
-              ${page.stub && html`
-                <hr/>
-                ${STUB_ALERT}
-              `}
             </article>
           </main>
           ${footer(page)}

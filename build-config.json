@@ -10,7 +10,7 @@
     "srcStyleEntry": "./src/assets/style.scss",
     "srcStylesAny": "./src/assets/**/*.scss",
     "vendorAssets": ["./node_modules/highlight.js/styles/atom-one-dark.css"],
-    "invaderTagDefsBase": "./lib/invader/src/tag/hek/definition/"
+    "invaderDefsDir": "./lib/invader/src/tag/hek/definition/"
   },
   "baseUrl": "https://c20.reclaimers.net"
 }

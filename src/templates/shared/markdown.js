@@ -1,15 +1,13 @@
 const marked = require("marked");
 const hljs = require("highlight.js");
-const {slugify} = require("./bits");
+const {slugify, heading} = require("./bits");
 
 //https://marked.js.org/#/USING_PRO.md#renderer
 const renderer = new marked.Renderer();
 
 renderer.heading = function(text, level) {
   const hN = "h" + level;
-  const slug = slugify(text);
-  const anchorLink = `<a class="header-anchor" href="#${slug}">#</a>`;
-  return `<${hN} id="${slug}">${text}${anchorLink}</${hN}>`;
+  return heading(hN, text);
 };
 
 marked.setOptions({

@@ -181,9 +181,18 @@ pre {
 
 table {
   border-collapse: collapse;
+  margin-bottom: $padding-containers;
+
   td, th {
     padding: $padding-containers-small;
     border: 1px solid $border-color;
+
+    p:first-child {
+      margin-top: 0;
+    }
+    p:last-child {
+      margin-bottom: 0;
+    }
   }
   th {
     text-align: left;
@@ -286,6 +295,7 @@ table {
 
 .content-article {
   max-width: $width-content;
+  width: 100%;
   margin-right: auto;
   display: flow-root;
   padding: 0 $padding-containers;
