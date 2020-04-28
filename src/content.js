@@ -104,7 +104,7 @@ async function getPageMetadata(contentDir) {
   return pages;
 }
 
-async function buildMetaIndex(contentDir, invaderDefsDir, baseUrl) {
+async function buildMetaIndex(contentDir, invaderDefsDir, baseUrl, packageVersion) {
   const pages = await getPageMetadata(contentDir);
   const invaderStructDefs = await getInvaderStructDefs(invaderDefsDir);
   const data = buildData(invaderStructDefs);
@@ -124,6 +124,7 @@ async function buildMetaIndex(contentDir, invaderDefsDir, baseUrl) {
   };
 
   return {
+    packageVersion,
     findTagPageByName,
     pages,
     mdFooter,
@@ -145,8 +146,8 @@ async function renderContent(metaIndex, outputDir) {
   }));
 }
 
-async function buildContent(contentDir, outputDir, invaderDefsDir, baseUrl) {
-  const metaIndex = await buildMetaIndex(contentDir, invaderDefsDir, baseUrl);
+async function buildContent(contentDir, outputDir, invaderDefsDir, baseUrl, packageVersion) {
+  const metaIndex = await buildMetaIndex(contentDir, invaderDefsDir, baseUrl, packageVersion);
   await renderContent(metaIndex, outputDir);
 }
 

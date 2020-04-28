@@ -9,6 +9,7 @@ const buildContent = require("./src/content");
 const Viz = require('viz.js');
 const vizRenderOpts = require('viz.js/full.render.js');
 
+const packageVersion = process.env.npm_package_version;
 const {paths, baseUrl} = require("./build-config.json");
 const runServer = require("./server");
 
@@ -63,7 +64,7 @@ function contentResources() {
 
 //index and render all readme.md files to HTML
 async function contentPages() {
-  await buildContent(paths.srcContentBase, paths.dist, paths.invaderDefsDir, baseUrl);
+  await buildContent(paths.srcContentBase, paths.dist, paths.invaderDefsDir, baseUrl, packageVersion);
 }
 
 function watchSources() {

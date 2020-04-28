@@ -2,13 +2,17 @@ const {html, REPO_URL} = require("./bits");
 
 const LICENSE_URL = "https://creativecommons.org/licenses/by-sa/3.0/";
 
-const footer = (page) => {
+const footer = (page, metaIndex) => {
   const srcUrl = `${REPO_URL}/tree/master/src/content${page._path}`;
   return html`
     <footer class="content-footer">
       <p>
         <small>
           This text is available under the <a href="${LICENSE_URL}">CC BY-SA 3.0 license</a>
+          •
+          ${metaIndex.packageVersion && `
+            c20 v${metaIndex.packageVersion}
+          `}
           •
           <a href="${srcUrl}">Source</a>
           •

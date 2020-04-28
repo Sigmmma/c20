@@ -71,7 +71,7 @@ const wrapper = (page, metaIndex, body) => {
     ${body}
             </article>
           </main>
-          ${footer(page)}
+          ${footer(page, metaIndex)}
         </div>
       </body>
     </html>
