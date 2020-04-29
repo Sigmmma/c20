@@ -1,4 +1,5 @@
 const {html, alert, escapeHtml, REPO_URL, DISCORD_URL, ul, anchor, pageAnchor} = require("./bits");
+const {renderMarkdown} = require("./markdown");
 const footer = require("./footer");
 const header = require("./header");
 const breadcrumbs = require("./breadcrumbs");
@@ -6,6 +7,7 @@ const toc = require("./toc");
 
 const TOC_MIN_HEADERS = 2;
 const COLLAPSE_CHILD_PAGES = 8;
+const PREVIEW_LENGTH_CHARS = 100;
 
 const topLevelTopics = [
   ["/blam/tags", "Tags"],
@@ -24,6 +26,8 @@ const wrapper = (page, metaIndex, body) => {
 
   const showToc = page.toc !== undefined ? page.toc : page._headers.length > TOC_MIN_HEADERS;
 
+  const plaintextPreview = `${renderMarkdown(page._md, metaIndex, true).substring(0, PREVIEW_LENGTH_CHARS)}...`;
+
   return html`
     <!DOCTYPE html>
     <html lang="en">
@@ -36,6 +40,7 @@ const wrapper = (page, metaIndex, body) => {
         <meta property="og:type" content="website"/>
         <meta property="og:locale" content="en_US"/>
         <meta property="og:url" content="${metaIndex.baseUrl}${page._path}"/>
+        <meta property="og:description" content="${plaintextPreview}"/>
         <meta property="og:image" content="${imgAbsoluteUrl}"/>
         <title>${page.title} - c20</title>
         <link rel="icon" type="image/png" href="/assets/librarian.png">
