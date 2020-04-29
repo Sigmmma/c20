@@ -39,20 +39,16 @@ module.exports = (page, metaIndex) => {
   }
 
   if (refDetailElements.length > 0) {
-    metaboxHtmlSections.push(
-      html`<p>${refDetailElements.join("\n")}</p>`
-    );
+    metaboxHtmlSections.push(refDetailElements.join("\n"));
   }
 
   //todo: referenced by
   if (tag.referencedBy.length > 0) {
     metaboxHtmlSections.push(html`
-      <p>
-        <details open>
-          <summary>Referenced by</summary>
-          ${ul(tag.referencedBy.map(otherTag => tagAnchor(otherTag, metaIndex)))}
-        </details>
-      </p>
+      <details open>
+        <summary>Referenced by</summary>
+        ${ul(tag.referencedBy.map(otherTag => tagAnchor(otherTag, metaIndex)))}
+      </details>
     `);
   }
 
@@ -64,12 +60,10 @@ module.exports = (page, metaIndex) => {
 
   if (tag.children.length > 0) {
     metaboxHtmlSections.push(html`
-      <p>
-        <details>
-          <summary>Child tags</summary>
-          ${ul(tag.children.map(childTag => tagAnchor(childTag, metaIndex)))}
-        </details>
-      </p>
+      <details>
+        <summary>Child tags</summary>
+        ${ul(tag.children.map(childTag => tagAnchor(childTag, metaIndex)))}
+      </details>
     `);
   }
 
