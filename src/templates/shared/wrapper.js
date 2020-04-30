@@ -78,6 +78,8 @@ const wrapper = (page, metaIndex, body) => {
           </main>
           ${footer(page, metaIndex)}
         </div>
+        <script src="/assets/index.js"></script>
+        <script src="/assets/main.js"></script>
       </body>
     </html>
   `;

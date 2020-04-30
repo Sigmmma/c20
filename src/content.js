@@ -5,6 +5,9 @@ const buildData = require("./data");
 const fm = require("front-matter");
 const fs = require("fs").promises;
 const path = require("path");
+const MiniSearch = require("minisearch");
+
+const STOP_WORDS = ["and", "or", "to", "at", "in", "a", "the", "be", "are", "is", "as", "its", "it", "this", "these", "any"];
 
 async function findPaths(globPattern) {
   return new Promise((resolve, reject) => {
@@ -134,16 +137,33 @@ async function buildMetaIndex(contentDir, invaderDefsDir, baseUrl, packageVersio
 }
 
 async function renderContent(metaIndex, outputDir) {
-  await Promise.all(metaIndex.pages.map(async (page) => {
+  const searchDocs = await Promise.all(metaIndex.pages.map(async (page) => {
     const templateName = page.template || "default";
     const renderTemplate = templates[templateName];
     if (!renderTemplate) {
       throw new Error(`The template '${templateName}' does not exist`);
     }
-    const result = renderTemplate(page, metaIndex);
+    const {htmlDoc, searchDoc} = renderTemplate(page, metaIndex);
     await fs.mkdir(path.join(outputDir, ...page._pathParts), {recursive: true});
-    await fs.writeFile(path.join(outputDir, ...page._pathParts, "index.html"), result, "utf8");
+    await fs.writeFile(path.join(outputDir, ...page._pathParts, "index.html"), htmlDoc, "utf8");
+    return searchDoc;
   }));
+
+  const searchIndex = new MiniSearch({
+    idField: "path",
+    fields: ["title", "text"],
+    storeFields: ["title"],
+    processTerm: (term, _fieldName) => {
+      return STOP_WORDS.indexOf(term) == -1 ? term.toLowerCase() : null
+    },
+    searchOptions: {
+      boost: {title: 2},
+      fuzzy: 0.2
+    }
+  });
+  searchIndex.addAll(searchDocs);
+  const jsonIndex = JSON.stringify(searchIndex.toJSON());
+  await fs.writeFile(path.join(outputDir, "assets", "search-index.json"), jsonIndex, "utf8");
 }
 
 async function buildContent(contentDir, outputDir, invaderDefsDir, baseUrl, packageVersion) {

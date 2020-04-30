@@ -11,8 +11,16 @@ module.exports = (page, metaIndex) => {
     ]
   };
 
-  return wrapper(page, metaIndex, html`
+  const htmlDoc = wrapper(page, metaIndex, html`
     ${metabox(metaboxOpts)}
     ${renderMarkdown(page._md, metaIndex)}
   `);
+
+  const searchDoc = {
+    path: page._path,
+    title: page.title,
+    text: renderMarkdown(page._md, metaIndex, true)
+  };
+
+  return {htmlDoc, searchDoc};
 };

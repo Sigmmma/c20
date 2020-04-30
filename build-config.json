@@ -6,10 +6,14 @@
     "srcResources": "./src/content/**/*.@(jpg|jpeg|png|gif)",
     "srcDiagrams": "./src/content/**/*.@(dot|neato|fdp|sfdp|twopi|circo)",
     "srcContentBase": "./src/content",
-    "srcStaticAssets": "./src/@(assets)/**/*.@(jpg|jpeg|png|gif|ttf)",
+    "srcStaticAssets": "./src/@(assets)/**/*.@(jpg|jpeg|png|gif|ttf|js)",
     "srcStyleEntry": "./src/assets/style.scss",
     "srcStylesAny": "./src/assets/**/*.scss",
-    "vendorAssets": ["./node_modules/highlight.js/styles/atom-one-dark.css"],
+    "vendorAssets": [
+      "./node_modules/highlight.js/styles/atom-one-dark.css",
+      "./node_modules/preact/dist/preact.js",
+      "./node_modules/minisearch/dist/umd/index.js"
+    ],
     "invaderDefsDir": "./lib/invader/src/tag/hek/definition/"
   },
   "baseUrl": "https://c20.reclaimers.net"

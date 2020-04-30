@@ -24,6 +24,8 @@
   "homepage": "https://c20.reclaimers.net",
   "dependencies": {
     "express": "^4.17.1",
+    "minisearch": "^2.3.1",
+    "preact": "^10.4.1",
     "serve-static": "^1.14.1"
   },
   "devDependencies": {

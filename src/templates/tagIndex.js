@@ -38,7 +38,7 @@ module.exports = (page, metaIndex) => {
     ]
   };
 
-  return wrapper(pageMetaForWrapper, metaIndex, html`
+  const htmlDoc = wrapper(pageMetaForWrapper, metaIndex, html`
     ${renderMarkdown(page._md, metaIndex)}
     ${heading("h1", "Tags list")}
     ${tagsTable(metaIndex.data.h1.tags.filter(t => !t.unused), metaIndex)}
@@ -50,4 +50,12 @@ module.exports = (page, metaIndex) => {
     </p>
     ${tagsTable(metaIndex.data.h1.tags.filter(t => t.unused), metaIndex)}
   `);
+
+  const searchDoc = {
+    path: page._path,
+    title: page.title,
+    text: renderMarkdown(page._md, metaIndex, true)
+  };
+
+  return {htmlDoc, searchDoc};
 };
