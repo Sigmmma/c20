@@ -91,9 +91,10 @@ async function getPageMetadata(contentDir) {
       }
     }
 
+    //find child pages
     page._childPages = [];
     const candidateChildPages = pages.filter(otherPage =>
-      otherPage._path != page._path && otherPage._path.startsWith(page._path)
+      otherPage._path != page._path && (page._path == "/" || otherPage._path.startsWith(page._path + "/"))
     );
     candidateChildPages.sort((a, b) => a._pathParts.length - b._pathParts.length);
     for (let childPage of candidateChildPages) {
@@ -102,6 +103,15 @@ async function getPageMetadata(contentDir) {
       }
     }
     page._childPages.sort((a, b) => a.title.localeCompare(b.title));
+
+
+    //find related pages
+    page._relatedPages = pages.filter(otherPage => {
+      if (otherPage._path == page._path) return false;
+      const setA = [page.title, page._slug, ...(page.keywords || [])];
+      const setB = [otherPage.title, otherPage._slug, ...(otherPage.keywords || [])];
+      return setA.find(keyword => setB.indexOf(keyword) != -1) !== undefined;
+    });
   }
 
   return pages;
@@ -151,13 +161,13 @@ async function renderContent(metaIndex, outputDir) {
 
   const searchIndex = new MiniSearch({
     idField: "path",
-    fields: ["title", "text"],
+    fields: ["title", "text", "keywords"],
     storeFields: ["title"],
     processTerm: (term, _fieldName) => {
       return STOP_WORDS.indexOf(term) == -1 ? term.toLowerCase() : null
     },
     searchOptions: {
-      boost: {title: 2},
+      boost: {title: 3, keywords: 2},
       fuzzy: 0.2
     }
   });

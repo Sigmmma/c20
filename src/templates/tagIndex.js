@@ -54,7 +54,8 @@ module.exports = (page, metaIndex) => {
   const searchDoc = {
     path: page._path,
     title: page.title,
-    text: renderMarkdown(page._md, metaIndex, true)
+    text: renderMarkdown(page._md, metaIndex, true),
+    keywords: (page.keywords || []).join(" ")
   };
 
   return {htmlDoc, searchDoc};

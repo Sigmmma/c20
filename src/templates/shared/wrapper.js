@@ -43,6 +43,7 @@ const wrapper = (page, metaIndex, body) => {
         <meta property="og:description" content="${plaintextPreview}"/>
         <meta property="og:image" content="${imgAbsoluteUrl}"/>
         <title>${page.title} - c20</title>
+        <link rel="preload" type="application/json" as="fetch" href="/assets/search-index.json">
         <link rel="icon" type="image/png" href="/assets/librarian.png">
         <link rel="stylesheet" href="/assets/style.css"/>
         <link rel="stylesheet" href="/assets/atom-one-dark.css"/>
@@ -62,6 +63,10 @@ const wrapper = (page, metaIndex, body) => {
               `) : (
                 ul(page._childPages.map(pageAnchor))
               )}
+            `}
+            ${page._relatedPages.length > 0 && html`
+              <h2>Related pages</h2>
+              ${ul(page._relatedPages.map(pageAnchor))}
             `}
             <h2>Main topics</h2>
             ${ul(topLevelTopics.map(topic => anchor(...topic)))}
