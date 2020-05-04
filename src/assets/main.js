@@ -28,11 +28,13 @@ class Search extends Component {
         this.state.selectedResultIndex + 1,
         this.state.searchResults.length - 1
       )});
+      e.preventDefault(); //prevent moving the cursor right in the input
     } else if (e.key == "ArrowUp") {
       this.setState({selectedResultIndex: Math.max(
         this.state.selectedResultIndex - 1,
         -1
       )});
+      e.preventDefault(); //prevent moving the cursor left in the input
     } else if (e.key == "Enter") {
       if (this.state.selectedResultIndex != -1) {
         window.location = this.state.searchResults[this.state.selectedResultIndex].id;
