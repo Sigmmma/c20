@@ -1,5 +1,7 @@
 ---
 title: The Reclaimers Library
+keywords:
+  - home
 ---
 
 Welcome to **c20**, a project which aims to document the immense tribal knowledge of the [Halo 1][h1] modding community, focusing primarily on _Halo: Custom Edition_. C20 will cover [engine details][blam], the [Halo Editing Kit][hek], community tools, and guides for custom content creation.
