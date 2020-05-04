@@ -76,35 +76,48 @@ class Search extends Component {
         });
         this.setState({disabled: false});
       });
+
     window.addEventListener("keydown", (e) => {
+      //check for global keydown of "s" to move focus to the search input
       if (e.key == "s" && this.inputRef && document.activeElement !== this.inputRef) {
         this.inputRef.focus();
+        //prevents event from being passed to next handlers to avoid "s" being put in now-focused input
         e.preventDefault();
       }
     });
   }
 
   render() {
+    const clearInput = () => this.handleChange("");
+    const handleInput = (e) => this.handleChange(e.target.value);
+    const isNonEmptyQuery = this.state.query && this.state.query != "";
+    //save a reference to the DOM element which gets rendered, so we can focus it later
+    const saveInputRef = (el) => this.inputRef = el;
+
     return html`
       <input
-        ref=${(el) => this.inputRef = el}
-        class="search-input ${!!this.state.query ? "nonempty" : ""}"
+        ref=${saveInputRef}
+        class="search-input ${isNonEmptyQuery ? "nonempty" : ""}"
         type="text"
         placeholder="Search c20..."
         disabled=${this.state.disabled}
         value=${this.state.query}
-        onInput=${(e) => this.handleChange(e.target.value)}
+        onInput=${handleInput}
         onKeyDown=${this.handleKeyDown}
       />
-      ${this.state.query != "" && html`
+      ${isNonEmptyQuery && html`
         <nav class="search-results">
-          <button class="clear-button" onClick=${() => this.handleChange("")}>Close</button>
+          <button class="clear-button" onClick=${clearInput}>Close</button>
           <h1>Search results</h1>
           ${this.state.searchResults.length > 0 ? html`
             <ul>
               ${this.state.searchResults.map((result, i) => {
+                //render each search result, ensuring that the user's selected one gets highlighted by CSS:
                 const isSelected = i == this.state.selectedResultIndex;
-                return html`<li class=${isSelected ? "selected" : ""}><a href=${result.id}>${result.title}</a></li>`
+                return html`
+                  <li class=${isSelected ? "selected" : ""}>
+                    <a href=${result.id}>${result.title}</a>
+                  </li>`;
               })}
             </ul>
           ` : html`

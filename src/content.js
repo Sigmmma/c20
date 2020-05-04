@@ -164,7 +164,8 @@ async function renderContent(metaIndex, outputDir) {
     fields: ["title", "text", "keywords"],
     storeFields: ["title"],
     processTerm: (term, _fieldName) => {
-      return STOP_WORDS.indexOf(term) == -1 ? term.toLowerCase() : null
+      term = term.toLowerCase();
+      return STOP_WORDS.indexOf(term) == -1 ? term : null
     },
     searchOptions: {
       boost: {title: 3, keywords: 2},
