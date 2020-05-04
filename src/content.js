@@ -5,6 +5,9 @@ const buildData = require("./data");
 const fm = require("front-matter");
 const fs = require("fs").promises;
 const path = require("path");
+const MiniSearch = require("minisearch");
+
+const STOP_WORDS = ["and", "or", "to", "at", "in", "a", "the", "be", "are", "is", "as", "its", "it", "this", "these", "any"];
 
 async function findPaths(globPattern) {
   return new Promise((resolve, reject) => {
@@ -88,9 +91,10 @@ async function getPageMetadata(contentDir) {
       }
     }
 
+    //find child pages
     page._childPages = [];
     const candidateChildPages = pages.filter(otherPage =>
-      otherPage._path != page._path && otherPage._path.startsWith(page._path)
+      otherPage._path != page._path && (page._path == "/" || otherPage._path.startsWith(page._path + "/"))
     );
     candidateChildPages.sort((a, b) => a._pathParts.length - b._pathParts.length);
     for (let childPage of candidateChildPages) {
@@ -99,6 +103,15 @@ async function getPageMetadata(contentDir) {
       }
     }
     page._childPages.sort((a, b) => a.title.localeCompare(b.title));
+
+
+    //find related pages
+    page._relatedPages = pages.filter(otherPage => {
+      if (otherPage._path == page._path) return false;
+      const setA = [page.title, page._slug, ...(page.keywords || [])];
+      const setB = [otherPage.title, otherPage._slug, ...(otherPage.keywords || [])];
+      return setA.find(keyword => setB.indexOf(keyword) != -1) !== undefined;
+    });
   }
 
   return pages;
@@ -134,16 +147,34 @@ async function buildMetaIndex(contentDir, invaderDefsDir, baseUrl, packageVersio
 }
 
 async function renderContent(metaIndex, outputDir) {
-  await Promise.all(metaIndex.pages.map(async (page) => {
+  const searchDocs = await Promise.all(metaIndex.pages.map(async (page) => {
     const templateName = page.template || "default";
     const renderTemplate = templates[templateName];
     if (!renderTemplate) {
       throw new Error(`The template '${templateName}' does not exist`);
     }
-    const result = renderTemplate(page, metaIndex);
+    const {htmlDoc, searchDoc} = renderTemplate(page, metaIndex);
     await fs.mkdir(path.join(outputDir, ...page._pathParts), {recursive: true});
-    await fs.writeFile(path.join(outputDir, ...page._pathParts, "index.html"), result, "utf8");
+    await fs.writeFile(path.join(outputDir, ...page._pathParts, "index.html"), htmlDoc, "utf8");
+    return searchDoc;
   }));
+
+  const searchIndex = new MiniSearch({
+    idField: "path",
+    fields: ["title", "text", "keywords"],
+    storeFields: ["title"],
+    processTerm: (term, _fieldName) => {
+      term = term.toLowerCase();
+      return STOP_WORDS.indexOf(term) == -1 ? term : null
+    },
+    searchOptions: {
+      boost: {title: 3, keywords: 2},
+      fuzzy: 0.2
+    }
+  });
+  searchIndex.addAll(searchDocs);
+  const jsonIndex = JSON.stringify(searchIndex.toJSON());
+  await fs.writeFile(path.join(outputDir, "assets", "search-index.json"), jsonIndex, "utf8");
 }
 
 async function buildContent(contentDir, outputDir, invaderDefsDir, baseUrl, packageVersion) {

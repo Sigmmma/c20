@@ -89,7 +89,7 @@ module.exports = (page, metaIndex) => {
     ]
   };
 
-  return wrapper(pageMetaForWrapper, metaIndex, html`
+  const htmlDoc = wrapper(pageMetaForWrapper, metaIndex, html`
     ${metabox(metaboxOpts)}
     ${tag.unused && alert("danger", html`
       <p>
@@ -108,4 +108,13 @@ module.exports = (page, metaIndex) => {
       `)}
     `}
   `);
+
+  const searchDoc = {
+    path: page._path,
+    title: page.title,
+    text: renderMarkdown(page._md, metaIndex, true),
+    keywords: (page.keywords || []).join(" ")
+  };
+
+  return {htmlDoc, searchDoc};
 };
