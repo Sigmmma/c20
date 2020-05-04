@@ -111,6 +111,7 @@ class Search extends Component {
         <nav class="search-results">
           <button class="clear-button" onClick=${clearInput}>Close</button>
           <h1>Search results</h1>
+          <p class="desktop-only"><small>Hotkeys: <kbd>s</kbd> to search, <kbd>Up/Down</kbd> to choose result, <kbd>Enter</kbd> to select, <kbd>Esc</kbd> to close.</small></p>
           ${this.state.searchResults.length > 0 ? html`
             <ul>
               ${this.state.searchResults.map((result, i) => {

@@ -126,6 +126,10 @@ input {
   }
 }
 
+small {
+  color: $fg-faded;
+}
+
 hr {
   border: none;
   border-bottom: 1px solid $border-color;
@@ -449,6 +453,10 @@ table {
 @media all and (max-width: 45em) {
   .top-header {
     padding: $padding-containers-small;
+  }
+
+  .desktop-only {
+    display: none;
   }
 
   .content-layout {
