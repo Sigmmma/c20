@@ -1,6 +1,5 @@
-const {html, wrapper, renderMarkdown, metabox, alert, tagAnchor, ul, heading} = require("./shared");
-
-const INVADER_TAG_BASE = "https://github.com/Kavawuvi/invader/blob/master/src/tag/hek/definition";
+const {html, wrapper, renderMarkdown, metabox, alert, tagAnchor, ul, heading, detailsList} = require("../shared");
+const renderTagStructure = require("./tagStructure");
 
 module.exports = (page, metaIndex) => {
   const tag = metaIndex.data.h1.tagsByName[page._slug];
@@ -12,6 +11,12 @@ module.exports = (page, metaIndex) => {
     html`<p>Tag ID: <strong>${tag.id}</strong></p>`
   ];
 
+  if (tag.parent) {
+    metaboxHtmlSections.push(
+      html`<p>Parent tag: ${tagAnchor(tag.parent, metaIndex)}</p>`
+    );
+  }
+
   let refDetailElements = [];
   let refLevel = tag;
   while (refLevel) {
@@ -21,19 +26,18 @@ module.exports = (page, metaIndex) => {
         "Direct references" :
         `${tagAnchor(refLevel, metaIndex)} references`;
 
-      refDetailElements.push(html`
-        <details${isDirect ? " open" : ""}>
-          <summary>${refLevelSummary}</summary>
-          ${ul(refLevel.references.map(refTag => {
-            if (refTag === "*") {
-              //sound, effect, damage effect, sound looping, model animations, actor variants, and objects
-              return "(any tags referenced by scripts)";
-            } else {
-              return tagAnchor(refTag, metaIndex);
-            }
-          }))}
-        </details>
-      `);
+      refDetailElements.push(detailsList(
+        refLevelSummary,
+        refLevel.references.map(refTag => {
+          if (refTag === "*") {
+            //sound, effect, damage effect, sound looping, model animations, actor variants, and objects
+            return "(any tags referenced by scripts)";
+          } else {
+            return tagAnchor(refTag, metaIndex);
+          }
+        }),
+        isDirect ? undefined : false
+      ));
     }
     refLevel = refLevel.parent;
   }
@@ -42,29 +46,18 @@ module.exports = (page, metaIndex) => {
     metaboxHtmlSections.push(refDetailElements.join("\n"));
   }
 
-  //todo: referenced by
   if (tag.referencedBy.length > 0) {
-    metaboxHtmlSections.push(html`
-      <details open>
-        <summary>Referenced by</summary>
-        ${ul(tag.referencedBy.map(otherTag => tagAnchor(otherTag, metaIndex)))}
-      </details>
-    `);
-  }
-
-  if (tag.parent) {
-    metaboxHtmlSections.push(
-      html`<p>Parent tag: ${tagAnchor(tag.parent, metaIndex)}</p>`
-    );
+    metaboxHtmlSections.push(detailsList(
+      "Referenced by",
+      tag.referencedBy.map(otherTag => tagAnchor(otherTag, metaIndex))
+    ));
   }
 
   if (tag.children.length > 0) {
-    metaboxHtmlSections.push(html`
-      <details>
-        <summary>Child tags</summary>
-        ${ul(tag.children.map(childTag => tagAnchor(childTag, metaIndex)))}
-      </details>
-    `);
+    metaboxHtmlSections.push(detailsList(
+      "Child tags",
+      tag.children.map(childTag => tagAnchor(childTag, metaIndex))
+    ));
   }
 
   const metaboxOpts = {
@@ -83,7 +76,7 @@ module.exports = (page, metaIndex) => {
     ...page,
     _headers: [
       ...page._headers,
-      ...(!tag.invaderStructName ? [] : [
+      ...(!tag.invaderStruct ? [] : [
         {title: "Tag structure", id: "tag-structure", level: 1}
       ])
     ]
@@ -98,15 +91,7 @@ module.exports = (page, metaIndex) => {
       </p>
     `)}
     ${renderMarkdown(page._md, metaIndex)}
-    ${tag.invaderStructName && html`
-      ${heading("h1", "Tag structure")}
-      ${alert("info", html`
-        <p>
-          Tag structures are not yet built into this wiki, but you can find a reference for this tag in
-          <a href="${INVADER_TAG_BASE}/${tag.name}.json">Invader's source</a>.
-        </p>
-      `)}
-    `}
+    ${tag.invaderStruct && renderTagStructure(tag, metaIndex)}
   `);
 
   const searchDoc = {

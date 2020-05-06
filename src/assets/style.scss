@@ -218,6 +218,7 @@ pre {
 table {
   border-collapse: collapse;
   margin-bottom: $padding-flow;
+  width: 100%;
 
   td, th {
     padding: $padding-containers-small;
@@ -233,6 +234,22 @@ table {
   th {
     text-align: left;
     background: $bg-overlay;
+  }
+}
+
+table.tag-struct {
+  background: $bg-content;
+  & {
+    margin-bottom: 0;
+  }
+  .field-unused, .field-pad {
+    color: $fg-faded;
+  }
+  .field-tagblock {
+    background: $bg-info;
+  }
+  .tag-block-body {
+    background: $bg-inset;
   }
 }
 
