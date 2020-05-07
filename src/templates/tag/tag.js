@@ -7,14 +7,14 @@ module.exports = (page, metaIndex) => {
     throw new Error(`Failed to find tag structure for ${page.title}`);
   }
 
-  const metaboxHtmlSections = [
-    html`<p>Tag ID: <strong>${tag.id}</strong></p>`
-  ];
+  const metaboxHtmlSections = [{
+    body: html`<p>Tag ID: <strong>${tag.id}</strong></p>`
+  }];
 
   if (tag.parent) {
-    metaboxHtmlSections.push(
-      html`<p>Parent tag: ${tagAnchor(tag.parent, metaIndex)}</p>`
-    );
+    metaboxHtmlSections.push({
+      body: html`<p>Parent tag: ${tagAnchor(tag.parent, metaIndex)}</p>`
+    });
   }
 
   let refDetailElements = [];
@@ -43,31 +43,36 @@ module.exports = (page, metaIndex) => {
   }
 
   if (refDetailElements.length > 0) {
-    metaboxHtmlSections.push(refDetailElements.join("\n"));
+    metaboxHtmlSections.push({
+      cssClass: "content-tag-reference",
+      body: refDetailElements.join("\n")
+    });
   }
 
   if (tag.referencedBy.length > 0) {
-    metaboxHtmlSections.push(detailsList(
-      "Referenced by",
-      tag.referencedBy.map(otherTag => tagAnchor(otherTag, metaIndex))
-    ));
+    metaboxHtmlSections.push({
+      body: detailsList(
+        "Referenced by",
+        tag.referencedBy.map(otherTag => tagAnchor(otherTag, metaIndex))
+      )
+    });
   }
 
   if (tag.children.length > 0) {
-    metaboxHtmlSections.push(detailsList(
-      "Child tags",
-      tag.children.map(childTag => tagAnchor(childTag, metaIndex))
-    ));
+    metaboxHtmlSections.push({
+      body: detailsList(
+        "Child tags",
+        tag.children.map(childTag => tagAnchor(childTag, metaIndex))
+      )
+    });
   }
 
   const metaboxOpts = {
     ...page,
     metaTitle: `\u{1F3F7} ${tag.name} (tag)`,
-    metaColour: "#530000",
+    metaColour: "#0b352b",
     metaIndex,
-    mdSections: [
-      page.info
-    ],
+    mdSections: page.info ? [{mdBody: page.info}] : [],
     htmlSections: metaboxHtmlSections
   };
 
@@ -77,10 +82,17 @@ module.exports = (page, metaIndex) => {
     _headers: [
       ...page._headers,
       ...(!tag.invaderStruct ? [] : [
-        {title: "Tag structure", id: "tag-structure", level: 1}
+        {title: "Structure and fields", id: "structure-and-fields", level: 1}
       ])
     ]
   };
+
+  let tagStructureHtml = null;
+  if (tag.invaderStruct) {
+    const {headings, htmlResult} = renderTagStructure(tag, metaIndex)
+    tagStructureHtml = htmlResult;
+    pageMetaForWrapper._headers = [...pageMetaForWrapper._headers, ...headings];
+  }
 
   const htmlDoc = wrapper(pageMetaForWrapper, metaIndex, html`
     ${metabox(metaboxOpts)}
@@ -91,7 +103,7 @@ module.exports = (page, metaIndex) => {
       </p>
     `)}
     ${renderMarkdown(page._md, metaIndex)}
-    ${tag.invaderStruct && renderTagStructure(tag, metaIndex)}
+    ${tagStructureHtml}
   `);
 
   const searchDoc = {

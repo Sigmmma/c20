@@ -17,14 +17,14 @@ const metabox = ({metaTitle, metaColour, img, imgCaption, mdSections, metaIndex,
           <p><em>${renderMarkdown(imgCaption, metaIndex)}</em></p>
         </section>
       `}
-      ${mdSections && mdSections.filter(it => it).map(mdSection => html`
-        <section class="info">
-          ${renderMarkdown(mdSection, metaIndex)}
+      ${mdSections && mdSections.filter(it => it).map(({mdBody, cssClass}) => html`
+        <section class="info ${cssClass}">
+          ${renderMarkdown(mdBody, metaIndex)}
         </section>
       `)}
-      ${htmlSections && htmlSections.filter(it => it).map(htmlSection => html`
-        <section class="info">
-          ${htmlSection}
+      ${htmlSections && htmlSections.filter(it => it).map(({body, cssClass}) => html`
+        <section class="info ${cssClass}">
+          ${body}
         </section>
       `)}
     </aside>

@@ -6,9 +6,7 @@ module.exports = (page, metaIndex) => {
     metaTitle: `\u{1F527} ${page.title} (tool)`,
     metaColour: "navy",
     metaIndex,
-    mdSections: [
-      page.info
-    ]
+    mdSections: page.info ? [{mdBody: page.info}] : [],
   };
 
   const htmlDoc = wrapper(page, metaIndex, html`

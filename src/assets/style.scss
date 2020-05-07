@@ -5,6 +5,7 @@ $bg-content: #23292f;
 $bg-inset: #191d22;
 $bg-info: #373457;
 $bg-danger: #53332c;
+$bg-success: #1c3e34;
 $fg: #ccc;
 $fg-faded: #888;
 $fg-strong: #eee;
@@ -237,6 +238,15 @@ table {
   }
 }
 
+//todo: more of these?
+.content-tag-reference {
+  background: mix(#0b352b, $bg-content, 35%);
+}
+
+.content-tag-reference.field-unused {
+  background: $bg-content;
+}
+
 table.tag-struct {
   background: $bg-content;
   & {
@@ -423,6 +433,7 @@ table.tag-struct {
     border: 1px solid $border-color;
     border-bottom-width: 0;
     border-radius: $border-radius;
+    overflow: hidden;
     margin: 0 0 $padding-containers $padding-containers;
 
     figcaption {
