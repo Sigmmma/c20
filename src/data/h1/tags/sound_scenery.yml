@@ -1,0 +1,7 @@
+name: sound_scenery
+id: ssce
+parent: object
+invaderStructName: SoundScenery
+comments:
+  md: ...
+  fields: []

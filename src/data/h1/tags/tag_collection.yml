@@ -1,0 +1,11 @@
+name: tag_collection
+id: tagc
+invaderStructName: TagCollection
+comments:
+  md: ...
+  fields:
+    - name: tags
+      md: ...
+      fields:
+        - name: reference
+          md: ...

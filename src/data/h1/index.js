@@ -1,9 +1,12 @@
-const basicTagsList = require("./tags");
+const yaml = require("js-yaml");
+const fs = require("fs");
+const path = require("path");
+const glob = require("glob");
 const {getDirectReferencedTagNames} = require("./invader");
 
-const basicTagsById = Object.fromEntries(basicTagsList.map(basicTag =>
-  [basicTag.id, basicTag]
-));
+const basicTagsList = glob.sync(path.join(__dirname, "tags", "*.yml")).map(tagFileName => {
+  return yaml.safeLoad(fs.readFileSync(tagFileName, "utf8"));
+});
 
 function buildData(invaderStructDefs) {
   //augment the basic list of tags with more detail provided by external libs
@@ -28,14 +31,14 @@ function buildData(invaderStructDefs) {
       tag.references = getDirectReferencedTagNames(tag.invaderStructName, invaderStructDefs)
         .map(tagName => tagName == "*" ? tagName : tagsByName[tagName]);
     }
-    tag.parent = tag.parentId ? tagsById[tag.parentId] : null;
-    tag.children = tags.filter(otherTag => otherTag.parentId == tag.id);
+    tag.parent = tag.parent ? tagsByName[tag.parent] : null;
+    tag.children = tags.filter(otherTag => otherTag.parent == tag.name);
   }
 
   //easier to do referencedBy using the references built in previous pass
   for (let tag of tags) {
     tag.referencedBy = tags.filter(otherTag =>
-      otherTag.references.find(ref => ref.id == tag.id)
+      otherTag.references.find(ref => ref.name == tag.name)
     );
   }
 
@@ -48,3 +51,68 @@ function buildData(invaderStructDefs) {
 };
 
 module.exports = buildData;
+
+/* BREAK GLASS IF NEW YAML FILES NEEDED
+function buildYamlFiles(invaderStructDefs, basicTags) {
+  const describeStruct = (invaderStructName, name) => {
+    const struct = invaderStructDefs[invaderStructName];
+    if (!struct) {
+      return {
+        ...(name && {name}),
+        md: "...",
+      };
+    } else if (struct.type == "enum") {
+      return {
+        ...(name && {name}),
+        md: "...",
+        options: struct.options.map(name => ({name, md: "..."}))
+      };
+    } else if (struct.type == "bitfield") {
+      return {
+        ...(name && {name}),
+        md: "...",
+        fields: struct.fields.map(field => ({name: field, md: "..."}))
+      };
+    } if (struct.type == "struct") {
+      const namedFields = struct.fields.filter(it => it.name);
+      return {
+        ...(name && {name}),
+        md: "...",
+        fields: namedFields.map(field => ({
+          ...(field.type && describeStruct(field.type, field.name)),
+          ...(field.type == "TagReflexive" && describeStruct(field.struct, field.name)),
+        }))
+      };
+    } else {
+      throw new Error(`Unhandled type: ${struct.type}`);
+    }
+  };
+
+
+  for (let tag of basicTags) {
+    try {
+      const tagOut = {
+        name: tag.name,
+        id: tag.id,
+        ...(tag.parent && {
+          parent: tag.parent.name
+        }),
+        ...(tag.invaderStructName && {
+          invaderStructName: tag.invaderStructName
+        }),
+        ...(tag.invaderStructName && {
+          comments: describeStruct(tag.invaderStructName)
+        })
+      };
+      fs.writeFileSync(
+        `./tags/${tag.name}.yml`,
+        yaml.safeDump(tagOut),
+        "utf8"
+      );
+    } catch (e) {
+      console.error(tag.name);
+      console.error(e);
+    }
+  }
+}
+*/

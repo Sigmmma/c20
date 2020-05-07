@@ -1,0 +1,7 @@
+name: garbage
+id: garb
+parent: item
+invaderStructName: Garbage
+comments:
+  md: ...
+  fields: []

@@ -8,7 +8,7 @@ const INVADER_TAG_BASE = "https://github.com/Kavawuvi/invader/blob/master/src/ta
 //todo: headers for tag blocks
 //todo: also unused if tag dependency is to an unused tag class
 
-const fieldInfo = (field, metaIndex) => {
+const fieldInfo = (field, fieldComments, metaIndex) => {
   if (field.unused) {
     return html`<p>This field is unused by Halo.</p>`;
   }
@@ -26,6 +26,11 @@ const fieldInfo = (field, metaIndex) => {
     info.push(`Maximum: ${field.maximum}`);
   }
 
+  let comments = null;
+  if (fieldComments && fieldComments.md && fieldComments.md != "...") {
+    comments = renderMarkdown(fieldComments.md, metaIndex);
+  }
+
   if (field.classes) {
     const depLinks = field.classes.map(tagName => {
       const tagDef = metaIndex.data.h1.tagsByName[tagName];
@@ -35,7 +40,10 @@ const fieldInfo = (field, metaIndex) => {
     info.push(detailsList("Dependency", depLinks));
   }
 
-  return ul(info);
+  return html`
+    ${comments}
+    ${info.length > 0 && ul(info)}
+  `;
 };
 
 const fieldTypeDisplay = (fieldType, field) => html`
@@ -45,7 +53,7 @@ const fieldTypeDisplay = (fieldType, field) => html`
   </code>
 `;
 
-const structView = (struct, structName, metaIndex) => {
+const structView = (struct, structName, comments, metaIndex) => {
   if (!struct) {
     return structName;
   } else if (struct.type == "struct") {
@@ -61,17 +69,18 @@ const structView = (struct, structName, metaIndex) => {
           ${struct.fields.map(field => {
             const fieldType = field.type == "TagReflexive" ? "TagBlock" : field.type;
             const fieldClass = field.unused ? "unused" : fieldType.toLowerCase();
+            const fieldComments = comments.fields.find(it => it.name == field.name);
             return html`
               <tr class="field-${fieldClass}">
                 <td>
                   ${field.name && html`<strong>${field.name}</strong><br/>`}
                   ${fieldTypeDisplay(fieldType, field)}
                 </td>
-                <td>${fieldInfo(field, metaIndex)}</td>
+                <td>${fieldInfo(field, fieldComments, metaIndex)}</td>
               </tr>
               ${fieldType == "TagBlock" && html`
                 <tr class="tag-block-body">
-                  <td colspan="2">${structView(metaIndex.data.h1.invaderStructDefs[field.struct], field.struct, metaIndex)}</td>
+                  <td colspan="2">${structView(metaIndex.data.h1.invaderStructDefs[field.struct], field.struct, fieldComments, metaIndex)}</td>
                 </tr>
               `}
             `;
@@ -89,7 +98,7 @@ const renderTagStructure = (tag, metaIndex) => {
   return html`
     ${heading("h1", "Tag structure")}
     <p>The following is a representation of the tag's binary format, derived from its <a href="${invaderDefUrl}">Invader tag definition</a>.</p>
-    ${structView(tag.invaderStruct, tag.invaderStructName, metaIndex)}
+    ${structView(tag.invaderStruct, tag.invaderStructName, tag.comments, metaIndex)}
   `;
 };
 

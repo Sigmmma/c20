@@ -1,0 +1,11 @@
+name: string_list
+id: 'str#'
+invaderStructName: StringList
+comments:
+  md: ...
+  fields:
+    - name: strings
+      md: ...
+      fields:
+        - name: string
+          md: ...
