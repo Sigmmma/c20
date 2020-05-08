@@ -4,7 +4,7 @@ module.exports = (page, metaIndex) => {
   const metaboxOpts = {
     ...page,
     metaTitle: `\u{1F527} ${page.title} (tool)`,
-    metaColour: "navy",
+    metaClass: "content-tool",
     metaIndex,
     mdSections: page.info ? [{mdBody: page.info}] : [],
   };

@@ -1,6 +1,6 @@
 name: shader_transparent_glass
 id: sgla
-parent: shader
+parentName: shader
 invaderStructName: ShaderTransparentGlass
 comments:
   md: ...

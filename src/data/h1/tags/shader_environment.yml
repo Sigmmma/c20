@@ -1,6 +1,6 @@
 name: shader_environment
 id: senv
-parent: shader
+parentName: shader
 invaderStructName: ShaderEnvironment
 comments:
   md: ...

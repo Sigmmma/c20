@@ -44,7 +44,7 @@ module.exports = (page, metaIndex) => {
 
   if (refDetailElements.length > 0) {
     metaboxHtmlSections.push({
-      cssClass: "content-tag-reference",
+      cssClass: "content-tag-minor",
       body: refDetailElements.join("\n")
     });
   }
@@ -70,7 +70,7 @@ module.exports = (page, metaIndex) => {
   const metaboxOpts = {
     ...page,
     metaTitle: `\u{1F3F7} ${tag.name} (tag)`,
-    metaColour: "#0b352b",
+    metaClass: "content-tag",
     metaIndex,
     mdSections: page.info ? [{mdBody: page.info}] : [],
     htmlSections: metaboxHtmlSections

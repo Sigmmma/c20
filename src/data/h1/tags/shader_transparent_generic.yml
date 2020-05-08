@@ -1,6 +1,6 @@
 name: shader_transparent_generic
 id: sotr
-parent: shader
+parentName: shader
 invaderStructName: ShaderTransparentGeneric
 comments:
   md: ...

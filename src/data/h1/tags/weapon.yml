@@ -1,6 +1,6 @@
 name: weapon
 id: weap
-parent: item
+parentName: item
 invaderStructName: Weapon
 comments:
   md: ...

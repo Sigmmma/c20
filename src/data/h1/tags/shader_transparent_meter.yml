@@ -1,6 +1,6 @@
 name: shader_transparent_meter
 id: smet
-parent: shader
+parentName: shader
 invaderStructName: ShaderTransparentMeter
 comments:
   md: ...

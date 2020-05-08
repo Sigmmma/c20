@@ -1,10 +1,10 @@
 const {html} = require("./bits");
 const {renderMarkdown} = require("./markdown");
 
-const metabox = ({metaTitle, metaColour, img, imgCaption, mdSections, metaIndex, htmlSections}) => {
+const metabox = ({metaTitle, metaClass, img, imgCaption, mdSections, metaIndex, htmlSections}) => {
   return html`
     <aside class="metabox">
-      <section class="header" style="background: ${metaColour || "none"}">
+      <section class="header ${metaClass}">
         <p><strong>${metaTitle}</strong></p>
       </section>
       ${img && html`

@@ -1,6 +1,6 @@
 name: unit
 id: unit
-parent: object
+parentName: object
 invaderStructName: Unit
 comments:
   md: ...

@@ -1,6 +1,6 @@
 name: shader_transparent_plasma
 id: spla
-parent: shader
+parentName: shader
 invaderStructName: ShaderTransparentPlasma
 comments:
   md: ...

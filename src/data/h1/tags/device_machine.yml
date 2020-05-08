@@ -1,6 +1,6 @@
 name: device_machine
 id: mach
-parent: device
+parentName: device
 invaderStructName: DeviceMachine
 comments:
   md: ...

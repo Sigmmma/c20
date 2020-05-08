@@ -1,6 +1,6 @@
 name: shader_transparent_water
 id: swat
-parent: shader
+parentName: shader
 invaderStructName: ShaderTransparentWater
 comments:
   md: ...

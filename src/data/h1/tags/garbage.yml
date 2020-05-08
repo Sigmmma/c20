@@ -1,6 +1,6 @@
 name: garbage
 id: garb
-parent: item
+parentName: item
 invaderStructName: Garbage
 comments:
   md: ...

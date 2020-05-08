@@ -2,7 +2,7 @@ name: actor
 id: actr
 invaderStructName: Actor
 comments:
-  md: ...
+  md: Defines basic AI behaviour. Can be futher customized using the [actor_variant][] tag.
   fields:
     - name: flags
       md: ...

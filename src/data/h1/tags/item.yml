@@ -1,6 +1,6 @@
 name: item
 id: item
-parent: object
+parentName: object
 invaderStructName: Item
 comments:
   md: ...

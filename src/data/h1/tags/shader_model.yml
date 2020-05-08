@@ -1,6 +1,6 @@
 name: shader_model
 id: soso
-parent: shader
+parentName: shader
 invaderStructName: ShaderModel
 comments:
   md: ...

@@ -1,6 +1,6 @@
 name: biped
 id: bipd
-parent: unit
+parentName: unit
 invaderStructName: Biped
 comments:
   md: ...

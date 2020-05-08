@@ -6,6 +6,8 @@ $bg-inset: #191d22;
 $bg-info: #373457;
 $bg-danger: #53332c;
 $bg-success: #1c3e34;
+$bg-tag: #0b352b;
+$bg-tool: navy;
 $fg: #ccc;
 $fg-faded: #888;
 $fg-strong: #eee;
@@ -238,12 +240,20 @@ table {
   }
 }
 
-//todo: more of these?
-.content-tag-reference {
-  background: mix(#0b352b, $bg-content, 35%);
+.content-tool {
+  background: $bg-tool;
+}
+.content-tool-minor {
+  background: mix($bg-tool, $bg-content, 35%);
 }
 
-.content-tag-reference.field-unused {
+.content-tag {
+  background: $bg-tag;
+}
+.content-tag-minor {
+  background: mix($bg-tag, $bg-content, 35%);
+}
+.content-tag-minor.field-unused {
   background: $bg-content;
 }
 

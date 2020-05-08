@@ -1,6 +1,6 @@
 name: device_control
 id: ctrl
-parent: device
+parentName: device
 invaderStructName: DeviceControl
 comments:
   md: ...

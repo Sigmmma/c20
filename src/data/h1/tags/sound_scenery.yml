@@ -1,6 +1,6 @@
 name: sound_scenery
 id: ssce
-parent: object
+parentName: object
 invaderStructName: SoundScenery
 comments:
   md: ...

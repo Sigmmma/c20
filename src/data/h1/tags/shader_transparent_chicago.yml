@@ -1,6 +1,6 @@
 name: shader_transparent_chicago
 id: schi
-parent: shader
+parentName: shader
 invaderStructName: ShaderTransparentChicago
 comments:
   md: ...

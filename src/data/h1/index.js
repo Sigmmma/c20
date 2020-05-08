@@ -31,8 +31,8 @@ function buildData(invaderStructDefs) {
       tag.references = getDirectReferencedTagNames(tag.invaderStructName, invaderStructDefs)
         .map(tagName => tagName == "*" ? tagName : tagsByName[tagName]);
     }
-    tag.parent = tag.parent ? tagsByName[tag.parent] : null;
-    tag.children = tags.filter(otherTag => otherTag.parent == tag.name);
+    tag.parent = tag.parentName ? tagsByName[tag.parentName] : null;
+    tag.children = tags.filter(otherTag => otherTag.parentName == tag.name);
   }
 
   //easier to do referencedBy using the references built in previous pass

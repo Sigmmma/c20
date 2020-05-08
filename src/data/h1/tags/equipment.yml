@@ -1,6 +1,6 @@
 name: equipment
 id: eqip
-parent: item
+parentName: item
 invaderStructName: Equipment
 comments:
   md: ...

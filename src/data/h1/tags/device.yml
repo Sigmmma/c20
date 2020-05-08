@@ -1,6 +1,6 @@
 name: device
 id: devi
-parent: object
+parentName: object
 invaderStructName: Device
 comments:
   md: ...

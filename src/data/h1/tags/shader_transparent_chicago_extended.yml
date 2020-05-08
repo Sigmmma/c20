@@ -1,6 +1,6 @@
 name: shader_transparent_chicago_extended
 id: scex
-parent: shader
+parentName: shader
 invaderStructName: ShaderTransparentChicagoExtended
 comments:
   md: ...

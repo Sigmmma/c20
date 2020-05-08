@@ -1,3 +1,5 @@
 name: placeholder
 id: plac
-parent: object
+parentName: object
+comments:
+  md: Used only by [Sapien][] to represent interactive handles/markers.

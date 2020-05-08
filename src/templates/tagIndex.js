@@ -19,7 +19,11 @@ const tagsTable = (tags, metaIndex) => {
             <td>${tagAnchor(tag, metaIndex)}</td>
             <td>${tag.id}</td>
             <td>${tag.parent && tagAnchor(tag.parent, metaIndex)}</td>
-            <td>${tag.descMd && renderMarkdown(tag.descMd, metaIndex)}</td>
+            <td>
+              ${tag.comments && tag.comments.md != "..." &&
+                renderMarkdown(tag.comments.md, metaIndex)
+              }
+            </td>
           </tr>
         `)}
       </tbody>

@@ -1,6 +1,6 @@
 name: scenery
 id: scen
-parent: object
+parentName: object
 invaderStructName: Scenery
 comments:
   md: ...

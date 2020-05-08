@@ -1,6 +1,6 @@
 name: vehicle
 id: vehi
-parent: unit
+parentName: unit
 invaderStructName: Vehicle
 comments:
   md: ...

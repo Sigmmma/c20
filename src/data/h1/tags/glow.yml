@@ -2,7 +2,7 @@ name: glow
 id: glw!
 invaderStructName: Glow
 comments:
-  md: ...
+  md: Used to create glowing effects like the Elite's energy sword.
   fields:
     - name: attachment marker
       md: ...

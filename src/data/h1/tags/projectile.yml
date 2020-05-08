@@ -1,6 +1,6 @@
 name: projectile
 id: proj
-parent: object
+parentName: object
 invaderStructName: Projectile
 comments:
   md: ...

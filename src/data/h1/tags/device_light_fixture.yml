@@ -1,6 +1,6 @@
 name: device_light_fixture
 id: lifi
-parent: device
+parentName: device
 invaderStructName: DeviceLightFixture
 comments:
   md: ...
