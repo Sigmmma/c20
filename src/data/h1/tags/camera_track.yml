@@ -2,7 +2,9 @@ name: camera_track
 id: trak
 invaderStructName: CameraTrack
 comments:
-  md: ...
+  md: >
+    Defines rotational constraints for the game's camera when controlling [bipeds][biped]
+    or occupying [vehicles][vehicle] (e.g. prevents looking all the way up or down).
   fields:
     - name: flags
       md: ...

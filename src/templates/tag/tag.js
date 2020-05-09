@@ -8,11 +8,12 @@ module.exports = (page, metaIndex) => {
   }
 
   const metaboxHtmlSections = [{
-    body: html`<p>Tag ID: <strong>${tag.id}</strong></p>`
+    body: html`<p>Engine ID<sup><a href="${metaIndex.resolveSlug("tags", "engine-ids")}">?</a></sup>: <code>${tag.id}</code></p>`
   }];
 
   if (tag.parent) {
     metaboxHtmlSections.push({
+      cssClass: "content-tag-minor",
       body: html`<p>Parent tag: ${tagAnchor(tag.parent, metaIndex)}</p>`
     });
   }
@@ -51,6 +52,7 @@ module.exports = (page, metaIndex) => {
 
   if (tag.referencedBy.length > 0) {
     metaboxHtmlSections.push({
+      cssClass: "content-tag-minor",
       body: detailsList(
         "Referenced by",
         tag.referencedBy.map(otherTag => tagAnchor(otherTag, metaIndex))
@@ -60,6 +62,7 @@ module.exports = (page, metaIndex) => {
 
   if (tag.children.length > 0) {
     metaboxHtmlSections.push({
+      cssClass: "content-tag-minor",
       body: detailsList(
         "Child tags",
         tag.children.map(childTag => tagAnchor(childTag, metaIndex))
@@ -72,7 +75,7 @@ module.exports = (page, metaIndex) => {
     metaboxHtmlSections.push({
       cssClass: "content-tool-minor",
       body: detailsList(
-        "Tool integrations",
+        "Tools",
         toolIntegrations.map(tool => pageAnchor(metaIndex.findToolPageByName(tool.name)))
       )
     });

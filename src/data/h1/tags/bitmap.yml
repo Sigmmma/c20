@@ -2,7 +2,9 @@ name: bitmap
 id: bitm
 invaderStructName: Bitmap
 comments:
-  md: ...
+  md: >
+    Stores texture data like sprite sheets, environment maps, normal maps,
+    and more. Commonly (but not exclusively) referenced by [shaders][shader].
   fields:
     - name: type
       md: ...

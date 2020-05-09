@@ -3,7 +3,7 @@ id: unit
 parentName: object
 invaderStructName: Unit
 comments:
-  md: ...
+  md: Parent tag of [bipeds][biped] and [vehicles][vehicle], containing fields common to these AI-driven or controllable objects.
   fields:
     - name: unit flags
       md: ...

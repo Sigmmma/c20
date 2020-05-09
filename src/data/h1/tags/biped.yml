@@ -3,7 +3,7 @@ id: bipd
 parentName: unit
 invaderStructName: Biped
 comments:
-  md: ...
+  md: Represents the physical characteristics and appearance of characters like Elites, Marines, Cortana, and the player.
   fields:
     - name: moving turning speed
       md: ...

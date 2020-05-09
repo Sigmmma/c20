@@ -2,7 +2,7 @@ name: decal
 id: deca
 invaderStructName: Decal
 comments:
-  md: ...
+  md: Used for bullet holes, blood, burns, signs, and other 2D surface effects.
   fields:
     - name: flags
       md: ...

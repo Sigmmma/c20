@@ -2,7 +2,7 @@ name: antenna
 id: ant!
 invaderStructName: Antenna
 comments:
-  md: ...
+  md: A springy antenna _widget_ which can be attached to [model markers][gbxmodel#markers], as seen on the Warthog and Scorpion. Widgets can be added to any [object][].
   fields:
     - name: attachment marker name
       md: ...

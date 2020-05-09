@@ -87,13 +87,6 @@ a[href^="/tools/"]:after {
   font-size: 50%;
 }
 
-h1 {font-size: 1.50em;}
-h2 {font-size: 1.33em;}
-h3 {font-size: 1.17em;}
-h4 {font-size: 1.00em;}
-h5 {font-size: 0.83em;}
-h6 {font-size: 0.75em;}
-
 button {
   background: $bg-inset;
   color: $fg;
@@ -160,8 +153,16 @@ a.header-anchor {
   }
 }
 
+h1 {font-size: 1.50em;}
+h2 {font-size: 1.33em;}
+h3 {font-size: 1.17em;}
+h4 {font-size: 1.00em;}
+h5 {font-size: 0.83em;}
+h6 {font-size: 0.75em;}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-headers;
+  color: $fg-strong;
   &:hover a.header-anchor {
     opacity: 1;
   }
@@ -226,6 +227,7 @@ table {
   td, th {
     padding: $padding-containers-small;
     border: 1px solid $border-color;
+    vertical-align: top;
 
     p:first-child {
       margin-top: 0;
@@ -266,7 +268,7 @@ table.tag-struct {
     color: $fg-faded;
   }
   .field-tagblock {
-    background: $bg-info;
+    background: $bg-overlay;
   }
   .tag-block-body {
     background: $bg-inset;

@@ -3,7 +3,6 @@ const {html, renderMarkdown, tagAnchor, ul, heading, detailsList, slugify} = req
 const INVADER_TAG_BASE = "https://github.com/Kavawuvi/invader/blob/master/src/tag/hek/definition";
 
 //todo: handle EVERY field type
-//todo: style rows by unused, reference, etc
 //todo: searchable fields
 //todo: include parent tags? (maybe via link)
 
@@ -95,7 +94,9 @@ const fieldView = (field, comments, metaIndex, addHeading, hLevel) => {
         ${field.name && html`<strong>${field.name}</strong><br/>`}
         ${fieldTypeDisplay(fieldType, field)}
       </td>
-      <td>${fieldInfo(field, fieldComments, metaIndex)}</td>
+      <td>
+        ${fieldInfo(field, fieldComments, metaIndex)}
+      </td>
     </tr>
     ${fieldType == "TagBlock" && html`
       <tr class="tag-block-body">
