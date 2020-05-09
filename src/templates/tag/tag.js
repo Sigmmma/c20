@@ -1,4 +1,4 @@
-const {html, wrapper, renderMarkdown, metabox, alert, tagAnchor, ul, heading, detailsList} = require("../shared");
+const {html, wrapper, renderMarkdown, metabox, alert, tagAnchor, ul, heading, detailsList, pageAnchor} = require("../shared");
 const renderTagStructure = require("./tagStructure");
 
 module.exports = (page, metaIndex) => {
@@ -63,6 +63,17 @@ module.exports = (page, metaIndex) => {
       body: detailsList(
         "Child tags",
         tag.children.map(childTag => tagAnchor(childTag, metaIndex))
+      )
+    });
+  }
+
+  const toolIntegrations = metaIndex.data.h1.getToolIntegrations(tag.name);
+  if (toolIntegrations.length > 0) {
+    metaboxHtmlSections.push({
+      cssClass: "content-tool-minor",
+      body: detailsList(
+        "Tool integrations",
+        toolIntegrations.map(tool => pageAnchor(metaIndex.findToolPageByName(tool.name)))
       )
     });
   }

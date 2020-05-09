@@ -8,6 +8,8 @@ const basicTagsList = glob.sync(path.join(__dirname, "tags", "*.yml")).map(tagFi
   return yaml.safeLoad(fs.readFileSync(tagFileName, "utf8"));
 });
 
+const toolsList = yaml.safeLoad(fs.readFileSync(path.join(__dirname, "tools.yml"), "utf8"));
+
 function buildData(invaderStructDefs) {
   //augment the basic list of tags with more detail provided by external libs
   const tags = basicTagsList.map(basicTag => ({
@@ -42,10 +44,19 @@ function buildData(invaderStructDefs) {
     );
   }
 
+  const getToolIntegrations = (resource) => {
+    return toolsList.filter(tool =>
+      tool.edits && tool.edits.includes(resource) ||
+      tool.converts && tool.converts.find(c => c.from == resource || c.to == resource)
+    );
+  };
+
   return {
+    toolsList,
     tags,
     tagsById,
     tagsByName,
+    getToolIntegrations,
     invaderStructDefs
   };
 };

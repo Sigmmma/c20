@@ -1,0 +1,39 @@
+- name: Blitzkrieg
+  converts:
+    - from: max
+    - to: jms
+- name: Bluestreak
+  converts:
+    - from: max
+    - to: jms
+- name: H2V-Blender-JMS-Exporter
+  converts:
+    - from: blend
+    - to: jms
+- name: H2V-Blender-Animation-Exporter
+  converts:
+    - from: blend
+    - to: jma
+- name: Sapien
+  authors:
+    - Bungie
+    - Gearbox
+  edits:
+    - scenario_structure_bsp
+    - scenario
+- name: Tool
+  authors:
+    - Bungie
+    - Gearbox
+  converts:
+    - from: jms
+      to: scenario_structure_bsp
+    - from: jms
+      to: gbxmodel
+    - from: jma
+      to: model_animations
+    - from: tif
+      to: bitmap
+  edits:
+    - scenario_structure_bsp
+    - bitmap

@@ -8,7 +8,7 @@ const tagsTable = (tags, metaIndex) => {
       <thead>
         <tr>
           <th>Tag name</th>
-          <th>Tag ID</th>
+          <th><a href="${metaIndex.resolveSlug("tags", "engine-ids")}">Engine ID</a></th>
           <th>Parent</th>
           <th>Purpose</th>
         </tr>
