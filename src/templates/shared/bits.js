@@ -22,6 +22,8 @@ const anchor = (href, body) => html`
   <a href="${href}">${body}</a>
 `;
 
+const defAnchor = (href) => html`<sup>${anchor(href, "?")}</sup>`;
+
 const pageAnchor = (page) => anchor(page._path, escapeHtml(page.title));
 
 const tagAnchor = (tag, metaIndex, hash) => {
@@ -88,6 +90,7 @@ module.exports = {
   anchor,
   pageAnchor,
   tagAnchor,
+  defAnchor,
   heading,
   ul,
   ol,
