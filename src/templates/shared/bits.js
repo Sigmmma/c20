@@ -16,6 +16,8 @@ const slugify = (title) => title
 const escapeHtml = (s) => commonTags.safeHtml`${s}`;
 const html = commonTags.stripIndent(commonTags.html);
 
+const classes = (classArr) => classArr.length > 0 ? `class="${classArr.join(" ")}"` : "";
+
 const anchor = (href, body) => html`
   <a href="${href}">${body}</a>
 `;
@@ -82,6 +84,7 @@ const alert = (type, body) => html`
 module.exports = {
   html,
   escapeHtml,
+  classes,
   anchor,
   pageAnchor,
   tagAnchor,

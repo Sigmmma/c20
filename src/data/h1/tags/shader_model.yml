@@ -3,7 +3,7 @@ id: soso
 parentName: shader
 invaderStructName: ShaderModel
 comments:
-  md: ...
+  md: General-purpose opaque shader used for [object][object] materials.
   fields:
     - name: shader model flags
       md: ...

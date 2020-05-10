@@ -1,2 +1,4 @@
 name: model
 id: mode
+comments:
+  md: Stores the render model of [objects][object] in the original Xbox version of the game.

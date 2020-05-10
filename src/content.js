@@ -7,7 +7,7 @@ const fs = require("fs").promises;
 const path = require("path");
 const MiniSearch = require("minisearch");
 
-const STOP_WORDS = ["and", "or", "to", "at", "in", "a", "the", "be", "are", "is", "as", "its", "it", "this", "these", "any"];
+const STOP_WORDS = new Set(["and", "or", "to", "at", "in", "a", "the", "be", "are", "is", "as", "its", "it", "this", "these", "any", "halo"]);
 
 async function findPaths(globPattern) {
   return new Promise((resolve, reject) => {
@@ -180,7 +180,7 @@ async function renderContent(metaIndex, outputDir) {
     storeFields: ["title"],
     processTerm: (term, _fieldName) => {
       term = term.toLowerCase();
-      return STOP_WORDS.indexOf(term) == -1 ? term : null
+      return STOP_WORDS.has(term) ? null : term;
     },
     searchOptions: {
       boost: {title: 3, keywords: 2},

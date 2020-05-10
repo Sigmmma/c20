@@ -55,7 +55,8 @@ module.exports = (page, metaIndex) => {
       cssClass: "content-tag-minor",
       body: detailsList(
         "Referenced by",
-        tag.referencedBy.map(otherTag => tagAnchor(otherTag, metaIndex))
+        tag.referencedBy.map(otherTag => tagAnchor(otherTag, metaIndex)),
+        false
       )
     });
   }

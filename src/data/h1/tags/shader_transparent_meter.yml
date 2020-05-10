@@ -3,7 +3,10 @@ id: smet
 parentName: shader
 invaderStructName: ShaderTransparentMeter
 comments:
-  md: ...
+  md: >
+    Used for transparent materials with an incrementally scaled area, such as
+    first person (not HUD) heat meters for plasma weapons and the Warthog's
+    speedometer.
   fields:
     - name: meter flags
       md: ...

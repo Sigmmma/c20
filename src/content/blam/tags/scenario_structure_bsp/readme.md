@@ -17,6 +17,9 @@ Commonly referred to as the **BSP**, this tag contains level geometry, weather d
 
 While a [scenario][] can reference multiple BSPs, Halo can only have a single BSP loaded at a time. Transitions between BSPs can be scripted (`switch_bsp`), e.g. using trigger volumes. Objects in unloaded BSPs are not simulated.
 
+# Shaders
+The most commonly used [shader][] type for BSPs is [shader_environment][]. Transparent shaders are also supported, but a referenced [shader_model][] will not be rendered by the game since it is intended for use with [object models][gbxmodel].
+
 # Binary space partitioning
 BSP stands for [Binary Space Partitioning][about-bsp], a technique where space within a sealed static mesh is recursively subdivided by planes into [convex][] _leaf nodes_. The resulting _BSP tree_ can be used to efficiently answer geometric queries, such as which surfaces should be collision-tested for physics objects.
 

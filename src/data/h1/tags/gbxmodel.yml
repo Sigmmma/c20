@@ -2,7 +2,7 @@ name: gbxmodel
 id: mod2
 invaderStructName: GBXModel
 comments:
-  md: ...
+  md: Stores the render model of [objects][object] in the Gearbox port of the game (and its derivatives).
   fields:
     - name: flags
       md: ...

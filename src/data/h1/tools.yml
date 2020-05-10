@@ -32,6 +32,14 @@
       to: gbxmodel
     - from: jma
       to: model_animations
+    - from: jmm
+      to: model_animations
+    - from: jmz
+      to: model_animations
+    - from: jmw
+      to: model_animations
+    - from: jmo
+      to: model_animations
     - from: tif
       to: bitmap
   edits:

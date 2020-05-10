@@ -242,13 +242,15 @@ table {
   }
 }
 
+.content-faded {
+  color: $fg-faded;
+}
 .content-tool {
   background: $bg-tool;
 }
 .content-tool-minor {
   background: mix($bg-tool, $bg-content, 35%);
 }
-
 .content-tag {
   background: $bg-tag;
 }
@@ -264,10 +266,7 @@ table.tag-struct {
   & {
     margin-bottom: 0;
   }
-  .field-unused, .field-pad {
-    color: $fg-faded;
-  }
-  .field-tagblock {
+  .field-tagreflexive {
     background: $bg-overlay;
   }
   .tag-block-body {
