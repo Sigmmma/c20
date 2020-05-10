@@ -4,6 +4,15 @@ keywords:
   - home
 ---
 
+<figure>
+  <a href="343.jpg">
+    <img src="343.jpg" alt="343 Guilty Spark in the Library"/>
+  </a>
+  <figcaption>
+    <p>"This installation's research facilities are most impressive! Perhaps we'll have time to see them later."</p>
+  </figcaption>
+</figure>
+
 Welcome to **c20**, a project which aims to document the immense tribal knowledge of the [Halo 1][h1] modding community, focusing primarily on _Halo: Custom Edition_. C20 will cover [engine details][blam], the [Halo Editing Kit][hek], community tools, and guides for custom content creation.
 
 **This resource is still a work in progress, so expect improvements over time.**

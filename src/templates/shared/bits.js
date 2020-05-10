@@ -22,9 +22,9 @@ const anchor = (href, body) => html`
 
 const pageAnchor = (page) => anchor(page._path, escapeHtml(page.title));
 
-const tagAnchor = (tag, metaIndex) => {
+const tagAnchor = (tag, metaIndex, hash) => {
   const tagPage = metaIndex.findTagPageByName(tag.name);
-  return anchor(tagPage._path, tag.name);
+  return anchor(`${tagPage._path}${hash ? `#${hash}` : ""}`, tag.name);
 };
 
 const heading = (hTag, title) => html`

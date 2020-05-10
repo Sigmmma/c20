@@ -1,4 +1,4 @@
-const {html, renderMarkdown, tagAnchor, ul, heading, detailsList, slugify} = require("../shared");
+const {html, renderMarkdown, tagAnchor, ul, heading, detailsList, slugify, alert} = require("../shared");
 
 const INVADER_TAG_BASE = "https://github.com/Kavawuvi/invader/blob/master/src/tag/hek/definition";
 
@@ -119,6 +119,9 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel)
           </tr>
         </thead>
         <tbody>
+          ${(!struct.fields || struct.fields.length == 0) && html`
+            <tr><td colspan="2"><em>This structure has no fields.</em></td></tr>
+          `}
           ${struct.fields.map(field => fieldView(field, comments, metaIndex, addHeading, hLevel))}
         </tbody>
       </table>
@@ -134,8 +137,15 @@ const renderTagStructure = (tag, metaIndex) => {
   const addHeading = (heading) => headings.push(heading);
   const htmlResult = html`
     ${heading("h1", "Structure and fields")}
-    <p>The following is a representation of the tag's binary format, derived from its <a href="${invaderDefUrl}">Invader tag definition</a>.</p>
+    ${tag.parent && alert("info", html`
+      <p>
+        This tag inherits fields from ${tagAnchor(tag.parent, metaIndex)} which
+        are not shown here. See the parent's page for more information.
+        The following information is unique to the <strong>${tag.name}</strong> tag.
+      </p>
+    `)}
     ${structView(tag.invaderStruct, tag.invaderStructName, tag.comments, metaIndex, addHeading, 2)}
+    <p><small>This information was partially generated using <a href="${invaderDefUrl}">Invader tag definitions</a>.</small></p>
   `;
   return {headings, htmlResult};
 };
