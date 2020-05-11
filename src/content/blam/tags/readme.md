@@ -18,9 +18,7 @@ The name "tag" was inspired by [XML tags][about-xml], which also have types and 
 
 # Tag structure
 ## Tag references and paths
-Some tag fields are _references_ to other tags. In tools like [Guerilla][], these references are
-
-are referenced by their _tag path_, which can be thought of like their "URL". For example, the tutorial scenario references its BSP with the path `levels\test\tutorial\tutorial`. Tag paths are not literal filesystem paths, but rather an abstract location which uniquely identifies an instance of a tag. The _type_ of the referenced tag known
+Some tag fields are _references_ to other tags. In tools like [Guerilla][], these references are referenced by their _tag path_, which can be thought of like their "URL". For example, the tutorial scenario references its BSP with the path `levels\test\tutorial\tutorial`. Tag paths are not literal filesystem paths, but rather an abstract location which uniquely identifies an instance of a tag. The _type_ of the referenced tag known
 
 When tags are compiled into a map, their references are converted into pre-calculated pointers. An array of tag paths are still retained in the map but is not used by the game.
 

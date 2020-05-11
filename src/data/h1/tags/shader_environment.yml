@@ -3,7 +3,7 @@ id: senv
 parentName: shader
 invaderStructName: ShaderEnvironment
 comments:
-  md: General-purpose opaque shader used for [scenario_structure_bsp][] materials.
+  md: General-purpose opaque and alpha-tested shader used for [scenario_structure_bsp][] materials.
   fields:
     - name: shader environment flags
       md: ...
