@@ -7,7 +7,7 @@ const fs = require("fs").promises;
 const path = require("path");
 const MiniSearch = require("minisearch");
 
-const STOP_WORDS = ["and", "or", "to", "at", "in", "a", "the", "be", "are", "is", "as", "its", "it", "this", "these", "any"];
+const STOP_WORDS = new Set(["and", "or", "to", "at", "in", "a", "the", "be", "are", "is", "as", "its", "it", "this", "these", "any", "halo"]);
 
 async function findPaths(globPattern) {
   return new Promise((resolve, reject) => {
@@ -132,13 +132,28 @@ async function buildMetaIndex(contentDir, invaderDefsDir, baseUrl, packageVersio
 
   const findTagPageByName = (tagName) => {
     const page = pages.find(page => page._slug == tagName && page.template == "tag");
-    if (!page) throw new Error(`Failed to find tag page for ${tagName}. Please create one`);
+    if (!page) throw new Error(`Failed to find tag page for ${tagName}`);
     return page;
+  };
+
+  const findToolPageByName = (toolName) => {
+    const page = pages.find(page => page._slug == toolName.toLowerCase() && page.template == "tool");
+    if (!page) throw new Error(`Failed to find tool page for ${toolName}`);
+    return page;
+  };
+
+  //looks up full absolute URL for a page slug and optionally an anchor
+  const resolveSlug = (slug, anchor) => {
+    const page = pages.find(page => page._slug == slug && (!anchor || page._headers.find(hdr => hdr.id == anchor)));
+    if (!page) throw new Error(`Failed to find page with slug ${slug}`);
+    return `${page._path}#${anchor}`;
   };
 
   return {
     packageVersion,
     findTagPageByName,
+    findToolPageByName,
+    resolveSlug,
     pages,
     mdFooter,
     data,
@@ -165,7 +180,7 @@ async function renderContent(metaIndex, outputDir) {
     storeFields: ["title"],
     processTerm: (term, _fieldName) => {
       term = term.toLowerCase();
-      return STOP_WORDS.indexOf(term) == -1 ? term : null
+      return STOP_WORDS.has(term) ? null : term;
     },
     searchOptions: {
       boost: {title: 3, keywords: 2},

@@ -2,6 +2,7 @@ const commonTags = require("common-tags");
 
 const DISCORD_URL = "https://discord.reclaimers.net";
 const REPO_URL = "https://github.com/Sigmmma/c20";
+const MAX_DETAILS_LIST = 8;
 
 //converts a title into a URL- or ID-friendly slug
 const slugify = (title) => title
@@ -15,15 +16,19 @@ const slugify = (title) => title
 const escapeHtml = (s) => commonTags.safeHtml`${s}`;
 const html = commonTags.stripIndent(commonTags.html);
 
+const classes = (classArr) => classArr.length > 0 ? `class="${classArr.join(" ")}"` : "";
+
 const anchor = (href, body) => html`
   <a href="${href}">${body}</a>
 `;
 
+const defAnchor = (href) => html`<sup>${anchor(href, "?")}</sup>`;
+
 const pageAnchor = (page) => anchor(page._path, escapeHtml(page.title));
 
-const tagAnchor = (tag, metaIndex) => {
+const tagAnchor = (tag, metaIndex, hash) => {
   const tagPage = metaIndex.findTagPageByName(tag.name);
-  return anchor(tagPage._path, tag.name);
+  return anchor(`${tagPage._path}${hash ? `#${hash}` : ""}`, tag.name);
 };
 
 const heading = (hTag, title) => html`
@@ -32,6 +37,28 @@ const heading = (hTag, title) => html`
     <a href="#${slugify(title)}" class="header-anchor">#</a>
   </${hTag}>
 `;
+
+const detailsList = (summary, items, forceState) => {
+  if (items.length == 0) {
+    return null;
+  } else if (items.length == 1) {
+    return html`<p>${summary}: ${items[0]}</p>`;
+  } else if (items.length <= MAX_DETAILS_LIST) {
+    return html`
+      <details ${forceState !== false && "open"}>
+        <summary>${summary}</summary>
+        ${ul(items)}
+      </details>
+    `;
+  } else {
+    return html`
+      <details ${forceState === true && "open"}>
+        <summary>${summary} (${items.length})</summary>
+        ${ul(items)}
+      </details>
+    `;
+  }
+};
 
 const ol = (items) => html`
   <ol>
@@ -59,12 +86,15 @@ const alert = (type, body) => html`
 module.exports = {
   html,
   escapeHtml,
+  classes,
   anchor,
   pageAnchor,
   tagAnchor,
+  defAnchor,
   heading,
   ul,
   ol,
+  detailsList,
   alert,
   slugify,
   REPO_URL,

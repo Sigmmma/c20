@@ -1,0 +1,11 @@
+name: unicode_string_list
+id: ustr
+invaderStructName: UnicodeStringList
+comments:
+  md: ...
+  fields:
+    - name: strings
+      md: ...
+      fields:
+        - name: string
+          md: ...

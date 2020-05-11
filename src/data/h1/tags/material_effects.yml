@@ -1,0 +1,16 @@
+name: material_effects
+id: foot
+invaderStructName: MaterialEffects
+comments:
+  md: ...
+  fields:
+    - name: effects
+      md: ...
+      fields:
+        - name: materials
+          md: ...
+          fields:
+            - name: effect
+              md: ...
+            - name: sound
+              md: ...

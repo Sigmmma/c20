@@ -1,0 +1,13 @@
+name: color_table
+id: colo
+invaderStructName: ColorTable
+comments:
+  md: ...
+  fields:
+    - name: colors
+      md: ...
+      fields:
+        - name: name
+          md: ...
+        - name: color
+          md: ...

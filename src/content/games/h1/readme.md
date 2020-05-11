@@ -1,5 +1,7 @@
 ---
 title: "Halo: Combat Evolved"
+keywords:
+  - halo
 ---
 
 <figure>

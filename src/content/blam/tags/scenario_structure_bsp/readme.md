@@ -17,8 +17,11 @@ Commonly referred to as the **BSP**, this tag contains level geometry, weather d
 
 While a [scenario][] can reference multiple BSPs, Halo can only have a single BSP loaded at a time. Transitions between BSPs can be scripted (`switch_bsp`), e.g. using trigger volumes. Objects in unloaded BSPs are not simulated.
 
+# Shaders
+The most commonly used [shader][] type for BSPs is [shader_environment][]. Transparent shaders are also supported, but a referenced [shader_model][] will not be rendered by the game since it is intended for use with [object models][gbxmodel].
+
 # Binary space partitioning
-BSP stands for **[Binary Space Partitioning](bsp)**, a technique where space within a sealed static mesh is recursively subdivided by planes into [convex][] _leaf nodes_. The resulting **BSP tree** can be used to efficiently answer geometric queries, such as which surfaces should be collision-tested for physics objects.
+BSP stands for [Binary Space Partitioning][about-bsp], a technique where space within a sealed static mesh is recursively subdivided by planes into [convex][] _leaf nodes_. The resulting _BSP tree_ can be used to efficiently answer geometric queries, such as which surfaces should be collision-tested for physics objects.
 
 # Clusters and cluster data
 Clusters are sealed volumes of a BSP defined by portal planes. Clusters can independently reference the [weather_particle_system][], [wind][], [sound_environment][], and [sound_looping][] tags to define the atmospheric and ambience qualities of sections of the map.
@@ -76,6 +79,6 @@ When a [shader_environment][] references a [lens_flare][], _lens flare markers_ 
 
 A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens flares. However, there is a much lower limit to how many the game will draw at a given time, exactly how many is unknown.
 
-[bsp]: https://en.wikipedia.org/wiki/Binary_space_partitioning
+[about-bsp]: https://en.wikipedia.org/wiki/Binary_space_partitioning
 [convex]: https://en.wikipedia.org/wiki/Convex_set
 [radiosity]: https://en.wikipedia.org/wiki/Radiosity_(computer_graphics)

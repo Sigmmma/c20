@@ -5,6 +5,9 @@ $bg-content: #23292f;
 $bg-inset: #191d22;
 $bg-info: #373457;
 $bg-danger: #53332c;
+$bg-success: #1c3e34;
+$bg-tag: #0b352b;
+$bg-tool: #171b4b;
 $fg: #ccc;
 $fg-faded: #888;
 $fg-strong: #eee;
@@ -84,13 +87,6 @@ a[href^="/tools/"]:after {
   font-size: 50%;
 }
 
-h1 {font-size: 1.50em;}
-h2 {font-size: 1.33em;}
-h3 {font-size: 1.17em;}
-h4 {font-size: 1.00em;}
-h5 {font-size: 0.83em;}
-h6 {font-size: 0.75em;}
-
 button {
   background: $bg-inset;
   color: $fg;
@@ -157,8 +153,16 @@ a.header-anchor {
   }
 }
 
+h1 {font-size: 1.50em;}
+h2 {font-size: 1.33em;}
+h3 {font-size: 1.17em;}
+h4 {font-size: 1.00em;}
+h5 {font-size: 0.83em;}
+h6 {font-size: 0.75em;}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-headers;
+  color: $fg-strong;
   &:hover a.header-anchor {
     opacity: 1;
   }
@@ -218,10 +222,12 @@ pre {
 table {
   border-collapse: collapse;
   margin-bottom: $padding-flow;
+  width: 100%;
 
   td, th {
     padding: $padding-containers-small;
     border: 1px solid $border-color;
+    vertical-align: top;
 
     p:first-child {
       margin-top: 0;
@@ -233,6 +239,38 @@ table {
   th {
     text-align: left;
     background: $bg-overlay;
+  }
+}
+
+.content-faded {
+  color: $fg-faded;
+}
+.content-tool {
+  background: $bg-tool;
+}
+.content-tool-minor {
+  background: mix($bg-tool, $bg-content, 35%);
+}
+.content-tag {
+  background: $bg-tag;
+}
+.content-tag-minor {
+  background: mix($bg-tag, $bg-content, 35%);
+}
+.content-tag-minor.field-unused {
+  background: $bg-content;
+}
+
+table.tag-struct {
+  background: $bg-content;
+  & {
+    margin-bottom: 0;
+  }
+  .field-tagreflexive {
+    background: $bg-overlay;
+  }
+  .tag-block-body {
+    background: $bg-inset;
   }
 }
 
@@ -406,6 +444,7 @@ table {
     border: 1px solid $border-color;
     border-bottom-width: 0;
     border-radius: $border-radius;
+    overflow: hidden;
     margin: 0 0 $padding-containers $padding-containers;
 
     figcaption {

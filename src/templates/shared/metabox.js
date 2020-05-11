@@ -1,10 +1,10 @@
 const {html} = require("./bits");
 const {renderMarkdown} = require("./markdown");
 
-const metabox = ({metaTitle, metaColour, img, imgCaption, mdSections, metaIndex, htmlSections}) => {
+const metabox = ({metaTitle, metaClass, img, imgCaption, mdSections, metaIndex, htmlSections}) => {
   return html`
     <aside class="metabox">
-      <section class="header" style="background: ${metaColour || "none"}">
+      <section class="header ${metaClass}">
         <p><strong>${metaTitle}</strong></p>
       </section>
       ${img && html`
@@ -17,14 +17,14 @@ const metabox = ({metaTitle, metaColour, img, imgCaption, mdSections, metaIndex,
           <p><em>${renderMarkdown(imgCaption, metaIndex)}</em></p>
         </section>
       `}
-      ${mdSections && mdSections.filter(it => it).map(mdSection => html`
-        <section class="info">
-          ${renderMarkdown(mdSection, metaIndex)}
+      ${mdSections && mdSections.filter(it => it).map(({mdBody, cssClass}) => html`
+        <section class="info ${cssClass}">
+          ${renderMarkdown(mdBody, metaIndex)}
         </section>
       `)}
-      ${htmlSections && htmlSections.filter(it => it).map(htmlSection => html`
-        <section class="info">
-          ${htmlSection}
+      ${htmlSections && htmlSections.filter(it => it).map(({body, cssClass}) => html`
+        <section class="info ${cssClass}">
+          ${body}
         </section>
       `)}
     </aside>

@@ -15,6 +15,16 @@ For resource management, Halo loads [map cache files][map] which contain [tags][
 ...
 
 # Other games
+
+<figure>
+  <a href="stubbs.png">
+    <img src="stubbs.png" alt=""/>
+  </a>
+  <figcaption>
+    <p>A Stubbs map extracted and re-used in CMT's Project Oddball</p>
+  </figcaption>
+</figure>
+
 The Blam! engine was not just used for the Halo series. Bungie co-founder [Alex Seropian][alex] went on to found [Wideload Games][wideload] and used the engine for [Stubbs the Zombie in Rebel Without a Pulse][stubbs]. In fact, it is possible to extract [tags][] from Stubbs using [Refinery][mek] and recompile levels for Halo.
 
 Another lesser-known use was in [prototyping Shadowrun gameplay][shadowrun-prototype] while its own engine was under development.

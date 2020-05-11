@@ -94,4 +94,10 @@ We should aim to reduce dependencies (e.g. NPM packages) where it makes sense. T
 git submodule update --remote
 ```
 
+## License
+C20's codebase is licensed under version 3.0 of the GNU General Public License. A copy of its text can be found in COPYING.
+
+The content of its pages, including articles, guides, images, tag descriptions, and other rendered metadata are available under the under the [CC BY-SA 3.0 license][cc-license].
+
 [s3-origin]: http://reclaimers-c20.s3-website-us-east-1.amazonaws.com/
+[cc-license]: https://creativecommons.org/licenses/by-sa/3.0/

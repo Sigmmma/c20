@@ -1,0 +1,7 @@
+name: scenery
+id: scen
+parentName: object
+invaderStructName: Scenery
+comments:
+  md: ...
+  fields: []

@@ -1,0 +1,7 @@
+name: device_light_fixture
+id: lifi
+parentName: device
+invaderStructName: DeviceLightFixture
+comments:
+  md: ...
+  fields: []

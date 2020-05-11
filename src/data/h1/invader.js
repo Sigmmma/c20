@@ -20,7 +20,7 @@ function getDirectReferencedTagNames(structName, structs) {
     const struct = structStack.pop();
     if (!struct) throw new Error(structName);
     struct.fields
-      .filter(field => field.type == "TagDependency")
+      .filter(field => field.type == "TagDependency" && !field.unused)
       .flatMap(field => field.classes)
       .forEach(tagClass => {
         results.add(tagClass);
