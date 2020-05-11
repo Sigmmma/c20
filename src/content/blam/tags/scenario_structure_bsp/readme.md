@@ -64,6 +64,21 @@ Lightmaps are a special type of [bitmap][] referenced by the BSP which represent
 
 Beyond just affecting the surface colour, the lightmap also encodes<sup>(how?)</sup> the primary light direction for each vertex which determines the shadow directions for dynamic objects like [vehicles][vehicle] and [bipeds][biped].
 
+# Lens flare markers
+
+<figure>
+  <a href="lens-flare-markers.jpg">
+    <img src="lens-flare-markers.jpg" alt="Lens flare markers in a10"/>
+  </a>
+  <figcaption>
+    <p>In a10, lens flare markers were generated for fluorescent lights</p>
+  </figcaption>
+</figure>
+
+When a [shader_environment][] references a [lens_flare][], _lens flare markers_ are automatically created and stored in the BSP tag during [structure compilation][tool#structure-compilation]. These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface<sup>(how?)</sup>. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
+
+A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens flares. However, there is a much lower limit to how many the game will draw at a given time, exactly how many is unknown.
+
 [about-bsp]: https://en.wikipedia.org/wiki/Binary_space_partitioning
 [convex]: https://en.wikipedia.org/wiki/Convex_set
 [radiosity]: https://en.wikipedia.org/wiki/Radiosity_(computer_graphics)
