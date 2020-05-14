@@ -36,7 +36,7 @@ The following is a comprehensive list of arguments. Not all are not documented i
 | Argument                      | Description
 |-------------------------------|----------------
 |`-connect ip:port`             | The game will automatically connect to the given server after loading.
-|`-cport x`                     | Client port address used when joining games. Defaults to **2303**. See the Network Setup settings under the In-Game Settings section.
+|`-cport x`                     | Client port address used when joining games. Defaults to **2303**. If the port is set to 0, the game will use random client ports. See the Network Setup settings under the In-Game Settings section.
 |`-ip x.x.x.x`                  | Server IP address used when you have multiple IP addresses (e.g. multiple network interfaces in your machine). Behind [NAT][about-nat], this should refer to the [private IP][about-ips] configured for port forwarding.
 |`-password`                    | The password for the server we're trying to connect to. Not to be confused with the `sv_password` command for dedicated servers, which goes in the file executed by the `-exec` argument.
 |`-port x`                      | Server port address used when hosting games. Defaults to **2302**. See the Network Setup settings under the In-Game Settings section.

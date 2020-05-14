@@ -63,7 +63,7 @@ const fieldInfo = (field, fieldComments, metaIndex) => {
 
   let comments = field.comment ? html`<p>${field.comment}</p>` : null;
   if (fieldComments && fieldComments.md) {
-    comments = renderComment(fieldComments.md);
+    comments = renderComment(fieldComments.md, metaIndex);
   }
 
   return html`
@@ -177,7 +177,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel)
             <tr>
               <td>${field}</td>
               <td><code>0x${(0x1 << i).toString(16)}</code></td>
-              <td>${renderComment(comments.fields.find(it => it.name == field).md)}</td>
+              <td>${renderComment(comments.fields.find(it => it.name == field).md, metaIndex)}</td>
             </tr>
           `)}
         </tbody>
@@ -198,7 +198,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel)
             <tr>
               <td>${option}</td>
               <td><code>0x${i.toString(16)}</code></td>
-              <td>${renderComment(comments.options.find(it => it.name == option).md)}</td>
+              <td>${renderComment(comments.options.find(it => it.name == option).md, metaIndex)}</td>
             </tr>
           `)}
         </tbody>

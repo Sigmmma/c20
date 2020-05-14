@@ -8,9 +8,18 @@ comments:
       md: ...
       fields:
         - name: is water
-          md: ...
+          md: |
+            Determines if the volume behind (anti-normal to) this fog plane is a "water fog volume",
+            which causes it to be considered underwater. This affects vehicles'
+            ability to travel over water.
         - name: atmosphere dominant
-          md: ...
+          md: |
+            If enabled, this flag is _meant_ to cause [sky fog][sky] to draw over
+            fog planes that this tag is used on. However, the behaviour is actually
+            flipped in the PC ports due to a bug. This is what results in the
+            _Assault on the Control Room_ fog looking incorrect. The mod _Chimera_
+            can correct this bug in-engine, or you can set the flag to be the opposite
+            of what you want.
         - name: fog screen only
           md: ...
     - name: maximum density
