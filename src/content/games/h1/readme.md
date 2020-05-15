@@ -54,7 +54,7 @@ The game received several patches since its release to address remote exploits, 
 A **beta version** of Halo PC can also be found online. It has [unfinished versions of PC-exclusive content][pc-beta-2] and [weapon tuning][pc-beta-1] similar to pre-release Xbox versions.
 
 ## Custom Edition (PC)
-Custom edition, often called **Halo CE** or **CE** is a standalone version of Halo PC which supports custom maps created by the [HEK][], also released in 2003. Like Halo PC it features a server browser and its own `haloceded.exe` dedicated server, but lacks the campaign. [Maps][map] are incompatible between the editions.
+Custom edition, often called **Halo CE** or **CE** is a standalone version of Halo PC which supports custom maps created by the [HEK][], [released in 2004][custom-edition-launch]. Like Halo PC it features a server browser and its own `haloceded.exe` dedicated server, but lacks the campaign. [Maps][map] are incompatible between the editions.
 
 CE has many more differences from PC. To name a few:
 
@@ -101,3 +101,4 @@ It is possible to compile custom maps for MCC PC using Invader and some [experim
 [343i]: https://en.wikipedia.org/wiki/343_Industries
 [gaas]: https://en.wikipedia.org/wiki/Games_as_a_service
 [unreal]: https://en.wikipedia.org/wiki/Unreal_Engine
+[custom-edition-launch]: https://www.gamespot.com/articles/gearbox-readying-halo-custom-edition/1100-6095140/
