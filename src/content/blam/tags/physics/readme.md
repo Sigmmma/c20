@@ -9,8 +9,9 @@ Physics tags characterize the dynamic physics and propulsion of [vehicles][vehic
 
 * Physics are used in collisions between vehicles and is responsible for Halo 1's charactistic ["bouncy" vehicles][bouncy].
 * Physics are used in collisions with the [BSP][scenario_structure_bsp]. Because the mass points are somewhat "fuzzy" and are not continuous geometry, vehicles can become [stuck in thin BSP][stuck-bsp].
-* Physics are used in collisions with [devices][device] and [scenery][].
+* Physics are used in collisions with [device_machine][] and [scenery][].
 * Collision geometry is used in collisions with [bipeds][biped], [items][item], and [projectiles][projectile].
+* Note that vehicles cannot collide with [device_light_fixture][].
 
 Physics tags are created by [compiling a JMS][tool] with specially-named<sup>(how?)</sup> markers parented to nodes. The markers become mass points.
 

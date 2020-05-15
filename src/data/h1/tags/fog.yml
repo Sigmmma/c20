@@ -14,14 +14,15 @@ comments:
             ability to travel over water.
         - name: atmosphere dominant
           md: |
-            If enabled, this flag is _meant_ to cause [sky fog][sky] to draw over
-            fog planes that this tag is used on. However, the behaviour is actually
-            flipped in the PC ports due to a bug. This is what results in the
-            _Assault on the Control Room_ fog looking incorrect. The mod _Chimera_
-            can correct this bug in-engine, or you can set the flag to be the opposite
-            of what you want.
+            As documented in [Guerilla][], this was originally used to fix polygon
+            popping when atmospheric fog density reached 1.0 within the confines
+            of the map and interacted with fog planes. It is only enabled in c10's
+            swamp fog tag on both Xbox and PC. This flag is possibly changing fog
+            render order and therefore also coincidentally fixes the shader
+            inconsistency between Xbox and PC which causes the Assault on the Control Room
+            snowy fog to look incorrect on PC.
         - name: fog screen only
-          md: ...
+          md: Unknown purpose. This flag was not set in any original Halo maps.
     - name: maximum density
       md: ...
     - name: opaque distance

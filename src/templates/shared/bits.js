@@ -31,8 +31,8 @@ const tagAnchor = (tag, metaIndex, hash) => {
   return anchor(`${tagPage._path}${hash ? `#${hash}` : ""}`, tag.name);
 };
 
-const heading = (hTag, title) => html`
-  <${hTag} id="${slugify(title)}">
+const heading = (hTag, title, cssClass) => html`
+  <${hTag} id="${slugify(title)}"${cssClass ? ` class=${cssClass}` : ""}>
     ${title}
     <a href="#${slugify(title)}" class="header-anchor">#</a>
   </${hTag}>

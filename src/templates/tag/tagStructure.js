@@ -4,6 +4,7 @@ const INVADER_TAG_BASE = "https://github.com/Kavawuvi/invader/blob/master/src/ta
 const URL_ENDIANNESS = "https://en.wikipedia.org/wiki/Endianness";
 
 /* TODO:
+- "inherits": "SpawnPrelude",
 - handle EVERY field type
 - searchable fields
 - write about these field props:
@@ -231,7 +232,7 @@ const renderTagStructure = (tag, metaIndex) => {
   const headings = [];
   const addHeading = (heading) => headings.push(heading);
   const htmlResult = html`
-    ${heading("h1", "Structure and fields")}
+    ${heading("h1", "Structure and fields", "clear")}
     ${tag.parent && alert("info", html`
       <p>
         This tag inherits fields from ${tagAnchor(tag.parent, metaIndex)} which

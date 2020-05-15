@@ -5,11 +5,21 @@ comments:
   md: ...
   fields:
     - name: lightmaps bitmap
-      md: ...
+      md: A reference to the bitmap storing the level's baked [lightmaps](#lightmaps). The level will not be visible without this.
     - name: vehicle floor
-      md: ...
+      md: |
+        The lowest Z-axis height (absolute, not frame relative) that [vehicles][vehicle] can reach while occupied.
+        Does not affect other object types. An unoccupied vehicle will still drop
+        below this soft barrier, but when it becomes occupied again it will quickly
+        shoot back up into the play area. An example of a map using a vehicle floor
+        is Gephyrophobia to prevent players from flying too far below the bridge.
     - name: vehicle ceiling
-      md: ...
+      md: |
+        The maximum Z-axis height (absolute, not frame relative) that vehicles can reach while occupied. Does not
+        affect other objects types. Above this point, occupied vehicles will
+        elastically move back below the ceiling. This can be used to limit the
+        height that players in flying vehicles like Banshees can reach for
+        gameplay reasons. An example of this can be seen in Blood Gulch.
     - name: default ambient color
       md: ...
     - name: default distant light 0 color
