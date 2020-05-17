@@ -114,19 +114,34 @@ comments:
       md: ...
       fields:
         - name: bsp3d nodes
-          md: ...
+          md: |
+            An block of nodes used to efficiently find collideable surfaces.
+            Each node divides space with an infinite plane and references two
+            child nodes by index into this block. The first element in the block
+            is the root node. A test point can be recursively tested against planes
+            to find a _leaf_ of potentially colliding surfaces.
           fields:
             - name: plane
-              md: ...
+              md: |
+                An index into the _planes_ block. The plane divides 3D space in
+                two. [Tool][] seems to use faces in the BSP to define planes
+                rather than axis-aligned or heuristically chosen ones.
             - name: back child
-              md: ...
+              md: |
+                Index of the bsp3d node representing space to the back of the
+                dividing plane. If the index is `-1`, then there are no surfaces
+                behind the plane and the child can be ignored. Otherwise, if the
+                highest order bit is set (`0x80000000`), the remaining 31 bits
+                (mask `0x7FFFFFFF`) represent an index into the _leaves_ block.
             - name: front child
-              md: ...
+              md: Similar to the _back child_ field.
         - name: planes
           md: ...
           fields:
             - name: plane
-              md: ...
+              md: |
+                A plane which divides 3D space in two, stored as a 3-float normal
+                and _d_ (distance from origin) parameter.
         - name: leaves
           md: ...
           fields:

@@ -1,8 +1,8 @@
 ---
 title: scenario_structure_bsp
 template: tag
-img: bsp.jpg
-imgCaption: The map a30's BSP with all objects removed using `object_destroy_all`
+img: bsp-debug.jpg
+imgCaption: Blood Gulch's BSP surfaces and clusters visualized in [Sapien][] using `debug_structure 1` and `debug_pvs 1`
 keywords:
   - lightmap
   - radiosity
