@@ -143,38 +143,72 @@ comments:
                 A plane which divides 3D space in two, stored as a 3-float normal
                 and _d_ (distance from origin) parameter.
         - name: leaves
-          md: ...
+          md: |
+            Leaves hold the collideable surfaces found at the depths of the 3D
+            binary space partitioning process. All surfaces in a leaf are convex
+            and found in the same localized area. Each set of co-planar surfaces
+            within this leaf is stored within a child 2D BSP.
+
+            Note that surfaces may be found under **multiple leaves**, since any
+            surface which is not completely on either side of a 3D plane will
+            need to belong to both child 3D BSP nodes.
           fields:
             - name: flags
-              md: ...
+              md: Flags used to optimize collision checks at runtime.
               fields:
                 - name: contains double sided surfaces
-                  md: ...
+                  md: |
+                    Indicates if any surface in any of this leaf's 2D BSPs is
+                    double-sided (e.g. glass).
             - name: bsp2d reference count
-              md: ...
+              md: Determines how many contiguous 2D BSP references belong to this leaf.
             - name: first bsp2d reference
-              md: ...
+              md: |
+                Index of the first 2D BSP reference associated with this leaf.
+                It will be followed by a number of other 2D BSP references according
+                to the above count.
         - name: bsp2d references
-          md: ...
+          md: |
+            Represents either a 2D BSP of surfaces, or a singular surface if the
+            node index is flagged. In either case, test points or 3D line traces
+            should be projected onto the basis plane in order to continue
           fields:
             - name: plane
-              md: ...
+              md: |
+                Index for the plane used to decide what basis plane is best to
+                project on (X,Y), (Y,Z) or (X,Z). The basis plane is chosen by
+                the referenced plane's most significant normal component. **The
+                meaning of a flagged plane index is unknown**.
             - name: bsp2d node
-              md: ...
+              md: |
+                The starting node for the 2D BSP on this plane. If flagged, then
+                the index (masked to `0x7FFFFFFF`) refers to a surface instead.
         - name: bsp2d nodes
           md: ...
           fields:
             - name: plane
-              md: ...
+              md: |
+                A 2D plane (line) subdividing left and right child surfaces.
+                This line is in the space of the 2D BSP reference's basis plane.
             - name: left child
-              md: ...
+              md: |
+                Index of the left child bsp2d node. If the highest bit is set,
+                then the remaining bits (mask `0x7FFFFFFF`) are instead an index
+                into the surfaces block.
             - name: right child
-              md: ...
+              md: Similar to the _left child_ field.
         - name: surfaces
-          md: ...
+          md: |
+            Surfaces are planar collideable polygons. They are not necessarily
+            triangular (4 is also common, and Blood Gulch has one with 7 edges), and can be visualized
+            in sapien using `debug_structure 1`.
           fields:
             - name: plane
-              md: ...
+              md: |
+                Index into the planes block for this surface's plane. Note that
+                multiple co-planar surfaces may reference the same plane since
+                this plane index is a copy of the parent bsp2d reference's
+                plane index, even when flagged.
             - name: first edge
               md: ...
             - name: flags
@@ -193,7 +227,10 @@ comments:
             - name: material
               md: ...
         - name: edges
-          md: ...
+          md: |
+            Edges, surfaces, and vertices form a data structure called a
+            _[doubly connected edge list (DCEL)](https://en.wikipedia.org/wiki/Doubly_connected_edge_list)_,
+            also known as a _half-edge data structure_.
           fields:
             - name: start vertex
               md: ...

@@ -8,7 +8,12 @@ comments:
       md: ...
       fields:
         - name: simple parameterization
-          md: ...
+          md: |
+            Causes [lightmap][scenario_structure_bsp#lightmaps] UVs for this
+            material to be based on existing texture UVs rather than generated
+            completely anew by Tool/Sapien. This can be used to fix squiggly
+            or jagged shadowing artifacts often seen on large complex surfaces
+            using a single material.
         - name: ignore normals
           md: ...
         - name: transparent lit
