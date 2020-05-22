@@ -90,7 +90,7 @@ A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens fl
   </figcaption>
 </figure>
 
-_Phantom BSP_ is a collision artifact sometimes produced when compiling BSPs. It manifests itself as invisible surfaces which projectiles and vehicles collide with, but not players. It is not known what exactly causes this, but it is thought to be a bug in [Tool's][tool] BSP compilation and may be related to nearly co-planar faces. Phantom BSP can often be fixed by slightly moving or altering sections of the level that contain them.
+_Phantom BSP_ is a collision artifact sometimes produced when compiling BSPs. It manifests itself as invisible surfaces which projectiles and vehicles collide with, but not players. It is a bug in [Tool's][tool] BSP compilation and may be related to nearly co-planar faces. Phantom BSP can often be fixed by slightly moving or altering sections of the level that contain them.
 
 [about-bsp]: https://en.wikipedia.org/wiki/Binary_space_partitioning
 [convex]: https://en.wikipedia.org/wiki/Convex_set

@@ -124,19 +124,29 @@ comments:
             - name: plane
               md: |
                 An index into the _planes_ block. The plane divides 3D space in
-                two. [Tool][] seems to use faces in the BSP to define planes
-                rather than axis-aligned or heuristically chosen ones.
+                two. Generally, tool chooses surfaces to make dividing planes using
+                an unknown heuristic. The first few levels of BSP seem to use special
+                axis-aligned planes which are stored at the tail of the planes block,
+                likely to avoid poor early heuristic choices which would negatively
+                affect collision testing performance.
             - name: back child
               md: |
                 Index of the bsp3d node representing space to the back of the
-                dividing plane. If the index is `-1`, then there are no surfaces
-                behind the plane and the child can be ignored. Otherwise, if the
+                dividing plane. If the index is `-1`, then the space behind the
+                plane is considered outside the sealed BSP (Sapien labels this as
+                "solid" space when using `debug_structure`). Otherwise, if the
                 highest order bit is set (`0x80000000`), the remaining 31 bits
                 (mask `0x7FFFFFFF`) represent an index into the _leaves_ block.
             - name: front child
               md: Similar to the _back child_ field.
         - name: planes
-          md: ...
+          md: |
+            Planes are infinite 2D surfaces in 3D space. They are used both to
+            subdivide the BSP in each bsp3d node and to define collideable surfaces.
+            The first 8 planes in the block seem to serve a special purpose -- the
+            first 4 define the XY bounding box, with the next 4 axis aligned planes
+            unkown. Furthermore, the last 8 planes in the block are used for the
+            first few levels of bsp3d nodes.
           fields:
             - name: plane
               md: |
@@ -200,8 +210,9 @@ comments:
         - name: surfaces
           md: |
             Surfaces are planar collideable polygons. They are not necessarily
-            triangular (4 is also common, and Blood Gulch has one with 7 edges), and can be visualized
-            in sapien using `debug_structure 1`.
+            triangular (4 is also common, and Blood Gulch has one with 7 edges),
+            and can be visualized in sapien using `debug_structure 1`. These
+            surfaces are not used for the rendered geometry.
           fields:
             - name: plane
               md: |
@@ -219,18 +230,24 @@ comments:
                 - name: invisible
                   md: ...
                 - name: climbable
-                  md: ...
+                  md: Indicates if the surface is a climbable ladder.
                 - name: breakable
-                  md: ...
+                  md: |
+                    Indicates if the surface is breakable.
+                    The surface must also have a breakable surface index below.
             - name: breakable surface
-              md: ...
+              md: |
+                Index into this tag's breakable surfaces block. It is unknown if
+                this is a signed or flagged field, but since it is 8-bit there
+                cannot be more than 256 unique breakable surfaces in a BSP.
             - name: material
               md: ...
         - name: edges
           md: |
             Edges, surfaces, and vertices form a data structure called a
             _[doubly connected edge list (DCEL)](https://en.wikipedia.org/wiki/Doubly_connected_edge_list)_,
-            also known as a _half-edge data structure_.
+            also known as a _half-edge data structure_. The edges and their vertices
+            define the boundaries of the collideable surfaces within a leaf.
           fields:
             - name: start vertex
               md: ...
@@ -245,7 +262,8 @@ comments:
             - name: right surface
               md: ...
         - name: vertices
-          md: ...
+          md: |
+            The 3D coordinates used for edge starting and ending locations.
           fields:
             - name: point
               md: ...
