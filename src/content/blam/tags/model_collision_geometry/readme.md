@@ -53,3 +53,6 @@ model_collision_geometry tags can only have up to 16 pathfinding spheres<sup>(co
 
 # Animation
 Unlike [BSPs][scenario_structure_bsp], collision geometry can have a self-intersecting mesh. However, this is only permitted between meshes parented by different nodes (e.g. limbs of a biped intersecting each other or the torso). Collision geometry cannot have weighted skinning for animations, so rigidly follows parent nodes in animations.
+
+# Phantom BSP
+Although phantom BSP is typically seen in the context of level geometry, it can also affect model collision geometry because this tag uses the same collision data structures as a [scenario_structure_bsp][scenario_structure_bsp#phantom-bsp]. In the case of models, phantom BSP is limited to the object's bounding radius.

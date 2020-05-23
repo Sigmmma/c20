@@ -146,7 +146,9 @@ comments:
             The first 8 planes in the block seem to serve a special purpose -- the
             first 4 define the XY bounding box, with the next 4 axis aligned planes
             unkown. Furthermore, the last 8 planes in the block are used for the
-            first few levels of bsp3d nodes.
+            first few levels of bsp3d nodes. A single plane may be referenced from
+            multiple bsp3d nodes since the surfaces that planes derive from can also
+            be found in multiple leaves.
           fields:
             - name: plane
               md: |
@@ -154,10 +156,9 @@ comments:
                 and _d_ (distance from origin) parameter.
         - name: leaves
           md: |
-            Leaves hold the collideable surfaces found at the depths of the 3D
-            binary space partitioning process. All surfaces in a leaf are convex
-            and found in the same localized area. Each set of co-planar surfaces
-            within this leaf is stored within a child 2D BSP.
+            Leaves mark the transition between the 3D BSP and a collection of
+            convex collideable surfaces in the same localized area. Each set of
+            co-planar surfaces within this leaf is stored within a child 2D BSP.
 
             Note that surfaces may be found under **multiple leaves**, since any
             surface which is not completely on either side of a 3D plane will
