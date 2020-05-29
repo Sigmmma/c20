@@ -2,7 +2,6 @@
 title: Tags
 template: tagIndex
 ---
-Tags are the fundamental unit of resources which comprise a [map][]. They come in many different types (sometimes called tag _classes_ or _groups_), each with a predefined structure and data fields. Tags can reference other tags by their _tag path_, forming a tree-like structure of all resources necessary to compile a map.
 
 <figure>
   <a href="control-panels.jpg">
@@ -13,7 +12,7 @@ Tags are the fundamental unit of resources which comprise a [map][]. They come i
   </figcaption>
 </figure>
 
-Tags are the fundamental unit of resources which comprise a [map][]. They come in many different types, each with a predefined structure and data _fields_. Tags can reference other tags, forming a tree-like structure of all resources necessary to compile a map.
+Tags are the fundamental unit of resources which comprise a [map][]. They come in many different types (sometimes called tag _classes_ or _groups_), each with a predefined structure and data fields. Tags can reference other tags by their _tag path_, forming a tree-like structure of all resources necessary to compile a map.
 
 The name "tag" was inspired by [XML tags][about-xml], which also have types and a structure with fields. However, unlike XML, Halo's tags are a binary format and not plain text. To create and edit tags, you need to use purpose-built tools like [the HEK][hek], [MEK][], or [Invader][].
 

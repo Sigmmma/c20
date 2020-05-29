@@ -103,7 +103,8 @@ digraph G {
 
   # cea and mcc
   pc_gold -> ann;
-  ann -> mcc_xbone;
+  ann -> mcc_xbone [label="Campaign"];
+  pc_gold -> mcc_xbone [label="Multiplayer"];
   mcc_xbone -> mcc_pc;
   mcc_xbone -> mcc_xbone_live [label="Active updates"];
   mcc_pc -> mcc_pc_live [label="Active updates"];
