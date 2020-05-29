@@ -102,8 +102,8 @@ digraph G {
   mac_204 -> halomd;
 
   # cea and mcc
-  pc_gold -> ann [label="Campaign"];
-  ann -> mcc_xbone;
+  pc_gold -> ann;
+  ann -> mcc_xbone [label="Campaign"];
   pc_gold -> mcc_xbone [label="Multiplayer"];
   mcc_xbone -> mcc_pc;
   mcc_xbone -> mcc_xbone_live [label="Active updates"];
