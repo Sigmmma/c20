@@ -11,6 +11,12 @@ keywords:
   - weather
   - polyhedra
   - bsp
+thanks:
+  - to: MosesOfEgypt
+    for: Research on weather polyhedra and portals
+  - to: Conscars
+    for: Collision BSP structure and phantom BSP research
+
 ---
 
 Commonly referred to as the **BSP**, this tag contains level geometry, weather data, material assignments, AI pathfinding information, lightmaps, and other data structures. The name "BSP" is commonly used to refer to non-[object][] level geometry in general. Aside from sounds and [bitmaps][bitmap], the BSP tends to be one of the largest tags in a map.

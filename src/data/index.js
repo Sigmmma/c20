@@ -1,8 +1,12 @@
 const buildH1Data = require("./h1");
 
 function buildData(invaderStructDefs) {
+  const h1Data = buildH1Data(invaderStructDefs);
   return {
-    h1: buildH1Data(invaderStructDefs)
+    h1: h1Data,
+    thanks: [
+      ...h1Data.tagThanks
+    ]
   };
 }
 

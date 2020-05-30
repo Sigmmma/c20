@@ -94,6 +94,10 @@ module.exports = (page, metaIndex) => {
   //because we're adding headers to the page, should update the headers list for ToC
   const pageMetaForWrapper = {
     ...page,
+    thanks: [
+      ...(page.thanks || []),
+      ...metaIndex.data.h1.tagThanks
+    ],
     _headers: [
       ...page._headers,
       ...(!tag.invaderStruct ? [] : [
