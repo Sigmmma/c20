@@ -6,6 +6,10 @@ imgCaption: A typical level texture bitmap, used for environment shaders
 thanks:
   - to: gbMichelle
     for: Information on formats, bitmap types, usage, compilation, and errors
+  - to: Mimickal
+    for: Information on formats, bitmap types, usage, compilation, errors, writing documentation on sprite sheets, readability checking
+  - to: Jesse
+    for: Misc info
 ---
 
 Bitmaps are used for visuals that need textures or sprites like environments, objects, effects, menus, etc.
