@@ -7,7 +7,7 @@ thanks:
   - to: gbMichelle
     for: Information on formats, bitmap types, usage, compilation, and errors
   - to: Mimickal
-    for: Information on formats, bitmap types, usage, compilation, errors, writing documentation on sprite sheets, readability checking
+    for: Information on formats, bitmap types, usage, compilation, errors, sprite sheets, and proofreading
   - to: Jesse
     for: Misc info
 ---
