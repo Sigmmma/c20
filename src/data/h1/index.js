@@ -57,7 +57,11 @@ function buildData(invaderStructDefs) {
     tagsById,
     tagsByName,
     getToolIntegrations,
-    invaderStructDefs
+    invaderStructDefs,
+    tagThanks: [
+      {to: "MosesOfEgypt", for: "Tag structure research"},
+      {to: "Kavawuvi", for: "Invader tag definitions"},
+    ]
   };
 };
 

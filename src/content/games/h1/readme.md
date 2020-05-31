@@ -2,6 +2,13 @@
 title: "Halo: Combat Evolved"
 keywords:
   - halo
+thanks:
+  - to: gbMichelle
+    for: CEA/MCC lineage information
+  - to: Hasuku
+    for: Xbox modding lineage
+  - to: Kavawuvi
+    for: Engine versions
 ---
 
 <figure>

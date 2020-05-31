@@ -3,6 +3,9 @@ title: bitmap
 template: tag
 img: "bitmap_example.jpg"
 imgCaption: A typical level texture bitmap, used for environment shaders
+thanks:
+  - to: gbMichelle
+    for: Information on formats, bitmap types, usage, compilation, and errors
 ---
 
 Bitmaps are used for visuals that need textures or sprites like environments, objects, effects, menus, etc.

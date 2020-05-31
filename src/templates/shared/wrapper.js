@@ -4,6 +4,7 @@ const footer = require("./footer");
 const header = require("./header");
 const breadcrumbs = require("./breadcrumbs");
 const toc = require("./toc");
+const thanks = require("./thanks");
 
 const TOC_MIN_HEADERS = 2;
 const COLLAPSE_CHILD_PAGES = 8;
@@ -79,6 +80,7 @@ const wrapper = (page, metaIndex, body) => {
               <h1 class="page-title">${escapeHtml(page.title)}</h1>
               ${page.stub && STUB_ALERT}
     ${body}
+    ${page.thanks && thanks(page.thanks)}
             </article>
           </main>
           ${footer(page, metaIndex)}
