@@ -21,6 +21,8 @@ const STUB_ALERT = alert("danger", html`
 `);
 
 const wrapper = (page, metaIndex, body) => {
+  const editPageUrl = `${REPO_URL}/edit/master/src/content${page._path}/readme.md`;
+  const srcUrl = `${REPO_URL}/tree/master/src/content${page._path}`;
   const imgAbsoluteUrl = page.img ?
     `${metaIndex.baseUrl}${page._path}/${page.img}` :
     `${metaIndex.baseUrl}/assets/librarian.png`;
@@ -77,7 +79,14 @@ const wrapper = (page, metaIndex, body) => {
               ${breadcrumbs(page, metaIndex)}
             </nav>
             <article class="content-article">
-              <h1 class="page-title">${escapeHtml(page.title)}</h1>
+              <div class="page-title">
+                <h1 class="page-title">${escapeHtml(page.title)}</h1>
+                <div class="edit-buttons">
+                  <a href="${srcUrl}">Source</a>
+                  •
+                  <a href="${editPageUrl}">Edit</a>
+                </div>
+              </div>
               ${page.stub && STUB_ALERT}
     ${body}
     ${page.thanks && thanks(page.thanks)}
