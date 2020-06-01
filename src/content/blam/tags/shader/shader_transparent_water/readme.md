@@ -12,4 +12,8 @@ They need not exclusively be used for water -- the coolant pools of _Keyes_ (d20
 
 Water shaders are **not** typically used for waterfalls ([shader_transparent_chicago_extended][]) nor rivers ([shader_transparent_chicago][]), though there are exceptions (the water in _Battle Creek_).
 
+# Known issues
+Ripple maps are not rendered correctly on PC compared to Xbox. The highest level of detail [mipmap][] is used for the most distant areas, but water closer to the camera uses the lowest detail mipmap. This is the opposite of how it should be, and results in distant water suffering from major aliasing.
+
 [refined]: https://www.reddit.com/r/HaloCERefined/
+[mipmap]: https://en.wikipedia.org/wiki/Mipmap
