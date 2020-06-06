@@ -1,11 +1,11 @@
 const {html, classes, renderMarkdown, tagAnchor, ul, heading, detailsList, slugify, alert, defAnchor} = require("../shared");
+const getExtraPrimitiveInfo = require("./primitives");
 
 const INVADER_TAG_BASE = "https://github.com/Kavawuvi/invader/blob/master/src/tag/hek/definition";
 const URL_ENDIANNESS = "https://en.wikipedia.org/wiki/Endianness";
 
 /* TODO:
 - "inherits": "SpawnPrelude",
-- handle EVERY field type
 - searchable fields
 - write about these field props:
   - normalize
@@ -74,7 +74,8 @@ const fieldInfo = (field, fieldComments, metaIndex) => {
 };
 
 const fieldTypeDisplay = (field, fieldTypeStruct, metaIndex) => {
-  let typeName = field.type;
+  let {typeName, compositeFields} = getExtraPrimitiveInfo(field.type);
+
   if (field.type == "TagReflexive") {
     typeName = html`Block${defAnchor(metaIndex.resolveSlug("tags", "blocks"))}`;
   } else if (field.type == "TagDependency") {
@@ -104,7 +105,7 @@ const fieldTypeDisplay = (field, fieldTypeStruct, metaIndex) => {
     typeCodeParts.push(` (${field.unit})`);
   }
   if (field.bounds) {
-    typeCodeParts.push(` (bounds)`);
+    typeCodeParts.push(` (min & max)`);
   }
 
   if (field.count && field.count > 0) {
@@ -118,6 +119,14 @@ const fieldTypeDisplay = (field, fieldTypeStruct, metaIndex) => {
       return tagDef ? tagAnchor(tagDef, metaIndex) : tagDef;
     });
     return detailsList(typeCode, depLinks, true);
+  }
+
+  //todo
+  if (compositeFields) {
+    const renderedCompositeFields = compositeFields.map(({name, type}) =>
+      `${name}: <code>${type}</code>`
+    );
+    return detailsList(typeCode, renderedCompositeFields, false);
   }
 
   return typeCode;
@@ -177,7 +186,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel)
           ${struct.fields.map((field, i) => html`
             <tr>
               <td>${field}</td>
-              <td><code>0x${(0x1 << i).toString(16)}</code></td>
+              <td><code title="${i}">0x${(0x1 << i).toString(16)}</code></td>
               <td>${renderComment(comments.fields.find(it => it.name == field).md, metaIndex)}</td>
             </tr>
           `)}
@@ -198,7 +207,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel)
           ${struct.options.map((option, i) => html`
             <tr>
               <td>${option}</td>
-              <td><code>0x${i.toString(16)}</code></td>
+              <td><code title="${i}">0x${i.toString(16)}</code></td>
               <td>${renderComment(comments.options.find(it => it.name == option).md, metaIndex)}</td>
             </tr>
           `)}

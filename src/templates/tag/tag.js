@@ -1,4 +1,4 @@
-const {html, wrapper, renderMarkdown, metabox, alert, tagAnchor, ul, heading, detailsList, pageAnchor} = require("../shared");
+const {html, wrapper, defAnchor, renderMarkdown, metabox, alert, tagAnchor, ul, heading, detailsList, pageAnchor} = require("../shared");
 const renderTagStructure = require("./tagStructure");
 
 module.exports = (page, metaIndex) => {
@@ -8,7 +8,7 @@ module.exports = (page, metaIndex) => {
   }
 
   const metaboxHtmlSections = [{
-    body: html`<p>Engine ID<sup><a href="${metaIndex.resolveSlug("tags", "engine-ids")}">?</a></sup>: <code>${tag.id}</code></p>`
+    body: html`<p>Engine ID${defAnchor(metaIndex.resolveSlug("tags", "engine-ids"))}: <code>${tag.id}</code></p>`
   }];
 
   if (tag.parent) {
