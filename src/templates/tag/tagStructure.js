@@ -186,7 +186,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel)
           ${struct.fields.map((field, i) => html`
             <tr>
               <td>${field}</td>
-              <td><code title="${i}">0x${(0x1 << i).toString(16)}</code></td>
+              <td><code title="${0x1 << i}">0x${(0x1 << i).toString(16)}</code></td>
               <td>${renderComment(comments.fields.find(it => it.name == field).md, metaIndex)}</td>
             </tr>
           `)}
