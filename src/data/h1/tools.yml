@@ -1,47 +1,182 @@
-- name: Blitzkrieg
-  converts:
-    - from: max
-    - to: jms
-- name: Bluestreak
-  converts:
-    - from: max
-    - to: jms
-- name: H2V-Blender-JMS-Exporter
-  converts:
-    - from: blend
-    - to: jms
-- name: H2V-Blender-Animation-Exporter
-  converts:
-    - from: blend
-    - to: jma
-- name: Sapien
-  authors:
-    - Bungie
-    - Gearbox
-  edits:
-    - scenario_structure_bsp
-    - scenario
-- name: Tool
-  authors:
-    - Bungie
-    - Gearbox
-  converts:
-    - from: jms
-      to: scenario_structure_bsp
-    - from: jms
-      to: gbxmodel
-    - from: jma
-      to: model_animations
-    - from: jmm
-      to: model_animations
-    - from: jmz
-      to: model_animations
-    - from: jmw
-      to: model_animations
-    - from: jmo
-      to: model_animations
-    - from: tif
-      to: bitmap
-  edits:
-    - scenario_structure_bsp
-    - bitmap
+# todo: document, confirm authorship
+tools:
+  - names:
+      - Blitzkrieg
+      - Tool
+      - Guerilla
+      - Sapien
+    authors:
+      - Bungie
+      - Gearbox
+  - names: Bluestreak
+    authors: TheGhost
+  - names: Mozzarilla
+    sources: https://github.com/Sigmmma/mozzarilla
+    authors:
+      - MosesOfEgypt
+      - gbMichelle
+  - names:
+      - invader-bitmap
+      - invader-edit-qt
+    sources: https://github.com/Kavawuvi/invader
+    authors: Kavawuvi
+
+# todo: cover all Bluestreak use cases
+workflows:
+  # asset authoring
+  - using: Blender
+    edit: blend
+  - using:
+      - Photoshop
+      - GIMP
+      - Krita
+    edit:
+      - tif
+      - bmp
+      - png
+      - tga
+
+  # 3d exports
+  - using:
+      - Blitzkrieg
+      - Bluestreak
+    from: max
+    to: jms
+  - using: H2V-Blender-JMS-Exporter
+    from: blend
+    to: jms
+  - using: H2V-Blender-Animation-Exporter
+    from: blend
+    to:
+      - jma
+      - jmm
+      - jmz
+      - jmw
+      - jmo
+
+  # bitmap compilation
+  - using:
+      - Tool
+      - invader-bitmap
+    from: tif
+    to: bitmap
+  - using: invader-bitmap
+    from:
+      - png
+      - tga
+      - bmp
+    to: bitmap
+  # model compilation
+  - using: Tool
+    from: jms
+    to:
+      - model_collision_geometry
+      - gbxmodel
+  # animation compilation
+  - using: Tool
+    from:
+      - jma
+      - jmm
+      - jmz
+      - jmw
+      - jmo
+    to: model_animations
+
+  # scenario editing
+  - using:
+      - Sapien
+      - OS_Sapien
+    edit:
+      - scenario_structure_bsp
+      - scenario
+
+  # general purpose tag editors
+  - using:
+      - Guerilla
+      - Mozzarilla
+      - invader-edit-qt
+      - OS_Guerilla
+    edit:
+      - actor
+      - actor_variant
+      - antenna
+      - biped
+      - bitmap
+      - camera_track
+      - color_table
+      - continuous_damage_effect
+      - contrail
+      - damage_effect
+      - decal
+      - detail_object_collection
+      - device
+      - device_control
+      - device_light_fixture
+      - device_machine
+      - dialogue
+      - effect
+      - equipment
+      - flag
+      - fog
+      - font
+      - garbage
+      - gbxmodel
+      - globals
+      - glow
+      - grenade_hud_interface
+      - hud_globals
+      - hud_message_text
+      - hud_number
+      - input_device_defaults
+      - item
+      - item_collection
+      - lens_flare
+      - light
+      - light_volume
+      - lightning
+      - material_effects
+      - meter
+      - model
+      - model_animations
+      - model_collision_geometry
+      - multiplayer_scenario_description
+      - object
+      - particle
+      - particle_system
+      - physics
+      - placeholder
+      - point_physics
+      - preferences_network_game
+      - projectile
+      - scenario
+      - scenario_structure_bsp
+      - scenery
+      - shader
+      - shader_environment
+      - shader_model
+      - shader_transparent_chicago
+      - shader_transparent_chicago_extended
+      - shader_transparent_generic
+      - shader_transparent_glass
+      - shader_transparent_meter
+      - shader_transparent_plasma
+      - shader_transparent_water
+      - sky
+      - sound
+      - sound_environment
+      - sound_looping
+      - sound_scenery
+      - spheroid
+      - string_list
+      - tag_collection
+      - ui_widget_collection
+      - ui_widget_definition
+      - unicode_string_list
+      - unit
+      - unit_hud_interface
+      - vehicle
+      - virtual_keyboard
+      - weapon
+      - weapon_hud_interface
+      - weather_particle_system
+      - wind

@@ -8,7 +8,18 @@ const basicTagsList = glob.sync(path.join(__dirname, "tags", "*.yml")).map(tagFi
   return yaml.safeLoad(fs.readFileSync(tagFileName, "utf8"));
 });
 
-const toolsList = yaml.safeLoad(fs.readFileSync(path.join(__dirname, "tools.yml"), "utf8"));
+const {tools, workflows} = yaml.safeLoad(fs.readFileSync(path.join(__dirname, "tools.yml"), "utf8"));
+
+function strAsList(strOrList) {
+  if (!strOrList) return null;
+  return typeof(strOrList) === "string" ? [strOrList] : strOrList;
+}
+
+function matchIgnoreCase(a, b) {
+  if (!a) return !b;
+  if (!b) return !a;
+  return a.toLowerCase() == b.toLowerCase();
+}
 
 function buildData(invaderStructDefs) {
   //augment the basic list of tags with more detail provided by external libs
@@ -44,19 +55,50 @@ function buildData(invaderStructDefs) {
     );
   }
 
-  const getToolIntegrations = (resource) => {
-    return toolsList.filter(tool =>
-      tool.edits && tool.edits.includes(resource) ||
-      tool.converts && tool.converts.find(c => c.from == resource || c.to == resource)
+  //todo: md rendering, support downloads, URLs (or use page info??)
+  const toolsExpanded = tools.flatMap(group => {
+    const names = strAsList(group.names);
+    const authors = strAsList(group.authors);
+    const sources = strAsList(group.sources);
+    return names.map(name => ({name, authors, sources}));
+  });
+
+  const getToolInfo = (toolName) => {
+    return toolsExpanded.find(it => matchIgnoreCase(it.name, toolName));
+  };
+
+  const workflowsExpanded = workflows.flatMap(group => {
+    const usingMulti = strAsList(group.using);
+    const editMulti = strAsList(group.edit);
+    const fromMulti = strAsList(group.from);
+    const toMulti = strAsList(group.to);
+    if (editMulti) {
+      return usingMulti.flatMap(using =>
+        editMulti.map(edit => ({using, edit}))
+      );
+    } else if (fromMulti && toMulti) {
+      return usingMulti.flatMap(using =>
+        fromMulti.flatMap(from =>
+          toMulti.map(to => ({using, from, to}))
+        )
+      );
+    }
+  });
+
+  const getResourceWorkflows = (resource) => {
+    return workflowsExpanded.filter(flow =>
+      matchIgnoreCase(flow.edit, resource) ||
+        matchIgnoreCase(flow.to, resource) ||
+        matchIgnoreCase(flow.from, resource)
     );
   };
 
   return {
-    toolsList,
+    getToolInfo,
+    getResourceWorkflows,
     tags,
     tagsById,
     tagsByName,
-    getToolIntegrations,
     invaderStructDefs,
     tagThanks: [
       {to: "MosesOfEgypt", for: "Tag structure research"},

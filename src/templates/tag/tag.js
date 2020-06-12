@@ -71,13 +71,22 @@ module.exports = (page, metaIndex) => {
     });
   }
 
-  const toolIntegrations = metaIndex.data.h1.getToolIntegrations(tag.name);
-  if (toolIntegrations.length > 0) {
+  const workflows = metaIndex.data.h1.getResourceWorkflows(tag.name);
+  if (workflows.length > 0) {
     metaboxHtmlSections.push({
       cssClass: "content-tool-minor",
       body: detailsList(
-        "Tools",
-        toolIntegrations.map(tool => pageAnchor(metaIndex.findToolPageByName(tool.name)))
+        "Workflows",
+        workflows.map(flow => {
+          // const toolPage = metaIndex.findToolPageByName(flow.using);
+          // const toolLink = toolPage ? pageAnchor(toolPage) : `<em>${flow.using}</em>`;
+          const toolLink = flow.using;
+          if (flow.edit) {
+            return `Edit with ${toolLink}`;
+          } else if (flow.from && flow.to) {
+            return `Using ${toolLink} from ${flow.from} to ${flow.to}`;
+          }
+        })
       )
     });
   }
