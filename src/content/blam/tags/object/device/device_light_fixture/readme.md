@@ -1,6 +1,6 @@
 ---
 title: device_light_fixture
-template: tag
+tagName: device_light_fixture
 img: device.jpg
 imgCaption: Light fixtures used decoratively in _Assault on the Control Room_
 stub: true

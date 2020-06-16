@@ -1,6 +1,6 @@
 ---
 title: light_volume
-template: tag
+tagName: light_volume
 stub: true
 ---
 ...

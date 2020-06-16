@@ -1,6 +1,6 @@
 ---
 title: grenade_hud_interface
-template: tag
+tagName: grenade_hud_interface
 stub: true
 ---
 ...

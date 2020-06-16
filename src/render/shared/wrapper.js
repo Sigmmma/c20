@@ -1,10 +1,9 @@
-const {html, alert, escapeHtml, REPO_URL, DISCORD_URL, ul, anchor, pageAnchor} = require("./bits");
+const {html, alert, escapeHtml, REPO_URL, ul, anchor, pageAnchor} = require("./bits");
 const {renderMarkdown} = require("./markdown");
 const footer = require("./footer");
 const header = require("./header");
 const breadcrumbs = require("./breadcrumbs");
 const toc = require("./toc");
-const thanks = require("./thanks");
 
 const TOC_MIN_HEADERS = 2;
 const COLLAPSE_CHILD_PAGES = 8;
@@ -15,11 +14,6 @@ const topLevelTopics = [
   ["/games/h1", "Halo"]
 ];
 
-const STUB_ALERT = alert("danger", html`
-  <p>🚧 This article is a stub. You can help expand it by submitting content in
-  pull requests or issues in this wiki's <a href="${REPO_URL}">source repo</a>.</p>
-`);
-
 const wrapper = (page, metaIndex, body) => {
   const editPageUrl = `${REPO_URL}/edit/master/src/content${page._path}/readme.md`;
   const srcUrl = `${REPO_URL}/tree/master/src/content${page._path}`;
@@ -29,7 +23,7 @@ const wrapper = (page, metaIndex, body) => {
 
   const showToc = page.toc !== undefined ? page.toc : page._headers.length > TOC_MIN_HEADERS;
 
-  const plaintextPreview = `${renderMarkdown(page._md, metaIndex, true).substring(0, PREVIEW_LENGTH_CHARS)}...`;
+  const plaintextPreview = page._md ? `${renderMarkdown(page._md, metaIndex, true).substring(0, PREVIEW_LENGTH_CHARS)}...` : "";
 
   return html`
     <!DOCTYPE html>
@@ -87,9 +81,7 @@ const wrapper = (page, metaIndex, body) => {
                   <a href="${editPageUrl}">Edit</a>
                 </div>
               </div>
-              ${page.stub && STUB_ALERT}
     ${body}
-    ${page.thanks && thanks(page.thanks)}
             </article>
           </main>
           ${footer(page, metaIndex)}

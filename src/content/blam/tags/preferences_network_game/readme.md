@@ -1,6 +1,6 @@
 ---
 title: preferences_network_game
-template: tag
+tagName: preferences_network_game
 stub: true
 ---
 ...

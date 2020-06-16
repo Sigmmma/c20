@@ -1,6 +1,6 @@
 ---
 title: shader_transparent_generic
-template: tag
+tagName: shader_transparent_generic
 stub: true
 ---
 ...

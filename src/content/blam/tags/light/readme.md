@@ -1,6 +1,6 @@
 ---
 title: light
-template: tag
+tagName: light
 stub: true
 ---
 ...

@@ -1,6 +1,6 @@
 ---
 title: contrail
-template: tag
+tagName: contrail
 img: contrail.jpg
 imgCaption: Sentinel beams and assault rifle tracers are examples of contrails
 stub: true

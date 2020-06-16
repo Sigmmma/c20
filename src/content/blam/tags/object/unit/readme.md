@@ -1,6 +1,6 @@
 ---
 title: unit (abstract tag)
-template: tag
+tagName: unit
 img: unit.jpg
 imgCaption: "A [biped][] unit driving a [vehicle][] unit"
 ---

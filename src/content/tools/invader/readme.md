@@ -1,6 +1,6 @@
 ---
 title: Invader
-template: tool
+toolName: Invader
 img: invader-edit-qt.png
 imgCaption: Screenshot of invader-edit-qt, a replacement for [Guerilla][]
 info: |
@@ -17,5 +17,14 @@ keywords:
 Invader is an [open source][invader-repo] modding toolkit for Halo: Combat Evolved. It aims to re-implement tools of the [HEK][hek] with an emphasis on tag data correctness, validation, and command line usage (although _invader-edit-qt_ is a GUI tool). Invader is primarily developed by Kavawuvi, with contributions by Vaporeon.
 
 At this time, Invader targets Halo Custom Edition with some support for MCC.
+
+# invader-bitmap
+...
+
+# invader-edit-qt
+...
+
+# invader-build
+...
 
 [invader-repo]: https://github.com/Kavawuvi/invader

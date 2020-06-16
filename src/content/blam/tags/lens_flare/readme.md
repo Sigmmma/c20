@@ -1,6 +1,6 @@
 ---
 title: lens_flare
-template: tag
+tagName: lens_flare
 stub: true
 ---
 ...

@@ -1,6 +1,6 @@
 ---
 title: camera_track
-template: tag
+tagName: camera_track
 stub: true
 ---
 ...

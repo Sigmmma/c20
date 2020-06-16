@@ -1,5 +1,7 @@
 ---
 title: Map cache file
+resourceName: map
+img: map-icon.jpg
 thanks:
   - to: Masterz1337
     for: Context on OpenSauce capabilities
@@ -25,6 +27,9 @@ The special `ui.map` contains resources for the game's main menu, including [bit
 The maps `bitmaps.map`, `sounds.map`, and `loc.map` are special _resource maps_, and contain commonly referenced tags which do not need to be duplicated within each playable map referencing them. Instead, these shared tags are excluded by [tool][] at map compilation time (seen as "cache hits" in its output). Compiling custom resource maps from tags<sup>how?</sup> can be an effective way to reduce the net filesize of a campaign overhaul mod.
 
 ## Open Sauce .yelo maps
-Maps with the extension `.yelo` can only be played using a game client running the _Open Sauce_ mod, which extends Halo's engine with new tag types, higher limits, and extra renderer features. These maps are typically [custom campaign missions][os-maps] specifically designed to take advantage of these extensions.
+Maps with the extension `.yelo` can only be played using a game client running the [OpenSauce][] mod, which extends Halo's engine with new tag types, higher limits, and extra renderer features. These maps are typically [custom campaign missions][os-maps] specifically designed to take advantage of these extensions.
+
+## Invader/Chimera compressed maps
+Note that Chimera's downloaded map files, or Invader-compressed maps, use a custom compressed format which is not backwards compatible with the base game or other mods despite sharing the `.map` extension.
 
 [os-maps]: https://haloce3.com/category/downloads/open-sauce-maps/

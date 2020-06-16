@@ -1,6 +1,6 @@
 ---
 title: virtual_keyboard
-template: tag
+tagName: virtual_keyboard
 stub: true
 ---
 ...

@@ -1,6 +1,6 @@
 ---
 title: sound
-template: tag
+tagName: sound
 stub: true
 ---
 ...

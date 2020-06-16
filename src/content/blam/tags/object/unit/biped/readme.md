@@ -1,6 +1,6 @@
 ---
 title: biped
-template: tag
+tagName: biped
 img: bipeds.jpg
 imgCaption: "Some bipeds scripted to run along a path during c10's intro"
 ---

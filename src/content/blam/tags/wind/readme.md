@@ -1,6 +1,6 @@
 ---
 title: wind
-template: tag
+tagName: wind
 stub: true
 ---
 ...

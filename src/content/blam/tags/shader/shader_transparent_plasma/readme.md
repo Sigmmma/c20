@@ -1,6 +1,6 @@
 ---
 title: shader_transparent_plasma
-template: tag
+tagName: shader_transparent_plasma
 stub: true
 ---
 ...

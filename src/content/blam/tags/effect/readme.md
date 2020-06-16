@@ -1,6 +1,6 @@
 ---
 title: effect
-template: tag
+tagName: effect
 stub: true
 ---
 ...

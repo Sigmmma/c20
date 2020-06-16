@@ -1,6 +1,6 @@
 ---
 title: material_effects
-template: tag
+tagName: material_effects
 stub: true
 ---
 ...

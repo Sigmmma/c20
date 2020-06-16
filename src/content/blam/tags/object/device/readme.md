@@ -1,6 +1,6 @@
 ---
 title: device (abstract tag)
-template: tag
+tagName: device
 img: device_machine/c20-elevator.jpg
 imgCaption: Elevators and controls are common devices in Halo.
 stub: true

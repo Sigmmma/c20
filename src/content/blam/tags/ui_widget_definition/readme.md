@@ -1,6 +1,6 @@
 ---
 title: ui_widget_definition
-template: tag
+tagName: ui_widget_definition
 stub: true
 ---
 ...

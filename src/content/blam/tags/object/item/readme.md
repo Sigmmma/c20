@@ -1,6 +1,6 @@
 ---
 title: item (abstract tag)
-template: tag
+tagName: item
 img: powerups.jpg
 imgCaption: Powerups are an example of items.
 ---

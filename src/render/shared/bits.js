@@ -4,10 +4,12 @@ const DISCORD_URL = "https://discord.reclaimers.net";
 const REPO_URL = "https://github.com/Sigmmma/c20";
 const MAX_DETAILS_LIST = 8;
 
+const breakTagName = (tagName) => tagName.split("_").join("_<wbr>");
+
 //converts a title into a URL- or ID-friendly slug
 const slugify = (title) => title
   .toLowerCase()
-  .replace(/['-]/g, "")
+  .replace(/[']/g, "")
   .replace(/[^a-z0-9]/g, " ")
   .split(" ")
   .filter(part => part.length > 0)
@@ -28,7 +30,7 @@ const pageAnchor = (page) => anchor(page._path, escapeHtml(page.title));
 
 const tagAnchor = (tag, metaIndex, hash) => {
   const tagPage = metaIndex.findTagPageByName(tag.name);
-  return anchor(`${tagPage._path}${hash ? `#${hash}` : ""}`, tag.name);
+  return anchor(`${tagPage._path}${hash ? `#${hash}` : ""}`, breakTagName(tag.name));
 };
 
 const heading = (hTag, title, cssClass) => html`

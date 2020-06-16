@@ -1,25 +1,322 @@
 # todo: document, confirm authorship
-tools:
-  - names:
-      - Blitzkrieg
-      - Tool
-      - Guerilla
-      - Sapien
+toolInfos:
+  Blender:
+    page: blender
+    authors:
+      - Blender Foundation
+  3ds Max:
+    page: 3dsmax
+    authors:
+      - Autodesk
+  Photoshop:
+    page: photoshop
+    authors:
+      - Adobe
+  Krita:
+    page: krita
+    authors:
+      - KDE community
+  GIMP:
+    page: gimp
+    authors:
+      - The GIMP Development Team
+  Blendkrieg:
+    page: blendkrieg
+    authors:
+      - gbMichelle
+  H2V Blender Animation Exporter:
+    page: h2v-blender-animation-exporter
+    authors:
+      - General_101
+  H2V Blender JMS Exporter:
+    page: h2v-blender-jms-exporter
+    authors:
+      - General_101
+  Blender .gbxmodel Importer:
+    page: blender-gbxmodel-importer
+    authors:
+      - Fulsy
+      - TheGhost
+  HEK:
+    page: hek
     authors:
       - Bungie
       - Gearbox
-  - names: Bluestreak
-    authors: TheGhost
-  - names: Mozzarilla
-    sources: https://github.com/Sigmmma/mozzarilla
+  Blitzkrieg:
+    inherit: HEK
+    page: blitzkrieg
+  Tool:
+    inherit: HEK
+    page: tool
+  Guerilla:
+    inherit: HEK
+    page: guerilla
+  Sapien:
+    inherit: HEK
+    page: sapien
+  LM_Tool:
+    page: lm_tool
+    authors:
+      - gbMichelle
+  Bluestreak:
+    page: bluestreak
+    authors:
+      - TheGhost
+  OpenSauce:
+    page: opensauce
+    authors:
+      - Kornman
+      - TheFieryScythe
+      - ChokingVictim
+  OS_Guerilla:
+    inherit: OpenSauce
+    heading: os-guerilla
+  OS_Tool:
+    inherit: OpenSauce
+    heading: os-tool
+  OS_Sapien:
+    inherit: OpenSauce
+    heading: os-sapien
+  MEK:
+    page: mek
     authors:
       - MosesOfEgypt
       - gbMichelle
-  - names:
-      - invader-bitmap
-      - invader-edit-qt
-    sources: https://github.com/Kavawuvi/invader
-    authors: Kavawuvi
+  Mozzarilla:
+    inherit: MEK
+    heading: mozzarilla
+  Invader:
+    page: invader
+    authors:
+      - Kavawuvi
+      - Vaporeon
+  invader-edit-qt:
+    inherit: Invader
+    heading: invader-edit-qt
+  invader-bitmap:
+    inherit: Invader
+    heading: invader-bitmap
+  invader-build:
+    inherit: Invader
+    heading: invader-build
+
+# groups of tools which perform similar functions
+similarTools:
+  -
+    - Photoshop
+    - GIMP
+    - Krita
+  -
+    - Blender
+    - 3ds Max
+  -
+    - Guerilla
+    - OS_Guerilla
+    - Mozzarilla
+    - invader-edit-qt
+  -
+    - Tool
+    - OS_Tool
+    - LM_Tool
+  -
+    - Sapien
+    - OS_Sapien
+  -
+    - HEK
+    - MEK
+    - Invader
+    - OpenSauce
+  -
+    - Blitzkrieg
+    - Bluestreak
+    - H2V Blender JMS Exporter
+    - Blendkrieg
+
+resourceInfos:
+  jms:
+    page: jms
+  Animation data:
+    page: animation-data
+  blend:
+    page: blender
+  max:
+    page: 3dsmax
+  tif:
+    url: https://en.wikipedia.org/wiki/TIFF
+  bmp:
+    url: https://en.wikipedia.org/wiki/BMP_file_format
+  png:
+    url: https://en.wikipedia.org/wiki/Portable_Network_Graphics
+  tga:
+    url: https://en.wikipedia.org/wiki/Truevision_TGA
+  map:
+    page: map
+  actor:
+    page: actor
+  actor_variant:
+    page: actor_variant
+  antenna:
+    page: antenna
+  biped:
+    page: biped
+  bitmap:
+    page: bitmap
+  camera_track:
+    page: camera_track
+  color_table:
+    page: color_table
+  continuous_damage_effect:
+    page: continuous_damage_effect
+  contrail:
+    page: contrail
+  damage_effect:
+    page: damage_effect
+  decal:
+    page: decal
+  detail_object_collection:
+    page: detail_object_collection
+  device:
+    page: device
+  device_control:
+    page: device_control
+  device_light_fixture:
+    page: device_light_fixture
+  device_machine:
+    page: device_machine
+  dialogue:
+    page: dialogue
+  effect:
+    page: effect
+  equipment:
+    page: equipment
+  flag:
+    page: flag
+  fog:
+    page: fog
+  font:
+    page: font
+  garbage:
+    page: garbage
+  gbxmodel:
+    page: gbxmodel
+  globals:
+    page: globals
+  glow:
+    page: glow
+  grenade_hud_interface:
+    page: grenade_hud_interface
+  hud_globals:
+    page: hud_globals
+  hud_message_text:
+    page: hud_message_text
+  hud_number:
+    page: hud_number
+  input_device_defaults:
+    page: input_device_defaults
+  item:
+    page: item
+  item_collection:
+    page: item_collection
+  lens_flare:
+    page: lens_flare
+  light:
+    page: light
+  light_volume:
+    page: light_volume
+  lightning:
+    page: lightning
+  material_effects:
+    page: material_effects
+  meter:
+    page: meter
+  model:
+    page: model
+  model_animations:
+    page: model_animations
+  model_collision_geometry:
+    page: model_collision_geometry
+  multiplayer_scenario_description:
+    page: multiplayer_scenario_description
+  object:
+    page: object
+  particle:
+    page: particle
+  particle_system:
+    page: particle_system
+  physics:
+    page: physics
+  placeholder:
+    page: placeholder
+  point_physics:
+    page: point_physics
+  preferences_network_game:
+    page: preferences_network_game
+  projectile:
+    page: projectile
+  scenario:
+    page: scenario
+  scenario_structure_bsp:
+    page: scenario_structure_bsp
+  scenery:
+    page: scenery
+  shader:
+    page: shader
+  shader_environment:
+    page: shader_environment
+  shader_model:
+    page: shader_model
+  shader_transparent_chicago:
+    page: shader_transparent_chicago
+  shader_transparent_chicago_extended:
+    page: shader_transparent_chicago_extended
+  shader_transparent_generic:
+    page: shader_transparent_generic
+  shader_transparent_glass:
+    page: shader_transparent_glass
+  shader_transparent_meter:
+    page: shader_transparent_meter
+  shader_transparent_plasma:
+    page: shader_transparent_plasma
+  shader_transparent_water:
+    page: shader_transparent_water
+  sky:
+    page: sky
+  sound:
+    page: sound
+  sound_environment:
+    page: sound_environment
+  sound_looping:
+    page: sound_looping
+  sound_scenery:
+    page: sound_scenery
+  spheroid:
+    page: spheroid
+  string_list:
+    page: string_list
+  tag_collection:
+    page: tag_collection
+  ui_widget_collection:
+    page: ui_widget_collection
+  ui_widget_definition:
+    page: ui_widget_definition
+  unicode_string_list:
+    page: unicode_string_list
+  unit:
+    page: unit
+  unit_hud_interface:
+    page: unit_hud_interface
+  vehicle:
+    page: vehicle
+  virtual_keyboard:
+    page: virtual_keyboard
+  weapon:
+    page: weapon
+  weapon_hud_interface:
+    page: weapon_hud_interface
+  weather_particle_system:
+    page: weather_particle_system
+  wind:
+    page: wind
 
 # todo: cover all Bluestreak use cases
 workflows:
@@ -35,33 +332,30 @@ workflows:
       - bmp
       - png
       - tga
-
-  # 3d exports
+  - using: 3ds Max
+    edit: max
+  # 3d exports/imports
   - using:
       - Blitzkrieg
       - Bluestreak
     from: max
     to: jms
-  - using: H2V-Blender-JMS-Exporter
+  - using: Blender .gbxmodel Importer
+    from: gbxmodel
+    to: blend
+  - using: H2V Blender JMS Exporter
     from: blend
     to: jms
-  - using: H2V-Blender-Animation-Exporter
+  - using: H2V Blender Animation Exporter
     from: blend
-    to:
-      - jma
-      - jmm
-      - jmz
-      - jmw
-      - jmo
-
+    to: Animation data
   # bitmap compilation
-  - using:
-      - Tool
-      - invader-bitmap
+  - using: Tool
     from: tif
     to: bitmap
   - using: invader-bitmap
     from:
+      - tif
       - png
       - tga
       - bmp
@@ -72,16 +366,23 @@ workflows:
     to:
       - model_collision_geometry
       - gbxmodel
+      - scenario_structure_bsp
+  # map compilation
+  - using:
+      - Tool
+      - OS_Tool
+      - invader-build
+    from: scenario
+    to: map
+  # lightmaps
+  - using:
+      - Tool
+      - LM_Tool
+    edit: scenario_structure_bsp
   # animation compilation
   - using: Tool
-    from:
-      - jma
-      - jmm
-      - jmz
-      - jmw
-      - jmo
+    from: Animation data
     to: model_animations
-
   # scenario editing
   - using:
       - Sapien
@@ -89,7 +390,6 @@ workflows:
     edit:
       - scenario_structure_bsp
       - scenario
-
   # general purpose tag editors
   - using:
       - Guerilla

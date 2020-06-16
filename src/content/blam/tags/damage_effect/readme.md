@@ -1,6 +1,6 @@
 ---
 title: damage_effect
-template: tag
+tagName: damage_effect
 stub: true
 ---
 ...

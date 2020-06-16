@@ -1,6 +1,6 @@
 ---
 title: sound_looping
-template: tag
+tagName: sound_looping
 stub: true
 ---
 ...

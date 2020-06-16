@@ -1,6 +1,6 @@
 ---
 title: unicode_string_list
-template: tag
+tagName: unicode_string_list
 stub: true
 ---
 ...

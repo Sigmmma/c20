@@ -1,6 +1,6 @@
 ---
 title: dialogue
-template: tag
+tagName: dialogue
 stub: true
 ---
 ...

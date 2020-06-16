@@ -1,7 +1,8 @@
 ---
 title: device_control
-template: tag
+tagName: device_control
 stub: true
 keywords:
   - device
 ---
+...

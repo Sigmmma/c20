@@ -1,6 +1,6 @@
 ---
 title: shader_model
-template: tag
+tagName: shader_model
 stub: true
 img: mc.jpg
 imgCaption: The cyborg's body shader makes use of self-illumination, colour change masks, cubemapped specularity, and detail maps.

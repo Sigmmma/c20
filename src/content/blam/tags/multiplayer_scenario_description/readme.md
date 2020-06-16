@@ -1,6 +1,6 @@
 ---
 title: multiplayer_scenario_description
-template: tag
+tagName: multiplayer_scenario_description
 stub: true
 ---
 ...

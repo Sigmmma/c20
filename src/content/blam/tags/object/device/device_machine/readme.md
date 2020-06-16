@@ -1,6 +1,6 @@
 ---
 title: device_machine
-template: tag
+tagName: device_machine
 img: c20-elevator.jpg
 imgCaption: "c20's elevators are a large device_machine"
 stub: true

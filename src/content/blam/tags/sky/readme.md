@@ -1,6 +1,6 @@
 ---
 title: sky
-template: tag
+tagName: sky
 stub: true
 ---
 ...

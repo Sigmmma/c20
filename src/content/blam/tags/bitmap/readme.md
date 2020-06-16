@@ -1,6 +1,6 @@
 ---
 title: bitmap
-template: tag
+tagName: bitmap
 img: "bitmap_example.jpg"
 imgCaption: A typical level texture bitmap, used for environment shaders
 thanks:

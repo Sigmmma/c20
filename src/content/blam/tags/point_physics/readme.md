@@ -1,6 +1,6 @@
 ---
 title: point_physics
-template: tag
+tagName: point_physics
 stub: true
 ---
 ...

@@ -1,6 +1,6 @@
 ---
 title: Tags
-template: tagIndex
+tagIndex: "h1"
 thanks:
   - to: Kavawuvi
     for: Information about invalid tags

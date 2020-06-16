@@ -1,6 +1,6 @@
 ---
 title: projectile
-template: tag
+tagName: projectile
 stub: true
 ---
 ...

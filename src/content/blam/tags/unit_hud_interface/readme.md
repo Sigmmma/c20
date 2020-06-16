@@ -1,6 +1,6 @@
 ---
 title: unit_hud_interface
-template: tag
+tagName: unit_hud_interface
 stub: true
 ---
 ...

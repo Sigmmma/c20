@@ -1,6 +1,6 @@
 ---
 title: weather_particle_system
-template: tag
+tagName: weather_particle_system
 stub: true
 ---
 ...

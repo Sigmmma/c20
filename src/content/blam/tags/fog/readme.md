@@ -1,6 +1,6 @@
 ---
 title: fog
-template: tag
+tagName: fog
 img: fog.jpg
 imgCaption: "A fog plane exists under Gephyrophobia's bridge"
 keywords:

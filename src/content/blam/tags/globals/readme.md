@@ -1,6 +1,6 @@
 ---
 title: globals
-template: tag
+tagName: globals
 stub: true
 ---
 ...

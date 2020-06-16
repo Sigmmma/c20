@@ -1,6 +1,6 @@
 ---
 title: sound_environment
-template: tag
+tagName: sound_environment
 stub: true
 ---
 

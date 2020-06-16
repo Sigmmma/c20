@@ -1,6 +1,6 @@
 ---
 title: shader_transparent_glass
-template: tag
+tagName: shader_transparent_glass
 stub: true
 ---
 ...

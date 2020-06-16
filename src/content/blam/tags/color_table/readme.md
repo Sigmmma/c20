@@ -1,6 +1,6 @@
 ---
 title: color_table
-template: tag
+tagName: color_table
 stub: true
 ---
 ...

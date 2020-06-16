@@ -1,6 +1,6 @@
 ---
 title: lightning
-template: tag
+tagName: lightning
 stub: true
 ---
 ...

@@ -1,6 +1,6 @@
 ---
 title: spheroid
-template: tag
+tagName: spheroid
 stub: true
 ---
 ...

@@ -1,6 +1,6 @@
 ---
 title: particle_system
-template: tag
+tagName: particle_system
 img: particle_system.jpg
 imgCaption: The flamethrower's fire begins bright and orange, and evolves to a smokey brown
 stub: true

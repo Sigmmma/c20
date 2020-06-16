@@ -8,7 +8,7 @@ const basicTagsList = glob.sync(path.join(__dirname, "tags", "*.yml")).map(tagFi
   return yaml.safeLoad(fs.readFileSync(tagFileName, "utf8"));
 });
 
-const {tools, workflows} = yaml.safeLoad(fs.readFileSync(path.join(__dirname, "tools.yml"), "utf8"));
+const {toolInfos, resourceInfos, similarTools, workflows} = yaml.safeLoad(fs.readFileSync(path.join(__dirname, "tools.yml"), "utf8"));
 
 function strAsList(strOrList) {
   if (!strOrList) return null;
@@ -55,47 +55,75 @@ function buildData(invaderStructDefs) {
     );
   }
 
-  //todo: md rendering, support downloads, URLs (or use page info??)
-  const toolsExpanded = tools.flatMap(group => {
-    const names = strAsList(group.names);
-    const authors = strAsList(group.authors);
-    const sources = strAsList(group.sources);
-    return names.map(name => ({name, authors, sources}));
-  });
-
-  const getToolInfo = (toolName) => {
-    return toolsExpanded.find(it => matchIgnoreCase(it.name, toolName));
+  const getToolInfoByName = (toolName) => {
+    let result = {};
+    while (toolName) {
+      const toolInfo = toolInfos[toolName];
+      if (!toolInfo) {
+        throw new Error(`Tool '${toolName}' is undefined`);
+      }
+      result = {...toolInfo, ...result};
+      toolName = toolInfo.inherit;
+    }
+    return result;
   };
 
-  const workflowsExpanded = workflows.flatMap(group => {
-    const usingMulti = strAsList(group.using);
-    const editMulti = strAsList(group.edit);
-    const fromMulti = strAsList(group.from);
-    const toMulti = strAsList(group.to);
+  const getResourceInfoByName = (resourceName) => {
+    let result = {};
+    while (resourceName) {
+      const resourceInfo = resourceInfos[resourceName];
+      if (!resourceInfo) {
+        throw new Error(`Resource '${resourceName}' is undefined`);
+      }
+      result = {...resourceInfo, ...result};
+      resourceName = resourceInfo.inherit;
+    }
+    return result;
+  };
+
+  const getSimilarToolNames = (toolName) => {
+    const group = similarTools.find(group => group.includes(toolName)) || [];
+    return group.filter(otherToolName => otherToolName != toolName);
+  };
+
+  const workflowsExpanded = workflows.flatMap(workflow => {
+    const usingMulti = strAsList(workflow.using);
+    const editMulti = strAsList(workflow.edit);
+    const fromMulti = strAsList(workflow.from);
+    const toMulti = strAsList(workflow.to);
     if (editMulti) {
       return usingMulti.flatMap(using =>
-        editMulti.map(edit => ({using, edit}))
+        editMulti.map(edit => ({toolName: using, edit}))
       );
     } else if (fromMulti && toMulti) {
       return usingMulti.flatMap(using =>
         fromMulti.flatMap(from =>
-          toMulti.map(to => ({using, from, to}))
+          toMulti.map(to => ({toolName: using, from, to}))
         )
       );
     }
   });
 
-  const getResourceWorkflows = (resource) => {
+  const getToolWorkflows = (toolName) => {
     return workflowsExpanded.filter(flow =>
-      matchIgnoreCase(flow.edit, resource) ||
-        matchIgnoreCase(flow.to, resource) ||
-        matchIgnoreCase(flow.from, resource)
+      matchIgnoreCase(flow.toolName, toolName)
+    );
+  };
+
+  const getResourceWorkflows = (resourceName) => {
+    return workflowsExpanded.filter(flow =>
+      matchIgnoreCase(flow.edit, resourceName) ||
+        matchIgnoreCase(flow.to, resourceName) ||
+        matchIgnoreCase(flow.from, resourceName)
     );
   };
 
   return {
-    getToolInfo,
+    getToolInfoByName,
+    getSimilarToolNames,
+    getToolWorkflows,
     getResourceWorkflows,
+    getResourceInfoByName,
     tags,
     tagsById,
     tagsByName,

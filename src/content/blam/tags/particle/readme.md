@@ -1,6 +1,6 @@
 ---
 title: particle
-template: tag
+tagName: particle
 stub: true
 img: particle.jpg
 imgCaption: Bullet impact sparks are an example of particles.

@@ -1,6 +1,6 @@
 ---
 title: font
-template: tag
+tagName: font
 stub: true
 ---
 ...

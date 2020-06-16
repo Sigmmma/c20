@@ -1,6 +1,6 @@
 ---
 title: shader_transparent_water
-template: tag
+tagName: shader_transparent_water
 img: water.jpg
 imgCaption: "A water shader used in _Death Island_"
 stub: true

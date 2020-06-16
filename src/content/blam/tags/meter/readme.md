@@ -1,6 +1,6 @@
 ---
 title: meter
-template: tag
+tagName: meter
 stub: true
 ---
 ...

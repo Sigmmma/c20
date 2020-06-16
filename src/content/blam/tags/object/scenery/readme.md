@@ -1,6 +1,6 @@
 ---
 title: scenery
-template: tag
+tagName: scenery
 img: scenery.jpg
 imgCaption: "Trees, boulders, landing beacons, and covenant crates are all instances of scenery"
 ---

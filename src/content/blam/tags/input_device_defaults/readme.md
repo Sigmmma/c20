@@ -1,6 +1,6 @@
 ---
 title: input_device_defaults
-template: tag
+tagName: input_device_defaults
 stub: true
 ---
 ...

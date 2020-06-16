@@ -1,6 +1,6 @@
 ---
 title: model_collision_geometry
-template: tag
+tagName: model_collision_geometry
 img: collisions.png
 imgCaption: "Collision geometry for many of Halo's vehicles, scenery, and bipeds"
 ---
@@ -39,9 +39,9 @@ Pathfinding spheres are imported from the collision jms file of your object. The
 
 Pathfinding spheres can also be created automatically in some cases:
 
-* When an artist doesn't specify any pathfinding spheres will place one at the object's origin at half the size of the bounding sphere (which can be either too small or too big)
+* When an artist doesn't specify any pathfinding spheres, the game will assume one at the object's origin at half the size of the bounding sphere (which can be either too small or too big).
 * Mass points in [physics tags][physics] also count as pathfinding spheres. AI will actively avoid these.
-* [Units][unit] by default also have a pathfinding sphere around their feet at the size of the width of their physics pill.
+* [Units][unit] by default also have a pathfinding sphere around their feet with the same width as their physics pill.
 
 ## Limits
 model_collision_geometry tags can only have up to 16 pathfinding spheres<sup>(confirmation needed)</sup>.

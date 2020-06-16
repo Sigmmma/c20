@@ -1,6 +1,6 @@
 ---
 title: flag
-template: tag
+tagName: flag
 stub: true
 img: flag.jpg
 imgCaption: CTF flags are the only use of flag tags in Halo 1.

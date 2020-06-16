@@ -1,6 +1,6 @@
 ---
 title: object (abstract tag)
-template: tag
+tagName: object
 img: objects.jpg
 imgCaption: Various examples of objects, including projectiles, weapons, and units.
 ---

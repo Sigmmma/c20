@@ -1,6 +1,6 @@
 ---
 title: Guerilla
-template: tool
+toolName: Guerilla
 img: level_guerilla_01_large.gif
 imgCaption: "A screenshot from the official HEK tutorial showing how to change a [scenario's][scenario] [sky][] reference"
 stub: true

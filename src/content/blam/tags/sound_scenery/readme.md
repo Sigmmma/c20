@@ -1,6 +1,6 @@
 ---
 title: sound_scenery
-template: tag
+tagName: sound_scenery
 img: ssce.jpg
 imgCaption: Sound scenery is used along Timberland's river, made visible in Sapien using `debug_sound 1`
 thanks:

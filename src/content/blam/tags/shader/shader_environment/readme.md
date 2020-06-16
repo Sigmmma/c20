@@ -1,6 +1,6 @@
 ---
 title: shader_environment
-template: tag
+tagName: shader_environment
 stub: true
 img: bloodgulch.jpg
 imgCaption: A shader_environment can be used to blend between two detail maps.

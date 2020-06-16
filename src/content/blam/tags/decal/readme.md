@@ -1,6 +1,6 @@
 ---
 title: decal
-template: tag
+tagName: decal
 img: decals.jpg
 imgCaption: Painted signs, bullet holes, and blood splats are all decal instances.
 ---

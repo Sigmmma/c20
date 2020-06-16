@@ -1,6 +1,6 @@
 ---
 title: item_collection
-template: tag
+tagName: item_collection
 stub: true
 ---
 ...

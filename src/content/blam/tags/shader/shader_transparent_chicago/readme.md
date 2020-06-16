@@ -1,6 +1,6 @@
 ---
 title: shader_transparent_chicago
-template: tag
+tagName: shader_transparent_chicago
 stub: true
 ---
 ...

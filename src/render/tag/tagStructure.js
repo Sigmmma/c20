@@ -29,7 +29,7 @@ const fieldInfo = (field, fieldComments, metaIndex) => {
   const info = [];
 
   if (field.unused) {
-    info.push(`Unused${defAnchor(metaIndex.resolveSlug("tags", "unused-tags-and-fields"))} by Halo.`)
+    info.push(`Unused${defAnchor(metaIndex.resolveUrl("tags", "unused-tags-and-fields"))} by Halo.`)
   }
   if (field.minimum) {
     info.push(`Minimum: ${field.minimum}`);
@@ -44,10 +44,10 @@ const fieldInfo = (field, fieldComments, metaIndex) => {
     info.push("Read-only data, not meant to be edited by hand.");
   }
   if (field.non_cached) {
-    info.push(`Not included when the tag is compiled into a <a href="${metaIndex.resolveSlug("tags", "blocks")}">map cache</a>.`);
+    info.push(`Not included when the tag is compiled into a <a href="${metaIndex.resolveUrl("tags", "blocks")}">map cache</a>.`);
   }
   if (field.cache_only) {
-    info.push(`Only set when the tag is compiled into a <a href="${metaIndex.resolveSlug("tags", "blocks")}">map cache</a>.`);
+    info.push(`Only set when the tag is compiled into a <a href="${metaIndex.resolveUrl("tags", "blocks")}">map cache</a>.`);
   }
   if (field.engine) {
     info.push(`Only applicable to the following engine versions: ${field.engine.join(", ")}.`);
@@ -77,9 +77,9 @@ const fieldTypeDisplay = (field, fieldTypeStruct, metaIndex) => {
   let {typeName, compositeFields} = getExtraPrimitiveInfo(field.type);
 
   if (field.type == "TagReflexive") {
-    typeName = html`Block${defAnchor(metaIndex.resolveSlug("tags", "blocks"))}`;
+    typeName = html`Block${defAnchor(metaIndex.resolveUrl("tags", "blocks"))}`;
   } else if (field.type == "TagDependency") {
-    typeName = html`Reference${defAnchor(metaIndex.resolveSlug("tags", "tag-references-and-paths"))}`;
+    typeName = html`Reference${defAnchor(metaIndex.resolveUrl("tags", "tag-references-and-paths"))}`;
   } else if (field.type == "Index" && field.reflexive) {
     typeName = html`Index (${field.reflexive})`;
   }
@@ -238,7 +238,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel)
 
 const renderTagStructure = (tag, metaIndex) => {
   const invaderDefUrl = `${INVADER_TAG_BASE}/${tag.name}.json`;
-  const headings = [];
+  const headings = [{title: "Structure and fields", id: "structure-and-fields", level: 1}];
   const addHeading = (heading) => headings.push(heading);
   const htmlResult = html`
     ${heading("h1", "Structure and fields", "clear")}

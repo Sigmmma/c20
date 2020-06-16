@@ -1,6 +1,6 @@
 ---
 title: scenario
-template: tag
+tagName: scenario
 tagExtension: scenario
 stub: true
 ---

@@ -1,6 +1,6 @@
 ---
 title: continuous_damage_effect
-template: tag
+tagName: continuous_damage_effect
 stub: true
 ---
 ...

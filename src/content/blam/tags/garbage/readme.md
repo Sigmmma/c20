@@ -1,6 +1,6 @@
 ---
 title: garbage
-template: tag
+tagName: garbage
 stub: true
 ---
 ...

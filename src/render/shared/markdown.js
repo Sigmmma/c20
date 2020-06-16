@@ -93,6 +93,7 @@ const findHeaders = (mdSrc) => {
 };
 
 const renderMarkdown = (md, metaIndex, plaintext) => {
+  if (!md) return null;
   const mdSrc = metaIndex ? (md + "\n\n" + metaIndex.mdFooter) : md;
   return plaintext ?
     entities.decode(marked(mdSrc, plaintextRenderOptions)) :

@@ -1,6 +1,6 @@
 ---
 title: antenna
-template: tag
+tagName: antenna
 stub: true
 img: antenna.jpg
 imgCaption: These antennas on the scorpion tank are described by antenna tags.

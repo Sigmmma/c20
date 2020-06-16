@@ -1,6 +1,6 @@
 ---
 title: physics
-template: tag
+tagName: physics
 img: warthog-physics.jpg
 imgCaption: The mass points of a Warthog, extracted using [rec0's importer](http://hce.halomaps.org/index.cfm?fid=1669). See also the [scorpion](scorpion-physics.jpg).
 ---

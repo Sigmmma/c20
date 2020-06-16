@@ -1,6 +1,6 @@
 ---
 title: hud_globals
-template: tag
+tagName: hud_globals
 stub: true
 ---
 ...

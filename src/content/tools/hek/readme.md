@@ -1,10 +1,9 @@
 ---
 title: Halo Editing Kit (HEK)
-template: tool
+toolName: HEK
 info: |
-  * Download: http://hce.halomaps.org/index.cfm?fid=411
-  * Authors: Bungie, Gearbox Software
   * Release date: 2003
+  * [Download](http://hce.halomaps.org/index.cfm?fid=411)
 stub: true
 ---
 

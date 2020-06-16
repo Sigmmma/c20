@@ -1,6 +1,6 @@
 ---
 title: Acknowledgements
-template: thanksIndex
+thanksIndex: true
 keywords:
   - thanks
   - credits

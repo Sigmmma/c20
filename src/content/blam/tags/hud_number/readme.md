@@ -1,6 +1,6 @@
 ---
 title: hud_number
-template: tag
+tagName: hud_number
 stub: true
 ---
 ...

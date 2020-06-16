@@ -1,6 +1,6 @@
 ---
 title: model (Xbox)
-template: tag
+tagName: model
 stub: true
 keywords:
   - gbxmodel

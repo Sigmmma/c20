@@ -1,6 +1,6 @@
 ---
 title: hud_message_text
-template: tag
+tagName: hud_message_text
 stub: true
 ---
 ...

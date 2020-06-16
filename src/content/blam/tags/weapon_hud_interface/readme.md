@@ -1,6 +1,6 @@
 ---
 title: weapon_hud_interface
-template: tag
+tagName: weapon_hud_interface
 stub: true
 ---
 ...

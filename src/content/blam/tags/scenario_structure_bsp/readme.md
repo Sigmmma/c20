@@ -1,6 +1,6 @@
 ---
 title: scenario_structure_bsp
-template: tag
+tagName: scenario_structure_bsp
 img: bsp-debug.jpg
 imgCaption: Blood Gulch's BSP surfaces and clusters visualized in [Sapien][] using `debug_structure 1` and `debug_pvs 1`
 keywords:
@@ -64,7 +64,7 @@ When a JMS is compiled to BSP by [tool], connected convex faces with the materia
   </figcaption>
 </figure>
 
-Lightmaps are a special type of [bitmap][] referenced by the BSP which represents static lighting information. It is created using [Tool][] or [Sapien][] by the **[radiosity][]** process. A second set of UV coordinates is generated for the entire renderable BSP and a texture is rendered to apply levels of light to those surfaces.
+Lightmaps are a special type of [bitmap][] referenced by the BSP which represents static lighting information. It is created using [Tool][], [LM_Tool][], or [Sapien][] by the **[radiosity][]** process. A second set of UV coordinates is generated for the entire renderable BSP and a texture is rendered to apply levels of light to those surfaces.
 
 [Skies][sky], emissive [environment shaders][shader], [scenery][] with lights, and [light fixtures][device_light_fixture] can all be used as light sources to illuminate the BSP. Additionally, static objects like [scenery][] will cast shadows. Therefore you must to re-run radiosity any time these light sources change to see a change.
 

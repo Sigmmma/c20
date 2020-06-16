@@ -1,6 +1,6 @@
 ---
 title: actor
-template: tag
+tagName: actor
 stub: true
 ---
 ...

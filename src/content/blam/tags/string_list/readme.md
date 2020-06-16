@@ -1,6 +1,6 @@
 ---
 title: string_list
-template: tag
+tagName: string_list
 stub: true
 ---
 ...

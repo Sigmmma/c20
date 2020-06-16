@@ -1,6 +1,6 @@
 ---
 title: vehicle
-template: tag
+tagName: vehicle
 img: vehicles.jpg
 imgCaption: "Vehicles spawned using the command `cheat_all_vehicles`"
 ---

@@ -1,6 +1,6 @@
 ---
 title: actor_variant
-template: tag
+tagName: actor_variant
 stub: true
 ---
 ...
