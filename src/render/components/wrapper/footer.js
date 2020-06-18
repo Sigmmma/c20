@@ -1,4 +1,4 @@
-const {html, REPO_URL} = require("./bits");
+const {html, REPO_URL} = require("../bits");
 
 const LICENSE_URL = "https://creativecommons.org/licenses/by-sa/3.0/";
 

@@ -1,13 +1,13 @@
-const {anchor, detailsList} = require("../shared/bits");
+const {anchor, detailsList} = require("./bits");
 
+const workflowItemAnchor = (itemName, metaIndex) => {
+  const itemInfo = metaIndex.data.h1.getWorkflowItem(itemName);
+  const itemUrl = itemInfo.url || metaIndex.resolveUrl(itemInfo.page, itemInfo.heading);
+  return anchor(itemUrl, itemName);
+};
 
 const workflowsList = (thisItem, workflows, metaIndex) => {
-  const itemAnchor = (itemName) => {
-    const itemInfo = metaIndex.data.h1.getWorkflowItem(itemName);
-    const itemUrl = itemInfo.url || metaIndex.resolveUrl(itemInfo.page, itemInfo.heading);
-    return anchor(itemUrl, itemName);
-  };
-
+  const itemAnchor = (itemName) => workflowItemAnchor(itemName, metaIndex);
   return detailsList(
     "Workflows",
     workflows.map(flow => {
@@ -30,4 +30,4 @@ const workflowsList = (thisItem, workflows, metaIndex) => {
   );
 };
 
-module.exports = workflowsList;
+module.exports = {workflowsList, workflowItemAnchor};

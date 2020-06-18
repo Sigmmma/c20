@@ -1,5 +1,5 @@
-const {html, alert, escapeHtml, REPO_URL, ul, anchor, pageAnchor} = require("./bits");
-const {renderMarkdown} = require("./markdown");
+const {html, alert, escapeHtml, REPO_URL, ul, anchor, pageAnchor} = require("../bits");
+const {renderMarkdown} = require("../markdown");
 const footer = require("./footer");
 const header = require("./header");
 const breadcrumbs = require("./breadcrumbs");
@@ -10,8 +10,8 @@ const COLLAPSE_CHILD_PAGES = 8;
 const PREVIEW_LENGTH_CHARS = 100;
 
 const topLevelTopics = [
-  ["/blam/tags", "Tags"],
-  ["/games/h1", "Halo"]
+  ["/h1/tags", "Tags"],
+  ["/h1", "Halo"]
 ];
 
 const wrapper = (page, metaIndex, body) => {

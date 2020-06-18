@@ -1,4 +1,5 @@
-const {tagAnchor, renderMarkdown, html} = require("../shared");
+const {tagAnchor, html} = require("../bits");
+const {renderMarkdown} = require("../markdown");
 
 const tagsTable = (tags, metaIndex) => {
   const tagsSorted = [...tags];

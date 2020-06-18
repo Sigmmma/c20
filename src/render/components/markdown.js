@@ -100,7 +100,4 @@ const renderMarkdown = (md, metaIndex, plaintext) => {
     marked(mdSrc, htmlRenderOptions);
 };
 
-module.exports = {
-  findHeaders,
-  renderMarkdown
-};
+module.exports = {renderMarkdown, findHeaders};

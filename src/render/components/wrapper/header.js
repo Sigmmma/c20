@@ -1,4 +1,4 @@
-const {html, DISCORD_URL} = require("./bits");
+const {html, DISCORD_URL} = require("../bits");
 
 const header = () => html`
   <header class="top-header">

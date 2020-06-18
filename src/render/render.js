@@ -1,11 +1,8 @@
 const {
   detailsList, anchor, metabox, ul, wrapper, renderMarkdown, defAnchor,
-  html, alert, thanks: renderThanks, REPO_URL, heading, tagAnchor
-} = require("./shared");
-const R = require("ramda");
-const tagsTable = require("./tag/tagsTable");
-const renderTagStructure = require("./tag/tagStructure");
-const workflowsList = require("./workflows/workflowsList");
+  html, alert, thanks: renderThanks, REPO_URL, heading, tagAnchor,
+  workflowItemAnchor, workflowsList, tagsTable, renderTagStructure
+} = require("./components");
 
 const STUB_ALERT = {type: "danger", body: html`
   <p>🚧 This article is a stub. You can help expand it by submitting content in
@@ -140,9 +137,7 @@ module.exports = (page, metaIndex) => {
     if (itemInfo.similarTo && itemInfo.similarTo.length > 0) {
       metaboxProps.sections.push({
         body: detailsList("Similar to", itemInfo.similarTo.map(itemName => {
-          const otherItem = metaIndex.data.h1.getWorkflowItem(itemName);
-          const otherItemUrl = otherItem.url || metaIndex.resolveUrl(otherItem.page, otherItem.heading);
-          return anchor(otherItemUrl, itemName);
+          return workflowItemAnchor(itemName, metaIndex);
         }))
       });
     }

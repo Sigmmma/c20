@@ -1,4 +1,5 @@
-const {html, classes, renderMarkdown, tagAnchor, ul, heading, detailsList, slugify, alert, defAnchor} = require("../shared");
+const {html, classes, tagAnchor, ul, heading, detailsList, slugify, alert, defAnchor} = require("../bits");
+const {renderMarkdown} = require("../markdown");
 const getExtraPrimitiveInfo = require("./primitives");
 
 const INVADER_TAG_BASE = "https://github.com/Kavawuvi/invader/blob/master/src/tag/hek/definition";

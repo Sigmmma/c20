@@ -1,4 +1,4 @@
-const {ol, pageAnchor, escapeHtml} = require("./bits");
+const {ol, pageAnchor, escapeHtml} = require("../bits");
 
 const HOME_TITLE_OVERRIDE = "Home";
 
