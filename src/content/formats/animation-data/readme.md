@@ -1,6 +1,6 @@
 ---
 title: Animation data
-resourceName: Animation data
+workflowName: Animation data
 stub: true
 keywords:
   - jma

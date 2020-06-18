@@ -5,6 +5,7 @@ const {
 const R = require("ramda");
 const tagsTable = require("./tag/tagsTable");
 const renderTagStructure = require("./tag/tagStructure");
+const workflowsList = require("./workflows/workflowsList");
 
 const STUB_ALERT = {type: "danger", body: html`
   <p>🚧 This article is a stub. You can help expand it by submitting content in
@@ -44,50 +45,6 @@ module.exports = (page, metaIndex) => {
   if (page.toolName) {
     metaboxProps.metaTitle = `\u{1F527} Tool: ${page.toolName}`;
     metaboxProps.metaClass = "content-tool";
-
-    const toolInfo = metaIndex.data.h1.getToolInfoByName(page.toolName);
-    if (toolInfo) {
-      if (toolInfo.authors && toolInfo.authors.length > 0) {
-        metaboxProps.sections.push({
-          body: detailsList("Authors", toolInfo.authors)
-        });
-      }
-    }
-
-    const similarToolsNames = metaIndex.data.h1.getSimilarToolNames(page.toolName);
-    if (similarToolsNames.length > 0) {
-      metaboxProps.sections.push({
-        cssClass: "content-tool-minor",
-        body: detailsList("Similar to", similarToolsNames.map(otherToolName => {
-          const otherToolInfo = metaIndex.data.h1.getToolInfoByName(otherToolName);
-          const otherToolUrl = otherToolInfo.url || metaIndex.resolveUrl(otherToolInfo.page, otherToolInfo.heading);
-          return anchor(otherToolUrl, otherToolName);
-        }))
-      });
-    }
-
-    const workflows = metaIndex.data.h1.getToolWorkflows(page.toolName);
-    if (workflows.length > 0) {
-      metaboxProps.sections.push({
-        body: detailsList(
-          "Workflows",
-          workflows.map(flow => {
-            if (flow.edit) {
-              const editResourceInfo = metaIndex.data.h1.getResourceInfoByName(flow.edit);
-              const editResourceUrl = editResourceInfo.url || metaIndex.resolveUrl(editResourceInfo.page, editResourceInfo.heading);
-              return `Edit ${anchor(editResourceUrl, flow.edit)}`;
-            } else if (flow.from && flow.to) {
-              const fromResourceInfo = metaIndex.data.h1.getResourceInfoByName(flow.from);
-              const fromResourceUrl = fromResourceInfo.url || metaIndex.resolveUrl(fromResourceInfo.page, fromResourceInfo.heading);
-              const toResourceInfo = metaIndex.data.h1.getResourceInfoByName(flow.to);
-              const toResourceUrl = toResourceInfo.url || metaIndex.resolveUrl(toResourceInfo.page, toResourceInfo.heading);
-              return `${anchor(fromResourceUrl, flow.from)} to ${anchor(toResourceUrl, flow.to)}`;
-            }
-            throw new Error(`Cannot render unhandled workflow: ${JSON.stringify(flow)}`);
-          })
-        )
-      });
-    }
   }
 
   if (page.tagName) {
@@ -172,38 +129,27 @@ module.exports = (page, metaIndex) => {
     thanks = thanks.concat(metaIndex.data.h1.tagThanks);
   }
 
-  const resourceName = page.resourceName || page.tagName;
-  if (resourceName) {
-    const workflows = metaIndex.data.h1.getResourceWorkflows(resourceName);
-    if (workflows.length > 0) {
+  const workflowItemName = page.workflowName || page.toolName || page.tagName;
+  if (workflowItemName) {
+    const itemInfo = metaIndex.data.h1.getWorkflowItem(workflowItemName);
+    if (itemInfo.authors && itemInfo.authors.length > 0) {
+      metaboxProps.sections.push({
+        body: detailsList("Authors", itemInfo.authors)
+      });
+    }
+    if (itemInfo.similarTo && itemInfo.similarTo.length > 0) {
+      metaboxProps.sections.push({
+        body: detailsList("Similar to", itemInfo.similarTo.map(itemName => {
+          const otherItem = metaIndex.data.h1.getWorkflowItem(itemName);
+          const otherItemUrl = otherItem.url || metaIndex.resolveUrl(otherItem.page, otherItem.heading);
+          return anchor(otherItemUrl, itemName);
+        }))
+      });
+    }
+    if (itemInfo.workflows && itemInfo.workflows.length > 0) {
       metaboxProps.sections.push({
         cssClass: "content-tool-minor",
-        body: detailsList(
-          "Workflows",
-          workflows.map(flow => {
-            const toolInfo = metaIndex.data.h1.getToolInfoByName(flow.toolName);
-            const toolPageUrl = toolInfo.url || metaIndex.resolveUrl(toolInfo.page, toolInfo.heading);
-            const toolLink = anchor(toolPageUrl, flow.toolName);
-            if (flow.edit) {
-              return `Edit with ${toolLink}`;
-            } else if (flow.from && flow.to) {
-              const fromResourceInfo = metaIndex.data.h1.getResourceInfoByName(flow.from);
-              const fromResourceUrl = fromResourceInfo.url || metaIndex.resolveUrl(fromResourceInfo.page, fromResourceInfo.heading);
-              const fromAnchor = anchor(fromResourceUrl, flow.from);
-              const toResourceInfo = metaIndex.data.h1.getResourceInfoByName(flow.to);
-              const toResourceUrl = toResourceInfo.url || metaIndex.resolveUrl(toResourceInfo.page, toResourceInfo.heading);
-              const toAnchor = anchor(toResourceUrl, flow.to);
-              //use &nbsp; to join words for better appearance on narrow windows
-              if (flow.from == resourceName) {
-                return `To&nbsp;${toAnchor} with&nbsp;${toolLink}`;
-              } else if (flow.to == resourceName) {
-                return `From&nbsp;${fromAnchor} with&nbsp;${toolLink}`;
-              } else {
-                return `From&nbsp;${fromAnchor} to&nbsp;${toAnchor} with&nbsp;${toolLink}`;
-              }
-            }
-          })
-        )
+        body: workflowsList(workflowItemName, itemInfo.workflows, metaIndex)
       });
     }
   }

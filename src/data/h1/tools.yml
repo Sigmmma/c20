@@ -1,5 +1,6 @@
 # todo: document, confirm authorship
-toolInfos:
+workflowItems:
+  # tools:
   Blender:
     page: blender
     authors:
@@ -99,46 +100,11 @@ toolInfos:
   invader-build:
     inherit: Invader
     heading: invader-build
-
-# groups of tools which perform similar functions
-similarTools:
-  -
-    - Photoshop
-    - GIMP
-    - Krita
-  -
-    - Blender
-    - 3ds Max
-  -
-    - Guerilla
-    - OS_Guerilla
-    - Mozzarilla
-    - invader-edit-qt
-  -
-    - Tool
-    - OS_Tool
-    - LM_Tool
-  -
-    - Sapien
-    - OS_Sapien
-  -
-    - HEK
-    - MEK
-    - Invader
-    - OpenSauce
-  -
-    - Blitzkrieg
-    - Bluestreak
-    - H2V Blender JMS Exporter
-    - Blendkrieg
-
-resourceInfos:
+  # resources:
   jms:
     page: jms
   Animation data:
     page: animation-data
-  blend:
-    page: blender
   max:
     page: 3dsmax
   tif:
@@ -318,11 +284,46 @@ resourceInfos:
   wind:
     page: wind
 
+# groups of tools which perform similar functions
+similarItems:
+  -
+    - model
+    - gbxmodel
+  -
+    - Photoshop
+    - GIMP
+    - Krita
+  -
+    - Blender
+    - 3ds Max
+  -
+    - Guerilla
+    - OS_Guerilla
+    - Mozzarilla
+    - invader-edit-qt
+  -
+    - Tool
+    - OS_Tool
+    - LM_Tool
+  -
+    - Sapien
+    - OS_Sapien
+  -
+    - HEK
+    - MEK
+    - Invader
+    - OpenSauce
+  -
+    - Blitzkrieg
+    - Bluestreak
+    - H2V Blender JMS Exporter
+    - Blendkrieg
+  -
+    - Blender .gbxmodel Importer
+    - Bluestreak
+
 # todo: cover all Bluestreak use cases
 workflows:
-  # asset authoring
-  - using: Blender
-    edit: blend
   - using:
       - Photoshop
       - GIMP
@@ -342,12 +343,12 @@ workflows:
     to: jms
   - using: Blender .gbxmodel Importer
     from: gbxmodel
-    to: blend
+    to: Blender
   - using: H2V Blender JMS Exporter
-    from: blend
+    from: Blender
     to: jms
   - using: H2V Blender Animation Exporter
-    from: blend
+    from: Blender
     to: Animation data
   # bitmap compilation
   - using: Tool
@@ -436,7 +437,6 @@ workflows:
       - lightning
       - material_effects
       - meter
-      - model
       - model_animations
       - model_collision_geometry
       - multiplayer_scenario_description

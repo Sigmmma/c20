@@ -1,6 +1,6 @@
 ---
 title: Map cache file
-resourceName: map
+workflowName: map
 img: map-icon.jpg
 thanks:
   - to: Masterz1337
