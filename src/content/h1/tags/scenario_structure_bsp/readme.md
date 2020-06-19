@@ -19,7 +19,7 @@ thanks:
 
 ---
 
-Commonly referred to as the **BSP**, this tag contains level geometry, weather data, material assignments, AI pathfinding information, lightmaps, and other data structures. The name "BSP" is commonly used to refer to non-[object][] level geometry in general. Aside from sounds and [bitmaps][bitmap], the BSP tends to be one of the largest tags in a map.
+Commonly referred to as the **BSP**, this tag contains level geometry, weather data, material assignments, AI pathfinding information, [lightmaps][], and other data structures. The name "BSP" is commonly used to refer to non-[object][] level geometry in general. Aside from sounds and [bitmaps][bitmap], the BSP tends to be one of the largest tags in a map.
 
 While a [scenario][] can reference multiple BSPs, Halo can only have a single BSP loaded at a time. Transitions between BSPs can be scripted (`switch_bsp`), e.g. using trigger volumes. Objects in unloaded BSPs are not simulated.
 
@@ -54,21 +54,7 @@ When a JMS is compiled to BSP by [tool], connected convex faces with the materia
 
 # Lightmaps
 
-<figure>
-  <a href="lightmaps_example.jpg">
-    <img src="lightmaps_example.jpg" alt="Timberland with just lightmaps rendered"/>
-  </a>
-  <figcaption>
-    <p>Timberland's diffuse textures disabled by running <code>rasterizer_environment_diffuse_textures 0</code>,
-    showing just lightmap and specular components of the BSP</p>
-  </figcaption>
-</figure>
-
-Lightmaps are a special type of [bitmap][] referenced by the BSP which represents static lighting information. It is created using [Tool][], [LM_Tool][], or [Sapien][] by the **[radiosity][]** process. A second set of UV coordinates is generated for the entire renderable BSP and a texture is rendered to apply levels of light to those surfaces.
-
-[Skies][sky], emissive [environment shaders][shader], [scenery][] with lights, and [light fixtures][device_light_fixture] can all be used as light sources to illuminate the BSP. Additionally, static objects like [scenery][] will cast shadows. Therefore you must to re-run radiosity any time these light sources change to see a change.
-
-Beyond just affecting the surface colour, the lightmap also encodes<sup>(how?)</sup> the primary light direction for each vertex which determines the shadow directions for dynamic objects like [vehicles][vehicle] and [bipeds][biped].
+_See main page: [Lightmaps][]._
 
 # Lens flare markers
 
@@ -104,4 +90,3 @@ Bungie was aware of this bug, and even implemented a Sapien feature to troublesh
 
 [about-bsp]: https://en.wikipedia.org/wiki/Binary_space_partitioning
 [convex]: https://en.wikipedia.org/wiki/Convex_set
-[radiosity]: https://en.wikipedia.org/wiki/Radiosity_(computer_graphics)

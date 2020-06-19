@@ -6,11 +6,46 @@ const workflowItemAnchor = (itemName, metaIndex) => {
   return anchor(itemUrl, itemName);
 };
 
+const flowsEqual = (flowA, flowB) => {
+  return flowA.edit == flowB.edit &&
+    flowA.from == flowB.from &&
+    flowA.to == flowB.to &&
+    flowA.using == flowB.using;
+};
+
+const isReverse = (flowA, flowB) => {
+  return flowA.from && flowB.from && flowA.to && flowB.to &&
+    flowA.using == flowB.using &&
+    flowA.from == flowB.to &&
+    flowA.to == flowB.from;
+};
+
 const workflowsList = (thisItem, workflows, metaIndex) => {
   const itemAnchor = (itemName) => workflowItemAnchor(itemName, metaIndex);
+
+  const filteredFlows = [];
+  for (let flow of workflows) {
+    //at this time we don't need to show cyclic flows
+    if (flow.from && flow.to && flow.from == flow.to) {
+      continue;
+    }
+    //ignore duplicates
+    if (filteredFlows.find(other => flowsEqual(other, flow))) {
+      continue;
+    }
+    //we only want one list item for bi-directional flow pairs
+    const reverse = filteredFlows.find(other => isReverse(other, flow));
+    if (reverse) {
+      reverse.bidi = true;
+      continue;
+    }
+
+    filteredFlows.push(flow);
+  }
+
   return detailsList(
     "Workflows",
-    workflows.map(flow => {
+    filteredFlows.map(flow => {
       if (flow.edit && flow.using) {
         return flow.using == thisItem ?
           `Edit ${itemAnchor(flow.edit)}` :
@@ -18,9 +53,9 @@ const workflowsList = (thisItem, workflows, metaIndex) => {
       } else if (flow.from && flow.to && flow.using) {
         //use &nbsp; to join words for better appearance on narrow windows
         if (thisItem == flow.from) {
-          return `To&nbsp;${itemAnchor(flow.to)} with&nbsp;${itemAnchor(flow.using)}`;
+          return `${flow.bidi ? "To/from" : "To"}&nbsp;${itemAnchor(flow.to)} with&nbsp;${itemAnchor(flow.using)}`;
         } else if (thisItem == flow.to) {
-          return `From&nbsp;${itemAnchor(flow.from)} with&nbsp;${itemAnchor(flow.using)}`;
+          return `${flow.bidi ? "To/from" : "From"}&nbsp;${itemAnchor(flow.from)} with&nbsp;${itemAnchor(flow.using)}`;
         } else if (thisItem == flow.using) {
           return `From&nbsp;${itemAnchor(flow.from)} to&nbsp;${itemAnchor(flow.to)}`;
         }

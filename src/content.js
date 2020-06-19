@@ -137,12 +137,6 @@ async function buildMetaIndex(contentDir, invaderDefsDir, baseUrl, packageVersio
     return page;
   };
 
-  const findToolPageByName = (toolName) => {
-    const page = pages.find(page => page.toolName == toolName);
-    if (!page) throw new Error(`Failed to find tool page for ${toolName}`);
-    return page;
-  };
-
   const resolvePage = (slug, headingId) => {
     const page = pages.find(page => page._slug == slug && (!headingId || page._headers.find(hdg => hdg.id == headingId)));
     if (!page) throw new Error(`Failed to find page with slug '${slug}' and headingId '${headingId}'`);
@@ -158,7 +152,6 @@ async function buildMetaIndex(contentDir, invaderDefsDir, baseUrl, packageVersio
   return {
     packageVersion,
     findTagPageByName,
-    findToolPageByName,
     resolvePage,
     resolveUrl,
     pages,

@@ -15,12 +15,6 @@ function strAsList(strOrList) {
   return typeof(strOrList) === "string" ? [strOrList] : strOrList;
 }
 
-function matchIgnoreCase(a, b) {
-  if (!a) return !b;
-  if (!b) return !a;
-  return a.toLowerCase() == b.toLowerCase();
-}
-
 function buildData(invaderStructDefs) {
   //augment the basic list of tags with more detail provided by external libs
   const tags = basicTagsList.map(basicTag => ({
@@ -79,10 +73,10 @@ function buildData(invaderStructDefs) {
       .filter(otherName => otherName != itemName);
 
     const workflows = workflowsExpanded.filter(flow =>
-      matchIgnoreCase(flow.edit, itemName) ||
-        matchIgnoreCase(flow.using, itemName) ||
-        matchIgnoreCase(flow.to, itemName) ||
-        matchIgnoreCase(flow.from, itemName)
+      flow.edit == itemName ||
+        flow.using == itemName ||
+        flow.to == itemName ||
+        flow.from == itemName
     );
 
     let result = {similarTo, workflows};

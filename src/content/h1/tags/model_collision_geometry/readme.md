@@ -32,7 +32,7 @@ In Halo CE AI can figure out where to go by checking the pathfinding data on the
 
 Pathfinding spheres are spherical markers on objects that AI actively avoid walking into. This helps because it allows the author of the model to tell the AI exactly where not to go. So it won't walk into walls, or rocks or trees.
 
-As far as we know all object types can make use of pathfinding spheres.
+As far as we know all object types can make use of pathfinding spheres. Note that pathfinding spheres outside the object's bounding sphere are ignored.
 
 ## How to add them
 Pathfinding spheres are imported from the collision jms file of your object. They are marked with `#pathfinder` and their radius is the actual radius that the AI will avoid walking in relation to the mid-point.
@@ -40,8 +40,8 @@ Pathfinding spheres are imported from the collision jms file of your object. The
 Pathfinding spheres can also be created automatically in some cases:
 
 * When an artist doesn't specify any pathfinding spheres, the game will assume one at the object's origin at half the size of the bounding sphere (which can be either too small or too big).
-* Mass points in [physics tags][physics] also count as pathfinding spheres. AI will actively avoid these.
-* [Units][unit] by default also have a pathfinding sphere around their feet with the same width as their physics pill.
+* Vehicle mass points (see [physics][]) also count as pathfinding spheres. AI will actively avoid these.
+* [Bipeds][biped] by default also have a pathfinding sphere around their feet with the same width as their physics pill.
 
 ## Limits
 model_collision_geometry tags can only have up to 16 pathfinding spheres<sup>(confirmation needed)</sup>.

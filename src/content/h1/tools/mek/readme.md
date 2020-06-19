@@ -5,7 +5,7 @@ img: screenshot.png
 imgCaption: Screenshot of the MEK tool Mozzarilla, a replacement for [Guerilla][]
 info: |
   * [Source](https://github.com/Sigmmma)
-  * [Development thread](https://opencarnage.net/index.php?/topic/7877-mozz-editing-kit-mek/)
+  * [Support Discord](https://discord.reclaimers.net)
 stub: true
 keywords:
   - tag-editor

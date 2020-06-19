@@ -75,13 +75,13 @@ a[href^="mailto:"]:after {
   font-size: 50%;
 }
 
-a[href^="/blam/tags/"]:after {
+a[href*="/tags/"]:after {
   content: "🏷️";
   vertical-align: super;
   font-size: 50%;
 }
 
-a[href^="/tools/"]:after {
+a[href*="/tools/"]:after {
   content: "🔧";
   vertical-align: super;
   font-size: 50%;
