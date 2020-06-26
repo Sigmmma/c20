@@ -52,6 +52,11 @@ Weather polyhedra are simple convex volumes where weather particles will not ren
 
 When a JMS is compiled to BSP by [tool], connected convex faces with the material name `+weatherpoly` will generate _weather polyhedra_. Within the tag, the polyhedra are represented as a center point, bounding radius, and up to 16 planes which enclose a volume.
 
+# Pathfinding data
+The BSP contains data on traversable surfaces which aid AI in pathfinding (walking to a destination). This data is generated automatically during BSP compilation and is retained even in when the BSP is compiled into multiplayer maps.
+
+The maximum pathfinding distance that Halo's engine permits is 3276.7 world units, an _extremely_ long distance.
+
 # Lightmaps
 
 _See main page: [Lightmaps][]._

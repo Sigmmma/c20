@@ -17,15 +17,26 @@ comments:
     - name: gravity scale
       md: ...
     - name: ground friction
-      md: ...
+      md: |
+        A coefficient which modifies the amount of friction applied to the vehicle
+        when colliding with "ground" surfaces, which may just mean any BSP surface
+        which is not a water plane. It is unknown if this also modifies friction
+        on scenery collisions. A typical value from the Warthog is 0.23.
     - name: ground depth
       md: ...
     - name: ground damp fraction
       md: ...
     - name: ground normal k1
-      md: ...
+      md: |
+        Used to determine how steep of a surface the vehicle can climb before its
+        powered mass points no longer have an effect. A typical value is ~0.7,
+        while a value near 1.0 allows vertical climbing assuming sufficient friction.
     - name: ground normal k0
-      md: ...
+      md: |
+        This is also used to determine how steep of a surface the vehicle can
+        climb and seems to be some sort of lower range bound for fading out
+        powered mass points. A typical value is ~0.5, with -1.0 allowing vertical
+        wall climbing.
     - name: water friction
       md: ...
     - name: water depth

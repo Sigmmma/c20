@@ -28,11 +28,9 @@ Pathfinding spheres (blue) for a50 shown in [Sapien][] after running `debug_obje
   </figcaption>
 </figure>
 
-In Halo CE AI can figure out where to go by checking the pathfinding data on the BSP. But when you place objects in a level this of course doesn't affect the BSP. The solution that Bungie came up with for this is pathfinding spheres.
+AI can figure out where to go by checking the pathfinding data on the [BSP][scenario_structure_bsp]. However, since objects like [scenery][] and [units][unit] are not part of the BSP, Bungie implemented _pathfinding spheres_: spherical markers on objects that AI actively avoid walking into.
 
-Pathfinding spheres are spherical markers on objects that AI actively avoid walking into. This helps because it allows the author of the model to tell the AI exactly where not to go. So it won't walk into walls, or rocks or trees.
-
-As far as we know all object types can make use of pathfinding spheres. Note that pathfinding spheres outside the object's bounding sphere are ignored.
+By placing these spheres in an object's collision model, artists can tell the AI exactly where _not_. As far as we know, all object types can make use of pathfinding spheres. Note that pathfinding spheres outside the object's bounding sphere are ignored.
 
 ## How to add them
 Pathfinding spheres are imported from the collision jms file of your object. They are marked with `#pathfinder` and their radius is the actual radius that the AI will avoid walking in relation to the mid-point.

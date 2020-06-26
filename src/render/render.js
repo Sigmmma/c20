@@ -13,7 +13,7 @@ module.exports = (page, metaIndex) => {
   let thanks = [];
   let alertProps = [];
   let keywords = page.keywords || [];
-  let searchTexts = [renderMarkdown(page._md, metaIndex, true)];
+  let searchTexts = [];
   const metaboxProps = {
     metaTitle: page.title,
     metaClass: null,
@@ -30,6 +30,10 @@ module.exports = (page, metaIndex) => {
       ...page._headers
     ]
   };
+
+  if (!page.noSearchMd) {
+    searchTexts.push(renderMarkdown(page._md, metaIndex, true));
+  }
 
   if (page.stub) {
     alertProps.push(STUB_ALERT);
@@ -49,6 +53,8 @@ module.exports = (page, metaIndex) => {
     if (!tag) {
       throw new Error(`Failed to find tag structure for ${page.title}`);
     }
+
+    keywords.push(tag.id);
 
     if (tag.parent) {
       metaboxProps.sections.push({

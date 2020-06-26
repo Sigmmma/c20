@@ -1,6 +1,7 @@
 ---
 title: Acknowledgements
 thanksIndex: true
+noSearchMd: true
 keywords:
   - thanks
   - credits

@@ -75,16 +75,17 @@ a[href^="mailto:"]:after {
   font-size: 50%;
 }
 
-a[href*="/tags/"]:after {
-  content: "🏷️";
-  vertical-align: super;
-  font-size: 50%;
-}
-
-a[href*="/tools/"]:after {
-  content: "🔧";
-  vertical-align: super;
-  font-size: 50%;
+a:not([href^="http"]) {
+  &[href*="/tags/"]:after {
+    content: "🏷️";
+    vertical-align: super;
+    font-size: 50%;
+  }
+  &[href*="/tools/"]:after {
+    content: "🔧";
+    vertical-align: super;
+    font-size: 50%;
+  }
 }
 
 button {
