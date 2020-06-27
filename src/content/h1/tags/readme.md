@@ -37,7 +37,7 @@ The types of tags and their structures changed during the game's development. Ev
 For example, [Guerilla][] allows users to create new [spheroid][] tags despite them containing no fields and being totally useless. The [actor][] tag contains an unused [weapon][] reference and probably predates the creation of [actor_variant][], which references both.
 
 ## Invalid data
-Not only were fields added and removed during development, but some were repurposed to different types without correcting existing tag instances. This has resulted in tags which shipped with Halo's maps containing some technically invalid data. The tag `warthog gunner.actor_variant` still contains a projectile reference overlapping the space of 4 fields (starting with grenade type) in the final version of the tag structure.
+Not only were fields added and removed during development, but some were repurposed to different types without correcting existing tag instances. This has resulted in tags which shipped with Halo's maps containing some technically invalid data. The tag `warthog gunner.actor_variant` still contains a [projectile][] reference overlapping the space of 4 fields (starting with grenade type) in the final version of the tag structure.
 
 Invalid data is common in extracted tags, either because they were already invalid or from using buggy tools like _HEK+_. Using invalid tags for new maps can produce undefined behaviour in-game and cause [Sapien][] to crash. A tag which works in Custom Edition may cause crashes in MCC.
 

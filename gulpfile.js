@@ -70,7 +70,7 @@ async function contentPages() {
 function watchSources() {
   gulp.watch([paths.srcStaticAssets], staticAssets);
   gulp.watch([paths.srcStylesAny], assetStyles);
-  gulp.watch([paths.srcPages], contentPages);
+  gulp.watch(paths.srcPages, contentPages);
   gulp.watch([paths.srcResources], contentResources);
   gulp.watch([paths.srcDiagrams], contentDiagrams);
   runServer();

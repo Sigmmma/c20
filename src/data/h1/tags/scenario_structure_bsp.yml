@@ -2,7 +2,9 @@ name: scenario_structure_bsp
 id: sbsp
 invaderStructName: ScenarioStructureBSP
 comments:
-  md: ...
+  md: |
+    Contains geometric, lighting, weather, and other data for the playable spaces
+    in which all objects are placed. Singleplayer maps often use multiple BSPs.
   fields:
     - name: lightmaps bitmap
       md: A reference to the bitmap storing the level's baked [lightmaps](#lightmaps). The level will not be visible without this.

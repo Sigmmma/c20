@@ -3,7 +3,7 @@ id: weap
 parentName: item
 invaderStructName: Weapon
 comments:
-  md: ...
+  md: Used for both weildable weapons and those attached to [vehicles][vehicle].
   fields:
     - name: weapon flags
       md: ...

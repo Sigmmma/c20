@@ -8,7 +8,7 @@ thanks:
   - to: gbMichelle
     for: Movement
 ---
-...
+**Projectiles** are special moving objects shot from weapons and thrown as grenades.
 
 # Movement
 Projectile movement is simulated during each game tick (smallest unit of simulated time). According to the projectile's velocity and gravity scale, its next position is calculated by the engine and a "trace" line between the two points is tested for collisions.
