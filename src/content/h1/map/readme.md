@@ -7,7 +7,7 @@ thanks:
     for: Context on OpenSauce capabilities
 ---
 
-A map, also known as a **cache file**, is a bundle of compiled [tags][] which can be loaded and used by [Halo][h1]. With the exception of _resource maps_, each map represents a playable campaign, multiplayer level, or main menu.
+A **map**, also known as a **cache file**, is a bundle of compiled [tags][] which can be loaded and used by [Halo][h1]. With the exception of _resource maps_, each map represents a playable campaign, multiplayer level, or main menu.
 
 As the name _cache_ suggests, these files are intended to be loaded directly into Halo's memory at a fixed address with no further processing of data needed. The files contain pre-calculated pointers
 
