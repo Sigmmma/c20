@@ -3,7 +3,7 @@ id: proj
 parentName: object
 invaderStructName: Projectile
 comments:
-  md: ...
+  md: Short-lived objects used for weapon projectiles and thrown grenades.
   fields:
     - name: projectile flags
       md: ...

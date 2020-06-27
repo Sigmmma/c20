@@ -3,6 +3,9 @@ title: scenario
 tagName: scenario
 tagExtension: scenario
 stub: true
+thanks:
+  - to: Masterz1337
+    for: Encounters vs bipeds
 ---
 
 Scenarios are the main "root" tag used to compile a playable [map][]. Though tool will also will include globals, tag collections, and some UI tags automatically, the majority of a map's tags are dendencies or transitive dependencies of the scenario.

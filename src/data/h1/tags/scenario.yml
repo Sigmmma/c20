@@ -2,7 +2,9 @@ name: scenario
 id: scnr
 invaderStructName: Scenario
 comments:
-  md: ...
+  md: |
+    The main "root" tag for a multiplayer, singeplayer, or UI map. Contains
+    data about spawn locations, objects, BSPs, skies, scripts, and more.
   fields:
     - name: don't use
       md: ...
@@ -286,7 +288,14 @@ comments:
         - name: name
           md: ...
     - name: bipeds
-      md: ...
+      md: |
+        Special-purpose bipeds placed in the map, typically used for scripted
+        characters and cutscenes. AI should instead be spawned using
+        [encounters](#tag-block-encounters), since the [actors][actor] will be
+        properly difficulty-scaled.
+
+        Although there is technically a very high limit to this block, unmodified
+        [Sapien][] only supports up to 128 bipeds being placed.
       fields:
         - name: body vitality modifier
           md: ...

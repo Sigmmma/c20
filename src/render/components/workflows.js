@@ -57,7 +57,7 @@ const workflowsList = (thisItem, workflows, metaIndex) => {
         } else if (thisItem == flow.to) {
           return `${flow.bidi ? "To/from" : "From"}&nbsp;${itemAnchor(flow.from)} with&nbsp;${itemAnchor(flow.using)}`;
         } else if (thisItem == flow.using) {
-          return `From&nbsp;${itemAnchor(flow.from)} to&nbsp;${itemAnchor(flow.to)}`;
+          return `${itemAnchor(flow.from)}&nbsp;${flow.bidi ? "to/from" : "to"} ${itemAnchor(flow.to)}`;
         }
       }
       throw new Error(`Cannot render unhandled workflow for item '${thisItem}': ${JSON.stringify(flow)}`);

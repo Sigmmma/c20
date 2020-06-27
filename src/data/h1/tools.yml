@@ -43,6 +43,10 @@ workflowItems:
     authors:
       - Fulsy
       - TheGhost
+  Halo Physics Importer:
+    page: halo-physics-importer
+    authors:
+      - rec0
   HEK:
     page: hek
     authors:
@@ -97,6 +101,11 @@ workflowItems:
   Mozzarilla:
     inherit: MEK
     heading: mozzarilla
+  Reclaimer:
+    page: reclaimer
+    authors:
+      - MosesOfEgypt
+      - gbMichelle
   Invader:
     page: invader
     authors:
@@ -364,6 +373,9 @@ workflows:
   - using: H2V Blender Animation Exporter
     from: Blender
     to: Animation data
+  - using: Halo Physics Importer
+    from: physics
+    to: 3ds Max
   # 3d interchange formats
   - using: collada
     from:
@@ -386,12 +398,15 @@ workflows:
       - bmp
     to: bitmap
   # model compilation
-  - using: Tool
+  - using:
+      - Tool
+      - OS_Tool
     from: jms
     to:
       - model_collision_geometry
       - gbxmodel
       - scenario_structure_bsp
+      - physics
   # map compilation
   - using:
       - Tool
@@ -442,6 +457,7 @@ workflows:
       - Mozzarilla
       - invader-edit-qt
       - OS_Guerilla
+      - Reclaimer
     edit:
       - actor
       - actor_variant

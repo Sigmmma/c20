@@ -4,18 +4,18 @@ const path = require("path");
 const glob = require("glob");
 const {getDirectReferencedTagNames} = require("./invader");
 
-const basicTagsList = glob.sync(path.join(__dirname, "tags", "*.yml")).map(tagFileName => {
-  return yaml.safeLoad(fs.readFileSync(tagFileName, "utf8"));
-});
-
-const {workflowItems, similarItems, workflows} = yaml.safeLoad(fs.readFileSync(path.join(__dirname, "tools.yml"), "utf8"));
-
 function strAsList(strOrList) {
   if (!strOrList) return null;
   return typeof(strOrList) === "string" ? [strOrList] : strOrList;
 }
 
 function buildData(invaderStructDefs) {
+  const basicTagsList = glob.sync(path.join(__dirname, "tags", "*.yml")).map(tagFileName => {
+    return yaml.safeLoad(fs.readFileSync(tagFileName, "utf8"));
+  });
+
+  const {workflowItems, similarItems, workflows} = yaml.safeLoad(fs.readFileSync(path.join(__dirname, "tools.yml"), "utf8"));
+
   //augment the basic list of tags with more detail provided by external libs
   const tags = basicTagsList.map(basicTag => ({
     ...basicTag,

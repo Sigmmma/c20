@@ -2,7 +2,10 @@
   "paths": {
     "dist": "./dist",
     "distAssets": "./dist/assets/",
-    "srcPages": "./src/content/**/readme.md",
+    "srcPages": [
+      "./src/content/**/readme.md",
+      "./src/data/**/*.yml"
+    ],
     "srcResources": "./src/content/**/*.@(jpg|jpeg|png|gif)",
     "srcDiagrams": "./src/content/**/*.@(dot|neato|fdp|sfdp|twopi|circo)",
     "srcContentBase": "./src/content",
