@@ -457,6 +457,7 @@ workflows:
       - Mozzarilla
       - invader-edit-qt
       - OS_Guerilla
+      - Reclaimer
     edit:
       - actor
       - actor_variant
