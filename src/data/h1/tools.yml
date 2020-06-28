@@ -30,6 +30,10 @@ workflowItems:
     page: blendkrieg
     authors:
       - gbMichelle
+  CAD animation exporter:
+    page: cad-animation-exporter
+    authors:
+      - CtrlAltDestroy
   H2V Blender Animation Exporter:
     page: h2v-blender-animation-exporter
     authors:
@@ -343,6 +347,7 @@ similarItems:
     - Bluestreak
     - H2V Blender JMS Exporter
     - Blendkrieg
+    - CAD animation exporter
   -
     - Blender .gbxmodel Importer
     - Bluestreak
@@ -372,6 +377,9 @@ workflows:
     to: jms
   - using: H2V Blender Animation Exporter
     from: Blender
+    to: Animation data
+  - using: CAD animation exporter
+    from: 3ds Max
     to: Animation data
   - using: Halo Physics Importer
     from: physics
