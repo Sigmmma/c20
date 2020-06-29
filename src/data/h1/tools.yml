@@ -405,6 +405,11 @@ workflows:
       - tga
       - bmp
     to: bitmap
+  - using: Mozzarilla
+    from:
+      - tga
+      - dds
+    to: bitmap
   # model compilation
   - using:
       - Tool
@@ -414,6 +419,12 @@ workflows:
       - model_collision_geometry
       - gbxmodel
       - scenario_structure_bsp
+      - physics
+  - using:
+      - Mozzarilla
+    from: jms
+    to:
+      - gbxmodel
       - physics
   # map compilation
   - using:
@@ -450,6 +461,9 @@ workflows:
     to: Lightmaps
   # animation compilation
   - using: Tool
+    from: Animation data
+    to: model_animations
+  - using: Mozzarilla
     from: Animation data
     to: model_animations
   # scenario editing
