@@ -101,7 +101,12 @@ button {
   }
 }
 
+label {
+  font-weight: bold;
+}
+
 input {
+  display: block;
   border-radius: $border-radius;
   border: 1px solid $border-color;
   background: $bg-inset;
@@ -344,6 +349,7 @@ table.tag-struct {
   }
 
   .search-input {
+    display: inline-block;
     transition: width $transition-time;
     width: 60%;
     &:focus, &.nonempty {
