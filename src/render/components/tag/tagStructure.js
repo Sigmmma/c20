@@ -6,7 +6,6 @@ const INVADER_TAG_BASE = "https://github.com/Kavawuvi/invader/blob/master/src/ta
 const URL_ENDIANNESS = "https://en.wikipedia.org/wiki/Endianness";
 
 /* TODO:
-- "inherits": "SpawnPrelude",
 - searchable fields
 - write about these field props:
   - normalize
@@ -134,7 +133,7 @@ const fieldTypeDisplay = (field, fieldTypeStruct, metaIndex) => {
 };
 
 const fieldView = (field, comments, metaIndex, addHeading, hLevel) => {
-  const fieldComments = comments.fields.find(it => it.name == field.name);
+  const fieldComments = comments ? comments.fields.find(it => it.name == field.name) : null;
   const fieldTypeStruct = metaIndex.data.h1.invaderStructDefs[field.type];
 
   const rowClasses = [];
@@ -159,18 +158,34 @@ const fieldView = (field, comments, metaIndex, addHeading, hLevel) => {
     </tr>
     ${field.type == "TagReflexive" && html`
       <tr class="tag-block-body">
-        <td colspan="3">${structView(metaIndex.data.h1.invaderStructDefs[field.struct], field.struct, fieldComments, metaIndex, addHeading, hLevel + 1)}</td>
+        <td colspan="3">${structView(
+          metaIndex.data.h1.invaderStructDefs[field.struct],
+          field.struct,
+          fieldComments,
+          metaIndex,
+          addHeading,
+          hLevel + 1,
+          false
+        )}</td>
       </tr>
     `}
     ${fieldTypeStruct && (fieldTypeStruct.type == "bitfield" || fieldTypeStruct.type == "enum") && html`
       <tr class="tag-block-body">
-        <td colspan="3">${structView(fieldTypeStruct, field.type, fieldComments, metaIndex, addHeading, hLevel + 1)}</td>
+        <td colspan="3">${structView(
+          fieldTypeStruct,
+          field.type,
+          fieldComments,
+          metaIndex,
+          addHeading,
+          hLevel + 1,
+          false
+        )}</td>
       </tr>
     `}
   `;
 }
 
-const structView = (struct, structName, comments, metaIndex, addHeading, hLevel) => {
+const structView = (struct, structName, comments, metaIndex, addHeading, hLevel, isRoot) => {
   if (!struct) {
     return structName;
   } else if (struct.type == "bitfield") {
@@ -188,7 +203,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel)
             <tr>
               <td>${field}</td>
               <td><code title="${0x1 << i}">0x${(0x1 << i).toString(16)}</code></td>
-              <td>${renderComment(comments.fields.find(it => it.name == field).md, metaIndex)}</td>
+              <td>${renderComment(comments && comments.fields.find(it => it.name == field).md, metaIndex)}</td>
             </tr>
           `)}
         </tbody>
@@ -209,7 +224,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel)
             <tr>
               <td>${option}</td>
               <td><code title="${i}">0x${i.toString(16)}</code></td>
-              <td>${renderComment(comments.options.find(it => it.name == option).md, metaIndex)}</td>
+              <td>${comments && renderComment(comments.options.find(it => it.name == option).md, metaIndex)}</td>
             </tr>
           `)}
         </tbody>
@@ -218,6 +233,15 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel)
   } else if (!struct.fields || struct.fields.length == 0) {
     return html`<p><em>This structure has no fields.</em></p>`;
   } else if (struct.type == "struct") {
+    let allFields = [...struct.fields];
+    //we hide top-level inherited fields (e.g. garbage => item => object)
+    if (!isRoot) {
+      let currStruct = struct;
+      while (currStruct && currStruct.inherits) {
+        currStruct = metaIndex.data.h1.invaderStructDefs[currStruct.inherits];
+        allFields = [...currStruct.fields, ...allFields];
+      }
+    }
     return html`
       <table class="tag-struct">
         <thead>
@@ -228,7 +252,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel)
           </tr>
         </thead>
         <tbody>
-          ${struct.fields.map(field => fieldView(field, comments, metaIndex, addHeading, hLevel))}
+          ${allFields.map(field => fieldView(field, comments, metaIndex, addHeading, hLevel))}
         </tbody>
       </table>
     `;
@@ -250,7 +274,7 @@ const renderTagStructure = (tag, metaIndex) => {
         The following information is unique to the <strong>${tag.name}</strong> tag.
       </p>
     `)}
-    ${structView(tag.invaderStruct, tag.invaderStructName, tag.comments, metaIndex, addHeading, 2)}
+    ${structView(tag.invaderStruct, tag.invaderStructName, tag.comments, metaIndex, addHeading, 2, true)}
     <p><small>This information was partially generated using <a href="${invaderDefUrl}">Invader tag definitions</a>.</small></p>
   `;
   return {headings, htmlResult};
