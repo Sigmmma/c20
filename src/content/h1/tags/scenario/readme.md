@@ -2,6 +2,8 @@
 title: scenario
 tagName: scenario
 tagExtension: scenario
+img: scenario.jpg
+imgCaption: The scenario contains information needed to make a map playable, including the placement of objects, spawn points, and AI encounters.
 stub: true
 thanks:
   - to: Masterz1337

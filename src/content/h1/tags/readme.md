@@ -1,19 +1,13 @@
 ---
 title: Tags
 tagIndex: "h1"
+workflowName: tags
+img: control-panels.jpg
+imgCaption: Tags offer a lot of control, but there's also a lot to learn. Try to focus on one area at a time if you're new.
 thanks:
   - to: Kavawuvi
     for: Information about invalid tags
 ---
-
-<figure>
-  <a href="control-panels.jpg">
-    <img src="control-panels.jpg" alt="Control panels in a10"/>
-  </a>
-  <figcaption>
-    <p>Tags offer a lot of control, but there's also a lot to learn. Try to focus on one area at a time if you're new.</p>
-  </figcaption>
-</figure>
 
 Tags are the fundamental unit of resources which comprise a [map][]. They come in many different types (sometimes called tag _classes_ or _groups_), each with a predefined structure and data fields. Tags can reference other tags by their _tag path_, forming a tree-like structure of all resources necessary to compile a map.
 

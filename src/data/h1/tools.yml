@@ -1,4 +1,8 @@
-# todo: document, confirm authorship
+# Any "item" involved in a workflow, be it a tool, tag, file type, etc,
+# must be included here so we can define authorship and either an external
+# `url` or c20 `page` so users can learn more about it. The entry key is the
+# item name, and pages can opt-in to workflow information in their metabox
+# by referencing these names with `workflowName`, `toolName`, or `tagName`.
 workflowItems:
   # tools:
   Blender:
@@ -104,7 +108,7 @@ workflowItems:
       - gbMichelle
   Mozzarilla:
     inherit: MEK
-    heading: mozzarilla
+    page: mozzarilla
   Reclaimer:
     page: reclaimer
     authors:
@@ -137,180 +141,269 @@ workflowItems:
     url: https://en.wikipedia.org/wiki/Portable_Network_Graphics
   tga:
     url: https://en.wikipedia.org/wiki/Truevision_TGA
+  dds:
+    url: https://en.wikipedia.org/wiki/DirectDraw_Surface
   jpg:
     url: https://en.wikipedia.org/wiki/JPEG
   collada:
     url: https://en.wikipedia.org/wiki/COLLADA
   map:
     page: map
+  tags:
+    page: tags
   actor:
+    inherit: tags
     page: actor
   actor_variant:
+    inherit: tags
     page: actor_variant
   antenna:
+    inherit: tags
     page: antenna
   biped:
+    inherit: tags
     page: biped
   bitmap:
+    inherit: tags
     page: bitmap
   camera_track:
+    inherit: tags
     page: camera_track
   color_table:
+    inherit: tags
     page: color_table
   continuous_damage_effect:
+    inherit: tags
     page: continuous_damage_effect
   contrail:
+    inherit: tags
     page: contrail
   damage_effect:
+    inherit: tags
     page: damage_effect
   decal:
+    inherit: tags
     page: decal
   detail_object_collection:
+    inherit: tags
     page: detail_object_collection
   device:
+    inherit: tags
     page: device
   device_control:
+    inherit: tags
     page: device_control
   device_light_fixture:
+    inherit: tags
     page: device_light_fixture
   device_machine:
+    inherit: tags
     page: device_machine
   dialogue:
+    inherit: tags
     page: dialogue
   effect:
+    inherit: tags
     page: effect
   equipment:
+    inherit: tags
     page: equipment
   flag:
+    inherit: tags
     page: flag
   fog:
+    inherit: tags
     page: fog
   font:
+    inherit: tags
     page: font
   garbage:
+    inherit: tags
     page: garbage
   gbxmodel:
+    inherit: tags
     page: gbxmodel
   globals:
+    inherit: tags
     page: globals
   glow:
+    inherit: tags
     page: glow
   grenade_hud_interface:
+    inherit: tags
     page: grenade_hud_interface
   hud_globals:
+    inherit: tags
     page: hud_globals
   hud_message_text:
+    inherit: tags
     page: hud_message_text
   hud_number:
+    inherit: tags
     page: hud_number
   input_device_defaults:
+    inherit: tags
     page: input_device_defaults
   item:
+    inherit: tags
     page: item
   item_collection:
+    inherit: tags
     page: item_collection
   lens_flare:
+    inherit: tags
     page: lens_flare
   light:
+    inherit: tags
     page: light
   light_volume:
+    inherit: tags
     page: light_volume
   lightning:
+    inherit: tags
     page: lightning
   material_effects:
+    inherit: tags
     page: material_effects
   meter:
+    inherit: tags
     page: meter
   model:
+    inherit: tags
     page: model
   model_animations:
+    inherit: tags
     page: model_animations
   model_collision_geometry:
+    inherit: tags
     page: model_collision_geometry
   multiplayer_scenario_description:
+    inherit: tags
     page: multiplayer_scenario_description
   object:
+    inherit: tags
     page: object
   particle:
+    inherit: tags
     page: particle
   particle_system:
+    inherit: tags
     page: particle_system
   physics:
+    inherit: tags
     page: physics
   placeholder:
+    inherit: tags
     page: placeholder
   point_physics:
+    inherit: tags
     page: point_physics
   preferences_network_game:
+    inherit: tags
     page: preferences_network_game
   projectile:
+    inherit: tags
     page: projectile
   scenario:
+    inherit: tags
     page: scenario
   scenario_structure_bsp:
+    inherit: tags
     page: scenario_structure_bsp
   scenery:
+    inherit: tags
     page: scenery
   shader:
+    inherit: tags
     page: shader
   shader_environment:
+    inherit: tags
     page: shader_environment
   shader_model:
+    inherit: tags
     page: shader_model
   shader_transparent_chicago:
+    inherit: tags
     page: shader_transparent_chicago
   shader_transparent_chicago_extended:
+    inherit: tags
     page: shader_transparent_chicago_extended
   shader_transparent_generic:
+    inherit: tags
     page: shader_transparent_generic
   shader_transparent_glass:
+    inherit: tags
     page: shader_transparent_glass
   shader_transparent_meter:
+    inherit: tags
     page: shader_transparent_meter
   shader_transparent_plasma:
+    inherit: tags
     page: shader_transparent_plasma
   shader_transparent_water:
+    inherit: tags
     page: shader_transparent_water
   sky:
+    inherit: tags
     page: sky
   sound:
+    inherit: tags
     page: sound
   sound_environment:
+    inherit: tags
     page: sound_environment
   sound_looping:
+    inherit: tags
     page: sound_looping
   sound_scenery:
+    inherit: tags
     page: sound_scenery
   spheroid:
+    inherit: tags
     page: spheroid
   string_list:
+    inherit: tags
     page: string_list
   tag_collection:
+    inherit: tags
     page: tag_collection
   ui_widget_collection:
+    inherit: tags
     page: ui_widget_collection
   ui_widget_definition:
+    inherit: tags
     page: ui_widget_definition
   unicode_string_list:
+    inherit: tags
     page: unicode_string_list
   unit:
+    inherit: tags
     page: unit
   unit_hud_interface:
+    inherit: tags
     page: unit_hud_interface
   vehicle:
+    inherit: tags
     page: vehicle
   virtual_keyboard:
+    inherit: tags
     page: virtual_keyboard
   weapon:
+    inherit: tags
     page: weapon
   weapon_hud_interface:
+    inherit: tags
     page: weapon_hud_interface
   weather_particle_system:
+    inherit: tags
     page: weather_particle_system
   wind:
+    inherit: tags
     page: wind
 
-# groups of tools which perform similar functions
+# These are groups of tools which perform similar functions. When an item
+# opts in to workflows, these may appear in the metabox to show similar or
+# alternative items.
 similarItems:
   -
     - model
@@ -352,7 +445,11 @@ similarItems:
     - Blender .gbxmodel Importer
     - Bluestreak
 
-# todo: cover all Bluestreak use cases
+# Workflows connect defined items to each other so users can see where items
+# come from and what a tool's capabilities are at a glance. A workflow must have
+# a `using` set, and can be either a conversion with `from` and `to` or an `edit`.
+# The provided values for these keys can be either single elements or arrays, in
+# which case all combinations of workflows are generated.
 workflows:
   - using:
       - Photoshop
@@ -364,6 +461,7 @@ workflows:
       - png
       - tga
   # 3d exports/imports
+  # todo: cover all Bluestreak use cases
   - using:
       - Blitzkrieg
       - Bluestreak
@@ -480,86 +578,4 @@ workflows:
       - invader-edit-qt
       - OS_Guerilla
       - Reclaimer
-    edit:
-      - actor
-      - actor_variant
-      - antenna
-      - biped
-      - bitmap
-      - camera_track
-      - color_table
-      - continuous_damage_effect
-      - contrail
-      - damage_effect
-      - decal
-      - detail_object_collection
-      - device
-      - device_control
-      - device_light_fixture
-      - device_machine
-      - dialogue
-      - effect
-      - equipment
-      - flag
-      - fog
-      - font
-      - garbage
-      - gbxmodel
-      - globals
-      - glow
-      - grenade_hud_interface
-      - hud_globals
-      - hud_message_text
-      - hud_number
-      - input_device_defaults
-      - item
-      - item_collection
-      - lens_flare
-      - light
-      - light_volume
-      - lightning
-      - material_effects
-      - meter
-      - model_animations
-      - model_collision_geometry
-      - multiplayer_scenario_description
-      - object
-      - particle
-      - particle_system
-      - physics
-      - placeholder
-      - point_physics
-      - preferences_network_game
-      - projectile
-      - scenario
-      - scenario_structure_bsp
-      - scenery
-      - shader
-      - shader_environment
-      - shader_model
-      - shader_transparent_chicago
-      - shader_transparent_chicago_extended
-      - shader_transparent_generic
-      - shader_transparent_glass
-      - shader_transparent_meter
-      - shader_transparent_plasma
-      - shader_transparent_water
-      - sky
-      - sound
-      - sound_environment
-      - sound_looping
-      - sound_scenery
-      - spheroid
-      - string_list
-      - tag_collection
-      - ui_widget_collection
-      - ui_widget_definition
-      - unicode_string_list
-      - unit
-      - unit_hud_interface
-      - vehicle
-      - virtual_keyboard
-      - weapon
-      - weapon_hud_interface
-      - weather_particle_system
-      - wind
+    edit: tags

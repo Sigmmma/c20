@@ -1,5 +1,5 @@
 ---
-title: "Halo: Combat Evolved"
+title: "Halo: CE"
 keywords:
   - halo
 thanks:
@@ -20,7 +20,7 @@ thanks:
   </figcaption>
 </figure>
 
-Halo: Combat Evolved, also known as **Halo 1** (hereafter called Halo 1), is the first installment of the Halo game series. It was created by [Bungie][bungie] and initially released on the original Xbox in 2001 by publisher/owner [Microsoft][]. In 2003, the game was released for Windows PC and Mac via different studios.
+**Halo: Combat Evolved**, also known as **Halo 1**, is the first installment of the Halo game series. It was created by [Bungie][bungie] and initially released on the original Xbox in 2001 by publisher/owner [Microsoft][]. In 2003, the game was released for Windows PC and Mac via different studios.
 
 Halo 1 uses Bungie's proprietary [Blam!][blam] engine, which also formed the basis of later games in the series. PC versions of the game support a variety of command line/shortcut [arguments][] to configure and toggle features.
 

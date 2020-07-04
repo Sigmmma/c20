@@ -68,24 +68,37 @@ function buildData(invaderStructDefs) {
   });
 
   const getWorkflowItem = (itemName) => {
-    const similarTo = similarItems
-      .flatMap(group => group.includes(itemName) ? group : [])
-      .filter(otherName => otherName != itemName);
+    const originalItemName = itemName;
+    let result = {similarTo: [], workflows: []};
 
-    const workflows = workflowsExpanded.filter(flow =>
-      flow.edit == itemName ||
-        flow.using == itemName ||
-        flow.to == itemName ||
-        flow.from == itemName
-    );
-
-    let result = {similarTo, workflows};
     while (itemName) {
       const info = workflowItems[itemName];
       if (!info) break;
-      result = {...info, ...result};
+
+      const similarTo = similarItems
+        .flatMap(group => group.includes(itemName) ? group : [])
+        .filter(otherName => otherName != itemName);
+
+      const workflows = workflowsExpanded.filter(flow =>
+        flow.edit == itemName ||
+          flow.using == itemName ||
+          flow.to == itemName ||
+          flow.from == itemName
+      );
+
+      result = {
+        ...info,
+        ...result,
+        similarTo: [...result.similarTo, ...similarTo],
+        workflows: [...result.workflows, ...workflows]
+      };
       itemName = info.inherit;
     }
+
+    if (!result.url && !result.page) {
+      throw new Error(`The workflow item '${originalItemName}' does not define a page or URL`);
+    }
+
     return result;
   };
 
