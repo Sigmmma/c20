@@ -3,18 +3,24 @@
  */
 
 //for the given struct, get all structs which comprise it
-function expandStructs(struct, structs) {
-  return struct.fields
-    .filter(field => field.type == "TagReflexive" &&
+function expandStructs(struct, structDefs, isRoot) {
+  const results = struct.fields
+    .filter(field =>
+      field.type == "TagReflexive" &&
       field.struct != "PredictedResource"
     )
-    .map(field => structs[field.struct]);
+    .map(field => structDefs[field.struct]);
+  if (!isRoot && struct.inherits) {
+    results.push(structDefs[struct.inherits]);
+  }
+  return results;
 }
 
 //get all tag names (e.g. sound_looping) referenced by the given struct (e.g. SoundScenery)
-function getDirectReferencedTagNames(structName, structs) {
+function getDirectReferencedTagNames(structName, structDefs) {
   const results = new Set();
-  let structStack = [structs[structName]];
+  let structStack = [structDefs[structName]];
+  let isRoot = true;
 
   while (structStack.length > 0) {
     const struct = structStack.pop();
@@ -27,8 +33,9 @@ function getDirectReferencedTagNames(structName, structs) {
       });
     structStack = [
       ...structStack,
-      ...expandStructs(struct, structs)
+      ...expandStructs(struct, structDefs, isRoot)
     ];
+    isRoot = false;
   }
 
   return [...results].sort();
