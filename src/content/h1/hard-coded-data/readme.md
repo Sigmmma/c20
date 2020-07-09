@@ -1,5 +1,5 @@
 ---
-title: Hard-coded Data
+title: Hard-coded data
 keywords:
   - color
   - data
@@ -23,10 +23,14 @@ cannot be directly changed or controlled.
     <img src="armor_colors.png" alt="Armor colors in order"/>
   </a>
   <figcaption>
-    Spartan armor colors with shaders as they appear ingame.
-    The far-left is the single-player color.
+    <p>Spartan armor colors with shaders as they appear ingame.</p>
+    <p>The far-left is the single-player color, which comes from the
+    actor_variant tag and is <b>not</b> hard-coded</p>
   </figcaption>
 </figure>
+
+In multiplayer, the player's armor color value comes from this hard-coded list.
+For non-player unit color change, see [actor_variant][].
 
 Color name matches the name as it appears in the game's menu. HEX and RBG color
 values are both listed in red-green-blue order. Note that these colors will look
