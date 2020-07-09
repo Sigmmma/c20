@@ -10,13 +10,24 @@ thanks:
   - to: MosesOfEgypt
     for: Armor color values
   - to: Lavadeeto
-    for: Armor color testing
+    for: Armor color testing and picture
 ---
 There are lots of hard-coded values in Halo's engine, such as the multiplayer
 armor color. These values do not typically appear anywhere in tag data, and
 cannot be directly changed or controlled.
 
 # Multiplayer Armor Colors
+
+<figure>
+  <a href="armor_colors.png">
+    <img src="armor_colors.png" alt="Armor colors in order"/>
+  </a>
+  <figcaption>
+    Spartan armor colors with shaders as they appear ingame.
+    The far-left is the single-player color.
+  </figcaption>
+</figure>
+
 Color name matches the name as it appears in the game's menu. HEX and RBG color
 values are both listed in red-green-blue order. Note that these colors will look
 somewhat different ingame, since cubemaps and specular maps are applied over the
