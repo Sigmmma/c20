@@ -9,9 +9,9 @@ thanks:
     for: Information about invalid tags
 ---
 
-Tags are the fundamental unit of resources which comprise a [map][]. They come in many different types (sometimes called tag _classes_ or _groups_), each with a predefined structure and data fields. Tags can reference other tags by their _tag path_, forming a tree-like structure of all resources necessary to compile a map.
+**Tags** are the fundamental unit of resources which comprise a [map][]. They come in many different types (sometimes called tag _classes_ or _groups_), each with a predefined structure and data fields. Tags can [reference](#tag-references-and-paths) other tags, forming a tree-like structure of all resources necessary to compile a map.
 
-The name "tag" was inspired by [XML tags][about-xml], which also have types and a structure with fields. However, unlike XML, Halo's tags are a binary format and not plain text. To create and edit tags, you need to use purpose-built tools like [the HEK][hek], [MEK][], or [Invader][].
+The name "tag" was inspired by [XML tags][about-xml], which also have types and a structure with fields. However, unlike XML, Halo's tags are a binary format rather than plain text. To create and edit tags, you need to use purpose-built tools like [the HEK][hek], [MEK][], or [Invader][].
 
 # Tag structure
 ## Tag references and paths

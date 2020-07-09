@@ -1,9 +1,9 @@
 ---
-title: Blam!
+title: Halo engine (Blam!)
 stub: true
 ---
 
-Blam! is the proprietary game engine powering [Halo][h1]. It was developed in-house at Bungie and has undergone significant evolution over the series' expansion. According to a [Jason Jones interview][jones-interview], the engine has its roots in [Myth][]:
+The **Halo engine**, colloquially called the **Blam! engine** by the community, is the proprietary game engine powering [Halo][h1]. It was developed in-house at Bungie and has undergone significant evolution over the series' expansion. According to a [Jason Jones interview][jones-interview], the engine has its roots in [Myth][]:
 
 > Halo didn't begin as a strategy game but the engine it uses started out that way. The engine Halo uses began as a next-generation Myth terrain engine, with polygonal units.
 
@@ -25,7 +25,7 @@ For resource management, Halo loads [map cache files][map] which contain [tags][
   </figcaption>
 </figure>
 
-The Blam! engine was not just used for the Halo series. Bungie co-founder [Alex Seropian][alex] went on to found [Wideload Games][wideload] and used the engine for [Stubbs the Zombie in Rebel Without a Pulse][stubbs]. In fact, it is possible to extract [tags][] from Stubbs using [Refinery][mek] and recompile levels for Halo.
+The Halo engine was not just used for the Halo series. Bungie co-founder [Alex Seropian][alex] went on to found [Wideload Games][wideload] and used the engine for [Stubbs the Zombie in Rebel Without a Pulse][stubbs]. In fact, it is possible to extract [tags][] from Stubbs using [Refinery][mek] and recompile levels for Halo.
 
 Another lesser-known use was in [prototyping Shadowrun gameplay][shadowrun-prototype] while its own engine was under development.
 

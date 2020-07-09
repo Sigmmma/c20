@@ -2,6 +2,7 @@ digraph G {
   # xbox
   node [style=filled color="#8fcc86"]
   xbox_pre [label="Unknown pre-release build"]
+  xbox_1749 [label="Xbox beta 1749\nBuild: 01.08.15.1749"]
   xbox_ntsc_beta [label="Xbox NTSC beta\nBuild: 01.09.25.2247\nEngine version: 5"]
   xbox_ntsc_retail [label="Xbox NTSC retail release\nBuild: 01.10.12.2276\nEngine version: 5"]
   xbox_pal_retail [label="Xbox PAL retail release\nBuild: 01.01.14.2342\nEngine version: 5"]
@@ -40,6 +41,7 @@ digraph G {
   node [style=filled color="#cc86c9"];
   ann [label="Anniversary (Xbox 360)\nBuild: 01.00.01.0563"];
   mcc_xbone [label="MCC (Xbox One)"];
+  mcc_xbone_china [label="MCC (Xbox One)\nCensored Chinese version"];
   mcc_pc [label="MCC (PC)"];
   mcc_pc_live [label="", fixedsize="false", width=0, height=0, shape=none];
   mcc_xbone_live [label="", fixedsize="false", width=0, height=0, shape=none];
@@ -52,7 +54,8 @@ digraph G {
   halomd [label="HaloMD (mod)"];
 
   # xbox line
-  xbox_pre -> xbox_ntsc_beta;
+  xbox_pre -> xbox_1749;
+  xbox_1749 -> xbox_ntsc_beta;
   xbox_ntsc_beta -> xbox_ntsc_retail;
   xbox_ntsc_retail -> xbox_pal_retail;
 
@@ -107,5 +110,6 @@ digraph G {
   pc_gold -> mcc_xbone [label="Multiplayer"];
   mcc_xbone -> mcc_pc;
   mcc_xbone -> mcc_xbone_live [label="Active updates"];
+  mcc_xbone -> mcc_xbone_china;
   mcc_pc -> mcc_pc_live [label="Active updates"];
 }
