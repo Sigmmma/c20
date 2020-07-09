@@ -44,7 +44,7 @@ Xbox has a rich history of modding, notably:
 * [**Halo 1 Final**][h1final] (and its **Neutral Host Edition**) is a newer competitive mod with modified sounds, time callouts, and a selection of stock and H1.5 2v2-oriented maps
 
 ## Halo PC
-Often called **retail**, this edition is the classic port of Halo 1 to Windows PC by developer [Gearbox Software][gearbox] and publisher [Microsoft Game Studios][microsoft]. Compared to the Xbox version, the PC port included a number of changes (for better and worse):
+Often called **retail** or **PC**, this edition is the classic port of Halo 1 to Windows PC by developer [Gearbox Software][gearbox] and publisher [Microsoft Game Studios][microsoft]. Compared to the Xbox version, the PC port included a number of changes (for better and worse):
 
 * Modification of some multiplayer maps' level geometry
 * Addition of server browser and online play
