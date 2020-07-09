@@ -44,7 +44,7 @@ Xbox has a rich history of modding, notably:
 * [**Halo 1 Final**][h1final] (and its **Neutral Host Edition**) is a newer competitive mod with modified sounds, time callouts, and a selection of stock and H1.5 2v2-oriented maps
 
 ## Halo PC
-Often called **retail**, this edition is the classic port of Halo 1 to Windows PC by developer [Gearbox Software][gearbox] and publisher [Microsoft Game Studios][microsoft]. Compared to the Xbox version, the PC port included a number of changes (for better and worse):
+Often called **retail** or **PC**, this edition is the classic port of Halo 1 to Windows PC by developer [Gearbox Software][gearbox] and publisher [Microsoft Game Studios][microsoft]. Compared to the Xbox version, the PC port included a number of changes (for better and worse):
 
 * Modification of some multiplayer maps' level geometry
 * Addition of server browser and online play
@@ -81,7 +81,7 @@ The Mac edition has a mod called [Halo Mini Demo][halomd], or **HaloMD**, which 
 The free demo versions of Halo 1 on Mac and PC include just the multiplayer map Blood Gulch and the campaign mission _The Silent Cartographer_ (b30). Upon closing the demo, players are presented with the [iconic Sergeant Johnson advertisement][demo-ad] (`demo.bik`).
 
 ## Anniversary (Xbox 360)
-In 2011, Halo: Combat Evolved Anniversary was released for Xbox 360. It was developed by [343 Industries][343i] and [Saber Interactive][saber] as a remaster of the original Halo: Combat Evolved, and is derived from the Gearbox PC port. This edition contains the secondary _Saber3D_ engine for its remastered graphics mode.
+In 2011, Halo: Combat Evolved Anniversary was released for Xbox 360. Often called **HCEX** internally or **CEA** by the community. It was developed by [343 Industries][343i] and [Saber Interactive][saber] as a remaster of the original Halo: Combat Evolved, and is derived from the Gearbox PC port. This edition contains the secondary _Saber3D_ engine for its remastered graphics mode.
 
 ## MCC (PC and Xbox One)
 Halo: The Master Chief collection (MCC) is actively maintained by [343 Industries][343i] for both PC and Xbox One. It brings the Halo series under a single [Game as a Service][gaas], including unified matchmaking and progression experiences. The PC port uses [Unreal Engine][unreal] as a menu and input layer over the respective engines of each included Halo game.
