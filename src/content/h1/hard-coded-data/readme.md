@@ -25,7 +25,7 @@ cannot be directly changed or controlled.
   <figcaption>
     <p>Spartan armor colors with shaders as they appear ingame.</p>
     <p>The far-left is the single-player color, which comes from the
-    actor_variant tag and is <b>not</b> hard-coded</p>
+    actor_variant tag and is <strong>not</strong> hard-coded</p>
   </figcaption>
 </figure>
 
