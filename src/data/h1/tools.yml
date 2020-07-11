@@ -34,6 +34,10 @@ workflowItems:
     page: blendkrieg
     authors:
       - gbMichelle
+  Ghostbuster:
+    page: ghostbuster
+    authors:
+      - Conscars
   CAD animation exporter:
     page: cad-animation-exporter
     authors:
@@ -532,6 +536,8 @@ workflows:
     from: scenario
     to: map
   # lightmaps and bsps
+  - using: Ghostbuster
+    edit: scenario_structure_bsp
   - using:
       - Tool
       - LM_Tool

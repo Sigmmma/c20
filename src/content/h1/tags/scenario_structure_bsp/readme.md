@@ -89,9 +89,9 @@ A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens fl
 
 _Phantom BSP_ is a collision artifact sometimes produced when compiling BSPs. It manifests itself as invisible surfaces which projectiles and vehicles collide with (but not players), and appears around sharp corners like those around doorways.
 
-Phantom BSP can often be fixed by slightly moving or altering sections of the level that contain them, which causes the BSP to be divided differently. However, this may simply create new phantom BSP in another location. The chances of phantom BSP being created can be lowered by reducing complex dense geometry, ensuring co-planarity of faces, and avoiding edges sharper than 90 degrees.
+Phantom BSP can often be fixed by slightly moving or altering sections of the level that contain them, which causes the BSP to be divided differently. However, this may simply create new phantom BSP in another location. The chances of phantom BSP being created can be lowered by reducing complex dense geometry, ensuring co-planarity of faces, and avoiding edges sharper than 90 degrees. If Phantom BSP cannot be avoided and is a hindrance to gameplay, the tool [Ghostbuster][] can be used to fix problematic BSP tags.
 
-Bungie was aware of this bug, and even implemented a Sapien feature to troubleshoot it (`collision_debug_phantom_bsp 1`). It is now understood to be caused when [Tool's][tool] BSP compilation process chooses a BSP dividing plane that fails to divide the remaining space meaningfully, i.e. there are no surfaces on one side of the plane, and the surfaces under the corresponding node leave parts of the dividing plane "exposed". This can be corrected by re-using the same child for both sides of the failed node.
+Bungie was aware of this bug, and even implemented a Sapien feature to troubleshoot it (`collision_debug_phantom_bsp 1`). It is now understood to be caused when [Tool's][tool] BSP compilation process chooses a BSP dividing plane that fails to divide the remaining space meaningfully, i.e. there are no surfaces on one side of the plane, and the surfaces under the corresponding node leave parts of the dividing plane "exposed".
 
 [about-bsp]: https://en.wikipedia.org/wiki/Binary_space_partitioning
 [convex]: https://en.wikipedia.org/wiki/Convex_set
