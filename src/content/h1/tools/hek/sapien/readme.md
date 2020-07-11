@@ -8,7 +8,7 @@ thanks:
   - to: Real Fake Doors
     for: Sharing NT Core knowledge
 ---
-Sapien is a visual editing tool used to place objects in [scenarios][scenario].
+Sapien is a visual [scenario][] editor used to place objects, configure cluster data, compile scripts, and more.
 
 # Compatibility
 On Linux, Sapien can be run successfully using [Wine][] but is not yet compatible with [DXVK][]. Use built-in or standard native DirectX libraries instead.
