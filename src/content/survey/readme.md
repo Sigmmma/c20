@@ -1,31 +1,9 @@
 ---
-title: Modding community survey (2020)
+title: Community survey 2020
+isSurvey: true
 ---
-We would love to hear from members of the modding community to help prioritize work on c20. Please take a few minutes to fill out this survey 💕.
+_The Reclaimers Library_ is a project which aims to capture the Halo CE modding community's knowledge in one place. Think of it like an extended HEK tutorial, but not restricted to the HEK. There's a lot of ground to cover, which is why we need your help prioritizing content.
 
-<form method="post" action="/survey/submit" enctype="multipart/form-data">
+For example, have you always wanted to make custom vehicles but never knew how? Can't wrap your head around portals, or the mysteries of scripting? Or are you curious about modding MCC H1, H2, or H3?
 
-# About you
-<label>
-How many years have you been involved in the community?
-<input name="years" min="0" type="number" required/>
-</label>
-
-...
-
-# Art and asset creation
-...
-
-# Mapping
-...
-
-# Programming and client mods
-...
-
----
-
-Thanks for taking the time to fill out this survey!
-
-<button type="submit">Submit</button>
-
-</form>
+By completing the below survey, we'll know what to focus on documenting. Don't forget to hit **Submit** at the bottom of the page!

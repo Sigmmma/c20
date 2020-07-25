@@ -101,8 +101,22 @@ button {
   }
 }
 
-label {
+label, legend {
   font-weight: bold;
+}
+
+fieldset {
+  border: 1px solid $border-color;
+  // background: $bg-inset;
+  margin-bottom: $padding-flow;
+
+  label {
+    font-weight: normal;
+  }
+}
+
+label {
+  cursor: pointer;
 }
 
 input {
@@ -125,6 +139,18 @@ input {
     &:hover {
       background: $bg-overlay;
     }
+  }
+}
+
+input[type="radio"], input[type="checkbox"] {
+  display: inline-block;
+}
+
+.radio-options {
+  display: flex;
+  flex-direction: row;
+  .radio-option {
+    margin-right: 1em;
   }
 }
 

@@ -1,7 +1,8 @@
 const {
   detailsList, anchor, metabox, ul, wrapper, renderMarkdown, defAnchor,
   html, alert, thanks: renderThanks, REPO_URL, heading, tagAnchor,
-  workflowItemAnchor, workflowsList, tagsTable, renderTagStructure
+  workflowItemAnchor, workflowsList, tagsTable, renderTagStructure,
+  survey
 } = require("./components");
 
 const STUB_ALERT = {type: "danger", body: html`
@@ -206,6 +207,14 @@ module.exports = (page, metaIndex) => {
       ${ul(allThanks)}
     `);
     wrapperProps._headers.push({title: "Thank you!", id: "thank-you", level: 2});
+  }
+
+  if (page.isSurvey) {
+    articleBodySections.push(survey.body);
+    wrapperProps._headers = [
+      ...wrapperProps._headers,
+      ...survey.headings
+    ];
   }
 
   const htmlDoc = wrapper(wrapperProps, metaIndex, html`
