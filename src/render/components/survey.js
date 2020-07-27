@@ -89,6 +89,7 @@ const body = html`
     {id: "maps", label: "Custom maps"},
     {id: "halo-scripting", label: "Halo scripting"},
     {id: "lua-scripting", label: "Lua scripting"},
+    {id: "software-tools", label: "Software and tools development"},
   ])}
 
   ${checkAny("games", "What Halo games are you interested in modding?", [
