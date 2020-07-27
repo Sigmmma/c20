@@ -54,7 +54,7 @@ const section = (level, title) => {
 };
 
 const body = html`
-  <form method="post" action="http://api.reclaimers.net:8080/survey/submit" enctype="multipart/form-data">
+  <form method="post" action="/survey/submit" enctype="multipart/form-data">
 
   ${section(1, "Intro")}
 

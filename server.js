@@ -34,7 +34,7 @@ module.exports = function() {
   app.use("/", serveStatic("./dist"));
 
   app.post("/survey/submit", cors(), multer().none(), (req, res) => {
-    const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
+    const ip = req.headers["x-forwarded-for"] || req.headers["X-Forwarded-For"] || req.connection.remoteAddress;
     const ipHash = crypto.createHash("md5").update(ip).digest("hex");
     const date = new Date().toISOString();
     const surveyData = {...req.body, ipHash, date};
@@ -45,7 +45,7 @@ module.exports = function() {
         return;
       }
       console.log(`Saved survey data for ${ipHash}`);
-      res.redirect("/");
+      res.redirect("https://c20.reclaimers.net/");
     });
   });
 

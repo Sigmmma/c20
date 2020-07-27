@@ -2,3 +2,4 @@
 node_modules
 /todo
 report.*.json
+nohup.out
