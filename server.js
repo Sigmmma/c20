@@ -3,6 +3,7 @@ const serveStatic = require("serve-static");
 const multer = require("multer");
 const crypto = require("crypto");
 const AWS = require("aws-sdk");
+const cors = require("cors");
 
 module.exports = function() {
   const port = process.env.C20_PORT ? Number(process.env.C20_PORT) : 8080;
@@ -32,7 +33,7 @@ module.exports = function() {
   const app = express();
   app.use("/", serveStatic("./dist"));
 
-  app.post("/survey/submit", multer().none(), (req, res) => {
+  app.post("/survey/submit", cors(), multer().none(), (req, res) => {
     const ip = req.headers["x-forwarded-for"] || req.connection.remoteAddress;
     const ipHash = crypto.createHash("md5").update(ip).digest("hex");
     const date = new Date().toISOString();

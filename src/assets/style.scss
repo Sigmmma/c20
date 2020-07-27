@@ -142,8 +142,49 @@ input {
   }
 }
 
-input[type="radio"], input[type="checkbox"] {
+input[type="radio"] {
   display: inline-block;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  & + label:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    margin-left: -26px;
+    padding: 8px;
+    border: 2px solid $border-color;
+    border-radius: 2em;
+  }
+  &:checked + label:before {
+    border: 2px solid $fg-strong;
+    background: $fg-link;
+  }
+  &:checked + label {
+    color: $fg-strong;
+  }
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  & + label:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    margin-left: -26px;
+    padding: 8px;
+    border: 2px solid $border-color;
+  }
+  &:checked + label:before {
+    border: 2px solid $fg-strong;
+    background: $fg-link;
+  }
+  &:checked + label {
+    color: $fg-strong;
+  }
 }
 
 .radio-options {

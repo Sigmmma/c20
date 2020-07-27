@@ -19,11 +19,11 @@ const experience = (id, title) => {
         </div>
         <div class="radio-option">
           <input type="radio" id="${id + "-3"}" name="${id}" value="need-help">
-          <label for="${id + "-3"}">Tried, need help</label>
+          <label for="${id + "-3"}">I would like more info</label>
         </div>
         <div class="radio-option">
           <input type="radio" id="${id + "-4"}" name="${id}" value="easy">
-          <label for="${id + "-4"}">Tried, easy</label>
+          <label for="${id + "-4"}">I know how to do this</label>
         </div>
       </div>
     </fieldset>
@@ -54,7 +54,7 @@ const section = (level, title) => {
 };
 
 const body = html`
-  <form method="post" action="/survey/submit" enctype="multipart/form-data">
+  <form method="post" action="http://api.reclaimers.net:8080/survey/submit" enctype="multipart/form-data">
 
   ${section(1, "Intro")}
 
