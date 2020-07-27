@@ -87,6 +87,8 @@ const body = html`
     {id: "audio", label: "Music or sound effects"},
     {id: "tags", label: "Tag editing"},
     {id: "maps", label: "Custom maps"},
+    {id: "halo-scripting", label: "Halo scripting"},
+    {id: "lua-scripting", label: "Lua scripting"},
   ])}
 
   ${checkAny("games", "What Halo games are you interested in modding?", [
@@ -97,6 +99,7 @@ const body = html`
     {id: "h2v", label: "Halo 2 Vista/Project Cartographer"},
     {id: "h2mcc", label: "Halo 2 MCC"},
     {id: "h3mcc", label: "Halo 3 MCC"},
+    {id: "hrmcc", label: "Halo Reach MCC"},
   ])}
 
   ${section(1, "General software")}
@@ -111,6 +114,7 @@ const body = html`
   ${experience("2d-photoshop", "Using Photoshop")}
   ${experience("2d-gimp", "Using GIMP")}
   ${experience("2d-krita", "Using Krita")}
+  ${experience("2d-paint-net", "Using Paint.NET")}
   ${experience("2d-alpha", "Alpha channels")}
   ${experience("2d-porting", "Porting bitmaps from other Halo games to H1")}
 
