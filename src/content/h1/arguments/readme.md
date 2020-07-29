@@ -108,8 +108,9 @@ Texture Quality= High
 
 For further information, please visit the timedemo FAQ at: http://halo.bungie.net/site/halo/features/hpcperformancefaq.html
 ```
-
-Note that it says `Particles= Off` even if your particles setting is otherwise High, suggesting some of these options are hardcoded. The Bungie FAQ link is now a 404 page.
+##### Notes
+* The output says `Particles= Off` even if your particles setting is otherwise High, suggesting some of these options are hardcoded. The Bungie FAQ link is now a 404 page.
+* Each time `-timedemo` is run, the output is *amended* to the output file, `./timedemo.txt`. Previous output results and any custom text added by a third party will not be erased or overwritten by the next `-timedemo` output.
 
 [about-args]: https://en.wikipedia.org/wiki/Command-line_interface#Arguments
 [about-tga]: https://en.wikipedia.org/wiki/Truevision_TGA
