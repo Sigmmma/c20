@@ -1,5 +1,8 @@
 ---
 title: Halo arguments
+thanks:
+  - to: VoidShadow
+    for: Information on timedemo
 ---
 
 Halo accepts [command line/shortcut arguments][about-args] to customize how the game launches and what features are enabled. From a terminal or Windows command prompt, such arguments are provided after the executable name, e.g. `haloce.exe -screenshot` to run the game with screenshot mode enabled. These arguments can also be added in Windows by editing a shortcut to the Halo executable.
@@ -58,7 +61,7 @@ The following is a comprehensive list of arguments. Not all are not documented i
 |`-path <path>`                 | Sets the path for which Halo looks for profiles and gametypes. Normally `%USERPROFILE%\Documents\My Games\Halo[ CE]`
 |`-safemode`                    | Disables as much as possible from the game in case you're experiencing crashes.
 |`-screenshot` or `-screenshots`| Enables the "Print Screen" key to generate [TGA format][about-tga] screenshots in Halo's `screenshots` directory.
-|`-timedemo`                    | A benchmarking mode which runs sped-up intro cinematics of several campaign levels (a30, b30, c10, d20) and writes out [timedemo.txt](#appendix%3A-timedemo-output). May crash or cause black screens with modified maps.
+|`-timedemo`                    | A benchmarking mode which runs sped-up intro cinematics of several hard-coded maps (`ui`, `a30`, `b30`, `c10`, and `d20`) and appends benchmarking output to the file [timedemo.txt](#appendix%3A-timedemo-output) in Halo's directory. Replacing the stock maps with custom maps works as well. The duration of `-timedemo` is affected by the framerate.
 
 ## Vestigal and unknown arguments
 These additional arguments are found in game executable, but seem to have no effect. They were likely used during the game's development but were removed for its final release.
@@ -108,11 +111,8 @@ Texture Quality= High
 
 For further information, please visit the timedemo FAQ at: http://halo.bungie.net/site/halo/features/hpcperformancefaq.html
 ```
-##### Notes
-* The output says `Particles= Off` even if your particles setting is otherwise High, suggesting some of these options are hardcoded. The Bungie FAQ link is now a 404 page.
-* Each time `-timedemo` is run, the output is *amended* to the output file, `./timedemo.txt`. Previous output results and any custom text added by a third party will not be deleted or overwritten by the next `-timedemo` output.
-* The duration of `-timedemo` is affected by the framerate.
-* The maps tested during `-timedemo` are hardcoded to `ui`, `a30`, `b30`, `c10`, and `d20`. However, replacing the stock maps with custom maps works as well.
+
+Note: Each time `-timedemo` is run, the output is *appended* to the output file, meaning any previous content is not overwritten. The output says `Particles= Off` even if your particles setting is otherwise High, suggesting some of these options are hardcoded. The Bungie FAQ link is now a 404 page.
 
 [about-args]: https://en.wikipedia.org/wiki/Command-line_interface#Arguments
 [about-tga]: https://en.wikipedia.org/wiki/Truevision_TGA
