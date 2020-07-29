@@ -110,7 +110,9 @@ For further information, please visit the timedemo FAQ at: http://halo.bungie.ne
 ```
 ##### Notes
 * The output says `Particles= Off` even if your particles setting is otherwise High, suggesting some of these options are hardcoded. The Bungie FAQ link is now a 404 page.
-* Each time `-timedemo` is run, the output is *amended* to the output file, `./timedemo.txt`. Previous output results and any custom text added by a third party will not be erased or overwritten by the next `-timedemo` output.
+* Each time `-timedemo` is run, the output is *amended* to the output file, `./timedemo.txt`. Previous output results and any custom text added by a third party will not be deleted or overwritten by the next `-timedemo` output.
+* The duration of `-timedemo` is affected by the framerate.
+* The maps tested during `-timedemo` are hardcoded to `ui`, `a30`, `b30`, `c10`, and `d20`. However, replacing the stock maps with custom maps works as well.
 
 [about-args]: https://en.wikipedia.org/wiki/Command-line_interface#Arguments
 [about-tga]: https://en.wikipedia.org/wiki/Truevision_TGA
