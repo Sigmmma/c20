@@ -1,7 +1,7 @@
 ---
 title: Halo arguments
 thanks:
-  - to: VoidShadow
+  - to: nToss
     for: Information on timedemo
 ---
 
