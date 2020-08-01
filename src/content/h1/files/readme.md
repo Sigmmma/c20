@@ -7,9 +7,13 @@ thanks:
     for: Watson background
   - to: Miris
     for: Profile and savegame reversing, LAA patch
+  - to: Sparky
+    for: Control binding ranges
   - to: Conscars
     for: Additional blam.sav reversing
 ---
+
+This page documents the function and format of some of Halo's installation and profile files, excluding [maps][map].
 
 # haloce.exe
 This is the main game executable containing the bulk of the game's code.
@@ -17,7 +21,7 @@ This is the main game executable containing the bulk of the game's code.
 By default, Halo is only permitted to use [2 GB][2gb] of virtual memory. By applying value `0x2F` at offset `0x136` in the 1.0.10 executable, Halo can be made "Large Address Aware" and capable of using up to 4GB of virtual memory. The same upgrade can be made to [Sapien][sapien#limits]. The increased limit can be useful for client mods like Chimera which run in the game's address space and allocate more memory to speed up map loading.
 
 # strings.dll
-The library `strings.dll` is required to run the game or dedicated server. Prior to the 1.10 patch, one of its functions was the `executable_is_valid` checksum. Another of its functions is containing the loading screen seen before the main menu (all other loading screens are contained in [maps][map]).
+The library `strings.dll` is required to run the game or dedicated server. Prior to the 1.10 patch, one of its functions was the `executable_is_valid` checksum. Another of its functions is containing the loading screen seen before the main menu (all other loading screens are contained in maps).
 
 This DLL is often replaced with a modified version for mods like SAPP and Chimera 1.0+.
 
@@ -31,21 +35,74 @@ The `Watson` directory and the files within it (`dw15.exe`, various `dwintl.dll`
     <img src="editbox.png" alt=""/>
   </a>
   <figcaption>
-    <p>An example modified chat editbox, a practice abandoned after the HAC2 and Chimera mods implemented better chat systems.</p>
+    <p>An example modified chat editbox, a practice abandoned after mods implemented better chat systems.</p>
   </figcaption>
 </figure>
 
-The library `Keystone.dll` is used for [Halo's][h1] multiplayer chat functionality. The game also requires the library `msxml.dll` to be installed on the system for chat to display properly. An installer can be found in Halo's `redist` directory.
+The library `Keystone.dll` is used for [Halo's][h1] stock multiplayer chat functionality. The game also requires the library `msxml.dll` to be installed on the system for chat to display properly. An installer can be found in Halo's `redist` directory.
 
 The `controls` directory is host to `Controls.ini` and `Controls.dll`, a library used to render the multiplayer chat input box. It makes use of files in the `content` directory, which can be modified to customize the appearance of the chat "editbox" and text input.
 
-The above files are not needed if using the mod Chimera, which re-implements the chat system. Keystone is required to use HAC2.
+The mods HAC2 and Chimera implement their own chat display to replace Halo's, which becomes unreliable after tabbing out of the game.
 
 # Profile and savegame files
-Halo stores savegames and profile data according to the system-wide `%USERPROFILE%` environment variable. On Windows, with a system drive "C" and user name "Example", Halo saves can be found in `C:\Users\Example\Documents\My Games\Halo CE\`. When running on Linux under Wine, the default location is `~/My Games/Halo CE/`. Some mods also store data under this location, such as downloaded maps.
+Halo stores savegames and profile data according to the system-wide `%USERPROFILE%` environment variable. On Windows, with a system drive "C" and user name "John", Halo saves can be found in `C:\Users\You\Documents\My Games\Halo CE\`. When running on Linux under Wine, the default location is `~/My Games/Halo CE/`. Some mods also store data under this location, such as downloaded maps.
+
+## lastprof.txt
+The file `lastprof.txt` stores the path of the last used profile so it can be loaded at game startup. It has a fixed length of 256 bytes and a very simple structure:
+
+1. An ASCII-encoded absolute filesystem path to a _profile directory_, with trailing `\`. For example, `C:\Users\You\My Documents\My Games\Halo CE\savegames\New001\`
+2. A null byte, `0x00`, to terminate the above string.
+3. The ASCII-encoded string `lam.sav` (not a typo).
+4. `0x00` padding until the end of the file.
+
+## savegame.bin
+The file `savegames\<profile name>\savegame.bin` contains the saved state of the campaign, allowing progress to be resumed when reloading from a checkpoint or returning from the main menu. The Halo console commands `game_save` and `game_revert` use this file.
+
+The structure of this file is not fully mapped out, however some fields are known:
+
+<table>
+  <thead>
+    <tr>
+      <th>Field</th>
+      <th>Offset</th>
+      <th>Type</th>
+      <th>Comments</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Last difficulty</td>
+      <td><code>0x1E2</code></td>
+      <td><code>uint8</code></td>
+      <td>
+        <table>
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Easy</td><td><code>0x0</code></td></tr>
+            <tr><td>Normal</td><td><code>0x1</code></td></tr>
+            <tr><td>Heroic</td><td><code>0x2</code></td></tr>
+            <tr><td>Legendary</td><td><code>0x3</code></td></tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>Last played scenario</td>
+      <td><code>0x1E8</code></td>
+      <td><code>ASCII string</code></td>
+      <td>An ASCII-encoded <a href="/h1/tags/scenario">scenario</a> tag path, null-terminated and 32 characters max. An example value is <code>levels\b30\b30</code> for The Silent Cartographer.</td>
+    </tr>
+  </tbody>
+</table>
 
 ## blam.sav
-The file `savegames\<profile name>\blam.sav` contains the information & configuration for a HCE profile. Information includes player details, and configuration includes video/audio/network settings and input configurations (mouse, keyboard, and controller). It has a fixed length of 8192 bytes (8 [KiB][]).
+The file `savegames\<profile name>\blam.sav` contains the configuration for a HCE profile. Information includes player details, video/audio/network settings, and input configurations (mouse, keyboard, and controller). It has a fixed length of 8192 bytes (8 [KiB][]). File integrity is verified by a checksum at the end of the file; if the checksum does not match the game will fall back to default settings.
 
 The file structure follows, but is known to be incomplete:
 
@@ -105,10 +162,95 @@ The file structure follows, but is known to be incomplete:
       </td>
     </tr>
     <tr>
-      <td rowspan="3">Mouse</td>
+      <td rowspan="6">Controls</td>
       <td>Invert vertical axis</td>
       <td><code>0x012F</code></td>
       <td><code>bool</code></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>Keyboard bindings</td>
+      <td><code>0x0134-0x020D</code></td>
+      <td><code>binding array</code></td>
+      <td>
+        <p>An array of 109 keyboard input mappings, each a little-endian uint16 (2 bytes long). The entries are ordered roughly like the rows of a QWERTY keyboard, with each position in the array corresponding to a certain input key. If a key is unbound, then that position holds the bytes <code>0x7F 0xFF</code>. Otherwise, bound keys store a value representing the game function the key is mapped to, for example <code>0x05 0x00</code> for flashlight.</p>
+        <p>Some example key offsets are:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Offset</th>
+              <th>Key</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>0x156</code></td><td>1</td></tr>
+            <tr><td><code>0x158</code></td><td>2</td></tr>
+            <tr><td>...</td><td>...</td></tr>
+            <tr><td><code>0x166</code></td><td>9</td></tr>
+            <tr><td><code>0x168</code></td><td>0</td></tr>
+            <tr><td><code>0x16A</code></td><td>-</td></tr>
+            <tr><td><code>0x18E</code></td><td>A</td></tr>
+          </tbody>
+        </table>
+        <p>The following are some example bindings which can appear at these locations. Remember that these values are stored in little-endian form in the file, so <code>0x0013</code> becomes the bytes <code>0x13 0x00</code>.</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Value</th>
+              <th>Function</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><code>0x0005</code></td><td>Flashlight</td></tr>
+            <tr><td><code>0x0013</code></td><td>Move Forward</td></tr>
+            <tr><td><code>0x0014</code></td><td>Move Backward</td></tr>
+            <tr><td><code>0x0015</code></td><td>Move Left</td></tr>
+            <tr><td><code>0x0016</code></td><td>Move Right</td></tr>
+            <tr><td><code>0x0017</code></td><td>Look Up</td></tr>
+            <tr><td><code>0x0018</code></td><td>Look Down</td></tr>
+            <tr><td><code>0x0019</code></td><td>Look Left</td></tr>
+            <tr><td><code>0x001A</code></td><td>Look Right</td></tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>Gamepads and other devices</td>
+      <td><code>0x020E-0x93A</code></td>
+      <td><code>binding array</code></td>
+      <td>
+        <p>Similar to above, but a much larger array for all other types of mappable input devices such as gamepads. It is not known what all the devices and their inputs are, but some are mapped:</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Device</th>
+              <th>Offset</th>
+              <th>Input</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td rowspan="14">Mouse</td><td><code>0x20E</code></td><td>Left Button</td></tr>
+            <tr><td><code>0x210</code></td><td>Middle Button</td></tr>
+            <tr><td><code>0x212</code></td><td>Right Button</td></tr>
+            <tr><td><code>0x214</code></td><td>Button 4</td></tr>
+            <tr><td><code>0x216</code></td><td>Button 5</td></tr>
+            <tr><td><code>0x218</code></td><td>Button 6</td></tr>
+            <tr><td><code>0x21A</code></td><td>Button 7</td></tr>
+            <tr><td><code>0x21C</code></td><td>Button 8</td></tr>
+            <tr><td><code>0x21E</code></td><td>Horizontal Axis -</td></tr>
+            <tr><td><code>0x220</code></td><td>Horizontal Axis +</td></tr>
+            <tr><td><code>0x222</code></td><td>Vertical Axis -</td></tr>
+            <tr><td><code>0x224</code></td><td>Vertical Axis +</td></tr>
+            <tr><td><code>0x226</code></td><td>Wheel -</td></tr>
+            <tr><td><code>0x228</code></td><td>Wheel +</td></tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td>Unknown</td>
+      <td><code>0x0953</code></td>
+      <td><code>uint8</code></td>
       <td></td>
     </tr>
     <tr>
@@ -234,11 +376,29 @@ The file structure follows, but is known to be incomplete:
       <td></td>
     </tr>
     <tr>
-      <td rowspan="4">Network</td>
+      <td rowspan="7">Network</td>
+      <td>Server name</td>
+      <td><code>0x0D8C</code></td>
+      <td><code>utf-16 string</code></td>
+      <td>Stores the last-used hosting server name for the "create game" menus (both LAN and Internet). Null-terminated with a maximum of 31 characters (excluding the null).</td>
+    </tr>
+    <tr>
+      <td>Password</td>
+      <td><code>0x0EAC</code></td>
+      <td><code>utf-16 string</code></td>
+      <td>Stores the last-used hosting password for the "create game" menus (both LAN and Internet). Null-terminated with a maximum of 8 characters (excluding the null).</td>
+    </tr>
+    <tr>
+      <td>Max players</td>
+      <td><code>0x0EBF</code></td>
+      <td><code>uint8</code></td>
+      <td>Stores the last-used max players for hosting a server. The value <code>0x00</code> actually corresponds to the minimum of 2 players, with <code>0x0E</code> being the maximum of 16.</td>
+    </tr>
+    <tr>
       <td>Connection type</td>
       <td><code>0x0FC0</code></td>
       <td><code>uint8</code></td>
-      <td>Options: dial-up off (<code>0x0</code>), dsl-low on (<code>0x1</code>), dsl-avg (<code>0x2</code>), dsl-high (<code>0x3</code>), t1/lan (<code>0x4</code>)</td>
+      <td>Options: 56k (<code>0x0</code>), dsl-low (<code>0x1</code>), dsl-avg (<code>0x2</code>), dsl-high (<code>0x3</code>), t1/lan (<code>0x4</code>)</td>
     </tr>
     <tr>
       <td>Server address</td>
@@ -260,10 +420,10 @@ The file structure follows, but is known to be incomplete:
     </tr>
     <tr>
       <td>Other</td>
-      <td>CRC32 hash</td>
+      <td>CRC32 checksum</td>
       <td><code>0x1FFC</code></td>
       <td><code>uint32</code></td>
-      <td>The blam.sav has a CRC-32 hash appended at the end of it. The value is actually stored in its complement equivalent (i.e. bitwise NOT). The hash represents the data between <code>0x000</code> and <code>0x1FFC</code> - the hash itself is not hashed! Note that there is a relatively large amount of padding before this field, and it is the final 4 bytes of the file.
+      <td>The blam.sav has a CRC-32 checksum appended at the end of it. The value is actually stored in its complement equivalent (i.e. bitwise NOT). The checksum validates the data between <code>0x000</code> and <code>0x1FFC</code> - the checksum itself is not included! There is a relatively large amount of padding before this field, and it is the final 4 bytes of the file.
       </td>
     </tr>
   </tbody>
