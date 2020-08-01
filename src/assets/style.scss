@@ -119,6 +119,12 @@ label {
   cursor: pointer;
 }
 
+progress, meter {
+  width: 100%;
+  background: $bg-inset;
+  border: 1px solid $border-color;
+}
+
 input {
   display: block;
   border-radius: $border-radius;

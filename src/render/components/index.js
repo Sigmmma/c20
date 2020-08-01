@@ -2,7 +2,7 @@ module.exports = {
   wrapper: require("./wrapper/wrapper"),
   metabox: require("./metabox"),
   thanks: require("./thanks"),
-  survey: require("./survey"),
+  surveyResults: require("./survey/results"),
   ...require("./markdown"),
   ...require("./tag"),
   ...require("./workflows"),
