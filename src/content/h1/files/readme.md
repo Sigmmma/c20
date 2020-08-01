@@ -423,7 +423,7 @@ The file structure follows, but is known to be incomplete:
       <td>CRC32 checksum</td>
       <td><code>0x1FFC</code></td>
       <td><code>uint32</code></td>
-      <td>The blam.sav has a CRC-32 checksum appended at the end of it. The value is actually stored in its complement equivalent (i.e. bitwise NOT). The checksum validates the data between <code>0x000</code> and <code>0x1FFC</code> - the checksum itself is not included! There is a relatively large amount of padding before this field, and it is the final 4 bytes of the file.
+      <td>The blam.sav has a CRC-32 checksum appended at the end of it. The value is actually stored in its complement equivalent (i.e. bitwise NOT). The checksum validates the data between <code>0x000</code> and <code>0x1FFC</code> - the checksum itself is not included! There is a relatively large amount of padding before this field, and it is the final 4 bytes of the file. Due to the complement on this field, the entire file will <em>always</em> have a CRC of <code>0xFFFFFFFF</code>. Therefore the file can be verified by either comparing its overall CRC to <code>0xFFFFFFFF</code>, or comparing the CRC of its prior sections to the complement of this field.
       </td>
     </tr>
   </tbody>
