@@ -3,7 +3,7 @@ id: sotr
 parentName: shader
 invaderStructName: ShaderTransparentGeneric
 comments:
-  md: ...
+  md: A transparent shader type supported on classic Xbox only.
   fields:
     - name: numeric counter limit
       md: ...

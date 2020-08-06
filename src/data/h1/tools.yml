@@ -151,6 +151,10 @@ workflowItems:
     url: https://en.wikipedia.org/wiki/JPEG
   collada:
     url: https://en.wikipedia.org/wiki/COLLADA
+  wav:
+    url: https://en.wikipedia.org/wiki/WAV
+  txt:
+    url: https://en.wikipedia.org/wiki/Plain_text
   map:
     page: map
   tags:
@@ -464,6 +468,10 @@ workflows:
       - bmp
       - png
       - tga
+  # sounds
+  - using: Mozzarilla
+    from: wav
+    to: sound
   # 3d exports/imports
   # todo: cover all Bluestreak use cases
   - using:
@@ -486,6 +494,12 @@ workflows:
   - using: Halo Physics Importer
     from: physics
     to: 3ds Max
+  # text
+  - using: Mozzarilla
+    from: txt
+    to:
+      - string_list
+      - unicode_string_list
   # 3d interchange formats
   - using: collada
     from:
@@ -512,6 +526,9 @@ workflows:
       - tga
       - dds
     to: bitmap
+  - using: Mozzarilla
+    from: bitmap
+    to: tga
   # model compilation
   - using:
       - Tool
@@ -522,8 +539,16 @@ workflows:
       - gbxmodel
       - scenario_structure_bsp
       - physics
-  - using:
-      - Mozzarilla
+  - using: Mozzarilla
+    from:
+      - scenario_structure_bsp
+      - model_collision_geometry
+      - model
+    to: gbxmodel
+  - using: Mozzarilla
+    from: gbxmodel
+    to: model
+  - using: Mozzarilla
     from: jms
     to:
       - gbxmodel
@@ -542,6 +567,8 @@ workflows:
       - Tool
       - LM_Tool
       - Aether
+      - Sapien
+      - OS_Sapien
     edit: Lightmaps
   - using: Aether
     from: scenario_structure_bsp
@@ -585,3 +612,7 @@ workflows:
       - OS_Guerilla
       - Reclaimer
     edit: tags
+  # shaders
+  - using: Mozzarilla
+    from: shader_transparent_chicago_extended
+    to: shader_transparent_chicago
