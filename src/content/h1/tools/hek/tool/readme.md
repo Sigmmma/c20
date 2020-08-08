@@ -10,7 +10,7 @@ keywords:
   - cli
 ---
 
-Tool, or sometimes called **tool.exe**, is a command line utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [HEK][].
+Tool, or sometimes called **tool.exe**, is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [HEK][].
 
 # Structure compilation
 
