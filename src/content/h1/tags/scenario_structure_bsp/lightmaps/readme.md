@@ -14,7 +14,7 @@ keywords:
 Lightmap data in the BSP is comprised of both:
 
 * A reference to a generated [bitmap][] containing diffuse lighting as texture sheets.
-* Mesh data which most stores local lighting information for dynamic objects, among other purposes.
+* Mesh data which stores local lighting information for dynamic objects, among other purposes.
 
 # Creation
 The HEK's built-in **[radiosity][]** process can be run using [Tool][], [LM_Tool][], or [Sapien][]. It splits the BSP's render mesh into many fragments depending on [shader][] parameters like _simple parameterization_ and _detail level_, and UV-maps them to texture sheets. A texture is rendered to apply levels of light to those surfaces.
