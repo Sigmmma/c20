@@ -2,8 +2,13 @@ const marked = require("marked");
 const hljs = require("highlight.js");
 const Entities = require('html-entities').AllHtmlEntities;
 const {slugify, heading} = require("./bits");
+const hscLang = require("./langs/hsc");
+const vrmlLang = require("./langs/vrml");
 
 const entities = new Entities();
+
+hljs.registerLanguage("vrml", vrmlLang);
+hljs.registerLanguage("hsc", hscLang);
 
 //https://marked.js.org/#/USING_PRO.md#renderer
 const htmlRenderer = new marked.Renderer();
@@ -16,10 +21,6 @@ htmlRenderer.heading = function(text, level) {
 const htmlRenderOptions = {
   renderer: htmlRenderer,
   highlight: function(code, language) {
-    //clojure provides good highlighting for haloscript
-    if (language == "hsc") {
-      language = "clojure";
-    }
     const validLanguage = hljs.getLanguage(language) ? language : "plaintext";
     return hljs.highlight(validLanguage, code).value;
   },

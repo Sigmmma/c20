@@ -12,6 +12,7 @@ info: |
 stub: true
 keywords:
   - mcc
+  - cli
 ---
 
 Invader is an [open source][invader-repo] modding toolkit for Halo: Combat Evolved. It aims to re-implement tools of the [HEK][hek] with an emphasis on tag data correctness, validation, and command line usage (although _invader-edit-qt_ is a GUI tool). Invader is primarily developed by Kavawuvi, with contributions by Vaporeon.

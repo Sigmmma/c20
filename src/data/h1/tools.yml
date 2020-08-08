@@ -9,15 +9,27 @@ workflowItems:
     page: blender
     authors:
       - Blender Foundation
+  Gmax:
+    page: gmax
+    authors:
+      - Discreet (Autodesk)
   3ds Max:
     page: 3dsmax
     authors:
       - Autodesk
+  Chimp:
+    page: chimp
+    authors:
+      - Jason Zimmer
   Maya:
     page: maya
     authors:
       - Autodesk
       - Alias (formerly)
+  WRL to OBJ converter:
+    page: wrl-to-obj-converter
+    authors:
+      - Conscars
   Photoshop:
     page: photoshop
     authors:
@@ -133,10 +145,14 @@ workflowItems:
     inherit: Invader
     heading: invader-build
   # resources:
+  wrl:
+    page: wrl
   jms:
     page: jms
   Animation data:
     page: animation-data
+  obj:
+    url: https://en.wikipedia.org/wiki/Wavefront_.obj_file
   tif:
     url: https://en.wikipedia.org/wiki/TIFF
   bmp:
@@ -414,6 +430,9 @@ workflowItems:
 # alternative items.
 similarItems:
   -
+    - 3ds Max
+    - Gmax
+  -
     - model
     - gbxmodel
   -
@@ -449,6 +468,7 @@ similarItems:
     - H2V Blender JMS Exporter
     - Blendkrieg
     - CAD animation exporter
+    - Chimp
   -
     - Blender .gbxmodel Importer
     - Bluestreak
@@ -474,9 +494,32 @@ workflows:
     to: sound
   # 3d exports/imports
   # todo: cover all Bluestreak use cases
+  - using: Chimp
+    from: wrl
+    to:
+      - Gmax
+      - 3ds Max
+  - using:
+      - Chimp
+      - Bluestreak
+    from: Gmax
+    to: jms
+  - using:
+      - 3ds Max
+      - Maya
+      - Blender
+    edit: obj
+  - using: 3ds Max
+    edit: wrl
+  - using: WRL to OBJ converter
+    from: wrl
+    to:
+      - obj
+      - Blender
   - using:
       - Blitzkrieg
       - Bluestreak
+      - Chimp
     from: 3ds Max
     to: jms
   - using: Blender .gbxmodel Importer
@@ -501,6 +544,13 @@ workflows:
       - string_list
       - unicode_string_list
   # 3d interchange formats
+  - using: obj
+    from:
+      - 3ds Max
+      - Gmax
+    to:
+      - 3ds Max
+      - Gmax
   - using: collada
     from:
       - 3ds Max

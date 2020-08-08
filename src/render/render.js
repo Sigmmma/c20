@@ -138,7 +138,7 @@ module.exports = (page, metaIndex) => {
     const itemInfo = metaIndex.data.h1.getWorkflowItem(workflowItemName);
     if (itemInfo.authors && itemInfo.authors.length > 0) {
       metaboxProps.sections.push({
-        body: detailsList("Authors", itemInfo.authors)
+        body: detailsList("Author(s)", itemInfo.authors)
       });
     }
     if (itemInfo.similarTo && itemInfo.similarTo.length > 0) {
