@@ -13,4 +13,4 @@ phases:
       - npm run build
   post_build:
     commands:
-      - aws s3 sync --delete ./dist s3://reclaimers-c20/
+      - aws s3 sync --delete ./dist s3://reclaimers-wiki-files/
