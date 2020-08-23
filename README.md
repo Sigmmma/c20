@@ -55,7 +55,7 @@ C20_PORT=9001 npm run dev
 ```
 
 ## Releasing
-The website is currently hosted as a static site in [AWS S3](https://aws.amazon.com/s3/), fronted by a [CloudFront](https://aws.amazon.com/cloudfront/) CDN distribution. To deploy a new version, simple make changes to the `master` branch and a build/deploy will be triggered automatically with CodeBuild.
+The website is currently hosted as a static site in [AWS S3](https://aws.amazon.com/s3/), fronted by a [CloudFront](https://aws.amazon.com/cloudfront/) CDN distribution, managed in [reclaimers-aws](https://github.com/Sigmmma/reclaimers-aws). To deploy a new version, simple make changes to the `master` branch and a build/deploy will be triggered automatically with CodeBuild.
 
 As a backup, users with bucket permission can simply sync the `dist` directory to S3:
 
