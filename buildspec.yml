@@ -6,6 +6,7 @@ phases:
       nodejs: 12.x
   pre_build:
     commands:
+      - git submodule update --init
       - npm ci
   build:
     commands:

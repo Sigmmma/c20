@@ -526,8 +526,12 @@ workflows:
     from: gbxmodel
     to: Blender
   - using: H2V Blender JMS Exporter
-    from: Blender
-    to: jms
+    from:
+      - Blender
+      - jms
+    to:
+      - jms
+      - Blender
   - using: H2V Blender Animation Exporter
     from: Blender
     to: Animation data
