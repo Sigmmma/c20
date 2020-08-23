@@ -1,6 +1,6 @@
 # The Reclaimers Library
 
-![](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiSktXSVdZa1hub1dPbGhieUpwcVRBWFRQQmFMRWVpaktNM0RqUXdJdkVuRFMySUQyeUp1TDBZd2hsckRadVdMa2dlV1NJbzRncEhOcXl1S1hDZ2lKUmZvPSIsIml2UGFyYW1ldGVyU3BlYyI6Inp5QVZqZHpYMGxQNG1EMWMiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
+![](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoidlNBbmZ4ODFvZytxTit3VHRZcmxkQzNOV3lvejVWcEd3VVVKdEFvUWZXL3cyNlpqbHplaU5OL0lVUkJkdDR5L1o4N28yMStKUE43c1Q4bkgwTjEya3d3PSIsIml2UGFyYW1ldGVyU3BlYyI6IllacFUvMWJnZlVsdnhUcjYiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 
 This repo contains the source content and build scripts for the Reclaimers Library (https://c20.reclaimers.net). It aims to document the immense tribal knowledge of the Halo 1 modding community and covers game engine details, the Halo Editing Kit, community tools, and guides for map-making.
 
