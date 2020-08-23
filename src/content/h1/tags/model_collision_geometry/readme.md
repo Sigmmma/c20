@@ -53,4 +53,23 @@ model_collision_geometry tags can only have up to 16 pathfinding spheres<sup>(co
 Unlike [BSPs][scenario_structure_bsp], collision geometry can have a self-intersecting mesh. However, this is only permitted between meshes parented by different nodes (e.g. limbs of a biped intersecting each other or the torso). Collision geometry cannot have weighted skinning for animations, so rigidly follows parent nodes in animations.
 
 # Phantom BSP
+
+<figure>
+  <a href="phantom.jpg">
+    <img src="phantom.jpg" alt=""/>
+  </a>
+  <figcaption>
+    <p>Phantom BSP exists in the collision model of covenant crates.</p>
+  </figcaption>
+</figure>
+
 Although phantom BSP is typically seen in the context of level geometry, it can also affect model collision geometry because this tag uses the same collision data structures as a [scenario_structure_bsp][scenario_structure_bsp#phantom-bsp]. In the case of models, phantom BSP is limited to the object's bounding radius.
+
+Like with level geometry, these can be troubleshooted in [Sapien] by running the console commands:
+
+```console
+collision_debug 1
+collision_debug_phantom_bsp 1
+```
+
+To fix them, use similar tricks as fixing level phantom BSP: avoiding nearly co-planar faces and slightly altering the collision model around the problematic location.

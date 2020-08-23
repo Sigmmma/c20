@@ -2,13 +2,14 @@ const marked = require("marked");
 const hljs = require("highlight.js");
 const Entities = require('html-entities').AllHtmlEntities;
 const {slugify, heading} = require("./bits");
-const hscLang = require("./langs/hsc");
+const hscLangs = require("./langs/hsc");
 const vrmlLang = require("./langs/vrml");
 
 const entities = new Entities();
 
 hljs.registerLanguage("vrml", vrmlLang);
-hljs.registerLanguage("hsc", hscLang);
+hljs.registerLanguage("hsc", hscLangs(false));
+hljs.registerLanguage("console", hscLangs(true));
 
 //https://marked.js.org/#/USING_PRO.md#renderer
 const htmlRenderer = new marked.Renderer();

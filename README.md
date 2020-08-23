@@ -60,7 +60,7 @@ The website is currently hosted as a static site in [AWS S3](https://aws.amazon.
 As a backup, users with bucket permission can simply sync the `dist` directory to S3:
 
 ```sh
-aws s3 sync --delete ./dist s3://reclaimers-c20/
+aws s3 sync --delete ./dist s3://reclaimers-wiki-files/
 ```
 
 Because of cache TTLs, content may not appear updated immediately. An invalidation can be run in CloudFront to force updates, but it will not affect clients unless they clear their browser cache. TTLs are currently set at a minimum of 1 day and a maximum of 3. Live content can be seen by directly viewing the [S3 hosting origin][s3-origin].
