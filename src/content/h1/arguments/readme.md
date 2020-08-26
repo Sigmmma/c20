@@ -71,7 +71,7 @@ These additional arguments are found in game executable, but seem to have no eff
 |`-checkfpu`                    | Was possibly used to debug the machine's floating point unit (FPU).
 |`-noSSE`                       | May have been used to disable certain branches of code with [SIMD instructions][about-sse]. Unknown if this has any effect now.
 |`-testcrash`                   | Bring up a crash dialog? No effect.
-|`-usefxfile`                   | Load shaders from DirectX .fx files. Does not work.
+|`-usefxfile`                   | Load shaders from DirectX .fx files. Pre-release versions of Halo PC contain .fx files in a `SHADERS\FX` folder. Does not work in release versions.
 |`-useref`                      | Unknown purpose.
 
 
