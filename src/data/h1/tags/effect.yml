@@ -2,7 +2,9 @@ name: effect
 id: effe
 invaderStructName: Effect
 comments:
-  md: ...
+  md: >
+    A multi-purpose tag used for responses to various events like material impacts,
+    sound effects, and detonations.
   fields:
     - name: flags
       md: ...

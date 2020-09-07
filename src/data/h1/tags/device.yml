@@ -3,7 +3,7 @@ id: devi
 parentName: object
 invaderStructName: Device
 comments:
-  md: ...
+  md: Parent tag for devices, controlled objects which have powered on/off states.
   fields:
     - name: device flags
       md: ...

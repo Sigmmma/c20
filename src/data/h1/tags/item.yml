@@ -3,7 +3,9 @@ id: item
 parentName: object
 invaderStructName: Item
 comments:
-  md: ...
+  md: >
+    Parent tag of [weapon][], [garbage][], and [equipment][]. Represents a
+    small moveable object with point-like physics.
   fields:
     - name: item flags
       md: ...

@@ -700,6 +700,7 @@ comments:
       md: |
         Axis-aligned volumes which can be used in scripts to test for the
         presence an object: `(volume_test_object "volume_name" <object>)`.
+        An example use case is [kill volumes][kill-volume].
       fields:
         - name: unknown
           md: ...

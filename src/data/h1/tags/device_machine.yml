@@ -3,7 +3,7 @@ id: mach
 parentName: device
 invaderStructName: DeviceMachine
 comments:
-  md: ...
+  md: An object which can animate between open and closed states, like doors and elevators.
   fields:
     - name: machine type
       md: ...

@@ -5,4 +5,4 @@ img: powerups.jpg
 imgCaption: Powerups are an example of items.
 ---
 
-**Items** are simple moveable objects which cannot be controlled or die (though they can despawn), unlike [units][unit]. The _item_ tag class is the parent of the [weapon][], [garbage][], and [equipment][] tags.
+**Items** are simple moveable objects and the parent tag of [weapon][], [garbage][], and [equipment][]. Although they can have a hitbox in the form of a [model_collision_geometry][], when moving they are simulated as simple point-like objects that can bounce off the [BSP][scenario_structure_bsp] and non-item objects. Unlike [units][unit], they cannot be controlled or die (though they can despawn).

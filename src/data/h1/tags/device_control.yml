@@ -3,7 +3,7 @@ id: ctrl
 parentName: device
 invaderStructName: DeviceControl
 comments:
-  md: ...
+  md: Used for interactive switches and buttons to operate [device_machines][device_machine] like doors and elevators.
   fields:
     - name: type
       md: ...
