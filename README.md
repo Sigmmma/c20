@@ -32,7 +32,7 @@ title: Page title
 Page text goes here
 ```
 
-The directory for a page can include other files related to that topic, like images or [Graphviz](https://graphviz.org/) files for generating diagrams.
+The directory for a page can include other files related to that topic, like images or [Graphviz](https://graphviz.org/) files for generating diagrams. Any `src/content/../todo.md` file or `src/content/../todo` directory is git-ignored and can be used to mock out page structures and keep notes for later writing.
 
 ## Building and testing
 In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite, this project requires [Node.js](https://nodejs.org/en/). Run the following shell commands to build and locally serve the website:

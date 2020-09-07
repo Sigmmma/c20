@@ -1,10 +1,12 @@
 ---
 title: Game and profile files
+keywords:
+  - game-state
 thanks:
   - to: MrChromed
     for: Loading screen tip
   - to: Vaporeon
-    for: Watson background
+    for: Watson and strings.dll background
   - to: Miris
     for: Profile and savegame reversing, LAA patch
   - to: Sparky
@@ -21,7 +23,11 @@ This is the main game executable containing the bulk of the game's code.
 By default, Halo is only permitted to use [2 GB][2gb] of virtual memory. By applying value `0x2F` at offset `0x136` in the 1.0.10 executable, Halo can be made "Large Address Aware" and capable of using up to 4GB of virtual memory. The same upgrade can be made to [Sapien][sapien#limits]. The increased limit can be useful for client mods like Chimera which run in the game's address space and allocate more memory to speed up map loading.
 
 # strings.dll
-The library `strings.dll` is required to run the game or dedicated server. Prior to the 1.10 patch, one of its functions was the `executable_is_valid` checksum. Another of its functions is containing the loading screen seen before the main menu (all other loading screens are contained in maps).
+The library `strings.dll` is required to run the game or dedicated server. It serves multiple purposes:
+
+* Contains the loading screen image seen before the main menu (all other loading screens are contained in maps).
+* Displays crash messages in a window.
+* Prior to the 1.10 patch, it contained the `executable_is_valid` checksum.
 
 This DLL is often replaced with a modified version for mods like SAPP and Chimera 1.0+.
 
@@ -129,7 +135,7 @@ The file structure follows, but is known to be incomplete:
       <td><code>0x011A</code></td>
       <td><code>uint8</code></td>
       <td>
-        <p>Determines the player's <a href="/h1/hard-coded-data/#multiplayer-armor-colors">multiplayer armour colour</a>.</p>
+        <p>Determines the player's <a href="/h1/engine/hard-coded-data/#multiplayer-armor-colors">multiplayer armour colour</a>.</p>
         <table>
           <thead>
             <tr>

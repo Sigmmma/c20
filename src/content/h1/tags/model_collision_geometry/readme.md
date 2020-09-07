@@ -3,6 +3,11 @@ title: model_collision_geometry
 tagName: model_collision_geometry
 img: collisions.png
 imgCaption: "Collision geometry for many of Halo's vehicles, scenery, and bipeds"
+thanks:
+  - to: Knight Artorias
+    for: Region and permutation limits
+  - to: lag supreme
+    for: Visualization of phantom BSP in covie crates
 ---
 
 Model collision geometry tags contain collision data for an [object][]. This is in contrast to [model/gbxmodel][gbxmodel] tags, which contain the renderable data. Collision meshes tend to be less detailed than render meshes.
@@ -42,7 +47,7 @@ Pathfinding spheres can also be created automatically in some cases:
 * [Bipeds][biped] by default also have a pathfinding sphere around their feet with the same width as their physics pill.
 
 ## Limits
-model_collision_geometry tags can only have up to 16 pathfinding spheres<sup>(confirmation needed)</sup>.
+model_collision_geometry tags can only have up to 16 pathfinding spheres<sup>(confirmation needed)</sup>, up to 8 regions, and up to 33 permutations to a region.
 
 ## Related commands
 

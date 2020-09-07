@@ -6,6 +6,9 @@ img: warthog-nodes.jpg
 imgCaption: The gbxmodel tag stores not only mesh data, but also markers, animation nodes, shader references, and more.
 keywords:
   - model
+thanks:
+  - to: Fubih
+  - for: Regions render order tip
 ---
 
 The Gearbox model tag contains the render models (LODs) and [shader_model][] references for [objects][object] such as [vehicles][vehicle], [scenery][], and [weapons][weapon] among others. It is not collideable nor animated on its own, and objects may reference additional [model_collision_geometry][] and [model_animations][] tags.
@@ -17,3 +20,9 @@ Each "part" of a model can reference a different [shader][], like the Warthog's 
 
 # Markers
 ...
+
+# Regions
+Regions render in the order they are stored in the tag. When naming regions, consider that they will be sorted by name when compiled into the `.gbxmodel`. This can be important for [skyboxes][sky] and objects with multiple layers of alpha-blended transparent shaders which aren't [z-culled][z-buf] and need a correct sorting order to be explicitly defined, assuming the object is viewed mostly from one direction.
+
+
+[z-buf]: https://en.wikipedia.org/wiki/Z-buffering

@@ -15,9 +15,13 @@ The name "tag" was inspired by [XML tags][about-xml], which also have types and 
 
 # Tag structure
 ## Tag references and paths
-Some tag fields are _references_ to other tags. In tools like [Guerilla][], these references are referenced by their _tag path_, which can be thought of like their "URL". For example, the tutorial scenario references its BSP with the path `levels\test\tutorial\tutorial`. Tag paths are not literal filesystem paths, but rather an abstract location which uniquely identifies an instance of a tag. The _type_ of the referenced tag known
+A _tag path_ is like a URL for a tag. References from one tag file to another are stored as tag paths with an accompanying [engine ID](#engine-ids) for the type. For example, the path `levels\test\tutorial\tutorial` and engine ID `sbsp` is how the tutorial [scenario][] references its [BSP][scenario_structure_bsp]. Tag paths are assumed relative to a `tags` directory, but are not literal filesystem paths since they don't contain an extension.
 
-When tags are compiled into a map, their references are converted into pre-calculated pointers. An array of tag paths are still retained in the map but is not used by the game.
+Be careful when moving or renaming tag files; you may create "dead links" in other tags that referenced them. Either correct the broken references after moving tags, or use [invader-refactor][invader] to move tags safely.
+
+When tags are compiled into a map, references are converted into pre-calculated pointers. An array of tag paths are still retained in the map but is not used by the game.
+
+Tag paths also appear in arguments to [Tool][] and scripting.
 
 ## Blocks
 A _tag block_ field, also known as a _reflexive_, is essentially a list of smaller data structures within a tag. An example is the [scenario][] tag containing a block of [vehicles][vehicle]. In visual tag editors, blocks appear as a list of elements which are often editable by adding or removing elements. A block field internally consists of an item count and a pointer to an array of structures of the expected type.

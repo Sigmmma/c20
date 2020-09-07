@@ -1,12 +1,14 @@
 ---
-title: Guides
+title: Guides hub
 stub: true
 keywords:
   - tutorials
 ---
-...
+Welcome to the guides hub! Here you'll find links to various guides ranging from basic map-making to more advanced topics. This hub is a work in progress and will grow over time. Until it is more complete, we recommend the official [HEK tutorial][hek] as a starting point.
 
-# General techniques
+# High-level basics of Halo modding
+
+# Research techniques
 Modding knowledge tends to be pretty spread out, and the official [HEK][] tutorial covers only the most basic map-making process. While this library, community tutorials, and chat channels help to fill the gaps, there often isn't specific information available. Some techniques you can use to find answers are:
 
 ## Use the community
@@ -19,3 +21,4 @@ Are there any existing maps which do what you need? Extracting tags with [Refine
 Many tag fields are still poorly understood. Using [Reclaimer][], tags can be analyzed in bulk and edited programmatically to get a better idea of how changes affects the game.
 
 [discord]: https://discord.reclaimers.net/
+[hek]: http://hce.halomaps.org/hek/

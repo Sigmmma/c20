@@ -21,18 +21,31 @@ thanks:
 
 Commonly referred to as the **BSP**, this tag contains level geometry, weather data, material assignments, AI pathfinding information, [lightmaps][], and other data structures. The name "BSP" is commonly used to refer to non-[object][] level geometry in general. Aside from sounds and [bitmaps][bitmap], the BSP tends to be one of the largest tags in a map.
 
+BSP stands for [Binary Space Partitioning][about-bsp], a technique where space within a sealed static mesh is recursively subdivided by planes into [convex][] _leaf nodes_. The resulting _BSP tree_ can be used to efficiently answer geometric queries, such as which surfaces should be collision-tested for physics objects.
+
+# Compilation
+After level geometry is exported to [JMS][] format, it can be compiled into a BSP tag using [Tool's structure verb][tool#structure-compilation].
+
+# BSP transitions
 While a [scenario][] can reference multiple BSPs, Halo can only have a single BSP loaded at a time. Transitions between BSPs can be scripted (`switch_bsp`), e.g. using trigger volumes. Objects in unloaded BSPs are not simulated.
 
 # Shaders
-The most commonly used [shader][] type for BSPs is [shader_environment][]. Transparent shaders are also supported, but a referenced [shader_model][] will not be rendered by the game since it is intended for use with [object models][gbxmodel].
+The most commonly used [shader][] type for BSPs is [shader_environment][], suitable for most opaque surfaces and alpha-tested grates or billboard trees (as in _Timberland_). This shader type supports the blending between multiple detail maps, often used for ground maps with dirt and grass areas.
 
-# Binary space partitioning
-BSP stands for [Binary Space Partitioning][about-bsp], a technique where space within a sealed static mesh is recursively subdivided by planes into [convex][] _leaf nodes_. The resulting _BSP tree_ can be used to efficiently answer geometric queries, such as which surfaces should be collision-tested for physics objects.
+Transparent shaders can also be used, for example:
+
+* [shader_transparent_chicago][] for flowing rivers or waterfalls
+* [shader_transparent_chicago_extended][] for waterfalls
+* [shader_transparent_water][] for lakes and oceans
+
+The [shader_model][] type will not be rendered by the game since it is intended for use with [object models][gbxmodel].
 
 # Clusters and cluster data
-Clusters are sealed volumes of a BSP defined by portal planes. Clusters can independently reference the [weather_particle_system][], [wind][], [sound_environment][], and [sound_looping][] tags to define the atmospheric and ambience qualities of sections of the map.
+Clusters are sealed volumes of a BSP separated by portal planes. They are used both as a rendering optimization and artistically; map authors can assign [weather_particle_system][], [wind][], [sound_environment][], and [sound_looping][] tags to define local atmospheric and ambience qualities for each section of the map.
 
-Note that it may still be desirable to reference weather for indoor clusters if there are outdoor areas visible from them, otherwise snow and rain particles will abruptly disappear. To mask weather in such clusters, use weather polyhedra.
+Note that it may still be desirable to reference weather for indoor clusters if there are outdoor areas visible from them, otherwise snow and rain particles will abruptly disappear. To mask weather in such clusters, use [weather polyhedra](#weather-polyhedra).
+
+There is a maximum limit to visible weather polyhedra. The exact amount is unconfirmed but is around 8-10. Beyond this point, some polyhedra will be ignored and [Sapien][] will print warnings.
 
 # Fog planes
 Areas of a map which need a fog layer can be marked using _fog planes_. These are 2D surfaces which reference [fog tags][fog], not to be confused with atmospheric fog which is part of the [sky tag][sky].

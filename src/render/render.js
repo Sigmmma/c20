@@ -6,8 +6,8 @@ const {
 } = require("./components");
 
 const STUB_ALERT = {type: "danger", body: html`
-  <p>🚧 This article is a stub. You can help expand it by submitting content in
-  pull requests or issues in this wiki's <a href="${REPO_URL}">source repo</a>.</p>
+  <p>🚧 This incomplete article needs help! Please submit tips and info by
+  <a href="${REPO_URL}">pull requests or issues</a> or contacting a <a href="/thanks">maintainer</a>.</p>
 `};
 
 module.exports = (page, metaIndex) => {

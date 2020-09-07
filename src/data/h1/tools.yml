@@ -430,9 +430,6 @@ workflowItems:
 # alternative items.
 similarItems:
   -
-    - 3ds Max
-    - Gmax
-  -
     - model
     - gbxmodel
   -
@@ -442,6 +439,7 @@ similarItems:
   -
     - Blender
     - 3ds Max
+    - Gmax
   -
     - Guerilla
     - OS_Guerilla

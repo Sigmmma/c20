@@ -5,7 +5,7 @@ img: objects.jpg
 imgCaption: Various examples of objects, including projectiles, weapons, and units.
 ---
 
-Objects are a high-level abstract tag, meaning they serve as a base for many other tag types but cannot be directly created themselves. Generally, they are "things" with a position in the world but are distinct from the ["level"][scenario_structure_bsp] itself. Some examples include [elevators][device_machine], [trees][scenery], [warthogs][vehicle], and [the player][biped].
+**Objects** are a high-level abstract tag, meaning they serve as a base for many other tag types but cannot be directly created themselves. Generally, they are "things" with a position in the world but are distinct from the ["level"][scenario_structure_bsp] itself. Some examples include [elevators][device_machine], [trees][scenery], [warthogs][vehicle], and [the player][biped].
 
 Some capabilities available to objects (though not used by every subtype) are:
 

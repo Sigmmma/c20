@@ -1,5 +1,5 @@
 ---
-title: Halo arguments
+title: Startup arguments
 thanks:
   - to: nToss
     for: Information on timedemo
@@ -11,7 +11,7 @@ Many of these settings can be configured in-game, so it is not usually necessary
 
 # How to add arguments to a shortcut (Windows)
 
-Windows users looking to avoid having to use the [command prompt][about-cmd] can create a shortcut to `halo.exe`, `haloce.exe`, or `haloceded.exe` and edit it's **target** to provide these arguments. Be sure to place them **after the EXE**, and **separate each argument with spaces**:
+Windows users looking to avoid having to use the [command prompt][command-line#command-prompt-windows] can create a shortcut to `halo.exe`, `haloce.exe`, or `haloceded.exe` and edit it's **target** to provide these arguments. Be sure to place them **after the EXE**, and **separate each argument with spaces**:
 
 <a href="windows-shortcut.jpg">
   <img src="windows-shortcut.jpg" alt="Dialog box showing how to add arguments to a Windows shortcut" style="max-width:300px"/>

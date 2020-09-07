@@ -2,7 +2,7 @@ name: sky
 id: 'sky '
 invaderStructName: Sky
 comments:
-  md: ...
+  md: Defines a skybox with light sources for [lightmaps][] and atmospheric fog.
   fields:
     - name: model
       md: ...

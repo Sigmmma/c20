@@ -292,8 +292,13 @@ code {
 
   &.language-console > .hljs-name:before {
     content: "halo( ";
-    color: $fg-faded;
+    transition: opacity $transition-time;
+    color: fuchsia;
   }
+}
+
+pre:hover code.language-console > .hljs-name:before {
+  opacity: 0.5;
 }
 
 kbd {

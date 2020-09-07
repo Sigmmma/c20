@@ -6,14 +6,17 @@ module.exports = function(consoleMode) {
     var globals = [
       "script",
       "if",
+      "cond",
       "begin",
       "begin_random",
       "startup",
       "dormant",
       "continuous",
+      "stub",
       "static",
       "sleep",
       "sleep_until",
+      "thread_sleep",
       "global",
       "wake",
     ].join(" ");
@@ -28,9 +31,9 @@ module.exports = function(consoleMode) {
           "or",
           "max",
           "min",
-          "cond",
           "cls",
           "print",
+          "inspect",
           "list_get",
           "list_count",
           "help",
@@ -61,8 +64,8 @@ module.exports = function(consoleMode) {
       begin: /\b(true|false|easy|normal|hard|impossible)\b/
     };
     var LIST = consoleMode ? {
-      begin: '(\\(|^)',
-      end: '(\\)|$)'
+      begin: '(?:\\(|^)',
+      end: '(\\)|$|;)'
     } : {
       begin: '\\(',
       end: '\\)'
@@ -84,7 +87,7 @@ module.exports = function(consoleMode) {
       excludeEnd: true,
       starts: BODY,
     };
-    var DEFAULT_CONTAINS = [LIST, STRING, COMMENT, NUMBER, LITERAL, SYMBOL];
+    var DEFAULT_CONTAINS = [COMMENT, LIST, STRING, NUMBER, LITERAL, SYMBOL];
 
     var GLOBAL = {
       beginKeywords: globals,

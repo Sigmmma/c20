@@ -1,5 +1,6 @@
 /dist
 node_modules
-/todo
 report.*.json
 nohup.out
+/src/content/**/todo.md
+/src/content/**/todo

@@ -42,7 +42,7 @@ const wrapper = (page, metaIndex, body) => {
         <link rel="preload" type="application/json" as="fetch" href="/assets/search-index.json">
         <link rel="icon" type="image/png" href="/assets/librarian.png">
         <link rel="stylesheet" href="/assets/style.css"/>
-        <link rel="stylesheet" href="/assets/atom-one-dark.css"/>
+        <link rel="stylesheet" href="/assets/obsidian.css"/>
       </head>
       <body>
         ${header()}

@@ -2,7 +2,7 @@ name: fog
 id: 'fog '
 invaderStructName: Fog
 comments:
-  md: ...
+  md: Describes the appearance of fog planes.
   fields:
     - name: flags
       md: ...

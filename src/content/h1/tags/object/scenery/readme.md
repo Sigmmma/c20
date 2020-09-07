@@ -5,7 +5,7 @@ img: scenery.jpg
 imgCaption: "Trees, boulders, landing beacons, and covenant crates are all instances of scenery"
 ---
 
-Scenery are static objects placed within maps that are not part of the [BSP][scenario_structure_bsp]. They are Halo CE's implementation of [instanced geometry][wiki-instancing]. Some examples of scenery include rocks, trees, crates, crashed pelicans, and particle emitters.
+**Scenery** are static objects placed within maps that are not part of the [BSP][scenario_structure_bsp]. They are Halo CE's implementation of [instanced geometry][wiki-instancing]. Some examples of scenery include rocks, trees, crates, crashed pelicans, and particle emitters.
 
 Scenery is placed using [Sapien][] and belongs to the [scenario][], with each scenery implicitly belonging to a particular BSP.
 

@@ -2,7 +2,9 @@ name: detail_object_collection
 id: dobc
 invaderStructName: DetailObjectCollection
 comments:
-  md: ...
+  md: >
+    Determines the mix and appearance of small 2D detail objects like grass,
+    which are painted onto a [BSP][scenario_structure_bsp] in [Sapien][].
   fields:
     - name: collection type
       md: ...
