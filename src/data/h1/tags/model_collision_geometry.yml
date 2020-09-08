@@ -2,7 +2,7 @@ name: model_collision_geometry
 id: coll
 invaderStructName: ModelCollisionGeometry
 comments:
-  md: Contains the "hitboxes" for [objects][object] as well as information about health and shields.
+  md: Contains the collision mesh (also referred to as hitbox) for [objects][object] as well as information about health and shields.
   fields:
     - name: flags
       md: ...

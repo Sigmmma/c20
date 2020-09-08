@@ -7,20 +7,37 @@ thanks:
     for: Context on OpenSauce capabilities
   - to: Jakey
     for: Tag data limit info
+  - to: gbMichelle
+    for: How maps are loaded into memory
 ---
 
 A **map**, also known as a **cache file**, is a bundle of compiled [tags][] which can be loaded and used by [Halo][h1]. With the exception of _resource maps_, each map represents a playable campaign, multiplayer level, or main menu.
 
-Halo loads these files directly into memory at a fixed address with no further processing of data needed, which makes map load times as short as possible. Tags within a map cache can contain pre-calculated pointers and matrices, and other fields which are needed by the game.
+Tags within a map file are not exactly the same as they exist in your source `tags` directory. When tags are compiled into a map, data is prepared for how it will be used at runtime. [Tag path references][tags#tag-references-and-paths] are replaced with pre-calculated pointers, [child scenarios][scenario#child-scenarios] are merged, extra fields are calculated, and the metadata for [bitmaps][bitmap] and [sounds][sound] is separated from their raw data.
 
 Maps are found in Halo's `maps` directory. Maps in subdirectories are not loaded by the game. Mods like Chimera and HAC2 store [downloaded](#halonet) maps in a separate location and force the game to load them regardless.
 
+# Map loading
+Within a map, tag _metadata_ (most of the fields seen in tag editors) is stored separately from _raw data_ (sounds and bitmaps). [BSP data][scenario_structure_bsp] for all BSPs is also stored in its own location. The game is able to find these locations using special headers and indexes in the map file.
+
+Each section is loaded in a different way:
+
+* Tag metadata is copied directly into memory at a fixed address. On Xbox, PC, and Custom Edition, the game has just 23 MiB of tag space available for the currently loaded map. Tag metadata is loaded into the _start_ of this region. Because this data has been preprocessed by Tool, it requires no further processing and thus is very fast to load.
+* The active BSP is loaded into the _end_ of the 23 MiB tag space. When a BSP switch occurs, the new BSP data is read from the map file and replaces the previous data in-memory.
+* Raw data is streamed from the map file as needed and dynamically allocated in a loaded resource pool/cache. The texture cache is cleared during maps loads and BSP switches. Some tags like [BSPs][scenario_structure_bsp] and [scenarios][scenario] contain a "predicted resources" block which hints to the game which data should be loaded into these caches.
+
+Tags from resource maps are also loaded into the tag space as needed.
+
 # Limits
-Maps have a limit of 23 MiB of tag data (raised to 31 MiB in MCC). This does not include the raw BSP data or bitmaps, just tag fields. [Tool][] will output the used tag space when compiling a map, for example:
+Because the game has a 23 MiB tag space limit (raised to 31 MiB in MCC), [Tool][] will enforce this limit when compiling a map. Keep an eye on its console output:
 
 ```
 total tag size is 8.43M (14.57M free)
 ```
+
+Total tag size is comprised of all non-raw tag data (ie. no bitmap or sound raw data) plus the _largest_ [BSP][scenario_structure_bsp] size, since the BSP is loaded within the 23 MiB space and there will only be a single BSP loaded at a time.
+
+Care should be taken not to get too close to the tag limit, because even though you may compile a map with a certain set of resource maps (e.g. the English version of the game), Halo players with different languages may actually have _larger_ resource map tag data which now exceeds the limit and prevents your map from loading.
 
 # Map types
 With the exception of resource maps, the type of a map is determined by the type field in the compiled [scenario][] tag.

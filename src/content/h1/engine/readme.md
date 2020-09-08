@@ -13,7 +13,7 @@ Blam! is not a generic game engine like Unreal or Unity; it was purpose built to
 
 Tags come in expected types only and can be seen as the "interface" to the game. All customizable assets and gameplay parameters are represented as tags within [map files][map], with tags forming a dependency tree via references. When the game loads a map, it will use the included tags to drive game systems such as AI, weapons, vehicles, rendering, physics, and more. Maps are loaded directly into game memory as-is.
 
-See also [in-memory game state][game-state] and [netcode][] information. Note that on Xbox, the engine makes some in-memory [tag edits][tool#hardcoded-tag-patches] for balancing.
+See also [map loading][map#map-loading], [in-memory game state][game-state] and [netcode][] information. Note that on Xbox, the engine makes some in-memory [tag edits][tool#hardcoded-tag-patches] for balancing.
 
 # Other games
 
