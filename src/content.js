@@ -185,6 +185,15 @@ async function renderContent(metaIndex, outputDir) {
   searchIndex.addAll(searchDocs);
   const jsonIndex = JSON.stringify(searchIndex.toJSON());
   await fs.writeFile(path.join(outputDir, "assets", "search-index.json"), jsonIndex, "utf8");
+
+  const sitemap = metaIndex.pages
+    .filter(page => !page.stub)
+    .map(page => `${metaIndex.baseUrl}${page._path}`)
+    .join("\n");
+  await fs.writeFile(path.join(outputDir, "sitemap.txt"), sitemap, "utf8");
+
+  const robots = `User-agent: *\nDisallow: /assets/\nSitemap: ${metaIndex.baseUrl}/sitemap.txt\n`;
+  await fs.writeFile(path.join(outputDir, "robots.txt"), robots, "utf8");
 }
 
 async function buildContent(contentDir, outputDir, invaderDefsDir, baseUrl, packageVersion) {
