@@ -1,4 +1,4 @@
-const {anchor, detailsList} = require("./bits");
+const {anchor, detailsList, ul} = require("./bits");
 
 const workflowItemAnchor = (itemName, metaIndex) => {
   const itemInfo = metaIndex.data.h1.getWorkflowItem(itemName);
@@ -23,44 +23,55 @@ const isReverse = (flowA, flowB) => {
 const workflowsList = (thisItem, workflows, metaIndex) => {
   const itemAnchor = (itemName) => workflowItemAnchor(itemName, metaIndex);
 
-  const filteredFlows = [];
+  const labeledFlows = {};
+  const pushLabeledFlow = (baseKey, base, itemKey, item) => {
+    if (!labeledFlows[baseKey]) {
+      labeledFlows[baseKey] = {base, items: {}};
+    }
+    labeledFlows[baseKey].items[itemKey] = item;
+  };
+
   for (let flow of workflows) {
     //at this time we don't need to show cyclic flows
-    if (flow.from && flow.to && flow.from == flow.to) {
-      continue;
-    }
-    //ignore duplicates
-    if (filteredFlows.find(other => flowsEqual(other, flow))) {
-      continue;
-    }
-    //we only want one list item for bi-directional flow pairs
-    const reverse = filteredFlows.find(other => isReverse(other, flow));
-    if (reverse) {
-      reverse.bidi = true;
+    if (isReverse(flow, flow)) {
       continue;
     }
 
-    filteredFlows.push(flow);
+    if (flow.edit && flow.using) {
+      if (flow.using == thisItem) {
+        pushLabeledFlow("edit", "Edit", flow.edit, itemAnchor(flow.edit));
+      } else {
+        pushLabeledFlow("edit-with", "Edit with", flow.using, itemAnchor(flow.using));
+      }
+    } else if (flow.from && flow.to && flow.using) {
+      //we only want one list item for bi-directional flow pairs
+      const hasReverse = workflows.find(other => !flowsEqual(flow, other) && isReverse(other, flow));
+      if (hasReverse) {
+        const otherItem = flow.to == thisItem ? flow.from : flow.to;
+        pushLabeledFlow(`bidi-${otherItem}`, `To/from&nbsp;${itemAnchor(otherItem)} with`, flow.using, itemAnchor(flow.using));
+      } else if (thisItem == flow.from) {
+        //use &nbsp; to join words for better appearance on narrow windows
+        pushLabeledFlow(`to-${flow.to}`, `To&nbsp;${itemAnchor(flow.to)} with`, flow.using, itemAnchor(flow.using));
+      } else if (thisItem == flow.to) {
+        pushLabeledFlow(`from-${flow.from}`, `From&nbsp;${itemAnchor(flow.from)} with`, flow.using, itemAnchor(flow.using));
+      } else if (thisItem == flow.using) {
+        pushLabeledFlow(`${flow.from}-to`, `${itemAnchor(flow.from)}&nbsp;to`, flow.to, itemAnchor(flow.to));
+      }
+    } else {
+      throw new Error(`Cannot render unhandled workflow for item '${thisItem}': ${JSON.stringify(flow)}`);
+    }
   }
 
   return detailsList(
     "Workflows",
-    filteredFlows.map(flow => {
-      if (flow.edit && flow.using) {
-        return flow.using == thisItem ?
-          `Edit ${itemAnchor(flow.edit)}` :
-          `Edit with ${itemAnchor(flow.using)}`;
-      } else if (flow.from && flow.to && flow.using) {
-        //use &nbsp; to join words for better appearance on narrow windows
-        if (thisItem == flow.from) {
-          return `${flow.bidi ? "To/from" : "To"}&nbsp;${itemAnchor(flow.to)} with&nbsp;${itemAnchor(flow.using)}`;
-        } else if (thisItem == flow.to) {
-          return `${flow.bidi ? "To/from" : "From"}&nbsp;${itemAnchor(flow.from)} with&nbsp;${itemAnchor(flow.using)}`;
-        } else if (thisItem == flow.using) {
-          return `${itemAnchor(flow.from)}&nbsp;${flow.bidi ? "to/from" : "to"} ${itemAnchor(flow.to)}`;
-        }
+    Object.values(labeledFlows).map(({base, items}) => {
+      items = Object.values(items);
+      if (items.length == 1) {
+        return `${base}&nbsp;${items[0]}`;
+      } else if (items.length <= 3) {
+        return `${base} ${items.join(", ")}`;
       }
-      throw new Error(`Cannot render unhandled workflow for item '${thisItem}': ${JSON.stringify(flow)}`);
+      return `${base}...${ul(items)}`;
     })
   );
 };
