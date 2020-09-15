@@ -235,7 +235,14 @@ comments:
         - name: does not hurt owner
           md: ...
         - name: can cause headshots
-          md: ...
+          md: >
+            If enabled, any headshot against an unshielded enemy will kill it
+            regardless of the amount of damage inflicted. Even a 1-damage pistol
+            still instantly kills a Hunter because of this flag. This effect applies
+            even after shields have been reduced to 0 by the damage effect. For
+            example, even though the pistol deals 25 damage and players have 75
+            shield vitality, if the final shot is a headshot the player is still
+            killed because they are now unshielded.
         - name: pings resistant units
           md: ...
         - name: does not hurt friends
@@ -255,7 +262,7 @@ comments:
         - name: only hurts one infection form
           md: ...
         - name: can cause multiplayer headshots
-          md: ...
+          md: Same as the _can cause headshots_ flag above, but for multiplayer.
         - name: infection form pop
           md: ...
     - name: damage aoe core radius
@@ -339,7 +346,10 @@ comments:
     - name: leaves
       md: ...
     - name: elite energy shield
-      md: ...
+      md: >
+        Damage modifier for elite energy shields. Note that this field receives a
+        [hard-coded singleplayer adjustment][tool#hardcoded-tag-patches]
+        at map compile time for the pistol.
     - name: ice
       md: ...
     - name: hunter shield

@@ -258,15 +258,25 @@ comments:
     - name: magnification range
       md: ...
     - name: autoaim angle
-      md: ...
+      md: >
+        Determines the aiming cone where projectiles paths will be pulled towards
+        the target. This is the "red reticle" angle.
     - name: autoaim range
-      md: ...
+      md: The maximum range of the autoaim cone.
     - name: magnetism angle
-      md: ...
+      md: >
+        For controller input, sets the angle where crosshair "stickiness" becomes
+        a factor and aiming direction automatically tracks targets.
     - name: magnetism range
-      md: ...
+      md: The maximum target distance for magnetism to apply.
     - name: deviation angle
-      md: ...
+      md: >
+        Used for vehicle weapons to control the maximum angle of deviation when
+        the aiming direction does not match the direction the weapon is facing.
+        For example, the Ghost's deviation angle of 45 degrees allows the driver
+        to fire in the direction they are aiming even if the Ghost has not yet
+        turned to face that direction. Compare this to the Warthog gun's tighter
+        10 degree limit.
     - name: movement penalized
       md: ...
       options:
@@ -401,11 +411,15 @@ comments:
             - name: projectile is client side only
               md: ...
         - name: rounds per second
-          md: ...
+          md: Determines the maximum rate of fire of the weapon.
         - name: acceleration time
-          md: ...
+          md: >
+            Controls how long it takes for the weapon to reach its maximum rate
+            of fire during sustained bursts and automatic fire.
         - name: deceleration time
-          md: ...
+          md: >
+            Controls how long it takes for the weapon to return to starting rate
+            of fire when not firing.
         - name: blurred rate of fire
           md: ...
         - name: magazine
@@ -430,11 +444,18 @@ comments:
             - name: quiet
               md: ...
         - name: error
-          md: ...
+          md: >
+            The function of this field is unknown. It is **possibly unused by the game**.
+            Although labeled in [Guerilla][] as a range \[0, 1\], the pistol has a max
+            value of 2. Setting this to 0 does not affect projectile spread.
         - name: error acceleration time
-          md: ...
+          md: >
+            Affects how long it takes for the weapon to reach its maximum projectile
+            error angle during rapid or automatic fire.
         - name: error deceleration time
-          md: ...
+          md: >
+            Affects how long it takes for the weapon to reach its minimum projectile
+            error angle during a pause in firing.
         - name: charging time
           md: ...
         - name: charged time
@@ -460,15 +481,32 @@ comments:
             - name: point
               md: ...
             - name: horizontal fan
-              md: ...
+              md: >
+                Causes projectiles to be spread out in a fan, which actually seems
+                to be vertical.
         - name: projectiles per shot
-          md: ...
+          md: >
+            Affects how many projectiles are produced by a single shot. For example,
+            the shotgun has this value set to 15. Each projectile is scattered by error
+            angle independently.
         - name: distribution angle
-          md: ...
+          md: >
+            Affects the spread of projectiles when _projectiles per shot_ is
+            greater than 1 and _distribution function_ is _fan_.
         - name: minimum error
-          md: ...
+          md: >
+            Floor value for error angle. Even if the minimum error angle
+            is 0, this value takes precedence. Note that this field receives a
+            [hard-coded singleplayer adjustment][tool#hardcoded-tag-patches]
+            at map compile time for the pistol.
         - name: error angle
-          md: ...
+          md: >
+            Determines the minimum and maximum angle of the "error cone". The
+            min angle is for when you begin firing, while the max is reached after
+            a period of sustained fire. The values are shown in degrees in
+            Guerilla, but internally stored in radians. Note that these fields
+            receives [hard-coded singleplayer adjustments][tool#hardcoded-tag-patches]
+            at map compile time for the pistol and plasma rifle.
         - name: first person offset
           md: ...
         - name: projectile
@@ -488,13 +526,21 @@ comments:
         - name: ejection port recovery rate
           md: ...
         - name: firing acceleration rate
-          md: ...
+          md: >
+            Pre-calculated rate of firing rate increase, based on the
+            _acceleration time_ field.
         - name: firing deceleration rate
-          md: ...
+          md: >
+            Pre-calculated rate of firing rate decrease, based on the
+            _deceleration time_ field.
         - name: error acceleration rate
-          md: ...
+          md: >
+            Pre-calculated rate of error angle increase, based on the _error
+            acceleration time_ field.
         - name: error deceleration rate
-          md: ...
+          md: >
+            Pre-calculated rate of error angle decrease, based on the _error
+            deceleration time_ field.
         - name: firing effects
           md: ...
           fields:

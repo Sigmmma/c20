@@ -140,7 +140,7 @@ const fieldView = (field, comments, metaIndex, addHeading, hLevel) => {
   if (field.type == "TagDependency") {
     rowClasses.push("content-tag-minor");
   }
-  if (field.unused || field.type == "pad" || field.hidden || field.read_only) {
+  if (field.unused || field.type == "pad" || field.hidden || field.read_only || field.cache_only) {
     rowClasses.push("content-faded");
   }
 

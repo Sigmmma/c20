@@ -58,7 +58,7 @@ tool.exe build-cache-file levels\test\tutorial\tutorial
 The resulting map file can be found in Halo's `maps` directory.
 
 ## Hardcoded tag patches
-There are a number of gameplay-balancing tag patches ("Jason Jones edits") made at runtime on Xbox, but at map compilation time by [Tool][] on PC. On both platforms, these patches are only made to singleplayer maps.
+There are a number of gameplay-balancing tag patches ("Jason Jones edits") made at runtime on Xbox, but also at map compilation time by [Tool][]. On both platforms, these patches are only made to singleplayer maps.
 
 | Tag type        | Tag path                          | Changes
 |-----------------|-----------------------------------|----------------
@@ -66,4 +66,4 @@ There are a number of gameplay-balancing tag patches ("Jason Jones edits") made 
 |[damage_effect][]|`weapons\pistol\bullet`            |Elite energy shield damage modifier to `0.8`
 |[weapon][]       |`weapons\plasma rifle\plasma rifle`|First error angle to `0.25` degrees, second error to `2.5` for first trigger
 
-These changes are made only to the resulting tag data in the map file, but be careful when extracting tags from singleplayer maps! You will actually overwrite the original weapon tags and cause your custom multiplayer maps to _also_ use these values.
+These changes are made only to the resulting tag data in the map file, but be careful when extracting tags from singleplayer maps (both PC and Xbox)! You will actually overwrite the original weapon tags and cause your custom multiplayer maps to _also_ use these values.
