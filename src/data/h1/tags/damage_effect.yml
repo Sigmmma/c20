@@ -238,11 +238,14 @@ comments:
           md: >
             If enabled, any headshot against an unshielded enemy will kill it
             regardless of the amount of damage inflicted. Even a 1-damage pistol
-            still instantly kills a Hunter because of this flag. This effect applies
-            even after shields have been reduced to 0 by the damage effect. For
-            example, even though the pistol deals 25 damage and players have 75
-            shield vitality, if the final shot is a headshot the player is still
-            killed because they are now unshielded.
+            still instantly kills a Hunter because of this flag. It is an instant
+            kill even if the shield threshold is met with a headshot (after
+            shields have been reduced to 0 by the damage effect but health is
+            full). For example, even though the pistol deals 25 damage and players
+            have 75 shield vitality, if the final shot is a headshot the player dies.
+
+            Although there is also a _can cause multiplayer headshots_ flag,
+            it has a separate meaning and this flag applies to both SP and MP.
         - name: pings resistant units
           md: ...
         - name: does not hurt friends
@@ -250,7 +253,14 @@ comments:
         - name: does not ping units
           md: ...
         - name: detonates explosives
-          md: ...
+          md: >
+            If enabled, causes the effect to trigger the explosion of dropped
+            grenades within its radius, used for explosion chaining. This only
+            applies to maps loaded in singleplayer mode. Note that the [item][]
+            receiving damage (e.g. the grenade [equipment][]) must also have its
+            _destroyed by explosions_ flag enabled. If the grenade has been placed
+            within the scenario in Sapien, the _does accelerate_ flag will also
+            need to be checked in the properties window.
         - name: only hurts shields
           md: ...
         - name: causes flaming death
@@ -262,7 +272,11 @@ comments:
         - name: only hurts one infection form
           md: ...
         - name: can cause multiplayer headshots
-          md: Same as the _can cause headshots_ flag above, but for multiplayer.
+          md: >
+            Applies a 2x damage multiplier to headshots in multiplayer (based on
+            how the map was loaded, not scenario type). This multiplier stacks
+            with material modifiers below, so for example a cyborg armor modifier
+            of 2 with this flag enabled results in a 4x headshot damage modifier.
         - name: infection form pop
           md: ...
     - name: damage aoe core radius
@@ -328,9 +342,14 @@ comments:
     - name: flood carrier form
       md: ...
     - name: cyborg armor
-      md: ...
+      md: >
+        Also labeled as simply **cyborg** in Guerilla. Used to modify damage
+        on all body parts of the cyborg (spartan) biped.
     - name: cyborg energy shield
-      md: ...
+      md: >
+        Damage modifier for the "cyborg energy shield" material type. See the
+        _shield material type_ field of the unit's [model_collision_geometry][]
+        tag.
     - name: human armor
       md: ...
     - name: human skin
@@ -347,9 +366,11 @@ comments:
       md: ...
     - name: elite energy shield
       md: >
-        Damage modifier for elite energy shields. Note that this field receives a
+        Damage modifier for the "elite energy shield" material type. See the
+        _shield material type_ field of the unit's [model_collision_geometry][]
+        tag. Note that this field receives a
         [hard-coded singleplayer adjustment][tool#hardcoded-tag-patches]
-        at map compile time for the pistol.
+        at map compile time for the pistol's damage effect.
     - name: ice
       md: ...
     - name: hunter shield

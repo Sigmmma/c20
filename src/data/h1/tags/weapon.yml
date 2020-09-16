@@ -17,7 +17,10 @@ comments:
         - name: must be readied
           md: ...
         - name: doesn't count toward maximum
-          md: ...
+          md: >
+            Used for weapons like the oddball and flag which technically count
+            as a third carried weapon, despite the game having a soft limit of
+            2 held weapons (scripts and mods aside).
         - name: aim assists only when zoomed
           md: ...
         - name: prevents grenade throwing
@@ -29,7 +32,10 @@ comments:
         - name: prevents melee attack
           md: ...
         - name: detonates when dropped
-          md: ...
+          md: >
+            Causes the weapon to explode using its [item][] _detonation effect_
+            after being dropped. This is used to make the singleplayer fuel rod
+            gun and energy sword explode when the enemies who carry them die.
         - name: cannot fire at maximum age
           md: ...
         - name: secondary trigger overrides grenades

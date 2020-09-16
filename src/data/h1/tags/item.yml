@@ -11,9 +11,14 @@ comments:
       md: ...
       fields:
         - name: always maintains z up
-          md: ...
+          md: >
+            Forces the item to remain upright even if it has been launched in
+            an explosion or thrown. This is used for the multiplayer flag weapon
+            to prevent it from tumbling when dropped.
         - name: destroyed by explosions
-          md: ...
+          md: >
+            Allows the item (e.g. grenade) to be detonated if receiving a
+            [damage_effect][] with a _detonates explosives_ flag enabled.
         - name: unaffected by gravity
           md: ...
     - name: message index

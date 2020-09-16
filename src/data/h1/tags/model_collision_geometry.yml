@@ -24,7 +24,11 @@ comments:
     - name: indirect damage material
       md: ...
     - name: maximum body vitality
-      md: ...
+      md: >
+        Sets the maximum amount of health that a [unit][] has (damage hit points).
+        For example, the cyborg [biped][] has a value of 75. This value can also
+        be changed at runtime for individual units by using `unit_set_maximum_vitality`
+        in scripts.
     - name: body system shock
       md: ...
     - name: friendly damage resistance
@@ -46,9 +50,15 @@ comments:
     - name: body destroyed effect
       md: ...
     - name: maximum shield vitality
-      md: ...
+      md: >
+        Sets the maximum amount of shields that a [unit][] has (damage hit points).
+        For example, the cyborg [biped][] has a value of 75. This value can also
+        be changed at runtime for individual units by using `unit_set_maximum_vitality`
+        in scripts.
     - name: shield material type
-      md: ...
+      md: >
+        Determines which [damage_effect][] material modifier is used when applying
+        damage to the shield.
       options:
         - name: dirt
           md: ...
