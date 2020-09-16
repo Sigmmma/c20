@@ -68,10 +68,8 @@ const workflowsList = (thisItem, workflows, metaIndex) => {
       items = Object.values(items);
       if (items.length == 1) {
         return `${base}&nbsp;${items[0]}`;
-      } else if (items.length <= 3) {
-        return `${base} ${items.join(", ")}`;
       }
-      return `${base}...${ul(items)}`;
+      return `${base}:${ul(items)}`;
     })
   );
 };
