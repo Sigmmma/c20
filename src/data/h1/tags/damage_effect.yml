@@ -5,7 +5,11 @@ comments:
   md: ...
   fields:
     - name: radius
-      md: ...
+      md: >
+        The minimum radius determines the sphere in which damage is 100% of
+        _damage upper bound_. Damage fades linearly to _damage lower bound_ at
+        the maximum radius. Outside the maximum radius, 0 damage is dealt. The
+        _aoe core radius_ field does not affect this calculation.
     - name: cutoff scale
       md: ...
     - name: flags
@@ -280,7 +284,12 @@ comments:
         - name: infection form pop
           md: ...
     - name: damage aoe core radius
-      md: ...
+      md: >
+        Objects within this radius will be damaged regardless of obstructions
+        like the [BSP][scenario_structure_bsp]. Outside this radius, there must
+        be a line of sight between the effect and target. Contrary to the Guerilla
+        tooltip, this field does not determine if the damage has an area of effect;
+        see _radius_.
     - name: damage lower bound
       md: ...
     - name: damage upper bound from

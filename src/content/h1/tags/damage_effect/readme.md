@@ -6,7 +6,7 @@ thanks:
   - to: Mortis
     for: Explaining headshot damage and bleedthrough
   - to: Conscars
-    for: Checking multiplayer headshot flag behaviour
+    for: Checking multiplayer headshot flag and radii behaviour
 ---
 The **damage effect** tag determines the results of damage application to [items][item] and [units][unit] by [projectile][] impacts, explosions, melee attacks, and falling.
 

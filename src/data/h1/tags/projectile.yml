@@ -26,11 +26,15 @@ comments:
       md: ...
       options:
         - name: immediately
-          md: ...
+          md: >
+            The detonation timer begins immediately after the projectile is created,
+            causing it to explode after a fixed length of time.
         - name: after first bounce
-          md: ...
+          md: Treated identically to _when at rest_ by the game (same code path).
         - name: when at rest
-          md: ...
+          md: >
+            Once the projectile comes to rest, its detonation timer begins.
+            If it becomes in motion again, the timer is not interrupted.
     - name: impact noise
       md: ...
       options:

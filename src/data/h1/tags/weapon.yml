@@ -284,18 +284,21 @@ comments:
         turned to face that direction. Compare this to the Warthog gun's tighter
         10 degree limit.
     - name: movement penalized
-      md: ...
+      md: >
+        **Unused**. This was meant to slow the player when using certain weapons
+        like the rocket launcher, but it has no effect ingame regardless of the
+        options, penalty values used, or game mode.
       options:
         - name: always
-          md: ...
+          md: No effect.
         - name: when zoomed
-          md: ...
+          md: No effect.
         - name: when zoomed or reloading
-          md: ...
+          md: No effect.
     - name: forward movement penalty
-      md: ...
+      md: No effect.
     - name: sideways movement penalty
-      md: ...
+      md: No effect.
     - name: minimum target range
       md: ...
     - name: looking time modifier

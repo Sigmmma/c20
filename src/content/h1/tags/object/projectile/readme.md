@@ -7,6 +7,8 @@ imgCaption: Projectiles can be given a render model and a variety of effects and
 thanks:
   - to: gbMichelle
     for: Movement
+  - to: Mimickal
+    for: Explaining bounce timer
 ---
 **Projectiles** are special moving objects shot from weapons and thrown as grenades.
 
