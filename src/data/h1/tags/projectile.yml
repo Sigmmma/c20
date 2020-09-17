@@ -113,11 +113,21 @@ comments:
     - name: air gravity scale
       md: ...
     - name: air damage range
-      md: ...
+      md: >
+        Determines the maximum range that the projectile travels in the air.
+        Although the tooltips in Guerilla imply that damage should be scaled
+        linearly between these minimum and maximum ranges, these values have no
+        effect on damage applied. When the projectile reaches the maximum range,
+        it disappears (and does not detonate). If detonation at a max range is
+        desired, used the _maximum range_ field above. The minimum air damage
+        range has no effect, but must be less than the maximum range or else
+        the max range has no effect.
     - name: water gravity scale
       md: ...
     - name: water damage range
-      md: ...
+      md: >
+        Like _air damage range_, but for underwater environments (determined by
+        the _is water_ flag of [fog][] tags).
     - name: initial velocity
       md: ...
     - name: final velocity
