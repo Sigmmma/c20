@@ -49,7 +49,13 @@ comments:
     - name: origin offset
       md: ...
     - name: acceleration scale
-      md: ...
+      md: >
+        Affects how much objects are moved by explosions. A value of 0 means
+        the object remains fixed (like the multiplayer flag weapon). This value
+        works for [items][item], [bipeds][biped], and [vehicles][vehicle] (vehicles
+        must _also_ have a [physics][] tag set), but not [devices][device] and
+        [scenery][]. See also the _instantaneous acceleration_ field of
+        [damage_effect][] for the source of explosion acceleration.
     - name: scales change colors
       md: ...
     - name: model

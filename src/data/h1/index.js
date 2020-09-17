@@ -11,7 +11,12 @@ function strAsList(strOrList) {
 
 function buildData(invaderStructDefs) {
   const basicTagsList = glob.sync(path.join(__dirname, "tags", "*.yml")).map(tagFileName => {
-    return yaml.safeLoad(fs.readFileSync(tagFileName, "utf8"));
+    try {
+      return yaml.safeLoad(fs.readFileSync(tagFileName, "utf8"));
+    } catch (ex) {
+      console.error(`Failed to parse data file ${tagFileName}`);
+      throw ex;
+    }
   });
 
   const {workflowItems, similarItems, workflows} = yaml.safeLoad(fs.readFileSync(path.join(__dirname, "tools.yml"), "utf8"));
