@@ -3,7 +3,7 @@ id: eqip
 parentName: item
 invaderStructName: Equipment
 comments:
-  md: ...
+  md: Used for powerups, health packs, non-live grenades, and ammo pickups.
   fields:
     - name: powerup type
       md: ...

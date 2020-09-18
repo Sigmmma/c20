@@ -3,7 +3,7 @@ id: vehi
 parentName: unit
 invaderStructName: Vehicle
 comments:
-  md: ...
+  md: Driveable or occupiable units with dynamic physics, such as the Warthog and cryo pod.
   fields:
     - name: vehicle flags
       md: ...
