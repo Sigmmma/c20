@@ -193,6 +193,16 @@ input[type="checkbox"] {
   }
 }
 
+.unit-converter {
+  display: flex;
+  flex-wrap: wrap;
+  .inputs, .presets {
+    flex-grow: 1;
+    flex-basis: 50%;
+    min-width: 15em;
+  }
+}
+
 .radio-options {
   display: flex;
   flex-direction: row;
