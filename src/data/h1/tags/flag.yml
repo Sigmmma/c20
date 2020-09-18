@@ -2,7 +2,7 @@ name: flag
 id: flag
 invaderStructName: Flag
 comments:
-  md: ...
+  md: Properties for a simulated cloth-like material which can be attached to objects.
   fields:
     - name: flags
       md: ...

@@ -2,7 +2,9 @@ name: damage_effect
 id: jpt!
 invaderStructName: DamageEffect
 comments:
-  md: ...
+  md: >
+    Properties for the application of damage including material modifiers,
+    screen effects, acceleration, and area of effect.
   fields:
     - name: radius
       md: >
@@ -291,11 +293,16 @@ comments:
         tooltip, this field does not determine if the damage has an area of effect;
         see _radius_.
     - name: damage lower bound
-      md: ...
+      md: >
+        Sets the minimum amount of damage done when this effect is applied in a
+        scaled way. For example, projectiles can have min and max damage ranges
+        for air and water.
     - name: damage upper bound from
-      md: ...
+      md: Maximum damage will be randomly chosen between this value and the next.
     - name: damage upper bound to
-      md: ...
+      md: >
+        If set to the same value as the previous field, max damage will be the
+        same every time. Otherwise, a random value is chosen between upper bounds.
     - name: damage vehicle passthrough penalty
       md: ...
     - name: damage active camouflage damage

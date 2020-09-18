@@ -2,7 +2,7 @@ name: light
 id: ligh
 invaderStructName: Light
 comments:
-  md: ...
+  md: A dynamic light source which can be attached to objects and [effects][effect].
   fields:
     - name: flags
       md: ...

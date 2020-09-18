@@ -2,7 +2,9 @@ name: object
 id: obje
 invaderStructName: Object
 comments:
-  md: ...
+  md: >
+    Base tag for everything that can be populated and spawned into a level,
+    such as [bipeds][biped], [scenery][], and [projectiles][projectile].
   fields:
     - name: object type
       md: ...

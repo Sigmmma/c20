@@ -2,7 +2,7 @@ name: light_volume
 id: mgs2
 invaderStructName: LightVolume
 comments:
-  md: ...
+  md: Describes a dense line of glow particles, commonly used for projectile tails.
   fields:
     - name: attachment marker
       md: ...

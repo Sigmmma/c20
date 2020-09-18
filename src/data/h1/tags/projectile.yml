@@ -114,14 +114,13 @@ comments:
       md: ...
     - name: air damage range
       md: >
-        Determines the maximum range that the projectile travels in the air.
-        Although the tooltips in Guerilla imply that damage should be scaled
-        linearly between these minimum and maximum ranges, these values have no
-        effect on damage applied. When the projectile reaches the maximum range,
-        it disappears (and does not detonate). If detonation at a max range is
-        desired, used the _maximum range_ field above. The minimum air damage
-        range has no effect, but must be less than the maximum range or else
-        the max range has no effect.
+        Determines the maximum range that the projectile travels in the air and
+        scales _impact damage_ between its lower and upper bound. When the
+        projectile reaches the maximum range, it disappears (and does not detonate).
+        If detonation at a max range is desired, used the _maximum range_ field
+        above. See the [impact damage formula][damage_effect#impact-damage-formula]
+        for more information. If these values are set to 0, maximum damage is
+        applied and the projectile continues traveling until colliding or detonating.
     - name: water gravity scale
       md: ...
     - name: water damage range

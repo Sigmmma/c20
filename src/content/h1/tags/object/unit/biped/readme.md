@@ -2,6 +2,7 @@
 title: biped
 tagName: biped
 img: bipeds.jpg
+stub: true
 imgCaption: "Some bipeds scripted to run along a path during c10's intro"
 ---
 
