@@ -1,5 +1,109 @@
 const {html, render, Component} = htmPreact;
 
+class UnitConverter extends Component {
+  constructor() {
+    super();
+    this.handleChange = this.handleChange.bind(this);
+    this.state = {
+      basisType: "world",
+      basisValue: "1",
+    };
+  }
+
+  handleChange(basisType, basisValue) {
+    this.setState({basisType, basisValue});
+  }
+
+  render() {
+    //everything relative to JMS units:
+    const conversions = {
+      jms: {
+        label: "JMS",
+        rel: 1
+      },
+      world: {
+        label: "World units",
+        rel: 100
+      },
+      inches: {
+        label: "Inches",
+        rel: 1 / 1.2
+      },
+      feet: {
+        label: "Feet",
+        rel: 10
+      },
+      meters: {
+        label: "Meters",
+        rel: 1 / 0.03048
+      },
+    };
+
+    const presets = [
+      {
+        label: "Warthog length",
+        basisValue: "191.766",
+        basisType: "jms"
+      },
+      {
+        label: "Player collision height (standing)",
+        basisValue: "70",
+        basisType: "jms"
+      },
+      {
+        label: "Player collision height (crouching)",
+        basisValue: "50",
+        basisType: "jms"
+      },
+      {
+        label: "Distance between Blood Gulch flags",
+        basisValue: "97.60443705836329",
+        basisType: "world"
+      },
+      {
+        label: "American football field length",
+        basisValue: "109.73",
+        basisType: "meters"
+      },
+    ];
+
+    return html`
+      <div class="unit-converter">
+        <div class="inputs">
+          ${Object.entries(conversions).map(([type, {label, rel}]) => {
+            const name = `conversion-${type}`;
+            let entryValue = this.state.basisValue;
+            if (type != this.state.basisType) {
+              const jmsValue = Number(this.state.basisValue) * conversions[this.state.basisType].rel;
+              entryValue = Number.isNaN(jmsValue) ? "" : String(jmsValue / conversions[type].rel);
+            }
+            return html`
+              <br/>
+              <label for=${name}>${label}</label>
+              <input
+                name=${name}
+                type="text"
+                value=${entryValue}
+                onInput=${(e) => this.handleChange(type, e.target.value)}
+              />
+            `;
+          })}
+        </div>
+        <div class="presets">
+          <h2>Presets</h2>
+          ${presets.map(({label, basisValue, basisType}) => {
+            const clickHandler = () => {this.handleChange(basisType, basisValue)};
+            return html`
+              <button onClick=${clickHandler}>${label}</button>
+              <br/>
+            `;
+          })}
+        </div>
+      </div>
+    `;
+  }
+}
+
 class Search extends Component {
   constructor() {
     super();
@@ -133,3 +237,8 @@ class Search extends Component {
 }
 
 render(html`<${Search}/>`, document.getElementById("c20-search-mountpoint"));
+
+const converterMount = document.getElementById("unit-converter-mountpoint");
+if (converterMount) {
+  render(html`<${UnitConverter}/>`, converterMount);
+}
