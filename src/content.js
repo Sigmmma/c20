@@ -8,7 +8,7 @@ const fs = require("fs").promises;
 const path = require("path");
 const MiniSearch = require("minisearch");
 
-const STOP_WORDS = new Set(["and", "or", "to", "at", "in", "a", "the", "be", "are", "is", "as", "its", "it", "this", "these", "any", "halo"]);
+const STOP_WORDS = new Set(["and", "or", "not", "to", "at", "in", "a", "the", "be", "are", "is", "as", "its", "it", "this", "these", "any", "halo", "e", "g"]);
 
 async function findPaths(globPattern) {
   return new Promise((resolve, reject) => {
@@ -173,6 +173,10 @@ async function renderContent(metaIndex, outputDir) {
     idField: "path",
     fields: ["title", "text", "keywords"],
     storeFields: ["title"],
+    tokenize: (string, _fieldName) => {
+      //customize tokenizer to allow underscores in token
+      return string.split(/[\s\-\."'!?,;:\[\]\(\)\|\\><]+/);
+    },
     processTerm: (term, _fieldName) => {
       term = term.toLowerCase();
       return STOP_WORDS.has(term) ? null : term;

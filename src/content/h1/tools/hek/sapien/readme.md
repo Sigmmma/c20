@@ -9,13 +9,39 @@ thanks:
     for: Sharing NT Core knowledge
   - to: gruntfromhalo
     for: Discovering fog plane fix
+  - to: Jakey
+    for: Known issues, transparent self occlusion crash explanation
+  - to: GAIGHER
+    for: Multi-core crash solution
 ---
 **Sapien** is a visual [scenario][] and [BSP][scenario_structure_bsp] editor used to populate levels with objects, configure cluster data like wind and sound environments, compile scripts, and more. Sapien shares some systems with Halo itself, including its AI system to support interactive AI scripting and debugging. Other systems, such as weather rendering, are not represented.
 
 It is roughly analagous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which supports many more debug commands than the in-game one.
 
+# Windows
+## Hierarchy view
+The Hierarchy view displays all the objects currently placed in the game and organizes them by type. The left pane of the window shows the Hierarchy tree and currently selected type, and the right pane shows the objects of this selected group or type that are currently placed in the level.
+
+## Tool window
+This window contains settings for the currently active tool mode, such as object placement, detail object painting, or cluster properties application. The currently active tool depends on the selected hierarchy view item.
+
+The most commonly used settings, or options that are modified the most, are the options under the _Active marker handles_ section and the _Don't draw center marker_ option.
+
+## Properties palette
+The Properties palette window displays the properties for the currently selected hierarchy item. The type of object can be changed or chosen in this display as well as various other properties such as the position and rotation of the object, and spawn flags that set various attributes for the object.
+
+When applying cluster properties, the camera location in the game window determines the active cluster shown in this window.
+
+## Game window
+The game window is the main interface when interacting with objects in the level. It is also where you can run commands by pressing the <kbd>~</kbd> (tilde) key.
+
+The resolution and aspect ratio cannot be adjusted.
+
+## Output window
+This window is unused and can be ignored.
+
 # Radiosity
-Both Tool and Sapien can be used to generate [lightmaps][]. To use Sapien, press <kbd>~</kbd> (tilde) in the Game Window and enter the console commands:
+Both Tool and Sapien can be used to generate [lightmaps][]. To use Sapien, enter the following console commands:
 
 ```console
 ;0 for low quality, 1 for high, or a value like 0.8
@@ -60,11 +86,17 @@ As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual mem
         <p>Open the registry key <code>HKEY_USERS\S-1-5-21-0-0-0-1000\Software\Microsoft\Microsoft Games\Halo HEK\sapien</code> (user ID may vary) using regedit and delete all entries ending with "rect".</p>
       </td>
     </tr>
+    <tr>
+      <td>
+        Sapien debug wireframe colors and bounding radii change at angles and turn black, making it hard to identify their types.
+      </td>
+      <td>None known.</td>
+    </tr>
   </tbody>
 </table>
 
 ## Crashes
-When Sapien crashes, check `debug.txt` for hints.
+When Sapien crashes, check `debug.txt` for hints. You can ignore `Couldn't read map file './sapienbeta.map'`.
 
 <table>
   <thead>
@@ -76,10 +108,38 @@ When Sapien crashes, check `debug.txt` for hints.
   <tbody>
     <tr>
       <td>
-10.24.08 07:45:44 EXCEPTION halt in \halopc\haloce\source\rasterizer\dx9\rasterizer_dx9.c,#2014: global_window_parameters.fog.planar_maximum_depth>0.0f
+EXCEPTION halt in .\\\\detail_object_tool_handler.cpp,#103: &diffuse_color: assert_valid_real_rgb_color(-9.395227, -3.398408, -2.530689)
       </td>
       <td>
-        Try moving or resizing your <a href="/h1/tags/scenario_structure_bsp#fog-planes">fog plane(s)</a>.
+
+A [detail object][detail_object_collection] was painted outside the map. Be careful when painting around corners and small spaces, and save frequently.
+      </td>
+    </tr>
+    <tr>
+      <td>
+EXCEPTION halt in /halopc/haloce/source/cseries/profile.c,#442: parent_timesection->self_msec >= child_timesection->elapsed_msec
+      </td>
+      <td>
+
+This may be caused by a multi-core processor. Try running in Windows 98 compatibility mode, or setting the process affinity to a single core using Task Manager before opening the scenario.
+      </td>
+    </tr>
+    <tr>
+      <td>
+EXCEPTION halt in \halopc\haloce\source\rasterizer\rasterizer_transparent_geometry.c,#137: group->sorted_index>=0 && group->sorted_index<transparent_geometry_group_count
+      </td>
+      <td>
+
+An [object][] has _transparent self occlusion_ enabled while also referencing a transparent [shader][] with _extra layers_. This is not a problem in-game.
+      </td>
+    </tr>
+    <tr>
+      <td>
+EXCEPTION halt in \halopc\haloce\source\rasterizer\dx9\rasterizer_dx9.c,#2014: global_window_parameters.fog.planar_maximum_depth>0.0f
+      </td>
+      <td>
+
+Try moving or resizing your [fog plane(s)][scenario_structure_bsp#fog-planes].
       </td>
     </tr>
   </tbody>

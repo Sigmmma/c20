@@ -20,12 +20,13 @@ const URL_ENDIANNESS = "https://en.wikipedia.org/wiki/Endianness";
   - default_sign
 */
 
-const renderComment = (md, metaIndex) => {
+const renderComment = (md, metaIndex, addSearchText) => {
   if (md == "...") return null;
+  addSearchText(renderMarkdown(md, metaIndex, true));
   return renderMarkdown(md, metaIndex);
 };
 
-const fieldInfo = (field, fieldComments, metaIndex) => {
+const fieldInfo = (field, fieldComments, metaIndex, addSearchText) => {
   const info = [];
 
   if (field.unused) {
@@ -64,7 +65,7 @@ const fieldInfo = (field, fieldComments, metaIndex) => {
 
   let comments = field.comment ? html`<p>${field.comment}</p>` : null;
   if (fieldComments && fieldComments.md) {
-    comments = renderComment(fieldComments.md, metaIndex);
+    comments = renderComment(fieldComments.md, metaIndex, addSearchText);
   }
 
   return html`
@@ -132,7 +133,7 @@ const fieldTypeDisplay = (field, fieldTypeStruct, metaIndex) => {
   return typeCode;
 };
 
-const fieldView = (field, comments, metaIndex, addHeading, hLevel) => {
+const fieldView = (field, comments, metaIndex, addHeading, addSearchText, hLevel) => {
   const fieldComments = comments ? comments.fields.find(it => it.name == field.name) : null;
   const fieldTypeStruct = metaIndex.data.h1.invaderStructDefs[field.type];
 
@@ -150,11 +151,15 @@ const fieldView = (field, comments, metaIndex, addHeading, hLevel) => {
     addHeading({title: field.name, id: rowId, level: hLevel});
   }
 
+  if (field.name) {
+    addSearchText(field.name);
+  }
+
   return html`
     <tr ${rowId && `id="${rowId}"`} ${classes(rowClasses)}>
-      <td>${field.name && field.name}</td>
+      <td>${field.name}</td>
       <td>${fieldTypeDisplay(field, fieldTypeStruct, metaIndex)}</td>
-      <td>${fieldInfo(field, fieldComments, metaIndex)}</td>
+      <td>${fieldInfo(field, fieldComments, metaIndex, addSearchText)}</td>
     </tr>
     ${field.type == "TagReflexive" && html`
       <tr class="tag-block-body">
@@ -164,6 +169,7 @@ const fieldView = (field, comments, metaIndex, addHeading, hLevel) => {
           fieldComments,
           metaIndex,
           addHeading,
+          addSearchText,
           hLevel + 1,
           false
         )}</td>
@@ -177,6 +183,7 @@ const fieldView = (field, comments, metaIndex, addHeading, hLevel) => {
           fieldComments,
           metaIndex,
           addHeading,
+          addSearchText,
           hLevel + 1,
           false
         )}</td>
@@ -185,7 +192,7 @@ const fieldView = (field, comments, metaIndex, addHeading, hLevel) => {
   `;
 }
 
-const structView = (struct, structName, comments, metaIndex, addHeading, hLevel, isRoot) => {
+const structView = (struct, structName, comments, metaIndex, addHeading, addSearchText, hLevel, isRoot) => {
   if (!struct) {
     return structName;
   } else if (struct.type == "bitfield") {
@@ -203,7 +210,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel,
             <tr>
               <td>${field}</td>
               <td><code title="${0x1 << i}">0x${(0x1 << i).toString(16)}</code></td>
-              <td>${renderComment(comments && comments.fields.find(it => it.name == field).md, metaIndex)}</td>
+              <td>${renderComment(comments && comments.fields.find(it => it.name == field).md, metaIndex, addSearchText)}</td>
             </tr>
           `)}
         </tbody>
@@ -224,7 +231,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel,
             <tr>
               <td>${option}</td>
               <td><code title="${i}">0x${i.toString(16)}</code></td>
-              <td>${comments && renderComment(comments.options.find(it => it.name == option).md, metaIndex)}</td>
+              <td>${comments && renderComment(comments.options.find(it => it.name == option).md, metaIndex, addSearchText)}</td>
             </tr>
           `)}
         </tbody>
@@ -252,7 +259,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, hLevel,
           </tr>
         </thead>
         <tbody>
-          ${allFields.map(field => fieldView(field, comments, metaIndex, addHeading, hLevel))}
+          ${allFields.map(field => fieldView(field, comments, metaIndex, addHeading, addSearchText, hLevel))}
         </tbody>
       </table>
     `;
@@ -265,6 +272,8 @@ const renderTagStructure = (tag, metaIndex) => {
   const invaderDefUrl = `${INVADER_TAG_BASE}/${tag.name}.json`;
   const headings = [{title: "Structure and fields", id: "structure-and-fields", level: 1}];
   const addHeading = (heading) => headings.push(heading);
+  const searchTexts = [];
+  const addSearchText = (text) => searchTexts.push(text);
   const htmlResult = html`
     ${heading("h1", "Structure and fields", "clear")}
     ${tag.parent && alert("info", html`
@@ -274,10 +283,10 @@ const renderTagStructure = (tag, metaIndex) => {
         The following information is unique to the <strong>${tag.name}</strong> tag.
       </p>
     `)}
-    ${structView(tag.invaderStruct, tag.invaderStructName, tag.comments, metaIndex, addHeading, 2, true)}
+    ${structView(tag.invaderStruct, tag.invaderStructName, tag.comments, metaIndex, addHeading, addSearchText, 2, true)}
     <p><small>This information was partially generated using <a href="${invaderDefUrl}">Invader tag definitions</a>.</small></p>
   `;
-  return {headings, htmlResult};
+  return {headings, htmlResult, searchText: searchTexts.join("\n")};
 };
 
 module.exports = renderTagStructure;

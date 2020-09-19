@@ -83,7 +83,9 @@ comments:
     - name: lens flare
       md: ...
     - name: extra layers
-      md: ...
+      md: >
+        **Warning**: Using a shader with extra layers on an [object][] with
+        _transparent self occlusion_ enabled causes [Sapien to crash][sapien#crashes].
       fields:
         - name: shader
           md: ...

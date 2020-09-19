@@ -122,8 +122,9 @@ module.exports = (page, metaIndex) => {
     metaboxProps.metaClass = "content-tag";
 
     if (tag.invaderStruct) {
-      const {headings, htmlResult} = renderTagStructure(tag, metaIndex)
+      const {headings, htmlResult, searchText} = renderTagStructure(tag, metaIndex)
       articleBodySections.push(htmlResult);
+      searchTexts.push(searchText);
       wrapperProps._headers = [
         ...wrapperProps._headers,
         ...headings
