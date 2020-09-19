@@ -176,6 +176,10 @@ class Search extends Component {
           fields: ["title", "text"],
           storeFields: ["title"],
           searchOptions: {
+            tokenize: (string) => {
+              //customize tokenizer to allow underscores in token
+              return string.split(/[\s\-\."'!?,;:\[\]\(\)\|\\><]+/);
+            },
             boost: {title: 3, keywords: 2},
             fuzzy: 0.2
           }

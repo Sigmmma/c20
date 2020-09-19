@@ -576,6 +576,12 @@ table.tag-struct {
       padding: 0;
     }
   }
+
+  figure.inline {
+    float: none;
+    clear: none;
+    width: auto;
+  }
 }
 
 .content-footer {

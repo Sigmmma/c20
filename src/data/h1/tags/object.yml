@@ -39,9 +39,19 @@ comments:
         - name: does not cast shadow
           md: ...
         - name: transparent self occlusion
-          md: ...
+          md: |
+            Causes the transparent shaders in this object to occlude each other
+            rather than be visible through each other. The scene behind the object
+            is still visible.
+
+            **Warning**: enabling this flag while the object uses transparent shaders
+            with extra layers causes [Sapien to crash][sapien#crashes] when near
+            the object, though the same object will work ingame.
         - name: brighter than it should be
-          md: ...
+          md: >
+            Slightly brightens the object, making it easier to see in the dark
+            for gameplay purposes. Often used for small items like weapons,
+            powerups, and ammunition.
         - name: not a pathfinding obstacle
           md: ...
     - name: bounding radius
