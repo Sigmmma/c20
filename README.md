@@ -59,7 +59,7 @@ npm ci
 npm run dev
 ```
 
-You should be able to visit http://localhost:8080/ in a browser and see the built website. Note that if you make changes to source content, it will need to be rebuilt with `npm run build` before you sease changes in the browser.
+You should be able to visit http://localhost:8080/ in a browser and see the built website. Note that if you make changes to source content, it will need to be rebuilt with `npm run build` before you see changes in the browser.
 
 If a different port is desired, set the environment variable `C20_PORT`:
 

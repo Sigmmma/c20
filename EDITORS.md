@@ -8,6 +8,11 @@ This document contains the writing and style guide for wiki content. As this pro
 ## Writing style
 * Titles use sentence case, with the first word capitalized only. The exception is if the title or parts of it are a proper noun like a person's name.
 * In-universe proper nouns or nicknames should be capitalized, like Warthog.
+* When referencing tag types, use their file name extensions rather than engine IDs. When mentioning them without a hyperlink, style them with italic _emphasis_.
+* When referring to tag fields, style them with italic _emphasis_.
+* When stating raw data values and offsets, use `code` tags.
+* Blocks of Halo script should use the `hsc` language. Blocks of console commands should use `console`. This ensures proper syntax highlighting.
+* Use **strong** tags when naming a page's topic for the first time in the introduction paragraph. The exception is pages which are not about a specific "thing" or concept.
 
 ## Linking
 * Add hyperlinks where it is helpful for the reader, but avoid over-linking especially when there is already the same link visible within a short scrolling distance on the same page.
