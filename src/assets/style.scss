@@ -263,11 +263,15 @@ h6 {font-size: 0.75em;}
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-headers;
   color: $fg-strong;
-  &:hover a.header-anchor {
+  transition: background-color $transition-time;
+  &:hover a.header-anchor, &.destination a.header-anchor {
     opacity: 1;
   }
   &.clear {
     clear: both;
+  }
+  &.destination {
+    background-color: $bg-info;
   }
 }
 

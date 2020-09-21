@@ -130,7 +130,11 @@ comments:
     - name: permanent camera impulse angle
       md: ...
     - name: camera shaking duration
-      md: ...
+      md: >
+        Controls how long camera shaking lasts. On PC, short camera shakes (0.05)
+        get skipped occasionally at high FPS since this feature is still
+        [tied to frame rate][renderer#pc-regressions]. This is fixed and interpolated
+        by [Chimera][].
     - name: camera shaking falloff function
       md: ...
       options:

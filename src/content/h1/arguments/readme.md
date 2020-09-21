@@ -47,9 +47,9 @@ The following is a comprehensive list of arguments. Not all are not documented i
 ## Other
 | Argument                      | Description
 |-------------------------------|----------------
-|`-?` or `-help`                | Displays a list of _most_ arguments. Will fail if using a modified `strings.dll`, e.g. with the Chimera mod
-|`-console`                     | Enables the debugging console, which can be opened with the <kbd>~</kbd> (tilde) key. This console can be used to enter Halo script commands and is similar to Sapien's console, though many Sapien-related commands have no effect. Note that most client mods like HAC2 and Chimera enable this automatically.
-|`-devmode`                     | Enables developer mode commands ([Custom Edition][h1] only). In pre-1.10 versions, this also prevented Internet gameplay. Note that most client mods like HAC2 and Chimera enable this automatically.
+|`-?` or `-help`                | Displays a list of _most_ arguments. Will fail if using a modified `strings.dll`, e.g. with the [Chimera][] mod
+|`-console`                     | Enables the debugging console, which can be opened with the <kbd>~</kbd> (tilde) key. This console can be used to enter Halo script commands and is similar to Sapien's console, though many Sapien-related commands have no effect. Note that most client mods like HAC2 and [Chimera][] enable this automatically.
+|`-devmode`                     | Enables developer mode commands ([Custom Edition][h1] only). In pre-1.10 versions, this also prevented Internet gameplay. Note that most client mods like HAC2 and [Chimera][] enable this automatically.
 |`-exec example.txt`            | Causes the game or dedicated server to run the file of console commands on startup.
 |`-name <name>`                 | Sets the name of the player profile.
 |`-nogamma`                     | Disables adjustment of gamma. The in-game gamma slider will not affect the brightness of the game if this switch is used.

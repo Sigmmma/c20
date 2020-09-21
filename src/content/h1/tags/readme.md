@@ -24,7 +24,7 @@ When tags are compiled into a map, references are converted into pre-calculated 
 Tag paths also appear in arguments to [Tool][] and scripting.
 
 ## Blocks
-A _tag block_ field, also known as a _reflexive_, is essentially a list of smaller data structures within a tag. An example is the [scenario][] tag containing a block of [vehicles][vehicle]. In visual tag editors, blocks appear as a list of elements which are often editable by adding or removing elements. A block field internally consists of an item count and a pointer to an array of structures of the expected type.
+A _tag block_ field, also known as a _reflexive_, is essentially a list of smaller data structures within a tag. An example is the [scenario][] tag containing a block of vehicle spawns points. In visual tag editors, blocks appear as a list of elements which are often editable by adding or removing elements. A block field internally consists of an item count and a pointer to an array of structures of the expected type.
 
 ## Engine IDs
 To identity tag types in-engine and within tag data, Halo uses compact fixed-size (4 character) identifiers rather than the longer tag names/extensions seen in the [HEK][]. Some examples include `bitm` for [bitmap][bitmap], `snd!` for [sound][], and `DeLa` for [ui_widget_definition][]. These identifiers are case-sensitive and may be padded with trailing spaces.

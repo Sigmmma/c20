@@ -83,7 +83,17 @@ comments:
     - name: lens flare
       md: ...
     - name: extra layers
-      md: >
+      md: |
+        Specifies additional shaders to render _before_ this parent shader. The
+        same geometry is essentially rendered multiple times with different shaders.
+        Each extra layer shader can have an independent _framebuffer blend function_,
+        but some settings like _first map is reflection cube map_ from the parent
+        will also override the setting in extra layers.
+
+        Although any shader type can be referenced here, only the **chicago
+        transparent shaders** are properly supported; the other types will either
+        not render or render incorrectly.
+
         **Warning**: Using a shader with extra layers on an [object][] with
         _transparent self occlusion_ enabled causes [Sapien to crash][sapien#crashes].
       fields:

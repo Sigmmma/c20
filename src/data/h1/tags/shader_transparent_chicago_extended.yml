@@ -3,7 +3,9 @@ id: scex
 parentName: shader
 invaderStructName: ShaderTransparentChicagoExtended
 comments:
-  md: ...
+  md: >
+    A version of [shader_transparent_chicago][] which contains an additional
+    2-stage block for supporting older graphics hardware.
   fields:
     - name: numeric counter limit
       md: ...
@@ -316,7 +318,7 @@ comments:
         - name: rotation animation center
           md: ...
     - name: maps 2 stage
-      md: ...
+      md: This block is used instead of _maps 4 stage_ on older video hardware.
       fields:
         - name: flags
           md: ...

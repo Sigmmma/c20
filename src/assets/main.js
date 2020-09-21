@@ -246,3 +246,15 @@ const converterMount = document.getElementById("unit-converter-mountpoint");
 if (converterMount) {
   render(html`<${UnitConverter}/>`, converterMount);
 }
+
+//flash heading matching URL hash
+const hash = document.location.hash;
+if (hash) {
+  const heading = document.getElementById(hash.substring(1));
+  if (heading) {
+    heading.classList.add("destination");
+    setTimeout(() => {
+      heading.classList.remove("destination");
+    }, 500);
+  }
+}

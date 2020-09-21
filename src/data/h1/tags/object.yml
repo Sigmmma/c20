@@ -307,7 +307,12 @@ comments:
             - name: d
               md: ...
     - name: widgets
-      md: ...
+      md: >
+        Similar to _attachments_, but without function-driven properties and a
+        marker location. Some examples include the Warthog [antenna][] and projectile
+        [light_volumes][light_volume]. There is a known [PC renderer issue][renderer#pc-regressions]
+        where projectile widgets (but not _attachments_) are improperly offset in
+        mirrored reflections like the floor of the control room.
       fields:
         - name: reference
           md: ...

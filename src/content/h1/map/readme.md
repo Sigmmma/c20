@@ -15,7 +15,7 @@ A **map**, also known as a **cache file**, is a bundle of compiled [tags][] whic
 
 Tags within a map file are not exactly the same as they exist in your source `tags` directory. When tags are compiled into a map, data is prepared for how it will be used at runtime. [Tag path references][tags#tag-references-and-paths] are replaced with pre-calculated pointers, [child scenarios][scenario#child-scenarios] are merged, extra fields are calculated, and the metadata for [bitmaps][bitmap] and [sounds][sound] is separated from their raw data.
 
-Maps are found in Halo's `maps` directory. Maps in subdirectories are not loaded by the game. Mods like Chimera and HAC2 store [downloaded](#halonet) maps in a separate location and force the game to load them regardless.
+Maps are found in Halo's `maps` directory. Maps in subdirectories are not loaded by the game. Mods like [Chimera][] and HAC2 store [downloaded](#halonet) maps in a separate location and force the game to load them regardless.
 
 # Map loading
 Within a map, tag _metadata_ (most of the fields seen in tag editors) is stored separately from _raw data_ (sounds and bitmaps). [BSP data][scenario_structure_bsp] for all BSPs is also stored in its own location. The game is able to find these locations using special headers and indexes in the map file.
@@ -60,7 +60,7 @@ The maps `bitmaps.map`, `sounds.map`, and `loc.map` are special _resource maps_,
 Maps with the extension `.yelo` can only be played using a game client running the [OpenSauce][] mod, which extends Halo's engine with new tag types, higher limits, and extra renderer features. These maps are typically [custom campaign missions][os-maps] specifically designed to take advantage of these extensions.
 
 ## Invader/Chimera compressed maps
-Note that Chimera's downloaded map files, or Invader-compressed maps, use a custom compressed format which is not backwards compatible with the base game or other mods despite sharing the `.map` extension.
+Note that [Chimera][] 's downloaded map files, or Invader-compressed maps, use a custom compressed format which is not backwards compatible with the base game or other mods despite sharing the `.map` extension.
 
 # Map distribution
 Most map files are self-contained and can be shared freely. Maps which rely on custom resource maps need to be distributed with those resource maps too, which is more common for complete campaign overhaul mods.
@@ -71,7 +71,7 @@ Most map files are self-contained and can be shared freely. Maps which rely on c
 * https://opencarnage.net/
 
 ## HaloNet
-The [HaloNet.net map repository][halonet-repo] is a large resource of downloadable Halo maps which supports automatic map downloads by client mods like HAC2 and Chimera. Mods can use the [Map Download Protocol][halonet-dl] to automatically retrieve maps when the player joins a server and does not have the map previously downloaded.
+The [HaloNet.net map repository][halonet-repo] is a large resource of downloadable Halo maps which supports automatic map downloads by client mods like HAC2 and [Chimera][] . Mods can use the [Map Download Protocol][halonet-dl] to automatically retrieve maps when the player joins a server and does not have the map previously downloaded.
 
 [os-maps]: https://haloce3.com/category/downloads/open-sauce-maps/
 [halonet-repo]: http://maps.halonet.net/maplist.php

@@ -6,14 +6,22 @@ The **Halo engine**, colloquially called the **Blam! engine** by the community, 
 
 > Halo didn't begin as a strategy game but the engine it uses started out that way. The engine Halo uses began as a next-generation Myth terrain engine, with polygonal units.
 
-By 2001's standards, the engine was fairly innovative and powerful, combining techniques like portal-based occlusion, radiosity, particles, AI and pathfinding, dynamic physics, advanced shaders, and a scripting engine.
+By 2001's standards, the engine and asset tools were fairly innovative and powerful, combining techniques like portal-based occlusion, radiosity, particles, AI and pathfinding, dynamic physics, advanced shaders, and a scripting engine.
 
 # Architecture
 Blam! is not a generic game engine like Unreal or Unity; it was purpose built to implement a sandbox shooter. Concepts like [projectiles][projectile], [wind][], and [vehicles][vehicle] are part of the engine, and it is not possible to add new systems to the game which were not required to build the kind of gameplay Halo has now. However, the systems which _do_ exist are highly data-driven through the use of [tags][]. Aside from writing singleplayer scripts (part of the [scenario][] tag), map authors can expect not to have to write any code to build new experiences.
 
-Tags come in expected types only and can be seen as the "interface" to the game. All customizable assets and gameplay parameters are represented as tags within [map files][map], with tags forming a dependency tree via references. When the game loads a map, it will use the included tags to drive game systems such as AI, weapons, vehicles, rendering, physics, and more. Maps are loaded directly into game memory as-is.
+Tags come in expected types only and can be seen as the "interface" to the game. All customizable assets and gameplay parameters are represented as tags within [map files][map], with tags forming a dependency tree via references. When the game loads a map, it will use the included tags to drive game systems such as AI, weapons, vehicles, rendering, physics, and more.
 
-See also [map loading][map#map-loading], [in-memory game state][game-state] and [netcode][] information. Note that on Xbox, the engine makes some in-memory [tag edits][tool#hardcoded-tag-patches] for balancing.
+See also:
+
+* [Map loading][map#map-loading]
+* [The renderer][renderer]
+* [In-memory game state][game-state]
+* [Scripting engine][scripting]
+* [Netcode][]
+
+Note that on Xbox, the engine makes some in-memory [tag edits][tool#hardcoded-tag-patches] for balancing.
 
 # Other games
 
