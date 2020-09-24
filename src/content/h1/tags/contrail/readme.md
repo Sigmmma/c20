@@ -14,4 +14,4 @@ Contrails describe the trail effects which commonly follow [projectiles][project
 # Limits
 Contrails are represented in-engine as series of connected points. There is a limit of 1024 such points existing at any given time, meaning contrails may stop generating if there are already many in the scene. Lower the point generation rate if this becomes an issue.
 
-Setting the _point generation rate_ to 30 per second or higher can cause visual artifacts in the contrail since this value begins to exceed the game's standard tick rate. Modern client mods will modify the effect in-engine to prevent this.
+Setting the _point generation rate_ to 15 per second or higher can cause visual artifacts in the contrail since point generation is framerate dependent and can conflict with the game's tick rate. Modern client mods will modify the effect in-engine to prevent this.

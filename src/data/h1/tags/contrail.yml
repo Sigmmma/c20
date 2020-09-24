@@ -50,8 +50,7 @@ comments:
     - name: point generation rate
       md: >
         For compatibility with unmodified clients or future mods, try not to
-        exceed 30 points per second, the game's tick rate as it can cause visual
-        artifacts.
+        exceed 15 points per second because it can cause visual artifacts.
     - name: point velocity
       md: ...
     - name: point velocity cone angle
