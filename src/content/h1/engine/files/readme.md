@@ -63,7 +63,7 @@ The file `lastprof.txt` stores the path of the last used profile so it can be lo
 4. `0x00` padding until the end of the file.
 
 ## savegame.bin
-The file `savegames\<profile name>\savegame.bin` contains the saved state of the campaign, allowing progress to be resumed when reloading from a checkpoint or returning from the main menu. The Halo console commands `game_save` and `game_revert` use this file.
+The file `savegames\<profile name>\savegame.bin` contains the saved state of the campaign, allowing progress to be resumed when reloading from a checkpoint or returning from the main menu. The Halo console commands `game_save` and `game_revert` use this file. A newly-created savegame.bin is typically filled with NULL to 0x480000 (4,718,592 bytes)
 
 The structure of this file is not fully mapped out, however some fields are known:
 
