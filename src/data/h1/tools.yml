@@ -133,6 +133,9 @@ workflowItems:
   Mozzarilla:
     inherit: MEK
     page: mozzarilla
+  Refinery:
+    inherit: MEK
+    page: refinery
   Reclaimer:
     page: reclaimer
     authors:
@@ -143,6 +146,9 @@ workflowItems:
     authors:
       - Kavawuvi
       - Vaporeon
+  invader-extract:
+    inherit: Invader
+    heading: invader-extract
   invader-edit-qt:
     inherit: Invader
     heading: invader-edit-qt
@@ -438,6 +444,9 @@ workflowItems:
 # alternative items.
 similarItems:
   -
+    - Refinery
+    - invader-extract
+  -
     - model
     - gbxmodel
   -
@@ -463,11 +472,6 @@ similarItems:
   -
     - Sapien
     - OS_Sapien
-  -
-    - HEK
-    - MEK
-    - Invader
-    - OpenSauce
   -
     - Blitzkrieg
     - Bluestreak
@@ -613,13 +617,18 @@ workflows:
     to:
       - gbxmodel
       - physics
-  # map compilation
+  # map compilation/extraction
   - using:
       - Tool
       - OS_Tool
       - invader-build
     from: scenario
     to: map
+  - using:
+      - Refinery
+      - invader-extract
+    from: map
+    to: tags
   # lightmaps and bsps
   - using: Ghostbuster
     edit: scenario_structure_bsp

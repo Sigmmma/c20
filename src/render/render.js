@@ -44,6 +44,12 @@ module.exports = (page, metaIndex) => {
     thanks = thanks.concat(page.thanks);
   }
 
+  if (page.alerts) {
+    for (const {type, md} of page.alerts) {
+      alertProps.push({type: type || "info", body: renderMarkdown(md, metaIndex)});
+    }
+  }
+
   if (page.toolName) {
     metaboxProps.metaTitle = `\u{1F527} Tool: ${page.toolName}`;
     metaboxProps.metaClass = "content-tool";
