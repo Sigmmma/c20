@@ -29,6 +29,6 @@ At this time, Invader targets Halo Custom Edition with some support for MCC.
 ...
 
 # invader-extract
-...
+This tool extracts [tags][] from [maps][map]. It supports Halo Custom Edition, demo, retail, and also tags from Halo beta build 1749.
 
 [invader-repo]: https://github.com/Kavawuvi/invader
