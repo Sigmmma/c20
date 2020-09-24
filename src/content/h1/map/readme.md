@@ -15,7 +15,7 @@ A **map**, also known as a **cache file**, is a bundle of compiled [tags][] whic
 
 Tags within a map file are not exactly the same as they exist in your source `tags` directory. When tags are compiled into a map, data is prepared for how it will be used at runtime. [Tag path references][tags#tag-references-and-paths] are replaced with pre-calculated pointers, [child scenarios][scenario#child-scenarios] are merged, extra fields are calculated, and the metadata for [bitmaps][bitmap] and [sounds][sound] is separated from their raw data.
 
-Maps are found in Halo's `maps` directory. Maps in subdirectories are not loaded by the game. Mods like [Chimera][] and HAC2 store [downloaded](#halonet) maps in a separate location and force the game to load them regardless.
+Maps are found in Halo's `maps` directory. Maps in subdirectories are not loaded by the game. Mods like [Chimera][] and HAC2 store [downloaded](map-sharing#halonet) maps in a separate location and force the game to load them regardless.
 
 # Map loading
 Within a map, tag _metadata_ (most of the fields seen in tag editors) is stored separately from _raw data_ (sounds and bitmaps). [BSP data][scenario_structure_bsp] for all BSPs is also stored in its own location. The game is able to find these locations using special headers and indexes in the map file.
@@ -56,23 +56,13 @@ Custom UI maps which intend to add a campaign menu to Custom Edition must includ
 ## Resource maps
 The maps `bitmaps.map`, `sounds.map`, and `loc.map` are special _resource maps_, and contain commonly referenced tags which do not need to be duplicated within each playable map referencing them. Instead, these shared tags are excluded by [tool][] at map compilation time (seen as "cache hits" in its output). Compiling custom resource maps from tags<sup>how?</sup> can be an effective way to reduce the net filesize of a campaign overhaul mod.
 
+# Custom map formats
+Some custom map formats have been developed for use by a modified game client:
+
 ## Open Sauce .yelo maps
-Maps with the extension `.yelo` can only be played using a game client running the [OpenSauce][] mod, which extends Halo's engine with new tag types, higher limits, and extra renderer features. These maps are typically [custom campaign missions][os-maps] specifically designed to take advantage of these extensions.
+Maps with the extension `.yelo` are compiled with [OS_Tool][opensauce#os-tool] and can only be played using a game client running the [OpenSauce][] mod, which extends Halo's engine with new tag types, higher limits, and extra renderer features. These maps are typically [custom campaign missions][os-maps] specifically designed to take advantage of these extensions. [Refinery][] supports extracting OpenSauce tags from these maps.
 
 ## Invader/Chimera compressed maps
-Note that [Chimera][] 's downloaded map files, or Invader-compressed maps, use a custom compressed format which is not backwards compatible with the base game or other mods despite sharing the `.map` extension.
-
-# Map distribution
-Most map files are self-contained and can be shared freely. Maps which rely on custom resource maps need to be distributed with those resource maps too, which is more common for complete campaign overhaul mods.
-
-## Release websites
-* http://halomaps.org/ (archive only)
-* https://haloce3.com/
-* https://opencarnage.net/
-
-## HaloNet
-The [HaloNet.net map repository][halonet-repo] is a large resource of downloadable Halo maps which supports automatic map downloads by client mods like HAC2 and [Chimera][] . Mods can use the [Map Download Protocol][halonet-dl] to automatically retrieve maps when the player joins a server and does not have the map previously downloaded.
+Maps [downloaded][map-sharing#halonet] by the [Chimera][] mod or compiled by [invader-build][invader] with the `-c` flag use a custom compressed format intended for use by Chimera and takes up less space. These files also have a `.map` extension, but are not compatible with the base game. Note that Chimera does not download maps to Halo's main `maps` directory, but take care not to mix these maps with stock ones.
 
 [os-maps]: https://haloce3.com/category/downloads/open-sauce-maps/
-[halonet-repo]: http://maps.halonet.net/maplist.php
-[halonet-dl]: http://wiki.halonet.net/index.php/HaloNet_Map_Download_Protocol
