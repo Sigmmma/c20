@@ -15,6 +15,8 @@ thanks:
     for: Known issues, transparent self occlusion crash explanation
   - to: GAIGHER
     for: Multi-core crash solution
+  - to: InfernoPlus
+    for: Sound gain crash solution
 ---
 **Sapien**, part of the [HEK][], is a visual [scenario][] and [BSP][scenario_structure_bsp] editor used to populate levels with objects, configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile scripts, and more. Sapien shares some systems with Halo itself, including its AI system to support interactive AI scripting and debugging. Other systems, such as weather rendering, are not represented.
 
@@ -86,6 +88,13 @@ As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual mem
   </thead>
   <tbody>
     <tr>
+      <td>The game window is completely black and does not display the console when <kbd>~</kbd> (tilde) is pressed.</td>
+      <td>
+
+Sapien, like Halo, does not support [MSAA][msaa]. Add Sapien as a program in your graphics control panel and disable anti-aliasing for it.
+      </td>
+    </tr>
+    <tr>
       <td>The "edit types" window does not allow tags to be added.</td>
       <td>Unknown. Potential issue with Windows compatibility modes. Try running without a compatibility mode.</td>
     </tr>
@@ -115,6 +124,28 @@ When Sapien crashes, check `debug.txt` for hints. You can ignore `Couldn't read 
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>
+\halopc\haloce\source\rasterizer\dx9\rasterizer_dx9_hardware_bitmaps.c(148): E_OUTOFMEMORY in IDirect3DDevice9_CreateTexture(global_d3d_device, width, height, bitmap->mipmap_count+1-mip_levels_to_drop, 0, rasterizer_bitmap_format_table[bitmap->format], D3DPOOL_MANAGED, &(IDirect3DTexture9*)bitmap->hardware_format, NULL) (code=-2147024882, error=<can't get description>)
+10.01.19 17:07:33  couldn't allocate #1398128 tag data for 'bitmap_pixel_data'
+      </td>
+      <td>You are running out of memory. Try freeing up more physical memory on your system, and/or using a <a href="#limits">large address aware Sapien</a>.</td>
+    </tr>
+    <tr>
+      <td>
+EXCEPTION halt in \halopc\haloce\source\sound\sound_dsound_pc.c,#1940: properties->gain>=0.f && properties->gain<=1.f
+      </td>
+      <td>Restart your PC and the issue should go away.</td>
+    </tr>
+    <tr>
+      <td>
+\halopc\haloce\source\rasterizer\dx9\rasterizer_dx9_hardware_bitmaps.c(148): E_OUTOFMEMORY in IDirect3DDevice9_CreateTexture(global_d3d_device, width, height, bitmap->mipmap_count+1-mip_levels_to_drop, 0, rasterizer_bitmap_format_table[bitmap->format], D3DPOOL_MANAGED, &(IDirect3DTexture9*)bitmap->hardware_format, NULL) (code=-2147024882, error=<can't get description>)
+      </td>
+      <td>
+
+You have a [bitmap][] tag which is too large. Do not exceed dimensions of 2048 pixels because support is GPU-dependent; technically DirectX 9 did not allow sizes over this limit.
+      </td>
+    </tr>
     <tr>
       <td>
 EXCEPTION halt in .\\\\detail_object_tool_handler.cpp,#103: &diffuse_color: assert_valid_real_rgb_color(-9.395227, -3.398408, -2.530689)
@@ -153,3 +184,5 @@ Try moving or resizing your [fog plane(s)][scenario_structure_bsp#fog-planes].
     </tr>
   </tbody>
 </table>
+
+[msaa]: https://en.wikipedia.org/wiki/Multisample_anti-aliasing

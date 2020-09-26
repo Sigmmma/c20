@@ -7,11 +7,15 @@ imgCaption: Tags offer a lot of control, but there's also a lot to learn. Try to
 thanks:
   - to: Kavawuvi
     for: Information about invalid tags
+  - to: Vaporeon
+    for: Information about modified stun values in Custom Edition
 ---
 
 **Tags** are the fundamental unit of resources which comprise a [map][]. They come in many different types (sometimes called tag _classes_ or _groups_), each with a predefined structure and data fields. Tags can [reference](#tag-references-and-paths) other tags, forming a tree-like structure of all resources necessary to compile a map.
 
 The name "tag" was inspired by [XML tags][about-xml], which also have types and a structure with fields. However, unlike XML, Halo's tags are a binary format rather than plain text. To create and edit tags, you need to use purpose-built tools like [the HEK][hek], [MEK][], or [Invader][].
+
+Each version of the game has a slightly different tag set in its maps. Not only are there Xbox-specific tag types like [model][] and [shader_transparent_generic][], but PC tags are based on a pre-release version of Xbox tags. Gearbox also made several changes to [damage_effect][] stuns in Custom Edition tags only. Be aware of this when extracting tags with [Refinery][] or [invader-extract][invader#invader-extract].
 
 # Tag structure
 ## Tag references and paths

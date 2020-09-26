@@ -30,35 +30,54 @@ from reclaimer.hek.defs.scnr import scnr_def
 # load a scenario
 scenario_path = "<path to a .scenario file>"
 scenario_tag = scnr_def.build(filepath=scenario_path)
-tag_data = scenario_tag.data.tagdata
+scenario_tag_data = scenario_tag.data.tagdata
 ```
 
 ## Reading and writing fields
 The interesting part is actually inspecting and modifying `tag_data`. How this is done depends on the type of field being accessed. To see available field names, consult the [definition sources here][defs]. Field names will generally be `snake_case` versions of the field names seen here on c20's tag pages.
 
+### Primitive types
 Primitive field types like booleans and numerical values can be directly accessed:
 
 ```python
-tag_data.local_north = 0.5
+scenario_tag_data.local_north = 0.5
 ```
 
+### Blocks
 Whenever you need to index or iterate over members of a [block][tags#blocks], use the `STEPTREE` property:
 
 ```python
 # move all spawn positions up by 1 world unit
-for player_spawn in tag_data.player_starting_locations.STEPTREE:
+for player_spawn in scenario_tag_data.player_starting_locations.STEPTREE:
     player_spawn.position.z += 1.0
 ```
 
+### Enums
 Enum fields have a `data` property which accesses the actual integer value used to represent the enum option. Aside from getting or setting this directly, you can also use a string representation:
 
 ```python
 # print the raw value, e.g. 0
-print(tag_data.type.data)
+print(scenario_tag_data.type.data)
 # get the string value, e.g. "singleplayer"
-print(tag_data.type.enum_name)
+print(scenario_tag_data.type.enum_name)
 # set the scenario type to 1
-tag_data.type.set_to("multiplayer")
+scenario_tag_data.type.set_to("multiplayer")
+```
+### Tag references
+[Tag reference fields][tags#tag-references-and-paths] have multiple properties which can be set. Each reference stores both the _tag class_ and a _tag path_ to the referenced tag. The _tag class_ should not mismatch the actual referenced tag type:
+
+```python
+# this would print "hud_message_text"
+print(scenario_tag_data.hud_messages.tag_class.enum_name)
+
+# prints the tag class and paths of all referenced skies
+for sky_block_item in scenario_tag_data.skies.STEPTREE:
+    # each sky block entry is a single-field structure
+    sky_reference = sky_block_item.sky
+    # a reference contains a tag_class enum field, "sky" in this case
+    print(sky_reference.tag_class.enum_name)
+    # the tag path field, e.g. "sky\sky_d20\sky_start\sky_start"
+    print(sky_reference.filepath)
 ```
 
 ## Saving tags

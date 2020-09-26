@@ -24,11 +24,15 @@ comments:
         - name: fog screen only
           md: Unknown purpose. This flag was not set in any original Halo maps.
     - name: maximum density
-      md: ...
+      md: >
+        Scales how dense the fog is at its opaque distance and depth,
+        where `1` is the fully opaque _color_ and `0` is transparent.
     - name: opaque distance
-      md: ...
+      md: >
+        The distance from the player where the fog reaches its _maximum density_.
     - name: opaque depth
-      md: ...
+      md: >
+        The distance from the fog plane where the fog reaches its _maximum density_.
     - name: distance to water plane
       md: ...
     - name: color
@@ -51,7 +55,9 @@ comments:
     - name: start distance from fog plane
       md: ...
     - name: screen layers color
-      md: ...
+      md: >
+        Sets the colour of the screen layer volumetrics particles. Note that this
+        effect only works on the original Xbox version of the game.
     - name: rotation multiplier
       md: ...
     - name: strafing multiplier
@@ -73,6 +79,10 @@ comments:
     - name: wind perpendicular weight
       md: ...
     - name: background sound
-      md: ...
+      md: >
+        Overrides the background sound of the cluster while under the fog plane.
+        This is used for underwater areas.
     - name: sound environment
-      md: ...
+      md: >
+        Overrides the sound environment of the cluster while under the fog plane.
+        This is used for underwater areas.

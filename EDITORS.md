@@ -19,9 +19,13 @@ To maintain consistency, try to use some of these heading names if relevant:
 
 * Known issues
 * Limits
+* Compatibility
 * Troubleshooting
 * Installation
 * Usage
+
+## Wiki limitations to avoid
+Avoid headings which are also links, as the full HTML of the heading becomes slugified for its ID.
 
 ## Linking
 * Add hyperlinks where it is helpful for the reader, but avoid over-linking especially when there is already the same link visible within a short scrolling distance on the same page.
