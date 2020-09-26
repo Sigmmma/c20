@@ -3,7 +3,7 @@ id: spla
 parentName: shader
 invaderStructName: ShaderTransparentPlasma
 comments:
-  md: ...
+  md: Used for energy shields like those on [bipeds][biped].
   fields:
     - name: intensity source
       md: ...

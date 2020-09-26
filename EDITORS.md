@@ -14,6 +14,15 @@ This document contains the writing and style guide for wiki content. As this pro
 * Blocks of Halo script should use the `hsc` language. Blocks of console commands should use `console`. This ensures proper syntax highlighting.
 * Use **strong** tags when naming a page's topic for the first time in the introduction paragraph. The exception is pages which are not about a specific "thing" or concept.
 
+## Commonly-used headings
+To maintain consistency, try to use some of these heading names if relevant:
+
+* Known issues
+* Limits
+* Troubleshooting
+* Installation
+* Usage
+
 ## Linking
 * Add hyperlinks where it is helpful for the reader, but avoid over-linking especially when there is already the same link visible within a short scrolling distance on the same page.
 * Avoid orphaned content. Every new page should have at least one link to it from other relevant locations.

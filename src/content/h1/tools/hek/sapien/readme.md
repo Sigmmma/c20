@@ -16,11 +16,23 @@ thanks:
   - to: GAIGHER
     for: Multi-core crash solution
 ---
-**Sapien**, part of the [HEK][], is a visual [scenario][] and [BSP][scenario_structure_bsp] editor used to populate levels with objects, configure cluster data like wind and sound environments, compile scripts, and more. Sapien shares some systems with Halo itself, including its AI system to support interactive AI scripting and debugging. Other systems, such as weather rendering, are not represented.
+**Sapien**, part of the [HEK][], is a visual [scenario][] and [BSP][scenario_structure_bsp] editor used to populate levels with objects, configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile scripts, and more. Sapien shares some systems with Halo itself, including its AI system to support interactive AI scripting and debugging. Other systems, such as weather rendering, are not represented.
 
 It is roughly analagous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which supports many more debug commands than the in-game one.
 
 # Windows
+## Game window
+The game window is the main interface when interacting with objects in the level. It is also where you can run commands by pressing the <kbd>~</kbd> (tilde) key. The resolution and aspect ratio cannot be adjusted.
+
+Movement of the camera is done in the same way as the in-game debug camera; **hold the middle mouse button** plus:
+
+* Use the mouse to aim
+* Move with <kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, and <kbd>D</kbd>
+* Go up with <kbd>R</kbd> and down with <kbd>F</kbd>
+* Rotate with <kbd>G</kbd>
+* Increase camera speed by scrolling down or pressing <kbd>Shift</kbd>
+* Decrease camera speed by scrolling up
+
 ## Hierarchy view
 The Hierarchy view displays all the objects currently placed in the game and organizes them by type. The left pane of the window shows the Hierarchy tree and currently selected type, and the right pane shows the objects of this selected group or type that are currently placed in the level.
 
@@ -31,13 +43,8 @@ The most commonly used settings, or options that are modified the most, are the 
 
 ## Properties palette
 The Properties palette window displays the properties for the currently selected hierarchy item. The type of object can be changed or chosen in this display as well as various other properties such as the position and rotation of the object, and spawn flags that set various attributes for the object.
-
+ after using `debug_camera_load`.
 When applying cluster properties, the camera location in the game window determines the active cluster shown in this window.
-
-## Game window
-The game window is the main interface when interacting with objects in the level. It is also where you can run commands by pressing the <kbd>~</kbd> (tilde) key.
-
-The resolution and aspect ratio cannot be adjusted.
 
 ## Output window
 This window is unused and can be ignored.
@@ -54,7 +61,7 @@ radiosity_start
 radiosity_save
 ```
 
-See [Tool's lightmaps documentation][tool#lightmaps] for an explanation of the `radiosity_quality` value. Using [LM_Tool][] is recommended for high quality lightmaps since it is easier to control the stop parameter (when to save) and is faster than using Sapien or Tool.
+If you want progress feedback updated more frequently, you can set `radiosity_step_count 1`. See [Tool's lightmaps documentation][tool#lightmaps] for an explanation of the `radiosity_quality` value. Using [LM_Tool][] is recommended for high quality lightmaps since it is easier to control the stop parameter (when to save) and is faster than using Sapien or Tool.
 
 # Compatibility
 Windows users have experienced saving issues related to the Virtual Store. Ensure you have the [right permissions][tips#windows-virtual-store] before editing tags.
