@@ -45,7 +45,7 @@ The most commonly used settings, or options that are modified the most, are the 
 
 ## Properties palette
 The Properties palette window displays the properties for the currently selected hierarchy item. The type of object can be changed or chosen in this display as well as various other properties such as the position and rotation of the object, and spawn flags that set various attributes for the object.
- after using `debug_camera_load`.
+
 When applying cluster properties, the camera location in the game window determines the active cluster shown in this window.
 
 ## Output window
