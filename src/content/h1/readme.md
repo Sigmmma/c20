@@ -54,7 +54,7 @@ Often called **retail** or **PC**, this edition is the classic port of Halo 1 to
 * Addition of a dedicated server, `haloceded.exe`
 * The [model][] tag was modified into [gbxmodel][]
 * A new "jet" particle creation physics type was added to the [particle_system][] tag
-* Regressions in visuals and assets due to platform differences and the port being based on a pre-release version of Xbox Halo 1
+* [Regressions in visuals][renderer#pc-regressions] and assets due to platform differences and the port being based on a pre-release version of Xbox Halo 1
 
 The game received several patches since its release to address remote exploits, remove the CD requirement, replace the GameSpy Arcade lobby, and other minor improvements. Its current version is `1.0.10` ([2014][patch]).
 
@@ -65,6 +65,7 @@ Custom edition, often called **Halo CE** or **CE** is a standalone version of Ha
 
 CE has many more differences from PC. To name a few:
 
+* Some tags were modified, such as stun effects, possibly as a workaround for [netcode desyncs][netcode#known-issues-and-limitations]
 * Regression in rendering of certain objects through fog
 * Addition of the the gamemode info menu (F2)
 * Addition of the teammate names toggle (F3)

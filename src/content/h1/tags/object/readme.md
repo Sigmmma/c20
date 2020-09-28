@@ -4,6 +4,8 @@ tagName: object
 img: objects.jpg
 imgCaption: Various examples of objects, including projectiles, weapons, and units.
 thanks:
+  - to: Jakey
+    for: Explaining modifier shaders.
   - to: Satania
     for: Explaining acceleration scale.
 ---

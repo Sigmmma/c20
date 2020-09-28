@@ -13,7 +13,7 @@
     "srcStyleEntry": "./src/assets/style.scss",
     "srcStylesAny": "./src/assets/**/*.scss",
     "vendorAssets": [
-      "./node_modules/highlight.js/styles/obsidian.css",
+      "./node_modules/highlight.js/styles/night-owl.css",
       "./node_modules/@(htm)/preact/standalone.umd.js",
       "./node_modules/@(minisearch)/dist/umd/index.js"
     ],

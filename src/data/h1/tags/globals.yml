@@ -278,7 +278,11 @@ comments:
         - name: distance attenuation
           md: ...
         - name: vector normalization
-          md: ...
+          md: >
+            This bitmap is used as a "lookup table" of precalculated vector
+            normalizations for visual effects like reflections. In Custom Edition
+            it is also incorrectly used as the reflection cube map when a
+            [shader_transparent_glass][] uses bump-mapped reflections.
         - name: atmospheric fog density
           md: ...
         - name: planar fog density

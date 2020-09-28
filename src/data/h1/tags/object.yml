@@ -79,7 +79,11 @@ comments:
     - name: physics
       md: ...
     - name: modifier shader
-      md: ...
+      md: >
+        A modifier shader automatically uses the entire object and its attachments
+        as a geometry source when rendering. It is used for energy shields which
+        need to encompass both the object's own [gbxmodel][], but also any held
+        [weapons][weapon] in the case of [bipeds][biped].
     - name: creation effect
       md: ...
     - name: render bounding radius
