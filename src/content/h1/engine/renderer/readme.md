@@ -41,14 +41,14 @@ The renderer needed to be adapted for the range of user hardware for the PC port
 * The [fog][] screen layers effect for simulated volumetric fog does not render at all.
 * HUD shield meters are missing their flash effect when drained.
 * Monochrome bitmaps and p8 bump map formats are unsupported.
-* Custom Edition skips rendering some effects when they are not loaded yet, such as the engine lens flares in a10's intro or initial bullet hole decals.
+* Custom Edition skips rendering some effects when they are not loaded yet, such as the engine lens flares in a10's intro or initial bullet hole decals. This is to prevent stuttering since some raw data must be loaded from map files if it is not already in the asset cache.
 * Transparent shaders have a host of appearance and sorting problems:
   * Ripple map mipmaps for [shader_transparent_water][shader_transparent_water#known-issues] are reversed, with smaller mipmaps being used at closer distances. MCC is not affected.
   * [shader_transparent_glass][] which use bump maps use the wrong tag for cube map reflections in Custom Edition. They should use the shader's referenced cube map, but instead use the rasterizer _vector normalization_ bitmap referenced by [globals][].
   * Transparent shaders do not sort properly behind [shader_transparent_glass][]; they will shift in front and behind each other. Part indexes allow draw order to be set manually for objects through the [gbxmodel][], but there is no such method for the [scenario_structure_bsp][]; the best you can do is flag the transparent shader to _draw before water_ since glass shaders seem to render in the same stage as water.
   * [shader_transparent_plasma][] (energy shields) [does not render correctly][shader_transparent_plasma#known-issues] on some hardware, and always incorrectly in MCC.
   * Environment decals using the double multiply blend mode, like those on the floor of the mission a10, do not render.
-  * Multiply is broken in shader transparent chicago/extended. during refined development we had to recreate things like the inner ring shadow of the halo ring and cortana's pedestal shaders because it too also shows as invisible by default with multiply
+  * Multiply is broken in shader transparent chicago/extended. The _Refined_ mod had to recreate things like the inner shadow of the Halo ring and Cortana's pedestal shaders because it shows as invisible by default with multiply.
   * Weather particles don't draw when near opaque fog. Suspected difference from Xbox but not confirmed.
   * [Atmospheric fog][sky] appears to have sorting issues with [fog planes][fog], and is even further compounded by [shader_transparent_water][] sorting. The levels 343 Guilty Spark and Assault on the Control Room are most impacted by this. The water sorting issue is fixed in MCC.
   * Transparent shaders occasionally Z-fight with BSP geometry due to floating point precision.

@@ -17,7 +17,7 @@ See also:
 
 * [Map loading][map#map-loading]
 * [The renderer][renderer]
-* [The physics engine][physics]
+* [The physics engine][physics-engine]
 * [In-memory game state][game-state]
 * [Scripting engine][scripting]
 * [Netcode][]
