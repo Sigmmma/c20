@@ -1,15 +1,29 @@
 ---
-title: Startup arguments
+title: Startup arguments and init.txt
 thanks:
   - to: nToss
     for: Information on timedemo
 ---
+Halo's startup can be customized through the combination of arguments and console scripting. Using these options allows you to quickly configure Halo for various testing or server hosting scenarios.
 
+# init.txt
+If this file is placed in Halo's installation directory, the game will execute all lines as console commands at startup. The game can be told to use another file with the `-exec` argument. Example contents are:
+
+```inittxt
+;set the "ting" hit noise to full volume
+multiplayer_hit_sound_volume 1
+;clear console output so the result of above is not shown
+cls
+;launch directly into a map
+sv_map bloodgulch slayer
+```
+
+# Arguments
 Halo accepts [command line/shortcut arguments][about-args] to customize how the game launches and what features are enabled. From a terminal or Windows command prompt, such arguments are provided after the executable name, e.g. `haloce.exe -screenshot` to run the game with screenshot mode enabled. These arguments can also be added in Windows by editing a shortcut to the Halo executable.
 
 Many of these settings can be configured in-game, so it is not usually necessary to provide them as arguments.
 
-# How to add arguments to a shortcut (Windows)
+## How to add arguments to a shortcut (Windows)
 
 Windows users looking to avoid having to use the [command prompt][command-line#command-prompt-windows] can create a shortcut to `halo.exe`, `haloce.exe`, or `haloceded.exe` and edit it's **target** to provide these arguments. Be sure to place them **after the EXE**, and **separate each argument with spaces**:
 
@@ -17,10 +31,10 @@ Windows users looking to avoid having to use the [command prompt][command-line#c
   <img src="windows-shortcut.jpg" alt="Dialog box showing how to add arguments to a Windows shortcut" style="max-width:300px"/>
 </a>
 
-# Arguments list
+## Arguments list
 The following is a comprehensive list of arguments. Not all are not documented in Halo's `Readme.rtf` or `-help` output.
 
-## Graphics options
+### Graphics options
 | Argument                      | Description
 |-------------------------------|----------------
 |`-adapter x`                   | Forces the game to run fullscreen on a multi-monitor adaptor.
@@ -35,7 +49,7 @@ The following is a comprehensive list of arguments. Not all are not documented i
 |`-width640`                    | Forces the game to run at 640x480.
 |`-window` or `-windowed`       | Runs the game in a window.
 
-## Connection options
+### Connection options
 | Argument                      | Description
 |-------------------------------|----------------
 |`-connect ip:port`             | The game will automatically connect to the given server after loading.
@@ -44,7 +58,7 @@ The following is a comprehensive list of arguments. Not all are not documented i
 |`-password`                    | The password for the server we're trying to connect to. Not to be confused with the `sv_password` command for dedicated servers, which goes in the file executed by the `-exec` argument.
 |`-port x`                      | Server port address used when hosting games. Defaults to **2302**. See the Network Setup settings under the In-Game Settings section.
 
-## Other
+### Other
 | Argument                      | Description
 |-------------------------------|----------------
 |`-?` or `-help`                | Displays a list of _most_ arguments. Will fail if using a modified `strings.dll`, e.g. with the [Chimera][] mod
@@ -56,14 +70,14 @@ The following is a comprehensive list of arguments. Not all are not documented i
 |`-nojoystick`                  | Disables joystick/gamepads.
 |`-nonetwork`                   | Disables the Multiplayer menu item in the main menu. With a modified `ui.map` which adds a Campaign menu, this setting will actually disable that menu item instead.
 |`-nosound`                     | Disables all sound.
-|`-novideo`                     | Disables the videos which play at game startup (retail).
+|`-novideo`                     | Disables the `.bik` videos which play at game startup (retail). This option can also prevent Custom Edition crashes when using the Mesa graphics driver. The mod [Chimera][] sets this option automatically.
 |`-nowindowskey` or `-nowinkey` | Prevents the Windows key from opening the start menu and minimizing the game.
 |`-path <path>`                 | Sets the path for which Halo looks for profiles and gametypes. Normally `%USERPROFILE%\Documents\My Games\Halo[ CE]`
 |`-safemode`                    | Disables as much as possible from the game in case you're experiencing crashes.
 |`-screenshot` or `-screenshots`| Enables the "Print Screen" key to generate [TGA format][about-tga] screenshots in Halo's `screenshots` directory.
 |`-timedemo`                    | A benchmarking mode which runs sped-up intro cinematics of several hard-coded maps (`ui`, `a30`, `b30`, `c10`, and `d20`) and appends benchmarking output to the file [timedemo.txt](#appendix%3A-timedemo-output) in Halo's directory. Replacing the stock maps with custom maps works as well. The duration of `-timedemo` is affected by the framerate.
 
-## Vestigal and unknown arguments
+### Vestigal and unknown arguments
 These additional arguments are found in game executable, but seem to have no effect. They were likely used during the game's development but were removed for its final release.
 
 | Argument                      | Description

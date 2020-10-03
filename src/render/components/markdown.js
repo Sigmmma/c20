@@ -10,6 +10,7 @@ const entities = new Entities();
 hljs.registerLanguage("vrml", vrmlLang);
 hljs.registerLanguage("hsc", hscLangs(false));
 hljs.registerLanguage("console", hscLangs(true));
+hljs.registerLanguage("inittxt", hscLangs(true));
 
 //https://marked.js.org/#/USING_PRO.md#renderer
 const htmlRenderer = new marked.Renderer();

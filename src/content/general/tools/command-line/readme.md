@@ -96,7 +96,7 @@ wine tool.exe build-cache-file levels\\test\\tutorial\\tutorial
 wine haloce.exe
 ```
 
-Run this script with the command `sh compile-map.sh` and it will compile, light, and build the map for you, then launch the game. Testing can be further sped up by adding an `init.txt` file to Halo's home with the line `sv_map mapname slayer` to make the game immediately launch into your map.
+Run this script with the command `sh compile-map.sh` and it will compile, light, and build the map for you, then launch the game. Testing can be further sped up by adding an [init.txt file][arguments#init-txt] to Halo's home with the line `sv_map mapname slayer` to make the game immediately launch into your map.
 
 
 [cmd]: https://en.wikipedia.org/wiki/Cmd.exe

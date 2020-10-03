@@ -25,6 +25,7 @@ To maintain consistency, try to use some of these heading names if relevant:
 * Troubleshooting
 * Installation
 * Usage
+* Appendix: <heading>, or just "Appendix" with subheadings if multiple
 
 ## Wiki limitations to avoid
 Avoid headings which are also links, as the full HTML of the heading becomes slugified for its ID.

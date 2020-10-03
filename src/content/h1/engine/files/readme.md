@@ -425,6 +425,13 @@ The file structure follows, but is known to be incomplete:
       <td>This value is little-endian, for example the value 2303 is encoded as the bytes <code>0xff 0x08</code>.</td>
     </tr>
     <tr>
+      <td rowspan="1">Unknown</td>
+      <td>Controller device name</td>
+      <td><code>0x1108</code></td>
+      <td><code>utf-16 string</code></td>
+      <td>Stores the name of the controller device seen when configuring button bindings (if set), e.g. "Xbox 360 Wireless Receiver (event)". Unknown maximum length.</td>
+    </tr>
+    <tr>
       <td>Other</td>
       <td>CRC32 checksum</td>
       <td><code>0x1FFC</code></td>
