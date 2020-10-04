@@ -123,14 +123,6 @@ async function buildMetaIndex(contentDir, invaderDefsDir, baseUrl, packageVersio
   const invaderStructDefs = await getInvaderStructDefs(invaderDefsDir);
   const data = buildData(invaderStructDefs);
 
-  const mdFooter = pages
-    .filter(page => page._pathParts.length > 0)
-    .flatMap(page => [
-      `[${page._slug}]: ${page._path}`,
-      ...page._headers.map(header => `[${page._slug}#${header.id}]: ${page._path}#${header.id}`)
-    ])
-    .join("\n");
-
   const findTagPageByName = (tagName) => {
     const page = pages.find(page => page.tagName == tagName);
     if (!page) throw new Error(`Failed to find tag page for ${tagName}`);
@@ -155,7 +147,6 @@ async function buildMetaIndex(contentDir, invaderDefsDir, baseUrl, packageVersio
     resolvePage,
     resolveUrl,
     pages,
-    mdFooter,
     data,
     baseUrl
   };

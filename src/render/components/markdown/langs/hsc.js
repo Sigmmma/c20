@@ -1,6 +1,6 @@
 //This is a modified version of the Clojure grammar, more suited to Haloscript's syntax.
 //https://github.com/highlightjs/highlight.js/blob/master/src/languages/clojure.js
-module.exports = function(consoleMode) {
+function build(consoleMode) {
   return function(hljs) {
     var SYMBOL_RE = '[a-zA-Z_][a-zA-Z_0-9]*';
     var globals = [
@@ -115,4 +115,9 @@ module.exports = function(consoleMode) {
       contains: [LIST, STRING, COMMENT, NUMBER, LITERAL]
     };
   };
+};
+
+module.exports =  {
+  consoleLang: build(true),
+  hscLang: build(false)
 };

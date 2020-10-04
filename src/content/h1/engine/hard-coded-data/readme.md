@@ -16,7 +16,7 @@ There are lots of hard-coded values in Halo's engine, such as the multiplayer
 armor color. These values do not typically appear anywhere in tag data, and
 cannot be directly changed or controlled.
 
-# Multiplayer Armor Colors
+# Multiplayer armor colors
 
 <figure>
   <a href="armor_colors.png">
@@ -29,8 +29,7 @@ cannot be directly changed or controlled.
   </figcaption>
 </figure>
 
-In multiplayer, the player's armor color value comes from this hard-coded list.
-For non-player unit color change, see [actor_variant][] & [object][].
+In multiplayer, the player's armor color value comes from this hard-coded list and is stored in their [profile file][files#blam-sav]. For non-player unit color change, see [actor_variant][] & [object][].
 
 Color name matches the name as it appears in the game's menu. HEX and RBG color
 values are both listed in red-green-blue order. Note that these colors will look
