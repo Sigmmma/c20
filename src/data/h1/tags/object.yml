@@ -55,7 +55,9 @@ comments:
         - name: not a pathfinding obstacle
           md: ...
     - name: bounding radius
-      md: ...
+      md: >
+        A radius which encompasses the object, used by the engine for a variety of
+        purposes. If the bounding radius is too small, shadows will be cut off.
     - name: bounding offset
       md: ...
     - name: origin offset

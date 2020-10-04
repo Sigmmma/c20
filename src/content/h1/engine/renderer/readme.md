@@ -5,6 +5,8 @@ keywords:
 thanks:
   - to: Jakey
     for: Renderer regressions
+  - to: gbMichelle
+    for: Researching how shadow maps work
 ---
 
 <figure>
@@ -21,7 +23,7 @@ The **renderer** or **rasterizer** is the system of [Halo's engine][engine] resp
 # Lighting
 Halo's lighting engine benefits from the fact that there is no dynamic time of day. Most dynamic [lights][light] are small. Similar to other games of the time, Halo uses "baked" global illumination in the form of [lightmaps][]. This lighting information is used on the environment ([BSP][scenario_structure_bsp]) and encodes localized light directions and tinting to shade [objects][object].
 
-Shadows for moving objects like [units][unit] and [items][item] are rendered with 128x128 [shadow maps][shadow-mapping] at run-time.
+Shadows for moving objects like [units][unit] and [items][item] are rendered with 128x128 [shadow maps][shadow-mapping] at run-time. An object's _bounding radius_ field, not its _render bounding radius_, is used to calculate the physical width of the shadow canvas. If the bounding radius is too small, the shadow will be cut off.
 
 # PC regressions
 
