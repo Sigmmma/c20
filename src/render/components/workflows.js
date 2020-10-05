@@ -47,8 +47,14 @@ const workflowsList = (thisItem, workflows, metaIndex) => {
       //we only want one list item for bi-directional flow pairs
       const hasReverse = workflows.find(other => !flowsEqual(flow, other) && isReverse(other, flow));
       if (hasReverse) {
-        const otherItem = flow.to == thisItem ? flow.from : flow.to;
-        pushLabeledFlow(`bidi-${otherItem}`, `To/from&nbsp;${itemAnchor(otherItem)} with`, flow.using, itemAnchor(flow.using));
+        if (thisItem == flow.using) {
+          const bidiItems = [flow.from, flow.to];
+          bidiItems.sort();
+          pushLabeledFlow(`bidi-${bidiItems[0]}`, `${itemAnchor(bidiItems[0])} to/from`, bidiItems[1], itemAnchor(bidiItems[1]));
+        } else {
+          const otherItem = flow.to == thisItem ? flow.from : flow.to;
+          pushLabeledFlow(`bidi-${otherItem}`, `To/from&nbsp;${itemAnchor(otherItem)} with`, flow.using, itemAnchor(flow.using));
+        }
       } else if (thisItem == flow.from) {
         //use &nbsp; to join words for better appearance on narrow windows
         pushLabeledFlow(`to-${flow.to}`, `To&nbsp;${itemAnchor(flow.to)} with`, flow.using, itemAnchor(flow.using));
