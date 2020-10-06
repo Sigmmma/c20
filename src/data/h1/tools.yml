@@ -62,12 +62,8 @@ workflowItems:
     page: cad-animation-exporter
     authors:
       - CtrlAltDestroy
-  H2V Blender Animation Exporter:
-    page: h2v-blender-animation-exporter
-    authors:
-      - General_101
-  H2V Blender JMS Exporter:
-    page: h2v-blender-jms-exporter
+  Jointed Model Blender Toolset:
+    page: jointed-model-blender-toolset
     authors:
       - General_101
   Blender .gbxmodel Importer:
@@ -479,7 +475,7 @@ similarItems:
   -
     - Blitzkrieg
     - Bluestreak
-    - H2V Blender JMS Exporter
+    - Jointed Model Blender Toolset
     - Blendkrieg
     - CAD animation exporter
     - Chimp
@@ -539,14 +535,14 @@ workflows:
   - using: Blender .gbxmodel Importer
     from: gbxmodel
     to: Blender
-  - using: H2V Blender JMS Exporter
+  - using: Jointed Model Blender Toolset
     from:
       - Blender
       - jms
     to:
       - jms
       - Blender
-  - using: H2V Blender Animation Exporter
+  - using: Jointed Model Blender Toolset
     from: Blender
     to: Animation data
   - using: CAD animation exporter
@@ -668,8 +664,12 @@ workflows:
     from: Animation data
     to: model_animations
   - using: Mozzarilla
-    from: Animation data
-    to: model_animations
+    from:
+      - Animation data
+      - model_animations
+    to:
+      - model_animations
+      - Animation data
   # scenario editing
   - using:
       - Sapien

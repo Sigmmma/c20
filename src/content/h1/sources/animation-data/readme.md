@@ -11,7 +11,7 @@ thanks:
   - to: ODX
     for: JMO frames
 ---
-The [HEK][] uses several file types as intermediate representations of animation data. These files provide a common target for exporters like [Bluestreak][] and [H2V Blender Animation Exporter][h2v-blender-animation-exporter], and can then be converted to [model_animations][] tags by [Tool][] for use in Halo.
+The [HEK][] uses several file types as intermediate representations of animation data. These files provide a common target for exporters like [Bluestreak][] and [Jointed Model Blender Toolset][jointed-model-blender-toolset], and can then be converted to [model_animations][] tags by [Tool][] for use in Halo.
 
 # JMA (Base)
 This is what a lot of animations will end up as. It is a default animation type that stores data necessary for movement, such as a [biped][] walking animation.
