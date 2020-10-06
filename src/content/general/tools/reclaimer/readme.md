@@ -23,7 +23,7 @@ pip install reclaimer
 
 # Tags usage
 ## Loading tags
-You can import tag definitions according to their [engine ID][h1/tags#engine-ids], then load a tag file:
+You can import tag definitions according to their [engine ID][tags#engine-ids], then load a tag file:
 ```python
 from reclaimer.hek.defs.scnr import scnr_def
 

@@ -15,7 +15,7 @@ Mozzarilla is a file editing program, and is intended to be a complete replaceme
 
 * Edits regular [tags][h1/tags], [OpenSauce][] tags, and gametypes
 * Loads corrupt tags and view/edit hidden data
-* Export/imports [blocks][h1/tags#blocks]
+* Export/imports [blocks][tags#blocks]
 * Edits tags safely with backups and undo functionality
 * Contains a hierarchy view for easily browsing a tags directory
 * Switches between multiple tag directories
