@@ -543,8 +543,12 @@ workflows:
       - jms
       - Blender
   - using: Jointed Model Blender Toolset
-    from: Blender
-    to: Animation data
+    from:
+      - Blender
+      - Animation data
+    to:
+      - Animation data
+      - Blender
   - using: CAD animation exporter
     from: 3ds Max
     to: Animation data
