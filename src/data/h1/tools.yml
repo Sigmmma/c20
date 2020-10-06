@@ -125,6 +125,10 @@ workflowItems:
   OS_Sapien:
     inherit: OpenSauce
     heading: os-sapien
+  SeT:
+    page: set
+    authors:
+      - Zatarita
   MEK:
     page: mek
     authors:
