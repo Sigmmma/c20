@@ -188,7 +188,7 @@ workflowItems:
   map:
     page: map
   tags:
-    page: tags
+    page: h1/tags
   actor:
     inherit: tags
     page: actor
