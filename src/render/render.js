@@ -56,9 +56,10 @@ module.exports = (page, metaIndex) => {
   }
 
   if (page.tagName) {
-    const tag = metaIndex.data.h1.tagsByName[page._slug];
+    //todo: allow page to specify game too
+    const tag = metaIndex.data.h1.tagsByName[page.tagName];
     if (!tag) {
-      throw new Error(`Failed to find tag structure for ${page.title}`);
+      throw new Error(`Failed to find tag structure ${page.tagName}`);
     }
 
     keywords.push(tag.id);

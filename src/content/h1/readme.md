@@ -1,6 +1,7 @@
 ---
 title: "Halo: CE"
 keywords:
+  - "h1"
   - halo
 thanks:
   - to: gbMichelle

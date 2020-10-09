@@ -10,6 +10,15 @@ const MiniSearch = require("minisearch");
 
 const STOP_WORDS = new Set(["and", "or", "not", "to", "at", "in", "a", "the", "be", "are", "is", "as", "its", "it", "this", "these", "any", "halo", "e", "g"]);
 
+function commonLength(strA, strB) {
+  let len = 0;
+  while (len < strA.length && len < strB.length) {
+    if (strA[len] != strB[len]) break;
+    len++;
+  }
+  return len;
+}
+
 async function findPaths(globPattern) {
   return new Promise((resolve, reject) => {
     glob(globPattern, (err, files) => {
@@ -118,45 +127,55 @@ async function getPageMetadata(contentDir) {
   return pages;
 }
 
-async function buildMetaIndex(contentDir, invaderDefsDir, baseUrl, packageVersion) {
-  const pages = await getPageMetadata(contentDir);
-  const invaderStructDefs = await getInvaderStructDefs(invaderDefsDir);
-  const data = buildData(invaderStructDefs);
+async function renderContent(pages, data, buildOpts) {
+  const searchDocs = await Promise.all(pages.map(async (page) => {
 
-  const findTagPageByName = (tagName) => {
-    const page = pages.find(page => page.tagName == tagName);
-    if (!page) throw new Error(`Failed to find tag page for ${tagName}`);
-    return page;
-  };
+    const findTagPageByName = (tagName) => {
+      const otherPage = pages.find(otherPage => otherPage.tagName == tagName);
+      if (!otherPage) throw new Error(`Failed to find tag page for ${tagName}`);
+      return otherPage;
+    };
 
-  const resolvePage = (slug, headingId) => {
-    const page = pages.find(page => page._slug == slug && (!headingId || page._headers.find(hdg => hdg.id == headingId)));
-    if (!page) throw new Error(`Failed to find page with slug '${slug}' and headingId '${headingId}'`);
-    return page;
-  }
+    const resolvePage = (pathTail, headingId) => {
+      const otherPages = pages.filter(otherPage => {
+        const headingMatch = (!headingId || otherPage._headers.find(hdg => hdg.id == headingId));
+        const slugMatch = otherPage._path.endsWith("/" + pathTail);
+        return slugMatch && headingMatch;
+      });
+      if (otherPages.length == 0) {
+        throw new Error(`No page exists with path tail '${pathTail}' and headingId '${headingId}' (from path '${page._path}')`);
+      } else if (otherPages.length > 1) {
+        //there are multiple matching pages -- try disambiguating by picking best match
+        otherPages.sort((a, b) => commonLength(b._path, page._path) - commonLength(a._path, page._path));
+        const firstChoice = otherPages[0];
+        const secondChoice = otherPages[1];
+        if (commonLength(firstChoice._path, page._path) > commonLength(secondChoice._path, page._path)) {
+          return firstChoice;
+        }
+        const matched = otherPages.map(otherPage => otherPage._path).join("\n");
+        throw new Error(`Path tail '${pathTail}' with headingId '${headingId}' was ambiguous (from path '${page._path})':\n${matched}`);
+      }
+      return otherPages[0];
+    }
 
-  //looks up full absolute URL for a page slug and optionally an anchor
-  const resolveUrl = (slug, headingId) => {
-    const page = resolvePage(slug, headingId);
-    return headingId ? `${page._path}#${headingId}` : page._path;
-  };
+    //looks up full absolute URL for a path tail and optionally a heading anchor
+    const resolveUrl = (pathTail, headingId) => {
+      const otherPage = resolvePage(pathTail, headingId);
+      return headingId ? `${otherPage._path}#${headingId}` : otherPage._path;
+    };
 
-  return {
-    packageVersion,
-    findTagPageByName,
-    resolvePage,
-    resolveUrl,
-    pages,
-    data,
-    baseUrl
-  };
-}
+    const metaIndex = {
+      findTagPageByName,
+      resolvePage,
+      resolveUrl,
+      pages,
+      data,
+      buildOpts,
+    };
 
-async function renderContent(metaIndex, outputDir) {
-  const searchDocs = await Promise.all(metaIndex.pages.map(async (page) => {
     const {htmlDoc, searchDoc} = renderPage(page, metaIndex);
-    await fs.mkdir(path.join(outputDir, ...page._pathParts), {recursive: true});
-    await fs.writeFile(path.join(outputDir, ...page._pathParts, "index.html"), htmlDoc, "utf8");
+    await fs.mkdir(path.join(buildOpts.outputDir, ...page._pathParts), {recursive: true});
+    await fs.writeFile(path.join(buildOpts.outputDir, ...page._pathParts, "index.html"), htmlDoc, "utf8");
     return searchDoc;
   }));
 
@@ -179,21 +198,23 @@ async function renderContent(metaIndex, outputDir) {
   });
   searchIndex.addAll(searchDocs);
   const jsonIndex = JSON.stringify(searchIndex.toJSON());
-  await fs.writeFile(path.join(outputDir, "assets", "search-index.json"), jsonIndex, "utf8");
+  await fs.writeFile(path.join(buildOpts.outputDir, "assets", "search-index.json"), jsonIndex, "utf8");
 
-  const sitemap = metaIndex.pages
+  const sitemap = pages
     .filter(page => !page.stub)
-    .map(page => `${metaIndex.baseUrl}${page._path}`)
+    .map(page => `${buildOpts.baseUrl}${page._path}`)
     .join("\n");
-  await fs.writeFile(path.join(outputDir, "sitemap.txt"), sitemap, "utf8");
+  await fs.writeFile(path.join(buildOpts.outputDir, "sitemap.txt"), sitemap, "utf8");
 
-  const robots = `User-agent: *\nDisallow: /assets/\nSitemap: ${metaIndex.baseUrl}/sitemap.txt\n`;
-  await fs.writeFile(path.join(outputDir, "robots.txt"), robots, "utf8");
+  const robots = `User-agent: *\nDisallow: /assets/\nSitemap: ${buildOpts.baseUrl}/sitemap.txt\n`;
+  await fs.writeFile(path.join(buildOpts.outputDir, "robots.txt"), robots, "utf8");
 }
 
-async function buildContent(contentDir, outputDir, invaderDefsDir, baseUrl, packageVersion) {
-  const metaIndex = await buildMetaIndex(contentDir, invaderDefsDir, baseUrl, packageVersion);
-  await renderContent(metaIndex, outputDir);
+async function buildContent(buildOpts) {
+  const pages = await getPageMetadata(buildOpts.contentDir);
+  const invaderStructDefs = await getInvaderStructDefs(buildOpts.invaderDefsDir);
+  const data = buildData(invaderStructDefs);
+  await renderContent(pages, data, buildOpts);
 }
 
 module.exports = buildContent;

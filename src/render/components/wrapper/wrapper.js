@@ -17,8 +17,8 @@ const topLevelTopics = [
 const wrapper = (page, metaIndex, body) => {
   const editPageUrl = `${REPO_URL}/edit/master/src/content${page._path}/readme.md`;
   const imgAbsoluteUrl = page.img ?
-    `${metaIndex.baseUrl}${page._path}/${page.img}` :
-    `${metaIndex.baseUrl}/assets/librarian.png`;
+    `${metaIndex.buildOpts.baseUrl}${page._path}/${page.img}` :
+    `${metaIndex.buildOpts.baseUrl}/assets/librarian.png`;
 
   const showToc = page.toc !== undefined ? page.toc : page._headers.length > TOC_MIN_HEADERS;
 
@@ -35,7 +35,7 @@ const wrapper = (page, metaIndex, body) => {
         <meta property="og:site_name" content="The Reclaimers Library"/>
         <meta property="og:type" content="website"/>
         <meta property="og:locale" content="en_US"/>
-        <meta property="og:url" content="${metaIndex.baseUrl}${page._path}"/>
+        <meta property="og:url" content="${metaIndex.buildOpts.baseUrl}${page._path}"/>
         <meta property="og:description" content="${plaintextPreview}"/>
         <meta property="og:image" content="${imgAbsoluteUrl}"/>
         <title>${page.title} - c20</title>

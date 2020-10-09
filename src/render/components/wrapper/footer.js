@@ -9,8 +9,8 @@ const footer = (page, metaIndex) => {
         <small>
           This text is available under the <a href="${LICENSE_URL}">CC BY-SA 3.0 license</a>
           •
-          ${metaIndex.packageVersion && html`
-            <a href="${REPO_URL}">c20 v${metaIndex.packageVersion}</a>
+          ${metaIndex.buildOpts.packageVersion && html`
+            <a href="${REPO_URL}">c20 v${metaIndex.buildOpts.packageVersion}</a>
           `}
           •
           <a href="#">Go to top</a>
