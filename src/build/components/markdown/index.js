@@ -18,7 +18,7 @@ const walk = (tokens, type, cb) => {
   }
 };
 
-const findHeaders = (mdSrc) => {
+const findHeadings = (mdSrc) => {
   const tokens = marked.lexer(mdSrc);
   const headers = [];
 
@@ -44,4 +44,4 @@ const renderMarkdown = (md, metaIndex, plaintext) => {
     marked(md, {...htmlRenderOptions, tokenizer});
 };
 
-module.exports = {renderMarkdown, findHeaders};
+module.exports = {renderMarkdown, findHeadings};

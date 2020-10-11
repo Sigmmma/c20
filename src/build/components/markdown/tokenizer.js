@@ -15,7 +15,7 @@ function buildTokenizer(metaIndex) {
       if (!link || !link.href) {
         //next, we can try searching the metaindex for a matching page
         const parts = linkKey.split("#");
-        const page = metaIndex.resolvePage(parts[0], parts[1]);
+        const page = metaIndex.resolvePage(parts[0]);
         link = {
           href: parts[1] ? `${page._path}#${parts[1]}` : page._path,
           title: page.title

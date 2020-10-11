@@ -1,6 +1,23 @@
+const fs = require("fs").promises;
+const path = require("path");
+const {findPaths} = require("../../utils");
+
 /* This file contains utility functions for working with Invader's
  * tag definition JSON files
  */
+
+async function loadInvaderStructDefs(invaderDefsDir) {
+  const filePaths = await findPaths(path.join(invaderDefsDir, "*.json"));
+  const defsByFile = await Promise.all(filePaths.map(async (filePath) => {
+    const fileContents = await fs.readFile(filePath, "utf8");
+    return JSON.parse(fileContents);
+  }));
+  const defsByStructName = {};
+  for (let def of defsByFile.flat()) {
+    defsByStructName[def.name] = def;
+  }
+  return defsByStructName;
+}
 
 //for the given struct, get all structs which comprise it
 function expandStructs(struct, structDefs, isRoot) {
@@ -42,5 +59,6 @@ function getDirectReferencedTagNames(structName, structDefs) {
 }
 
 module.exports = {
-  getDirectReferencedTagNames
+  getDirectReferencedTagNames,
+  loadInvaderStructDefs
 };

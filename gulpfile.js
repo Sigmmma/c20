@@ -92,7 +92,8 @@ const dev = gulp.series(buildAll, watchSources);
 module.exports = {
   clean, //remove the dist directory
   assets, //build just styles
-  content, //build just page content
+  contentPages, //build just page content
+  content, //pages and their resources
   dev, //local development mode
   default: buildAll //typical build for publishing content
 };

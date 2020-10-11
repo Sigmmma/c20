@@ -10,7 +10,7 @@ const STUB_ALERT = {type: "danger", body: html`
   <a href="${REPO_URL}">pull requests or issues</a> or contacting a <a href="/thanks">maintainer</a>.</p>
 `};
 
-module.exports = (page, metaIndex) => {
+function renderPage(page, metaIndex) {
   let thanks = [];
   let alertProps = [];
   let keywords = page.keywords || [];
@@ -27,6 +27,7 @@ module.exports = (page, metaIndex) => {
   ];
   const wrapperProps = {
     ...page,
+    //TODO: capture headings from MD render
     _headers: [
       ...page._headers
     ]
@@ -241,3 +242,14 @@ module.exports = (page, metaIndex) => {
 
   return {htmlDoc, searchDoc};
 }
+
+function renderPages(metaIndex, buildOpts) {
+  const searchDocs = await Promise.all(pages.map(async (page) => {
+    const {htmlDoc, searchDoc} = renderPage(page, metaIndex);
+    await fs.mkdir(path.join(buildOpts.outputDir, ...page._pathParts), {recursive: true});
+    await fs.writeFile(path.join(buildOpts.outputDir, ...page._pathParts, "index.html"), htmlDoc, "utf8");
+    return searchDoc;
+  }));
+}
+
+module.exports = renderPages;

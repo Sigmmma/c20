@@ -1,13 +1,16 @@
 const buildH1Data = require("./h1");
+const loadWorkflows = require("./workflows");
 
-function buildData(invaderStructDefs) {
-  const h1Data = buildH1Data(invaderStructDefs);
+async function loadStructuredData(invaderDefsDir) {
+  const h1Data = buildH1Data(invaderDefsDir);
+  const workflows = loadWorkflows();
   return {
-    h1: h1Data,
+    h1: await h1Data,
+    workflows: await workflows,
     thanks: [
-      ...h1Data.tagThanks
+      ...(await h1Data).tagThanks
     ]
   };
 }
 
-module.exports = buildData;
+module.exports = loadStructuredData;

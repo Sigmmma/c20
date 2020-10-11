@@ -36,9 +36,53 @@ Avoid headings which are also links, as the full HTML of the heading becomes slu
 * Links from one page to another usually need one in reverse too.
 
 ## Content authoring
-Source content for page text, images, and diagrams, can be found in `src/content`. This is where the majority of content authoring takes place. I encourage you to explore this directory looking at files to see how pages are already written.
+The `src/content` directory is a _logical_ grouping of content. Subdirectories expand upon the topic of a parent.
 
-The directory layout will match the URL structure of the website. Each directory can contain a `readme.md` file about that topic. This is a [Markdown](https://www.markdownguide.org/) file with a [YAML](https://en.wikipedia.org/wiki/YAML) metadata prefix like so:
+The `page.yml` files within serve as the "skeleton" of the website; each `page.yml` corresponds to a page which gets built. These YAML files contain metadata about the page which controls how they look, the languages they support, and what their localized URL will be. To create a new page, you must create a directory and a corresponding `page.yml` in that directory.
+
+Most `page.yml` fields are optional, but I will list them all below to explain their purpose:
+
+```yaml
+# The title key is NOT optional, and has no default values. Providing this
+# determines which languages the page is generated for.
+title:
+  en: General tools
+  es: Herramientas generales
+# Setting a page to be a "stub" adds a notice to its header that it's a WIP
+# and help is desired. It also prevents the page from being added to the
+# sitemap, which is crawled by search bots like Google. Once a page is mostly
+# done or has reached a useful state, this flag should be removed.
+stub: true
+# The "slug" is how this page appears as part of the URL. It defaults to the
+# directory name where the page.yml is found, but can be changed per language.
+# The slug should always be lowercase and should only contain letters and
+# numbers, with no punctuation except for dashes (-) to separate words.
+slug:
+  es: herramientas-generales
+# Although page titles, slugs, and body content are indexed for search, you may
+# want to boost the page in search results by adding extra keywords. If you find
+# that a page isn't showing up at the top of search results when you expect it
+# to, try adding some keywords.
+keywords:
+  en:
+    - programs
+    - convert
+  es:
+    - programas
+    - convertir
+# Related pages show up in the page's sidebar. You must provide the related
+# pages as full *logical directory paths*, not their URLs. A related page link
+# will automatically be added in the opposite direction.
+relatedIds:
+  - h1/tools
+```
+
+
+Beyond the features described above, automated features also apply:
+
+* Adding to search index???????????
+
+Each directory can contain a `readme.md` file about that topic. This is a [Markdown](https://www.markdownguide.org/) file with a [YAML](https://en.wikipedia.org/wiki/YAML) metadata prefix like so:
 
 ```md
 ---
@@ -48,6 +92,8 @@ Page text goes here
 ```
 
 The directory for a page can include other files related to that topic, like images or [Graphviz](https://graphviz.org/) files for generating diagrams. Any `src/content/../todo.md` file or `src/content/../todo` directory is git-ignored and can be used to mock out page structures and keep notes for later writing.
+
+I encourage you to explore these directories looking at files to see how pages are already written.
 
 ## Content organization
 * All CE-specific content should live under the `h1` tree, whereas tools topics which could apply to multiple games should live under the `general` tree.

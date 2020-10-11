@@ -3,5 +3,5 @@ id: lifi
 parentName: device
 invaderStructName: DeviceLightFixture
 comments:
-  md: Used for dynamically toggled light sources or decorate lighting objects.
+  en: Used for dynamically toggled light sources or decorate lighting objects.
   fields: []
