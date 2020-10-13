@@ -1,8 +1,9 @@
 const commonTags = require("common-tags");
+const R = require("ramda");
 
 const DISCORD_URL = "https://discord.reclaimers.net";
 const REPO_URL = "https://github.com/Sigmmma/c20";
-const MAX_DETAILS_LIST = 8;
+const DEFAULT_OPEN_THRESHOLD = 8;
 
 const breakTagName = (tagName) => tagName.split("_").join("_<wbr>");
 
@@ -20,16 +21,18 @@ const html = commonTags.stripIndent(commonTags.html);
 
 const classes = (classArr) => classArr.length > 0 ? `class="${classArr.join(" ")}"` : "";
 
+const localizer = R.curry((bundle, lang, key) => bundle[key][lang]);
+
 const anchor = (href, body) => html`
   <a href="${href}">${body}</a>
 `;
 
 const defAnchor = (href) => html`<sup>${anchor(href, "?")}</sup>`;
 
-const pageAnchor = (page) => anchor(page._path, escapeHtml(page.title));
+const pageAnchor = R.curry((lang, page) => anchor(page.tryLocalizedPath(lang), escapeHtml(page.tryLocalizedTitle(lang))));
 
 const tagAnchor = (tag, metaIndex, hash) => {
-  const tagPage = metaIndex.findTagPageByName(tag.name);
+  const tagPage = metaIndex.resolvePage(tag.name);
   return anchor(`${tagPage._path}${hash ? `#${hash}` : ""}`, breakTagName(tag.name));
 };
 
@@ -40,21 +43,24 @@ const heading = (hTag, title, cssClass) => html`
   </${hTag}>
 `;
 
-const detailsList = (summary, items, forceState) => {
+const detailsList = (summary, items, openThreshold) => {
+  if (openThreshold === undefined) {
+    openThreshold = DEFAULT_OPEN_THRESHOLD;
+  }
   if (items.length == 0) {
     return null;
   } else if (items.length == 1) {
     return html`<p>${summary}: ${items[0]}</p>`;
-  } else if (items.length <= MAX_DETAILS_LIST) {
+  } else if (items.length <= openThreshold) {
     return html`
-      <details ${forceState !== false && "open"}>
+      <details open>
         <summary>${summary}</summary>
         ${ul(items)}
       </details>
     `;
   } else {
     return html`
-      <details ${forceState === true && "open"}>
+      <details>
         <summary>${summary} (${items.length})</summary>
         ${ul(items)}
       </details>
@@ -89,6 +95,7 @@ module.exports = {
   html,
   escapeHtml,
   classes,
+  localizer,
   anchor,
   pageAnchor,
   tagAnchor,

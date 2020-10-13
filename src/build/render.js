@@ -1,3 +1,6 @@
+const path = require("path");
+const fs = require("fs").promises;
+const R = require("ramda");
 const {
   detailsList, anchor, metabox, ul, wrapper, renderMarkdown, defAnchor,
   html, alert, thanks: renderThanks, REPO_URL, heading, tagAnchor,
@@ -10,7 +13,7 @@ const STUB_ALERT = {type: "danger", body: html`
   <a href="${REPO_URL}">pull requests or issues</a> or contacting a <a href="/thanks">maintainer</a>.</p>
 `};
 
-function renderPage(page, metaIndex) {
+function renderPageOld(page, metaIndex) {
   let thanks = [];
   let alertProps = [];
   let keywords = page.keywords || [];
@@ -91,7 +94,7 @@ function renderPage(page, metaIndex) {
               return tagAnchor(refTag, metaIndex);
             }
           }),
-          isDirect ? undefined : false
+          isDirect ? undefined : 0
         ));
       }
       refLevel = refLevel.parent;
@@ -110,7 +113,7 @@ function renderPage(page, metaIndex) {
         body: detailsList(
           "Referenced by",
           tag.referencedBy.map(otherTag => tagAnchor(otherTag, metaIndex)),
-          false
+          0
         )
       });
     }
@@ -125,7 +128,7 @@ function renderPage(page, metaIndex) {
       });
     }
 
-    const engineId = `<code>${tag.id}</code>${defAnchor(metaIndex.resolveUrl("tags", "engine-ids"))}`;
+    const engineId = `<code>${tag.id}</code>${defAnchor(metaIndex.resolveUrl("h1/tags", "engine-ids"))}`;
     metaboxProps.metaTitle = `\u{1F3F7} Tag: ${tag.name} (${engineId})`;
     metaboxProps.metaClass = "content-tag";
 
@@ -243,13 +246,49 @@ function renderPage(page, metaIndex) {
   return {htmlDoc, searchDoc};
 }
 
-function renderPages(metaIndex, buildOpts) {
-  const searchDocs = await Promise.all(pages.map(async (page) => {
-    const {htmlDoc, searchDoc} = renderPage(page, metaIndex);
-    await fs.mkdir(path.join(buildOpts.outputDir, ...page._pathParts), {recursive: true});
-    await fs.writeFile(path.join(buildOpts.outputDir, ...page._pathParts, "index.html"), htmlDoc, "utf8");
-    return searchDoc;
-  }));
+function renderPage(ctx) {
+  const headings = [];
+  const htmlDoc = wrapper(ctx, headings, "todo");
+  //headings
+  //body html
+  //search text
+  //alerts
+  //metabox stuff
+  //thanks
+
+  const searchDoc = {
+    lang: ctx.lang,
+    path: ctx.page.localizedPaths[ctx.lang],
+    title: ctx.page.title[ctx.lang],
+    text: "todo",
+    keywords: R.pathOr([], ["keywords", ctx.lang], ctx.page).join(" ")
+  };
+
+  return {htmlDoc, searchDoc};
+}
+
+async function renderPages(pageIndex, data, buildOpts) {
+  //for all pages, and for all of their languages...
+  return await Promise.all(Object.values(pageIndex.pages).flatMap(page =>
+    page.langs.map(async (lang) => {
+      //we can assume page and language is mantained during a page render
+      const renderContext = {
+        resolvePage: (idTail) => pageIndex.resolvePage(page.pageId, idTail),
+        resolveUrl: (idTail, headingId) => pageIndex.resolveUrl(page.pageId, lang, idTail, headingId),
+        pageIndex,
+        data,
+        buildOpts,
+        page,
+        lang,
+      };
+
+      //render the page to HTML and also gather search index data
+      const {htmlDoc, searchDoc} = renderPage(renderContext);
+      await fs.mkdir(path.join(buildOpts.outputDir, page.localizedPaths[lang]), {recursive: true});
+      await fs.writeFile(path.join(buildOpts.outputDir, page.localizedPaths[lang], "index.html"), htmlDoc, "utf8");
+      return searchDoc;
+    })
+  ));
 }
 
 module.exports = renderPages;

@@ -62,7 +62,7 @@ slug:
 # Although page titles, slugs, and body content are indexed for search, you may
 # want to boost the page in search results by adding extra keywords. If you find
 # that a page isn't showing up at the top of search results when you expect it
-# to, try adding some keywords.
+# to, try adding some keywords. These are also used for OpenGraph tagging.
 keywords:
   en:
     - programs
@@ -71,10 +71,21 @@ keywords:
     - programas
     - convertir
 # Related pages show up in the page's sidebar. You must provide the related
-# pages as full *logical directory paths*, not their URLs. A related page link
-# will automatically be added in the opposite direction.
-relatedIds:
-  - h1/tools
+# pages as their full logical paths, not their localized URLs. A related page
+# link will automatically be added in the opposite direction.
+related:
+  - /h1/tools
+# If provided, this image will be used in the page's info box (aka "metabox").
+# It also causes this image to be used in previews when pasting the page into
+# social media and Discord. The image file should be in the same directory as
+# the page.yml file.
+img: some-image.jpg
+# This caption adds text to the metabox below the image above. It should
+# add context to the image or describe anything notable about it. Technically
+# optional, but if an image is provided then you should also add a caption.
+caption:
+  en: Image description
+  es: Descripción de la imagen
 ```
 
 

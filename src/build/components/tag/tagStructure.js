@@ -30,7 +30,7 @@ const fieldInfo = (field, fieldComments, metaIndex, addSearchText) => {
   const info = [];
 
   if (field.unused) {
-    info.push(`Unused${defAnchor(metaIndex.resolveUrl("tags", "unused-tags-and-fields"))} by Halo.`)
+    info.push(`Unused${defAnchor(metaIndex.resolveUrl("h1/tags", "unused-tags-and-fields"))} by Halo.`)
   }
   if (field.minimum) {
     info.push(`Minimum: ${field.minimum}`);
@@ -45,10 +45,10 @@ const fieldInfo = (field, fieldComments, metaIndex, addSearchText) => {
     info.push("Read-only data, not meant to be edited by hand.");
   }
   if (field.non_cached) {
-    info.push(`Not included when the tag is compiled into a <a href="${metaIndex.resolveUrl("tags", "blocks")}">map cache</a>.`);
+    info.push(`Not included when the tag is compiled into a <a href="${metaIndex.resolveUrl("h1/tags", "blocks")}">map cache</a>.`);
   }
   if (field.cache_only) {
-    info.push(`Only set when the tag is compiled into a <a href="${metaIndex.resolveUrl("tags", "blocks")}">map cache</a>.`);
+    info.push(`Only set when the tag is compiled into a <a href="${metaIndex.resolveUrl("h1/tags", "blocks")}">map cache</a>.`);
   }
   if (field.engine) {
     info.push(`Only applicable to the following engine versions: ${field.engine.join(", ")}.`);
@@ -78,9 +78,9 @@ const fieldTypeDisplay = (field, fieldTypeStruct, metaIndex) => {
   let {typeName, compositeFields} = getExtraPrimitiveInfo(field.type);
 
   if (field.type == "TagReflexive") {
-    typeName = html`Block${defAnchor(metaIndex.resolveUrl("tags", "blocks"))}`;
+    typeName = html`Block${defAnchor(metaIndex.resolveUrl("h1/tags", "blocks"))}`;
   } else if (field.type == "TagDependency") {
-    typeName = html`Reference${defAnchor(metaIndex.resolveUrl("tags", "tag-references-and-paths"))}`;
+    typeName = html`Reference${defAnchor(metaIndex.resolveUrl("h1/tags", "tag-references-and-paths"))}`;
   } else if (field.type == "Index" && field.reflexive) {
     typeName = html`Index (${field.reflexive})`;
   }
@@ -119,7 +119,7 @@ const fieldTypeDisplay = (field, fieldTypeStruct, metaIndex) => {
       const tagDef = metaIndex.data.h1.tagsByName[tagName];
       return tagDef ? tagAnchor(tagDef, metaIndex) : tagDef;
     });
-    return detailsList(typeCode, depLinks, true);
+    return detailsList(typeCode, depLinks, 4);
   }
 
   //todo
@@ -127,7 +127,7 @@ const fieldTypeDisplay = (field, fieldTypeStruct, metaIndex) => {
     const renderedCompositeFields = compositeFields.map(({name, type}) =>
       `${name}: <code>${type}</code>`
     );
-    return detailsList(typeCode, renderedCompositeFields, false);
+    return detailsList(typeCode, renderedCompositeFields, 0);
   }
 
   return typeCode;

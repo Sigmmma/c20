@@ -1,4 +1,5 @@
-const {html, alert, escapeHtml, REPO_URL, ul, anchor, pageAnchor} = require("../bits");
+const R = require("ramda");
+const {html, escapeHtml, REPO_URL, pageAnchor, localizer, detailsList} = require("../bits");
 const {renderMarkdown} = require("../markdown");
 const footer = require("./footer");
 const header = require("./header");
@@ -9,79 +10,121 @@ const TOC_MIN_HEADERS = 2;
 const COLLAPSE_CHILD_PAGES = 8;
 const PREVIEW_LENGTH_CHARS = 100;
 
-const topLevelTopics = [
-  ["/h1/tags", "Tags"],
-  ["/h1", "Halo"]
+//todo
+const mainTopics = [
+  // ["/h1/tags"],
+  // ["/h1"]
 ];
 
-const wrapper = (page, metaIndex, body) => {
-  const editPageUrl = `${REPO_URL}/edit/master/src/content${page._path}/readme.md`;
+const localizations = {
+  siteName: {
+    en: "The Reclaimers Library",
+    es: "La Biblioteca de Reclaimers"
+  },
+  locale: {
+    en: "en_US",
+    es: "es_ES"
+  },
+  toc: {
+    en: "On this page",
+    es: "En esta página"
+  },
+  children: {
+    en: "Child pages",
+    es: "Páginas secundarias"
+  },
+  related: {
+    en: "Related pages",
+    es: "Páginas relacionadas"
+  },
+  main: {
+    en: "Main topics",
+    es: "Temas principales"
+  },
+  edit: {
+    en: "Edit",
+    es: "Editar"
+  }
+};
+
+const langNames = {
+  en: "English",
+  es: "Español"
+};
+
+const wrapper = (ctx, headings, body) => {
+  const {page, pageIndex, lang, buildOpts: {baseUrl}} = ctx;
+  const localize = localizer(localizations, lang);
+  const editPageUrl = `${REPO_URL}/edit/master/src/content${page.pageId}/readme${lang == "en" ? "" : "_" + lang}.md`;
   const imgAbsoluteUrl = page.img ?
-    `${metaIndex.buildOpts.baseUrl}${page._path}/${page.img}` :
-    `${metaIndex.buildOpts.baseUrl}/assets/librarian.png`;
+    `${baseUrl}${page.localizedPaths[lang]}/${page.img}` :
+    `${baseUrl}/assets/librarian.png`;
 
-  const showToc = page.toc !== undefined ? page.toc : page._headers.length > TOC_MIN_HEADERS;
-
-  const plaintextPreview = page._md ? `${renderMarkdown(page._md, metaIndex, true).substring(0, PREVIEW_LENGTH_CHARS)}...` : "";
+  const plaintextPreview = page._md ? `${renderMarkdown(page._md, pageIndex, true).substring(0, PREVIEW_LENGTH_CHARS)}...` : "";
+  const keywords = R.path(["keywords", lang], page);
+  const otherLangs = page.langs.filter(it => it != lang);
 
   return html`
     <!DOCTYPE html>
-    <html lang="en">
+    <html lang="${lang}">
       <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <meta property="og:title" content="${page.title}"/>
-        <meta property="og:site_name" content="The Reclaimers Library"/>
+        <meta name="robots" content="index, follow">
+        <meta property="og:title" content="${page.tryLocalizedTitle(lang)}"/>
+        <meta property="og:site_name" content="${localize("siteName")}"/>
         <meta property="og:type" content="website"/>
-        <meta property="og:locale" content="en_US"/>
-        <meta property="og:url" content="${metaIndex.buildOpts.baseUrl}${page._path}"/>
+        <meta property="og:locale" content="${localize("locale")}"/>
+        ${otherLangs.map(otherLang => html`
+          <meta property="og:locale:alternate" content="${localizer(localizations, otherLang, "locale")}"/>
+        `)}
+        ${keywords && keywords.map(keyword => html`
+          <meta property="og:article:tag" content="${keyword}"/>
+        `)}
+        <meta property="og:url" content="${baseUrl}${page.tryLocalizedPath(lang)}"/>
         <meta property="og:description" content="${plaintextPreview}"/>
         <meta property="og:image" content="${imgAbsoluteUrl}"/>
-        <title>${page.title} - c20</title>
-        <link rel="preload" type="application/json" as="fetch" href="/assets/search-index.json">
+        <title>${page.tryLocalizedTitle(lang)} - c20</title>
+        <link rel="preload" type="application/json" as="fetch" href="/assets/search-index_${lang}.json">
         <link rel="icon" type="image/png" href="/assets/librarian.png">
         <link rel="stylesheet" href="/assets/style.css"/>
         <link rel="stylesheet" href="/assets/night-owl.css"/>
       </head>
       <body>
-        ${header()}
+        ${header(localize("siteName"), lang)}
         <div class="content-layout">
           <aside class="content-sidebar">
-            ${showToc && toc(page)}
-            ${page._childPages.length > 0 && html`
-              <h2>Child pages</h2>
-              ${page._childPages.length >= COLLAPSE_CHILD_PAGES ? (html`
-                <details>
-                  <summary>See all (${page._childPages.length})</summary>
-                  ${ul(page._childPages.map(pageAnchor))}
-                </details>
-              `) : (
-                ul(page._childPages.map(pageAnchor))
-              )}
+            ${headings.length > TOC_MIN_HEADERS && html`
+              <h2 id="table-of-contents">${localize("toc")}</h2>
+              ${toc(headings)}
             `}
-            ${page._relatedPages.length > 0 && html`
-              <h2>Related pages</h2>
-              ${ul(page._relatedPages.map(pageAnchor))}
-            `}
-            <h2>Main topics</h2>
-            ${ul(topLevelTopics.map(topic => anchor(...topic)))}
+            ${page.children && page.children.length > 0 &&
+              detailsList(localize("children"), page.children.map(pageAnchor(lang)))
+            }
+            ${page.related && page.related.length > 0 &&
+              detailsList(localize("related"), page.related.map(pageAnchor(lang)))
+            }
+            ${detailsList(localize("main"), mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId])))}
           </aside>
           <main role="main" class="content-main">
             <nav class="breadcrumbs">
-              ${breadcrumbs(page, metaIndex)}
+              ${breadcrumbs(ctx)}
             </nav>
             <article class="content-article">
               <div class="page-title">
-                <h1 class="page-title">${escapeHtml(page.title)}</h1>
+                <h1 class="page-title">${escapeHtml(page.tryLocalizedTitle(lang))}</h1>
                 <div class="edit-buttons">
-                  <a href="${editPageUrl}">Edit</a>
+                  ${otherLangs.map(otherLang => html`
+                    <a href="${page.localizedPaths[otherLang]}">${langNames[otherLang]}</a> /
+                  `)}
+                  <a href="${editPageUrl}">${localize("edit")}</a>
                 </div>
               </div>
     ${body}
             </article>
           </main>
-          ${footer(page, metaIndex)}
+          ${footer(ctx)}
         </div>
         <script src="/assets/minisearch/dist/umd/index.js"></script>
         <script src="/assets/htm/preact/standalone.umd.js"></script>
