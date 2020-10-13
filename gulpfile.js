@@ -9,7 +9,7 @@ const buildContent = require("./src/content");
 const Viz = require('viz.js');
 const vizRenderOpts = require('viz.js/full.render.js');
 
-const packageVersion = process.env.npm_package_version;
+const packageVersion = require("./package.json").version;
 const {paths, baseUrl} = require("./build-config.json");
 const runServer = require("./server");
 
