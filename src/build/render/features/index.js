@@ -10,6 +10,7 @@
  */
 module.exports = [
   require("./alerts"),
+  require("./metaboxBase"),
   require("./markdownFile"),
   require("./survey/results"),
   // require("./tagIndex"),

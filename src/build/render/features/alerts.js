@@ -26,6 +26,12 @@ module.exports = async function(ctx) {
         R.filter(R.path(["md", lang])),
         R.map(({type, md}) => alert(type, renderMarkdown(ctx, md[lang])))
       )(page)}
-    `
+    `,
+    search: R.pipe(
+      R.pathOr([], ["alerts"]),
+      R.filter(R.path(["md", lang])),
+      R.map(({md}) => renderMarkdown(ctx, md[lang], true)),
+      R.join(" ")
+    )(page)
   };
 };

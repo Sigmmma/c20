@@ -4,6 +4,7 @@ const {renderMarkdown} = require("../markdown");
 const footer = require("./footer");
 const header = require("./header");
 const breadcrumbs = require("./breadcrumbs");
+const metabox = require("./metabox");
 const toc = require("./toc");
 
 const TOC_MIN_HEADERS = 2;
@@ -52,7 +53,7 @@ const langNames = {
   es: "Español"
 };
 
-const wrapper = (ctx, headings, body) => {
+const wrapper = (ctx, headings, metaboxProps, body) => {
   const {page, pageIndex, lang, buildOpts: {baseUrl}} = ctx;
   const localize = localizer(localizations, lang);
   const editPageUrl = `${REPO_URL}/edit/master/src/content${page.pageId}/readme${lang == "en" ? "" : "_" + lang}.md`;
@@ -121,6 +122,7 @@ const wrapper = (ctx, headings, body) => {
                   <a href="${editPageUrl}">${localize("edit")}</a>
                 </div>
               </div>
+    ${metabox(ctx, metaboxProps)}
     ${body}
             </article>
           </main>

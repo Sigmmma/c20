@@ -74,12 +74,14 @@ related:
 # If provided, this image will be used in the page's info box (aka "metabox").
 # It also causes this image to be used in previews when pasting the page into
 # social media and Discord. The image file should be in the same directory as
-# the page.yml file.
+# the page.yml file. This field should be used for images that represent the
+# page's topic as an item in a series of pages, similar to Wikipedia's box.
+# It should not be used for arbitrary figures, which should use <figure> HTML.
 img: tools.jpg
 # This caption adds text to the metabox below the image above. It should
 # add context to the image or describe anything notable about it. Technically
 # optional, but if an image is provided then you should also add a caption.
-caption:
+imgCaption:
   en: Image description
   es: Descripción de la imagen
 # Marking a page as a "stub" adds an alert to its header that it's a work in

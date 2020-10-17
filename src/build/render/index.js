@@ -9,10 +9,7 @@ const features = require("./features");
 
 // function renderPage2(ctx) {
 //   const metaboxProps = {
-//     metaTitle: page.title,
 //     metaClass: null,
-//     img: page.img,
-//     imgCaption: renderMarkdown(page.imgCaption, metaIndex),
 //     sections: page.info ? [{body: renderMarkdown(page.info, metaIndex)}] : [],
 //   };
 //
@@ -132,36 +129,37 @@ async function renderPage(ctx) {
   const {page, lang} = ctx;
 
   /* Pass the render context through each feature, gathering their desired
-   * additions to the page and search index.
+   * additions to the page and search index. We use the `combineResults` helper
+   * to grab a result key from all features if present, then merge using a
+   * provided pipeline of functions.
    */
   const featureResults = await Promise.all(features.map(feature => feature(ctx)));
-  const transformResults = (...pipe) => R.pipe(...pipe)(featureResults);
+  const combineResults = (key, ...pipe) => R.pipe(
+    R.map(R.prop(key)),
+    R.filter(val => !R.isNil(val)),
+    ...pipe
+  )(featureResults);
+
+  const metaboxProps = {
+    metaTitle: combineResults("metaTitle", R.last),
+    img: combineResults("img", R.last),
+    imgCaption: combineResults("imgCaption", R.last),
+  };
 
   //represents the full page HTML, ready to write to a file
   const htmlDoc = wrapper(
     ctx,
-    transformResults(
-      R.map(R.propOr([], "headings")),
-      R.flatten
-    ),
-    transformResults(
-      R.map(R.prop("html"))
-    )
+    combineResults("headings", R.flatten),
+    metaboxProps,
+    combineResults("html")
   );
   //used to add the page to the search index
   const searchDoc = page.noSearch ? null : {
     lang,
     path: ctx.page.localizedPaths[ctx.lang],
     title: ctx.page.title[ctx.lang],
-    text: transformResults(
-      R.map(R.propOr("", "searchText")),
-      R.join(" ")
-    ),
-    keywords: transformResults(
-      R.map(R.propOr([], "keywords")),
-      R.flatten,
-      R.join(" ")
-    )
+    text: combineResults("searchText", R.join(" ")),
+    keywords: combineResults("keywords", R.flatten, R.join(" "))
   };
 
   return {htmlDoc, searchDoc};

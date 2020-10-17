@@ -1,6 +1,12 @@
-const {html} = require("./bits");
+const {html} = require("../bits");
+const {renderMarkdownInline} = require("../markdown");
 
-const metabox = ({metaTitle, metaClass, img, imgCaption, sections}) => {
+const metabox = (ctx, metaboxProps) => {
+  if (!metaboxProps) {
+    return null;
+  }
+
+  const {metaTitle, metaClass, img, imgCaption, sections} = metaboxProps;
   if (!img && !imgCaption && (!sections || sections.length == 0)) {
     return null;
   }
@@ -17,7 +23,7 @@ const metabox = ({metaTitle, metaClass, img, imgCaption, sections}) => {
       `}
       ${imgCaption && html`
         <section class="caption">
-          <p><em>${imgCaption}</em></p>
+          <p><em>${renderMarkdownInline(ctx, imgCaption)}</em></p>
         </section>
       `}
       ${sections && sections.filter(it => it).map(({body, cssClass}) => html`
