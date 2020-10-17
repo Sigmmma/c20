@@ -1,3 +1,19 @@
 title:
   en: The Reclaimers Library
   es: La Biblioteca de Reclaimers
+keywords:
+  en:
+    - home
+  es:
+    - inicio
+alerts:
+  - md:
+      es: >
+        Este sitio web todavía está en [desarrollo activo](https://github.com/Sigmmma/c20).
+        La creación de contenido se prioriza en función de los [resultados][survey]
+        de la encuesta comunitaria de 2020 y eventos de apoyo como el
+        [concurso de creación de mapas](https://discord.reclaimers.net).
+      en: >
+        This website is still under [active development](https://github.com/Sigmmma/c20).
+        Content creation is prioritized based on the 2020 community [survey results][survey]
+        and supporting events like the [map-making contest](https://discord.reclaimers.net).

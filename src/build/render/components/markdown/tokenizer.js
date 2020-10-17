@@ -1,6 +1,6 @@
 const marked = require("marked");
 
-function buildTokenizer(metaIndex) {
+function buildTokenizer(ctx) {
   const tokenizer = new marked.Tokenizer();
 
   //customized reflink from https://github.com/markedjs/marked/blob/master/src/Tokenizer.js
@@ -15,10 +15,10 @@ function buildTokenizer(metaIndex) {
       if (!link || !link.href) {
         //next, we can try searching the metaindex for a matching page
         const parts = linkKey.split("#");
-        const page = metaIndex.resolvePage(parts[0]);
+        const page = ctx.resolvePage(parts[0]);
         link = {
-          href: parts[1] ? `${page._path}#${parts[1]}` : page._path,
-          title: page.title
+          href: page.tryLocalizedPath(ctx.lang, parts[1]),
+          title: page.tryLocalizedTitle(ctx.lang)
         };
       }
 

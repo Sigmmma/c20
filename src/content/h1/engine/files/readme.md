@@ -112,6 +112,8 @@ The file `savegames\<profile name>\blam.sav` contains the configuration for a HC
 
 The file structure follows, but is known to be incomplete:
 
+{{type: table, src: table.yml, lang: en}}
+
 <table>
   <thead>
     <tr>

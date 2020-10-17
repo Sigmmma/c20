@@ -38,21 +38,17 @@ Avoid headings which are also links, as the full HTML of the heading becomes slu
 ## Content authoring
 The `src/content` directory is a _logical_ grouping of content. Subdirectories expand upon the topic of a parent.
 
-The `page.yml` files within serve as the "skeleton" of the website; each `page.yml` corresponds to a page which gets built. These YAML files contain metadata about the page which controls how they look, the languages they support, and what their localized URL will be. To create a new page, you must create a directory and a corresponding `page.yml` in that directory.
+The `page.yml` files within serve as the "skeleton" of the website; each `page.yml` corresponds to a page which gets built. These [YAML][] files contain metadata about the page which controls how they look, the languages they support, and what their localized URL will be. To create a new page, you must create a directory and a corresponding `page.yml` in that directory.
 
 Most `page.yml` fields are optional, but I will list them all below to explain their purpose:
 
 ```yaml
 # The title key is NOT optional, and has no default values. Providing this
-# determines which languages the page is generated for.
+# determines which languages the page is generated for. If the title contains
+# a ":" be sure to contain the whole title within quotes, e.g. "Halo: CE".
 title:
   en: General tools
   es: Herramientas generales
-# Setting a page to be a "stub" adds a notice to its header that it's a WIP
-# and help is desired. It also prevents the page from being added to the
-# sitemap, which is crawled by search bots like Google. Once a page is mostly
-# done or has reached a useful state, this flag should be removed.
-stub: true
 # The "slug" is how this page appears as part of the URL. It defaults to the
 # directory name where the page.yml is found, but can be changed per language.
 # The slug should always be lowercase and should only contain letters and
@@ -79,13 +75,53 @@ related:
 # It also causes this image to be used in previews when pasting the page into
 # social media and Discord. The image file should be in the same directory as
 # the page.yml file.
-img: some-image.jpg
+img: tools.jpg
 # This caption adds text to the metabox below the image above. It should
 # add context to the image or describe anything notable about it. Technically
 # optional, but if an image is provided then you should also add a caption.
 caption:
   en: Image description
   es: Descripción de la imagen
+# Marking a page as a "stub" adds an alert to its header that it's a work in
+# progress and also prevents the page from being added to the sitemap (used by
+# search bots). Once a page has reached a useful state, remove this flag.
+stub: true
+# In addition to the stub alert above, you can provide custom alerts to bring
+# the reader's attention to certain information. Some example use cases are
+# recommending that the reader visits prerequisite pages, warning them against
+# using unmaintained tools, or congratulating them after reaching the final
+# step of a multi-page guide.
+alerts:
+  # Valid types are "danger", "success", and "info" (the default if not given).
+  - type: danger
+    # Provide the alert content in markdown format. Supports auto-reflinks.
+    # You can provided text for just one language of the page if desired.
+    md:
+      en: This process may damage your computer!
+      es: ¡Este proceso puede dañar su computadora!
+# It's important to credit those who discovered something about the engine,
+# researched a topic, helped answer questions, or otherwise contributed towards
+# a page. Thanked individuals are listed at the bottom of a page, and appear
+# in the site-wide thanks summary page.
+thanks:
+  # Names appear in all languages of the page, but the descriptions may not.
+  PersonName:
+    en: Researching how to do something
+  # Use quotes if the person's name contains spaces.
+  "Person Name":
+    en: English description of contribution
+    es: Spanish description of contribution
+# If true, a section will be added to the page which lists all thanked
+# contributors across all pages. This flag is only used on the /thanks summary
+# page.
+thanksIndex: true
+# If true, causes the page to be excluded from the search index. Use this for
+# pages which are unlikely to be searched for specifically so they don't
+# clutter the results of more typical searches.
+noSearch: true
+# Only used for the 2020 survey results page. Causes survey results to be
+# rendered as a section of the page. Survey results are in English only.
+surveyResults: true
 ```
 
 
@@ -110,3 +146,5 @@ I encourage you to explore these directories looking at files to see how pages a
 * All CE-specific content should live under the `h1` tree, whereas tools topics which could apply to multiple games should live under the `general` tree.
 * If a topic is only really related to another topic, ensure it is either a child page (a subdirectory) or under heading of that parent topic instead.
 * If a topic is growing too large, consider splitting it up and taking its large sections to a child page (a subdirectory).
+
+[yaml]: https://en.wikipedia.org/wiki/YAML

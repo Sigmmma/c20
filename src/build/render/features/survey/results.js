@@ -1,4 +1,4 @@
-const {html, heading, slugify} = require("../bits");
+const {html, heading, slugify} = require("../../components");
 
 const resultsByIp = require("./survey-results.json");
 //delete test data:
@@ -377,4 +377,9 @@ const body = html`
   ${topExpChoices(10, "easy")}
 `;
 
-module.exports = {headings, body};
+module.exports = async function(ctx) {
+  return ctx.page.surveyResults ? {
+    headings,
+    html: body
+  } : {};
+};

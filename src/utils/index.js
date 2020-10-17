@@ -1,5 +1,5 @@
 const glob = require("glob");
-const path = require("path");
+const R = require("ramda");
 
 //returns length of common prefix of two strings
 function commonLength(strA, strB) {
@@ -24,15 +24,7 @@ async function findPaths(globPattern) {
   });
 }
 
-//returns an array of directory path parts relative to a base dir
-function parsePathParts(baseDir, fullPath) {
-  const {dir} = path.parse(fullPath);
-  const contentDirDepth = path.normalize(baseDir).split(path.sep).length;
-  return path.normalize(dir).split(path.sep).slice(contentDirDepth);
-}
-
 module.exports = {
   commonLength,
-  findPaths,
-  parsePathParts
+  findPaths
 };

@@ -34,14 +34,22 @@ const findHeadings = (mdSrc) => {
   return headers;
 };
 
-const renderMarkdown = (md, metaIndex, plaintext) => {
+//renders full markdown texts intended to contain paragraphs
+function renderMarkdown(ctx, md, plaintext) {
   if (!md) return null;
-
-  const tokenizer = buildTokenizer(metaIndex);
-
+  const tokenizer = buildTokenizer(ctx);
   return plaintext ?
     entities.decode(marked(md, {...plaintextRenderOptions, tokenizer})) :
     marked(md, {...htmlRenderOptions, tokenizer});
-};
+}
 
-module.exports = {renderMarkdown, findHeadings};
+//renders markdown fragments as inline content rather than as a paragraph
+function renderMarkdownInline(ctx, md, plaintext) {
+  if (!md) return null;
+  const tokenizer = buildTokenizer(ctx);
+  return plaintext ?
+    entities.decode(marked.parseInline(md, {...plaintextRenderOptions, tokenizer})) :
+    marked.parseInline(md, {...htmlRenderOptions, tokenizer});
+}
+
+module.exports = {renderMarkdown, renderMarkdownInline, findHeadings};

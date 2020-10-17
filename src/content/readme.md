@@ -1,11 +1,3 @@
----
-title: The Reclaimers Library
-keywords:
-  - home
-alerts:
-  - md: This website is still under [active development](https://github.com/Sigmmma/c20). Content creation is prioritized based on the 2020 community [survey results][survey] and supporting events like the [map-making contest](https://discord.reclaimers.net).
----
-
 <figure>
   <a href="343.jpg">
     <img src="343.jpg" alt="343 Guilty Spark in the Library"/>

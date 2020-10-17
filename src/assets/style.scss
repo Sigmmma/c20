@@ -69,6 +69,14 @@ a {
   }
 }
 
+html[lang="es"] {
+  a:not([href^="http"]):not([href^="#"]):not([href*="/es/"]):not([href="/es"]):after {
+    content: "(inglés)";
+    vertical-align: super;
+    font-size: 50%;
+  }
+}
+
 a[href^="mailto:"]:after {
   content: "📧";
   vertical-align: super;
@@ -401,6 +409,9 @@ table.tag-struct {
   }
   &.type-danger {
     background: $bg-danger;
+  }
+  &.type-success {
+    background: $bg-success;
   }
 }
 

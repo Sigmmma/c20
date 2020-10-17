@@ -1,5 +1,7 @@
 const {html, render, Component} = htmPreact;
 
+const lang = document.querySelector("html").lang;
+
 class UnitConverter extends Component {
   constructor() {
     super();
@@ -168,7 +170,7 @@ class Search extends Component {
   }
 
   componentDidMount() {
-    fetch("/assets/search-index.json")
+    fetch(`/assets/search-index_${lang}.json`)
       .then(res => res.text())
       .then(indexJson => {
         this.searchIndex = MiniSearch.loadJSON(indexJson, {
@@ -198,6 +200,15 @@ class Search extends Component {
   }
 
   render() {
+    const placeholderText = {
+      en: "Search c20...",
+      es: "Buscar c20..."
+    }[lang];
+    const searchResultsText = {
+      en: "Search results",
+      es: "Resultados de la búsqueda"
+    }[lang];
+
     const clearInput = () => this.handleChange("");
     const handleInput = (e) => this.handleChange(e.target.value);
     const isNonEmptyQuery = this.state.query && this.state.query != "";
@@ -209,7 +220,7 @@ class Search extends Component {
         ref=${saveInputRef}
         class="search-input ${isNonEmptyQuery ? "nonempty" : ""}"
         type="text"
-        placeholder="Search c20..."
+        placeholder=${placeholderText}
         disabled=${this.state.disabled}
         value=${this.state.query}
         onInput=${handleInput}
@@ -218,7 +229,7 @@ class Search extends Component {
       ${isNonEmptyQuery && html`
         <nav class="search-results">
           <button class="clear-button" onClick=${clearInput}>Close</button>
-          <h1>Search results</h1>
+          <h1>${searchResultsText}</h1>
           <p class="desktop-only"><small>Hotkeys: <kbd>s</kbd> to search, <kbd>Up/Down</kbd> to choose result, <kbd>Enter</kbd> to select, <kbd>Esc</kbd> to close.</small></p>
           ${this.state.searchResults.length > 0 ? html`
             <ul>
@@ -250,7 +261,7 @@ if (converterMount) {
 //flash heading matching URL hash
 const hash = document.location.hash;
 if (hash) {
-  const heading = document.getElementById(hash.substring(1));
+  const heading = document.getElementById(decodeURI(hash.substring(1)));
   if (heading) {
     heading.classList.add("destination");
     setTimeout(() => {

@@ -1,17 +1,3 @@
----
-title: "Halo: CE"
-keywords:
-  - "h1"
-  - halo
-thanks:
-  - to: gbMichelle
-    for: CEA/MCC lineage information
-  - to: Hasuku
-    for: Xbox modding lineage
-  - to: Kavawuvi
-    for: Engine versions
----
-
 <figure>
   <a href="box-art.jpg">
     <img src="box-art.jpg" alt="Halo's box art"/>

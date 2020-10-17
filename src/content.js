@@ -4,7 +4,7 @@ const fs = require("fs").promises;
 const path = require("path");
 const R = require("ramda");
 
-const {commonLength, findPaths, parsePathParts} = require("./utils");
+const {commonLength, findPaths} = require("./utils");
 const loadStructuredData = require("./data");
 const renderPages = require("./build/render");
 const buildSitemap = require("./build/sitemap");
@@ -28,8 +28,11 @@ async function loadPageMetadata(contentDir) {
     if (!pageMeta.title) {
       throw new Error(`Page does not define any title(s): ${yamlFilePath}`);
     }
+
+    const {dir: dirPath} = path.parse(yamlFilePath);
+    const contentDirDepth = path.normalize(contentDir).split(path.sep).length;
+    const logicalPath = path.normalize(dirPath).split(path.sep).slice(contentDirDepth);
     const langs = Object.keys(pageMeta.title);
-    const logicalPath = parsePathParts(contentDir, yamlFilePath);
     const pageId = joinAbsolutePath(logicalPath);
     const logicalPathTail = logicalPath[logicalPath.length - 1];
 
@@ -44,6 +47,7 @@ async function loadPageMetadata(contentDir) {
       langs,
       pageId,
       logicalPath,
+      dirPath,
     };
   }));
 
@@ -84,7 +88,10 @@ async function loadPageMetadata(contentDir) {
       }
       return [lang, joinAbsolutePath(localizedPath)];
     }));
-    page.tryLocalizedPath = (lang) => page.localizedPaths[lang] || page.localizedPaths["en"];
+    page.tryLocalizedPath = (lang, headingId) => {
+      const path = page.localizedPaths[lang] || page.localizedPaths["en"];
+      return headingId ? `${path}#${headingId}` : path;
+    };
     page.tryLocalizedTitle = (lang) => page.title[lang] || page.title["en"];
     //convert the related set from IDs to actual references
     if (page.related) {
@@ -105,9 +112,11 @@ async function loadPageIndex(contentDir) {
       idTail = "/" + idTail;
     }
 
-    const candidatePages = Object.values(pages).filter(otherPage => otherPage.pageId.endsWith("/" + idTail));
+    const candidatePages = Object.values(pages).filter(otherPage => otherPage.pageId.endsWith(idTail));
     if (candidatePages.length == 0) {
-      throw new Error(`No page exists with logical path tail '${idTail}' (from logical path '${fromPageId}')`);
+      // throw new Error(`No page exists with logical path tail '${idTail}' (from logical path '${fromPageId}')`);
+      //todo: re-enable once all pages ported to new scheme
+      return pages["/"];
     } else if (candidatePages.length > 1) {
       //there are multiple matching pages -- try disambiguating by picking best match
       candidatePages.sort((a, b) => {
@@ -130,9 +139,8 @@ async function loadPageIndex(contentDir) {
 
   //looks up the localized URL for a path tail and optionally a heading anchor
   const resolveUrl = (fromPageId, prefLang, idTail, headingId) => {
-    const page = resolvePage(fromPageId, idTail)
-    const path = page.localizedPaths[lang] || page.localizedPaths["en"];
-    return headingId ? `${path}#${headingId}` : path;
+    const page = resolvePage(fromPageId, idTail);
+    return page.tryLocalizedPath(prefLang, headingId);
   };
 
   return {pages, resolvePage, resolveUrl};

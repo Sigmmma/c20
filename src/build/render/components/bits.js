@@ -11,7 +11,7 @@ const breakTagName = (tagName) => tagName.split("_").join("_<wbr>");
 const slugify = (title) => title
   .toLowerCase()
   .replace(/[']/g, "")
-  .replace(/[^a-z0-9]/g, " ")
+  .replace(/[^\p{L}0-9]/gu, " ")
   .split(" ")
   .filter(part => part.length > 0)
   .join("-");

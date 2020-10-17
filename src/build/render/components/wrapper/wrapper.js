@@ -92,7 +92,7 @@ const wrapper = (ctx, headings, body) => {
         <link rel="stylesheet" href="/assets/night-owl.css"/>
       </head>
       <body>
-        ${header(localize("siteName"), lang)}
+        ${header(ctx, localize("siteName"))}
         <div class="content-layout">
           <aside class="content-sidebar">
             ${headings.length > TOC_MIN_HEADERS && html`
