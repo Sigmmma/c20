@@ -6,8 +6,6 @@
       "./src/content/**/readme.md",
       "./src/data/**/*.yml"
     ],
-    "srcResources": "./src/content/**/*.@(jpg|jpeg|png|gif|ms)",
-    "srcDiagrams": "./src/content/**/*.@(dot|neato|fdp|sfdp|twopi|circo)",
     "srcContentBase": "./src/content",
     "srcStaticAssets": "./src/@(assets)/**/*.@(jpg|jpeg|png|gif|ttf|js)",
     "srcStyleEntry": "./src/assets/style.scss",

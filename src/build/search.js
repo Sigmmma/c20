@@ -1,6 +1,6 @@
-const MiniSearch = require("minisearch");
 const path = require("path");
-const fs = require("fs").promises
+const fs = require("fs").promises;
+const MiniSearch = require("minisearch");
 
 /* These words are too common to provide any real search value. Ignoring them
  * improves search relevancy and reduces the index filesize. Use lowercase.

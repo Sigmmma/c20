@@ -8,6 +8,7 @@ const {commonLength, findPaths} = require("./utils");
 const loadStructuredData = require("./data");
 const renderPages = require("./build/render");
 const buildSitemap = require("./build/sitemap");
+const buildResources = require("./build/resources");
 const buildSearchIndex = require("./build/search");
 
 function joinAbsolutePath(logicalPath) {
@@ -90,6 +91,7 @@ async function loadPageMetadata(contentDir) {
     }));
     page.tryLocalizedPath = (lang, headingId) => {
       const path = page.localizedPaths[lang] || page.localizedPaths["en"];
+      headingId = R.pathOr(headingId, ["headingIds", headingId, lang], page);
       return headingId ? `${path}#${headingId}` : path;
     };
     page.tryLocalizedTitle = (lang) => page.title[lang] || page.title["en"];
@@ -151,6 +153,7 @@ async function buildContent(buildOpts) {
   const data = loadStructuredData(buildOpts.invaderDefsDir);
 
   await Promise.all([
+    buildResources(await pageIndex, buildOpts),
     renderPages(await pageIndex, await data, buildOpts)
       .then(searchDocs => buildSearchIndex(searchDocs, buildOpts)),
     buildSitemap(await pageIndex, buildOpts)

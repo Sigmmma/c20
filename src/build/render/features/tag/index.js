@@ -1,4 +1,5 @@
-const {defAnchor, localizer, tagAnchor, html, detailsList} = require("../../components");
+const R = require("ramda");
+const {defAnchor, localizer, tagAnchor, html, detailsList, renderMarkdownInline} = require("../../components");
 const renderTagStructure = require("./tagStructure");
 
 const localizations = localizer({
@@ -23,6 +24,13 @@ const localizations = localizer({
     es: (parent) => `Referencias de ${parent}`
   }
 });
+
+function localizeThanks(ctx, thanks) {
+  return R.mapObjIndexed((forLangs, to) => {
+    const forMd = forLangs[ctx.lang];
+    return forMd ? [renderMarkdownInline(ctx, forMd)] : [];
+  }, thanks);
+}
 
 module.exports = async function(ctx) {
   const {lang, page} = ctx;
@@ -119,6 +127,7 @@ module.exports = async function(ctx) {
     metaSections,
     searchText,
     metaTitle: `\u{1F3F7} Tag: ${tagName} (${engineId})`,
-    metaClass: "content-tag"
+    metaClass: "content-tag",
+    thanks: localizeThanks(ctx, ctx.data.h1.tagThanks)
   };
 };

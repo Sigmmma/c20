@@ -54,10 +54,16 @@ async function buildH1Data(invaderDefsDir) {
     tagsById,
     tagsByName,
     invaderStructDefs,
-    tagThanks: [
-      {to: "MosesOfEgypt", for: "Tag structure research"},
-      {to: "Kavawuvi", for: "Invader tag definitions"},
-    ]
+    tagThanks: {
+      MosesOfEgypt: {
+        en: "Tag structure research",
+        es: "Investigación de estructura de tags"
+      },
+      Kavawuvi: {
+        en: "Invader tag definitions",
+        es: "Definiciones de tags de Invader"
+      },
+    }
   };
 };
 

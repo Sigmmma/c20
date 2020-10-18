@@ -6,6 +6,7 @@ const header = require("./header");
 const breadcrumbs = require("./breadcrumbs");
 const metabox = require("./metabox");
 const toc = require("./toc");
+const thanksList = require("./thanksList");
 
 const TOC_MIN_HEADERS = 2;
 const COLLAPSE_CHILD_PAGES = 8;
@@ -53,7 +54,7 @@ const langNames = {
   es: "Español"
 };
 
-const wrapper = (ctx, headings, metaboxProps, body) => {
+const wrapper = (ctx, headings, thanks, metaboxProps, body) => {
   const {page, pageIndex, lang, buildOpts: {baseUrl}} = ctx;
   const localize = localizer(localizations, lang);
   const editPageUrl = `${REPO_URL}/edit/master/src/content${page.pageId}/readme${lang == "en" ? "" : "_" + lang}.md`;
@@ -64,6 +65,11 @@ const wrapper = (ctx, headings, metaboxProps, body) => {
   const plaintextPreview = page._md ? `${renderMarkdown(page._md, pageIndex, true).substring(0, PREVIEW_LENGTH_CHARS)}...` : "";
   const keywords = R.path(["keywords", lang], page);
   const otherLangs = page.langs.filter(it => it != lang);
+
+  const thanksResult = thanksList(ctx, thanks);
+  if (thanksResult.headings) {
+    headings = [...headings, ...thanksResult.headings];
+  }
 
   return html`
     <!DOCTYPE html>
@@ -124,6 +130,7 @@ const wrapper = (ctx, headings, metaboxProps, body) => {
               </div>
     ${metabox(ctx, metaboxProps)}
     ${body}
+    ${thanksResult.html}
             </article>
           </main>
           ${footer(ctx)}

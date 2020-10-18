@@ -7,9 +7,6 @@ async function loadStructuredData(invaderDefsDir) {
   return {
     h1: await h1Data,
     workflows: await workflows,
-    thanks: [
-      ...(await h1Data).tagThanks
-    ]
   };
 }
 

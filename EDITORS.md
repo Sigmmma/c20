@@ -121,7 +121,15 @@ thanks:
   "Person Name":
     en: English description of contribution
     es: Spanish description of contribution
-
+# Some pages contain headings which are directly referenced by code in this
+# project, e.g. the link to explain engine IDs from a tag page's metabox
+# title. This YAML config allows a page to expose a stable heading ID alias
+# to this code so certain sub-topics can be reliably linked to even if the exact
+# wording of a title changes over time or by language. Most pages will not need
+# to include this data.
+headingRefs:
+  engine-ids:
+    es: id-de-motor
 # Identifies this page as a workflow item from workflows.yml, causing workflows
 # to be added to the metabox. This can be omitted if either `toolName` or
 # `tagName` will be set because they have the same effect, but use this for

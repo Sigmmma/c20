@@ -9,6 +9,7 @@
  * - metaSections: array of {cssClass, body} to appear as metabox sections
  * - img: image path for metabox
  * - imgCaption: caption for metabox
+ * - thanks: added to the credits section at end of page, {name: [forText, ...], ...}
  *
  * The order of features determines order on the page.
  */

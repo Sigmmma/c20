@@ -6,9 +6,6 @@ const path = require("path");
 const rename = require("gulp-rename");
 const transform = require("gulp-transform");
 const buildContent = require("./src/content");
-const Viz = require('viz.js');
-const vizRenderOpts = require('viz.js/full.render.js');
-
 const packageVersion = require("./package.json").version;
 const {paths, baseUrl} = require("./build-config.json");
 const runServer = require("./server");
@@ -45,25 +42,8 @@ function vendorAssets() {
     .pipe(gulp.dest(paths.distAssets));
 }
 
-//build content graphviz diagrams into SVG (https://graphviz.org)
-function contentDiagrams() {
-  return gulp.src(paths.srcDiagrams)
-    .pipe(transform("utf8", (mermaidSrc) => {
-      const viz = new Viz(vizRenderOpts);
-      return viz.renderString(mermaidSrc);
-    }))
-    .pipe(rename({extname: ".svg"}))
-    .pipe(gulp.dest(paths.dist));
-}
-
-//content file types which we wish to copy over to dist
-function contentResources() {
-  return gulp.src(paths.srcResources)
-    .pipe(gulp.dest(paths.dist));
-}
-
 //index and render all readme.md files to HTML
-async function contentPages() {
+async function content() {
   await buildContent({
     baseUrl,
     packageVersion,
@@ -84,7 +64,6 @@ function watchSources() {
 
 //composite tasks
 const assets = gulp.parallel(staticAssets, assetStyles, vendorAssets);
-const content = gulp.parallel(contentResources, contentPages, contentDiagrams);
 const buildAll = gulp.series(clean, gulp.parallel(assets, content));
 const dev = gulp.series(buildAll, watchSources);
 
@@ -92,7 +71,6 @@ const dev = gulp.series(buildAll, watchSources);
 module.exports = {
   clean, //remove the dist directory
   assets, //build just styles
-  contentPages, //build just page content
   content, //pages and their resources
   dev, //local development mode
   default: buildAll //typical build for publishing content

@@ -32,6 +32,7 @@ async function renderPage(ctx) {
   const htmlDoc = wrapper(
     ctx,
     combineResults("headings", R.flatten),
+    combineResults("thanks", R.reduce(R.mergeWith(R.concat), {})),
     metaboxProps,
     combineResults("html")
   );
