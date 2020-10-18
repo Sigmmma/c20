@@ -41,10 +41,10 @@ async function buildResources(pageIndex, buildOpts) {
         //build content graphviz diagrams into SVG (https://graphviz.org)
         const vizSrc = await fs.readFile(srcPath, "utf8");
         const viz = new Viz(vizRenderOpts);
-        const svg = viz.renderString(vizSrc);
+        const svg = await viz.renderString(vizSrc);
         await Promise.all(destLangs.map(async (lang) => {
           const destPath = path.join(buildOpts.outputDir, page.localizedPaths[lang], `${name}.svg`);
-          await fs.writeFile(destPath);
+          await fs.writeFile(destPath, svg, "utf8");
         }));
       }
       //other file types are ignored and fall through
