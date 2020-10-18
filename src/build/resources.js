@@ -8,25 +8,44 @@ const VIZ_RENDER_PATTERN = /\.(dot|neato|fdp|sfdp|twopi|circo)/;
 
 async function buildResources(pageIndex, buildOpts) {
   await Promise.all(Object.values(pageIndex.pages).map(async (page) => {
-    const localizedPageOutputDir = path.join(buildOpts.outputDir, page.localizedPaths[lang]);
-    await fs.mkdir(localizedPageOutputDir, {recursive: true});
-
     const files = await fs.readdir(page.dirPath, {encoding: "utf8"});
 
-    await Promise.all(files.map(async (filePath) => {
-      const {ext, base, name} = path.parse(filePath);
+    //ensure all localized paths exist before we start copying/generating files
+    await Promise.all(page.langs.map(async (lang) => {
+      const localizedPageOutputDir = path.join(buildOpts.outputDir, page.localizedPaths[lang]);
+      await fs.mkdir(localizedPageOutputDir, {recursive: true});
+    }));
 
+    await Promise.all(files.map(async (filePath) => {
+      const srcPath = path.join(page.dirPath, filePath);
+      const {ext, base, name} = path.parse(srcPath);
+      let destLangs = page.langs;
+
+      const singleLangMatch = name.match(/^.*_(\w{2})$/);
+      if (singleLangMatch) {
+        const singleLang = singleLangMatch[1].toLowerCase();
+        if (!page.langs.includes(singleLang)) {
+          throw new Error(`Language-specific resource ${srcPath} is unsupported by page ${page.pageId} available in: ${page.langs.join(",")}`);
+        }
+        destLangs = [singleLang];
+      }
+
+      //technically these could match directoris too, but we'll ignore that since it's a stat check
       if (ext.match(COPY_FILES_PATTERN)) {
         //normal resources, just copy them to destination
-        const destPath = path.join(localizedPageOutputDir, base);
-        await fs.copyFile(filePath, destPath);
+        await Promise.all(destLangs.map(async (lang) => {
+          const destPath = path.join(buildOpts.outputDir, page.localizedPaths[lang], base);
+          await fs.copyFile(srcPath, destPath);
+        }));
       } else if (ext.match(VIZ_RENDER_PATTERN)) {
         //build content graphviz diagrams into SVG (https://graphviz.org)
-        const vizSrc = await fs.readFile(filePath, "utf8");
+        const vizSrc = await fs.readFile(srcPath, "utf8");
         const viz = new Viz(vizRenderOpts);
         const svg = viz.renderString(vizSrc);
-        const destPath = path.join(localizedPageOutputDir, `${name}.svg`);
-        await fs.writeFile(destPath);
+        await Promise.all(destLangs.map(async (lang) => {
+          const destPath = path.join(buildOpts.outputDir, page.localizedPaths[lang], `${name}.svg`);
+          await fs.writeFile(destPath);
+        }));
       }
       //other file types are ignored and fall through
     }));
