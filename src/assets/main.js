@@ -1,6 +1,64 @@
 const {html, render, Component} = htmPreact;
 
 const lang = document.querySelector("html").lang;
+const localize = (key) => ({
+  worldUnits: {
+    en: "World units",
+    es: "Unidades mundiales"
+  },
+  inches: {
+    en: "Inches",
+    es: "Pulgada"
+  },
+  feet: {
+    en: "Feet",
+    es: "Pie"
+  },
+  meters: {
+    en: "Meters",
+    es: "Metros"
+  },
+  warthogLength: {
+    en: "Warthog length",
+    es: "Longitud del Warthog",
+  },
+  playerHeightStanding: {
+    en: "Player collision height (standing)",
+    es: "Altura de colisión del jugador (de pie)",
+  },
+  playerHeightCrouching: {
+    en: "Player collision height (crouching)",
+    es: "Altura de colisión del jugador (agachado)",
+  },
+  bgFlagsDist: {
+    en: "Distance between Blood Gulch flags",
+    es: "Distancia entre banderas de Blood Gulch",
+  },
+  footballField: {
+    en: "American football field length",
+    es: "Longitud del campo de fútbol americano",
+  },
+  searchPlaceholder: {
+    en: "Search c20...",
+    es: "Buscar c20..."
+  },
+  searchResults: {
+    en: "Search results",
+    es: "Resultados de la búsqueda"
+  },
+  close: {
+    en: "Close",
+    es: "Cerrar"
+  },
+  searchHotkeys: {
+    en: "Hotkeys: <kbd>s</kbd> to search, <kbd>Up/Down</kbd> to choose result, <kbd>Enter</kbd> to select, <kbd>Esc</kbd> to close.",
+    es: "Teclas de acceso rápido: <kbd>s</kbd> para buscar, <kbd>Arriba/Abajo</kbd> para elegir el resultado, <kbd>Enter</kbd> para seleccionar, <kbd>Esc</kbd> para cerrar."
+  },
+  searchNoResults: {
+    en: "No results found for",
+    es: "No se encontraron resultados para",
+  }
+}[key][lang]);
 
 class UnitConverter extends Component {
   constructor() {
@@ -24,46 +82,46 @@ class UnitConverter extends Component {
         rel: 1
       },
       world: {
-        label: "World units",
+        label: localize("worldUnits"),
         rel: 100
       },
       inches: {
-        label: "Inches",
+        label: localize("inches"),
         rel: 1 / 1.2
       },
       feet: {
-        label: "Feet",
+        label: localize("feet"),
         rel: 10
       },
       meters: {
-        label: "Meters",
+        label: localize("meters"),
         rel: 1 / 0.03048
       },
     };
 
     const presets = [
       {
-        label: "Warthog length",
+        label: localize("warthogLength"),
         basisValue: "191.766",
         basisType: "jms"
       },
       {
-        label: "Player collision height (standing)",
+        label: localize("playerHeightStanding"),
         basisValue: "70",
         basisType: "jms"
       },
       {
-        label: "Player collision height (crouching)",
+        label: localize("playerHeightCrouching"),
         basisValue: "50",
         basisType: "jms"
       },
       {
-        label: "Distance between Blood Gulch flags",
+        label: localize("bgFlagsDist"),
         basisValue: "97.60443705836329",
         basisType: "world"
       },
       {
-        label: "American football field length",
+        label: localize("footballField"),
         basisValue: "109.73",
         basisType: "meters"
       },
@@ -200,15 +258,6 @@ class Search extends Component {
   }
 
   render() {
-    const placeholderText = {
-      en: "Search c20...",
-      es: "Buscar c20..."
-    }[lang];
-    const searchResultsText = {
-      en: "Search results",
-      es: "Resultados de la búsqueda"
-    }[lang];
-
     const clearInput = () => this.handleChange("");
     const handleInput = (e) => this.handleChange(e.target.value);
     const isNonEmptyQuery = this.state.query && this.state.query != "";
@@ -220,7 +269,7 @@ class Search extends Component {
         ref=${saveInputRef}
         class="search-input ${isNonEmptyQuery ? "nonempty" : ""}"
         type="text"
-        placeholder=${placeholderText}
+        placeholder=${localize("searchPlaceholder")}
         disabled=${this.state.disabled}
         value=${this.state.query}
         onInput=${handleInput}
@@ -228,9 +277,9 @@ class Search extends Component {
       />
       ${isNonEmptyQuery && html`
         <nav class="search-results">
-          <button class="clear-button" onClick=${clearInput}>Close</button>
-          <h1>${searchResultsText}</h1>
-          <p class="desktop-only"><small>Hotkeys: <kbd>s</kbd> to search, <kbd>Up/Down</kbd> to choose result, <kbd>Enter</kbd> to select, <kbd>Esc</kbd> to close.</small></p>
+          <button class="clear-button" onClick=${clearInput}>${localize("close")}</button>
+          <h1>${localize("searchResults")}</h1>
+          <p class="desktop-only"><small dangerouslySetInnerHTML=${{__html: localize("searchHotkeys")}}/></p>
           ${this.state.searchResults.length > 0 ? html`
             <ul>
               ${this.state.searchResults.map((result, i) => {
@@ -243,7 +292,7 @@ class Search extends Component {
               })}
             </ul>
           ` : html`
-            <p>No results found for <strong>${this.state.query}</strong></p>
+            <p>${localize("searchNoResults")} <strong>${this.state.query}</strong></p>
           `}
         </nav>
       `}

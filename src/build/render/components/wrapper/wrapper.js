@@ -18,13 +18,13 @@ const mainTopics = [
 ];
 
 const localizations = {
-  siteName: {
-    en: "The Reclaimers Library",
-    es: "La Biblioteca de Reclaimers"
-  },
   locale: {
     en: "en_US",
     es: "es_ES"
+  },
+  siteName: {
+    en: "The Reclaimers Library",
+    es: "La Biblioteca de Reclaimers"
   },
   toc: {
     en: "On this page",

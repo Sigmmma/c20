@@ -5,7 +5,6 @@ const INVADER_TAG_BASE = "https://github.com/Kavawuvi/invader/blob/master/src/ta
 const URL_ENDIANNESS = "https://en.wikipedia.org/wiki/Endianness";
 
 /* TODO:
-- searchable fields
 - write about these field props:
   - normalize
   - compile_ignore
@@ -64,6 +63,50 @@ const localizations = localizer({
     en: "Mask",
     es: "Máscara"
   },
+  fieldInfoUnused: {
+    en: (link) => `Unused${link} by Halo`,
+    es: (link) => `No utilizado${link} por Halo`,
+  },
+  fieldInfoMinimum: {
+    en: "Minimum",
+    es: "Mínimo"
+  },
+  fieldInfoMaximum: {
+    en: "Maximum",
+    es: "Máximo"
+  },
+  fieldInfoHidden: {
+    en: "Internal to the tag and may be hidden in tools.",
+    es: "Interna de la tag y puede estar oculta en herramientas."
+  },
+  fieldInfoReadOnly: {
+    en: "Read-only data, not meant to be edited by hand.",
+    es: "Datos de solo lectura, no para editarlos a mano."
+  },
+  fieldInfoNonCached: {
+    en: (url) => `Not included when the tag is compiled into a <a href="${url}">map cache</a>.`,
+    es: (url) => `No se incluye cuando la tag se compila en un <a href="${url}">caché de mapa</a>.`
+  },
+  fieldInfoCacheOnly: {
+    en: (url) => `Only set when the tag is compiled into a <a href="${url}">map cache</a>.`,
+    es: (url) => `Solo se configura cuando la tag se compila en un <a href="${url}">caché de mapa</a>.`
+  },
+  fieldInfoEngine: {
+    en: (engine) => `Only applicable to the following engine versions: ${engine}.`,
+    es: (engine) => `Solo aplicable a las siguientes versiones del motor: ${engine}.`
+  },
+  fieldInfoDefault: {
+    en: "Default value",
+    es: "Valor por defecto"
+  },
+  fieldInfoVolatile: {
+    en: "This field's value may change at build time or have precision errors. It should not be used for exact comparisons between tag data.",
+    es: "El valor de este campo puede cambiar en el momento de la construcción o tener errores de precisión. No debe utilizarse para comparaciones exactas entre datos de tags."
+  },
+  fieldInfoShiftedByOne: {
+    en: "This field's value must be subtracted by 1 by map compilers. It is unknown why this is done by Tool.",
+    es: "Los compiladores de mapas deben restar 1 del valor de este campo. Se desconoce por qué Tool lo hace."
+  },
 });
 
 const renderComment = (ctx, md, addSearchText) => {
@@ -77,37 +120,37 @@ const fieldInfo = (ctx, field, fieldComments, addSearchText) => {
   const info = [];
 
   if (field.unused) {
-    info.push(`Unused${defAnchor(ctx.resolveUrl("h1/tags", "unused-tags-and-fields"))} by Halo.`)
+    info.push(localize("fieldInfoUnused")(defAnchor(ctx.resolveUrl("h1/tags", "unused-tags-and-fields"))));
   }
   if (field.minimum) {
-    info.push(`Minimum: ${field.minimum}`);
+    info.push(`${localize("fieldInfoMinimum")}: ${field.minimum}`);
   }
   if (field.maximum) {
-    info.push(`Maximum: ${field.maximum}`);
+    info.push(`${localize("fieldInfoMaximum")}: ${field.maximum}`);
   }
   if (field.hidden) {
-    info.push("Internal to the tag and may be hidden in tools.");
+    info.push(localize("fieldInfoHidden"));
   }
   if (field.read_only) {
-    info.push("Read-only data, not meant to be edited by hand.");
+    info.push(localize("fieldInfoReadOnly"));
   }
   if (field.non_cached) {
-    info.push(`Not included when the tag is compiled into a <a href="${ctx.resolveUrl("h1/tags", "blocks")}">map cache</a>.`);
+    info.push(localize("fieldInfoNonCached")(ctx.resolveUrl("h1/map")));
   }
   if (field.cache_only) {
-    info.push(`Only set when the tag is compiled into a <a href="${ctx.resolveUrl("h1/tags", "blocks")}">map cache</a>.`);
+    info.push(localize("fieldInfoCacheOnly")(ctx.resolveUrl("h1/map")));
   }
   if (field.engine) {
-    info.push(`Only applicable to the following engine versions: ${field.engine.join(", ")}.`);
+    info.push(localize("fieldInfoEngine")(field.engine.join(", ")));
   }
   if (field.default) {
-    info.push(`Default value: ${field.default}.`);
+    info.push(`${localize("fieldInfoDefault")}: ${field.default}`);
   }
   if (field.volatile) {
-    info.push(`This field's value may change at build time or have precision errors. It should not be used for exact comparisons between tag data.`);
+    info.push(localize("fieldInfoVolatile"));
   }
   if (field.shifted_by_one) {
-    info.push(`This field's value must be subtracted by 1 by map compilers. It is unknown why this is done by Tool.`);
+    info.push(localize("fieldInfoShiftedByOne"));
   }
 
   let comments = field.comment ? html`<p>${field.comment}</p>` : null;

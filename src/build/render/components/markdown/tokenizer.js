@@ -13,7 +13,7 @@ function buildTokenizer(ctx) {
       //first try looking up a link definition in the local markdown
       let link = links[linkKey];
       if (!link || !link.href) {
-        //next, we can try searching the metaindex for a matching page
+        //next, we can try searching the page index for a matching page
         const parts = linkKey.split("#");
         const page = ctx.resolvePage(parts[0]);
         link = {
