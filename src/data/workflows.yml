@@ -33,7 +33,7 @@ workflowItems:
     page: maya
     authors:
       - Autodesk
-      - Alias (formerly)
+      - Alias
   WRL to OBJ converter:
     page: wrl-to-obj-converter
     authors:

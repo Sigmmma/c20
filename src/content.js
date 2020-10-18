@@ -36,18 +36,15 @@ async function loadPageMetadata(contentDir) {
     const pageId = joinAbsolutePath(logicalPath);
     const logicalPathTail = logicalPath[logicalPath.length - 1];
 
-    //fill out default slugs
-    const slug = Object.fromEntries(langs.map(lang =>
-      [lang, R.pathOr(logicalPathTail, ["slug", lang], pageMeta)]
-    ));
-
     pages[pageId] = {
       ...pageMeta,
-      slug,
       langs,
       pageId,
       logicalPath,
       dirPath,
+      tryLocalizedSlug: (lang) => {
+        return R.pathOr(logicalPathTail, ["slug", lang], pageMeta);
+      }
     };
   }));
 
@@ -80,11 +77,14 @@ async function loadPageMetadata(contentDir) {
   Object.values(pages).forEach(page => {
     //localize the URL for each language
     page.localizedPaths = Object.fromEntries(page.langs.map(lang => {
-      const localizedPath = lang == "en" ? [] : [lang];
+      const localizedPath = [];
       let currPage = pages[page.pageId];
       while (currPage && currPage.parent) {
-        localizedPath.splice(1, 0, currPage.slug[lang]);
+        localizedPath.unshift(currPage.tryLocalizedSlug(lang));
         currPage = currPage.parent;
+      }
+      if (lang != "en") {
+        localizedPath.unshift(lang);
       }
       return [lang, joinAbsolutePath(localizedPath)];
     }));

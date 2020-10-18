@@ -6,8 +6,8 @@ const metabox = (ctx, metaboxProps) => {
     return null;
   }
 
-  const {metaTitle, metaClass, img, imgCaption, sections} = metaboxProps;
-  if (!img && !imgCaption && (!sections || sections.length == 0)) {
+  const {metaTitle, metaClass, img, imgCaption, metaSections} = metaboxProps;
+  if (!img && !imgCaption && (!metaSections || metaSections.length == 0)) {
     return null;
   }
 
@@ -26,7 +26,7 @@ const metabox = (ctx, metaboxProps) => {
           <p><em>${renderMarkdownInline(ctx, imgCaption)}</em></p>
         </section>
       `}
-      ${sections && sections.filter(it => it).map(({body, cssClass}) => html`
+      ${metaSections && metaSections.filter(it => it).map(({body, cssClass}) => html`
         <section class="info ${cssClass}">
           ${body}
         </section>

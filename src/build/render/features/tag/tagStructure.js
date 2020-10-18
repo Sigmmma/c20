@@ -1,5 +1,4 @@
-const {html, classes, tagAnchor, ul, heading, detailsList, slugify, alert, defAnchor} = require("../bits");
-const {renderMarkdown} = require("../markdown");
+const {html, classes, tagAnchor, ul, heading, detailsList, slugify, alert, defAnchor, renderMarkdown, localizer} = require("../../components");
 const getExtraPrimitiveInfo = require("./primitives");
 
 const INVADER_TAG_BASE = "https://github.com/Kavawuvi/invader/blob/master/src/tag/hek/definition";
@@ -20,17 +19,65 @@ const URL_ENDIANNESS = "https://en.wikipedia.org/wiki/Endianness";
   - default_sign
 */
 
-const renderComment = (md, metaIndex, addSearchText) => {
+const localizations = localizer({
+  tagStructureHeading: {
+    en: "Structure and fields",
+    es: "Estructura y campos"
+  },
+  inheritInfo: {
+    en: (thisTag, parentTag) => `This tag inherits fields from ${parentTag} which
+      are not shown here. See the parent's page for more information.
+      The following information is unique to the <strong>${thisTag}</strong> tag.`,
+    es: (thisTag, parentTag) => `Esta tag hereda campos de ${parentTag} que
+       no se muestran aquí. Consulte la página de los padres para obtener más información.
+       La siguiente información es exclusiva de la tag <strong>${thisTag}</strong>.`,
+  },
+  invaderDefLink: {
+    en: (defUrl) => `This information was partially generated using <a href="${defUrl}">Invader tag definitions</a>.`,
+    es: (defUrl) => `Esta información se generó parcialmente mediante <a href="${defUrl}">definiciones de tag de Invader</a>.`
+  },
+  comments: {
+    en: "Comments",
+    es: "Comentarios"
+  },
+  type: {
+    en: "Type",
+    es: "Tipo"
+  },
+  value: {
+    en: "Value",
+    es: "Valor"
+  },
+  option: {
+    en: "Option",
+    es: "Opción"
+  },
+  field: {
+    en: "Field",
+    es: "Campo"
+  },
+  flag: {
+    en: "Flag",
+    es: "Bandera"
+  },
+  mask: {
+    en: "Mask",
+    es: "Máscara"
+  },
+});
+
+const renderComment = (ctx, md, addSearchText) => {
   if (md == "...") return null;
-  addSearchText(renderMarkdown(md, metaIndex, true));
-  return renderMarkdown(md, metaIndex);
+  addSearchText(renderMarkdown(ctx, md, true));
+  return renderMarkdown(ctx, md);
 };
 
-const fieldInfo = (field, fieldComments, metaIndex, addSearchText) => {
+const fieldInfo = (ctx, field, fieldComments, addSearchText) => {
+  const localize = localizations(ctx.lang);
   const info = [];
 
   if (field.unused) {
-    info.push(`Unused${defAnchor(metaIndex.resolveUrl("h1/tags", "unused-tags-and-fields"))} by Halo.`)
+    info.push(`Unused${defAnchor(ctx.resolveUrl("h1/tags", "unused-tags-and-fields"))} by Halo.`)
   }
   if (field.minimum) {
     info.push(`Minimum: ${field.minimum}`);
@@ -45,10 +92,10 @@ const fieldInfo = (field, fieldComments, metaIndex, addSearchText) => {
     info.push("Read-only data, not meant to be edited by hand.");
   }
   if (field.non_cached) {
-    info.push(`Not included when the tag is compiled into a <a href="${metaIndex.resolveUrl("h1/tags", "blocks")}">map cache</a>.`);
+    info.push(`Not included when the tag is compiled into a <a href="${ctx.resolveUrl("h1/tags", "blocks")}">map cache</a>.`);
   }
   if (field.cache_only) {
-    info.push(`Only set when the tag is compiled into a <a href="${metaIndex.resolveUrl("h1/tags", "blocks")}">map cache</a>.`);
+    info.push(`Only set when the tag is compiled into a <a href="${ctx.resolveUrl("h1/tags", "blocks")}">map cache</a>.`);
   }
   if (field.engine) {
     info.push(`Only applicable to the following engine versions: ${field.engine.join(", ")}.`);
@@ -64,8 +111,8 @@ const fieldInfo = (field, fieldComments, metaIndex, addSearchText) => {
   }
 
   let comments = field.comment ? html`<p>${field.comment}</p>` : null;
-  if (fieldComments && fieldComments.md) {
-    comments = renderComment(fieldComments.md, metaIndex, addSearchText);
+  if (fieldComments && fieldComments[ctx.lang]) {
+    comments = renderComment(ctx, fieldComments[ctx.lang], addSearchText);
   }
 
   return html`
@@ -74,13 +121,14 @@ const fieldInfo = (field, fieldComments, metaIndex, addSearchText) => {
   `;
 };
 
-const fieldTypeDisplay = (field, fieldTypeStruct, metaIndex) => {
+const fieldTypeDisplay = (ctx, field, fieldTypeStruct) => {
+  const localize = localizations(ctx.lang);
   let {typeName, compositeFields} = getExtraPrimitiveInfo(field.type);
 
   if (field.type == "TagReflexive") {
-    typeName = html`Block${defAnchor(metaIndex.resolveUrl("h1/tags", "blocks"))}`;
+    typeName = html`Block${defAnchor(ctx.resolveUrl("h1/tags", "blocks"))}`;
   } else if (field.type == "TagDependency") {
-    typeName = html`Reference${defAnchor(metaIndex.resolveUrl("h1/tags", "tag-references-and-paths"))}`;
+    typeName = html`Reference${defAnchor(ctx.resolveUrl("h1/tags", "tag-references-and-paths"))}`;
   } else if (field.type == "Index" && field.reflexive) {
     typeName = html`Index (${field.reflexive})`;
   }
@@ -116,8 +164,8 @@ const fieldTypeDisplay = (field, fieldTypeStruct, metaIndex) => {
 
   if (field.type == "TagDependency") {
     const depLinks = field.classes.map(tagName => {
-      const tagDef = metaIndex.data.h1.tagsByName[tagName];
-      return tagDef ? tagAnchor(tagDef, metaIndex) : tagDef;
+      const tagDef = ctx.data.h1.tagsByName[tagName];
+      return tagDef ? tagAnchor(ctx, tagDef) : tagDef;
     });
     return detailsList(typeCode, depLinks, 4);
   }
@@ -133,9 +181,9 @@ const fieldTypeDisplay = (field, fieldTypeStruct, metaIndex) => {
   return typeCode;
 };
 
-const fieldView = (field, comments, metaIndex, addHeading, addSearchText, hLevel) => {
+const fieldView = (ctx, field, comments, addHeading, addSearchText, hLevel) => {
   const fieldComments = comments ? comments.fields.find(it => it.name == field.name) : null;
-  const fieldTypeStruct = metaIndex.data.h1.invaderStructDefs[field.type];
+  const fieldTypeStruct = ctx.data.h1.invaderStructDefs[field.type];
 
   const rowClasses = [];
   if (field.type == "TagDependency") {
@@ -158,16 +206,16 @@ const fieldView = (field, comments, metaIndex, addHeading, addSearchText, hLevel
   return html`
     <tr ${rowId && `id="${rowId}"`} ${classes(rowClasses)}>
       <td>${field.name}</td>
-      <td>${fieldTypeDisplay(field, fieldTypeStruct, metaIndex)}</td>
-      <td>${fieldInfo(field, fieldComments, metaIndex, addSearchText)}</td>
+      <td>${fieldTypeDisplay(ctx, field, fieldTypeStruct)}</td>
+      <td>${fieldInfo(ctx, field, fieldComments, addSearchText)}</td>
     </tr>
     ${field.type == "TagReflexive" && html`
       <tr class="tag-block-body">
         <td colspan="3">${structView(
-          metaIndex.data.h1.invaderStructDefs[field.struct],
+          ctx,
+          ctx.data.h1.invaderStructDefs[field.struct],
           field.struct,
           fieldComments,
-          metaIndex,
           addHeading,
           addSearchText,
           hLevel + 1,
@@ -178,10 +226,10 @@ const fieldView = (field, comments, metaIndex, addHeading, addSearchText, hLevel
     ${fieldTypeStruct && (fieldTypeStruct.type == "bitfield" || fieldTypeStruct.type == "enum") && html`
       <tr class="tag-block-body">
         <td colspan="3">${structView(
+          ctx,
           fieldTypeStruct,
           field.type,
           fieldComments,
-          metaIndex,
           addHeading,
           addSearchText,
           hLevel + 1,
@@ -192,7 +240,8 @@ const fieldView = (field, comments, metaIndex, addHeading, addSearchText, hLevel
   `;
 }
 
-const structView = (struct, structName, comments, metaIndex, addHeading, addSearchText, hLevel, isRoot) => {
+const structView = (ctx, struct, structName, comments, addHeading, addSearchText, hLevel, isRoot) => {
+  const localize = localizations(ctx.lang);
   if (!struct) {
     return structName;
   } else if (struct.type == "bitfield") {
@@ -200,9 +249,9 @@ const structView = (struct, structName, comments, metaIndex, addHeading, addSear
       <table class="tag-struct">
         <thead>
           <tr>
-            <th style="width:25%">Flag</th>
-            <th style="width:25%">Mask</th>
-            <th>Comments</th>
+            <th style="width:25%">${localize("flag")}</th>
+            <th style="width:25%">${localize("mask")}</th>
+            <th>${localize("comments")}</th>
           </tr>
         </thead>
         <tbody>
@@ -210,7 +259,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, addSear
             <tr>
               <td>${field}</td>
               <td><code title="${0x1 << i}">0x${(0x1 << i).toString(16)}</code></td>
-              <td>${renderComment(comments && comments.fields.find(it => it.name == field).md, metaIndex, addSearchText)}</td>
+              <td>${renderComment(ctx, comments && comments.fields.find(it => it.name == field)[ctx.lang], addSearchText)}</td>
             </tr>
           `)}
         </tbody>
@@ -221,9 +270,9 @@ const structView = (struct, structName, comments, metaIndex, addHeading, addSear
       <table class="tag-struct">
         <thead>
           <tr>
-            <th style="width:25%">Option</th>
-            <th style="width:25%">Value</th>
-            <th>Comments</th>
+            <th style="width:25%">${localize("option")}</th>
+            <th style="width:25%">${localize("value")}</th>
+            <th>${localize("comments")}</th>
           </tr>
         </thead>
         <tbody>
@@ -231,7 +280,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, addSear
             <tr>
               <td>${option}</td>
               <td><code title="${i}">0x${i.toString(16)}</code></td>
-              <td>${comments && renderComment(comments.options.find(it => it.name == option).md, metaIndex, addSearchText)}</td>
+              <td>${comments && renderComment(ctx, comments.options.find(it => it.name == option)[ctx.lang], addSearchText)}</td>
             </tr>
           `)}
         </tbody>
@@ -245,7 +294,7 @@ const structView = (struct, structName, comments, metaIndex, addHeading, addSear
     if (!isRoot) {
       let currStruct = struct;
       while (currStruct && currStruct.inherits) {
-        currStruct = metaIndex.data.h1.invaderStructDefs[currStruct.inherits];
+        currStruct = ctx.data.h1.invaderStructDefs[currStruct.inherits];
         allFields = [...currStruct.fields, ...allFields];
       }
     }
@@ -253,13 +302,13 @@ const structView = (struct, structName, comments, metaIndex, addHeading, addSear
       <table class="tag-struct">
         <thead>
           <tr>
-            <th style="width:25%">Field</th>
-            <th style="width:25%">Type</th>
-            <th>Comments</th>
+            <th style="width:25%">${localize("field")}</th>
+            <th style="width:25%">${localize("type")}</th>
+            <th>${localize("comments")}</th>
           </tr>
         </thead>
         <tbody>
-          ${allFields.map(field => fieldView(field, comments, metaIndex, addHeading, addSearchText, hLevel))}
+          ${allFields.map(field => fieldView(ctx, field, comments, addHeading, addSearchText, hLevel))}
         </tbody>
       </table>
     `;
@@ -268,25 +317,24 @@ const structView = (struct, structName, comments, metaIndex, addHeading, addSear
   }
 };
 
-const renderTagStructure = (tag, metaIndex) => {
+const renderTagStructure = (ctx, tag) => {
+  const localize = localizations(ctx.lang);
+  const headingText = localize("tagStructureHeading");
+
   const invaderDefUrl = `${INVADER_TAG_BASE}/${tag.name}.json`;
-  const headings = [{title: "Structure and fields", id: "structure-and-fields", level: 1}];
+  const headings = [{title: headingText, id: slugify(headingText), level: 1}];
   const addHeading = (heading) => headings.push(heading);
   const searchTexts = [];
   const addSearchText = (text) => searchTexts.push(text);
-  const htmlResult = html`
-    ${heading("h1", "Structure and fields", "clear")}
+  const bodyHtml = html`
+    ${heading("h1", headingText, "clear")}
     ${tag.parent && alert("info", html`
-      <p>
-        This tag inherits fields from ${tagAnchor(tag.parent, metaIndex)} which
-        are not shown here. See the parent's page for more information.
-        The following information is unique to the <strong>${tag.name}</strong> tag.
-      </p>
+      <p>${localize("inheritInfo")(tag.name, tagAnchor(ctx, tag.parent))}</p>
     `)}
-    ${structView(tag.invaderStruct, tag.invaderStructName, tag.comments, metaIndex, addHeading, addSearchText, 2, true)}
-    <p><small>This information was partially generated using <a href="${invaderDefUrl}">Invader tag definitions</a>.</small></p>
+    ${structView(ctx, tag.invaderStruct, tag.invaderStructName, tag.comments, addHeading, addSearchText, 2, true)}
+    <p><small>${localize("invaderDefLink")(invaderDefUrl)}</small></p>
   `;
-  return {headings, htmlResult, searchText: searchTexts.join("\n")};
+  return {headings, bodyHtml, searchText: searchTexts.join("\n")};
 };
 
 module.exports = renderTagStructure;

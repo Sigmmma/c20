@@ -84,6 +84,14 @@ img: tools.jpg
 imgCaption:
   en: Image description
   es: Descripción de la imagen
+# if provided, adds a text section to the metabox below the caption. This can
+# be useful for adding download and other links to tool pages.
+info:
+  en: >
+    You can write **markdown** with:
+    * Multiple
+    * Lines
+  es: Or just one
 # Marking a page as a "stub" adds an alert to its header that it's a work in
 # progress and also prevents the page from being added to the sitemap (used by
 # search bots). Once a page has reached a useful state, remove this flag.
@@ -113,10 +121,31 @@ thanks:
   "Person Name":
     en: English description of contribution
     es: Spanish description of contribution
+
+# Identifies this page as a workflow item from workflows.yml, causing workflows
+# to be added to the metabox. This can be omitted if either `toolName` or
+# `tagName` will be set because they have the same effect, but use this for
+# workflow items which are neither tools nor tags (e.g. file formats).
+workflowName: obj
+# Identifies this page as a tool from workflows.yml. This is very
+# similar to using `workflowName` since it also adds workflows to the metabox,
+# but it additionally styles the metabox title.
+toolName: Sapien
+# Identifies this page as a workflow item from workflows.yml similarly to using
+# `workflowName`, but also styles the metabox and adds additional info about
+# the tag's relationship to other tags. This also causes a tag structure section
+# to be added to the page detailing all of its fields, with comments from YAML
+# files for each tag type (see `src/data/h1/tags/`). This feature assumes
+# Halo 1 tags for now, since that's all we have structure data on.
+tagName: scenario
 # If true, a section will be added to the page which lists all thanked
 # contributors across all pages. This flag is only used on the /thanks summary
 # page.
 thanksIndex: true
+# If provided, adds sections on the page listing all tag types for a particular
+# engine version. We only have data for h1. The "purpose" column of the
+# generated table comes from the tag YAML files containing structural comments.
+tagIndex: "h1"
 # If true, causes the page to be excluded from the search index. Use this for
 # pages which are unlikely to be searched for specifically so they don't
 # clutter the results of more typical searches.
@@ -126,19 +155,10 @@ noSearch: true
 surveyResults: true
 ```
 
+In addition to having a `page.yml`, each supported language of a page (again, based on presence of localized titles) must have an accompanying [Markdown][] file for body content. The name of the file depends on the language:
 
-Beyond the features described above, automated features also apply:
-
-* Adding to search index???????????
-
-Each directory can contain a `readme.md` file about that topic. This is a [Markdown](https://www.markdownguide.org/) file with a [YAML](https://en.wikipedia.org/wiki/YAML) metadata prefix like so:
-
-```md
----
-title: Page title
----
-Page text goes here
-```
+* English: `readme.md`
+* Spanish: `readme_es.md`
 
 The directory for a page can include other files related to that topic, like images or [Graphviz](https://graphviz.org/) files for generating diagrams. Any `src/content/../todo.md` file or `src/content/../todo` directory is git-ignored and can be used to mock out page structures and keep notes for later writing.
 
@@ -150,3 +170,4 @@ I encourage you to explore these directories looking at files to see how pages a
 * If a topic is growing too large, consider splitting it up and taking its large sections to a child page (a subdirectory).
 
 [yaml]: https://en.wikipedia.org/wiki/YAML
+[markdown]: https://www.markdownguide.org/

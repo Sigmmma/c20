@@ -1,9 +1,13 @@
 const R = require("ramda");
+const {renderMarkdown} = require("../components");
 
 module.exports = async function(ctx) {
+  const {lang, page} = ctx;
+  const info = R.path(["info", lang], page);
   return {
-    metaTitle: ctx.page.tryLocalizedTitle(ctx.lang),
-    img: ctx.page.img,
-    imgCaption: R.path(["imgCaption", ctx.lang], ctx.page),
+    metaTitle: page.tryLocalizedTitle(lang),
+    metaSections: info ? [{body: renderMarkdown(ctx, info)}] : undefined,
+    img: page.img,
+    imgCaption: R.path(["imgCaption", lang], page),
   };
 };

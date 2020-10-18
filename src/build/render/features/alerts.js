@@ -3,13 +3,13 @@ const {localizer, alert, html, REPO_URL, renderMarkdown} = require("../component
 
 const localizations = localizer({
   stubNotice: {
-    en: html`
+    en: (ctx) => html`
       <p>🚧 This incomplete article needs help! Please submit tips and info by
-      <a href="${REPO_URL}">pull requests or issues</a> or contacting a <a href="/thanks">maintainer</a>.</p>
+      <a href="${REPO_URL}">pull requests or issues</a> or contacting a <a href="${ctx.resolveUrl("thanks")}">maintainer</a>.</p>
     `,
-    es: html`
+    es: (ctx) => html`
       <p>🚧 ¡Este artículo incompleto necesita ayuda! Envíe sugerencias e información mediante
-      <a href="${REPO_URL}">solicitudes de extracción o problemas</a> o comunicándose con un <a href="/agradecimientos">mantenedor</a>.</p>
+      <a href="${REPO_URL}">solicitudes de extracción o problemas</a> o comunicándose con un <a href="${ctx.resolveUrl("thanks")}">mantenedor</a>.</p>
     `
   }
 });
@@ -20,14 +20,14 @@ module.exports = async function(ctx) {
 
   return {
     html: html`
-      ${page.stub && alert("danger", localize("stubNotice"))}
+      ${page.stub && alert("danger", localize("stubNotice")(ctx))}
       ${R.pipe(
         R.pathOr([], ["alerts"]),
         R.filter(R.path(["md", lang])),
         R.map(({type, md}) => alert(type, renderMarkdown(ctx, md[lang])))
       )(page)}
     `,
-    search: R.pipe(
+    searchText: R.pipe(
       R.pathOr([], ["alerts"]),
       R.filter(R.path(["md", lang])),
       R.map(({md}) => renderMarkdown(ctx, md[lang], true)),

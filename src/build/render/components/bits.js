@@ -31,9 +31,9 @@ const defAnchor = (href) => html`<sup>${anchor(href, "?")}</sup>`;
 
 const pageAnchor = R.curry((lang, page) => anchor(page.tryLocalizedPath(lang), escapeHtml(page.tryLocalizedTitle(lang))));
 
-const tagAnchor = (tag, metaIndex, hash) => {
-  const tagPage = metaIndex.resolvePage(tag.name);
-  return anchor(`${tagPage._path}${hash ? `#${hash}` : ""}`, breakTagName(tag.name));
+const tagAnchor = (ctx, tag, hash) => {
+  const url = ctx.resolveUrl(tag.name, hash);
+  return anchor(url, breakTagName(tag.name));
 };
 
 const heading = (hTag, title, cssClass) => html`
