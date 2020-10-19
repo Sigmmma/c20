@@ -12,10 +12,9 @@ const TOC_MIN_HEADERS = 2;
 const COLLAPSE_CHILD_PAGES = 8;
 const PREVIEW_LENGTH_CHARS = 100;
 
-//todo
 const mainTopics = [
-  // ["/h1/tags"],
-  // ["/h1"]
+  ["/h1/tags"],
+  ["/h1"]
 ];
 
 const localizations = {
@@ -107,12 +106,12 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body) => {
               ${toc(headings)}
             `}
             ${page.children && page.children.length > 0 &&
-              detailsList(localize("children"), page.children.map(pageAnchor(lang)))
+              detailsList(html`<h2>${localize("children")}</h2>`, page.children.map(pageAnchor(lang)))
             }
             ${page.related && page.related.length > 0 &&
-              detailsList(localize("related"), page.related.map(pageAnchor(lang)))
+              detailsList(html`<h2>${localize("related")}</h2>`, page.related.map(pageAnchor(lang)))
             }
-            ${detailsList(localize("main"), mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId])))}
+            ${detailsList(html`<h2>${localize("main")}</h2>`, mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId])))}
           </aside>
           <main role="main" class="content-main">
             <nav class="breadcrumbs">

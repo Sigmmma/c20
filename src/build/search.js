@@ -6,8 +6,15 @@ const MiniSearch = require("minisearch");
  * improves search relevancy and reduces the index filesize. Use lowercase.
  */
 const STOP_WORDS = {
-  en: new Set(["halo", "and", "or", "not", "to", "at", "in", "a", "the", "be", "are", "is", "as", "its", "it", "this", "these", "any", "e", "g"]),
-  es: new Set(["halo"]) //todo
+  en: new Set([
+    "halo", "and", "or", "not", "to", "from", "at", "in", "a", "the", "be", "are",
+    "is", "as", "its", "it", "this", "that", "these", "any", "e", "g", "for"
+  ]),
+  es: new Set([
+    "halo", "y", "o", "no", "a", "de", "en", "una", "uno", "la", "el", "ser",
+    "son", "es", "como", "sus", "está", "eso", "esta", "ese", "esa", "estas",
+    "estos", "alguna", "alguno", "p", "ej", "por"
+  ])
 };
 
 async function buildSearchIndex(searchDocs, buildOpts) {

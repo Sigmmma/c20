@@ -213,7 +213,7 @@ const fieldTypeDisplay = (ctx, field, fieldTypeStruct) => {
     return detailsList(typeCode, depLinks, 4);
   }
 
-  //todo
+  //todo: show more detail of whats in the composite field
   if (compositeFields) {
     const renderedCompositeFields = compositeFields.map(({name, type}) =>
       `${name}: <code>${type}</code>`
