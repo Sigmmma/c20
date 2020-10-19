@@ -1,16 +1,3 @@
----
-title: damage_effect
-tagName: damage_effect
-img: explosion.jpg
-imgCaption: The grenade detonation [effect][] includes a damage_effect.
-thanks:
-  - to: Mortis
-    for: Explaining headshot damage and bleedthrough
-  - to: Conscars
-    for: Checking multiplayer headshot flag and radii behaviour
-  - to: gbMichelle
-    for: Reverse engineering the damage formula
----
 The **damage effect** tag determines the results of damage application in a wide range of use cases, including but not limited to: projectile impacts, detonations, melee attacks, falling, and vehicle collisions. They can be part of an [effect][].
 
 A damage effect is not strictly about applying shield and health damage to [units][unit]; these tags can have an area of effect, impart acceleration on additional objects like [items][item] and [projectiles][projectile] too, and cause screen effects like colour flashes and shaking.

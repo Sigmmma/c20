@@ -1,14 +1,3 @@
----
-title: sound_scenery
-tagName: sound_scenery
-img: ssce.jpg
-imgCaption: Sound scenery is used along Timberland's river, made visible in Sapien using `debug_sound 1`
-thanks:
-  - to: Neo
-    for: Discovering the music bug
-  - to: Conscars
-    for: Testing collision behaviour
----
 Sound scenery are a type of object, typically invisible, used to play localized ambient [looping sounds][sound_looping]. They can be found along shorelines and rivers, at the base of waterfalls, and near noisy machinery. These objects complement the "background" [sound_environment][] used for [BSP clusters][scenario_structure_bsp#clusters-and-cluster-data].
 
 # Attaching sounds

@@ -1,16 +1,3 @@
----
-title: Map cache file
-workflowName: map
-img: map-icon.jpg
-thanks:
-  - to: Masterz1337
-    for: Context on OpenSauce capabilities
-  - to: Jakey
-    for: Tag data limit info
-  - to: gbMichelle
-    for: How maps are loaded into memory
----
-
 A **map**, also known as a **cache file**, is a bundle of compiled [tags][] which can be loaded and used by [Halo][h1]. With the exception of _resource maps_, each map represents a playable campaign, multiplayer level, or main menu.
 
 Tags within a map file are not exactly the same as they exist in your source `tags` directory. When tags are compiled into a map, data is prepared for how it will be used at runtime. [Tag path references][tags#tag-references-and-paths] are replaced with pre-calculated pointers, [child scenarios][scenario#child-scenarios] are merged, extra fields are calculated, and the metadata for [bitmaps][bitmap] and [sounds][sound] is separated from their raw data.

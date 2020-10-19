@@ -1,24 +1,3 @@
----
-title: scenario_structure_bsp
-tagName: scenario_structure_bsp
-img: bsp-debug.jpg
-imgCaption: Blood Gulch's BSP surfaces and clusters visualized in [Sapien][] using `debug_structure 1` and `debug_pvs 1`
-keywords:
-  - lightmap
-  - radiosity
-  - cluster
-  - plane
-  - weather
-  - polyhedra
-  - bsp
-thanks:
-  - to: MosesOfEgypt
-    for: Research on weather polyhedra and portals
-  - to: Conscars
-    for: Collision BSP structure and phantom BSP research
-
----
-
 Commonly referred to as the **BSP**, this tag contains level geometry, weather data, material assignments, AI pathfinding information, [lightmaps][], and other data structures. The name "BSP" is commonly used to refer to non-[object][] level geometry in general. Aside from sounds and [bitmaps][bitmap], the BSP tends to be one of the largest tags in a map.
 
 BSP stands for [Binary Space Partitioning][about-bsp], a technique where space within a sealed static mesh is recursively subdivided by planes into [convex][] _leaf nodes_. The resulting _BSP tree_ can be used to efficiently answer geometric queries, such as which surfaces should be collision-tested for physics objects.

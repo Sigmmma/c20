@@ -116,9 +116,7 @@ async function loadPageIndex(contentDir) {
 
     const candidatePages = Object.values(pages).filter(otherPage => otherPage.pageId.endsWith(idTail));
     if (candidatePages.length == 0) {
-      // throw new Error(`No page exists with logical path tail '${idTail}' (from logical path '${fromPageId}')`);
-      //todo: re-enable once all pages ported to new scheme
-      return pages["/"];
+      throw new Error(`No page exists with logical path tail '${idTail}' (from logical path '${fromPageId}')`);
     } else if (candidatePages.length > 1) {
       //there are multiple matching pages -- try disambiguating by picking best match
       candidatePages.sort((a, b) => {
@@ -130,7 +128,7 @@ async function loadPageIndex(contentDir) {
       const secondChoice = candidatePages[1];
       const commonFirst = commonLength(firstChoice.pageId, fromPageId);
       const commonSecond = commonLength(secondChoice.pageId, fromPageId);
-      if (commonfirst > commonSecond) {
+      if (commonFirst > commonSecond) {
         return firstChoice;
       }
       const matchedIds = candidatePages.map(otherPage => otherPage.pageId).join("\n");

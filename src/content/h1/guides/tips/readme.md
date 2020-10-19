@@ -1,11 +1,3 @@
----
-title: Assorted tips
-thanks:
-  - to: t3h lag
-    for: Animated weapon markers tip
-  - to: MosesOfEgypt
-    for: Wall-climbing vehicle tip
----
 This is a place for assorted map-making and modding tips which haven't grown enough to warrant a whole page yet.
 
 # Windows Virtual Store

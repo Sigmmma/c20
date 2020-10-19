@@ -1,0 +1,12 @@
+title:
+  en: Kill volumes
+keywords:
+  en:
+    - scripting
+    - scenario
+    - trigger
+alerts:
+  - md:
+      en: >-
+        This guide assumes you have basic working knowledge of [Sapien][] and
+        [Tool][].

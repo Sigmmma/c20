@@ -1,9 +1,3 @@
----
-title: Startup arguments and init.txt
-thanks:
-  - to: nToss
-    for: Information on timedemo
----
 Halo's startup can be customized through the combination of arguments and console scripting. Using these options allows you to quickly configure Halo for various testing or server hosting scenarios.
 
 # init.txt

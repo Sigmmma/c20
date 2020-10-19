@@ -1,10 +1,3 @@
----
-title: Multiplayer synchronization workarounds
-stub: true
-keywords:
-  - hack
-  - sync
----
 Because of the limitations of [netcode][] in the Gearbox port, map authors have developed workarounds to synchronize game state between server and clients. These workarounds often take the form of **"biped crushers"** or **"script rooms"** -- hidden areas of the map where special scripted objects like vehicles and bipeds are used to coordinate state changes for unsynchronized objects like [device_machines][device_machine] in multiplayer.
 
 Note that automatic doors which open when players are nearby do not require synchronization workarounds, since player position _is_ part of the netcode.

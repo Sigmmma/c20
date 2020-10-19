@@ -1,11 +1,3 @@
----
-title: Halo 2
-stub: true
-keywords:
-  - "h2"
-  - halo
----
-
 <figure>
   <a href="h2cover.png">
     <img src="h2cover.png" alt="Halo 2's box art"/>

@@ -1,15 +1,3 @@
----
-title: model_collision_geometry
-tagName: model_collision_geometry
-img: collisions.png
-imgCaption: "Collision geometry for many of Halo's vehicles, scenery, and bipeds"
-thanks:
-  - to: Knight Artorias
-    for: Region and permutation limits
-  - to: lag supreme
-    for: Visualization of phantom BSP in covie crates
----
-
 Model collision geometry tags contain collision data for an [object][]. This is in contrast to [model/gbxmodel][gbxmodel] tags, which contain the renderable data. Collision meshes tend to be less detailed than render meshes.
 
 Beyond having a collision mesh, these tags can also contain:

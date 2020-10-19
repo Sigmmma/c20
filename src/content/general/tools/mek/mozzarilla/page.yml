@@ -1,0 +1,15 @@
+title:
+  en: Mozzarilla
+img: screenshot.png
+imgCaption:
+  en: 'Screenshot of the MEK tool Mozzarilla, a replacement for [Guerilla][]'
+info:
+  en: |
+    * [Source](https://github.com/Sigmmma/mozzarilla)
+    * [Support Discord](https://discord.reclaimers.net)
+    * Included in the [MEK][]
+stub: true
+keywords:
+  en:
+    - tag-editor
+toolName: Mozzarilla

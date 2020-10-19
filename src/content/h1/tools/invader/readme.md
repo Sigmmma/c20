@@ -1,22 +1,3 @@
----
-title: Invader
-toolName: Invader
-img: invader-edit-qt.png
-imgCaption: Screenshot of invader-edit-qt, a replacement for [Guerilla][]
-info: |
-  * [Download (Windows)](https://invader.opencarnage.net/builds/nightly/)
-  * [Package (Arch Linux)](https://aur.archlinux.org/packages/invader-git/)
-  * [Development thread](https://opencarnage.net/index.php?/topic/7489-invader/)
-  * [Website](https://invader.opencarnage.net/)
-  * [Discord](https://discord.com/invite/RCX3nvw)
-stub: true
-alerts:
-  - md: Familiarity with the [command-line][] is a prerequisite for most of Invader's tools.
-keywords:
-  - mcc
-  - cli
----
-
 Invader is an [open source][invader-repo] modding toolkit for Halo 1, supporting multiple [editions][h1#editions-and-versions] depending on the tool. It aims to replace tools of the [HEK][hek] with an emphasis on tag data correctness and validation. Most of its tools are [command-line][] operated like [Tool][], although _invader-edit-qt_ is a GUI tag editor similar to [Guerilla][].
 
 # invader-extract

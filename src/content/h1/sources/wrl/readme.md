@@ -1,14 +1,3 @@
----
-title: WRL
-workflowName: wrl
-img: wrl-errors.jpg
-imgCaption: A collection of nearly coplanar faces seen in isolation.
-thanks:
-  - to: Conscars
-    for: WRL format research
-  - to: stunt_man
-    for: WRL compatibility and usage notes
----
 **WRL files** are created by [Tool][] when it encounters fatal or warning-level geometry issues during model compilation and lightmapping (e.g. open edges, nearly coplanar faces). These files can be reimported back into the user's 3D software to visualize where problematic edges or faces are present and correct them before reattempting model compilation.
 
 They are placed in the current working directory when running Tool from the command line. When compiling a [BSP][scenario_structure_bsp], the file will be named after the [JMS][] file being compiled (e.g. `yourmap.wrl`). When geometry errors are found during [radiosity][lightmaps], Tool will instead output a `debug.wrl`.

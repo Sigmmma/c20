@@ -1,0 +1,14 @@
+title:
+  en: scenario
+img: scenario.jpg
+imgCaption:
+  en: >-
+    The scenario contains information needed to make a map playable, including
+    the placement of objects, spawn points, and AI encounters.
+stub: true
+tagName: scenario
+thanks:
+  Masterz1337:
+    en: Encounters vs bipeds
+  Jakey:
+    en: Sharing knowledge on child scenarios

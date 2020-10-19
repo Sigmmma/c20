@@ -11,7 +11,7 @@ pip install reclaimer
 
 # Tags usage
 ## Loading tags
-You can import tag definitions according to their [engine ID][tags#engine-ids], then load a tag file:
+You can import tag definitions according to their [engine ID][h1/tags#engine-ids], then load a tag file:
 ```python
 from reclaimer.hek.defs.scnr import scnr_def
 
@@ -32,7 +32,7 @@ scenario_tag_data.local_north = 0.5
 ```
 
 ### Blocks
-Whenever you need to index or iterate over members of a [block][tags#blocks], use the `STEPTREE` property:
+Whenever you need to index or iterate over members of a [block][h1/tags#blocks], use the `STEPTREE` property:
 
 ```python
 # move all spawn positions up by 1 world unit
@@ -52,7 +52,7 @@ print(scenario_tag_data.type.enum_name)
 scenario_tag_data.type.set_to("multiplayer")
 ```
 ### Tag references
-[Tag reference fields][tags#tag-references-and-paths] have multiple properties which can be set. Each reference stores both the _tag class_ and a _tag path_ to the referenced tag. The _tag class_ should not mismatch the actual referenced tag type:
+[Tag reference fields][h1/tags#tag-references-and-paths] have multiple properties which can be set. Each reference stores both the _tag class_ and a _tag path_ to the referenced tag. The _tag class_ should not mismatch the actual referenced tag type:
 
 ```python
 # this would print "hud_message_text"

@@ -1,10 +1,3 @@
----
-title: Tags
-stub: true
-thanks:
-  - to: Kornman
-    for: OpenSauce sources containing tag groups
----
 Halo 2's tags are similar to [Halo 1's][h1/tags], but there are many more types.
 
 # Tag list

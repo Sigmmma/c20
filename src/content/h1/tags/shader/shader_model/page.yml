@@ -1,0 +1,13 @@
+title:
+  en: shader_model
+img: mc.jpg
+imgCaption:
+  en: >-
+    The cyborg's body shader makes use of self-illumination, colour change
+    masks, cubemapped specularity, and detail maps.
+stub: true
+keywords:
+  en:
+    - model
+    - gbxmodel
+tagName: shader_model

@@ -1,0 +1,10 @@
+title:
+  en: shader_transparent_plasma
+img: plasma.jpg
+imgCaption:
+  en: Plasma shaders can be dynamically offset from their surface.
+stub: true
+tagName: shader_transparent_plasma
+thanks:
+  crow:
+    en: Renderer issue workaround

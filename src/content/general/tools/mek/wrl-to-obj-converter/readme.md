@@ -1,12 +1,3 @@
----
-title: WRL to OBJ converter
-toolName: WRL to OBJ converter
-img: converted.jpg
-imgCaption: Examples of error geometry imported to Blender.
-info: |
-  * [Usage documentation](https://github.com/Sigmmma/mek/blob/master/READMES/tools_misc_readme.md)
-  * [Source code](https://github.com/Sigmmma/mek/blob/master/tools_misc/wrl_to_obj.py)
----
 The **WRL to OBJ converter** is a [command-line][] Python script in the [MEK][] used to convert [WRL][] debug geometry, which use the very old VRML 1.0 format, into the [obj][] format widely supported in 3D software. This tool helps you import WRL files into [Blender][], which only supports VRML _2.0_.
 
 As a caveat, this tool does not retain the WRL's colour coding (e.g. red for open edges).

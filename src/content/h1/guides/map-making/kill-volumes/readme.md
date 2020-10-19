@@ -1,12 +1,3 @@
----
-title: Kill volumes
-keywords:
-  - scripting
-  - scenario
-  - trigger
-alerts:
-  - md: This guide assumes you have basic working knowledge of [Sapien][] and [Tool][].
----
 Map authors who want to prevent players from reaching certain areas can use **kill volumes** (aka **death barriers** or **kill zones**). These are cubic 3D trigger volumes which are scripted to instantly kill any player that enters them. Adding them to a map is easy:
 
 # Adding trigger volumes

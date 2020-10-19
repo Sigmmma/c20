@@ -1,16 +1,3 @@
----
-title: Animation data
-workflowName: Animation data
-stub: true
-keywords:
-  - jma
-  - animation
-thanks:
-  - to: General_101
-    for: Documentation on animation types
-  - to: ODX
-    for: JMO frames
----
 The [HEK][] uses several file types as intermediate representations of animation data. These files provide a common target for exporters like [Bluestreak][] and [Jointed Model Blender Toolset][jointed-model-blender-toolset], and can then be converted to [model_animations][] tags by [Tool][] for use in Halo.
 
 # JMA (Base)

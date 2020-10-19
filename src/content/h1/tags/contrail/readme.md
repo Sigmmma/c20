@@ -1,14 +1,3 @@
----
-title: contrail
-tagName: contrail
-img: contrail.jpg
-imgCaption: Sentinel beams and assault rifle tracers are examples of contrails
-stub: true
-thanks:
-  - to: gbMichelle
-    for: Limits
----
-
 Contrails describe the trail effects which commonly follow [projectiles][projectile], or emit from [model][gbxmodel] markers like the Banshee's wingtips. They reference a [bitmap][] to be rendered at repeated intervals and can be affected by [wind][] and gravity using [point_physics][].
 
 # Limits

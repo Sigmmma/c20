@@ -1,13 +1,3 @@
----
-title: Netcode (Gearbox port)
-thanks:
-  - to: Kavawuvi
-    for: Grenade underflow tip
-  - to: Vuthakral
-    for: Low damage sync tip
-  - to: gbMichelle
-    for: Grenade and projectile synchronization
----
 **Netcode** is the means by which [game state][game-state] is synchronized between server and clients in multiplayer. The Gearbox PC port netcode is _server-authoritative_, meaning the server is the ultimate source of truth and is where hit detection and physics are simulated and transmitted to clients. While these processes are also simulated on the client side in a predictive fashion, server updates will always override client state. When there is a significant difference between server and client state, the client can experience desynchronization or "warping".
 
 # Client-side projectiles

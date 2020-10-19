@@ -1,10 +1,3 @@
----
-title: physics
-tagName: physics
-img: warthog-physics.jpg
-imgCaption: The mass points of a Warthog.
----
-
 Physics tags characterize the dynamic physics and propulsion of [vehicles][vehicle]. They are essentially a collection of spherical _mass points_. Since vehicles can have both [model_collision_geometry][] and physics, each tag is used in different situations:
 
 * Physics are used in collisions between vehicles and is responsible for Halo 1's charactistic ["bouncy" vehicles][bouncy].

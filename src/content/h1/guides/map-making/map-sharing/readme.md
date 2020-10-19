@@ -1,6 +1,3 @@
----
-title: Map sharing
----
 Ready to share your [map][] with others? Most map files are self-contained and can be shared freely. Maps which rely on custom resource maps need to be distributed with those resource maps too, which is more common for complete campaign overhaul mods.
 
 # Pre-release checklist

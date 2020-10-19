@@ -1,23 +1,3 @@
----
-title: Sapien
-toolName: Sapien
-stub: true
-img: netgame_equipment_04_large.gif
-imgCaption: Sapien being used to place item spawns in `tutorial.map`
-keywords:
-  - scenario
-thanks:
-  - to: Real Fake Doors
-    for: Sharing NT Core knowledge
-  - to: gruntfromhalo
-    for: Discovering fog plane fix
-  - to: Jakey
-    for: Known issues, transparent self occlusion crash explanation
-  - to: GAIGHER
-    for: Multi-core crash solution
-  - to: InfernoPlus
-    for: Sound gain crash solution
----
 **Sapien**, part of the [HEK][], is a visual [scenario][] and [BSP][scenario_structure_bsp] editor used to populate levels with objects, configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile scripts, and more. Sapien shares some systems with Halo itself, including its AI system to support interactive AI scripting and debugging. Other systems, such as weather rendering, are not represented.
 
 It is roughly analagous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which supports many more debug commands than the in-game one.

@@ -1,17 +1,3 @@
----
-title: Hard-coded data
-keywords:
-  - color
-  - data
-  - engine
-  - hard-coded
-  - info
-thanks:
-  - to: MosesOfEgypt
-    for: Armor color values, runtime tag paths
-  - to: Lavadeeto
-    for: Armor color testing and picture
----
 There are lots of hard-coded values in Halo's engine, such as the multiplayer
 armor color. These values do not typically appear anywhere in tag data, and
 cannot be directly changed or controlled.

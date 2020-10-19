@@ -1,0 +1,15 @@
+title:
+  en: bitmap
+img: bitmap_example.jpg
+imgCaption:
+  en: 'A typical level texture bitmap, used for environment shaders'
+tagName: bitmap
+thanks:
+  gbMichelle:
+    en: 'Information on formats, bitmap types, usage, compilation, and errors'
+  Mimickal:
+    en: >-
+      Information on formats, bitmap types, usage, compilation, errors, sprite
+      sheets, and proofreading
+  Jesse:
+    en: Misc info

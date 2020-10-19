@@ -1,14 +1,3 @@
----
-title: Ghostbuster
-toolName: Ghostbuster
-img: phantom.jpg
-imgCaption: A case of phantom BSP in Danger Canyon.
-info: |
-  * [Sources and download](https://github.com/Sigmmma/ghostbuster)
-keywords:
-  - cli
----
-
 **Ghostbuster** is a [command-line][] tool used to detect and fix [phantom BSP][scenario_structure_bsp#phantom-bsp]. Given a BSP tag, the tool detects phantom collision surfaces and fixes them by modfying the BSP node structure.
 
 Specifically, it finds BSP nodes with dividing planes where [Tool][] has incorrectly assumed that one side is "outside" the map and reuses the same child node for both sides of the failed node.

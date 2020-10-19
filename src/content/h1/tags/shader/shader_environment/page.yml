@@ -1,0 +1,7 @@
+title:
+  en: shader_environment
+img: bloodgulch.jpg
+imgCaption:
+  en: A shader_environment can be used to blend between two detail maps.
+stub: true
+tagName: shader_environment

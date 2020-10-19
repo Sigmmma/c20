@@ -1,0 +1,11 @@
+title:
+  en: model_collision_geometry
+img: collisions.png
+imgCaption:
+  en: 'Collision geometry for many of Halo''s vehicles, scenery, and bipeds'
+tagName: model_collision_geometry
+thanks:
+  Knight Artorias:
+    en: Region and permutation limits
+  lag supreme:
+    en: Visualization of phantom BSP in covie crates

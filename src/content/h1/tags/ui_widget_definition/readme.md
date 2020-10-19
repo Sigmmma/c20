@@ -1,11 +1,3 @@
----
-title: ui_widget_definition
-tagName: ui_widget_definition
-stub: true
-thanks:
-  - to: Jakey
-    for: Bounds scaling workaround
----
 ...
 
 # Size on screen

@@ -1,14 +1,3 @@
----
-title: Lightmaps
-workflowName: Lightmaps
-img: lightmaps_example.jpg
-imgCaption: |
-  Timberland's BSP with just lightmaps visible.
-keywords:
-  - lightmap
-  - radiosity
-  - bake
----
 **Lightmaps** are a combination of data storing the static "baked" lighting of a [BSP][scenario_structure_bsp]. Since the BSP does not move, and many shadow-casting objects like [scenery][] have fixed locations, base [global illumination][global-illumination] can be precalculated. Dynamic objects will cast [shadow-mapped][shadow-mapping] shadows and be lit using lightmap data at runtime.
 
 Lightmap data in the BSP is comprised of both:

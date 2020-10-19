@@ -1,20 +1,3 @@
----
-title: Tool
-toolName: Tool
-stub: true
-img: tool.jpg
-imgCaption: "`tool structure` being used to compile a JMS"
-keywords:
-  - lightmap
-  - radiosity
-  - cli
-thanks:
-  - to: gbMichelle
-    for: Hardcoded tag patch reversing
-  - to: MosesOfEgypt
-    for: Explanation of radiosity passes
----
-
 **Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [HEK][].
 
 # Structure compilation

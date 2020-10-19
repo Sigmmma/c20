@@ -1,0 +1,11 @@
+title:
+  en: Blender
+img: blender.jpg
+imgCaption:
+  en: 'Blender being used to model a [BSP][scenario_structure_bsp]'
+stub: true
+keywords:
+  en:
+    - 3d
+    - blend
+toolName: Blender

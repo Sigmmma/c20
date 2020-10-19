@@ -1,18 +1,3 @@
----
-title: Aether
-toolName: Aether
-img: aether.png
-imgCaption: |
-  Timberland's [BSP][scenario_structure_bsp] and [scenery][] extracted
-  for advanced baked lighting
-info: |
-  * [Download](http://hce.halomaps.org/index.cfm?fid=4312)
-keywords:
-  - lightmap
-  - radiosity
-  - max
-  - maya
----
 Aether is a tool which supports externally baking [lightmaps][] within 3D software like [3ds Max][3dsmax] rather than with the [HEK's][hek] radiosity process. This allows for much higher resolution lightmaps than possible with [Tool][tool#lightmaps] or [Sapien][sapien#radiosity], and shorter baking times since external software is much better optimized for lighting.
 
 # Process

@@ -1,0 +1,13 @@
+title:
+  en: WRL to OBJ converter
+img: converted.jpg
+imgCaption:
+  en: Examples of error geometry imported to Blender.
+info:
+  en: >
+    * [Usage
+    documentation](https://github.com/Sigmmma/mek/blob/master/READMES/tools_misc_readme.md)
+
+    * [Source
+    code](https://github.com/Sigmmma/mek/blob/master/tools_misc/wrl_to_obj.py)
+toolName: WRL to OBJ converter

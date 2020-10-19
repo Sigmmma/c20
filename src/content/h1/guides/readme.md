@@ -1,9 +1,3 @@
----
-title: Guides hub
-stub: true
-keywords:
-  - tutorials
----
 Welcome to the guides hub! Here you'll find links to various guides ranging from basic map-making to more advanced topics. This hub is a work in progress and will grow over time. Until it is more complete, we recommend the official [HEK tutorial][hek] as a starting point.
 
 # Research techniques

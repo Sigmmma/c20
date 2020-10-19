@@ -1,0 +1,12 @@
+title:
+  en: Lightmaps
+img: lightmaps_example.jpg
+imgCaption:
+  en: |
+    Timberland's BSP with just lightmaps visible.
+keywords:
+  en:
+    - lightmap
+    - radiosity
+    - bake
+workflowName: Lightmaps

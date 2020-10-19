@@ -1,0 +1,21 @@
+title:
+  en: Sapien
+img: netgame_equipment_04_large.gif
+imgCaption:
+  en: Sapien being used to place item spawns in `tutorial.map`
+stub: true
+keywords:
+  en:
+    - scenario
+toolName: Sapien
+thanks:
+  Real Fake Doors:
+    en: Sharing NT Core knowledge
+  gruntfromhalo:
+    en: Discovering fog plane fix
+  Jakey:
+    en: 'Known issues, transparent self occlusion crash explanation'
+  GAIGHER:
+    en: Multi-core crash solution
+  InfernoPlus:
+    en: Sound gain crash solution

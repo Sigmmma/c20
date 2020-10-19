@@ -1,0 +1,9 @@
+title:
+  en: light
+img: light.jpg
+imgCaption:
+  en: >-
+    Lights attached to [objects][object] can illuminate their surroundings with
+    dynamic or static lighting.
+stub: true
+tagName: light

@@ -1,16 +1,3 @@
----
-title: Chimp
-toolName: Chimp
-info: |
-  * [Download (Mod DB)](https://www.moddb.com/games/halo-2/downloads/chimp-plugin-for-gmax)
-keywords:
-  - max
-thanks:
-  - to: Jason Zimmer
-    for: Usage instructions
-  - to: TheGhost
-    for: Exporter feature comparisons
----
 **Chimp** is a MAXScript plugin for [Gmax][] and [3ds Max][3dsmax] which allows the export of [JMS][] files, and the import of [WRL][] files. Its last version is 1.6 (2004).
 
 This exporter does not support the exporting of vertex weights, [bipeds][biped], nodes and markers for [vehicles][vehicle] or [weapons][weapon], or proper vertex normals, making it suitable for static objects like [scenery][] or [BSPs][scenario_structure_bsp] only.

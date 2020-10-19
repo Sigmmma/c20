@@ -1,14 +1,3 @@
----
-title: Renderer
-keywords:
-  - render
-thanks:
-  - to: Jakey
-    for: Renderer regressions
-  - to: gbMichelle
-    for: Researching how shadow maps work
----
-
 <figure>
   <a href="wireframe.jpg">
     <img src="wireframe.jpg" alt=""/>

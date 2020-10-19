@@ -1,0 +1,13 @@
+title:
+  en: damage_effect
+img: explosion.jpg
+imgCaption:
+  en: 'The grenade detonation [effect][] includes a damage_effect.'
+tagName: damage_effect
+thanks:
+  Mortis:
+    en: Explaining headshot damage and bleedthrough
+  Conscars:
+    en: Checking multiplayer headshot flag and radii behaviour
+  gbMichelle:
+    en: Reverse engineering the damage formula

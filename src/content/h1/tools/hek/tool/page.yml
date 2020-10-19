@@ -1,0 +1,17 @@
+title:
+  en: Tool
+img: tool.jpg
+imgCaption:
+  en: '`tool structure` being used to compile a JMS'
+stub: true
+keywords:
+  en:
+    - lightmap
+    - radiosity
+    - cli
+toolName: Tool
+thanks:
+  gbMichelle:
+    en: Hardcoded tag patch reversing
+  MosesOfEgypt:
+    en: Explanation of radiosity passes

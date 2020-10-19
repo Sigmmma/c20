@@ -1,15 +1,3 @@
----
-title: shader_transparent_generic (Xbox)
-tagName: shader_transparent_generic
-img: comparison.jpg
-imgCaption: MCC appearance (left) vs classic appearance (right)
-keywords:
-  - shader_transparent_chicago
-  - shader_transparent_chicago_extended
-thanks:
-  - to: MosesOfEgypt
-    for: Replication techniques
----
 The **shader_transparent_generic** tag is used in the Xbox version of the game for a large number of materials, such as jackal shields, teleporters, control panels, Cortana, and more. Instances of this shader were replaced with [shader_transparent_chicago][] and [shader_transparent_chicago_extended][] when the game was ported to PC, but these shader types cannot fully replicate original appearances.
 
 Only the original Xbox version of the game supports this shader. While [Guerilla][] and [Tool][] allow creating these tags and building them into maps, they are invisible in the PC port and all of its [derivatives][h1] like MCC.

@@ -1,9 +1,3 @@
----
-title: decal
-tagName: decal
-img: decals.jpg
-imgCaption: Painted signs, bullet holes, and blood splats are all decal instances.
----
 The game's decal system is responsible for rendering bullet holes, blood splatter, explosion marks, and other flat textures applied over over [BSP][scenario_structure_bsp] surfaces (decals cannot appear on [objects][object]). Decal tags describe the appearance and lifetime of these effects.
 
 # Effect decals

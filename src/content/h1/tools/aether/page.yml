@@ -1,0 +1,17 @@
+title:
+  en: Aether
+img: aether.png
+imgCaption:
+  en: |
+    Timberland's [BSP][scenario_structure_bsp] and [scenery][] extracted
+    for advanced baked lighting
+info:
+  en: |
+    * [Download](http://hce.halomaps.org/index.cfm?fid=4312)
+keywords:
+  en:
+    - lightmap
+    - radiosity
+    - max
+    - maya
+toolName: Aether

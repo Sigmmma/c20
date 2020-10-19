@@ -1,0 +1,12 @@
+title:
+  en: Ghostbuster
+img: phantom.jpg
+imgCaption:
+  en: A case of phantom BSP in Danger Canyon.
+info:
+  en: |
+    * [Sources and download](https://github.com/Sigmmma/ghostbuster)
+keywords:
+  en:
+    - cli
+toolName: Ghostbuster

@@ -1,17 +1,3 @@
----
-title: scenario
-tagName: scenario
-tagExtension: scenario
-img: scenario.jpg
-imgCaption: The scenario contains information needed to make a map playable, including the placement of objects, spawn points, and AI encounters.
-stub: true
-thanks:
-  - to: Masterz1337
-    for: Encounters vs bipeds
-  - to: Jakey
-    for: Sharing knowledge on child scenarios
----
-
 **Scenarios** are the main "root" tag used to compile a playable [map][]. Though tool will also will include globals, tag collections, and some UI tags automatically, the majority of a map's tags are direct or indirect dependencies of the scenario.
 
 The scenario is essential for defining all gameplay elements such as AI encounters, item spawns, multiplayer flags, [scenery][], and other objects. It may reference one or multiple [scenario_structure_bsp][]. Level scripts, cinematics, and trigger volumes are also defined in this tag.

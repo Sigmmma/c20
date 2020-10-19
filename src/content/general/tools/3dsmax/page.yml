@@ -1,0 +1,14 @@
+title:
+  en: 3ds Max
+img: max.gif
+imgCaption:
+  en: 'Max 5 being used to create the original [HEK][] tutorial.map'
+info:
+  en: |
+    * [Product website](https://www.autodesk.com/products/3ds-max/overview)
+stub: true
+keywords:
+  en:
+    - 3d
+    - max
+toolName: 3ds Max

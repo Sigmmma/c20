@@ -1,20 +1,3 @@
----
-title: Game and profile files
-keywords:
-  - game-state
-thanks:
-  - to: MrChromed
-    for: Loading screen tip
-  - to: Vaporeon
-    for: Watson and strings.dll background
-  - to: Miris
-    for: Profile and savegame reversing, LAA patch
-  - to: Sparky
-    for: Control binding ranges
-  - to: Conscars
-    for: Additional blam.sav reversing
----
-
 This page documents the function and format of some of Halo's installation and profile files, excluding [maps][map].
 
 # haloce.exe

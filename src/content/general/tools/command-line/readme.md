@@ -1,11 +1,3 @@
----
-title: Command-line interfaces
-img: cmd.jpg
-imgCaption: cmd.exe on Windows 7
-stub: true
-keywords:
-  - cli
----
 Basic knowledge of **command-line interfaces** (CLI) is a required skill in Halo modding. Not only does [Tool][] use a CLI, many community tools like [Invader][] and [Ghostbuster][] do as well. CLI usage consists of typing commands into a shell program which runs other programs and displays their output.
 
 On Windows, [Command Prompt][cmd], [PowerShell][], and the newer [Windows Terminal][wterm] are used as shells. On Linux, terminal emulators vary by distribution but [Bash][] is typically used as the shell.
