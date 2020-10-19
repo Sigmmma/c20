@@ -141,7 +141,7 @@ In addition to having a `page.yml`, each supported language of a page (again, ba
 
 The markdown files contain the main body content of the article and are where most content will be written. Follow the _writing practices_ when writing these files.
 
-Beyond the [basic features][mdbasic], c20 adds a few special extensions:
+Beyond the [basic markdown features][mdbasic], c20 adds a few special extensions:
 
 * [Tables][tables], although for larger tables you will want to switch to raw inline HTML.
 * All headings automatically get anchor links/IDs for linking directory to that heading. When someone loads a page with that heading ID in the URL (e.g. `#my-heading`) the page will automatically scroll to that content. Do not make headings which are also links (like `# [Heading text](www.example.com)`), as it's unsupported.
@@ -149,7 +149,7 @@ Beyond the [basic features][mdbasic], c20 adds a few special extensions:
 
 **Smart links** are perhaps the most important feature of c20's markdown. Since most of the links you'll be creating will be to other wiki pages, it would be both cumbersome and fragile to specify the full path of that page every time. We extend [standard reference-style links][reflink] with an automatic lookup mechanism when a reference is not defined.
 
-For example, if you just write a link like `[the scenario tag][scenario]`, c20 will automatically resolve the target URL as `/h1/tags/scenario` without you having to define it. You can also include a heading ID like `scenario#tag-block-bipeds`. The lookup is based on the page's _logical path_ (the name of its directories under `src/content/` rather than its localized URL). When multiple target pages match, c20 will choose the one _most related_ to the origin page in the content tree. When this is not possible, the ambiguity must be clarified by specifying more of the logical path in the link: `[Halo 2 tags][h2/tags]` or [Halo 1 tags][h1/tags].
+For example, if you just write a link like `[the scenario tag][scenario]`, c20 will automatically resolve the target URL as `/h1/tags/scenario` without you having to define it. You can also include a heading ID like `scenario#tag-block-bipeds`. The lookup is based on the page's _logical path_ (the name of its directories under `src/content/` rather than its localized URL). When multiple target pages match, c20 will choose the one _most related_ to the origin page in the content tree. When this is not possible, the ambiguity must be clarified by specifying more of the logical path in the link: `[Halo 2 tags][h2/tags]` or `[Halo 1 tags][h1/tags]`.
 
 ### Resources
 The directory for a page can include other files related to that topic, like images or [Graphviz](https://graphviz.org/) files for generating diagrams. Any `src/content/../todo.md` file or `src/content/../todo` directory is git-ignored and can be used to mock out page structures and keep notes for later writing.
