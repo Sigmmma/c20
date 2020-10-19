@@ -6,6 +6,7 @@ const vizRenderOpts = require("viz.js/full.render.js");
 const COPY_FILES_PATTERN = /\.(jpg|jpeg|png|gif|ms)/;
 const VIZ_RENDER_PATTERN = /\.(dot|neato|fdp|sfdp|twopi|circo)/;
 
+//todo: this does extra work then the URL is not localized but there are multiple languages
 async function buildResources(pageIndex, buildOpts) {
   await Promise.all(Object.values(pageIndex.pages).map(async (page) => {
     const files = await fs.readdir(page.dirPath, {encoding: "utf8"});

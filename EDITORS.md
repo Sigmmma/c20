@@ -5,42 +5,12 @@ This document contains the writing and style guide for wiki content. As this pro
 * We welcome new content, but should be wary of including inaccurate or unverified information. Editors can generally trust the word of community experts, but their contributions can still benefit from verification before inclusion. Ask for more details if needed.
 * Non-trivial information should have multiple eyes on it before merging. This can include the community expert, but pull request reviews by another editor are also helpful.
 
-## Writing style
-* All headings in a markdown document start at H1 (a single "#") and sub-headings must never skip a level; you can't have an H3 follow an H1.
-* Titles use sentence case, with the first word capitalized only. The exception is if the title or parts of it are a proper noun like a person's name.
-* In-universe proper nouns or nicknames should be capitalized, like Warthog.
-* When referencing tag types, use their file name extensions rather than engine IDs. When mentioning them without a hyperlink, style them with italic _emphasis_.
-* When referring to tag fields, style them with italic _emphasis_.
-* When stating raw data values and offsets, use `code` tags.
-* Blocks of Halo script should use the `hsc` language. Blocks of console commands should use `console`. This ensures proper syntax highlighting.
-* Use **strong** tags when naming a page's topic for the first time in the introduction paragraph. The exception is pages which are not about a specific "thing" or concept.
-* There is no strong preference at this time for UK/Canada vs. US spelling of words like colour, unless you are referring to a tag's field name which should match exactly.
+## Pages and resources system
+The `src/content` directory is a _logical_ grouping of content and does not reflect the final URLs that content will be available under, since that is dependent upon the language (see the `slug` property below). I encourage you to explore these directories looking at files to see how pages are already written.
 
-## Commonly-used headings
-To maintain consistency, try to use some of these heading names if relevant:
+The `page.yml` files within serve as the "skeleton" of the website; each `page.yml` corresponds to a page which gets built. These [YAML][] files contain metadata about the page controlling what features appear on the page, the languages they support, what their localized URL will be, and more. To create a new page, you must create a directory and a corresponding `page.yml` in that directory.
 
-* Known issues
-* Limits
-* Compatibility
-* Troubleshooting
-* Installation
-* Usage
-* Appendix: <heading>, or just "Appendix" with subheadings if multiple
-
-## Wiki limitations to avoid
-Avoid headings which are also links, as the full HTML of the heading becomes slugified for its ID.
-
-## Linking
-* Add hyperlinks where it is helpful for the reader, but avoid over-linking especially when there is already the same link visible within a short scrolling distance on the same page.
-* Avoid orphaned content. Every new page should have at least one link to it from other relevant locations.
-* Links from one page to another usually need one in reverse too.
-
-## Content authoring
-The `src/content` directory is a _logical_ grouping of content. Subdirectories expand upon the topic of a parent.
-
-The `page.yml` files within serve as the "skeleton" of the website; each `page.yml` corresponds to a page which gets built. These [YAML][] files contain metadata about the page which controls how they look, the languages they support, and what their localized URL will be. To create a new page, you must create a directory and a corresponding `page.yml` in that directory.
-
-Most `page.yml` fields are optional, but I will list them all below to explain their purpose:
+The only required field for a page is its `title`, but I will list all possible fields below to explain their purpose:
 
 ```yaml
 # The title key is NOT optional, and has no default values. Providing this
@@ -163,19 +133,71 @@ noSearch: true
 surveyResults: true
 ```
 
+### Markdown files
 In addition to having a `page.yml`, each supported language of a page (again, based on presence of localized titles) must have an accompanying [Markdown][] file for body content. The name of the file depends on the language:
 
 * English: `readme.md`
 * Spanish: `readme_es.md`
 
+The markdown files contain the main body content of the article and are where most content will be written. Follow the _writing practices_ when writing these files.
+
+Beyond the [basic features][mdbasic], c20 adds a few special extensions:
+
+* [Tables][tables], although for larger tables you will want to switch to raw inline HTML.
+* All headings automatically get anchor links/IDs for linking directory to that heading. When someone loads a page with that heading ID in the URL (e.g. `#my-heading`) the page will automatically scroll to that content. Do not make headings which are also links (like `# [Heading text](www.example.com)`), as it's unsupported.
+* You can use the `console`, `inittxt` and `hsc` language tags for [code fences][fences] to get syntax highlighting for various cases of Halo Script. We also support `vrml` (WRL files).
+
+**Smart links** are perhaps the most important feature of c20's markdown. Since most of the links you'll be creating will be to other wiki pages, it would be both cumbersome and fragile to specify the full path of that page every time. We extend [standard reference-style links][reflink] with an automatic lookup mechanism when a reference is not defined.
+
+For example, if you just write a link like `[the scenario tag][scenario]`, c20 will automatically resolve the target URL as `/h1/tags/scenario` without you having to define it. You can also include a heading ID like `scenario#tag-block-bipeds`. The lookup is based on the page's _logical path_ (the name of its directories under `src/content/` rather than its localized URL). When multiple target pages match, c20 will choose the one _most related_ to the origin page in the content tree. When this is not possible, the ambiguity must be clarified by specifying more of the logical path in the link: `[Halo 2 tags][h2/tags]` or [Halo 1 tags][h1/tags].
+
+### Resources
 The directory for a page can include other files related to that topic, like images or [Graphviz](https://graphviz.org/) files for generating diagrams. Any `src/content/../todo.md` file or `src/content/../todo` directory is git-ignored and can be used to mock out page structures and keep notes for later writing.
 
-I encourage you to explore these directories looking at files to see how pages are already written.
+### Data files
+Some wiki content is automatically generated based on YAML data files. These can be found in `src/data/` and include:
 
-## Content organization
+* `workflows.yml`: support tool workflows seen in metaboxes
+* `h1/tags/*.yml`: tag structure and field descriptions; supports localization
+
+## Writing practices
+### Content organization
 * All CE-specific content should live under the `h1` tree, whereas tools topics which could apply to multiple games should live under the `general` tree.
 * If a topic is only really related to another topic, ensure it is either a child page (a subdirectory) or under heading of that parent topic instead.
 * If a topic is growing too large, consider splitting it up and taking its large sections to a child page (a subdirectory).
+* Child pages expand upon the topic of a parent.
+
+### Writing style
+* All headings in a markdown document start at H1 (a single "#") and sub-headings must never skip a level; you can't have an H3 follow an H1.
+* Titles use sentence case, with the first word capitalized only. The exception is if the title or parts of it are a proper noun like a person's name.
+* In-universe proper nouns or nicknames should be capitalized, like Warthog.
+* When referencing tag types, use their file name extensions rather than engine IDs. When mentioning them without a hyperlink, style them with italic _emphasis_.
+* When referring to tag fields, style them with italic _emphasis_.
+* When stating raw data values and offsets, use `code` tags.
+* Blocks of Halo script should use the `hsc` language. Blocks of console commands should use `console`. This ensures proper syntax highlighting.
+* Use **strong** tags when naming a page's topic for the first time in the introduction paragraph. The exception is pages which are not about a specific "thing" or concept.
+* There is no strong preference at this time for UK/Canada vs. US spelling of words like colour, unless you are referring to a tag's field name which should match exactly.
+* Don't assume the reader knows anything about modding Halo. You don't have to detai literally every step, but include links to prerequisite information and other pages to fill out concepts. Use examples that the reader might be familiar with to help get your points across.
+
+### Commonly-used headings
+To maintain consistency across pages, try to use some of these heading names if relevant:
+
+* Known issues
+* Limits
+* Compatibility
+* Troubleshooting
+* Installation
+* Usage
+* Appendix
+
+### Linking
+* Add hyperlinks where it is helpful for the reader, but avoid over-linking especially when there is already the same link visible within a short scrolling distance on the same page.
+* Avoid orphaned content. Every new page should have at least one link to it from other relevant locations.
+* Links from one page to another usually need one in reverse too.
 
 [yaml]: https://en.wikipedia.org/wiki/YAML
 [markdown]: https://www.markdownguide.org/
+[fences]: https://www.markdownguide.org/extended-syntax#syntax-highlighting
+[tables]: https://www.markdownguide.org/extended-syntax#tables
+[reflink]: https://www.markdownguide.org/basic-syntax#reference-style-links
+[mdbasic]: https://www.markdownguide.org/basic-syntax
