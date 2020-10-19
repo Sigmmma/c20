@@ -70,7 +70,7 @@ a {
 }
 
 html[lang="es"] {
-  a:not([href^="http"]):not([href^="#"]):not([href*="/es/"]):not([href="/es"]):after {
+  a:not([href^="http"]):not([href^="#"]):not([href*="/es/"]):not([href="/es"])[href*="/"]:after {
     content: "(inglés)";
     vertical-align: super;
     font-size: 50%;
