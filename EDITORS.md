@@ -181,7 +181,7 @@ Some wiki content is automatically generated based on YAML data files. These can
 * Blocks of Halo script should use the `hsc` language. Blocks of console commands should use `console`. This ensures proper syntax highlighting.
 * Use **strong** tags when naming a page's topic for the first time in the introduction paragraph. The exception is pages which are not about a specific "thing" or concept.
 * There is no strong preference at this time for UK/Canada vs. US spelling of words like colour, unless you are referring to a tag's field name which should match exactly.
-* Don't assume the reader knows anything about modding Halo. You don't have to detai literally every step, but include links to prerequisite information and other pages to fill out concepts. Use examples that the reader might be familiar with to help get your points across.
+* Don't assume the reader knows anything about modding Halo. You don't have to detail literally every step, but include links to prerequisite information and other pages to fill out concepts. Use examples that the reader might be familiar with to help get your points across.
 
 ### Commonly-used headings
 To maintain consistency across pages, try to use some of these heading names if relevant:

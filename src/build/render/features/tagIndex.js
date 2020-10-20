@@ -13,9 +13,9 @@ const localizations = localizer({
     en: `These vestigal tags were found within the game engine or tools, but are no longer used.
          They were used during Halo's development and then partially removed before release.
          The tags are listed here for informational purposes only, and you will not need to use them.`,
-    es: `Estas etiquetas vestigales se encontraron dentro del motor o las herramientas del juego, pero ya no se utilizan.
+    es: `Estas tags vestigales se encontraron dentro del motor o las herramientas del juego, pero ya no se utilizan.
          Se usaron durante el desarrollo de Halo y luego se eliminaron parcialmente antes del lanzamiento.
-         Las etiquetas se enumeran aquí solo con fines informativos y no es necesario que las utilice.`
+         Las tags se enumeran aquí solo con fines informativos y no es necesario que las utilice.`
   },
   tagName: {
     en: "Tag name",
