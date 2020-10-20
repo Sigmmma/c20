@@ -2,7 +2,7 @@ const {html, REPO_URL, localizer} = require("../bits");
 
 const LICENSE_URL = "https://creativecommons.org/licenses/by-sa/3.0/";
 
-const localizations = {
+const localizations = localizer({
   goTop: {
     en: "Go to top",
     es: "Ve arriba"
@@ -11,10 +11,10 @@ const localizations = {
     en: (link) => `This text is available under the ${link} license`,
     es: (link) => `Este texto está disponible bajo la licencia CC ${link}`,
   }
-};
+});
 
 const footer = (ctx) => {;
-  const localize = localizer(localizations, ctx.lang);
+  const localize = localizations(ctx.lang);
   return html`
     <footer class="content-footer">
       <p>

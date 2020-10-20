@@ -17,7 +17,7 @@ const mainTopics = [
   ["/h1"]
 ];
 
-const localizations = {
+const localizations = localizer({
   locale: {
     en: "en_US",
     es: "es_ES"
@@ -46,7 +46,7 @@ const localizations = {
     en: "Edit",
     es: "Editar"
   }
-};
+});
 
 const langNames = {
   en: "English",
@@ -55,7 +55,7 @@ const langNames = {
 
 const wrapper = (ctx, headings, thanks, metaboxProps, body) => {
   const {page, pageIndex, lang, buildOpts: {baseUrl}} = ctx;
-  const localize = localizer(localizations, lang);
+  const localize = localizations(lang);
   const editPageUrl = `${REPO_URL}/edit/master/src/content${page.pageId}/readme${lang == "en" ? "" : "_" + lang}.md`;
   const imgAbsoluteUrl = page.img ?
     `${baseUrl}${page.localizedPaths[lang]}/${page.img}` :
@@ -83,7 +83,7 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body) => {
         <meta property="og:type" content="website"/>
         <meta property="og:locale" content="${localize("locale")}"/>
         ${otherLangs.map(otherLang => html`
-          <meta property="og:locale:alternate" content="${localizer(localizations, otherLang, "locale")}"/>
+          <meta property="og:locale:alternate" content="${localizations(otherLang, "locale")}"/>
         `)}
         ${keywords && keywords.map(keyword => html`
           <meta property="og:article:tag" content="${keyword}"/>
