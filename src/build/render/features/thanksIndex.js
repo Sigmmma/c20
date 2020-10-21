@@ -28,8 +28,8 @@ module.exports = async function(ctx) {
     }
   }
 
-  for (let [to] of Object.keys(data.h1.tagThanks)) {
-    allThanks.add(to);
+  for (let recipient of Object.keys(data.h1.tagThanks)) {
+    allThanks.add(recipient);
   }
 
   //convert to an array and sort alphabetically
