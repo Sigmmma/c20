@@ -7,7 +7,7 @@ const localizations = localizer({
   },
   unusedTagsHeading: {
     en: "Unused tags",
-    es: "Etiquetas no utilizadas"
+    es: "Tags no utilizadas"
   },
   unusedTagsIntro: {
     en: `These vestigal tags were found within the game engine or tools, but are no longer used.

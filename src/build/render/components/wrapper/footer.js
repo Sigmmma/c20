@@ -5,7 +5,7 @@ const LICENSE_URL = "https://creativecommons.org/licenses/by-sa/3.0/";
 const localizations = localizer({
   goTop: {
     en: "Go to top",
-    es: "Ve arriba"
+    es: "Ir arriba"
   },
   license: {
     en: (link) => `This text is available under the ${link} license`,

@@ -36,7 +36,7 @@ const localizations = localizer({
   },
   flowTo: {
     en: (other) => `To&nbsp;${other} with`,
-    es: (other) => `To&nbsp;${other} con`
+    es: (other) => `A&nbsp;${other} con`
   },
   flowFrom: {
     en: (other) => `From&nbsp;${other} with`,
