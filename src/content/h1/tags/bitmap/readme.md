@@ -119,11 +119,11 @@ _NOTE: Having multiple cube maps in one bitmap does not randomize them._
 
 |Unfolded|Sprite Sequence|Multiple in one tag|
 |--------|------------|-------------------|
-<img src="media/bitmap_cubemap_swamp.png" width="200">|<img src="media/bitmap_cubemap_beach.png" width="200"><br><br><img src="media/bitmap_cubemap_grunt.png" width="200">|<img src="media/bitmap_cubemap_elite_multiple.png" width="200">|
+<img src="bitmap_cubemap_swamp.png" width="200">|<img src="bitmap_cubemap_beach.png" width="200"><br><br><img src="bitmap_cubemap_grunt.png" width="200">|<img src="bitmap_cubemap_elite_multiple.png" width="200">|
 
 # Sprites
 
-<img src="media/bitmap_sprites_source_vs_tag.png" width="600">
+<img src="bitmap_sprites_source_vs_tag.png" width="600">
 
 The sprite type allows a bitmap to contain a non-power-of-two texture, with support for animations with multiple permutations (sequences). Sprites are typically used for particles.
 
@@ -131,7 +131,7 @@ The sprite type allows a bitmap to contain a non-power-of-two texture, with supp
 
 |Scaled 10x | Original Size |
 |-----------|---------------|
-![](media/bitmap_color_plate.png)|![](media/bitmap_color_plate_orig_size.png)|
+![](bitmap_color_plate.png)|![](bitmap_color_plate_orig_size.png)|
 
 
 The color plate is the first 3 top-left pixels of the source file. It tells tool which colors are being used for the sprite borders (background), sequence dividers, and dummy space, respectively. Any colors may be used, as long as they aren't used in the sprites themselves.
@@ -147,7 +147,7 @@ Any amount of padding may be used as long as the sprite is isolated by at least 
 
 ## Budget
 
-<img src="media/bitmap_sprites_budget_utilisation.png" width="400">
+<img src="bitmap_sprites_budget_utilisation.png" width="400">
 
 Budget size determines how big each texture page is (and thus how many sprites will appear on each page). Budget count sets how many texture pages there will be. Both of these values should be set for sprites.
 
@@ -158,7 +158,7 @@ Budget sizes are limited to "square" dimensions like 256x256 and 512x512. Becaus
 _NOTE: Tool automatically uses at least 4 pixels of padding between each sprite. (This is so that there will always be at least one pixel of space between different sprites in all mipmaps, as tool also uses a default mipmap count of 2 for these. 4 -> 2 -> 1.) This means four 32x32 sprites will for instance not fit on a 64x64 page. Make sure to take this into account when choosing a budget size!_
 
 ## Sequences
-<img src="media/bitmap_sprite_sequences.png" width="200">
+<img src="bitmap_sprite_sequences.png" width="200">
 
 A sprite sheet with multiple sequences. Frames are lined up horizontally, and permutations are stacked vertically. Note the magenta line separating each sequence. A sequence is an animated sprite. Each sprite in a sequence represents a "frame" of the sprite's animation. A bitmap may contain multiple sequences, which allows for random and forced permutations. Each frame of a sequence is lined up left-to-right. Each sequence permutation is stacked vertically, top-to-bottom.
 
@@ -173,7 +173,7 @@ _NOTE: Tool will sometimes split a sequence across several pages. This does not 
 _QUIRK: Only the start of a sequence divider needs to be the color defined on the color plate. After that it can be any color, or could even just end prematurely._
 
 ## Dummy Space
-<img src="media/bitmap_sprite_dummy_space.png" width="400">
+<img src="bitmap_sprite_dummy_space.png" width="400">
 
 Space usage on a sprite with dummy space vs without
 
