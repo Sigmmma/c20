@@ -10,27 +10,44 @@ comments:
         - name: can shoot while flying
           en: ...
         - name: interpolate color in hsv
-          en: ...
+          en: >
+            Determines if [change colors](#tag-block-change-colors) upper and lower
+            bounds are interpolated in [HSV](https://en.wikipedia.org/wiki/HSL_and_HSV)
+            space as opposed to RGB. **Possibly unused**, because it is not known
+            under what condition the game will interpolate colors (upper bound
+            always seems to be used).
         - name: has unlimited grenades
-          en: ...
+          en: Gives the actor an unlimited supply of grenades to throw.
         - name: moveswitch stay w friends
           en: ...
         - name: active camouflage
-          en: ...
+          en: Gives the actor permanent active camouflage, e.g. stealth Elites.
         - name: super active camouflage
-          en: ...
+          en: >
+            When enabled, makes the active camouflage the _hyper stealth_ variant
+            from [globals][], which can have a different appearance.
         - name: cannot use ranged weapons
-          en: ...
+          en: Disables ranged combat settings (beginning at the _weapon_ reference).
         - name: prefer passenger seat
-          en: ...
+          en: >
+            The actor will prefer to enter a vehicle's passenger seat over a
+            gunner seat, as determined by the [unit's _seat_ flags][unit#tag-block-seats].
     - name: actor definition
       en: ...
     - name: unit
-      en: ...
+      en: Specifies which [biped][] this variant will spawn as.
     - name: major variant
-      en: ...
+      en: >
+        Specifies the next highest "rank" of this actor variant. This allows
+        enemies to "upgrade" in higher difficulties, with the chance being controlled
+        by both the per-difficulty _major upgrade_ [globals][] multipliers and
+        the _major upgrade_ squad setting in the [scenario][].
     - name: mcc actor type
-      en: Used for kill scoring and achievements in MCC.
+      en: >
+        Used for kill scoring and achievements in MCC. Since this field was
+        padding in pre-MCC editions, maps compiled for MCC should use MCC-extracted
+        _actor_variant_ tags or set these fields, or else enemies may be scored as
+        Brutes or other unexpected types due to having zeroed-out or garbage data.
       options:
         - name: brute
           en: ...
@@ -136,15 +153,18 @@ comments:
     - name: run time
       en: ...
     - name: weapon
-      en: ...
+      en: The _weapon_ that the actor spawns with.
     - name: maximum firing distance
-      en: ...
+      en: The maximum range, in world units, where the unit can fire at a target.
     - name: rate of fire
-      en: ...
+      en: >
+        This lets you select a rate of fire within the referenced _weapon's_
+        maximum _rounds per second_. If set to `0`, the actor will fire at the
+        weapon's maximum rate.
     - name: projectile error
-      en: ...
+      en: Adds error on top of the weapon's own error. This makes actors fire inaccurately.
     - name: first burst delay time
-      en: ...
+      en: The delay in seconds before the actor starts its first burst on a new target.
     - name: new target firing pattern time
       en: ...
     - name: surprise delay time
@@ -152,23 +172,36 @@ comments:
     - name: surprise fire wildly time
       en: ...
     - name: death fire wildly chance
-      en: ...
+      en: Sets the chance that the actor will fire their weapon while dying.
     - name: death fire wildly time
-      en: ...
+      en: Controls how long the actor will continue firing after death.
     - name: desired combat range
-      en: ...
+      en: >
+        The distance in world units the actor will try to be in to attack;
+        lower bounds is the minimum range and upper is the maximum. The actor
+        may still fire outside this range, but will move to attain it.
     - name: custom stand gun offset
       en: ...
     - name: custom crouch gun offset
       en: ...
     - name: target tracking
-      en: ...
+      en: >
+        Determines how closely the actor will follow moving targets when firing.
+        bursts. A value of `0` means only firing at the target's location at the
+        start of the burst, while while `1` means following the target perfectly.
+        with each shot. A value in-between can be provided.
     - name: target leading
-      en: ...
+      en: >
+        Determines how accurately to predict lead on moving targets. A value of
+        `0` means not leading at all and shooting directly at the target, while
+        `1` means perfectly predicting how far in front of the target to lead based
+        on [projectile][] speed and distance. A value in-between can be provided.
     - name: weapon damage modifier
-      en: ...
+      en: >
+        Allows weapon damage to be buffed or nerfed for this actor variant. A
+        value of 0 disables this modifier.
     - name: damage per second
-      en: ...
+      en: Overrides weapon damage if set and _weapon damage modifier_ is 0.
     - name: burst origin radius
       en: ...
     - name: burst origin angle
