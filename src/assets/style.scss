@@ -266,8 +266,12 @@ a.header-anchor {
   opacity: 0;
   padding: 0 0.5em;
   transition: opacity $transition-time;
+  &:after {
+    content: '#';
+  }
   &:hover {
     text-decoration: none;
+    opacity: 1;
   }
 }
 

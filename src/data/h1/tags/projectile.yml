@@ -128,7 +128,10 @@ comments:
         Like _air damage range_, but for underwater environments (determined by
         the _is water_ flag of [fog][] tags).
     - name: initial velocity
-      en: ...
+      en: >
+        Sets the velocity of the projectile upon creation. For grenades thrown
+        by AI, see [actor_variant _grenade velocity_][actor_variant#tag-field-grenade-velocity].
+        For player-thrown grenades, see [unit _grenade velocity_][unit#tag-field-grenade-velocity].
     - name: final velocity
       en: ...
     - name: guided angular velocity

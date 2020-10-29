@@ -109,6 +109,10 @@ const localizations = localizer({
   },
 });
 
+const renderFieldName = (name, fieldPath) => !name ? null : html`
+  <span id="${fieldPath}">${name}<a href="#${fieldPath}" class="header-anchor"></a></span>
+`;
+
 const renderComment = (ctx, md, addSearchText) => {
   if (md == "...") return null;
   addSearchText(renderMarkdown(ctx, md, true));
@@ -224,7 +228,7 @@ const fieldTypeDisplay = (ctx, field, fieldTypeStruct) => {
   return typeCode;
 };
 
-const fieldView = (ctx, field, comments, addHeading, addSearchText, hLevel) => {
+const fieldView = (ctx, field, comments, addHeading, addSearchText, hLevel, fieldPath) => {
   const fieldComments = comments ? comments.fields.find(it => it.name == field.name) : null;
   const fieldTypeStruct = ctx.data.h1.invaderStructDefs[field.type];
 
@@ -237,18 +241,17 @@ const fieldView = (ctx, field, comments, addHeading, addSearchText, hLevel) => {
   }
 
   let rowId = null;
-  if (field.name && field.type == "TagReflexive" && hLevel >= 2 && hLevel <= 4) {
-    rowId = `tag-block-${slugify(field.name)}`;
-    addHeading({title: field.name, id: rowId, level: hLevel});
-  }
-
   if (field.name) {
+    rowId = `${fieldPath}-${slugify(field.name)}`;
     addSearchText(field.name);
+    if (field.type == "TagReflexive" && hLevel >= 2 && hLevel <= 4) {
+      addHeading({title: field.name, id: rowId, level: hLevel});
+    }
   }
 
   return html`
-    <tr ${rowId && `id="${rowId}"`} ${classes(rowClasses)}>
-      <td>${field.name}</td>
+    <tr ${classes(rowClasses)}>
+      <td>${renderFieldName(field.name, rowId)}</td>
       <td>${fieldTypeDisplay(ctx, field, fieldTypeStruct)}</td>
       <td>${fieldInfo(ctx, field, fieldComments, addSearchText)}</td>
     </tr>
@@ -262,7 +265,8 @@ const fieldView = (ctx, field, comments, addHeading, addSearchText, hLevel) => {
           addHeading,
           addSearchText,
           hLevel + 1,
-          false
+          false,
+          rowId
         )}</td>
       </tr>
     `}
@@ -276,14 +280,15 @@ const fieldView = (ctx, field, comments, addHeading, addSearchText, hLevel) => {
           addHeading,
           addSearchText,
           hLevel + 1,
-          false
+          false,
+          rowId
         )}</td>
       </tr>
     `}
   `;
 }
 
-const structView = (ctx, struct, structName, comments, addHeading, addSearchText, hLevel, isRoot) => {
+const structView = (ctx, struct, structName, comments, addHeading, addSearchText, hLevel, isRoot, fieldPath) => {
   const localize = localizations(ctx.lang);
   if (!struct) {
     return structName;
@@ -300,7 +305,7 @@ const structView = (ctx, struct, structName, comments, addHeading, addSearchText
         <tbody>
           ${struct.fields.map((field, i) => html`
             <tr>
-              <td>${field}</td>
+              <td>${renderFieldName(field, `${fieldPath}-${slugify(field)}`)}</td>
               <td><code title="${0x1 << i}">0x${(0x1 << i).toString(16)}</code></td>
               <td>${renderComment(ctx, comments && comments.fields.find(it => it.name == field)[ctx.lang], addSearchText)}</td>
             </tr>
@@ -321,7 +326,7 @@ const structView = (ctx, struct, structName, comments, addHeading, addSearchText
         <tbody>
           ${struct.options.map((option, i) => html`
             <tr>
-              <td>${option}</td>
+              <td>${renderFieldName(option, `${fieldPath}-${slugify(option)}`)}</td>
               <td><code title="${i}">0x${i.toString(16)}</code></td>
               <td>${comments && renderComment(ctx, comments.options.find(it => it.name == option)[ctx.lang], addSearchText)}</td>
             </tr>
@@ -351,7 +356,7 @@ const structView = (ctx, struct, structName, comments, addHeading, addSearchText
           </tr>
         </thead>
         <tbody>
-          ${allFields.map(field => fieldView(ctx, field, comments, addHeading, addSearchText, hLevel))}
+          ${allFields.map(field => fieldView(ctx, field, comments, addHeading, addSearchText, hLevel, fieldPath))}
         </tbody>
       </table>
     `;
@@ -374,7 +379,7 @@ const renderTagStructure = (ctx, tag) => {
     ${tag.parent && alert("info", html`
       <p>${localize("inheritInfo")(tag.name, tagAnchor(ctx, tag.parent))}</p>
     `)}
-    ${structView(ctx, tag.invaderStruct, tag.invaderStructName, tag.comments, addHeading, addSearchText, 2, true)}
+    ${structView(ctx, tag.invaderStruct, tag.invaderStructName, tag.comments, addHeading, addSearchText, 2, true, "tag-field")}
     <p><small>${localize("invaderDefLink")(invaderDefUrl)}</small></p>
   `;
   return {headings, bodyHtml, searchText: searchTexts.join("\n")};

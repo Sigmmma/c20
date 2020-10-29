@@ -39,7 +39,7 @@ const tagAnchor = (ctx, tag, hash) => {
 const heading = (hTag, title, cssClass) => html`
   <${hTag} id="${slugify(title)}"${cssClass ? ` class=${cssClass}` : ""}>
     ${title}
-    <a href="#${slugify(title)}" class="header-anchor">#</a>
+    <a href="#${slugify(title)}" class="header-anchor"></a>
   </${hTag}>
 `;
 

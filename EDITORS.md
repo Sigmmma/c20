@@ -149,7 +149,7 @@ Beyond the [basic markdown features][mdbasic], c20 adds a few special extensions
 
 **Smart links** are perhaps the most important feature of c20's markdown. Since most of the links you'll be creating will be to other wiki pages, it would be both cumbersome and fragile to specify the full path of that page every time. We extend [standard reference-style links][reflink] with an automatic lookup mechanism when a reference is not defined.
 
-For example, if you just write a link like `[the scenario tag][scenario]`, c20 will automatically resolve the target URL as `/h1/tags/scenario` without you having to define it. You can also include a heading ID like `scenario#tag-block-bipeds`. The lookup is based on the page's _logical path_ (the name of its directories under `src/content/` rather than its localized URL). When multiple target pages match, c20 will choose the one _most related_ to the origin page in the content tree. When this is not possible, the ambiguity must be clarified by specifying more of the logical path in the link: `[Halo 2 tags][h2/tags]` or `[Halo 1 tags][h1/tags]`.
+For example, if you just write a link like `[the scenario tag][scenario]`, c20 will automatically resolve the target URL as `/h1/tags/scenario` without you having to define it. You can also include a heading ID like `scenario#tag-field-bipeds`. The lookup is based on the page's _logical path_ (the name of its directories under `src/content/` rather than its localized URL). When multiple target pages match, c20 will choose the one _most related_ to the origin page in the content tree. When this is not possible, the ambiguity must be clarified by specifying more of the logical path in the link: `[Halo 2 tags][h2/tags]` or `[Halo 1 tags][h1/tags]`.
 
 ### Resources
 The directory for a page can include other files related to that topic, like images. Simply place images in the page's directory and they will be copied for each localized output URL. If an image is only applicable to a certain language because it contains text in that language, you can add a suffix like `screenshot_es.jpg` or `screenshot_en.jpg` and it will only be copied to certain language outputs. **Do not** place images in a subdirectory for organization; subdirectories should be used for child pages only.
@@ -198,6 +198,7 @@ To maintain consistency across pages, try to use some of these heading names if 
 * Add hyperlinks where it is helpful for the reader, but avoid over-linking especially when there is already the same link visible within a short scrolling distance on the same page.
 * Avoid orphaned content. Every new page should have at least one link to it from other relevant locations.
 * Links from one page to another usually need one in reverse too.
+* If a tag page has a dedicated section describing a certain concept, prefer linking to that over linking to the relevant fields in the tag structure.
 
 [yaml]: https://en.wikipedia.org/wiki/YAML
 [markdown]: https://www.markdownguide.org/

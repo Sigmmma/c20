@@ -18,3 +18,6 @@ Because the source tags for these scenarios have never been released, it is impo
     <p>Use this flag in Refinery to avoid duplicated scenario data.</p>
   </figcaption>
 </figure>
+
+# Encounters
+...
