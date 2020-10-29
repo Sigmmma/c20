@@ -2,7 +2,9 @@ name: actor_variant
 id: actv
 invaderStructName: ActorVariant
 comments:
-  en: ...
+  en: >
+    Specializes an [actor][] by defining their use of weapons, grenades,
+    their health, their color, and what equipment they drop.
   fields:
     - name: flags
       en: ...
@@ -11,11 +13,9 @@ comments:
           en: ...
         - name: interpolate color in hsv
           en: >
-            Determines if [change colors](#tag-block-change-colors) upper and lower
+            Determines if [change colors](#tag-field-change-colors) upper and lower
             bounds are interpolated in [HSV](https://en.wikipedia.org/wiki/HSL_and_HSV)
-            space as opposed to RGB. **Possibly unused**, because it is not known
-            under what condition the game will interpolate colors (upper bound
-            always seems to be used).
+            space as opposed to RGB.
         - name: has unlimited grenades
           en: Gives the actor an unlimited supply of grenades to throw.
         - name: moveswitch stay w friends
@@ -27,11 +27,13 @@ comments:
             When enabled, makes the active camouflage the _hyper stealth_ variant
             from [globals][], which can have a different appearance.
         - name: cannot use ranged weapons
-          en: Disables ranged combat settings (beginning at the _weapon_ reference).
+          en: >
+            Disables ranged combat settings (beginning at the _weapon_ reference).
+            Even if the AI is holding a weapon, it will not fire it.
         - name: prefer passenger seat
           en: >
             The actor will prefer to enter a vehicle's passenger seat over a
-            gunner seat, as determined by the [unit's _seat_ flags][unit#tag-block-seats].
+            gunner seat, as determined by the [unit's _seat_ flags][unit#tag-field-seats].
     - name: actor definition
       en: ...
     - name: unit
@@ -203,94 +205,123 @@ comments:
     - name: damage per second
       en: Overrides weapon damage if set and _weapon damage modifier_ is 0.
     - name: burst origin radius
-      en: ...
+      en: The starting point of the burst, randomly to the left or right of the target in world units.
     - name: burst origin angle
-      en: ...
+      en: >
+        Controls the maximum angle from horizontal that the orgin can be, from the
+        point of view of the actor. For example, a value of `0` indicates the origin
+        will alway be directly to the left or right of the target, while `90` would
+        allow the origin to be above or below the target as well.
     - name: burst return length
-      en: ...
+      en: >
+        How far the burst point moves back towards the target. This can be
+        negative to make the burst lead _away_ from the target.
     - name: burst return angle
-      en: ...
+      en: Controls how close to horizontal the return motion can be.
     - name: burst duration
-      en: ...
+      en: Cotrols the length of burst, during which multiple shots are fired.
     - name: burst separation
-      en: ...
+      en: Controls how long to wait between bursts.
     - name: burst angular velocity
-      en: ...
+      en: >
+        Sets the maximum rotational rate that the burst can sweep. A value of `0`
+        means unlimited. For example, if the _burst origin radius_ is large and the
+        _burst duration_ is short, the return burst will cover a large area in a
+        short amount of time unless limited by this angular velocity.
     - name: special damage modifier
-      en: ...
+      en: >
+        A damage modifier for special weapon fire (e.g. overcharged shots and
+        secondary triggers), applied in addition to the normal damage modifier.
+        No effect if `0`.
     - name: special projectile error
-      en: ...
+      en: >
+        An error angle, applied in addition to normal error, for special fire.
     - name: new target burst duration
-      en: ...
+      en: Multiplier for _burst duration_ in the new target state. No effect if `0`.
     - name: new target burst separation
-      en: ...
+      en: Multiplier for _burst separation_ in the new target state. No effect if `0`.
     - name: new target rate of fire
-      en: ...
+      en: Multiplier for _rate of fire_ in the new target state. No effect if `0`.
     - name: new target projectile error
-      en: ...
+      en: Multiplier for _projectile error_ in the new target state. No effect if `0`.
     - name: moving burst duration
-      en: ...
+      en: Multiplier for _burst duration_ in the moving state. No effect if `0`.
     - name: moving burst separation
-      en: ...
+      en: Multiplier for _burst separation_ in the moving state. No effect if `0`.
     - name: moving rate of fire
-      en: ...
+      en: Multiplier for _rate of fire_ in the moving state. No effect if `0`.
     - name: moving projectile error
-      en: ...
+      en: Multiplier for _projectile error_ in the moving state. No effect if `0`.
     - name: berserk burst duration
-      en: ...
+      en: Multiplier for _burst duration_ in the berserk state. No effect if `0`.
     - name: berserk burst separation
-      en: ...
+      en: Multiplier for _burst separation_ in the berserk state. No effect if `0`.
     - name: berserk rate of fire
-      en: ...
+      en: Multiplier for _rate of fire_ in the berserk state. No effect if `0`.
     - name: berserk projectile error
-      en: ...
+      en: Multiplier for _projectile error_ in the berserk state. No effect if `0`.
     - name: super ballistic range
       en: ...
     - name: bombardment range
-      en: ...
+      en: >
+        When non-zero, causes the burst target to be offset by a random distance
+        in this range when the enemy is _not visible_.
     - name: modified vision range
-      en: ...
+      en: >
+        Overrides the [actor's vision range][actor#tag-field-max-vision-distance].
+        Normal if `0`.
     - name: special fire mode
-      en: ...
+      en: If set, allows the actor to use their weapon in alternate ways.
       options:
         - name: none
-          en: ...
+          en: No special fire will be used.
         - name: overcharge
-          en: ...
+          en: >
+            The actor will hold down the primary trigger for an overcharged shot.
+            Jackals use this with the plasma pistol.
         - name: secondary trigger
-          en: ...
+          en: The actor will fire the weapon's secondary [trigger][weapon#tag-field-triggers].
     - name: special fire situation
-      en: ...
+      en: Determines the situation in which the actor has a chance of using special fire.
       options:
         - name: never
-          en: ...
+          en: The actor will never special fire their weapon.
         - name: enemy visible
-          en: ...
+          en: Special fire happens only when the target is visible.
         - name: enemy out of sight
-          en: ...
+          en: Special fire happens only when the target is behind cover.
         - name: strafing
           en: ...
     - name: special fire chance
-      en: ...
+      en: >
+        How likely the actor will use their weapon's special fire mode. Setting
+        this to `0` is equivalent to using the _never_ situation.
     - name: special fire delay
-      en: ...
+      en: How long the actor must wait between uses of special fire mode.
     - name: melee range
-      en: ...
+      en: Sets how close an enemy must get to trigger a melee charge by the actor.
     - name: melee abort range
-      en: ...
+      en: The actor will stop trying to melee the enemy goes outside this range.
     - name: berserk firing ranges
-      en: ...
+      en: >
+        When berserking and outside the maximum range, the actor will advance
+        towards the target and stop at the minimum range.
     - name: berserk melee range
-      en: ...
+      en: Similar to _melee range_, but used when the actor is berserking.
     - name: berserk melee abort range
-      en: ...
+      en: Similar to _melee abort range_, but used when the actor is berserking.
     - name: grenade type
-      en: ...
+      en: >
+        Sets which type of grenade the actor throws, assuming _grenade stimulus_
+        is not _never_.
       options:
         - name: human fragmentation
-          en: ...
+          en: >
+            A "human fragmentation" grenade will be thrown. The actual [projectile][]
+            and effects used are defined in the **first** item of the
+            [grenades block in globals][globals#tag-field-grenades].
         - name: covenant plasma
-          en: ...
+          en: As above, but uses the second item ("covenant plasma") in globals.
     - name: trajectory type
       en: ...
       options:
@@ -301,50 +332,86 @@ comments:
         - name: bounce
           en: ...
     - name: grenade stimulus
-      en: ...
+      en: >
+        What causes the actor to consider throwing a grenade. It is still dependent
+        upon _grenade chance_.
       options:
         - name: never
-          en: ...
+          en: The actor never throws grenades.
         - name: visible target
           en: ...
         - name: seek cover
           en: ...
     - name: minimum enemy count
-      en: ...
+      en: >
+        How many enemies must be within the grenade's radius before the actor
+        considers throwing there.
     - name: enemy radius
-      en: ...
+      en: >
+        Only enemies within this radius of the actor are considered when choosing
+        where to throw a grenade.
     - name: grenade velocity
-      en: ...
+      en: >
+        This is responsibile for giving the grenade it's thrown velocity, rather
+        than the [projectile _initial velocity_][projectile#tag-field-initial-velocity]
+        or the [unit _grenade velocity_][unit#tag-field-grenade-velocity].
     - name: grenade ranges
-      en: ...
+      en: >
+        The minimum and maximum ranges that the actor will consider throwing
+        a grenade.
     - name: collateral damage radius
-      en: ...
+      en: >
+        If there are friendlies within this radius of the target, grenades will
+        not be thrown.
     - name: grenade chance
-      en: ...
+      en: How likely the actor is to throw a grenade when a _grenade stimulus_ applies.
     - name: grenade check time
-      en: ...
+      en: >
+        How often to consider throwing a grenade while a continuous _grenade stimulus_,
+        like _visible target_, applies.
     - name: encounter grenade timeout
-      en: ...
+      en: >
+        The AI will not throw a grenade if another AI in the [encounter][scenario#encounters]
+        threw one within this timeout. This prevents AI from all throwing grenades at
+        the same time.
     - name: equipment
-      en: ...
+      en: >
+        References equipment that the actor will drop on death. Note that their
+        weapon will already be dropped and does not need to be repeated here.
     - name: grenade count
-      en: ...
+      en: >
+        Determines how many grenades the actor spawns with, with the type determined
+        by the _grenade type_ field. The actor will use up these grenades unless
+        _has unlimited grenades_ is true. On death, the grenades are dropped.
     - name: don't drop grenades chance
-      en: ...
+      en: The chance that the actor drops no grenades on death, even if they have some.
     - name: drop weapon loaded
-      en: ...
+      en: >
+        A random range for how loaded the dropped weapon is, as a fraction of its
+        magazine size or charge.
     - name: drop weapon ammo
-      en: ...
+      en: >
+        The total number of reserve ammo rounds included with the dropped weapon.
+        Ignored for energy weapons.
     - name: body vitality
-      en: ...
+      en: >
+        Overrides the biped's [collision geometry _maximum body vitality_][model_collision_geometry#tag-field-maximum-body-vitality]
+        for a different amount of health.
     - name: shield vitality
-      en: ...
+      en: >
+        Overrides the biped's [collision geometry _maximum shield vitality_][model_collision_geometry#tag-field-maximum-body-vitality]
+        for a different amount of shields.
     - name: shield sapping radius
       en: ...
     - name: forced shader permutation
-      en: ...
+      en: >
+        If non-zero, forces the bitmap index for any shader the biped uses.
+        For example, the Elite major uses the value `1` which forces its shaders
+        to use the second (red) cubemap in `characters\elite\bitmaps\cubemaps.bitmap`.
+        [Bitmap tags][bitmap] which do not have a bitmap for this index will
+        instead use the first map (index `0`).
     - name: change colors
-      en: ...
+      en: Overrides the bipeds color change permutations.
       fields:
         - name: color lower bound
           en: ...

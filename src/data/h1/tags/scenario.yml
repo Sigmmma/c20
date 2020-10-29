@@ -291,7 +291,7 @@ comments:
       en: |
         Special-purpose bipeds placed in the map, typically used for scripted
         characters and cutscenes. AI should instead be spawned using
-        [encounters](#tag-block-encounters), since the [actors][actor] will be
+        [encounters](#tag-field-encounters), since the [actors][actor] will be
         properly difficulty-scaled.
 
         Although there is technically a very high limit to this block, unmodified
@@ -381,7 +381,7 @@ comments:
     - name: weapons
       en: |
         Weapon placements for singeplayer. Multiplayer weapon spawns should be
-        placed using [netgame equipment](#tag-block-netgame-equipment) instead.
+        placed using [netgame equipment](#tag-field-netgame-equipment) instead.
       fields:
         - name: rounds left
           en: ...

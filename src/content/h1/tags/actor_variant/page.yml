@@ -1,7 +1,12 @@
 title:
   en: actor_variant
 tagName: actor_variant
-stub: true
+img: grunts.jpg
+imgCaption:
+  en: >
+    These two Grunts minors have different actor variants; one for the plasma
+    pistol and one for the needler. The difference in their bodies is not caused
+    by their actor variant, but rather [permutations][gbxmodel#permutations].
 keywords:
   en:
     - actor

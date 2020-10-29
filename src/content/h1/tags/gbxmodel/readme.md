@@ -11,5 +11,7 @@ Each "part" of a model can reference a different [shader][], like the Warthog's 
 # Regions
 Regions render in the order they are stored in the tag. When naming regions, consider that they will be sorted by name when compiled into the `.gbxmodel`. This can be important for [skyboxes][sky] and objects with multiple layers of alpha-blended transparent shaders which aren't [z-culled][z-buf] and need a correct sorting order to be explicitly defined, assuming the object is viewed mostly from one direction.
 
+# Permutations
+...
 
 [z-buf]: https://en.wikipedia.org/wiki/Z-buffering

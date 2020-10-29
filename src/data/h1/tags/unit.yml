@@ -261,7 +261,11 @@ comments:
         - name: dialogue
           en: ...
     - name: grenade velocity
-      en: ...
+      en: >
+        The velocity of thrown grenades. This field is used for the player, but
+        overidden by [actor_variant _grenade velocity_][actor_variant#tag-field-grenade-velocity]
+        for AI. The [projectile _initial velocity_][projectile#tag-field-initial-velocity]
+        for grenades is not used.
     - name: grenade type
       en: ...
       options:
