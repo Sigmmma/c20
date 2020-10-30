@@ -394,8 +394,6 @@ comments:
         as shooting the arm off a Flood actor.
         * If the actor has a chance of [feigning death][unit#feigning-death] and
         reviving, but not if the damage exceeds the _hard death threshold_.
-        * If the actor's _don't drop grenades chance_ was triggered, possibly only
-        when there's a chance of feigning death<sup>(unconfirmed)</sup>.
         ---
     - name: drop weapon ammo
       en: >

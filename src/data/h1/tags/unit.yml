@@ -41,7 +41,9 @@ comments:
         - name: melee attackers cannot attach
           en: ...
         - name: not instantly killed by melee
-          en: ...
+          en: >
+            If enabled, prevents the unit from being instantly killed by a
+            melee to their back. This is used for the Flood.
         - name: shield sapping
           en: ...
         - name: runs around flaming
