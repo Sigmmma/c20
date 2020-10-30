@@ -34,7 +34,8 @@ async function renderPage(ctx) {
     combineResults("headings", R.flatten),
     combineResults("thanks", R.reduce(R.mergeWith(R.concat), {})),
     metaboxProps,
-    combineResults("html")
+    combineResults("html"),
+    combineResults("plaintext", R.join("\n"))
   );
   //used to add the page to the search index
   const searchDoc = page.noSearch ? null : {
@@ -70,7 +71,7 @@ async function renderPages(pageIndex, data, buildOpts) {
       await fs.writeFile(path.join(buildOpts.outputDir, page.localizedPaths[lang], "index.html"), htmlDoc, "utf8");
       return searchDoc;
     })
-  ))
+  ));
   //return all search docs so they can be written to a single file (for this lang)
   return searchDocs.filter(it => it != null);
 }

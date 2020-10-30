@@ -48,7 +48,7 @@ comments:
       en: >
         Used for kill scoring and achievements in MCC. Since this field was
         padding in pre-MCC editions, maps compiled for MCC should use MCC-extracted
-        _actor_variant_ tags or set these fields, or else enemies may be scored as
+        _actor\_variant_ tags or set these fields, or else enemies may be scored as
         Brutes or other unexpected types due to having zeroed-out or garbage data.
       options:
         - name: brute
@@ -384,11 +384,17 @@ comments:
         by the _grenade type_ field. The actor will use up these grenades unless
         _has unlimited grenades_ is true. On death, the grenades are dropped.
     - name: don't drop grenades chance
-      en: The chance that the actor drops no grenades on death, even if they have some.
+      en: >
+        The chance that the actor drops no grenades on death, even if they have some.
+        Strangely, when this event occurs, plasma weapons will be dropped with 100%
+        charge rather than using the _drop weapon loaded_ range. This has been
+        observed in at least MCC.
     - name: drop weapon loaded
       en: >
         A random range for how loaded the dropped weapon is, as a fraction of its
-        magazine size or charge.
+        magazine size or charge. Plasma weapons are dropped at 100% charge despite
+        this field when the actor's _don't drop grenades chance_ was triggered, or
+        approximately 1/20th of the time when the chance is 0 (observed in at least MCC).
     - name: drop weapon ammo
       en: >
         The total number of reserve ammo rounds included with the dropped weapon.

@@ -1,5 +1,4 @@
 const glob = require("glob");
-const R = require("ramda");
 
 //returns length of common prefix of two strings
 function commonLength(strA, strB) {

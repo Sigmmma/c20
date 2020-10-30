@@ -53,7 +53,7 @@ const langNames = {
   es: "Español"
 };
 
-const wrapper = (ctx, headings, thanks, metaboxProps, body) => {
+const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
   const {page, pageIndex, lang, buildOpts: {baseUrl}} = ctx;
   const localize = localizations(lang);
   const editPageUrl = `${REPO_URL}/edit/master/src/content${page.pageId}/readme${lang == "en" ? "" : "_" + lang}.md`;
@@ -61,7 +61,7 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body) => {
     `${baseUrl}${page.localizedPaths[lang]}/${page.img}` :
     `${baseUrl}/assets/librarian.png`;
 
-  const plaintextPreview = page._md ? `${renderMarkdown(page._md, pageIndex, true).substring(0, PREVIEW_LENGTH_CHARS)}...` : "";
+  const plaintextPreview = bodyPlaintext ? `${bodyPlaintext.substring(0, PREVIEW_LENGTH_CHARS)}...` : "";
   const keywords = R.path(["keywords", lang], page);
   const otherLangs = page.langs.filter(it => it != lang);
 

@@ -4,6 +4,7 @@
  * - keywords: search-boosted array of terms
  * - searchText: plaintext string to become searchable for this page
  * - html: added to the body of the article wrapper
+ * - plaintext: used to build plaintext preview (og:description)
  * - headings: array of {id, title, level} used to form table of contents
  * - metaTitle: title content of metabox
  * - metaSections: array of {cssClass, body} to appear as metabox sections
