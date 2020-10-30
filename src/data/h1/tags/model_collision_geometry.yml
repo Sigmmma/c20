@@ -265,7 +265,9 @@ comments:
             - name: disappears when shield is off
               en: ...
             - name: inhibits melee attack
-              en: ...
+              en: >
+                Prevents melee attacks by the unit when this region is destroyed.
+                Used for the Flood's arms, for example.
             - name: inhibits weapon attack
               en: ...
             - name: inhibits walking

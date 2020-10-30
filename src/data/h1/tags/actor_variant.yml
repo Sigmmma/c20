@@ -384,17 +384,19 @@ comments:
         by the _grenade type_ field. The actor will use up these grenades unless
         _has unlimited grenades_ is true. On death, the grenades are dropped.
     - name: don't drop grenades chance
-      en: >
-        The chance that the actor drops no grenades on death, even if they have some.
-        Strangely, when this event occurs, plasma weapons will be dropped with 100%
-        charge rather than using the _drop weapon loaded_ range. This has been
-        observed in at least MCC.
+      en: The chance that the actor drops no grenades on death, even if they have some.
     - name: drop weapon loaded
-      en: >
+      en: |
         A random range for how loaded the dropped weapon is, as a fraction of its
-        magazine size or charge. Plasma weapons are dropped at 100% charge despite
-        this field when the actor's _don't drop grenades chance_ was triggered, or
-        approximately 1/20th of the time when the chance is 0 (observed in at least MCC).
+        magazine size or charge. Plasma weapons are dropped at 100% charge no matter
+        this field's value under special circumstances:
+        * If the [region][gbxmodel#regions] holding the weapon was destroyed, such
+        as shooting the arm off a Flood actor.
+        * If the actor has a chance of [feigning death][unit#feigning-death] and
+        reviving, but not if the damage exceeds the _hard death threshold_.
+        * If the actor's _don't drop grenades chance_ was triggered, possibly only
+        when there's a chance of feigning death<sup>(unconfirmed)</sup>.
+        ---
     - name: drop weapon ammo
       en: >
         The total number of reserve ammo rounds included with the dropped weapon.
