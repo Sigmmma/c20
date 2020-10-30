@@ -273,7 +273,9 @@ comments:
             - name: inhibits walking
               en: ...
             - name: forces drop weapon
-              en: ...
+              en: >
+                Causes the unit to drop its held weapon when this region is destroyed,
+                such as shooting the arms off of Flood.
             - name: causes head maimed scream
               en: ...
         - name: damage threshold

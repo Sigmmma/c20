@@ -390,8 +390,9 @@ comments:
         A random range for how loaded the dropped weapon is, as a fraction of its
         magazine size or charge. Plasma weapons are dropped at 100% charge no matter
         this field's value under special circumstances:
-        * If the [region][gbxmodel#regions] holding the weapon was destroyed, such
-        as shooting the arm off a Flood actor.
+        * If a model region was destroyed and that region's
+        [_forces drop weapon_ flag][model_collision_geometry#tag-field-regions-forces-drop-weapon]
+        is enabled, such as shooting the arm off a Flood actor.
         * If the actor has a chance of [feigning death][unit#feigning-death] and
         reviving, but not if the damage exceeds the _hard death threshold_.
         ---
