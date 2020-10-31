@@ -61,7 +61,15 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
     `${baseUrl}${page.localizedPaths[lang]}/${page.img}` :
     `${baseUrl}/assets/librarian.png`;
 
-  const plaintextPreview = bodyPlaintext ? `${bodyPlaintext.substring(0, PREVIEW_LENGTH_CHARS)}...` : "";
+  //we only want a plaintext preview if the page is nonempty and isn't just a placeholder "..."
+  let plaintextPreview = "";
+  if (bodyPlaintext && !bodyPlaintext.startsWith("...")) {
+    //trim the plaintext preview to a maximum length
+    bodyPlaintext = bodyPlaintext.replace(/\n/g, " ").trim();
+    plaintextPreview = bodyPlaintext.length > PREVIEW_LENGTH_CHARS ?
+      `${bodyPlaintext.substring(0, PREVIEW_LENGTH_CHARS)}...` :
+      bodyPlaintext
+  }
   const keywords = R.path(["keywords", lang], page);
   const otherLangs = page.langs.filter(it => it != lang);
 
@@ -89,7 +97,7 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
           <meta property="og:article:tag" content="${keyword}"/>
         `)}
         <meta property="og:url" content="${baseUrl}${page.tryLocalizedPath(lang)}"/>
-        <meta property="og:description" content="${plaintextPreview}"/>
+        <meta property="og:description" content="${escapeHtml(plaintextPreview)}"/>
         <meta property="og:image" content="${imgAbsoluteUrl}"/>
         <title>${page.tryLocalizedTitle(lang)} - c20</title>
         <link rel="preload" type="application/json" as="fetch" href="/assets/search-index_${lang}.json">
