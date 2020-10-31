@@ -265,13 +265,17 @@ comments:
             - name: disappears when shield is off
               en: ...
             - name: inhibits melee attack
-              en: ...
+              en: >
+                Prevents melee attacks by the unit when this region is destroyed.
+                Used for the Flood's arms, for example.
             - name: inhibits weapon attack
               en: ...
             - name: inhibits walking
               en: ...
             - name: forces drop weapon
-              en: ...
+              en: >
+                Causes the unit to drop its held weapon when this region is destroyed,
+                such as shooting the arms off of Flood.
             - name: causes head maimed scream
               en: ...
         - name: damage threshold
