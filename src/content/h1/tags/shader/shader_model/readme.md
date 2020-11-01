@@ -23,7 +23,7 @@ The _multipurpose map_ is an optional bitmap whose individual channels provide g
     <img src="multipurpose.jpg" alt=""/>
   </a>
   <figcaption>
-    <p>The Chief's multipurpose map, with alpha shown in the top right.</p>
+    <p>The Chief's multipurpose map (on PC), with alpha shown in the top right.</p>
   </figcaption>
 </figure>
 
@@ -34,7 +34,7 @@ When Gearbox ported Halo to PC, the channels were reordered and **don't match [G
 * **Blue:** Masks [cube map specular reflections](#tag-field-reflection-cube-map). Pure blue is highest specularity, while black is none.
 * **Alpha:** Masks colour change, such as for armour ranks/teams. Colour sources include the [actor_variant][actor_variant#change-colors], [multiplayer colours][hard-coded-data#multiplayer-armor-colors], and [object][object#tag-field-change-colors].
 
-It is a common misconception that multipurpose maps need to be purple due to some stock tags having an identical red and blue channel. However, it is not necessary to have any red channel information if you do not require detail map masking or [another channel](#tag-field-detail-mask) can serve as the detail map.
+It is a common misconception that multipurpose maps need to be purple due to some stock tags having an identical red and blue channel. However, it is not necessary to have any red channel information if you do not require detail map masking or [another channel](#tag-field-detail-mask) can serve as the detail map mask.
 
 ## Xbox
 Channel order is different on the classic Xbox version of the game. Guerilla correctly describes multipurpose maps extracted from Xbox maps:
