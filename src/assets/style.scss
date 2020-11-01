@@ -12,6 +12,7 @@ $fg: #ccc;
 $fg-faded: #888;
 $fg-strong: #eee;
 $fg-link: #4fbdff;
+$logo-color: #00cacb;
 $border-color: #39434d;
 $border-color-header: #184851;
 $border-radius: 4px;
@@ -285,16 +286,17 @@ h6 {font-size: 0.75em;}
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-headers;
   color: $fg-strong;
-  transition: background-color $transition-time;
   &:hover a.header-anchor, &.destination a.header-anchor {
     opacity: 1;
   }
   &.clear {
     clear: both;
   }
-  &.destination {
-    background-color: $bg-info;
-  }
+}
+
+.destination {
+  transition: all $transition-time cubic-bezier(0, 3, 1, -3);
+  text-shadow: 0 0 $padding-containers-small $fg-strong, 0 0 $padding-containers $logo-color;
 }
 
 h1 {

@@ -94,9 +94,13 @@ comments:
     - name: map v scale
       en: ...
     - name: base map
-      en: ...
+      en: >
+        A bitmap which provides diffuse colour and transparency information to
+        the shader. [See details](#base-map).
     - name: multipurpose map
-      en: ...
+      en: >
+        A bitmap which provides masks for reflection, self-illumination,
+        colour change, and detail maps. [See details](#multipurpose-map).
     - name: detail function
       en: ...
       options:
@@ -107,7 +111,7 @@ comments:
         - name: double biased add
           en: ...
     - name: detail mask
-      en: ...
+      en: Determines the source of detail map masking.
       options:
         - name: none
           en: ...
@@ -126,7 +130,9 @@ comments:
         - name: multipurpose map alpha inverse
           en: ...
         - name: multipurpose map alpha
-          en: ...
+          en: >
+            Use the "auxiliary mask", which is the alpha channel on Xbox
+            and the **red channel** in Gearbox-derived ports.
     - name: detail map scale
       en: ...
     - name: detail map

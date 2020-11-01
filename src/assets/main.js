@@ -308,13 +308,18 @@ if (converterMount) {
 }
 
 //flash heading matching URL hash
-const hash = document.location.hash;
-if (hash) {
-  const heading = document.getElementById(decodeURI(hash.substring(1)));
-  if (heading) {
-    heading.classList.add("destination");
-    setTimeout(() => {
-      heading.classList.remove("destination");
-    }, 500);
+function hashFlash() {
+  const hash = document.location.hash;
+  if (hash) {
+    const heading = document.getElementById(decodeURI(hash.substring(1)));
+    if (heading) {
+      heading.classList.add("destination");
+      setTimeout(() => {
+        heading.classList.remove("destination");
+      }, 500);
+    }
   }
 }
+
+window.addEventListener("hashchange", hashFlash, false);
+hashFlash();
