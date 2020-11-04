@@ -12,6 +12,9 @@ cls
 sv_map bloodgulch slayer
 ```
 
+## OpenSauce users
+If using the [OpenSauce mod][opensauce], use the file name `initc.txt` instead.
+
 # Arguments
 Halo accepts [command line/shortcut arguments][about-args] to customize how the game launches and what features are enabled. From a terminal or Windows command prompt, such arguments are provided after the executable name, e.g. `haloce.exe -screenshot` to run the game with screenshot mode enabled. These arguments can also be added in Windows by editing a shortcut to the Halo executable.
 
