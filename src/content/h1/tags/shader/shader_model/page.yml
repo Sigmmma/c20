@@ -11,3 +11,8 @@ keywords:
     - model
     - gbxmodel
 tagName: shader_model
+thanks:
+  t3h lag:
+    en: Explaining multipurpose map channels
+  Jakey:
+    en: Discovering that self-illumination is added to diffuse light, not diffuse colour
