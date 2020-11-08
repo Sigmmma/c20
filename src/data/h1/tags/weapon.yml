@@ -389,36 +389,61 @@ comments:
       en: ...
       fields:
         - name: flags
-          en: ...
+          en: Various flags that change the behavior of the given trigger.
           fields:
             - name: tracks fired projectile
               en: ...
             - name: random firing effects
-              en: ...
+              en: >
+                If false the firing effects in the firing effects block will be
+                picked in order. If true they will be picked randomly.
             - name: can fire with partial ammo
-              en: ...
+              en: >
+                The weapon will be able to fire as long as the magazine content is
+                above `0`.
             - name: does not repeat automatically
-              en: ...
+              en: >
+                Disables repeat fires while holding the trigger. If true you need
+                to release the trigger before it can fire again.
+                This breaks if the weapon is a charge weapon like the plasma pistol/
+                when the player is a client in multiplayer it will start charging
+                again as soon as it is fired. (This bug is only noticeable if
+                `discharging spews` is set to true).
             - name: locks in on off state
-              en: ...
+              en: >
+                Makes the trigger behave like a switch. Tap it to turn it on. Tap
+                it again to turn it off.
             - name: projectiles use weapon origin
-              en: ...
+              en: >
+                If true the projectiles will spawn at the third person primary trigger
+                or secondary trigger marker. Instead of originating from the center
+                of the first person view.
             - name: sticks when dropped
-              en: ...
+              en: >
+                If true the weapon will keep the trigger state from the time it
+                was dropped. If it was being held while dropped it will continue
+                being held.
             - name: ejects during chamber
-              en: ...
+              en:  ...
             - name: discharging spews
               en: ...
             - name: analog rate of fire
               en: ...
             - name: use error when unzoomed
-              en: ...
+              en: >
+                Makes the trigger always fire completely accurately when zoomed in.
+                
             - name: projectile vector cannot be adjusted
               en: ...
             - name: projectiles have identical error
-              en: ...
+              en: >
+                Makes it so that all projectiles that are fired simultaneously
+                move in the same direction. Only affects triggers that have
+                multiple projectiles per shot.
             - name: projectile is client side only
-              en: ...
+              en: >
+                Makes it so that in multiplayer the projectile does is not syncronized
+                over the network and is instead created by client trigger simulation.
         - name: rounds per second
           en: Determines the maximum rate of fire of the weapon.
         - name: acceleration time
@@ -430,17 +455,22 @@ comments:
             Controls how long it takes for the weapon to return to starting rate
             of fire when not firing.
         - name: blurred rate of fire
-          en: ...
+          en: >
+            The rate of fire needed to switch the object to its ~blur permutation.
         - name: magazine
-          en: ...
+          en: Which magazine this trigger draws from.
         - name: rounds per shot
-          en: ...
+          en: The amount of ammo one shot takes from the magazine.
         - name: minimum rounds loaded
-          en: ...
+          en: >
+            The minimum number of rounds needed in the mag for the trigger to
+            be able to fire
         - name: rounds between tracers
-          en: ...
+          en: >
+            The amount of projectiles not to give a contrail before giving one
+            a contrail again.
         - name: firing noise
-          en: ...
+          en: How loudly AI will perceive this trigger when it fires.
           options:
             - name: silent
               en: ...
@@ -454,34 +484,48 @@ comments:
               en: ...
         - name: error
           en: >
-            The function of this field is unknown. It is **possibly unused by the game**.
+            The function of this field is unknown. It is **unused by the game**.
             Although labeled in [Guerilla][] as a range \[0, 1\], the pistol has a max
             value of 2. Setting this to 0 does not affect projectile spread.
         - name: error acceleration time
           en: >
             Affects how long it takes for the weapon to reach its maximum projectile
-            error angle during rapid or automatic fire.
+            error angle while holding the trigger. Can be negated using quick
+            trigger taps.
         - name: error deceleration time
           en: >
             Affects how long it takes for the weapon to reach its minimum projectile
             error angle during a pause in firing.
         - name: charging time
-          en: ...
+          en: >
+            The amount of time the user has to hold the trigger before the weapon
+            is considered charged.
         - name: charged time
-          en: ...
+          en: >
+            The amount of time it takes _after_ the weapon becomes charged before
+            the overcharged behavior takes effect. **Unused if overcharged action
+            is set to none.**
         - name: overcharged action
-          en: ...
+          en: >
+            The reaction the weapon will have to the charged time running out.
           options:
             - name: none
-              en: ...
+              en: >
+                Nothing happens and the gun will stay charged until the trigger
+                is released.
             - name: explode
-              en: ...
+              en: >
+                The weapon will detonate using its [item][] _detonation effect_.
             - name: discharge
-              en: ...
+              en: >
+                Forces the gun to fire as it would have had the user let go
+                of the trigger.
         - name: charged illumination
           en: ...
         - name: spew time
-          en: ...
+          en: >
+            The amount of time the weapon will be forced to fire at its given
+            firerate after overcharging.
         - name: charging effect
           en: ...
         - name: distribution function
@@ -517,9 +561,16 @@ comments:
             receives [hard-coded singleplayer adjustments][tool#hardcoded-tag-patches]
             at map compile time for the pistol and plasma rifle.
         - name: first person offset
-          en: ...
+          en: >
+            The amount of world units the projectile spawn will be offset from the
+            first person view center.
         - name: projectile
-          en: ...
+          en: >
+            The projectile that this trigger spawns when fired. If edited through
+            tools other than guerilla it can spawn any object type.
+            If used to spawn a vehicle in multiplayer there is a crash bug when
+            someone other than the creator commandeers the vehicle and splatters
+            the original owner.
         - name: ejection port recovery time
           en: ...
         - name: illumination recovery time
