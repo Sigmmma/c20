@@ -568,9 +568,6 @@ comments:
           en: >
             The projectile that this trigger spawns when fired. If edited through
             tools other than guerilla it can spawn any object type.
-            If used to spawn a vehicle in multiplayer there is a crash bug when
-            someone other than the creator commandeers the vehicle and splatters
-            the original owner.
         - name: ejection port recovery time
           en: ...
         - name: illumination recovery time
