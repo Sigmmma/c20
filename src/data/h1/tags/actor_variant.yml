@@ -162,7 +162,10 @@ comments:
       en: >
         This lets you select a rate of fire within the referenced _weapon's_
         maximum _rounds per second_. If set to `0`, the actor will fire at the
-        weapon's maximum rate.
+        weapon's maximum rate. If the weapon is a charging weapon the actor will
+        hold the charge until the burst ends or the weapon's
+        [overcharged action behavior](weapon#tag-field-triggers-charging-time)
+        kicks in.
     - name: projectile error
       en: Adds error on top of the weapon's own error. This makes actors fire inaccurately.
     - name: first burst delay time
