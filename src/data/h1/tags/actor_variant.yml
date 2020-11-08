@@ -159,13 +159,21 @@ comments:
     - name: maximum firing distance
       en: The maximum range, in world units, where the unit can fire at a target.
     - name: rate of fire
-      en: >
-        This lets you select a rate of fire within the referenced _weapon's_
-        maximum _rounds per second_. If set to `0`, the actor will fire at the
-        weapon's maximum rate. If the weapon is a charging weapon the actor will
-        hold the charge until the burst ends or the weapon's
-        [overcharged action behavior](weapon#tag-field-triggers-charging-time)
-        kicks in.
+      # Using | here to preserve newlines.
+      en: |
+        - This lets you select a rate of fire limited by the referenced _weapon's_
+          minimum _rounds per second_.
+        
+        - If set to `0`, the actor will hold the trigger causing it to use the
+          weapon's windup behavior and allows it to reach the weapon's max firing rate.
+        
+        - If the weapon is a charging weapon the actor will hold the charge until
+          the burst ends or the weapon's [overcharged action behavior](weapon#tag-field-triggers-charging-time) kicks in.
+        
+        - Setting a number higher than the weapon's minimum rate of fire can prompt
+          the actor to fire their gun slower than the weapon's minimum because it will
+          try to tap fire at every `1/rate_of_fire` causing it to not be able to fire
+          again immediately after the firing delay.
     - name: projectile error
       en: Adds error on top of the weapon's own error. This makes actors fire inaccurately.
     - name: first burst delay time
