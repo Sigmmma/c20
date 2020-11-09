@@ -7,13 +7,9 @@
   </figcaption>
 </figure>
 
-design goals
-limited knowledge
-react to the player
-breaking point, fleeing, berserking, retreating, defensive states
-transparent through process
-predictable reactions -- cause-effect stimuli with no "fuzzy" emotions
-no hidden state -- inform the player of their state via language, posutre, gesutre, focus of attention
+The **AI system** is the part of the game responsible for AI behaviour over short time scales. It is paired with [level scripts][scripting] which give the AI broader or situational goals.
+
+Halo's game design goals heavily influenced the AI system; [actors][actor] are meant to be predictable rather than completely random, react to the player, have incomplete knowledge, and communicate their internal state via dialogue, animations, and focus of attention.
 
 # Knowledge model
 AI have an _individual knowledge model_ with "real" perception. They do not have complete knowledge of the battlefield but rather remember key objects and rely on cues like visibility and sound to track their enemy. This allows the AI to be fooled and act more believably.

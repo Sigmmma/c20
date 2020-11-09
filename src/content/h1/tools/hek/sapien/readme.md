@@ -15,14 +15,6 @@ Movement of the camera is done in the same way as the in-game debug camera; **ho
 * Increase camera speed by scrolling down or pressing <kbd>Shift</kbd>
 * Decrease camera speed by scrolling up
 
-The game window supports additional keyboard shortcuts when active:
-
-* Cycle though encounters using <kbd>F2</kbd> and <kbd>F3</kbd>. You can also use the console command `ai_select <encounter>`.
-* Select individual actors using <kbd>F4</kbd> once an encounter is selected.
-* <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> creates the file `baggage.txt`. If you end up getting a maximum tag slots error, this file helps locate what's taking up space.
-* <kbd>V</kbd>+<kbd>M</kbd> toggles labels on [firing positions][ai#firing-positions] and highlights [editor gizmos/placeholders][placeholder], making them easier to see. On the next Sapien load, device object names will be shown but can be hidden by resetting Sapien config or using the below:
-* <kbd>V</kbd>+<kbd>N</kbd> hides editor icons and name overlays, but is not a toggle. Resets when Sapien is restarted.
-
 ## Hierarchy view
 The Hierarchy view displays all the objects currently placed in the game and organizes them by type. The left pane of the window shows the Hierarchy tree and currently selected type, and the right pane shows the objects of this selected group or type that are currently placed in the level.
 
@@ -38,6 +30,32 @@ When applying cluster properties, the camera location in the game window determi
 
 ## Output window
 This window is unused and can be ignored.
+
+# Keyboard shortcuts/hotkeys
+Some of these shortcuts are only used in certain windows or editor modes.
+
+## General
+* <kbd>~</kbd>: Opens the command console.
+* <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>: Creates the file `baggage.txt`. If you end up getting a maximum tag slots error or are [running low on tag space][map#limits], this file shows the memory usage of tags in the editor.
+* <kbd>V</kbd>+<kbd>N</kbd>: Hides editor icons and name overlays, but is not a toggle. Resets when Sapien is restarted.
+* <kbd>Shift</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. You can also use it to select the first and last object in the hierarchy list to select everything in-between at once. Useful for deleting multiple objects or moving them all at once.
+* <kbd>Control</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
+* Hold <kbd>Tab</kbd>: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.
+* In the hierarchy view, pressing a key will cycle through all folders that start with that character. For example, pressing <kbd>A</kbd> while having the "Missions" folder expanded will immediately take you to the "AI" folder.
+
+## Encounters and AI
+* <kbd>F2</kbd> and <kbd>F3</kbd>: Cycle though encounters (forward and reverse). You can also use the console command `ai_select <encounter>`.
+* <kbd>F4</kbd>: Select individual actors once an encounter is selected.
+* <kbd>V</kbd>+<kbd>M</kbd>: Toggles labels on [firing positions][ai#firing-positions] and highlights [editor gizmos/placeholders][placeholder], making them easier to see. On the next Sapien load, device object names will be shown but can be hidden by resetting Sapien config or using <kbd>V</kbd>+<kbd>N</kbd>.
+* <kbd>M</kbd>: Using this key while focused on the game window will render what group the firing position belongs to right above it.
+
+## Recorded animations
+* <kbd>Shift</kbd>+<kbd>V</kbd>: Using this key combo while in scripted camera mode will take over (posess) the selected unit.
+* <kbd>Shift</kbd>+<kbd>Q</kbd>: Exits a posessed unit while in scripted camera mode.
+
+## Detail objects painting
+* <kbd>Shift</kbd>+<kbd>Right Click</kbd>: Erases all detail objects in a highlighted cell.
+* <kbd>Shift</kbd>+<kbd>Control</kbd>+<kbd>Right Click</kbd>: As above, but also deleted the cell itself.
 
 # Radiosity
 Both Tool and Sapien can be used to generate [lightmaps][]. To use Sapien, enter the following console commands:
