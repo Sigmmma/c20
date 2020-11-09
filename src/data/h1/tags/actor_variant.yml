@@ -181,7 +181,7 @@ comments:
       en: >
         The distance in world units the actor will try to be in to attack;
         lower bounds is the minimum range and upper is the maximum. The actor
-        may still fire outside this range, but will move to attain it.
+        may still fire outside this range, but will [move to attain it][ai#firing-positions].
     - name: custom stand gun offset
       en: ...
     - name: custom crouch gun offset

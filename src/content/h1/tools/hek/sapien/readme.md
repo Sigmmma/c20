@@ -15,6 +15,14 @@ Movement of the camera is done in the same way as the in-game debug camera; **ho
 * Increase camera speed by scrolling down or pressing <kbd>Shift</kbd>
 * Decrease camera speed by scrolling up
 
+The game window supports additional keyboard shortcuts when active:
+
+* Cycle though encounters using <kbd>F2</kbd> and <kbd>F3</kbd>. You can also use the console command `ai_select <encounter>`.
+* Select individual actors using <kbd>F4</kbd> once an encounter is selected.
+* <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd> creates the file `baggage.txt`. If you end up getting a maximum tag slots error, this file helps locate what's taking up space.
+* <kbd>V</kbd>+<kbd>M</kbd> toggles labels on [firing positions][ai#firing-positions] and highlights [editor gizmos/placeholders][placeholder], making them easier to see. On the next Sapien load, device object names will be shown but can be hidden by resetting Sapien config or using the below:
+* <kbd>V</kbd>+<kbd>N</kbd> hides editor icons and name overlays, but is not a toggle. Resets when Sapien is restarted.
+
 ## Hierarchy view
 The Hierarchy view displays all the objects currently placed in the game and organizes them by type. The left pane of the window shows the Hierarchy tree and currently selected type, and the right pane shows the objects of this selected group or type that are currently placed in the level.
 
