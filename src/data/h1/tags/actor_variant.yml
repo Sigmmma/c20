@@ -161,14 +161,19 @@ comments:
     - name: rate of fire
       # Using | here to preserve newlines.
       en: |
-        - This lets you select a rate of fire limited by the referenced _weapon's_
-          minimum _rounds per second_.
+        This lets you pick the firing rate for this actor. Which affects firing behavior in the following ways:
         
-        - If set to `0`, the actor will hold the trigger causing it to use the
+        - Any above `0` rate of fire is limited by the referenced _weapon's_
+          minimum _rounds per second_ as the actor will only tap the trigger
+          not hold, not causing the firing speed to climb.
+        
+        - When set to `0`, the actor will hold the trigger causing it to use the
           weapon's windup behavior and allows it to reach the weapon's max firing rate.
         
-        - If the weapon is a charging weapon the actor will hold the charge until
+        - If `0` and the weapon is a charging weapon the actor will hold the charge until
           the burst ends or the weapon's [overcharged action behavior](weapon#tag-field-triggers-charging-time) kicks in.
+          
+        - If not `0` charging the weapon will fire their uncharged projectiles if they have them.
         
         - Setting a number higher than the weapon's minimum rate of fire can prompt
           the actor to fire their gun slower than the weapon's minimum because it will
