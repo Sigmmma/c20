@@ -405,18 +405,17 @@ comments:
               en: >
                 Disables repeat fires while holding the trigger. If true you need
                 to release the trigger before it can fire again.
-                This breaks if the weapon is a charge weapon like the plasma pistol/
-                when the player is a client in multiplayer it will start charging
-                again as soon as it is fired. (This bug is only noticeable if
-                `discharging spews` is set to true).
+                Bug: This breaks if the weapon is a charge weapon with the _discharging spews_ behavior.
+                When the player is a client in multiplayer it will immediately start charging again as
+                soon as it is fired potentially causing automatic firing behavior.
             - name: locks in on off state
               en: >
                 Makes the trigger behave like a switch. Tap it to turn it on. Tap
                 it again to turn it off.
             - name: projectiles use weapon origin
               en: >
-                If true the projectiles will spawn at the third person primary trigger
-                or secondary trigger marker. Instead of originating from the center
+                If true the projectiles will spawn at the third person `primary trigger`
+                or `secondary trigger` [marker](gbxmodel#markers) instead of originating from the center
                 of the first person view.
             - name: sticks when dropped
               en: >
@@ -456,7 +455,7 @@ comments:
             of fire when not firing.
         - name: blurred rate of fire
           en: >
-            The rate of fire needed to switch the object to its ~blur permutation.
+            The rate of fire needed to switch the object to its [~blur permutation](gbxmodel#permutations).
         - name: magazine
           en: Which magazine this trigger draws from.
         - name: rounds per shot
@@ -503,7 +502,7 @@ comments:
         - name: charged time
           en: >
             The amount of time it takes _after_ the weapon becomes charged before
-            the overcharged behavior takes effect. **Unused if overcharged action
+            the overcharged behavior takes effect. **Unused if _overcharged action_
             is set to none.**
         - name: overcharged action
           en: >
@@ -515,7 +514,7 @@ comments:
                 is released.
             - name: explode
               en: >
-                The weapon will detonate using its [item][] _detonation effect_.
+                The weapon will detonate using its [item _detonation effect_](item#tag-field-detonation-effect).
             - name: discharge
               en: >
                 Forces the gun to fire as it would have had the user let go
