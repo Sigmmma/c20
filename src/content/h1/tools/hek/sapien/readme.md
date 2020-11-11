@@ -46,8 +46,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 ## Encounters and AI
 * <kbd>F2</kbd> and <kbd>F3</kbd>: Cycle though encounters (forward and reverse). You can also use the console command `ai_select <encounter>`.
 * <kbd>F4</kbd>: Select individual actors once an encounter is selected.
-* <kbd>V</kbd>+<kbd>M</kbd>: Toggles labels on [firing positions][ai#firing-positions] and highlights [editor gizmos/placeholders][placeholder], making them easier to see. On the next Sapien load, device object names will be shown but can be hidden by resetting Sapien config or using <kbd>V</kbd>+<kbd>N</kbd>.
-* <kbd>M</kbd>: Using this key while focused on the game window will render what group the firing position belongs to right above it.
+* <kbd>M</kbd>: Toggles group labels on [firing positions][ai#firing-positions] and highlights [editor gizmos/placeholders][placeholder], making them easier to see. On the next Sapien load, device object names will be shown but can be hidden by resetting Sapien config or using <kbd>V</kbd>+<kbd>N</kbd>.
 
 ## Recorded animations
 * <kbd>Shift</kbd>+<kbd>V</kbd>: Using this key combo while in scripted camera mode will take over (posess) the selected unit.

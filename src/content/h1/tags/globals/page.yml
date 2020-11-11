@@ -5,3 +5,7 @@ tagName: globals
 thanks:
   MosesOfEgypt:
     en: Changes in compiled globals between scenario types
+  gbMichelle:
+    en: Active camo tint and distortion testing
+  Jakey:
+    en: Active camo rasterizer settings documentation
