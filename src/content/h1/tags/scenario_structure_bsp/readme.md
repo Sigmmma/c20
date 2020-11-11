@@ -47,7 +47,7 @@ When a JMS is compiled to BSP by [tool], connected convex faces with the materia
 # Pathfinding data
 The BSP contains data on traversable surfaces which aid AI in pathfinding (walking to a destination). This data is generated automatically during BSP compilation and is retained even in when the BSP is compiled into multiplayer maps.
 
-The maximum pathfinding distance that Halo's engine permits is 3276.7 world units, an _extremely_ long distance. For reference, the distance between bases in Timberland is approximately 100 units.
+_See more about the [pathfinding system][ai#pathfinding]._
 
 # Lightmaps
 

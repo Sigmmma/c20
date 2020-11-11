@@ -56,8 +56,13 @@ The renderer needed to be adapted for the range of user hardware for the PC port
   * Bump map shadows are only visible when dynamic lights are nearby, but should be visible at all times using [lightmap data][lightmaps] for light direction and tint.
   * The "normal" _type_ may<sup>(unconfirmed)</sup> incorrectly mask primary and secondary detail maps when an alpha is present in the base map, visible in b40 exterior tech wall.
 
+# Limits
+At large distances from the [origin][origin-wiki] (starting at approximately 1,000 world units), the effects of low 32-bit floating point precision become apparent in greater [z-fighting][z-fight-wiki] and jittering of moving vertices from the inability to represent small distances. The game is hard-coded to prevent the camera from moving outside of a 10,000-world unit cube centered at the origin (5,000 units along any axis). Game mechanics and mesh rendering begin to break down around 1 million world units.
+
 # Troubleshooting
 Some PC hardware configurations may cause problems with the renderer, specifically transparent shaders stretching/exploding, and mirror reflections exploding. If you are experiencing this, try forcing 1 core affinity for the game process.
 
 [ff]: https://en.wikipedia.org/wiki/Fixed-function
 [shadow-mapping]: https://en.wikipedia.org/wiki/Shadow_mapping
+[origin-wiki]: https://en.wikipedia.org/wiki/Origin_(mathematics)
+[z-fight-wiki]: https://en.wikipedia.org/wiki/Z-fighting

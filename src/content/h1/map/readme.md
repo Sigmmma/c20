@@ -41,6 +41,8 @@ Total tag size is comprised of all non-raw tag data (ie. no bitmap or sound raw 
 
 Care should be taken not to get too close to the tag limit, because even though you may compile a map with a certain set of resource maps (e.g. the English version of the game), Halo players with different languages may actually have _larger_ resource map tag data which now exceeds the limit and prevents your map from loading.
 
+You can toubleshoot which tags are using the most memory by generating `baggage.txt` using the [Sapien][Sapien#game-window] hotkey: <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>.
+
 # Map loading
 Within a map, tag _metadata_ (most of the fields seen in tag editors) is stored separately from _raw data_ (sounds and bitmaps). [BSP data][scenario_structure_bsp] for all BSPs is also stored in its own location. The game is able to find these locations using special headers and indexes in the map file.
 
