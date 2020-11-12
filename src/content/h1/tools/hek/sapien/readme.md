@@ -37,17 +37,16 @@ Some of these shortcuts are only used in certain windows or editor modes.
 ## General
 * <kbd>~</kbd>: Opens the command console.
 * <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>: Creates the file `baggage.txt`. If you end up getting a maximum tag slots error or are [running low on tag space][map#limits], this file shows the memory usage of tags in the editor.
-* <kbd>V</kbd>+<kbd>N</kbd>: Hides editor icons and name overlays, but is not a toggle. Resets when Sapien is restarted.
 * <kbd>Shift</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. You can also use it to select the first and last object in the hierarchy list to select everything in-between at once. Useful for deleting multiple objects or moving them all at once.
 * <kbd>Control</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
 * Hold <kbd>Tab</kbd>: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.
 * In the hierarchy view, pressing a key will cycle through all folders that start with that character. For example, pressing <kbd>A</kbd> while having the "Missions" folder expanded will immediately take you to the "AI" folder.
+* <kbd>N</kbd>: **This hotkey is broken and can cause Sapien to crash when restarted. Do not use it!** It also causes editor icons and name overlays to dissappear for the session.
 
 ## Encounters and AI
 * <kbd>F2</kbd> and <kbd>F3</kbd>: Cycle though encounters (forward and reverse). You can also use the console command `ai_select <encounter>`.
 * <kbd>F4</kbd>: Select individual actors once an encounter is selected.
-* <kbd>V</kbd>+<kbd>M</kbd>: Toggles labels on [firing positions][ai#firing-positions] and highlights [editor gizmos/placeholders][placeholder], making them easier to see. On the next Sapien load, device object names will be shown but can be hidden by resetting Sapien config or using <kbd>V</kbd>+<kbd>N</kbd>.
-* <kbd>M</kbd>: Using this key while focused on the game window will render what group the firing position belongs to right above it.
+* <kbd>M</kbd>: Toggles group labels on [firing positions][ai#firing-positions] and highlights [editor gizmos/placeholders][placeholder], making them easier to see. On the next Sapien load, device object names will be shown but can be hidden by resetting Sapien config.
 
 ## Recorded animations
 * <kbd>Shift</kbd>+<kbd>V</kbd>: Using this key combo while in scripted camera mode will take over (posess) the selected unit.

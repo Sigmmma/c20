@@ -273,16 +273,17 @@ comments:
         - name: projectile
           en: ...
     - name: rasterizer data
-      en: ...
+      en: >
+        Contains global [renderer][] settings and 2D [lookup tables](https://en.wikipedia.org/wiki/Lookup_table).
       fields:
         - name: distance attenuation
           en: ...
         - name: vector normalization
           en: >
-            This bitmap is used as a "lookup table" of precalculated vector
+            This bitmap is used as a lookup table of precalculated vector
             normalizations for visual effects like reflections. In Custom Edition
-            it is also incorrectly used as the reflection cube map when a
-            [shader_transparent_glass][] uses bump-mapped reflections.
+            it is also [incorrectly used][renderer#pc-regressions] as the reflection
+            cube map when a [shader_transparent_glass][] uses bump-mapped reflections.
         - name: atmospheric fog density
           en: ...
         - name: planar fog density
@@ -290,7 +291,10 @@ comments:
         - name: linear corner fade
           en: ...
         - name: active camouflage distortion
-          en: ...
+          en: >
+            This bitmap is used as a lookup table for active camouflage distortion
+            angle calculations. Its alpha channel masks [_tint color_](#tag-field-rasterizer-data-tint-color)
+            on Gearbox-derived ports of the game.
         - name: glow
           en: ...
         - name: default 2d
@@ -312,22 +316,32 @@ comments:
         - name: video noise map
           en: ...
         - name: flags
-          en: ...
+          en: Optional settings for active camouflage.
           fields:
             - name: tint edge density
-              en: ...
+              en: Adds the _tint color_ to the background.
         - name: refraction amount
-          en: ...
+          en: >
+            How much to distort the background of active camouflage.
+            This is measured in **world units** since the effect is not
+            resolution-dependent. Lower values distort more, while higher values
+            distort less.
         - name: distance falloff
-          en: ...
+          en: >
+            The distance in world units where the active camouflage effect fades completely
+            and the object is entirely invisible.
         - name: tint color
-          en: ...
+          en: The color which is multiplied over the background for active camouflage objects.
         - name: hyper stealth refraction
-          en: ...
+          en: >
+            Refaction amount used when [_super active camouflage_][actor_variant#tag-field-flags-super-active-camouflage]
+            is enabled for an [actor_variant][].
         - name: hyper stealth distance falloff
-          en: ...
+          en: >
+            Falloff distance for [_super active camouflage_][actor_variant#tag-field-flags-super-active-camouflage].
         - name: hyper stealth tint color
-          en: ...
+          en: >
+            Tint color used for [_super active camouflage_][actor_variant#tag-field-flags-super-active-camouflage].
         - name: distance attenuation 2d
           en: ...
     - name: interface bitmaps
