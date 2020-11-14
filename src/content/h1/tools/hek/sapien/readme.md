@@ -36,6 +36,8 @@ Some of these shortcuts are only used in certain windows or editor modes.
 
 ## General
 * <kbd>~</kbd>: Opens the command console.
+* <kbd>Space</kbd>: clones the selected object to the camera's location and orientation. If multiple objects are selected, uses the first.
+* <kbd>Pause/Break</kbd>: Pauses your Sapien instance. Press "OK" in the opened window to resume Sapien.
 * <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>: Creates the file `baggage.txt`. If you end up getting a maximum tag slots error or are [running low on tag space][map#limits], this file shows the memory usage of tags in the editor.
 * <kbd>Shift</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. You can also use it to select the first and last object in the hierarchy list to select everything in-between at once. Useful for deleting multiple objects or moving them all at once.
 * <kbd>Control</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
@@ -44,9 +46,17 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>N</kbd>: **This hotkey is broken and can cause Sapien to crash when restarted. Do not use it!** It also causes editor icons and name overlays to dissappear for the session.
 
 ## Encounters and AI
-* <kbd>F2</kbd> and <kbd>F3</kbd>: Cycle though encounters (forward and reverse). You can also use the console command `ai_select <encounter>`.
-* <kbd>F4</kbd>: Select individual actors once an encounter is selected.
-* <kbd>M</kbd>: Toggles group labels on [firing positions][ai#firing-positions] and highlights [editor gizmos/placeholders][placeholder], making them easier to see. On the next Sapien load, device object names will be shown but can be hidden by resetting Sapien config.
+* <kbd>Middle mouse</kbd>+<kbd>F1</kbd>: Selects the spawned actor in the center of the game view.
+* <kbd>Middle mouse</kbd>+<kbd>F2</kbd> Select next encounter. You can also use the console command `ai_select <encounter>`.
+* <kbd>Middle mouse</kbd>+<kbd>F3</kbd>: Select previous encounter.
+* <kbd>Middle mouse</kbd>+<kbd>F4</kbd>: When an encounter is selected, selects the next actor.
+* <kbd>Middle mouse</kbd>+<kbd>Shift</kbd>+<kbd>F4</kbd>: Selects the previous actor.
+* <kbd>Middle mouse</kbd>+<kbd>F5</kbd>: Cycles through render modes for actor sprays:
+  * Actions
+  * Activation status
+  * None
+* <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
+* <kbd>M</kbd>: Toggles group labels on [firing positions][ai#firing-positions] and highlights [editor gizmos/placeholders][placeholder], making them easier to see. On the next Sapien load, [BSP marker][scenario_structure_bsp#tag-field-markers] names will be shown but can be hidden by resetting Sapien config.
 
 ## Recorded animations
 * <kbd>Shift</kbd>+<kbd>V</kbd>: Using this key combo while in scripted camera mode will take over (posess) the selected unit.
