@@ -56,10 +56,21 @@ Some of these shortcuts are only used in certain windows or editor modes.
   * Activation status
   * None
 * <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
-* <kbd>M</kbd>: Toggles group labels on [firing positions][ai#firing-positions] and highlights [editor gizmos/placeholders][placeholder], making them easier to see. On the next Sapien load, [BSP marker][scenario_structure_bsp#tag-field-markers] names will be shown but can be hidden by resetting Sapien config.
+* <kbd>M</kbd>: Toggles group labels on [firing positions][ai#firing-positions], shows the default actor for squad starting locations, and highlights [editor gizmos/placeholders][placeholder], making them easier to see. On the next Sapien load, [BSP marker][scenario_structure_bsp#tag-field-markers] names will be shown but can be hidden by resetting Sapien config.
 
 ## Recorded animations
+These hotkeys apply in scripted camera mode.
+
+* <kbd>A</kbd>: Toggle "Attach camera to unit" option.
+* <kbd>E</kbd>: Toggle "Edit camera point" option.
+* <kbd>C</kbd>: Toggle "Scripted camera control".
+* <kbd>Space</kbd>: Creates a new camera point at the game view camera's location if "Edit camera point" is disabled. If "Edit camera point" is enabled then it instead moves the "Active camera point" to the camera's location.
 * <kbd>Shift</kbd>+<kbd>V</kbd>: Using this key combo while in scripted camera mode will take over (posess) the selected unit.
+* <kbd>Backspace</kbd>: Cycles through camera types for the posessed unit:
+  * First person
+  * Third person
+  * Flycam
+* <kbd>Caps lock</kbd>: Start/stop animation recording. Unfortunately it is not possible to control the posessed unit while recording.
 * <kbd>Shift</kbd>+<kbd>Q</kbd>: Exits a posessed unit while in scripted camera mode.
 
 ## Detail objects painting
