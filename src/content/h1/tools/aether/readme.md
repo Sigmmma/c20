@@ -1,7 +1,7 @@
 Aether is a tool which supports externally baking [lightmaps][] within 3D software like [3ds Max][3dsmax] rather than with the [HEK's][hek] radiosity process. This allows for much higher resolution lightmaps than possible with [Tool][tool#lightmaps] or [Sapien][sapien#radiosity], and shorter baking times since external software is much better optimized for lighting.
 
 # Overview
-Aether is an intermediary program to simplify the process of creating lightmaps for [Halo CE](https://c20.reclaimers.net/h1/) in an external modelling application such as 3dsMAX. It provides a simplified workflow to get the lightmap mesh and textured mesh into your modelling application, as well as all lighting significant map objects in their correct place and rotation. It also provides an easy way to get your custom lightmaps into the bitmap format that Halo uses.
+Aether is an intermediary program to simplify the process of creating lightmaps for [Halo CE][h1] in an external modelling application such as 3dsMAX. It provides a simplified workflow to get the lightmap mesh and textured mesh into your modelling application, as well as all lighting significant map objects in their correct place and rotation. It also provides an easy way to get your custom lightmaps into the bitmap format that Halo uses.
 
 As all of your lighting is being done externally, you can set all of your shaders' radiosity power values to zero and use a copy of your sky that has no lights when running debug lightmaps. This will make it go alot quicker on bigger maps. 
 
@@ -17,8 +17,8 @@ The extracted assets can then be exported for [3ds Max][3dsmax] or [Maya][] usin
 
 Within the 3D software, the artist can place lights and bake lighting to a texture using the BSP's lightmap UVs. Aether can then compile the texture back to [bitmap][] format and optionally [dither][dithering] the texture to avoid banding, since lightmaps are 16-bit.
 
-# Aether usage tutorial
-**Aether - loading and exporting a BSP**
+# Aether tutorial for 3ds MAX
+## Aether - loading and exporting a BSP
 
 Open up Aether and you'll see the main window. 
 
@@ -54,14 +54,14 @@ Hit the export button now.
 
 The options here should be pretty self explanatory, but you'll need at least the BSP and Lightmaps options selected for this tutorial. If you don't have all of your bitmaps exported already hit either All for all the bitmaps in all of the BSPs' shaders, or Diffuse only for just the diffuse textures. If you have objects in your map that you want to cast shadows or emit light then you need the Marker Export options checked too. Overwrite should be checked unless you've edited bitmaps for example, but you'll definately need it if you've recompiled your BSP as the lightmap UV's will be different. Hit export and Aether will output all of the info you need into your scenarios relative data directory.
 
-**3ds MAX - importing BSP**
+## Importing BSP
 Next you need to import your BSP into 3ds MAX. Import the textured mesh .obj file using the settings provided on this page. Aether does export a material (.mtl) file with the BSP, which should also be imported by putting the filename into the material box. So now you should have your BSP imported, but it probably looks completely grey at the moment. You could go through each material and set them to show in viewport but the MAXscript supplied with Aether does this for you. Select the "MAXscript" tab and hit the "MAXScript button". If you don't have the script set to load on startup, hit Run Script and select it. To actually show the script interface you will need to reselect it in the Utilities drop down list, even if it is already shown.
 
 With your BSP mesh selected, press the Fix Materials button. This will set all of its materials to show in viewport and will set all of the diffuse bitmaps' Alpha Source value to None (Opaque), which stops the material from being rendered too white. You should be left with a correctly rendered BSP. 
 
-**3ds MAX - importing objects**
+## Importing objects
 
-To import your objects, you are going to need TheGhosts [GBXModel](http://hce.halomaps.org/index.cfm?fid=1972) model importer, so install that first. In the Aether script utility there is a Marker Tools button. Press it and a window will pop up which is what we are going to use to place all of our objects. Hit the Open Marker File button and select one of the aemk files you exported from Aether earlier. Once you have done so, the Markers list will be populated with the object types used in the map. Look at the first object in the scenery list. It's handy to have your scenario open in guerilla at this point so that you can easily find out what gbxmodel you need to open, as well as what bitmaps you need to extract.
+To import your objects, you are going to need TheGhost's [gbxmodel importer](http://hce.halomaps.org/index.cfm?fid=1972), so install that first. In the Aether script utility there is a Marker Tools button. Press it and a window will pop up which is what we are going to use to place all of our objects. Hit the Open Marker File button and select one of the `.aemk` files you exported from Aether earlier. Once you have done so, the Markers list will be populated with the object types used in the map. Look at the first object in the scenery list. It's handy to have your scenario open in [Guerilla][] at this point so that you can easily find out what gbxmodel you need to open, as well as what bitmaps you need to extract.
 
 <figure>
   <a href="Fix_Materials.jpg">
@@ -100,7 +100,7 @@ Repeat this process with all of the objects used in your map and you should end 
   </figcaption>
 </figure>
 
-**3ds MAX - lighting**
+## Lighting
 The first step to creating your lighting solution should be to set up your skys lights. So open up your scenarios sky tag if it has one. When adding lights that are in the sky, use directional lights as these emit parallel light rays, which is why they are most suitable as suns and other big light sources. To get your light in the right orientation, the Y and P angles correspond to Z and Y respectively. The actual position of your lights isn't important as they are emitting parallel rays, however you should make sure that they encompass the entire map.
 
 A consideration that needs to be made is that light will pass through backfaces, which in most cases can be easily resolved by surrounding the level with a blocking mesh. Your blocking mesh should either have no smoothing group applied, or a completely different smoothing group to what it connects to.
@@ -131,24 +131,24 @@ You can move the pivot of the light before snapping them to faces so that you do
 
 Now you should have your level filled with lights.
 
-Shadows are, again, largely down to use preferemce but it's easiest to turn on raytracing for all small lights with default settings, while using area shadows on the sky lights as they can produce nice soft shadows. Setting the area shadows length and width to ~200.0 works well for beavercreek.
+Shadows are, again, largely down to use preference but it's easiest to turn on raytracing for all small lights with default settings, while using area shadows on the sky lights as they can produce nice soft shadows. Setting the area shadows length and width to ~200.0 works well for beavercreek.
 
 If you render your level now you'll probably notice that there's a lot of dark areas which isn't what you want, but those black areas will be handled by global illumination, using the Light Tracer. Open up the render dialog and go to the "Advanced Lighting tab. Select "Light Tracer" from the drop down list. There are a number of options that will affect your resulting lightmaps, but Rays Per Sample, Filter Size and Bounces are the important ones. A high rays per sample will create very accurate lighting, however this will increase your render time and since we are rendering to (relatively) small lightmaps, about 4 rays should be plenty. Filter size determines how much a ray should be scaled in order to merge together and produce a smooth result. If your light tracing looks blotchy, increase the filter size until it smooths out, or increase the ray count. The filter size was set at 8.0 for this tutorial. Bounces defines how many times a ray should reflect off of surfaces in the scene before stopping. This can seriously damage your render time so keep it small. Around 3 tends to be sufficient.
 
 These settings should be ample for lightmap usage as any more accuracy probably won't be noticable in the finished lightmap. If you're still getting black areas, some ambient light added in the Light Tracer settings can lift the really dark areas that might still occur. 
 
-**3ds MAX - importing lightmap**
+## Importing lightmap
 Before we get into importing the lightmap, there's some cleanup we need to do on the BSP first. If you're lighting a stock Halo BSP, there may well be non-renderable lighting blocks used to put light into areas that have no other light-emitting faces. These need to be removed. Any decal faces, including lights that are just above a surface, also need to go as the lightmap mesh will have no UVs for them and they'll just get in the way. You'll also need to remove water planes. Basically get rid of any faces that aren't affected by lighting. It's easy enough to select such faces by material ID and detach them to a non-renderable object. You should also check that any transparent surfaces, such as ladders or trees, have their transparency correctly set up.
 
 Once all that's out of the way, you can import your lightmap obj using the same settings as before, but making sure you are not importing it as one mesh. The reason for this will be explained later in the tutorial. Once imported, you first want to select all of the lightmap meshes and go to their properties, through the right click menu. In the "General" tab you need to untick "Receive Shadows and Cast Shadows" so that the lightmap meshes don't interfere with shadow casting, and then in the "Adv. Lighting" tab tick the "Exclude from Adv. Lighting Calculations" box so that they don't interfere with the light tracer.
 
 We are going to be using the Projection modifier to bake our lighting out, which is basically the same technique used to create normal maps. It works by projecting a ray down from the UV mesh onto the lit BSP mesh and storing the lighting value that is there into a bitmap. So to start, select all of your lightmap meshes and add a Projection modifier. You can turn off the cage as we aren't going to be using it. You then need to select the textured BSP using the "Pick" button. That's it for the Projection modifier. 
 
-Before rendering, it can be helpful to use Photoshop to smooth out some lighting glitches, or to create layers of artificial light by blending multiple renders. It's best to do this near the end of the lightmpapping process, as redoing the same changes with each render can become very frustrating.
+Before rendering, it can be helpful to use [Photoshop][] or [other 2D software][gimp] to smooth out some lighting glitches, or to create layers of artificial light by blending multiple renders. It's best to do this near the end of the lightmpapping process, as redoing the same changes with each render can become very frustrating.
 
 Never import lightmap geometry from Halo one lightmap at a time. Usertool's import process relies on the lightmaps being in order from 0 to whatever, and 3ds max will mess that order up if a lightmap is imported later. It's all or nothing.
 
-**3ds MAX - Rendering Lightmaps**
+## 3ds MAX - rendering lightmaps
 You now need to select all of your lightmap meshes and open the Render to Texture dialog. You can open it by either going Rendering->Render to Texture, or by hitting 0. Once opened, go about half way down the dialog box and there will be three options for "Individual", "All Selected" and "All Prepared". For now you want "All Selected" checked so that the changes you make will be duplicated to all the meshes selected.
 
 There are a number of options that need to be set in this dialog. Set Path to where you want your bitmaps to be saved to. Set your padding to about 4 which will prevent black bits occuring on UV edges. Then tick the Enable projection box and make sure your projection modifier is selected in the list next to it. Hit the options button. The "Projection Options" dialog box will pop up with some settings we need to check. But first click the "Setup.." button, which will bring up your renderer options. Uncheck "Antialiasing", "Filter Maps" and "Enable Global Supersampler". This will make your render time faster.
@@ -175,18 +175,18 @@ There is a limit to how much bitmap data a bitmap tag is permitted to hold so if
 
 Finally set "Individual" back to "All Selected". Now you are all set up and ready to render your lightmaps. So hit render. Even if you set rectangular bitmap resolutions such as 1024x512, they will still render as a square but will be scaled before being saved. You will notice that the render preview will show it rendering with diffuse maps and such, but the output bitmaps will only have the lighting information. 
 
-**Aether - Importing Lightmap Bitmaps**
+## Aether - importing lightmap bitmaps
 While your lightmaps are being rendered (Which could take some time depending on your lighting complexity and computer speed) you can set up your bitmaps in Aether ready to import your new lightmaps. So open Aether and open your bitmap for editing. Check the "Resize on Import" check box on all lightmaps. Now, because MAX will save each bitmap it completes before starting the next one, you can start importing your new lightmaps while the next ones are being rendered. So, find out which bitmaps are done and hit Import on the corresponding lightmap in Aether. Open the new bitmap and change the import width and height to your intended size. Hit continue and your bitmap will be imported. Once all lightmaps are imported close the bitmap and say yes to save changes. Then close Aether.
 
 Aether doesn't release the lightmap bitmap until you close the program. So if you get file in use errors when compiling your map, make sure Aether is closed.
 
 Thats it! lightmap done! Now that you have everything set up you can create quick iterations of your lighting without having to wait a day for lightmaps to run. 
 
-**Custom Lightmap UVs**
+## Custom lightmap UVs
 Custom Lightmap UVs
 Example of poor UVs by Tool
 
-When viewing your custom lightmaps you may find that there are areas that aren't correctly lit, or where the shadows dont line up, etc. This is because Tool wasn't designed to make lightmap UVs suited to high resolution lightmaps, which results in small overlaps and lack of consideration for lightmap UV alignment, which would otherwise be unnoticable with Halos default lightmaps. To tackle this problem a custom lightmap UV importer has been developed for UserTool[2] so that designers have complete control over their lightmaps UVs and can now remove such problems.
+When viewing your custom lightmaps you may find that there are areas that aren't correctly lit, or where the shadows dont line up, etc. This is because Tool wasn't designed to make lightmap UVs suited to high resolution lightmaps, which results in small overlaps and lack of consideration for lightmap UV alignment, which would otherwise be unnoticable with Halos default lightmaps. To tackle this problem a custom lightmap UV importer has been developed for UserTool so that designers have complete control over their lightmaps UVs and can now remove such problems.
 
 The recommended workflow for creating completely custom lightmap UVs:
 
@@ -214,6 +214,7 @@ The recommended workflow for creating completely custom lightmap UVs:
 
 If you only want to fix the problem areas created by Tool then you would do a quick custom lighting solution to highlight the problem areas and then do the above but only fixing those areas. 
 
+[dithering]: https://en.wikipedia.org/wiki/Dither
 
 
 
