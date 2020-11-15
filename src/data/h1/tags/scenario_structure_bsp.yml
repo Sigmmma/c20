@@ -370,15 +370,15 @@ comments:
             - name: compressed vertices
               en: ...
     - name: lens flares
-      en: ...
+      en: Lists the available lens flares used by this BSP's _lens flare markers_.
       fields:
         - name: lens
           en: ...
     - name: lens flare markers
-      en: ...
+      en: Points within the BSP where a _lens flare_ will be rendered.
       fields:
         - name: position
-          en: ...
+          en: The 3D position of the lens flare.
         - name: direction i component
           en: ...
         - name: direction j component
@@ -386,7 +386,9 @@ comments:
         - name: direction k component
           en: ...
         - name: lens flare index
-          en: ...
+          en: >
+            Determines which flare from the [_lens flares_ block](#tag-field-lens-flares)
+            is rendered at this position.
     - name: clusters
       en: ...
       fields:
@@ -637,7 +639,12 @@ comments:
     - name: sound pas data
       en: ...
     - name: markers
-      en: ...
+      en: >
+        Named points with orientation within the BSP. They are similar to
+        [gbxmodel markers][gbxmodel#markers] but are not to be confused with
+        [scenario _cutscene flags_][scenario#tag-field-cutscene-flags]. These
+        markers become visible in [Sapien][] when enabling _snap to markers_ in
+        the tool window.
       fields:
         - name: name
           en: ...
