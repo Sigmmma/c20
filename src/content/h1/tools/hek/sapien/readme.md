@@ -56,7 +56,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
   * Activation status
   * None
 * <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
-* <kbd>M</kbd>: Toggles group labels on [firing positions][ai#firing-positions], shows the default actor for move positions used by a squad instance, and highlights [editor gizmos/placeholders][placeholder], making them easier to see. On the next Sapien load, [BSP marker][scenario_structure_bsp#tag-field-markers] names will be shown but can be hidden by resetting Sapien config.
+* <kbd>M</kbd>: Toggles group labels on [firing positions][ai#firing-positions], shows the default actor for move positions used by a squad instance, and highlights [editor gizmos/placeholders][placeholder], making them easier to see.
 
 ## Recorded animations
 These hotkeys apply in scripted camera mode.
