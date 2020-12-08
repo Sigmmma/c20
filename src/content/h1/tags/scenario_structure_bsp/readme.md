@@ -24,8 +24,6 @@ Clusters are sealed volumes of a BSP separated by portal planes. They are used b
 
 Note that it may still be desirable to reference weather for indoor clusters if there are outdoor areas visible from them, otherwise snow and rain particles will abruptly disappear. To mask weather in such clusters, use [weather polyhedra](#weather-polyhedra).
 
-There is a maximum limit to visible weather polyhedra. The exact amount is unconfirmed but is around 8-10. Beyond this point, some polyhedra will be ignored and [Sapien][] will print warnings.
-
 # Fog planes
 Areas of a map which need a fog layer can be marked using _fog planes_. These are 2D surfaces which reference [fog tags][fog], not to be confused with atmospheric fog which is part of the [sky tag][sky].
 
@@ -43,6 +41,8 @@ Areas of a map which need a fog layer can be marked using _fog planes_. These ar
 Weather polyhedra are simple convex volumes where weather particles will not render. They can be used to mask rain or snow from under overhangs, doorways, and indoor spaces when the cluster has weather.
 
 When a JMS is compiled to BSP by [tool], connected convex faces with the material name `+weatherpoly` will generate _weather polyhedra_. Within the tag, the polyhedra are represented as a center point, bounding radius, and up to 16 planes which enclose a volume.
+
+The game can only support a maximum of 8 visible weather polyhedra. Beyond this point, some polyhedra will be ignored and [Sapien][] will print warnings.
 
 # Pathfinding data
 The BSP contains data on traversable surfaces which aid AI in pathfinding (walking to a destination). This data is generated automatically during BSP compilation and is retained even in when the BSP is compiled into multiplayer maps.
