@@ -83,7 +83,7 @@ These additional arguments are found in game executable, but seem to have no eff
 |`-noSSE`                       | May have been used to disable certain branches of code with [SIMD instructions][about-sse]. Unknown if this has any effect now.
 |`-testcrash`                   | Bring up a crash dialog? No effect.
 |`-usefxfile`                   | Load shaders from DirectX .fx files. Pre-release versions of Halo PC contain .fx files in a `SHADERS\FX` folder. Does not work in release versions.
-|`-useref`                      | Unknown purpose.
+|`-useref`                      | Initializes [D3D device type][d3d] as the reference software implementation (development only)
 
 
 # Appendix: timedemo output
@@ -125,6 +125,7 @@ For further information, please visit the timedemo FAQ at: http://halo.bungie.ne
 
 Note: Each time `-timedemo` is run, the output is *appended* to the output file, meaning any previous content is not overwritten. The output says `Particles= Off` even if your particles setting is otherwise High, suggesting some of these options are hardcoded. The Bungie FAQ link is now a 404 page.
 
+[d3d]: https://docs.microsoft.com/en-us/windows/win32/direct3d9/d3ddevtype
 [about-args]: https://en.wikipedia.org/wiki/Command-line_interface#Arguments
 [about-tga]: https://en.wikipedia.org/wiki/Truevision_TGA
 [about-ips]: https://en.wikipedia.org/wiki/IP_address#Private_addresses
