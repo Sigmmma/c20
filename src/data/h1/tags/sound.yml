@@ -12,7 +12,10 @@ comments:
         - name: split long sound into permutations
           en: ...
     - name: sound class
-      en: ...
+      en: >
+        Determines the "type" of sound and how it is treated by the engine.
+        For example, weapon sounds can wake sleeping Grunts and music volume
+        can be adjusted independently.
       options:
         - name: projectile impact
           en: ...
@@ -81,7 +84,7 @@ comments:
         - name: music
           en: ...
         - name: ambient nature
-          en: ...
+          en: Halo supports only 2 ambient nature sounds playing simultaneously.
         - name: ambient machinery
           en: ...
         - name: ambient computers

@@ -28,7 +28,12 @@ comments:
     - name: continuous damage effect
       en: ...
     - name: tracks
-      en: ...
+      en: >
+        Tracks can be considered the "layers" of the *sound_looping*. Although
+        many tracks can be added, the engine may not be capable of playing more
+        than a certain amount of each [sound class][sound#tag-field-sound-class]
+        (e.g. 2 of "ambient nature") simultaneously. Extra tracks past these limits
+        may not be played.
       fields:
         - name: flags
           en: ...
@@ -42,15 +47,20 @@ comments:
         - name: gain
           en: ...
         - name: fade in duration
-          en: ...
+          en: >
+            How many seconds it takes for this track to fade in, such as when
+            entering a [cluster][scenario_structure_bsp#clusters-and-cluster-data]
+            with a [background sound][scenario_structure_bsp#tag-field-background-sound-palette].
         - name: fade out duration
-          en: ...
+          en: How many seconds it takes for this track to fade out.
         - name: start
-          en: ...
+          en: >
+            The sound that will play for this track when this *sound_looping*
+            begins playing. This field is optional.
         - name: loop
-          en: ...
+          en: A sound to loop indefinitely while the *sound_looping* is playing.
         - name: end
-          en: ...
+          en: The sound that will play for this track when fading out.
         - name: alternate loop
           en: ...
         - name: alternate end
