@@ -728,37 +728,79 @@ comments:
         - name: recorded animation event stream
           en: ...
     - name: netgame flags
-      en: ...
+      en: Multiplayer-specific markers like flag locations, oddball spawns, and teleporters.
       fields:
         - name: position
-          en: ...
+          en: The location in 3D space of this netgame flag.
         - name: facing
-          en: ...
+          en: >
+            The direction that the netgame flag faces (yaw). How this is used
+            depends on the _type_ of the flag.
         - name: type
-          en: ...
+          en: Determines which purpose this netgame flag serves.
           options:
             - name: ctf flag
-              en: ...
+              en: >
+                **The CTF flags MUST be the first two entries in the netgame flags list**,
+                or players will be stuck "waiting for space to clear" instead of spawning
+                or the game may crash. It does not matter which team index is placed first,
+                just that the first two entries are the flags. Red team's flag uses team
+                index `0`, and blue team `1`. The _facing_ value is not used to orient
+                the flag pole (the skull faces in the world's +X direction).
             - name: ctf vehicle
-              en: ...
+              en: _Unused._
             - name: oddball ball spawn
-              en: ...
+              en: >
+                Halo's oddball gamemode settings allow up to 16 simultaneous oddballs,
+                so maps should include 16 unique oddball spawns. The oddball will
+                spawn facing the world +X direction regardless of the _facing_ field.
+                Use team index `0` for the first oddball spawn, which should be in a
+                team-neutral location of the map. Increment the team index for each
+                subsequent oddball spawn (up to index `15`). Halo will spawn balls at
+                each flag _in order_ of their index, so ensure flags are alternated
+                across the map to prevent an unfair advantage to a team already
+                occupying an area.
             - name: race track
-              en: ...
+              en: >
+                Determines the checkpoints for race game modes. The game supports up to
+                32 race track points. The team index should be numbered sequentially
+                without gaps, starting at `0` in a team-neutral location. In Rally
+                mode, checkpoints will be selected in random order.
             - name: race vehicle
-              en: ...
+              en: >
+                Used by Halo to spawn vehicles near players at the start of Race
+                games, so you should place up to 16 of them near player spawn points
+                used for Race. _Team index_ is not used. The [green marker handle][placeholder]
+                should be pointed in the direction the vehicle will face forward.
             - name: vegas bank
-              en: ...
+              en: _Unused._
             - name: teleport from
-              en: ...
+              en: >
+                Teleporter entry node. _Team index_ determines the "channel"
+                and links entry and exit nodes together.
             - name: teleport to
-              en: ...
+              en: >
+                Teleporter exit node. _Team index_ determines the "channel"
+                and links entry and exit nodes together. The _difference_ in
+                facing direction (yaw) between the entry and exit nodes is added
+                to the player's yaw to determine their facing direction on exit.
+                For example, if the entry node's _facing_ is -90 degrees and the
+                exit's is 0 degrees (a difference of +90 degrees), then a player
+                entering the teleporter facing North would exit facing East.
             - name: hill flag
-              en: ...
+              en: >
+                Defines the boundaries of a King mode hill. Each hill should be
+                placed as a series of 3-8 hill flags with the same _team index_,
+                with index `0` being the default for non-moving hill mode. At least
+                two hills should be placed to support moving hill mode. The _facing_
+                field is not used.
         - name: team index
-          en: ...
+          en: >
+            The meaning of this field depends on the netgame flag type, and is
+            not necessarily about teams. See the above type descriptions for more
+            details on usage.
         - name: weapon group
-          en: ...
+          en: _Unused._
     - name: netgame equipment
       en: ...
       fields:
