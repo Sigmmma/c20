@@ -31,3 +31,7 @@ let raw_damage = (
 //finally, damage is scaled by the multiplier for the impacted material
 let damage_done = material_damage_multiplier * raw_damage;
 ```
+
+Or, more visually:
+
+![Diagram of damage falloff for the shotgun](shotgun-example.png)

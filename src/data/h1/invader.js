@@ -8,6 +8,9 @@ const {findPaths} = require("../../utils");
 
 async function loadInvaderStructDefs(invaderDefsDir) {
   const filePaths = await findPaths(path.join(invaderDefsDir, "*.json"));
+  if (filePaths.length == 0) {
+    throw new Error("Found no invader struct definitions. Forget to init submodules?");
+  }
   const defsByFile = await Promise.all(filePaths.map(async (filePath) => {
     const fileContents = await fs.readFile(filePath, "utf8");
     return JSON.parse(fileContents);
@@ -41,7 +44,7 @@ function getDirectReferencedTagNames(structName, structDefs) {
 
   while (structStack.length > 0) {
     const struct = structStack.pop();
-    if (!struct) throw new Error(structName);
+    if (!struct) throw new Error(`No definition for struct ${structName}`);
     struct.fields
       .filter(field => field.type == "TagDependency" && !field.unused)
       .flatMap(field => field.classes)
