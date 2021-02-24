@@ -393,7 +393,17 @@ comments:
       en: ...
       fields:
         - name: sky
-          en: ...
+          en: |
+            Sets which sky is visible when within this cluster. Indexes the
+            [_skies_][scenario#tag-field-skies] block of the [scenario][] tag,
+            so a value of `0` would mean the first sky, `1` the second, etc. A
+            value of `-1` marks this cluster as indoor/interior for the purposes
+            of certain [sky][] tag fields.
+
+            It is unknown how exactly [Tool][] determines which clusters are indoor
+            when compiling a BSP, but it does validate that all sky faces in a
+            cluster are of the same sky. For example, a cluster cannot contain both
+            `+sky0` and `+sky1` materials.
         - name: fog
           en: ...
         - name: background sound

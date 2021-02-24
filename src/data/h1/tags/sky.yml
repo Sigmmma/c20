@@ -59,7 +59,10 @@ comments:
             - name: affects exteriors
               en: ...
             - name: affects interiors
-              en: ...
+              en: >
+                If enabled, this light will affect clusters with a
+                [sky index][scenario_structure_bsp#tag-field-clusters-sky] of `-1`,
+                which are considered indoor/interior.
         - name: color
           en: ...
         - name: power
