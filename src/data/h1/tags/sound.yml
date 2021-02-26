@@ -15,7 +15,8 @@ comments:
       en: >
         Determines the "type" of sound and how it is treated by the engine.
         For example, weapon sounds can wake sleeping Grunts and music volume
-        can be adjusted independently.
+        can be adjusted independently. The engine is only capable of playing
+        up to 4 sounds of a sound class simultaneously on high sound settings.
       options:
         - name: projectile impact
           en: ...
@@ -84,7 +85,7 @@ comments:
         - name: music
           en: ...
         - name: ambient nature
-          en: Halo supports only 2 ambient nature sounds playing simultaneously.
+          en: ...
         - name: ambient machinery
           en: ...
         - name: ambient computers

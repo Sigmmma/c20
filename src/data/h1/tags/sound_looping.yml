@@ -30,10 +30,10 @@ comments:
     - name: tracks
       en: >
         Tracks can be considered the "layers" of the *sound_looping*. Although
-        many tracks can be added, the engine may not be capable of playing more
-        than a certain amount of each [sound class][sound#tag-field-sound-class]
-        (e.g. 2 of "ambient nature") simultaneously. Extra tracks past these limits
-        may not be played.
+        many tracks can be added, the engine is not be capable of playing more
+        than 4 of each [sound class][sound#tag-field-sound-class] simultaneously
+        when on high sound quality setting (2 on low or in Sapien). Extra tracks
+        past these limits will not be played.
       fields:
         - name: flags
           en: ...
