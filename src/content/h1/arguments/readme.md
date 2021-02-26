@@ -42,7 +42,7 @@ The following is a comprehensive list of arguments. Not all are not documented i
 |`-use20`                       | Forces the game to run as a shader 2.0 card. This is the intended shader version with all graphical features enabled. You probably won't need to specify this manually unless the game is having difficulty detecting your graphics card type.
 |`-use2a`                       | Similar to `-use20`
 |`-useff`                       | Forces the game to run as a fixed function card. This is the most basic feature set, further disabling shadows, refractive camouflage, and lens flares, with very basic fog, water, and lighting. This may improve performance on resource-constrained systems, but at great cost to visual quality.
-|`-vidmode w,h,r`               | Forces the game to run at a given width, height, refresh rate.
+|`-vidmode w,h,r` or `-vidmode w,h`| Forces the game to run at a given width, height, refresh rate. If refresh rate is not provided, or is provided with a value of `0`, the refresh rate is assumed to be `60`. The use of `-vidmode` forces V-Sync, but this can be disabled again by saving video settings with "No V-Sync" ingame.
 |`-width640`                    | Forces the game to run at 640x480.
 |`-window` or `-windowed`       | Runs the game in a window.
 
