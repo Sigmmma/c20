@@ -124,7 +124,7 @@ Use one of the following strings for inspection type.
 ```
 
 # Progress quest
-???
+This command does nothing. Might have been to test progress bars? Who knows really.
 
 ```sh
 # progress-quest
