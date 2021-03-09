@@ -68,7 +68,7 @@ h2tool.exe lightmaps_debug "scenarios\multi\example\example" "example" checkerbo
 ```
 
 # Batch bitmap compilation
-32bit TIF, uncompressed 32bit TGA, JPEG, and BMP images can be compiled into a [bitmap][] using the `bitmaps` verb:
+TIF, TIFF, uncompressed 32bit TGA, JPEG, 32 bit BMP, and 24 bit BMP images can be compiled into a [bitmap][] using the `bitmaps` verb:
 
 ```sh
 # bitmaps <source-directory>
