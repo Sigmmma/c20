@@ -62,7 +62,7 @@ tool.exe unicode-strings "ui\mp_map_ui"
 For the example above, Tool would expect to find text files at `data\ui\mp_map_ui\`. Assuming no errors, a file named "prisoner.txt" would be compiled into `tags\ui\mp_map_ui\prisoner.unicode_string_list`. Each text file that exists in the source directory will be compiled into it's own individual tag with the name of the tag coming from the text filename.
 
 # Batch bitmap compilation
-TIF images can be compiled into a [bitmap][] using the `bitmaps` verb:
+TIF images with a bit depth of 8 or higher can be compiled into a [bitmap][] using the `bitmaps` verb:
 
 ```sh
 # bitmaps <source-directory>
@@ -74,7 +74,7 @@ For the example above, Tool would expect to find TIF files at `data\characters\c
 Be aware that all images must use the TIF extension for this command to work. If you have TIFF files in the source directory then renaming the extension will do. This command specifically looks for images ending with the TIF extension.
 
 # Bitmap compilation
-a single TIF or TIFF image can be compiled into a [bitmap][] using the `bitmap` verb:
+a single TIF or TIFF image with a bit depth of 8 or higher can be compiled into a [bitmap][] using the `bitmap` verb:
 
 ```sh
 # bitmap <source-file>
