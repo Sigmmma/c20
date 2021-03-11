@@ -1,0 +1,18 @@
+title:
+  en: Halo 2 Editing Kit (H2EK)
+img: h2ek.jpg
+imgCaption:
+  en: >-
+    H2Sapien, H2Guerilla, and H2Tool can still be run on modern Windows systems
+info:
+  en: >
+    * Release date: 2007
+    
+stub: true
+toolName: H2EK
+alerts:
+  - type: danger
+    md:
+      en: >-
+        After installing the H2EK, Windows users must [prevent the Virtual Store
+        from interfering with it][tips#windows-virtual-store].
