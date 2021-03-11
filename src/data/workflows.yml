@@ -438,6 +438,32 @@ workflowItems:
   wind:
     inherit: tags
     page: wind
+   
+  # H2 
+  H2EK:
+    page: h2ek
+    authors:
+      - Bungie
+      - Hired Gun
+      - Pi Studios 
+  H2Tool:
+    inherit: H2EK
+    page: h2tool
+  H2Guerilla:
+    inherit: H2EK
+    page: h2guerilla 
+  H2Sapien:
+    inherit: H2EK
+    page: h2sapien
+  wrl 2.0:
+    page: wrl-2.0
+  ass:
+    page: ass
+  h2_tags:
+    page: h2/tags
+  multilingual_unicode_string_list:
+    inherit: h2_tags
+    page: multilingual_unicode_string_list
 
 # These are groups of tools which perform similar functions. When an item
 # opts in to workflows, these may appear in the metabox to show similar or

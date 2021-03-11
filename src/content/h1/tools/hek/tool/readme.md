@@ -16,7 +16,9 @@ Something to note is that tool reads the filename of the JMS to decide how to ge
 # <permutation_string> <lod_level>.JMS
 base superhigh.JMS
 ```
-Permutation here is a variant for a section of a model otherwise known as a region. LOD or level of detail are lower quality models that the model can swap to depending on distance and resolution(?) to save resources. A permutation can be whatever you would like to name it or should follow the original setup of whatever model you are working with. LOD needs to use a specific string from the list below. The order goes from greatest level of detail to lowest.
+Permutation here is a variant for a section of a model otherwise known as a region. LOD or level of detail are lower quality models that the model can swap to depending screen size to save resources. 
+
+A permutation can be whatever you would like to name it or should follow the original setup of whatever model you are working with. LOD needs to use a specific string from the list below. The order goes from greatest level of detail to lowest.
 
 ```sh
 superhigh
@@ -28,7 +30,7 @@ superlow
 Multiple JMS files can also be used here to generate multiple permutations in a model. 
 
 # Animation compilation
-[Animation data][] files containing transforms for a skeleton can be compiled into a [model_animations][] tag using the `animations` verb:
+[Animation data][animation-data] files containing transforms for a skeleton can be compiled into a [model_animations][] tag using the `animations` verb:
 
 ```sh
 # animations <source-directory>
@@ -49,7 +51,7 @@ tool.exe strings "weapons\assault rifle"
 
 For the example above, Tool would expect to find text files at `data\weapons\assault rifle\`. Assuming no errors, a file named "assault rifle.txt" would be compiled into `tags\weapons\assault rifle.string_list`. Each text file that exists in the source directory will be compiled into it's own individual tag with the name of the tag coming from the text filename.
 
-Do not use this command for strings as they are unused tag types(afaik?). Use unicode-strings instead.
+Do not use this command for strings as they are unused tag types. Use unicode-strings instead.
 
 # Unicode String compilation
 UTF-16 text files containing strings can be compiled into a [unicode_string_list][] using the `unicode-strings` verb:
