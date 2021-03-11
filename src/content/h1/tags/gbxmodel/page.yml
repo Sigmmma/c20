@@ -5,7 +5,6 @@ imgCaption:
   en: >-
     The gbxmodel tag stores not only mesh data, but also markers, animation
     nodes, shader references, and more.
-stub: true
 keywords:
   en:
     - model

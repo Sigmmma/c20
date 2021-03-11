@@ -21,11 +21,11 @@ $padding-flow: 16px;
 $padding-containers-small: 10px;
 $font-size: 12pt;
 $font-size-logo: 14pt;
-$font-family: "Helvetica", sans-serif;
-$font-family-headers: "ConvectionRegular", "Helvetica", sans-serif;
-$font-family-code: "Fira Code", monospace;
-$font-size-code: 10pt;
-$width-content: 60em;
+$font-family: "Avenir", "Noto Sans", "Helvetica", sans-serif;
+$font-family-headers: "ConvectionRegular", $font-family;
+$font-family-code: "Fira Code", Menlo, Consolas, Monaco, monospace;
+$font-size-code: 12pt;
+$width-content: 65em;
 $transition-time: 0.25s;
 
 @font-face {
@@ -57,7 +57,7 @@ ul, ol {
   padding-left: 2em;
 }
 
-img {
+img, video {
   width: 100%;
   display: block;
 }
@@ -255,6 +255,7 @@ details {
   align-items: baseline;
 
   h1 {
+    margin-top: 1em;
     padding-bottom: 0;
     font-size: 2em;
     border-bottom: none;
@@ -286,6 +287,7 @@ h6 {font-size: 0.75em;}
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-headers;
   color: $fg-strong;
+  margin-top: 1.5em;
   &:hover a.header-anchor, &.destination a.header-anchor {
     opacity: 1;
   }
@@ -326,12 +328,20 @@ pre, code {
 }
 
 code {
-  padding: 0.2em;
+  padding: 0 0.2em;
 
   &.language-console > .hljs-name:before {
     content: "halo( ";
     transition: opacity $transition-time;
     color: fuchsia;
+  }
+
+  &.language-hsc:before {
+    content: ".hsc";
+    float: right;
+    opacity: 0.5;
+    color: $fg-faded;
+    font-style: italic;
   }
 }
 

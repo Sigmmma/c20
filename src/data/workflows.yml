@@ -98,6 +98,10 @@ workflowItems:
     page: aether
     authors:
       - TheFieryScythe
+  phantom_tool:
+    page: phantom_tool
+    authors:
+      - Conscars
   LM_Tool:
     page: lm_tool
     authors:
@@ -158,6 +162,9 @@ workflowItems:
   invader-build:
     inherit: Invader
     heading: invader-build
+  invader-sound:
+    inherit: Invader
+    heading: invader-sound
   # resources:
   wrl:
     page: wrl
@@ -183,6 +190,8 @@ workflowItems:
     url: https://en.wikipedia.org/wiki/COLLADA
   wav:
     url: https://en.wikipedia.org/wiki/WAV
+  flac:
+    url: https://en.wikipedia.org/wiki/FLAC
   txt:
     url: https://en.wikipedia.org/wiki/Plain_text
   map:
@@ -466,6 +475,10 @@ similarItems:
     - Tool
     - OS_Tool
     - LM_Tool
+    - phantom_tool
+  -
+    - phantom_tool
+    - Ghostbuster
   -
     - LM_Tool
     - Aether
@@ -499,7 +512,13 @@ workflows:
       - png
       - tga
   # sounds
-  - using: Mozzarilla
+  - using: invader-sound
+    from: flac
+    to: sound
+  - using:
+      - Mozzarilla
+      - Tool
+      - invader-sound
     from: wav
     to: sound
   # 3d exports/imports
@@ -601,6 +620,7 @@ workflows:
   - using:
       - Tool
       - OS_Tool
+      - phantom_tool
     from: jms
     to:
       - model_collision_geometry

@@ -415,7 +415,7 @@ comments:
             - name: projectiles use weapon origin
               en: >
                 If true the projectiles will spawn at the third person `primary trigger`
-                or `secondary trigger` [marker](gbxmodel#markers) instead of originating from the center
+                or `secondary trigger` [marker][gbxmodel#markers] instead of originating from the center
                 of the first person view.
             - name: sticks when dropped
               en: >
@@ -431,7 +431,7 @@ comments:
             - name: use error when unzoomed
               en: >
                 Makes the trigger always fire completely accurately when zoomed in.
-                
+
             - name: projectile vector cannot be adjusted
               en: ...
             - name: projectiles have identical error
@@ -455,7 +455,7 @@ comments:
             of fire when not firing.
         - name: blurred rate of fire
           en: >
-            The rate of fire needed to switch the object to its [~blur permutation](gbxmodel#permutations).
+            The rate of fire needed to switch the object to its [~blur permutation][gbxmodel#permutations].
         - name: magazine
           en: Which magazine this trigger draws from.
         - name: rounds per shot

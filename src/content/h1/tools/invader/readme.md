@@ -36,4 +36,7 @@ Note that the changes done in common with [Tool][tool#hardcoded-tag-patches] are
 # invader-edit-qt
 ...
 
+# invader-sound
+...
+
 [invader-repo]: https://github.com/Kavawuvi/invader

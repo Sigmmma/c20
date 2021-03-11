@@ -72,7 +72,9 @@ comments:
     - name: turn rate
       en: ...
     - name: blur speed
-      en: ...
+      en: >
+        The minimum speed where the vehicle's [gbxmodel ~blur permutation][gbxmodel#permutations]
+        is used for fake motion blur. An example is the Warthog's tires.
     - name: vehicle a in
       en: ...
       options:

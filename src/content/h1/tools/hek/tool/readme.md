@@ -10,25 +10,26 @@ tool.exe model "scenery\rock"
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenery\rock\models\rock.JMS`. Assuming no errors, it would be compiled into `tags\scenery\rock\rock.gbxmodel`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
 
-Something to note is that tool reads the filename of the JMS to decide how to generate specific tag data for the model. The format for this is as follows...
+Something to note is that Tool reads the filename of the JMS to decide how to generate specific tag data for the model. The format for this is as follows:
 
 ```sh
 # <permutation_string> <lod_level>.JMS
 base superhigh.JMS
 ```
-Permutation here is a variant for a section of a model otherwise known as a region. LOD or level of detail are lower quality models that the model can swap to depending on distance and resolution(?) to save resources. A permutation can be whatever you would like to name it or should follow the original setup of whatever model you are working with. LOD needs to use a specific string from the list below. The order goes from greatest level of detail to lowest.
 
-```sh
-superhigh
-high
-medium
-low
-superlow
-```
-Multiple JMS files can also be used here to generate multiple permutations in a model. 
+[Permutations][gbxmodel#permutations] are variants for model's [regions][gbxmodel#regions]. LODs (level of detail) are different quality models rendered depending on the object's size on screen. Permutations can be named arbitrarily, though they should match a model's existing permutation names if modifying an existing asset. LOD needs to use a specific string from the list below:
+
+
+* `superhigh`
+* `high`
+* `medium`
+* `low`
+* `superlow`
+
+Use multiple JMS files to generate multiple permutations in a model.
 
 # Animation compilation
-[Animation data][] files containing transforms for a skeleton can be compiled into a [model_animations][] tag using the `animations` verb:
+[Animation data][animation-data] files containing transforms for a skeleton can be compiled into a [model_animations][] tag using the `animations` verb:
 
 ```sh
 # animations <source-directory>
@@ -37,7 +38,7 @@ tool.exe animations "characters\cyborg"
 
 For the example above, Tool would expect to find corresponding animation data files at `data\characters\cyborg\animations\`. Assuming no errors, it would be compiled into `tags\characters\cyborg\cyborg.model_animations`.
 
-See the animation data page for more info on the various extensions used during animation importing and their purpose.
+See the [animation data][animation-data] page for more info on the various extensions used during animation importing and their purpose.
 
 # String compilation
 UTF-8 text files containing strings can be compiled into a [string_list][] using the `strings` verb:
@@ -47,9 +48,9 @@ UTF-8 text files containing strings can be compiled into a [string_list][] using
 tool.exe strings "weapons\assault rifle"
 ```
 
-For the example above, Tool would expect to find text files at `data\weapons\assault rifle\`. Assuming no errors, a file named "assault rifle.txt" would be compiled into `tags\weapons\assault rifle.string_list`. Each text file that exists in the source directory will be compiled into it's own individual tag with the name of the tag coming from the text filename.
+For the example above, Tool would expect to find text files at `data\weapons\assault rifle\`. Assuming no errors, a file named "assault rifle.txt" would be compiled into `tags\weapons\assault rifle.string_list`. Each text file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the text filename.
 
-Do not use this command for strings as they are unused tag types(afaik?). Use unicode-strings instead.
+**Avoid using this this command for strings because [string_list][] is an unused tag types. Use unicode strings instead.**
 
 # Unicode String compilation
 UTF-16 text files containing strings can be compiled into a [unicode_string_list][] using the `unicode-strings` verb:
@@ -59,31 +60,35 @@ UTF-16 text files containing strings can be compiled into a [unicode_string_list
 tool.exe unicode-strings "ui\mp_map_ui"
 ```
 
-For the example above, Tool would expect to find text files at `data\ui\mp_map_ui\`. Assuming no errors, a file named "prisoner.txt" would be compiled into `tags\ui\mp_map_ui\prisoner.unicode_string_list`. Each text file that exists in the source directory will be compiled into it's own individual tag with the name of the tag coming from the text filename.
+For the example above, Tool would expect to find text files at `data\ui\mp_map_ui\`. Assuming no errors, a file named "prisoner.txt" would be compiled into `tags\ui\mp_map_ui\prisoner.unicode_string_list`. Each text file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the text filename.
 
 # Batch bitmap compilation
-32bit TIF images can be compiled into a [bitmap][] using the `bitmaps` verb:
+[TIFF][wiki-tiff] (.tif) images can be compiled into a [bitmap][] using the `bitmaps` verb:
 
 ```sh
 # bitmaps <source-directory>
 tool.exe bitmaps "characters\cyborg\bitmaps"
 ```
 
-For the example above, Tool would expect to find TIF files at `data\characters\cyborg\bitmaps\`. Assuming no errors, each image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\`. Each image file that exists in the source directory will be compiled into it's own individual tag with the name of the tag coming from the image filename.
+For the example above, Tool would expect to find .tif files at `data\characters\cyborg\bitmaps\`. Assuming no errors, each image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\`. Each image file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the image filename.
 
-Be aware that all images must use the TIF extension for this command to work. If you have TIFF files in the source directory then renaming the extension will do. This command specifically looks for images ending with the TIF extension.
+Be aware that **all images must use the _.tif_ extension** for this command to work. If you have _.tiff_ files in the source directory, then rename their extensions to _.tif_.
+
+Tool supports TIFF files with a [colour depth][wiki-color] of at least 8 bits per pixel, 32-bit color (8 bits per channel) being typical.
 
 # Bitmap compilation
-a single 32bit TIF or TIFF image can be compiled into a [bitmap][] using the `bitmap` verb:
+Compile a single TIFF image into a [bitmap][] using the `bitmap` verb:
 
 ```sh
 # bitmap <source-file>
 tool.exe bitmaps "characters\cyborg\bitmaps\cyborg"
 ```
-For the example above, Tool would expect to find a TIF or TIFF file at `data\characters\cyborg\bitmaps\cyborg.TIF`. Assuming no errors, the image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\cyborg.bitmap`. The bitmap filename will come from the image filename.
+
+For the example above, Tool would expect to find a _.tif or .tiff_ file at `data\characters\cyborg\bitmaps\cyborg.tif`. Assuming no errors, the image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\cyborg.bitmap`. The bitmap filename will come from the image filename.
+
+As with the `bitmaps` verb, TIFF files must have at least 8-bit colour depth and are typically 32-bit.
 
 # Structure compilation
-
 A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] using the `structure` verb:
 
 ```sh
@@ -93,28 +98,28 @@ tool.exe structure levels\a30 a30_a
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\levels\a30\models\a30_a.JMS`. Assuming no errors, it would be compiled into `tags\levels\a30\a30_a.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
 
-Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps).
+Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
-Multiple JMS files can be placed in the models directory for multiple BSPs. Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs. Do not do this if you're making a multiplayer map.
+Multiple JMS files can be placed in a level's `models` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure lens flares
-This command can run on compiled structure BSP tags to do some magical S@#! to lens flares. Probably from a time where structure did not handle this stuff automatically so probably vestigial 
+This command updates a BSP's [lens flare markers][scenario_structure_bsp#lens-flare-markers] using the current lens flare fields in the BSP's referenced [shader_environment][] tags. This can be used to update the markers after changes to the shader fields without having to recompile the BSP entirely with the `structure` verb.
 
 ```sh
 # structure-lens-flares <bsp-path>
-tool.exe structure-lens-flares " levels\a10\a10a"
+tool.exe structure-lens-flares "levels\a10\a10a"
 ```
 
 # Structure breakable surfaces
-This command can run on compiled structure BSP tags to do some magical S@#! to breakable surfaces. Probably from a time where structure did not handle this stuff automatically so probably vestigial 
+Updates [breakable surface data][scenario_structure_bsp#tag-field-breakable-surfaces] for an existing BSP tag. Saves the tag if only if there was no error.
 
 ```sh
 # structure-breakable-surfaces <bsp-path>
-tool.exe structure-breakable-surfaces " levels\a10\a10a"
+tool.exe structure-breakable-surfaces "levels\a10\a10a"
 ```
 
 # Collision geometry compilation
-A [JMS][] file containing model geometry can be compiled into a [model_collision_geometry][] using the `collision-geometry` verb:
+A [JMS][] file containing a collision model can be compiled into a [model_collision_geometry][] using the `collision-geometry` verb:
 
 ```sh
 # collision-geometry <source-directory>
@@ -123,18 +128,15 @@ tool.exe collision-geometry "scenery\rock"
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenery\rock\physics\rock.JMS`. Assuming no errors, it would be compiled into `tags\scenery\rock\rock.model_collision_geometry`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
 
-Something to note is that tool reads the filename of the JMS to decide how to generate specific tag data for the model. The format for this is as follows...
+Permutations and LODs are also supported using the same file name conventions as [render model compilation](tool#model-compilation):
 
 ```sh
 # <permutation_string> <lod_level>.JMS
 base superhigh.JMS
 ```
-Permutation here is a variant for a section of a model otherwise known as a region. A permutation can be whatever you would like to name it or should follow the original setup of whatever model you are working with. LODs set in the filename will be ignored.
-
-Multiple JMS files can also be used here to generate multiple permutations in a model. 
 
 # Physics compilation
-A [JMS][] file containing model geometry can be compiled into a [physics][] using the `physics` verb:
+A [JMS][] file containing collision spheres can be compiled into a [physics][] using the `physics` verb:
 
 ```sh
 # physics <source-directory>
@@ -144,21 +146,21 @@ tool.exe physics "vehicles\wraith"
 For the example above, Tool would expect to find a corresponding JMS file at `data\vehicles\wraith\physics\wraith.JMS`. Assuming no errors, it would be compiled into `tags\wraith\wraith.physics`.
 
 # Sounds compilation
-A sound file saved as a 16 bit WAV file can be compiled into a [sound][] tag using the `sounds` verb:
+A 16-bit [WAV][wiki-wav] file can be compiled into a [sound][] tag using the `sounds` verb:
 
 ```sh
 # sounds <source-directory> platform<xbox,wav,ogg> ogg_only_value_flag<quality or bitrate>
-tool.exe sounds "vehicles\ghost" ogg 1 
+tool.exe sounds "vehicles\ghost" ogg 1
 ```
-The OGG only value is a float value from 0.0 - 1.0. Zero here being the lowest quality and one being the highest.(How?) You only need to type this value if importing a sound as an OGG.
+
+The "ogg_only_value_flag" argument is only required if "platform" is OGG, and must be a [real number][wiki-real] in the range `0.0 - 1.0`. The value `0` is the lowest quality and `1` is the highest.
 
 In order to import Xbox sounds you will need the XBADPCM codec installed on your PC. You will get tool errors when trying to convert the sound file otherwise.
 
 Regardless of the platform you choose, the sound file you import should still be saved as a 16 bit WAV file.
 
-
 # Sounds by type
-A sound file saved as a 16 bit WAV file can be compiled into a [sound][] tag using the `sounds_by_type` verb:
+A 16-bit WAV file can be compiled into a [sound][] tag using the `sounds_by_type` verb:
 
 ```sh
 # sounds_by_type <source-directory> type<sound_class> <round to 64 samples:yes/no>
@@ -169,10 +171,10 @@ Sounds imported with this command will default to Xbox platform so make sure you
 
 Replace type with a string of your choosing from the following list.
 
-| Sound Class                        | Info                        
+| Sound class                        | Comments
 |------------------------------------|-----------------------------------
-|projectile_impact                   |        
-|projectile_detonation               |       
+|projectile_impact                   |
+|projectile_detonation               |
 |weapon_fire                         |
 |weapon_ready                        |
 |weapon_reload                       |
@@ -203,13 +205,14 @@ Replace type with a string of your choosing from the following list.
 |scripted_dialog_force_unspatialized |
 |game_event                          |
 
-The sound class will influence the capabilities of the sound tag. Some of these will take place either during compile or during runtime. I would love to tell you more but that's all I know!
+The sound class will influence the capabilities of the sound tag, and may be used when the map is compiled or at runtime. See the [sound class field][sound#tag-field-sound-class] for more info.
 
 # Build cache file
 A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb. Simply provide your scenario's tag path:
 
-```
-tool.exe build-cache-file levels\test\tutorial\tutorial
+```sh
+# build-cache-file <scenario-name>
+tool.exe build-cache-file "levels\test\tutorial\tutorial"
 ```
 
 The resulting map file can be found in Halo's `maps` directory.
@@ -277,7 +280,7 @@ tool.exe merge-scenery "levels\a10\a10" "levels\a30\a30"
 ```
 
 For the example above, Tool would expect to find a source scenario tag file at `tags\levels\a10\a10`. The tag blocks in the scenery tag block will be copied over to the destination scenario tag file at `tags\levels\a30\a30`. This will not include scenery palette tag block or object names tag block so watch out for bad indices.
- 
+
 # Zoners model upgrade
 Upgrades models to GBXmodels along with some other magical S@#!. Probably made to port models from Halo Combat Evolved Xbox to Halo Combat Evolved PC.
 
@@ -286,10 +289,15 @@ Upgrades models to GBXmodels along with some other magical S@#!. Probably made t
 tool.exe zoners_model_upgrade
 ```
 
-# Import device defaults 
+# Import device defaults
 ???
 
 ```sh
 # import-device-defaults <defaults|profiles> <savegame path>
 tool.exe import-device-defaults <defaults|profiles> <savegame path>
 ```
+
+[wiki-tiff]: https://en.wikipedia.org/wiki/TIFF
+[wiki-color]: https://en.wikipedia.org/wiki/Color_depth
+[wiki-real]: https://en.wikipedia.org/wiki/Real_number
+[wiki-wav]: https://en.wikipedia.org/wiki/WAV

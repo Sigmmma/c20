@@ -1,4 +1,4 @@
-Basic knowledge of **command-line interfaces** (CLI) is a required skill in Halo modding. Not only does [Tool][] use a CLI, many community tools like [Invader][] and [Ghostbuster][] do as well. CLI usage consists of typing commands into a shell program which runs other programs and displays their output.
+Basic knowledge of **command-line interfaces** (CLI) is a required skill in Halo modding. Not only does [Tool][] use a CLI, many community tools like [Invader][] do as well. CLI usage consists of typing commands into a shell program which runs other programs and displays their output.
 
 On Windows, [Command Prompt][cmd], [PowerShell][], and the newer [Windows Terminal][wterm] are used as shells. On Linux, terminal emulators vary by distribution but [Bash][] is typically used as the shell.
 
@@ -10,18 +10,44 @@ Across all shells, commands are entered in the format: `command <arguments>`. Th
 The shell always has a Current Working Directory (CWD). This is a location (folder) on the filesystem that gives context to file paths provided as arguments. All shells provide a way to change the CWD and see a list of files.
 
 # Command Prompt (Windows)
-...
+Command prompt, or `cmd.exe`, is an [MS-DOS shell][wiki-dos] which ships with all versions of Windows. It can be opened by typing "cmd" into the Run utility, searching for it in the start menu, or entering it into Explorer's navigation bar to open a prompt at the current working directory. Some users choose to copy `C:\Windows\System32\cmd.exe` into their Halo CE directory and launch it from there.
+
+The current working directory is always shown at the start of the prompt line. You can always open an Explorer window at the working directory by entering `explorer`.
+
+## Navigation
+Use the `dir` command to list files in the current working directory, and `cd` to navigate to a different directory on the same drive. Drive letter can be switched by entering just `D:` for example, and the parent directory can be referred to using `..`.
 
 ```dos
-...
+dir
+
+cd "C:\Program Files (x86)\Microsoft Games\Halo Custom Edition"
+cd tags
+cd ..\data
+```
+
+## Running programs
+A program (.exe) can be run by typings its name if it's in the current working directory. The ".exe" extension can be used or not. For example, assuming the current working directory is where the HEK has been installed, either of these commands will work [Tool][]:
+
+```dos
+tool build-cache-file levels\test\tutorial\tutorial
+tool.exe build-cache-file levels\test\tutorial\tutorial
+```
+
+## Scripting
+Multiple lines of commands can be added to a `.bat` batch file, which can be run from Explorer by double-clicking or from a command prompt by entering the filename. This allows you to automate tedious series of commands which are run frequently:
+
+```dos
+REM Comments in DOS begin with REM for "remark"
+tool structure levels\test\tutorial tutorial
+tool lightmaps levels\test\tutorial\tutorial tutorial 0.8 0.6
+tool build-cache-file levels\test\tutorial\tutorial
 ```
 
 # PowerShell (Windows)
-...
+PowerShell is a newer Windows shell which was intended to improve upon Command Prompt. For the purposes of Halo modding, you would use it very similarly to Command Prompt, though it has a few key differences:
 
-```ps
-...
-```
+* When running a program in the current directory, prefix it with `.\` and include the extension like `.\tool.exe`.
+* You can switch drives using `cd D:\example`.
 
 # Bash (Linux)
 The **Bourne-again Shell** (Bash) is the most common default shell used on Unix-like systems. Getting help for a command's arguments differs by command, but usually one of `man <command name>`, `<command name> -h`, or `<command name> --help` will work.
@@ -96,3 +122,4 @@ Run this script with the command `sh compile-map.sh` and it will compile, light,
 [wterm]: https://en.wikipedia.org/wiki/Windows_Terminal
 [bash]: https://en.wikipedia.org/wiki/Bash_%28Unix_shell%29
 [wine]: https://www.winehq.org/
+[wiki-dos]: https://en.wikipedia.org/wiki/MS-DOS#Windows_command-line_interface

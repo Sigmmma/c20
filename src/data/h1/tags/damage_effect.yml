@@ -245,7 +245,7 @@ comments:
         - name: does not hurt owner
           en: ...
         - name: can cause headshots
-          en: >
+          en: |
             If enabled, any headshot against an unshielded enemy will kill it
             regardless of the amount of damage inflicted. Even a 1-damage pistol
             still instantly kills a Hunter because of this flag. It is an instant
@@ -256,6 +256,8 @@ comments:
 
             Although there is also a _can cause multiplayer headshots_ flag,
             it has a separate meaning and this flag applies to both SP and MP.
+
+            A model's headshot area is determined by its `head` [region][gbxmodel#regions].
         - name: pings resistant units
           en: ...
         - name: does not hurt friends
@@ -282,11 +284,13 @@ comments:
         - name: only hurts one infection form
           en: ...
         - name: can cause multiplayer headshots
-          en: >
+          en: |
             Applies a 2x damage multiplier to headshots in multiplayer (based on
             how the map was loaded, not scenario type). This multiplier stacks
             with material modifiers below, so for example a cyborg armor modifier
             of 2 with this flag enabled results in a 4x headshot damage modifier.
+
+            A model's headshot area is determined by its `head` [region][gbxmodel#regions].
         - name: infection form pop
           en: ...
     - name: damage aoe core radius

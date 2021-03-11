@@ -15,3 +15,4 @@ Weapons with homing projectiles and projectiles which can attach (e.g. sticky gr
 * Vehicle health is not synchronized.
 * Because grenade count is encoded as a four-bit signed integer, if a player exceeds 7 grenades then count will underflow to a negative value. Server mods and lua scripts (e.g. those used in SAPP or [Chimera][] ) should not attempt to equip players with more than 7 grenades.
 * A maximum of 511 network objects can be synchronized at any given time (index 0 is used to signal that an object is not networked, so the slot is left empty).
+* BSP transitions do not synchronize.

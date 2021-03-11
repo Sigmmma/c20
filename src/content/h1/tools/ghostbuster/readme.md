@@ -1,6 +1,6 @@
-**Ghostbuster** is a [command-line][] tool used to detect and fix [phantom BSP][scenario_structure_bsp#phantom-bsp]. Given a BSP tag, the tool detects phantom collision surfaces and fixes them by modfying the BSP node structure.
+**Ghostbuster** is a [command-line][] tool used to detect and fix [phantom BSP][scenario_structure_bsp#phantom-bsp]. Given a BSP tag, the tool attempts to detect phantom collision surfaces and fixes them by modifying the BSP node structure.
 
-Specifically, it finds BSP nodes with dividing planes where [Tool][] has incorrectly assumed that one side is "outside" the map and reuses the same child node for both sides of the failed node.
+Specifically, it searches for BSP nodes with dividing planes where [Tool][] has incorrectly assumed that one side is "outside" the map and reuses the same child node for both sides of the failed node.
 
 Ghostbuster is built on the [Reclaimer][] library.
 
@@ -15,8 +15,8 @@ python3 ghostbuster.py <path to BSP tag>
 ```
 
 # Caveats
-Due to rounding errors and the nature of how phantom BSP are detected, the script may report and "fix" a large number of false positives or miss some phantom BSP. This is not usually detrimental to the map, but it has been reported to cause a collision error in one case.
+Due to rounding errors and the nature of how phantom BSP are detected, the script may report and "fix" a large number of false positives or miss some phantom BSP. This may cause collision holes where items fall through the map in the affected area.
 
-Using Ghostbuster should be a tool of last resort, and phantom BSP can usually be cleared up by adjusting nearby geometry and fixing nearly coplanar faces indicated in the [WRL file][wrl].
+Always attempt to fix phantom BSP firstly by resolving any nearly coplanar faces indicated in the [WRL error geometry file][wrl], and secondly by using [phantom_tool][] if that's not working.
 
 [get-python]: https://www.python.org/

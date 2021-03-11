@@ -8,6 +8,8 @@ After level geometry is exported to [JMS][] format, it can be compiled into a BS
 # BSP transitions
 While a [scenario][] can reference multiple BSPs, Halo can only have [a single BSP loaded][map#map-loading] at a time. Transitions between BSPs can be scripted (`switch_bsp`), e.g. using trigger volumes. Objects in unloaded BSPs are not simulated.
 
+Although multiple BSPs are intended for singleplayer maps and do not [synchronize][netcode], some custom multiplayer maps have used nearly identical BSPs which only differ in lighting to add a day/night switch [scripted by a button][ui_widget_definition#tag-field-event-handlers-script] in the escape menu.
+
 # Shaders
 The most commonly used [shader][] type for BSPs is [shader_environment][], suitable for most opaque surfaces and alpha-tested grates or billboard trees (as in _Timberland_). This shader type supports the blending between multiple detail maps, often used for ground maps with dirt and grass areas.
 
@@ -64,26 +66,48 @@ _See main page: [Lightmaps][]._
   </figcaption>
 </figure>
 
-When a [shader_environment][] references a [lens_flare][], _lens flare markers_ are automatically created and stored in the BSP tag during [structure compilation][tool#structure-compilation]. These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface<sup>(how?)</sup>. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
+When a [shader_environment][] references a [lens_flare][], _lens flare markers_ are automatically created and stored in the BSP tag during initial [structure compilation][tool#structure-compilation] or updated with [structure-lens-flares][tool#structure-lens-flares]. These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface<sup>(how?)</sup>. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
 
 A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens flares. However, there is a much lower limit to how many the game will draw at a given time, exactly how many is unknown.
 
-# Phantom BSP
+# Collision artifacts
+## Phantom BSP
 
 <figure>
   <a href="phantom.jpg">
-    <img src="phantom.jpg" alt="A warthog floating in mid-air on Danger Canyon, and bullets colliding with nothing"/>
+    <img src="phantom.jpg" alt=""/>
   </a>
   <figcaption>
-    <p>Danger Canyon contains at least two prevalent cases of phantom BSP.</p>
+    <p>Danger Canyon contains at least two prevalent cases of phantom BSP. The Warthog and bullets are both colliding with invisible extensions of nearby surfaces.</p>
   </figcaption>
 </figure>
 
-_Phantom BSP_ is a collision artifact sometimes produced when compiling BSPs. It manifests itself as invisible surfaces which projectiles and vehicles collide with (but not players), and appears around sharp corners like those around doorways.
+Phantom BSP is a collision artifact sometimes produced when compiling BSPs. It manifests itself as invisible surfaces which projectiles and vehicles collide with (but not players), and mostly appears around sharp corners near cases of "nearly coplanar faces" warnings in your [WRL file][wrl].
 
-Phantom BSP can often be fixed by slightly moving or altering sections of the level that contain them, which causes the BSP to be divided differently. However, this may simply create new phantom BSP in another location. The chances of phantom BSP being created can be lowered by reducing complex dense geometry, ensuring co-planarity of faces, and avoiding edges sharper than 90 degrees. If Phantom BSP cannot be avoided and is a hindrance to gameplay, the tool [Ghostbuster][] can be used to fix problematic BSP tags.
+Bungie was aware of this bug, and even implemented a Sapien feature to help spot it (`collision_debug_phantom_bsp 1`). If you find phantom BSP in your map, there are a few steps you can take to resolve it:
 
-Bungie was aware of this bug, and even implemented a Sapien feature to troubleshoot it (`collision_debug_phantom_bsp 1`). It is now understood to be caused when [Tool's][tool] BSP compilation process chooses a BSP dividing plane that fails to divide the remaining space meaningfully, i.e. there are no surfaces on one side of the plane, and the surfaces under the corresponding node leave parts of the dividing plane "exposed".
+1. Preemptively, keep your geometry simple and robust without an abundance of dense, complex, or spiky shapes. Flat surfaces like floors and walls should be kept as flat as possible by using alignment tools when modeling rather than "eyeballing it".
+2. Fix any "nearly coplanar" warnings in your source model by scaling affected faces to 0 along their normal axis or using alignment. Since Tool slightly rounds vertex coordinates when compiling BSPs, sometimes this warning cannot be resolved for surfaces which are not axis-aligned.
+2. Using [phantom_tool][] to compile your BSP will prevent phantom BSP at the cost of slightly increasing the tag size.
+3. There is an element of chance to phantom BSP appearing which depends on how your geometry is recursively subdivided form a BSP tree. Modifying unrelated parts of your level like adding portals or moving vertices can sometimes affect how the level is subdivided and make phantom BSP disappear.
+4. If you do not have access to source JMS, and are trying to fix a BSP tag, the tool [Ghostbuster][] may fix it.
+
+On a technical level, cases of phantom BSP are [dividing planes](#tag-field-collision-bsp-bsp3d-nodes-plane) where a child index is `-1`, but the space on that side of the plane is not actually _completely_ outside the level. The artifact is bounded by all parent dividing planes.
+
+## BSP holes
+
+<figure>
+  <a href="hole.mp4">
+    <video controls>
+      <source src="hole.mp4" type="video/mp4">
+    </video>
+  </a>
+  <figcaption>
+    <p>This location in Derelict has a small collision hole where items can fall through the map.</p>
+  </figcaption>
+</figure>
+
+BSP holes or leaks are another type of collision artifact where items or players can fall through the map. It is not known what causes this, but it can be resolved by altering triangulation around the affected area (rotating edges). Compiling the BSP with [phantom_tool][] also prevents this.
 
 [about-bsp]: https://en.wikipedia.org/wiki/Binary_space_partitioning
 [convex]: https://en.wikipedia.org/wiki/Convex_set
