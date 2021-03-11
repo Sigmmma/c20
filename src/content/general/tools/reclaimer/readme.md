@@ -9,7 +9,7 @@ The library must first be installed on your system using Python 3 `pip`. You may
 pip install reclaimer
 ```
 
-# Tags usage
+# Tags usage (Halo 1)
 ## Loading tags
 You can import tag definitions according to their [engine ID][h1/tags#engine-ids], then load a tag file:
 ```python
@@ -91,7 +91,7 @@ for bitmap_path in tags_dir.rglob("*.bitmap"):
 ```
 
 ## Example: modifying BSP data
-This script modifies a [scenario_structure_bsp][] collision BSP and makes every surface a ladder.
+This script modifies a [scenario_structure_bsp][h1/tags/scenario_structure_bsp] collision BSP and makes every surface a ladder.
 
 ```python
 from reclaimer.hek.defs.sbsp import sbsp_def

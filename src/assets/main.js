@@ -255,6 +255,18 @@ class Search extends Component {
         e.preventDefault();
       }
     });
+
+    //closes search before navigating away so it's not still open when going back
+    window.addEventListener("beforeunload", (e) => {
+      this.setState({
+        query: "",
+        searchResults: [],
+        selectedResultIndex: -1
+      });
+      if (this.inputRef) {
+        this.inputRef.blur();
+      }
+    });
   }
 
   render() {

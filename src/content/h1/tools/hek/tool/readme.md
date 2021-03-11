@@ -244,22 +244,52 @@ For the example above, Tool would expect to find a text file at `data\levels\a10
 It's important that you have the name of the file be "hud messages". Tool specifically looks for a file with this name when compiling hud messages. You also need an extension of .HMT for this to work. Simply renaming it from .TXT to .HMT will take care of that. The text file must also exist in the root of the scenario folder in data. Only the default campaign levels are considered valid scenarios.
 
 # Lightmaps
+<figure>
+  <a href="radiosity.jpg">
+    <img src="radiosity.jpg" alt=""/>
+  </a>
+  <figcaption>
+    <p>The radiosity process can be visualized in Sapien using <code>rasterizer_wireframe 1</code>. Notice how shadow edges and high detail shaders are subdivided more.</p>
+  </figcaption>
+</figure>
+
 Both Tool and [Sapien][sapien#radiosity] can be used to generate [lightmaps][] (radiosity). Using Tool, you will need the following arguments:
 
 1. **Scenario [tag path][tags#tag-references-and-paths]**: This is _not_ a file path! Leave off the ".scenario" extension and start the path from within the tags directory.
-2. **BSP name:** The name of the BSP tag without the file extension.
-3. **Radiosity quality:** A value of 0 runs an inaccurate "fast radiosity", with fewer light bounces, a lower resolution lightmap, and ignoring light occlusion or blocking caused by models. A value of 1 runs a "full radiosity", which is much slower but is used for the release version of maps.
-4. **The "stop" threshold:** The amount of light remaining to stop calculating at. Light is cast in multiple passes from each surface, getting progressively finer with each pass. Each pass also reduces the total amount of light to be cast from each surface. When the amount of light remaining hits this value, radiosity will stop and be saved. This is the equivalent of choosing when to run `radiosity_save` in Sapien.
+2. **BSP name:** The name of the BSP tag without the file extension. Although this is labeled as "bsp index" in Tool's usage, it is not intended to be a numeric value.
+3. **Radiosity quality:** A value of 0 runs an inaccurate "fast radiosity", with fewer light bounces, a lower resolution lightmap, and ignoring light occlusion or blocking caused by models. A value of 1 runs a "full radiosity", which is much slower but is used for the release version of maps. For further details, see the [radiosity quality settings](#radiosity-quality-technical-details) below.
+4. **Stop threshold:** Light is cast in multiple passes from each surface, getting progressively finer with each pass. Each pass also reduces the total amount of light to be cast from each surface. When the average radiosity of the scene reaches this value, the process will stop and results saved. This is the equivalent of choosing when to run `radiosity_save` in Sapien.
 
 For example:
 
-```
-tool.exe lightmaps levels\test\tutorial\tutorial tutorial 1 0.01
+```sh
+# lightmaps <scenario> <bsp index> <quality> <stop threshhold>
+tool.exe lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.01
 ```
 
 After a short time, you should observe a number counting down towards 0. The radiosity process will stop once this number reaches your "stop" argument. If the number counts _up_ instead, it indicates an issue with your level geometry and you should cancel radiosity to address it (check for [WRL][] warnings).
 
-For high quality lightmaps, consider using the faster [LM_Tool][] instead.
+Consider using the faster [LM_Tool][] instead for rendering final lightmaps.
+
+## Radiosity quality technical details
+
+| Radiosity quality | Default stop threshold| Samples per [sky][] light |
+|-------------------|-----------------------|---------------------------|
+|0 (preview)        | 10.0 / 255.0          | 4                         |
+|1 (final)          | 1.0 / 255.0           | 16                        |
+
+The radiosity process internally subdivides the mesh into an intermediate lightmap structure which is much denser in some places. Depending on the radiosity quality chosen and [shader detail level][shader#tag-field-detail-level], different constraints will be placed on this mesh:
+
+| Radiosity quality         | Shader detail level | Max adjacent light difference   | Minimum edge length | Lit patch max edge length | Unlit patch max edge length |
+|---------------------------|---------------------|---------------------------------|---------------------|------------------------------------|--------------------------------------|
+| 0 (preview)               | High                | 1.0                             | 0.5                 | 2.0                                | 4.0                                  |
+| 0 (preview)               | Medium              | 2.0                             | 1.0                 | 4.0                                | 8.0                                  |
+| 0 (preview)               | Low                 | 3.0                             | 2.0                 | 8.0                                | 16.0                                 |
+| 0 (preview)               | Turd                | float_max                       | 20.0                | 40.0                               | 80.0                                 |
+| 1 (final)                 | High                | 0.5                             | 0.125               | 0.5                                | 0.9                                  |
+| 1 (final)                 | Medium              | 0.7                             | 0.3                 | 1.2                                | 2.4                                  |
+| 1 (final)                 | Low                 | 0.8                             | 0.5                 | 2.0                                | 4.0                                  |
+| 1 (final)                 | Turd                | float_max                       | 20.0                | 40.0                               | 80.0                                 |
 
 # Process sounds
 This command searches for sounds in a tag directory and sets the values in the [sound][] tag.
@@ -272,7 +302,7 @@ tool.exe process-sounds "sound\sfx\ambience\a10" "klax" gain+ 1
 For the example above, Tool would expect to find a set of sound tags at `tags\sound\sfx\ambience\a10\`. Any sound tags that contain the substring "klax" in the filename will have a value of 1 added to gain.
 
 # Merge scenery
-This command can merge the scenery tag blocks of the source scenario to the destination scenario. Probably to automate work on child scenarios.
+This command can merge the scenery tag blocks of the source scenario to the destination scenario. This was probably used to automate work on [child scenarios][scenario#child-scenarios] in Halo's development.
 
 ```sh
 # merge-scenery <source scenario> <destination scenario>
@@ -282,15 +312,14 @@ tool.exe merge-scenery "levels\a10\a10" "levels\a30\a30"
 For the example above, Tool would expect to find a source scenario tag file at `tags\levels\a10\a10`. The tag blocks in the scenery tag block will be copied over to the destination scenario tag file at `tags\levels\a30\a30`. This will not include scenery palette tag block or object names tag block so watch out for bad indices.
 
 # Zoners model upgrade
-Upgrades models to GBXmodels along with some other magical S@#!. Probably made to port models from Halo Combat Evolved Xbox to Halo Combat Evolved PC.
+Upgrades [models][model] to [gbxmodel][], likely used to port models from the Xbox edition of the game to PC by Gearbox.
 
 ```sh
-# zoners_model_upgrade
 tool.exe zoners_model_upgrade
 ```
 
 # Import device defaults
-???
+Unknown purpose.
 
 ```sh
 # import-device-defaults <defaults|profiles> <savegame path>

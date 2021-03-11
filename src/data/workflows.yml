@@ -354,9 +354,9 @@ workflowItems:
   scenario:
     inherit: tags
     page: scenario
-  scenario_structure_bsp:
+  h1/scenario_structure_bsp:
     inherit: tags
-    page: scenario_structure_bsp
+    page: h1/tags/scenario_structure_bsp
   scenery:
     inherit: tags
     page: scenery
@@ -447,20 +447,20 @@ workflowItems:
   wind:
     inherit: tags
     page: wind
-   
-  # H2 
+
+  # H2
   H2EK:
     page: h2ek
     authors:
       - Bungie
       - Hired Gun
-      - Pi Studios 
+      - Pi Studios
   H2Tool:
     inherit: H2EK
     page: h2tool
   H2Guerilla:
     inherit: H2EK
-    page: h2guerilla 
+    page: h2guerilla
   H2Sapien:
     inherit: H2EK
     page: h2sapien
@@ -473,11 +473,17 @@ workflowItems:
   multilingual_unicode_string_list:
     inherit: h2_tags
     page: multilingual_unicode_string_list
+  h2/scenario_structure_bsp:
+    inherit: h2_tags
+    page: h2/tags/scenario_structure_bsp
 
 # These are groups of tools which perform similar functions. When an item
 # opts in to workflows, these may appear in the metabox to show similar or
 # alternative items.
 similarItems:
+  -
+    - wrl
+    - wrl 2.0
   -
     - Refinery
     - invader-extract
@@ -566,6 +572,10 @@ workflows:
     edit: obj
   - using: 3ds Max
     edit: wrl
+  - using:
+      - Blender
+      - 3ds Max
+    edit: wrl 2.0
   - using: WRL to OBJ converter
     from: wrl
     to:
@@ -643,6 +653,9 @@ workflows:
     from: bitmap
     to: tga
   # model compilation
+  - using: H2Tool
+    from: ass
+    to: h2/scenario_structure_bsp
   - using:
       - Tool
       - OS_Tool
@@ -651,11 +664,11 @@ workflows:
     to:
       - model_collision_geometry
       - gbxmodel
-      - scenario_structure_bsp
+      - h1/scenario_structure_bsp
       - physics
   - using: Mozzarilla
     from:
-      - scenario_structure_bsp
+      - h1/scenario_structure_bsp
       - model_collision_geometry
       - model
     to: gbxmodel
@@ -681,7 +694,7 @@ workflows:
     to: tags
   # lightmaps and bsps
   - using: Ghostbuster
-    edit: scenario_structure_bsp
+    edit: h1/scenario_structure_bsp
   - using:
       - Tool
       - LM_Tool
@@ -690,7 +703,7 @@ workflows:
       - OS_Sapien
     edit: Lightmaps
   - using: Aether
-    from: scenario_structure_bsp
+    from: h1/scenario_structure_bsp
     to:
       - 3ds Max
       - Maya
@@ -725,7 +738,7 @@ workflows:
       - Sapien
       - OS_Sapien
     edit:
-      - scenario_structure_bsp
+      - h1/scenario_structure_bsp
       - scenario
   # general purpose tag editors
   - using:

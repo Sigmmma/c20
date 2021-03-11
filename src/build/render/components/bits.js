@@ -49,8 +49,6 @@ const detailsList = (summary, items, openThreshold) => {
   }
   if (items.length == 0) {
     return null;
-  } else if (items.length == 1) {
-    return html`<p>${summary}: ${items[0]}</p>`;
   } else if (items.length <= openThreshold) {
     return html`
       <details open>

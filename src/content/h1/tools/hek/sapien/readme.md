@@ -11,9 +11,10 @@ Movement of the camera is done in the same way as the in-game debug camera; **ho
 * Use the mouse to aim
 * Move with <kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, and <kbd>D</kbd>
 * Go up with <kbd>R</kbd> and down with <kbd>F</kbd>
-* Rotate with <kbd>G</kbd>
 * Increase camera speed by scrolling down or pressing <kbd>Shift</kbd>
 * Decrease camera speed by scrolling up
+
+Camera rotation with the <kbd>G</kbd> key is only supported in-game and not in Sapien.
 
 ## Hierarchy view
 The Hierarchy view displays all the objects currently placed in the game and organizes them by type. The left pane of the window shows the Hierarchy tree and currently selected type, and the right pane shows the objects of this selected group or type that are currently placed in the level.
@@ -38,24 +39,24 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>~</kbd>: Opens the command console.
 * <kbd>Space</kbd>: clones the selected object to the camera's location and orientation. If multiple objects are selected, uses the first.
 * <kbd>Pause/Break</kbd>: Pauses your Sapien instance. Press "OK" in the opened window to resume Sapien.
-* <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>: Creates the file `baggage.txt`. If you end up getting a maximum tag slots error or are [running low on tag space][map#limits], this file shows the memory usage of tags in the editor.
-* <kbd>Shift</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. You can also use it to select the first and last object in the hierarchy list to select everything in-between at once. Useful for deleting multiple objects or moving them all at once.
-* <kbd>Control</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
+* <kbd>Control + Shift + B</kbd>: Creates the file `baggage.txt`. If you end up getting a maximum tag slots error or are [running low on tag space][map#limits], this file shows the memory usage of tags in the editor.
+* <kbd>Shift + Click</kbd>: Select a group of objects or keep previously placed objects selected. You can also use it to select the first and last object in the hierarchy list to select everything in-between at once. Useful for deleting multiple objects or moving them all at once.
+* <kbd>Control + Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
 * Hold <kbd>Tab</kbd>: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.
 * In the hierarchy view, pressing a key will cycle through all folders that start with that character. For example, pressing <kbd>A</kbd> while having the "Missions" folder expanded will immediately take you to the "AI" folder.
 * <kbd>N</kbd>: **This hotkey is broken and can cause Sapien to crash when restarted. Do not use it!** It also causes editor icons and name overlays to dissappear for the session.
 
 ## Encounters and AI
-* <kbd>Middle mouse</kbd>+<kbd>F1</kbd>: Selects the spawned actor in the center of the game view.
-* <kbd>Middle mouse</kbd>+<kbd>F2</kbd> Select next encounter. You can also use the console command `ai_select <encounter>`.
-* <kbd>Middle mouse</kbd>+<kbd>F3</kbd>: Select previous encounter.
-* <kbd>Middle mouse</kbd>+<kbd>F4</kbd>: When an encounter is selected, selects the next actor.
-* <kbd>Middle mouse</kbd>+<kbd>Shift</kbd>+<kbd>F4</kbd>: Selects the previous actor.
-* <kbd>Middle mouse</kbd>+<kbd>F5</kbd>: Cycles through render modes for actor sprays:
+* <kbd>Middle mouse + F1</kbd>: Selects the spawned actor in the center of the game view.
+* <kbd>Middle mouse + F2</kbd> Select next encounter. You can also use the console command `ai_select <encounter>`.
+* <kbd>Middle mouse + F3</kbd>: Select previous encounter.
+* <kbd>Middle mouse + F4</kbd>: When an encounter is selected, selects the next actor.
+* <kbd>Middle mouse + Shift + F4</kbd>: Selects the previous actor.
+* <kbd>Middle mouse + F5</kbd>: Cycles through render modes for actor sprays:
   * Actions
   * Activation status
   * None
-* <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
+* <kbd>Middle mouse + F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
 * <kbd>M</kbd>: Toggles group labels on [firing positions][ai#firing-positions], shows the default actor for move positions used by a squad instance, and highlights [editor gizmos/placeholders][placeholder], making them easier to see.
 
 ## Recorded animations
@@ -65,17 +66,17 @@ These hotkeys apply in scripted camera mode.
 * <kbd>E</kbd>: Toggle "Edit camera point" option.
 * <kbd>C</kbd>: Toggle "Scripted camera control".
 * <kbd>Space</kbd>: Creates a new camera point at the game view camera's location if "Edit camera point" is disabled. If "Edit camera point" is enabled then it instead moves the "Active camera point" to the camera's location.
-* <kbd>Shift</kbd>+<kbd>V</kbd>: Using this key combo while in scripted camera mode will take over (posess) the selected unit.
+* <kbd>Shift + V</kbd>: Using this key combo while in scripted camera mode will take over (posess) the selected unit.
 * <kbd>Backspace</kbd>: Cycles through camera types for the posessed unit:
   * First person
   * Third person
   * Flycam
 * <kbd>Caps lock</kbd>: Start/stop animation recording. Unfortunately it is not possible to control the posessed unit while recording.
-* <kbd>Shift</kbd>+<kbd>Q</kbd>: Exits a posessed unit while in scripted camera mode.
+* <kbd>Shift + Q</kbd>: Exits a posessed unit while in scripted camera mode.
 
 ## Detail objects painting
-* <kbd>Shift</kbd>+<kbd>Right Click</kbd>: Erases all detail objects in a highlighted cell.
-* <kbd>Shift</kbd>+<kbd>Control</kbd>+<kbd>Right Click</kbd>: As above, but also deleted the cell itself.
+* <kbd>Shift + Right Click</kbd>: Erases all detail objects in a highlighted cell.
+* <kbd>Shift + Control + Right Click</kbd>: As above, but also deleted the cell itself.
 
 # Radiosity
 Both Tool and Sapien can be used to generate [lightmaps][]. To use Sapien, enter the following console commands:
@@ -102,7 +103,7 @@ As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual mem
 * Install [NTCore 4GB Patch](https://ntcore.com/?page_id=371)
 * Run the 4GB Patch.
 * Select the Sapien executable.
-* NTCore will apply the patch. After it's finished, press OK. Sapien has now been patched to support 4 GB of virtual memory. 
+* NTCore will apply the patch. After it's finished, press OK. Sapien has now been patched to support 4 GB of virtual memory.
 
 [wine]: https://www.winehq.org/
 [dxvk]: https://github.com/doitsujin/dxvk

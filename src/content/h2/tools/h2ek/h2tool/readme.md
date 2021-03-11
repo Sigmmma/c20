@@ -12,14 +12,14 @@ For the example above, Tool would expect to find an ASS file at `data\scenarios\
 
 Multiple JMS files can be placed in the models directory for multiple BSPs. Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs. Do not do this if you're making a multiplayer map.
 
-<use-release> is an unused bool that was probably related to running either a debug or release version of the toolset. Leave it as yes.
+The argument `<use-release>` is unused and was probably related to running either a debug or release version of the toolset. Leave it as "yes".
 
 # ASS compilation verbose
-Same as above but output in CMD is verbose. You'll get some more in depth information on the model while it's being processed. Really only useful if you're a developer that's debugging an import pipeline.
+Same as above, but outputs to the console much more in-depth information on the model while it's being processed. This is only useful if you're a developer that's debugging an import pipeline.
 
 ```sh
 # structure-new-verbose-from-ass <ass-file>
-h2tool.exe structure-new-from-ass "scenarios\multi\example\structure\example.ASS"
+h2tool.exe structure-new-verbose-from-ass "scenarios\multi\example\structure\example.ASS"
 ```
 
 # Lightmaps
@@ -68,7 +68,7 @@ h2tool.exe lightmaps_debug "scenarios\multi\example\example" "example" checkerbo
 ```
 
 # Batch bitmap compilation
-TIF, TIFF, uncompressed 32bit TGA, JPEG, BMP with a bit depth of 24 or higher can be compiled into a [bitmap][] using the `bitmaps` verb:
+TIF, TIFF, uncompressed 32bit TGA, JPEG, and BMP images with a color depth of 24-bits or higher can be compiled into a [bitmap][] tag using the `bitmaps` verb:
 
 ```sh
 # bitmaps <source-directory>
@@ -98,7 +98,7 @@ h2tool.exe build-cache-file "scenarios\multi\example\example"
 The resulting map file can be found in H2EK's `maps` directory.
 
 # Structure analyze
-Checks a structure for errors 
+Checks a structure for errors.
 
 ```sh
 # structure-analyze <scenario_structure_bsp>
@@ -106,7 +106,7 @@ h2tool.exe structure-analyze "scenarios\multi\example\example"
 ```
 
 # Scenario analyze
-Checks the scenario for errors
+Checks the scenario for errors.
 
 ```sh
 # scenario-analyze <scenario> <inspection-type>
@@ -124,7 +124,7 @@ Use one of the following strings for inspection type.
 ```
 
 # Progress quest
-This command does nothing. Might have been to test progress bars? Who knows really.
+This command does nothing. It might have been used to test progress bars.
 
 ```sh
 # progress-quest
@@ -132,7 +132,7 @@ h2tool.exe progress-quest
 ```
 
 # Rebuild structure audibility
-Does some magical S!@# to structures.
+???
 
 ```sh
 # rebuild-structure-audibility <structure>

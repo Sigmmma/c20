@@ -34,14 +34,16 @@ function localizeThanks(ctx, thanks) {
 
 module.exports = async function(ctx) {
   const {lang, page} = ctx;
-  const tagName = page.tagName;
 
-  if (!tagName) {
+  if (!page.tagName) {
     return {};
   }
 
-  //todo: allow page to specify game too, if we eventually support other games
-  const tag = ctx.data.h1.tagsByName[tagName];
+  const tagNameArg = page.tagName.split("/");
+  const game = tagNameArg.length > 1 ? tagNameArg[0] : "h1";
+  const tagName = tagNameArg.length > 1 ? tagNameArg[1] : tagNameArg[0];
+
+  const tag = ctx.data[game].tagsByName[tagName];
   if (!tag) {
     throw new Error(`Failed to find tag structure ${tagName}`);
   }
