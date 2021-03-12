@@ -1,11 +1,4 @@
-<figure>
-  <a href="343.jpg">
-    <img src="343.jpg" alt="343 Guilty Spark in the Library"/>
-  </a>
-  <figcaption>
-    <p>"This installation's research facilities are most impressive! Perhaps we'll have time to see them later."</p>
-  </figcaption>
-</figure>
+![$figure "This installation's research facilities are most impressive! Perhaps we'll have time to see them later."](343.jpg)
 
 Welcome to **The Reclaimers Library**, a project which aims to document and centralize the immense tribal knowledge of the [Halo: Combat Evolved][h1] modding community. We cover [engine details][engine], the [Halo Editing Kit][hek], community tools, and [guides][] for custom content creation.
 

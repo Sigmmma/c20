@@ -24,12 +24,14 @@ renderer.table = (header, body) => `${header}\n${body}\n`;
 renderer.tablerow = (content) => `${content}|\n`;
 renderer.tablecell = (content, flags) => `|${content}`;
 
-module.exports = {
-  renderer: renderer,
-  pedantic: false,
-  headerIds: false,
-  gfm: true,
-  breaks: false,
-  sanitize: false,
-  smartLists: true,
+module.exports = function(ctx) {
+  return {
+    renderer: renderer,
+    pedantic: false,
+    headerIds: false,
+    gfm: true,
+    breaks: false,
+    sanitize: false,
+    smartLists: true,
+  };
 };

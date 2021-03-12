@@ -89,6 +89,15 @@ const alert = (type, body) => html`
   </div>
 `;
 
+const figure = (href, caption) => html`
+  <figure>
+    <a href="${href}">
+      <img src="${href}" alt=""/>
+    </a>
+    <figcaption>${caption}</figcaption>
+  </figure>
+`;
+
 module.exports = {
   html,
   escapeHtml,
@@ -99,6 +108,7 @@ module.exports = {
   tagAnchor,
   defAnchor,
   heading,
+  figure,
   ul,
   ol,
   detailsList,

@@ -2,8 +2,8 @@ const marked = require("marked");
 const Entities = require('html-entities').AllHtmlEntities;
 const {slugify} = require("../bits");
 const buildTokenizer = require("./tokenizer");
-const plaintextRenderOptions = require("./plaintext-renderer");
-const htmlRenderOptions = require("./html-renderer");
+const plaintextRender = require("./plaintext-renderer");
+const htmlRenderer = require("./html-renderer");
 
 const entities = new Entities();
 
@@ -39,8 +39,8 @@ function renderMarkdown(ctx, md, plaintext) {
   if (!md) return null;
   const tokenizer = buildTokenizer(ctx);
   return plaintext ?
-    entities.decode(marked(md, {...plaintextRenderOptions, tokenizer})) :
-    marked(md, {...htmlRenderOptions, tokenizer});
+    entities.decode(marked(md, {...plaintextRender(ctx), tokenizer})) :
+    marked(md, {...htmlRenderer(ctx), tokenizer});
 }
 
 //renders markdown fragments as inline content rather than as a paragraph
@@ -48,8 +48,8 @@ function renderMarkdownInline(ctx, md, plaintext) {
   if (!md) return null;
   const tokenizer = buildTokenizer(ctx);
   return plaintext ?
-    entities.decode(marked.parseInline(md, {...plaintextRenderOptions, tokenizer})) :
-    marked.parseInline(md, {...htmlRenderOptions, tokenizer});
+    entities.decode(marked.parseInline(md, {...plaintextRender(ctx), tokenizer})) :
+    marked.parseInline(md, {...htmlRenderer(ctx), tokenizer});
 }
 
 module.exports = {renderMarkdown, renderMarkdownInline, findHeadings};
