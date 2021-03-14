@@ -5,6 +5,7 @@ $bg-content: #23292f;
 $bg-inset: #191d22;
 $bg-info: #373457;
 $bg-danger: #53332c;
+$bg-warning: #877836;
 $bg-success: #1c3e34;
 $bg-tag: #0b352b;
 $bg-tool: #171b4b;
@@ -62,8 +63,12 @@ body {
   box-sizing: border-box;
 }
 
-ul, ol {
+ol, ul {
   padding-left: 2em;
+}
+
+ul {
+  list-style: disc;
 }
 
 img, video {
@@ -296,7 +301,6 @@ h6 {font-size: 0.75em;}
 h1, h2, h3, h4, h5, h6 {
   font-family: $font-family-headers;
   color: $fg-strong;
-  margin-top: 1.5em;
   &:hover a.header-anchor, &.destination a.header-anchor {
     opacity: 1;
   }
@@ -486,6 +490,9 @@ table.tag-struct {
   }
   &.type-danger {
     background: $bg-danger;
+  }
+  &.type-warning {
+    background: $bg-warning;
   }
   &.type-success {
     background: $bg-success;
