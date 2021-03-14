@@ -14,21 +14,38 @@ comments:
             completely anew by Tool/Sapien. This can be used to fix squiggly
             or jagged shadowing artifacts often seen on large complex surfaces
             using a single material.
+
+            Note that any overlapping UV faces may cause lighting artifacts because
+            one part of the lightmap texture is being used to represent different
+            locations.
         - name: ignore normals
-          en: ...
+          en: >
+            Lighting will ignore surface normals (the direction faces point).
+            Use this for shaders where the surface normals are not a good
+            representation of lighting directionality, such as foliage mapped
+            to flat planes for trees and bushes.
         - name: transparent lit
           en: ...
     - name: detail level
-      en: ...
+      en: >
+        Determines how detailed lightmaps will be for surfaces using this shader.
+        This affects various [radiosity tessellation parameters][tool#radiosity-quality-technical-details].
       options:
         - name: high
-          en: ...
+          en: >
+            The surface will receive the highest possible quality of lightmaps.
+            Shadows will be sharper and there will be greater detail in local
+            variations in lighting.
         - name: medium
-          en: ...
+          en: The surface will receive a medium quality of lightmaps.
         - name: low
-          en: ...
+          en: The surface will receive a low quality of lightmaps.
         - name: turd
-          en: ...
+          en: >
+            The surface will receive the worst possible quality of lightmaps.
+            Use this for shaders which will be used in areas which do not need
+            detailed shadows or the player is unlikely to visit in order to save
+            texture space.
     - name: power
       en: ...
     - name: color of emitted light

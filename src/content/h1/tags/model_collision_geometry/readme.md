@@ -1,4 +1,4 @@
-Model collision geometry tags contain collision data for an [object][]. This is in contrast to [model/gbxmodel][gbxmodel] tags, which contain the renderable data. Collision meshes tend to be less detailed than render meshes.
+Model collision geometry tags contain collision data for an [object][]. This is in contrast to [model/gbxmodel][gbxmodel] tags, which mostly contain the renderable data. Collision meshes tend to be less detailed than render meshes, and are used to check collisions _within_ the object's [bounding radius][object#tag-field-bounding-radius].
 
 Beyond having a collision mesh, these tags can also contain:
 
@@ -10,23 +10,14 @@ Collision geometry, rather than the [model][gbxmodel], is used to cast [scenery]
 
 # Pathfinding spheres
 
-<figure>
-  <a href="games.svg">
-    <img src="pathfinding-spheres.png" alt="Pathfinding spheres visible in Sapien"/>
-  </a>
-  <figcaption>
-
-Pathfinding spheres (blue) for a50 shown in [Sapien][] after running `debug_objects_pathfinding_spheres 1`
-
-  </figcaption>
-</figure>
+![.figure Pathfinding spheres (blue) for a50 shown in [Sapien][] after running `debug_objects_pathfinding_spheres 1`](pathfinding-spheres.png)
 
 AI can figure out where to go by checking the pathfinding data on the [BSP][scenario_structure_bsp]. However, since objects like [scenery][] and [units][unit] are not part of the BSP, Bungie implemented _pathfinding spheres_: spherical markers on objects that AI actively avoid walking into.
 
-By placing these spheres in an object's collision model, artists can tell the AI exactly where _not_. As far as we know, all object types can make use of pathfinding spheres. The object's bounding sphere does not seem to affect AI avoidance of them.
+By placing these spheres in an object's collision model, artists can tell the AI exactly where _not_ to go. As far as we know, all object types can make use of pathfinding spheres. The object's bounding sphere does not seem to affect AI avoidance of them.
 
 ## How to add them
-Pathfinding spheres are imported from the collision jms file of your object. They are marked with `#pathfinder` and their radius is the actual radius that the AI will avoid walking in relation to the mid-point.
+Pathfinding spheres are imported from the collision [JMS][] file of your object. They are marked with `#pathfinder` and their radius is the actual radius that the AI will avoid walking in relation to the mid-point.
 
 Pathfinding spheres can also be created automatically in some cases:
 
@@ -47,14 +38,7 @@ Unlike [BSPs][scenario_structure_bsp], collision geometry can have a self-inters
 
 # Phantom BSP
 
-<figure>
-  <a href="phantom.jpg">
-    <img src="phantom.jpg" alt=""/>
-  </a>
-  <figcaption>
-    <p>Phantom BSP exists in the collision model of covenant crates.</p>
-  </figcaption>
-</figure>
+![.figure Phantom BSP exists in the collision model of covenant crates.](phantom.jpg)
 
 Although phantom BSP is typically seen in the context of level geometry, it can also affect model collision geometry because this tag uses the same collision data structures as a [scenario_structure_bsp][scenario_structure_bsp#phantom-bsp]. In the case of models, phantom BSP is limited to the object's bounding radius.
 

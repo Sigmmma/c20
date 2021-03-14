@@ -57,7 +57,8 @@ comments:
     - name: bounding radius
       en: >
         A radius which encompasses the object, used by the engine for a variety of
-        purposes. If the bounding radius is too small, shadows will be cut off.
+        purposes. If the bounding radius is too small, shadows will be cut off
+        and [model_collision_geometry][] will not be used outside the radius.
     - name: bounding offset
       en: ...
     - name: origin offset

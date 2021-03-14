@@ -1,2 +1,3 @@
+src/**/*.md -linguist-documentation
 src/**/*.md linguist-detectable
 src/**/*.yml linguist-detectable

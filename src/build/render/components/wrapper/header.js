@@ -12,5 +12,7 @@ const header = (ctx, siteName) => html`
     </nav>
   </header>
 `;
+//todo: dark/light theme support
+//<button id="toggle-theme">Toggle</button>
 
 module.exports = header;

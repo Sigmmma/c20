@@ -335,3 +335,11 @@ function hashFlash() {
 
 window.addEventListener("hashchange", hashFlash, false);
 hashFlash();
+
+//todo: support theme changing
+// document.documentElement.dataset.theme = window.localStorage.getItem("theme") || "dark";
+// document.getElementById("toggle-theme").addEventListener("click", () => {
+//   const data = document.documentElement.dataset;
+//   data.theme = data.theme == "dark" ? "light" : "dark";
+//   window.localStorage.setItem("theme", data.theme);
+// });

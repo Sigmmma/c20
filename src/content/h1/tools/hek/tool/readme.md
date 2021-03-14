@@ -19,7 +19,6 @@ base superhigh.JMS
 
 [Permutations][gbxmodel#permutations] are variants for model's [regions][gbxmodel#regions]. LODs (level of detail) are different quality models rendered depending on the object's size on screen. Permutations can be named arbitrarily, though they should match a model's existing permutation names if modifying an existing asset. LOD needs to use a specific string from the list below:
 
-
 * `superhigh`
 * `high`
 * `medium`
@@ -27,6 +26,10 @@ base superhigh.JMS
 * `superlow`
 
 Use multiple JMS files to generate multiple permutations in a model.
+
+```.alert danger
+Tool only uses [markers][gbxmodel#markers] from the `superhigh` LOD when making a model tag. If you don't have a superhigh LOD (i.e. you have something explicity set as superlow/low/medium/high but not superhigh), no markers will be generated.
+```
 
 # Animation compilation
 [Animation data][animation-data] files containing transforms for a skeleton can be compiled into a [model_animations][] tag using the `animations` verb:
@@ -273,12 +276,12 @@ Consider using the faster [LM_Tool][] instead for rendering final lightmaps.
 
 ## Radiosity quality technical details
 
-| Radiosity quality | Default stop threshold| Samples per [sky][] light |
+| Radiosity quality | Default stop threshold| Samples per [sky light][sky#tag-field-lights] |
 |-------------------|-----------------------|---------------------------|
 |0 (preview)        | 10.0 / 255.0          | 4                         |
 |1 (final)          | 1.0 / 255.0           | 16                        |
 
-The radiosity process internally subdivides the mesh into an intermediate lightmap structure which is much denser in some places. Depending on the radiosity quality chosen and [shader detail level][shader#tag-field-detail-level], different constraints will be placed on this mesh:
+The radiosity process internally subdivides/tessellates the mesh into an intermediate lightmap structure which is much denser in some places. Depending on the radiosity quality chosen and [shader detail level][shader#tag-field-detail-level], different constraints will be placed on this process:
 
 | Radiosity quality         | Shader detail level | Max adjacent light difference   | Minimum edge length | Lit patch max edge length | Unlit patch max edge length |
 |---------------------------|---------------------|---------------------------------|---------------------|------------------------------------|--------------------------------------|

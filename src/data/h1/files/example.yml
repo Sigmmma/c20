@@ -39,6 +39,7 @@ TagRef:
 
 
 Block:
+  class: struct
   args:
     - E
   fields:

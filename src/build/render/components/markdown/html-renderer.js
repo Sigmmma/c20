@@ -3,6 +3,7 @@ const hljs = require("highlight.js");
 const {consoleLang, hscLang} = require("./langs/hsc");
 const vrmlLang = require("./langs/vrml");
 const {heading, alert, figure} = require("../bits");
+const {renderStructYaml} = require("../structs");
 
 hljs.registerLanguage("vrml", vrmlLang);
 hljs.registerLanguage("hsc", hscLang);
@@ -25,8 +26,8 @@ module.exports = function(ctx) {
   };
 
   renderer.image = (href, title, text) => {
-    if (text.startsWith("$figure ")) {
-      text = text.substring("$figure ".length);
+    if (text.startsWith(".figure ")) {
+      text = text.substring(".figure ".length);
       return figure(href, renderMarkdown(ctx, text));
     }
     const altAttr = `alt="${text || ""}"`;
@@ -35,9 +36,16 @@ module.exports = function(ctx) {
   };
 
   renderer.code = (code, infostring, escaped) => {
-    if (infostring.startsWith("$alert")) {
-      const type = infostring.split(" ").length > 1 ? infostring.split(" ")[1] : null;
-      return alert(type, renderMarkdown(ctx, code));
+    const extensionMatch = infostring.match(/^\.(\w+)(?:\s+(.+))?/);
+    if (extensionMatch) {
+      const extensionType = extensionMatch[1];
+      const extensionArgs = extensionMatch[2];
+      if (extensionType == "alert") {
+        return alert(extensionArgs, renderMarkdown(ctx, code));
+      } else if (extensionType == "struct") {
+        return renderStructYaml(ctx, code);
+      }
+      throw new Error(`Unrecognized markdown extension: ${extensionType}`);
     }
     return `<pre><code class="language-${infostring}">${highlight(code, infostring)}</code></pre>`;
   };

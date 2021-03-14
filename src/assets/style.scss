@@ -24,9 +24,18 @@ $font-size-logo: 14pt;
 $font-family: "Avenir", "Noto Sans", "Helvetica", sans-serif;
 $font-family-headers: "ConvectionRegular", $font-family;
 $font-family-code: "Fira Code", Menlo, Consolas, Monaco, monospace;
-$font-size-code: 12pt;
+$font-size-code: 11pt;
 $width-content: 65em;
 $transition-time: 0.25s;
+
+//todo: dark/light theme support
+// :root {
+//   --test: red;
+// }
+//
+// html[data-theme="light"] {
+//   --test: blue;
+// }
 
 @font-face {
   font-family: ConvectionRegular;
@@ -412,6 +421,48 @@ table {
   background: $bg-content;
 }
 
+table.type-def {
+  background: $bg-content;
+  & {
+    margin-bottom: 0;
+  }
+  .has-embedded {
+    background: $bg-inset;
+    .field-name {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+  .embedded-type {
+    background: $bg-inset;
+  }
+
+  tr.field-type-pad, tr.field-label-cache_only {
+    color: $fg-faded;
+    .field-label {
+      border-color: $fg-faded;
+    }
+  }
+
+  tr.field-type-pad {
+    display: none;
+  }
+
+  .field-labels {
+    list-style: none;
+    padding: 0;
+    margin-top: 0;
+  }
+
+  .field-label {
+    display: inline-block;
+    border-radius: $border-radius;
+    border: 1px solid $fg;
+    padding: 0 0.2em;
+  }
+}
+
+//deprecated:
 table.tag-struct {
   background: $bg-content;
   & {

@@ -26,6 +26,8 @@ This tag only contains the marker data but other tags usually determine how they
   * When the vehicle physics type is "human plane", creates a similar dust effect if the marker is pointed at nearby ground. Used for the Pelican's thrusters.
 * `jet thrusters`: Can also be used for vehicles with "human plane" physics to create the Pelican's thruster dust effect.
 
+[Tool][tool#model-compilation] only includes markers from the `superhigh` LOD.
+
 # Regions
 Regions are named sections of the model which can have multiple [permutations](#permutations). Region names are used by the engine to relate parts of the render model with the [collision model][model_collision_geometry]. For example, a Flood combat form losing an arm. Some regions have special behaviour in-engine:
 

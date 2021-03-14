@@ -19,14 +19,7 @@ The `Watson` directory and the files within it (`dw15.exe`, various `dwintl.dll`
 
 # Multiplayer chat: Keystone, controls, and content
 
-<figure>
-  <a href="editbox.png">
-    <img src="editbox.png" alt=""/>
-  </a>
-  <figcaption>
-    <p>An example modified chat editbox, a practice abandoned after mods implemented better chat systems.</p>
-  </figcaption>
-</figure>
+![.figure An example modified chat editbox, a practice abandoned after mods implemented better chat systems.](editbox.png)
 
 The library `Keystone.dll` is used for [Halo's][h1] stock multiplayer chat functionality. The game also requires the library `msxml.dll` to be installed on the system for chat to display properly. An installer can be found in Halo's `redist` directory.
 
@@ -50,45 +43,37 @@ The file `savegames\<profile name>\savegame.bin` contains the saved state of the
 
 The structure of this file is not fully mapped out, however some fields are known:
 
-<table>
-  <thead>
-    <tr>
-      <th>Field</th>
-      <th>Offset</th>
-      <th>Type</th>
-      <th>Comments</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Last difficulty</td>
-      <td><code>0x1E2</code></td>
-      <td><code>uint8</code></td>
-      <td>
-        <table>
-          <thead>
-            <tr>
-              <th>Option</th>
-              <th>Value</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Easy</td><td><code>0x0</code></td></tr>
-            <tr><td>Normal</td><td><code>0x1</code></td></tr>
-            <tr><td>Heroic</td><td><code>0x2</code></td></tr>
-            <tr><td>Legendary</td><td><code>0x3</code></td></tr>
-          </tbody>
-        </table>
-      </td>
-    </tr>
-    <tr>
-      <td>Last played scenario</td>
-      <td><code>0x1E8</code></td>
-      <td><code>ASCII string</code></td>
-      <td>An ASCII-encoded <a href="/h1/tags/scenario">scenario</a> tag path, null-terminated and 32 characters max. An example value is <code>levels\b30\b30</code> for The Silent Cartographer.</td>
-    </tr>
-  </tbody>
-</table>
+```.struct
+entryType: Savegame
+showAbsoluteOffsets: true
+id: savegame
+typeDefs:
+  DifficultyOpts:
+    class: enum
+    size: 1
+    options:
+      - name: easy
+      - name: normal
+      - name: hard
+      - name: legendary
+
+  Savegame:
+    fields:
+      - type: pad
+        size: 0x1E2
+      - name: last difficulty
+        type: DifficultyOpts
+      - type: pad
+        size: 5
+      - name: last played scenario
+        type: char
+        count: 32
+        comments:
+          en: >
+            An ASCII-encoded [scenario][] tag path, null-terminated and 32
+            characters max. An example value is `levels\b30\b30` for The Silent
+            Cartographer.
+```
 
 ## blam.sav
 The file `savegames\<profile name>\blam.sav` contains the configuration for a HCE profile. Information includes player details, video/audio/network settings, and input configurations (mouse, keyboard, and controller). It has a fixed length of 8192 bytes (8 [KiB][]). File integrity is verified by a checksum at the end of the file; if the checksum does not match the game will fall back to default settings.
