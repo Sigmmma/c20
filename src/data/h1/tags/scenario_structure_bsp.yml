@@ -404,6 +404,9 @@ comments:
             when compiling a BSP, but it does validate that all sky faces in a
             cluster are of the same sky. For example, a cluster cannot contain both
             `+sky0` and `+sky1` materials.
+
+            When a player moves between clusters with different skies, there is
+            no transition. The sky will abruptly change.
         - name: fog
           en: ...
         - name: background sound

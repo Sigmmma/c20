@@ -1,50 +1,52 @@
-# File List
+# File list
 [Blender 3D Software](https://www.blender.org/) -> The Blender application that we will be using to create our assets.
-<br><br/>
 
-# Setting Up Blender
+# Setting up Blender
 [Installing the Blender addon](https://general-101.github.io/HEK-Docs/w/Plugin/Install/Install.html)
 
-See the above link for setting up the Blender addon for exporting Halo assets if you haven't installed the addon already. Beyond that there may be a few other settings you may want to mess with before starting with any modeling.
-<br><br/>
+See the above link for setting up the Blender addon for exporting Halo assets if you haven't installed the addon already. Beyond that there may be a few other settings you may want to adjust with before starting with any modeling.
 
-## Undo Count
-Consider increasing the number of edits you can undo in Blender by changing the setting in preferences. Be aware that increasing this setting will use up more of your system RAM. Don't have stats cause I'm not a nerd so go forth.
+## Undo count
+Consider increasing the number of edits you can undo in Blender by changing the setting in preferences. Be aware that increasing this setting will use up more of your system RAM, so keep the value reasonable.
 
-<a href="A.png" target="_blank">
-	<img src="A.png" title="Be sure to keep this value reasonable." style="max-width: 400px; height: auto; "/>
-</a>
-<br><br/>
+![Undo steps setting of 128](A.png)
 
 ## Hotkeys
-There will probably be certain Blender functions you will be using over and over again so it's probably a good idea to setup some quick hotkeys for important functions.
-<br><br/>
+There will probably be certain Blender functions you will be using repeatedly so it's probably a good idea to setup some quick hotkeys for important functions. You could do this later if you're not sure what you need now.
 
-## Unit Measurement
-All units given in this guide are given with the expectation that your Blender instance is set to use metric units. If you haven't messed with this then it's already set to metric by default most likely. All units will also be given with the expectation that you are using global transforms.
+## Unit measurement
+All units given in this guide are given with the expectation that your Blender instance is set to use metric units. If you haven't changed this then it's likely already set to metric by default. All units will also be given with the expectation that you are using global transforms.
 
-<a href="C.png" target="_blank">
-	<img src="C.png" title="Use the default settings or I'm coming for those kneecaps." style="max-width: 400px; height: auto; "/>
-</a>
-<br><br/>
+![Use the default settings or I'm coming for those kneecaps.](C.png)
 
 ## Scene options
-An option added by the exporter to keep settings you don't need to care about hidden. Be sure to set game version to Halo CE as seen in the image below.
+An option added by the exporter to keep settings you don't need to care about hidden. Be sure to set game version to Halo CE as seen below:
 
-<a href="D.png" target="_blank">
-	<img src="D.png" title="This should help you stay focused on what matters to you." style="max-width: 400px; height: auto; "/>
-</a>
-<br><br/>
+![This should help you stay focused on what matters to you.](D.png)
 
 ## Workspace
-Since we are modeling lets be sure to pick the correct workspace for our work. Choose the "Modeling" workspace found in the top left by default.
+Since we are modeling lets be sure to pick the correct workspace for our work. Choose the "Modeling" workspace found in the top left by default. You don't need to see things like the timeline if you're just making a level so this should help simplify the experience.
 
-<a href="E.png" target="_blank">
-	<img src="E.png" title="You don't need to see things like the timeline if you're just making a level so this should help." style="max-width: 400px; height: auto; "/>
-</a>
-<br><br/>
+![The Modeling tab is at the top of the editor window.](E.png)
 
-## Key Configuration
+## Clip start and end
+The scale at which Halo levels are modeled is quite large. For instances, outdoor spaces like Bloodgulch are upwards of [1000 Blender units (JMS)][scale] across. By default, Blender scenes have a viewport [clipping range][wiki-clipping] of `0.01 m` to `1000 m`. This means that parts of your model may be cut off when zooming out to large scales. Blender's clipping distances can be adjusted in the View settings pane (press <kbd>N</kbd> and select the View tab).
 
+A x100 range of `1 m` to `100 000 m` works well for large outdoor maps:
+
+![Clipping distances are set in the View settings pane.](F.png)
+
+```.alert danger
+Do not try to avoid configuring clip distances by using _world units_ export scale in the [Blender JMS Toolset][jointed-model-blender-toolset]. The multiplication of vertex coordinates during export can amplify [floating point imprecisions](https://en.wikipedia.org/wiki/Floating-point_arithmetic#Accuracy_problems) and cause "nearly coplanar face" warnings from [Tool] and potentially [phantom BSP][scenario_structure_bsp#phantom-bsp] which cannot be resolved despite attempts to flatten surfaces in Blender.
+```
+
+## Key configuration
 All hotkeys given in this guide are given with the expectation that you are using the default Blender 2.8 preset.
-<br><br/>
+
+---
+
+```.alert success
+Ready to start modeling a level? Continue to the [next guide][level-creation-beginner].
+```
+
+[wiki-clipping]: https://en.wikipedia.org/wiki/Clipping_(computer_graphics)#Clipping_in_3D_graphics

@@ -5,7 +5,6 @@ $bg-content: #23292f;
 $bg-inset: #191d22;
 $bg-info: #373457;
 $bg-danger: #53332c;
-$bg-warning: #877836;
 $bg-success: #1c3e34;
 $bg-tag: #0b352b;
 $bg-tool: #171b4b;
@@ -72,8 +71,26 @@ ul {
 }
 
 img, video {
-  width: 100%;
   display: block;
+  width: 100%;
+}
+
+.content-article {
+  img, video {
+    width: auto;
+    max-width: 100%;
+    max-height: 400px;
+    transition: filter $transition-time / 2;
+  }
+
+  figure img {
+    width: 100%;
+    max-height: none;
+  }
+
+  a:hover img, a:hover video {
+    filter: brightness(110%);
+  }
 }
 
 a {
@@ -490,9 +507,6 @@ table.tag-struct {
   }
   &.type-danger {
     background: $bg-danger;
-  }
-  &.type-warning {
-    background: $bg-warning;
   }
   &.type-success {
     background: $bg-success;

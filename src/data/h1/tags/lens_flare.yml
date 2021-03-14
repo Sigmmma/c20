@@ -2,7 +2,9 @@ name: lens_flare
 id: lens
 invaderStructName: LensFlare
 comments:
-  en: ...
+  en: >
+    A 2D sprite which can fade by distance and angle. Can be part of a [light][]
+    or attached to [the BSP][scenario_structure_bsp#lens-flare-markers].
   fields:
     - name: falloff angle
       en: ...

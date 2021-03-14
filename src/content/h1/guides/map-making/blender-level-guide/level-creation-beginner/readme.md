@@ -1,18 +1,21 @@
-# File List
+```.alert
+This guide assumes you have already [prepared Blender][blender-prep].
+```
+
+# File list
 [End Result](https://drive.google.com/file/d/1GSaJ-JgygxatxY0dYsGC6WEojKAXnmfW/view?usp=sharing) -> The end product of this tutorial for you to examine and compare.
 
 [Spartan Model](https://drive.google.com/file/d/1fbm6QT1tSGNw4cY_pxE1vZJCm2sw3-LF/view?usp=sharing) -> Spartan model that should be to scale with the ingame player.
 
 [Warthog Model](https://drive.google.com/file/d/1rdBXdWcl2LOQpkD_-le4kpblXIJ9wNCm/view?usp=sharing) -> Warthog model that should be to scale with the ingame player.
-<br><br/>
+
 
 # Introduction
-Everything starts with an idea. Sometimes however we realize that we've made a terrible mistake just like this page I'm currently writing. Hello you and welcome to the Halo CE level modeling guide. In this guide we will be showing you how to go about with creating your very own level geometry for Halo CE in the 3D modeling software app known as Blender. This guide will include a completed version of our work as an example for you to contrast and compare but be sure to follow along.
+Everything starts with an idea. Sometimes, however, we realize that we've made a terrible mistake just like this page I'm currently writing. Hello you, and welcome to the Halo CE level modeling guide. In this guide we will be showing you how to go about with creating your very own level geometry for Halo CE in the 3D modeling software app known as Blender. This guide will include a completed version of our work as an example for you to contrast and compare but be sure to follow along.
 
 If there are any images that you find difficult to read then try opening the image in a new tab to view it in full resolution.
-<br><br/>
 
-# Creation of a Level Directory
+# Creation of a level directory
 For the sake of organizing your asset files you should consider keeping all your source files in the same level directory used to create the level (.blend, .tif, .psd, .jms, etc..).
 
 Tool.exe will search for subdirectories in the level directory that contain the raw asset data for compilation and eventually package the resulting assets from the raw data into a map cache file that can run in Halo CE. Any assets that you compile will end up in the tags directory plus the local path to the raw assets in the data folder. For example the file below...
@@ -29,7 +32,7 @@ has the compiled assets outputted to...
 
 When creating a level the scenario tag will take the name of the folder containing the sub directories and raw assets while the structure BSP tag will take the name of the JMS file itself. Compiled scenario tags can then reference other tags for use in the level.
 
-```$alert danger
+```.alert danger
 The name of the level folder containing our sub directories MUST BE UNIQUE from any other level folder in the data/tags directory as will be explained later during the packaging section.
 ```
 
@@ -73,15 +76,15 @@ Once this is done we will need to create 3 new sub directories in our level dire
 
 	* The name here is just for organizing objects used for the level. The folder containing your scenery does not need to be named this but it should help. As you have probably guessed this is where the raw assets for any level specific objects can be placed. This folder should probably contain multiple folders with their own sub directories for model and bitmap assets.
 
-```$alert info
+```.alert info
 As stated before compiled assets will end up in a path that mirrors the path of the raw asset but replacing the data directory with the tags directory. A packaged map file will take the name of the scenario tag and placed in your game's map folder.
 ```
 
-# Creation of a Reference Frame
+# Creation of a reference frame
 In order to create a Halo level you first have to create a reference frame for all our geometry to be linked to. The reference frame is the origin for all objects in our scene.
 
-```$alert warning
-Be aware that once you have started to edit the level using the Halo level editing tool known as Sapien you can not move the origin of the reference frame. Changing the origin will cause all placed objects to move.
+```.alert danger
+Be aware that once you have started to edit the level using the Halo level editing tool known as [Sapien][] you cannot move the origin of the reference frame. Changing the origin will cause all placed objects to move.
 ```
 
 Any objects that are not a child of the reference frame are excluded from export. This helps the designer keep reference models for scale but not have to fumble around with deleting objects before export to prevent issues. This can also be used to remove objects from the reference frame to debug which object in particular may be causing an issue.
@@ -112,11 +115,11 @@ We can now [move](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Bl
 
 X: ```0.0``` Y: ```1800.0``` Z: ```0.0```
 
-```$alert info
+```.alert info
 The Reference Frame does not have to have a specific Material applied to it. The application of Materials in Blender will be discussed in a later section.
 ```
 
-# Creation of a Simple Level
+# Creation of a simple level
 The following steps and example images will demonstrate the creation of a box that will serve as the tutorial level and will be utilized for all the subsequent tutorials.
 When creating or starting out a level try and keep the level centered at the origin.  This can make the creation process much easier, such as when mirroring level geometry (such as team bases and other symmetric elements of the level).
 
@@ -128,7 +131,7 @@ The level must be a sealed. The level must be a contiguous structure that forms 
 
 Additional information on the Reference Frame and Sealed World Rules and other technical rules or guidelines can be found under the Technical Rules discussion topic under the General Overview section under Multiplayer Level Design.
 
-## Creation of a simple box room
+## creation of a simple box room
 
 1. [Add a new box object](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#new-object-meshes)
 
@@ -150,11 +153,11 @@ Additional information on the Reference Frame and Sealed World Rules and other t
 
 9. [Set the parent](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#set-parent) of the box to the Reference Frame (frame).
 
-```$alert info
+```.alert info
 The last object you selected is considered the active object and will be the parent of all other objects you have selected when doing Set to parent object.
 ```
 
-# Application of Materials
+# Application of materials
 Before discussing and demonstrating materials and the application of materials to surfaces in the level, it is HIGHLY recommended that the Materials Overview section under the General Reference section be reviewed.  The information contained in the Material Naming Conventions and Rules as well as the names of Special Materials and special Shader Symbols of this section will be referenced in the following examples.
 
 The following section will show you how to create new materials and use them across multiple objects properly. We will also show how to assign a texture to a material so that it displays on surfaces that have that material assigned. This is not necessary for exporting or the compiling of raw assets but it should help you visualize the look of your level in your scene. The only data exported to the .JMS is the name of our material and the path to the texture it has assigned if one exists. The name of the material is the only important bit here. The name of the material will be the filename tool.exe searches for when looking for a shader tag to assign to a surface.
@@ -163,7 +166,7 @@ Images assigned to materials can be used to examine generated UVs from your scen
 
 Every face for the game level must have a material assigned to it (except for the Reference Frame as previously mentioned).
 
-## Creating New Materials
+## Creating new materials
 
 1. Select the box object (level) and navigate to the materials tab.
 
@@ -188,19 +191,19 @@ Every face for the game level must have a material assigned to it (except for th
 
 9. Go ahead and click the button labeled "Open Image" to set the selected image to be used by your material. This completes the texture assigning process.
 
-```$alert info
+```.alert info
 Material names in Blender must be unique. Blender does not allow for any duplicate material names in your scene. If you have an existing material named "test" and create a new material in another object named "test" then that material will be renamed to test.001. If you need the same material name then reselect it from the material dropdown.
 ```
 
-```$alert info
+```.alert info
 Be sure to also not use a digit at the end of your material name unless you are specifically working with shader permutations. A shader with a digit at the end will have that digit culled on import.
 ```
 
-```$alert info
+```.alert info
 Be sure to keep your material names lowercase as all tags paths in Halo should not make use of uppercase letters.
 ```
 
-## Applying New Materials
+## Applying new materials
 
 We will now be going over how to apply your newly created materials to faces in your scene.
 
@@ -225,12 +228,12 @@ You've completed this section. There are two ways you can see what materials you
 
  Materials that have "Use Nodes" enabled and either define a texture or use base color for a diffuse will be displayed in the ```render preview shading```. Materials that have "Use Nodes" disabled can use ```solid shading``` and set the diffuse colors to differentiate materials but keep in mind that you will not be able to assign textures. You can switch between both to assign a diffuse and assign a texture when switching between solid and render. Most images in this guide will be using solid shading for rendering.
 
-# UV Mapping
+# UV mapping
 Now that we have assigned our textures we can begin to modify the UV coordinates for our mesh to properly display our textures. Since we only have one material that makes use of the texture in the scene at the moment we will only need to modify the UV mapping coordinates for the surfaces that have "example_tutorial_ground" assigned to them.
 
 Follow the instructions below to begin.
 
-## Setting Up A Second Viewport For UV Editing
+## Setting up a second viewport for UV editing
 
 1. Lets start by [setting up our second window](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#viewport-editing) for UV mapping.
 
@@ -264,7 +267,7 @@ The result from that should be something that looks like this.
 	<img src="X.png" title="You can use smart UV project to quickly unwrap on object but you will eventually need to use unwraps and UV seams to manually fix certain objects. More on this in future sections." style="max-width: 400px; height: auto; "/>
 </a>
 
-# Assigning Sharp Edges
+# Assigning sharp edges
 A key difference between work in Blender VS 3DS Max is that Blender does not have a smoothing groups feature. For our modeling work in Blender we must instead make use of sharp/smooth edges with an edge split modifier to properly set up our normals. Please be aware that options like auto smooth or shade smooth/flat will not have any effect on the resulting JMS.
 
 The purpose of assigning sharp edges is to make our polygon count seem higher than it actually is or just design more aesthetically pleasing geometry. Geometry with properly set edges can have drastic effects on a piece of geometry. See the following examples.
@@ -297,7 +300,7 @@ The result should look something like this.
 
 Now that we finished our work we can begin to mark the edges as sharp.
 
-```$alert info
+```.alert info
 Do not worry about sharp edges for materials that are considered special materials such as +portal and +sky.
 ```
 
@@ -305,7 +308,7 @@ Follow the instructions [here](https://general-101.github.io/HEK-Docs/w/Blender%
 
 Now to see the results of our assigned sharp edges we will need an edge split modifier for our object. The next section will go over what you need.
 
-## Assigning a Modifier
+## Assigning a modifier
 
 Lets go over how to assign a modifier if you don't know how real quick.
 
@@ -329,7 +332,7 @@ The modifier can also be permanently applied from this area. Simply click on the
 	<img src="1F.png" title="A blank canvas." style="max-width: 400px; height: auto; "/>
 </a>
 
-# Saving the Level
+# Saving the level
 It's probably a good idea to make frequent backups as you make progress just in case. Follow the instructions below to save a scene.
 
 1. Go to File dropdown in the top left and click it.
@@ -342,5 +345,8 @@ It's probably a good idea to make frequent backups as you make progress just in 
 
 You've now saved your level. The file as is will be used for future sections in this tutorial.
 
-# End of Basics
-Once you've gotten to this point your level is ready to export. We will go over some more in depth features in the next section to help you design a more interesting map. If you do drop off at this point then keep in mind that any sections from here on out will show the tutorial level in a different state than it was during the last section.
+# End of basics
+
+```.alert success
+Once you've gotten to this point your level is ready to export. We will go over some more in-depth features in the [next section][level-creation-advanced] to help you design a more interesting map. If you do drop off at this point then keep in mind that any following sections will show the tutorial level in a different state than it was during the last section.
+```

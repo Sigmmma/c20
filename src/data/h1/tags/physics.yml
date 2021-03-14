@@ -2,7 +2,7 @@ name: physics
 id: phys
 invaderStructName: Physics
 comments:
-  en: ...
+  en: Models the dynamic physics and propulsion of [vehicles][vehicle].
   fields:
     - name: radius
       en: ...

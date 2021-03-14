@@ -36,7 +36,7 @@ The bitmap type drop down box is used to tell tool how to process the image and 
 - **3D Textures**: A set of texture slices that when combined forms a texture cube. Used in the shader_transparent_plasma tag type.
 - **Cube maps**: A set of 6 textures that combines into a cube. Used for simulating reflections in shaders.
 - **Sprites**: A set of textures that have multiple sprites fitted on them. Used for effects and huds.
-- **Interface bitmaps**: Textures that don't have to follow the rule of needing to be power-of-two. Should only be used for menus.
+- **Interface bitmaps**: Textures that don't have to follow the rule of needing to be power-of-two. It should only be used for menus.
 
 # Format
 The format of the bitmap determines what way it will be stored, how big the bitmap file ends up being in a map file and how it ends up looking.

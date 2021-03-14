@@ -146,10 +146,73 @@ Beyond the [basic markdown features][mdbasic], c20 adds a few special extensions
 * [Tables][tables], although for larger tables you will want to switch to raw inline HTML.
 * All headings automatically get anchor links/IDs for linking directory to that heading. When someone loads a page with that heading ID in the URL (e.g. `#my-heading`) the page will automatically scroll to that content. Do not make headings which are also links (like `# [Heading text](www.example.com)`), as it's unsupported.
 * You can use the `console`, `inittxt` and `hsc` language tags for [code fences][fences] to get syntax highlighting for various cases of Halo Script. We also support `vrml` (WRL files).
+* Alert boxes can be added with the following syntax:
+  ```md
+      ```.alert info
+      Alert body here, in **markdown**.
+      ```
+  ```
+  The possible alert types are `info`, `danger`, and `success`.
+* Right-aligned figures are added using a special `.figure` tag in markdown images:
+  ```md
+      ![.figure Figure caption markdown](figure.jpg)
+  ```
+* Standard markdown images are automatically enclosed in an anchor tag which opens the image in another tab.
+* Generate data structure documentation tables from a YAML description like so:
+  ```md
+      ```.struct
+      <YAML CONTENT HERE>
+      ```
+  ```
 
-**Smart links** are perhaps the most important feature of c20's markdown. Since most of the links you'll be creating will be to other wiki pages, it would be both cumbersome and fragile to specify the full path of that page every time. We extend [standard reference-style links][reflink] with an automatic lookup mechanism when a reference is not defined.
+  The YAML content follows this format:
+  ```yml
+  # determines the "main" structure
+  entryType: Savegame
+  # if provided, shows offsets in table
+  showAbsoluteOffsets: true
+  # root for HTML ID generation
+  id: savegame
+  # definitions for type names
+  typeDefs:
+    DifficultyOpts:
+      # type classes can be enum, bitfield, or struct
+      class: enum
+      # enum size in bytes, also used for bitfield
+      size: 1
+      # for enums specifically, each value's name
+      options:
+        - name: easy
+        - name: normal
+        - name: hard
+        - name: legendary
 
-For example, if you just write a link like `[the scenario tag][scenario]`, c20 will automatically resolve the target URL as `/h1/tags/scenario` without you having to define it. You can also include a heading ID like `scenario#tag-field-bipeds`. The lookup is based on the page's _logical path_ (the name of its directories under `src/content/` rather than its localized URL). When multiple target pages match, c20 will choose the one _most related_ to the origin page in the content tree. When this is not possible, the ambiguity must be clarified by specifying more of the logical path in the link: `[Halo 2 tags][h2/tags]` or `[Halo 1 tags][h1/tags]`.
+    Savegame:
+      class: struct
+      # both struct and bitfield classes have fields
+      fields:
+        # an intrinsic resizable padding type
+        - type: pad
+          size: 0x1E2
+        # referencing the enum above
+        - name: last difficulty
+          type: DifficultyOpts
+        - type: pad
+          size: 5
+        # undefined types assumed intrinsic
+        - name: last played scenario
+          type: char
+          count: 32
+          # multi-language markdown comment support
+          comments:
+            en: >
+              An ASCII-encoded [scenario][] tag path, null-terminated and 32
+              characters max. An example value is `levels\b30\b30` for The Silent
+              Cartographer.
+  ```
+* **Smart links** are perhaps the most important feature of c20's markdown. Since most of the links you'll be creating will be to other wiki pages, it would be both cumbersome and fragile to specify the full path of that page every time. We extend [standard reference-style links][reflink] with an automatic lookup mechanism when a reference is not defined.
+
+  For example, if you just write a link like `[the scenario tag][scenario]`, c20 will automatically resolve the target URL as `/h1/tags/scenario` without you having to define it. You can also include a heading ID like `scenario#tag-field-bipeds`. The lookup is based on the page's _logical path_ (the name of its directories under `src/content/` rather than its localized URL). When multiple target pages match, c20 will choose the one _most related_ to the origin page in the content tree. When this is not possible, the ambiguity must be clarified by specifying more of the logical path in the link: `[Halo 2 tags][h2/tags]` or `[Halo 1 tags][h1/tags]`.
 
 ### Resources
 The directory for a page can include other files related to that topic, like images. Simply place images in the page's directory and they will be copied for each localized output URL. If an image is only applicable to a certain language because it contains text in that language, you can add a suffix like `screenshot_es.jpg` or `screenshot_en.jpg` and it will only be copied to certain language outputs. **Do not** place images in a subdirectory for organization; subdirectories should be used for child pages only.
@@ -171,6 +234,9 @@ Some wiki content is automatically generated based on YAML data files. These can
 * If a topic is growing too large, consider splitting it up and taking its large sections to a child page (a subdirectory).
 * Child pages expand upon the topic of a parent.
 
+### Markdown tips
+* Ordered and unordered list items should not have empty lines between them, or else it will not be considered a proper list by the parser.
+
 ### Writing style
 * All headings in a markdown document start at H1 (a single "#") and sub-headings must never skip a level; you can't have an H3 follow an H1.
 * Titles use sentence case, with the first word capitalized only. The exception is if the title or parts of it are a proper noun like a person's name.
@@ -180,9 +246,13 @@ Some wiki content is automatically generated based on YAML data files. These can
 * When stating raw data values and offsets, use `code` tags.
 * Blocks of Halo script should use the `hsc` language. Blocks of console commands should use `console`. This ensures proper syntax highlighting.
 * Use **strong** tags when naming a page's topic for the first time in the introduction paragraph. The exception is pages which are not about a specific "thing" or concept.
+* Buttons presses should be documented like `<kbd>Ctrl + A</kbd>`.
 * There is no strong preference at this time for UK/Canada vs. US spelling of words like colour, unless you are referring to a tag's field name which should match exactly.
 * Don't assume the reader knows anything about modding Halo. You don't have to detail literally every step, but include links to prerequisite information and other pages to fill out concepts. Use examples that the reader might be familiar with to help get your points across.
 * Avoid using words like "below" or "above" to refer to other content on the page unless it is fairly certain the content will stay together. We may wish to reorder sections and paragraphs in the future. Consider using an anchor link to point users to relevant sections if they aren't immediately obvious.
+* Use a "textbook" style of writing rather than conversational. Keep writing concise and avoid expressions which may confuse readers whose first language is not English.
+* Image alt attributes should aid the reader in the case that images _don't_ load. For example, `![The Modeling tab is at the top of the editor window](image.jpg)`.
+* Use ordered and unordered lists sparingly. They should be used for small, easily-digestible lists of things but not listing paragraphs of steps in a guide.
 
 ### Commonly-used headings
 To maintain consistency across pages, try to use some of these heading names if relevant:
