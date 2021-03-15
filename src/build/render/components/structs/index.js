@@ -1,4 +1,6 @@
 const yaml = require("js-yaml");
+const fs = require("fs");
+const path = require("path");
 const {html, escapeHtml, localizer, slugify} = require("../bits");
 
 const localizations = localizer({
@@ -30,8 +32,8 @@ const localizations = localizer({
     en: "Comments",
     es: "Comentarios"
   },
-  absOffset: {
-    en: "Offset (absolute)",
+  offset: {
+    en: "Offset (relative)",
   },
   label_cache_only: {
     en: "Cache only"
@@ -58,15 +60,17 @@ const INTRINSIC_TYPE_DEFS = {
 };
 
 function joinPathId(pathId, next) {
+  if (!pathId || !next) return null;
   return `${pathId}-${slugify(next)}`;
 }
 
 function renderStructYaml(ctx, optsYaml) {
   const {renderMarkdown} = require("../markdown"); //todo: untangle circular dep
   const localize = localizations(ctx.lang);
-  const {typeDefs, entryType, showAbsoluteOffsets, id} = yaml.load(optsYaml);
-
-  let absoluteOffset = 0;
+  const {typeDefs: typeDefsArg, entryType, showOffsets, id} = yaml.load(optsYaml);
+  const typeDefs = typeof(typeDefsArg) === "string" ?
+    yaml.load(fs.readFileSync(path.join(ctx.page.dirPath, typeDefsArg), "utf8")) :
+    typeDefsArg;
 
   function renderComments(field) {
     return html`
@@ -108,28 +112,31 @@ function renderStructYaml(ctx, optsYaml) {
   }
 
   function renderFieldName(fieldName, pathId) {
-    return fieldName ? html`
+    if (!fieldName) return null;
+    return pathId ? html`
       <span id="${pathId}">
         ${escapeHtml(fieldName)}
         <a href="#${pathId}" class="header-anchor"></a>
-      </span>` : null;
+      </span>
+    ` : escapeHtml(fieldName);
   }
 
   function calcFieldSize(field) {
     const typeDef = typeDefs[field.type] || INTRINSIC_TYPE_DEFS[field.type];
-    const size = field.size || (typeDef && typeDef.size) || 0;
+    const size = field.size ||
+      (typeDef && typeDef.size) ||
+      (typeDef.class == "struct" && typeDef.fields.reduce((acc, next) => calcFieldSize(next) + acc, 0)) ||
+      0;
     const count = field.count !== undefined ? field.count : 1;
     return size * count;
   }
 
   function renderHex(num) {
-    return html`<code title="${num}">0x${num.toString(16)}</code>`;
+    return html`<code title="${num}">0x${num.toString(16).toUpperCase()}</code>`;
   }
 
-  function renderStructFieldRow(field, pathId) {
+  function renderStructFieldRow(field, pathId, offset) {
     const typeDef = typeDefs[field.type];
-    const fieldAbsOffset = absoluteOffset;
-    absoluteOffset += calcFieldSize(field);
 
     const rowClasses = [
       "struct-field",
@@ -140,16 +147,16 @@ function renderStructYaml(ctx, optsYaml) {
 
     return html`
       <tr class="${rowClasses.join(" ")}">
-        <td class="field-name">${renderFieldName(field.name)}</td>
-        ${showAbsoluteOffsets && html`
-          <td class="field-offset">${renderHex(fieldAbsOffset)}</td>
+        <td class="field-name">${renderFieldName(field.name, joinPathId(pathId, field.name))}</td>
+        ${showOffsets && html`
+          <td class="field-offset">${renderHex(offset)}</td>
         `}
         <td class="field-type">${renderFieldType(field)}</td>
         <td class="comments">${renderComments(field)}</td>
       </tr>
       ${typeDef && html`
         <tr class="embedded-type">
-          <td colspan="${showAbsoluteOffsets ? 4 : 3}">
+          <td colspan="${showOffsets ? 4 : 3}">
             ${renderTypeAsTable(typeDef, joinPathId(pathId, field.name))}
           </td>
         </tr>
@@ -158,21 +165,26 @@ function renderStructYaml(ctx, optsYaml) {
   }
 
   function renderStructAsTable(typeDef, pathId) {
-    const widths = 50 / (showAbsoluteOffsets ? 3 : 2);
+    const widths = 50 / (showOffsets ? 3 : 2);
+    let offset = 0;
     return html`
       <table class="type-def struct">
         <thead>
           <tr>
             <th style="width:${widths}%">${localize("field")}</th>
-            ${showAbsoluteOffsets && html`
-              <th style="width:${widths}%">${localize("absOffset")}</th>
+            ${showOffsets && html`
+              <th style="width:${widths}%">${localize("offset")}</th>
             `}
             <th style="width:${widths}%">${localize("type")}</th>
             <th>${localize("comments")}</th>
           </tr>
         </thead>
         <tbody>
-          ${typeDef.fields.map(field => renderStructFieldRow(field, pathId))}
+          ${typeDef.fields.map(field => {
+            const row = renderStructFieldRow(field, pathId, offset);
+            offset += calcFieldSize(field);
+            return row;
+          })}
         </tbody>
       </table>
     `;
@@ -212,11 +224,11 @@ function renderStructYaml(ctx, optsYaml) {
           </tr>
         </thead>
         <tbody>
-          ${typeDef.options.map((field, i) => html`
+          ${typeDef.options.map((option, i) => html`
             <tr>
-              <td>${renderFieldName(field.name, joinPathId(pathId, field.name))}</td>
-              <td>${renderHex(i)}</td>
-              <td>${renderComments(field)}</td>
+              <td>${renderFieldName(option.name, joinPathId(pathId, option.name))}</td>
+              <td>${renderHex(option.value !== undefined ? option.value : i)}</td>
+              <td>${renderComments(option)}</td>
             </tr>
           `)}
         </tbody>
@@ -238,7 +250,9 @@ function renderStructYaml(ctx, optsYaml) {
     }
   }
 
-  return renderTypeAsTable(typeDefs[entryType], id || "");
+  const entryTypeDef = typeDefs[entryType];
+  if (!entryTypeDef) throw new Error(`Entry type ${entryType} is not defined`);
+  return renderTypeAsTable(entryTypeDef, id || "");
 }
 
 module.exports = {renderStructYaml};

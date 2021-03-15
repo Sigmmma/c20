@@ -78,7 +78,16 @@ typeDefs:
 ## blam.sav
 The file `savegames\<profile name>\blam.sav` contains the configuration for a HCE profile. Information includes player details, video/audio/network settings, and input configurations (mouse, keyboard, and controller). It has a fixed length of 8192 bytes (8 [KiB][]). File integrity is verified by a checksum at the end of the file; if the checksum does not match the game will fall back to default settings.
 
-The file structure follows, but is known to be incomplete:
+The file structure follows. All data is [little-endian](https://en.wikipedia.org/wiki/Endianness).
+
+```.struct
+entryType: Profile
+showOffsets: true
+id: profile
+typeDefs: blam.sav.yml
+```
+
+---
 
 <table>
   <thead>
