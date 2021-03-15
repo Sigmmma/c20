@@ -61,7 +61,7 @@ const INTRINSIC_TYPE_DEFS = {
 
 function joinPathId(pathId, next) {
   if (!pathId || !next) return null;
-  return `${pathId}-${slugify(next)}`;
+  return [...pathId, next];
 }
 
 function renderStructYaml(ctx, optsYaml) {
@@ -113,12 +113,14 @@ function renderStructYaml(ctx, optsYaml) {
 
   function renderFieldName(fieldName, pathId) {
     if (!fieldName) return null;
-    return pathId ? html`
-      <span id="${pathId}">
-        ${escapeHtml(fieldName)}
-        <a href="#${pathId}" class="header-anchor"></a>
+    if (!pathId) return escapeHtml(fieldName);
+    const pathTitle = escapeHtml(pathId.join("/"));
+    const pathIdAttr = slugify(pathId.join("-"));
+    return html`
+      <span title="${pathTitle}" id="${pathIdAttr}">
+        ${escapeHtml(fieldName)}<a href="#${pathIdAttr}" class="header-anchor"></a>
       </span>
-    ` : escapeHtml(fieldName);
+    `;
   }
 
   function calcFieldSize(field) {
@@ -252,7 +254,7 @@ function renderStructYaml(ctx, optsYaml) {
 
   const entryTypeDef = typeDefs[entryType];
   if (!entryTypeDef) throw new Error(`Entry type ${entryType} is not defined`);
-  return renderTypeAsTable(entryTypeDef, id || "");
+  return renderTypeAsTable(entryTypeDef, [id || ""]);
 }
 
 module.exports = {renderStructYaml};

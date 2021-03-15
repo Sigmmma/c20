@@ -46,13 +46,13 @@ PlayerDetails:
   fields:
     - name: player name
       type: UTF-16
-      size: 22
+      size: 24
       comments:
         en: >
           The player's name, encoded as [UTF-16](https://en.wikipedia.org/wiki/UTF-16).
           Null-terminated with a maximum of 11 characters (excluding the null).
     - type: pad
-      size: 0x102
+      size: 0x100
     - name: player color
       type: PlayerColors
       comments:
@@ -550,8 +550,18 @@ ControlSettings:
       size: 26
     - name: horizontal mouse sensitivity
       type: uint8
+      value:
+        min: 1
+        max: 10
+      comments:
+        en: Ranges in value from 0 (minimum) to 10 (maximum).
     - name: vertical mouse sensitivity
       type: uint8
+      value:
+        min: 1
+        max: 10
+      comments:
+        en: Ranges in value from 0 (minimum) to 10 (maximum).
     - name: gamepad 0 horizontal sensitivity
       type: uint8
     - name: gamepad 1 horizontal sensitivity
@@ -577,7 +587,7 @@ ParticlesSettings:
     - name: low
     - name: high
 
-TextureQualities:
+QualityOptions:
   class: enum
   size: 1
   options:
@@ -620,7 +630,7 @@ VideoSettings:
     - name: particles
       type: ParticlesSettings
     - name: texture quality
-      type: TextureQualities
+      type: QualityOptions
     - type: pad
       size: 1
     - name: gamma
@@ -633,8 +643,86 @@ VideoSettings:
 AudioSettings:
   class: struct
   fields:
+    - name: master volume
+      type: uint8
+    - name: effects volume
+      type: uint8
+    - name: music volume
+      type: uint8
+    - name: enable EAX
+      type: bool
+    - name: enable hardware acceleration
+      type: bool
+    - name: sound quality
+      type: QualityOptions
     - type: pad
       size: 1
+    - name: audio variety
+      type: QualityOptions
+
+ConnectionTypes:
+  class: enum
+  size: 1
+  options:
+    - name: "56k"
+    - name: dsl-low
+    - name: dsl-avg
+    - name: dsl-high
+    - name: t1/lan
+
+NetworkSettings:
+  class: struct
+  fields:
+    - name: server name
+      type: UTF-16
+      size: 64
+      comments:
+        en: >
+          Stores the last-used hosting server name for the "create game" menus
+          (both LAN and Internet). Null-terminated with a maximum of 31 characters
+          (excluding the null).
+    - type: pad
+      size: 0xE0
+    - name: password
+      type: UTF-16
+      size: 18
+      comments:
+        en: >
+          Stores the last-used hosting password for the "create game" menus
+          (both LAN and Internet). Null-terminated with a maximum of 8 characters
+          (excluding the null)
+    - type: pad
+      size: 1
+    - name: max players
+      type: uint8
+      comments:
+        en: >
+          Stores the last-used max players for hosting a server. The value `0x00`
+          actually corresponds to the minimum of 2 players, with `0x0E` being the
+          maximum of 16.
+    - type: pad
+      size: 0x100
+    - name: connection type
+      type: ConnectionTypes
+    - type: pad
+      size: 1
+    - name: server address
+      type: UTF-16
+      size: 64
+      comments:
+        en: >
+          Stores the default server address for Direct IP connections. This value
+          could contain an IP and port separated by a ":" or even a DNS host name.
+          Encoded as UTF-16, null-terminated with a maximum of 31 characters
+          (excluding the null).
+    - name: server port
+      type: uint16
+      comments:
+        en: Defaults to the value 2302
+    - name: client port
+      type: uint16
+      comments:
+        en: Defaults to the value 2303
 
 Profile:
   class: struct
@@ -660,3 +748,7 @@ Profile:
       size: 0x100
     - name: audio settings
       type: AudioSettings
+    - type: pad
+      size: 0x20C
+    - name: network settings
+      type: NetworkSettings
