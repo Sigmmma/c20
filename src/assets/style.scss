@@ -447,10 +447,9 @@ table.type-def {
   & {
     margin-bottom: 0;
   }
-  .has-embedded {
-    background: $bg-inset;
+  .has-embedded-class-struct {
     .field-name {
-      // text-transform: uppercase;
+      text-transform: uppercase;
       font-weight: bold;
     }
   }

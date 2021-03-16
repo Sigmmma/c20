@@ -60,359 +60,397 @@ PlayerDetails:
           Determines the player's [multiplayer armour colour][hard-coded-data#multiplayer-armor-colors].
           Defaults to `0xFF` (random).
 
+Action:
+  class: enum
+  size: 2
+  options:
+    - name: Jump
+    - name: SwitchGrenade
+    - name: Action
+    - name: SwitchWeapon
+    - name: MeleeAttack
+    - name: Flashlight
+    - name: ThrowGrenade
+    - name: FireWeapon
+    - name: MenuAccept
+      comments:
+        en: Keyboard only
+    - name: MenuBack
+      comments:
+        en: Keyboard only
+    - name: Crouch
+    - name: ScopeZoom
+    - name: ShowScores
+    - name: Reload
+    - name: ExchangeWeapon
+    - name: Say
+    - name: SayToTeam
+    - name: SayToVehicle
+    - name: Screenshot
+    - name: MoveForward
+    - name: MoveBackward
+    - name: MoveLeft
+    - name: MoveRight
+    - name: LookUp
+    - name: LookDown
+    - name: LookLeft
+    - name: LookRight
+    - name: ShowRules
+    - name: ShowPlayerNames
+
 KeyboardBindings:
   class: struct
   fields:
     - name: Escape
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x09` (MenuBack) and is unchangeable. Hardcoded to pause the game.
     - name: F1
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x0C` (ShowScores)
     - name: F2
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x1B` (ShowRules)
     - name: F3
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x1C` (ShowPlayerNames)
     - name: F4
-      type: uint16
+      type: Action
     - name: F5
-      type: uint16
+      type: Action
     - name: F6
-      type: uint16
+      type: Action
     - name: F7
-      type: uint16
+      type: Action
     - name: F8
-      type: uint16
+      type: Action
     - name: F9
-      type: uint16
+      type: Action
     - name: F10
-      type: uint16
+      type: Action
     - name: F11
-      type: uint16
+      type: Action
     - name: F12
-      type: uint16
+      type: Action
     - name: Printscreen
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x12` (Screenshot)
     - name: ScrollLock
-      type: uint16
+      type: Action
     - name: PauseBreak
-      type: uint16
+      type: Action
     - name: Grave
-      type: uint16
+      type: Action
     - name: NumRow1
-      type: uint16
+      type: Action
     - name: NumRow2
-      type: uint16
+      type: Action
     - name: NumRow3
-      type: uint16
+      type: Action
     - name: NumRow4
-      type: uint16
+      type: Action
     - name: NumRow5
-      type: uint16
+      type: Action
     - name: NumRow6
-      type: uint16
+      type: Action
     - name: NumRow7
-      type: uint16
+      type: Action
     - name: NumRow8
-      type: uint16
+      type: Action
     - name: NumRow9
-      type: uint16
+      type: Action
     - name: NumRow0
-      type: uint16
+      type: Action
     - name: EnDash
-      type: uint16
+      type: Action
     - name: Equals
-      type: uint16
+      type: Action
     - name: Backspace
-      type: uint16
+      type: Action
     - name: Tab
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x03` (SwitchWeapon)
     - name: Q
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x05` (Flashlight)
     - name: W
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x13` (MoveForward)
     - name: E
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x02` (Action)
     - name: R
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x0D` (Reload)
     - name: T
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x0F` (Say)
     - name: Y
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x10` (SayToTeam)
     - name: U
-      type: uint16
+      type: Action
     - name: I
-      type: uint16
+      type: Action
     - name: O
-      type: uint16
+      type: Action
     - name: P
-      type: uint16
+      type: Action
     - name: BracketL
-      type: uint16
+      type: Action
     - name: BracketR
-      type: uint16
+      type: Action
     - name: Backslash
-      type: uint16
+      type: Action
     - name: CapsLock
-      type: uint16
+      type: Action
     - name: A
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x15` (MoveLeft)
     - name: S
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x14` (MoveBackward)
     - name: D
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x16` (MoveRight)
     - name: F
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x04` (MeleeAttack)
     - name: G
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x01` (SwitchGrenade)
     - name: H
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x11` (SayToVehicle)
     - name: J
-      type: uint16
+      type: Action
     - name: K
-      type: uint16
+      type: Action
     - name: L
-      type: uint16
+      type: Action
     - name: SemiColon
-      type: uint16
+      type: Action
     - name: Apostrophe
-      type: uint16
+      type: Action
     - name: Enter
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x08` (MenuAccept). Keyboard only and unchangeable.
     - name: ShiftL
-      type: uint16
+      type: Action
     - name: Z
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x0B` (ScopeZoom)
     - name: X
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x0E` (ExchangeWeapon)
     - name: C
-      type: uint16
+      type: Action
     - name: V
-      type: uint16
+      type: Action
     - name: B
-      type: uint16
+      type: Action
     - name: N
-      type: uint16
+      type: Action
     - name: M
-      type: uint16
+      type: Action
     - name: Comma
-      type: uint16
+      type: Action
     - name: Period
-      type: uint16
+      type: Action
     - name: Slash
-      type: uint16
+      type: Action
     - name: RShift
-      type: uint16
+      type: Action
     - name: LCtrl
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x0A` (Crouch)
     - name: LWin
-      type: uint16
+      type: Action
     - name: LAlt
-      type: uint16
+      type: Action
     - name: Space
-      type: uint16
+      type: Action
       comments:
         en: Defaults to `0x00` (Jump)
     - name: RAlt
-      type: uint16
+      type: Action
     - name: RWin
-      type: uint16
+      type: Action
       comments:
         en: Unchangeable
     - name: Menu
-      type: uint16
+      type: Action
       comments:
         en: Unchangeable
     - name: RCtrl
-      type: uint16
+      type: Action
     - name: UpArrow
-      type: uint16
+      type: Action
     - name: DownArrow
-      type: uint16
+      type: Action
     - name: LeftArrow
-      type: uint16
+      type: Action
     - name: RightArrow
-      type: uint16
+      type: Action
     - name: Insert
-      type: uint16
+      type: Action
     - name: Home
-      type: uint16
+      type: Action
     - name: PgUp
-      type: uint16
+      type: Action
     - name: Delete
-      type: uint16
+      type: Action
     - name: End
-      type: uint16
+      type: Action
     - name: PgDown
-      type: uint16
+      type: Action
     - name: NumLock
-      type: uint16
+      type: Action
       comments:
         en: Unchangeable
     - name: KPDivide
-      type: uint16
+      type: Action
     - name: KPMultiply
-      type: uint16
+      type: Action
     - name: Keypad0
-      type: uint16
+      type: Action
     - name: Keypad1
-      type: uint16
+      type: Action
     - name: Keypad2
-      type: uint16
+      type: Action
     - name: Keypad3
-      type: uint16
+      type: Action
     - name: Keypad4
-      type: uint16
+      type: Action
     - name: Keypad5
-      type: uint16
+      type: Action
     - name: Keypad6
-      type: uint16
+      type: Action
     - name: Keypad7
-      type: uint16
+      type: Action
     - name: Keypad8
-      type: uint16
+      type: Action
     - name: Keypad9
-      type: uint16
+      type: Action
     - name: KeypadMinus
-      type: uint16
+      type: Action
     - name: KeypadPlus
-      type: uint16
+      type: Action
     - name: Unknown1
-      type: uint16
+      type: Action
       comments:
         en: Probably KeyPadEnter
     - name: KeypadDecimal
-      type: uint16
+      type: Action
     - name: Unknown2
-      type: uint16
+      type: Action
     - name: Unknown3
-      type: uint16
+      type: Action
     - name: Unknown4
-      type: uint16
+      type: Action
     - name: Unknown5
-      type: uint16
+      type: Action
     - name: Unknown6
-      type: uint16
+      type: Action
 
 MouseBindings:
   class: struct
   fields:
     - name: Left Button
-      type: uint16
+      type: Action
     - name: Middle Button
-      type: uint16
+      type: Action
     - name: Right Button
-      type: uint16
+      type: Action
     - name: Button 4
-      type: uint16
+      type: Action
     - name: Button 5
-      type: uint16
+      type: Action
     - name: Button 6
-      type: uint16
+      type: Action
     - name: Button 7
-      type: uint16
+      type: Action
     - name: Button 8
-      type: uint16
+      type: Action
     - name: Horizontal Axis -
-      type: uint16
+      type: Action
     - name: Horizontal Axis +
-      type: uint16
+      type: Action
     - name: Vertical Axis -
-      type: uint16
+      type: Action
     - name: Vertical Axis +
-      type: uint16
+      type: Action
     - name: Wheel -
-      type: uint16
+      type: Action
     - name: Wheel +
-      type: uint16
+      type: Action
 
 GamepadButtonBindings:
   class: struct
   fields:
     - name: Button0
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Button 0 (Face - button A)
     - name: Button1
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Button 1 (Face - button B)
     - name: Button2
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Button 2 (Face - button X)
     - name: Button3
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Button 3 (Face - button Y)
     - name: Button4
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Button 4 (Shoulder - left bumper)
     - name: Button5
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Button 5 (Shoulder - right bumper)
     - name: Button6
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Button 6 (Home - back)
     - name: Button7
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Button 7 (Home - start)
     - name: Button8
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Button 8 (Analogue - left stick - click)
     - name: Button9
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Button 9 (Analogue - right stick - click)
     - name: Button10
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Button 10
     - type: pad
@@ -422,51 +460,51 @@ GamepadAxisBindings:
   class: struct
   fields:
     - name: Axis1Pos
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Axis 1 (Analogue - left stick - down)
     - name: Axis1Neg
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Axis 1 (Analogue - left stick - up)
     - name: Axis2Pos
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Axis 2 (Analogue - left stick - right)
     - name: Axis2Neg
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Axis 2 (Analogue - left stick - left)
     - name: Axis3Pos
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Axis 3 (Analogue - right stick - down)
     - name: Axis3Neg
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Axis 3 (Analogue - right stick - up)
     - name: Axis4Pos
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Axis 4 (Analogue - right stick - right)
     - name: Axis4Neg
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Axis 4 (Analogue - right stick - left)
     - name: Axis5Pos
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Axis 5 (Shoulder - trigger - left)
     - name: Axis5Neg
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Axis 5 (Shoulder - trigger - right)
     - name: Axis6Pos
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Axis 6+
     - name: Axis6Neg
-      type: uint16
+      type: Action
       comments:
         en: DirectInput Axis 6-
     - type: pad
@@ -476,29 +514,96 @@ GamepadDirPadBindings:
   class: struct
   fields:
     - name: DirPadUp
-      type: uint16
+      type: Action
       comments:
         en: Directional - up
     - type: pad
       size: 2
     - name: DirPadRight
-      type: uint16
+      type: Action
       comments:
         en: Directional - right
     - type: pad
       size: 2
     - name: DirPadDown
-      type: uint16
+      type: Action
       comments:
         en: Directional - down
     - type: pad
       size: 2
     - name: DirPadLeft
-      type: uint16
+      type: Action
       comments:
         en: Directional - left
     - type: pad
       size: 0xF2
+
+DirectInputButtons:
+  class: enum
+  size: 2
+  options:
+    - name: Button0
+      value: 0x00
+      comments:
+        en: Face - button A
+    - name: Button1
+      value: 0x01
+      comments:
+        en: Face - button B
+    - name: Button2
+      value: 0x02
+      comments:
+        en: Face - button X
+    - name: Button3
+      value: 0x03
+      comments:
+        en: Face - button Y
+    - name: Button4
+      value: 0x04
+      comments:
+        en: Shoulder - L shoulder, white
+    - name: Button5
+      value: 0x05
+      comments:
+        en: Shoulder - R shoulder, black
+    - name: Button6
+      value: 0x06
+      comments:
+        en: Home - back
+    - name: Button7
+      value: 0x07
+      comments:
+        en: Home - start
+    - name: Button8
+      value: 0x08
+      comments:
+        en: Analogue - left  stick - click
+    - name: Button9
+      value: 0x09
+      comments:
+        en: Analogue - right stick - click
+    - name: Button10
+      value: 0x0A
+    - name: Button11
+      value: 0x0B
+    - name: Button12
+      value: 0x0C
+    - name: Button13
+      value: 0x0D
+    - name: Button14
+      value: 0x0E
+
+GamePadMenuBindings:
+  class: struct
+  fields:
+    - name: menu accept
+      type: DirectInputButtons
+      comments:
+        en: Holds the button ID used to accept menu selections.
+    - name: menu back
+      type: DirectInputButtons
+      comments:
+        en: Holds the button ID used to go back in menus.
 
 GamepadBindings:
   class: struct
@@ -506,8 +611,9 @@ GamepadBindings:
     - name: gamepad buttons
       type: GamepadButtonBindings
       count: 4
-    - type: pad
-      size: 0x10
+    - name: gamepad menu bindings
+      type: GamePadMenuBindings
+      count: 4
     - name: gamepad axis set
       type: GamepadAxisBindings
       count: 4
@@ -562,22 +668,20 @@ ControlSettings:
         max: 10
       comments:
         en: Ranges in value from 0 (minimum) to 10 (maximum).
-    - name: gamepad 0 horizontal sensitivity
+    - name: gamepad horizontal sensitivities
       type: uint8
-    - name: gamepad 1 horizontal sensitivity
+      count: 4
+      comments:
+        en: >
+          An array of 4 controller horizontal aiming sensitivities. Index using
+          `0` for the first controller, `1` for the second, etc.
+    - name: gamepad vertical sensitivities
       type: uint8
-    - name: gamepad 2 horizontal sensitivity
-      type: uint8
-    - name: gamepad 3 horizontal sensitivity
-      type: uint8
-    - name: gamepad 0 vertical sensitivity
-      type: uint8
-    - name: gamepad 1 vertical sensitivity
-      type: uint8
-    - name: gamepad 2 vertical sensitivity
-      type: uint8
-    - name: gamepad 3 vertical sensitivity
-      type: uint8
+      count: 4
+      comments:
+        en: >
+          An array of 4 controller vertical aiming sensitivities. Index using
+          `0` for the first controller, `1` for the second, etc.
 
 ParticlesSettings:
   class: enum
@@ -736,7 +840,9 @@ GamepadInfo:
           Stores the name of the controller device seen when configuring button
           bindings (if configured). UTF-16 String; can be little-endian
           ("Xbox Controller S via XBCD") or big-endian ("Xbox 360 Controller For Windows").
-          The size of this buffer is unknown, so 512 bytes is assumed.
+          The size of this buffer is unknown, so 512 bytes is assumed. When Halo
+          detects two devices with the same name, the second one will have
+          " (2)" appended to its name.
     - type: pad
       size: 12
       comments:

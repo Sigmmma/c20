@@ -71,6 +71,7 @@ function renderStructYaml(ctx, optsYaml) {
   const typeDefs = typeof(typeDefsArg) === "string" ?
     yaml.load(fs.readFileSync(path.join(ctx.page.dirPath, typeDefsArg), "utf8")) :
     typeDefsArg;
+  const seenTypes = {};
 
   function renderComments(field) {
     return html`
@@ -94,7 +95,7 @@ function renderStructYaml(ctx, optsYaml) {
 
     let typeStr = field.type;
     if (typeDef && typeDef.class != "struct") {
-      typeStr = typeDef.class;
+      typeStr += `: ${typeDef.class}`;
     }
     if (field.type_args) {
       typeStr += `<${field.type_args.join(", ")}>`;
@@ -144,12 +145,14 @@ function renderStructYaml(ctx, optsYaml) {
 
   function renderStructFieldRow(field, pathId, offset) {
     const typeDef = typeDefs[field.type];
+    const hasSeenType = seenTypes[field.type];
+    seenTypes[field.type] = true;
 
     const rowClasses = [
       "struct-field",
       `field-type-${escapeHtml(field.type)}`,
       ...(field.labels ? field.labels.map(label => `field-label-${label}`) : []),
-      ...(typeDef ? ["has-embedded"] : [])
+      ...(typeDef ? [`has-embedded-class-${typeDef.class}`] : [])
     ];
 
     return html`
@@ -161,7 +164,7 @@ function renderStructYaml(ctx, optsYaml) {
         <td class="field-type">${renderFieldType(field)}</td>
         <td class="comments">${renderComments(field)}</td>
       </tr>
-      ${typeDef && html`
+      ${typeDef && !hasSeenType && html`
         <tr class="embedded-type">
           <td colspan="${showOffsets ? 4 : 3}">
             ${renderTypeAsTable(typeDef, joinPathId(pathId, field.name))}
