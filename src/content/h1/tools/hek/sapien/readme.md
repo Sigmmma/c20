@@ -44,7 +44,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Control + Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
 * Hold <kbd>Tab</kbd>: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.
 * In the hierarchy view, pressing a key will cycle through all folders that start with that character. For example, pressing <kbd>A</kbd> while having the "Missions" folder expanded will immediately take you to the "AI" folder.
-* <kbd>N</kbd>: **This hotkey is broken and can cause Sapien to crash when restarted. Do not use it!** It also causes editor icons and name overlays to dissappear for the session.
+* <kbd>N</kbd>: This hotkey will snap a selected object to the normal of the ground below it. **This hotkey is broken in the Gearbox HEK release and can cause Sapien to crash when restarted. Do not use it!** It also causes editor icons and name overlays to disappear for the session.
 
 ## Encounters and AI
 * <kbd>Middle mouse + F1</kbd>: Selects the spawned actor in the center of the game view.
@@ -73,6 +73,8 @@ These hotkeys apply in scripted camera mode.
   * Flycam
 * <kbd>Caps lock</kbd>: Start/stop animation recording. Unfortunately it is not possible to control the posessed unit while recording.
 * <kbd>Shift + Q</kbd>: Exits a posessed unit while in scripted camera mode.
+
+See main page: [recorded-animatons][]
 
 ## Detail objects painting
 * <kbd>Shift + Right Click</kbd>: Erases all detail objects in a highlighted cell.
