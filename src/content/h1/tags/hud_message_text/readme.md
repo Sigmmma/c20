@@ -9,9 +9,7 @@ string3=A lot of neat things can be done with strings.
 
 Once you've set the contents of the text file make sure to save the file with the encoding set to UTF-16 LE. Make sure the file is named the following...
 
-
 `hud_messages.hmt`
-
 
 Tool looks for a file with this name and extension specifically when compiling hud_message tags. On top of needing a specific name, it is also required for the hmt file to reside in the root directory of the scenario the tag is intended for. If we want to import this tag for our tutorial scenario then we will need to save the file at the following location.
 
