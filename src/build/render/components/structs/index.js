@@ -108,7 +108,12 @@ function renderStructYaml(ctx, optsYaml) {
     if (field.count !== undefined) {
       typeStr += `[${field.count}]`;
     }
-    return html`<code>${escapeHtml(typeStr)}</code>`;
+    typeStr = escapeHtml(typeStr);
+    if (field.endianness !== undefined) {
+      const lbl = field.endianness == "little" ? "LE" : (field.endianness == "big" ? "BE" : "LE/BE");
+      typeStr += ` <span class="field-label">${lbl}</span>`;
+    }
+    return html`<code>${typeStr}</code>`;
   }
 
   function renderFieldName(fieldName, pathId) {

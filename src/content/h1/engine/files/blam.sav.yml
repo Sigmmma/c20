@@ -724,6 +724,56 @@ NetworkSettings:
       comments:
         en: Defaults to the value 2303
 
+GamepadInfo:
+  class: struct
+  fields:
+    - name: gamepad name
+      type: UTF-16
+      size: 512
+      endianness: either
+      comments:
+        en: >
+          Stores the name of the controller device seen when configuring button
+          bindings (if configured). UTF-16 String; can be little-endian
+          ("Xbox Controller S via XBCD") or big-endian ("Xbox 360 Controller For Windows").
+          The size of this buffer is unknown, so 512 bytes is assumed.
+    - type: pad
+      size: 12
+      comments:
+        en: This padding size is unknown and depends on the above buffer's size.
+    - name: vendor ID
+      type: uint16
+      comments:
+        en: >
+          4-digit hex identifying the vendor/manufacturer of the gamepad.
+          For example, `045E` is Microsoft. This would be little-endian encoded
+          as `5E 04`. A list of hardware vendor IDs can be [found here](https://devicehunt.com/all-usb-vendors).
+    - name: product ID
+      type: uint16
+      comments:
+        en: >
+          4-digit hex identifying the gamepad product. For example, `0289`
+          (`89 02` little-endian) is the Xbox Controller S. Devices by vendor
+          can be [found here (Microsoft)](https://devicehunt.com/view/type/usb/vendor/045E).
+    - type: pad
+      count: 6
+      comments:
+        en: Zeroed-out values
+    - name: pidvid
+      type: char
+      count: 6
+      comments:
+        en: An ASCII string with value "PIDVID"
+    - name: dupe ID
+      type: uint8
+      comments:
+        en: >
+          Distinguishes multiple gamepads with the same vendor and product ID.
+          Takes the value `0x00`, then `0x01`, etc.
+    - type: pad
+      size: 3
+
+
 Profile:
   class: struct
   endianness: little
@@ -752,3 +802,25 @@ Profile:
       size: 0x20C
     - name: network settings
       type: NetworkSettings
+    - type: pad
+      size: 0x102
+    - name: gamepad info
+      type: GamepadInfo
+      count: 4
+    - type: pad
+      size: 0x674
+      comments:
+        en: Unknown region
+    - name: crc32 hash
+      type: uint32
+      comments:
+        en: >
+          The blam.sav has a CRC-32 checksum appended at the end of it. The value
+          is actually stored in its complement equivalent (i.e. bitwise NOT). The
+          checksum validates the data between `0x000` and `0x1FFC` - the checksum
+          itself is not included! There is a relatively large amount of padding
+          before this field, and it is the final 4 bytes of the file. Due to the
+          complement on this field, the entire file will _always_ have a CRC of
+          `0xFFFFFFFF`. Therefore the file can be verified by either comparing its
+          overall CRC to `0xFFFFFFFF`, or comparing the CRC of its prior sections
+          to the complement of this field.
