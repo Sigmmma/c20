@@ -834,12 +834,11 @@ GamepadInfo:
     - name: gamepad name
       type: UTF-16
       size: 512
-      endianness: either
       comments:
         en: >
           Stores the name of the controller device seen when configuring button
-          bindings (if configured). UTF-16 String; can be little-endian
-          ("Xbox Controller S via XBCD") or big-endian ("Xbox 360 Controller For Windows").
+          bindings (if configured). UTF-16 String. Some examples are
+          "Xbox Controller S via XBCD" or "Xbox 360 Controller For Windows".
           The size of this buffer is unknown, so 512 bytes is assumed. When Halo
           detects two devices with the same name, the second one will have
           " (2)" appended to its name.
