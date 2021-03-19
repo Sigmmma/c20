@@ -5,20 +5,21 @@
 
 [Warthog Model](https://drive.google.com/file/d/1gAiTezg-Am9St-v65Cqj2ub8N6PmY9hO/view?usp=sharing) -> Warthog model that should be to scale with the ingame player.
 
+# Introduction
+Welcome to the Halo 2 level creation guide. If you have any experience with modeling levels in CE then you should feel mostly at home for better or worse. In this guide we will be showing you how to go about with creating your very own level geometry for Halo 2 in the 3D modeling software app known as Blender. This guide will include a completed version of our work as an example for you to contrast and compare but be sure to follow along.
+
+If there are any images that you find difficult to read then try opening the image in a new tab to view it in full resolution.
+
 # Creation of a level directory
 For the sake of organizing your asset files you should consider keeping all your source files in the same level directory used to create the level (.blend, .tif, .psd, .ass, etc..).
 
-[H2Tool.exe][h2tool] will search for subdirectories in the level directory that contain the raw asset data for compilation and eventually package the resulting assets from the raw data into a map cache file that can run in Halo CE. Any assets that you compile will end up in the tags directory plus the local path to the raw assets in the data folder. For example the file below...
+[H2Tool.exe][h2tool] will search for subdirectories in the level directory that contain the raw asset data for compilation and eventually package the resulting assets from the raw data into a map cache file that can run in Halo 2. Any assets that you compile will end up in the tags directory plus the local path to the raw assets in the data folder. For example the file below...
 
-```
-(HEK Install Path)\data\scenarios\multi\dreamer\structure\dreamer.ASS
-```
+`(H2EK Install Path)\data\scenarios\multi\dreamer\structure\dreamer.ASS`
 
 has the compiled assets outputted to...
 
-```
-(HEK Install Path)\tags\scenarios\multi\dreamer
-```
+`(H2EK Install Path)\tags\scenarios\multi\dreamer`
 
 When creating a level the scenario tag will take the name of the folder containing the sub directories and raw assets while the structure BSP tag will take the name of the ASS file itself. Compiled scenario tags can then reference other tags for use in the level.
 
@@ -26,30 +27,57 @@ When creating a level the scenario tag will take the name of the folder containi
 The name of the level folder containing our sub directories MUST BE UNIQUE from any other level folder in the data/tags directory as will be explained later during the packaging section.
 ```
 
-Let's first start by creating our very own level directory in the data folder. We'll call this level tutorial for simplicities sake but you can call it whatever you would like.
+Let's first start by creating our very own level directory in the data folder. We'll call this level "example" for simplicities sake but you can call it whatever you would like.
 
-1. In the root of your HEK install find a folder named "data". If it does not exist then create it.
-2. In the "data" directory find a folder named "levels". If it does not exist then create it.
-3. In the "levels" directory find a folder named "test". If it does not exist then create it.
-4. For our last step we will now create our first level in the "test" directory.
+1. In the root of your H2EK install find a folder named "data". If it does not exist then create it.
+2. In the "data" directory find a folder named "scenarios". If it does not exist then create it.
+3. In the "scenarios" directory find a folder named "multi". If it does not exist then create it.
+4. For our last step we will now create our first level in the "multi" directory.
 
 Your final path in Windows explorer should be something like this.
 
-```(HEK Install Path)\data\levels\test\(My Level Name)```
+`(H2EK Install Path)\data\scenarios\multi\(My Level Name)`
 
-Once this is done we will need to create 3 new sub directories in our level directory for the raw assets. The folders you will need are as follows...
-
-1. bitmaps:
-	* Using the previous example the directory structure would look like this:
-		* ```(HEK Install Path)\data\levels\test\(My Level Name)\bitmaps```
-	* The name here is just for organizing your images. The folder containing your raw image assets does not need to be named bitmaps but it will probably help. Like you probably already guessed this is where you will place your .tif files to compile bitmaps tags from. Keep in mind that when we talk about bitmaps in Halo we are not talking about images with a .BMP extension. We are talking about a tag type called bitmaps that stores image data for use in Halo specifically.
-2. models:
-	* Using the previous example the directory structure would look like this:
-		* ```(HEK Install Path)\data\levels\test\(My Level Name)\models```:
-	* This folder name is something Tool.exe specifically looks for when compiling object meshes. Be sure that the folder is named exactly this. As you have probably already guessed this is where you will compile your example level from.
-3. scenery:
-	* Using the previous example the directory structure would look like this:
-		* ```(HEK Install Path)\data\levels\test\(My Level Name)\scenery```
-	* The name here is just for organizing objects used for the level. The folder containing your scenery does not need to be named this but it should help. As you have probably guessed this is where the raw assets for any level specific objects can be placed. This folder should probably contain multiple folders with their own sub directories for model and bitmap assets.
-
+```.alert info
 As stated before compiled assets will end up in a path that mirrors the path of the raw asset but replacing the data directory with the tags directory. A packaged map file will take the name of the scenario tag and placed in your game's map folder.
+```
+
+# Key differences from CE
+While the level pipeline for Halo 2 hasn't changed much from CE, there are some important differences in workflow that we should bring up.
+
+1. While the CE export script would only export geometry if it was the child of an object with a node prefix, the Halo 2 export script will instead export every object in the scene whether or not it is the child of an object that starts with a node prefix. If you do not wish for an object to be exported then you can hide the object with the H key.
+2. Instead of .JMS, Halo 2 makes use of a new level format known as .ASS. This format has support for multiple separate objects as well as instance geometry. While H2Tool has some support for importing geometry stored in the JMS format, ASS is the new and proper format to be using.
+3. H2Tool will search for a matching shader folder prefix from a list in the shader_collections file. H2Tool will only search the tags directory for matching shaders like CE if the shader_collections file does not exist.
+4. Xref objects can be used to place scenery or device machine objects in 3D modeling software.
+5. The way assets are placed has changed a bit from what you may be familiar with in CE. 
+
+# Creation of a simple level
+The following steps and example images will demonstrate the creation of a box that will serve as the tutorial level and will be utilized for all the subsequent tutorials.
+When creating or starting out a level try and keep the level centered at the origin.  This can make the creation process much easier, such as when mirroring level geometry (such as team bases and other symmetric elements of the level).
+
+The level must be a sealed. The level must be a contiguous structure that forms a sealed volume, the following rules are referred to as the Sealed World Rules:
+
+* There must not be any open edges, the component parts or geometry of the level must match (edges and verts). There are some exceptions to the rule which will be covered in later tutorials and examples in later sections, but basically, anything that is solid (has to have collision with the player and vehicles) cannot have any open edges.
+
+* The normals of the faces used to create the level geometry must face towards the playable area of the level or section of the level. The normals of the faces or polygons determine not just the face that will be rendered or seen by the player but also the surface to be used for collision and physics.
+
+## creation of a simple box room
+
+1. [Add a new box object](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#new-object-meshes)
+
+2. Bring up the [properties panel](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#properties-window) and set it to the item tab.
+
+3. Set the [location](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#set-transform) of the box to X: `197.651` Y: `-12.23` Z: `614.331`
+
+4. The [dimensions](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#set-transform) for the Box can be manually set. The dimensions for the box that will be used are X: `1176.23`  Y: `3084.88`  Z: `1813.66`
+
+5. [Set the name](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#set-name) of the object to "level".
+
+6. While having the box selected [change the context mode](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#context-mode) from object mode to edit mode
+
+	* The following steps will make the box satisfy the Sealed World Rules and will link it to the frame, in effect making it a simple Halo level in terms of geometry.
+
+7. [Flip all the normals](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#editing-normals) for the box inwards, the interior of the box will be the playable area of the level.
+
+8. [Set context](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#context-mode) back to object mode if you haven't already.
+
