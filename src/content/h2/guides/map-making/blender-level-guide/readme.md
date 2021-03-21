@@ -63,21 +63,21 @@ The level must be a sealed. The level must be a contiguous structure that forms 
 
 ## creation of a simple box room
 
-1. [Add a new box object](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#new-object-meshes)
+1. [Add a new box object](https://docs.blender.org/manual/en/latest/editors/3dview/toolbar/add_cube.html)
 
-2. Bring up the [properties panel](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#properties-window) and set it to the item tab.
+2. Bring up the [properties panel](https://docs.blender.org/manual/en/latest/editors/3dview/sidebar.html) with <kbd>N</kbd> and set it to the item tab.
 
-3. Set the [location](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#set-transform) of the box to X: `197.651` Y: `-12.23` Z: `614.331`
+3. Set the [location](https://docs.blender.org/manual/en/latest/scene_layout/object/properties/transforms.html) of the box to X: `197.651` Y: `-12.23` Z: `614.331`
 
-4. The [dimensions](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#set-transform) for the Box can be manually set. The dimensions for the box that will be used are X: `1176.23`  Y: `3084.88`  Z: `1813.66`
+4. The [dimensions](https://docs.blender.org/manual/en/latest/scene_layout/object/properties/transforms.html) for the Box can be manually set. The dimensions for the box that will be used are X: `1176.23`  Y: `3084.88`  Z: `1813.66`
 
-5. [Set the name](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#set-name) of the object to "level".
+5. Set the name of the object in the [outliner](https://docs.blender.org/manual/en/latest/editors/outliner/introduction.html) to "level" by double clicking it or pressing <kbd>F2</kbd> to edit it.
 
-6. While having the box selected [change the context mode](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#context-mode) from object mode to edit mode
+6. While having the box selected [change the context mode](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) from object mode to edit mode
 
-	* The following steps will make the box satisfy the Sealed World Rules and will link it to the frame, in effect making it a simple Halo level in terms of geometry.
+	* The following steps will make the box satisfy the Sealed World Rules, in effect making it a simple Halo level in terms of geometry.
 
-7. [Flip all the normals](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#editing-normals) for the box inwards, the interior of the box will be the playable area of the level.
+7. [Flip all the normals](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html#recalculate) for the box inwards, the interior of the box will be the playable area of the level.
 
-8. [Set context](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#context-mode) back to object mode if you haven't already.
+8. [Set context](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) back to object mode if you haven't already.
 
