@@ -45,7 +45,7 @@ The structure of this file is not fully mapped out, however some fields are know
 
 ```.struct
 entryType: Savegame
-showAbsoluteOffsets: true
+showOffsets: true
 id: savegame
 typeDefs: savegame.bin.yml
 ```

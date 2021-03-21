@@ -170,7 +170,7 @@ Beyond the [basic markdown features][mdbasic], c20 adds a few special extensions
   # determines the "main" structure
   entryType: Savegame
   # if provided, shows offsets in table
-  showAbsoluteOffsets: true
+  showOffsets: true
   # root for HTML ID generation
   id: savegame
   # definitions for type names

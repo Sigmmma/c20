@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const yaml = require("js-yaml");
+const {INTRINSIC_TYPE_DEFS} = require("../src/build/render/components/structs");
 
 /* This script converts struct definitions from invader's JSON files
  * into the YAML struct specs used by c20. We used to build from them directly
@@ -33,21 +34,322 @@ for (let ymlFileName of fs.readdirSync(commentsBase)) {
   c20Comments[tagName] = basicTag;
 }
 
+
+function invFieldCheck(obj) {
+  obj = {...({
+    name,
+    type,
+    size,
+    ...rest
+  } = obj)};
+  if (Object.keys(rest).length > 0) {
+    // console.log(`Unhandled field keys:`, rest);
+  }
+}
+
+function invStructCheck(obj) {
+  obj = {...({
+    name,
+    type,
+    inherits,
+    fromTagName,
+    options,
+    size,
+    ...rest
+  } = obj)};
+  if (Object.keys(rest).length > 0) {
+    // console.log(`Unhandled struct keys:`, rest);
+  }
+}
+
+
+function remapTypes(typeName) {
+  return {
+    TagReflexive: "Block",
+    Pointer: "ptr32",
+    Pointer64: "ptr64",
+  }[typeName] || typeName;
+}
+
+const outputFiles = {
+  common: yaml.load(`
+    id: common
+    typeDefs:
+      ScenarioScriptNodeValue:
+        class: alias
+        type: byte
+        count: 4
+      TagId:
+        class: alias
+        type: uint32
+      Angle:
+        class: alias
+        type: float
+      Fraction:
+        class: alias
+        type: float
+      Index:
+        class: alias
+        type: uint16
+
+      Vector2D:
+        class: struct
+        size: 0x8
+        fields:
+          - name: i
+            type: float
+          - name: j
+            type: float
+      Vector3D:
+        class: struct
+        size: 0xC
+        fields:
+          - name: i
+            type: float
+          - name: j
+            type: float
+          - name: k
+            type: float
+      Plane2D:
+        class: struct
+        size: 0xC
+        fields:
+          - name: vector
+            type: Vector2D
+          - name: w
+            type: float
+      Point2D:
+        type: struct
+        size: 0x8
+        fields:
+          - name: x
+            type: float
+          - name: y
+            type: float
+      Point3D:
+        type: struct
+        size: 0xC
+        fields:
+          - name: x
+            type: float
+          - name: y
+            type: float
+          - name: z
+            type: float
+      Bounds:
+        class: struct
+        args:
+          - T
+        fields:
+          - name: min
+            type: T
+          - name: max
+            type: T
+      Point2DInt:
+        class: struct
+        size: 0x4
+        fields:
+          - name: x
+            type: int16
+          - name: y
+            type: int16
+      Plane3D:
+        class: struct
+        size: 0x10
+        fields:
+          - name: vector
+            type: Vector3D
+          - name: w
+            type: float
+      Matrix:
+        class: struct
+        size: 0x24
+        fields:
+          - name: elements
+            type: float
+            count: 9
+      Quaternion:
+        class: struct
+        size: 0x10
+        fields:
+          - name: i
+            type: float
+          - name: j
+            type: float
+          - name: k
+            type: float
+          - name: w
+            type: float
+      ColorRGB:
+        class: struct
+        size: 0xC
+        fields:
+          - name: red
+            type: float
+          - name: green
+            type: float
+          - name: blue
+            type: float
+      Euler2D:
+        class: struct
+        size: 0x8
+        fields:
+          - name: yaw
+            type: Angle
+          - name: pitch
+            type: Angle
+      Euler3D:
+        class: struct
+        size: 0xC
+        fields:
+          - name: yaw
+            type: Angle
+          - name: pitch
+            type: Angle
+          - name: roll
+            type: Angle
+      ColorARGB:
+        class: struct
+        size: 0x10
+        fields:
+          - name: alpha
+            type: float
+          - name: red
+            type: float
+          - name: green
+            type: float
+          - name: blue
+            type: float
+      Rectangle2D:
+        class: struct
+        size: 0x8
+        fields:
+          - name: top
+            type: int16
+          - name: left
+            type: int16
+          - name: bottom
+            type: int16
+          - name: right
+            type: int16
+      ColorARGBInt:
+        class: struct
+        size: 0x4
+        comments:
+          en: RGB Color with alpha, with 8-bit color depth per channel (0-255)
+        fields:
+        - name: alpha
+          type: uint8
+        - name: red
+          type: uint8
+        - name: green
+          type: uint8
+        - name: blue
+          type: uint8
+      TagString:
+        class: struct
+        fields:
+          - name: buffer
+            type: char
+            count: 0x20
+      TagDependency:
+        class: struct
+        fields:
+          - name: tag class
+            type: uint32
+          - name: path pointer
+            type: Pointer
+            labels:
+              - compiled
+          - name: path lenth
+            type: uint32
+          - name: tag id
+            type: TagId
+      Block:
+        class: struct
+        args:
+          - T
+        size: 0xC
+        comments:
+          en: Header for a variable-sized array of data in a tag.
+        fields:
+          - name: item count
+            type: uint32
+            comments:
+              en: Gives the number of items in this block.
+          - name: pointer
+            type: Pointer64
+            typeArgs:
+              T: T
+            labels:
+              - compiled
+            comments:
+              en: Pointer to the first item.
+      PredictedResourceType:
+        class: enum
+        size: 2
+        options:
+          - bitmap
+          - sound
+      PredictedResource:
+        class: struct
+        size: 0x8
+        fields:
+          - name: type
+            type: PredictedResourceType
+          - name: resource index
+            type: Index
+          - name: tag
+            type: TagID
+      TagDataOffset:
+        class: struct
+        size: 0x14
+        fields:
+          - name: size
+            type: uint32
+          - name: external
+            endianness: little
+            type: uint32
+          - name: file offset
+            type: uint32
+          - name: pointer
+            type: Pointer64
+  `)
+};
+
+//todo: extends
+//todo: type args
+
 Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
   const outputData = {
+    //todo: can be null
     entryType: basicTag.invaderStructName,
-    showAbsoluteOffsets: false, //todo
+    //todo: rename
+    showOffsets: false,
     imports: {},
     id: tagName,
     typeDefs: {}
   };
 
-  // inherits
   function walkStruct(typeName) {
+    if (outputFiles["common"].typeDefs[typeName]) {
+      if (!outputData.imports["common"]) {
+        outputData.imports["common"] = [];
+      }
+      outputData.imports["common"].push(typeName);
+      return;
+    }
+
+    if (INTRINSIC_TYPE_DEFS[typeName]) {
+      return;
+    }
+
     const invStruct = invaderStructs[typeName];
     if (!invStruct) {
       throw new Error(`Found no invader definition for type ${typeName}`);
     }
+
+    invStructCheck(invStruct);
 
     if (invStruct.fromTagName != tagName) {
       if (!outputData.imports[invStruct.fromTagName]) {
@@ -61,16 +363,44 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
 
     if (invStruct.inherits) {
       walkStruct(invStruct.inherits);
-      typeDef.extends = invStruct.inherits;
+      typeDef.extends = {
+        type: invStruct.inherits
+      };
     }
 
     typeDef.class = invStruct.type;
     switch (invStruct.type) {
       case "struct":
+        typeDef.fields = invStruct.fields.map(invField => {
+          walkStruct(remapTypes(invField.type));
+          invFieldCheck(invField);
+          return {
+            ...(invField.name && {
+              name: invField.name
+            }),
+            ...(invField.type && {
+              type: invField.type
+            }),
+            ...(invField.size && {
+              size: invField.size
+            }),
+            ...(invField.type == "TagReflexive" && {
+              typeArgs: [invField.struct]
+            }),
+          };
+        });
         break;
       case "bitfield":
+        typeDef.fields = invStruct.fields.map(invField => ({
+          name: invField
+        }));
+        typeDef.size = invStruct.width / 8;
         break;
       case "enum":
+        typeDef.options = invStruct.options.map(invOpt => ({
+          name: invOpt
+        }));
+        typeDef.size = 2; //all tag enums are 16 bit
         break;
       default:
         throw new Error(`Unhandled struct type: ${invStruct.type}`);
@@ -79,8 +409,11 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
     outputData.typeDefs[typeName] = typeDef;
   }
 
+  //start recursion
   if (basicTag.invaderStructName) {
     walkStruct(basicTag.invaderStructName);
   }
-  console.dir(outputData);
+  outputFiles[tagName] = outputData;
 });
+
+console.dir(outputFiles);

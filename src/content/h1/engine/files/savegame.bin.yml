@@ -8,6 +8,7 @@ DifficultyOpts:
     - name: legendary
 
 Savegame:
+  class: struct
   fields:
     - type: pad
       size: 0x1E2

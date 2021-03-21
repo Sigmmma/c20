@@ -861,7 +861,7 @@ GamepadInfo:
           (`89 02` little-endian) is the Xbox Controller S. Devices by vendor
           can be [found here (Microsoft)](https://devicehunt.com/view/type/usb/vendor/045E).
     - type: pad
-      count: 6
+      size: 6
       comments:
         en: Zeroed-out values
     - name: pidvid
