@@ -94,7 +94,7 @@ const outputFiles = {
 
       Vector2D:
         class: struct
-        size: 0x8
+        assertSize: 0x8
         fields:
           - name: i
             type: float
@@ -102,7 +102,7 @@ const outputFiles = {
             type: float
       Vector3D:
         class: struct
-        size: 0xC
+        assertSize: 0xC
         fields:
           - name: i
             type: float
@@ -112,7 +112,7 @@ const outputFiles = {
             type: float
       Plane2D:
         class: struct
-        size: 0xC
+        assertSize: 0xC
         fields:
           - name: vector
             type: Vector2D
@@ -128,7 +128,7 @@ const outputFiles = {
             type: float
       Point3D:
         type: struct
-        size: 0xC
+        assertSize: 0xC
         fields:
           - name: x
             type: float
@@ -147,7 +147,7 @@ const outputFiles = {
             type: T
       Point2DInt:
         class: struct
-        size: 0x4
+        assertSize: 0x4
         fields:
           - name: x
             type: int16
@@ -155,7 +155,7 @@ const outputFiles = {
             type: int16
       Plane3D:
         class: struct
-        size: 0x10
+        assertSize: 0x10
         fields:
           - name: vector
             type: Vector3D
@@ -163,14 +163,14 @@ const outputFiles = {
             type: float
       Matrix:
         class: struct
-        size: 0x24
+        assertSize: 0x24
         fields:
           - name: elements
             type: float
             count: 9
       Quaternion:
         class: struct
-        size: 0x10
+        assertSize: 0x10
         fields:
           - name: i
             type: float
@@ -182,7 +182,7 @@ const outputFiles = {
             type: float
       ColorRGB:
         class: struct
-        size: 0xC
+        assertSize: 0xC
         fields:
           - name: red
             type: float
@@ -192,7 +192,7 @@ const outputFiles = {
             type: float
       Euler2D:
         class: struct
-        size: 0x8
+        assertSize: 0x8
         fields:
           - name: yaw
             type: Angle
@@ -200,7 +200,7 @@ const outputFiles = {
             type: Angle
       Euler3D:
         class: struct
-        size: 0xC
+        assertSize: 0xC
         fields:
           - name: yaw
             type: Angle
@@ -210,7 +210,7 @@ const outputFiles = {
             type: Angle
       ColorARGB:
         class: struct
-        size: 0x10
+        assertSize: 0x10
         fields:
           - name: alpha
             type: float
@@ -222,7 +222,7 @@ const outputFiles = {
             type: float
       Rectangle2D:
         class: struct
-        size: 0x8
+        assertSize: 0x8
         fields:
           - name: top
             type: int16
@@ -234,7 +234,7 @@ const outputFiles = {
             type: int16
       ColorARGBInt:
         class: struct
-        size: 0x4
+        assertSize: 0x4
         comments:
           en: RGB Color with alpha, with 8-bit color depth per channel (0-255)
         fields:
@@ -258,10 +258,12 @@ const outputFiles = {
           - name: tag class
             type: uint32
           - name: path pointer
-            type: Pointer
+            type: ptr32
+            typeArgs:
+              T: char
             labels:
               - compiled
-          - name: path lenth
+          - name: path length
             type: uint32
           - name: tag id
             type: TagId
@@ -269,7 +271,7 @@ const outputFiles = {
         class: struct
         args:
           - T
-        size: 0xC
+        assertSize: 0xC
         comments:
           en: Header for a variable-sized array of data in a tag.
         fields:
@@ -278,7 +280,7 @@ const outputFiles = {
             comments:
               en: Gives the number of items in this block.
           - name: pointer
-            type: Pointer64
+            type: ptr64
             typeArgs:
               T: T
             labels:
@@ -293,7 +295,7 @@ const outputFiles = {
           - sound
       PredictedResource:
         class: struct
-        size: 0x8
+        assertSize: 0x8
         fields:
           - name: type
             type: PredictedResourceType
@@ -303,7 +305,7 @@ const outputFiles = {
             type: TagID
       TagDataOffset:
         class: struct
-        size: 0x14
+        assertSize: 0x14
         fields:
           - name: size
             type: uint32
@@ -313,21 +315,19 @@ const outputFiles = {
           - name: file offset
             type: uint32
           - name: pointer
-            type: Pointer64
+            type: ptr64
   `)
 };
 
-//todo: extends
 //todo: type args
 
 Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
   const outputData = {
     //todo: can be null
     entryType: basicTag.invaderStructName,
-    //todo: rename
+    id: "tag-struct",
     showOffsets: false,
     imports: {},
-    id: tagName,
     typeDefs: {}
   };
 
@@ -336,7 +336,9 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
       if (!outputData.imports["common"]) {
         outputData.imports["common"] = [];
       }
-      outputData.imports["common"].push(typeName);
+      if (!outputData.imports["common"].includes(typeName)) {
+        outputData.imports["common"].push(typeName);
+      }
       return;
     }
 
@@ -355,11 +357,13 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
       if (!outputData.imports[invStruct.fromTagName]) {
         outputData.imports[invStruct.fromTagName] = [];
       }
-      outputData.imports[invStruct.fromTagName].push(typeName);
+      if (!outputData.imports[invStruct.fromTagName].includes(typeName)) {
+        outputData.imports[invStruct.fromTagName].push(typeName);
+      }
       return;
     }
 
-    const typeDef = {};
+    const typeDef = {class: invStruct.type};
 
     if (invStruct.inherits) {
       walkStruct(invStruct.inherits);
@@ -368,39 +372,49 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
       };
     }
 
-    typeDef.class = invStruct.type;
     switch (invStruct.type) {
       case "struct":
+        if (invStruct.size) {
+          typeDef.assertSize = invStruct.size;
+        }
         typeDef.fields = invStruct.fields.map(invField => {
           walkStruct(remapTypes(invField.type));
           invFieldCheck(invField);
-          return {
+
+          let fieldDef = {
             ...(invField.name && {
               name: invField.name
             }),
             ...(invField.type && {
-              type: invField.type
+              type: remapTypes(invField.type)
             }),
             ...(invField.size && {
               size: invField.size
             }),
             ...(invField.type == "TagReflexive" && {
-              typeArgs: [invField.struct]
+              typeArgs: {"T": invField.struct}
             }),
           };
+
+          if (invField.bounds) {
+            fieldDef.type = "Bounds";
+            fieldDef.typeArgs = {"T": invField.type};
+          }
+
+          return fieldDef;
         });
         break;
       case "bitfield":
+        typeDef.size = invStruct.width / 8;
         typeDef.fields = invStruct.fields.map(invField => ({
           name: invField
         }));
-        typeDef.size = invStruct.width / 8;
         break;
       case "enum":
+        typeDef.size = 2; //all tag enums are 16 bit
         typeDef.options = invStruct.options.map(invOpt => ({
           name: invOpt
         }));
-        typeDef.size = 2; //all tag enums are 16 bit
         break;
       default:
         throw new Error(`Unhandled struct type: ${invStruct.type}`);
@@ -416,4 +430,7 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
   outputFiles[tagName] = outputData;
 });
 
-console.dir(outputFiles);
+console.log(yaml.dump(outputFiles["common"], {
+  indent: 2,
+  noRefs: true,
+}));

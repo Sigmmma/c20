@@ -139,6 +139,10 @@ function renderStructYaml(ctx, optsYaml) {
     }
 
     const totalSize =  singleSize * (count || 1);
+    if (typeDef.assertSize && totalSize != typeDef.assertSize) {
+      throw new Error(`Type ${typeName} size did not match assertion: ${totalSize} != ${typeDef.assertSize}`);
+    }
+
     return {typeDef, totalSize, singleSize, variableSize: size, count, typeArgs, typeName};
   }
 

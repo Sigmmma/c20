@@ -882,6 +882,7 @@ GamepadInfo:
 Profile:
   class: struct
   endianness: little
+  assertSize: 0x2000
   fields:
     - type: pad
       size: 2
