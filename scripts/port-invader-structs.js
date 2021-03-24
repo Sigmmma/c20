@@ -1,6 +1,7 @@
 const path = require("path");
 const fs = require("fs");
 const yaml = require("js-yaml");
+const R = require("ramda");
 const {INTRINSIC_TYPE_DEFS} = require("../src/build/render/components/structs");
 
 /* This script converts struct definitions from invader's JSON files
@@ -34,16 +35,24 @@ for (let ymlFileName of fs.readdirSync(commentsBase)) {
   c20Comments[tagName] = basicTag;
 }
 
-
 function invFieldCheck(obj) {
   obj = {...({
     name,
+    compound,
+    struct,
+    minimum,
+    maximum,
+    classes,
+    bounds,
+    count,
+    unit,
     type,
     size,
     ...rest
   } = obj)};
+  delete rest.default; //keyword cannot be included above
   if (Object.keys(rest).length > 0) {
-    // console.log(`Unhandled field keys:`, rest);
+    console.log(`Unhandled field keys:`, rest);
   }
 }
 
@@ -51,6 +60,12 @@ function invStructCheck(obj) {
   obj = {...({
     name,
     type,
+    post_compile,
+    pre_compile,
+    post_cache_deformat,
+    postprocess_hek_data,
+    width,
+    fields,
     inherits,
     fromTagName,
     options,
@@ -58,7 +73,7 @@ function invStructCheck(obj) {
     ...rest
   } = obj)};
   if (Object.keys(rest).length > 0) {
-    // console.log(`Unhandled struct keys:`, rest);
+    console.log(`Unhandled struct keys:`, rest);
   }
 }
 
@@ -255,17 +270,17 @@ const outputFiles = {
       TagDependency:
         class: struct
         fields:
-          - name: tag class
+          - name: tag_class
             type: uint32
-          - name: path pointer
+          - name: path_pointer
             type: ptr32
             typeArgs:
               T: char
-            labels:
-              - compiled
-          - name: path length
+            meta:
+              compiled: true
+          - name: path_length
             type: uint32
-          - name: tag id
+          - name: tag_id
             type: TagId
       Block:
         class: struct
@@ -275,7 +290,7 @@ const outputFiles = {
         comments:
           en: Header for a variable-sized array of data in a tag.
         fields:
-          - name: item count
+          - name: item_count
             type: uint32
             comments:
               en: Gives the number of items in this block.
@@ -283,8 +298,8 @@ const outputFiles = {
             type: ptr64
             typeArgs:
               T: T
-            labels:
-              - compiled
+            meta:
+              compiled: true
             comments:
               en: Pointer to the first item.
       PredictedResourceType:
@@ -299,7 +314,7 @@ const outputFiles = {
         fields:
           - name: type
             type: PredictedResourceType
-          - name: resource index
+          - name: resource_index
             type: Index
           - name: tag
             type: TagID
@@ -312,15 +327,18 @@ const outputFiles = {
           - name: external
             endianness: little
             type: uint32
-          - name: file offset
+          - name: file_offset
             type: uint32
           - name: pointer
             type: ptr64
   `)
 };
 
-//todo: type args
-
+/* todo:
+ * - unhandled fields
+ *   - cache_only vs compiled
+ * - comments
+ */
 Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
   const outputData = {
     //todo: can be null
@@ -377,24 +395,57 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
         if (invStruct.size) {
           typeDef.assertSize = invStruct.size;
         }
+        [
+          "post_cache_deformat",
+          "postprocess_hek_data",
+          "pre_compile",
+          "post_compile",
+        ].forEach(metaFlag => {
+          if (invStruct[metaFlag]) {
+            if (!typeDef.meta) typeDef.meta = {};
+            typeDef.meta[metaFlag] = invStruct[metaFlag];
+          }
+        });
         typeDef.fields = invStruct.fields.map(invField => {
           walkStruct(remapTypes(invField.type));
           invFieldCheck(invField);
+          let fieldDef = {};
+          const setAttr = (path, val) => fieldDef = R.assocPath(path, val, fieldDef);
 
-          let fieldDef = {
-            ...(invField.name && {
-              name: invField.name
-            }),
-            ...(invField.type && {
-              type: remapTypes(invField.type)
-            }),
-            ...(invField.size && {
-              size: invField.size
-            }),
-            ...(invField.type == "TagReflexive" && {
-              typeArgs: {"T": invField.struct}
-            }),
-          };
+          if (invField.name) {
+            setAttr(["name"], invField.name.replaceAll(" ", "_"));
+          }
+          if (invField.type) {
+            setAttr(["type"], remapTypes(invField.type));
+          }
+          if (invField.size) {
+            setAttr(["size"], invField.size);
+          }
+          if (invField.count) {
+            setAttr(["count"], invField.count);
+          }
+          if (invField.type == "TagReflexive") {
+            setAttr(["typeArgs"], {"T": invField.struct});
+          }
+          if (invField.type == "TagDependency") {
+            setAttr(["meta", "classes"], invField.classes);
+          }
+          [
+            "unit",
+          ].forEach(metaFlag => {
+            if (invField[metaFlag]) {
+              setAttr(["meta", metaFlag], invField[metaFlag]);
+            }
+          });
+          if (invField.minimum !== undefined) {
+            setAttr(["value", "min"], invField.minimum);
+          }
+          if (invField.default !== undefined) {
+            setAttr(["value", "default"], invField.default);
+          }
+          if (invField.maximum !== undefined) {
+            setAttr(["value", "max"], invField.maximum);
+          }
 
           if (invField.bounds) {
             fieldDef.type = "Bounds";
@@ -406,7 +457,7 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
         break;
       case "bitfield":
         typeDef.size = invStruct.width / 8;
-        typeDef.fields = invStruct.fields.map(invField => ({
+        typeDef.bits = invStruct.fields.map(invField => ({
           name: invField
         }));
         break;
@@ -430,7 +481,7 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
   outputFiles[tagName] = outputData;
 });
 
-console.log(yaml.dump(outputFiles["common"], {
-  indent: 2,
-  noRefs: true,
-}));
+// console.log(yaml.dump(outputFiles["object"], {
+//   indent: 2,
+//   noRefs: true,
+// }));

@@ -21,7 +21,14 @@ const html = commonTags.stripIndent(commonTags.html);
 
 const classes = (classArr) => classArr.length > 0 ? `class="${classArr.join(" ")}"` : "";
 
-const localizer = R.curry((bundle, lang, key) => bundle[key][lang]);
+const localizer = R.curry((bundle, lang) => {
+  return (key, safe) => {
+    if (!bundle[key] && !safe) {
+      throw new Error(`Missing localizations for key ${key}`);
+    }
+    return bundle[key] ? bundle[key][lang] : null;
+  };
+});
 
 const anchor = (href, body) => html`
   <a href="${href}">${body}</a>

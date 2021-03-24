@@ -447,6 +447,9 @@ table.type-def {
   & {
     margin-bottom: 0;
   }
+  .field-name {
+    text-transform: capitalize;
+  }
   .has-embedded-class-struct {
     .field-name {
       text-transform: uppercase;

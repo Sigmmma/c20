@@ -2,6 +2,7 @@ const yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
 const {html, escapeHtml, localizer, slugify} = require("../bits");
+const INTRINSIC_TYPE_DEFS = require("./intrinsics");
 
 const localizations = localizer({
   field: {
@@ -35,43 +36,27 @@ const localizations = localizer({
   offset: {
     en: "Offset (relative)",
   },
-  label_cache_only: {
-    en: "Cache only"
+  label_unit: {
+    en: "Unit"
+  },
+  label_compile_processed: {
+    en: "Processed during compile"
   },
   label_mcc: {
     en: "MCC"
   }
 });
 
-const INTRINSIC_TYPE_DEFS = {
-  //primitives
-  byte: {size: 1},
-  bool: {size: 1},
-  char: {size: 1},
-  uint8: {size: 1},
-  int8: {size: 1},
-  uint16: {size: 2},
-  int16: {size: 2},
-  int32: {size: 4},
-  uint32: {size: 4},
-  int64: {size: 8},
-  uint64: {size: 8},
-  float: {size: 4},
-  double: {size: 8},
-  //variable-size types
-  pad: {},
-  "UTF-8": {},
-  "UTF-16": {},
-  //pointer types
-  ptr32: {
-    size: 4,
-    args: ["T"],
-  },
-  ptr64: {
-    size: 8,
-    args: ["T"],
-  },
-};
+function processMeta(meta) {
+  if (!meta || Object.keys(meta).length == 0) {
+    return null;
+  }
+  meta = {...meta};
+  if (meta.pre_compile || meta.post_compile) {
+    meta.compile_processed = true;
+  }
+  return meta;
+}
 
 function joinPathId(pathId, next) {
   if (!pathId || !next) return null;
@@ -147,11 +132,14 @@ function renderStructYaml(ctx, optsYaml) {
   }
 
   function renderComments(part) {
+    const meta = processMeta(part.meta);
     return html`
-      ${part.labels && html`
+      ${meta && html`
         <ul class="field-labels">
-          ${part.labels.map(label => html`
-            <li class="field-label">${localize(`label_${label}`)}</li>
+          ${Object.entries(meta)
+            .filter(([k]) => localize(`label_${k}`, true))
+            .map(([k, v]) => html`
+            <li class="field-label">${localize(`label_${k}`)}${v !== true ? `: ${v}` : ""}</li>
           `)}
         </ul>
       `}
@@ -185,6 +173,7 @@ function renderStructYaml(ctx, optsYaml) {
 
   function renderFieldName(fieldName, pathId) {
     if (!fieldName) return null;
+    fieldName = fieldName.replaceAll("_", " ");
     if (!pathId) return escapeHtml(fieldName);
     const pathTitle = escapeHtml(pathId.join("/"));
     const pathIdAttr = slugify(pathId.join("-"));
