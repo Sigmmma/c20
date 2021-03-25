@@ -41,13 +41,28 @@ function invFieldCheck(obj) {
     compound,
     struct,
     minimum,
+    volatile,
+    unused,
     maximum,
     classes,
+    cache_only,
+    non_cached,
+    engine,
+    reflexive,
+    non_null,
+    endian,
+    read_only,
     bounds,
     count,
     unit,
     type,
     size,
+    //undocumented:
+    hidden,
+    compile_ignore,
+    ignore_cached,
+    zero_on_index,
+    shifted_by_one,
     ...rest
   } = obj)};
   delete rest.default; //keyword cannot be included above
@@ -62,14 +77,21 @@ function invStructCheck(obj) {
     type,
     post_compile,
     pre_compile,
-    post_cache_deformat,
-    postprocess_hek_data,
     width,
+    title, //ignore
+    groups, //ignore
     fields,
     inherits,
+    cache_only,
     fromTagName,
     options,
     size,
+    read_only,
+    //undocumented:
+    post_cache_deformat,
+    post_cache_parse,
+    postprocess_hek_data,
+    unsafe_to_dedupe,
     ...rest
   } = obj)};
   if (Object.keys(rest).length > 0) {
@@ -397,9 +419,12 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
         }
         [
           "post_cache_deformat",
+          "post_cache_parse",
+          "unsafe_to_dedupe",
           "postprocess_hek_data",
           "pre_compile",
           "post_compile",
+          "read_only",
         ].forEach(metaFlag => {
           if (invStruct[metaFlag]) {
             if (!typeDef.meta) typeDef.meta = {};
@@ -428,10 +453,25 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
             setAttr(["typeArgs"], {"T": invField.struct});
           }
           if (invField.type == "TagDependency") {
-            setAttr(["meta", "classes"], invField.classes);
+            setAttr(["meta", "tag_classes"], invField.classes);
+          }
+          if (invField.reflexive) {
+            setAttr(["meta", "index_of"], invField.reflexive);
+          }
+          if (invField.engine && invField.engine.includes("mcc")) {
+            setAttr(["meta", "mcc_only"], true);
           }
           [
+            "cache_only",
+            "non_cached",
             "unit",
+            "volatile",
+            "unused",
+            "shifted_by_one",
+            "hidden",
+            "compile_ignore",
+            "zero_on_index",
+            "ignore_cached",
           ].forEach(metaFlag => {
             if (invField[metaFlag]) {
               setAttr(["meta", metaFlag], invField[metaFlag]);
@@ -440,13 +480,21 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
           if (invField.minimum !== undefined) {
             setAttr(["value", "min"], invField.minimum);
           }
-          if (invField.default !== undefined) {
-            setAttr(["value", "default"], invField.default);
+          if (invField.endian) {
+            setAttr(["endianness"], invField.endian);
           }
           if (invField.maximum !== undefined) {
             setAttr(["value", "max"], invField.maximum);
           }
-
+          if (invField.default !== undefined) {
+            setAttr(["value", "default"], invField.default);
+          }
+          if (invField.non_null) {
+            setAttr(["value", "non_null"], true);
+          }
+          if (invField.read_only) {
+            setAttr(["value", "read_only"], true);
+          }
           if (invField.bounds) {
             fieldDef.type = "Bounds";
             fieldDef.typeArgs = {"T": invField.type};
@@ -458,7 +506,12 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
       case "bitfield":
         typeDef.size = invStruct.width / 8;
         typeDef.bits = invStruct.fields.map(invField => ({
-          name: invField
+          name: invField,
+          ...(invStruct.cache_only && invStruct.cache_only.includes(invField) && {
+            meta: {
+              cache_only: true
+            }
+          })
         }));
         break;
       case "enum":

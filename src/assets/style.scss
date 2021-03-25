@@ -460,20 +460,20 @@ table.type-def {
     background: $bg-inset;
   }
 
-  tr.field-type-pad, tr.field-label-cache_only {
+  tr.field-type-pad, tr.field-meta-cache_only, tr.field-meta-unused {
     color: $fg-faded;
-    .field-label {
+    .field-meta {
       border-color: $fg-faded;
     }
   }
 
-  .field-labels {
+  .field-metas {
     list-style: none;
     padding: 0;
     margin-top: 0;
   }
 
-  .field-label {
+  .field-meta {
     display: inline-block;
     border-radius: $border-radius;
     border: 1px solid $fg;

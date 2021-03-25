@@ -36,14 +36,35 @@ const localizations = localizer({
   offset: {
     en: "Offset (relative)",
   },
-  label_unit: {
+  meta_unit: {
     en: "Unit"
   },
-  label_compile_processed: {
+  meta_compile_processed: {
     en: "Processed during compile"
   },
-  label_mcc: {
-    en: "MCC"
+  meta_mcc_only: {
+    en: "MCC only"
+  },
+  meta_cache_only: {
+    en: "Cache only"
+  },
+  meta_non_cached: {
+    en: "Non-cached"
+  },
+  meta_non_null: {
+    en: "Non-null"
+  },
+  meta_read_only: {
+    en: "Read-only"
+  },
+  meta_volatile: {
+    en: "Volatile"
+  },
+  meta_unused: {
+    en: "Unused"
+  },
+  meta_shifted_by_one: {
+    en: "Shifted by one"
   }
 });
 
@@ -75,6 +96,11 @@ function processGenerics(genericParams, typeArgs) {
   };
 }
 
+/* todo:
+ * - populate imports
+ * - tag dependency "tag_classes" linking
+ * - "index_of" linking
+ */
 function renderStructYaml(ctx, optsYaml) {
   const {renderMarkdown} = require("../markdown"); //todo: untangle circular dep
   const localize = localizations(ctx.lang);
@@ -84,7 +110,6 @@ function renderStructYaml(ctx, optsYaml) {
     yaml.load(fs.readFileSync(path.join(ctx.page.dirPath, typeDefsArg), "utf8")) :
     typeDefsArg;
 
-  //populate imports and intrinsics
   typeDefs = {
     ...INTRINSIC_TYPE_DEFS,
     ...typeDefs
@@ -132,14 +157,14 @@ function renderStructYaml(ctx, optsYaml) {
   }
 
   function renderComments(part) {
-    const meta = processMeta(part.meta);
+    const meta = processMeta({...part.value, ...part.meta});
     return html`
       ${meta && html`
-        <ul class="field-labels">
+        <ul class="field-metas">
           ${Object.entries(meta)
-            .filter(([k]) => localize(`label_${k}`, true))
+            .filter(([k]) => localize(`meta_${k}`, true))
             .map(([k, v]) => html`
-            <li class="field-label">${localize(`label_${k}`)}${v !== true ? `: ${v}` : ""}</li>
+            <li class="field-meta">${localize(`meta_${k}`)}${v !== true ? `: ${v}` : ""}</li>
           `)}
         </ul>
       `}
@@ -227,7 +252,7 @@ function renderStructYaml(ctx, optsYaml) {
             const rowClasses = [
               "struct-field",
               `field-type-${escapeHtml(field.type)}`,
-              ...(field.labels ? field.labels.map(label => `field-label-${label}`) : []),
+              ...(field.meta ? field.meta.map(([k]) => `field-meta-${k}`) : []),
               ...(fieldTypeDef.class ? [`has-embedded-class-${fieldTypeDef.class}`] : [])
             ];
 
