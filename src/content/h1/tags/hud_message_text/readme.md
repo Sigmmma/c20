@@ -1,5 +1,5 @@
 # Creating a proper text file for HUD messages
-This tag is specifically for messages that appear on your HUD. Start by going to the root directory of your level and creating a text file. The contents of the text file differs from the string list above. Instead of using end-string you will define a variable and set the value. Here is an example.
+This tag is specifically for messages that appear on your HUD. Start by going to the root directory of your level and creating a text file. The contents of the text file differs from the formatting used for [string_list][]. Instead you will define a variable and set the value for the string. Here is an example:
 
 ```
 string1=Well, what do we have here?
@@ -7,11 +7,11 @@ string2=If I'm not mistaken this looks like a list of strings.
 string3=A lot of neat things can be done with strings.
 ```
 
-Once you've set the contents of the text file make sure to save the file with the encoding set to UTF-16 LE. Make sure the file is named the following...
+Once you've set the contents of the text file make sure to save the file with the encoding set to UTF-16 LE. Make sure the file is named the following:
 
 `hud_messages.hmt`
 
-Tool looks for a file with this name and extension specifically when compiling hud_message tags. On top of needing a specific name, it is also required for the hmt file to reside in the root directory of the scenario the tag is intended for. If we want to import this tag for our tutorial scenario then we will need to save the file at the following location.
+[Tool][] looks for a file with this name and extension specifically when compiling hud_message_text tags. On top of needing a specific name, it is also required for the hmt file to reside in the root directory of the scenario the tag is intended for. If we want to import this tag for our tutorial scenario then we will need to save the file at the following location:
 
 `(HEK Install Path)\data\levels\test\tutorial\hud_messages.hmt`
 
@@ -26,7 +26,7 @@ If you're using hud_message_text for display_scenario_help script related things
 ```
 
 # Text Symbols
-These symbols can be used in your text files to get specific results. Examples include displaying the necessary key to press for an action and creating a new line in a sentence.
+These symbols can be used in your text files to get specific results. Examples include displaying the necessary key to press for an action and creating a new line in a sentence:
 
 | Symbol               | Note                                                                                                                                |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |

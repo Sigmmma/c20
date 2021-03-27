@@ -74,7 +74,7 @@ These hotkeys apply in scripted camera mode.
 * <kbd>Caps lock</kbd>: Start/stop animation recording. Unfortunately it is not possible to control the posessed unit while recording.
 * <kbd>Shift + Q</kbd>: Exits a posessed unit while in scripted camera mode.
 
-See main page: [recorded-animatons][]
+See main page: [recorded-animations][]
 
 ## Detail objects painting
 * <kbd>Shift + Right Click</kbd>: Erases all detail objects in a highlighted cell.

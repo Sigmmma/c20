@@ -4,7 +4,7 @@
 [Weather Portals Example Blend](https://drive.google.com/file/d/1Nfjg2E7CP_rxpt9UIshCljRT3pCMkfXD/view?usp=sharing) -> A blend file showcasing how to use the special +weatherpoly material in a level.
 
 # Multiple skies
-It's possible to use multiple skies in your level by adding a digit to the end of your "+sky" material. If we wanted three skies in our level for example we would have...
+It's possible to use multiple skies in your level by adding a digit to the end of your "+sky" material. If we wanted three skies in our level for example we would have the following:
 
 ```
 +sky0
@@ -59,6 +59,6 @@ Once the level is compiled you can toggle the "Snap to markers" checkbox in the 
 Once the option is enabled all markers in the BSP will be rendered on screen. Spawning an object and moving it near the marker should snap the object's center of origin to the position of the marker. This can make it much easier to get exact positions for [device_machines][device_machine] and [scenery][].
 
 # Multiple BSPs
-It is common for singleplayer maps to have multiple BSPs. This helps manage game resources and avoid BSP limits for long missions. To accomplish this, place multiple JMS files in the same `models` folder for the level. Each JMS will be compiled into it's own unique [BSP tag][scenario_structure_bsp] for your [scenario][] to use. Do not attempt to use multiple BSPs in an MP scenario unless you are trying to achieve a scripted day/night setting and each BSP is geometrically identical.
+It is common for singleplayer maps to have multiple BSPs. This helps manage game resources and avoid BSP limits for long missions. To accomplish this, place multiple [JMS][] files in the same `models` folder for the level. Each [JMS][] will be compiled into it's own unique [BSP tag][scenario_structure_bsp] for your [scenario][] to use. Do not attempt to use multiple BSPs in an MP scenario unless you are trying to achieve a scripted day/night setting and each BSP is geometrically identical.
 
 [wiki-polyhedron]: https://en.wikipedia.org/wiki/Convex_polytope

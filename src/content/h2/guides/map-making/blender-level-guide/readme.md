@@ -49,7 +49,7 @@ While the level pipeline for Halo 2 hasn't changed much from CE, there are some 
 2. Instead of .JMS, Halo 2 makes use of a new level format known as .ASS. This format has support for multiple separate objects as well as instance geometry. While H2Tool has some support for importing geometry stored in the JMS format, ASS is the new and proper format to be using.
 3. H2Tool will search for a matching shader folder prefix from a list in the shader_collections file. H2Tool will only search the tags directory for matching shaders like CE if the shader_collections file does not exist.
 4. Xref objects can be used to place scenery or device machine objects in 3D modeling software.
-5. The way assets are placed has changed a bit from what you may be familiar with in CE. 
+5. The way assets are placed has changed a bit from what you may be familiar with in CE.
 
 # Creation of a simple level
 The following steps and example images will demonstrate the creation of a box that will serve as the tutorial level and will be utilized for all the subsequent tutorials.
@@ -58,26 +58,37 @@ When creating or starting out a level try and keep the level centered at the ori
 The level must be a sealed. The level must be a contiguous structure that forms a sealed volume, the following rules are referred to as the Sealed World Rules:
 
 * There must not be any open edges, the component parts or geometry of the level must match (edges and verts). There are some exceptions to the rule which will be covered in later tutorials and examples in later sections, but basically, anything that is solid (has to have collision with the player and vehicles) cannot have any open edges.
-
 * The normals of the faces used to create the level geometry must face towards the playable area of the level or section of the level. The normals of the faces or polygons determine not just the face that will be rendered or seen by the player but also the surface to be used for collision and physics.
 
-## creation of a simple box room
+## Creation of a simple box room
 
 1. [Add a new box object](https://docs.blender.org/manual/en/latest/editors/3dview/toolbar/add_cube.html)
-
 2. Bring up the [properties panel](https://docs.blender.org/manual/en/latest/editors/3dview/sidebar.html) with <kbd>N</kbd> and set it to the item tab.
-
 3. Set the [location](https://docs.blender.org/manual/en/latest/scene_layout/object/properties/transforms.html) of the box to X: `197.651` Y: `-12.23` Z: `614.331`
-
 4. The [dimensions](https://docs.blender.org/manual/en/latest/scene_layout/object/properties/transforms.html) for the Box can be manually set. The dimensions for the box that will be used are X: `1176.23`  Y: `3084.88`  Z: `1813.66`
-
 5. Set the name of the object in the [outliner](https://docs.blender.org/manual/en/latest/editors/outliner/introduction.html) to "level" by double clicking it or pressing <kbd>F2</kbd> to edit it.
-
 6. While having the box selected [change the context mode](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) from object mode to edit mode
-
 	* The following steps will make the box satisfy the Sealed World Rules, in effect making it a simple Halo level in terms of geometry.
-
 7. [Flip all the normals](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html#recalculate) for the box inwards, the interior of the box will be the playable area of the level.
-
 8. [Set context](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) back to object mode if you haven't already.
 
+# Divide and mirror
+
+We will now select the edges that go across the level and cut them in half. We will then delete the other half so that we can mirror our changes through a mirror modifier. This will help us have to only do our modeling work once.
+
+1. Start by selecting the edges as shown in the following image. Make sure that you are in [edit mode](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) and have your selection type set to [edge select](https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/introduction.html).
+	* ![](A.png)
+2. Once you have the edges selected, you can right click to bring up the context menu. Click the subdivide option to split the edges down the middle.
+	* ![](B.png)
+3. Now go ahead and switch from [edge select](https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/introduction.html) to [face select.](https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/introduction.html) Select all of the highlighted faces as shown in the following image. Press the <kbd>X</kbd> key once you are done to bring up the delete menu. Select the "Faces" option to be left with only half of the structure.
+	* ![](C.png)
+4. Lets finish this off by adding a modifier to our level object to mirror the geometry.
+
+## Modifiers and you
+Modifiers are tools that you can use to change geometry in specific ways. Examples of this are triangulating geometry, cutting intersecting geometry, or mirroring geometry like we are about to do now. Read the following link for more details.
+
+[Modifier docs](https://docs.blender.org/manual/en/latest/modeling/modifiers/introduction.html)
+
+1. Ensure you have the level object selected and that your context mode is set to [object mode](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html). Most modifier results will only appear in object mode unless it is set to also appear in edit mode.
+2.
+	* ![](D.png)

@@ -161,7 +161,7 @@ Now that we've set up our materials and textures let's make sure our UVs are cor
 
 ## UV mapping our stream
 
-Go ahead and open a viewport for a UV editor if you don't have one open already. Once you have it open select all faces of the stream mesh with the <kbd>A</kbd> key. You should see the UV for the mesh in the UV editor now. Let's go over a few tools you'll need to know for manually adjusting UVs.
+Go ahead and open a viewport for a UV editor if you don't have one open already. Once you have it open select all faces of the stream mesh with the <kbd>A</kbd> key. You should see the UV for the mesh in the UV editor now. Let's go over a few tools you'll need to know for manually adjusting UVs:
 
 * The highlighted options are your selection modes like the ones found in edit mode. You can pick from vertex, edge, face, and island selection. We will go with island for this example.
 ![](2H.png)
@@ -266,7 +266,7 @@ The second image further explains the above procedures.
 The box will now be manipulated to create a ramp and simple hallway.
 
 1. Select the new box object you made and change your context from object mode to edit mode.
-2. Merge the two edges facing the center of the map. Here's how to do that.
+2. Merge the two edges facing the center of the map. Here's how to do that:
 	* A: Use vertex selection for this. You'll need it to merge the vertices.
 	* B: Start with the verts on the left side from top to bottom
 	* C: While having your cursor over your 3D viewport hit the <kbd>M</kbd> key to bring up the merge menu. Select the "At Last" option from the menu.
@@ -445,7 +445,7 @@ Go into face selection and select one of the base faces. Press the key combo <kb
 Now that the blue base has been separated into a separate object, we will start creating materials for our base object.
 The following steps and example images will demonstrate the application of our new materials needed to complete the base structure.
 
-Start by creating the listed materials in your base object along with assigning the texture we will be using for the material. Just like before you can find these images in...
+Start by creating the listed materials in your base object along with assigning the texture we will be using for the material. Just like before you can find these images in:
 
 `(HEK Install Path)\data\levels\test\tutorial\bitmaps`
 
@@ -627,12 +627,12 @@ Later, when the level is running in the game, use rasterizer_wireframe 1 to view
 Now let's set divide up the level using standard portals.
 
 1. Create a plane and rotate it 90 degrees on the Y axis. Make sure to apply the rotation with <kbd>Ctrl</kbd> + <kbd>A</kbd> and then set the dimensions of the plane to Y: 3600.0 Z: 2000.0. Set the position of the plane to X: 0.0 Y: 0.0 Z: 650.0. Subdivide the top and bottom plane edges to get five sections.
-2. Make sure the sections you created split the map somewhat nicely. The values we used for ours is...
+2. Make sure the sections you created split the map somewhat nicely. The values we used for ours is:
 	* X: 0.0 Y: -1200.0 Z: 650.0
 	* X: 0.0 Y: -400.0 Z: 650.0
 	* X: 0.0 Y: 400.0 Z: 650.0
 	* X: 0.0 Y: 1200.0 Z: 650.0
-3. Duplicate the object so that it splits the map into five sections. The location for the planes in the image from left to right is...
+3. Duplicate the object so that it splits the map into five sections. The location for the planes in the image from left to right is:
 	* X: -750.0 Y: 0.0 Z: 650.0
 	* X: -300.0 Y: 0.0 Z: 650.0
 	* X: 300.0 Y: 0.0 Z: 650.0
@@ -655,7 +655,7 @@ You've now saved your level. The file as is will be used for future sections in 
 
 # Conclusion of level creation
 The level geometry is now "complete" and can be successfully exported and compiled and is ready to go through the steps that will get it running in Halo.
-As previously mentioned, a completed version or example version of the level created in the tutorial sections can be found under...
+As previously mentioned, a completed version or example version of the level created in the tutorial sections can be found under:
 
 `(HEK Install Path)\data\levels\test\tutorial`
 

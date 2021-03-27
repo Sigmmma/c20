@@ -1,13 +1,13 @@
 # Creating a proper text file for unicode string lists
-Create a text file at the following location. If the directory doesn't exist then go ahead and create the needed folders.
+Create a text file at the following location. If the directory doesn't exist then go ahead and create the needed folders:
 
 `(HEK Install Path)\data\levels\test\tutorial\strings`
 
 Our text files do not need to be in a specific subdirectory like models or levels do. We can have them wherever we would like. Try to get your files organized though for your own sake and for the sake of others if you decide to share your tags folder.
 
-Once you're in the proper directory you can then right click to bring up the context menu and create a new text file. Name this file whatever you would like. We will be using "tutorial_strings" for this example. Now that this is done we can open up our text file and start writing our sentences we want displayed ingame.
+Once you're in the proper directory you can then right click to bring up the context menu and create a new text file. Name this file whatever you would like. We will be using "tutorial_strings" for this example. Once you've finished this step we can open up our text file and start writing our sentences we want displayed ingame.
 
-Strings in CE start with the first line being the full sentence you want displayed while the next line is declaring the end of the string. See the following for an example.
+Strings in CE start with the first line being the full sentence you want displayed while the next line is declaring the end of the string. See the following for an example:
 
 ```
 This is a string.
@@ -23,10 +23,10 @@ We will also be talking about symbols like %jump later in the guide.
 Some features like newlines in strings will not work in certain situations.
 ```
 
-Save the file once you've set the contents of the text file. Make sure the file is set to encoding UTF-16 LE. Go ahead and use the `unicode-strings` command in Tool to import your unicode strings list.
+Save the file once you've set the contents of the text file. Make sure the file is set to encoding UTF-16 LE. Go ahead and use the `unicode-strings` command in [Tool][] to import your unicode strings list.
 
-# Text Symbols
-These symbols can be used in your text files to get specific results. Examples include displaying the necessary key to press for an action and creating a new line in a sentence.
+# Text symbols
+These symbols can be used in your text files to get specific results. Examples include displaying the necessary key to press for an action and creating a new line in a sentence:
 
 | Symbol               | Note                                                                                                                                |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |

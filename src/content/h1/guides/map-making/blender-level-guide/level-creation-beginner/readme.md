@@ -35,11 +35,8 @@ The name of the level folder containing our sub directories MUST BE UNIQUE from 
 Let's first start by creating our very own level directory in the data folder. We'll call this level tutorial for simplicities sake but you can call it whatever you would like.
 
 1. In the root of your HEK install find a folder named "data". If it does not exist then create it.
-
 2. In the "data" directory find a folder named "levels". If it does not exist then create it.
-
 3. In the "levels" directory find a folder named "test". If it does not exist then create it.
-
 4. For our last step we will now create our first level in the "test" directory.
 
 Your final path in Windows explorer should be something like this.
@@ -49,27 +46,16 @@ Your final path in Windows explorer should be something like this.
 Once this is done we will need to create 3 new sub directories in our level directory for the raw assets. The folders you will need are as follows...
 
 1. bitmaps
-
 	* Using the previous example the directory structure would look like this
-
 		* `(HEK Install Path)\data\levels\test\(My Level Name)\bitmaps`
-
 	* The name here is just for organizing your images. The folder containing your raw image assets does not need to be named bitmaps but it will probably help. Like you probably already guessed this is where you will place your .tif files to compile bitmaps tags from. Keep in mind that when we talk about bitmaps in Halo we are not talking about images with a .BMP extension. We are talking about a tag type called bitmaps that stores image data for use in Halo specifically.
-
 2. models
-
 	* Using the previous example the directory structure would look like this
-
 		* `(HEK Install Path)\data\levels\test\(My Level Name)\models`
-
 	* This folder name is something Tool.exe specifically looks for when compiling object meshes. Be sure that the folder is named exactly this. As you have probably already guessed this is where you will compile your example level from.
-
 3. scenery
-
 	* Using the previous example the directory structure would look like this
-
 		* `(HEK Install Path)\data\levels\test\(My Level Name)\scenery`
-
 	* The name here is just for organizing objects used for the level. The folder containing your scenery does not need to be named this but it should help. As you have probably guessed this is where the raw assets for any level specific objects can be placed. This folder should probably contain multiple folders with their own sub directories for model and bitmap assets.
 
 ```.alert info
@@ -118,7 +104,6 @@ When creating or starting out a level try and keep the level centered at the ori
 The level must be a sealed. The level must be a contiguous structure that forms a sealed volume, the following rules are referred to as the Sealed World Rules:
 
 * There must not be any open edges, the component parts or geometry of the level must match (edges and verts). There are some exceptions to the rule which will be covered in later tutorials and examples in later sections, but basically, anything that is solid (has to have collision with the player and vehicles) cannot have any open edges.
-
 * The normals of the faces used to create the level geometry must face towards the playable area of the level or section of the level. The normals of the faces or polygons determine not just the face that will be rendered or seen by the player but also the surface to be used for collision and physics.
 
 Additional information on the Reference Frame and Sealed World Rules and other technical rules or guidelines can be found under the Technical Rules discussion topic under the General Overview section under Multiplayer Level Design.
@@ -126,23 +111,14 @@ Additional information on the Reference Frame and Sealed World Rules and other t
 ## creation of a simple box room
 
 1. [Add a new box object](https://docs.blender.org/manual/en/latest/editors/3dview/toolbar/add_cube.html)
-
 2. Bring up the [sidebar](https://docs.blender.org/manual/en/latest/editors/3dview/sidebar.html) with N and set it to the item tab.
-
 3. Set the [location](https://docs.blender.org/manual/en/latest/scene_layout/object/properties/transforms.html) of the box to X: `0.0` Y: `0.0` Z: `800.0`
-
 4. The [dimensions](https://docs.blender.org/manual/en/latest/scene_layout/object/properties/transforms.html) for the Box can be manually set. The dimensions for the box that will be used are X: `2400.0`  Y: `3200.0`  Z: `1600.0`
-
 5. Set the name of the object in the [outliner](https://docs.blender.org/manual/en/latest/editors/outliner/introduction.html) to "level" by double clicking it or pressing F2 to edit it.
-
 6. While having the box selected [change the context mode](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) from object mode to edit mode
-
 	* The following steps will make the box satisfy the Sealed World Rules and will link it to the frame, in effect making it a simple Halo level in terms of geometry.
-
 7. [Flip all the normals](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html#recalculate) for the box inwards, the interior of the box will be the playable area of the level.
-
 8. [Set context](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) back to object mode if you haven't already.
-
 9. [Set the parent](https://docs.blender.org/manual/en/latest/scene_layout/object/editing/parent.html) of the box to the Reference Frame (frame).
 
 ```.alert info
@@ -161,26 +137,15 @@ Every face for the game level must have a material assigned to it (except for th
 ## Creating new materials
 
 1. Select the box object (level) and navigate to the materials tab.
-
 	* <a href="K.png" target="_blank"> <img src="K.png" title="Match the numbers in the image to the numbers in the list below." style="max-width: 400px; height: auto; "/> </a>
-
-
 2. [Add a material](https://docs.blender.org/manual/en/latest/render/materials/assignment.html) named "+sky" to your box (level) object.
-
 3. [Add a material](https://docs.blender.org/manual/en/latest/render/materials/assignment.html) named "example_tutorial_ground" to your box (level) object.
-
 4. This is where we will assign a texture to our "example_tutorial_ground" material. Your material will need to have "Use Nodes" enabled in order to make use of textures.
-
 5. [Assign an image texture node](https://docs.blender.org/manual/en/latest/render/shader_nodes/textures/image.html) to your material.
-
 6. Once the image texture node has been assigned you should now see file directory options instead of a diffuse color option. We will be clicking on the button labeled "Open" and browsing to our HEK install directory.
-
 7. Navigate to the following directory `(HEK Install Path)\data\levels\test\tutorial\bitmaps`
-
 	* <a href="N.png" target="_blank"> <img src="N.png" title="Match the numbers in the image to the numbers in the list below." style="max-width: 400px; height: auto; "/> </a>
-
 8. Select an image texture to use for your material. In this instance we shall use example_tutorial_ground.tif.
-
 9. Go ahead and click the button labeled "Open Image" to set the selected image to be used by your material. This completes the texture assigning process.
 
 ```.alert info
@@ -201,19 +166,12 @@ We will now be going over how to apply your newly created materials to faces in 
 
 1. Select the box (level) object.
 	* <a href="O.png" target="_blank"> <img src="O.png" title="Match the numbers in the image to the numbers in the list below." style="max-width: 400px; height: auto; "/> </a>
-
 2. [Change context mode](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) from object mode to edit mode.
-
 3. Make sure you are in [face selection](https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/introduction.html) so that you can properly select the object faces.
-
 4. [Select all](https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/introduction.html#select-menu) faces of the cube except for the bottom area.
-
 5. [Select the material](https://docs.blender.org/manual/en/latest/render/materials/assignment.html#edit-mode) named "+sky" from the materials list in the object.
-
 6. Click the assign button.
-
 7. Select the bottom face of the cube that we didn't assign +sky to.
-
 8. [Assign the material](https://docs.blender.org/manual/en/latest/render/materials/assignment.html#edit-mode) named "example_tutorial_ground".
 
 You've completed this section. There are two ways you can see what materials you have applied to your object surfaces. Read the section [here](https://docs.blender.org/manual/en/latest/editors/3dview/display/shading.html) to see your options.
@@ -228,7 +186,6 @@ Follow the instructions below to begin.
 ## Setting up a second viewport for UV editing
 
 1. Lets start by [setting up our second window](https://docs.blender.org/manual/en/latest/interface/window_system/areas.html) for UV mapping.
-
 2. Go ahead and select [UV Editor](https://docs.blender.org/manual/en/latest/editors/index.html) from the dropdown to switch the viewport to that editor type.
 
 Now that you set up your scene there is one more detail you should be aware of. You may notice that if your viewport shading settings are set to this.
@@ -328,11 +285,8 @@ The modifier can also be permanently applied from this area. Simply click on the
 It's probably a good idea to make frequent backups as you make progress just in case. Follow the instructions below to save a scene.
 
 1. Go to File dropdown in the top left and click it.
-
 2. Click on the menu item labeled "Save As".
-
 3. A window named "Blender File Dialog" should come up. Navigate to `(HEK Install Path)\data\levels\test\(Level Name)\models` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory](#creation-of-a-level-directory) section
-
 4. Click on the button labeled "Save As".
 
 You've now saved your level. The file as is will be used for future sections in this tutorial.
