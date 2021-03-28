@@ -18,13 +18,13 @@ Some additional notes for this section. There are some new hotkeys you gain acce
 * <kbd>Space</kbd>: Current game view camera position is used to create a new camera point if "Edit camera point" is disabled. If "Edit camera point" is enabled then it instead moves the "Active camera point" to the current position of the game view camera.
 
 # Taking over a unit
-We will need to pick a [unit][] for us to take over. A [unit][] here is typically a [biped][] or a [biped][] in a vehicle placed in your scene. Look over to your game window and look at a [biped][] you wish to take over. Once you've made your choice go ahead and left click on the [biped][] directly. A sphere should encircle the [biped][] and gradually shrink. This indicates that you have selected the [unit][].
+We will need to pick a unit for us to take over. A unit here is typically a [biped][] or a biped in a vehicle placed in your scene. Look over to your game window and look at a biped you wish to take over. Once you've made your choice go ahead and left click on the biped directly. A sphere should encircle the biped and gradually shrink. This indicates that you have selected the unit.
 
 ```.alert danger
 Do not attempt to select the [unit][] from the hierarchy list. You must select the unit from the game window screen.
 ```
 
-Once the [unit][] is selected you can press the following keys to take over the [unit][]:
+Once the unit is selected you can press the following keys to take over the unit:
 
 * <kbd>Shift + V</kbd>: Some additional notes for this section. There are some new hotkeys you gain access to in this mode.
 * <kbd>Backspace</kbd>: Toggle "Camera type". Pressing this key will cycle between 3 modes for your camera.
@@ -33,7 +33,7 @@ Once the [unit][] is selected you can press the following keys to take over the 
 	* Flycam
 
 # Begin recording
-Now that you've taken over the [unit][] you should see a view that looks pretty similar to a standard ingame session. Press the <kbd>Caps lock</kbd> key to start recording.
+Now that you've taken over the unit you should see a view that looks pretty similar to a standard ingame session. Press the <kbd>Caps lock</kbd> key to start recording.
 
 ![](B.png "If you want some flashy effects for your high speed chase.")
 
@@ -51,7 +51,7 @@ When you have finished performing the actions you want recorded, press <kbd>Caps
 Clicking "Don't Save" will throw the recorded animation data away while saving it will place the data under the hierarchy folder named "Recorded animations".
 
 # Playing your recording
-In order to play the recording on a [unit][] you will have to call it through a script function. The script function we will be using in this example is as follows:
+In order to play the recording on a unit you will have to call it through a script function. The script function we will be using in this example is as follows:
 
 ```console
 recording_play <unit name> <recorded animation name>
