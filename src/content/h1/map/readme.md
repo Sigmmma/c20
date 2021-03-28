@@ -31,7 +31,7 @@ Maps with the extension `.yelo` are compiled with [OS_Tool][opensauce#os-tool] a
 Maps downloaded by the [Chimera][] mod use a custom compressed format taking up less space. These maps are produced by compiling them using [invader-build][invader] with the `-c` flag, or using `invader-compress`. The map's header is uncompressed, but all other data is compressed. These files also have a `.map` extension, but when downloaded directly from [HaloNet][map-sharing#halonet] they have a `.inv` extension. Although Chimera does not download maps to Halo's main `maps` directory, take care not to mix these maps with stock ones since they are not compatible with the base game and are unsupported by other mods at this time. You can, however, decompress them easily with `invader-compresss -d <map>`.
 
 # Limits
-Because the game has a 23 MiB tag space limit (raised to 31 MiB in CEA), [Tool][] will enforce this limit when compiling a map. Keep an eye on its console output:
+Because the game has a 23 MiB tag space limit (22 MiB on Xbox and raised to 31 MiB in CEA), [Tool][] will enforce this limit when compiling a map. Keep an eye on its console output:
 
 ```
 total tag size is 8.43M (14.57M free)
@@ -48,12 +48,17 @@ Within a map, tag _metadata_ (most of the fields seen in tag editors) is stored 
 
 Each section is loaded in a different way:
 
-* Tag metadata is copied directly into memory at a fixed address. On Xbox, PC, and Custom Edition, the game has just 23 MiB of tag space available for the currently loaded map. Tag metadata is loaded into the _start_ of this region. Because this data has been preprocessed by Tool, it requires no further processing and thus is very fast to load. The address where tag data is loaded depends on the edition:
+* Tag metadata is copied directly into memory at a fixed address. The game has a limited amount of tag space available for the currently loaded map. The size depends on the edition:
+  * Xbox: `0x1600000` (22 MiB)
+  * PC/CE: `0x1700000` (23 MiB)
+  * CEA: `0x1f00000` (31 MiB)
+
+  Tag metadata is loaded into the _start_ of this region. Because this data has been preprocessed by Tool, it requires no further processing and thus is very fast to load. The address where tag data is loaded is also dependent on the edition:
   * Xbox: `0x803A6000`
   * Demo: `0x4BF10000`
   * PC/CE: `0x40440000`
   * CEA: `0x40448000`
-* The active BSP is loaded into the _end_ of the 23 MiB tag space. When a BSP switch occurs, the new BSP data is read from the map file and replaces the previous data in-memory. In CEA, it is loaded at memory address `0x41448000` instead.
+* The active BSP is loaded into the _end_ of the tag space. When a BSP switch occurs, the new BSP data is read from the map file and replaces the previous data in-memory. In CEA, it is loaded at memory address `0x41448000` instead.
 * Raw data is streamed from the map file as needed and dynamically allocated in a loaded resource pool/cache. The texture cache is cleared during maps loads and BSP switches. Some tags like [BSPs][scenario_structure_bsp] and [scenarios][scenario] contain a "predicted resources" block which hints to the game which data should be loaded into these caches.
 
 Tags from resource maps are also loaded into the tag space as needed. Halo CEA uses compressed maps and additional files to store sounds and bitmaps, so loads maps [differently][cea#changes].
