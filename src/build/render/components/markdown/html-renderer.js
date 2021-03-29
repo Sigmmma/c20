@@ -3,7 +3,7 @@ const hljs = require("highlight.js");
 const {consoleLang, hscLang} = require("./langs/hsc");
 const vrmlLang = require("./langs/vrml");
 const {heading, alert, figure} = require("../bits");
-const {renderStructYaml} = require("../structs");
+const {renderStructYaml, renderTableYaml} = require("../structs");
 
 hljs.registerLanguage("vrml", vrmlLang);
 hljs.registerLanguage("hsc", hscLang);
@@ -44,6 +44,8 @@ module.exports = function(ctx) {
         return alert(extensionArgs, renderMarkdown(ctx, code));
       } else if (extensionType == "struct") {
         return renderStructYaml(ctx, code);
+      } else if (extensionType == "table") {
+        return renderTableYaml(ctx, code);
       }
       throw new Error(`Unrecognized markdown extension: ${extensionType}`);
     }
