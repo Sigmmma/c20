@@ -1,0 +1,47 @@
+entry_type: Equipment
+imports:
+  h1/tags/item:
+    - Item
+  h1/tags/common:
+    - GrenadeType
+    - TagDependency
+type_defs:
+  EquipmentPowerupType:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: double_speed
+      - name: over_shield
+      - name: active_camouflage
+      - name: full_spectrum_vision
+      - name: health
+      - name: grenade
+  Equipment:
+    class: struct
+    extends:
+      type: Item
+    meta:
+      tag_id: eqip
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: 'Used for powerups, health packs, non-live grenades, and ammo pickups.'
+    assert_size: 944
+    fields:
+      - name: powerup_type
+        type: EquipmentPowerupType
+      - name: grenade_type
+        type: GrenadeType
+      - name: powerup_time
+        type: float
+        meta:
+          unit: seconds
+      - name: pickup_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 144

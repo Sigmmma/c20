@@ -47,7 +47,6 @@ async function content() {
   await buildContent({
     baseUrl,
     packageVersion,
-    invaderDefsDir: paths.invaderDefsDir,
     contentDir: paths.srcContentBase,
     outputDir: paths.dist
   });

@@ -1,0 +1,352 @@
+entry_type: ShaderTransparentGeneric
+imports:
+  h1/tags/shader:
+    - Shader
+    - ShaderFirstMapType
+    - ShaderTransparentExtraLayer
+  h1/tags/common:
+    - FramebufferBlendFunction
+    - FramebufferFadeMode
+    - FunctionOut
+    - TagDependency
+    - Block
+    - Fraction
+    - WaveFunction
+    - Point2D
+    - FunctionNameNullable
+    - ColorARGB
+type_defs:
+  ShaderTransparentGenericFlags:
+    class: bitfield
+    size: 1
+    bits:
+      - name: alpha_tested
+      - name: decal
+      - name: two_sided
+      - name: first_map_is_in_screenspace
+      - name: draw_before_water
+      - name: ignore_effect
+      - name: scale_first_map_with_distance
+      - name: numeric
+  ShaderTransparentGenericMapFlag:
+    class: bitfield
+    size: 2
+    bits:
+      - name: unfiltered
+      - name: u_clamped
+      - name: v_clamped
+  ShaderTransparentGenericMap:
+    class: struct
+    assert_size: 100
+    fields:
+      - name: flags
+        type: ShaderTransparentGenericMapFlag
+      - type: pad
+        size: 2
+      - name: map_u_scale
+        type: float
+      - name: map_v_scale
+        type: float
+      - name: map_u_offset
+        type: float
+      - name: map_v_offset
+        type: float
+      - name: map_rotation
+        type: float
+        meta:
+          unit: degrees
+      - name: mapmap_bias
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: u_animation_source
+        type: FunctionOut
+      - name: u_animation_function
+        type: WaveFunction
+      - name: u_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: u_animation_phase
+        type: float
+      - name: u_animation_scale
+        type: float
+        meta:
+          unit: repeats
+          default: 1
+      - name: v_animation_source
+        type: FunctionOut
+      - name: v_animation_function
+        type: WaveFunction
+      - name: v_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: v_animation_phase
+        type: float
+      - name: v_animation_scale
+        type: float
+        meta:
+          unit: repeats
+          default: 1
+      - name: rotation_animation_source
+        type: FunctionOut
+      - name: rotation_animation_function
+        type: WaveFunction
+      - name: rotation_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: rotation_animation_phase
+        type: float
+      - name: rotation_animation_scale
+        type: float
+        meta:
+          unit: degrees
+          default: 360
+      - name: rotation_animation_center
+        type: Point2D
+  ShaderTransparentGenericStageFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: color_mux
+      - name: alpha_mux
+      - name: a_out_controls_color0_animation
+  ShaderTransparentGenericStageInputColor:
+    class: enum
+    size: 2
+    options:
+      - name: zero
+      - name: one
+      - name: one_half
+      - name: negative_one
+      - name: negative_one_half
+      - name: map_color_0
+      - name: map_color_1
+      - name: map_color_2
+      - name: map_color_3
+      - name: vertex_color_0_diffuse_light
+      - name: vertex_color_1_fade_perpendicular
+      - name: scratch_color_0
+      - name: scratch_color_1
+      - name: constant_color_0
+      - name: constant_color_1
+      - name: map_alpha_0
+      - name: map_alpha_1
+      - name: map_alpha_2
+      - name: map_alpha_3
+      - name: vertex_alpha_0_fade_none
+      - name: vertex_alpha_1_fade_perpendicular
+      - name: scratch_alpha_0
+      - name: scratch_alpha_1
+      - name: constant_alpha_0
+      - name: constant_alpha_1
+  ShaderTransparentGenericStageInputMappingColor:
+    class: enum
+    size: 2
+    options:
+      - name: clamp_x
+      - name: 1_clamp_x
+      - name: '2'
+      - name: '1_2'
+      - name: clamp_x_1_2
+      - name: 1_2_clamp_x
+      - name: x
+      - name: x_1
+  ShaderTransparentGenericStageOutput:
+    class: enum
+    size: 2
+    options:
+      - name: alpha_discard
+      - name: alpha_scratch_alpha_0_final_alpha
+      - name: alpha_scratch_alpha_1
+      - name: alpha_vertex_alpha_0_fog
+      - name: alpha_vertex_alpha_1
+      - name: alpha_map_alpha_0
+      - name: alpha_map_alpha_1
+      - name: alpha_map_alpha_2
+      - name: alpha_map_alpha_3
+  ShaderTransparentGenericStageOutputFunction:
+    class: enum
+    size: 2
+    options:
+      - name: multiply
+      - name: dot_product
+  ShaderTransparentGenericStageOutputMapping:
+    class: enum
+    size: 2
+    options:
+      - name: color_identity
+      - name: color_scale_by_1_2
+      - name: color_scale_by_2
+      - name: color_scale_by_4
+      - name: color_bias_by_1_2
+      - name: color_expand_normal
+  ShaderTransparentGenericStageInputAlpha:
+    class: enum
+    size: 2
+    options:
+      - name: zero
+      - name: one
+      - name: one_half
+      - name: negative_one
+      - name: negative_one_half
+      - name: map_alpha_0
+      - name: map_alpha_1
+      - name: map_alpha_2
+      - name: map_alpha_3
+      - name: vertex_alpha_0_fade_none
+      - name: vertex_alpha_1_fade_perpendicular
+      - name: scratch_alpha_0
+      - name: scratch_alpha_1
+      - name: constant_alpha_0
+      - name: constant_alpha_1
+      - name: map_blue_0
+      - name: map_blue_1
+      - name: map_blue_2
+      - name: map_blue_3
+      - name: vertex_blue_0_blue_light
+      - name: vertex_blue_1_fade_parallel
+      - name: scratch_blue_0
+      - name: scratch_blue_1
+      - name: constant_blue_0
+      - name: constant_blue_1
+  ShaderTransparentGenericStage:
+    class: struct
+    assert_size: 112
+    fields:
+      - name: flags
+        type: ShaderTransparentGenericStageFlags
+      - type: pad
+        size: 2
+      - name: color0_source
+        type: FunctionNameNullable
+      - name: color0_animation_function
+        type: WaveFunction
+      - name: color0_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: color0_animation_lower_bound
+        type: ColorARGB
+      - name: color0_animation_upper_bound
+        type: ColorARGB
+      - name: color1
+        type: ColorARGB
+      - name: input_a
+        type: ShaderTransparentGenericStageInputColor
+      - name: input_a_mapping
+        type: ShaderTransparentGenericStageInputMappingColor
+      - name: input_b
+        type: ShaderTransparentGenericStageInputColor
+      - name: input_b_mapping
+        type: ShaderTransparentGenericStageInputMappingColor
+      - name: input_c
+        type: ShaderTransparentGenericStageInputColor
+      - name: input_c_mapping
+        type: ShaderTransparentGenericStageInputMappingColor
+      - name: input_d
+        type: ShaderTransparentGenericStageInputColor
+      - name: input_d_mapping
+        type: ShaderTransparentGenericStageInputMappingColor
+      - name: output_ab
+        type: ShaderTransparentGenericStageOutput
+      - name: output_ab_function
+        type: ShaderTransparentGenericStageOutputFunction
+      - name: output_bc
+        type: ShaderTransparentGenericStageOutput
+      - name: output_cd_function
+        type: ShaderTransparentGenericStageOutputFunction
+      - name: output_ab_cd_mux_sum
+        type: ShaderTransparentGenericStageOutput
+      - name: output_mapping_color
+        type: ShaderTransparentGenericStageOutputMapping
+      - name: input_a_alpha
+        type: ShaderTransparentGenericStageInputAlpha
+      - name: input_a_mapping_alpha
+        type: ShaderTransparentGenericStageInputMappingColor
+      - name: input_b_alpha
+        type: ShaderTransparentGenericStageInputAlpha
+      - name: input_b_mapping_alpha
+        type: ShaderTransparentGenericStageInputMappingColor
+      - name: input_c_alpha
+        type: ShaderTransparentGenericStageInputAlpha
+      - name: input_c_mapping_alpha
+        type: ShaderTransparentGenericStageInputMappingColor
+      - name: input_d_alpha
+        type: ShaderTransparentGenericStageInputAlpha
+      - name: input_d_mapping_alpha
+        type: ShaderTransparentGenericStageInputMappingColor
+      - name: output_ab_alpha
+        type: ShaderTransparentGenericStageOutput
+      - name: output_cd_alpha
+        type: ShaderTransparentGenericStageOutput
+      - name: output_ab_cd_mux_sum_alpha
+        type: ShaderTransparentGenericStageOutput
+      - name: output_mapping_alpha
+        type: ShaderTransparentGenericStageOutputMapping
+  ShaderTransparentGeneric:
+    class: struct
+    extends:
+      type: Shader
+    meta:
+      tag_id: sotr
+      pre_compile: true
+    comments:
+      en: A transparent shader type supported on classic Xbox only.
+    assert_size: 108
+    fields:
+      - name: numeric_counter_limit
+        type: uint8
+      - name: shader_transparent_generic_flags
+        type: ShaderTransparentGenericFlags
+      - name: first_map_type
+        type: ShaderFirstMapType
+      - name: framebuffer_blend_function
+        type: FramebufferBlendFunction
+      - name: framebuffer_fade_mode
+        type: FramebufferFadeMode
+      - name: framebuffer_fade_source
+        type: FunctionOut
+      - type: pad
+        size: 2
+      - name: lens_flare_spacing
+        type: float
+        meta:
+          unit: world units
+      - name: lens_flare
+        type: TagDependency
+        meta:
+          tag_classes:
+            - lens_flare
+      - name: extra_layers
+        type: Block
+        type_args:
+          T: ShaderTransparentExtraLayer
+        meta:
+          hek_max_count: 4
+      - name: maps
+        type: Block
+        type_args:
+          T: ShaderTransparentGenericMap
+        meta:
+          hek_max_count: 4
+          max: 4
+      - name: stages
+        type: Block
+        type_args:
+          T: ShaderTransparentGenericStage
+        meta:
+          hek_max_count: 7
+          max: 7

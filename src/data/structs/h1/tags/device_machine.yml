@@ -1,0 +1,63 @@
+entry_type: DeviceMachine
+imports:
+  h1/tags/device:
+    - Device
+  h1/tags/common:
+    - Index
+type_defs:
+  MachineType:
+    class: enum
+    size: 2
+    options:
+      - name: door
+      - name: platform
+      - name: gear
+  MachineFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: pathfinding_obstacle
+      - name: but_not_when_open
+      - name: elevator
+  MachineCollisionResponse:
+    class: enum
+    size: 2
+    options:
+      - name: pause_until_crushed
+      - name: reverse_directions
+  DeviceMachine:
+    class: struct
+    extends:
+      type: Device
+    meta:
+      tag_id: mach
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: >-
+        An object which can animate between open and closed states, like doors
+        and elevators.
+    assert_size: 804
+    fields:
+      - name: machine_type
+        type: MachineType
+      - name: machine_flags
+        type: MachineFlags
+      - name: door_open_time
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 80
+      - name: collision_response
+        type: MachineCollisionResponse
+      - name: elevator_node
+        type: Index
+      - type: pad
+        size: 52
+      - name: door_open_time_ticks
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little

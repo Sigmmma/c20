@@ -1,12 +1,10 @@
-const buildH1Data = require("./h1");
+const loadStructModules = require("./structs");
 const loadWorkflows = require("./workflows");
 
-async function loadStructuredData(invaderDefsDir) {
-  const h1Data = buildH1Data(invaderDefsDir);
-  const workflows = loadWorkflows();
+async function loadStructuredData() {
   return {
-    h1: await h1Data,
-    workflows: await workflows,
+    structs: await loadStructModules(),
+    workflows: await loadWorkflows(),
   };
 }
 

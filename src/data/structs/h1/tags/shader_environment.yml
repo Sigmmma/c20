@@ -1,0 +1,315 @@
+entry_type: ShaderEnvironment
+imports:
+  h1/tags/shader:
+    - Shader
+    - ShaderDetailFunction
+  h1/tags/common:
+    - TagDependency
+    - ColorRGB
+    - Point2D
+    - WaveFunction
+    - IsUnfilteredFlag
+    - Fraction
+type_defs:
+  ShaderEnvironmentFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: alpha_tested
+      - name: bump_map_is_specular_mask
+      - name: true_atmospheric_fog
+  ShaderEnvironmentType:
+    class: enum
+    size: 2
+    options:
+      - name: normal
+      - name: blended
+      - name: blended_base_specular
+  ShaderEnvironmentDiffuseFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: rescale_detail_maps
+      - name: rescale_bump_map
+  ShaderEnvironmentSpecularFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: overbright
+      - name: extra_shiny
+      - name: lightmap_is_specular
+  ShaderEnvironmentReflectionFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: dynamic_mirror
+  ShaderEnvironmentReflectionType:
+    class: enum
+    size: 2
+    options:
+      - name: bumped_cube_map
+      - name: flat_cube_map
+      - name: bumped_radiosity
+  ShaderEnvironment:
+    class: struct
+    extends:
+      type: Shader
+    meta:
+      tag_id: senv
+      pre_compile: true
+    comments:
+      en: >-
+        General-purpose opaque and alpha-tested shader used for
+        [scenario_structure_bsp][] materials.
+    assert_size: 836
+    fields:
+      - name: shader_environment_flags
+        type: ShaderEnvironmentFlags
+      - name: shader_environment_type
+        type: ShaderEnvironmentType
+      - name: lens_flare_spacing
+        type: float
+        comments:
+          en: >
+            Determines how far apart [BSP lens
+            flares][scenario_structure_bsp#lens-flare-markers] are generated, in
+            world units, along a surface part using this shader. If set to `0`,
+            a single lens flare will be created at the center of the surface.
+      - name: lens_flare
+        type: TagDependency
+        meta:
+          tag_classes:
+            - lens_flare
+        comments:
+          en: >
+            References the lens flare to be rendered at the generated lens flare
+            markers. If empty, no lens flares will be generated.
+      - type: pad
+        size: 44
+      - name: diffuse_flags
+        type: ShaderEnvironmentDiffuseFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 24
+      - name: base_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 24
+      - name: detail_map_function
+        type: ShaderDetailFunction
+      - type: pad
+        size: 2
+      - name: primary_detail_map_scale
+        type: float
+        meta:
+          default: 1
+      - name: primary_detail_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: secondary_detail_map_scale
+        type: float
+        meta:
+          default: 1
+      - name: secondary_detail_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 24
+      - name: micro_detail_map_function
+        type: ShaderDetailFunction
+      - type: pad
+        size: 2
+      - name: micro_detail_map_scale
+        type: float
+        meta:
+          default: 1
+      - name: micro_detail_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: material_color
+        type: ColorRGB
+      - type: pad
+        size: 12
+      - name: bump_map_scale
+        type: float
+        meta:
+          default: 1
+      - name: bump_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: bump_map_scale_xy
+        type: Point2D
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 16
+      - name: u_animation_function
+        type: WaveFunction
+      - type: pad
+        size: 2
+      - name: u_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: u_animation_scale
+        type: float
+        meta:
+          unit: base map repeats
+          default: 1
+      - name: v_animation_function
+        type: WaveFunction
+      - type: pad
+        size: 2
+      - name: v_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: v_animation_scale
+        type: float
+        meta:
+          unit: base map repeats
+          default: 1
+      - type: pad
+        size: 24
+      - name: self_illumination_flags
+        type: IsUnfilteredFlag
+      - type: pad
+        size: 2
+      - type: pad
+        size: 24
+      - name: primary_on_color
+        type: ColorRGB
+      - name: primary_off_color
+        type: ColorRGB
+      - name: primary_animation_function
+        type: WaveFunction
+      - type: pad
+        size: 2
+      - name: primary_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: primary_animation_phase
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 24
+      - name: secondary_on_color
+        type: ColorRGB
+      - name: secondary_off_color
+        type: ColorRGB
+      - name: secondary_animation_function
+        type: WaveFunction
+      - type: pad
+        size: 2
+      - name: secondary_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: secondary_animation_phase
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 24
+      - name: plasma_on_color
+        type: ColorRGB
+      - name: plasma_off_color
+        type: ColorRGB
+      - name: plasma_animation_function
+        type: WaveFunction
+      - type: pad
+        size: 2
+      - name: plasma_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: plasma_animation_phase
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 24
+      - name: map_scale
+        type: float
+        meta:
+          default: 1
+      - name: map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 24
+      - name: specular_flags
+        type: ShaderEnvironmentSpecularFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 16
+      - name: brightness
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 20
+      - name: perpendicular_color
+        type: ColorRGB
+      - name: parallel_color
+        type: ColorRGB
+      - type: pad
+        size: 16
+      - name: reflection_flags
+        type: ShaderEnvironmentReflectionFlags
+      - name: reflection_type
+        type: ShaderEnvironmentReflectionType
+      - name: lightmap_brightness_scale
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 28
+      - name: perpendicular_brightness
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: parallel_brightness
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 16
+      - type: pad
+        size: 8
+      - type: pad
+        size: 16
+      - name: reflection_cube_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 16

@@ -1,5 +1,5 @@
-const yaml = require("js-yaml");
 const fs = require("fs");
+const R = require("ramda");
 const path = require("path");
 const {html, escapeHtml, localizer, slugify} = require("../bits");
 const INTRINSIC_TYPE_DEFS = require("./intrinsics");
@@ -45,6 +45,9 @@ const localizations = localizer({
   meta_mcc_only: {
     en: "MCC only"
   },
+  meta_xbox_only: {
+    en: "Xbox only"
+  },
   meta_cache_only: {
     en: "Cache only"
   },
@@ -65,6 +68,24 @@ const localizations = localizer({
   },
   meta_shifted_by_one: {
     en: "Shifted by one"
+  },
+  meta_hek_maximum: {
+    en: "HEK max"
+  },
+  meta_non_standard: {
+    en: "Non-standard"
+  },
+  meta_flagged: {
+    en: "Flagged"
+  },
+  meta_default: {
+    en: "Default"
+  },
+  meta_max: {
+    en: "Max"
+  },
+  meta_min: {
+    en: "Min"
   }
 });
 
@@ -84,14 +105,14 @@ function joinPathId(pathId, next) {
   return [...pathId, next];
 }
 
-function processGenerics(genericParams, typeArgs) {
-  if (!typeArgs) return genericParams;
+function processGenerics(genericParams, type_args) {
+  if (!type_args) return genericParams;
   return {
     ...genericParams,
-    type: typeArgs[genericParams.type] || genericParams.type,
-    typeArgs: genericParams.typeArgs === undefined ? undefined :
-      Object.fromEntries(Object.entries(genericParams.typeArgs).map(([k, v]) =>
-      [k, typeArgs[v] || v]
+    type: type_args[genericParams.type] || genericParams.type,
+    type_args: genericParams.type_args === undefined ? undefined :
+      Object.fromEntries(Object.entries(genericParams.type_args).map(([k, v]) =>
+      [k, type_args[v] || v]
     ))
   };
 }
@@ -101,37 +122,47 @@ function processGenerics(genericParams, typeArgs) {
  * - tag dependency "tag_classes" linking
  * - "index_of" linking
  */
-function renderStructYaml(ctx, optsYaml) {
+function structDisplay(ctx, opts) {
   const {renderMarkdown} = require("../markdown"); //todo: untangle circular dep
   const localize = localizations(ctx.lang);
-  const {typeDefs: typeDefsArg, entryType, showOffsets, id} = yaml.load(optsYaml);
+  const {type_defs: typeDefsArg, entry_type, show_offsets, id} = opts;
 
-  let typeDefs = typeof(typeDefsArg) === "string" ?
-    yaml.load(fs.readFileSync(path.join(ctx.page.dirPath, typeDefsArg), "utf8")) :
-    typeDefsArg;
-
-  typeDefs = {
+  let typeDefs = {
     ...INTRINSIC_TYPE_DEFS,
-    ...typeDefs
+    ...typeDefsArg
   };
+
+  let importsQueue = [opts.imports];
+  while (importsQueue.length > 0) {
+    const imports = importsQueue.pop();
+    if (!imports) continue;
+    for (let modulePath of Object.keys(imports)) {
+      const importedModule = R.path(modulePath.split("/"), ctx.data.structs);
+      if (!importedModule) {
+        throw new Error(`Failed to find data module ${modulePath}`);
+      }
+      importsQueue.push(importedModule.imports);
+      typeDefs = {...importedModule.type_defs, ...typeDefs};
+    }
+  }
 
   const seenTypes = {};
 
   /* responsible for resolving aliases, calculating type, and replacing type args
    */
   function instantiateType(typeParams) {
-    let {type: typeName, typeArgs, size, count} = typeParams;
+    let {type: typeName, type_args, size, count} = typeParams;
     let typeDef = typeDefs[typeName];
     if (!typeDef) {
-      throw new Error(`Failed to resolve type ${typeName}`);
+      throw new Error(`Failed to resolve type ${typeName} for page ${ctx.page.pageId}`);
     }
 
     if (typeDef.class == "alias") {
-      return instantiateType(processGenerics({...typeParams, ...typeDef}, typeArgs));
+      return instantiateType(processGenerics({...typeParams, ...typeDef}, type_args));
     }
 
     if (typeDef.class == "struct" && typeDef.extends) {
-      const {typeDef: parentTypeDef} = instantiateType(processGenerics(typeDef.extends, typeArgs));
+      const {typeDef: parentTypeDef} = instantiateType(processGenerics(typeDef.extends, type_args));
       typeDef = {
         ...parentTypeDef,
         ...typeDef,
@@ -141,23 +172,23 @@ function renderStructYaml(ctx, optsYaml) {
 
     const singleSize = size ||
       typeDef.size ||
-      (typeDef.class == "struct" && typeDef.fields.reduce((s, f) => instantiateType(processGenerics(f, typeArgs)).totalSize + s, 0)) ||
+      (typeDef.class == "struct" && typeDef.fields.reduce((s, f) => instantiateType(processGenerics(f, type_args)).totalSize + s, 0)) ||
       undefined;
 
     if (singleSize === undefined) {
-      throw new Error(`Failed to determine size of type ${typeName} (entry ${entryType})`);
+      throw new Error(`Failed to determine size of type ${typeName} (entry ${entry_type})`);
     }
 
     const totalSize =  singleSize * (count || 1);
-    if (typeDef.assertSize && totalSize != typeDef.assertSize) {
-      throw new Error(`Type ${typeName} size did not match assertion: ${totalSize} != ${typeDef.assertSize}`);
+    if (typeDef.assert_size && totalSize != typeDef.assert_size) {
+      throw new Error(`Type ${typeName} size did not match assertion: ${totalSize} != ${typeDef.assert_size}`);
     }
 
-    return {typeDef, totalSize, singleSize, variableSize: size, count, typeArgs, typeName};
+    return {typeDef, totalSize, singleSize, variableSize: size, count, type_args, typeName};
   }
 
   function renderComments(part) {
-    const meta = processMeta({...part.value, ...part.meta});
+    const meta = processMeta(part.meta);
     return html`
       ${meta && html`
         <ul class="field-metas">
@@ -174,13 +205,13 @@ function renderStructYaml(ctx, optsYaml) {
     `;
   }
 
-  function renderStructFieldType({typeDef, totalSize, singleSize, variableSize, count, typeArgs, typeName}) {
+  function renderStructFieldType({typeDef, totalSize, singleSize, variableSize, count, type_args, typeName}) {
     let typeStr = typeName;
     if (typeDef.class == "bitfield" || typeDef.class == "enum") {
       typeStr += `: ${typeDef.class}${singleSize * 8}`;
     }
-    if (typeArgs) {
-      typeStr += `<${Object.values(typeArgs).join(", ")}>`;
+    if (type_args) {
+      typeStr += `<${Object.values(type_args).join(", ")}>`;
     }
     if (variableSize !== undefined) {
       typeStr += `(${variableSize})`;
@@ -214,14 +245,14 @@ function renderStructYaml(ctx, optsYaml) {
   }
 
   function renderStructAsTable(instantiatedType, pathId) {
-    const widths = 50 / (showOffsets ? 3 : 2);
+    const widths = 50 / (show_offsets ? 3 : 2);
     let offset = 0;
     return html`
       <table class="type-def struct">
         <thead>
           <tr>
             <th style="width:${widths}%">${localize("field")}</th>
-            ${showOffsets && html`
+            ${show_offsets && html`
               <th style="width:${widths}%">${localize("offset")}</th>
             `}
             <th style="width:${widths}%">${localize("type")}</th>
@@ -232,8 +263,8 @@ function renderStructYaml(ctx, optsYaml) {
           ${instantiatedType.typeDef.fields.map(field => {
             const fieldPathId = joinPathId(pathId, field.name);
             const fieldOffset = offset;
-            const instantiatedFieldType = instantiateType(processGenerics(field, instantiatedType.typeArgs));
-            const {typeDef: fieldTypeDef, totalSize: fieldSize, typeName: fieldTypeName, typeArgs: fieldTypeArgs} = instantiatedFieldType;
+            const instantiatedFieldType = instantiateType(processGenerics(field, instantiatedType.type_args));
+            const {typeDef: fieldTypeDef, totalSize: fieldSize, typeName: fieldTypeName, type_args: fieldTypeArgs} = instantiatedFieldType;
             offset += fieldSize;
 
             const seenTypeId = `${fieldTypeName}<${fieldTypeArgs && Object.values(fieldTypeArgs).join(",")}>`;
@@ -247,30 +278,32 @@ function renderStructYaml(ctx, optsYaml) {
               embeddedType = instantiatedFieldType;
             } else if (fieldTypeName == "ptr32" || fieldTypeName == "ptr64") {
               embeddedType = instantiateType({type: Object.values(fieldTypeArgs)[0]});
+              if (!embeddedType.class) {
+                embeddedType = undefined;
+              }
             }
 
             const rowClasses = [
               "struct-field",
               `field-type-${escapeHtml(field.type)}`,
-              ...(field.meta ? field.meta.map(([k]) => `field-meta-${k}`) : []),
+              ...(field.meta ? Object.entries(field.meta).map(([k]) => `field-meta-${k}`) : []),
               ...(fieldTypeDef.class ? [`has-embedded-class-${fieldTypeDef.class}`] : [])
             ];
 
             return html`
               <tr class="${rowClasses.join(" ")}">
                 <td class="field-name">${renderFieldName(field.name, fieldPathId)}</td>
-                ${showOffsets && html`
+                ${show_offsets && html`
                   <td class="field-offset">${renderHex(fieldOffset)}</td>
                 `}
                 <td class="field-type">
-                  ${renderStructFieldType(instantiatedFieldType)}
-                  ${embeddedType && hasSeenType && html`<sup><a href="#${slugify(hasSeenType.join("-"))}">?</a></sup>`}
+                  ${renderStructFieldType(instantiatedFieldType)}${embeddedType && hasSeenType && html`<sup><a href="#${slugify(hasSeenType.join("-"))}">?</a></sup>`}
                 </td>
                 <td class="comments">${renderComments(field)}</td>
               </tr>
               ${embeddedType && !hasSeenType && html`
                 <tr class="embedded-type">
-                  <td colspan="${showOffsets ? 4 : 3}">
+                  <td colspan="${show_offsets ? 4 : 3}">
                     ${renderTypeAsTable(embeddedType, fieldPathId)}
                   </td>
                 </tr>
@@ -340,13 +373,18 @@ function renderStructYaml(ctx, optsYaml) {
           case "enum":
             return renderEnumAsTable(instantiatedType, pathId);
           default:
-            throw new Error(`Unhandled type class: ${typeDef.class}`);
+            console.error(instantiatedType.typeDef);
+            throw new Error(`Unhandled type class: ${instantiatedType.typeDef.class}`);
         }
       })()}
     `;
   }
 
-  return renderTypeAsTable(instantiateType({type: entryType}), [id || ""]);
+  return renderTypeAsTable(instantiateType({type: entry_type}), [id || ""]);
 }
 
-module.exports = {renderStructYaml, INTRINSIC_TYPE_DEFS};
+module.exports = {
+  INTRINSIC_TYPE_DEFS,
+  structDisplay,
+  //renderStructYamlPlaintext, todo
+};

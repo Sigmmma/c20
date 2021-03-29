@@ -1,0 +1,1127 @@
+entry_type: Globals
+imports:
+  h1/tags/common:
+    - Block
+    - TagDependency
+    - Angle
+    - ColorRGB
+    - Point3D
+    - Point2DInt
+    - ColorARGB
+    - TagString
+type_defs:
+  GlobalsSound:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+  GlobalsCamera:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: default_unit_camera_track
+        type: TagDependency
+        meta:
+          tag_classes:
+            - camera_track
+  GlobalsLookFunction:
+    class: struct
+    assert_size: 4
+    fields:
+      - name: scale
+        type: float
+  GlobalsPlayerControl:
+    class: struct
+    assert_size: 128
+    fields:
+      - name: magnetism_friction
+        type: float
+      - name: magnetism_adhesion
+        type: float
+      - name: inconsequential_target_scale
+        type: float
+      - type: pad
+        size: 52
+      - name: look_acceleration_time
+        type: float
+        meta:
+          unit: seconds
+      - name: look_acceleration_scale
+        type: float
+      - name: look_peg_threshold
+        type: float
+      - name: look_default_pitch_rate
+        type: float
+      - name: look_default_yaw_rate
+        type: float
+      - name: look_autolevelling_scale
+        type: float
+      - type: pad
+        size: 20
+      - name: minimum_weapon_swap_ticks
+        type: uint16
+      - name: minimum_autolevelling_ticks
+        type: uint16
+      - name: minimum_angle_for_vehicle_flipping
+        type: Angle
+      - name: look_function
+        type: Block
+        type_args:
+          T: GlobalsLookFunction
+  GlobalsDifficulty:
+    class: struct
+    assert_size: 644
+    fields:
+      - name: easy_enemy_damage
+        type: float
+      - name: normal_enemy_damage
+        type: float
+      - name: hard_enemy_damage
+        type: float
+      - name: imposs_enemy_damage
+        type: float
+      - name: easy_enemy_vitality
+        type: float
+      - name: normal_enemy_vitality
+        type: float
+      - name: hard_enemy_vitality
+        type: float
+      - name: imposs_enemy_vitality
+        type: float
+      - name: easy_enemy_shield
+        type: float
+      - name: normal_enemy_shield
+        type: float
+      - name: hard_enemy_shield
+        type: float
+      - name: imposs_enemy_shield
+        type: float
+      - name: easy_enemy_recharge
+        type: float
+      - name: normal_enemy_recharge
+        type: float
+      - name: hard_enemy_recharge
+        type: float
+      - name: imposs_enemy_recharge
+        type: float
+      - name: easy_friend_damage
+        type: float
+      - name: normal_friend_damage
+        type: float
+      - name: hard_friend_damage
+        type: float
+      - name: imposs_friend_damage
+        type: float
+      - name: easy_friend_vitality
+        type: float
+      - name: normal_friend_vitality
+        type: float
+      - name: hard_friend_vitality
+        type: float
+      - name: imposs_friend_vitality
+        type: float
+      - name: easy_friend_shield
+        type: float
+      - name: normal_friend_shield
+        type: float
+      - name: hard_friend_shield
+        type: float
+      - name: imposs_friend_shield
+        type: float
+      - name: easy_friend_recharge
+        type: float
+      - name: normal_friend_recharge
+        type: float
+      - name: hard_friend_recharge
+        type: float
+      - name: imposs_friend_recharge
+        type: float
+      - name: easy_infection_forms
+        type: float
+      - name: normal_infection_forms
+        type: float
+      - name: hard_infection_forms
+        type: float
+      - name: imposs_infection_forms
+        type: float
+      - type: pad
+        size: 16
+      - name: easy_rate_of_fire
+        type: float
+      - name: normal_rate_of_fire
+        type: float
+      - name: hard_rate_of_fire
+        type: float
+      - name: imposs_rate_of_fire
+        type: float
+      - name: easy_projectile_error
+        type: float
+      - name: normal_projectile_error
+        type: float
+      - name: hard_projectile_error
+        type: float
+      - name: imposs_projectile_error
+        type: float
+      - name: easy_burst_error
+        type: float
+      - name: normal_burst_error
+        type: float
+      - name: hard_burst_error
+        type: float
+      - name: imposs_burst_error
+        type: float
+      - name: easy_new_target_delay
+        type: float
+      - name: normal_new_target_delay
+        type: float
+      - name: hard_new_target_delay
+        type: float
+      - name: imposs_new_target_delay
+        type: float
+      - name: easy_burst_separation
+        type: float
+      - name: normal_burst_separation
+        type: float
+      - name: hard_burst_separation
+        type: float
+      - name: imposs_burst_separation
+        type: float
+      - name: easy_target_tracking
+        type: float
+      - name: normal_target_tracking
+        type: float
+      - name: hard_target_tracking
+        type: float
+      - name: imposs_target_tracking
+        type: float
+      - name: easy_target_leading
+        type: float
+      - name: normal_target_leading
+        type: float
+      - name: hard_target_leading
+        type: float
+      - name: imposs_target_leading
+        type: float
+      - name: easy_overcharge_chance
+        type: float
+      - name: normal_overcharge_chance
+        type: float
+      - name: hard_overcharge_chance
+        type: float
+      - name: imposs_overcharge_chance
+        type: float
+      - name: easy_special_fire_delay
+        type: float
+      - name: normal_special_fire_delay
+        type: float
+      - name: hard_special_fire_delay
+        type: float
+      - name: imposs_special_fire_delay
+        type: float
+      - name: easy_guidance_vs_player
+        type: float
+      - name: normal_guidance_vs_player
+        type: float
+      - name: hard_guidance_vs_player
+        type: float
+      - name: imposs_guidance_vs_player
+        type: float
+      - name: easy_melee_delay_base
+        type: float
+      - name: normal_melee_delay_base
+        type: float
+      - name: hard_melee_delay_base
+        type: float
+      - name: imposs_melee_delay_base
+        type: float
+      - name: easy_melee_delay_scale
+        type: float
+      - name: normal_melee_delay_scale
+        type: float
+      - name: hard_melee_delay_scale
+        type: float
+      - name: imposs_melee_delay_scale
+        type: float
+      - type: pad
+        size: 16
+      - name: easy_grenade_chance_scale
+        type: float
+      - name: normal_grenade_chance_scale
+        type: float
+      - name: hard_grenade_chance_scale
+        type: float
+      - name: imposs_grenade_chance_scale
+        type: float
+      - name: easy_grenade_timer_scale
+        type: float
+      - name: normal_grenade_timer_scale
+        type: float
+      - name: hard_grenade_timer_scale
+        type: float
+      - name: imposs_grenade_timer_scale
+        type: float
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - name: easy_major_upgrade
+        type: float
+      - name: normal_major_upgrade
+        type: float
+      - name: hard_major_upgrade
+        type: float
+      - name: imposs_major_upgrade
+        type: float
+      - name: easy_major_upgrade_1
+        type: float
+      - name: normal_major_upgrade_1
+        type: float
+      - name: hard_major_upgrade_1
+        type: float
+      - name: imposs_major_upgrade_1
+        type: float
+      - name: easy_major_upgrade_2
+        type: float
+      - name: normal_major_upgrade_2
+        type: float
+      - name: hard_major_upgrade_2
+        type: float
+      - name: imposs_major_upgrade_2
+        type: float
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 84
+  GlobalsGrenade:
+    class: struct
+    assert_size: 68
+    meta:
+      pre_compile: true
+    fields:
+      - name: maximum_count
+        type: int16
+        meta:
+          min: 0
+          max: 127
+      - name: mp_spawn_default
+        type: int16
+        meta:
+          min: 0
+          max: 127
+      - name: throwing_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: hud_interface
+        type: TagDependency
+        meta:
+          tag_classes:
+            - grenade_hud_interface
+      - name: equipment
+        type: TagDependency
+        meta:
+          tag_classes:
+            - equipment
+      - name: projectile
+        type: TagDependency
+        meta:
+          tag_classes:
+            - projectile
+  GlobalsRasterizerDataFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: tint_edge_density
+        comments:
+          en: Adds the _tint color_ to the background.
+  GlobalsRasterizerData:
+    class: struct
+    assert_size: 428
+    fields:
+      - name: distance_attenuation
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: vector_normalization
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+        comments:
+          en: >
+            This bitmap is used as a lookup table of precalculated vector
+            normalizations for visual effects like reflections. In Custom
+            Edition it is also [incorrectly used][renderer#pc-regressions] as
+            the reflection cube map when a [shader_transparent_glass][] uses
+            bump-mapped reflections.
+      - name: atmospheric_fog_density
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: planar_fog_density
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: linear_corner_fade
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: active_camouflage_distortion
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+        comments:
+          en: >
+            This bitmap is used as a lookup table for active camouflage
+            distortion angle calculations. Its alpha channel masks [_tint
+            color_](#tag-field-rasterizer-data-tint-color) on Gearbox-derived
+            ports of the game.
+      - name: glow
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - type: pad
+        size: 60
+      - name: default_2d
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: default_3d
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: default_cube_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: test_0
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: test_1
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: test_2
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: test_3
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: video_scanline_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: video_noise_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - type: pad
+        size: 52
+      - name: flags
+        type: GlobalsRasterizerDataFlags
+        comments:
+          en: Optional settings for active camouflage.
+      - type: pad
+        size: 2
+      - name: refraction_amount
+        type: float
+        comments:
+          en: >
+            How much to distort the background of active camouflage. This is
+            measured in **world units** since the effect is not
+            resolution-dependent. Lower values distort more, while higher values
+            distort less.
+      - name: distance_falloff
+        type: float
+        comments:
+          en: >
+            The distance in world units where the active camouflage effect fades
+            completely and the object is entirely invisible.
+      - name: tint_color
+        type: ColorRGB
+        comments:
+          en: >-
+            The color which is multiplied over the background for active
+            camouflage objects.
+      - name: hyper_stealth_refraction
+        type: float
+        comments:
+          en: >
+            Refaction amount used when [_super active
+            camouflage_][actor_variant#tag-field-flags-super-active-camouflage]
+            is enabled for an [actor_variant][].
+      - name: hyper_stealth_distance_falloff
+        type: float
+        comments:
+          en: >
+            Falloff distance for [_super active
+            camouflage_][actor_variant#tag-field-flags-super-active-camouflage].
+      - name: hyper_stealth_tint_color
+        type: ColorRGB
+        comments:
+          en: >
+            Tint color used for [_super active
+            camouflage_][actor_variant#tag-field-flags-super-active-camouflage].
+      - name: distance_attenuation_2d
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+  GlobalsInterfaceBitmaps:
+    class: struct
+    assert_size: 304
+    fields:
+      - name: font_system
+        type: TagDependency
+        meta:
+          tag_classes:
+            - font
+      - name: font_terminal
+        type: TagDependency
+        meta:
+          tag_classes:
+            - font
+      - name: screen_color_table
+        type: TagDependency
+        meta:
+          tag_classes:
+            - color_table
+      - name: hud_color_table
+        type: TagDependency
+        meta:
+          tag_classes:
+            - color_table
+      - name: editor_color_table
+        type: TagDependency
+        meta:
+          tag_classes:
+            - color_table
+      - name: dialog_color_table
+        type: TagDependency
+        meta:
+          tag_classes:
+            - color_table
+      - name: hud_globals
+        type: TagDependency
+        meta:
+          tag_classes:
+            - hud_globals
+          non_null: true
+      - name: motion_sensor_sweep_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: motion_sensor_sweep_bitmap_mask
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: multiplayer_hud_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: localization
+        type: TagDependency
+        meta:
+          tag_classes:
+            - string_list
+      - name: hud_digits_definition
+        type: TagDependency
+        meta:
+          tag_classes:
+            - hud_number
+      - name: motion_sensor_blip_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: interface_goo_map1
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: interface_goo_map2
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: interface_goo_map3
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - type: pad
+        size: 48
+  GlobalsWeapon:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: weapon
+        type: TagDependency
+        meta:
+          tag_classes:
+            - item
+  GlobalsCheatPowerup:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: powerup
+        type: TagDependency
+        meta:
+          tag_classes:
+            - equipment
+  GlobalsVehicle:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: vehicle
+        type: TagDependency
+        meta:
+          tag_classes:
+            - unit
+  GlobalsMultiplayerInformation:
+    class: struct
+    assert_size: 160
+    meta:
+      post_compile: true
+    fields:
+      - name: flag
+        type: TagDependency
+        meta:
+          tag_classes:
+            - weapon
+          non_null: true
+      - name: unit
+        type: TagDependency
+        meta:
+          tag_classes:
+            - unit
+      - name: vehicles
+        type: Block
+        type_args:
+          T: GlobalsVehicle
+      - name: hill_shader
+        type: TagDependency
+        meta:
+          tag_classes:
+            - shader
+          non_null: true
+      - name: flag_shader
+        type: TagDependency
+        meta:
+          tag_classes:
+            - shader
+      - name: ball
+        type: TagDependency
+        meta:
+          tag_classes:
+            - weapon
+          non_null: true
+      - name: sounds
+        type: Block
+        type_args:
+          T: GlobalsSound
+      - type: pad
+        size: 56
+  GlobalsPlayerInformation:
+    class: struct
+    assert_size: 244
+    meta:
+      pre_compile: true
+    fields:
+      - name: unit
+        type: TagDependency
+        meta:
+          tag_classes:
+            - unit
+      - type: pad
+        size: 28
+      - name: walking_speed
+        type: float
+        meta:
+          unit: world units per second
+      - name: double_speed_multiplier
+        type: float
+      - name: run_forward
+        type: float
+        meta:
+          unit: world units per second
+      - name: run_backward
+        type: float
+        meta:
+          unit: world units per second
+      - name: run_sideways
+        type: float
+        meta:
+          unit: world units per second
+      - name: run_acceleration
+        type: float
+        meta:
+          unit: world units per second squared
+      - name: sneak_forward
+        type: float
+        meta:
+          unit: world units per second
+      - name: sneak_backward
+        type: float
+        meta:
+          unit: world units per second
+      - name: sneak_sideways
+        type: float
+        meta:
+          unit: world units per second
+      - name: sneak_acceleration
+        type: float
+        meta:
+          unit: world units per second squared
+      - name: airborne_acceleration
+        type: float
+        meta:
+          unit: world units per second squared
+      - name: speed_multiplier
+        type: float
+        meta:
+          unit: multiplayer only
+      - type: pad
+        size: 12
+      - name: grenade_origin
+        type: Point3D
+      - type: pad
+        size: 12
+      - name: stun_movement_penalty
+        type: float
+      - name: stun_turning_penalty
+        type: float
+      - name: stun_jumping_penalty
+        type: float
+      - name: minimum_stun_time
+        type: float
+        meta:
+          unit: seconds
+      - name: maximum_stun_time
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 8
+      - name: first_person_idle_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: first_person_skip_fraction
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 16
+      - name: coop_respawn_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - type: pad
+        size: 44
+  GlobalsFirstPersonInterface:
+    class: struct
+    assert_size: 192
+    fields:
+      - name: first_person_hands
+        type: TagDependency
+        meta:
+          tag_classes:
+            - model
+        comments:
+          en: >-
+            This is the model used for hands when a weapon with first person
+            animatinos is held.
+      - name: base_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: shield_meter
+        type: TagDependency
+        meta:
+          tag_classes:
+            - meter
+      - name: shield_meter_origin
+        type: Point2DInt
+      - name: body_meter
+        type: TagDependency
+        meta:
+          tag_classes:
+            - meter
+      - name: body_meter_origin
+        type: Point2DInt
+      - name: night_vision_on_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+        comments:
+          en: This effect is played when enabling night vision.
+      - name: night_vision_off_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+        comments:
+          en: This effect is played when disabling night vision.
+      - type: pad
+        size: 88
+  GlobalsFallingDamage:
+    class: struct
+    assert_size: 152
+    meta:
+      pre_compile: true
+    fields:
+      - type: pad
+        size: 8
+      - name: harmful_falling_distance
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+      - name: falling_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - type: pad
+        size: 8
+      - name: maximum_falling_distance
+        type: float
+        meta:
+          unit: world units
+      - name: distance_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - name: vehicle_environment_collision_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - name: vehicle_killed_unit_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - name: vehicle_collision_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - name: flaming_death_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - type: pad
+        size: 16
+      - name: maximum_falling_velocity
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: harmful_falling_velocity
+        type: Bounds
+        meta:
+          cache_only: true
+        endianness: little
+        type_args:
+          T: float
+  GlobalsBreakableSurfaceParticleEffectFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: interpolate_color_in_hsv
+      - name: more_colors
+  GlobalsBreakableSurfaceParticleEffect:
+    class: struct
+    assert_size: 128
+    fields:
+      - name: particle_type
+        type: TagDependency
+        meta:
+          tag_classes:
+            - particle
+      - name: flags
+        type: GlobalsBreakableSurfaceParticleEffectFlags
+      - name: density
+        type: float
+        meta:
+          unit: world units
+      - name: velocity_scale
+        type: Bounds
+        type_args:
+          T: float
+      - type: pad
+        size: 4
+      - name: angular_velocity
+        type: Bounds
+        meta:
+          unit: degrees per second
+        type_args:
+          T: float
+      - type: pad
+        size: 8
+      - name: radius
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+      - type: pad
+        size: 8
+      - name: tint_lower_bound
+        type: ColorARGB
+      - name: tint_upper_bound
+        type: ColorARGB
+      - type: pad
+        size: 28
+  GlobalsMaterial:
+    class: struct
+    assert_size: 884
+    fields:
+      - type: pad
+        size: 100
+      - type: pad
+        size: 48
+      - name: ground_friction_scale
+        type: float
+      - name: ground_friction_normal_k1_scale
+        type: float
+      - name: ground_friction_normal_k0_scale
+        type: float
+      - name: ground_depth_scale
+        type: float
+      - name: ground_damp_fraction_scale
+        type: float
+      - type: pad
+        size: 76
+      - type: pad
+        size: 480
+      - name: maximum_vitality
+        type: float
+      - type: pad
+        size: 8
+      - type: pad
+        size: 4
+      - name: effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 24
+      - name: particle_effects
+        type: Block
+        type_args:
+          T: GlobalsBreakableSurfaceParticleEffect
+      - type: pad
+        size: 60
+      - name: melee_hit_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+  GlobalsPlaylistMember:
+    class: struct
+    assert_size: 148
+    fields:
+      - name: map_name
+        type: TagString
+      - name: game_variant
+        type: TagString
+      - name: minimum_experience
+        type: uint32
+      - name: maximum_experience
+        type: uint32
+        meta:
+          default: 10
+      - name: minimum_player_count
+        type: uint32
+        meta:
+          default: 1
+      - name: maximum_player_count
+        type: uint32
+        meta:
+          default: 16
+      - name: rating
+        type: uint32
+        meta:
+          default: 100
+      - type: pad
+        size: 64
+  Globals:
+    class: struct
+    meta:
+      tag_id: matg
+      pre_compile: true
+    assert_size: 428
+    fields:
+      - type: pad
+        size: 248
+      - name: sounds
+        type: Block
+        type_args:
+          T: GlobalsSound
+        meta:
+          hek_max_count: 2
+          min: 2
+      - name: camera
+        type: Block
+        type_args:
+          T: GlobalsCamera
+        meta:
+          hek_max_count: 1
+          min: 1
+      - name: player_control
+        type: Block
+        type_args:
+          T: GlobalsPlayerControl
+        meta:
+          hek_max_count: 1
+          min: 1
+      - name: difficulty
+        type: Block
+        type_args:
+          T: GlobalsDifficulty
+        meta:
+          hek_max_count: 1
+          min: 1
+      - name: grenades
+        type: Block
+        type_args:
+          T: GlobalsGrenade
+        meta:
+          hek_max_count: 2
+          min: 2
+          max: 2
+      - name: rasterizer_data
+        type: Block
+        type_args:
+          T: GlobalsRasterizerData
+        meta:
+          hek_max_count: 1
+          min: 1
+        comments:
+          en: >
+            Contains global [renderer][] settings and 2D [lookup
+            tables](https://en.wikipedia.org/wiki/Lookup_table).
+      - name: interface_bitmaps
+        type: Block
+        type_args:
+          T: GlobalsInterfaceBitmaps
+        meta:
+          hek_max_count: 1
+          min: 1
+      - name: weapon_list
+        type: Block
+        type_args:
+          T: GlobalsWeapon
+        meta:
+          hek_max_count: 20
+      - name: cheat_powerups
+        type: Block
+        type_args:
+          T: GlobalsCheatPowerup
+      - name: multiplayer_information
+        type: Block
+        type_args:
+          T: GlobalsMultiplayerInformation
+        comments:
+          en: >-
+            This block is stripped by [Tool][] when compiling singleplayer or UI
+            maps.
+      - name: player_information
+        type: Block
+        type_args:
+          T: GlobalsPlayerInformation
+        meta:
+          min: 1
+      - name: first_person_interface
+        type: Block
+        type_args:
+          T: GlobalsFirstPersonInterface
+        meta:
+          min: 1
+      - name: falling_damage
+        type: Block
+        type_args:
+          T: GlobalsFallingDamage
+        comments:
+          en: 'This block is stripped by [Tool][] when compiling UI maps.'
+      - name: materials
+        type: Block
+        type_args:
+          T: GlobalsMaterial
+      - name: playlist_members
+        type: Block
+        type_args:
+          T: GlobalsPlaylistMember

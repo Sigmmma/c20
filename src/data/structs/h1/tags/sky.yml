@@ -1,0 +1,161 @@
+entry_type: Sky
+imports:
+  h1/tags/common:
+    - TagDependency
+    - ColorRGB
+    - Fraction
+    - Block
+    - TagString
+    - Euler2D
+type_defs:
+  SkyFunction:
+    class: struct
+    assert_size: 36
+    fields:
+      - type: pad
+        size: 4
+      - name: function_name
+        type: TagString
+  SkyAnimation:
+    class: struct
+    assert_size: 36
+    fields:
+      - name: animation_index
+        type: int16
+      - type: pad
+        size: 2
+      - name: period
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 28
+  SkyLightFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: affects_exteriors
+      - name: affects_interiors
+        comments:
+          en: >
+            If enabled, this light will affect clusters with a [sky
+            index][scenario_structure_bsp#tag-field-clusters-sky] of `-1`, which
+            are considered indoor/interior.
+  SkyLight:
+    class: struct
+    assert_size: 116
+    fields:
+      - name: lens_flare
+        type: TagDependency
+        meta:
+          tag_classes:
+            - lens_flare
+      - name: lens_flare_marker_name
+        type: TagString
+      - type: pad
+        size: 28
+      - name: flags
+        type: SkyLightFlags
+      - name: color
+        type: ColorRGB
+      - name: power
+        type: float
+      - name: test_distance
+        type: float
+      - type: pad
+        size: 4
+      - name: direction
+        type: Euler2D
+      - name: diameter
+        type: float
+  Sky:
+    class: struct
+    meta:
+      tag_id: 'sky '
+    comments:
+      en: >-
+        Defines a skybox with light sources for [lightmaps][] and atmospheric
+        fog.
+    assert_size: 208
+    fields:
+      - name: model
+        type: TagDependency
+        meta:
+          tag_classes:
+            - model
+      - name: animation_graph
+        type: TagDependency
+        meta:
+          tag_classes:
+            - model_animations
+      - type: pad
+        size: 24
+      - name: indoor_ambient_radiosity_color
+        type: ColorRGB
+      - name: indoor_ambient_radiosity_power
+        type: float
+      - name: outdoor_ambient_radiosity_color
+        type: ColorRGB
+      - name: outdoor_ambient_radiosity_power
+        type: float
+      - name: outdoor_fog_color
+        type: ColorRGB
+      - type: pad
+        size: 8
+      - name: outdoor_fog_maximum_density
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+          default: 1
+      - name: outdoor_fog_start_distance
+        type: float
+        meta:
+          unit: world units
+      - name: outdoor_fog_opaque_distance
+        type: float
+        meta:
+          unit: world units
+      - name: indoor_fog_color
+        type: ColorRGB
+      - type: pad
+        size: 8
+      - name: indoor_fog_maximum_density
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+          default: 1
+      - name: indoor_fog_start_distance
+        type: float
+        meta:
+          unit: world units
+      - name: indoor_fog_opaque_distance
+        type: float
+        meta:
+          unit: world units
+      - name: indoor_fog_screen
+        type: TagDependency
+        meta:
+          tag_classes:
+            - fog
+      - type: pad
+        size: 4
+      - name: shader_functions
+        type: Block
+        type_args:
+          T: SkyFunction
+        meta:
+          hek_max_count: 8
+      - name: animations
+        type: Block
+        type_args:
+          T: SkyAnimation
+        meta:
+          hek_max_count: 8
+      - name: lights
+        type: Block
+        type_args:
+          T: SkyLight
+        meta:
+          hek_max_count: 8

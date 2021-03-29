@@ -1,0 +1,559 @@
+entry_type: ModelCollisionGeometry
+imports:
+  h1/tags/common:
+    - Index
+    - Fraction
+    - TagDependency
+    - MaterialType
+    - FunctionType
+    - Block
+    - TagString
+    - Point3D
+    - Plane3D
+    - Plane2D
+type_defs:
+  ModelCollisionGeometryFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: takes_shield_damage_for_children
+      - name: takes_body_damage_for_children
+      - name: always_shields_friendly_damage
+      - name: passes_area_damage_to_children
+      - name: parent_never_takes_body_damage_for_us
+      - name: only_damaged_by_explosives
+      - name: only_damaged_while_occupied
+  ModelCollisionGeometryMaterialFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: head
+  ModelCollisionGeometryMaterial:
+    class: struct
+    assert_size: 72
+    fields:
+      - name: name
+        type: TagString
+        meta:
+          read_only: true
+      - name: flags
+        type: ModelCollisionGeometryMaterialFlags
+      - name: material_type
+        type: MaterialType
+      - type: pad
+        size: 2
+      - name: shield_leak_percentage
+        type: Fraction
+      - name: shield_damage_multiplier
+        type: float
+      - type: pad
+        size: 12
+      - name: body_damage_multiplier
+        type: float
+      - type: pad
+        size: 8
+  ModelCollisionGeometryRegionFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: lives_until_object_dies
+      - name: forces_object_to_die
+      - name: dies_when_object_dies
+      - name: dies_when_object_is_damaged
+      - name: disappears_when_shield_is_off
+      - name: inhibits_melee_attack
+        comments:
+          en: >
+            Prevents melee attacks by the unit when this region is destroyed.
+            Used for the Flood's arms, for example.
+      - name: inhibits_weapon_attack
+      - name: inhibits_walking
+      - name: forces_drop_weapon
+        comments:
+          en: >
+            Causes the unit to drop its held weapon when this region is
+            destroyed, such as shooting the arms off of Flood.
+      - name: causes_head_maimed_scream
+  ModelCollisionGeometryPermutation:
+    class: struct
+    assert_size: 32
+    meta:
+      read_only: true
+    fields:
+      - name: name
+        type: TagString
+  ModelCollisionGeometryRegion:
+    class: struct
+    assert_size: 84
+    fields:
+      - name: name
+        type: TagString
+        meta:
+          read_only: true
+      - name: flags
+        type: ModelCollisionGeometryRegionFlags
+      - type: pad
+        size: 4
+      - name: damage_threshold
+        type: float
+      - type: pad
+        size: 12
+      - name: destroyed_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: permutations
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryPermutation
+        meta:
+          hek_max_count: 32
+          read_only: true
+  ModelCollisionGeometryModifier:
+    class: struct
+    assert_size: 52
+    fields:
+      - type: pad
+        size: 52
+  ModelCollisionGeometrySphere:
+    class: struct
+    assert_size: 32
+    fields:
+      - name: node
+        type: Index
+        meta:
+          index_of: nodes
+      - type: pad
+        size: 2
+      - type: pad
+        size: 12
+      - name: center
+        type: Point3D
+      - name: radius
+        type: float
+  ModelCollisionGeometryBSP3DNode:
+    class: struct
+    assert_size: 12
+    meta:
+      read_only: true
+    fields:
+      - name: plane
+        type: uint32
+      - name: back_child
+        type: uint32
+        meta:
+          flagged: true
+        comments:
+          en: >-
+            refers to a BSP3D node if not signed and a leaf if sign bit is set;
+            null if 0xFFFFFFFF
+      - name: front_child
+        type: uint32
+        meta:
+          flagged: true
+        comments:
+          en: >-
+            refers to a BSP3D node if not signed and a leaf if sign bit is set;
+            null if 0xFFFFFFFF
+  ModelCollisionGeometryBSPPlane:
+    class: struct
+    assert_size: 16
+    meta:
+      read_only: true
+    fields:
+      - name: plane
+        type: Plane3D
+  ModelCollisionGeometryBSPLeafFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: contains_double_sided_surfaces
+  ModelCollisionGeometryBSPLeaf:
+    class: struct
+    assert_size: 8
+    meta:
+      read_only: true
+    fields:
+      - name: flags
+        type: ModelCollisionGeometryBSPLeafFlags
+      - name: bsp2d_reference_count
+        type: uint16
+      - name: first_bsp2d_reference
+        type: uint32
+  ModelCollisionGeometryBSP2DReference:
+    class: struct
+    assert_size: 8
+    meta:
+      read_only: true
+    fields:
+      - name: plane
+        type: uint32
+        meta:
+          flagged: true
+      - name: bsp2d_node
+        type: uint32
+        meta:
+          flagged: true
+        comments:
+          en: >-
+            refers to a BSP2D node if not signed and a surface if sign bit is
+            set; null if 0xFFFFFFFF
+  ModelCollisionGeometryBSP2DNode:
+    class: struct
+    assert_size: 20
+    meta:
+      read_only: true
+    fields:
+      - name: plane
+        type: Plane2D
+      - name: left_child
+        type: uint32
+        meta:
+          flagged: true
+        comments:
+          en: >-
+            refers to a BSP2D node if not signed and a surface if sign bit is
+            set; null if 0xFFFFFFFF
+      - name: right_child
+        type: uint32
+        meta:
+          flagged: true
+        comments:
+          en: >-
+            refers to a BSP2D node if not signed and a surface if sign bit is
+            set; null if 0xFFFFFFFF
+  ModelCollisionGeometryBSPSurfaceFlags:
+    class: bitfield
+    size: 1
+    bits:
+      - name: two_sided
+      - name: invisible
+      - name: climbable
+      - name: breakable
+  ModelCollisionGeometryBSPSurface:
+    class: struct
+    assert_size: 12
+    meta:
+      read_only: true
+    fields:
+      - name: plane
+        type: uint32
+        meta:
+          flagged: true
+      - name: first_edge
+        type: uint32
+      - name: flags
+        type: ModelCollisionGeometryBSPSurfaceFlags
+      - name: breakable_surface
+        type: int8
+      - name: material
+        type: Index
+  ModelCollisionGeometryBSPEdge:
+    class: struct
+    assert_size: 24
+    meta:
+      read_only: true
+    fields:
+      - name: start_vertex
+        type: uint32
+      - name: end_vertex
+        type: uint32
+      - name: forward_edge
+        type: uint32
+      - name: reverse_edge
+        type: uint32
+      - name: left_surface
+        type: uint32
+      - name: right_surface
+        type: uint32
+  ModelCollisionGeometryBSPVertex:
+    class: struct
+    assert_size: 16
+    meta:
+      read_only: true
+    fields:
+      - name: point
+        type: Point3D
+      - name: first_edge
+        type: uint32
+  ModelCollisionGeometryBSP:
+    class: struct
+    assert_size: 96
+    meta:
+      pre_compile: true
+      read_only: true
+    fields:
+      - name: bsp3d_nodes
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryBSP3DNode
+        meta:
+          hek_max_count: 131072
+      - name: planes
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryBSPPlane
+        meta:
+          hek_max_count: 65536
+      - name: leaves
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryBSPLeaf
+        meta:
+          hek_max_count: 65536
+      - name: bsp2d_references
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryBSP2DReference
+        meta:
+          hek_max_count: 131072
+      - name: bsp2d_nodes
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryBSP2DNode
+        meta:
+          hek_max_count: 65535
+      - name: surfaces
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryBSPSurface
+        meta:
+          hek_max_count: 131072
+      - name: edges
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryBSPEdge
+        meta:
+          hek_max_count: 262144
+      - name: vertices
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryBSPVertex
+        meta:
+          hek_max_count: 131072
+  ModelCollisionGeometryNode:
+    class: struct
+    assert_size: 64
+    meta:
+      read_only: true
+    fields:
+      - name: name
+        type: TagString
+      - name: region
+        type: Index
+      - name: parent_node
+        type: Index
+        meta:
+          index_of: nodes
+      - name: next_sibling_node
+        type: Index
+        meta:
+          index_of: nodes
+      - name: first_child_node
+        type: Index
+        meta:
+          index_of: nodes
+      - type: pad
+        size: 10
+      - name: name_thing
+        type: int16
+        meta:
+          cache_only: true
+      - name: bsps
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryBSP
+        meta:
+          hek_max_count: 32
+  ModelCollisionGeometry:
+    class: struct
+    meta:
+      tag_id: coll
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: >-
+        Contains the collision mesh (also referred to as hitbox) for
+        [objects][object] as well as information about health and shields.
+    assert_size: 664
+    fields:
+      - name: flags
+        type: ModelCollisionGeometryFlags
+      - name: indirect_damage_material
+        type: Index
+      - type: pad
+        size: 2
+      - name: maximum_body_vitality
+        type: float
+        comments:
+          en: >
+            Sets the maximum amount of health that a [unit][] has (damage hit
+            points). For example, the cyborg [biped][] has a value of 75. This
+            value can also be changed at runtime for individual units by using
+            `unit_set_maximum_vitality` in scripts.
+      - name: body_system_shock
+        type: float
+      - type: pad
+        size: 24
+      - type: pad
+        size: 28
+      - name: friendly_damage_resistance
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 8
+      - type: pad
+        size: 32
+      - name: localized_damage_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: area_damage_effect_threshold
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: area_damage_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: body_damaged_threshold
+        type: float
+      - name: body_damaged_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: body_depleted_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: body_destroyed_threshold
+        type: float
+      - name: body_destroyed_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: maximum_shield_vitality
+        type: float
+        comments:
+          en: >
+            Sets the maximum amount of shields that a [unit][] has (damage hit
+            points). For example, the cyborg [biped][] has a value of 75. This
+            value can also be changed at runtime for individual units by using
+            `unit_set_maximum_vitality` in scripts.
+      - type: pad
+        size: 2
+      - name: shield_material_type
+        type: MaterialType
+        comments:
+          en: >
+            Determines which [damage_effect][] material modifier is used when
+            applying damage to the shield.
+      - type: pad
+        size: 24
+      - name: shield_failure_function
+        type: FunctionType
+      - type: pad
+        size: 2
+      - name: shield_failure_threshold
+        type: Fraction
+      - name: failing_shield_leak_fraction
+        type: Fraction
+      - type: pad
+        size: 16
+      - name: minimum_stun_damage
+        type: float
+      - name: stun_time
+        type: float
+        meta:
+          unit: seconds
+      - name: recharge_time
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 16
+      - type: pad
+        size: 96
+      - name: shield_damaged_threshold
+        type: float
+      - name: shield_damaged_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: shield_depleted_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: shield_recharging_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - type: pad
+        size: 8
+      - name: shield_recharge_rate
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 112
+      - name: materials
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryMaterial
+        meta:
+          hek_max_count: 32
+          read_only: true
+      - name: regions
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryRegion
+        meta:
+          hek_max_count: 8
+          read_only: true
+      - name: modifiers
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryModifier
+        meta:
+          read_only: true
+      - type: pad
+        size: 16
+      - name: x
+        type: Bounds
+        type_args:
+          T: float
+      - name: 'y'
+        type: Bounds
+        type_args:
+          T: float
+      - name: z
+        type: Bounds
+        type_args:
+          T: float
+      - name: pathfinding_spheres
+        type: Block
+        type_args:
+          T: ModelCollisionGeometrySphere
+        meta:
+          hek_max_count: 32
+          volatile: true
+      - name: nodes
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryNode
+        meta:
+          hek_max_count: 64
+          read_only: true

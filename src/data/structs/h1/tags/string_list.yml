@@ -1,0 +1,27 @@
+entry_type: StringList
+imports:
+  h1/tags/common:
+    - Block
+    - TagDataOffset
+type_defs:
+  StringListString:
+    class: struct
+    assert_size: 20
+    meta:
+      pre_compile: true
+    fields:
+      - name: string
+        type: TagDataOffset
+  StringList:
+    class: struct
+    meta:
+      tag_id: 'str#'
+    assert_size: 12
+    fields:
+      - name: strings
+        type: Block
+        type_args:
+          T: StringListString
+        meta:
+          hek_max_count: 800
+          read_only: true

@@ -1,0 +1,147 @@
+entry_type: Decal
+imports:
+  h1/tags/common:
+    - TagDependency
+    - Fraction
+    - ColorRGB
+    - FramebufferBlendFunction
+type_defs:
+  DecalFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: geometry_inherited_by_next_decal_in_chain
+      - name: interpolate_color_in_hsv
+      - name: more_colors
+      - name: no_random_rotation
+      - name: water_effect
+      - name: sapien_snap_to_axis
+      - name: sapien_incremental_counter
+      - name: animation_loop
+      - name: preserve_aspect
+  DecalType:
+    class: enum
+    size: 2
+    options:
+      - name: scratch
+      - name: splatter
+      - name: burn
+      - name: painted_sign
+  DecalLayer:
+    class: enum
+    size: 2
+    options:
+      - name: primary
+      - name: secondary
+      - name: light
+      - name: alpha_tested
+      - name: water
+  Decal:
+    class: struct
+    meta:
+      tag_id: deca
+      postprocess_hek_data: true
+    comments:
+      en: >-
+        Used for bullet holes, blood, burns, signs, and other 2D surface
+        effects.
+    assert_size: 268
+    fields:
+      - name: flags
+        type: DecalFlags
+      - name: type
+        type: DecalType
+      - name: layer
+        type: DecalLayer
+      - type: pad
+        size: 2
+      - name: next_decal_in_chain
+        type: TagDependency
+        meta:
+          tag_classes:
+            - decal
+      - name: radius
+        type: Bounds
+        meta:
+          unit: world units
+          default:
+            - 0.125
+            - 0.125
+        type_args:
+          T: float
+      - type: pad
+        size: 12
+      - name: intensity
+        type: Bounds
+        meta:
+          min: 0
+          max: 1
+          default:
+            - 1
+            - 1
+        type_args:
+          T: Fraction
+      - name: color_lower_bounds
+        type: ColorRGB
+        meta:
+          default:
+            - 1
+            - 1
+            - 1
+      - name: color_upper_bounds
+        type: ColorRGB
+        meta:
+          default:
+            - 1
+            - 1
+            - 1
+      - type: pad
+        size: 12
+      - name: animation_loop_frame
+        type: uint16
+      - name: animation_speed
+        type: uint16
+        meta:
+          unit: ticks per frame
+          default: 1
+      - type: pad
+        size: 28
+      - name: lifetime
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: decay_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - type: pad
+        size: 12
+      - type: pad
+        size: 40
+      - type: pad
+        size: 2
+      - type: pad
+        size: 2
+      - name: framebuffer_blend_function
+        type: FramebufferBlendFunction
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 20
+      - name: maximum_sprite_extent
+        type: float
+      - type: pad
+        size: 4
+      - type: pad
+        size: 8

@@ -1,0 +1,1092 @@
+entry_type: ScenarioStructureBSP
+imports:
+  h1/tags/common:
+    - TagDependency
+    - ColorRGB
+    - Vector3D
+    - ColorARGB
+    - Block
+    - MaterialType
+    - Index
+    - Point3D
+    - Plane3D
+    - TagDataOffset
+    - PredictedResource
+    - TagString
+    - Quaternion
+    - Point2D
+  h1/tags/model_collision_geometry:
+    - ModelCollisionGeometryBSP
+type_defs:
+  ScenarioStructureBSPCollisionMaterial:
+    class: struct
+    assert_size: 20
+    meta:
+      post_compile: true
+      read_only: true
+    fields:
+      - name: shader
+        type: TagDependency
+        meta:
+          tag_classes:
+            - shader
+          non_null: true
+      - type: pad
+        size: 2
+      - name: material
+        type: MaterialType
+        meta:
+          cache_only: true
+        endianness: little
+  ScenarioStructureBSPNode:
+    class: struct
+    assert_size: 6
+    meta:
+      read_only: true
+    fields:
+      - name: node_stuff
+        type: uint16
+        count: 3
+        endianness: little
+  ScenarioStructureBSPLeaf:
+    class: struct
+    assert_size: 16
+    meta:
+      read_only: true
+    fields:
+      - name: vertices
+        type: uint16
+        count: 3
+        endianness: little
+      - type: pad
+        size: 2
+      - name: cluster
+        type: Index
+      - name: surface_reference_count
+        type: uint16
+      - name: surface_references
+        type: int32
+  ScenarioStructureBSPSurfaceReference:
+    class: struct
+    assert_size: 8
+    meta:
+      read_only: true
+    fields:
+      - name: surface
+        type: int32
+      - name: node
+        type: int32
+  ScenarioStructureBSPSurface:
+    class: struct
+    assert_size: 6
+    meta:
+      read_only: true
+    fields:
+      - name: vertex0_index
+        type: Index
+      - name: vertex1_index
+        type: Index
+      - name: vertex2_index
+        type: Index
+  ScenarioStructureBSPMaterialFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: coplanar
+      - name: fog_plane
+  ScenarioStructureBSPMaterial:
+    class: struct
+    assert_size: 256
+    meta:
+      post_cache_parse: true
+      pre_compile: true
+      read_only: true
+    fields:
+      - name: shader
+        type: TagDependency
+        meta:
+          tag_classes:
+            - shader
+          non_null: true
+      - name: shader_permutation
+        type: Index
+      - name: flags
+        type: ScenarioStructureBSPMaterialFlags
+      - name: surfaces
+        type: int32
+      - name: surface_count
+        type: int32
+      - name: centroid
+        type: Point3D
+      - name: ambient_color
+        type: ColorRGB
+      - name: distant_light_count
+        type: uint16
+      - type: pad
+        size: 2
+      - name: distant_light_0_color
+        type: ColorRGB
+      - name: distant_light_0_direction
+        type: Vector3D
+      - name: distant_light_1_color
+        type: ColorRGB
+      - name: distant_light_1_direction
+        type: Vector3D
+      - type: pad
+        size: 12
+      - name: reflection_tint
+        type: ColorARGB
+      - name: shadow_vector
+        type: Vector3D
+      - name: shadow_color
+        type: ColorRGB
+      - name: plane
+        type: Plane3D
+      - name: breakable_surface
+        type: Index
+      - type: pad
+        size: 2
+      - name: do_not_screw_up_the_model
+        type: uint32
+        meta:
+          xbox_only: true
+          cache_only: true
+        endianness: little
+        comments:
+          en: '(Xbox only) if this isn''t set to 1, then the world ends'
+      - name: rendered_vertices_count
+        type: uint32
+      - name: rendered_vertices_offset
+        type: uint32
+      - type: pad
+        size: 4
+        comments:
+          en: >-
+            on PC, this gets changed to a pointer to something when the BSP is
+            loaded in-game
+      - name: rendered_vertices_index_pointer
+        type: ptr32
+        meta:
+          xbox_only: true
+          cache_only: true
+        endianness: little
+        comments:
+          en: (Xbox only) an indirect pointer to the rendered vertices
+      - name: set_this_or_die
+        type: uint32
+        meta:
+          xbox_only: true
+          cache_only: true
+        endianness: little
+        comments:
+          en: >-
+            (Xbox only) if this isn't set to 3, then the visible lightmap UVs do
+            not work
+      - name: lightmap_vertices_count
+        type: uint32
+      - name: lightmap_vertices_offset
+        type: uint32
+      - type: pad
+        size: 4
+      - name: lightmap_vertices_index_pointer
+        type: ptr32
+        meta:
+          xbox_only: true
+          cache_only: true
+        endianness: little
+        comments:
+          en: (Xbox only) an indirect pointer to the lightmap vertices
+      - name: uncompressed_vertices
+        type: TagDataOffset
+        meta:
+          ignore_cached: true
+      - name: compressed_vertices
+        type: TagDataOffset
+        meta:
+          ignore_cached: true
+  ScenarioStructureBSPLightmap:
+    class: struct
+    assert_size: 32
+    meta:
+      read_only: true
+    fields:
+      - name: bitmap
+        type: Index
+      - type: pad
+        size: 2
+      - type: pad
+        size: 16
+      - name: materials
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPMaterial
+        meta:
+          hek_max_count: 2048
+  ScenarioStructureBSPLensFlare:
+    class: struct
+    assert_size: 16
+    meta:
+      read_only: true
+    fields:
+      - name: lens
+        type: TagDependency
+        meta:
+          tag_classes:
+            - lens_flare
+  ScenarioStructureBSPLensFlareMarker:
+    class: struct
+    assert_size: 16
+    meta:
+      read_only: true
+    fields:
+      - name: position
+        type: Point3D
+        comments:
+          en: The 3D position of the lens flare.
+      - name: direction_i_component
+        type: int8
+      - name: direction_j_component
+        type: int8
+      - name: direction_k_component
+        type: int8
+      - name: lens_flare_index
+        type: int8
+        comments:
+          en: >
+            Determines which flare from the [_lens flares_
+            block](#tag-field-lens-flares) is rendered at this position.
+  ScenarioStructureBSPSubclusterSurfaceIndex:
+    class: struct
+    assert_size: 4
+    meta:
+      read_only: true
+    fields:
+      - name: index
+        type: int32
+  ScenarioStructureBSPSubcluster:
+    class: struct
+    assert_size: 36
+    meta:
+      read_only: true
+    fields:
+      - name: world_bounds_x
+        type: Bounds
+        type_args:
+          T: float
+      - name: world_bounds_y
+        type: Bounds
+        type_args:
+          T: float
+      - name: world_bounds_z
+        type: Bounds
+        type_args:
+          T: float
+      - name: surface_indices
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPSubclusterSurfaceIndex
+  ScenarioStructureBSPClusterSurfaceIndex:
+    class: struct
+    assert_size: 4
+    meta:
+      read_only: true
+    fields:
+      - name: index
+        type: int32
+  ScenarioStructureBSPMirrorVertex:
+    class: struct
+    assert_size: 12
+    meta:
+      read_only: true
+    fields:
+      - name: point
+        type: Point3D
+  ScenarioStructureBSPMirror:
+    class: struct
+    assert_size: 64
+    meta:
+      read_only: true
+    fields:
+      - name: plane
+        type: Plane3D
+      - type: pad
+        size: 20
+      - name: shader
+        type: TagDependency
+        meta:
+          tag_classes:
+            - shader
+      - name: vertices
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPMirrorVertex
+        meta:
+          hek_max_count: 512
+  ScenarioStructureBSPClusterPortalIndex:
+    class: struct
+    assert_size: 2
+    meta:
+      read_only: true
+    fields:
+      - name: portal
+        type: Index
+  ScenarioStructureBSPCluster:
+    class: struct
+    assert_size: 104
+    meta:
+      read_only: true
+    fields:
+      - name: sky
+        type: Index
+        comments:
+          en: >-
+            Sets which sky is visible when within this cluster. Indexes the
+            [_skies_][scenario#tag-field-skies] block of the [scenario][] tag,
+            so a value of `0` would mean the first sky, `1` the second, etc. A
+            value of `-1` marks this cluster as indoor/interior for the purposes
+            of certain [sky][] tag fields.
+
+
+            It is unknown how exactly [Tool][] determines which clusters are
+            indoor when compiling a BSP, but it does validate that all sky faces
+            in a cluster are of the same sky. For example, a cluster cannot
+            contain both `+sky0` and `+sky1` materials.
+
+
+            When a player moves between clusters with different skies, there is
+            no transition. The sky will abruptly change.
+      - name: fog
+        type: Index
+      - name: background_sound
+        type: Index
+      - name: sound_environment
+        type: Index
+      - name: weather
+        type: Index
+      - name: transition_structure_bsp
+        type: Index
+      - name: first_decal_index
+        type: Index
+        meta:
+          cache_only: true
+        endianness: little
+      - name: decal_count
+        type: uint16
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 24
+      - name: predicted_resources
+        type: Block
+        type_args:
+          T: PredictedResource
+        meta:
+          hek_max_count: 1024
+          cache_only: true
+      - name: subclusters
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPSubcluster
+        meta:
+          hek_max_count: 4096
+      - name: first_lens_flare_marker_index
+        type: Index
+      - name: lens_flare_marker_count
+        type: uint16
+      - name: surface_indices
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPClusterSurfaceIndex
+        meta:
+          hek_max_count: 32768
+      - name: mirrors
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPMirror
+        meta:
+          hek_max_count: 16
+      - name: portals
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPClusterPortalIndex
+        meta:
+          hek_max_count: 128
+  ScenarioStructureBSPClusterPortalFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: ai_can_simply_not_hear_through_all_this_amazing_stuff_darn_it
+  ScenarioStructureBSPClusterPortalVertex:
+    class: struct
+    assert_size: 12
+    meta:
+      read_only: true
+    fields:
+      - name: point
+        type: Point3D
+  ScenarioStructureBSPClusterPortal:
+    class: struct
+    assert_size: 64
+    meta:
+      read_only: true
+    fields:
+      - name: front_cluster
+        type: Index
+      - name: back_cluster
+        type: Index
+      - name: plane_index
+        type: int32
+      - name: centroid
+        type: Point3D
+      - name: bounding_radius
+        type: float
+      - name: flags
+        type: ScenarioStructureBSPClusterPortalFlags
+      - type: pad
+        size: 24
+      - name: vertices
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPClusterPortalVertex
+        meta:
+          hek_max_count: 128
+  ScenarioStructureBSPBreakableSurface:
+    class: struct
+    assert_size: 48
+    meta:
+      read_only: true
+    fields:
+      - name: centroid
+        type: Point3D
+      - name: radius
+        type: float
+      - name: collision_surface_index
+        type: int32
+      - type: pad
+        size: 28
+  ScenarioStructureBSPFogPlaneVertex:
+    class: struct
+    assert_size: 12
+    meta:
+      read_only: true
+    fields:
+      - name: point
+        type: Point3D
+  ScenarioStructureBSPFogPlane:
+    class: struct
+    assert_size: 32
+    meta:
+      read_only: true
+    fields:
+      - name: front_region
+        type: Index
+      - name: material_type
+        type: MaterialType
+        meta:
+          cache_only: true
+        endianness: little
+      - name: plane
+        type: Plane3D
+      - name: vertices
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPFogPlaneVertex
+        meta:
+          hek_max_count: 2048
+  ScenarioStructureBSPFogRegion:
+    class: struct
+    assert_size: 40
+    meta:
+      read_only: true
+    fields:
+      - type: pad
+        size: 36
+      - name: fog
+        type: Index
+        meta:
+          index_of: fog palette
+      - name: weather_palette
+        type: Index
+        meta:
+          index_of: weather palette
+  ScenarioStructureBSPFogPalette:
+    class: struct
+    assert_size: 136
+    fields:
+      - name: name
+        type: TagString
+      - name: fog
+        type: TagDependency
+        meta:
+          tag_classes:
+            - fog
+      - type: pad
+        size: 4
+      - name: fog_scale_function
+        type: TagString
+      - type: pad
+        size: 52
+  ScenarioStructureBSPWeatherPalette:
+    class: struct
+    assert_size: 240
+    fields:
+      - name: name
+        type: TagString
+      - name: particle_system
+        type: TagDependency
+        meta:
+          tag_classes:
+            - weather_particle_system
+      - type: pad
+        size: 4
+      - name: particle_system_scale_function
+        type: TagString
+      - type: pad
+        size: 44
+      - name: wind
+        type: TagDependency
+        meta:
+          tag_classes:
+            - wind
+      - name: wind_direction
+        type: Vector3D
+      - name: wind_magnitude
+        type: float
+      - type: pad
+        size: 4
+      - name: wind_scale_function
+        type: TagString
+      - type: pad
+        size: 44
+  ScenarioStructureBSPWeatherPolyhedronPlane:
+    class: struct
+    assert_size: 16
+    meta:
+      read_only: true
+    fields:
+      - name: plane
+        type: Plane3D
+  ScenarioStructureBSPWeatherPolyhedron:
+    class: struct
+    assert_size: 32
+    meta:
+      read_only: true
+    fields:
+      - name: bounding_sphere_center
+        type: Point3D
+      - name: bounding_sphere_radius
+        type: float
+      - type: pad
+        size: 4
+      - name: planes
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPWeatherPolyhedronPlane
+        meta:
+          hek_max_count: 16
+  ScenarioStructureBSPPathfindingSurface:
+    class: struct
+    assert_size: 1
+    meta:
+      read_only: true
+    fields:
+      - name: data
+        type: int8
+  ScenarioStructureBSPPathfindingEdge:
+    class: struct
+    assert_size: 1
+    meta:
+      read_only: true
+    fields:
+      - name: midpoint
+        type: int8
+  ScenarioStructureBSPBackgroundSoundPalette:
+    class: struct
+    assert_size: 116
+    fields:
+      - name: name
+        type: TagString
+      - name: background_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound_looping
+      - type: pad
+        size: 4
+      - name: scale_function
+        type: TagString
+      - type: pad
+        size: 32
+  ScenarioStructureBSPSoundEnvironmentPalette:
+    class: struct
+    assert_size: 80
+    fields:
+      - name: name
+        type: TagString
+      - name: sound_environment
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound_environment
+      - type: pad
+        size: 32
+  ScenarioStructureBSPMarker:
+    class: struct
+    assert_size: 60
+    fields:
+      - name: name
+        type: TagString
+      - name: rotation
+        type: Quaternion
+      - name: position
+        type: Point3D
+  ScenarioStructureBSPGlobalDetailObjectCell:
+    class: struct
+    assert_size: 32
+    fields:
+      - name: no_name
+        type: int16
+      - name: no_name_1
+        type: int16
+      - name: no_name_2
+        type: int16
+      - name: no_name_3
+        type: int16
+      - name: no_name_4
+        type: int32
+      - name: no_name_5
+        type: int32
+      - name: no_name_6
+        type: int32
+      - type: pad
+        size: 12
+  ScenarioStructureBSPGlobalDetailObject:
+    class: struct
+    assert_size: 6
+    fields:
+      - name: no_name
+        type: int8
+      - name: no_name_1
+        type: int8
+      - name: no_name_2
+        type: int8
+      - name: no_name_3
+        type: int8
+      - name: no_name_4
+        type: int16
+  ScenarioStructureBSPGlobalDetailObjectCount:
+    class: struct
+    assert_size: 2
+    fields:
+      - name: no_name
+        type: int16
+  ScenarioStructureBSPGlobalZReferenceVector:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: no_name
+        type: float
+      - name: no_name_1
+        type: float
+      - name: no_name_2
+        type: float
+      - name: no_name_3
+        type: float
+  ScenarioStructureBSPDetailObjectData:
+    class: struct
+    assert_size: 64
+    meta:
+      pre_compile: true
+    fields:
+      - name: cells
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPGlobalDetailObjectCell
+        meta:
+          hek_max_count: 262144
+      - name: instances
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPGlobalDetailObject
+        meta:
+          hek_max_count: 2097152
+      - name: counts
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPGlobalDetailObjectCount
+        meta:
+          hek_max_count: 8388608
+      - name: z_reference_vectors
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPGlobalZReferenceVector
+        meta:
+          hek_max_count: 262144
+      - name: bullshit
+        type: uint8
+        meta:
+          cache_only: true
+      - type: pad
+        size: 3
+      - type: pad
+        size: 12
+  ScenarioStructureBSPRuntimeDecal:
+    class: struct
+    assert_size: 16
+    meta:
+      read_only: true
+    fields:
+      - name: position
+        type: Point3D
+      - name: decal_type
+        type: Index
+      - name: yaw
+        type: int8
+      - name: pitch
+        type: int8
+  ScenarioStructureBSPMapLeafFaceVertex:
+    class: struct
+    assert_size: 8
+    meta:
+      read_only: true
+    fields:
+      - name: vertex
+        type: Point2D
+  ScenarioStructureBSPMapLeafFace:
+    class: struct
+    assert_size: 16
+    meta:
+      read_only: true
+    fields:
+      - name: node_index
+        type: int32
+      - name: vertices
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPMapLeafFaceVertex
+        meta:
+          hek_max_count: 64
+  ScenarioStructureBSPMapLeafPortalIndex:
+    class: struct
+    assert_size: 4
+    meta:
+      read_only: true
+    fields:
+      - name: portal_index
+        type: int32
+  ScenarioStructureBSPGlobalMapLeaf:
+    class: struct
+    assert_size: 24
+    meta:
+      read_only: true
+    fields:
+      - name: faces
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPMapLeafFace
+        meta:
+          hek_max_count: 256
+      - name: portal_indices
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPMapLeafPortalIndex
+        meta:
+          hek_max_count: 256
+  ScenarioStructureBSPLeafPortalVertex:
+    class: struct
+    assert_size: 12
+    meta:
+      read_only: true
+    fields:
+      - name: point
+        type: Point3D
+  ScenarioStructureBSPGlobalLeafPortal:
+    class: struct
+    assert_size: 24
+    meta:
+      read_only: true
+    fields:
+      - name: plane_index
+        type: int32
+      - name: back_leaf_index
+        type: int32
+      - name: front_leaf_index
+        type: int32
+      - name: vertices
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPLeafPortalVertex
+  ScenarioStructureBSP:
+    class: struct
+    meta:
+      tag_id: sbsp
+      pre_compile: true
+      post_compile: true
+      read_only: true
+    comments:
+      en: >
+        Contains geometric, lighting, weather, and other data for the playable
+        spaces in which all objects are placed. Singleplayer maps often use
+        multiple BSPs.
+    assert_size: 648
+    fields:
+      - name: lightmaps_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+        comments:
+          en: >-
+            A reference to the bitmap storing the level's baked
+            [lightmaps](#lightmaps). The level will not be visible without this.
+      - name: vehicle_floor
+        type: float
+        meta:
+          unit: world units
+        comments:
+          en: >
+            The lowest Z-axis height (absolute, not frame relative) that
+            [vehicles][vehicle] can reach while occupied. Does not affect other
+            object types. An unoccupied vehicle will still drop below this soft
+            barrier, but when it becomes occupied again it will quickly shoot
+            back up into the play area. An example of a map using a vehicle
+            floor is Gephyrophobia to prevent players from flying too far below
+            the bridge.
+      - name: vehicle_ceiling
+        type: float
+        meta:
+          unit: world units
+        comments:
+          en: >
+            The maximum Z-axis height (absolute, not frame relative) that
+            vehicles can reach while occupied. Does not affect other objects
+            types. Above this point, occupied vehicles will elastically move
+            back below the ceiling. This can be used to limit the height that
+            players in flying vehicles like Banshees can reach for gameplay
+            reasons. An example of this can be seen in Blood Gulch.
+      - type: pad
+        size: 20
+      - name: default_ambient_color
+        type: ColorRGB
+      - type: pad
+        size: 4
+      - name: default_distant_light_0_color
+        type: ColorRGB
+      - name: default_distant_light_0_direction
+        type: Vector3D
+      - name: default_distant_light_1_color
+        type: ColorRGB
+      - name: default_distant_light_1_direction
+        type: Vector3D
+      - type: pad
+        size: 12
+      - name: default_reflection_tint
+        type: ColorARGB
+      - name: default_shadow_vector
+        type: Vector3D
+      - name: default_shadow_color
+        type: ColorRGB
+      - type: pad
+        size: 4
+      - name: collision_materials
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPCollisionMaterial
+        meta:
+          hek_max_count: 512
+      - name: collision_bsp
+        type: Block
+        type_args:
+          T: ModelCollisionGeometryBSP
+        meta:
+          hek_max_count: 1
+      - name: nodes
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPNode
+        meta:
+          hek_max_count: 131072
+      - name: world_bounds_x
+        type: Bounds
+        type_args:
+          T: float
+      - name: world_bounds_y
+        type: Bounds
+        type_args:
+          T: float
+      - name: world_bounds_z
+        type: Bounds
+        type_args:
+          T: float
+      - name: leaves
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPLeaf
+        meta:
+          hek_max_count: 65536
+      - name: leaf_surfaces
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPSurfaceReference
+        meta:
+          hek_max_count: 262144
+      - name: surfaces
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPSurface
+        meta:
+          hek_max_count: 131072
+      - name: lightmaps
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPLightmap
+        meta:
+          hek_max_count: 128
+      - type: pad
+        size: 12
+      - name: lens_flares
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPLensFlare
+        meta:
+          hek_max_count: 256
+        comments:
+          en: >-
+            Lists the available lens flares used by this BSP's _lens flare
+            markers_.
+      - name: lens_flare_markers
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPLensFlareMarker
+        meta:
+          hek_max_count: 65536
+        comments:
+          en: Points within the BSP where a _lens flare_ will be rendered.
+      - name: clusters
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPCluster
+        meta:
+          hek_max_count: 8192
+      - name: cluster_data
+        type: TagDataOffset
+      - name: cluster_portals
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPClusterPortal
+        meta:
+          hek_max_count: 512
+      - type: pad
+        size: 12
+      - name: breakable_surfaces
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPBreakableSurface
+        meta:
+          hek_max_count: 256
+      - name: fog_planes
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPFogPlane
+        meta:
+          hek_max_count: 32
+      - name: fog_regions
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPFogRegion
+        meta:
+          hek_max_count: 32
+      - name: fog_palette
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPFogPalette
+        meta:
+          hek_max_count: 32
+          max: 65534
+      - type: pad
+        size: 24
+      - name: weather_palette
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPWeatherPalette
+        meta:
+          hek_max_count: 32
+      - name: weather_polyhedra
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPWeatherPolyhedron
+        meta:
+          hek_max_count: 32
+      - type: pad
+        size: 24
+      - name: pathfinding_surfaces
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPPathfindingSurface
+        meta:
+          hek_max_count: 131072
+      - name: pathfinding_edges
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPPathfindingEdge
+        meta:
+          hek_max_count: 262144
+      - name: background_sound_palette
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPBackgroundSoundPalette
+        meta:
+          hek_max_count: 64
+      - name: sound_environment_palette
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPSoundEnvironmentPalette
+        meta:
+          hek_max_count: 64
+      - name: sound_pas_data
+        type: TagDataOffset
+      - type: pad
+        size: 24
+      - name: markers
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPMarker
+        meta:
+          hek_max_count: 1024
+        comments:
+          en: >
+            Named points with orientation within the BSP. They are similar to
+            [gbxmodel markers][gbxmodel#markers] but are not to be confused with
+            [scenario _cutscene flags_][scenario#tag-field-cutscene-flags].
+            These markers become visible in [Sapien][] when enabling _snap to
+            markers_ in the tool window.
+      - name: detail_objects
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPDetailObjectData
+        meta:
+          hek_max_count: 1
+      - name: runtime_decals
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPRuntimeDecal
+        meta:
+          hek_max_count: 6144
+          cache_only: true
+      - type: pad
+        size: 8
+      - type: pad
+        size: 4
+      - name: leaf_map_leaves
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPGlobalMapLeaf
+        meta:
+          hek_max_count: 65536
+      - name: leaf_map_portals
+        type: Block
+        type_args:
+          T: ScenarioStructureBSPGlobalLeafPortal
+        meta:
+          hek_max_count: 524288

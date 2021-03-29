@@ -1,0 +1,299 @@
+entry_type: HUDGlobals
+imports:
+  h1/tags/hud_interface_types:
+    - HUDInterfaceAnchor
+    - HUDInterfaceScalingFlags
+    - HUDInterfaceMessagingFlags
+    - HUDInterfaceFlashFlags
+  h1/tags/common:
+    - Point2DInt
+    - TagDependency
+    - ColorARGB
+    - Block
+    - Index
+    - ColorARGBInt
+    - TagString
+    - Rectangle2D
+type_defs:
+  HUDGlobalsButtonIcon:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: sequence_index
+        type: Index
+      - name: width_offset
+        type: int16
+      - name: offset_from_reference_corner
+        type: Point2DInt
+      - name: override_icon_color
+        type: ColorARGBInt
+      - name: frame_rate
+        type: int8
+      - name: flags
+        type: HUDInterfaceMessagingFlags
+      - name: text_index
+        type: Index
+  HUDGlobalsWaypointArrowFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: dont_rotate_when_pointing_offscreen
+  HUDGlobalsWaypointArrow:
+    class: struct
+    assert_size: 104
+    fields:
+      - name: name
+        type: TagString
+      - type: pad
+        size: 8
+      - name: color
+        type: ColorARGBInt
+      - name: opacity
+        type: float
+      - name: translucency
+        type: float
+      - name: on_screen_sequence_index
+        type: Index
+      - name: off_screen_sequence_index
+        type: Index
+      - name: occluded_sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - type: pad
+        size: 16
+      - name: flags
+        type: HUDGlobalsWaypointArrowFlags
+      - type: pad
+        size: 24
+  HUDGlobals:
+    class: struct
+    meta:
+      tag_id: hudg
+    assert_size: 1104
+    fields:
+      - name: anchor
+        type: HUDInterfaceAnchor
+      - type: pad
+        size: 2
+      - type: pad
+        size: 32
+      - name: anchor_offset
+        type: Point2DInt
+      - name: width_scale
+        type: float
+      - name: height_scale
+        type: float
+      - name: scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: single_player_font
+        type: TagDependency
+        meta:
+          tag_classes:
+            - font
+      - name: multi_player_font
+        type: TagDependency
+        meta:
+          tag_classes:
+            - font
+      - name: up_time
+        type: float
+      - name: fade_time
+        type: float
+      - name: icon_color
+        type: ColorARGB
+      - name: text_color
+        type: ColorARGB
+      - name: text_spacing
+        type: float
+      - name: item_message_text
+        type: TagDependency
+        meta:
+          tag_classes:
+            - unicode_string_list
+      - name: icon_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: alternate_icon_text
+        type: TagDependency
+        meta:
+          tag_classes:
+            - unicode_string_list
+      - name: button_icons
+        type: Block
+        type_args:
+          T: HUDGlobalsButtonIcon
+        meta:
+          hek_max_count: 18
+      - name: hud_help_default_color
+        type: ColorARGBInt
+      - name: hud_help_flashing_color
+        type: ColorARGBInt
+      - name: hud_help_flash_period
+        type: float
+      - name: hud_help_flash_delay
+        type: float
+      - name: hud_help_number_of_flashes
+        type: uint16
+      - name: hud_help_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: hud_help_flash_length
+        type: float
+      - name: hud_help_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: hud_messages
+        type: TagDependency
+        meta:
+          tag_classes:
+            - hud_message_text
+      - name: objective_default_color
+        type: ColorARGBInt
+      - name: objective_flashing_color
+        type: ColorARGBInt
+      - name: objective_flash_period
+        type: float
+      - name: objective_flash_delay
+        type: float
+      - name: objective_number_of_flashes
+        type: uint16
+      - name: objective_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: objective_flash_length
+        type: float
+      - name: objective_disabled_color
+        type: ColorARGBInt
+      - name: objective_uptime_ticks
+        type: uint16
+      - name: objective_fade_ticks
+        type: uint16
+      - name: top_offset
+        type: float
+      - name: bottom_offset
+        type: float
+      - name: left_offset
+        type: float
+      - name: right_offset
+        type: float
+      - type: pad
+        size: 32
+      - name: arrow_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: waypoint_arrows
+        type: Block
+        type_args:
+          T: HUDGlobalsWaypointArrow
+        meta:
+          hek_max_count: 16
+      - type: pad
+        size: 80
+      - name: hud_scale_in_multiplayer
+        type: float
+      - type: pad
+        size: 256
+      - name: default_weapon_hud
+        type: TagDependency
+        meta:
+          tag_classes:
+            - weapon_hud_interface
+      - name: motion_sensor_range
+        type: float
+      - name: motion_sensor_velocity_sensitivity
+        type: float
+      - name: motion_sensor_scale
+        type: float
+      - name: default_chapter_title_bounds
+        type: Rectangle2D
+      - type: pad
+        size: 44
+      - name: hud_damage_top_offset
+        type: int16
+      - name: hud_damage_bottom_offset
+        type: int16
+      - name: hud_damage_left_offset
+        type: int16
+      - name: hud_damage_right_offset
+        type: int16
+      - type: pad
+        size: 32
+      - name: hud_damage_indicator_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: hud_damage_sequence_index
+        type: Index
+      - name: hud_damage_multiplayer_sequence_index
+        type: Index
+      - name: hud_damage_color
+        type: ColorARGBInt
+      - type: pad
+        size: 16
+      - name: not_much_time_left_default_color
+        type: ColorARGBInt
+      - name: not_much_time_left_flashing_color
+        type: ColorARGBInt
+      - name: not_much_time_left_flash_period
+        type: float
+      - name: not_much_time_left_flash_delay
+        type: float
+      - name: not_much_time_left_number_of_flashes
+        type: uint16
+      - name: not_much_time_left_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: not_much_time_left_flash_length
+        type: float
+      - name: not_much_time_left_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: time_out_flash_default_color
+        type: ColorARGBInt
+      - name: time_out_flash_flashing_color
+        type: ColorARGBInt
+      - name: time_out_flash_flash_period
+        type: float
+      - name: time_out_flash_flash_delay
+        type: float
+      - name: time_out_flash_number_of_flashes
+        type: uint16
+      - name: time_out_flash_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: time_out_flash_flash_length
+        type: float
+      - name: time_out_flash_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - type: pad
+        size: 40
+      - name: carnage_report_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: loading_begin_text
+        type: Index
+      - name: loading_end_text
+        type: Index
+      - name: checkpoint_begin_text
+        type: Index
+      - name: checkpoint_end_text
+        type: Index
+      - name: checkpoint_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 96

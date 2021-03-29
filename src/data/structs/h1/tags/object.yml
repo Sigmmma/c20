@@ -1,0 +1,398 @@
+entry_type: Object
+imports:
+  h1/tags/common:
+    - Point3D
+    - TagDependency
+    - Index
+    - Block
+    - TagString
+    - FunctionOut
+    - FunctionNameNullable
+    - FunctionScaleBy
+    - WaveFunction
+    - Fraction
+    - FunctionType
+    - FunctionBoundsMode
+    - ColorInterpolationFlags
+    - ColorRGB
+    - PredictedResource
+type_defs:
+  ObjectType:
+    class: enum
+    size: 2
+    options:
+      - name: biped
+      - name: vehicle
+      - name: weapon
+      - name: equipment
+      - name: garbage
+      - name: projectile
+      - name: scenery
+      - name: device_machine
+      - name: device_control
+      - name: device_light_fixture
+      - name: placeholder
+      - name: sound_scenery
+  ObjectFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: does_not_cast_shadow
+      - name: transparent_self_occlusion
+        comments:
+          en: >
+            Causes the transparent shaders in this object to occlude each other
+            rather than be visible through each other. The scene behind the
+            object is still visible.
+
+            **Warning**: enabling this flag while the object uses transparent
+            shaders with extra layers causes [Sapien to crash][sapien#crashes]
+            when near the object, though the same object will work ingame.
+      - name: brighter_than_it_should_be
+        comments:
+          en: >
+            Slightly brightens the object, making it easier to see in the dark
+            for gameplay purposes. Often used for small items like weapons,
+            powerups, and ammunition.
+      - name: not_a_pathfinding_obstacle
+  ObjectFunctionIn:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: body_vitality
+      - name: shield_vitality
+      - name: recent_body_damage
+      - name: recent_shield_damage
+      - name: random_constant
+      - name: umbrella_shield_vitality
+      - name: shield_stun
+      - name: recent_umbrella_shield_vitality
+      - name: umbrella_shield_stun
+      - name: region
+      - name: region_1
+      - name: region_2
+      - name: region_3
+      - name: region_4
+      - name: region_5
+      - name: region_6
+      - name: region_7
+      - name: alive
+      - name: compass
+  ObjectAttachment:
+    class: struct
+    assert_size: 72
+    fields:
+      - name: type
+        type: TagDependency
+        meta:
+          tag_classes:
+            - light
+            - light_volume
+            - contrail
+            - particle_system
+            - effect
+            - sound_looping
+      - name: marker
+        type: TagString
+      - name: primary_scale
+        type: FunctionOut
+      - name: secondary_scale
+        type: FunctionOut
+      - name: change_color
+        type: FunctionNameNullable
+      - type: pad
+        size: 2
+      - type: pad
+        size: 16
+  ObjectWidget:
+    class: struct
+    assert_size: 32
+    fields:
+      - name: reference
+        type: TagDependency
+        meta:
+          tag_classes:
+            - antenna
+            - glow
+            - light_volume
+            - lightning
+            - flag
+      - type: pad
+        size: 16
+  ObjectFunctionFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: invert
+      - name: additive
+      - name: always_active
+  ObjectFunction:
+    class: struct
+    assert_size: 360
+    meta:
+      pre_compile: true
+    fields:
+      - name: flags
+        type: ObjectFunctionFlags
+      - name: period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: scale_period_by
+        type: FunctionScaleBy
+      - name: function
+        type: WaveFunction
+      - name: scale_function_by
+        type: FunctionScaleBy
+      - name: wobble_function
+        type: WaveFunction
+      - name: wobble_period
+        type: float
+        meta:
+          unit: seconds
+      - name: wobble_magnitude
+        type: float
+        meta:
+          unit: percent
+      - name: square_wave_threshold
+        type: Fraction
+      - name: step_count
+        type: uint16
+      - name: map_to
+        type: FunctionType
+      - name: sawtooth_count
+        type: uint16
+      - name: add
+        type: FunctionScaleBy
+      - name: scale_result_by
+        type: FunctionScaleBy
+      - name: bounds_mode
+        type: FunctionBoundsMode
+      - name: bounds
+        type: Bounds
+        meta:
+          default:
+            - 0
+            - 1
+        type_args:
+          T: Fraction
+      - type: pad
+        size: 4
+      - type: pad
+        size: 2
+      - name: turn_off_with
+        type: int16
+      - name: scale_by
+        type: float
+      - type: pad
+        size: 252
+      - name: inverse_bounds
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: inverse_sawtooth
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: inverse_step
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: inverse_period
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: usage
+        type: TagString
+  ObjectChangeColorsPermutation:
+    class: struct
+    assert_size: 28
+    fields:
+      - name: weight
+        type: float
+        meta:
+          default: 1
+      - name: color_lower_bound
+        type: ColorRGB
+      - name: color_upper_bound
+        type: ColorRGB
+  ObjectChangeColors:
+    class: struct
+    assert_size: 44
+    meta:
+      post_cache_deformat: true
+      postprocess_hek_data: true
+      pre_compile: true
+    fields:
+      - name: darken_by
+        type: FunctionScaleBy
+      - name: scale_by
+        type: FunctionScaleBy
+      - name: flags
+        type: ColorInterpolationFlags
+      - name: color_lower_bound
+        type: ColorRGB
+      - name: color_upper_bound
+        type: ColorRGB
+      - name: permutations
+        type: Block
+        type_args:
+          T: ObjectChangeColorsPermutation
+        meta:
+          hek_max_count: 8
+  Object:
+    class: struct
+    meta:
+      tag_id: obje
+    comments:
+      en: >
+        Base tag for everything that can be populated and spawned into a level,
+        such as [bipeds][biped], [scenery][], and [projectiles][projectile].
+    assert_size: 380
+    fields:
+      - name: object_type
+        type: ObjectType
+        meta:
+          volatile: true
+          hidden: true
+        endianness: little
+      - name: flags
+        type: ObjectFlags
+      - name: bounding_radius
+        type: float
+        meta:
+          unit: world units
+        comments:
+          en: >
+            A radius which encompasses the object, used by the engine for a
+            variety of purposes. If the bounding radius is too small, shadows
+            will be cut off and [model_collision_geometry][] will not be used
+            outside the radius.
+      - name: bounding_offset
+        type: Point3D
+      - name: origin_offset
+        type: Point3D
+      - name: acceleration_scale
+        type: float
+        meta:
+          min: 0
+        comments:
+          en: >
+            Affects how much objects are moved by explosions. A value of 0 means
+            the object remains fixed (like the multiplayer flag weapon). This
+            value works for [items][item], [bipeds][biped], and
+            [vehicles][vehicle] (vehicles must _also_ have a [physics][] tag
+            set), but not [devices][device] and [scenery][]. See also the
+            _instantaneous acceleration_ field of [damage_effect][] for the
+            source of explosion acceleration.
+      - name: scales_change_colors
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: model
+        type: TagDependency
+        meta:
+          tag_classes:
+            - model
+      - name: animation_graph
+        type: TagDependency
+        meta:
+          tag_classes:
+            - model_animations
+      - type: pad
+        size: 40
+      - name: collision_model
+        type: TagDependency
+        meta:
+          tag_classes:
+            - model_collision_geometry
+      - name: physics
+        type: TagDependency
+        meta:
+          tag_classes:
+            - physics
+      - name: modifier_shader
+        type: TagDependency
+        meta:
+          tag_classes:
+            - shader
+        comments:
+          en: >
+            A modifier shader automatically uses the entire object and its
+            attachments as a geometry source when rendering. It is used for
+            energy shields which need to encompass both the object's own
+            [gbxmodel][], but also any held [weapons][weapon] in the case of
+            [bipeds][biped].
+      - name: creation_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - type: pad
+        size: 84
+      - name: render_bounding_radius
+        type: float
+        meta:
+          unit: world units
+      - name: a_in
+        type: ObjectFunctionIn
+      - name: b_in
+        type: ObjectFunctionIn
+      - name: c_in
+        type: ObjectFunctionIn
+      - name: d_in
+        type: ObjectFunctionIn
+      - type: pad
+        size: 44
+      - name: hud_text_message_index
+        type: Index
+      - name: forced_shader_permutation_index
+        type: Index
+      - name: attachments
+        type: Block
+        type_args:
+          T: ObjectAttachment
+        meta:
+          hek_max_count: 8
+      - name: widgets
+        type: Block
+        type_args:
+          T: ObjectWidget
+        meta:
+          hek_max_count: 4
+        comments:
+          en: >
+            Similar to _attachments_, but without function-driven properties and
+            a marker location. Some examples include the Warthog [antenna][] and
+            projectile [light_volumes][light_volume]. There is a known [PC
+            renderer issue][renderer#pc-regressions] where projectile widgets
+            (but not _attachments_) are improperly offset in mirrored
+            reflections like the floor of the control room.
+      - name: functions
+        type: Block
+        type_args:
+          T: ObjectFunction
+        meta:
+          hek_max_count: 4
+          max: 4
+      - name: change_colors
+        type: Block
+        type_args:
+          T: ObjectChangeColors
+        meta:
+          hek_max_count: 4
+          max: 4
+      - name: predicted_resources
+        type: Block
+        type_args:
+          T: PredictedResource
+        meta:
+          hek_max_count: 1024
+          cache_only: true

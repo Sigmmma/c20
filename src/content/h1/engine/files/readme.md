@@ -1,5 +1,14 @@
 This page documents the function and format of some of Halo's installation and profile files, excluding [maps][map].
 
+```.struct
+show_offsets: true
+entry_type: Vehicle
+id: tag-struct
+imports:
+  h1/tags/vehicle:
+    - Vehicle
+```
+
 # haloce.exe
 This is the main game executable containing the bulk of the game's code.
 
@@ -44,10 +53,12 @@ The file `savegames\<profile name>\savegame.bin` contains the saved state of the
 The structure of this file is not fully mapped out, however some fields are known:
 
 ```.struct
-entryType: Savegame
-showOffsets: true
+entry_type: Savegame
+show_offsets: true
 id: savegame
-typeDefs: savegame.bin.yml
+imports:
+  h1/files/savegame.bin:
+    - Savegame
 ```
 
 ## blam.sav
@@ -56,10 +67,12 @@ The file `savegames\<profile name>\blam.sav` contains the configuration for a HC
 The file structure follows. All data is [little-endian](https://en.wikipedia.org/wiki/Endianness) unless otherwise stated.
 
 ```.struct
-entryType: Profile
-showOffsets: true
+entry_type: Profile
+show_offsets: true
 id: profile
-typeDefs: blam.sav.yml
+imports:
+  h1/files/blam.sav:
+    - Profile
 ```
 
 # 00.sav and 01.sav

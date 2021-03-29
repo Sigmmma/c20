@@ -1,0 +1,264 @@
+entry_type: Biped
+imports:
+  h1/tags/unit:
+    - Unit
+  h1/tags/common:
+    - Angle
+    - TagDependency
+    - Index
+    - Block
+    - TagString
+type_defs:
+  BipedFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: turns_without_animating
+      - name: uses_player_physics
+      - name: flying
+      - name: physics_pill_centered_at_origin
+      - name: spherical
+      - name: passes_through_other_bipeds
+      - name: can_climb_any_surface
+      - name: immune_to_falling_damage
+      - name: rotate_while_airborne
+      - name: uses_limp_body_physics
+      - name: has_no_dying_airborne
+      - name: random_speed_increase
+      - name: unit_uses_old_ntsc_player_physics
+  BipedFunctionIn:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: flying_velocity
+  BipedContactPoint:
+    class: struct
+    assert_size: 64
+    fields:
+      - type: pad
+        size: 32
+      - name: marker_name
+        type: TagString
+  Biped:
+    class: struct
+    extends:
+      type: Unit
+    meta:
+      tag_id: bipd
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: >-
+        Represents the physical characteristics and appearance of characters
+        like Elites, Marines, Cortana, and the player.
+    assert_size: 1268
+    fields:
+      - name: moving_turning_speed
+        type: Angle
+      - name: biped_flags
+        type: BipedFlags
+      - name: stationary_turning_threshold
+        type: Angle
+        meta:
+          unit: degrees per second
+      - type: pad
+        size: 16
+      - name: biped_a_in
+        type: BipedFunctionIn
+      - name: biped_b_in
+        type: BipedFunctionIn
+      - name: biped_c_in
+        type: BipedFunctionIn
+      - name: biped_d_in
+        type: BipedFunctionIn
+      - name: don't_use
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+          unused: true
+      - name: bank_angle
+        type: Angle
+      - name: bank_apply_time
+        type: float
+        meta:
+          unit: seconds
+      - name: bank_decay_time
+        type: float
+        meta:
+          unit: seconds
+      - name: pitch_ratio
+        type: float
+      - name: max_velocity
+        type: float
+        meta:
+          unit: world units per second
+      - name: max_sidestep_velocity
+        type: float
+        meta:
+          unit: world units per second
+      - name: acceleration
+        type: float
+        meta:
+          unit: world units per second squared
+      - name: deceleration
+        type: float
+        meta:
+          unit: world units per second squared
+      - name: angular_velocity_maximum
+        type: Angle
+        meta:
+          unit: degrees per second
+      - name: angular_acceleration_maximum
+        type: Angle
+        meta:
+          unit: degrees per second squared
+      - name: crouch_velocity_modifier
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 8
+      - name: maximum_slope_angle
+        type: Angle
+      - name: downhill_falloff_angle
+        type: Angle
+      - name: downhill_cutoff_angle
+        type: Angle
+      - name: downhill_velocity_scale
+        type: float
+      - name: uphill_falloff_angle
+        type: Angle
+      - name: uphill_cutoff_angle
+        type: Angle
+      - name: uphill_velocity_scale
+        type: float
+      - type: pad
+        size: 24
+      - name: footsteps
+        type: TagDependency
+        meta:
+          tag_classes:
+            - material_effects
+      - type: pad
+        size: 24
+      - name: jump_velocity
+        type: float
+        meta:
+          unit: world units per tick
+      - type: pad
+        size: 28
+      - name: maximum_soft_landing_time
+        type: float
+        meta:
+          unit: seconds
+      - name: maximum_hard_landing_time
+        type: float
+        meta:
+          unit: seconds
+      - name: minimum_soft_landing_velocity
+        type: float
+        meta:
+          unit: world units per second
+      - name: minimum_hard_landing_velocity
+        type: float
+        meta:
+          unit: world units per second
+      - name: maximum_hard_landing_velocity
+        type: float
+        meta:
+          unit: world units per second
+      - name: death_hard_landing_velocity
+        type: float
+        meta:
+          unit: world units per second
+      - type: pad
+        size: 20
+      - name: standing_camera_height
+        type: float
+        meta:
+          unit: world units
+      - name: crouching_camera_height
+        type: float
+        meta:
+          unit: world units
+      - name: crouch_transition_time
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 24
+      - name: standing_collision_height
+        type: float
+        meta:
+          unit: world units
+      - name: crouching_collision_height
+        type: float
+        meta:
+          unit: world units
+      - name: collision_radius
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 40
+      - name: autoaim_width
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 108
+      - name: cosine_stationary_turning_threshold
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: crouch_camera_velocity
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: cosine_maximum_slope_angle
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: negative_sine_downhill_falloff_angle
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: negative_sine_downhill_cutoff_angle
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: sine_uphill_falloff_angle
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: sine_uphill_cutoff_angle
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: head_model_node_index
+        type: Index
+        meta:
+          cache_only: true
+        endianness: little
+      - name: pelvis_model_node_index
+        type: Index
+        meta:
+          cache_only: true
+        endianness: little
+      - name: contact_point
+        type: Block
+        type_args:
+          T: BipedContactPoint
+        meta:
+          hek_max_count: 2

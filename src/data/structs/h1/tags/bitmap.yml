@@ -1,0 +1,340 @@
+entry_type: Bitmap
+imports:
+  h1/tags/common:
+    - Fraction
+    - TagDataOffset
+    - Block
+    - TagString
+    - Index
+    - Point2D
+    - TagEngineId
+    - Point2DInt
+    - TagID
+type_defs:
+  BitmapType:
+    class: enum
+    size: 2
+    options:
+      - name: 2d_textures
+      - name: 3d_textures
+        comments:
+          en: 'Used for [shader_transparent_plasma][] noise maps.'
+      - name: cube_maps
+      - name: sprites
+      - name: interface_bitmaps
+  BitmapFormat:
+    class: enum
+    size: 2
+    options:
+      - name: dxt1
+      - name: dxt3
+      - name: dxt5
+      - name: 16-bit
+      - name: 32-bit
+      - name: monochrome
+        comments:
+          en: This format is only supported on Xbox.
+  BitmapUsage:
+    class: enum
+    size: 2
+    options:
+      - name: alpha_blend
+      - name: default
+      - name: height_map
+      - name: detail_map
+      - name: light_map
+      - name: vector_map
+  BitmapFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: enable_diffusion_dithering
+      - name: disable_height_map_compression
+      - name: uniform_sprite_sequences
+      - name: filthy_sprite_bug_fix
+  BitmapSpriteBudgetSize:
+    class: enum
+    size: 2
+    options:
+      - name: 32x32
+      - name: 64x64
+      - name: 128x128
+      - name: 256x256
+      - name: 512x512
+      - name: 1024x1024
+      - name: 2048x2048
+  BitmapSpriteUsage:
+    class: enum
+    size: 2
+    options:
+      - name: blend_add_subtract_max
+      - name: multiply_min
+      - name: double_multiply
+  BitmapGroupSprite:
+    class: struct
+    assert_size: 32
+    meta:
+      read_only: true
+    fields:
+      - name: bitmap_index
+        type: Index
+        meta:
+          index_of: bitmap data
+      - type: pad
+        size: 2
+      - type: pad
+        size: 4
+      - name: left
+        type: float
+      - name: right
+        type: float
+      - name: top
+        type: float
+      - name: bottom
+        type: float
+      - name: registration_point
+        type: Point2D
+  BitmapGroupSequence:
+    class: struct
+    assert_size: 64
+    meta:
+      read_only: true
+    fields:
+      - name: name
+        type: TagString
+      - name: first_bitmap_index
+        type: Index
+        meta:
+          index_of: bitmap data
+      - name: bitmap_count
+        type: uint16
+      - type: pad
+        size: 16
+      - name: sprites
+        type: Block
+        type_args:
+          T: BitmapGroupSprite
+        meta:
+          hek_max_count: 64
+          max: 65534
+  BitmapDataType:
+    class: enum
+    size: 2
+    options:
+      - name: 2d_texture
+      - name: 3d_texture
+      - name: cube_map
+      - name: white
+  BitmapDataFormat:
+    class: enum
+    size: 2
+    options:
+      - name: a8
+      - name: y8
+      - name: ay8
+      - name: a8y8
+      - name: unused1
+      - name: unused2
+      - name: r5g6b5
+      - name: unused3
+      - name: a1r5g5b5
+      - name: a4r4g4b4
+      - name: x8r8g8b8
+      - name: a8r8g8b8
+      - name: unused4
+      - name: unused5
+      - name: dxt1
+      - name: dxt3
+      - name: dxt5
+      - name: p8_bump
+        comments:
+          en: This format is only supported on Xbox.
+  BitmapDataFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: power_of_two_dimensions
+      - name: compressed
+      - name: palettized
+      - name: swizzled
+      - name: linear
+      - name: v16u16
+      - name: unused
+        meta:
+          cache_only: true
+      - name: make_it_actually_work
+        meta:
+          cache_only: true
+      - name: external
+        meta:
+          cache_only: true
+      - name: stubbed
+        meta:
+          cache_only: true
+      - name: zstandard_compressed_(extended)
+  BitmapData:
+    class: struct
+    assert_size: 48
+    meta:
+      unsafe_to_dedupe: true
+      pre_compile: true
+      read_only: true
+    fields:
+      - name: bitmap_class
+        type: TagEngineId
+        meta:
+          hidden: true
+      - name: width
+        type: uint16
+        meta:
+          unit: pixels
+      - name: height
+        type: uint16
+        meta:
+          unit: pixels
+      - name: depth
+        type: uint16
+        meta:
+          unit: pixels
+      - name: type
+        type: BitmapDataType
+      - name: format
+        type: BitmapDataFormat
+      - name: flags
+        type: BitmapDataFlags
+      - name: registration_point
+        type: Point2DInt
+      - name: mipmap_count
+        type: uint16
+      - type: pad
+        size: 2
+      - name: pixel_data_offset
+        type: uint32
+      - name: pixel_data_size
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: bitmap_tag_id
+        type: TagID
+        meta:
+          cache_only: true
+        endianness: little
+      - name: pointer
+        type: ptr32
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 4
+      - type: pad
+        size: 4
+        comments:
+          en: >-
+            this appears to be a pointer specific to the tool editing it; it
+            gets changed whenever the tag is opened in any of the HEK tools
+            (guerilla.exe, tool.exe, etc.)
+  Bitmap:
+    class: struct
+    meta:
+      tag_id: bitm
+      post_cache_parse: true
+      postprocess_hek_data: true
+      pre_compile: true
+    comments:
+      en: >
+        Stores texture data like sprite sheets, environment maps, normal maps,
+        and more. Commonly (but not exclusively) referenced by
+        [shaders][shader].
+    assert_size: 108
+    fields:
+      - name: type
+        type: BitmapType
+      - name: encoding_format
+        type: BitmapFormat
+        comments:
+          en: Format to use when generating the tag
+      - name: usage
+        type: BitmapUsage
+      - name: flags
+        type: BitmapFlags
+      - name: detail_fade_factor
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: sharpen_amount
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: bump_height
+        type: Fraction
+        meta:
+          unit: repeats
+      - name: sprite_budget_size
+        type: BitmapSpriteBudgetSize
+      - name: sprite_budget_count
+        type: uint16
+      - name: color_plate_width
+        type: uint16
+        meta:
+          non_cached: true
+          unit: pixels
+          volatile: true
+          read_only: true
+      - name: color_plate_height
+        type: uint16
+        meta:
+          non_cached: true
+          unit: pixels
+          volatile: true
+          read_only: true
+      - name: compressed_color_plate_data
+        type: TagDataOffset
+        meta:
+          non_cached: true
+          volatile: true
+          read_only: true
+      - name: processed_pixel_data
+        type: TagDataOffset
+        meta:
+          non_cached: true
+          read_only: true
+      - name: blur_filter_size
+        type: float
+        meta:
+          unit: pixels
+          min: 0
+          max: 10
+      - name: alpha_bias
+        type: float
+        meta:
+          min: -1
+          max: 1
+      - name: mipmap_count
+        type: uint16
+      - name: sprite_usage
+        type: BitmapSpriteUsage
+      - name: sprite_spacing
+        type: uint16
+        meta:
+          read_only: true
+      - type: pad
+        size: 2
+      - name: bitmap_group_sequence
+        type: Block
+        type_args:
+          T: BitmapGroupSequence
+        meta:
+          hek_max_count: 256
+          max: 65534
+          read_only: true
+      - name: bitmap_data
+        type: Block
+        type_args:
+          T: BitmapData
+        meta:
+          hek_max_count: 2048
+          max: 65534
+          read_only: true

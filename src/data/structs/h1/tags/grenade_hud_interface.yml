@@ -1,0 +1,295 @@
+entry_type: GrenadeHUDInterface
+imports:
+  h1/tags/hud_interface_types:
+    - HUDInterfaceAnchor
+    - HUDInterfaceScalingFlags
+    - HUDInterfaceFlashFlags
+    - HUDInterfaceMultitextureOverlay
+    - HUDInterfaceNumberFlags
+    - HUDInterfaceOverlayFlashFlags
+    - HUDInterfaceMessagingFlags
+  h1/tags/common:
+    - Point2DInt
+    - TagDependency
+    - ColorARGBInt
+    - Index
+    - Block
+type_defs:
+  GrenadeHUDInterfaceOverlayType:
+    class: bitfield
+    size: 2
+    bits:
+      - name: show_on_flashing
+      - name: show_on_empty
+      - name: show_on_default
+      - name: show_always
+  GrenadeHUDInterfaceOverlay:
+    class: struct
+    assert_size: 136
+    fields:
+      - name: anchor_offset
+        type: Point2DInt
+      - name: width_scale
+        type: float
+        meta:
+          default: 1
+      - name: height_scale
+        type: float
+        meta:
+          default: 1
+      - name: scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: default_color
+        type: ColorARGBInt
+      - name: flashing_color
+        type: ColorARGBInt
+      - name: flash_period
+        type: float
+      - name: flash_delay
+        type: float
+      - name: number_of_flashes
+        type: uint16
+      - name: flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: flash_length
+        type: float
+      - name: disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: frame_rate
+        type: float
+      - name: sequence_index
+        type: Index
+      - name: type
+        type: GrenadeHUDInterfaceOverlayType
+      - name: flags
+        type: HUDInterfaceOverlayFlashFlags
+      - type: pad
+        size: 16
+      - type: pad
+        size: 40
+  GrenadeHUDInterfaceSoundLatchedTo:
+    class: bitfield
+    size: 4
+    bits:
+      - name: low_grenade_count
+      - name: no_grenades_left
+      - name: throw_on_no_grenades
+  GrenadeHUDInterfaceSound:
+    class: struct
+    assert_size: 56
+    fields:
+      - name: sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - sound_looping
+      - name: latched_to
+        type: GrenadeHUDInterfaceSoundLatchedTo
+      - name: scale
+        type: float
+      - type: pad
+        size: 32
+  GrenadeHUDInterface:
+    class: struct
+    meta:
+      tag_id: grhi
+    assert_size: 504
+    fields:
+      - name: anchor
+        type: HUDInterfaceAnchor
+      - type: pad
+        size: 2
+      - type: pad
+        size: 32
+      - name: background_anchor_offset
+        type: Point2DInt
+      - name: background_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: background_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: background_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: background_interface_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: background_default_color
+        type: ColorARGBInt
+      - name: background_flashing_color
+        type: ColorARGBInt
+      - name: background_flash_period
+        type: float
+      - name: background_flash_delay
+        type: float
+      - name: background_number_of_flashes
+        type: uint16
+      - name: background_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: background_flash_length
+        type: float
+      - name: background_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: background_sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: background_multitexture_overlays
+        type: Block
+        type_args:
+          T: HUDInterfaceMultitextureOverlay
+        meta:
+          hek_max_count: 30
+      - type: pad
+        size: 4
+      - name: total_grenades_background_anchor_offset
+        type: Point2DInt
+      - name: total_grenades_background_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: total_grenades_background_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: total_grenades_background_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: total_grenades_background_interface_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: total_grenades_background_default_color
+        type: ColorARGBInt
+      - name: total_grenades_background_flashing_color
+        type: ColorARGBInt
+      - name: total_grenades_background_flash_period
+        type: float
+      - name: total_grenades_background_flash_delay
+        type: float
+      - name: total_grenades_background_number_of_flashes
+        type: uint16
+      - name: total_grenades_background_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: total_grenades_background_flash_length
+        type: float
+      - name: total_grenades_background_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: total_grenades_background_sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: total_grenades_background_multitexture_overlays
+        type: Block
+        type_args:
+          T: HUDInterfaceMultitextureOverlay
+        meta:
+          hek_max_count: 30
+      - type: pad
+        size: 4
+      - name: total_grenades_numbers_anchor_offset
+        type: Point2DInt
+      - name: total_grenades_numbers_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: total_grenades_numbers_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: total_grenades_numbers_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: total_grenades_numbers_default_color
+        type: ColorARGBInt
+      - name: total_grenades_numbers_flashing_color
+        type: ColorARGBInt
+      - name: total_grenades_numbers_flash_period
+        type: float
+      - name: total_grenades_numbers_flash_delay
+        type: float
+      - name: total_grenades_numbers_number_of_flashes
+        type: uint16
+      - name: total_grenades_numbers_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: total_grenades_numbers_flash_length
+        type: float
+      - name: total_grenades_numbers_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: total_grenades_numbers_maximum_number_of_digits
+        type: int8
+      - name: total_grenades_numbers_flags
+        type: HUDInterfaceNumberFlags
+      - name: total_grenades_numbers_number_of_fractional_digits
+        type: int8
+      - type: pad
+        size: 1
+      - type: pad
+        size: 12
+      - name: flash_cutoff
+        type: uint16
+      - type: pad
+        size: 2
+      - name: total_grenades_overlay_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: total_grenades_overlays
+        type: Block
+        type_args:
+          T: GrenadeHUDInterfaceOverlay
+        meta:
+          hek_max_count: 16
+      - name: total_grenades_warning_sounds
+        type: Block
+        type_args:
+          T: GrenadeHUDInterfaceSound
+        meta:
+          hek_max_count: 12
+      - type: pad
+        size: 68
+      - name: messaging_information_sequence_index
+        type: Index
+      - name: messaging_information_width_offset
+        type: int16
+      - name: messaging_information_offset_from_reference_corner
+        type: Point2DInt
+      - name: messaging_information_override_icon_color
+        type: ColorARGBInt
+      - name: messaging_information_frame_rate
+        type: int8
+      - name: messaging_information_flags
+        type: HUDInterfaceMessagingFlags
+      - name: messaging_information_text_index
+        type: Index
+      - type: pad
+        size: 48

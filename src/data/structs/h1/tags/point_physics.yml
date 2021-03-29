@@ -1,0 +1,54 @@
+entry_type: PointPhysics
+imports: {}
+type_defs:
+  PointPhysicsFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: flamethrower_particle_collision
+      - name: collides_with_structures
+      - name: collides_with_water_surface
+      - name: uses_simple_wind
+      - name: uses_damped_wind
+      - name: no_gravity
+  PointPhysics:
+    class: struct
+    meta:
+      tag_id: pphy
+      post_cache_deformat: true
+      pre_compile: true
+    assert_size: 64
+    fields:
+      - name: flags
+        type: PointPhysicsFlags
+      - name: unknown_constant
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: water_gravity_scale
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: air_gravity_scale
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 16
+      - name: density
+        type: float
+        meta:
+          unit: grams per milliliter
+      - name: air_friction
+        type: float
+      - name: water_friction
+        type: float
+      - name: surface_friction
+        type: float
+      - name: elasticity
+        type: float
+      - type: pad
+        size: 12

@@ -1,0 +1,935 @@
+entry_type: Dialogue
+imports:
+  h1/tags/common:
+    - TagDependency
+type_defs:
+  Dialogue:
+    class: struct
+    meta:
+      tag_id: udlg
+    assert_size: 4112
+    fields:
+      - type: pad
+        size: 2
+      - type: pad
+        size: 2
+      - type: pad
+        size: 12
+      - name: idle_noncombat
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: idle_combat
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: idle_flee
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - name: pain_body_minor
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: pain_body_major
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: pain_shield
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: pain_falling
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: scream_fear
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: scream_pain
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: maimed_limb
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: maimed_head
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: death_quiet
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: death_violent
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: death_falling
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: death_agonizing
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: death_instant
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: death_flying
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - name: damaged_friend
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: damaged_friend_player
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: damaged_enemy
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: damaged_enemy_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - name: hurt_friend
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_friend_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_friend_player
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_bullet
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_needler
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_plasma
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_sniper
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_grenade
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_explosion
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_melee
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_flame
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_shotgun
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_vehicle
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hurt_enemy_mountedweapon
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - name: killed_friend
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_friend_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_friend_player
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_friend_player_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_player
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_player_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_covenant
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_covenant_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_floodcombat
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_floodcombat_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_floodcarrier
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_floodcarrier_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_sentinel
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_sentinel_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_bullet
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_needler
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_plasma
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_sniper
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_grenade
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_explosion
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_melee
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_flame
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_shotgun
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_vehicle
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killed_enemy_mountedweapon
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: killing_spree
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - name: player_kill_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: player_kill_bullet_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: player_kill_needler_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: player_kill_plasma_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: player_kill_sniper_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: anyone_kill_grenade_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: player_kill_explosion_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: player_kill_melee_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: player_kill_flame_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: player_kill_shotgun_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: player_kill_vehicle_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: player_kill_mountedweapon_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: player_killling_spree_cm
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - name: friend_died
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: friend_player_died
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: friend_killed_by_friend
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: friend_killed_by_friendly_player
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: friend_killed_by_enemy
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: friend_killed_by_enemy_player
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: friend_killed_by_covenant
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: friend_killed_by_flood
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: friend_killed_by_sentinel
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: friend_betrayed
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - name: new_combat_alone
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: new_enemy_recent_combat
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: old_enemy_sighted
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: unexpected_enemy
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: dead_friend_found
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: alliance_broken
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: alliance_reformed
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: grenade_throwing
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: grenade_sighted
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: grenade_startle
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: grenade_danger_enemy
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: grenade_danger_self
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: grenade_danger_friend
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - name: new_combat_group_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: new_combat_nearby_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: alert_friend
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: alert_friend_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: alert_lost_contact
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: alert_lost_contact_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: blocked
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: blocked_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: search_start
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: search_query
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: search_query_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: search_report
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: search_abandon
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: search_group_abandon
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: group_uncover
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: group_uncover_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: advance
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: advance_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: retreat
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: retreat_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: cover
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - name: sighted_friend_player
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: shooting
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: shooting_vehicle
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: shooting_berserk
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: shooting_group
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: shooting_traitor
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: taunt
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: taunt_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: flee
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: flee_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: flee_leader_died
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: attempted_flee
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: attempted_flee_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: lost_contact
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: hiding_finished
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: vehicle_entry
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: vehicle_exit
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: vehicle_woohoo
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: vehicle_scared
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: vehicle_collision
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: partially_sighted
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: nothing_there
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: pleading
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - name: surprise
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: berserk
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: melee_attack
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: dive
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: uncover_exclamation
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: leap_attack
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: resurrection
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - name: celebration
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: check_body_enemy
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: check_body_friend
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: shooting_dead_enemy
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: shooting_dead_enemy_player
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - name: alone
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: unscathed
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: seriously_wounded
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: seriously_wounded_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: massacre
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: massacre_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: rout
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: rout_re
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 752

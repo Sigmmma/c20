@@ -1,0 +1,26 @@
+entry_type: InputDeviceDefaults
+imports:
+  h1/tags/common:
+    - TagDataOffset
+type_defs:
+  InputDeviceDefaultsDeviceType:
+    class: enum
+    size: 2
+    options:
+      - name: mouse_and_keyboard
+      - name: joysticks_gamepads_etc
+      - name: full_profile_definition
+  InputDeviceDefaults:
+    class: struct
+    meta:
+      tag_id: devc
+    assert_size: 44
+    fields:
+      - name: device_type
+        type: InputDeviceDefaultsDeviceType
+      - name: unused
+        type: int16
+      - name: device_id
+        type: TagDataOffset
+      - name: profile
+        type: TagDataOffset

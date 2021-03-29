@@ -1,0 +1,136 @@
+entry_type: LightVolume
+imports:
+  h1/tags/common:
+    - TagString
+    - Fraction
+    - FunctionOut
+    - TagDependency
+    - Index
+    - Block
+    - ColorARGB
+type_defs:
+  LightVolumeFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: interpolate_color_in_hsv
+      - name: more_colors
+  LightVolumeFrame:
+    class: struct
+    assert_size: 176
+    fields:
+      - type: pad
+        size: 16
+      - name: offset_from_marker
+        type: float
+        meta:
+          unit: world units
+      - name: offset_exponent
+        type: float
+        meta:
+          default: 1
+      - name: length
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 32
+      - name: radius_hither
+        type: float
+        meta:
+          unit: world units
+      - name: radius_yon
+        type: float
+        meta:
+          unit: world units
+      - name: radius_exponent
+        type: float
+        meta:
+          default: 1
+      - type: pad
+        size: 32
+      - name: tint_color_hither
+        type: ColorARGB
+      - name: tint_color_yon
+        type: ColorARGB
+      - name: tint_color_exponent
+        type: float
+        meta:
+          default: 1
+      - name: brightness_exponent
+        type: float
+        meta:
+          default: 1
+      - type: pad
+        size: 32
+  LightVolume:
+    class: struct
+    meta:
+      tag_id: mgs2
+    comments:
+      en: >-
+        Describes a dense line of glow particles, commonly used for projectile
+        tails.
+    assert_size: 332
+    fields:
+      - name: attachment_marker
+        type: TagString
+      - type: pad
+        size: 2
+      - name: flags
+        type: LightVolumeFlags
+      - type: pad
+        size: 16
+      - name: near_fade_distance
+        type: float
+        meta:
+          unit: world units
+      - name: far_fade_distance
+        type: float
+        meta:
+          unit: world units
+      - name: perpendicular_brightness_scale
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+          default: 1
+      - name: parallel_brightness_scale
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+          default: 1
+      - name: brightness_scale_source
+        type: FunctionOut
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: sequence_index
+        type: Index
+      - name: count
+        type: uint16
+      - type: pad
+        size: 72
+      - name: frame_animation_source
+        type: FunctionOut
+      - type: pad
+        size: 2
+      - type: pad
+        size: 36
+      - type: pad
+        size: 64
+      - name: frames
+        type: Block
+        type_args:
+          T: LightVolumeFrame
+        meta:
+          hek_max_count: 2
+      - type: pad
+        size: 32

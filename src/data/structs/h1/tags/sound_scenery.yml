@@ -1,0 +1,20 @@
+entry_type: SoundScenery
+imports:
+  h1/tags/object:
+    - BasicObject
+type_defs:
+  SoundScenery:
+    class: struct
+    extends:
+      type: BasicObject
+    meta:
+      tag_id: ssce
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: >
+        Identical to [scenery][] but with collision rules like
+        [device_light_fixture][]. Used for invisible emitters of localized sound
+        like rivers and waterfalls.
+    assert_size: 508
+    fields: []

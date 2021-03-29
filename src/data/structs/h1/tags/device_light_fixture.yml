@@ -1,0 +1,20 @@
+entry_type: DeviceLightFixture
+imports:
+  h1/tags/device:
+    - Device
+type_defs:
+  DeviceLightFixture:
+    class: struct
+    extends:
+      type: Device
+    meta:
+      tag_id: lifi
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: Used for dynamically toggled light sources or decorate lighting objects.
+    assert_size: 720
+    fields:
+      - type: pad
+        size: 64

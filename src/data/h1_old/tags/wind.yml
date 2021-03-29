@@ -1,0 +1,22 @@
+name: wind
+id: wind
+invaderStructName: Wind
+comments:
+  en: >
+    Describes the speed and variation of wind in a
+    [BSP cluster][scenario_structure_bsp#clusters-and-cluster-data], affecting
+    local [point_physics][] like [flags][flag] and [weather][weather_particle_system].
+  fields:
+    - name: velocity
+      en: >
+        Upper and lower bounds for wind speed. Technically, this is not a true
+        "velocity" because it is not a vector; wind direction is set in the BSP's
+        weather palettes.
+    - name: variation area
+      en: ...
+    - name: local variation weight
+      en: ...
+    - name: local variation rate
+      en: ...
+    - name: damping
+      en: ...

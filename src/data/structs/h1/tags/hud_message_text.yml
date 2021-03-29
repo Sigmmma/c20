@@ -1,0 +1,54 @@
+entry_type: HUDMessageText
+imports:
+  h1/tags/common:
+    - TagDataOffset
+    - Block
+    - TagString
+    - Index
+type_defs:
+  HUDMessageTextElement:
+    class: struct
+    assert_size: 2
+    fields:
+      - name: type
+        type: int8
+      - name: data
+        type: int8
+  HUDMessageTextMessage:
+    class: struct
+    assert_size: 64
+    fields:
+      - name: name
+        type: TagString
+      - name: start_index_into_text_blob
+        type: Index
+      - name: start_index_of_message_block
+        type: Index
+      - name: panel_count
+        type: int8
+      - type: pad
+        size: 3
+      - type: pad
+        size: 24
+  HUDMessageText:
+    class: struct
+    meta:
+      tag_id: 'hmt '
+    assert_size: 128
+    fields:
+      - name: text_data
+        type: TagDataOffset
+      - name: message_elements
+        type: Block
+        type_args:
+          T: HUDMessageTextElement
+        meta:
+          hek_max_count: 8192
+      - name: messages
+        type: Block
+        type_args:
+          T: HUDMessageTextMessage
+        meta:
+          hek_max_count: 1024
+      - type: pad
+        size: 84

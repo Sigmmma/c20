@@ -1,0 +1,87 @@
+entry_type: ShaderTransparentChicagoExtended
+imports:
+  h1/tags/shader:
+    - Shader
+    - ShaderFirstMapType
+    - ShaderTransparentExtraLayer
+  h1/tags/shader_transparent_generic:
+    - ShaderTransparentGenericFlags
+  h1/tags/common:
+    - FramebufferBlendFunction
+    - FramebufferFadeMode
+    - FunctionOut
+    - TagDependency
+    - Block
+  h1/tags/shader_transparent_chicago:
+    - ShaderTransparentChicagoMap
+    - ShaderTransparentChicagoExtraFlags
+type_defs:
+  ShaderTransparentChicagoExtended:
+    class: struct
+    extends:
+      type: Shader
+    meta:
+      tag_id: scex
+      pre_compile: true
+    comments:
+      en: >
+        A version of [shader_transparent_chicago][] which contains an additional
+        2-stage block for supporting older graphics hardware.
+    assert_size: 120
+    fields:
+      - name: numeric_counter_limit
+        type: uint8
+      - name: shader_transparent_chicago_extended_flags
+        type: ShaderTransparentGenericFlags
+      - name: first_map_type
+        type: ShaderFirstMapType
+      - name: framebuffer_blend_function
+        type: FramebufferBlendFunction
+      - name: framebuffer_fade_mode
+        type: FramebufferFadeMode
+      - name: framebuffer_fade_source
+        type: FunctionOut
+      - type: pad
+        size: 2
+      - name: lens_flare_spacing
+        type: float
+        meta:
+          unit: world units
+      - name: lens_flare
+        type: TagDependency
+        meta:
+          tag_classes:
+            - lens_flare
+      - name: extra_layers
+        type: Block
+        type_args:
+          T: ShaderTransparentExtraLayer
+        meta:
+          hek_max_count: 4
+        comments:
+          en: >
+            **Warning**: Using a shader with extra layers on an [object][] with
+            _transparent self occlusion_ enabled causes [Sapien to
+            crash][sapien#crashes].
+      - name: maps_4_stage
+        type: Block
+        type_args:
+          T: ShaderTransparentChicagoMap
+        meta:
+          hek_max_count: 4
+          max: 4
+      - name: maps_2_stage
+        type: Block
+        type_args:
+          T: ShaderTransparentChicagoMap
+        meta:
+          hek_max_count: 2
+          max: 2
+        comments:
+          en: >-
+            This block is used instead of _maps 4 stage_ on older video
+            hardware.
+      - name: extra_flags
+        type: ShaderTransparentChicagoExtraFlags
+      - type: pad
+        size: 8

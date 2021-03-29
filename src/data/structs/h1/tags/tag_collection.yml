@@ -1,0 +1,27 @@
+entry_type: TagCollection
+imports:
+  h1/tags/common:
+    - Block
+    - TagDependency
+type_defs:
+  TagCollectionTag:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: reference
+        type: TagDependency
+        meta:
+          tag_classes:
+            - '*'
+  TagCollection:
+    class: struct
+    meta:
+      tag_id: tagc
+    assert_size: 12
+    fields:
+      - name: tags
+        type: Block
+        type_args:
+          T: TagCollectionTag
+        meta:
+          hek_max_count: 200

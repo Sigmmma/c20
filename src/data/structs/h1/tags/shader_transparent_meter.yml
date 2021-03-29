@@ -1,0 +1,82 @@
+entry_type: ShaderTransparentMeter
+imports:
+  h1/tags/shader:
+    - Shader
+  h1/tags/common:
+    - TagDependency
+    - ColorRGB
+    - Fraction
+    - FunctionOut
+type_defs:
+  ShaderTransparentMeterFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: decal
+      - name: two_sided
+      - name: flash_color_is_negative
+      - name: tint_mode_2
+      - name: unfiltered
+  ShaderTransparentMeter:
+    class: struct
+    extends:
+      type: Shader
+    meta:
+      tag_id: smet
+      pre_compile: true
+    comments:
+      en: >
+        Used for transparent materials with an incrementally scaled area, such
+        as first person (not HUD) heat meters for plasma weapons and the
+        Warthog's speedometer.
+    assert_size: 260
+    fields:
+      - name: meter_flags
+        type: ShaderTransparentMeterFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 32
+      - name: map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 32
+      - name: gradient_min_color
+        type: ColorRGB
+      - name: gradient_max_color
+        type: ColorRGB
+      - name: background_color
+        type: ColorRGB
+      - name: flash_color
+        type: ColorRGB
+      - name: meter_tint_color
+        type: ColorRGB
+      - name: meter_transparency
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: background_transparency
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 24
+      - name: meter_brightness_source
+        type: FunctionOut
+      - name: flash_brightness_source
+        type: FunctionOut
+      - name: value_source
+        type: FunctionOut
+      - name: gradient_source
+        type: FunctionOut
+      - name: flash_extension_source
+        type: FunctionOut
+      - type: pad
+        size: 2
+      - type: pad
+        size: 32

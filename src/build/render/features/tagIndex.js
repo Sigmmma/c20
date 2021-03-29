@@ -76,8 +76,9 @@ module.exports = async function(ctx) {
     return {};
   }
 
-  const usedTags = data[gameVersion].tags.filter(t => !t.unused);
-  const unusedTags = data[gameVersion].tags.filter(t => t.unused);
+  //todo
+  const usedTags = [];//data[gameVersion].tags.filter(t => !t.unused);
+  const unusedTags = [];//data[gameVersion].tags.filter(t => t.unused);
   const tagsListHeading = localize("tagsListHeading");
   const headings = [
     {title: tagsListHeading, id: slugify(tagsListHeading), level: 1}

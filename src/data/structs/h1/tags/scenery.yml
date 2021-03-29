@@ -1,0 +1,20 @@
+entry_type: Scenery
+imports:
+  h1/tags/object:
+    - BasicObject
+type_defs:
+  Scenery:
+    class: struct
+    extends:
+      type: BasicObject
+    meta:
+      tag_id: scen
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: >
+        Fixed decoration objects like boulders, plants, and crates. Placed in
+        the level using [Sapien][].
+    assert_size: 508
+    fields: []

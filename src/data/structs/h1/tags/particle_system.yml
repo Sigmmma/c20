@@ -1,0 +1,343 @@
+entry_type: ParticleSystem
+imports:
+  h1/tags/common:
+    - TagDependency
+    - IsUnusedFlag
+    - Block
+    - TagString
+    - ColorARGB
+    - Index
+    - Angle
+    - FramebufferBlendFunction
+    - FramebufferFadeMode
+    - IsUnfilteredFlag
+    - FunctionOut
+    - WaveFunction
+    - Point2D
+  h1/tags/particle:
+    - ParticleShaderFlags
+    - ParticleAnchor
+type_defs:
+  ParticleSystemSystemUpdatePhysics:
+    class: enum
+    size: 2
+    options:
+      - name: default
+      - name: explosion
+  ParticleSystemPhysicsConstant:
+    class: struct
+    assert_size: 4
+    fields:
+      - name: k
+        type: float
+  ParticleSystemTypeFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: type_states_loop
+      - name: forward_backward
+      - name: particle_states_loop
+      - name: forward_backward_1
+      - name: particles_die_in_water
+      - name: particles_die_in_air
+      - name: particles_die_on_ground
+      - name: rotational_sprites_animate_sideways
+      - name: disabled
+      - name: tint_by_effect_color
+      - name: initial_count_scales_with_effect
+      - name: minimum_count_scales_with_effect
+      - name: creation_rate_scales_with_effect
+      - name: scale_scales_with_effect
+      - name: animation_rate_scales_with_effect
+      - name: rotation_rate_scales_with_effect
+      - name: don't_draw_in_first_person
+      - name: don't_draw_in_third_person
+  ParticleSystemComplexSpriteRenderModes:
+    class: enum
+    size: 2
+    options:
+      - name: simple
+      - name: rotational
+  ParticleSystemParticleCreationPhysics:
+    class: enum
+    size: 2
+    options:
+      - name: default
+      - name: explosion
+      - name: jet
+  ParticleSystemParticleUpdatePhysics:
+    class: enum
+    size: 2
+    options:
+      - name: default
+  ParticleSystemTypeStates:
+    class: struct
+    assert_size: 192
+    fields:
+      - name: name
+        type: TagString
+      - name: duration_bounds
+        type: Bounds
+        meta:
+          unit: second
+        type_args:
+          T: float
+      - name: transition_time_bounds
+        type: Bounds
+        meta:
+          unit: second
+        type_args:
+          T: float
+      - type: pad
+        size: 4
+      - name: scale_multiplier
+        type: float
+      - name: animation_rate_multiplier
+        type: float
+      - name: rotation_rate_multiplier
+        type: float
+      - name: color_multiplier
+        type: ColorARGB
+      - name: radius_multiplier
+        type: float
+      - name: minimum_particle_count
+        type: float
+      - name: particle_creation_rate
+        type: float
+        meta:
+          unit: particles per second
+      - type: pad
+        size: 84
+      - name: particle_creation_physics
+        type: ParticleSystemParticleCreationPhysics
+      - name: particle_update_physics
+        type: ParticleSystemParticleUpdatePhysics
+      - name: physics_constants
+        type: Block
+        type_args:
+          T: ParticleSystemPhysicsConstant
+        meta:
+          hek_max_count: 16
+  ParticleSystemTypeParticleState:
+    class: struct
+    assert_size: 376
+    meta:
+      pre_compile: true
+    fields:
+      - name: name
+        type: TagString
+      - name: duration_bounds
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: transition_time_bounds
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: bitmaps
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - type: pad
+        size: 4
+      - name: scale
+        type: Bounds
+        meta:
+          unit: world units per pixel
+        type_args:
+          T: float
+      - name: animation_rate
+        type: Bounds
+        meta:
+          unit: frames per second
+        type_args:
+          T: float
+      - name: rotation_rate
+        type: Bounds
+        meta:
+          unit: degrees per second
+        type_args:
+          T: Angle
+      - name: color_1
+        type: ColorARGB
+      - name: color_2
+        type: ColorARGB
+      - name: radius_multiplier
+        type: float
+      - name: point_physics
+        type: TagDependency
+        meta:
+          tag_classes:
+            - point_physics
+      - type: pad
+        size: 36
+      - type: pad
+        size: 36
+      - name: unknown_int
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: shader_flags
+        type: ParticleShaderFlags
+      - name: framebuffer_blend_function
+        type: FramebufferBlendFunction
+      - name: framebuffer_fade_mode
+        type: FramebufferFadeMode
+      - name: map_flags
+        type: IsUnfilteredFlag
+      - type: pad
+        size: 28
+      - name: secondary_map_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: anchor
+        type: ParticleAnchor
+      - name: flags
+        type: IsUnfilteredFlag
+      - name: u_animation_source
+        type: FunctionOut
+      - name: u_animation_function
+        type: WaveFunction
+      - name: u_animation_period
+        type: float
+        meta:
+          unit: seconds
+      - name: u_animation_phase
+        type: float
+      - name: u_animation_scale
+        type: float
+        meta:
+          unit: repeats
+      - name: v_animation_source
+        type: FunctionOut
+      - name: v_animation_function
+        type: WaveFunction
+      - name: v_animation_period
+        type: float
+        meta:
+          unit: seconds
+      - name: v_animation_phase
+        type: float
+      - name: v_animation_scale
+        type: float
+        meta:
+          unit: repeats
+      - name: rotation_animation_source
+        type: FunctionOut
+      - name: rotation_animation_function
+        type: WaveFunction
+      - name: rotation_animation_period
+        type: float
+        meta:
+          unit: seconds
+      - name: rotation_animation_phase
+        type: float
+      - name: rotation_animation_scale
+        type: float
+        meta:
+          unit: degrees
+      - name: rotation_animation_center
+        type: Point2D
+      - type: pad
+        size: 4
+      - name: zsprite_radius_scale
+        type: float
+      - type: pad
+        size: 20
+      - name: physics_constants
+        type: Block
+        type_args:
+          T: ParticleSystemPhysicsConstant
+        meta:
+          hek_max_count: 16
+  ParticleSystemType:
+    class: struct
+    assert_size: 128
+    fields:
+      - name: name
+        type: TagString
+      - name: flags
+        type: ParticleSystemTypeFlags
+      - name: initial_particle_count
+        type: uint16
+      - type: pad
+        size: 2
+      - name: complex_sprite_render_modes
+        type: ParticleSystemComplexSpriteRenderModes
+      - type: pad
+        size: 2
+      - name: radius
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 36
+      - name: particle_creation_physics
+        type: ParticleSystemParticleCreationPhysics
+      - type: pad
+        size: 2
+      - name: physics_flags
+        type: IsUnusedFlag
+      - name: physics_constants
+        type: Block
+        type_args:
+          T: ParticleSystemPhysicsConstant
+        meta:
+          hek_max_count: 16
+      - name: states
+        type: Block
+        type_args:
+          T: ParticleSystemTypeStates
+        meta:
+          hek_max_count: 8
+      - name: particle_states
+        type: Block
+        type_args:
+          T: ParticleSystemTypeParticleState
+        meta:
+          hek_max_count: 8
+  ParticleSystem:
+    class: struct
+    meta:
+      tag_id: pctl
+    assert_size: 104
+    fields:
+      - type: pad
+        size: 4
+      - type: pad
+        size: 52
+      - name: point_physics
+        type: TagDependency
+        meta:
+          tag_classes:
+            - point_physics
+      - name: system_update_physics
+        type: ParticleSystemSystemUpdatePhysics
+      - type: pad
+        size: 2
+      - name: physics_flags
+        type: IsUnusedFlag
+      - name: physics_constants
+        type: Block
+        type_args:
+          T: ParticleSystemPhysicsConstant
+        meta:
+          hek_max_count: 8
+      - name: particle_types
+        type: Block
+        type_args:
+          T: ParticleSystemType
+        meta:
+          hek_max_count: 4

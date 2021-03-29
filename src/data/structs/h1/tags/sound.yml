@@ -1,0 +1,369 @@
+entry_type: Sound
+imports:
+  h1/tags/common:
+    - Fraction
+    - Angle
+    - TagDependency
+    - Block
+    - TagString
+    - Index
+    - TagID
+    - TagDataOffset
+type_defs:
+  SoundFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: fit_to_adpcm_blocksize
+      - name: split_long_sound_into_permutations
+  SoundClass:
+    class: enum
+    size: 2
+    options:
+      - name: projectile_impact
+      - name: projectile_detonation
+      - name: unused
+      - name: unused1
+      - name: weapon_fire
+      - name: weapon_ready
+      - name: weapon_reload
+      - name: weapon_empty
+      - name: weapon_charge
+      - name: weapon_overheat
+      - name: weapon_idle
+      - name: unused2
+      - name: unused3
+      - name: object_impacts
+      - name: particle_impacts
+      - name: slow_particle_impacts
+      - name: unused4
+      - name: unused5
+      - name: unit_footsteps
+      - name: unit_dialog
+      - name: unused6
+      - name: unused7
+      - name: vehicle_collision
+      - name: vehicle_engine
+      - name: unused8
+      - name: unused9
+      - name: device_door
+      - name: device_force_field
+      - name: device_machinery
+      - name: device_nature
+      - name: device_computers
+      - name: unused10
+      - name: music
+      - name: ambient_nature
+      - name: ambient_machinery
+      - name: ambient_computers
+      - name: unused11
+      - name: unused12
+      - name: unused13
+      - name: first_person_damage
+      - name: unused14
+      - name: unused15
+      - name: unused16
+      - name: unused17
+      - name: scripted_dialog_player
+      - name: scripted_effect
+      - name: scripted_dialog_other
+      - name: scripted_dialog_force_unspatialized
+      - name: unused18
+      - name: unused19
+      - name: game_event
+  SoundSampleRate:
+    class: enum
+    size: 2
+    options:
+      - name: 22050_Hz
+      - name: 44100_Hz
+  SoundChannelCount:
+    class: enum
+    size: 2
+    options:
+      - name: mono
+      - name: stereo
+  SoundFormat:
+    class: enum
+    size: 2
+    options:
+      - name: 16-bit_PCM
+      - name: Xbox_ADPCM
+      - name: IMA_ADPCM
+      - name: Ogg_Vorbis
+      - name: FLAC
+  SoundPermutation:
+    class: struct
+    assert_size: 124
+    meta:
+      post_cache_deformat: true
+      unsafe_to_dedupe: true
+      pre_compile: true
+    fields:
+      - name: name
+        type: TagString
+        meta:
+          read_only: true
+      - name: skip_fraction
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: gain
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+          default: 1
+      - name: format
+        type: SoundFormat
+        meta:
+          read_only: true
+      - name: next_permutation_index
+        type: Index
+        meta:
+          index_of: permutations
+          read_only: true
+      - name: samples_pointer
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 4
+      - name: tag_id_0
+        type: TagID
+        meta:
+          cache_only: true
+        endianness: little
+        comments:
+          en: Set to the sound tag's tag ID
+      - name: buffer_size
+        type: uint32
+        endianness: little
+        meta:
+          read_only: true
+        comments:
+          en: >-
+            this is the buffer size used to hold (and, for Vorbis, decompress)
+            the 16-bit PCM data (unused in Xbox ADPCM)
+      - name: tag_id_1
+        type: TagID
+        meta:
+          cache_only: true
+        endianness: little
+        comments:
+          en: Set to the sound tag's tag ID
+      - name: samples
+        type: TagDataOffset
+        meta:
+          external_file_offset: sounds.map
+          compile_ignore: true
+          read_only: true
+      - name: mouth_data
+        type: TagDataOffset
+        meta:
+          read_only: true
+      - name: subtitle_data
+        type: TagDataOffset
+        meta:
+          read_only: true
+  SoundPitchRange:
+    class: struct
+    assert_size: 72
+    meta:
+      pre_compile: true
+    fields:
+      - name: name
+        type: TagString
+      - name: natural_pitch
+        type: float
+        meta:
+          default: 1
+        comments:
+          en: >-
+            This is the base pitch for this pitch range.
+
+            When the pitch bend is equal to this, then the audio is played at
+            normal pitch and speed.
+
+            Note that 0 defaults to 1.
+      - name: bend_bounds
+        type: Bounds
+        type_args:
+          T: float
+        comments:
+          en: >-
+            This is the minimum and maximum bend in which this pitch range will
+            be used.
+
+            If the lower bound is higher than natural pitch, then it will be set
+            to natural pitch. Also, if the higher bound is lower than natural
+            pitch, then it will be set to natural pitch.
+      - name: actual_permutation_count
+        type: uint16
+        meta:
+          read_only: true
+        comments:
+          en: >-
+            This is the number of actual permutations in the pitch range, not
+            including chunks due to splitting.
+      - type: pad
+        size: 2
+      - name: playback_rate
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: unknown_ffffffff_0
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: unknown_ffffffff_1
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: permutations
+        type: Block
+        type_args:
+          T: SoundPermutation
+        meta:
+          hek_max_count: 256
+          read_only: true
+  Sound:
+    class: struct
+    meta:
+      tag_id: snd!
+      post_cache_parse: true
+      unsafe_to_dedupe: true
+      pre_compile: true
+    assert_size: 164
+    fields:
+      - name: flags
+        type: SoundFlags
+      - name: sound_class
+        type: SoundClass
+        comments:
+          en: >
+            Determines the "type" of sound and how it is treated by the engine.
+            For example, weapon sounds can wake sleeping Grunts and music volume
+            can be adjusted independently. The engine is only capable of playing
+            up to 4 sounds of a sound class simultaneously on high sound
+            settings.
+      - name: sample_rate
+        type: SoundSampleRate
+        meta:
+          read_only: true
+      - name: minimum_distance
+        type: float
+        meta:
+          unit: world units
+      - name: maximum_distance
+        type: float
+        meta:
+          unit: world units
+      - name: skip_fraction
+        type: Fraction
+      - name: random_pitch_bounds
+        type: Bounds
+        meta:
+          default:
+            - 1
+            - 1
+        type_args:
+          T: float
+        comments:
+          en: >-
+            This is the base playback rate of the sound, affecting tempo and
+            pitch.
+      - name: inner_cone_angle
+        type: Angle
+        meta:
+          default: 6.28318548202515
+      - name: outer_cone_angle
+        type: Angle
+        meta:
+          default: 6.28318548202515
+      - name: outer_cone_gain
+        type: Fraction
+        meta:
+          default: 1
+      - name: random_gain_modifier
+        type: float
+        meta:
+          default: 1
+      - name: maximum_bend_per_second
+        type: float
+      - type: pad
+        size: 12
+      - name: zero_skip_fraction_modifier
+        type: float
+      - name: zero_gain_modifier
+        type: float
+      - name: zero_pitch_modifier
+        type: float
+      - type: pad
+        size: 12
+      - name: one_skip_fraction_modifier
+        type: float
+      - name: one_gain_modifier
+        type: float
+      - name: one_pitch_modifier
+        type: float
+      - type: pad
+        size: 12
+      - name: channel_count
+        type: SoundChannelCount
+        meta:
+          read_only: true
+      - name: format
+        type: SoundFormat
+        meta:
+          read_only: true
+      - name: promotion_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: promotion_count
+        type: uint16
+      - type: pad
+        size: 2
+      - name: longest_permutation_length
+        type: uint32
+        meta:
+          cache_only: true
+          hidden: true
+        comments:
+          en: >-
+            natural pitch * seconds * 1100; not set if pitch modifier is set to
+            anything besides 1; not accurate since increasing natural pitch
+            decreases the length
+
+            uses the 'buffer size' value for 16-bit PCM and Ogg Vorbis (divide
+            by 2 * channel count to get sample count);
+
+            uses entire size of samples for ADPCM (multiply by 130 / 36 *
+            channel count to get sample count)
+      - type: pad
+        size: 8
+      - name: unknown_ffffffff_0
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: unknown_ffffffff_1
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: pitch_ranges
+        type: Block
+        type_args:
+          T: SoundPitchRange
+        meta:
+          hek_max_count: 8
+          zero_on_index: true
+          read_only: true

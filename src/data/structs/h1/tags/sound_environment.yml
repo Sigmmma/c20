@@ -1,0 +1,53 @@
+entry_type: SoundEnvironment
+imports:
+  h1/tags/common:
+    - Fraction
+type_defs:
+  SoundEnvironment:
+    class: struct
+    meta:
+      tag_id: snde
+    assert_size: 72
+    fields:
+      - name: unknown
+        type: int32
+        meta:
+          cache_only: true
+      - name: priority
+        type: int16
+      - type: pad
+        size: 2
+      - name: room_intensity
+        type: Fraction
+      - name: room_intensity_hf
+        type: Fraction
+      - name: room_rolloff
+        type: float
+      - name: decay_time
+        type: float
+        meta:
+          unit: seconds
+      - name: decay_hf_ratio
+        type: float
+      - name: reflections_intensity
+        type: Fraction
+      - name: reflections_delay
+        type: float
+        meta:
+          unit: seconds
+      - name: reverb_intensity
+        type: Fraction
+      - name: reverb_delay
+        type: float
+        meta:
+          unit: seconds
+      - name: diffusion
+        type: float
+      - name: density
+        type: float
+      - name: hf_reference
+        type: float
+        meta:
+          unit: Hz
+      - type: pad
+        size: 16

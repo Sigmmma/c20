@@ -1,0 +1,18 @@
+entry_type: Garbage
+imports:
+  h1/tags/item:
+    - Item
+type_defs:
+  Garbage:
+    class: struct
+    extends:
+      type: Item
+    meta:
+      tag_id: garb
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+    assert_size: 944
+    fields:
+      - type: pad
+        size: 168
