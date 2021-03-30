@@ -521,3 +521,741 @@ OperatorsAndKeywords:
         es: 
       ex: '`(thread_sleep 20)` returns: sleeps for 20ms'
 
+Functions:
+  columns:
+    - id: type
+      name:
+        en: Expression
+        es: 
+      format: code
+    - id: info
+      name:
+        en: Details
+        es: 
+      format: text
+    - id: ex
+      name:
+        en: Usage Example
+        es: 
+      format: text
+  rows:
+    - type: (activate_nav_point_flag <navpoint> <unit> <cutscene_flag> <real>)
+      info:
+        en: >
+          Activates a nav point type <string> attached to (local) player <unit>
+          anchored to a flag with a vertical offset <real>. If the player is not
+          local to the machine, this will fail.
+        es: 
+      ex: 
+
+    - type: (activate_nav_point_object <navpoint> <unit> <object> <real>)
+      info:
+        en: >
+          Activates a nav point type <string> attached to (local) player <unit>
+          anchored to an object with a vertical offset <real>. If the player is
+          not local to the machine, this will fail.
+        es: 
+      ex: 
+
+    - type: (activate_team_nav_point_flag <navpoint> <team> <cutscene_flag> <real>)
+      info:
+        en: >
+          Activates a nav point type <string> attached to a team anchored to a
+          flag with a vertical offset <real>. If the player is not local to the
+          machine, this will fail.
+        es: 
+      ex: 
+
+    - type: (activate_team_nav_point_object <navpoint> <team> <object> <real>)
+      info:
+        en: >
+          Activates a nav point type <string> attached to a team anchored to an
+          object with a vertical offset <real>. If the player is not local to
+          the machine, this will fail.
+        es: 
+      ex: 
+
+    - type: (ai_actors <ai>)
+      info:
+        en: Converts an ai reference to an object list
+        es: 
+      ex: 
+
+    - type: (ai_allegiance <team> <team>)
+      info:
+        en: Creates an allegiance between two teams
+        es: 
+      ex: 
+
+    - type: (ai_allegiance_broken <team> <team>)
+      info:
+        en: >
+          Returns whether two teams have an allegiance that is currently broken
+          by traitorous behavior
+        es: 
+      ex: 
+
+    - type: (ai_allegiance_remove <team> <team>)
+      info:
+        en: Destroys an allegiance between two teams
+        es: 
+      ex: 
+
+    - type: (ai_allow_charge <ai> <boolean>)
+      info:
+        en: Either enables or disables charging behavior for a group of actors
+        es: 
+      ex: 
+
+    - type: (ai_allow_dormant <ai> <boolean>)
+      info:
+        en: Either enables or disables automatic dormancy for a group of actors
+        es: 
+      ex: 
+
+    - type: (ai_attach <unit> <ai>)
+      info:
+        en: Attaches the specified unit to the specified encounter
+        es: 
+      ex: 
+
+    - type: (ai_attach_free <unit> <actor_variant>)
+      info:
+        en: Attaches a unit to a newly created free actor of the specified type
+        es: 
+      ex: 
+
+    - type: (ai_attack <ai>)
+      info:
+        en: Makes the specified platoon(s) go into the attacking state
+        es: 
+      ex: 
+
+    - type: (ai_automatic_migration_target <ai> <boolean>)
+      info:
+        en: Enables or disables a squad as being an automatic migration target
+        es: 
+      ex: 
+
+    - type: (ai_berserk <ai> <boolean>)
+      info:
+        en: Forces a group of actors to start or stop berserking
+        es: 
+      ex: 
+
+    - type: (ai_braindead <ai> <boolean>)
+      info:
+        en: Makes a group of actors braindead, or restores them to life (in their initial state)
+        es: 
+      ex: 
+
+    - type: (ai_braindead_by_unit <object_list> <boolean>)
+      info:
+        en: >
+          Makes a list of objects braindead, or restores them to life. If you
+          pass in a vehicle index, it makes all actors in that vehicle braindead
+          (including any built-in guns).
+        es: 
+      ex: 
+
+    - type: (ai_command_list <ai> <ai_command_list>)
+      info:
+        en: Tells a group of actors to begin executing the specified command list
+        es: 
+      ex: 
+
+    - type: (ai_command_list_advance <ai>)
+      info:
+        en: >
+          Tells a group of actors that are running a command list that they may
+          advance further along the list (if they are waiting for a stimulus)
+        es: 
+      ex: 
+
+    - type: (ai_command_list_advance_by_unit <unit>)
+      info:
+        en: Just like ai_command_list_advance but operates upon a unit instead
+        es: 
+      ex: 
+
+    - type: (ai_command_list_by_unit <unit> <ai_command_list>)
+      info:
+        en: Tells a named unit to begin executing the specified command list
+        es: 
+      ex: 
+
+    - type: (ai_command_list_status <object_list>)
+      info:
+        en: >
+          Gets the status of a number of units running command lists:
+          0 = none, 1 = finished command list, 2 = waiting for stimulus,
+          3 = running command list
+        es: 
+      ex: 
+
+    - type: (ai_conversation <conversation>)
+      info:
+        en: >
+          Tries to add an entry to the list of conversations waiting to play.
+          Returns FALSE if the required units could not be found to play the
+          conversation, or if the player is too far away and the 'delay' flag is
+          not set.
+        es: 
+      ex: 
+
+    - type: (ai_conversation_advance <conversation>)
+      info:
+        en: Tells a conversation that it may advance
+        es: 
+      ex: 
+
+    - type: (ai_conversation_line <conversation>)
+      info:
+        en: >
+          Returns which line the conversation is currently playing, or 999 if
+          the conversation is not currently playing.
+        es: 
+      ex: 
+
+    - type: (ai_conversation_status <conversation>)
+      info:
+        en: >
+          Returns the status of a conversation (0=none, 1=trying to begin,
+          2=waiting for guys to get in position, 3=playing, 4=waiting to
+          advance, 5=could not begin, 6=finished successfully, 7=aborted midway)
+        es: 
+      ex: 
+
+    - type: (ai_conversation_stop <conversation>)
+      info:
+        en: Stops a conversation from playing or trying to play
+        es: 
+      ex: 
+
+    - type: (ai_debug_communication_focus <string(s)>)
+      info:
+        en: Focuses (or stops focusing) a set of unit vocalization types
+        es: 
+      ex: 
+
+    - type: (ai_debug_communication_ignore <string(s)>)
+      info:
+        en: >
+          Ignores (or stops ignoring) a set of AI communication types when
+          printing out communications
+        es: 
+      ex: 
+
+    - type: (ai_debug_communication_suppress <string(s)>)
+      info:
+        en: Suppresses (or stops suppressing) a set of AI communication types
+        es: 
+      ex: 
+
+    - type: (ai_debug_sound_point_set)
+      info:
+        en: Drops the AI debugging sound point at the camera location
+        es: 
+      ex: '`(ai_debug_sound_point_set)`'
+
+    - type: (ai_debug_speak <string>)
+      info:
+        en: Makes the currently selected AI speak a vocalization
+        es: 
+      ex: '`(ai_speak "pain minor")`'
+
+    - type: (ai_debug_speak_list <string>)
+      info:
+        en: Makes the currently selected AI speak a list of vocalizations
+        es: 
+      ex: '`(ai_speak_list "involuntary")`'
+
+    - type: (ai_debug_teleport_to <ai>)
+      info:
+        en: Teleports all players to the specified encounter
+        es: 
+      ex: 
+
+    - type: (ai_debug_vocalize <string> <string>)
+      info:
+        en: Makes the selected AI vocalize
+        es: 
+      ex: 
+
+    - type: (ai_defend <ai>)
+      info:
+        en: Makes the specified platoon(s) go into the defending state
+        es: 
+      ex: 
+
+    - type: (ai_deselect)
+      info:
+        en: Clears the selected encounter
+        es: 
+      ex: '`(ai_deselect)`'
+
+    - type: (ai_detach <unit>)
+      info:
+        en: Detaches the specified unit from all AI
+        es: 
+      ex: 
+
+    - type: (ai_dialogue_triggers <boolean>)
+      info:
+        en: Turns impromptu dialogue on or off
+        es: 
+      ex: '`(ai_dialogue_triggers true)` <br/> `(ai_dialogue_triggers false)`'
+
+    - type: (ai_disregard <object_list> <boolean>)
+      info:
+        en: >
+          If true, forces all actors to completely disregard the specified
+          units, otherwise lets them acknowledge the units again.
+        es: 
+      ex: '`(ai_disregard (players) true)` <br/> `(ai_disregard (players) false)`'
+
+    - type: (ai_erase <ai>)
+      info:
+        en: Erases the specified encounter and/or squad
+        es: 
+      ex: 
+
+    - type: (ai_erase_all)
+      info:
+        en: Erases all AI
+        es: 
+      ex: 
+
+    - type: (ai_exit_vehicle <ai>)
+      info:
+        en: Tells a group of actors to get out of any vehicles that they are in
+        es: 
+      ex: 
+
+    - type: (ai_follow_distance <ai> <real>)
+      info:
+        en: >
+          Sets the distance threshold which will cause squads to migrate when
+          following someone
+        es: 
+      ex: 
+
+    - type: (ai_follow_target_ai <ai> <ai>)
+      info:
+        en: >
+          Sets the follow target for an encounter to be a group of AI
+          (encounter, squad or platoon)
+        es: 
+      ex: 
+
+    - type: (ai_follow_target_disable <ai>)
+      info:
+        en: Turns off following for an encounter
+        es: 
+      ex: 
+
+    - type: (ai_follow_target_players <ai>)
+      info:
+        en: Sets the follow target for an encounter to be the closest player
+        es: 
+      ex: 
+
+    - type: (ai_follow_target_unit <ai> <unit>)
+      info:
+        en: Sets the follow target for an encounter to be a specific unit
+        es: 
+      ex: 
+
+    - type: (ai_force_active <ai> <boolean>)
+      info:
+        en: >
+          Forces an encounter to remain active (i.e. not freeze in place) even
+          if there are no players nearby
+        es: 
+      ex: 
+
+    - type: (ai_force_active_by_unit <unit> <boolean>)
+      info:
+        en: >
+          Forces a named actor that is NOT in an encounter to remain active
+          (i.e. not freeze in place) even if there are no players nearby
+        es: 
+      ex: 
+
+    - type: (ai_free <ai>)
+      info:
+        en: Removes a group of actors from their encounter and sets them free
+        es: 
+      ex: 
+
+    - type: (ai_free_units <object_list>)
+      info:
+        en: Removes a set of units from their encounter (if any) and sets them free
+        es: 
+      ex: 
+
+    - type: (ai_go_to_vehicle <ai> <unit> <string>)
+      info:
+        en: >
+          Tells a group of actors to get into a vehicle, in the
+          substring-specified seats (e.g. passenger for pelican). Does not
+          interrupt any actors who are already going to vehicles.
+        es: 
+      ex: 
+
+    - type: (ai_go_to_vehicle_override <ai> <unit> <string>)
+      info:
+        en: >
+          Tells a group of actors to get into a vehicle, in the
+          substring-specified seats (e.g. passenger for pelican). Any actors who
+          are already going to vehicles will stop and go to this one instead!
+        es: 
+      ex: 
+
+    - type: (ai_going_to_vehicle <unit>)
+      info:
+        en: >
+          Return the number of actors that are still trying to get into the
+          specified vehicle
+        es: 
+      ex: 
+
+    - type: (ai_grenades <boolean>)
+      info:
+        en: Turns grenade inventory on or off
+        es: 
+      ex: 
+
+    - type: (ai_is_attacking <ai>)
+      info:
+        en: >
+          Returns whether a platoon is in the attacking mode (or if an encounter
+          is specified, returns whether any platoon in that encounter is attacking)
+        es: 
+      ex: 
+
+    - type: (ai_kill <ai>)
+      info:
+        en: Instantly kills the specified encounter and/or squad
+        es: 
+      ex: 
+
+    - type: (ai_kill_silent <ai>)
+      info:
+        en: >
+          Instantly and silently (no animation or sound played) kills the
+          specified encounter and/or squad
+        es: 
+      ex: 
+
+    - type: (ai_lines)
+      info:
+        en: Cycles through AI line-spray modes
+        es: 
+      ex: 
+
+    - type: (ai_link_activation <ai> <ai>)
+      info:
+        en: >
+          Links the first encounter so that it will be made active whenever it
+          detects that the second encounter is active
+        es: 
+      ex: 
+
+    - type: (ai_living_count <ai>)
+      info:
+        en: Return the number of living actors in the specified encounter and/or squad
+        es: 
+      ex: 
+
+    - type: (ai_living_fraction <ai>)
+      info:
+        en: >
+          Return the fraction `[0-1]` of living actors in the specified
+          encounter and/or squad
+        es: 
+      ex: 
+
+    - type: (ai_look_at_object <unit> <object>)
+      info:
+        en: Tells an actor to look at an object until further notice
+        es: 
+      ex: 
+
+    - type: (ai_magically_see_encounter <ai> <ai>)
+      info:
+        en: Makes one encounter magically aware of another
+        es: 
+      ex: 
+
+    - type: (ai_magically_see_players <ai>)
+      info:
+        en: Makes an encounter magically aware of nearby players
+        es: 
+      ex: 
+
+    - type: (ai_magically_see_unit <ai> <unit>)
+      info:
+        en: Makes an encounter magically aware of the specified unit
+        es: 
+      ex: 
+
+    - type: (ai_maneuver <ai>)
+      info:
+        en: >
+          Makes all squads in the specified platoon(s) maneuver to their
+          designated maneuver squads
+        es: 
+      ex: 
+
+    - type: (ai_maneuver_enable <ai> <boolean>)
+      info:
+        en: >
+          Enables or disables the maneuver/retreat rule for an encounter or
+          platoon. The rule will still trigger, but none of the actors will be
+          given the order to change squads.
+        es: 
+      ex: 
+
+    - type: (ai_migrate <ai> <ai>)
+      info:
+        en: Makes all or part of an encounter move to another encounter
+        es: 
+      ex: 
+
+    - type: (ai_migrate_and_speak <ai> <ai> <string>)
+      info:
+        en: >
+          Makes all or part of an encounter move to another encounter, and say
+          their `advance` or `retreat` speech lines.
+        es: 
+      ex: 
+
+    - type: (ai_migrate_by_unit <object_list> <ai>)
+      info:
+        en: Makes a named vehicle or group of units move to another encounter
+        es: 
+      ex: 
+
+    - type: (ai_nonswarm_count <ai>)
+      info:
+        en: Return the number of non-swarm actors in the specified encounter and/or squad
+        es: 
+      ex: 
+
+    - type: (ai_place <ai>)
+      info:
+        en: Places the specified encounter on the map
+        es: 
+      ex: 
+
+    - type: (ai_playfight <ai> <boolean>)
+      info:
+        en: Sets an encounter to be playfighting or not
+        es: 
+      ex: 
+
+    - type: (ai_prefer_target <object_list> <boolean>)
+      info:
+        en: >
+          If true, *ALL* enemies will prefer to attack the specified units. If
+          false, removes the preference.
+        es: 
+      ex: 
+
+    - type: (ai_reconnect)
+      info:
+        en: >
+          Reconnects all AI information to the current structure bsp (use this
+          after you create encounters or command lists in sapien, or place new
+          firing points or command list points)
+        es: 
+      ex: 
+
+    - type: (ai_renew <ai>)
+      info:
+        en: >
+          Refreshes the health and grenade count of a group of actors, so they
+          are as good as new
+        es: 
+      ex: 
+
+    - type: (ai_retreat <ai>)
+      info:
+        en: >
+          Makes all squads in the specified platoon(s) maneuver to their
+          designated maneuver squads
+        es: 
+      ex: 
+
+    - type: (ai_select <ai>)
+      info:
+        en: Selects the specified encounter
+        es: 
+      ex: 
+
+    - type: (ai_set_blind <ai> <boolean>)
+      info:
+        en: Enables or disables sight for actors in the specified encounter
+        es: 
+      ex: 
+
+    - type: (ai_set_current_state <ai> <ai_default_state>)
+      info:
+        en: >
+          Sets the current state of a group of actors. WARNING: may have
+          unpredictable results on actors that are in combat.
+        es: 
+      ex: 
+
+    - type: (ai_set_deaf <ai> <boolean>)
+      info:
+        en: Enables or disables hearing for actors in the specified encounter
+        es: 
+      ex: 
+
+    - type: (ai_set_respawn <ai> <boolean>)
+      info:
+        en: Enables or disables respawning in the specified encounter
+        es: 
+      ex: 
+
+    - type: (ai_set_return_state <ai> <ai_default_state>)
+      info:
+        en: >
+          Sets the state that a group of actors will return to when they have
+          nothing to do
+        es: 
+      ex: 
+
+    - type: (ai_set_team <ai> <team>)
+      info:
+        en: Makes an encounter change to a new team
+        es: 
+      ex: 
+
+    - type: (ai_spawn_actor <ai>)
+      info:
+        en: Spawns a single actor in the specified encounter and/or squad
+        es: 
+      ex: 
+
+    - type: (ai_status <ai>)
+      info:
+        en: >
+          Returns the most severe combat status of a group of actors
+          (0=inactive, 1=noncombat, 2=guarding, 3=search/suspicious, 4=definite
+          enemy(heard or magic awareness), 5=visible enemy, 6=engaging in combat)
+        es: 
+      ex: 
+
+    - type: (ai_stop_looking <unit>)
+      info:
+        en: Tells an actor to stop looking at whatever it's looking at
+        es: 
+      ex: 
+
+    - type: (ai_strength <ai>)
+      info:
+        en: >
+          Return the current strength (average body vitality from 0-1) of the
+          specified encounter and/or squad
+        es: 
+      ex: 
+
+    - type: (ai_swarm_count <ai>)
+      info:
+        en: >
+          Return the number of swarm actors in the specified encounter and/or
+          squad
+        es: 
+      ex: 
+
+    - type: (ai_teleport_to_starting_location <ai>)
+      info:
+        en: >
+          Teleports a group of actors to the starting locations of their current
+          squad(s)
+        es: 
+      ex: 
+
+    - type: (ai_teleport_to_starting_location_if_unsupported <ai>)
+      info:
+        en: >
+          Teleports a group of actors to the starting locations of their current
+          squad(s), only if they are not supported by solid ground (i.e. if they
+          are falling after switching BSPs).
+        es: 
+      ex: 
+
+    - type: (ai_try_to_fight_nothing <ai>)
+      info:
+        en: Removes the preferential target setting from a group of actors
+        es: 
+      ex: 
+
+    - type: (ai_try_to_fight <ai> <ai>)
+      info:
+        en: Causes a group of actors to preferentially target another group of actors
+        es: 
+      ex: 
+
+    - type: (ai_try_to_fight_player <ai>)
+      info:
+        en: Causes a group of actors to preferentially target the player
+        es: 
+      ex: 
+
+    - type: (ai_vehicle_encounter <unit> <ai>)
+      info:
+        en: >
+          Sets a vehicle to "belong" to a particular encounter/squad. Any actors
+          who get into the vehicle will be placed in this squad. Vehicles
+          potentially drivable by multiple teams need their own encounter!
+        es: 
+      ex: 
+
+    - type: (ai_vehicle_enterable_actor_type <unit> <actor_type>)
+      info:
+        en: >
+          Sets a vehicle as being impulsively enterable for actors of a certain
+          type (grunt, elite, marine etc)
+        es: 
+      ex: 
+
+    - type: (ai_vehicle_enterable_actors <unit> <ai>)
+      info:
+        en: >
+          Sets a vehicle as being impulsively enterable for a certain
+          encounter/squad of actors
+        es: 
+      ex: 
+
+    - type: (ai_vehicle_enterable_disable <unit>)
+      info:
+        en: >
+          Disables actors from impulsively getting into a vehicle (this is the
+          default state for newly placed vehicles)
+        es: 
+      ex: 
+
+    - type: (ai_vehicle_enterable_distance <unit> <real>)
+      info:
+        en: >
+          Sets a vehicle as being impulsively enterable for actors within a
+          certain distance
+        es: 
+      ex: 
+
+    - type: (ai_vehicle_enterable_team <unit> <team>)
+      info:
+        en: Sets a vehicle as being impulsively enterable for actors on a certain team
+        es: 
+      ex: 
+
+    - type: (attract_mode_start)
+      info:
+        en: N/A in pc
+        es: 
+      ex: 
+

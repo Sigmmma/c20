@@ -82,4 +82,36 @@ rowLinks: true
 ```
 
 
+## Functions
+```.alert
+Note: these links don't work just yet.
+```
+
+[A][scripting#A] ·
+[B][scripting#B] ·
+[C][scripting#C] ·
+[D][scripting#D] ·
+[E][scripting#E] ·
+[F][scripting#F] ·
+[G][scripting#G] ·
+[H][scripting#H] ·
+[I][scripting#I] ·
+[L][scripting#L] ·
+[M][scripting#M] ·
+[N][scripting#N] ·
+[O][scripting#O] ·
+[P][scripting#P] ·
+[Q][scripting#Q] ·
+[R][scripting#R] ·
+[S][scripting#S] ·
+[T][scripting#T] ·
+[U][scripting#U] ·
+[V][scripting#V]
+
+```.table
+entryType: Functions
+typeDefs: hsc.yml
+rowLinks: true
+```
+
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language
