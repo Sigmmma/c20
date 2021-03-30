@@ -22,6 +22,8 @@ screen.
 
 
 # HSC reference
+[Additional important script engine info below][scripting#gotchas]
+
 ## Basics
 Scripts have the following structure:
 ```hsc
@@ -63,7 +65,7 @@ dormant, and startup scripts all run in their own threads. Static scripts do not
 run in their own thread, by virtue of being called by other scripts. For
 example, a `sleep` within a static script will put the thread of the calling
 script to sleep. Multiple threads can call the same static script at the same
-time with no issue.
+time with no issue. Every thread has its own [stack][stack].
 
 
 ## Value types
@@ -114,4 +116,113 @@ typeDefs: hsc.yml
 rowLinks: true
 ```
 
-[Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language
+
+
+# Gotchas
+[Back to HSC reference][scripting#hsc-reference]
+
+## Using begin_random in startup scripts
+The [random number generator][rng] used for things like `begin_random` is
+[seeded][rng-seed] on the same tick that `startup` scripts run. This means the
+first expression selected by a `begin_random` block in a `startup` script will
+always be the same. Generally since the first expression will take a variable
+amount of time to complete evaluation, the following items will be random as
+expected.
+
+## Syntax nodes are limited
+```.alert
+The exact limit of syntax nodes is not currently known.
+```
+
+Syntax nodes are sections of memory that the game allocates to handle the
+structure of scripts when it compiles them. Syntax data is stuff like
+parentheses, function names, variable names... anything that has syntactic
+meaning for the script system.
+
+There is a maximum number of syntax nodes that the game can allocate when
+compiling scripts. If you exceed this limit, scripts will not compile. This
+limit is cumulative across both individual scenarios and child scenarios.
+So, even if the main scenario compiles, it might not work once you add its
+children (if its children have scripts of their own). If you hit this limit,
+your only choice is to remove some syntax data. It can come from anywhere, but
+something has to go. This can sometimes be a long and painful process.
+
+## Source file size is limited
+The game will not compile scripts for a source file above a given size. Comments
+and whitespace **are** counted in this size! If you hit this limit, you can
+either remove stuff from the script, or only move stuff from one source file
+into another source file. Removing comments and unnecessary whitespace can help
+with size.
+
+## Number of source files is limited
+A scenario's scripts can be split into multiple files, but the number of files
+you can have is limited.
+
+```.alert
+Info on exact limit and errors thrown when exceeding it (if any) needed here!
+```
+
+## Stack space is limited
+If you've never heard of a stack in the context of computer programming before,
+[skim through this][stack].
+
+Halo allocates a certain amount of memory for each [scripting
+thread][scripting#script-threads] in a scenario, called the "stack". Stack
+memory is used to hold results of invoking functions, parameters for script
+functions, and so on. Notably, nesting function calls will consume additional
+stack memory.
+
+```hsc
+; Nested statements are statements like these, where many
+; things happen that are "nested" within one another
+
+(if ;; some condition
+	(begin
+		(if  ;; some condition
+			(begin
+				;; ... do something
+			)
+		)
+		;; ... do something else
+	)
+)
+```
+
+It is very, very easy to exceed the limits of this memory if you have enough
+nested statements. The maximum number of nested statements is somewhere between
+10 and 16 levels deep, depending on if you're invoking static scripts, if you're
+invoking methods with parameters, and other things.
+
+```.alert
+**WARNING: The game *DOES NOT* guard against exceeding stack memory!!**
+
+If you exceed a script's stack memory, it will
+[overflow](http://en.wikipedia.org/wiki/Buffer_overflow) into other scripts'
+stack memory!
+```
+
+This means that one script can ***COMPLETELY*** break another script if it
+nests too deeply. If another script's memory is clobbered, it can end up doing
+arbitrary things. It might wake up when it's supposed to be asleep. It might
+switch to a new BSP for no reason. It might crash the game. It might make
+objects flicker randomly.
+
+```.alert
+There is not currently a reliable way to exactly tell when stack memory has been
+exceeded. The "10 to 16 nested levels" advice is an estimate based on
+experimentation.
+```
+
+## When to use short vs long
+There are two integer variable types: `short` and `long`. Both hold whole
+numbers, but `long` variables can hold much larger numbers than `short`
+variables. The tradeoff is that `short` variables only consume half as much
+memory as `long` variables. [Given HSC's tight memory
+constraints][scripting#stack-space-is-limited], this means
+**you should only use `long` when you need large numbers!**
+
+
+[Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)
+[rng]: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
+[rng-seed]: https://en.wikipedia.org/wiki/Random_seed
+[stack]: http://en.wikipedia.org/wiki/Call_stack
