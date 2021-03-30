@@ -4,3 +4,4 @@ report.*.json
 nohup.out
 /src/content/**/todo.md
 /src/content/**/todo
+*.swp

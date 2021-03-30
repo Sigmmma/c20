@@ -1,4 +1,6 @@
-**Sapien**, part of the [HEK][], is a visual [scenario][] and [BSP][scenario_structure_bsp] editor used to populate levels with objects, configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile scripts, and more. Sapien shares some systems with Halo itself, including its AI system to support interactive AI scripting and debugging. Other systems, such as weather rendering, are not represented.
+**Sapien**, part of the [HEK][], is a visual [scenario][] and
+[BSP][scenario_structure_bsp] editor used to populate levels with objects,
+configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile [scripts][scripting], and more. Sapien shares some systems with Halo itself, including its AI system to support interactive AI scripting and debugging. Other systems, such as weather rendering, are not represented.
 
 It is roughly analagous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which supports many more debug commands than the in-game one.
 

@@ -1,3 +1,17 @@
 title:
   en: Scripting engine
-stub: true
+img: bslbible.png
+keywords:
+  en:
+    - script
+    - hsc
+    - bsl
+thanks:
+  Kornman00:
+    en: Original Blam Scripting Language Bible, http://www.modacity.net/docs/bslbible/
+  Mimickal:
+    en: Additional background on scripting, edits for clarity and extra information
+  TehLag:
+    en: Additional script information (limits, types, etc...)
+  Ifafudafi:
+    en: Script limits information
