@@ -222,7 +222,30 @@ constraints][scripting#stack-space-is-limited], this means
 **you should only use `long` when you need large numbers!**
 
 
+# Extensions
+The [Halo Script Preprocessor][hsc-pre] is effectively a super-set of Halo
+Script that adds support for C-like `#define` pre-processor macros. The program
+takes a file with macros in it, then spits out a standard HSC file. This means
+this program is *purely* for making writing HSC easier. Scripts using the Halo
+Script Preprocessor are still subject to all of the above limits.
+
+For example, the following block:
+```c
+#define UNIT_IN_COMBAT (= 6 (ai_command_list_status my_unit))
+
+(if UNIT_IN_COMBAT
+	sleep(30)
+)
+```
+...becomes this:
+```hsc
+(if (= 6 (ai_command_list_status my_unit))
+	sleep(30)
+)
+```
+
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)
 [rng]: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
 [rng-seed]: https://en.wikipedia.org/wiki/Random_seed
 [stack]: http://en.wikipedia.org/wiki/Call_stack
+[hsc-pre]: http://hce.halomaps.org/index.cfm?fid=6552
