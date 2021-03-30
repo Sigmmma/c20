@@ -1,0 +1,523 @@
+ScriptTypes:
+  columns:
+    - id: type
+      name:
+        en: Type
+        es: Tipo
+      format: code
+    - id: info
+      name:
+        en: Comments
+        es: Comentarios
+      format: text
+    - id: ex
+      name:
+        en: Example
+        es: Ejemplo
+      format: codeblock-hsc
+  rows:
+    - type: continuous
+      info:
+        en: Runs every tick
+        es: 
+      ex: (script continuous check_player_health)
+
+    - type: dormant
+      info:
+        en: >
+          Sleeps until started with `wake`, runs until there are no instructions
+          left, then stops. Calling `wake` a second time will not restart the
+          script.
+        es: 
+      ex: (script dormant wait_for_it)
+
+    - type: startup
+      info:
+        en: Performed only on map startup.
+        es: 
+      ex: (script startup init_things)
+
+    - type: static
+      info:
+        en: Performed when called from another script.
+        es: 
+      ex: (script static unit player0)
+
+    - type: stub
+      info:
+        en: >
+          Sort of like a prototype. Doesn't do anything. Used for overriding
+          scripts, but overridden scripts can't have the same return type as
+          the stub.
+        es: 
+      ex: (script stub object player0)
+
+ValueTypes:
+  columns:
+    - id: type
+      name:
+        en: Type
+        es: Tipo
+      format: code
+    - id: info
+      name:
+        en: Details
+        es: 
+      format: text
+    - id: ex
+      name:
+        en: Example
+        es: Ejemplo
+      format: text
+  rows:
+    - type: boolean
+      info:
+        en: A value that is true or false
+        es: 
+      ex: true <br/> false
+
+    - type: real
+      info:
+        en: 'Floating point (decimal) value <br/> Value Range: 3.4E +/- 38 (6 digits)'
+        es: 
+      ex: '3.000000'
+
+    - type: short
+      info:
+        en: 'Short integer value <br/> Value Range: +/- 32,767'
+        es: 
+      ex: '2'
+
+    - type: long
+      info:
+        en: 'Long integer value <br/> Value Range: +/- 2,147,483,648'
+        es: 
+      ex: '2000000000'
+
+    - type: string
+      info:
+        en: >
+          String of characters in double quotes <br/> Max number of characters: 32
+        es: 
+      ex: '"This is a string."'
+
+    - type: trigger_volume
+      info:
+        en: A "Trigger Volumes" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: cutscene_flag
+      info:
+        en: A "Cutscene Flags" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: cutscene_camera_point
+      info:
+        en: A "Cutscene Camera Points" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: cutscene_title
+      info:
+        en: A "Cutscene Titles" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: cutscene_recording
+      info:
+        en: >
+          A "Cutscene Recording" value that isn't in the public HaloCE
+          [scenario][] tag?
+        es: 
+      ex:
+
+    - type: device_group
+      info:
+        en: A "Device Groups" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: ai
+      info:
+        en: An "Encounters" value
+        es: 
+      ex:
+
+    - type: ai_command_list
+      info:
+        en: A "Command Lists" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: starting_profile
+      info:
+        en: A "Player Starting Profile" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: conversation
+      info:
+        en: A "AI Conversations" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: navpoint
+      info:
+        en: 
+        es: 
+      ex:
+
+    - type: hud_message
+      info:
+        en: '[HUD message text][hud_message_text]'
+        es: 
+      ex:
+
+    - type: object_list
+      info:
+        en: An object list
+        es: 
+      ex:
+
+    - type: sound
+      info:
+        en: '[Sound][]'
+        es: 
+      ex:
+
+    - type: effect
+      info:
+        en: '[Effect][]'
+        es: 
+      ex:
+
+    - type: damage
+      info:
+        en: '[Damage Effect][damage_effect]'
+        es: 
+      ex:
+
+    - type: looping_sound
+      info:
+        en: '[Sound Looping][sound_looping]'
+        es: 
+      ex:
+
+    - type: animation_graph
+      info:
+        en: '[Model Animations][model_animations]'
+        es: 
+      ex:
+
+    - type: actor_variant
+      info:
+        en: '[Actor variant][actor_variant]'
+        es: 
+      ex:
+
+    - type: damage_effect
+      info:
+        en: '[Damage Effect][damage_effect]'
+        es: 
+      ex:
+
+    - type: object_definition
+      info:
+        en: 
+        es: 
+      ex:
+
+    - type: game_difficulty
+      info:
+        en: easy <br/> normal <br/> hard <br/> impossible
+        es: 
+      ex:
+
+    - type: team
+      info:
+        en: player <br/> human <br/> covenant <br/> flood <br/> sentinal
+        es: 
+      ex:
+
+    - type: ai_default_state
+      info:
+        en: >
+          none <br/> sleeping <br/> alert <br/> moving <br/> guarding <br/>
+          searching <br/> fleeing
+        es: 
+      ex:
+
+    - type: actor_type
+      info:
+        en: ie, elite
+        es: 
+      ex:
+
+    - type: hud_corner
+      info:
+        en: top_left <br/> top_right <br/> bottom_left <br/> bottom_right
+        es: 
+      ex:
+
+    - type: object
+      info:
+        en: '[Object][]'
+        es: 
+      ex:
+
+    - type: unit
+      info:
+        en: '[Unit][]'
+        es: 
+      ex:
+
+    - type: vehicle
+      info:
+        en: '[Vehicle][]'
+        es: 
+      ex:
+
+    - type: weapon
+      info:
+        en: '[Weapon][]'
+        es: 
+      ex:
+
+    - type: device
+      info:
+        en: '[Device][]'
+        es: 
+      ex:
+
+    - type: scenery
+      info:
+        en: '[Scenery][]'
+        es: 
+      ex:
+
+    - type: object_name
+      info:
+        en: An "Object Names" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: unit_name
+      info:
+        en: A "Bipeds" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: vehicle_name
+      info:
+        en: A "Vehicles" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: weapon_name
+      info:
+        en: A "Weapons" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: device_name
+      info:
+        en: A "Device" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+    - type: scenery_name
+      info:
+        en: A "Scenery" value (a block in the [scenario][] tag)
+        es: 
+      ex:
+
+OperatorsAndKeywords:
+  columns:
+    - id: type
+      name:
+        en: Expression
+        es: 
+      format: code
+    - id: info
+      name:
+        en: Details
+        es: 
+      format: text
+    - id: ex
+      name:
+        en: Example
+        es: Ejemplo
+      format: text
+  rows:
+    - type: (+ <number_1> <number_2> [... <number_n>])
+      info:
+        en: Returns the sum of all specified expressions
+        es: 
+      ex: '`(+ 5 6 7 8 9)` returns: 35'
+
+    - type: (- <number_1> <number_2>)
+      info:
+        en: Returns the difference of two expressions
+        es: 
+      ex: '`(- 10 5)` returns: 5'
+
+    - type: (* <number_1> <number_2> [... <number_n>])
+      info:
+        en: Returns the product of all specified expressions
+        es: 
+      ex: '`(* 5 5)` returns: 25 <br/> `(* 5.5 6)` returns: 33'
+
+    - type: (/ <number_1> <number_2>)
+      info:
+        en: Returns the quotient of two expressions
+        es: 
+      ex: '`(/ 10 5)`  returns: 2 <br/> `(/ 2.5 2)` returns: 1.25'
+
+    - type: (= <expression_1> <expression_2>)
+      info:
+        en: Returns true if two expressions are equal
+        es: 
+      ex: '`(= (hud_get_timer_ticks) 0)`'
+
+    - type: (!= <expression_1> <expression_2>)
+      info:
+        en: Returns true if two expressions are not equal
+        es: 
+      ex: '`(!= (hud_get_timer_ticks) 0)`'
+
+    - type: (> <number_1> <number_2>)
+      info:
+        en: Returns true if `number_1` is larger than `number_2`
+        es: 
+      ex: '`(> 10 5)` returns: true <br/> `(> 5 10)` returns: false'
+
+    - type: (< <number_1> <number_2>)
+      info:
+        en: Returns true if `number_1` is smaller than `number_2`
+        es: 
+      ex: '`(> 4 8)` returns: true <br/> `(> 8 4)` returns: false'
+
+    - type: (>= <number_1> <number_2>)
+      info:
+        en: Returns true if `number_1` is larger than or equal `number_2`
+        es: 
+      ex: '`(>= 10 10)` returns: true <br/> `(>= 5 10)` returns: false'
+
+    - type: (<= <number_1> <number_2>)
+      info:
+        en: Returns true if `number_1` is smaller than or equal `number_2`
+        es: 
+      ex: '`(>= 4 4)` returns: true <br/> `(>= 8 4)` returns: false'
+
+    - type: (and <boolean_1> <boolean_2> [... <boolean_n>])
+      info:
+        en: Returns true if all specified expressions are true
+        es: 
+      ex: '`(and (player_action_test_action) true)`'
+
+    - type: (begin <expression_1> <expression_2> [... <expression_n>])
+      info:
+        en: >
+          Returns the last expression in a sequence after evaluating the
+          sequence in order
+        es: 
+      ex: '`(begin something something_else 20)` returns: 20'
+
+    - type: (begin_random <expression_1> <expression_2> [... <expression_n>])
+      info:
+        en: >
+          Evaluates the sequence of expressions in random order and returns the
+          last value evaluated
+        es: 
+      ex: '`(begin_random something something_else 20)`'
+
+    - type: (cond (<boolean_1> <result_1>) [(<boolean_2> <result_2>) [...]])
+      info:
+        en: Returns the value associated with the first true condition
+        es: 
+      ex: '`(cond false_val 10 true_val 20)` returns: 20'
+
+    - type: (global <type> <name> <inital value>)
+      info:
+        en: Makes a new global script variable
+        es: 
+      ex: '`(global boolean bsl_sucks true)`'
+
+    - type: (if <boolean> <expression> [<else>])
+      info:
+        en: Returns one of two values based on the value of a condition
+        es: 
+      ex: '`(if (bsl_sucks) (print "Stop whining."))`'
+
+    - type: (inspect <expression>)
+      info:
+        en: Prints the value of an expression to the screen for debugging purposes
+        es: 
+      ex: '`(inspect (+ 3 4))` outputs: 7'
+
+    - type: (min <number_1> <number_2> [... <number_n>])
+      info:
+        en: Returns the minimum of all specified expressions
+        es: 
+      ex: '`(min 1 3 2 4 5 7 6 8 9)` returns: 1'
+
+    - type: (max <number_1> <number_2> [... <number_n>])
+      info:
+        en: Returns the maximum of all specified expressions
+        es: 
+      ex: '`(max 1 3 2 4 5 7 6 8 9)` returns: 9'
+
+    - type: (not <boolean>)
+      info:
+        en: Returns the opposite of the expression
+        es: 
+      ex: '`(not bsl_sucks)` returns: false'
+
+    - type: (or <boolean_1> <boolean_2> [... <boolean_n>])
+      info:
+        en: Returns true if any specified expressions are true
+        es: 
+      ex: '`(or (player_action_test_action) true)` returns: true'
+
+    - type: (script <script type> [<return type>] <name>)
+      info:
+        en: Defines a new script
+        es: 
+      ex: '[See above example][scripting#basics]'
+
+    - type: (set <variable name> <value>)
+      info:
+        en: Sets the value of a defined global variable
+        es: 
+      ex: '`(set bsl_sucks true)`'
+
+    - type: (sleep <short> [<script>])
+      info:
+        en: >
+          Pauses execution of this script (or, optionally, another script) for
+          the specified number of ticks (1 tick = 1/30 second)
+        es: 
+      ex: '`(sleep 30 more_weapons)`'
+
+    - type: (sleep_until <boolean> [<short>])
+      info:
+        en: >
+          Pauses execution of this script until the specified condition is
+          true, checking once per second unless a number of ticks is specified
+        es: 
+      ex: '`(sleep_until false 5)`'
+
+    - type: (wake <script name>)
+      info:
+        en: Wakes a sleeping or dormant script in the next update
+        es: 
+      ex: '`(wake more_weapons)`'
+
+    - type: (thread_sleep <long>)
+      info:
+        en: Sleeps the calling thread for the specified number of ms
+        es: 
+      ex: '`(thread_sleep 20)` returns: sleeps for 20ms'
+

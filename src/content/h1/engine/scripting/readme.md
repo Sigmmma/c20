@@ -21,4 +21,65 @@ If there are any compilation errors, Sapien will display them in the Game View
 screen.
 
 
+# HSC reference
+## Basics
+Scripts have the following structure:
+```hsc
+(script <script type> <return type (static scripts only)> <script name>
+	<code>
+)
+```
+
+Example:
+```hsc
+(script startup say_this_map_r0x
+	(sv_say "This map r0xx0rz!")
+)
+```
+
+Global variables are defined with the following syntax:
+```hsc
+(global <global type> <global name> <value(s)>)
+```
+
+Example:
+```hsc
+(global boolean kornman_is_leet true)
+```
+
+## Script types
+```.table
+entryType: ScriptTypes
+typeDefs: hsc.yml
+rowLinks: true
+```
+
+### Script threads
+
+HSC has the notion of threads, i.e. multiple scripts running at the same time
+(as opposed to waiting until the previous script is done to run). This is not
+*actual* multithreading (the game still runs on a single CPU core). Continuous,
+dormant, and startup scripts all run in their own threads. Static scripts do not
+run in their own thread, by virtue of being called by other scripts. For
+example, a `sleep` within a static script will put the thread of the calling
+script to sleep. Multiple threads can call the same static script at the same
+time with no issue.
+
+
+## Value types
+```.table
+entryType: ValueTypes
+typeDefs: hsc.yml
+rowLinks: true
+```
+
+
+## Operators and keywords
+```.table
+entryType: OperatorsAndKeywords
+typeDefs: hsc.yml
+rowLinks: true
+```
+
+
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language
