@@ -56,18 +56,6 @@ typeDefs: hsc.yml
 rowLinks: true
 ```
 
-### Script threads
-
-HSC has the notion of threads, i.e. multiple scripts running at the same time
-(as opposed to waiting until the previous script is done to run). This is not
-*actual* multithreading (the game still runs on a single CPU core). Continuous,
-dormant, and startup scripts all run in their own threads. Static scripts do not
-run in their own thread, by virtue of being called by other scripts. For
-example, a `sleep` within a static script will put the thread of the calling
-script to sleep. Multiple threads can call the same static script at the same
-time with no issue. Every thread has its own [stack][stack].
-
-
 ## Value types
 ```.table
 entryType: ValueTypes
@@ -117,6 +105,45 @@ rowLinks: true
 ```
 
 
+## Mechanics
+
+### Script threads
+HSC has the notion of threads, i.e. multiple scripts running at the same time
+(as opposed to waiting until the previous script is done to run). This is not
+*actual* multithreading (the game still runs on a single CPU core). Continuous,
+dormant, and startup scripts all run in their own threads. Static scripts do not
+run in their own thread, by virtue of being called by other scripts. For
+example, a `sleep` within a static script will put the thread of the calling
+script to sleep. Multiple threads can call the same static script at the same
+time with no issue. Every thread has its own [stack][stack].
+
+### Implicit returns
+Several control structures implicitly return the value of their final expression
+to the caller. This applies to `if`, `else`, `begin`, `begin_random`, and `cond`
+blocks, as well as `static` scripts.
+
+```hsc
+; The second condition is true, so 6 will be returned from
+; the cond block, since it is the final expression.
+(cond
+	(
+		(= 0 1)
+		(print "I will never run")
+		5
+	)
+	(
+		(= 1 1)
+		(print "I will always run!")
+		6
+	)
+	(
+		(= 2 2)
+		(print "I would run if the code above me hadn't.")
+		7
+	)
+)
+```
+
 
 # Gotchas
 [Back to HSC reference][scripting#hsc-reference]
@@ -147,12 +174,31 @@ children (if its children have scripts of their own). If you hit this limit,
 your only choice is to remove some syntax data. It can come from anywhere, but
 something has to go. This can sometimes be a long and painful process.
 
+## Total scripts and globals are limited
+In addition to syntax nodes, the total number of globals and scripts (`startup`,
+`dormant`, etc...) is also limited.
+
+| Type    | Limit |
+|---------|-------|
+| scripts | 1024  |
+| globals |  128  |
+| threads |  256  |
+
 ## Source file size is limited
 The game will not compile scripts for a source file above a given size. Comments
 and whitespace **are** counted in this size! If you hit this limit, you can
-either remove stuff from the script, or only move stuff from one source file
-into another source file. Removing comments and unnecessary whitespace can help
-with size.
+either remove stuff from the script, or move stuff from one source file
+into another source file. Comments and unnecessary whitespace are non-functional
+things that can be removed to reduce size, but only do this if you *need* to!
+
+```.alert
+Comments and indentation are important for understanding your own scripts. Most
+projects will not be big enough to need to worry about exceeding source file
+size, so good coding conventions should be used until they can't be!
+
+Tools like the Halo Script Preprocessor (see below) can strip comments and
+whitespace in the final script, while keeping them in your source file.
+```
 
 ## Number of source files is limited
 A scenario's scripts can be split into multiple files, but the number of files
@@ -210,8 +256,15 @@ objects flicker randomly.
 ```.alert
 There is not currently a reliable way to exactly tell when stack memory has been
 exceeded. The "10 to 16 nested levels" advice is an estimate based on
-experimentation.
+experimentation, and also directly depends on the number of parameters in
+function calls.
 ```
+
+## Console scripts
+Things manually entered into the console ingame also share script space with the
+scenario's baked in scripts. In rare circumstances (e.g. you're just on the cusp
+of using too much memory), a console script's memory can overflow into a
+scenario script's memory, causing the above mentioned issues.
 
 ## When to use short vs long
 There are two integer variable types: `short` and `long`. Both hold whole
@@ -245,6 +298,7 @@ For example, the following block:
 ```
 
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)
+[c-format]: http://www.cplusplus.com/reference/cstdio/printf/
 [rng]: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
 [rng-seed]: https://en.wikipedia.org/wiki/Random_seed
 [stack]: http://en.wikipedia.org/wiki/Call_stack

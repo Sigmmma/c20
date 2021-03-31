@@ -46,9 +46,17 @@ ScriptTypes:
     - type: stub
       info:
         en: >
-          Sort of like a prototype. Doesn't do anything. Used for overriding
-          scripts, but overridden scripts can't have the same return type as
-          the stub.
+          A `stub` script by itself does nothing. It allows you to pre-declare a
+          `static` script without providing a script body.
+          This allows other scripts to invoke a `static` script without the full
+          function body being declared yet.
+          <br/><br/>
+          The script you override a `stub` with must have the same "signature" (
+          i.e. name, parameters, and return type). A stub cannot be declared more
+          than once. The full implementation of a `stub` *may* be placed in
+          another script file.
+          <br/><br/>
+          If you're familiar with C function prototypes, this is very similar.
         es: 
       ex: (script stub object player0)
 
@@ -501,13 +509,17 @@ OperatorsAndKeywords:
         es: 
       ex: '`(sleep 30 more_weapons)`'
 
-    - type: (sleep_until <boolean> [<short>])
+    - type: (sleep_until <condition> [short_1] [short_2])
       info:
         en: >
-          Pauses execution of this script until the specified condition is
-          true, checking once per second unless a number of ticks is specified
+          Pauses execution of this script until `condition` is true.
+          By default, this checks once per second. If `short_1` is specified, it
+          checks every `short_1` ticks instead. By default, this will await the
+          condition indefinitely. `short_2` can be used to timeout after a
+          certain number of ticks, instead. After the timeout, the script will
+          continue on as if `condition` became true.
         es: 
-      ex: '`(sleep_until false 5)`'
+      ex: '`(sleep_until false 5 600)`'
 
     - type: (wake <script name>)
       info:
