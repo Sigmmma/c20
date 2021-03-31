@@ -1,7 +1,7 @@
 const yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
-const {html, localizer, slugify} = require("./bits");
+const {anchor, html, slugify} = require("./bits");
 
 function renderTableYaml(ctx, optsYaml) {
   const {renderMarkdown} = require("./markdown"); //todo: untangle circular dep
@@ -70,7 +70,23 @@ function renderTableYaml(ctx, optsYaml) {
     }
   }
 
-  // TODO also support opts.rowLinks to link directly to table rows
+  // Insert a column that will contain a link for each row, if needed
+  if (opts.rowLinks) {
+    data.columns.unshift({
+      key: "__link",
+      name: {
+        en: "",
+        es: "",
+      },
+      format: "text",
+      //style: "width:0%",
+    });
+  }
+
+  function id(index) {
+    return slugify(`${opts.tableName}-${index}`);
+  }
+
   return html`
     <table>
       <thead>
@@ -81,9 +97,13 @@ function renderTableYaml(ctx, optsYaml) {
         </tr>
       </thead>
       <tbody>
-        ${ data.rows.map(row =>
-          html`<tr>${ data.columns.map(col =>
-            html`<td style="${col.style}">${ markdownToHtml(col.format, row[col.key]) }</td>`
+        ${ data.rows.map((row, index) =>
+          html`<tr id="${opts.rowLinks && id(index)}">${ data.columns.map(col =>
+            html`<td style="${col.style}">${
+              col.key === "__link" ?
+                anchor("#" + id(index), "#") :
+                markdownToHtml(col.format, row[col.key])
+            }</td>`
           ) }</tr>`
         ) }
       </tbody>
