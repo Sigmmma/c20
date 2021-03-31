@@ -3,7 +3,8 @@ const hljs = require("highlight.js");
 const {consoleLang, hscLang} = require("./langs/hsc");
 const vrmlLang = require("./langs/vrml");
 const {heading, alert, figure} = require("../bits");
-const {renderStructYaml, renderTableYaml} = require("../structs");
+const {renderStructYaml} = require("../structs");
+const {renderTableYaml} = require("../yaml-tables");
 
 hljs.registerLanguage("vrml", vrmlLang);
 hljs.registerLanguage("hsc", hscLang);
