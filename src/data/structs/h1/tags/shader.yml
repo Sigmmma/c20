@@ -3,6 +3,7 @@ imports:
   h1/tags/common:
     - ColorRGB
     - MaterialType
+    - TagDependency
 type_defs:
   ShaderFlags:
     class: bitfield
@@ -90,3 +91,44 @@ type_defs:
         endianness: little
       - type: pad
         size: 2
+  ShaderColorFunctionType:
+    class: enum
+    size: 2
+    options:
+      - name: current
+      - name: next_map
+      - name: multiply
+      - name: double_multiply
+      - name: add
+      - name: add_signed_current
+      - name: add_signed_next_map
+      - name: subtract_current
+      - name: subtract_next_map
+      - name: blend_current_alpha
+      - name: blend_current_alpha_inverse
+      - name: blend_next_map_alpha
+      - name: blend_next_map_alpha_inverse
+  ShaderDetailFunction:
+    class: enum
+    size: 2
+    options:
+      - name: double_biased_multiply
+      - name: multiply
+      - name: double_biased_add
+  ShaderFirstMapType:
+    class: enum
+    size: 2
+    options:
+      - name: 2d_map
+      - name: first_map_is_reflection_cube_map
+      - name: first_map_is_object_centered_cube_map
+      - name: first_map_is_viewer_centered_cube_map
+  ShaderTransparentExtraLayer:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: shader
+        type: TagDependency
+        meta:
+          tag_classes:
+            - shader

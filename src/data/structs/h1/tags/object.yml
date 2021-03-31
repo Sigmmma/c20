@@ -39,21 +39,7 @@ type_defs:
     bits:
       - name: does_not_cast_shadow
       - name: transparent_self_occlusion
-        comments:
-          en: >
-            Causes the transparent shaders in this object to occlude each other
-            rather than be visible through each other. The scene behind the
-            object is still visible.
-
-            **Warning**: enabling this flag while the object uses transparent
-            shaders with extra layers causes [Sapien to crash][sapien#crashes]
-            when near the object, though the same object will work ingame.
       - name: brighter_than_it_should_be
-        comments:
-          en: >
-            Slightly brightens the object, making it easier to see in the dark
-            for gameplay purposes. Often used for small items like weapons,
-            powerups, and ammunition.
       - name: not_a_pathfinding_obstacle
   ObjectFunctionIn:
     class: enum
@@ -248,12 +234,6 @@ type_defs:
           hek_max_count: 8
   Object:
     class: struct
-    meta:
-      tag_id: obje
-    comments:
-      en: >
-        Base tag for everything that can be populated and spawned into a level,
-        such as [bipeds][biped], [scenery][], and [projectiles][projectile].
     assert_size: 380
     fields:
       - name: object_type
@@ -268,12 +248,6 @@ type_defs:
         type: float
         meta:
           unit: world units
-        comments:
-          en: >
-            A radius which encompasses the object, used by the engine for a
-            variety of purposes. If the bounding radius is too small, shadows
-            will be cut off and [model_collision_geometry][] will not be used
-            outside the radius.
       - name: bounding_offset
         type: Point3D
       - name: origin_offset
@@ -282,15 +256,6 @@ type_defs:
         type: float
         meta:
           min: 0
-        comments:
-          en: >
-            Affects how much objects are moved by explosions. A value of 0 means
-            the object remains fixed (like the multiplayer flag weapon). This
-            value works for [items][item], [bipeds][biped], and
-            [vehicles][vehicle] (vehicles must _also_ have a [physics][] tag
-            set), but not [devices][device] and [scenery][]. See also the
-            _instantaneous acceleration_ field of [damage_effect][] for the
-            source of explosion acceleration.
       - name: scales_change_colors
         type: uint32
         meta:
@@ -323,13 +288,6 @@ type_defs:
         meta:
           tag_classes:
             - shader
-        comments:
-          en: >
-            A modifier shader automatically uses the entire object and its
-            attachments as a geometry source when rendering. It is used for
-            energy shields which need to encompass both the object's own
-            [gbxmodel][], but also any held [weapons][weapon] in the case of
-            [bipeds][biped].
       - name: creation_effect
         type: TagDependency
         meta:
@@ -367,14 +325,6 @@ type_defs:
           T: ObjectWidget
         meta:
           hek_max_count: 4
-        comments:
-          en: >
-            Similar to _attachments_, but without function-driven properties and
-            a marker location. Some examples include the Warthog [antenna][] and
-            projectile [light_volumes][light_volume]. There is a known [PC
-            renderer issue][renderer#pc-regressions] where projectile widgets
-            (but not _attachments_) are improperly offset in mirrored
-            reflections like the floor of the control room.
       - name: functions
         type: Block
         type_args:
@@ -396,3 +346,20 @@ type_defs:
         meta:
           hek_max_count: 1024
           cache_only: true
+  BasicObject:
+    class: struct
+    extends:
+      type: Object
+    assert_size: 508
+    fields:
+      - type: pad
+        size: 128
+  ObjectNoise:
+    class: enum
+    size: 2
+    options:
+      - name: silent
+      - name: medium
+      - name: loud
+      - name: shout
+      - name: quiet

@@ -1,3 +1,532 @@
-entry_type: !<tag:yaml.org,2002:js/undefined> ''
-imports: {}
-type_defs: {}
+entry_type: Model
+imports:
+  h1/tags/common:
+    - Block
+    - TagString
+    - Point3D
+    - Quaternion
+    - Index
+    - Matrix
+    - IsUnusedFlag
+    - Fraction
+    - Vector3D
+    - Point2D
+    - TagDependency
+type_defs:
+  ModelFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: blend_shared_normals
+        comments:
+          en: >
+            On map compilation, vertices with the same positions have their
+            normals linearly averaged.
+      - name: parts_have_local_nodes
+      - name: ignore_skinning
+  ModelMarkerInstance:
+    class: struct
+    assert_size: 32
+    meta:
+      read_only: true
+    fields:
+      - name: region_index
+        type: uint8
+      - name: permutation_index
+        type: uint8
+      - name: node_index
+        type: uint8
+      - type: pad
+        size: 1
+      - name: translation
+        type: Point3D
+      - name: rotation
+        type: Quaternion
+  ModelMarker:
+    class: struct
+    assert_size: 64
+    meta:
+      read_only: true
+    fields:
+      - name: name
+        type: TagString
+      - name: magic_identifier
+        type: int16
+      - type: pad
+        size: 2
+      - type: pad
+        size: 16
+      - name: instances
+        type: Block
+        type_args:
+          T: ModelMarkerInstance
+        meta:
+          hek_max_count: 32
+  ModelNode:
+    class: struct
+    assert_size: 156
+    meta:
+      read_only: true
+    fields:
+      - name: name
+        type: TagString
+      - name: next_sibling_node_index
+        type: Index
+        meta:
+          index_of: nodes
+      - name: first_child_node_index
+        type: Index
+        meta:
+          index_of: nodes
+      - name: parent_node_index
+        type: Index
+        meta:
+          index_of: nodes
+      - type: pad
+        size: 2
+      - name: default_translation
+        type: Point3D
+      - name: default_rotation
+        type: Quaternion
+      - name: node_distance_from_parent
+        type: float
+      - type: pad
+        size: 32
+      - name: scale
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: rotation
+        type: Matrix
+        meta:
+          cache_only: true
+        endianness: little
+      - name: translation
+        type: Point3D
+        meta:
+          cache_only: true
+        endianness: little
+  ModelRegionPermutationFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: cannot_be_chosen_randomly
+  ModelRegionPermutationMarker:
+    class: struct
+    assert_size: 80
+    meta:
+      read_only: true
+    fields:
+      - name: name
+        type: TagString
+      - name: node_index
+        type: Index
+        meta:
+          index_of: nodes
+      - type: pad
+        size: 2
+      - name: rotation
+        type: Quaternion
+      - name: translation
+        type: Point3D
+      - type: pad
+        size: 16
+  ModelRegionPermutation:
+    class: struct
+    assert_size: 88
+    meta:
+      pre_compile: true
+      read_only: true
+    fields:
+      - name: name
+        type: TagString
+      - name: flags
+        type: ModelRegionPermutationFlags
+      - name: permutation_number
+        type: uint16
+        meta:
+          cache_only: true
+        endianness: Index
+      - type: pad
+        size: 2
+      - type: pad
+        size: 24
+      - name: super_low
+        type: Index
+        meta:
+          index_of: geometries
+      - name: low
+        type: Index
+        meta:
+          index_of: geometries
+      - name: medium
+        type: Index
+        meta:
+          index_of: geometries
+      - name: high
+        type: Index
+        meta:
+          index_of: geometries
+      - name: super_high
+        type: Index
+        meta:
+          index_of: geometries
+      - type: pad
+        size: 2
+      - name: markers
+        type: Block
+        type_args:
+          T: ModelRegionPermutationMarker
+        meta:
+          hek_max_count: 64
+          compile_ignore: true
+  ModelRegion:
+    class: struct
+    assert_size: 76
+    meta:
+      read_only: true
+    fields:
+      - name: name
+        type: TagString
+      - type: pad
+        size: 32
+      - name: permutations
+        type: Block
+        type_args:
+          T: ModelRegionPermutation
+        meta:
+          hek_max_count: 32
+          max: 255
+  ModelGeometryPartFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: stripped_internal
+      - name: zoner
+  ModelVertexUncompressed:
+    class: struct
+    assert_size: 68
+    meta:
+      read_only: true
+    fields:
+      - name: position
+        type: Point3D
+      - name: normal
+        type: Vector3D
+      - name: binormal
+        type: Vector3D
+      - name: tangent
+        type: Vector3D
+      - name: texture_coords
+        type: Point2D
+      - name: node0_index
+        type: Index
+      - name: node1_index
+        type: Index
+      - name: node0_weight
+        type: float
+      - name: node1_weight
+        type: float
+  ModelVertexCompressed:
+    class: struct
+    assert_size: 32
+    meta:
+      read_only: true
+    fields:
+      - name: position
+        type: Point3D
+      - name: normal
+        type: uint32
+      - name: binormal
+        type: uint32
+      - name: tangent
+        type: uint32
+      - name: texture_coordinate_u
+        type: int16
+      - name: texture_coordinate_v
+        type: int16
+      - name: node0_index
+        type: int8
+      - name: node1_index
+        type: int8
+      - name: node0_weight
+        type: uint16
+  ModelTriangle:
+    class: struct
+    assert_size: 6
+    meta:
+      read_only: true
+    fields:
+      - name: vertex0_index
+        type: Index
+      - name: vertex1_index
+        type: Index
+      - name: vertex2_index
+        type: Index
+  ModelGeometryPart:
+    class: struct
+    assert_size: 104
+    meta:
+      post_cache_parse: true
+      unsafe_to_dedupe: true
+      pre_compile: true
+      read_only: true
+    fields:
+      - name: flags
+        type: ModelGeometryPartFlags
+      - name: shader_index
+        type: Index
+        meta:
+          index_of: shaders
+      - name: prev_filthy_part_index
+        type: uint8
+        meta:
+          default: 255
+      - name: next_filthy_part_index
+        type: uint8
+        meta:
+          default: 255
+      - name: centroid_primary_node
+        type: Index
+        meta:
+          cache_only: true
+      - name: centroid_secondary_node
+        type: Index
+        meta:
+          cache_only: true
+      - name: centroid_primary_weight
+        type: Fraction
+        meta:
+          cache_only: true
+      - name: centroid_secondary_weight
+        type: Fraction
+        meta:
+          cache_only: true
+      - name: centroid
+        type: Point3D
+      - name: uncompressed_vertices
+        type: Block
+        type_args:
+          T: ModelVertexUncompressed
+        meta:
+          hek_max_count: 65535
+          non_cached: true
+      - name: compressed_vertices
+        type: Block
+        type_args:
+          T: ModelVertexCompressed
+        meta:
+          hek_max_count: 65535
+          non_cached: true
+      - name: triangles
+        type: Block
+        type_args:
+          T: ModelTriangle
+        meta:
+          hek_max_count: 65535
+          non_cached: true
+      - name: do_not_crash_the_game
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: triangle_count
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: triangle_offset
+        type: uint32
+        meta:
+          cache_only: true
+          drop_on_extract_hidden: true
+        endianness: little
+        comments:
+          en: >-
+            On Xbox: pointer to the triangle indices. On PC: offset to triangles
+            relative to the end of the map's vertex data.
+      - name: triangle_offset_2
+        type: uint32
+        meta:
+          cache_only: true
+          drop_on_extract_hidden: true
+        endianness: little
+        comments:
+          en: >-
+            On Xbox: pointer to the entry in the second parts list which points
+            to the triangle indices. On PC: same value as the first triangle
+            offset
+      - name: do_not_screw_up_the_model
+        type: uint32
+        meta:
+          cache_only: true
+          drop_on_extract_hidden: true
+        endianness: little
+      - name: vertex_count
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 4
+      - name: bullshit
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: vertex_offset
+        type: uint32
+        meta:
+          cache_only: true
+          drop_on_extract_hidden: true
+        comments:
+          en: >-
+            On Xbox: pointer to the entry in the second parts list which points
+            to the triangle indices. On PC: offset to first vertex relative to
+            the map's vertex data.
+  ModelGeometry:
+    class: struct
+    assert_size: 48
+    meta:
+      read_only: true
+    fields:
+      - name: flags
+        type: IsUnusedFlag
+      - type: pad
+        size: 32
+      - name: parts
+        type: Block
+        type_args:
+          T: ModelGeometryPart
+        meta:
+          hek_max_count: 32
+  ModelShaderReference:
+    class: struct
+    assert_size: 32
+    fields:
+      - name: shader
+        type: TagDependency
+        meta:
+          tag_classes:
+            - shader
+          non_null: true
+      - name: permutation
+        type: Index
+      - type: pad
+        size: 2
+      - type: pad
+        size: 12
+  Model:
+    class: struct
+    meta:
+      tag_id: mode
+      post_cache_deformat: true
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+      read_only: true
+    comments:
+      en: >-
+        Stores the render model of [objects][object] in the original Xbox
+        version of the game.
+    assert_size: 232
+    fields:
+      - name: flags
+        type: ModelFlags
+      - name: node_list_checksum
+        type: int32
+      - name: super_high_detail_cutoff
+        type: float
+        meta:
+          unit: pixels
+      - name: high_detail_cutoff
+        type: float
+        meta:
+          unit: pixels
+      - name: medium_detail_cutoff
+        type: float
+        meta:
+          unit: pixels
+      - name: low_detail_cutoff
+        type: float
+        meta:
+          unit: pixels
+      - name: super_low_detail_cutoff
+        type: float
+        meta:
+          unit: pixels
+      - name: super_low_detail_node_count
+        type: uint16
+        meta:
+          cache_only: true
+          unit: nodes
+      - name: low_detail_node_count
+        type: uint16
+        meta:
+          cache_only: true
+          unit: nodes
+      - name: medium_detail_node_count
+        type: uint16
+        meta:
+          cache_only: true
+          unit: nodes
+      - name: high_detail_node_count
+        type: uint16
+        meta:
+          cache_only: true
+          unit: nodes
+      - name: super_high_detail_node_count
+        type: uint16
+        meta:
+          cache_only: true
+          unit: nodes
+      - type: pad
+        size: 2
+      - type: pad
+        size: 8
+      - name: base_map_u_scale
+        type: float
+        meta:
+          default: 1
+      - name: base_map_v_scale
+        type: float
+        meta:
+          default: 1
+      - type: pad
+        size: 116
+      - name: markers
+        type: Block
+        type_args:
+          T: ModelMarker
+        meta:
+          hek_max_count: 256
+          hidden: true
+          max: 0
+      - name: nodes
+        type: Block
+        type_args:
+          T: ModelNode
+        meta:
+          hek_max_count: 64
+          max: 255
+      - name: regions
+        type: Block
+        type_args:
+          T: ModelRegion
+        meta:
+          hek_max_count: 32
+          max: 255
+      - name: geometries
+        type: Block
+        type_args:
+          T: ModelGeometry
+        meta:
+          hek_max_count: 256
+          max: 65535
+      - name: shaders
+        type: Block
+        type_args:
+          T: ModelShaderReference
+        meta:
+          hek_max_count: 32

@@ -460,11 +460,19 @@ table.type-def {
     background: $bg-inset;
   }
 
+  td.field-type {
+    word-wrap: anywhere;
+  }
+
   tr.field-type-pad, tr.field-meta-cache_only, tr.field-meta-unused {
     color: $fg-faded;
     .field-meta {
       border-color: $fg-faded;
     }
+  }
+
+  &.skip-padding tr.field-type-pad {
+    display: none;
   }
 
   .field-metas {

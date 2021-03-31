@@ -1,12 +1,13 @@
 This page documents the function and format of some of Halo's installation and profile files, excluding [maps][map].
 
 ```.struct
-show_offsets: true
-entry_type: Vehicle
+show_offsets: false
+skip_padding: true
+entry_type: Scenario
 id: tag-struct
 imports:
-  h1/tags/vehicle:
-    - Vehicle
+  h1/tags/scenario:
+    - Scenario
 ```
 
 # haloce.exe

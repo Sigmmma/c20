@@ -61,8 +61,8 @@ function invFieldCheck(obj) {
     bounds,
     count,
     flagged,
-    description, //todo
-    comment,//todo
+    description,
+    comment,
     unit,
     type,
     size,
@@ -96,7 +96,7 @@ function invStructCheck(obj) {
     inherits,
     cache_only,
     fromTagName,
-    comment,//todo
+    comment,
     options,
     size,
     read_only,
@@ -149,7 +149,7 @@ const outputFiles = {
         options:
           - name: none
             value: 0xFFFFFFFF
-          - name: null
+          - name: "null"
             value: 0
           - name: actor
             value: 0x61637472
@@ -377,6 +377,7 @@ const outputFiles = {
           - name: w
             type: float
       Point2D:
+        class: struct
         type: struct
         size: 0x8
         fields:
@@ -385,6 +386,7 @@ const outputFiles = {
           - name: y
             type: float
       Point3D:
+        class: struct
         type: struct
         assert_size: 0xC
         fields:
@@ -719,10 +721,29 @@ const outputFiles = {
   `)
 };
 
-/* todo:
- *   - cache_only vs compiled
- * - comments
- */
+const missingCrap = [
+  ['preferences_network_game', 'PreferencesNetworkGame'],
+  ['hud_interface_types', 'HUDInterfaceAnchor'],
+  ['hud_interface_types', 'HUDInterfaceFlashFlags'],
+  ['hud_interface_types', 'HUDInterfaceMessagingFlags'],
+  ['hud_interface_types', 'HUDInterfaceMeterFlags'],
+  ['hud_interface_types', 'HUDInterfaceMultitextureOverlay'],
+  ['hud_interface_types', 'HUDInterfaceNumberFlags'],
+  ['hud_interface_types', 'HUDInterfaceOverlayFlashFlags'],
+  ['hud_interface_types', 'HUDInterfaceScalingFlags'],
+  // ['model', 'ModelFlags'],
+  // ['model', 'ModelGeometryPart'],
+  // ['model', 'ModelMarker'],
+  // ['model', 'ModelNode'],
+  // ['model', 'ModelRegion'],
+  // ['model', 'ModelShaderReference'],
+  ['object', 'BasicObject'],
+  ['object', 'ObjectNoise'],
+  ['shader', 'ShaderColorFunctionType'],
+  ['shader', 'ShaderDetailFunction'],
+  ['shader', 'ShaderFirstMapType'],
+  ['shader', 'ShaderTransparentExtraLayer'],
+];
 
 function fieldEq(a, b) {
   return a.toLowerCase().replaceAll(" ", "") == b.toLowerCase().replaceAll(" ", "");
@@ -730,7 +751,6 @@ function fieldEq(a, b) {
 
 Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
   const outputData = {
-    //todo: can be null
     entry_type: basicTag.invaderStructName,
     imports: {},
     type_defs: {}
@@ -744,10 +764,12 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
         level = level.fields.find(f => fieldEq(f.name, part));
       } else if (level && part && level.options) {
         level = level.options.find(f => fieldEq(f.name, part));
+      } else if (part) {
+        level = undefined;
       }
     }
     if (!level) {
-      // console.warn(`Couldn't find comments for path (${tagName}): `, fieldPath);
+      console.warn(`Couldn't find comments for path (${tagName}): `, fieldPath);
     }
     return level;
   }
@@ -978,14 +1000,76 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
   if (basicTag.invaderStructName) {
     walkStruct(basicTag.invaderStructName, []);
   }
+
+  missingCrap.forEach(([mTagName, mTypeName]) => {
+    if (mTagName == tagName) {
+      walkStruct(mTypeName, ["dummy"]);
+    }
+  });
+
   outputFiles[tagName] = outputData;
 });
 
+Object.entries(outputFiles).forEach(([fromModule, data]) => {
+  if (data.imports) {
+    Object.entries(data.imports).forEach(([toModule, toTypeNames]) => {
+      toModule = toModule.split("/")[2];
+      if (!outputFiles[toModule]) {
+        outputFiles[toModule] = {
+          imports: {},
+          type_defs: {}
+        };
+      }
+      toTypeNames.forEach((toTypeName) => {
+        const outputData = outputFiles[toModule];
+        if (!outputData.type_defs[toTypeName]) {
+          console.error(`Missing type ${toTypeName} in module ${toModule}`);
+        }
+      });
+    });
+  }
+});
+
+const ignoredTags = [
+  "ui_widget_collection",
+  "spheroid",
+  "continuous_damage_effect",
+  "placeholder",
+  "preferences_network_game",
+  "model",
+  "hud_interface_types",
+  "placeholder"
+];
 Object.entries(outputFiles).forEach(([groupName, data]) => {
   const content = yaml.dump(data, {
     indent: 2,
     noRefs: true,
   });
-  const outPath = path.join(outDir, `${groupName}.yml`);
-  fs.writeFileSync(outPath, content, "utf8");
+  if (!ignoredTags.includes(groupName)) {
+    const outPath = path.join(outDir, `${groupName}.yml`);
+    fs.writeFileSync(outPath, content, "utf8");
+  }
 });
+
+/*
+moved to common
+-------------
+bitfield
+enum
+
+ignore
+-----------------
+invader_bitmap
+invader_sound
+
+no invader structs
+-----------
+spheroid
+ui_widget_collection
+continuous_damage_effect
+
+
+backfilled:
+-------------
+hud_interface_types
+*/

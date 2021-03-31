@@ -125,7 +125,7 @@ function processGenerics(genericParams, type_args) {
 function structDisplay(ctx, opts) {
   const {renderMarkdown} = require("../markdown"); //todo: untangle circular dep
   const localize = localizations(ctx.lang);
-  const {type_defs: typeDefsArg, entry_type, show_offsets, id} = opts;
+  const {type_defs: typeDefsArg, entry_type, show_offsets, skip_padding, id} = opts;
 
   let typeDefs = {
     ...INTRINSIC_TYPE_DEFS,
@@ -248,7 +248,7 @@ function structDisplay(ctx, opts) {
     const widths = 50 / (show_offsets ? 3 : 2);
     let offset = 0;
     return html`
-      <table class="type-def struct">
+      <table class="type-def struct ${skip_padding ? "skip-padding" : ""}">
         <thead>
           <tr>
             <th style="width:${widths}%">${localize("field")}</th>
@@ -276,9 +276,9 @@ function structDisplay(ctx, opts) {
             let embeddedType = undefined;
             if (fieldTypeDef.class) {
               embeddedType = instantiatedFieldType;
-            } else if (fieldTypeName == "ptr32" || fieldTypeName == "ptr64") {
-              embeddedType = instantiateType({type: Object.values(fieldTypeArgs)[0]});
-              if (!embeddedType.class) {
+            } else if (fieldTypeArgs && (fieldTypeName == "ptr32" || fieldTypeName == "ptr64")) {
+              embeddedType = instantiateType(processGenerics({type: Object.values(fieldTypeArgs)[0]}, instantiatedType.type_args));
+              if (!embeddedType.typeDef.class) {
                 embeddedType = undefined;
               }
             }
@@ -329,7 +329,7 @@ function structDisplay(ctx, opts) {
           ${instantiatedType.typeDef.bits.map((bit, i) => html`
             <tr>
               <td>${renderFieldName(bit.name, joinPathId(pathId, bit.name))}</td>
-              <td>${renderHex(0x1 << i)}</td>
+              <td>${renderHex(0x1 << i >>> 0)}</td>
               <td>${renderComments(bit)}</td>
             </tr>
           `)}

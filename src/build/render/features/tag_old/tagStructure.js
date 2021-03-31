@@ -306,7 +306,7 @@ const structView = (ctx, struct, structName, comments, addHeading, addSearchText
           ${struct.fields.map((field, i) => html`
             <tr>
               <td>${renderFieldName(field, `${fieldPath}-${slugify(field)}`)}</td>
-              <td><code title="${0x1 << i}">0x${(0x1 << i).toString(16)}</code></td>
+              <td><code title="${0x1 << i >>> 0}">0x${(0x1 << i >>> 0).toString(16)}</code></td>
               <td>${renderComment(ctx, comments && comments.fields.find(it => it.name == field)[ctx.lang], addSearchText)}</td>
             </tr>
           `)}

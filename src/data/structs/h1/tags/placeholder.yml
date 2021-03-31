@@ -1,3 +1,18 @@
-entry_type: !<tag:yaml.org,2002:js/undefined> ''
-imports: {}
-type_defs: {}
+entry_type: Placeholder
+imports:
+  h1/tags/object:
+    - BasicObject
+type_defs:
+  Placeholder:
+    class: struct
+    extends:
+      type: BasicObject
+    meta:
+      tag_id: plac
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: Used only by [Sapien][] to represent interactive handles/markers.
+    assert_size: 508
+    fields: []
