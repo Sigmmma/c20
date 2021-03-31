@@ -1,16 +1,16 @@
 ScriptTypes:
   columns:
-    - id: type
+    - key: type
       name:
         en: Type
         es: Tipo
       format: code
-    - id: info
+    - key: info
       name:
         en: Comments
         es: Comentarios
       format: text
-    - id: ex
+    - key: ex
       name:
         en: Example
         es: Ejemplo
@@ -62,17 +62,17 @@ ScriptTypes:
 
 ValueTypes:
   columns:
-    - id: type
+    - key: type
       name:
         en: Type
         es: Tipo
       format: code
-    - id: info
+    - key: info
       name:
         en: Details
         es: 
       format: text
-    - id: ex
+    - key: ex
       name:
         en: Example
         es: Ejemplo
@@ -343,17 +343,17 @@ ValueTypes:
 
 OperatorsAndKeywords:
   columns:
-    - id: type
+    - key: type
       name:
         en: Expression
         es: 
       format: code
-    - id: info
+    - key: info
       name:
         en: Details
         es: 
       format: text
-    - id: ex
+    - key: ex
       name:
         en: Example
         es: Ejemplo
@@ -535,17 +535,17 @@ OperatorsAndKeywords:
 
 Functions:
   columns:
-    - id: type
+    - key: type
       name:
         en: Expression
         es: 
       format: code
-    - id: info
+    - key: info
       name:
         en: Details
         es: 
       format: text
-    - id: ex
+    - key: ex
       name:
         en: Usage Example
         es: 

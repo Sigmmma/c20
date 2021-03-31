@@ -1,12 +1,11 @@
-*Halo Script* (HSC), also known as *Blam Scripting Language* (BSL), is a
+**Halo Script** (HSC), also known as **Blam Scripting Language** (BSL), is a
 scripting language that map designers can use to have greater control over how
 their map works. It is primarily used in controlling the mission structure of
 single player maps, but can also be used to achieve certain effects in
 multiplayer, such as synchronizing destructable vehicles.
 
-Halo Script is based on
-[Lisp][].
-Scripts are compiled into the [scenario][] of a [map][map] using [Sapien][].
+Halo Script is based on [Lisp][].
+Scripts are compiled into the [scenario][] of a [map][] using [Sapien][].
 Scripts can be extracted from a scenario using [Refinery][].
 
 
@@ -51,23 +50,23 @@ Example:
 
 ## Script types
 ```.table
-entryType: ScriptTypes
-typeDefs: hsc.yml
+tableDefs: hsc.yml
+tableName: ScriptTypes
 rowLinks: true
 ```
 
 ## Value types
 ```.table
-entryType: ValueTypes
-typeDefs: hsc.yml
+tableDefs: hsc.yml
+tableName: ValueTypes
 rowLinks: true
 ```
 
 
 ## Operators and keywords
 ```.table
-entryType: OperatorsAndKeywords
-typeDefs: hsc.yml
+tableDefs: hsc.yml
+tableName: OperatorsAndKeywords
 rowLinks: true
 ```
 
@@ -99,8 +98,8 @@ Note: these links don't work just yet.
 [V][scripting#V]
 
 ```.table
-entryType: Functions
-typeDefs: hsc.yml
+tableDefs: hsc.yml
+tableName: Functions
 rowLinks: true
 ```
 

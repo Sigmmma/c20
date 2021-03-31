@@ -8,19 +8,19 @@ function renderTableYaml(ctx, optsYaml) {
 
   const opts = yaml.load(optsYaml);
 
-  if (!opts.entryType)
-    throw new Error("Missing table value: entryType");
+  if (!opts.tableDefs)
+    throw new Error("Missing table value: tableDefs");
 
-  if (!opts.typeDefs)
-    throw new Error("Missing table value: typeDefs");
+  if (!opts.tableName)
+    throw new Error("Missing table value: tableName");
 
   const data = yaml.load(
-    fs.readFileSync(path.join(ctx.page.dirPath, opts.typeDefs), "utf8")
-  )[opts.entryType];
+    fs.readFileSync(path.join(ctx.page.dirPath, opts.tableDefs), "utf8")
+  )[opts.tableName];
 
   // De-duplicate common YAML error message stuff
   function YamlError(reason) {
-    return new Error(`Malformed table YAML. Table ${opts.entryType} ${reason}`);
+    return new Error(`Malformed table YAML. Table ${opts.tableName} ${reason}`);
   }
 
   if (!data)
@@ -32,12 +32,12 @@ function renderTableYaml(ctx, optsYaml) {
   if (!data.rows)
     throw YamlError('missing entry: rows');
 
-  data.columns.reduce((seenIds, col) => {
-    if (seenIds[col.id])
-      throw YamlError(`duplicate ID: ${col.id}`);
+  data.columns.reduce((seenKeys, col) => {
+    if (seenKeys[col.key])
+      throw YamlError(`duplicate key: ${col.key}`);
 
-    seenIds[col.id] = true;
-    return seenIds;
+    seenKeys[col.key] = true;
+    return seenKeys;
   }, {});
 
   // Converts the given content to HTML. content can be a string, or an object
@@ -83,7 +83,7 @@ function renderTableYaml(ctx, optsYaml) {
       <tbody>
         ${ data.rows.map(row =>
           html`<tr>${ data.columns.map(col =>
-            html`<td style="${col.style}">${ markdownToHtml(col.format, row[col.id]) }</td>`
+            html`<td style="${col.style}">${ markdownToHtml(col.format, row[col.key]) }</td>`
           ) }</tr>`
         ) }
       </tbody>
