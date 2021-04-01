@@ -1271,3 +1271,838 @@ Functions:
         es: 
       ex: 
 
+    - type: (bind <string> <string> <string>)
+      info:
+        en: Binds an input device/button combination to a game control
+        es: 
+      ex: 
+
+    - type: (breakable_surfaces_enable <boolean>)
+      info:
+        en: Enables or disables breakability of all breakable surfaces on level
+        es: 
+      ex: '`(breakable_surfaces_enable false)`'
+
+    - type: (breakable_surfaces_reset)
+      info:
+        en: Restores all breakable surfaces
+        es: 
+      ex: '`(breakable_surfaces_reset)`'
+
+    - type: (camera_control <boolean>)
+      info:
+        en: Toggles script control of the camera
+        es: 
+      ex: '`(camera_control true)` <br/> `(camera_control false)`'
+
+    - type: (camera_set <cutscene_camera_point> <short>)
+      info:
+        en: >
+          Moves the camera to the specified camera point over the specified
+          number of ticks
+        es: 
+      ex: '`(camera_set somewhere_point 100)`'
+
+    - type: (camera_set_animation <animation_graph> <string>)
+      info:
+        en: Begins a prerecorded camera animation
+        es: 
+      ex: 
+
+    - type: (camera_set_dead <unit>)
+      info:
+        en: Makes the scripted camera zoom out around a unit as if it were dead
+        es: 
+      ex: '`(camera_set_dead player0)`'
+
+    - type: (camera_set_first_person <unit>)
+      info:
+        en: Makes the scripted camera follow a unit
+        es: 
+      ex: '`(camera_set_first_person player0)`'
+
+    - type: (camera_set_relative <cutscene_camera_point> <short> <object>)
+      info:
+        en: >
+          Moves the camera to the specified camera point over the specified
+          number of ticks (position is relative to the specified object)
+        es: 
+      ex: '`(camera_set_relative somewhere_point 200 warthog_mp_1)`'
+
+    - type: (camera_time)
+      info:
+        en: Returns the number of ticks remaining in the current camera interpolation
+        es: 
+      ex: '`(camera_time)`'
+
+    - type: (change_team <short>)
+      info:
+        en: Change your team (0=red, 1=blue, else=auto)
+        es: 
+      ex: >
+        `(change_team 0)`   returns: changes you to red <br/>
+        `(change_team 1)`   returns: changes you to blue <br/>
+        `(change_team  2)`  returns: auto balance
+
+    - type: (cheat_active_camouflage)
+      info:
+        en: Gives the player active camouflage
+        es: 
+      ex: '`(cheat_active_camouflage)`'
+
+    - type: (cheat_active_camouflage_local_player <short>)
+      info:
+        en: Gives the player active camouflage
+        es: 
+      ex: '`(cheat_active_camouflage_local_player 1)`'
+
+    - type: (cheat_all_powerups)
+      info:
+        en: Drops all powerups near player
+        es: 
+      ex: '`(cheat_all_powerups)`'
+
+    - type: (cheat_all_vehicles)
+      info:
+        en: Drops all vehicles on player
+        es: 
+      ex: '`(cheat_all_vehicles)`'
+
+    - type: (cheat_all_weapons)
+      info:
+        en: Drops all weapons near player
+        es: 
+      ex: '`(cheat_all_weapons)`'
+
+    - type: (cheat_spawn_warthog)
+      info:
+        en: Drops a warthog near player
+        es: 
+      ex: '`(cheat_spawn_warthog)`'
+
+    - type: (cheat_teleport_to_camera)
+      info:
+        en: Teleports player to camera location
+        es: 
+      ex: '`(cheat_teleport_to_camera)`'
+
+    - type: (cheats_load)
+      info:
+        en: Reloads the cheats.txt file
+        es: 
+      ex: '`(cheats_load)`'
+
+    - type: (checkpoint_load <string>)
+      info:
+        en: Load a saved checkpoint
+        es: 
+      ex: 
+
+    - type: (checkpoint_save)
+      info:
+        en: Save last solo checkpoint
+        es: 
+      ex: '`(checkpoint_save)`'
+
+    - type: (cinematic_abort)
+      info:
+        en: Aborts a cinematic
+        es: 
+      ex: '`(cinematic_abort)`'
+
+    - type: (cinematic_screen_effect_set_convolution <short> <short> <real> <real> <real>)
+      info:
+        en: Sets the convolution effect
+        es: 
+      ex: 
+
+    - type: (cinematic_screen_effect_set_filter <real> <real> <real> <real> <boolean> <real>)
+      info:
+        en: Sets the filter effect
+        es: 
+      ex: 
+
+    - type: (cinematic_screen_effect_set_filter_desaturation_tint <real> <real> <real>)
+      info:
+        en: Sets the desaturation filter tint color
+        es: 
+      ex: 
+
+    - type: (cinematic_screen_effect_set_video <short> <real>)
+      info:
+        en: >
+          Sets the video effect: `<noise intensity[0,1]>`,
+          `<overbright: 0=none, 1=2x, 2=4x>`
+        es: 
+      ex: 
+
+    - type: (cinematic_screen_effect_start <boolean>)
+      info:
+        en: Starts screen effect; pass true to clear
+        es: 
+      ex: 
+
+    - type: (cinematic_screen_effect_stop)
+      info:
+        en: Returns control of the screen effects to the rest of the game
+        es: 
+      ex: 
+
+    - type: (cinematic_set_near_clip_distance <real>)
+      info:
+        en: 
+        es: 
+      ex: 
+
+    - type: (cinematic_set_title <cutscene_title>)
+      info:
+        en: Activates the chapter title
+        es: 
+      ex: 
+
+    - type: (cinematic_set_title_delayed <cutscene_title> <real>)
+      info:
+        en: Activates the chapter title, delayed by <real> seconds
+        es: 
+      ex: 
+
+    - type: (cinematic_show_letterbox <boolean>)
+      info:
+        en: Sets or removes the letterbox bars
+        es: 
+      ex: '`(cinematic_show_letterbox true)` <br/> `(cinematic_show_letterbox false)`'
+
+    - type: (cinematic_skip_start_internal)
+      info:
+        en: 
+        es: 
+      ex: '`(cinematic_skip_start_internal)`'
+
+    - type: (cinematic_skip_stop_internal)
+      info:
+        en: 
+        es: 
+      ex: '`(cinematic_skip_stop_internal)`'
+
+    - type: (cinematic_start)
+      info:
+        en: Initializes game to start a cinematic (interruptive) cutscene
+        es: 
+      ex: '`(cinematic_start)`'
+
+    - type: (cinematic_stop)
+      info:
+        en: Initializes the game to end a cinematic (interruptive) cutscene
+        es: 
+      ex: '`(cinematic_stop)`'
+
+    - type: (cinematic_suppress_bsp_object_creation <boolean>)
+      info:
+        en: >
+          Suppresses or enables the automatic creation of objects during
+          cutscenes due to a bsp switch
+        es: 
+      ex: >
+        `(cinematic_suppress_bsp_object_creation true)` <br/>
+        `(cinematic_suppress_bsp_object_creation false)`
+
+    - type: (config_one_control <string>)
+      info:
+        en: Test function to configure a single control
+        es: 
+      ex: 
+
+    - type: (connect <string> <string>)
+      info:
+        en: 'Attempt to connect to server - use ip:port password as parameters'
+        es: 
+      ex: 
+
+    - type: (crash <string>)
+      info:
+        en: Crashes (for debugging)
+        es: 
+      ex: '`(crash "Something is wrong")`'
+
+    - type: (custom_animation <unit> <animation_graph> <string> <boolean>)
+      info:
+        en: >
+          Starts a custom animation playing on a unit (interpolates into
+          animation if last parameter is true)
+        es: 
+      ex: 
+
+    - type: (custom_animation_list <object_list> <animation_graph> <string> <boolean>)
+      info:
+        en: >
+          Starts a custom animation playing on a unit list (interpolates into
+          animation if last parameter is true)
+        es: 
+      ex: 
+
+    - type: (damage_new <damage> <cutscene_flag>)
+      info:
+        en: Causes the specified damage at the specified flag
+        es: 
+      ex: '`(damage_new "scenery\emitters\burning_flame\flame" enter_lava_flag)`'
+
+    - type: (damage_object <damage> <object>)
+      info:
+        en: Causes the specified damage at the specified object
+        es: 
+      ex: '`(damage_object "weapons\assault rifle\bullet" player0)`'
+
+    - type: (deactivate_nav_point_flag <unit> <cutscene_flag>)
+      info:
+        en: Deactivates a nav point type attached to a player <unit> anchored to a flag
+        es: 
+      ex: 
+
+    - type: (deactivate_nav_point_object <unit> <object>)
+      info:
+        en: Deactivates a nav point type attached to a player <unit> anchored to an object
+        es: 
+      ex: 
+
+    - type: (deactivate_team_nav_point_flag <team> <cutscene_flag>)
+      info:
+        en: Deactivates a nav point type attached to a team anchored to a flag
+        es: 
+      ex: 
+
+    - type: (deactivate_team_nav_point_object <team> <object>)
+      info:
+        en: Deactivates a nav point type attached to a team anchored to an object
+        es: 
+      ex: 
+
+    - type: (debug_camera_load)
+      info:
+        en: Loads the saved camera position and facing
+        es: 
+      ex: '`(debug_camera_load)`'
+
+    - type: (debug_camera_save)
+      info:
+        en: Saves the camera position and facing
+        es: 
+      ex: '`(debug_camera_save)`'
+
+    - type: (debug_memory)
+      info:
+        en: Dumps memory leaks
+        es: 
+      ex: '`(debug_memory)`'
+
+    - type: (debug_memory_by_file)
+      info:
+        en: Dumps memory leaks by source file
+        es: 
+      ex: '`(debug_memory_by_file)`'
+
+    - type: (debug_memory_for_file <string>)
+      info:
+        en: Dumps memory leaks from the specified source file
+        es: 
+      ex: '`(debug_memory_for_file "\halopc\haloce\source\tag_files\tag_groups.c")`'
+
+    - type: (debug_teleport_player <short> <short>)
+      info:
+        en: 
+        es: 
+      ex: 
+
+    - type: (debug_sounds_distances <string> <real> <real>)
+      info:
+        en: >
+          Changes the minimum and maximum distances for all sound classes
+          matching the substring
+        es: 
+      ex: 
+
+    - type: (debug_sounds_enable <string> <boolean>)
+      info:
+        en: Enables or disabled all sound classes matching the substring
+        es: 
+      ex: 
+
+    - type: (debug_sounds_wet <string> <real>)
+      info:
+        en: Changes the reverb level for all sound classes matching the substring
+        es: 
+      ex: 
+
+    - type: (debug_tags)
+      info:
+        en: Writes all memory being used by tag files into tag_dump.txt
+        es: 
+      ex: '`(debug_tags)`'
+
+    - type: (delete_save_game_files)
+      info:
+        en: Delete all custom profile files
+        es: 
+      ex: '`(delete_save_game_files)`'
+
+    - type: (device_get_position <device>)
+      info:
+        en: >
+          Gets the current position of the given device (used for devices
+          without explicit device groups)
+        es: 
+      ex: 
+
+    - type: (device_get_power <device>)
+      info:
+        en: Gets the current power of a named device
+        es: 
+      ex: 
+
+    - type: (device_group_change_only_once_more_set <device_group> <boolean>)
+      info:
+        en: true allows a device to change states only once
+        es: 
+      ex: 
+
+    - type: (device_group_get <device_group>)
+      info:
+        en: Returns the desired value of the specified device group
+        es: 
+      ex: 
+
+    - type: (device_group_set <device_group> <real>)
+      info:
+        en: Changes the desired value of the specified device group
+        es: 
+      ex: 
+
+    - type: (device_group_set_immediate <device_group> <real>)
+      info:
+        en: Instantaneously changes the value of the specified device group
+        es: 
+      ex: 
+
+    - type: (device_one_sided_set <device> <boolean>)
+      info:
+        en: >
+          true makes the given device one-sided (only able to be opened from one
+          direction), false makes it two-sided
+        es: 
+      ex: 
+
+    - type: (device_operates_automatically_set <device> <boolean>)
+      info:
+        en: >
+          true makes the given device open automatically when any biped is
+          nearby, false makes it not
+        es: 
+      ex: 
+
+    - type: (device_get_position <device>)
+      info:
+        en: >
+          Gets the current position of the given device (used for devices
+          without explicit device groups)
+        es: 
+      ex: 
+
+    - type: (device_set_position <device> <real>)
+      info:
+        en: >
+          Set the desired position of the given device (used for devices without
+          explicit device groups)
+        es: 
+      ex: '`(device_set_position <device> 1.0)`'
+
+    - type: (device_set_position_immediate <device> <real>)
+      info:
+        en: >
+          Instantaneously changes the position of the given device (used for
+          devices without explicit device groups
+        es: 
+      ex: '`(device_set_position_immediate <device> 1.0)`'
+
+    - type: (device_set_power <device> <real>)
+      info:
+        en: Immediately sets the power of a named device to the given value
+        es: 
+      ex: '`(device_set_power <device> 1.0)`'
+
+    - type: (display_scenario_help <short>)
+      info:
+        en: Display in-game help dialog
+        es: 
+      ex: '`(display_scenario_help 1)`'
+
+    - type: (effect_new <effect> <cutscene_flag>)
+      info:
+        en: Starts the specified effect at the specified flag
+        es: 
+      ex: '`(effect_new "effects\coop teleport" teleporting_flag)`'
+
+    - type: (effect_new_on_object_marker <effect> <object> <string>)
+      info:
+        en: Starts the specified effect on the specified object at the specified marker
+        es: 
+      ex: '`(effect_new_on_object_marker "effects\burning large" warthog_mp "driver")`'
+
+    - type: (enable_hud_help_flash <boolean>)
+      info:
+        en: Starts/stops the help text flashing
+        es: 
+      ex: '`(enable_hud_help_flash true)` <br/> `(enable_hud_help_flash false)`'
+
+    - type: (error_overflow_suppression <boolean>)
+      info:
+        en: Enables or disables the suppression of error spamming
+        es: 
+      ex: '`(error_overflow_suppression true)` <br/> `(error_overflow_suppression false)`'
+
+    - type: (fade_in <real> <real> <real> <short>)
+      info:
+        en: Does a screen fade in from a particular color in the amount of ticks
+        es: 
+      ex: '`(fade_in 0.0 0.0 0.0 100)`'
+
+    - type: (fade_out <real> <real> <real> <short>)
+      info:
+        en: Does a screen fade out to a particular color in the amount of ticks
+        es: 
+      ex: '`(fade_out 1.0 1.0 1.0 100)`'
+
+    - type: (fast_setup_network_server <string> <string> <boolean>)
+      info:
+        en: >
+          Sets up a network server with the given map name, game variant, and
+          true for remote connections, false for not
+        es: 
+      ex: 
+
+    - type: (game_all_quiet)
+      info:
+        en: Returns false if there are bad guys around, projectiles in the air, etc.
+        es: 
+      ex: '`(game_all_quiet)`'
+
+    - type: (game_difficulty_get)
+      info:
+        en: >
+          Returns the current difficulty setting, but lies to you and will never
+          return easy, instead returning normal
+        es: 
+      ex: '`(game_difficulty_get)`'
+
+    - type: (game_difficulty_get_real)
+      info:
+        en: Returns the actual current difficulty setting without lying
+        es: 
+      ex: '`(game_difficulty_get_real)`'
+
+    - type: (game_difficulty_set <game_difficulty>)
+      info:
+        en: Changes the difficulty setting for the next map to be loaded
+        es: 
+      ex: >
+        `(game_difficulty_set easy)` <br/>
+        `(game_difficulty_set normal)` <br/>
+        `(game_difficulty_set hard)` <br/>
+        `(game_difficulty_set impossible)`
+
+    - type: (game_is_cooperative)
+      info:
+        en: Returns true if the game is cooperative
+        es: 
+      ex: '`(game_is_cooperative)`'
+
+    - type: (game_lost)
+      info:
+        en: Causes the player to revert to his previous saved game
+        es: 
+      ex: '`(game_lost)`'
+
+    - type: (game_revert)
+      info:
+        en: >
+          Reverts to last saved game, if any (for testing, the first bastard
+          that does this to me gets it in the head)
+        es: 
+      ex: '`(game_revert)`'
+
+    - type: (game_reverted)
+      info:
+        en: Don't use this for anything, you black-hearted bastards
+        es: 
+      ex: '`(game_reverted)`'
+
+    - type: (game_safe_to_save)
+      info:
+        en: Returns false if it would be a bad idea to save the player's game right now
+        es: 
+      ex: '`(game_safe_to_save)`'
+
+    - type: (game_safe_to_speak)
+      info:
+        en: Returns false if it would be a bad idea to save the player's game right now
+        es: 
+      ex: '`(game_safe_to_speak)`'
+
+    - type: (game_save)
+      info:
+        en: >
+          Checks to see if it is safe to save game, then saves (gives up after
+          8 seconds)
+        es: 
+      ex: '`(game_save)`'
+
+    - type: (game_save_cancel)
+      info:
+        en: Cancels any pending game_save, timeout or not
+        es: 
+      ex: '`(game_save_cancel)`'
+
+    - type: (game_save_no_timeout)
+      info:
+        en: >
+          Checks to see if it is safe to save game, then saves (this version
+          never gives up)
+        es: 
+      ex: '`(game_save_no_timeout)`'
+
+    - type: (game_save_totally_unsafe)
+      info:
+        en: Saves disregarding player's current situation
+        es: 
+      ex: '`(game_save_totally_unsafe)`'
+
+    - type: (game_saving)
+      info:
+        en: Checks to see if the game is trying to save the map
+        es: 
+      ex: '`(game_saving)`'
+
+    - type: (game_skip_ticks <short>)
+      info:
+        en: Skips <short> amount of game ticks. ONLY USE IN CUTSCENES!!!
+        es: 
+      ex: '`(game_skip_ticks 5)`'
+
+    - type: (game_speed <real>)
+      info:
+        en: Changes the game speed
+        es: 
+      ex: '`(game_speed 0.5)`'
+
+    - type: (game_time)
+      info:
+        en: Gets ticks elapsed since the start of the game
+        es: 
+      ex: '`(game_time)`'
+
+    - type: (game_won)
+      info:
+        en: >
+          Causes the player to successfully finish the current level and move on
+          to the next
+        es: 
+      ex: '`(game_won)`'
+
+    - type: (garbage_collect_now)
+      info:
+        en: >
+          Causes all garbage objects except those visible to a player to be
+          collected immediately
+        es: 
+      ex: '`(garbage_collect_now)`'
+
+    - type: (get_digital_forward_throttle <short>)
+      info:
+        en: Gets the amount of forward throttle applied by digital device stimuli
+        es: 
+      ex: 
+
+    - type: (get_digital_strafe_throttle <short>)
+      info:
+        en: Gets the amount of strafe throttle applied by digital device stimuli
+        es: 
+      ex: 
+
+    - type: (get_digital_yaw_increment <short>)
+      info:
+        en: Gets the increment in yaw applied by digital device stimuli
+        es: 
+      ex: 
+
+    - type: (get_digital_pitch_increment <short>)
+      info:
+        en: Gets the increment in pitch applied by digital device stimuli
+        es: 
+      ex: 
+
+    - type: (get_gamepad_forward_threshold <short>)
+      info:
+        en: Gets the threshold beyond which gamepad movement is full forward throttle
+        es: 
+      ex: 
+
+    - type: (get_gamepad_strafe_threshold <short>)
+      info:
+        en: Gets the threshold beyond which gamepad movement is full strafe throttle
+        es: 
+      ex: 
+
+    - type: (get_gamepad_yaw_scale <short>)
+      info:
+        en: Gets the scale for gamepad control of yaw
+        es: 
+      ex: 
+
+    - type: (get_gamepad_pitch_scale <short>)
+      info:
+        en: Gets the scale for gamepad control of pitch
+        es: 
+      ex: 
+
+    - type: (get_mouse_forward_threshold <short>)
+      info:
+        en: Gets the threshold beyond which mouse movement is full forward throttle
+        es: 
+      ex: 
+
+    - type: (get_mouse_strafe_threshold <short>)
+      info:
+        en: Gets the threshold beyond which mouse movement is full strafe throttle
+        es: 
+      ex: 
+
+    - type: (get_mouse_yaw_scale <short>)
+      info:
+        en: Gets the scale for mouse control of yaw
+        es: 
+      ex: 
+
+    - type: (get_mouse_pitch_scale <short>)
+      info:
+        en: Gets the scale for mouse control of pitch
+        es: 
+      ex: 
+
+    - type: (get_yaw_rate <short>)
+      info:
+        en: Gets the yaw rate for the given player number
+        es: 
+      ex: 
+
+    - type: (get_pitch_rate <short>)
+      info:
+        en: Gets the yaw rate for the given player number
+        es: 
+      ex: 
+
+    - type: (hammer_begin <string> <string> <long> <short> <short>)
+      info:
+        en: Hammers the server by connecting and disconnecting repeatedly
+        es: 
+      ex: 
+
+    - type: (hammer_stop)
+      info:
+        en: Stops hammering the server
+        es: 
+      ex: '`(hammer_stop)`'
+
+    - type: (help <string>)
+      info:
+        en: Prints a description of the named function
+        es: 
+      ex: '`(help cheats_load)`'
+
+    - type: (hud_blink_health <boolean>)
+      info:
+        en: Starts/stops manual blinking of the health panel
+        es: 
+      ex: '`(hud_blink_health true)` <br/> `(hud_blink_health false)`'
+
+    - type: (hud_blink_motion_sensor <boolean>)
+      info:
+        en: Starts/stops manual blinking of the motion sensor panel
+        es: 
+      ex: '`(hud_blink_motion_sensor true)` <br/> `(hud_blink_motion_sensor false)`'
+
+    - type: (hud_blink_shield <boolean>)
+      info:
+        en: Starts/stops manual blinking of the shield panel
+        es: 
+      ex: '`(hud_blink_shield true)` <br/> `(hud_blink_shield false)`'
+
+    - type: (hud_clear_messages)
+      info:
+        en: Clears all non-state messages on the hud
+        es: 
+      ex: '`(hud_clear_messages)`'
+
+    - type: (hud_get_timer_ticks)
+      info:
+        en: Returns the ticks left on the hud timer
+        es: 
+      ex: '`(hud_get_timer_ticks)`'
+
+    - type: (hud_help_flash_restart)
+      info:
+        en: Resets the timer for the help text flashing
+        es: 
+      ex: '`(hud_help_flash_restart)`'
+
+    - type: (input_activate_joy <short> <short>)
+      info:
+        en: Activates an enumerated joystick into a logical joystick slot
+        es: 
+      ex: 
+
+    - type: (input_deactivate_joy <short>)
+      info:
+        en: Deactivates an enumerated joystick, freeing up the logical joystick slot
+        es: 
+      ex: 
+
+    - type: (input_find_default <string>)
+      info:
+        en: Test function that looks up a default profile for a deviceid
+        es: 
+      ex: 
+
+    - type: (input_find_joystick <string>)
+      info:
+        en: Test function to find a joystick by GUID (string representation)
+        es: 
+      ex: 
+
+    - type: (input_get_joy_count)
+      info:
+        en: Test function to return the number of joysticks enumerated
+        es: 
+      ex: '`(input_get_joy_count)`'
+
+    - type: (input_is_joy_active <short>)
+      info:
+        en: Test function to determine if an enumerated joystick is activated or not
+        es: 
+      ex: 
+
+    - type: (input_show_joystick_info)
+      info:
+        en: Test function to show the enumerated joystick information for all joystick
+        es: 
+      ex: '`(input_show_joystick_info)`'
+
+    - type: (list_count <object_list>)
+      info:
+        en: Returns the number of objects in a list
+        es: 
+      ex: '`(list_count the_warthogs)`'
+
+    - type: (list_get <object_list> <short>)
+      info:
+        en: Returns an item in an object list
+        es: 
+      ex: '`(list_get the_warthogs 3)`'
+
