@@ -15,6 +15,7 @@ ScriptTypes:
         en: Example
         es: Ejemplo
       format: codeblock-hsc
+  slugKey: type
   rows:
     - type: continuous
       info:
@@ -77,6 +78,7 @@ ValueTypes:
         en: Example
         es: Ejemplo
       format: text
+  slugKey: type
   rows:
     - type: boolean
       info:
@@ -359,73 +361,85 @@ OperatorsAndKeywords:
         es: Ejemplo
       format: text
   rows:
-    - type: (+ <number_1> <number_2> [... <number_n>])
+    - slug: plus
+      type: (+ <number_1> <number_2> [... <number_n>])
       info:
         en: Returns the sum of all specified expressions
         es: 
       ex: '`(+ 5 6 7 8 9)` returns: 35'
 
-    - type: (- <number_1> <number_2>)
+    - slug: minus
+      type: (- <number_1> <number_2>)
       info:
         en: Returns the difference of two expressions
         es: 
       ex: '`(- 10 5)` returns: 5'
 
-    - type: (* <number_1> <number_2> [... <number_n>])
+    - slug: mult
+      type: (* <number_1> <number_2> [... <number_n>])
       info:
         en: Returns the product of all specified expressions
         es: 
       ex: '`(* 5 5)` returns: 25 <br/> `(* 5.5 6)` returns: 33'
 
-    - type: (/ <number_1> <number_2>)
+    - slug: div
+      type: (/ <number_1> <number_2>)
       info:
         en: Returns the quotient of two expressions
         es: 
       ex: '`(/ 10 5)`  returns: 2 <br/> `(/ 2.5 2)` returns: 1.25'
 
-    - type: (= <expression_1> <expression_2>)
+    - slug: eq
+      type: (= <expression_1> <expression_2>)
       info:
         en: Returns true if two expressions are equal
         es: 
       ex: '`(= (hud_get_timer_ticks) 0)`'
 
-    - type: (!= <expression_1> <expression_2>)
+    - slug: ne
+      type: (!= <expression_1> <expression_2>)
       info:
         en: Returns true if two expressions are not equal
         es: 
       ex: '`(!= (hud_get_timer_ticks) 0)`'
 
-    - type: (> <number_1> <number_2>)
+    - slug: gt
+      type: (> <number_1> <number_2>)
       info:
         en: Returns true if `number_1` is larger than `number_2`
         es: 
       ex: '`(> 10 5)` returns: true <br/> `(> 5 10)` returns: false'
 
-    - type: (< <number_1> <number_2>)
+    - slug: lt
+      type: (< <number_1> <number_2>)
       info:
         en: Returns true if `number_1` is smaller than `number_2`
         es: 
       ex: '`(> 4 8)` returns: true <br/> `(> 8 4)` returns: false'
 
-    - type: (>= <number_1> <number_2>)
+    - slug: ge
+      type: (>= <number_1> <number_2>)
       info:
         en: Returns true if `number_1` is larger than or equal `number_2`
         es: 
       ex: '`(>= 10 10)` returns: true <br/> `(>= 5 10)` returns: false'
 
-    - type: (<= <number_1> <number_2>)
+    - slug: le
+      type: (<= <number_1> <number_2>)
       info:
         en: Returns true if `number_1` is smaller than or equal `number_2`
         es: 
       ex: '`(>= 4 4)` returns: true <br/> `(>= 8 4)` returns: false'
 
-    - type: (and <boolean_1> <boolean_2> [... <boolean_n>])
+    - slug: and
+      type: (and <boolean_1> <boolean_2> [... <boolean_n>])
       info:
         en: Returns true if all specified expressions are true
         es: 
       ex: '`(and (player_action_test_action) true)`'
 
-    - type: (begin <expression_1> <expression_2> [... <expression_n>])
+    - slug: begin
+      type: (begin <expression_1> <expression_2> [... <expression_n>])
       info:
         en: >
           Returns the last expression in a sequence after evaluating the
@@ -433,7 +447,8 @@ OperatorsAndKeywords:
         es: 
       ex: '`(begin something something_else 20)` returns: 20'
 
-    - type: (begin_random <expression_1> <expression_2> [... <expression_n>])
+    - slug: begin_random
+      type: (begin_random <expression_1> <expression_2> [... <expression_n>])
       info:
         en: >
           Evaluates the sequence of expressions in random order and returns the
@@ -441,67 +456,78 @@ OperatorsAndKeywords:
         es: 
       ex: '`(begin_random something something_else 20)`'
 
-    - type: (cond (<boolean_1> <result_1>) [(<boolean_2> <result_2>) [...]])
+    - slug: cond
+      type: (cond (<boolean_1> <result_1>) [(<boolean_2> <result_2>) [...]])
       info:
         en: Returns the value associated with the first true condition
         es: 
       ex: '`(cond false_val 10 true_val 20)` returns: 20'
 
-    - type: (global <type> <name> <inital value>)
+    - slug: global
+      type: (global <type> <name> <inital value>)
       info:
         en: Makes a new global script variable
         es: 
       ex: '`(global boolean bsl_sucks true)`'
 
-    - type: (if <boolean> <expression> [<else>])
+    - slug: if
+      type: (if <boolean> <expression> [<else>])
       info:
         en: Returns one of two values based on the value of a condition
         es: 
       ex: '`(if (bsl_sucks) (print "Stop whining."))`'
 
-    - type: (inspect <expression>)
+    - slug: inspect
+      type: (inspect <expression>)
       info:
         en: Prints the value of an expression to the screen for debugging purposes
         es: 
       ex: '`(inspect (+ 3 4))` outputs: 7'
 
-    - type: (min <number_1> <number_2> [... <number_n>])
+    - slug: min
+      type: (min <number_1> <number_2> [... <number_n>])
       info:
         en: Returns the minimum of all specified expressions
         es: 
       ex: '`(min 1 3 2 4 5 7 6 8 9)` returns: 1'
 
-    - type: (max <number_1> <number_2> [... <number_n>])
+    - slug: max
+      type: (max <number_1> <number_2> [... <number_n>])
       info:
         en: Returns the maximum of all specified expressions
         es: 
       ex: '`(max 1 3 2 4 5 7 6 8 9)` returns: 9'
 
-    - type: (not <boolean>)
+    - slug: not
+      type: (not <boolean>)
       info:
         en: Returns the opposite of the expression
         es: 
       ex: '`(not bsl_sucks)` returns: false'
 
-    - type: (or <boolean_1> <boolean_2> [... <boolean_n>])
+    - slug: or
+      type: (or <boolean_1> <boolean_2> [... <boolean_n>])
       info:
         en: Returns true if any specified expressions are true
         es: 
       ex: '`(or (player_action_test_action) true)` returns: true'
 
-    - type: (script <script type> [<return type>] <name>)
+    - slug: script
+      type: (script <script type> [<return type>] <name>)
       info:
         en: Defines a new script
         es: 
       ex: '[See above example][scripting#basics]'
 
-    - type: (set <variable name> <value>)
+    - slug: set
+      type: (set <variable name> <value>)
       info:
         en: Sets the value of a defined global variable
         es: 
       ex: '`(set bsl_sucks true)`'
 
-    - type: (sleep <short> [<script>])
+    - slug: sleep
+      type: (sleep <short> [<script>])
       info:
         en: >
           Pauses execution of this script (or, optionally, another script) for
@@ -509,7 +535,8 @@ OperatorsAndKeywords:
         es: 
       ex: '`(sleep 30 more_weapons)`'
 
-    - type: (sleep_until <condition> [short_1] [short_2])
+    - slug: sleep_until
+      type: (sleep_until <condition> [short_1] [short_2])
       info:
         en: >
           Pauses execution of this script until `condition` is true.
@@ -521,13 +548,15 @@ OperatorsAndKeywords:
         es: 
       ex: '`(sleep_until false 5 600)`'
 
-    - type: (wake <script name>)
+    - slug: wake
+      type: (wake <script name>)
       info:
         en: Wakes a sleeping or dormant script in the next update
         es: 
       ex: '`(wake more_weapons)`'
 
-    - type: (thread_sleep <long>)
+    - slug: thread_sleep
+      type: (thread_sleep <long>)
       info:
         en: Sleeps the calling thread for the specified number of ms
         es: 
@@ -551,7 +580,8 @@ Functions:
         es: 
       format: text
   rows:
-    - type: (activate_nav_point_flag <navpoint> <unit> <cutscene_flag> <real>)
+    - slug: activate_nav_point_flag
+      type: (activate_nav_point_flag <navpoint> <unit> <cutscene_flag> <real>)
       info:
         en: >
           Activates a nav point type <string> attached to (local) player <unit>
@@ -560,7 +590,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (activate_nav_point_object <navpoint> <unit> <object> <real>)
+    - slug: activate_nav_point_object
+      type: (activate_nav_point_object <navpoint> <unit> <object> <real>)
       info:
         en: >
           Activates a nav point type <string> attached to (local) player <unit>
@@ -569,7 +600,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (activate_team_nav_point_flag <navpoint> <team> <cutscene_flag> <real>)
+    - slug: activate_team_nav_point_flag
+      type: (activate_team_nav_point_flag <navpoint> <team> <cutscene_flag> <real>)
       info:
         en: >
           Activates a nav point type <string> attached to a team anchored to a
@@ -578,7 +610,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (activate_team_nav_point_object <navpoint> <team> <object> <real>)
+    - slug: activate_team_nav_point_object
+      type: (activate_team_nav_point_object <navpoint> <team> <object> <real>)
       info:
         en: >
           Activates a nav point type <string> attached to a team anchored to an
@@ -587,19 +620,22 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_actors <ai>)
+    - slug: ai_actors
+      type: (ai_actors <ai>)
       info:
         en: Converts an ai reference to an object list
         es: 
       ex: 
 
-    - type: (ai_allegiance <team> <team>)
+    - slug: ai_allegiance
+      type: (ai_allegiance <team> <team>)
       info:
         en: Creates an allegiance between two teams
         es: 
       ex: 
 
-    - type: (ai_allegiance_broken <team> <team>)
+    - slug: ai_allegiance_broken
+      type: (ai_allegiance_broken <team> <team>)
       info:
         en: >
           Returns whether two teams have an allegiance that is currently broken
@@ -607,61 +643,71 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_allegiance_remove <team> <team>)
+    - slug: ai_allegiance_remove
+      type: (ai_allegiance_remove <team> <team>)
       info:
         en: Destroys an allegiance between two teams
         es: 
       ex: 
 
-    - type: (ai_allow_charge <ai> <boolean>)
+    - slug: ai_allow_charge
+      type: (ai_allow_charge <ai> <boolean>)
       info:
         en: Either enables or disables charging behavior for a group of actors
         es: 
       ex: 
 
-    - type: (ai_allow_dormant <ai> <boolean>)
+    - slug: ai_allow_dormant
+      type: (ai_allow_dormant <ai> <boolean>)
       info:
         en: Either enables or disables automatic dormancy for a group of actors
         es: 
       ex: 
 
-    - type: (ai_attach <unit> <ai>)
+    - slug: ai_attach
+      type: (ai_attach <unit> <ai>)
       info:
         en: Attaches the specified unit to the specified encounter
         es: 
       ex: 
 
-    - type: (ai_attach_free <unit> <actor_variant>)
+    - slug: ai_attach_free
+      type: (ai_attach_free <unit> <actor_variant>)
       info:
         en: Attaches a unit to a newly created free actor of the specified type
         es: 
       ex: 
 
-    - type: (ai_attack <ai>)
+    - slug: ai_attack
+      type: (ai_attack <ai>)
       info:
         en: Makes the specified platoon(s) go into the attacking state
         es: 
       ex: 
 
-    - type: (ai_automatic_migration_target <ai> <boolean>)
+    - slug: ai_automatic_migration_target
+      type: (ai_automatic_migration_target <ai> <boolean>)
       info:
         en: Enables or disables a squad as being an automatic migration target
         es: 
       ex: 
 
-    - type: (ai_berserk <ai> <boolean>)
+    - slug: ai_berserk
+      type: (ai_berserk <ai> <boolean>)
       info:
         en: Forces a group of actors to start or stop berserking
         es: 
       ex: 
 
-    - type: (ai_braindead <ai> <boolean>)
+    - slug: ai_braindead
+      type: (ai_braindead <ai> <boolean>)
       info:
         en: Makes a group of actors braindead, or restores them to life (in their initial state)
         es: 
       ex: 
 
-    - type: (ai_braindead_by_unit <object_list> <boolean>)
+    - slug: ai_braindead_by_unit
+      type: (ai_braindead_by_unit <object_list> <boolean>)
       info:
         en: >
           Makes a list of objects braindead, or restores them to life. If you
@@ -670,13 +716,15 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_command_list <ai> <ai_command_list>)
+    - slug: ai_command_list
+      type: (ai_command_list <ai> <ai_command_list>)
       info:
         en: Tells a group of actors to begin executing the specified command list
         es: 
       ex: 
 
-    - type: (ai_command_list_advance <ai>)
+    - slug: ai_command_list_advance
+      type: (ai_command_list_advance <ai>)
       info:
         en: >
           Tells a group of actors that are running a command list that they may
@@ -684,19 +732,22 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_command_list_advance_by_unit <unit>)
+    - slug: ai_command_list_advance_by_unit
+      type: (ai_command_list_advance_by_unit <unit>)
       info:
         en: Just like ai_command_list_advance but operates upon a unit instead
         es: 
       ex: 
 
-    - type: (ai_command_list_by_unit <unit> <ai_command_list>)
+    - slug: ai_command_list_by_unit
+      type: (ai_command_list_by_unit <unit> <ai_command_list>)
       info:
         en: Tells a named unit to begin executing the specified command list
         es: 
       ex: 
 
-    - type: (ai_command_list_status <object_list>)
+    - slug: ai_command_list_status
+      type: (ai_command_list_status <object_list>)
       info:
         en: >
           Gets the status of a number of units running command lists:
@@ -705,7 +756,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_conversation <conversation>)
+    - slug: ai_conversation
+      type: (ai_conversation <conversation>)
       info:
         en: >
           Tries to add an entry to the list of conversations waiting to play.
@@ -715,13 +767,15 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_conversation_advance <conversation>)
+    - slug: ai_conversation_advance
+      type: (ai_conversation_advance <conversation>)
       info:
         en: Tells a conversation that it may advance
         es: 
       ex: 
 
-    - type: (ai_conversation_line <conversation>)
+    - slug: ai_conversation_line
+      type: (ai_conversation_line <conversation>)
       info:
         en: >
           Returns which line the conversation is currently playing, or 999 if
@@ -729,7 +783,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_conversation_status <conversation>)
+    - slug: ai_command_list_status
+      type: (ai_conversation_status <conversation>)
       info:
         en: >
           Returns the status of a conversation (0=none, 1=trying to begin,
@@ -738,19 +793,22 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_conversation_stop <conversation>)
+    - slug: ai_conversation_stop
+      type: (ai_conversation_stop <conversation>)
       info:
         en: Stops a conversation from playing or trying to play
         es: 
       ex: 
 
-    - type: (ai_debug_communication_focus <string(s)>)
+    - slug: ai_debug_communication_focus
+      type: (ai_debug_communication_focus <string(s)>)
       info:
         en: Focuses (or stops focusing) a set of unit vocalization types
         es: 
       ex: 
 
-    - type: (ai_debug_communication_ignore <string(s)>)
+    - slug: ai_debug_communication_ignore
+      type: (ai_debug_communication_ignore <string(s)>)
       info:
         en: >
           Ignores (or stops ignoring) a set of AI communication types when
@@ -758,67 +816,78 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_debug_communication_suppress <string(s)>)
+    - slug: ai_debug_communication_suppress
+      type: (ai_debug_communication_suppress <string(s)>)
       info:
         en: Suppresses (or stops suppressing) a set of AI communication types
         es: 
       ex: 
 
-    - type: (ai_debug_sound_point_set)
+    - slug: ai_debug_sound_point_set
+      type: (ai_debug_sound_point_set)
       info:
         en: Drops the AI debugging sound point at the camera location
         es: 
       ex: '`(ai_debug_sound_point_set)`'
 
-    - type: (ai_debug_speak <string>)
+    - slug: ai_debug_speak
+      type: (ai_debug_speak <string>)
       info:
         en: Makes the currently selected AI speak a vocalization
         es: 
       ex: '`(ai_speak "pain minor")`'
 
-    - type: (ai_debug_speak_list <string>)
+    - slug: ai_debug_speak_list
+      type: (ai_debug_speak_list <string>)
       info:
         en: Makes the currently selected AI speak a list of vocalizations
         es: 
       ex: '`(ai_speak_list "involuntary")`'
 
-    - type: (ai_debug_teleport_to <ai>)
+    - slug: ai_debug_teleport_to
+      type: (ai_debug_teleport_to <ai>)
       info:
         en: Teleports all players to the specified encounter
         es: 
       ex: 
 
-    - type: (ai_debug_vocalize <string> <string>)
+    - slug: ai_debug_vocalize
+      type: (ai_debug_vocalize <string> <string>)
       info:
         en: Makes the selected AI vocalize
         es: 
       ex: 
 
-    - type: (ai_defend <ai>)
+    - slug: ai_defend
+      type: (ai_defend <ai>)
       info:
         en: Makes the specified platoon(s) go into the defending state
         es: 
       ex: 
 
-    - type: (ai_deselect)
+    - slug: ai_deselect
+      type: (ai_deselect)
       info:
         en: Clears the selected encounter
         es: 
       ex: '`(ai_deselect)`'
 
-    - type: (ai_detach <unit>)
+    - slug: ai_detach
+      type: (ai_detach <unit>)
       info:
         en: Detaches the specified unit from all AI
         es: 
       ex: 
 
-    - type: (ai_dialogue_triggers <boolean>)
+    - slug: ai_dialogue_triggers
+      type: (ai_dialogue_triggers <boolean>)
       info:
         en: Turns impromptu dialogue on or off
         es: 
       ex: '`(ai_dialogue_triggers true)` <br/> `(ai_dialogue_triggers false)`'
 
-    - type: (ai_disregard <object_list> <boolean>)
+    - slug: ai_disregard
+      type: (ai_disregard <object_list> <boolean>)
       info:
         en: >
           If true, forces all actors to completely disregard the specified
@@ -826,25 +895,29 @@ Functions:
         es: 
       ex: '`(ai_disregard (players) true)` <br/> `(ai_disregard (players) false)`'
 
-    - type: (ai_erase <ai>)
+    - slug: ai_erase
+      type: (ai_erase <ai>)
       info:
         en: Erases the specified encounter and/or squad
         es: 
       ex: 
 
-    - type: (ai_erase_all)
+    - slug: ai_erase_all
+      type: (ai_erase_all)
       info:
         en: Erases all AI
         es: 
       ex: 
 
-    - type: (ai_exit_vehicle <ai>)
+    - slug: ai_exit_vehicle
+      type: (ai_exit_vehicle <ai>)
       info:
         en: Tells a group of actors to get out of any vehicles that they are in
         es: 
       ex: 
 
-    - type: (ai_follow_distance <ai> <real>)
+    - slug: ai_follow_distance
+      type: (ai_follow_distance <ai> <real>)
       info:
         en: >
           Sets the distance threshold which will cause squads to migrate when
@@ -852,7 +925,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_follow_target_ai <ai> <ai>)
+    - slug: ai_follow_target_ai
+      type: (ai_follow_target_ai <ai> <ai>)
       info:
         en: >
           Sets the follow target for an encounter to be a group of AI
@@ -860,25 +934,29 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_follow_target_disable <ai>)
+    - slug: ai_follow_target_disable
+      type: (ai_follow_target_disable <ai>)
       info:
         en: Turns off following for an encounter
         es: 
       ex: 
 
-    - type: (ai_follow_target_players <ai>)
+    - slug: ai_follow_target_players
+      type: (ai_follow_target_players <ai>)
       info:
         en: Sets the follow target for an encounter to be the closest player
         es: 
       ex: 
 
-    - type: (ai_follow_target_unit <ai> <unit>)
+    - slug: ai_follow_target_unit
+      type: (ai_follow_target_unit <ai> <unit>)
       info:
         en: Sets the follow target for an encounter to be a specific unit
         es: 
       ex: 
 
-    - type: (ai_force_active <ai> <boolean>)
+    - slug: ai_force_active
+      type: (ai_force_active <ai> <boolean>)
       info:
         en: >
           Forces an encounter to remain active (i.e. not freeze in place) even
@@ -886,7 +964,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_force_active_by_unit <unit> <boolean>)
+    - slug: ai_force_active_by_unit
+      type: (ai_force_active_by_unit <unit> <boolean>)
       info:
         en: >
           Forces a named actor that is NOT in an encounter to remain active
@@ -894,19 +973,22 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_free <ai>)
+    - slug: ai_free
+      type: (ai_free <ai>)
       info:
         en: Removes a group of actors from their encounter and sets them free
         es: 
       ex: 
 
-    - type: (ai_free_units <object_list>)
+    - slug: ai_free_units
+      type: (ai_free_units <object_list>)
       info:
         en: Removes a set of units from their encounter (if any) and sets them free
         es: 
       ex: 
 
-    - type: (ai_go_to_vehicle <ai> <unit> <string>)
+    - slug: ai_go_to_vehicle
+      type: (ai_go_to_vehicle <ai> <unit> <string>)
       info:
         en: >
           Tells a group of actors to get into a vehicle, in the
@@ -915,7 +997,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_go_to_vehicle_override <ai> <unit> <string>)
+    - slug: ai_go_to_vehicle_override
+      type: (ai_go_to_vehicle_override <ai> <unit> <string>)
       info:
         en: >
           Tells a group of actors to get into a vehicle, in the
@@ -924,7 +1007,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_going_to_vehicle <unit>)
+    - slug: ai_going_to_vehicle
+      type: (ai_going_to_vehicle <unit>)
       info:
         en: >
           Return the number of actors that are still trying to get into the
@@ -932,13 +1016,15 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_grenades <boolean>)
+    - slug: ai_grenades
+      type: (ai_grenades <boolean>)
       info:
         en: Turns grenade inventory on or off
         es: 
       ex: 
 
-    - type: (ai_is_attacking <ai>)
+    - slug: ai_is_attacking
+      type: (ai_is_attacking <ai>)
       info:
         en: >
           Returns whether a platoon is in the attacking mode (or if an encounter
@@ -946,13 +1032,15 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_kill <ai>)
+    - slug: ai_kill
+      type: (ai_kill <ai>)
       info:
         en: Instantly kills the specified encounter and/or squad
         es: 
       ex: 
 
-    - type: (ai_kill_silent <ai>)
+    - slug: ai_kill_silent
+      type: (ai_kill_silent <ai>)
       info:
         en: >
           Instantly and silently (no animation or sound played) kills the
@@ -960,13 +1048,15 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_lines)
+    - slug: ai_lines
+      type: (ai_lines)
       info:
         en: Cycles through AI line-spray modes
         es: 
       ex: 
 
-    - type: (ai_link_activation <ai> <ai>)
+    - slug: ai_link_activation
+      type: (ai_link_activation <ai> <ai>)
       info:
         en: >
           Links the first encounter so that it will be made active whenever it
@@ -974,13 +1064,15 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_living_count <ai>)
+    - slug: ai_living_count
+      type: (ai_living_count <ai>)
       info:
         en: Return the number of living actors in the specified encounter and/or squad
         es: 
       ex: 
 
-    - type: (ai_living_fraction <ai>)
+    - slug: ai_living_fraction
+      type: (ai_living_fraction <ai>)
       info:
         en: >
           Return the fraction `[0-1]` of living actors in the specified
@@ -988,31 +1080,36 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_look_at_object <unit> <object>)
+    - slug: ai_look_at_object
+      type: (ai_look_at_object <unit> <object>)
       info:
         en: Tells an actor to look at an object until further notice
         es: 
       ex: 
 
-    - type: (ai_magically_see_encounter <ai> <ai>)
+    - slug: ai_magically_see_encounter
+      type: (ai_magically_see_encounter <ai> <ai>)
       info:
         en: Makes one encounter magically aware of another
         es: 
       ex: 
 
-    - type: (ai_magically_see_players <ai>)
+    - slug: ai_magically_see_players
+      type: (ai_magically_see_players <ai>)
       info:
         en: Makes an encounter magically aware of nearby players
         es: 
       ex: 
 
-    - type: (ai_magically_see_unit <ai> <unit>)
+    - slug: ai_magically_see_unit
+      type: (ai_magically_see_unit <ai> <unit>)
       info:
         en: Makes an encounter magically aware of the specified unit
         es: 
       ex: 
 
-    - type: (ai_maneuver <ai>)
+    - slug: ai_maneuver
+      type: (ai_maneuver <ai>)
       info:
         en: >
           Makes all squads in the specified platoon(s) maneuver to their
@@ -1020,7 +1117,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_maneuver_enable <ai> <boolean>)
+    - slug: ai_maneuver_enable
+      type: (ai_maneuver_enable <ai> <boolean>)
       info:
         en: >
           Enables or disables the maneuver/retreat rule for an encounter or
@@ -1029,13 +1127,15 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_migrate <ai> <ai>)
+    - slug: ai_migrate
+      type: (ai_migrate <ai> <ai>)
       info:
         en: Makes all or part of an encounter move to another encounter
         es: 
       ex: 
 
-    - type: (ai_migrate_and_speak <ai> <ai> <string>)
+    - slug: ai_migrate_and_speak
+      type: (ai_migrate_and_speak <ai> <ai> <string>)
       info:
         en: >
           Makes all or part of an encounter move to another encounter, and say
@@ -1043,31 +1143,36 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_migrate_by_unit <object_list> <ai>)
+    - slug: ai_migrate_by_unit
+      type: (ai_migrate_by_unit <object_list> <ai>)
       info:
         en: Makes a named vehicle or group of units move to another encounter
         es: 
       ex: 
 
-    - type: (ai_nonswarm_count <ai>)
+    - slug: ai_nonswarm_count
+      type: (ai_nonswarm_count <ai>)
       info:
         en: Return the number of non-swarm actors in the specified encounter and/or squad
         es: 
       ex: 
 
-    - type: (ai_place <ai>)
+    - slug: ai_place
+      type: (ai_place <ai>)
       info:
         en: Places the specified encounter on the map
         es: 
       ex: 
 
-    - type: (ai_playfight <ai> <boolean>)
+    - slug: ai_playfight
+      type: (ai_playfight <ai> <boolean>)
       info:
         en: Sets an encounter to be playfighting or not
         es: 
       ex: 
 
-    - type: (ai_prefer_target <object_list> <boolean>)
+    - slug: ai_prefer_target
+      type: (ai_prefer_target <object_list> <boolean>)
       info:
         en: >
           If true, *ALL* enemies will prefer to attack the specified units. If
@@ -1075,7 +1180,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_reconnect)
+    - slug: ai_reconnect
+      type: (ai_reconnect)
       info:
         en: >
           Reconnects all AI information to the current structure bsp (use this
@@ -1084,7 +1190,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_renew <ai>)
+    - slug: ai_renew
+      type: (ai_renew <ai>)
       info:
         en: >
           Refreshes the health and grenade count of a group of actors, so they
@@ -1092,7 +1199,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_retreat <ai>)
+    - slug: ai_retreat
+      type: (ai_retreat <ai>)
       info:
         en: >
           Makes all squads in the specified platoon(s) maneuver to their
@@ -1100,19 +1208,22 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_select <ai>)
+    - slug: ai_select
+      type: (ai_select <ai>)
       info:
         en: Selects the specified encounter
         es: 
       ex: 
 
-    - type: (ai_set_blind <ai> <boolean>)
+    - slug: ai_set_blind
+      type: (ai_set_blind <ai> <boolean>)
       info:
         en: Enables or disables sight for actors in the specified encounter
         es: 
       ex: 
 
-    - type: (ai_set_current_state <ai> <ai_default_state>)
+    - slug: ai_set_current_state
+      type: (ai_set_current_state <ai> <ai_default_state>)
       info:
         en: >
           Sets the current state of a group of actors. WARNING: may have
@@ -1120,19 +1231,22 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_set_deaf <ai> <boolean>)
+    - slug: ai_set_deaf
+      type: (ai_set_deaf <ai> <boolean>)
       info:
         en: Enables or disables hearing for actors in the specified encounter
         es: 
       ex: 
 
-    - type: (ai_set_respawn <ai> <boolean>)
+    - slug: ai_set_respawn
+      type: (ai_set_respawn <ai> <boolean>)
       info:
         en: Enables or disables respawning in the specified encounter
         es: 
       ex: 
 
-    - type: (ai_set_return_state <ai> <ai_default_state>)
+    - slug: ai_set_return_state
+      type: (ai_set_return_state <ai> <ai_default_state>)
       info:
         en: >
           Sets the state that a group of actors will return to when they have
@@ -1140,19 +1254,22 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_set_team <ai> <team>)
+    - slug: ai_set_team
+      type: (ai_set_team <ai> <team>)
       info:
         en: Makes an encounter change to a new team
         es: 
       ex: 
 
-    - type: (ai_spawn_actor <ai>)
+    - slug: ai_spawn_actor
+      type: (ai_spawn_actor <ai>)
       info:
         en: Spawns a single actor in the specified encounter and/or squad
         es: 
       ex: 
 
-    - type: (ai_status <ai>)
+    - slug: ai_status
+      type: (ai_status <ai>)
       info:
         en: >
           Returns the most severe combat status of a group of actors
@@ -1161,13 +1278,15 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_stop_looking <unit>)
+    - slug: ai_stop_looking
+      type: (ai_stop_looking <unit>)
       info:
         en: Tells an actor to stop looking at whatever it's looking at
         es: 
       ex: 
 
-    - type: (ai_strength <ai>)
+    - slug: ai_strength
+      type: (ai_strength <ai>)
       info:
         en: >
           Return the current strength (average body vitality from 0-1) of the
@@ -1175,7 +1294,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_swarm_count <ai>)
+    - slug: ai_swarm_count
+      type: (ai_swarm_count <ai>)
       info:
         en: >
           Return the number of swarm actors in the specified encounter and/or
@@ -1183,7 +1303,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_teleport_to_starting_location <ai>)
+    - slug: ai_teleport_to_starting_location
+      type: (ai_teleport_to_starting_location <ai>)
       info:
         en: >
           Teleports a group of actors to the starting locations of their current
@@ -1191,7 +1312,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_teleport_to_starting_location_if_unsupported <ai>)
+    - slug: ai_teleport_to_starting_location_if_unsupported
+      type: (ai_teleport_to_starting_location_if_unsupported <ai>)
       info:
         en: >
           Teleports a group of actors to the starting locations of their current
@@ -1200,25 +1322,29 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_try_to_fight_nothing <ai>)
+    - slug: ai_try_to_fight_nothing
+      type: (ai_try_to_fight_nothing <ai>)
       info:
         en: Removes the preferential target setting from a group of actors
         es: 
       ex: 
 
-    - type: (ai_try_to_fight <ai> <ai>)
+    - slug: ai_try_to_fight
+      type: (ai_try_to_fight <ai> <ai>)
       info:
         en: Causes a group of actors to preferentially target another group of actors
         es: 
       ex: 
 
-    - type: (ai_try_to_fight_player <ai>)
+    - slug: ai_try_to_fight_player
+      type: (ai_try_to_fight_player <ai>)
       info:
         en: Causes a group of actors to preferentially target the player
         es: 
       ex: 
 
-    - type: (ai_vehicle_encounter <unit> <ai>)
+    - slug: ai_vehicle_encounter
+      type: (ai_vehicle_encounter <unit> <ai>)
       info:
         en: >
           Sets a vehicle to "belong" to a particular encounter/squad. Any actors
@@ -1227,7 +1353,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_vehicle_enterable_actor_type <unit> <actor_type>)
+    - slug: ai_vehicle_enterable_actor_type
+      type: (ai_vehicle_enterable_actor_type <unit> <actor_type>)
       info:
         en: >
           Sets a vehicle as being impulsively enterable for actors of a certain
@@ -1235,7 +1362,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_vehicle_enterable_actors <unit> <ai>)
+    - slug: ai_vehicle_enterable_actors
+      type: (ai_vehicle_enterable_actors <unit> <ai>)
       info:
         en: >
           Sets a vehicle as being impulsively enterable for a certain
@@ -1243,7 +1371,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_vehicle_enterable_disable <unit>)
+    - slug: ai_vehicle_enterable_disable
+      type: (ai_vehicle_enterable_disable <unit>)
       info:
         en: >
           Disables actors from impulsively getting into a vehicle (this is the
@@ -1251,7 +1380,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_vehicle_enterable_distance <unit> <real>)
+    - slug: ai_vehicle_enterable_distance
+      type: (ai_vehicle_enterable_distance <unit> <real>)
       info:
         en: >
           Sets a vehicle as being impulsively enterable for actors within a
@@ -1259,43 +1389,50 @@ Functions:
         es: 
       ex: 
 
-    - type: (ai_vehicle_enterable_team <unit> <team>)
+    - slug: ai_vehicle_enterable_team
+      type: (ai_vehicle_enterable_team <unit> <team>)
       info:
         en: Sets a vehicle as being impulsively enterable for actors on a certain team
         es: 
       ex: 
 
-    - type: (attract_mode_start)
+    - slug: attract_mode_start
+      type: (attract_mode_start)
       info:
         en: N/A in pc
         es: 
       ex: 
 
-    - type: (bind <string> <string> <string>)
+    - slug: bind
+      type: (bind <string> <string> <string>)
       info:
         en: Binds an input device/button combination to a game control
         es: 
       ex: 
 
-    - type: (breakable_surfaces_enable <boolean>)
+    - slug: breakable_surfaces_enable
+      type: (breakable_surfaces_enable <boolean>)
       info:
         en: Enables or disables breakability of all breakable surfaces on level
         es: 
       ex: '`(breakable_surfaces_enable false)`'
 
-    - type: (breakable_surfaces_reset)
+    - slug: breakable_surfaces_reset
+      type: (breakable_surfaces_reset)
       info:
         en: Restores all breakable surfaces
         es: 
       ex: '`(breakable_surfaces_reset)`'
 
-    - type: (camera_control <boolean>)
+    - slug: camera_control
+      type: (camera_control <boolean>)
       info:
         en: Toggles script control of the camera
         es: 
       ex: '`(camera_control true)` <br/> `(camera_control false)`'
 
-    - type: (camera_set <cutscene_camera_point> <short>)
+    - slug: camera_set
+      type: (camera_set <cutscene_camera_point> <short>)
       info:
         en: >
           Moves the camera to the specified camera point over the specified
@@ -1303,25 +1440,29 @@ Functions:
         es: 
       ex: '`(camera_set somewhere_point 100)`'
 
-    - type: (camera_set_animation <animation_graph> <string>)
+    - slug: camera_set_animation
+      type: (camera_set_animation <animation_graph> <string>)
       info:
         en: Begins a prerecorded camera animation
         es: 
       ex: 
 
-    - type: (camera_set_dead <unit>)
+    - slug: camera_set_dead
+      type: (camera_set_dead <unit>)
       info:
         en: Makes the scripted camera zoom out around a unit as if it were dead
         es: 
       ex: '`(camera_set_dead player0)`'
 
-    - type: (camera_set_first_person <unit>)
+    - slug: camera_set_first_person
+      type: (camera_set_first_person <unit>)
       info:
         en: Makes the scripted camera follow a unit
         es: 
       ex: '`(camera_set_first_person player0)`'
 
-    - type: (camera_set_relative <cutscene_camera_point> <short> <object>)
+    - slug: camera_set_relative
+      type: (camera_set_relative <cutscene_camera_point> <short> <object>)
       info:
         en: >
           Moves the camera to the specified camera point over the specified
@@ -1329,13 +1470,15 @@ Functions:
         es: 
       ex: '`(camera_set_relative somewhere_point 200 warthog_mp_1)`'
 
-    - type: (camera_time)
+    - slug: camera_time
+      type: (camera_time)
       info:
         en: Returns the number of ticks remaining in the current camera interpolation
         es: 
       ex: '`(camera_time)`'
 
-    - type: (change_team <short>)
+    - slug: change_team
+      type: (change_team <short>)
       info:
         en: Change your team (0=red, 1=blue, else=auto)
         es: 
@@ -1344,91 +1487,106 @@ Functions:
         `(change_team 1)`   returns: changes you to blue <br/>
         `(change_team  2)`  returns: auto balance
 
-    - type: (cheat_active_camouflage)
+    - slug: cheat_active_camouflage
+      type: (cheat_active_camouflage)
       info:
         en: Gives the player active camouflage
         es: 
       ex: '`(cheat_active_camouflage)`'
 
-    - type: (cheat_active_camouflage_local_player <short>)
+    - slug: cheat_active_camouflage_local_player
+      type: (cheat_active_camouflage_local_player <short>)
       info:
         en: Gives the player active camouflage
         es: 
       ex: '`(cheat_active_camouflage_local_player 1)`'
 
-    - type: (cheat_all_powerups)
+    - slug: cheat_all_powerups
+      type: (cheat_all_powerups)
       info:
         en: Drops all powerups near player
         es: 
       ex: '`(cheat_all_powerups)`'
 
-    - type: (cheat_all_vehicles)
+    - slug: cheat_all_vehicles
+      type: (cheat_all_vehicles)
       info:
         en: Drops all vehicles on player
         es: 
       ex: '`(cheat_all_vehicles)`'
 
-    - type: (cheat_all_weapons)
+    - slug: cheat_all_weapons
+      type: (cheat_all_weapons)
       info:
         en: Drops all weapons near player
         es: 
       ex: '`(cheat_all_weapons)`'
 
-    - type: (cheat_spawn_warthog)
+    - slug: cheat_spawn_warthog
+      type: (cheat_spawn_warthog)
       info:
         en: Drops a warthog near player
         es: 
       ex: '`(cheat_spawn_warthog)`'
 
-    - type: (cheat_teleport_to_camera)
+    - slug: cheat_teleport_to_camera
+      type: (cheat_teleport_to_camera)
       info:
         en: Teleports player to camera location
         es: 
       ex: '`(cheat_teleport_to_camera)`'
 
-    - type: (cheats_load)
+    - slug: cheats_load
+      type: (cheats_load)
       info:
         en: Reloads the cheats.txt file
         es: 
       ex: '`(cheats_load)`'
 
-    - type: (checkpoint_load <string>)
+    - slug: checkpoint_load
+      type: (checkpoint_load <string>)
       info:
         en: Load a saved checkpoint
         es: 
       ex: 
 
-    - type: (checkpoint_save)
+    - slug: checkpoint_save
+      type: (checkpoint_save)
       info:
         en: Save last solo checkpoint
         es: 
       ex: '`(checkpoint_save)`'
 
-    - type: (cinematic_abort)
+    - slug: cinematic_abort
+      type: (cinematic_abort)
       info:
         en: Aborts a cinematic
         es: 
       ex: '`(cinematic_abort)`'
 
-    - type: (cinematic_screen_effect_set_convolution <short> <short> <real> <real> <real>)
+    - slug: cinematic_screen_effect_set_convolution
+      type: (cinematic_screen_effect_set_convolution <short> <short> <real> <real> <real>)
       info:
         en: Sets the convolution effect
         es: 
       ex: 
 
-    - type: (cinematic_screen_effect_set_filter <real> <real> <real> <real> <boolean> <real>)
+    - slug: cinematic_screen_effect_set_filter
+      type: (cinematic_screen_effect_set_filter <real> <real> <real> <real> <boolean> <real>)
       info:
         en: Sets the filter effect
         es: 
       ex: 
 
-    - type: (cinematic_screen_effect_set_filter_desaturation_tint <real> <real> <real>)
+    - slug: cinematic_screen_effect_set_filter_desaturation_tint
+      type: (cinematic_screen_effect_set_filter_desaturation_tint <real> <real> <real>)
       info:
         en: Sets the desaturation filter tint color
         es: 
       ex: 
 
-    - type: (cinematic_screen_effect_set_video <short> <real>)
+    - slug: cinematic_screen_effect_set_video
+      type: (cinematic_screen_effect_set_video <short> <real>)
       info:
         en: >
           Sets the video effect: `<noise intensity[0,1]>`,
@@ -1436,67 +1594,78 @@ Functions:
         es: 
       ex: 
 
-    - type: (cinematic_screen_effect_start <boolean>)
+    - slug: cinematic_screen_effect_start
+      type: (cinematic_screen_effect_start <boolean>)
       info:
         en: Starts screen effect; pass true to clear
         es: 
       ex: 
 
-    - type: (cinematic_screen_effect_stop)
+    - slug: cinematic_screen_effect_stop
+      type: (cinematic_screen_effect_stop)
       info:
         en: Returns control of the screen effects to the rest of the game
         es: 
       ex: 
 
-    - type: (cinematic_set_near_clip_distance <real>)
+    - slug: cinematic_set_near_clip_distance
+      type: (cinematic_set_near_clip_distance <real>)
       info:
         en: 
         es: 
       ex: 
 
-    - type: (cinematic_set_title <cutscene_title>)
+    - slug: cinematic_set_title
+      type: (cinematic_set_title <cutscene_title>)
       info:
         en: Activates the chapter title
         es: 
       ex: 
 
-    - type: (cinematic_set_title_delayed <cutscene_title> <real>)
+    - slug: cinematic_set_title_delayed
+      type: (cinematic_set_title_delayed <cutscene_title> <real>)
       info:
         en: Activates the chapter title, delayed by <real> seconds
         es: 
       ex: 
 
-    - type: (cinematic_show_letterbox <boolean>)
+    - slug: cinematic_show_letterbox
+      type: (cinematic_show_letterbox <boolean>)
       info:
         en: Sets or removes the letterbox bars
         es: 
       ex: '`(cinematic_show_letterbox true)` <br/> `(cinematic_show_letterbox false)`'
 
-    - type: (cinematic_skip_start_internal)
+    - slug: cinematic_skip_start_internal
+      type: (cinematic_skip_start_internal)
       info:
         en: 
         es: 
       ex: '`(cinematic_skip_start_internal)`'
 
-    - type: (cinematic_skip_stop_internal)
+    - slug: cinematic_skip_stop_internal
+      type: (cinematic_skip_stop_internal)
       info:
         en: 
         es: 
       ex: '`(cinematic_skip_stop_internal)`'
 
-    - type: (cinematic_start)
+    - slug: cinematic_start
+      type: (cinematic_start)
       info:
         en: Initializes game to start a cinematic (interruptive) cutscene
         es: 
       ex: '`(cinematic_start)`'
 
-    - type: (cinematic_stop)
+    - slug: cinematic_stop
+      type: (cinematic_stop)
       info:
         en: Initializes the game to end a cinematic (interruptive) cutscene
         es: 
       ex: '`(cinematic_stop)`'
 
-    - type: (cinematic_suppress_bsp_object_creation <boolean>)
+    - slug: cinematic_suppress_bsp_object_creation
+      type: (cinematic_suppress_bsp_object_creation <boolean>)
       info:
         en: >
           Suppresses or enables the automatic creation of objects during
@@ -1506,25 +1675,29 @@ Functions:
         `(cinematic_suppress_bsp_object_creation true)` <br/>
         `(cinematic_suppress_bsp_object_creation false)`
 
-    - type: (config_one_control <string>)
+    - slug: config_one_control
+      type: (config_one_control <string>)
       info:
         en: Test function to configure a single control
         es: 
       ex: 
 
-    - type: (connect <string> <string>)
+    - slug: connect
+      type: (connect <string> <string>)
       info:
         en: 'Attempt to connect to server - use ip:port password as parameters'
         es: 
       ex: 
 
-    - type: (crash <string>)
+    - slug: crash
+      type: (crash <string>)
       info:
         en: Crashes (for debugging)
         es: 
       ex: '`(crash "Something is wrong")`'
 
-    - type: (custom_animation <unit> <animation_graph> <string> <boolean>)
+    - slug: custom_animation
+      type: (custom_animation <unit> <animation_graph> <string> <boolean>)
       info:
         en: >
           Starts a custom animation playing on a unit (interpolates into
@@ -1532,7 +1705,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (custom_animation_list <object_list> <animation_graph> <string> <boolean>)
+    - slug: custom_animation_list
+      type: (custom_animation_list <object_list> <animation_graph> <string> <boolean>)
       info:
         en: >
           Starts a custom animation playing on a unit list (interpolates into
@@ -1540,79 +1714,92 @@ Functions:
         es: 
       ex: 
 
-    - type: (damage_new <damage> <cutscene_flag>)
+    - slug: damage_new
+      type: (damage_new <damage> <cutscene_flag>)
       info:
         en: Causes the specified damage at the specified flag
         es: 
       ex: '`(damage_new "scenery\emitters\burning_flame\flame" enter_lava_flag)`'
 
-    - type: (damage_object <damage> <object>)
+    - slug: damage_object
+      type: (damage_object <damage> <object>)
       info:
         en: Causes the specified damage at the specified object
         es: 
       ex: '`(damage_object "weapons\assault rifle\bullet" player0)`'
 
-    - type: (deactivate_nav_point_flag <unit> <cutscene_flag>)
+    - slug: deactivate_nav_point_flag
+      type: (deactivate_nav_point_flag <unit> <cutscene_flag>)
       info:
         en: Deactivates a nav point type attached to a player <unit> anchored to a flag
         es: 
       ex: 
 
-    - type: (deactivate_nav_point_object <unit> <object>)
+    - slug: deactivate_nav_point_object
+      type: (deactivate_nav_point_object <unit> <object>)
       info:
         en: Deactivates a nav point type attached to a player <unit> anchored to an object
         es: 
       ex: 
 
-    - type: (deactivate_team_nav_point_flag <team> <cutscene_flag>)
+    - slug: deactivate_team_nav_point_flag
+      type: (deactivate_team_nav_point_flag <team> <cutscene_flag>)
       info:
         en: Deactivates a nav point type attached to a team anchored to a flag
         es: 
       ex: 
 
-    - type: (deactivate_team_nav_point_object <team> <object>)
+    - slug: deactivate_team_nav_point_object
+      type: (deactivate_team_nav_point_object <team> <object>)
       info:
         en: Deactivates a nav point type attached to a team anchored to an object
         es: 
       ex: 
 
-    - type: (debug_camera_load)
+    - slug: debug_camera_load
+      type: (debug_camera_load)
       info:
         en: Loads the saved camera position and facing
         es: 
       ex: '`(debug_camera_load)`'
 
-    - type: (debug_camera_save)
+    - slug: debug_camera_save
+      type: (debug_camera_save)
       info:
         en: Saves the camera position and facing
         es: 
       ex: '`(debug_camera_save)`'
 
-    - type: (debug_memory)
+    - slug: debug_memory
+      type: (debug_memory)
       info:
         en: Dumps memory leaks
         es: 
       ex: '`(debug_memory)`'
 
-    - type: (debug_memory_by_file)
+    - slug: debug_memory_by_file
+      type: (debug_memory_by_file)
       info:
         en: Dumps memory leaks by source file
         es: 
       ex: '`(debug_memory_by_file)`'
 
-    - type: (debug_memory_for_file <string>)
+    - slug: debug_memory_for_file
+      type: (debug_memory_for_file <string>)
       info:
         en: Dumps memory leaks from the specified source file
         es: 
       ex: '`(debug_memory_for_file "\halopc\haloce\source\tag_files\tag_groups.c")`'
 
-    - type: (debug_teleport_player <short> <short>)
+    - slug: debug_teleport_player
+      type: (debug_teleport_player <short> <short>)
       info:
         en: 
         es: 
       ex: 
 
-    - type: (debug_sounds_distances <string> <real> <real>)
+    - slug: debug_sounds_distances
+      type: (debug_sounds_distances <string> <real> <real>)
       info:
         en: >
           Changes the minimum and maximum distances for all sound classes
@@ -1620,31 +1807,36 @@ Functions:
         es: 
       ex: 
 
-    - type: (debug_sounds_enable <string> <boolean>)
+    - slug: debug_sounds_enable
+      type: (debug_sounds_enable <string> <boolean>)
       info:
         en: Enables or disabled all sound classes matching the substring
         es: 
       ex: 
 
-    - type: (debug_sounds_wet <string> <real>)
+    - slug: debug_sounds_wet
+      type: (debug_sounds_wet <string> <real>)
       info:
         en: Changes the reverb level for all sound classes matching the substring
         es: 
       ex: 
 
-    - type: (debug_tags)
+    - slug: debug_tags
+      type: (debug_tags)
       info:
         en: Writes all memory being used by tag files into tag_dump.txt
         es: 
       ex: '`(debug_tags)`'
 
-    - type: (delete_save_game_files)
+    - slug: delete_save_game_files
+      type: (delete_save_game_files)
       info:
         en: Delete all custom profile files
         es: 
       ex: '`(delete_save_game_files)`'
 
-    - type: (device_get_position <device>)
+    - slug: device_get_position
+      type: (device_get_position <device>)
       info:
         en: >
           Gets the current position of the given device (used for devices
@@ -1652,37 +1844,43 @@ Functions:
         es: 
       ex: 
 
-    - type: (device_get_power <device>)
+    - slug: device_get_power
+      type: (device_get_power <device>)
       info:
         en: Gets the current power of a named device
         es: 
       ex: 
 
-    - type: (device_group_change_only_once_more_set <device_group> <boolean>)
+    - slug: device_group_change_only_once_more_set
+      type: (device_group_change_only_once_more_set <device_group> <boolean>)
       info:
         en: true allows a device to change states only once
         es: 
       ex: 
 
-    - type: (device_group_get <device_group>)
+    - slug: device_group_get
+      type: (device_group_get <device_group>)
       info:
         en: Returns the desired value of the specified device group
         es: 
       ex: 
 
-    - type: (device_group_set <device_group> <real>)
+    - slug: device_group_set
+      type: (device_group_set <device_group> <real>)
       info:
         en: Changes the desired value of the specified device group
         es: 
       ex: 
 
-    - type: (device_group_set_immediate <device_group> <real>)
+    - slug: device_group_set_immediate
+      type: (device_group_set_immediate <device_group> <real>)
       info:
         en: Instantaneously changes the value of the specified device group
         es: 
       ex: 
 
-    - type: (device_one_sided_set <device> <boolean>)
+    - slug: device_one_sided_set
+      type: (device_one_sided_set <device> <boolean>)
       info:
         en: >
           true makes the given device one-sided (only able to be opened from one
@@ -1690,7 +1888,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (device_operates_automatically_set <device> <boolean>)
+    - slug: device_operates_automatically_set
+      type: (device_operates_automatically_set <device> <boolean>)
       info:
         en: >
           true makes the given device open automatically when any biped is
@@ -1698,7 +1897,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (device_get_position <device>)
+    - slug: device_get_position
+      type: (device_get_position <device>)
       info:
         en: >
           Gets the current position of the given device (used for devices
@@ -1706,7 +1906,8 @@ Functions:
         es: 
       ex: 
 
-    - type: (device_set_position <device> <real>)
+    - slug: device_set_position
+      type: (device_set_position <device> <real>)
       info:
         en: >
           Set the desired position of the given device (used for devices without
@@ -1714,7 +1915,8 @@ Functions:
         es: 
       ex: '`(device_set_position <device> 1.0)`'
 
-    - type: (device_set_position_immediate <device> <real>)
+    - slug: device_set_position_immediate
+      type: (device_set_position_immediate <device> <real>)
       info:
         en: >
           Instantaneously changes the position of the given device (used for
@@ -1722,55 +1924,64 @@ Functions:
         es: 
       ex: '`(device_set_position_immediate <device> 1.0)`'
 
-    - type: (device_set_power <device> <real>)
+    - slug: device_set_power
+      type: (device_set_power <device> <real>)
       info:
         en: Immediately sets the power of a named device to the given value
         es: 
       ex: '`(device_set_power <device> 1.0)`'
 
-    - type: (display_scenario_help <short>)
+    - slug: display_scenario_help
+      type: (display_scenario_help <short>)
       info:
         en: Display in-game help dialog
         es: 
       ex: '`(display_scenario_help 1)`'
 
-    - type: (effect_new <effect> <cutscene_flag>)
+    - slug: effect_new
+      type: (effect_new <effect> <cutscene_flag>)
       info:
         en: Starts the specified effect at the specified flag
         es: 
       ex: '`(effect_new "effects\coop teleport" teleporting_flag)`'
 
-    - type: (effect_new_on_object_marker <effect> <object> <string>)
+    - slug: effect_new_on_object_marker
+      type: (effect_new_on_object_marker <effect> <object> <string>)
       info:
         en: Starts the specified effect on the specified object at the specified marker
         es: 
       ex: '`(effect_new_on_object_marker "effects\burning large" warthog_mp "driver")`'
 
-    - type: (enable_hud_help_flash <boolean>)
+    - slug: enable_hud_help_flash
+      type: (enable_hud_help_flash <boolean>)
       info:
         en: Starts/stops the help text flashing
         es: 
       ex: '`(enable_hud_help_flash true)` <br/> `(enable_hud_help_flash false)`'
 
-    - type: (error_overflow_suppression <boolean>)
+    - slug: error_overflow_suppression
+      type: (error_overflow_suppression <boolean>)
       info:
         en: Enables or disables the suppression of error spamming
         es: 
       ex: '`(error_overflow_suppression true)` <br/> `(error_overflow_suppression false)`'
 
-    - type: (fade_in <real> <real> <real> <short>)
+    - slug: fade_in
+      type: (fade_in <real> <real> <real> <short>)
       info:
         en: Does a screen fade in from a particular color in the amount of ticks
         es: 
       ex: '`(fade_in 0.0 0.0 0.0 100)`'
 
-    - type: (fade_out <real> <real> <real> <short>)
+    - slug: fade_out
+      type: (fade_out <real> <real> <real> <short>)
       info:
         en: Does a screen fade out to a particular color in the amount of ticks
         es: 
       ex: '`(fade_out 1.0 1.0 1.0 100)`'
 
-    - type: (fast_setup_network_server <string> <string> <boolean>)
+    - slug: fast_setup_network_server
+      type: (fast_setup_network_server <string> <string> <boolean>)
       info:
         en: >
           Sets up a network server with the given map name, game variant, and
@@ -1778,13 +1989,15 @@ Functions:
         es: 
       ex: 
 
-    - type: (game_all_quiet)
+    - slug: game_all_quiet
+      type: (game_all_quiet)
       info:
         en: Returns false if there are bad guys around, projectiles in the air, etc.
         es: 
       ex: '`(game_all_quiet)`'
 
-    - type: (game_difficulty_get)
+    - slug: game_difficulty_get
+      type: (game_difficulty_get)
       info:
         en: >
           Returns the current difficulty setting, but lies to you and will never
@@ -1792,13 +2005,15 @@ Functions:
         es: 
       ex: '`(game_difficulty_get)`'
 
-    - type: (game_difficulty_get_real)
+    - slug: game_difficulty_get_real
+      type: (game_difficulty_get_real)
       info:
         en: Returns the actual current difficulty setting without lying
         es: 
       ex: '`(game_difficulty_get_real)`'
 
-    - type: (game_difficulty_set <game_difficulty>)
+    - slug: game_difficulty_set
+      type: (game_difficulty_set <game_difficulty>)
       info:
         en: Changes the difficulty setting for the next map to be loaded
         es: 
@@ -1808,19 +2023,22 @@ Functions:
         `(game_difficulty_set hard)` <br/>
         `(game_difficulty_set impossible)`
 
-    - type: (game_is_cooperative)
+    - slug: game_is_cooperative
+      type: (game_is_cooperative)
       info:
         en: Returns true if the game is cooperative
         es: 
       ex: '`(game_is_cooperative)`'
 
-    - type: (game_lost)
+    - slug: game_lost
+      type: (game_lost)
       info:
         en: Causes the player to revert to his previous saved game
         es: 
       ex: '`(game_lost)`'
 
-    - type: (game_revert)
+    - slug: game_revert
+      type: (game_revert)
       info:
         en: >
           Reverts to last saved game, if any (for testing, the first bastard
@@ -1828,25 +2046,29 @@ Functions:
         es: 
       ex: '`(game_revert)`'
 
-    - type: (game_reverted)
+    - slug: game_reverted
+      type: (game_reverted)
       info:
         en: Don't use this for anything, you black-hearted bastards
         es: 
       ex: '`(game_reverted)`'
 
-    - type: (game_safe_to_save)
+    - slug: game_safe_to_save
+      type: (game_safe_to_save)
       info:
         en: Returns false if it would be a bad idea to save the player's game right now
         es: 
       ex: '`(game_safe_to_save)`'
 
-    - type: (game_safe_to_speak)
+    - slug: game_safe_to_speak
+      type: (game_safe_to_speak)
       info:
         en: Returns false if it would be a bad idea to save the player's game right now
         es: 
       ex: '`(game_safe_to_speak)`'
 
-    - type: (game_save)
+    - slug: game_save
+      type: (game_save)
       info:
         en: >
           Checks to see if it is safe to save game, then saves (gives up after
@@ -1854,13 +2076,15 @@ Functions:
         es: 
       ex: '`(game_save)`'
 
-    - type: (game_save_cancel)
+    - slug: game_save_cancel
+      type: (game_save_cancel)
       info:
         en: Cancels any pending game_save, timeout or not
         es: 
       ex: '`(game_save_cancel)`'
 
-    - type: (game_save_no_timeout)
+    - slug: game_save_no_timeout
+      type: (game_save_no_timeout)
       info:
         en: >
           Checks to see if it is safe to save game, then saves (this version
@@ -1868,37 +2092,43 @@ Functions:
         es: 
       ex: '`(game_save_no_timeout)`'
 
-    - type: (game_save_totally_unsafe)
+    - slug: game_save_totally_unsafe
+      type: (game_save_totally_unsafe)
       info:
         en: Saves disregarding player's current situation
         es: 
       ex: '`(game_save_totally_unsafe)`'
 
-    - type: (game_saving)
+    - slug: game_saving
+      type: (game_saving)
       info:
         en: Checks to see if the game is trying to save the map
         es: 
       ex: '`(game_saving)`'
 
-    - type: (game_skip_ticks <short>)
+    - slug: game_skip_ticks
+      type: (game_skip_ticks <short>)
       info:
         en: Skips <short> amount of game ticks. ONLY USE IN CUTSCENES!!!
         es: 
       ex: '`(game_skip_ticks 5)`'
 
-    - type: (game_speed <real>)
+    - slug: game_speed
+      type: (game_speed <real>)
       info:
         en: Changes the game speed
         es: 
       ex: '`(game_speed 0.5)`'
 
-    - type: (game_time)
+    - slug: game_time
+      type: (game_time)
       info:
         en: Gets ticks elapsed since the start of the game
         es: 
       ex: '`(game_time)`'
 
-    - type: (game_won)
+    - slug: game_won
+      type: (game_won)
       info:
         en: >
           Causes the player to successfully finish the current level and move on
@@ -1906,7 +2136,8 @@ Functions:
         es: 
       ex: '`(game_won)`'
 
-    - type: (garbage_collect_now)
+    - slug: garbage_collect_now
+      type: (garbage_collect_now)
       info:
         en: >
           Causes all garbage objects except those visible to a player to be
@@ -1914,193 +2145,225 @@ Functions:
         es: 
       ex: '`(garbage_collect_now)`'
 
-    - type: (get_digital_forward_throttle <short>)
+    - slug: get_digital_forward_throttle
+      type: (get_digital_forward_throttle <short>)
       info:
         en: Gets the amount of forward throttle applied by digital device stimuli
         es: 
       ex: 
 
-    - type: (get_digital_strafe_throttle <short>)
+    - slug: get_digital_strafe_throttle
+      type: (get_digital_strafe_throttle <short>)
       info:
         en: Gets the amount of strafe throttle applied by digital device stimuli
         es: 
       ex: 
 
-    - type: (get_digital_yaw_increment <short>)
+    - slug: get_digital_yaw_increment
+      type: (get_digital_yaw_increment <short>)
       info:
         en: Gets the increment in yaw applied by digital device stimuli
         es: 
       ex: 
 
-    - type: (get_digital_pitch_increment <short>)
+    - slug: get_digital_pitch_increment
+      type: (get_digital_pitch_increment <short>)
       info:
         en: Gets the increment in pitch applied by digital device stimuli
         es: 
       ex: 
 
-    - type: (get_gamepad_forward_threshold <short>)
+    - slug: get_gamepad_forward_threshold
+      type: (get_gamepad_forward_threshold <short>)
       info:
         en: Gets the threshold beyond which gamepad movement is full forward throttle
         es: 
       ex: 
 
-    - type: (get_gamepad_strafe_threshold <short>)
+    - slug: get_gamepad_strafe_threshold
+      type: (get_gamepad_strafe_threshold <short>)
       info:
         en: Gets the threshold beyond which gamepad movement is full strafe throttle
         es: 
       ex: 
 
-    - type: (get_gamepad_yaw_scale <short>)
+    - slug: get_gamepad_yaw_scale
+      type: (get_gamepad_yaw_scale <short>)
       info:
         en: Gets the scale for gamepad control of yaw
         es: 
       ex: 
 
-    - type: (get_gamepad_pitch_scale <short>)
+    - slug: get_gamepad_pitch_scale
+      type: (get_gamepad_pitch_scale <short>)
       info:
         en: Gets the scale for gamepad control of pitch
         es: 
       ex: 
 
-    - type: (get_mouse_forward_threshold <short>)
+    - slug: get_mouse_forward_threshold
+      type: (get_mouse_forward_threshold <short>)
       info:
         en: Gets the threshold beyond which mouse movement is full forward throttle
         es: 
       ex: 
 
-    - type: (get_mouse_strafe_threshold <short>)
+    - slug: get_mouse_strafe_threshold
+      type: (get_mouse_strafe_threshold <short>)
       info:
         en: Gets the threshold beyond which mouse movement is full strafe throttle
         es: 
       ex: 
 
-    - type: (get_mouse_yaw_scale <short>)
+    - slug: get_mouse_yaw_scale
+      type: (get_mouse_yaw_scale <short>)
       info:
         en: Gets the scale for mouse control of yaw
         es: 
       ex: 
 
-    - type: (get_mouse_pitch_scale <short>)
+    - slug: get_mouse_pitch_scale
+      type: (get_mouse_pitch_scale <short>)
       info:
         en: Gets the scale for mouse control of pitch
         es: 
       ex: 
 
-    - type: (get_yaw_rate <short>)
+    - slug: get_yaw_rate
+      type: (get_yaw_rate <short>)
       info:
         en: Gets the yaw rate for the given player number
         es: 
       ex: 
 
-    - type: (get_pitch_rate <short>)
+    - slug: get_pitch_rate
+      type: (get_pitch_rate <short>)
       info:
         en: Gets the yaw rate for the given player number
         es: 
       ex: 
 
-    - type: (hammer_begin <string> <string> <long> <short> <short>)
+    - slug: hammer_begin
+      type: (hammer_begin <string> <string> <long> <short> <short>)
       info:
         en: Hammers the server by connecting and disconnecting repeatedly
         es: 
       ex: 
 
-    - type: (hammer_stop)
+    - slug: hammer_stop
+      type: (hammer_stop)
       info:
         en: Stops hammering the server
         es: 
       ex: '`(hammer_stop)`'
 
-    - type: (help <string>)
+    - slug: help
+      type: (help <string>)
       info:
         en: Prints a description of the named function
         es: 
       ex: '`(help cheats_load)`'
 
-    - type: (hud_blink_health <boolean>)
+    - slug: hud_blink_health
+      type: (hud_blink_health <boolean>)
       info:
         en: Starts/stops manual blinking of the health panel
         es: 
       ex: '`(hud_blink_health true)` <br/> `(hud_blink_health false)`'
 
-    - type: (hud_blink_motion_sensor <boolean>)
+    - slug: hud_blink_motion_sensor
+      type: (hud_blink_motion_sensor <boolean>)
       info:
         en: Starts/stops manual blinking of the motion sensor panel
         es: 
       ex: '`(hud_blink_motion_sensor true)` <br/> `(hud_blink_motion_sensor false)`'
 
-    - type: (hud_blink_shield <boolean>)
+    - slug: hud_blink_shield
+      type: (hud_blink_shield <boolean>)
       info:
         en: Starts/stops manual blinking of the shield panel
         es: 
       ex: '`(hud_blink_shield true)` <br/> `(hud_blink_shield false)`'
 
-    - type: (hud_clear_messages)
+    - slug: hud_clear_messages
+      type: (hud_clear_messages)
       info:
         en: Clears all non-state messages on the hud
         es: 
       ex: '`(hud_clear_messages)`'
 
-    - type: (hud_get_timer_ticks)
+    - slug: hud_get_timer_ticks
+      type: (hud_get_timer_ticks)
       info:
         en: Returns the ticks left on the hud timer
         es: 
       ex: '`(hud_get_timer_ticks)`'
 
-    - type: (hud_help_flash_restart)
+    - slug: hud_help_flash_restart
+      type: (hud_help_flash_restart)
       info:
         en: Resets the timer for the help text flashing
         es: 
       ex: '`(hud_help_flash_restart)`'
 
-    - type: (input_activate_joy <short> <short>)
+    - slug: input_activate_joy
+      type: (input_activate_joy <short> <short>)
       info:
         en: Activates an enumerated joystick into a logical joystick slot
         es: 
       ex: 
 
-    - type: (input_deactivate_joy <short>)
+    - slug: input_deactivate_joy
+      type: (input_deactivate_joy <short>)
       info:
         en: Deactivates an enumerated joystick, freeing up the logical joystick slot
         es: 
       ex: 
 
-    - type: (input_find_default <string>)
+    - slug: input_find_default
+      type: (input_find_default <string>)
       info:
         en: Test function that looks up a default profile for a deviceid
         es: 
       ex: 
 
-    - type: (input_find_joystick <string>)
+    - slug: input_find_joystick
+      type: (input_find_joystick <string>)
       info:
         en: Test function to find a joystick by GUID (string representation)
         es: 
       ex: 
 
-    - type: (input_get_joy_count)
+    - slug: input_get_joy_count
+      type: (input_get_joy_count)
       info:
         en: Test function to return the number of joysticks enumerated
         es: 
       ex: '`(input_get_joy_count)`'
 
-    - type: (input_is_joy_active <short>)
+    - slug: input_is_joy_active
+      type: (input_is_joy_active <short>)
       info:
         en: Test function to determine if an enumerated joystick is activated or not
         es: 
       ex: 
 
-    - type: (input_show_joystick_info)
+    - slug: input_show_joystick_info
+      type: (input_show_joystick_info)
       info:
         en: Test function to show the enumerated joystick information for all joystick
         es: 
       ex: '`(input_show_joystick_info)`'
 
-    - type: (list_count <object_list>)
+    - slug: list_count
+      type: (list_count <object_list>)
       info:
         en: Returns the number of objects in a list
         es: 
       ex: '`(list_count the_warthogs)`'
 
-    - type: (list_get <object_list> <short>)
+    - slug: list_get
+      type: (list_get <object_list> <short>)
       info:
         en: Returns an item in an object list
         es: 

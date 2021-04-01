@@ -79,12 +79,13 @@ function renderTableYaml(ctx, optsYaml) {
         es: "",
       },
       format: "text",
-      //style: "width:0%",
     });
   }
 
-  function id(index) {
-    return slugify(`${opts.tableName}-${index}`);
+  // Create a link slug, prioritizing row slug override, then table column key
+  // setting, then falling back to index if no others are provided.
+  function id(row, index) {
+    return slugify(`${opts.tableName}-${row.slug || row[data.slugKey] || index}`);
   }
 
   return html`
@@ -98,10 +99,10 @@ function renderTableYaml(ctx, optsYaml) {
       </thead>
       <tbody>
         ${ data.rows.map((row, index) =>
-          html`<tr id="${opts.rowLinks && id(index)}">${ data.columns.map(col =>
+          html`<tr id="${opts.rowLinks && id(row, index)}">${ data.columns.map(col =>
             html`<td style="${col.style}">${
               col.key === "__link" ?
-                anchor("#" + id(index), "#") :
+                anchor("#" + id(row, index), "#") :
                 markdownToHtml(col.format, row[col.key])
             }</td>`
           ) }</tr>`
