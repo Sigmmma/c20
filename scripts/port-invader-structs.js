@@ -419,8 +419,12 @@ const outputFiles = {
         fields:
           - name: vector
             type: Vector3D
+            comments:
+              en: A 3-float normal vector.
           - name: w
             type: float
+            comments:
+              en: Distance from origin (along normal).
       Matrix:
         class: struct
         assert_size: 0x24
@@ -705,17 +709,17 @@ const outputFiles = {
       IsUnusedFlag:
         class: bitfield
         size: 4
-        fields:
+        bits:
           - name: unused
       IsUnfilteredFlag:
         class: bitfield
         size: 2
-        fields:
+        bits:
           - name: unfiltered
       ColorInterpolationFlags:
         class: bitfield
         size: 4
-        fields:
+        bits:
           - name: blend in hsv
           - name: more colors
   `)
@@ -769,7 +773,7 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
       }
     }
     if (!level) {
-      console.warn(`Couldn't find comments for path (${tagName}): `, fieldPath);
+      // console.warn(`Couldn't find comments for path (${tagName}): `, fieldPath);
     }
     return level;
   }
@@ -805,6 +809,21 @@ Object.entries(c20Comments).forEach(([tagName, basicTag]) => {
       }
       if (!outputData.imports[modulePath].includes(typeName)) {
         outputData.imports[modulePath].push(typeName);
+      }
+      const commentsMissing = getComments(tagName, fieldPath);
+      if (commentsMissing && !["item", "object", "shader", "unit", "device"].includes(invStruct.fromTagName)) {
+        function recObj(o, p) {
+          if (o.en && o.en != "...") {
+            console.log(p, o.en);
+          }
+          if (o.fields) {
+            o.fields.forEach(f => recObj(f, [...p, f.name]));
+          }
+          if (o.options) {
+            o.options.forEach(f => recObj(f, [...p, f.name]));
+          }
+        }
+        recObj(commentsMissing, [depName, ...fieldPath]);
       }
       return;
     }
@@ -1031,6 +1050,7 @@ Object.entries(outputFiles).forEach(([fromModule, data]) => {
 });
 
 const ignoredTags = [
+  "model_collision_geometry",
   "ui_widget_collection",
   "spheroid",
   "continuous_damage_effect",

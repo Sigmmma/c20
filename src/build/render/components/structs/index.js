@@ -326,6 +326,9 @@ function structDisplay(ctx, opts) {
   }
 
   function renderBitfieldAsTable(instantiatedType, pathId) {
+    if (!instantiatedType.typeDef.bits) {
+      console.log(pathId, instantiatedType);
+    }
     return html`
       <table class="type-def bitfield">
         <thead>

@@ -140,22 +140,37 @@ type_defs:
     fields:
       - name: plane
         type: uint32
+        comments:
+          en: >
+            An index into the _planes_ block. The plane divides 3D space into
+            front and back half-spaces. A point can be tested against this plane to
+            determine which half-space to descend into.
+
+
+            [Tool][] will create new planes or use existing surface planes when
+            generating the BSP tree based on a heuristic of how many surfaces
+            remain in the node. For 1024 and above, axis-aligned planes based on
+            vertex bounds are used. Otherwise, the surface within the remaining
+            set whose plane minimizes the difference between front and back surface
+            counts is used.
       - name: back_child
         type: uint32
         meta:
           flagged: true
         comments:
           en: >-
-            refers to a BSP3D node if not signed and a leaf if sign bit is set;
-            null if 0xFFFFFFFF
+            Index of the BSP3D node representing space to the back of the dividing
+            plane. A value of `0xFFFFFFFF` is considered null and the space behind
+            the plane is considered _outside_ the sealed BSP (Sapien labels this as
+            "solid" space when using `debug_structure`). Otherwise, if the highest
+            order bit is set (`0x80000000`), the remaining 31 bits (mask `0x7FFFFFFF`)
+            represent an index into the _leaves_ block.
       - name: front_child
         type: uint32
         meta:
           flagged: true
         comments:
-          en: >-
-            refers to a BSP3D node if not signed and a leaf if sign bit is set;
-            null if 0xFFFFFFFF
+          en: Similar to the _back child_ field.
   ModelCollisionGeometryBSPPlane:
     class: struct
     assert_size: 16
@@ -164,11 +179,17 @@ type_defs:
     fields:
       - name: plane
         type: Plane3D
+        comments:
+          en: A plane which divides 3D space in two.
   ModelCollisionGeometryBSPLeafFlags:
     class: bitfield
     size: 2
     bits:
       - name: contains_double_sided_surfaces
+        comments:
+          en: >
+            Indicates if any surface in any of this leaf's 2D BSPs is
+            double-sided (e.g. glass).
   ModelCollisionGeometryBSPLeaf:
     class: struct
     assert_size: 8
@@ -177,10 +198,19 @@ type_defs:
     fields:
       - name: flags
         type: ModelCollisionGeometryBSPLeafFlags
+        comments:
+          en: Flags used to optimize collision checks at runtime.
       - name: bsp2d_reference_count
         type: uint16
+        comments:
+          en: Determines how many contiguous 2D BSP references belong to this leaf.
       - name: first_bsp2d_reference
         type: uint32
+        comments:
+          en: >
+            Index of the first 2D BSP reference associated with this leaf. It
+            will be followed by a number of other 2D BSP references according to
+            the above count.
   ModelCollisionGeometryBSP2DReference:
     class: struct
     assert_size: 8
@@ -191,14 +221,21 @@ type_defs:
         type: uint32
         meta:
           flagged: true
+        comments:
+          en: >
+            Index for the plane used to decide what basis plane is best to project
+            on (X,Y), (Y,Z) or (X,Z). The basis plane is chosen by the referenced
+            plane's most significant normal component. A flagged plane index means
+            its normal vector is opposite.
       - name: bsp2d_node
         type: uint32
         meta:
           flagged: true
         comments:
           en: >-
-            refers to a BSP2D node if not signed and a surface if sign bit is
-            set; null if 0xFFFFFFFF
+            The starting node for the 2D BSP on this plane. If flagged, then the
+            index (masked to `0x7FFFFFFF`) refers to a surface instead. Null if
+            `0xFFFFFFFF`.
   ModelCollisionGeometryBSP2DNode:
     class: struct
     assert_size: 20
@@ -207,6 +244,10 @@ type_defs:
     fields:
       - name: plane
         type: Plane2D
+        comments:
+          en: >
+            A 2D plane (line) subdividing left and right child surfaces. This
+            line is in the space of the 2D BSP reference's basis plane.
       - name: left_child
         type: uint32
         meta:
@@ -214,7 +255,7 @@ type_defs:
         comments:
           en: >-
             refers to a BSP2D node if not signed and a surface if sign bit is
-            set; null if 0xFFFFFFFF
+            set; null if `0xFFFFFFFF`.
       - name: right_child
         type: uint32
         meta:
@@ -222,7 +263,7 @@ type_defs:
         comments:
           en: >-
             refers to a BSP2D node if not signed and a surface if sign bit is
-            set; null if 0xFFFFFFFF
+            set; null if `0xFFFFFFFF`.
   ModelCollisionGeometryBSPSurfaceFlags:
     class: bitfield
     size: 1
@@ -230,7 +271,14 @@ type_defs:
       - name: two_sided
       - name: invisible
       - name: climbable
+        comments:
+          en: Indicates if the surface is a climbable ladder.
       - name: breakable
+        comments:
+          en: >
+            Indicates if the surface is breakable. The surface must also have
+            a breakable surface index below.bit there cannot be more than 256
+            unique breakable surfaces in a BSP.
   ModelCollisionGeometryBSPSurface:
     class: struct
     assert_size: 12
@@ -241,12 +289,23 @@ type_defs:
         type: uint32
         meta:
           flagged: true
+        comments:
+          en: >
+            Index into the planes block for this surface's plane. Note that
+            multiple co-planar surfaces may reference the same plane since this
+            plane index is a copy of the parent bsp2d reference's plane index,
+            even when flagged.
       - name: first_edge
         type: uint32
       - name: flags
         type: ModelCollisionGeometryBSPSurfaceFlags
       - name: breakable_surface
         type: int8
+        comments:
+          en: >
+            Index into this tag's breakable surfaces block. It is unknown if
+            this is a signed or flagged field, but since it is 8-bit there cannot
+            be more than 256 unique breakable surfaces in a BSP.
       - name: material
         type: Index
   ModelCollisionGeometryBSPEdge:
@@ -290,24 +349,56 @@ type_defs:
           T: ModelCollisionGeometryBSP3DNode
         meta:
           hek_max_count: 131072
+        comments:
+          en: >
+            A block of nodes used to efficiently find collideable surfaces.
+            Each node divides space with an infinite plane and references two
+            child nodes by index into this block. The first element in the block
+            is the root node. A test point can be recursively tested against planes
+            to find a _leaf_ of potentially colliding surfaces.
       - name: planes
         type: Block
         type_args:
           T: ModelCollisionGeometryBSPPlane
         meta:
           hek_max_count: 65536
+        comments:
+          en: >
+            Planes are infinite 2D surfaces in 3D space. They are used both to
+            subdivide the BSP in each bsp3d node and to define collideable surfaces.
+            The first 8 planes in the block seem to serve a special purpose --
+            the first 4 define the XY bounding box, with the next 4 axis aligned
+            planes unkown. Furthermore, the last 8 planes in the block are used
+            for the first few levels of bsp3d nodes. A single plane may be referenced
+            from multiple bsp3d nodes since the surfaces that planes derive from
+            can also be found in multiple leaves.
       - name: leaves
         type: Block
         type_args:
           T: ModelCollisionGeometryBSPLeaf
         meta:
           hek_max_count: 65536
+        comments:
+          en: >
+            Leaves mark the transition between the 3D BSP and a collection of
+            convex collideable surfaces in the same localized area. Each set of
+            co-planar surfaces within this leaf is stored within a child 2D BSP.
+
+
+            Note that surfaces may be found under **multiple leaves**, since any
+            surface which is not completely on either side of a 3D plane will
+            need to belong to both child 3D BSP nodes.
       - name: bsp2d_references
         type: Block
         type_args:
           T: ModelCollisionGeometryBSP2DReference
         meta:
           hek_max_count: 131072
+        comments:
+          en: >
+            Represents either a 2D BSP of surfaces, or a singular surface if the
+            node index is flagged. In either case, test points or 3D line traces
+            should be projected onto the basis plane in order to continue.
       - name: bsp2d_nodes
         type: Block
         type_args:
@@ -320,18 +411,32 @@ type_defs:
           T: ModelCollisionGeometryBSPSurface
         meta:
           hek_max_count: 131072
+        comments:
+          en: >
+            Surfaces are planar collideable polygons. They are not necessarily
+            triangular and may have up to 8 edges. BSP collision surfaces can
+            be visualized in [Sapien][] using `debug_structure 1`. These
+            surfaces are not used for the rendered geometry.
       - name: edges
         type: Block
         type_args:
           T: ModelCollisionGeometryBSPEdge
         meta:
           hek_max_count: 262144
+        comments:
+          en: >
+            Edges, surfaces, and vertices form a data structure called a
+            _[doubly connected edge list (DCEL)](https://en.wikipedia.org/wiki/Doubly_connected_edge_list)_,
+            also known as a _half-edge data structure_. The edges and their
+            vertices define the boundaries of the collideable surfaces within a leaf.
       - name: vertices
         type: Block
         type_args:
           T: ModelCollisionGeometryBSPVertex
         meta:
           hek_max_count: 131072
+        comments:
+          en: The 3D coordinates used for edge starting and ending locations.
   ModelCollisionGeometryNode:
     class: struct
     assert_size: 64

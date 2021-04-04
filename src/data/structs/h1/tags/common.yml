@@ -291,8 +291,12 @@ type_defs:
     fields:
       - name: vector
         type: Vector3D
+        comments:
+          en: A 3-float normal vector.
       - name: w
         type: float
+        comments:
+          en: Distance from origin (along normal).
   Matrix:
     class: struct
     assert_size: 36
@@ -577,16 +581,16 @@ type_defs:
   IsUnusedFlag:
     class: bitfield
     size: 4
-    fields:
+    bits:
       - name: unused
   IsUnfilteredFlag:
     class: bitfield
     size: 2
-    fields:
+    bits:
       - name: unfiltered
   ColorInterpolationFlags:
     class: bitfield
     size: 4
-    fields:
+    bits:
       - name: blend in hsv
       - name: more colors
