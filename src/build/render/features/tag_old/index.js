@@ -55,7 +55,7 @@ module.exports = async function(ctx) {
   if (tag.parent) {
     metaSections.push({
       cssClass: "content-tag-minor",
-      body: html`<p>${localize("parentTag")}: ${tagAnchor(ctx, tag.parent)}</p>`
+      body: html`<p>${localize("parentTag")}: ${tagAnchor(ctx, tag.parent.name)}</p>`
     });
   }
 
@@ -66,7 +66,7 @@ module.exports = async function(ctx) {
       const isDirect = refLevel.name == tag.name;
       const refLevelSummary = isDirect ?
         localize("directReferences") :
-        localize("inheritedReferences")(tagAnchor(ctx, refLevel));
+        localize("inheritedReferences")(tagAnchor(ctx, refLevel.name));
 
       refDetailElements.push(detailsList(
         refLevelSummary,
@@ -75,7 +75,7 @@ module.exports = async function(ctx) {
             //sound, effect, damage effect, sound looping, model animations, actor variants, and objects
             return "(any tags referenced by scripts)";
           } else {
-            return tagAnchor(ctx, refTag);
+            return tagAnchor(ctx, refTag.name);
           }
         }),
         isDirect ? undefined : 0
@@ -96,7 +96,7 @@ module.exports = async function(ctx) {
       cssClass: "content-tag-minor",
       body: detailsList(
         localize("referencedBy"),
-        tag.referencedBy.map(otherTag => tagAnchor(ctx, otherTag)),
+        tag.referencedBy.map(otherTag => tagAnchor(ctx, otherTag.name)),
         0
       )
     });
@@ -107,7 +107,7 @@ module.exports = async function(ctx) {
       cssClass: "content-tag-minor",
       body: detailsList(
         localize("childTags"),
-        tag.children.map(childTag => tagAnchor(ctx, childTag))
+        tag.children.map(childTag => tagAnchor(ctx, childTag.name))
       )
     });
   }

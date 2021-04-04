@@ -1051,25 +1051,8 @@ Object.entries(outputFiles).forEach(([groupName, data]) => {
   }
 });
 
+
 /*
-moved to common
--------------
-bitfield
-enum
-
-ignore
------------------
-invader_bitmap
-invader_sound
-
-no invader structs
------------
-spheroid
-ui_widget_collection
-continuous_damage_effect
-
-
-backfilled:
--------------
-hud_interface_types
+todo:
+missing comments in bsp tag
 */

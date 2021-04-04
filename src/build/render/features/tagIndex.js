@@ -52,9 +52,9 @@ const tagsTable = (ctx, tags) => {
       <tbody>
         ${tagsSorted.map(tag => html`
           <tr>
-            <td>${tagAnchor(ctx, tag)}</td>
+            <td>${tagAnchor(ctx, tag.name)}</td>
             <td><code>${tag.id}</code></td>
-            <td>${tag.parent && tagAnchor(ctx, tag.parent)}</td>
+            <td>${tag.parent && tagAnchor(ctx, tag.parent.name)}</td>
             <td>
               ${tag.comments && tag.comments[ctx.lang] != "..." &&
                 renderMarkdown(ctx, tag.comments[ctx.lang])

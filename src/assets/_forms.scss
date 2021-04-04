@@ -1,0 +1,114 @@
+@import "_constants";
+
+button {
+  background: $bg-inset;
+  color: $fg;
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+  padding: $padding-containers-small 1em;
+
+  &:hover {
+    background: $bg-overlay;
+    cursor: pointer;
+  }
+}
+
+label, legend {
+  font-weight: bold;
+}
+
+fieldset {
+  border: 1px solid $border-color;
+  // background: $bg-inset;
+  margin-bottom: $padding-flow;
+
+  label {
+    font-weight: normal;
+  }
+}
+
+label {
+  cursor: pointer;
+}
+
+progress, meter {
+  width: 100%;
+  background: $bg-inset;
+  border: 1px solid $border-color;
+}
+
+input {
+  display: block;
+  border-radius: $border-radius;
+  border: 1px solid $border-color;
+  background: $bg-inset;
+  padding: $padding-containers-small;
+  font-size: $font-size;
+  color: $fg;
+
+  &:focus {
+    box-shadow: 0px 0px $padding-containers-small rgba($bg-info, 0.6) inset;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background: $bg-content;
+    transition: background $transition-time;
+    &:hover {
+      background: $bg-overlay;
+    }
+  }
+}
+
+input[type="radio"] {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  & + label:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    margin-left: -26px;
+    padding: 8px;
+    border: 2px solid $border-color;
+    border-radius: 2em;
+  }
+  &:checked + label:before {
+    border: 2px solid $fg-strong;
+    background: $fg-link;
+  }
+  &:checked + label {
+    color: $fg-strong;
+  }
+}
+
+input[type="checkbox"] {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
+  opacity: 0;
+  & + label:before {
+    content: '';
+    display: inline-block;
+    position: absolute;
+    margin-left: -26px;
+    padding: 8px;
+    border: 2px solid $border-color;
+  }
+  &:checked + label:before {
+    border: 2px solid $fg-strong;
+    background: $fg-link;
+  }
+  &:checked + label {
+    color: $fg-strong;
+  }
+}
+
+.radio-options {
+  display: flex;
+  flex-direction: row;
+  .radio-option {
+    margin-right: 1em;
+  }
+}

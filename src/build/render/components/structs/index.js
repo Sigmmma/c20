@@ -1,7 +1,7 @@
 const fs = require("fs");
 const R = require("ramda");
 const path = require("path");
-const {html, escapeHtml, localizer, slugify} = require("../bits");
+const {html, escapeHtml, localizer, slugify, detailsList, tagAnchor} = require("../bits");
 const INTRINSIC_TYPE_DEFS = require("./intrinsics");
 
 const localizations = localizer({
@@ -118,14 +118,13 @@ function processGenerics(genericParams, type_args) {
 }
 
 /* todo:
- * - populate imports
  * - tag dependency "tag_classes" linking
  * - "index_of" linking
  */
 function structDisplay(ctx, opts) {
   const {renderMarkdown} = require("../markdown"); //todo: untangle circular dep
   const localize = localizations(ctx.lang);
-  const {type_defs: typeDefsArg, entry_type, show_offsets, skip_padding, id} = opts;
+  const {type_defs: typeDefsArg, entry_type, show_offsets, skip_padding, simple_types, id} = opts;
 
   let typeDefs = {
     ...INTRINSIC_TYPE_DEFS,
@@ -188,13 +187,12 @@ function structDisplay(ctx, opts) {
   }
 
   function renderComments(part) {
-    const meta = processMeta(part.meta);
+    const meta = Object.entries(processMeta(part.meta) || {})
+      .filter(([k]) => localize(`meta_${k}`, true));
     return html`
-      ${meta && html`
+      ${meta.length > 0 && html`
         <ul class="field-metas">
-          ${Object.entries(meta)
-            .filter(([k]) => localize(`meta_${k}`, true))
-            .map(([k, v]) => html`
+          ${meta.map(([k, v]) => html`
             <li class="field-meta">${localize(`meta_${k}`)}${v !== true ? `: ${v}` : ""}</li>
           `)}
         </ul>
@@ -205,12 +203,16 @@ function structDisplay(ctx, opts) {
     `;
   }
 
-  function renderStructFieldType({typeDef, totalSize, singleSize, variableSize, count, type_args, typeName}) {
+  function renderStructFieldType(field, {typeDef, totalSize, singleSize, variableSize, count, type_args, typeName}) {
     let typeStr = typeName;
     if (typeDef.class == "bitfield" || typeDef.class == "enum") {
-      typeStr += `: ${typeDef.class}${singleSize * 8}`;
+      if (simple_types) {
+        typeStr = typeDef.class;
+      } else {
+        typeStr += `: ${typeDef.class}${singleSize * 8}`;
+      }
     }
-    if (type_args) {
+    if (!simple_types && type_args) {
       typeStr += `<${Object.values(type_args).join(", ")}>`;
     }
     if (variableSize !== undefined) {
@@ -224,14 +226,20 @@ function structDisplay(ctx, opts) {
       const lbl = typeDef.endianness == "little" ? "LE" : (typeDef.endianness == "big" ? "BE" : "LE/BE");
       typeStr += ` <span class="field-label">${lbl}</span>`;
     }
-    return html`<code title="${totalSize} bytes">${typeStr}</code>`;
+    const typeCode = html`<code title="${totalSize} bytes">${typeStr}</code>`;
+    if (field.meta && field.meta.tag_classes) {
+      return detailsList(typeCode, field.meta.tag_classes.map(tagName =>
+        tagName == "*" ? "(any)" : tagAnchor(ctx, tagName)
+      ), 4);
+    }
+    return typeCode;
   }
 
   function renderFieldName(fieldName, pathId) {
     if (!fieldName) return null;
     fieldName = fieldName.replaceAll("_", " ");
     if (!pathId) return escapeHtml(fieldName);
-    const pathTitle = escapeHtml(pathId.join("/"));
+    const pathTitle = escapeHtml(pathId.slice(1).join("/"));
     const pathIdAttr = slugify(pathId.join("-"));
     return html`
       <span title="${pathTitle}" id="${pathIdAttr}">
@@ -274,12 +282,14 @@ function structDisplay(ctx, opts) {
             }
 
             let embeddedType = undefined;
-            if (fieldTypeDef.class) {
-              embeddedType = instantiatedFieldType;
-            } else if (fieldTypeArgs && (fieldTypeName == "ptr32" || fieldTypeName == "ptr64")) {
-              embeddedType = instantiateType(processGenerics({type: Object.values(fieldTypeArgs)[0]}, instantiatedType.type_args));
-              if (!embeddedType.typeDef.class) {
-                embeddedType = undefined;
+            if (fieldTypeName != "TagDependency") {
+              if (fieldTypeArgs && (fieldTypeName == "Block" || fieldTypeName == "ptr32" || fieldTypeName == "ptr64")) {
+                embeddedType = instantiateType(processGenerics({type: Object.values(fieldTypeArgs)[0]}, instantiatedType.type_args));
+                if (!embeddedType.typeDef.class) {
+                  embeddedType = undefined;
+                }
+              } else if (fieldTypeDef.class) {
+                embeddedType = instantiatedFieldType;
               }
             }
 
@@ -297,7 +307,7 @@ function structDisplay(ctx, opts) {
                   <td class="field-offset">${renderHex(fieldOffset)}</td>
                 `}
                 <td class="field-type">
-                  ${renderStructFieldType(instantiatedFieldType)}${embeddedType && hasSeenType && html`<sup><a href="#${slugify(hasSeenType.join("-"))}">?</a></sup>`}
+                  ${renderStructFieldType(field, instantiatedFieldType)}${embeddedType && hasSeenType && html`<sup><a href="#${slugify(hasSeenType.join("-"))}">?</a></sup>`}
                 </td>
                 <td class="comments">${renderComments(field)}</td>
               </tr>

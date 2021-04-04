@@ -3,11 +3,12 @@ This page documents the function and format of some of Halo's installation and p
 ```.struct
 show_offsets: false
 skip_padding: true
-entry_type: Scenario
+simple_types: true
+entry_type: ScenarioStructureBSP
 id: tag-struct
 imports:
-  h1/tags/scenario:
-    - Scenario
+  h1/tags/scenario_structure_bsp:
+    - ScenarioStructureBSP
 ```
 
 # haloce.exe

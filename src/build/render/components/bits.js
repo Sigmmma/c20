@@ -38,9 +38,9 @@ const defAnchor = (href) => html`<sup>${anchor(href, "?")}</sup>`;
 
 const pageAnchor = R.curry((lang, page) => anchor(page.tryLocalizedPath(lang), escapeHtml(page.tryLocalizedTitle(lang))));
 
-const tagAnchor = (ctx, tag, hash) => {
-  const url = ctx.resolveUrl(tag.name, hash);
-  return anchor(url, breakTagName(tag.name));
+const tagAnchor = (ctx, tagName, hash) => {
+  const url = ctx.resolveUrl(tagName, hash);
+  return anchor(url, breakTagName(tagName));
 };
 
 const heading = (hTag, title, cssClass) => html`
@@ -50,19 +50,26 @@ const heading = (hTag, title, cssClass) => html`
   </${hTag}>
 `;
 
-const detailsList = (summary, items, openThreshold) => {
-  if (openThreshold === undefined) {
-    openThreshold = DEFAULT_OPEN_THRESHOLD;
+const detailsList = (summary, items, maxOpen, allowInline) => {
+  if (maxOpen === undefined) {
+    maxOpen = DEFAULT_OPEN_THRESHOLD;
+  }
+  if (allowInline === undefined) {
+    allowInline = true;
   }
   if (items.length == 0) {
     return null;
-  } else if (items.length <= openThreshold) {
-    return html`
-      <details open>
-        <summary>${summary}</summary>
-        ${ul(items)}
-      </details>
-    `;
+  } else if (items.length <= maxOpen) {
+    if (items.length == 1 && allowInline) {
+      return html`<p>${summary}: ${items[0]}</p>`;
+    } else {
+      return html`
+        <details open>
+          <summary>${summary}</summary>
+          ${ul(items)}
+        </details>
+      `;
+    }
   } else {
     return html`
       <details>

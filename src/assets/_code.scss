@@ -1,0 +1,38 @@
+pre, code {
+  font-family: $font-family-code;
+  font-size: $font-size-code;
+  background: $bg-inset;
+  border-radius: $border-radius;
+}
+
+code {
+  padding: 0.1em 0.2em;
+
+  &.language-console > .hljs-name:before {
+    content: "halo( ";
+    transition: opacity $transition-time;
+    color: fuchsia;
+  }
+
+  &.language-hsc:before {
+    content: ".hsc";
+    float: right;
+    opacity: 0.5;
+    color: $fg-faded;
+    font-style: italic;
+  }
+}
+
+pre:hover code.language-console > .hljs-name:before {
+  opacity: 0.5;
+}
+
+pre {
+  padding: 1em;
+  overflow-x: auto;
+  code {
+    padding: 0;
+    border: none;
+    background: none;
+  }
+}

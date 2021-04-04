@@ -212,7 +212,7 @@ const fieldTypeDisplay = (ctx, field, fieldTypeStruct) => {
   if (field.type == "TagDependency") {
     const depLinks = field.classes.map(tagName => {
       const tagDef = ctx.data.h1.tagsByName[tagName];
-      return tagDef ? tagAnchor(ctx, tagDef) : tagDef;
+      return tagDef ? tagAnchor(ctx, tagDef.name) : tagDef;
     });
     return detailsList(typeCode, depLinks, 4);
   }
@@ -377,7 +377,7 @@ const renderTagStructure = (ctx, tag) => {
   const bodyHtml = html`
     ${heading("h1", headingText, "clear")}
     ${tag.parent && alert("info", html`
-      <p>${localize("inheritInfo")(tag.name, tagAnchor(ctx, tag.parent))}</p>
+      <p>${localize("inheritInfo")(tag.name, tagAnchor(ctx, tag.parent.name))}</p>
     `)}
     ${structView(ctx, tag.invaderStruct, tag.invaderStructName, tag.comments, addHeading, addSearchText, 2, true, "tag-field")}
     <p><small>${localize("invaderDefLink")(invaderDefUrl)}</small></p>
