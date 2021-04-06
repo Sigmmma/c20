@@ -2369,3 +2369,1717 @@ Functions:
         es: 
       ex: '`(list_get the_warthogs 3)`'
 
+    - slug: magic_melee_attack
+      type: (magic_melee_attack)
+      info:
+        en: Causes player's unit to start a melee attack
+        es: 
+      ex: '`(magic_melee_attack)`'
+
+    - slug: magic_seat_name
+      type: (magic_seat_name <string>)
+      info:
+        en: >
+          All units controlled by the player will assume the given seat name
+          (valid values are 'asleep', 'alert', 'stand', 'crouch' and 'flee')
+        es: 
+      ex: 
+
+    - slug: map_name
+      type: (map_name <string>)
+      info:
+        en: Changes the name of the solo player map
+        es: 
+      ex: '`(map_name "a10")`'
+
+    - slug: map_reset
+      type: (map_reset)
+      info:
+        en: Starts the map from the beginning
+        es: 
+      ex: '`(map_reset)`'
+
+    - slug: message_metrics_clear
+      type: (message_metrics_clear)
+      info:
+        en: Clears network messaging metrics
+        es: 
+      ex: '`(message_metrics_clear)`'
+
+    - slug: message_metrics_dump
+      type: (message_metrics_dump <string>)
+      info:
+        en: Dumps network messaging metrics to given file ("" for default)
+        es: 
+      ex: '`(message_metrics_dump "")`'
+
+    - slug: multiplayer_map_name
+      type: (multiplayer_map_name <string>)
+      info:
+        en: Changes the name of the multiplayer map
+        es: 
+      ex: '`(multiplayer_map_name "schwinnzno1_alpha01a")`'
+
+    - slug: net_graph_clear
+      type: (net_graph_clear)
+      info:
+        en: Clears the net_graph
+        es: 
+      ex: '`(net_graph_clear)`'
+
+    - slug: net_graph_show
+      type: (net_graph_show <string> <string>)
+      info:
+        en: Changes the net_graph display (bytes/packets, sent/received)
+        es: 
+      ex: 
+
+    - slug: network_client_dump
+      type: (network_client_dump)
+      info:
+        en: Dumps info on network client
+        es: 
+      ex: '`(network_client_dump)`'
+
+    - slug: network_server_dump
+      type: (network_server_dump)
+      info:
+        en: Dumps info on network server
+        es: 
+      ex: '`(network_server_dump)`'
+
+    - slug: numeric_countdown_timer_get
+      type: (numeric_countdown_timer_get <short>)
+      info:
+        en: '`<digit_index>`'
+        es: 
+      ex: >
+        `(numeric_countdown_timer_get 1)` <br/>
+        `(numeric_countdown_timer_get -1)`
+
+    - slug: numeric_countdown_timer_restart
+      type: (numeric_countdown_timer_restart)
+      info:
+        en: Reset the timer
+        es: 
+      ex: '`(numeric_countdown_timer_restart)`'
+
+    - slug: numeric_countdown_timer_set
+      type: (numeric_countdown_timer_set <long> <boolean>)
+      info:
+        en: '`<milliseconds>`, `<auto_start>`'
+        es: 
+      ex: >
+        `(numeric_countdown_timer_set 15500 false)` <br/>
+        `(numeric_countdown_timer_set 10000 false)`
+
+    - slug: numeric_countdown_timer_stop
+      type: (numeric_countdown_timer_stop)
+      info:
+        en: Stop the timer
+        es: 
+      ex: '`(numeric_countdown_timer_stop)`'
+
+    - slug: object_beautify
+      type: (object_beautify <object> <boolean>)
+      info:
+        en: Makes an object pretty for the remainder of the levels' cutscenes
+        es: 
+      ex: '`(object_beautify chief true)` <br/> `(object_beautify chief false)`'
+
+    - slug: object_can_take_damage
+      type: (object_can_take_damage <object_list>)
+      info:
+        en: Allows an object to take damage again
+        es:
+      ex: '`(object_can_take_damage (players))`'
+
+    - slug: object_cannot_take_damage
+      type: (object_cannot_take_damage <object_list>)
+      info:
+        en: Prevents an object from taking damage
+        es: 
+      ex: '`(object_cannot_take_damage (players))`'
+
+    - slug: object_create
+      type: (object_create <object_name>)
+      info:
+        en: Creates an object from the scenario
+        es: 
+      ex: '`(object_create warthog_mp_1)`'
+
+    - slug: object_create_anew
+      type: (object_create_anew <object_name>)
+      info:
+        en: Creates an object, destroying it first if it already exists
+        es: 
+      ex: '`(object_create_anew banshee_mp_1)`'
+
+    - slug: object_create_anew_containing
+      type: (object_create_anew_containing <string>)
+      info:
+        en: >
+          Creates anew all objects from the scenario whose names contain the
+          given substring
+        es: 
+      ex: '`(object_create_anew_containing "pelican")`'
+
+    - slug: object_create_containing
+      type: (object_create_containing <string>)
+      info:
+        en: >
+          Creates all objects from the scenario whose names contain the given
+          substring
+        es: 
+      ex: '`(object_create_containing "warthog")`'
+
+    - slug: object_destroy
+      type: (object_destroy <object>)
+      info:
+        en: Destroys an object
+        es: 
+      ex: 
+
+    - slug: object_destroy_all
+      type: (object_destroy_all)
+      info:
+        en: Destroys all non player objects
+        es: 
+      ex: '`(object_destroy_all)`'
+
+    - slug: object_destroy_containing
+      type: (object_destroy_containing <string>)
+      info:
+        en: >
+          Destroys all objects from the scenario whose names contain the given
+          substring
+        es:
+      ex: '`(object_destroy_containing "pelican")`'
+
+    - slug: object_pvs_activate
+      type: (object_pvs_activate <object>)
+      info:
+        en: Just another (old) name for object_pvs_set_object
+        es: 
+      ex: 
+
+    - slug: object_pvs_clear
+      type: (object_pvs_clear)
+      info:
+        en: Removes the special place that activates everything it sees
+        es: 
+      ex: '`(object_pvs_clear)`'
+
+    - slug: object_pvs_set_camera
+      type: (object_pvs_set_camera <cutscene_camera_point>)
+      info:
+        en: >
+          Sets the specified cutscene camera point as the special place that
+          activates everything it sees
+        es: 
+      ex: 
+
+    - slug: object_pvs_set_object
+      type: (object_pvs_set_object <object>)
+      info:
+        en: >
+          Sets the specified object as the special place that activates
+          everything it sees
+        es: 
+      ex: 
+
+    - slug: object_set_collideable
+      type: (object_set_collideable <object> <boolean>)
+      info:
+        en: '`false` prevents any object from colliding with the given object'
+        es: 
+      ex: >
+        `(object_set_collideable player0 true)` <br/>
+        `(object_set_collideable player0 false)`
+
+    - slug: object_set_facing
+      type: (object_set_facing <object> <cutscene_flag>)
+      info:
+        en: Turns the specified object in the direction of the specified flag
+        es: 
+      ex: '`(object_set_facing player0 blue_base_flag)`'
+
+    - slug: object_set_melee_attack_inhibited
+      type: (object_set_melee_attack_inhibited <object> <boolean>)
+      info:
+        en: '`false` prevents object from using melee attack'
+        es: 
+      ex: >
+        `(object_set_melee_attack_inhibited player0 true)` <br/>
+        `(object_set_melee_attack_inhibited player0 false)`
+
+    - slug: object_set_permutation
+      type: (object_set_permutation <object> <string> <string>)
+      info:
+        en: >
+          Sets the desired region (use `""` for all regions) to the permutation
+          with the given name
+        es: 
+      ex: '`(object_set_permutation player0 "right arm" ~damaged)`'
+
+    - slug: object_set_ranged_attack_inhibited
+      type: (object_set_ranged_attack_inhibited <object> <boolean>)
+      info:
+        en: '`false` prevents object from using ranged attack'
+        es: 
+      ex: >
+        `(object_set_ranged_attack_inhibited player0 true)` <br/>
+        `(object_set_ranged_attack_inhibited player0 false)`
+
+    - slug: object_set_scale
+      type: (object_set_scale <object> <real> <short>)
+      info:
+        en: >
+          sets the scale for a given object and interpolates over the given
+          number of frames to achieve that scale
+        es: 
+      ex: '`(object_set_scale player0 1.5 10)`'
+
+    - slug: object_set_shield
+      type: (object_set_shield <object> <real>)
+      info:
+        en: Sets the shield vitality of the specified object (between 0 and 1)
+        es: 
+      ex: "`(object_set_shield player0 1.0)` Sets player's shield to full"
+
+    - slug: object_teleport
+      type: (object_teleport <object> <cutscene_flag>)
+      info:
+        en: Moves the specified object to the specified flag
+        es: 
+      ex: '`(object_teleport player0 red_base_flag)`'
+
+    - slug: object_type_predict
+      type: (object_type_predict <object_definition>)
+      info:
+        en: Loads textures necessary to draw an object that's about to come on-screen
+        es: 
+      ex: 
+
+    - slug: objects_attach
+      type: (objects_attach <object> <string> <object> <string>)
+      info:
+        en: Attaches the second object to the first; both strings can be empty
+        es: 
+      ex: '`(objects_attach chief "right hand" ar1 "")`'
+
+    - slug: objects_can_see_flag
+      type: (objects_can_see_flag <object_list> <cutscene_flag> <real>)
+      info:
+        en: >
+          Returns `true` if any of the specified units are looking within the
+          specified number of degrees of the flag
+        es: 
+      ex: '`(objects_can_see_flag the_warthogs tunnel_flag 45)`'
+
+    - slug: objects_can_see_object
+      type: (objects_can_see_object <object_list> <object> <real>)
+      info:
+        en: >
+          Returns `true` if any of the specified units are looking within the
+          specified number of degrees of the object
+        es: 
+      ex: '`(objects_can_see_object the_warthogs player0 90)`'
+
+    - slug: objects_delete_by_definition
+      type: (objects_delete_by_definition <object_definition>)
+      info:
+        en: Deletes all objects of type `<definition>`
+        es: 
+      ex: 
+
+    - slug: objects_detach
+      type: (objects_detach <object> <object>)
+      info:
+        en: Detaches from the given parent object the given child object
+        es: 
+      ex: '`(objects_detach chief ar1)`'
+
+    - slug: objects_predict
+      type: (objects_predict <object_list>)
+      info:
+        en: Loads textures necessary to draw a objects that are about to come on-screen
+        es: 
+      ex: '`(objects_predict the_bipeds)`'
+
+    - slug: pause_hud_timer
+      type: (pause_hud_timer <boolean>)
+      info:
+        en: Pauses or unpauses the hud timer
+        es: 
+      ex: '`(pause_hud_timer true)` <br/> `(pause_hud_timer false)`'
+
+    - slug: play_update_history
+      type: (play_update_history <long> <boolean>)
+      info:
+        en: >
+          Playback client input history starting from the specified last
+          completed update id
+        es: 
+      ex: 
+
+    - slug: playback
+      type: (playback)
+      info:
+        en: Starts game in film playback mode
+        es: 
+      ex: (playback)
+
+    - slug: player0_joystick_set_is_normal
+      type: (player0_joystick_set_is_normal)
+      info:
+        en: Returns `true` if player0 is using the normal joystick set
+        es: 
+      ex: (player0_joystick_set_is_normal)
+
+    - slug: player0_look_invert_pitch
+      type: (player0_look_invert_pitch <boolean>)
+      info:
+        en: Invert player0's look
+        es: 
+      ex: 
+
+    - slug: player0_look_pitch_is_inverted
+      type: (player0_look_pitch_is_inverted)
+      info:
+        en: Returns `true` if player0's look pitch is inverted
+        es: 
+      ex: '`(player0_look_pitch_is_inverted)`'
+
+    - slug: player_action_test_accept
+      type: (player_action_test_accept)
+      info:
+        en: >
+          Returns `true` if any player has hit accept since the last call to
+          `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_accept)`'
+
+    - slug: player_action_test_action
+      type: (player_action_test_action)
+      info:
+        en: >
+          Returns `true` if any player has hit the action key since the last
+          call to `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_action)`'
+
+    - slug: player_action_test_back
+      type: (player_action_test_back)
+      info:
+        en: >
+          Returns `true` if any player has hit the back key since the last call
+          to `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_back)`'
+
+    - slug: player_action_test_grenade_trigger
+      type: (player_action_test_grenade_trigger)
+      info:
+        en: >
+          Returns `true` if any player has used grenade trigger since the last
+          call to `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_grenade_trigger)`'
+
+    - slug: player_action_test_jump
+      type: (player_action_test_jump)
+      info:
+        en: >
+          Returns `true` if any player has jumped since the last call to
+          `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_jump)`'
+
+    - slug: player_action_test_look_relative_all_directions
+      type: (player_action_test_look_relative_all_directions)
+      info:
+        en: >
+          Returns `true` if any player has looked up, down, left, and right
+          since the last call to `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_look_relative_all_directions)`'
+
+    - slug: player_action_test_look_relative_down
+      type: (player_action_test_look_relative_down)
+      info:
+        en: >
+          Returns `true` if any player has looked down since the last call to
+          `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_look_relative_down)`'
+
+    - slug: player_action_test_look_relative_left
+      type: (player_action_test_look_relative_left)
+      info:
+        en: >
+          Returns `true` if any player has looked left since the last call to
+          `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_look_relative_left)`'
+
+    - slug: player_action_test_look_relative_right
+      type: (player_action_test_look_relative_right)
+      info:
+        en: >
+          Returns `true` if any player has looked right since the last call to
+          `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_look_relative_right)`'
+
+    - slug: player_action_test_look_relative_up
+      type: (player_action_test_look_relative_up)
+      info:
+        en: >
+          Returns `true` if any player has looked up since the last call to
+          `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_look_relative_up)`'
+
+    - slug: player_action_test_move_relative_all_directions
+      type: (player_action_test_move_relative_all_directions)
+      info:
+        en: >
+          Returns `true` if any player has moved forward, backward, left, and
+          right since the last call to `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_move_relative_all_directions)`'
+
+    - slug: player_action_test_primary_trigger
+      type: (player_action_test_primary_trigger)
+      info:
+        en: >
+          Returns `true` if any player has used primary trigger since the last
+          call to `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_primary_trigger)`'
+
+    - slug: player_action_test_reset
+      type: (player_action_test_reset)
+      info:
+        en: Resets the player action test state so that all tests will return `false`
+        es: 
+      ex: '`(player_action_test_reset)`'
+
+    - slug: player_action_test_zoom
+      type: (player_action_test_zoom)
+      info:
+        en: >
+          Returns `true` if any player has hit the zoom button since the last
+          call to `(player_action_test_reset)`
+        es: 
+      ex: '`(player_action_test_zoom)`'
+
+    - slug: player_add_equipment
+      type: (player_add_equipment <unit> <starting_profile> <boolean>)
+      info:
+        en: >
+          Adds/resets the player's health, shield, and inventory (weapons and
+          grenades) to the named profile. Resets if third parameter is `true`,
+          adds if `false`.
+        es: 
+      ex: 
+
+    - slug: player_camera_control
+      type: (player_camera_control <boolean>)
+      info:
+        en: Enables/disables camera control globally
+        es: 
+      ex: '`(player_camera_control true)` <br/> `(player_camera_control false)`'
+
+    - slug: player_effect_set_max_rotation
+      type: (player_effect_set_max_rotation <real> <real> <real>)
+      info:
+        en: '`<yaw>` `<pitch>` `<roll>`'
+        es: 
+      ex: 
+
+    - slug: player_effect_set_max_translation
+      type: (player_effect_set_max_translation <real> <real> <real>)
+      info:
+        en: '`<x>` `<y>` `<z>`'
+        es: 
+      ex: 
+
+    - slug: player_effect_set_max_vibrate
+      type: (player_effect_set_max_vibrate <real> <real>)
+      info:
+        en: '`<left>` `<right>`'
+        es: 
+      ex:
+
+    - slug: player_effect_start
+      type: (player_effect_start <real> <real>)
+      info:
+        en: '`<max_intensity>` `<attack time>`'
+        es: 
+      ex: 
+
+    - slug: player_effect_stop
+      type: (player_effect_stop <real>)
+      info:
+        en: '`<decay>`'
+        es: 
+      ex: 
+
+    - slug: player_enable_input
+      type: (player_enable_input <boolean>)
+      info:
+        en: Toggle player input. The player can still free-look, but nothing else.
+        es: 
+      ex: '`(player_enable_input true)` <br/> `(player_enable_input false)`'
+
+    - slug: players_unzoom_all
+      type: (players_unzoom_all)
+      info:
+        en: Resets zoom levels on all players
+        es: 
+      ex: '`(players_unzoom_all)`'
+
+    - slug: print
+      type: (print <string>)
+      info:
+        en: >
+          Prints a string to the console. Printed text will not appear in the
+          console unless devmode is enabled (devmode 4). You can give a `print`
+          call a [format](http://www.cplusplus.com/reference/cstdio/printf/)
+          string (e.g. `"I have %d apples"`), but **cannot** give it format
+          arguments, meaning **a format string can cause the function to read
+          invalid memory and crash the game!**
+        es: 
+      ex: >
+        `(print "50 dollars for this?!")`
+        prints "50 dollars for this?!" to the console
+
+    - slug: print_binds
+      type: (print_binds)
+      info:
+        en: Prints a list of all input bindings
+        es: 
+      ex: '`(print_binds)`'
+
+    - slug: profile_activate
+      type: (profile_activate <string>)
+      info:
+        en: Activates profile sections based on a substring
+        es: 
+      ex: 
+
+    - slug: profile_deactivate
+      type: (profile_deactivate <string>)
+      info:
+        en: Deactivates profile sections based on a substring
+        es: 
+      ex: 
+
+    - slug: profile_dump
+      type: (profile_dump <string>)
+      info:
+        en: Dumps profile based on a substring
+        es: 
+      ex: 
+
+    - slug: profile_graph_toggle
+      type: (profile_graph_toggle <string>)
+      info:
+        en: Enables or disables profile graph display of a particular value
+        es: 
+      ex: 
+
+    - slug: profile_load
+      type: (profile_load <string>)
+      info:
+        en: Load any included builtin profiles and create profiles on disk
+        es: 
+      ex: '`(profile_load "a hobo")` returns: loads the profile "a hobo"'
+
+    - slug: profile_reset
+      type: (profile_reset)
+      info:
+        en: Resets profiling data
+        es: 
+      ex: '`(profile_reset)`'
+
+    - slug: profile_service_clear_timers
+      type: (profile_service_clear_timers)
+      info:
+        en: Clears the timers that are present in the profiling service
+        es: 
+      ex: '`(profile_service_clear_timers)`'
+
+    - slug: profile_service_dump_timers
+      type: (profile_service_dump_timers)
+      info:
+        en: Dumps the profiling service timers
+        es: 
+      ex: '`(profile_service_dump_timers)`'
+
+    - slug: profile_unlock_solo_levels
+      type: (profile_unlock_solo_levels)
+      info:
+        en: Unlocks all the solo player levels for player 1's profile
+        es: 
+      ex: '`(profile_unlock_solo_levels)`'
+
+    - slug: quit
+      type: (quit)
+      info:
+        en: Quits the game
+        es: 
+      ex: '`(quit)`'
+
+    - slug: rasterizer_decals_flush
+      type: (rasterizer_decals_flush)
+      info:
+        en: Flush all decals
+        es:
+      ex: '`(rasterizer_decals_flush)`'
+
+    - slug: rasterizer_fixed_function_ambient
+      type: (rasterizer_fixed_function_ambient <long>)
+      info:
+        en: Set the ambient light value for fixed function
+        es: 
+      ex: '`(rasterizer_fixed_function_ambient 200)`'
+
+    - slug: rasterizer_fps_accumulate
+      type: (rasterizer_fps_accumulate)
+      info:
+        en: Average fps
+        es: 
+      ex: '`(rasterizer_fps_accumulate)`'
+
+    - slug: rasterizer_lights_reset_for_new_map
+      type: (rasterizer_lights_reset_for_new_map)
+      info:
+        en: 
+        es: 
+      ex: 
+
+    - slug: rasterizer_model_ambient_reflection_tint
+      type: (rasterizer_model_ambient_reflection_tint <real> <real> <real> <real>)
+      info:
+        en: 
+        es: 
+      ex: 
+
+    - slug: rasterizer_reload_effects
+      type: (rasterizer_reload_effects)
+      info:
+        en: Check for shader changes
+        es: 
+      ex: '`(rasterizer_reload_effects)`'
+
+    - slug: recording_kill
+      type: (recording_kill <unit>)
+      info:
+        en: Kill the specified unit's cutscene recording
+        es: 
+      ex: '`(recording_kill player0)`'
+
+    - slug: recording_play
+      type: (recording_play <unit> <cutscene_recording>)
+      info:
+        en: Make the specified unit run the specified cutscene recording
+        es: 
+      ex: 
+
+    - slug: recording_play_and_delete
+      type: (recording_play_and_delete <unit> <cutscene_recording>)
+      info:
+        en: >
+          Make the specified unit run the specified cutscene recording, deletes
+          the unit when the animation finishes
+        es: 
+      ex: 
+
+    - slug: recording_play_and_hover
+      type: (recording_play_and_hover <vehicle> <cutscene_recording>)
+      info:
+        en: >
+          Make the specified vehicle run the specified cutscene recording,
+          hovers the vehicle when the animation finishes
+        es: 
+      ex:
+
+    - slug: recording_time
+      type: (recording_time <unit>)
+      info:
+        en: Return the time remaining in the specified unit's cutscene recording
+        es: 
+      ex: '`(recording_time player0)`'
+
+    - slug: render_effects
+      type: (render_effects <boolean>)
+      info:
+        en: Render game effects if `true`
+        es: 
+      ex: '`(render_effects true)` <br/> `(render_effects false)`'
+
+    - slug: render_lights
+      type: (render_lights <boolean>)
+      info:
+        en: Enables/disables dynamic lights
+        es: 
+      ex: '`(render_lights true)` <br/> `(render_lights false)`'
+
+    - slug: scenery_animation_start
+      type: (scenery_animation_start <scenery> <animation_graph> <string>)
+      info:
+        en: Starts a custom animation playing on a piece of scenery
+        es: 
+      ex: 
+
+    - slug: scenery_animation_start_at_frame
+      type: (scenery_animation_start_at_frame <scenery> <animation_graph> <string> <short>)
+      info:
+        en: Starts a custom animation playing on a piece of scenery at a specific frame
+        es: 
+      ex: 
+
+    - slug: script_recompile
+      type: (script_recompile)
+      info:
+        en: Recompiles scripts
+        es: 
+      ex: '`(script_recompile)`'
+
+    - slug: script_screen_effect_set_value
+      type: (script_screen_effect_set_value <short> <real>)
+      info:
+        en: Sets a screen effect script value
+        es: 
+      ex: 
+
+    - slug: set_digital_forward_throttle
+      type: (set_digital_forward_throttle <short> <real>)
+      info:
+        en: Sets the amount of forward throttle applied by digital device stimuli
+        es: 
+      ex: 
+
+    - slug: set_digital_pitch_increment
+      type: (set_digital_pitch_increment <short> <real>)
+      info:
+        en: Sets the increment in pitch applied by digital device stimuli
+        es: 
+      ex: 
+
+    - slug: set_digital_strafe_throttle
+      type: (set_digital_strafe_throttle <short> <real>)
+      info:
+        en: Sets the amount of strafe throttle applied by digital device stimuli
+        es: 
+      ex: 
+
+    - slug: set_digital_yaw_increment
+      type: (set_digital_yaw_increment <short> <real>)
+      info:
+        en: Sets the increment in yaw applied by digital device stimuli
+        es: 
+      ex: 
+
+    - slug: set_gamepad_forward_threshold
+      type: (set_gamepad_forward_threshold <short> <real>)
+      info:
+        en: Sets the threshold beyond which gamepad movement is full forward throttle
+        es: 
+      ex: 
+
+    - slug: set_gamepad_pitch_scale
+      type: (set_gamepad_pitch_scale <short> <real>)
+      info:
+        en: Sets the scale for gamepad control of pitch
+        es: 
+      ex: 
+
+    - slug: set_gamepad_strafe_threshold
+      type: (set_gamepad_strafe_threshold <short> <real>)
+      info:
+        en: Sets the threshold beyond which gamepad movement is full strafe throttle
+        es: 
+      ex: 
+
+    - slug: set_gamepad_yaw_scale
+      type: (set_gamepad_yaw_scale <short> <real>)
+      info:
+        en: Sets the scale for gamepad control of yaw
+        es: 
+      ex: 
+
+    - slug: set_gamma
+      type: (set_gamma <long>)
+      info:
+        en: Set the gamma
+        es: 
+      ex: '`(set_gamma 200)`'
+
+    - slug: set_mouse_forward_threshold
+      type: (set_mouse_forward_threshold <short> <real>)
+      info:
+        en: Sets the threshold beyond which mouse movement is full forward throttle
+        es: 
+      ex: 
+
+    - slug: set_mouse_pitch_scale
+      type: (set_mouse_pitch_scale <short> <real>)
+      info:
+        en: Sets the scale for mouse control of pitch
+        es: 
+      ex: 
+
+    - slug: set_mouse_strafe_threshold
+      type: (set_mouse_strafe_threshold <short> <real>)
+      info:
+        en: Sets the threshold beyond which mouse movement is full strafe throttle
+        es: 
+      ex: 
+
+    - slug: set_mouse_yaw_scale
+      type: (set_mouse_yaw_scale <short> <real>)
+      info:
+        en: Sets the scale for mouse control of yaw
+        es: 
+      ex: 
+
+    - slug: set_pitch_rate
+      type: (set_pitch_rate <short> <real>)
+      info:
+        en: Sets the yaw rate for the given player number
+        es: 
+      ex: 
+
+    - slug: set_yaw_rate
+      type: (set_yaw_rate <short> <real>)
+      info:
+        en: Sets the yaw rate for the given player number
+        es: 
+      ex: 
+
+    - slug: show_hud
+      type: (show_hud <boolean>)
+      info:
+        en: Shows or hides the hud
+        es: 
+      ex: '`(show_hud true)` <br/> `(show_hud false)`'
+
+    - slug: show_hud_help_text
+      type: (show_hud_help_text <boolean>)
+      info:
+        en: Shows or hides the hud help text
+        es: 
+      ex: '`(show_hud_help_text true)` <br/> `(show_hud_help_text false)`'
+
+    - slug: show_hud_timer
+      type: (show_hud_timer <boolean>)
+      info:
+        en: Displays the hud timer
+        es:
+      ex: '`(show_hud_timer true)` <br/> `(show_hud_timer false)`'
+
+    - slug: show_player_update_stats
+      type: (show_player_update_stats)
+      info:
+        en: Shows update history playback stats
+        es: 
+      ex: '`(show_player_update_stats)`'
+
+    - slug: sound_cache_dump_to_file
+      type: (sound_cache_dump_to_file)
+      info:
+        en: 
+        es: 
+      ex: '`(sound_cache_dump_to_file)`'
+
+    - slug: sound_cache_flush
+      type: (sound_cache_flush)
+      info:
+        en: 
+        es: 
+      ex: '`(sound_cache_flush)`'
+
+    - slug: sound_class_set_gain
+      type: (sound_class_set_gain <string> <real> <short>)
+      info:
+        en: >
+          Changes the gain on the specified sound class(es) to the specified
+          game over the specified number of ticks.
+        es: 
+      ex: 
+
+    - slug: sound_eax_enabled
+      type: (sound_eax_enabled)
+      info:
+        en: Returns true if EAX extensions are enabled
+        es: 
+      ex: '`(sound_eax_enabled)`'
+
+    - slug: sound_enable
+      type: (sound_enable <boolean>)
+      info:
+        en: Enables or disables all sound
+        es: 
+      ex: '`(sound_enable true)` <br/> `(sound_enable false)`'
+
+    - slug: sound_enable_eax
+      type: (sound_enable_eax <boolean>)
+      info:
+        en: Enable or disable EAX extensions
+        es: 
+      ex: '`(sound_enable_eax true)` <br/> `(sound_enable_eax false)`'
+
+    - slug: sound_enable_hardware
+      type: (sound_enable_hardware <boolean> <boolean>)
+      info:
+        en: Enable or disable hardware sound buffers
+        es: 
+      ex: 
+
+    - slug: sound_get_effects_gain
+      type: (sound_get_effects_gain)
+      info:
+        en: Returns the game's effects gain
+        es: 
+      ex: '`(sound_get_effects_gain)`'
+
+    - slug: sound_get_gain
+      type: (sound_get_gain <string>)
+      info:
+        en: Absolutely do not use this either
+        es: 
+      ex: 
+
+    - slug: sound_get_master_gain
+      type: (sound_get_master_gain)
+      info:
+        en: Returns the game's master gain
+        es: 
+      ex: '`(sound_get_master_gain)`'
+
+    - slug: sound_get_music_gain
+      type: (sound_get_music_gain)
+      info:
+        en: Returns the game's music gain
+        es: 
+      ex: '`(sound_get_music_gain)`'
+
+    - slug: sound_get_supplementary_buffers
+      type: (sound_get_supplementary_buffers)
+      info:
+        en: Get the amount of supplementary buffers
+        es: 
+      ex: '`(sound_get_supplementary_buffers)`'
+
+    - slug: sound_impulse_predict
+      type: (sound_impulse_predict <sound> <boolean>)
+      info:
+        en: Loads an impulse sound into the sound cache ready for playback
+        es: 
+      ex: >
+        `(sound_impulse_predict "sound\sfx\impulse\ting\ting" true)` <br/>
+        `(sound_impulse_predict "sound\sfx\impulse\ting\ting" false)`
+
+    - slug: sound_impulse_start
+      type: (sound_impulse_start <sound> <object> <real>)
+      info:
+        en: >
+          Plays an impulse sound from the specified source object (or "none"),
+          with the specified scale
+        es: 
+      ex: 
+
+    - slug: sound_impulse_stop
+      type: (sound_impulse_stop <sound>)
+      info:
+        en: Stops the specified impulse sound
+        es: 
+      ex: 
+
+    - slug: sound_impulse_time
+      type: (sound_impulse_time <sound>)
+      info:
+        en: Returns the time remaining for the specified impulse sound
+        es: 
+      ex: 
+
+    - slug: sound_looping_predict
+      type: (sound_looping_predict <looping_sound>)
+      info:
+        en: 
+        es: 
+      ex: 
+
+    - slug: sound_looping_set_alternate
+      type: (sound_looping_set_alternate <looping_sound> <boolean>)
+      info:
+        en: Enables or disables the alternate loop/alternate end for a looping sound
+        es: 
+      ex: 
+
+    - slug: sound_looping_set_scale
+      type: (sound_looping_set_scale <looping_sound> <real>)
+      info:
+        en: >
+          Changes the scale of the sound (which should affect the volume) within
+          the range 0 to 1
+        es: 
+      ex: 
+
+    - slug: sound_looping_start
+      type: (sound_looping_start <looping_sound> <object> <real>)
+      info:
+        en: >
+          Plays a looping sound from the specified source object (or "none"),
+          with the specified scale
+        es: 
+      ex: 
+
+    - slug: sound_looping_stop
+      type: (sound_looping_stop <looping_sound>)
+      info:
+        en: Stops the specified looping sound
+        es: 
+      ex: 
+
+    - slug: sound_set_effects_gain
+      type: (sound_set_effects_gain <real>)
+      info:
+        en: Set the game's effects gain
+        es: 
+      ex: '`(sound_set_effects_gain 2.0)`'
+
+    - slug: sound_set_env
+      type: (sound_set_env <short>)
+      info:
+        en: Change environment preset
+        es: 
+      ex: '`(sound_set_env 1)`'
+
+    - slug: sound_set_factor
+      type: (sound_set_factor <real>)
+      info:
+        en: Set the DSound factor value
+        es: 
+      ex: 
+
+    - slug: sound_set_gain
+      type: (sound_set_gain <string> <real>)
+      info:
+        en: Absolutely do not use this
+        es: 
+      ex: 
+
+    - slug: sound_set_master_gain
+      type: (sound_set_master_gain <real>)
+      info:
+        en: Set the game's master gain
+        es: 
+      ex: '`(sound_set_master_gain 0.5)`'
+
+    - slug: sound_set_music_gain
+      type: (sound_set_music_gain <real>)
+      info:
+        en: Set the game's music gain
+        es: 
+      ex: '`(sound_set_music_gain 3.0)`'
+
+    - slug: sound_set_rolloff
+      type: (sound_set_rolloff <real>)
+      info:
+        en: Set the DSound rolloff value
+        es: 
+      ex: 
+
+    - slug: sound_set_supplementary_buffers
+      type: (sound_set_supplementary_buffers <short> <boolean>)
+      info:
+        en: Set the amount of supplementary buffers
+        es: 
+      ex: 
+
+    - slug: structure_bsp_index
+      type: (structure_bsp_index)
+      info:
+        en: Returns the current structure bsp index
+        es: 
+      ex: '`(structure_bsp_index)`'
+
+    - slug: structure_lens_flares_place
+      type: (structure_lens_flares_place)
+      info:
+        en: Places lens flares in the structure bsp
+        es: 
+      ex: '`(structure_lens_flares_place)`'
+
+    - slug: sv_ban
+      type: (sv_ban <player index or name> [duration(m,h,d)])
+      info:
+        en: >
+          **(Server Only)** The given player is kicked and added to `banned.txt`.
+          Use `sv_players` to find the player's index. You can also specify an
+          optional duration for timed ban. Use 0 to follow `sv_ban_penalty` rules.
+        es: 
+      ex: 
+
+    - slug: sv_banlist
+      type: (sv_banlist)
+      info:
+        en: Print a list of banned players
+        es: 
+      ex: '`(sv_banlist)`'
+
+    - slug: sv_end_game
+      type: (sv_end_game)
+      info:
+        en: End the current game
+        es: 
+      ex: '`(sv_end_game)`'
+
+    - slug: sv_kick
+      type: (sv_kick <player index or name>)
+      info:
+        en: '**(Server Only)** Kicks the specified player from the server'
+        es: 
+      ex: '`(sv_kick "Micro$oft")` Kicks player `Micro$oft`'
+
+    - slug: sv_map
+      type: (sv_map <string> <string>)
+      info:
+        en: >
+          **(Server Only)** Usage: `sv_map <mapname> <variantname>` <br/>
+          Aborts the current game and playlist, and starts the specified game
+          mode on the specified map.
+        es: 
+      ex: '`(sv_map bloodgulch slayer)`'
+
+    - slug: sv_map_next
+      type: (sv_map_next)
+      info:
+        en: >
+          **(Server Only)** Abort the current game and begin the next game in
+          the playlist
+        es: 
+      ex: '`(sv_map_next)`'
+
+    - slug: sv_map_reset
+      type: (sv_map_reset)
+      info:
+        en: '**(Server Only)** Reset the current game'
+        es: 
+      ex: '`(sv_map_reset)`'
+
+    - slug: sv_mapcycle
+      type: (sv_mapcycle)
+      info:
+        en: Print the contents of the currently loaded mapcycle file
+        es: 
+      ex: '`(sv_mapcycle)`'
+
+    - slug: sv_mapcycle_add
+      type: (sv_mapcycle_add <string> <string>)
+      info:
+        en: >
+          Usage: `sv_mapcycle_add <mapname> <variantname>` <br/>
+          Add a new game to the end of the mapcycle file
+        es: 
+      ex: 
+
+    - slug: sv_mapcycle_begin
+      type: (sv_mapcycle_begin)
+      info:
+        en: Restart or begin playing the currently loaded mapcycle file
+        es: 
+      ex: '`(sv_mapcycle_begin)`'
+
+    - slug: sv_mapcycle_del
+      type: (sv_mapcycle_del <long>)
+      info:
+        en: >
+          Usage: `sv_mapcycle_del <index>` <br/>
+          Removes the game at `<index>`. Will not affect running games.
+        es: 
+      ex: 
+
+    - slug: sv_maxplayers
+      type: (sv_maxplayers [short])
+      info:
+        en: >
+          Sets the maximum number of players (between 1 and 16). If no value is
+          given, displays the current value.
+        es: 
+      ex: '`(sv_maxplayers 10)`'
+
+    - slug: sv_name
+      type: (sv_name [name])
+      info:
+        en: Sets the name of the server. If no name is given, displays the current name.
+        es: 
+      ex: >
+        `(sv_name)` Displays current sever name <br/>
+        `(sv_name "yousuck")` Sets "yousuck" as sever name
+
+    - slug: sv_parameters_dump
+      type: (sv_parameters_dump)
+      info:
+        en: Dumps out the local parameter configuration to `parameters.cfg` file
+        es: 
+      ex: '`(sv_parameters_dump)`'
+
+    - slug: sv_parameters_reload
+      type: (sv_parameters_reload)
+      info:
+        en: '**(Server Only)** Reloads the `parameters.cfg` file'
+        es: 
+      ex: '`(sv_parameters_reload)`'
+
+    - slug: sv_password
+      type: (sv_password [password])
+      info:
+        en: >
+          Sets the server password. If no password is given, displays the
+          current password.
+        es: 
+      ex: >
+        `(sv_password)` Displays sever password <br/>
+        `(sv_password "1234")` Sets "1234" as sever password
+
+    - slug: sv_players
+      type: (sv_players)
+      info:
+        en: >
+          **(Server Only)** Prints (*not* returns) a list of players in the
+          current game
+        es: 
+      ex: '`(sv_players)`'
+
+    - slug: sv_status
+      type: (sv_status)
+      info:
+        en: Shows status of the server
+        es: 
+      ex: '`(sv_status)`'
+
+    - slug: sv_unban
+      type: (sv_unban <long>)
+      info:
+        en: >
+          **(Server Only)** Usage: `sv_unban <index>` <br/>
+          Removes player at index in the banlist. Use `sv_banlist` to find the index.
+        es: 
+      ex: '`(sv_unban 1)`'
+
+    - slug: switch_bsp
+      type: (switch_bsp <short>)
+      info:
+        en: Switches to a different structure bsp
+        es: 
+      ex: '`(switch_bsp 0)`'
+
+    - slug: texture_cache_flush
+      type: (texture_cache_flush)
+      info:
+        en: Don't make me kick your ass
+        es: 
+      ex: '`(texture_cache_flush)`'
+
+    - slug: time_code_reset
+      type: (time_code_reset)
+      info:
+        en: Resets the time code timer
+        es: 
+      ex: '`(time_code_reset)`'
+
+    - slug: time_code_show
+      type: (time_code_show <boolean>)
+      info:
+        en: Shows the time code timer
+        es: 
+      ex: '`(time_code_show true)` <br/> `(time_code_show false)`'
+
+    - slug: time_code_start
+      type: (time_code_start <boolean>)
+      info:
+        en: Starts/stops the time code timer
+        es: 
+      ex: '`(time_code_start true)` <br/> `(time_code_start false)`'
+
+    - slug: ui_widget_show_path
+      type: (ui_widget_show_path <boolean>)
+      info:
+        en: 
+        es: 
+      ex: >
+        `(ui_widget_show_path true)` <br/>
+        `(ui_widget_show_path false)`
+
+    - slug: unbind
+      type: (unbind <string> <string>)
+      info:
+        en: Unbinds an input device/button combination
+        es: 
+      ex: 
+
+    - slug: unit
+      type: (unit <object>)
+      info:
+        en: Converts an object to a unit
+        es: 
+      ex: '`(unit chief)`'
+
+    - slug: unit_aim_without_turning
+      type: (unit_aim_without_turning <unit> <boolean>)
+      info:
+        en: Allows a unit to aim in place without turning
+        es: 
+      ex: 
+
+    - slug: unit_can_blink
+      type: (unit_can_blink <unit> <boolean>)
+      info:
+        en: Allows a unit to blink or not (units never blink when they are dead)
+        es: 
+      ex: 
+
+    - slug: unit_close
+      type: (unit_close <unit>)
+      info:
+        en: Closes the hatches on a given unit
+        es: 
+      ex: 
+
+    - slug: unit_custom_animation_at_frame
+      type: (unit_custom_animation_at_frame <unit> <animation_graph> <string> <boolean> <short>)
+      info:
+        en: >
+          Starts a custom animation playing on a unit at a specific frame index
+          (interpolates into animation if next to last parameter is `true`).
+        es: 
+      ex: 
+
+    - slug: unit_doesnt_drop_items
+      type: (unit_doesnt_drop_items <object_list>)
+      info:
+        en: >
+          Prevents any of the given units from dropping weapons or grenades when
+          they die
+        es: 
+      ex: '`(unit_doesnt_drop_items (players))`'
+
+    - slug: unit_enter_vehicle
+      type: (unit_enter_vehicle <unit> <vehicle> <string>)
+      info:
+        en: Puts the specified unit in the specified vehicle (in the named seat)
+        es: 
+      ex: '`(unit_enter_vehicle player0 warthog_mp_2 "gunner")`'
+
+    - slug: unit_exit_vehicle
+      type: (unit_exit_vehicle <unit>)
+      info:
+        en: Makes a unit exit its vehicle
+        es: 
+      ex: 
+
+    - slug: unit_get_current_flashlight_state
+      type: (unit_get_current_flashlight_state <unit>)
+      info:
+        en: Gets the unit's current flashlight state
+        es: 
+      ex: '`(unit_get_current_flashlight_state player0)`'
+
+    - slug: unit_get_custom_animation_time
+      type: (unit_get_custom_animation_time <unit>)
+      info:
+        en: >
+          Returns the number of ticks remaining in a unit's custom animation (or
+          zero, if the animation is over)
+        es: 
+      ex: 
+
+    - slug: unit_get_health
+      type: (unit_get_health <unit>)
+      info:
+        en: >
+          Returns the health of the given unit as a `real` between 0 and 1].
+          Returns -1 if the unit does not exist.
+        es: 
+      ex: '`(unit_get_health player0)`'
+
+    - slug: unit_get_shield
+      type: (unit_get_shield <unit>)
+      info:
+        en: >
+          Returns the shield of the given unit as a `real` between 0 and 1.
+          Returns -1 if the unit does not exist.
+        es: 
+      ex: '`(unit_get_shield player0)`'
+
+    - slug: unit_get_total_grenade_count
+      type: (unit_get_total_grenade_count <unit>)
+      info:
+        en: >
+          Returns the total number of grenades for the given unit, or 0 if the
+          unit does not exist.
+        es: 
+      ex: '`(unit_get_total_grenade_count player0)`'
+
+    - slug: unit_has_weapon
+      type: (unit_has_weapon <unit> <object_definition>)
+      info:
+        en: Returns `true` if the <unit> has <object> as a weapon, `false` otherwise
+        es: 
+      ex: '`(unit_has_weapon player0 plasma_cannon)`'
+
+    - slug: unit_has_weapon_readied
+      type: (unit_has_weapon_readied <unit> <object_definition>)
+      info:
+        en: Returns `true` if the <unit> has <object> as the primary weapon, `false` otherwise
+        es: 
+      ex: '`(unit_has_weapon_readied player0 plasma_cannon)`'
+
+    - slug: unit_impervious
+      type: (unit_impervious <object_list> <boolean>)
+      info:
+        en: >
+          Prevents any of the given units from being knocked around or playing
+          ping animations
+        es: 
+      ex: >
+        `(unit_impervious (players) true)` <br/>
+        `(unit_impervious (players) false)`
+
+    - slug: unit_is_playing_custom_animation
+      type: (unit_is_playing_custom_animation <unit>)
+      info:
+        en: Returns `true` if the given unit is still playing a custom animation
+        es: 
+      ex: 
+
+    - slug: unit_kill
+      type: (unit_kill <unit>)
+      info:
+        en: Kills a given unit, no saving throw
+        es: 
+      ex: 
+
+    - slug: unit_kill_silent
+      type: (unit_kill_silent <unit>)
+      info:
+        en: >
+          Kills a given unit silently (doesn't make them play their normal death
+          animation or sound)
+        es: 
+      ex: 
+
+    - slug: unit_open
+      type: (unit_open <unit>)
+      info:
+        en: Opens the hatches on the given unit
+        es: 
+      ex: 
+
+    - slug: unit_set_current_vitality
+      type: (unit_set_current_vitality <unit> <real> <real>)
+      info:
+        en: Sets a unit's current body and shield vitality
+        es: 
+      ex: 
+
+    - slug: unit_set_desired_flashlight_state
+      type: (unit_set_desired_flashlight_state <unit> <boolean>)
+      info:
+        en: Sets the unit's desired flashlight state
+        es: 
+      ex: >
+        `(unit_set_desired_flashlight_state player0 true)` <br/>
+        `(unit_set_desired_flashlight_state player0 false)`
+
+    - slug: unit_set_emotion
+      type: (unit_set_emotion <unit> <short>)
+      info:
+        en: Sets a unit's facial expression (-1 is none, other values depend on unit)
+        es: 
+      ex: 
+
+    - slug: unit_set_emotion_animation
+      type: (unit_set_emotion_animation <unit> <string>)
+      info:
+        en: Sets the emotion animation to be used for the given unit
+        es: 
+      ex: 
+
+    - slug: unit_set_enterable_by_player
+      type: (unit_set_enterable_by_player <unit> <boolean>)
+      info:
+        en: Can be used to prevent the player from entering a vehicle
+        es: 
+      ex: >
+        `(unit_set_enterable_by_player warthog_mp_3 true)` <br/>
+        `(unit_set_enterable_by_player warthog_mp_3 false)`
+
+    - slug: unit_set_maximum_vitality
+      type: (unit_set_maximum_vitality <unit> <real> <real>)
+      info:
+        en: Sets a unit's maximum body and shield vitality
+        es: 
+      ex: 
+
+    - slug: unit_set_seat
+      type: (unit_set_seat <unit> <string>)
+      info:
+        en: This unit will assume the named seat
+        es: 
+      ex: '`(unit_set_seat player0 "driver")`'
+
+    - slug: unit_solo_player_integrated_night_vision_is_active
+      type: (unit_solo_player_integrated_night_vision_is_active)
+      info:
+        en: >
+          Returns whether the night-vision mode could be activated via the
+          flashlight button
+        es: 
+      ex: '`(unit_solo_player_integrated_night_vision_is_active)`'
+
+    - slug: unit_stop_custom_animation
+      type: (unit_stop_custom_animation <unit>)
+      info:
+        en: Stops the custom animation running on the given unit
+        es: 
+      ex: 
+
+    - slug: unit_suspended
+      type: (unit_suspended <unit> <boolean>)
+      info:
+        en: Stops gravity from working on the given unit
+        es: 
+      ex: >
+        `(unit_suspended player0 true)` <br/>
+        `(unit_suspended player0 false)`
+
+    - slug: units_set_current_vitality
+      type: (units_set_current_vitality <object_list> <real> <real>)
+      info:
+        en: Sets a group of units' current body and shield vitality
+        es: 
+      ex: '`(units_set_current_vitality (players) 75 75)`'
+
+    - slug: units_set_desired_flashlight_state
+      type: (units_set_desired_flashlight_state <object_list> <boolean>)
+      info:
+        en: Sets the units' desired flashlight state
+        es: 
+      ex: >
+        `(units_set_desired_flashlight_state (players) true)` <br/>
+        `(units_set_desired_flashlight_state (players) false)`
+
+    - slug: units_set_maximum_vitality
+      type: (units_set_maximum_vitality <object_list> <real> <real>)
+      info:
+        en: Sets a group of units' maximum body and shield vitality
+        es: 
+      ex: '`(units_set_maximum_vitality (players) 75 75)`'
+
+    - slug: vehicle_driver
+      type: (vehicle_driver <unit>)
+      info:
+        en: Returns the driver of a vehicle
+        es: 
+      ex: '`(vehicle_driver the_ghost)`'
+
+    - slug: vehicle_gunner
+      type: (vehicle_gunner <unit>)
+      info:
+        en: Returns the gunner of a vehicle
+        es: 
+      ex: '`(vehicle_gunner the_warthog)`'
+
+    - slug: vehicle_hover
+      type: (vehicle_hover <vehicle> <boolean>)
+      info:
+        en: >
+          Stops the vehicle from running real physics and runs fake hovering
+          physics instead
+        es: 
+      ex: >
+        `(vehicle_hover "vehicles\warthog\warthog" true)` <br/>
+        `(vehicle_hover "vehicles\warthog\warthog" false)`
+
+    - slug: vehicle_load_magic
+      type: (vehicle_load_magic <unit> <string> <object_list>)
+      info:
+        en: >
+          Makes a list of units (named or by encounter) magically get into a
+          vehicle, in the substring-specified seats (e.g. "CD-passenger". Empty
+          string matches all seats).
+        es: 
+      ex: '`(vehicle_load_magic pelican_1 "" (players))`'
+
+    - slug: vehicle_riders
+      type: (vehicle_riders <unit>)
+      info:
+        en: Returns a list of all riders in a vehicle
+        es: 
+      ex: '`(vehicle_riders the_tanks)`'
+
+    - slug: vehicle_test_seat
+      type: (vehicle_test_seat <vehicle> <string> <unit>)
+      info:
+        en: Tests whether the named seat has a specified unit in it
+        es: 
+      ex: '`(vehicle_test_seat banshee_mp_1 "driver" player0)`'
+
+    - slug: vehicle_test_seat_list
+      type: (vehicle_test_seat_list <vehicle> <string> <object_list>)
+      info:
+        en: Tests whether the named seat has an object in the object list
+        es: 
+      ex: '`(vehicle_test_seat_list ghost_mp_2 "driver" (players))`'
+
+    - slug: vehicle_unload
+      type: (vehicle_unload <unit> <string>)
+      info:
+        en: >
+          Makes units get out of a vehicle from the substring-specified seats
+          (e.g. "CD-passenger". Empty string matches all seats).
+        es: 
+      ex: '`(vehicle_unload hog w-driver)`'
+
+    - slug: version
+      type: (version)
+      info:
+        en: Prints the build version
+        es: 
+      ex: '`(version)`'
+
+    - slug: volume_teleport_players_not_inside
+      type: (volume_teleport_players_not_inside <trigger_volume> <cutscene_flag>)
+      info:
+        en: Moves all players outside a specified trigger volume to a specified flag
+        es: 
+      ex: '`(volume_teleport_players_not_inside hidden_trigger omgtelprot)`'
+
+    - slug: volume_test_object
+      type: (volume_test_object <trigger_volume> <object>)
+      info:
+        en: Returns `true` if the specified object is within the specified volume
+        es: 
+      ex: '`(volume_test_object trig_volume1 player0)`'
+
+    - slug: volume_test_objects
+      type: (volume_test_objects <trigger_volume> <object_list>)
+      info:
+        en: Returns `true` if any of the specified objects are within the specified volume
+        es: 
+      ex: '`(volume_test_objects trig_volume2 (players))`'
+
+    - slug: volume_test_objects_all
+      type: (volume_test_objects_all <trigger_volume> <object_list>)
+      info:
+        en: Returns `true` if any of the specified objects are within the specified volume
+        es: 
+      ex: '`(volume_test_objects_all trig_volume2 (players))`'
+
