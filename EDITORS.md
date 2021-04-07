@@ -159,6 +159,7 @@ Beyond the [basic markdown features][mdbasic], c20 adds a few special extensions
     columns:
       - key: col1  # Key used to associate a row's cell with a column
         href: true  # Use this entire column's content as the link text when rowLinks is true
+                    # If no columns are marked href, a dedicated href column will be automatically inserted for you.
         name: # Plain text column name that gets displayed in the table header
           en: Column 1 English Name
           es: Column 1 Spanish Name
