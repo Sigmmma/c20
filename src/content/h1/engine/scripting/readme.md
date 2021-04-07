@@ -72,30 +72,26 @@ rowLinks: true
 
 
 ## Functions
-```.alert
-Note: these links don't work just yet.
-```
-
-[A][scripting#A] ·
-[B][scripting#B] ·
-[C][scripting#C] ·
-[D][scripting#D] ·
-[E][scripting#E] ·
-[F][scripting#F] ·
-[G][scripting#G] ·
-[H][scripting#H] ·
-[I][scripting#I] ·
-[L][scripting#L] ·
-[M][scripting#M] ·
-[N][scripting#N] ·
-[O][scripting#O] ·
-[P][scripting#P] ·
-[Q][scripting#Q] ·
-[R][scripting#R] ·
-[S][scripting#S] ·
-[T][scripting#T] ·
-[U][scripting#U] ·
-[V][scripting#V]
+[A][scripting#functions-activate-nav-point-flag] ·
+[B][scripting#functions-bind] ·
+[C][scripting#functions-camera-control] ·
+[D][scripting#functions-damage-new] ·
+[E][scripting#functions-effect-new] ·
+[F][scripting#functions-fade-in] ·
+[G][scripting#functions-game-all-quiet] ·
+[H][scripting#functions-hammer-begin] ·
+[I][scripting#functions-input-activate-joy] ·
+[L][scripting#functions-list-count] ·
+[M][scripting#functions-magic-melee-attack] ·
+[N][scripting#functions-net-graph-clear] ·
+[O][scripting#functions-object-beautify] ·
+[P][scripting#functions-pause-hud-timer] ·
+[Q][scripting#functions-quit] ·
+[R][scripting#functions-rasterizer-decals-flush] ·
+[S][scripting#functions-scenery-animation-start] ·
+[T][scripting#functions-texture-cache-flush] ·
+[U][scripting#functions-ui-widget-show-path] ·
+[V][scripting#functions-vehicle-driver]
 
 ```.table
 tableDefs: hsc.yml
