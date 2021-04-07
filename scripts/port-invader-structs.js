@@ -1070,9 +1070,3 @@ Object.entries(outputFiles).forEach(([groupName, data]) => {
     fs.writeFileSync(outPath, content, "utf8");
   }
 });
-
-
-/*
-todo:
-missing comments in bsp tag
-*/

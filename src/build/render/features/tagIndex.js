@@ -1,3 +1,4 @@
+const R = require("ramda");
 const {heading, localizer, slugify, html, renderMarkdown, tagAnchor} = require("../components");
 
 const localizations = localizer({
@@ -50,18 +51,21 @@ const tagsTable = (ctx, tags) => {
         </tr>
       </thead>
       <tbody>
-        ${tagsSorted.map(tag => html`
-          <tr>
-            <td>${tagAnchor(ctx, tag.name)}</td>
-            <td><code>${tag.id}</code></td>
-            <td>${tag.parent && tagAnchor(ctx, tag.parent.name)}</td>
-            <td>
-              ${tag.comments && tag.comments[ctx.lang] != "..." &&
-                renderMarkdown(ctx, tag.comments[ctx.lang])
-              }
-            </td>
-          </tr>
-        `)}
+        ${tagsSorted.map(tag => {
+          const tagComments = R.path(["struct", "comments", ctx.lang], tag);
+          return html`
+            <tr>
+              <td>${tagAnchor(ctx, tag.name)}</td>
+              <td><code>${tag.id}</code></td>
+              <td>${tag.parent && tagAnchor(ctx, tag.parent.name)}</td>
+              <td>
+                ${tagComments &&
+                  renderMarkdown(ctx, tagComments)
+                }
+              </td>
+            </tr>
+          `;
+        })}
       </tbody>
     </table>
   `;
@@ -76,9 +80,8 @@ module.exports = async function(ctx) {
     return {};
   }
 
-  //todo
-  const usedTags = [];//data[gameVersion].tags.filter(t => !t.unused);
-  const unusedTags = [];//data[gameVersion].tags.filter(t => t.unused);
+  const usedTags = Object.values(data.tags[gameVersion]).filter(t => !t.unused);
+  const unusedTags = Object.values(data.tags[gameVersion]).filter(t => t.unused);
   const tagsListHeading = localize("tagsListHeading");
   const headings = [
     {title: tagsListHeading, id: slugify(tagsListHeading), level: 1}

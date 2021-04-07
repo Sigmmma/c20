@@ -1,16 +1,5 @@
 This page documents the function and format of some of Halo's installation and profile files, excluding [maps][map].
 
-```.struct
-show_offsets: false
-skip_padding: true
-simple_types: true
-entry_type: ScenarioStructureBSP
-id: tag-struct
-imports:
-  h1/tags/scenario_structure_bsp:
-    - ScenarioStructureBSP
-```
-
 # haloce.exe
 This is the main game executable containing the bulk of the game's code.
 

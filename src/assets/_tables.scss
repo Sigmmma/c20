@@ -62,17 +62,17 @@ table.type-def {
   &.skip-padding tr.field-type-pad {
     display: none;
   }
+}
 
-  .field-metas {
-    list-style: none;
-    padding: 0;
-    margin-top: 0;
-  }
+.field-metas {
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+}
 
-  .field-meta {
-    display: inline-block;
-    border-radius: $border-radius;
-    border: 1px solid $fg;
-    padding: 0 0.2em;
-  }
+.field-meta {
+  display: inline-block;
+  border-radius: $border-radius;
+  border: 1px solid $fg;
+  padding: 0 0.2em;
 }

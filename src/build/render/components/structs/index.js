@@ -118,13 +118,20 @@ function processGenerics(genericParams, type_args) {
 }
 
 /* todo:
- * - tag dependency "tag_classes" linking
  * - "index_of" linking
  */
 function structDisplay(ctx, opts) {
   const {renderMarkdown} = require("../markdown"); //todo: untangle circular dep
   const localize = localizations(ctx.lang);
-  const {type_defs: typeDefsArg, entry_type, show_offsets, skip_padding, simple_types, id} = opts;
+  const {
+    type_defs: typeDefsArg,
+    entry_type,
+    show_offsets,
+    skip_padding,
+    show_entry_comments,
+    simple_types,
+    id
+  } = opts;
 
   let typeDefs = {
     ...INTRINSIC_TYPE_DEFS,
@@ -376,7 +383,9 @@ function structDisplay(ctx, opts) {
 
   function renderTypeAsTable(instantiatedType, pathId) {
     return html`
-      ${renderComments(instantiatedType.typeDef)}
+      ${(show_entry_comments || entry_type != instantiatedType.typeName) &&
+        renderComments(instantiatedType.typeDef)
+      }
       ${(() => {
         switch (instantiatedType.typeDef.class) {
           case "struct":

@@ -6,7 +6,7 @@ type_defs:
     meta:
       tag_id: 'boom'
     fields:
-      type: pad
-      size: 1
-      comments:
-        en: This type has yet to be documented.
+      - type: pad
+        size: 1
+        comments:
+          en: This type has yet to be documented.
