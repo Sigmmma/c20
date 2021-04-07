@@ -143,7 +143,48 @@ The markdown files contain the main body content of the article and are where mo
 
 Beyond the [basic markdown features][mdbasic], c20 adds a few special extensions:
 
-* [Tables][tables], although for larger tables you will want to switch to raw inline HTML.
+* [Tables][tables], although for larger tables you will want to switch to raw inline HTML or our YAML table extension.
+* YAML tables allow you to display YAML data sets as a table. They have a number of options for applying styles and formatting to the table.
+  YAML tables can be added to a page like so:
+  ```.table
+  tableDefs: data-file.yml
+  tableName: MyTable
+  rowLinks: true
+  ```
+  The YAML content follows this format:
+  ```yaml
+  data-file.yml
+  ---
+  MyTable:
+    columns:
+      - key: col1  # Key used to associate a row's cell with a column
+        href: true  # Use this entire column's content as the link text when rowLinks is true
+        name: # Plain text column name that gets displayed in the table header
+          en: Column 1 English Name
+          es: Column 1 Spanish Name
+        format: text  # Applies formatting to the columns.
+                      # Acceptable formats are: text, code, codeblock-x (where x is a syntax, like 'hsc')
+      - key: col2
+        name:
+          en: My cool column name in English
+          es: My cool column name in Spanish
+        format: text
+        style: 'width:20%;color:red;'  # Inline style-tag CSS applied to the whole column
+    slugKey: col1  # Use a column's content as a link slug when rowLinks is true
+    rows:
+      - col1: stuff
+        col2:
+          en: First row column 1's content in English
+          es: First row column 1's content in Spanish
+      - col1: '`thing` that needs quotes because it starts with a YAML special character'
+        col2:
+          en: >
+            Super duper long string explaining stuff
+            that we need to break over multiple lines
+            and can contain `special chars`.
+          es: That but in Spanish
+        slug: thing  # Overrides table's slugKey for this row
+  ```
 * All headings automatically get anchor links/IDs for linking directory to that heading. When someone loads a page with that heading ID in the URL (e.g. `#my-heading`) the page will automatically scroll to that content. Do not make headings which are also links (like `# [Heading text](www.example.com)`), as it's unsupported.
 * You can use the `console`, `inittxt` and `hsc` language tags for [code fences][fences] to get syntax highlighting for various cases of Halo Script. We also support `vrml` (WRL files).
 * Alert boxes can be added with the following syntax:
