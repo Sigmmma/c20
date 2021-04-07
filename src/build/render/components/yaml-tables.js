@@ -70,46 +70,44 @@ function renderTableYaml(ctx, optsYaml) {
     }
   }
 
-  // Insert a column that will contain a link for each row, if needed
-  if (opts.rowLinks) {
-    data.columns.unshift({
-      key: "__link",
-      name: {
-        en: "#",
-        es: "#",
-      },
-      format: "text",
-    });
-  }
-
   // Create a link slug, prioritizing row slug override, then table column key
   // setting, then falling back to index if no others are provided.
   function id(row, index) {
     return slugify(`${opts.tableName}-${row.slug || row[data.slugKey] || index}`);
   }
 
+  // A column's content can optionally be used as a row link.
+  const hrefCol = data.columns.find(col => col.href);
+
+  // Construct the table.
+  // If rowLinks is enabled but no column is marked as href, an additional
+  // column will be inserted for a link to each row.
   return html`
     <table>
       <thead>
         <tr>
+        ${ opts.rowLinks && !hrefCol && "<th>#</th>" }
         ${ data.columns.map(col =>
-          html`<th style="${col.style}">${
-            col.key === "__link" ?
-              col.name[ctx.lang] :
-              markdownToHtml('text', col.name)
-          }</th>`
+          html`<th style="${col.style}">${markdownToHtml('text', col.name)}</th>`
         ) }
         </tr>
       </thead>
       <tbody>
         ${ data.rows.map((row, index) =>
-          html`<tr id="${opts.rowLinks && id(row, index)}">${ data.columns.map(col =>
-            html`<td style="${col.style}">${
-              col.key === "__link" ?
-                jump(id(row, index)) :
-                markdownToHtml(col.format, row[col.key])
-            }</td>`
-          ) }</tr>`
+          html`<tr id="${opts.rowLinks && id(row, index)}">
+            ${ opts.rowLinks && !hrefCol && `<td>${jump(id(row, index))}</td>` }
+            ${ data.columns.map(col =>
+              html`<td style="${col.style}">${
+                opts.rowLinks && col === hrefCol ?
+                  jump(
+                    id(row, index),
+                    markdownToHtml(col.format, row[col.key]),
+                    false
+                  ) :
+                  markdownToHtml(col.format, row[col.key])
+              }</td>`
+            ) }
+          </tr>`
         ) }
       </tbody>
     </table>

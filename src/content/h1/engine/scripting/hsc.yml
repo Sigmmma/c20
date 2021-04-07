@@ -1,6 +1,7 @@
 ScriptTypes:
   columns:
     - key: type
+      href: true
       name:
         en: Type
         es: Tipo
@@ -64,6 +65,7 @@ ScriptTypes:
 ValueTypes:
   columns:
     - key: type
+      href: true
       name:
         en: Type
         es: Tipo
@@ -346,6 +348,7 @@ ValueTypes:
 OperatorsAndKeywords:
   columns:
     - key: type
+      href: true
       name:
         en: Expression
         es: 
@@ -565,6 +568,7 @@ OperatorsAndKeywords:
 Functions:
   columns:
     - key: type
+      href: true
       name:
         en: Expression
         es: 

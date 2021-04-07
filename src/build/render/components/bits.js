@@ -27,8 +27,8 @@ const anchor = (href, body) => html`
   <a href="${href}">${body}</a>
 `;
 
-const jump = (text, body) => html`
-  <a href="#${slugify(text)}" class="header-anchor">${body}</a>
+const jump = (text, body, style=true) => html`
+  <a href="#${slugify(text)}" ${style && 'class="header-anchor"'}>${body}</a>
 `;
 
 const defAnchor = (href) => html`<sup>${anchor(href, "?")}</sup>`;
