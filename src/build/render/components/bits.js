@@ -27,6 +27,10 @@ const anchor = (href, body) => html`
   <a href="${href}">${body}</a>
 `;
 
+const jump = (text, body) => html`
+  <a href="#${slugify(text)}" class="header-anchor">${body}</a>
+`;
+
 const defAnchor = (href) => html`<sup>${anchor(href, "?")}</sup>`;
 
 const pageAnchor = R.curry((lang, page) => anchor(page.tryLocalizedPath(lang), escapeHtml(page.tryLocalizedTitle(lang))));
@@ -109,6 +113,7 @@ module.exports = {
   defAnchor,
   heading,
   figure,
+  jump,
   ul,
   ol,
   detailsList,

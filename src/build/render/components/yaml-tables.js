@@ -1,7 +1,7 @@
 const yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
-const {anchor, html, slugify} = require("./bits");
+const {html, jump, slugify} = require("./bits");
 
 function renderTableYaml(ctx, optsYaml) {
   const {renderMarkdown} = require("./markdown"); //todo: untangle circular dep
@@ -75,8 +75,8 @@ function renderTableYaml(ctx, optsYaml) {
     data.columns.unshift({
       key: "__link",
       name: {
-        en: "",
-        es: "",
+        en: "#",
+        es: "#",
       },
       format: "text",
     });
@@ -93,7 +93,11 @@ function renderTableYaml(ctx, optsYaml) {
       <thead>
         <tr>
         ${ data.columns.map(col =>
-          html`<th style="${col.style}">${ markdownToHtml('text', col.name) }</th>`
+          html`<th style="${col.style}">${
+            col.key === "__link" ?
+              col.name[ctx.lang] :
+              markdownToHtml('text', col.name)
+          }</th>`
         ) }
         </tr>
       </thead>
@@ -102,7 +106,7 @@ function renderTableYaml(ctx, optsYaml) {
           html`<tr id="${opts.rowLinks && id(row, index)}">${ data.columns.map(col =>
             html`<td style="${col.style}">${
               col.key === "__link" ?
-                anchor("#" + id(row, index), "#") :
+                jump(id(row, index)) :
                 markdownToHtml(col.format, row[col.key])
             }</td>`
           ) }</tr>`
