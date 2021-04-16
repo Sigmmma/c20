@@ -5,7 +5,7 @@ const {walkTypeDefs} = require("../structs");
 function findDirectTagRefs(structName, structModule, structModules, tagName) {
   const walkOpts = {noRootExtend: true};
   const results = {};
-  walkTypeDefs(structName, structModule, structModules, walkOpts, tagName, (typeDef) => {
+  walkTypeDefs(structName, structModule, structModules, walkOpts, (typeDef) => {
     if (typeDef.class == "struct") {
       typeDef.fields
         .filter(f => f.meta && f.meta.tag_classes && !f.meta.unused)

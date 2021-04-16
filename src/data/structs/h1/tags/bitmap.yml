@@ -32,8 +32,13 @@ type_defs:
       - name: 16-bit
       - name: 32-bit
       - name: monochrome
+        meta:
+          xbox_only: true
+          mcc_only: true
         comments:
-          en: This format is only supported on Xbox.
+          en: >
+            This format is only supported on Xbox and MCC. Using this format
+            can significantly reduce tag size for monochromatic bitmaps.
   BitmapUsage:
     class: enum
     size: 2

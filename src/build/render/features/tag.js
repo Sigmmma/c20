@@ -1,5 +1,6 @@
 const R = require("ramda");
 const {renderMarkdownInline, heading, structDisplay, detailsList, defAnchor, html, localizer, tagAnchor, alert} = require("../components");
+const {walkTypeDefs} = require("../../../data/structs");
 
 const localizations = localizer({
   tagStructureHeading: {
@@ -49,6 +50,7 @@ module.exports = async function(ctx) {
     return {};
   }
 
+
   const localize = localizations(lang);
 
   const tagNameArg = page.tagName.split("/");
@@ -57,6 +59,7 @@ module.exports = async function(ctx) {
   const tag = data.tags[game][tagName];
   const engineId = `<code>${tag.id}</code>${defAnchor(ctx.resolveUrl("h1/tags", "engine-ids"))}`;
   const metaSections = [];
+  const searchTerms = [];
 
   if (tag.parent) {
     metaSections.push({
@@ -125,12 +128,32 @@ module.exports = async function(ctx) {
     })}
   `;
 
+  const walkOpts = {noRootExtend: true};
+  const addSearchTerms = (part) => {
+    if (part.name) {
+      searchTerms.push(part.name.split("_"));
+    }
+    if (part.comments && part.comments[lang]) {
+      searchTerms.push(part.comments[lang]);
+    }
+  };
+  walkTypeDefs(tag.structName, tag.structModule, ctx.data.structs, walkOpts, (typeDef) => {
+    addSearchTerms(typeDef);
+    if (typeDef.class == "struct") {
+      typeDef.fields.forEach(f => addSearchTerms(f));
+    } else if (typeDef.class == "bitfield") {
+      typeDef.bits.forEach(b => addSearchTerms(b));
+    } else if (typeDef.class == "enum") {
+      typeDef.options.forEach(o => addSearchTerms(o));
+    }
+  });
+
   return {
     keywords: [tag.id],
     html: bodyHtml,
     // headings,
     metaSections,
-    // searchText,
+    searchText: searchTerms.join(" "),
     metaTitle: `\u{1F3F7} Tag: ${tagName} (${engineId})`,
     metaClass: "content-tag",
     // thanks: localizeThanks(ctx, ctx.data[game].tagThanks)

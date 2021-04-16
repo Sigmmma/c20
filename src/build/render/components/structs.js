@@ -28,6 +28,9 @@ const localizations = localizer({
     en: "Option",
     es: "Opción"
   },
+  seeIndex: {
+    en: "See indexed location"
+  },
   comments: {
     en: "Comments",
     es: "Comentarios"
@@ -71,6 +74,9 @@ const localizations = localizer({
   meta_hek_maximum: {
     en: "HEK max"
   },
+  meta_hek_max_count: {
+    en: "HEK max count"
+  },
   meta_non_standard: {
     en: "Non-standard"
   },
@@ -104,9 +110,6 @@ function joinPathId(pathId, next) {
   return [...pathId, next];
 }
 
-/* todo:
- * - "index_of" linking
- */
 function structDisplay(ctx, opts) {
   const {renderMarkdown} = require("./markdown"); //todo: untangle circular dep
   const localize = localizations(ctx.lang);
@@ -171,6 +174,9 @@ function structDisplay(ctx, opts) {
       return detailsList(typeCode, field.meta.tag_classes.map(tagName =>
         tagName == "*" ? "(any)" : tagAnchor(ctx, tagName)
       ), 4);
+    }
+    if (field.meta && field.meta.index_of) {
+      return `${typeCode}<a title="${localize("seeIndex")}" href="#${slugify(`${id}-${field.meta.index_of}`)}">→</a>`;
     }
     return typeCode;
   }

@@ -79,10 +79,10 @@ function instantiateTypeInner(typeDefs, typeParams, parentTypeArgs, opts, isRoot
   return {typeDef, totalSize, singleSize, variableSize: size, count, type_args, typeName};
 }
 
-function walkTypeDefs(structName, structModule, structModules, opts, tagName, cb) {
+function walkTypeDefs(structName, structModule, structModules, opts, cb) {
   const typeDefs = buildTypeDefs({}, {[structModule]: [structName]}, structModules);
 
-  function walkStructInner(typeParams, typeArgs, isFirst, walkPath) {
+  function walkStructInner(typeParams, typeArgs, isFirst) {
     if (typeArgs) {
       typeParams = processGenerics(typeParams, typeArgs);
     }
@@ -93,24 +93,24 @@ function walkTypeDefs(structName, structModule, structModules, opts, tagName, cb
     }
 
     if (typeDef.class == "alias") {
-      walkStructInner({...typeParams, ...typeDef}, typeParams.type_args, false, [...walkPath, "alias"]);
+      walkStructInner({...typeParams, ...typeDef}, typeParams.type_args, false);
       return;
     }
 
     cb(typeDef);
     if (typeDef.extends && (!isFirst || !opts.noRootExtend)) {
-      walkStructInner(typeDef.extends, typeArgs, false, [...walkPath, "super"]);
+      walkStructInner(typeDef.extends, typeArgs, false);
     }
     if (typeDef.class == "struct") {
-      typeDef.fields.forEach(f => walkStructInner(f, typeParams.type_args, false, [...walkPath, f.name]));
+      typeDef.fields.forEach(f => walkStructInner(f, typeParams.type_args, false));
     } else if (typeParams.type == "ptr32" || typeParams.type == "ptr64") {
       if (typeParams.type_args) {
-        walkStructInner({type: Object.values(typeParams.type_args)[0]}, typeParams.type_args, false, [...walkPath, "ptr"]);
+        walkStructInner({type: Object.values(typeParams.type_args)[0]}, typeParams.type_args, false);
       }
     }
   }
 
-  walkStructInner({type: structName}, null, true, []);
+  walkStructInner({type: structName}, null, true);
 }
 
 function instantiateType(typeDefs, typeParams, parentTypeArgs, opts) {
