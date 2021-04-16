@@ -265,6 +265,7 @@ type_defs:
         type: TagDependency
         meta:
           tag_classes:
+            - gbxmodel
             - model
       - name: animation_graph
         type: TagDependency

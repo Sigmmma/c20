@@ -1,5 +1,5 @@
 const R = require("ramda");
-const {renderMarkdownInline, heading, structDisplay, detailsList, defAnchor, html, localizer, tagAnchor} = require("../components");
+const {renderMarkdownInline, heading, structDisplay, detailsList, defAnchor, html, localizer, tagAnchor, alert} = require("../components");
 
 const localizations = localizer({
   tagStructureHeading: {
@@ -25,7 +25,15 @@ const localizations = localizer({
   inheritedReferences: {
     en: (parent) => `${parent} references`,
     es: (parent) => `Referencias de ${parent}`
-  }
+  },
+  inheritInfo: {
+    en: (thisTag, parentTag) => `This tag inherits fields from ${parentTag} which
+      are not shown here. See the parent's page for more information.
+      The following information is unique to the <strong>${thisTag}</strong> tag.`,
+    es: (thisTag, parentTag) => `Esta tag hereda campos de ${parentTag} que
+       no se muestran aquí. Consulte la página de los padres para obtener más información.
+       La siguiente información es exclusiva de la tag <strong>${thisTag}</strong>.`,
+  },
 });
 
 function localizeThanks(ctx, thanks) {
@@ -67,14 +75,50 @@ module.exports = async function(ctx) {
     });
   }
 
+  let refLevel = tag;
+  let referencesHtml = "";
+  while (refLevel) {
+    if (refLevel.references && refLevel.references.length > 0) {
+      referencesHtml += detailsList(
+        refLevel.name == tag.name ?
+          localize("directReferences") :
+          localize("inheritedReferences")(tagAnchor(ctx, refLevel.name)),
+        refLevel.references.map(otherTag => tagAnchor(ctx, otherTag.name)),
+        refLevel.name == tag.name ? undefined : 0
+      );
+    }
+    refLevel = refLevel.parent;
+  }
+  if (referencesHtml != "") {
+    metaSections.push({
+      cssClass: "content-tag-minor",
+      body: referencesHtml
+    });
+  }
+
+  if (tag.referencedBy) {
+    metaSections.push({
+      cssClass: "content-tag-minor",
+      body: detailsList(
+        localize("referencedBy"),
+        tag.referencedBy.map(otherTag => tagAnchor(ctx, otherTag.name)),
+        0
+      )
+    });
+  }
+
   const bodyHtml = html`
     ${heading("h1", localize("tagStructureHeading"), "clear")}
+    ${tag.parent && alert("info", html`
+      <p>${localize("inheritInfo")(tag.name, tagAnchor(ctx, tag.parent.name))}</p>
+    `)}
     ${structDisplay(ctx, {
       show_offsets: false,
       skip_padding: true,
       simple_types: true,
       entry_type: tag.structName,
       id: "tag-struct",
+      noRootExtend: true,
       imports: {
         [tag.structModule]: tag.structName
       }

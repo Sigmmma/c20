@@ -1,4 +1,4 @@
-const loadStructModules = require("./structs");
+const {loadStructModules} = require("./structs");
 const loadWorkflows = require("./workflows");
 const loadTags = require("./tags");
 

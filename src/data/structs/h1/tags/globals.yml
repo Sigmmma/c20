@@ -786,6 +786,7 @@ type_defs:
         type: TagDependency
         meta:
           tag_classes:
+            - gbxmodel
             - model
         comments:
           en: >-

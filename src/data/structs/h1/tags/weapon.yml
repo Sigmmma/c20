@@ -834,6 +834,7 @@ type_defs:
         type: TagDependency
         meta:
           tag_classes:
+            - gbxmodel
             - model
       - name: first_person_animations
         type: TagDependency

@@ -1,8 +1,7 @@
 const fs = require("fs");
-const R = require("ramda");
 const path = require("path");
-const {html, escapeHtml, localizer, slugify, detailsList, tagAnchor} = require("../bits");
-const INTRINSIC_TYPE_DEFS = require("./intrinsics");
+const {html, escapeHtml, localizer, slugify, detailsList, tagAnchor} = require("./bits");
+const {instantiateType, buildTypeDefs} = require("../../../data/structs");
 
 const localizations = localizer({
   field: {
@@ -105,23 +104,11 @@ function joinPathId(pathId, next) {
   return [...pathId, next];
 }
 
-function processGenerics(genericParams, type_args) {
-  if (!type_args) return genericParams;
-  return {
-    ...genericParams,
-    type: type_args[genericParams.type] || genericParams.type,
-    type_args: genericParams.type_args === undefined ? undefined :
-      Object.fromEntries(Object.entries(genericParams.type_args).map(([k, v]) =>
-      [k, type_args[v] || v]
-    ))
-  };
-}
-
 /* todo:
  * - "index_of" linking
  */
 function structDisplay(ctx, opts) {
-  const {renderMarkdown} = require("../markdown"); //todo: untangle circular dep
+  const {renderMarkdown} = require("./markdown"); //todo: untangle circular dep
   const localize = localizations(ctx.lang);
   const {
     type_defs: typeDefsArg,
@@ -129,69 +116,15 @@ function structDisplay(ctx, opts) {
     show_offsets,
     skip_padding,
     show_entry_comments,
+    noRootExtend,
+    instantiationOpts,
     simple_types,
     id
   } = opts;
 
-  let typeDefs = {
-    ...INTRINSIC_TYPE_DEFS,
-    ...typeDefsArg
-  };
-
-  let importsQueue = [opts.imports];
-  while (importsQueue.length > 0) {
-    const imports = importsQueue.pop();
-    if (!imports) continue;
-    for (let modulePath of Object.keys(imports)) {
-      const importedModule = R.path(modulePath.split("/"), ctx.data.structs);
-      if (!importedModule) {
-        throw new Error(`Failed to find data module ${modulePath}`);
-      }
-      importsQueue.push(importedModule.imports);
-      typeDefs = {...importedModule.type_defs, ...typeDefs};
-    }
-  }
+  const typeDefs = buildTypeDefs(typeDefsArg, opts.imports, ctx.data.structs);
 
   const seenTypes = {};
-
-  /* responsible for resolving aliases, calculating type, and replacing type args
-   */
-  function instantiateType(typeParams) {
-    let {type: typeName, type_args, size, count} = typeParams;
-    let typeDef = typeDefs[typeName];
-    if (!typeDef) {
-      throw new Error(`Failed to resolve type ${typeName} for page ${ctx.page.pageId}`);
-    }
-
-    if (typeDef.class == "alias") {
-      return instantiateType(processGenerics({...typeParams, ...typeDef}, type_args));
-    }
-
-    if (typeDef.class == "struct" && typeDef.extends) {
-      const {typeDef: parentTypeDef} = instantiateType(processGenerics(typeDef.extends, type_args));
-      typeDef = {
-        ...parentTypeDef,
-        ...typeDef,
-        fields: [...parentTypeDef.fields, ...typeDef.fields]
-      };
-    }
-
-    const singleSize = size ||
-      typeDef.size ||
-      (typeDef.class == "struct" && typeDef.fields.reduce((s, f) => instantiateType(processGenerics(f, type_args)).totalSize + s, 0)) ||
-      undefined;
-
-    if (singleSize === undefined) {
-      throw new Error(`Failed to determine size of type ${typeName} (entry ${entry_type})`);
-    }
-
-    const totalSize =  singleSize * (count || 1);
-    if (typeDef.assert_size && totalSize != typeDef.assert_size) {
-      throw new Error(`Type ${typeName} size did not match assertion: ${totalSize} != ${typeDef.assert_size}`);
-    }
-
-    return {typeDef, totalSize, singleSize, variableSize: size, count, type_args, typeName};
-  }
 
   function renderComments(part) {
     const meta = Object.entries(processMeta(part.meta) || {})
@@ -278,7 +211,7 @@ function structDisplay(ctx, opts) {
           ${instantiatedType.typeDef.fields.map(field => {
             const fieldPathId = joinPathId(pathId, field.name);
             const fieldOffset = offset;
-            const instantiatedFieldType = instantiateType(processGenerics(field, instantiatedType.type_args));
+            const instantiatedFieldType = instantiateType(typeDefs, field, instantiatedType.type_args, {});
             const {typeDef: fieldTypeDef, totalSize: fieldSize, typeName: fieldTypeName, type_args: fieldTypeArgs} = instantiatedFieldType;
             offset += fieldSize;
 
@@ -291,7 +224,7 @@ function structDisplay(ctx, opts) {
             let embeddedType = undefined;
             if (fieldTypeName != "TagDependency") {
               if (fieldTypeArgs && (fieldTypeName == "Block" || fieldTypeName == "ptr32" || fieldTypeName == "ptr64")) {
-                embeddedType = instantiateType(processGenerics({type: Object.values(fieldTypeArgs)[0]}, instantiatedType.type_args));
+                embeddedType = instantiateType(typeDefs, {type: Object.values(fieldTypeArgs)[0]}, instantiatedType.type_args, {});
                 if (!embeddedType.typeDef.class) {
                   embeddedType = undefined;
                 }
@@ -402,11 +335,10 @@ function structDisplay(ctx, opts) {
     `;
   }
 
-  return renderTypeAsTable(instantiateType({type: entry_type}), [id || ""]);
+  return renderTypeAsTable(instantiateType(typeDefs, {type: entry_type}, null, {noRootExtend: noRootExtend}), [id || ""]);
 }
 
 module.exports = {
-  INTRINSIC_TYPE_DEFS,
   structDisplay,
   //renderStructYamlPlaintext, todo
 };
