@@ -1,0 +1,83 @@
+entry_type: Antenna
+imports:
+  h1/tags/common:
+    - TagString
+    - TagDependency
+    - Fraction
+    - Block
+    - Euler2D
+    - Index
+    - ColorARGB
+    - Point3D
+type_defs:
+  AntennaVertex:
+    class: struct
+    assert_size: 128
+    fields:
+      - name: spring_strength_coefficient
+        type: Fraction
+      - type: pad
+        size: 24
+      - name: angles
+        type: Euler2D
+      - name: length
+        type: float
+        meta:
+          unit: world units
+      - name: sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: color
+        type: ColorARGB
+      - name: lod_color
+        type: ColorARGB
+      - type: pad
+        size: 40
+      - name: offset
+        type: Point3D
+        meta:
+          cache_only: true
+        endianness: little
+  Antenna:
+    class: struct
+    meta:
+      tag_id: ant!
+      pre_compile: true
+    comments:
+      en: >-
+        A springy antenna _widget_ which can be attached to [model
+        markers][gbxmodel#markers], as seen on the Warthog and Scorpion. Widgets
+        can be added to any [object][].
+    assert_size: 208
+    fields:
+      - name: attachment_marker_name
+        type: TagString
+      - name: bitmaps
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: physics
+        type: TagDependency
+        meta:
+          tag_classes:
+            - point_physics
+      - type: pad
+        size: 80
+      - name: spring_strength_coefficient
+        type: Fraction
+      - name: falloff_pixels
+        type: float
+      - name: cutoff_pixels
+        type: float
+      - name: length
+        type: float
+        meta:
+          cache_only: true
+      - type: pad
+        size: 36
+      - name: vertices
+        type: Block
+        type_args:
+          T: AntennaVertex

@@ -1,0 +1,104 @@
+entry_type: DetailObjectCollection
+imports:
+  h1/tags/common:
+    - TagDependency
+    - Block
+    - TagString
+    - Fraction
+    - ColorRGB
+    - ColorARGBInt
+type_defs:
+  DetailObjectCollectionType:
+    class: enum
+    size: 2
+    options:
+      - name: screen_facing
+      - name: viewer_facing
+  DetailObjectCollectionTypeFlags:
+    class: bitfield
+    size: 1
+    bits:
+      - name: unused_a
+      - name: unused_b
+      - name: interpolate_color_in_hsv
+      - name: more_colors
+  DetailObjectCollectionObjectType:
+    class: struct
+    assert_size: 96
+    fields:
+      - name: name
+        type: TagString
+      - name: sequence_index
+        type: uint8
+      - name: flags
+        type: DetailObjectCollectionTypeFlags
+      - name: first_sprite_index
+        type: uint8
+        meta:
+          cache_only: true
+      - name: sprite_count
+        type: uint8
+        meta:
+          cache_only: true
+      - name: color_override_factor
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 8
+      - name: near_fade_distance
+        type: float
+        meta:
+          unit: world units
+      - name: far_fade_distance
+        type: float
+        meta:
+          unit: world units
+      - name: size
+        type: float
+        meta:
+          unit: world units per pixel
+      - type: pad
+        size: 4
+      - name: minimum_color
+        type: ColorRGB
+      - name: maximum_color
+        type: ColorRGB
+      - name: ambient_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+  DetailObjectCollection:
+    class: struct
+    meta:
+      tag_id: dobc
+      post_compile: true
+    comments:
+      en: >
+        Determines the mix and appearance of small 2D detail objects like grass,
+        which are painted onto a [BSP][scenario_structure_bsp] in [Sapien][].
+    assert_size: 128
+    fields:
+      - name: collection_type
+        type: DetailObjectCollectionType
+      - type: pad
+        size: 2
+      - name: global_z_offset
+        type: float
+      - type: pad
+        size: 44
+      - name: sprite_plate
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: types
+        type: Block
+        type_args:
+          T: DetailObjectCollectionObjectType
+        meta:
+          hek_max_count: 16
+      - type: pad
+        size: 48

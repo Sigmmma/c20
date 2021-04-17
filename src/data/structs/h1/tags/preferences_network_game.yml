@@ -1,0 +1,40 @@
+entry_type: PreferencesNetworkGame
+imports:
+  h1/tags/common:
+    - TagString
+    - ColorRGB
+    - TagDependency
+    - Index
+type_defs:
+  PreferencesNetworkGame:
+    class: struct
+    meta:
+      tag_id: ngpr
+    assert_size: 896
+    fields:
+      - name: name
+        type: TagString
+      - name: primary_color
+        type: ColorRGB
+      - name: secondary_color
+        type: ColorRGB
+      - name: pattern
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: pattern_bitmap_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: decal
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: decal_bitmap_index
+        type: Index
+      - type: pad
+        size: 2
+      - type: pad
+        size: 800

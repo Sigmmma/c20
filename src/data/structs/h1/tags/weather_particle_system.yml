@@ -1,0 +1,232 @@
+entry_type: WeatherParticleSystem
+imports:
+  h1/tags/common:
+    - IsUnusedFlag
+    - Block
+    - TagString
+    - TagDependency
+    - Fraction
+    - Angle
+    - ColorARGB
+    - FramebufferBlendFunction
+    - FramebufferFadeMode
+    - IsUnfilteredFlag
+    - FunctionOut
+    - WaveFunction
+    - Point2D
+  h1/tags/particle:
+    - ParticleOrientation
+    - ParticleShaderFlags
+    - ParticleAnchor
+type_defs:
+  WeatherParticleSystemParticleTypeFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: interpolate_colors_in_hsv
+      - name: along_long_hue_path
+      - name: random_rotation
+  WeatherParticleSystemRenderDirectionSource:
+    class: enum
+    size: 2
+    options:
+      - name: from_velocity
+      - name: from_acceleration
+  WeatherParticleSystemParticleType:
+    class: struct
+    assert_size: 604
+    meta:
+      post_compile: true
+    fields:
+      - name: name
+        type: TagString
+      - name: flags
+        type: WeatherParticleSystemParticleTypeFlags
+      - name: fade_in_start_distance
+        type: float
+        meta:
+          unit: world units
+      - name: fade_in_end_distance
+        type: float
+        meta:
+          unit: world units
+      - name: fade_out_start_distance
+        type: float
+        meta:
+          unit: world units
+      - name: fade_out_end_distance
+        type: float
+        meta:
+          unit: world units
+      - name: fade_in_start_height
+        type: float
+        meta:
+          unit: world units
+      - name: fade_in_end_height
+        type: float
+        meta:
+          unit: world units
+      - name: fade_out_start_height
+        type: float
+        meta:
+          unit: world units
+      - name: fade_out_end_height
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 96
+      - name: particle_count
+        type: Bounds
+        meta:
+          unit: particles per cubic world unit
+        type_args:
+          T: float
+      - name: physics
+        type: TagDependency
+        meta:
+          tag_classes:
+            - point_physics
+      - type: pad
+        size: 16
+      - name: acceleration_magnitude
+        type: Bounds
+        type_args:
+          T: float
+      - name: acceleration_turning_rate
+        type: Fraction
+      - name: acceleration_change_rate
+        type: float
+      - type: pad
+        size: 32
+      - name: particle_radius
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+      - name: animation_rate
+        type: Bounds
+        meta:
+          unit: frames per second
+        type_args:
+          T: float
+      - name: rotation_rate
+        type: Bounds
+        meta:
+          unit: degrees per second
+        type_args:
+          T: Angle
+      - type: pad
+        size: 32
+      - name: color_lower_bound
+        type: ColorARGB
+      - name: color_upper_bound
+        type: ColorARGB
+      - name: sprite_size
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 60
+      - name: sprite_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: render_mode
+        type: ParticleOrientation
+      - name: render_direction_source
+        type: WeatherParticleSystemRenderDirectionSource
+      - type: pad
+        size: 36
+      - name: not_broken
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: shader_flags
+        type: ParticleShaderFlags
+      - name: framebuffer_blend_function
+        type: FramebufferBlendFunction
+      - name: framebuffer_fade_mode
+        type: FramebufferFadeMode
+      - name: map_flags
+        type: IsUnfilteredFlag
+      - type: pad
+        size: 28
+      - name: bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: anchor
+        type: ParticleAnchor
+      - name: flags_1
+        type: IsUnfilteredFlag
+      - name: u_animation_source
+        type: FunctionOut
+      - name: u_animation_function
+        type: WaveFunction
+      - name: u_animation_period
+        type: float
+        meta:
+          unit: seconds
+      - name: u_animation_phase
+        type: float
+      - name: u_animation_scale
+        type: float
+        meta:
+          unit: repeats
+      - name: v_animation_source
+        type: FunctionOut
+      - name: v_animation_function
+        type: WaveFunction
+      - name: v_animation_period
+        type: float
+        meta:
+          unit: seconds
+      - name: v_animation_phase
+        type: float
+      - name: v_animation_scale
+        type: float
+        meta:
+          unit: repeats
+      - name: rotation_animation_source
+        type: FunctionOut
+      - name: rotation_animation_function
+        type: WaveFunction
+      - name: rotation_animation_period
+        type: float
+        meta:
+          unit: seconds
+      - name: rotation_animation_phase
+        type: float
+      - name: rotation_animation_scale
+        type: Angle
+      - name: rotation_animation_center
+        type: Point2D
+      - type: pad
+        size: 4
+      - name: zsprite_radius_scale
+        type: float
+      - type: pad
+        size: 20
+  WeatherParticleSystem:
+    class: struct
+    meta:
+      tag_id: rain
+    assert_size: 48
+    fields:
+      - name: flags
+        type: IsUnusedFlag
+      - type: pad
+        size: 32
+      - name: particle_types
+        type: Block
+        type_args:
+          T: WeatherParticleSystemParticleType
+        meta:
+          hek_max_count: 8

@@ -17,8 +17,7 @@
       "./node_modules/highlight.js/styles/night-owl.css",
       "./node_modules/@(htm)/preact/standalone.umd.js",
       "./node_modules/@(minisearch)/dist/umd/index.js"
-    ],
-    "invaderDefsDir": "./lib/invader/src/tag/hek/definition/"
+    ]
   },
   "baseUrl": "https://c20.reclaimers.net"
 }

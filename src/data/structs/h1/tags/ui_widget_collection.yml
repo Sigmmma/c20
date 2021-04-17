@@ -1,0 +1,12 @@
+entry_type: UIWidgetCollection
+imports: {}
+type_defs:
+  UIWidgetCollection:
+    class: struct
+    meta:
+      tag_id: 'Soul'
+    fields:
+      - type: pad
+        size: 1
+        comments:
+          en: This type has yet to be documented.

@@ -1,0 +1,159 @@
+entry_type: Device
+imports:
+  h1/tags/object:
+    - Object
+  h1/tags/common:
+    - TagDependency
+type_defs:
+  DeviceFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: position_loops
+      - name: position_not_interpolated
+  DeviceIn:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: power
+      - name: change_in_power
+      - name: position
+      - name: change_in_position
+      - name: locked
+      - name: delay
+  Device:
+    class: struct
+    extends:
+      type: Object
+    meta:
+      tag_id: devi
+    comments:
+      en: >-
+        Parent tag for devices, controlled objects which have powered on/off
+        states.
+    assert_size: 656
+    fields:
+      - name: device_flags
+        type: DeviceFlags
+      - name: power_transition_time
+        type: float
+        meta:
+          unit: seconds
+      - name: power_acceleration_time
+        type: float
+        meta:
+          unit: seconds
+      - name: position_transition_time
+        type: float
+        meta:
+          unit: seconds
+      - name: position_acceleration_time
+        type: float
+        meta:
+          unit: seconds
+      - name: depowered_position_transition_time
+        type: float
+        meta:
+          unit: seconds
+      - name: depowered_position_acceleration_time
+        type: float
+        meta:
+          unit: seconds
+      - name: device_a_in
+        type: DeviceIn
+      - name: device_b_in
+        type: DeviceIn
+      - name: device_c_in
+        type: DeviceIn
+      - name: device_d_in
+        type: DeviceIn
+      - name: open
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: close
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: opened
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: closed
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: depowered
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: repowered
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: delay_time
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 8
+      - name: delay_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: automatic_activation_radius
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 84
+      - name: inverse_power_acceleration_time
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: inverse_power_transition_time
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: inverse_depowered_position_acceleration_time
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: inverse_depowered_position_transition_time
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: inverse_position_acceleration_time
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: inverse_position_transition_time
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: delay_time_ticks
+        type: float
+        meta:
+          cache_only: true
+        endianness: little

@@ -1,0 +1,62 @@
+entry_type: DeviceControl
+imports:
+  h1/tags/device:
+    - Device
+  h1/tags/common:
+    - TagDependency
+type_defs:
+  DeviceType:
+    class: enum
+    size: 2
+    options:
+      - name: toggle_switch
+      - name: on_button
+      - name: off_button
+      - name: call_button
+  DeviceTriggersWhen:
+    class: enum
+    size: 2
+    options:
+      - name: triggers_when_touched_by_player
+      - name: triggers_when_destroyed
+  DeviceControl:
+    class: struct
+    extends:
+      type: Device
+    meta:
+      tag_id: ctrl
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: >-
+        Used for interactive switches and buttons to operate
+        [device_machines][device_machine] like doors and elevators.
+    assert_size: 792
+    fields:
+      - name: type
+        type: DeviceType
+      - name: triggers_when
+        type: DeviceTriggersWhen
+      - name: call_value
+        type: float
+      - type: pad
+        size: 80
+      - name: 'on'
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: 'off'
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: deny
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect

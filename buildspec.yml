@@ -3,10 +3,9 @@ version: 0.2
 phases:
   install:
     runtime-versions:
-      nodejs: 12.x
+      nodejs: 14.x
   pre_build:
     commands:
-      - git submodule update --init
       - npm ci
   build:
     commands:
@@ -14,4 +13,4 @@ phases:
   post_build:
     commands:
       - bash -c "if [ /"$CODEBUILD_BUILD_SUCCEEDING/" == /"0/" ]; then exit 1; fi"
-      - aws s3 sync --delete --cache-control max-age=3600 --metadata-directive REPLACE ./dist s3://reclaimers-wiki-files
+      - aws s3 sync --delete ./dist s3://reclaimers-wiki-files

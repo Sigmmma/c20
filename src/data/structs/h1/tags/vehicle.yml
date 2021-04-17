@@ -1,0 +1,201 @@
+entry_type: Vehicle
+imports:
+  h1/tags/unit:
+    - Unit
+  h1/tags/common:
+    - Angle
+    - TagDependency
+type_defs:
+  VehicleFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: speed_wakes_physics
+      - name: turn_wakes_physics
+      - name: driver_power_wakes_physics
+      - name: gunner_power_wakes_physics
+      - name: control_opposite_speed_sets_brake
+      - name: slide_wakes_physics
+      - name: kills_riders_at_terminal_velocity
+      - name: causes_collision_damage
+      - name: ai_weapon_cannot_rotate
+      - name: ai_does_not_require_driver
+      - name: ai_unused
+      - name: ai_driver_enable
+      - name: ai_driver_flying
+      - name: ai_driver_can_sidestep
+      - name: ai_driver_hovering
+  VehicleType:
+    class: enum
+    size: 2
+    options:
+      - name: human_tank
+      - name: human_jeep
+      - name: human_boat
+      - name: human_plane
+      - name: alien_scout
+      - name: alien_fighter
+      - name: turret
+  VehicleFunctionIn:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: speed_absolute
+      - name: speed_forward
+      - name: speed_backward
+      - name: slide_absolute
+      - name: slide_left
+      - name: slide_right
+      - name: speed_slide_maximum
+      - name: turn_absolute
+      - name: turn_left
+      - name: turn_right
+      - name: crouch
+      - name: jump
+      - name: walk
+      - name: velocity_air
+      - name: velocity_water
+      - name: velocity_ground
+      - name: velocity_forward
+      - name: velocity_left
+      - name: velocity_up
+      - name: left_tread_position
+      - name: right_tread_position
+      - name: left_tread_velocity
+      - name: right_tread_velocity
+      - name: front_left_tire_position
+      - name: front_right_tire_position
+      - name: back_left_tire_position
+      - name: back_right_tire_position
+      - name: front_left_tire_velocity
+      - name: front_right_tire_velocity
+      - name: back_left_tire_velocity
+      - name: back_right_tire_velocity
+      - name: wingtip_contrail
+      - name: hover
+      - name: thrust
+      - name: engine_hack
+      - name: wingtip_contrail_new
+  Vehicle:
+    class: struct
+    extends:
+      type: Unit
+    meta:
+      tag_id: vehi
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: >-
+        Driveable or occupiable units with dynamic physics, such as the Warthog
+        and cryo pod.
+    assert_size: 1008
+    fields:
+      - name: vehicle_flags
+        type: VehicleFlags
+      - name: vehicle_type
+        type: VehicleType
+      - type: pad
+        size: 2
+      - name: maximum_forward_speed
+        type: float
+      - name: maximum_reverse_speed
+        type: float
+      - name: speed_acceleration
+        type: float
+      - name: speed_deceleration
+        type: float
+      - name: maximum_left_turn
+        type: float
+      - name: maximum_right_turn
+        type: float
+      - name: wheel_circumference
+        type: float
+      - name: turn_rate
+        type: float
+      - name: blur_speed
+        type: float
+        comments:
+          en: >
+            The minimum speed where the vehicle's [gbxmodel ~blur
+            permutation][gbxmodel#permutations] is used for fake motion blur. An
+            example is the Warthog's tires.
+      - name: vehicle_a_in
+        type: VehicleFunctionIn
+      - name: vehicle_b_in
+        type: VehicleFunctionIn
+      - name: vehicle_c_in
+        type: VehicleFunctionIn
+      - name: vehicle_d_in
+        type: VehicleFunctionIn
+      - type: pad
+        size: 12
+      - name: maximum_left_slide
+        type: float
+      - name: maximum_right_slide
+        type: float
+      - name: slide_acceleration
+        type: float
+      - name: slide_deceleration
+        type: float
+      - name: minimum_flipping_angular_velocity
+        type: float
+        meta:
+          default: 0.2
+      - name: maximum_flipping_angular_velocity
+        type: float
+        meta:
+          default: 0.75
+      - type: pad
+        size: 24
+      - name: fixed_gun_yaw
+        type: float
+      - name: fixed_gun_pitch
+        type: float
+      - type: pad
+        size: 24
+      - name: ai_sideslip_distance
+        type: float
+      - name: ai_destination_radius
+        type: float
+      - name: ai_avoidance_distance
+        type: float
+      - name: ai_pathfinding_radius
+        type: float
+      - name: ai_charge_repeat_timeout
+        type: float
+      - name: ai_strafing_abort_range
+        type: float
+      - name: ai_oversteering_bounds
+        type: Bounds
+        type_args:
+          T: float
+      - name: ai_steering_maximum
+        type: Angle
+      - name: ai_throttle_maximum
+        type: float
+      - name: ai_move_position_time
+        type: float
+      - type: pad
+        size: 4
+      - name: suspension_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: crash_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: material_effects
+        type: TagDependency
+        meta:
+          tag_classes:
+            - material_effects
+      - name: effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect

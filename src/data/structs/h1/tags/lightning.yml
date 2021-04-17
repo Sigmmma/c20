@@ -1,0 +1,142 @@
+entry_type: Lightning
+imports:
+  h1/tags/common:
+    - FunctionOut
+    - FunctionNameNullable
+    - TagDependency
+    - Block
+    - TagString
+    - Vector3D
+    - ColorARGB
+    - FramebufferBlendFunction
+    - FramebufferFadeMode
+    - IsUnfilteredFlag
+  h1/tags/particle:
+    - ParticleShaderFlags
+type_defs:
+  LightningMarkerFlag:
+    class: bitfield
+    size: 2
+    bits:
+      - name: not_connected_to_next_marker
+  LightningMarker:
+    class: struct
+    assert_size: 228
+    fields:
+      - name: attachment_marker
+        type: TagString
+      - name: flags
+        type: LightningMarkerFlag
+      - type: pad
+        size: 2
+      - name: octaves_to_next_marker
+        type: int16
+      - type: pad
+        size: 2
+      - type: pad
+        size: 76
+      - name: random_position_bounds
+        type: Vector3D
+        meta:
+          unit: world units
+      - name: random_jitter
+        type: float
+        meta:
+          unit: world units
+      - name: thickness
+        type: float
+        meta:
+          unit: world units
+      - name: tint
+        type: ColorARGB
+      - type: pad
+        size: 76
+  LightningShader:
+    class: struct
+    assert_size: 180
+    meta:
+      pre_compile: true
+    fields:
+      - type: pad
+        size: 36
+      - name: make_it_work
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: shader_flags
+        type: ParticleShaderFlags
+      - name: framebuffer_blend_function
+        type: FramebufferBlendFunction
+      - name: framebuffer_fade_mode
+        type: FramebufferFadeMode
+      - name: map_flags
+        type: IsUnfilteredFlag
+      - type: pad
+        size: 28
+      - type: pad
+        size: 12
+      - name: some_more_stuff_that_should_be_set_for_some_reason
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 2
+      - type: pad
+        size: 2
+      - type: pad
+        size: 56
+      - type: pad
+        size: 28
+  Lightning:
+    class: struct
+    meta:
+      tag_id: elec
+    assert_size: 264
+    fields:
+      - type: pad
+        size: 2
+      - name: count
+        type: uint16
+      - type: pad
+        size: 16
+      - name: near_fade_distance
+        type: float
+        meta:
+          unit: world units
+      - name: far_fade_distance
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 16
+      - name: jitter_scale_source
+        type: FunctionOut
+      - name: thickness_scale_source
+        type: FunctionOut
+      - name: tint_modulation_source
+        type: FunctionNameNullable
+      - name: brightness_scale_source
+        type: FunctionOut
+      - name: bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 84
+      - name: markers
+        type: Block
+        type_args:
+          T: LightningMarker
+        meta:
+          hek_max_count: 16
+      - name: shader
+        type: Block
+        type_args:
+          T: LightningShader
+        meta:
+          hek_max_count: 1
+      - type: pad
+        size: 88

@@ -1,0 +1,27 @@
+entry_type: ColorTable
+imports:
+  h1/tags/common:
+    - Block
+    - TagString
+    - ColorARGB
+type_defs:
+  ColorTableColor:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: name
+        type: TagString
+      - name: color
+        type: ColorARGB
+  ColorTable:
+    class: struct
+    meta:
+      tag_id: colo
+    assert_size: 12
+    fields:
+      - name: colors
+        type: Block
+        type_args:
+          T: ColorTableColor
+        meta:
+          hek_max_count: 512

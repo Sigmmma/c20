@@ -1,126 +1,120 @@
-const yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
-const {html, escapeHtml, localizer, slugify} = require("../bits");
+const {html, escapeHtml, slugify, detailsList, tagAnchor, renderHex} = require("../bits");
+const {instantiateType, buildTypeDefs} = require("../../../../data/structs");
+const localizations = require("./localizations");
 
-const localizations = localizer({
-  field: {
-    en: "Field",
-    es: "Campo"
-  },
-  type: {
-    en: "Type",
-    es: "Tipo"
-  },
-  flag: {
-    en: "Flag",
-    es: "Bandera"
-  },
-  mask: {
-    en: "Mask",
-    es: "Máscara"
-  },
-  value: {
-    en: "Value",
-    es: "Valor"
-  },
-  option: {
-    en: "Option",
-    es: "Opción"
-  },
-  comments: {
-    en: "Comments",
-    es: "Comentarios"
-  },
-  offset: {
-    en: "Offset (relative)",
-  },
-  label_cache_only: {
-    en: "Cache only"
-  },
-  label_mcc: {
-    en: "MCC"
+function processMeta(meta) {
+  if (!meta || Object.keys(meta).length == 0) {
+    return null;
   }
-});
-
-const INTRINSIC_TYPE_DEFS = {
-  pad: {size: 1},
-  bool: {size: 1},
-  char: {size: 1},
-  uint8: {size: 1},
-  int8: {size: 1},
-  uint16: {size: 2},
-  int16: {size: 2},
-  int32: {size: 4},
-  uint32: {size: 4},
-  int64: {size: 8},
-  uint64: {size: 8},
-  float: {size: 4},
-  double: {size: 8},
-};
+  meta = {...meta};
+  if (meta.pre_compile || meta.post_compile) {
+    meta.compile_processed = true;
+  }
+  return meta;
+}
 
 function joinPathId(pathId, next) {
   if (!pathId || !next) return null;
   return [...pathId, next];
 }
 
-function renderStructYaml(ctx, optsYaml) {
+function structDisplay(ctx, opts) {
   const {renderMarkdown} = require("../markdown"); //todo: untangle circular dep
   const localize = localizations(ctx.lang);
-  const {typeDefs: typeDefsArg, entryType, showOffsets, id} = yaml.load(optsYaml);
-  const typeDefs = typeof(typeDefsArg) === "string" ?
-    yaml.load(fs.readFileSync(path.join(ctx.page.dirPath, typeDefsArg), "utf8")) :
-    typeDefsArg;
+  const {
+    type_defs: typeDefsArg,
+    entry_type,
+    showOffsets,
+    skipPadding,
+    showEntryComments,
+    noRootExtend,
+    simpleTypes,
+    id
+  } = opts;
+
+  const typeDefs = buildTypeDefs(typeDefsArg, opts.imports, ctx.data.structs);
+  const searchTerms = [];
+  const headings = [];
   const seenTypes = {};
 
-  function renderComments(field) {
+  function addSearchTermsForPart(part) {
+    if (part.name) {
+      searchTerms.push(part.name.split("_"));
+    }
+    if (part.comments && part.comments[ctx.lang]) {
+      searchTerms.push(renderMarkdown(ctx, part.comments[ctx.lang], true));
+    }
+  }
+  function addSearchTermsForTypeDef(typeDef) {
+    addSearchTermsForPart(typeDef);
+    if (typeDef.class == "struct") {
+      typeDef.fields.forEach(f => addSearchTermsForPart(f));
+    } else if (typeDef.class == "bitfield") {
+      typeDef.bits.forEach(b => addSearchTermsForPart(b));
+    } else if (typeDef.class == "enum") {
+      typeDef.options.forEach(o => addSearchTermsForPart(o));
+    }
+  }
+
+  function renderComments(part) {
+    const meta = Object.entries(processMeta(part.meta) || {})
+      .filter(([k]) => localize(`meta_${k}`, true));
     return html`
-      ${field.labels && html`
-        <ul class="field-labels">
-          ${field.labels.map(label => html`
-            <li class="field-label">${localize(`label_${label}`)}</li>
+      ${meta.length > 0 && html`
+        <ul class="field-metas">
+          ${meta.map(([k, v]) => html`
+            <li class="field-meta">${localize(`meta_${k}`)}${v !== true ? `: ${v}` : ""}</li>
           `)}
         </ul>
       `}
-      ${field.comments && field.comments[ctx.lang] &&
-        renderMarkdown(ctx, field.comments[ctx.lang])
+      ${part.comments && part.comments[ctx.lang] &&
+        renderMarkdown(ctx, part.comments[ctx.lang])
       }
     `;
   }
 
-  function renderFieldType(field) {
-    if (!field.type) return null;
-    const typeDef = typeDefs[field.type];
-    let size = field.size || (typeDef && typeDef.size) || undefined;
-
-    let typeStr = field.type;
-    if (typeDef && typeDef.class != "struct") {
-      typeStr += `: ${typeDef.class}`;
-    }
-    if (field.type_args) {
-      typeStr += `<${field.type_args.join(", ")}>`;
-    }
-    if (size !== undefined) {
-      if (typeDef && (typeDef.class == "bitfield" || typeDef.class == "enum")) {
-        size = `${size * 8}-bit`;
+  function renderStructFieldType(field, {typeDef, totalSize, singleSize, variableSize, count, type_args, typeName}) {
+    let typeStr = typeName;
+    if (typeDef.class == "bitfield" || typeDef.class == "enum") {
+      if (simpleTypes) {
+        typeStr = typeDef.class;
+      } else {
+        typeStr += `: ${typeDef.class}${singleSize * 8}`;
       }
-      typeStr += `(${size})`;
     }
-    if (field.count !== undefined) {
-      typeStr += `[${field.count}]`;
+    if (!simpleTypes && type_args) {
+      typeStr += `<${Object.values(type_args).join(", ")}>`;
+    }
+    if (variableSize !== undefined) {
+      typeStr += `(${variableSize})`;
+    }
+    if (count !== undefined) {
+      typeStr += `[${count}]`;
     }
     typeStr = escapeHtml(typeStr);
-    if (field.endianness !== undefined) {
-      const lbl = field.endianness == "little" ? "LE" : (field.endianness == "big" ? "BE" : "LE/BE");
+    if (typeDef.endianness !== undefined) {
+      const lbl = typeDef.endianness == "little" ? "LE" : (typeDef.endianness == "big" ? "BE" : "LE/BE");
       typeStr += ` <span class="field-label">${lbl}</span>`;
     }
-    return html`<code>${typeStr}</code>`;
+    const typeCode = html`<code title="${totalSize} bytes">${typeStr}</code>`;
+    if (field.meta && field.meta.tag_classes) {
+      return detailsList(typeCode, field.meta.tag_classes.map(tagName =>
+        tagName == "*" ? "(any)" : tagAnchor(ctx, tagName)
+      ), 4);
+    }
+    if (field.meta && field.meta.index_of) {
+      return `${typeCode}<a title="${localize("seeIndex")}" href="#${slugify(`${id}-${field.meta.index_of}`)}">→</a>`;
+    }
+    return typeCode;
   }
 
   function renderFieldName(fieldName, pathId) {
     if (!fieldName) return null;
+    fieldName = fieldName.replace(/_/g, " ");
     if (!pathId) return escapeHtml(fieldName);
-    const pathTitle = escapeHtml(pathId.join("/"));
+    const pathTitle = escapeHtml(pathId.slice(1).join("/"));
     const pathIdAttr = slugify(pathId.join("-"));
     return html`
       <span title="${pathTitle}" id="${pathIdAttr}">
@@ -129,52 +123,7 @@ function renderStructYaml(ctx, optsYaml) {
     `;
   }
 
-  function calcFieldSize(field) {
-    const typeDef = typeDefs[field.type] || INTRINSIC_TYPE_DEFS[field.type];
-    const size = field.size ||
-      (typeDef && typeDef.size) ||
-      (typeDef.class == "struct" && typeDef.fields.reduce((acc, next) => calcFieldSize(next) + acc, 0)) ||
-      0;
-    const count = field.count !== undefined ? field.count : 1;
-    return size * count;
-  }
-
-  function renderHex(num) {
-    return html`<code title="${num}">0x${num.toString(16).toUpperCase()}</code>`;
-  }
-
-  function renderStructFieldRow(field, pathId, offset) {
-    const typeDef = typeDefs[field.type];
-    const hasSeenType = seenTypes[field.type];
-    seenTypes[field.type] = true;
-
-    const rowClasses = [
-      "struct-field",
-      `field-type-${escapeHtml(field.type)}`,
-      ...(field.labels ? field.labels.map(label => `field-label-${label}`) : []),
-      ...(typeDef ? [`has-embedded-class-${typeDef.class}`] : [])
-    ];
-
-    return html`
-      <tr class="${rowClasses.join(" ")}">
-        <td class="field-name">${renderFieldName(field.name, joinPathId(pathId, field.name))}</td>
-        ${showOffsets && html`
-          <td class="field-offset">${renderHex(offset)}</td>
-        `}
-        <td class="field-type">${renderFieldType(field)}</td>
-        <td class="comments">${renderComments(field)}</td>
-      </tr>
-      ${typeDef && !hasSeenType && html`
-        <tr class="embedded-type">
-          <td colspan="${showOffsets ? 4 : 3}">
-            ${renderTypeAsTable(typeDef, joinPathId(pathId, field.name))}
-          </td>
-        </tr>
-      `}
-    `;
-  }
-
-  function renderStructAsTable(typeDef, pathId) {
+  function renderStructAsTable(instantiatedType, pathId) {
     const widths = 50 / (showOffsets ? 3 : 2);
     let offset = 0;
     return html`
@@ -190,17 +139,73 @@ function renderStructYaml(ctx, optsYaml) {
           </tr>
         </thead>
         <tbody>
-          ${typeDef.fields.map(field => {
-            const row = renderStructFieldRow(field, pathId, offset);
-            offset += calcFieldSize(field);
-            return row;
+          ${instantiatedType.typeDef.fields.map(field => {
+            if (skipPadding && field.type == "pad") {
+              return null;
+            }
+
+            const fieldPathId = joinPathId(pathId, field.name);
+            const fieldOffset = offset;
+            const instantiatedFieldType = instantiateType(typeDefs, field, instantiatedType.type_args, {});
+            const {typeDef: fieldTypeDef, totalSize: fieldSize, typeName: fieldTypeName, type_args: fieldTypeArgs} = instantiatedFieldType;
+            offset += fieldSize;
+
+            const seenTypeId = `${fieldTypeName}<${fieldTypeArgs && Object.values(fieldTypeArgs).join(",")}>`;
+            const hasSeenType = seenTypes[seenTypeId];
+            if (!hasSeenType) {
+              seenTypes[seenTypeId] = fieldPathId;
+            }
+
+            let embeddedType = undefined;
+            if (fieldTypeName != "TagDependency") {
+              if (fieldTypeArgs && (fieldTypeName == "Block" || fieldTypeName == "ptr32" || fieldTypeName == "ptr64")) {
+                embeddedType = instantiateType(typeDefs, {type: Object.values(fieldTypeArgs)[0]}, instantiatedType.type_args, {});
+                if (embeddedType.typeDef.class) {
+                  headings.push({title: field.name.replace(/_/g, " "), id: slugify(fieldPathId.join("-")), level: fieldPathId.length});
+                } else {
+                  embeddedType = undefined;
+                }
+              } else if (fieldTypeDef.class) {
+                embeddedType = instantiatedFieldType;
+              }
+            }
+
+            const rowClasses = [
+              "struct-field",
+              `field-type-${escapeHtml(field.type)}`,
+              ...(field.meta ? Object.entries(field.meta).map(([k]) => `field-meta-${k}`) : []),
+              ...(fieldTypeDef.class ? [`has-embedded-class-${fieldTypeDef.class}`] : [])
+            ];
+
+            return html`
+              <tr class="${rowClasses.join(" ")}">
+                <td class="field-name">${renderFieldName(field.name, fieldPathId)}</td>
+                ${showOffsets && html`
+                  <td class="field-offset">${renderHex(fieldOffset)}</td>
+                `}
+                <td class="field-type">
+                  ${renderStructFieldType(field, instantiatedFieldType)}${embeddedType && hasSeenType && html`<sup><a href="#${slugify(hasSeenType.join("-"))}">?</a></sup>`}
+                </td>
+                <td class="comments">${renderComments(field)}</td>
+              </tr>
+              ${embeddedType && !hasSeenType && html`
+                <tr class="embedded-type">
+                  <td colspan="${showOffsets ? 4 : 3}">
+                    ${renderTypeAsTable(embeddedType, fieldPathId)}
+                  </td>
+                </tr>
+              `}
+            `;
           })}
         </tbody>
       </table>
     `;
   }
 
-  function renderBitfieldAsTable(typeDef, pathId) {
+  function renderBitfieldAsTable(instantiatedType, pathId) {
+    if (!instantiatedType.typeDef.bits) {
+      console.log(pathId, instantiatedType);
+    }
     return html`
       <table class="type-def bitfield">
         <thead>
@@ -211,11 +216,11 @@ function renderStructYaml(ctx, optsYaml) {
           </tr>
         </thead>
         <tbody>
-          ${typeDef.fields.map((field, i) => html`
+          ${instantiatedType.typeDef.bits.map((bit, i) => html`
             <tr>
-              <td>${renderFieldName(field.name, joinPathId(pathId, field.name))}</td>
-              <td>${renderHex(0x1 << i)}</td>
-              <td>${renderComments(field)}</td>
+              <td>${renderFieldName(bit.name, joinPathId(pathId, bit.name))}</td>
+              <td>${renderHex(0x1 << i >>> 0)}</td>
+              <td>${renderComments(bit)}</td>
             </tr>
           `)}
         </tbody>
@@ -223,7 +228,7 @@ function renderStructYaml(ctx, optsYaml) {
     `;
   }
 
-  function renderEnumAsTable(typeDef, pathId) {
+  function renderEnumAsTable(instantiatedType, pathId) {
     return html`
       <table class="type-def enum">
         <thead>
@@ -234,7 +239,7 @@ function renderStructYaml(ctx, optsYaml) {
           </tr>
         </thead>
         <tbody>
-          ${typeDef.options.map((option, i) => html`
+          ${instantiatedType.typeDef.options.map((option, i) => html`
             <tr>
               <td>${renderFieldName(option.name, joinPathId(pathId, option.name))}</td>
               <td>${renderHex(option.value !== undefined ? option.value : i)}</td>
@@ -246,23 +251,35 @@ function renderStructYaml(ctx, optsYaml) {
     `;
   }
 
-  function renderTypeAsTable(typeDef, pathId) {
-    switch (typeDef.class) {
-      case undefined:
-      case "struct":
-        return renderStructAsTable(typeDef, pathId);
-      case "bitfield":
-        return renderBitfieldAsTable(typeDef, pathId);
-      case "enum":
-        return renderEnumAsTable(typeDef, pathId);
-      default:
-        throw new Error(`Unhandled type class: ${typeDef.class}`);
-    }
+  function renderTypeAsTable(instantiatedType, pathId) {
+    addSearchTermsForTypeDef(instantiatedType.typeDef);
+    return html`
+      ${(showEntryComments || entry_type != instantiatedType.typeName) &&
+        renderComments(instantiatedType.typeDef)
+      }
+      ${(() => {
+        switch (instantiatedType.typeDef.class) {
+          case "struct":
+            return renderStructAsTable(instantiatedType, pathId);
+          case "bitfield":
+            return renderBitfieldAsTable(instantiatedType, pathId);
+          case "enum":
+            return renderEnumAsTable(instantiatedType, pathId);
+          default:
+            console.error(instantiatedType.typeDef);
+            throw new Error(`Unhandled type class: ${instantiatedType.typeDef.class}`);
+        }
+      })()}
+    `;
   }
 
-  const entryTypeDef = typeDefs[entryType];
-  if (!entryTypeDef) throw new Error(`Entry type ${entryType} is not defined`);
-  return renderTypeAsTable(entryTypeDef, [id || ""]);
+  return {
+    html: renderTypeAsTable(instantiateType(typeDefs, {type: entry_type}, null, {noRootExtend: noRootExtend}), [id || ""]),
+    searchTerms,
+    headings
+  };
 }
 
-module.exports = {renderStructYaml};
+module.exports = {
+  structDisplay,
+};

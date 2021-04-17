@@ -1,0 +1,287 @@
+entry_type: Projectile
+imports:
+  h1/tags/object:
+    - Object
+    - ObjectNoise
+  h1/tags/common:
+    - TagDependency
+    - Angle
+    - Block
+    - Fraction
+type_defs:
+  ProjectileFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: oriented_along_velocity
+      - name: ai_must_use_ballistic_aiming
+      - name: detonation_max_time_if_attached
+      - name: has_super_combining_explosion
+      - name: combine_initial_velocity_with_parent_velocity
+      - name: random_attached_detonation_time
+      - name: minimum_unattached_detonation_time
+  ProjectileDetonationTimerStarts:
+    class: enum
+    size: 2
+    options:
+      - name: immediately
+        comments:
+          en: >
+            The detonation timer begins immediately after the projectile is
+            created, causing it to explode after a fixed length of time.
+      - name: after_first_bounce
+        comments:
+          en: Treated identically to _when at rest_ by the game (same code path).
+      - name: when_at_rest
+        comments:
+          en: >
+            Once the projectile comes to rest, its detonation timer begins. If
+            it becomes in motion again, the timer is not interrupted.
+  ProjectileFunctionIn:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: range_remaining
+      - name: time_remaining
+      - name: tracer
+  ProjectileMaterialResponseFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: cannot_be_overpenetrated
+  ProjectileResponse:
+    class: enum
+    size: 2
+    options:
+      - name: disappear
+      - name: detonate
+      - name: reflect
+      - name: overpenetrate
+      - name: attach
+  ProjectileMaterialResponsePotentialFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: only_against_units
+  ProjectileScaleEffectsBy:
+    class: enum
+    size: 2
+    options:
+      - name: damage
+      - name: angle
+  ProjectileMaterialResponse:
+    class: struct
+    assert_size: 160
+    fields:
+      - name: flags
+        type: ProjectileMaterialResponseFlags
+      - name: default_response
+        type: ProjectileResponse
+      - name: default_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - type: pad
+        size: 16
+      - name: potential_response
+        type: ProjectileResponse
+      - name: potential_flags
+        type: ProjectileMaterialResponsePotentialFlags
+      - name: potential_skip_fraction
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: potential_between
+        type: Bounds
+        type_args:
+          T: float
+      - name: potential_and
+        type: Bounds
+        meta:
+          unit: world units per second
+        type_args:
+          T: float
+      - name: potential_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - type: pad
+        size: 16
+      - name: scale_effects_by
+        type: ProjectileScaleEffectsBy
+      - type: pad
+        size: 2
+      - name: angular_noise
+        type: Angle
+      - name: velocity_noise
+        type: float
+        meta:
+          unit: world units per second
+      - name: detonation_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - type: pad
+        size: 24
+      - name: initial_friction
+        type: float
+      - name: maximum_distance
+        type: float
+      - name: parallel_friction
+        type: float
+      - name: perpendicular_friction
+        type: float
+  Projectile:
+    class: struct
+    extends:
+      type: Object
+    meta:
+      tag_id: proj
+      post_cache_deformat: true
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: Short-lived objects used for weapon projectiles and thrown grenades.
+    assert_size: 588
+    fields:
+      - name: projectile_flags
+        type: ProjectileFlags
+      - name: detonation_timer_starts
+        type: ProjectileDetonationTimerStarts
+      - name: impact_noise
+        type: ObjectNoise
+      - name: projectile_a_in
+        type: ProjectileFunctionIn
+      - name: projectile_b_in
+        type: ProjectileFunctionIn
+      - name: projectile_c_in
+        type: ProjectileFunctionIn
+      - name: projectile_d_in
+        type: ProjectileFunctionIn
+      - name: super_detonation
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: ai_perception_radius
+        type: float
+        meta:
+          unit: world units
+      - name: collision_radius
+        type: float
+        meta:
+          unit: world units
+      - name: arming_time
+        type: float
+        meta:
+          unit: seconds
+      - name: danger_radius
+        type: float
+        meta:
+          unit: world units
+      - name: effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: timer
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: minimum_velocity
+        type: float
+        meta:
+          unit: world units per second
+      - name: maximum_range
+        type: float
+        meta:
+          unit: world units
+      - name: air_gravity_scale
+        type: float
+      - name: air_damage_range
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+        comments:
+          en: >
+            Determines the maximum range that the projectile travels in the air
+            and scales _impact damage_ between its lower and upper bound. When
+            the projectile reaches the maximum range, it disappears (and does
+            not detonate). If detonation at a max range is desired, used the
+            _maximum range_ field above. See the [impact damage
+            formula][damage_effect#impact-damage-formula] for more information.
+            If these values are set to 0, maximum damage is applied and the
+            projectile continues traveling until colliding or detonating.
+      - name: water_gravity_scale
+        type: float
+      - name: water_damage_range
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+        comments:
+          en: >
+            Like _air damage range_, but for underwater environments (determined
+            by the _is water_ flag of [fog][] tags).
+      - name: initial_velocity
+        type: float
+        meta:
+          unit: world units per second
+        comments:
+          en: >
+            Sets the velocity of the projectile upon creation. For grenades
+            thrown by AI, see [actor_variant _grenade
+            velocity_][actor_variant#tag-field-grenade-velocity]. For
+            player-thrown grenades, see [unit _grenade
+            velocity_][unit#tag-field-grenade-velocity].
+      - name: final_velocity
+        type: float
+        meta:
+          unit: world units per second
+      - name: guided_angular_velocity
+        type: Angle
+        meta:
+          unit: degrees per second
+      - name: detonation_noise
+        type: ObjectNoise
+      - type: pad
+        size: 2
+      - name: detonation_started
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: flyby_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: attached_detonation_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - name: impact_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - type: pad
+        size: 12
+      - name: projectile_material_response
+        type: Block
+        type_args:
+          T: ProjectileMaterialResponse
+        meta:
+          hek_max_count: 33

@@ -1,12 +1,25 @@
-const buildH1Data = require("./h1");
+const {loadStructModules} = require("./structs");
 const loadWorkflows = require("./workflows");
+const loadTags = require("./tags");
 
-async function loadStructuredData(invaderDefsDir) {
-  const h1Data = buildH1Data(invaderDefsDir);
-  const workflows = loadWorkflows();
+async function loadStructuredData() {
+  const structs = await loadStructModules();
   return {
-    h1: await h1Data,
-    workflows: await workflows,
+    tagThanks: {
+      h1: {
+        MosesOfEgypt: {
+          en: "Tag structure research",
+          es: "Investigación de estructura de tags"
+        },
+        Kavawuvi: {
+          en: "Invader tag definitions",
+          es: "Definiciones de tags de Invader"
+        },
+      },
+    },
+    tags: await loadTags(structs),
+    structs,
+    workflows: await loadWorkflows(),
   };
 }
 

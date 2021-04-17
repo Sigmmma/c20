@@ -1,0 +1,596 @@
+entry_type: UIWidgetDefinition
+imports:
+  h1/tags/common:
+    - TagString
+    - Rectangle2D
+    - TagDependency
+    - Block
+    - ColorARGB
+    - Index
+type_defs:
+  UIWidgetType:
+    class: enum
+    size: 2
+    options:
+      - name: container
+      - name: text_box
+      - name: spinner_list
+      - name: column_list
+      - name: game_model_not_implemented
+      - name: movie_not_implemented
+      - name: custom_not_implemented
+  UIControllerIndex:
+    class: enum
+    size: 2
+    options:
+      - name: player_1
+      - name: player_2
+      - name: player_3
+      - name: player_4
+      - name: any_player
+  UIWidgetDefinitionFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: pass_unhandled_events_to_focused_child
+      - name: pause_game_time
+      - name: flash_background_bitmap
+      - name: dpad_up_down_tabs_thru_children
+      - name: dpad_left_right_tabs_thru_children
+      - name: dpad_up_down_tabs_thru_list_items
+      - name: dpad_left_right_tabs_thru_list_items
+      - name: dont_focus_a_specific_child_widget
+      - name: pass_unhandled_events_to_all_children
+      - name: render_regardless_of_controller_index
+      - name: pass_handled_events_to_all_children
+      - name: return_to_main_menu_if_no_history
+      - name: always_use_tag_controller_index
+      - name: always_use_nifty_render_fx
+      - name: don't_push_history
+      - name: force_handle_mouse
+  UIGameDataInputReferenceFunction:
+    class: enum
+    size: 2
+    options:
+      - name: 'null'
+      - name: player_settings_menu_update_desc
+      - name: unused
+      - name: playlist_settings_menu_update_desc
+      - name: gametype_select_menu_update_desc
+      - name: multiplayer_type_menu_update_desc
+      - name: solo_level_select_update
+      - name: difficulty_menu_update_desc
+      - name: build_number_textbox_only
+      - name: server_list_update
+      - name: network_pregame_status_update
+      - name: splitscreen_pregame_status_update
+      - name: net_splitscreen_prejoin_players
+      - name: mp_profile_list_update
+      - name: 3wide_player_profile_list_update
+      - name: plyr_prof_edit_select_menu_upd8
+      - name: player_profile_small_menu_update
+      - name: game_settings_lists_text_update
+      - name: solo_game_objective_text
+      - name: color_picker_update
+      - name: game_settings_lists_pic_update
+      - name: main_menu_fake_animate
+      - name: mp_level_select_update
+      - name: get_active_plyr_profile_name
+      - name: get_edit_plyr_profile_name
+      - name: get_edit_game_settings_name
+      - name: get_active_plyr_profile_color
+      - name: mp_set_textbox_map_name
+      - name: mp_set_textbox_game_ruleset
+      - name: mp_set_textbox_teams_noteams
+      - name: mp_set_textbox_score_limit
+      - name: mp_set_textbox_score_limit_type
+      - name: mp_set_bitmap_for_map
+      - name: mp_set_bitmap_for_ruleset
+      - name: mp_set_textbox
+      - name: mp_edit_profile_set_rule_text
+      - name: system_link_status_check
+      - name: mp_game_directions
+      - name: teams_no_teams_bitmap_update
+      - name: warn_if_diff_will_nuke_saved_game
+      - name: dim_if_no_net_cable
+      - name: pause_game_set_textbox_inverted
+      - name: dim_unless_two_controllers
+      - name: controls_update_menu
+      - name: video_menu_update
+      - name: gamespy_screen_update
+      - name: common_button_bar_update
+      - name: gamepad_update_menu
+      - name: server_settings_update
+      - name: audio_menu_update
+      - name: mp_prof_vehicles_update
+      - name: solo_map_list_update
+      - name: mp_map_list_update
+      - name: gt_select_list_update
+      - name: gt_edit_list_update
+      - name: load_game_list_update
+      - name: checking_for_updates
+      - name: direct_ip_connect_update
+      - name: network_settings_update
+  GameDataInputReference:
+    class: struct
+    assert_size: 36
+    fields:
+      - name: function
+        type: UIGameDataInputReferenceFunction
+      - type: pad
+        size: 2
+      - type: pad
+        size: 32
+  EventHandlerReferencesFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: close_current_widget
+      - name: close_other_widget
+      - name: close_all_widgets
+      - name: open_widget
+      - name: reload_self
+      - name: reload_other_widget
+      - name: give_focus_to_widget
+      - name: run_function
+      - name: replace_self_w_widget
+      - name: go_back_to_previous_widget
+      - name: run_scenario_script
+      - name: try_to_branch_on_failure
+  UIEventType:
+    class: enum
+    size: 2
+    options:
+      - name: a_button
+      - name: b_button
+      - name: x_button
+      - name: y_button
+      - name: black_button
+      - name: white_button
+      - name: left_trigger
+      - name: right_trigger
+      - name: dpad_up
+      - name: dpad_down
+      - name: dpad_left
+      - name: dpad_right
+      - name: start_button
+      - name: back_button
+      - name: left_thumb
+      - name: right_thumb
+      - name: left_analog_stick_up
+      - name: left_analog_stick_down
+      - name: left_analog_stick_left
+      - name: left_analog_stick_right
+      - name: left_analog_stick_up_1
+      - name: right_analog_stick_down
+      - name: right_analog_stick_left
+      - name: right_analog_stick_right
+      - name: created
+      - name: deleted
+      - name: get_focus
+      - name: lose_focus
+      - name: left_mouse
+      - name: middle_mouse
+      - name: right_mouse
+      - name: double_click
+      - name: custom_activation
+      - name: post_render
+  UIEventHandlerReferenceFunction:
+    class: enum
+    size: 2
+    options:
+      - name: 'null'
+      - name: list_goto_next_item
+      - name: list_goto_previous_item
+      - name: unused
+      - name: unused1
+      - name: initialize_sp_level_list_solo
+      - name: initialize_sp_level_list_coop
+      - name: dispose_sp_level_list
+      - name: solo_level_set_map
+      - name: set_difficulty
+      - name: start_new_game
+      - name: pause_game_restart_at_checkpoint
+      - name: pause_game_restart_level
+      - name: pause_game_return_to_main_menu
+      - name: clear_multiplayer_player_joins
+      - name: join_controller_to_mp_game
+      - name: initialize_net_game_server_list
+      - name: start_network_game_server
+      - name: dispose_net_game_server_list
+      - name: shutdown_network_game
+      - name: net_game_join_from_server_list
+      - name: split_screen_game_initialize
+      - name: coop_game_initialize
+      - name: main_menu_intialize
+      - name: mp_type_menu_initialize
+      - name: pick_play_stage_for_quick_start
+      - name: mp_level_list_initialize
+      - name: mp_level_list_dispose
+      - name: mp_level_select
+      - name: mp_profiles_list_initialize
+      - name: mp_profiles_list_dispose
+      - name: mp_profile_set_for_game
+      - name: swap_player_team
+      - name: net_game_join_player
+      - name: player_profile_list_initialize
+      - name: player_profile_list_dispose
+      - name: 3wide_plyr_prof_set_for_game
+      - name: 1wide_plyr_prof_set_for_game
+      - name: mp_profile_begin_editing
+      - name: mp_profile_end_editing
+      - name: mp_profile_set_game_engine
+      - name: mp_profile_change_name
+      - name: mp_profile_set_ctf_rules
+      - name: mp_profile_set_koth_rules
+      - name: mp_profile_set_slayer_rules
+      - name: mp_profile_set_oddball_rules
+      - name: mp_profile_set_racing_rules
+      - name: mp_profile_set_player_options
+      - name: mp_profile_set_item_options
+      - name: mp_profile_set_indicator_opts
+      - name: mp_profile_init_game_engine
+      - name: mp_profile_init_name
+      - name: mp_profile_init_ctf_rules
+      - name: mp_profile_init_koth_rules
+      - name: mp_profile_init_slayer_rules
+      - name: mp_profile_init_oddball_rules
+      - name: mp_profile_init_racing_rules
+      - name: mp_profile_init_player_opts
+      - name: mp_profile_init_item_options
+      - name: mp_profile_init_indicator_opts
+      - name: mp_profile_save_changes
+      - name: color_picker_menu_initialize
+      - name: color_picker_menu_dispose
+      - name: color_picker_select_color
+      - name: player_profile_begin_editing
+      - name: player_profile_end_editing
+      - name: player_profile_change_name
+      - name: player_profile_save_changes
+      - name: plyr_prf_init_cntl_settings
+      - name: plyr_prf_init_adv_cntl_set
+      - name: plyr_prf_save_cntl_settings
+      - name: plyr_prf_save_adv_cntl_set
+      - name: mp_game_player_quit
+      - name: main_menu_switch_to_solo_game
+      - name: request_del_player_profile
+      - name: request_del_playlist_profile
+      - name: final_del_player_profile
+      - name: final_del_playlist_profile
+      - name: cancel_profile_delete
+      - name: create_edit_playlist_profile
+      - name: create_edit_player_profile
+      - name: net_game_speed_start
+      - name: net_game_delay_start
+      - name: net_server_accept_conx
+      - name: net_server_defer_start
+      - name: net_server_allow_start
+      - name: disable_if_no_xdemos
+      - name: run_xdemos
+      - name: sp_reset_controller_choices
+      - name: sp_set_p1_controller_choice
+      - name: sp_set_p2_controller_choice
+      - name: error_if_no_network_connection
+      - name: start_server_if_none_advertised
+      - name: net_game_unjoin_player
+      - name: close_if_not_editing_profile
+      - name: exit_to_xbox_dashboard
+      - name: new_campaign_chosen
+      - name: new_campaign_decision
+      - name: pop_history_stack_once
+      - name: difficulty_menu_init
+      - name: begin_music_fade_out
+      - name: new_game_if_no_plyr_profiles
+      - name: exit_gracefully_to_xbox_dashboard
+      - name: pause_game_invert_pitch
+      - name: start_new_coop_game
+      - name: pause_game_invert_spinner_get
+      - name: pause_game_invert_spinner_set
+      - name: main_menu_quit_game
+      - name: mouse_emit_accept_event
+      - name: mouse_emit_back_event
+      - name: mouse_emit_dpad_left_event
+      - name: mouse_emit_dpad_right_event
+      - name: mouse_spinner_3wide_click
+      - name: controls_screen_init
+      - name: video_screen_init
+      - name: controls_begin_binding
+      - name: gamespy_screen_init
+      - name: gamespy_screen_dispose
+      - name: gamespy_select_header
+      - name: gamespy_select_item
+      - name: gamespy_select_button
+      - name: plr_prof_init_mouse_set
+      - name: plr_prof_change_mouse_set
+      - name: plr_prof_init_audio_set
+      - name: plr_prof_change_audio_set
+      - name: plr_prof_change_video_set
+      - name: controls_screen_dispose
+      - name: controls_screen_change_set
+      - name: mouse_emit_x_event
+      - name: gamepad_screen_init
+      - name: gamepad_screen_dispose
+      - name: gamepad_screen_change_gamepads
+      - name: gamepad_screen_select_item
+      - name: mouse_screen_defaults
+      - name: audio_screen_defaults
+      - name: video_screen_defaults
+      - name: controls_screen_defaults
+      - name: profile_set_edit_begin
+      - name: profile_manager_delete
+      - name: profile_manager_select
+      - name: gamespy_dismiss_error
+      - name: server_settings_init
+      - name: ss_edit_server_name
+      - name: ss_edit_server_password
+      - name: ss_start_game
+      - name: video_test_dialog_init
+      - name: video_test_dialog_dispose
+      - name: video_test_dialog_accept
+      - name: gamespy_dismiss_filters
+      - name: gamespy_update_filter_settings
+      - name: gamespy_back_handler
+      - name: mouse_spinner_1wide_click
+      - name: controls_back_handler
+      - name: controls_advanced_launch
+      - name: controls_advanced_ok
+      - name: mp_pause_menu_open
+      - name: mp_game_options_open
+      - name: mp_choose_team
+      - name: mp_prof_init_vehicle_options
+      - name: mp_prof_save_vehicle_options
+      - name: single_prev_cl_item_activated
+      - name: mp_prof_init_teamplay_options
+      - name: mp_prof_save_teamplay_options
+      - name: mp_game_options_choose
+      - name: emit_custom_activation_event
+      - name: plr_prof_cancel_audio_set
+      - name: plr_prof_init_network_options
+      - name: plr_prof_save_network_options
+      - name: credits_post_render
+      - name: difficulty_item_select
+      - name: credits_initialize
+      - name: credits_dispose
+      - name: gamespy_get_patch
+      - name: video_screen_dispose
+      - name: campaign_menu_init
+      - name: campaign_menu_continue
+      - name: load_game_menu_init
+      - name: load_game_menu_dispose
+      - name: load_game_menu_activated
+      - name: solo_menu_save_checkpoint
+      - name: mp_type_set_mode
+      - name: checking_for_updates_ok
+      - name: checking_for_updates_dismiss
+      - name: direct_ip_connect_init
+      - name: direct_ip_connect_go
+      - name: direct_ip_edit_field
+      - name: network_settings_edit_a_port
+      - name: network_settings_defaults
+      - name: load_game_menu_delete_request
+      - name: load_game_menu_delete_finish
+  EventHandlerReference:
+    class: struct
+    assert_size: 72
+    fields:
+      - name: flags
+        type: EventHandlerReferencesFlags
+      - name: event_type
+        type: UIEventType
+      - name: function
+        type: UIEventHandlerReferenceFunction
+      - name: widget_tag
+        type: TagDependency
+        meta:
+          tag_classes:
+            - ui_widget_definition
+      - name: sound_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: script
+        type: TagString
+  UIReplaceFunction:
+    class: enum
+    size: 2
+    options:
+      - name: 'null'
+      - name: widget_s_controller
+      - name: build_number
+      - name: pid
+  SearchAndReplaceReference:
+    class: struct
+    assert_size: 34
+    fields:
+      - name: search_string
+        type: TagString
+      - name: replace_function
+        type: UIReplaceFunction
+  UIJustification:
+    class: enum
+    size: 2
+    options:
+      - name: left_justify
+      - name: right_justify
+      - name: center_justify
+  UIWidgetDefinitionFlags1:
+    class: bitfield
+    size: 4
+    bits:
+      - name: editable
+      - name: password
+      - name: flashing
+      - name: don't_do_that_weird_focus_test
+  UIWidgetDefinitionFlags2:
+    class: bitfield
+    size: 4
+    bits:
+      - name: list_items_generated_in_code
+      - name: list_items_from_string_list_tag
+      - name: list_items_only_one_tooltip
+      - name: list_single_preview_no_scroll
+  ConditionalWidgetReferenceFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: load_if_event_handler_function_fails
+  ConditionalWidgetReference:
+    class: struct
+    assert_size: 80
+    fields:
+      - name: widget_tag
+        type: TagDependency
+        meta:
+          tag_classes:
+            - ui_widget_definition
+      - name: name
+        type: TagString
+      - name: flags
+        type: ConditionalWidgetReferenceFlags
+      - name: custom_controller_index
+        type: Index
+      - type: pad
+        size: 26
+  ChildWidgetReferenceFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: use_custom_controller_index
+  ChildWidgetReference:
+    class: struct
+    assert_size: 80
+    fields:
+      - name: widget_tag
+        type: TagDependency
+        meta:
+          tag_classes:
+            - ui_widget_definition
+      - name: name
+        type: TagString
+      - name: flags
+        type: ChildWidgetReferenceFlags
+      - name: custom_controller_index
+        type: Index
+      - name: vertical_offset
+        type: int16
+      - name: horizontal_offset
+        type: int16
+      - type: pad
+        size: 22
+  UIWidgetDefinition:
+    class: struct
+    meta:
+      tag_id: DeLa
+    assert_size: 1004
+    fields:
+      - name: widget_type
+        type: UIWidgetType
+      - name: controller_index
+        type: UIControllerIndex
+      - name: name
+        type: TagString
+      - name: bounds
+        type: Rectangle2D
+      - name: flags
+        type: UIWidgetDefinitionFlags
+      - name: milliseconds_to_auto_close
+        type: uint32
+      - name: milliseconds_auto_close_fade_time
+        type: uint32
+      - name: background_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: game_data_inputs
+        type: Block
+        type_args:
+          T: GameDataInputReference
+        meta:
+          hek_max_count: 64
+      - name: event_handlers
+        type: Block
+        type_args:
+          T: EventHandlerReference
+        meta:
+          hek_max_count: 32
+      - name: search_and_replace_functions
+        type: Block
+        type_args:
+          T: SearchAndReplaceReference
+        meta:
+          hek_max_count: 32
+      - type: pad
+        size: 128
+      - name: text_label_unicode_strings_list
+        type: TagDependency
+        meta:
+          tag_classes:
+            - unicode_string_list
+      - name: text_font
+        type: TagDependency
+        meta:
+          tag_classes:
+            - font
+      - name: text_color
+        type: ColorARGB
+      - name: justification
+        type: UIJustification
+      - name: flags_1
+        type: UIWidgetDefinitionFlags1
+      - type: pad
+        size: 12
+      - name: string_list_index
+        type: Index
+      - name: horiz_offset
+        type: int16
+      - name: vert_offset
+        type: int16
+      - type: pad
+        size: 26
+      - type: pad
+        size: 2
+      - name: flags_2
+        type: UIWidgetDefinitionFlags2
+      - name: list_header_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: list_footer_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: header_bounds
+        type: Rectangle2D
+      - name: footer_bounds
+        type: Rectangle2D
+      - type: pad
+        size: 32
+      - name: extended_description_widget
+        type: TagDependency
+        meta:
+          tag_classes:
+            - ui_widget_definition
+      - type: pad
+        size: 32
+      - type: pad
+        size: 256
+      - name: conditional_widgets
+        type: Block
+        type_args:
+          T: ConditionalWidgetReference
+        meta:
+          hek_max_count: 32
+      - type: pad
+        size: 128
+      - type: pad
+        size: 128
+      - name: child_widgets
+        type: Block
+        type_args:
+          T: ChildWidgetReference
+        meta:
+          hek_max_count: 32

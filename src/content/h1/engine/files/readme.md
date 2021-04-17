@@ -44,10 +44,12 @@ The file `savegames\<profile name>\savegame.bin` contains the saved state of the
 The structure of this file is not fully mapped out, however some fields are known:
 
 ```.struct
-entryType: Savegame
-showAbsoluteOffsets: true
+entry_type: Savegame
+showOffsets: true
 id: savegame
-typeDefs: savegame.bin.yml
+imports:
+  h1/files/savegame.bin:
+    - Savegame
 ```
 
 ## blam.sav
@@ -56,10 +58,12 @@ The file `savegames\<profile name>\blam.sav` contains the configuration for a HC
 The file structure follows. All data is [little-endian](https://en.wikipedia.org/wiki/Endianness) unless otherwise stated.
 
 ```.struct
-entryType: Profile
+entry_type: Profile
 showOffsets: true
 id: profile
-typeDefs: blam.sav.yml
+imports:
+  h1/files/blam.sav:
+    - Profile
 ```
 
 # 00.sav and 01.sav

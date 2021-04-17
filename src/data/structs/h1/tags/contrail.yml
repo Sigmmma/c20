@@ -1,0 +1,246 @@
+entry_type: Contrail
+imports:
+  h1/tags/common:
+    - Angle
+    - Fraction
+    - TagDependency
+    - Index
+    - FramebufferBlendFunction
+    - FramebufferFadeMode
+    - IsUnfilteredFlag
+    - FunctionOut
+    - WaveFunction
+    - Point2D
+    - Block
+    - ColorARGB
+  h1/tags/particle:
+    - ParticleShaderFlags
+    - ParticleAnchor
+type_defs:
+  ContrailFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: first_point_unfaded
+      - name: last_point_unfaded
+      - name: points_start_pinned_to_media
+      - name: points_start_pinned_to_ground
+      - name: points_always_pinned_to_media
+      - name: points_always_pinned_to_ground
+      - name: edge_effect_fades_slowly
+  ContrailScaleFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: point_generation_rate
+      - name: point_velocity
+      - name: point_velocity_delta
+      - name: point_velocity_cone_angle
+      - name: inherited_velocity_fraction
+      - name: sequence_animation_rate
+      - name: texture_scale_u
+      - name: texture_scale_v
+      - name: texture_animation_u
+      - name: texture_animation_v
+  ContrailRenderType:
+    class: enum
+    size: 2
+    options:
+      - name: vertical_orientation
+      - name: horizontal_orientation
+      - name: media_mapped
+      - name: ground_mapped
+      - name: viewer_facing
+      - name: double_marker_linked
+  ContrailPointStateScaleFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: duration
+      - name: duration_delta
+      - name: transition_duration
+      - name: transition_duration_delta
+      - name: width
+      - name: color
+  ContrailPointState:
+    class: struct
+    assert_size: 104
+    fields:
+      - name: duration
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: transition_duration
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: physics
+        type: TagDependency
+        meta:
+          tag_classes:
+            - point_physics
+      - type: pad
+        size: 32
+      - name: width
+        type: float
+        meta:
+          unit: world units
+      - name: color_lower_bound
+        type: ColorARGB
+      - name: color_upper_bound
+        type: ColorARGB
+      - name: scale_flags
+        type: ContrailPointStateScaleFlags
+  Contrail:
+    class: struct
+    meta:
+      tag_id: cont
+      pre_compile: true
+    comments:
+      en: >
+        Contrails are trail-like repeating [bitmap][] effects which can be
+        attached to any [object][], optionally to one of their
+        [markers][gbxmodel#markers]. Commonly used for projectiles, but also for
+        the Banshee's wingtips.
+    assert_size: 324
+    fields:
+      - name: flags
+        type: ContrailFlags
+      - name: scale_flags
+        type: ContrailScaleFlags
+      - name: point_generation_rate
+        type: float
+        meta:
+          unit: points per second
+        comments:
+          en: >
+            For compatibility with unmodified clients or future mods, try not to
+            exceed 15 points per second because it can cause visual artifacts.
+      - name: point_velocity
+        type: Bounds
+        meta:
+          unit: world units per second
+        type_args:
+          T: float
+      - name: point_velocity_cone_angle
+        type: Angle
+      - name: inherited_velocity_fraction
+        type: Fraction
+      - name: render_type
+        type: ContrailRenderType
+      - type: pad
+        size: 2
+      - name: texture_repeats_u
+        type: float
+        meta:
+          unit: repeats
+      - name: texture_repeats_v
+        type: float
+        meta:
+          unit: repeats
+      - name: texture_animation_u
+        type: float
+        meta:
+          unit: repeats per second
+      - name: texture_animation_v
+        type: float
+        meta:
+          unit: repeats per second
+      - name: animation_rate
+        type: float
+        meta:
+          unit: frames per second
+      - name: bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: first_sequence_index
+        type: Index
+      - name: sequence_count
+        type: uint16
+      - type: pad
+        size: 64
+      - type: pad
+        size: 36
+      - name: unknown_int
+        type: uint32
+        meta:
+          cache_only: true
+      - name: shader_flags
+        type: ParticleShaderFlags
+      - name: framebuffer_blend_function
+        type: FramebufferBlendFunction
+      - name: framebuffer_fade_mode
+        type: FramebufferFadeMode
+      - name: map_flags
+        type: IsUnfilteredFlag
+      - type: pad
+        size: 12
+      - type: pad
+        size: 16
+      - name: secondary_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: anchor
+        type: ParticleAnchor
+      - name: secondary_map_flags
+        type: IsUnfilteredFlag
+      - name: u_animation_source
+        type: FunctionOut
+      - name: u_animation_function
+        type: WaveFunction
+      - name: u_animation_period
+        type: float
+        meta:
+          unit: seconds
+      - name: u_animation_phase
+        type: float
+      - name: u_animation_scale
+        type: float
+        meta:
+          unit: repeats
+      - name: v_animation_source
+        type: FunctionOut
+      - name: v_animation_function
+        type: WaveFunction
+      - name: v_animation_period
+        type: float
+        meta:
+          unit: seconds
+      - name: v_animation_phase
+        type: float
+      - name: v_animation_scale
+        type: float
+        meta:
+          unit: repeats
+      - name: rotation_animation_source
+        type: FunctionOut
+      - name: rotation_animation_function
+        type: WaveFunction
+      - name: rotation_animation_period
+        type: float
+      - name: rotation_animation_phase
+        type: float
+      - name: rotation_animation_scale
+        type: Angle
+      - name: rotation_animation_center
+        type: Point2D
+      - type: pad
+        size: 4
+      - name: zsprite_radius_scale
+        type: float
+      - type: pad
+        size: 20
+      - name: point_states
+        type: Block
+        type_args:
+          T: ContrailPointState
+        meta:
+          hek_max_count: 16

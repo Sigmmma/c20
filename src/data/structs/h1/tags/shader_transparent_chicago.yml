@@ -1,0 +1,184 @@
+entry_type: ShaderTransparentChicago
+imports:
+  h1/tags/shader:
+    - Shader
+    - ShaderFirstMapType
+    - ShaderTransparentExtraLayer
+    - ShaderColorFunctionType
+  h1/tags/shader_transparent_generic:
+    - ShaderTransparentGenericFlags
+  h1/tags/common:
+    - FramebufferBlendFunction
+    - FramebufferFadeMode
+    - FunctionOut
+    - TagDependency
+    - Block
+    - Fraction
+    - WaveFunction
+    - Point2D
+type_defs:
+  ShaderTransparentChicagoMapFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: unfiltered
+      - name: alpha_replicate
+      - name: u_clamped
+      - name: v_clamped
+  ShaderTransparentChicagoMap:
+    class: struct
+    assert_size: 220
+    fields:
+      - name: flags
+        type: ShaderTransparentChicagoMapFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 40
+      - name: color_function
+        type: ShaderColorFunctionType
+      - name: alpha_function
+        type: ShaderColorFunctionType
+      - type: pad
+        size: 36
+      - name: map_u_scale
+        type: float
+      - name: map_v_scale
+        type: float
+      - name: map_u_offset
+        type: float
+      - name: map_v_offset
+        type: float
+      - name: map_rotation
+        type: float
+      - name: mipmap_bias
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 40
+      - name: u_animation_source
+        type: FunctionOut
+      - name: u_animation_function
+        type: WaveFunction
+      - name: u_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: u_animation_phase
+        type: float
+      - name: u_animation_scale
+        type: float
+        meta:
+          unit: world units
+          default: 1
+      - name: v_animation_source
+        type: FunctionOut
+      - name: v_animation_function
+        type: WaveFunction
+      - name: v_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: v_animation_phase
+        type: float
+      - name: v_animation_scale
+        type: float
+        meta:
+          unit: world units
+          default: 1
+      - name: rotation_animation_source
+        type: FunctionOut
+      - name: rotation_animation_function
+        type: WaveFunction
+      - name: rotation_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: rotation_animation_phase
+        type: float
+      - name: rotation_animation_scale
+        type: float
+        meta:
+          unit: degrees
+          default: 360
+      - name: rotation_animation_center
+        type: Point2D
+  ShaderTransparentChicagoExtraFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: don't_fade_active_camouflage
+      - name: numeric_countdown_timer
+  ShaderTransparentChicago:
+    class: struct
+    extends:
+      type: Shader
+    meta:
+      tag_id: schi
+      pre_compile: true
+    assert_size: 108
+    fields:
+      - name: numeric_counter_limit
+        type: uint8
+      - name: shader_transparent_chicago_flags
+        type: ShaderTransparentGenericFlags
+      - name: first_map_type
+        type: ShaderFirstMapType
+      - name: framebuffer_blend_function
+        type: FramebufferBlendFunction
+      - name: framebuffer_fade_mode
+        type: FramebufferFadeMode
+      - name: framebuffer_fade_source
+        type: FunctionOut
+      - type: pad
+        size: 2
+      - name: lens_flare_spacing
+        type: float
+      - name: lens_flare
+        type: TagDependency
+        meta:
+          tag_classes:
+            - lens_flare
+      - name: extra_layers
+        type: Block
+        type_args:
+          T: ShaderTransparentExtraLayer
+        meta:
+          hek_max_count: 4
+        comments:
+          en: >
+            Specifies additional shaders to render _before_ this parent shader.
+            The same geometry is essentially rendered multiple times with
+            different shaders. Each extra layer shader can have an independent
+            _framebuffer blend function_, but some settings like _first map is
+            reflection cube map_ from the parent will also override the setting
+            in extra layers.
+
+            Although any shader type can be referenced here, only the **chicago
+            transparent shaders** are properly supported; the other types will
+            either not render or render incorrectly.
+
+            **Warning**: Using a shader with extra layers on an [object][] with
+            _transparent self occlusion_ enabled causes [Sapien to
+            crash][sapien#crashes].
+      - name: maps
+        type: Block
+        type_args:
+          T: ShaderTransparentChicagoMap
+        meta:
+          hek_max_count: 4
+          max: 4
+      - name: extra_flags
+        type: ShaderTransparentChicagoExtraFlags
+      - type: pad
+        size: 8

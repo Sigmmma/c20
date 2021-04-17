@@ -1,0 +1,201 @@
+entry_type: LensFlare
+imports:
+  h1/tags/common:
+    - Angle
+    - TagDependency
+    - Block
+    - Index
+    - Fraction
+    - ColorARGB
+    - WaveFunction
+type_defs:
+  LensFlareOcclusionOffsetDirection:
+    class: enum
+    size: 2
+    options:
+      - name: toward_viewer
+      - name: marker_forward
+      - name: none
+  LensFlareFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: sun
+  LensFlareRotationFunction:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: rotation_a
+      - name: rotation_b
+      - name: rotation_translation
+      - name: translation
+  LensFlareReflectionFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: align_rotation_with_screen_center
+      - name: radius_not_scaled_by_distance
+      - name: radius_scaled_by_occlusion_factor
+      - name: occluded_by_solid_objects
+  LensFlareRadiusScaledBy:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: rotation
+      - name: rotation_and_strafing
+      - name: distance_from_center
+  LensFlareReflectionMoreFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: interpolate_colors_in_hsv
+      - name: more_colors
+  LensFlareReflection:
+    class: struct
+    assert_size: 128
+    fields:
+      - name: flags
+        type: LensFlareReflectionFlags
+      - type: pad
+        size: 2
+      - name: bitmap_index
+        type: Index
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: position
+        type: float
+        meta:
+          unit: along flare axis
+      - name: rotation_offset
+        type: float
+      - type: pad
+        size: 4
+      - name: radius
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+      - name: radius_scaled_by
+        type: LensFlareRadiusScaledBy
+      - type: pad
+        size: 2
+      - name: brightness
+        type: Bounds
+        meta:
+          min: 0
+          max: 1
+        type_args:
+          T: Fraction
+      - name: brightness_scaled_by
+        type: LensFlareRadiusScaledBy
+      - type: pad
+        size: 2
+      - name: tint_color
+        type: ColorARGB
+      - name: color_lower_bound
+        type: ColorARGB
+      - name: color_upper_bound
+        type: ColorARGB
+      - name: more_flags
+        type: LensFlareReflectionMoreFlags
+      - name: animation_function
+        type: WaveFunction
+      - name: animation_period
+        type: float
+        meta:
+          unit: world units
+          default: 1
+      - name: animation_phase
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 4
+  LensFlare:
+    class: struct
+    meta:
+      tag_id: lens
+      pre_compile: true
+    comments:
+      en: >
+        A 2D sprite which can fade by distance and angle. Can be part of a
+        [light][] or attached to [the
+        BSP][scenario_structure_bsp#lens-flare-markers].
+    assert_size: 240
+    fields:
+      - name: falloff_angle
+        type: Angle
+      - name: cutoff_angle
+        type: Angle
+      - name: cos_falloff_angle
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: cos_cutoff_angle
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: occlusion_radius
+        type: float
+        meta:
+          unit: world units
+      - name: occlusion_offset_direction
+        type: LensFlareOcclusionOffsetDirection
+      - type: pad
+        size: 2
+      - name: near_fade_distance
+        type: float
+        meta:
+          unit: world units
+      - name: far_fade_distance
+        type: float
+        meta:
+          unit: world units
+      - name: bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: flags
+        type: LensFlareFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 76
+      - name: rotation_function
+        type: LensFlareRotationFunction
+      - type: pad
+        size: 2
+      - name: rotation_function_scale
+        type: Angle
+        meta:
+          default: 360
+        comments:
+          en: 'Yes, the default is indeed 360 radians.'
+      - type: pad
+        size: 24
+      - name: horizontal_scale
+        type: float
+        meta:
+          default: 1
+      - name: vertical_scale
+        type: float
+        meta:
+          default: 1
+      - type: pad
+        size: 28
+      - name: reflections
+        type: Block
+        type_args:
+          T: LensFlareReflection
+        meta:
+          hek_max_count: 32
+      - type: pad
+        size: 32

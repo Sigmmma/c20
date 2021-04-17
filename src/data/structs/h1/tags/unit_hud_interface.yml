@@ -1,0 +1,650 @@
+entry_type: UnitHUDInterface
+imports:
+  h1/tags/hud_interface_types:
+    - HUDInterfaceAnchor
+    - HUDInterfaceScalingFlags
+    - HUDInterfaceFlashFlags
+    - HUDInterfaceMultitextureOverlay
+    - HUDInterfaceMeterFlags
+  h1/tags/common:
+    - Point2DInt
+    - TagDependency
+    - ColorARGBInt
+    - Index
+    - Block
+type_defs:
+  UnitHUDInterfacePanelType:
+    class: enum
+    size: 2
+    options:
+      - name: integrated_light
+  UnitHUDInterfaceAuxiliaryOverlayFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: use_team_color
+  UnitHUDInterfaceAuxiliaryOverlay:
+    class: struct
+    assert_size: 132
+    fields:
+      - name: anchor_offset
+        type: Point2DInt
+      - name: width_scale
+        type: float
+        meta:
+          default: 1
+      - name: height_scale
+        type: float
+        meta:
+          default: 1
+      - name: scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: interface_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: default_color
+        type: ColorARGBInt
+      - name: flashing_color
+        type: ColorARGBInt
+      - name: flash_period
+        type: float
+      - name: flash_delay
+        type: float
+      - name: number_of_flashes
+        type: uint16
+      - name: flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: flash_length
+        type: float
+      - name: disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: multitex_overlay
+        type: Block
+        type_args:
+          T: HUDInterfaceMultitextureOverlay
+      - type: pad
+        size: 4
+      - name: type
+        type: UnitHUDInterfacePanelType
+      - name: flags
+        type: UnitHUDInterfaceAuxiliaryOverlayFlags
+      - type: pad
+        size: 24
+  UnitHUDInterfaceHUDSoundLatchedTo:
+    class: bitfield
+    size: 4
+    bits:
+      - name: shield_recharging
+      - name: shield_damaged
+      - name: shield_low
+      - name: shield_empty
+      - name: health_low
+      - name: health_empty
+      - name: health_minor_damage
+      - name: health_major_damage
+  UnitHUDInterfaceHUDSound:
+    class: struct
+    assert_size: 56
+    fields:
+      - name: sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - sound_looping
+      - name: latched_to
+        type: UnitHUDInterfaceHUDSoundLatchedTo
+      - name: scale
+        type: float
+      - type: pad
+        size: 32
+  UnitHUDInterfaceAuxiliaryPanelMeterMoreFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: show_only_when_active
+      - name: flash_once_if_activated_while_disabled
+  UnitHUDInterfaceAuxiliaryPanel:
+    class: struct
+    assert_size: 324
+    fields:
+      - name: type
+        type: UnitHUDInterfacePanelType
+      - type: pad
+        size: 2
+      - type: pad
+        size: 16
+      - name: background_anchor_offset
+        type: Point2DInt
+      - name: background_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: background_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: background_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: background_interface_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: background_default_color
+        type: ColorARGBInt
+      - name: background_flashing_color
+        type: ColorARGBInt
+      - name: background_flash_period
+        type: float
+      - name: background_flash_delay
+        type: float
+      - name: background_number_of_flashes
+        type: uint16
+      - name: background_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: background_flash_length
+        type: float
+      - name: background_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: background_sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: background_multitex_overlay
+        type: Block
+        type_args:
+          T: HUDInterfaceMultitextureOverlay
+      - type: pad
+        size: 4
+      - name: meter_anchor_offset
+        type: Point2DInt
+      - name: meter_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: meter_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: meter_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: meter_meter_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: meter_color_at_meter_minimum
+        type: ColorARGBInt
+      - name: meter_color_at_meter_maximum
+        type: ColorARGBInt
+      - name: meter_flash_color
+        type: ColorARGBInt
+      - name: meter_empty_color
+        type: ColorARGBInt
+      - name: meter_flags
+        type: HUDInterfaceMeterFlags
+      - name: meter_minimum_meter_value
+        type: int8
+      - name: meter_sequence_index
+        type: Index
+      - name: meter_alpha_multiplier
+        type: int8
+      - name: meter_alpha_bias
+        type: int8
+      - name: meter_value_scale
+        type: int16
+      - name: meter_opacity
+        type: float
+      - name: meter_translucency
+        type: float
+      - name: meter_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 16
+      - name: meter_minimum_fraction_cutoff
+        type: float
+      - name: meter_more_flags
+        type: UnitHUDInterfaceAuxiliaryPanelMeterMoreFlags
+      - type: pad
+        size: 24
+      - type: pad
+        size: 64
+  UnitHUDInterface:
+    class: struct
+    meta:
+      tag_id: unhi
+      post_compile: true
+    assert_size: 1388
+    fields:
+      - name: anchor
+        type: HUDInterfaceAnchor
+      - type: pad
+        size: 2
+      - type: pad
+        size: 32
+      - name: hud_background_anchor_offset
+        type: Point2DInt
+      - name: hud_background_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: hud_background_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: hud_background_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: hud_background_interface_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: hud_background_default_color
+        type: ColorARGBInt
+      - name: hud_background_flashing_color
+        type: ColorARGBInt
+      - name: hud_background_flash_period
+        type: float
+      - name: hud_background_flash_delay
+        type: float
+      - name: hud_background_number_of_flashes
+        type: uint16
+      - name: hud_background_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: hud_background_flash_length
+        type: float
+      - name: hud_background_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: hud_background_sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: hud_background_multitex_overlay
+        type: Block
+        type_args:
+          T: HUDInterfaceMultitextureOverlay
+      - type: pad
+        size: 4
+      - name: shield_panel_background_anchor_offset
+        type: Point2DInt
+      - name: shield_panel_background_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: shield_panel_background_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: shield_panel_background_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: shield_panel_background_interface_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: shield_panel_background_default_color
+        type: ColorARGBInt
+      - name: shield_panel_background_flashing_color
+        type: ColorARGBInt
+      - name: shield_panel_background_flash_period
+        type: float
+      - name: shield_panel_background_flash_delay
+        type: float
+      - name: shield_panel_background_number_of_flashes
+        type: uint16
+      - name: shield_panel_background_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: shield_panel_background_flash_length
+        type: float
+      - name: shield_panel_background_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: shield_panel_background_sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: shield_panel_background_multitex_overlay
+        type: Block
+        type_args:
+          T: HUDInterfaceMultitextureOverlay
+      - type: pad
+        size: 4
+      - name: shield_panel_meter_anchor_offset
+        type: Point2DInt
+      - name: shield_panel_meter_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: shield_panel_meter_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: shield_panel_meter_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: shield_panel_meter_meter_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: shield_panel_meter_color_at_meter_minimum
+        type: ColorARGBInt
+      - name: shield_panel_meter_color_at_meter_maximum
+        type: ColorARGBInt
+      - name: shield_panel_meter_flash_color
+        type: ColorARGBInt
+      - name: shield_panel_meter_empty_color
+        type: ColorARGBInt
+      - name: shield_panel_meter_flags
+        type: HUDInterfaceMeterFlags
+      - name: shield_panel_meter_minimum_meter_value
+        type: int8
+      - name: shield_panel_meter_sequence_index
+        type: Index
+      - name: shield_panel_meter_alpha_multiplier
+        type: int8
+      - name: shield_panel_meter_alpha_bias
+        type: int8
+      - name: shield_panel_meter_value_scale
+        type: int16
+      - name: shield_panel_meter_opacity
+        type: float
+      - name: shield_panel_meter_translucency
+        type: float
+      - name: shield_panel_meter_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 16
+      - name: shield_panel_meter_overcharge_minimum_color
+        type: ColorARGBInt
+      - name: shield_panel_meter_overcharge_maximum_color
+        type: ColorARGBInt
+      - name: shield_panel_meter_overcharge_flash_color
+        type: ColorARGBInt
+      - name: shield_panel_meter_overcharge_empty_color
+        type: ColorARGBInt
+      - type: pad
+        size: 16
+      - name: health_panel_background_anchor_offset
+        type: Point2DInt
+      - name: health_panel_background_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: health_panel_background_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: health_panel_background_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: health_panel_background_interface_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: health_panel_background_default_color
+        type: ColorARGBInt
+      - name: health_panel_background_flashing_color
+        type: ColorARGBInt
+      - name: health_panel_background_flash_period
+        type: float
+      - name: health_panel_background_flash_delay
+        type: float
+      - name: health_panel_background_number_of_flashes
+        type: uint16
+      - name: health_panel_background_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: health_panel_background_flash_length
+        type: float
+      - name: health_panel_background_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: health_panel_background_sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: health_panel_background_multitex_overlay
+        type: Block
+        type_args:
+          T: HUDInterfaceMultitextureOverlay
+      - type: pad
+        size: 4
+      - name: health_panel_meter_anchor_offset
+        type: Point2DInt
+      - name: health_panel_meter_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: health_panel_meter_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: health_panel_meter_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: health_panel_meter_meter_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: health_panel_meter_color_at_meter_minimum
+        type: ColorARGBInt
+      - name: health_panel_meter_color_at_meter_maximum
+        type: ColorARGBInt
+      - name: health_panel_meter_flash_color
+        type: ColorARGBInt
+      - name: health_panel_meter_empty_color
+        type: ColorARGBInt
+      - name: health_panel_meter_flags
+        type: HUDInterfaceMeterFlags
+      - name: health_panel_meter_minimum_meter_value
+        type: int8
+      - name: health_panel_meter_sequence_index
+        type: Index
+      - name: health_panel_meter_alpha_multiplier
+        type: int8
+      - name: health_panel_meter_alpha_bias
+        type: int8
+      - name: health_panel_meter_value_scale
+        type: int16
+      - name: health_panel_meter_opacity
+        type: float
+      - name: health_panel_meter_translucency
+        type: float
+      - name: health_panel_meter_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 16
+      - name: health_panel_meter_medium_health_left_color
+        type: ColorARGBInt
+      - name: health_panel_meter_max_color_health_fraction_cutoff
+        type: float
+      - name: health_panel_meter_min_color_health_fraction_cutoff
+        type: float
+      - type: pad
+        size: 20
+      - name: motion_sensor_background_anchor_offset
+        type: Point2DInt
+      - name: motion_sensor_background_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: motion_sensor_background_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: motion_sensor_background_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: motion_sensor_background_interface_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: motion_sensor_background_default_color
+        type: ColorARGBInt
+      - name: motion_sensor_background_flashing_color
+        type: ColorARGBInt
+      - name: motion_sensor_background_flash_period
+        type: float
+      - name: motion_sensor_background_flash_delay
+        type: float
+      - name: motion_sensor_background_number_of_flashes
+        type: uint16
+      - name: motion_sensor_background_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: motion_sensor_background_flash_length
+        type: float
+      - name: motion_sensor_background_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: motion_sensor_background_sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: motion_sensor_background_multitex_overlays
+        type: Block
+        type_args:
+          T: HUDInterfaceMultitextureOverlay
+      - type: pad
+        size: 4
+      - name: motion_sensor_foreground_anchor_offset
+        type: Point2DInt
+      - name: motion_sensor_foreground_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: motion_sensor_foreground_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: motion_sensor_foreground_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: motion_sensor_foreground_interface_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: motion_sensor_foreground_default_color
+        type: ColorARGBInt
+      - name: motion_sensor_foreground_flashing_color
+        type: ColorARGBInt
+      - name: motion_sensor_foreground_flash_period
+        type: float
+      - name: motion_sensor_foreground_flash_delay
+        type: float
+      - name: motion_sensor_foreground_number_of_flashes
+        type: uint16
+      - name: motion_sensor_foreground_flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: motion_sensor_foreground_flash_length
+        type: float
+      - name: motion_sensor_foreground_disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: motion_sensor_foreground_sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: motion_sensor_foreground_multitex_overlays
+        type: Block
+        type_args:
+          T: HUDInterfaceMultitextureOverlay
+      - type: pad
+        size: 4
+      - type: pad
+        size: 32
+      - name: motion_sensor_center_anchor_offset
+        type: Point2DInt
+      - name: motion_sensor_center_width_scale
+        type: float
+        meta:
+          default: 1
+      - name: motion_sensor_center_height_scale
+        type: float
+        meta:
+          default: 1
+      - name: motion_sensor_center_scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: auxiliary_overlay_anchor
+        type: HUDInterfaceAnchor
+      - type: pad
+        size: 2
+      - type: pad
+        size: 32
+      - name: overlays
+        type: Block
+        type_args:
+          T: UnitHUDInterfaceAuxiliaryOverlay
+      - type: pad
+        size: 16
+      - name: sounds
+        type: Block
+        type_args:
+          T: UnitHUDInterfaceHUDSound
+      - name: meters
+        type: Block
+        type_args:
+          T: UnitHUDInterfaceAuxiliaryPanel
+      - type: pad
+        size: 356
+      - type: pad
+        size: 48

@@ -1,0 +1,89 @@
+entry_type: Item
+imports:
+  h1/tags/object:
+    - Object
+    - ObjectFunctionIn
+  h1/tags/common:
+    - Index
+    - TagDependency
+type_defs:
+  ItemFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: always_maintains_z_up
+        comments:
+          en: >
+            Forces the item to remain upright even if it has been launched in an
+            explosion or thrown. This is used for the multiplayer flag weapon to
+            prevent it from tumbling when dropped.
+      - name: destroyed_by_explosions
+        comments:
+          en: >
+            Allows the item (e.g. grenade) to be detonated if receiving a
+            [damage_effect][] with a _detonates explosives_ flag enabled.
+      - name: unaffected_by_gravity
+  Item:
+    class: struct
+    extends:
+      type: Object
+    meta:
+      tag_id: item
+    comments:
+      en: >
+        Parent tag of [weapon][], [garbage][], and [equipment][]. Represents a
+        small moveable object with point-like physics.
+    assert_size: 776
+    fields:
+      - name: item_flags
+        type: ItemFlags
+      - name: pickup_text_index
+        type: Index
+      - name: sort_order
+        type: int16
+      - name: scale
+        type: float
+      - name: hud_message_value_scale
+        type: int16
+      - type: pad
+        size: 2
+      - type: pad
+        size: 16
+      - name: item_a_in
+        type: ObjectFunctionIn
+      - name: item_b_in
+        type: ObjectFunctionIn
+      - name: item_c_in
+        type: ObjectFunctionIn
+      - name: item_d_in
+        type: ObjectFunctionIn
+      - type: pad
+        size: 164
+      - name: material_effects
+        type: TagDependency
+        meta:
+          tag_classes:
+            - material_effects
+      - name: collision_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 120
+      - name: detonation_delay
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: detonating_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: detonation_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect

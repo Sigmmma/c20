@@ -1,0 +1,239 @@
+entry_type: ShaderModel
+imports:
+  h1/tags/shader:
+    - Shader
+    - ShaderDetailFunction
+  h1/tags/common:
+    - Fraction
+    - FunctionNameNullable
+    - WaveFunction
+    - ColorRGB
+    - TagDependency
+    - FunctionOut
+    - Point2D
+type_defs:
+  ShaderModelFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: detail_after_reflection
+        comments:
+          en: >
+            If enabled, detail maps should be applied _over_ specular
+            reflections. This flag does not work as intended in the [PC
+            renderer][renderer#pc-regressions] but can be worked around with
+            [Chimera][].
+      - name: two_sided
+      - name: not_alpha_tested
+      - name: alpha_blended_decal
+      - name: true_atmospheric_fog
+      - name: disable_two_sided_culling
+  ShaderModelMoreFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: no_random_phase
+  ShaderModelDetailMask:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: reflection_mask_inverse
+      - name: reflection_mask
+      - name: self_illumination_mask_inverse
+      - name: self_illumination_mask
+      - name: change_color_mask_inverse
+      - name: change_color_mask
+      - name: auxiliary_mask_inverse
+      - name: auxiliary_mask
+        comments:
+          en: >
+            Use the "auxiliary mask", which is the alpha channel on Xbox and the
+            **red channel** in Gearbox-derived ports.
+  ShaderModel:
+    class: struct
+    extends:
+      type: Shader
+    meta:
+      tag_id: soso
+      pre_compile: true
+    comments:
+      en: 'General-purpose opaque shader used for [object][object] materials.'
+    assert_size: 440
+    fields:
+      - name: shader_model_flags
+        type: ShaderModelFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 12
+      - name: translucency
+        type: Fraction
+      - type: pad
+        size: 16
+      - name: change_color_source
+        type: FunctionNameNullable
+      - type: pad
+        size: 2
+      - type: pad
+        size: 28
+      - name: shader_model_more_flags
+        type: ShaderModelMoreFlags
+      - type: pad
+        size: 2
+      - name: color_source
+        type: FunctionNameNullable
+      - name: animation_function
+        type: WaveFunction
+      - name: animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: animation_color_lower_bound
+        type: ColorRGB
+      - name: animation_color_upper_bound
+        type: ColorRGB
+      - type: pad
+        size: 12
+      - name: map_u_scale
+        type: float
+        meta:
+          default: 1
+      - name: map_v_scale
+        type: float
+        meta:
+          default: 1
+      - name: base_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+        comments:
+          en: >
+            A bitmap which provides diffuse colour and transparency information
+            to the shader. [See details](#base-map).
+      - type: pad
+        size: 8
+      - name: multipurpose_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+        comments:
+          en: >
+            A bitmap which provides masks for reflection, self-illumination,
+            colour change, and detail maps. [See details](#multipurpose-map).
+      - type: pad
+        size: 8
+      - name: detail_function
+        type: ShaderDetailFunction
+      - name: detail_mask
+        type: ShaderModelDetailMask
+        comments:
+          en: Determines the source of detail map masking.
+      - name: detail_map_scale
+        type: float
+        meta:
+          default: 1
+      - name: detail_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: detail_map_v_scale
+        type: float
+        meta:
+          default: 1
+      - type: pad
+        size: 12
+      - name: u_animation_source
+        type: FunctionOut
+      - name: u_animation_function
+        type: WaveFunction
+      - name: u_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: u_animation_phase
+        type: float
+      - name: u_animation_scale
+        type: float
+        meta:
+          unit: repeats
+          default: 1
+      - name: v_animation_source
+        type: FunctionOut
+      - name: v_animation_function
+        type: WaveFunction
+      - name: v_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: v_animation_phase
+        type: float
+      - name: v_animation_scale
+        type: float
+        meta:
+          unit: repeats
+          default: 1
+      - name: rotation_animation_source
+        type: FunctionOut
+      - name: rotation_animation_function
+        type: WaveFunction
+      - name: rotation_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: rotation_animation_phase
+        type: float
+      - name: rotation_animation_scale
+        type: float
+        meta:
+          unit: degrees
+          default: 360
+      - name: rotation_animation_center
+        type: Point2D
+      - type: pad
+        size: 8
+      - name: reflection_falloff_distance
+        type: float
+        meta:
+          unit: world units
+      - name: reflection_cutoff_distance
+        type: float
+        meta:
+          unit: world units
+      - name: perpendicular_brightness
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: perpendicular_tint_color
+        type: ColorRGB
+      - name: parallel_brightness
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: parallel_tint_color
+        type: ColorRGB
+      - name: reflection_cube_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 16
+      - name: unknown
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 16
+      - type: pad
+        size: 32

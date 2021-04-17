@@ -1,0 +1,645 @@
+entry_type: WeaponHUDInterface
+imports:
+  h1/tags/common:
+    - TagDependency
+    - Block
+    - Point2DInt
+    - ColorARGBInt
+    - Index
+    - Angle
+    - Fraction
+    - ColorRGB
+  h1/tags/hud_interface_types:
+    - HUDInterfaceAnchor
+    - HUDInterfaceScalingFlags
+    - HUDInterfaceFlashFlags
+    - HUDInterfaceMultitextureOverlay
+    - HUDInterfaceMeterFlags
+    - HUDInterfaceNumberFlags
+    - HUDInterfaceOverlayFlashFlags
+    - HUDInterfaceMessagingFlags
+type_defs:
+  WeaponHUDInterfaceFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: use_parent_hud_flashing_parameters
+  WeaponHUDInterfaceStateAttachedTo:
+    class: enum
+    size: 2
+    options:
+      - name: total_ammo
+      - name: loaded_ammo
+      - name: heat
+      - name: age
+      - name: secondary_weapon_total_ammo
+      - name: secondary_weapon_loaded_ammo
+      - name: distance_to_target
+      - name: elevation_to_target
+  WeaponHUDInterfaceViewType:
+    class: enum
+    size: 2
+    options:
+      - name: any
+      - name: solo
+      - name: split_screen
+  WeaponHUDInterfaceStaticElement:
+    class: struct
+    assert_size: 180
+    meta:
+      post_compile: true
+    fields:
+      - name: state_attached_to
+        type: WeaponHUDInterfaceStateAttachedTo
+      - type: pad
+        size: 2
+      - name: allowed_view_type
+        type: WeaponHUDInterfaceViewType
+      - type: pad
+        size: 2
+      - type: pad
+        size: 28
+      - name: anchor_offset
+        type: Point2DInt
+      - name: width_scale
+        type: float
+        meta:
+          default: 1
+      - name: height_scale
+        type: float
+        meta:
+          default: 1
+      - name: scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: interface_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: default_color
+        type: ColorARGBInt
+      - name: flashing_color
+        type: ColorARGBInt
+      - name: flash_period
+        type: float
+      - name: flash_delay
+        type: float
+      - name: number_of_flashes
+        type: uint16
+      - name: flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: flash_length
+        type: float
+      - name: disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: sequence_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: multitexture_overlays
+        type: Block
+        type_args:
+          T: HUDInterfaceMultitextureOverlay
+        meta:
+          hek_max_count: 30
+      - type: pad
+        size: 4
+      - type: pad
+        size: 40
+  WeaponHUDInterfaceMeter:
+    class: struct
+    assert_size: 180
+    meta:
+      post_compile: true
+    fields:
+      - name: state_attached_to
+        type: WeaponHUDInterfaceStateAttachedTo
+      - type: pad
+        size: 2
+      - name: allowed_view_type
+        type: WeaponHUDInterfaceViewType
+      - type: pad
+        size: 2
+      - type: pad
+        size: 28
+      - name: anchor_offset
+        type: Point2DInt
+      - name: width_scale
+        type: float
+        meta:
+          default: 1
+      - name: height_scale
+        type: float
+        meta:
+          default: 1
+      - name: scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: meter_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: color_at_meter_minimum
+        type: ColorARGBInt
+      - name: color_at_meter_maximum
+        type: ColorARGBInt
+      - name: flash_color
+        type: ColorARGBInt
+      - name: empty_color
+        type: ColorARGBInt
+      - name: flags
+        type: HUDInterfaceMeterFlags
+      - name: minimum_meter_value
+        type: int8
+      - name: sequence_index
+        type: Index
+      - name: alpha_multiplier
+        type: int8
+      - name: alpha_bias
+        type: int8
+      - name: value_scale
+        type: int16
+      - name: opacity
+        type: float
+      - name: translucency
+        type: float
+      - name: disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 16
+      - type: pad
+        size: 40
+  WeaponHUDInterfaceNumberWeaponSpecificFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: divide_number_by_clip_size
+  WeaponHUDInterfaceNumber:
+    class: struct
+    assert_size: 160
+    fields:
+      - name: state_attached_to
+        type: WeaponHUDInterfaceStateAttachedTo
+      - type: pad
+        size: 2
+      - name: allowed_view_type
+        type: WeaponHUDInterfaceViewType
+      - type: pad
+        size: 2
+      - type: pad
+        size: 28
+      - name: anchor_offset
+        type: Point2DInt
+      - name: width_scale
+        type: float
+      - name: height_scale
+        type: float
+      - name: scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: default_color
+        type: ColorARGBInt
+      - name: flashing_color
+        type: ColorARGBInt
+      - name: flash_period
+        type: float
+      - name: flash_delay
+        type: float
+      - name: number_of_flashes
+        type: uint16
+      - name: flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: flash_length
+        type: float
+      - name: disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: maximum_number_of_digits
+        type: int8
+      - name: flags
+        type: HUDInterfaceNumberFlags
+      - name: number_of_fractional_digits
+        type: int8
+      - type: pad
+        size: 1
+      - type: pad
+        size: 12
+      - name: weapon_specific_flags
+        type: WeaponHUDInterfaceNumberWeaponSpecificFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 36
+  WeaponHUDInterfaceCrosshairType:
+    class: enum
+    size: 2
+    options:
+      - name: aim
+      - name: zoom_level
+      - name: charge
+      - name: should_reload
+      - name: flash_heat
+      - name: flash_total_ammo
+      - name: flash_battery
+      - name: reload_overheat
+      - name: flash_when_firing_and_no_ammo
+      - name: flash_when_throwing_and_no_grenade
+      - name: low_ammo_and_none_left_to_reload
+      - name: should_reload_secondary_trigger
+      - name: flash_secondary_total_ammo
+      - name: flash_secondary_reload
+      - name: flash_when_firing_secondary_trigger_with_no_ammo
+      - name: low_secondary_ammo_and_none_left_to_reload
+      - name: primary_trigger_ready
+      - name: secondary_trigger_ready
+      - name: flash_when_firing_with_depleted_battery
+  WeaponHUDInterfaceCrosshairOverlayFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: flashes_when_active
+      - name: not_a_sprite
+      - name: show_only_when_zoomed
+      - name: show_sniper_data
+      - name: hide_area_outside_reticle
+      - name: one_zoom_level
+      - name: don't_show_when_zoomed
+  WeaponHUDInterfaceCrosshairOverlay:
+    class: struct
+    assert_size: 108
+    fields:
+      - name: anchor_offset
+        type: Point2DInt
+      - name: width_scale
+        type: float
+        meta:
+          default: 1
+      - name: height_scale
+        type: float
+        meta:
+          default: 1
+      - name: scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: default_color
+        type: ColorARGBInt
+      - name: flashing_color
+        type: ColorARGBInt
+      - name: flash_period
+        type: float
+      - name: flash_delay
+        type: float
+      - name: number_of_flashes
+        type: uint16
+      - name: flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: flash_length
+        type: float
+      - name: disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: frame_rate
+        type: uint16
+      - name: sequence_index
+        type: Index
+      - name: flags
+        type: WeaponHUDInterfaceCrosshairOverlayFlags
+      - type: pad
+        size: 32
+  WeaponHUDInterfaceCrosshair:
+    class: struct
+    assert_size: 104
+    meta:
+      post_compile: true
+    fields:
+      - name: crosshair_type
+        type: WeaponHUDInterfaceCrosshairType
+      - type: pad
+        size: 2
+      - name: allowed_view_type
+        type: WeaponHUDInterfaceViewType
+      - type: pad
+        size: 2
+      - type: pad
+        size: 28
+      - name: crosshair_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: crosshair_overlays
+        type: Block
+        type_args:
+          T: WeaponHUDInterfaceCrosshairOverlay
+        meta:
+          hek_max_count: 16
+      - type: pad
+        size: 40
+  WeaponHUDInterfaceOverlayType:
+    class: bitfield
+    size: 2
+    bits:
+      - name: show_on_flashing
+      - name: show_on_empty
+      - name: show_on_reload_overheating
+      - name: show_on_default
+      - name: show_always
+  WeaponHUDInterfaceOverlay:
+    class: struct
+    assert_size: 136
+    fields:
+      - name: anchor_offset
+        type: Point2DInt
+      - name: width_scale
+        type: float
+        meta:
+          default: 1
+      - name: height_scale
+        type: float
+        meta:
+          default: 1
+      - name: scaling_flags
+        type: HUDInterfaceScalingFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 20
+      - name: default_color
+        type: ColorARGBInt
+      - name: flashing_color
+        type: ColorARGBInt
+      - name: flash_period
+        type: float
+      - name: flash_delay
+        type: float
+      - name: number_of_flashes
+        type: uint16
+      - name: flash_flags
+        type: HUDInterfaceFlashFlags
+      - name: flash_length
+        type: float
+      - name: disabled_color
+        type: ColorARGBInt
+      - type: pad
+        size: 4
+      - name: frame_rate
+        type: uint16
+      - type: pad
+        size: 2
+      - name: sequence_index
+        type: Index
+      - name: type
+        type: WeaponHUDInterfaceOverlayType
+      - name: flags
+        type: HUDInterfaceOverlayFlashFlags
+      - type: pad
+        size: 16
+      - type: pad
+        size: 40
+  WeaponHUDInterfaceOverlayElement:
+    class: struct
+    assert_size: 104
+    meta:
+      post_compile: true
+    fields:
+      - name: state_attached_to
+        type: WeaponHUDInterfaceStateAttachedTo
+      - type: pad
+        size: 2
+      - name: allowed_view_type
+        type: WeaponHUDInterfaceViewType
+      - type: pad
+        size: 2
+      - type: pad
+        size: 28
+      - name: overlay_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: overlays
+        type: Block
+        type_args:
+          T: WeaponHUDInterfaceOverlay
+        meta:
+          hek_max_count: 16
+      - type: pad
+        size: 40
+  WeaponHUDInterfaceCrosshairTypeFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: aim
+      - name: zoom_level
+      - name: charge
+      - name: should_reload
+      - name: flash_heat
+      - name: flash_total_ammo
+      - name: flash_battery
+      - name: reload_overheat
+      - name: flash_when_firing_and_no_ammo
+      - name: flash_when_throwing_and_no_grenade
+      - name: low_ammo_and_none_left_to_reload
+      - name: should_reload_secondary_trigger
+      - name: flash_secondary_total_ammo
+      - name: flash_secondary_reload
+      - name: flash_when_firing_secondary_trigger_with_no_ammo
+      - name: low_secondary_ammo_and_none_left_to_reload
+      - name: primary_trigger_ready
+      - name: secondary_trigger_ready
+      - name: flash_when_firing_with_depleted_battery
+  WeaponHUDInterfaceScreenEffectDefinitionMaskFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: only_when_zoomed
+  WeaponHUDInterfaceScreenEffectDefinitionNightVisionFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: only_when_zoomed
+      - name: connect_to_flashlight
+      - name: masked
+  WeaponHUDInterfaceScreenEffectDefinitionDesaturationFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: only_when_zoomed
+      - name: connect_to_flashlight
+      - name: additive
+      - name: masked
+  WeaponHUDInterfaceScreenEffect:
+    class: struct
+    assert_size: 184
+    fields:
+      - type: pad
+        size: 4
+      - name: mask_flags
+        type: WeaponHUDInterfaceScreenEffectDefinitionMaskFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 16
+      - name: mask_fullscreen
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: mask_splitscreen
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 8
+      - name: convolution_flags
+        type: WeaponHUDInterfaceScreenEffectDefinitionMaskFlags
+      - type: pad
+        size: 2
+      - name: convolution_fov_in_bounds
+        type: Bounds
+        type_args:
+          T: Angle
+      - name: convolution_radius_out_bounds
+        type: Bounds
+        meta:
+          unit: pixels
+        type_args:
+          T: float
+      - type: pad
+        size: 24
+      - name: even_more_flags
+        type: WeaponHUDInterfaceScreenEffectDefinitionNightVisionFlags
+      - name: night_vision_script_source
+        type: int16
+      - name: night_vision_intensity
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 24
+      - name: desaturation_flags
+        type: WeaponHUDInterfaceScreenEffectDefinitionDesaturationFlags
+      - name: desaturation_script_source
+        type: int16
+      - name: desaturation_intensity
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: effect_tint
+        type: ColorRGB
+      - type: pad
+        size: 24
+  WeaponHUDInterface:
+    class: struct
+    meta:
+      tag_id: wphi
+      pre_compile: true
+    assert_size: 380
+    fields:
+      - name: child_hud
+        type: TagDependency
+        meta:
+          tag_classes:
+            - weapon_hud_interface
+      - name: flags
+        type: WeaponHUDInterfaceFlags
+      - type: pad
+        size: 2
+      - name: total_ammo_cutoff
+        type: uint16
+      - name: loaded_ammo_cutoff
+        type: uint16
+      - name: heat_cutoff
+        type: uint16
+      - name: age_cutoff
+        type: uint16
+      - type: pad
+        size: 32
+      - name: anchor
+        type: HUDInterfaceAnchor
+      - type: pad
+        size: 2
+      - type: pad
+        size: 32
+      - name: static_elements
+        type: Block
+        type_args:
+          T: WeaponHUDInterfaceStaticElement
+        meta:
+          hek_max_count: 16
+      - name: meter_elements
+        type: Block
+        type_args:
+          T: WeaponHUDInterfaceMeter
+        meta:
+          hek_max_count: 16
+      - name: number_elements
+        type: Block
+        type_args:
+          T: WeaponHUDInterfaceNumber
+        meta:
+          hek_max_count: 16
+      - name: crosshairs
+        type: Block
+        type_args:
+          T: WeaponHUDInterfaceCrosshair
+        meta:
+          hek_max_count: 19
+      - name: overlay_elements
+        type: Block
+        type_args:
+          T: WeaponHUDInterfaceOverlayElement
+        meta:
+          hek_max_count: 16
+      - name: crosshair_types
+        type: WeaponHUDInterfaceCrosshairTypeFlags
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 12
+      - name: screen_effect
+        type: Block
+        type_args:
+          T: WeaponHUDInterfaceScreenEffect
+        meta:
+          hek_max_count: 1
+      - type: pad
+        size: 132
+      - name: sequence_index
+        type: Index
+      - name: width_offset
+        type: int16
+      - name: offset_from_reference_corner
+        type: Point2DInt
+      - name: override_icon_color
+        type: ColorARGBInt
+      - name: frame_rate
+        type: int8
+      - name: more_flags
+        type: HUDInterfaceMessagingFlags
+      - name: text_index
+        type: Index
+      - type: pad
+        size: 48

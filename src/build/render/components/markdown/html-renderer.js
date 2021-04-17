@@ -1,9 +1,10 @@
+const yaml = require("js-yaml");
 const marked = require("marked");
 const hljs = require("highlight.js");
 const {consoleLang, hscLang} = require("./langs/hsc");
 const vrmlLang = require("./langs/vrml");
 const {heading, alert, figure} = require("../bits");
-const {renderStructYaml} = require("../structs");
+const {structDisplay} = require("../structs");
 const {renderTableYaml} = require("../yaml-tables");
 
 hljs.registerLanguage("vrml", vrmlLang);
@@ -44,8 +45,11 @@ module.exports = function(ctx) {
       if (extensionType == "alert") {
         return alert(extensionArgs, renderMarkdown(ctx, code));
       } else if (extensionType == "struct") {
-        return renderStructYaml(ctx, code);
+        const opts = yaml.load(code);
+        //todo: use search terms and headings
+        return structDisplay(ctx, opts).html;
       } else if (extensionType == "table") {
+        //todo: add support for search terms
         return renderTableYaml(ctx, code);
       }
       throw new Error(`Unrecognized markdown extension: ${extensionType}`);

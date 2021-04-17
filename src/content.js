@@ -148,7 +148,7 @@ async function loadPageIndex(contentDir) {
 
 async function buildContent(buildOpts) {
   const pageIndex = loadPageIndex(buildOpts.contentDir);
-  const data = loadStructuredData(buildOpts.invaderDefsDir);
+  const data = loadStructuredData();
 
   await Promise.all([
     buildResources(await pageIndex, buildOpts),

@@ -1,0 +1,242 @@
+entry_type: Particle
+imports:
+  h1/tags/common:
+    - TagDependency
+    - Index
+    - FramebufferBlendFunction
+    - FramebufferFadeMode
+    - IsUnfilteredFlag
+    - FunctionOut
+    - WaveFunction
+    - Point2D
+type_defs:
+  ParticleFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: can_animate_backwards
+      - name: animation_stops_at_rest
+      - name: animation_starts_on_random_frame
+      - name: animate_once_per_frame
+      - name: dies_at_rest
+      - name: dies_on_contact_with_structure
+      - name: tint_from_diffuse_texture
+      - name: dies_on_contact_with_water
+      - name: dies_on_contact_with_air
+      - name: self_illuminated
+      - name: random_horizontal_mirroring
+      - name: random_vertical_mirroring
+  ParticleOrientation:
+    class: enum
+    size: 2
+    options:
+      - name: screen_facing
+      - name: parallel_to_direction
+      - name: perpendicular_to_direction
+  ParticleShaderFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: sort_bias
+      - name: nonlinear_tint
+      - name: don't_overdraw_fp_weapon
+  ParticleAnchor:
+    class: enum
+    size: 2
+    options:
+      - name: with_primary
+      - name: with_screen_space
+      - name: zsprite
+  Particle:
+    class: struct
+    meta:
+      tag_id: part
+      postprocess_hek_data: true
+      post_compile: true
+    assert_size: 356
+    fields:
+      - name: flags
+        type: ParticleFlags
+      - name: bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_null: true
+      - name: physics
+        type: TagDependency
+        meta:
+          tag_classes:
+            - point_physics
+      - name: sir_marty_exchanged_his_children_for_thine
+        type: TagDependency
+        meta:
+          tag_classes:
+            - material_effects
+      - type: pad
+        size: 4
+      - name: lifespan
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: fade_in_time
+        type: float
+      - name: fade_out_time
+        type: float
+      - name: collision_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: death_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: minimum_size
+        type: float
+        meta:
+          unit: pixels
+      - type: pad
+        size: 8
+        comments:
+          en: >-
+            on some (probably older) tags like effects/particles/energy/smoke c
+            generic.particle, this is floats 2.0 and 1.0, but these tags can't
+            be replicated in the HEK
+      - name: radius_animation
+        type: Bounds
+        meta:
+          default:
+            - 1
+            - 1
+        type_args:
+          T: float
+      - type: pad
+        size: 4
+      - name: animation_rate
+        type: Bounds
+        meta:
+          unit: frames per second
+        type_args:
+          T: float
+      - name: contact_deterioration
+        type: float
+        meta:
+          non_cached: true
+          hidden: true
+        comments:
+          en: >-
+            this value is totally broken and locks the game up if it's non-zero;
+            even tool.exe sets it to zero
+      - name: fade_start_size
+        type: float
+        meta:
+          unit: pixels
+          default: 5
+      - name: fade_end_size
+        type: float
+        meta:
+          unit: pixels
+          default: 4
+      - type: pad
+        size: 4
+      - name: first_sequence_index
+        type: Index
+      - name: initial_sequence_count
+        type: uint16
+      - name: looping_sequence_count
+        type: uint16
+      - name: final_sequence_count
+        type: uint16
+      - type: pad
+        size: 8
+      - name: sprite_size
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: orientation
+        type: ParticleOrientation
+      - type: pad
+        size: 2
+      - type: pad
+        size: 36
+      - name: make_it_actually_work
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: shader_flags
+        type: ParticleShaderFlags
+      - name: framebuffer_blend_function
+        type: FramebufferBlendFunction
+      - name: framebuffer_fade_mode
+        type: FramebufferFadeMode
+      - name: map_flags
+        type: IsUnfilteredFlag
+      - type: pad
+        size: 28
+      - name: bitmap1
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: anchor
+        type: ParticleAnchor
+      - name: map_flags1
+        type: IsUnfilteredFlag
+      - name: u_animation_source
+        type: FunctionOut
+      - name: u_animation_function
+        type: WaveFunction
+      - name: u_animation_period
+        type: float
+        meta:
+          unit: seconds
+      - name: u_animation_phase
+        type: float
+      - name: u_animation_scale
+        type: float
+        meta:
+          unit: repeats
+      - name: v_animation_source
+        type: FunctionOut
+      - name: v_animation_function
+        type: WaveFunction
+      - name: v_animation_period
+        type: float
+        meta:
+          unit: seconds
+      - name: v_animation_phase
+        type: float
+      - name: v_animation_scale
+        type: float
+        meta:
+          unit: repeats
+      - name: rotation_animation_source
+        type: FunctionOut
+      - name: rotation_animation_function
+        type: WaveFunction
+      - name: rotation_animation_period
+        type: float
+        meta:
+          unit: seconds
+      - name: rotation_animation_phase
+        type: float
+      - name: rotation_animation_scale
+        type: float
+        meta:
+          unit: degrees
+      - name: rotation_animation_center
+        type: Point2D
+      - type: pad
+        size: 4
+      - name: zsprite_radius_scale
+        type: float
+      - type: pad
+        size: 20

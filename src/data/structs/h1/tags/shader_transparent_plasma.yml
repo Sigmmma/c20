@@ -1,0 +1,113 @@
+entry_type: ShaderTransparentPlasma
+imports:
+  h1/tags/shader:
+    - Shader
+  h1/tags/common:
+    - FunctionOut
+    - Fraction
+    - ColorRGB
+    - FunctionNameNullable
+    - Vector3D
+    - TagDependency
+type_defs:
+  ShaderTransparentPlasma:
+    class: struct
+    extends:
+      type: Shader
+    meta:
+      tag_id: spla
+      pre_compile: true
+    comments:
+      en: 'Used for energy shields like those on [bipeds][biped].'
+    assert_size: 332
+    fields:
+      - type: pad
+        size: 2
+      - type: pad
+        size: 2
+      - name: intensity_source
+        type: FunctionOut
+      - type: pad
+        size: 2
+      - name: intensity_exponent
+        type: float
+        meta:
+          default: 1
+      - name: offset_source
+        type: FunctionOut
+      - type: pad
+        size: 2
+      - name: offset_amount
+        type: float
+        meta:
+          unit: world units
+      - name: offset_exponent
+        type: float
+        meta:
+          default: 1
+      - type: pad
+        size: 32
+      - name: perpendicular_brightness
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: perpendicular_tint_color
+        type: ColorRGB
+      - name: parallel_brightness
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: parallel_tint_color
+        type: ColorRGB
+      - name: tint_color_source
+        type: FunctionNameNullable
+      - type: pad
+        size: 2
+      - type: pad
+        size: 32
+      - type: pad
+        size: 2
+      - type: pad
+        size: 2
+      - type: pad
+        size: 16
+      - type: pad
+        size: 4
+      - type: pad
+        size: 4
+      - name: primary_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: primary_animation_direction
+        type: Vector3D
+      - name: primary_noise_map_scale
+        type: float
+      - name: primary_noise_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 32
+      - type: pad
+        size: 4
+      - name: secondary_animation_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: secondary_animation_direction
+        type: Vector3D
+      - name: secondary_noise_map_scale
+        type: float
+      - name: secondary_noise_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 32
