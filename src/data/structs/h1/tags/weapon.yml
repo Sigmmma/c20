@@ -1,0 +1,896 @@
+entry_type: Weapon
+imports:
+  h1/tags/item:
+    - Item
+  h1/tags/common:
+    - TagString
+    - TagDependency
+    - Fraction
+    - Angle
+    - Block
+    - PredictedResource
+    - Index
+    - Point3D
+  h1/tags/object:
+    - ObjectNoise
+type_defs:
+  WeaponFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: vertical_heat_display
+      - name: mutually_exclusive_triggers
+      - name: attacks_automatically_on_bump
+      - name: must_be_readied
+      - name: doesn't_count_toward_maximum
+        comments:
+          en: >
+            Used for weapons like the oddball and flag which technically count
+            as a third carried weapon, despite the game having a soft limit of 2
+            held weapons (scripts and mods aside).
+      - name: aim_assists_only_when_zoomed
+      - name: prevents_grenade_throwing
+      - name: must_be_picked_up
+      - name: holds_triggers_when_dropped
+      - name: prevents_melee_attack
+      - name: detonates_when_dropped
+        comments:
+          en: >
+            Causes the weapon to explode using its [item][] _detonation effect_
+            after being dropped. This is used to make the singleplayer fuel rod
+            gun and energy sword explode when the enemies who carry them die.
+      - name: cannot_fire_at_maximum_age
+      - name: secondary_trigger_overrides_grenades
+      - name: obsolete_does_not_depower_active_camo_in_multilplayer
+      - name: enables_integrated_night_vision
+      - name: ais_use_weapon_melee_damage
+  WeaponSecondaryTriggerMode:
+    class: enum
+    size: 2
+    options:
+      - name: normal
+      - name: slaved_to_primary
+      - name: inhibits_primary
+      - name: loads_alterate_ammunition
+      - name: loads_multiple_primary_ammunition
+  WeaponFunctionIn:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: heat
+      - name: primary_ammunition
+      - name: secondary_ammunition
+      - name: primary_rate_of_fire
+      - name: secondary_rate_of_fire
+      - name: ready
+      - name: primary_ejection_port
+      - name: secondary_ejection_port
+      - name: overheated
+      - name: primary_charged
+      - name: secondary_charged
+      - name: illumination
+      - name: age
+      - name: integrated_light
+      - name: primary_firing
+      - name: secondary_firing
+      - name: primary_firing_on
+      - name: secondary_firing_on
+  WeaponMovementPenalized:
+    class: enum
+    size: 2
+    options:
+      - name: always
+        comments:
+          en: No effect.
+      - name: when_zoomed
+        comments:
+          en: No effect.
+      - name: when_zoomed_or_reloading
+        comments:
+          en: No effect.
+  WeaponType:
+    class: enum
+    size: 2
+    options:
+      - name: undefined
+      - name: shotgun
+      - name: needler
+      - name: plasma_pistol
+      - name: plasma_rifle
+  WeaponMagazineFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: wastes_rounds_when_reloaded
+      - name: every_round_must_be_chambered
+  WeaponMagazineObject:
+    class: struct
+    assert_size: 28
+    fields:
+      - name: rounds
+        type: uint16
+      - type: pad
+        size: 10
+      - name: equipment
+        type: TagDependency
+        meta:
+          tag_classes:
+            - equipment
+  WeaponMagazine:
+    class: struct
+    assert_size: 112
+    fields:
+      - name: flags
+        type: WeaponMagazineFlags
+      - name: rounds_recharged
+        type: uint16
+      - name: rounds_total_initial
+        type: uint16
+        comments:
+          en: includes loaded ammo
+      - name: rounds_reserved_maximum
+        type: uint16
+        comments:
+          en: does not include loaded ammo
+      - name: rounds_loaded_maximum
+        type: uint16
+      - type: pad
+        size: 8
+      - name: reload_time
+        type: float
+      - name: rounds_reloaded
+        type: uint16
+      - type: pad
+        size: 2
+      - name: chamber_time
+        type: float
+      - type: pad
+        size: 8
+      - type: pad
+        size: 16
+      - name: reloading_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: chambering_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - type: pad
+        size: 12
+      - name: magazine_objects
+        type: Block
+        type_args:
+          T: WeaponMagazineObject
+        meta:
+          hek_max_count: 8
+  WeaponTriggerFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: tracks_fired_projectile
+      - name: random_firing_effects
+        comments:
+          en: >
+            If false the firing effects in the firing effects block will be
+            picked in order. If true they will be picked randomly.
+      - name: can_fire_with_partial_ammo
+        comments:
+          en: >
+            The weapon will be able to fire as long as the magazine content is
+            above `0`.
+      - name: does_not_repeat_automatically
+        comments:
+          en: >
+            Disables repeat fires while holding the trigger. If true you need to
+            release the trigger before it can fire again. Bug: This breaks if
+            the weapon is a charge weapon with the _discharging spews_ behavior.
+            When the player is a client in multiplayer it will immediately start
+            charging again as soon as it is fired potentially causing automatic
+            firing behavior.
+      - name: locks_in_on_off_state
+        comments:
+          en: >
+            Makes the trigger behave like a switch. Tap it to turn it on. Tap it
+            again to turn it off.
+      - name: projectiles_use_weapon_origin
+        comments:
+          en: >
+            If true the projectiles will spawn at the third person `primary
+            trigger` or `secondary trigger` [marker][gbxmodel#markers] instead
+            of originating from the center of the first person view.
+      - name: sticks_when_dropped
+        comments:
+          en: >
+            If true the weapon will keep the trigger state from the time it was
+            dropped. If it was being held while dropped it will continue being
+            held.
+      - name: ejects_during_chamber
+      - name: discharging_spews
+      - name: analog_rate_of_fire
+      - name: use_error_when_unzoomed
+        comments:
+          en: |
+            Makes the trigger always fire completely accurately when zoomed in.
+      - name: projectile_vector_cannot_be_adjusted
+      - name: projectiles_have_identical_error
+        comments:
+          en: >
+            Makes it so that all projectiles that are fired simultaneously move
+            in the same direction. Only affects triggers that have multiple
+            projectiles per shot.
+      - name: projectile_is_client_side_only
+        comments:
+          en: >
+            Makes it so that in multiplayer the projectile does is not
+            syncronized over the network and is instead created by client
+            trigger simulation.
+  WeaponOverchargedAction:
+    class: enum
+    size: 2
+    options:
+      - name: none
+        comments:
+          en: >
+            Nothing happens and the gun will stay charged until the trigger is
+            released.
+      - name: explode
+        comments:
+          en: >
+            The weapon will detonate using its [item _detonation
+            effect_](item#tag-field-detonation-effect).
+      - name: discharge
+        comments:
+          en: >
+            Forces the gun to fire as it would have had the user let go of the
+            trigger.
+  WeaponDistributionFunction:
+    class: enum
+    size: 2
+    options:
+      - name: point
+      - name: horizontal_fan
+        comments:
+          en: >
+            Causes projectiles to be spread out in a fan, which actually seems
+            to be vertical.
+  WeaponTriggerFiringEffect:
+    class: struct
+    assert_size: 132
+    fields:
+      - name: shot_count_lower_bound
+        type: uint16
+      - name: shot_count_upper_bound
+        type: uint16
+      - type: pad
+        size: 32
+      - name: firing_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: misfire_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: empty_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: firing_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - name: misfire_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - name: empty_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+  WeaponTrigger:
+    class: struct
+    assert_size: 276
+    meta:
+      pre_compile: true
+    fields:
+      - name: flags
+        type: WeaponTriggerFlags
+        comments:
+          en: Various flags that change the behavior of the given trigger.
+      - name: maximum_rate_of_fire
+        type: Bounds
+        meta:
+          unit: shots per second
+        type_args:
+          T: float
+        comments:
+          en: >-
+            This determines the maximum number of times this trigger can be
+            fired per second.
+
+            The first value is initial rate of fire and the second value is the
+            final rate of fire.
+
+            Weapons cannot fire faster than once per tick, and non-positive (0
+            or less) rate of fire results in firing once per tick.
+
+            Because weapons cannot fire in between ticks, fire rate is also
+            effectively rounded down to the nearest tickrate/n for any positive
+            integer n (so at 30 ticks per second: 30, 15, 10, 7.5, 6, 5, 4.288,
+            3.75, 3.333, 3, etc.)
+      - name: acceleration_time
+        type: float
+        meta:
+          unit: seconds
+        comments:
+          en: >
+            The number of seconds required to hold the trigger in order to reach
+            the final rate of fire. A value of `0` means the trigger will always
+            use the final rate of fire.
+      - name: deceleration_time
+        type: float
+        meta:
+          unit: seconds
+        comments:
+          en: >
+            The number of seconds required to release the trigger in order to
+            reach the initial rate of fire. A value of `0` means the trigger
+            will revert to the initial rate of fire the moment the trigger is
+            released.
+      - name: blurred_rate_of_fire
+        type: Fraction
+        comments:
+          en: >
+            The rate of fire needed to switch the object to its [~blur
+            permutation][gbxmodel#permutations].
+      - type: pad
+        size: 8
+      - name: magazine
+        type: Index
+        meta:
+          index_of: magazines
+        comments:
+          en: >
+            The index of the magazine which this trigger draws ammunition from.
+            If no magazine is given (null), then the weapon effectively has an
+            unlimited amount of rounds.
+      - name: rounds_per_shot
+        type: int16
+        comments:
+          en: >
+            This is the amount of ammo each trigger fire uses. Unless the "can
+            fire with partial ammo" flag is set, the trigger cannot be fired if
+            there is less than this much ammo remaining and will, instead,
+            reload automatically. Firing with partial ammo with the partial ammo
+            flag will result in the loaded ammo reaching 0 rather than a
+            negative amount. A negative value results in the magazine gaining
+            loaded rounds upon firing.
+      - name: minimum_rounds_loaded
+        type: int16
+        comments:
+          en: >
+            The magazine will automatically reload if less than this much ammo
+            remains in the magazine, and the weapon cannot fire unless this much
+            ammo is loaded. Unlike _rounds per shot_, this ignores the "can fire
+            with partial ammo" flag.
+      - name: projectiles_between_contrails
+        type: int16
+        comments:
+          en: >-
+            Contrails will not be created until this many projectiles have been
+            fired.
+
+            This resets every time the trigger is released, and the first
+            projectile will always have a contrail.
+      - type: pad
+        size: 6
+      - name: firing_noise
+        type: ObjectNoise
+        comments:
+          en: >
+            How loudly AI will perceive this trigger when it fires, determining
+            how they will react (if at all).
+      - name: error
+        type: Bounds
+        type_args:
+          T: float
+        comments:
+          en: >
+            The function of this field is unknown. It is **unused by the game**.
+            Although labeled in [Guerilla][] as a range \[0, 1\], the pistol has
+            a max value of 2. Setting this to 0 does not affect projectile
+            spread.
+      - name: error_acceleration_time
+        type: float
+        comments:
+          en: >
+            Affects how long it takes for the weapon to reach its maximum
+            projectile error angle while holding the trigger. Can be negated
+            using quick trigger taps.
+      - name: error_deceleration_time
+        type: float
+        comments:
+          en: >
+            Affects how long it takes for the weapon to reach its minimum
+            projectile error angle during a pause in firing.
+      - type: pad
+        size: 8
+      - name: charging_time
+        type: float
+        comments:
+          en: >
+            The amount of time the user has to hold the trigger before the
+            weapon is considered charged.
+      - name: charged_time
+        type: float
+        comments:
+          en: >
+            The amount of time it takes _after_ the weapon becomes charged
+            before the overcharged behavior takes effect. **Unused if
+            _overcharged action_ is set to none.**
+      - name: overcharged_action
+        type: WeaponOverchargedAction
+        comments:
+          en: |
+            The reaction the weapon will have to the charged time running out.
+      - type: pad
+        size: 2
+      - name: charged_illumination
+        type: float
+      - name: spew_time
+        type: float
+        comments:
+          en: >
+            The amount of time the weapon will be forced to fire at its given
+            firerate after overcharging.
+      - name: charging_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: distribution_function
+        type: WeaponDistributionFunction
+      - name: projectiles_per_shot
+        type: int16
+        comments:
+          en: >
+            Affects how many projectiles are produced by a single shot. For
+            example, the shotgun has this value set to 15. Each projectile is
+            scattered by error angle independently.
+      - name: distribution_angle
+        type: float
+        meta:
+          unit: degrees
+        comments:
+          en: >
+            Affects the spread of projectiles when _projectiles per shot_ is
+            greater than 1 and _distribution function_ is _fan_.
+      - type: pad
+        size: 4
+      - name: minimum_error
+        type: Angle
+        comments:
+          en: >
+            Floor value for error angle. Even if the minimum error angle is 0,
+            this value takes precedence. Note that this field receives a
+            [hard-coded singleplayer adjustment][tool#hardcoded-tag-patches] at
+            map compile time for the pistol.
+      - name: error_angle
+        type: Bounds
+        type_args:
+          T: Angle
+        comments:
+          en: >
+            Determines the minimum and maximum angle of the "error cone". The
+            min angle is for when you begin firing, while the max is reached
+            after a period of sustained fire. The values are shown in degrees in
+            Guerilla, but internally stored in radians. Note that these fields
+            receives [hard-coded singleplayer
+            adjustments][tool#hardcoded-tag-patches] at map compile time for the
+            pistol and plasma rifle.
+      - name: first_person_offset
+        type: Point3D
+        comments:
+          en: >
+            The relative offset from the first person camera the projectile
+            spawns. X is front (+) and back (-), Y is left (+) and right (-), Z
+            is up (+) and down (-).
+      - type: pad
+        size: 4
+      - name: projectile_object
+        type: TagDependency
+        meta:
+          tag_classes:
+            - object
+        comments:
+          en: >-
+            This is the object that spawns when firing the weapon.
+
+            The object will spawn facing the same direction as the first person
+            camera (along with any error angle applied, if necessary) with the
+            velocity of the shooter.
+      - name: ejection_port_recovery_time
+        type: float
+      - name: illumination_recovery_time
+        type: float
+      - type: pad
+        size: 12
+      - name: heat_generated_per_round
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: age_generated_per_round
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 4
+      - name: overload_time
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 8
+      - type: pad
+        size: 32
+      - name: illumination_recovery_rate
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: ejection_port_recovery_rate
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: firing_acceleration_rate
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+        comments:
+          en: >
+            Pre-calculated rate of firing rate increase, based on the
+            _acceleration time_ field.
+      - name: firing_deceleration_rate
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+        comments:
+          en: >
+            Pre-calculated rate of firing rate decrease, based on the
+            _deceleration time_ field.
+      - name: error_acceleration_rate
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+        comments:
+          en: >
+            Pre-calculated rate of error angle increase, based on the _error
+            acceleration time_ field.
+      - name: error_deceleration_rate
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+        comments:
+          en: >
+            Pre-calculated rate of error angle decrease, based on the _error
+            deceleration time_ field.
+      - name: firing_effects
+        type: Block
+        type_args:
+          T: WeaponTriggerFiringEffect
+        meta:
+          hek_max_count: 8
+  Weapon:
+    class: struct
+    extends:
+      type: Item
+    meta:
+      tag_id: weap
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: >-
+        Used for both weildable weapons and those attached to
+        [vehicles][vehicle].
+    assert_size: 1288
+    fields:
+      - name: weapon_flags
+        type: WeaponFlags
+      - name: label
+        type: TagString
+        comments:
+          en: >-
+            Units that have this label in their animations will be able to pick
+            up the weapon
+      - name: secondary_trigger_mode
+        type: WeaponSecondaryTriggerMode
+      - name: maximum_alternate_shots_loaded
+        type: uint16
+      - name: weapon_a_in
+        type: WeaponFunctionIn
+      - name: weapon_b_in
+        type: WeaponFunctionIn
+      - name: weapon_c_in
+        type: WeaponFunctionIn
+      - name: weapon_d_in
+        type: WeaponFunctionIn
+      - name: ready_time
+        type: float
+      - name: ready_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: heat_recovery_threshold
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: overheated_threshold
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: heat_detonation_threshold
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: heat_detonation_fraction
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: heat_loss_rate
+        type: Fraction
+        meta:
+          unit: per second
+          min: 0
+      - name: heat_illumination
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 16
+      - name: overheated
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: overheat_detonation
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+        comments:
+          en: >-
+            This effect is played when the weapon overheats and is set to
+            detonate as a result
+      - name: player_melee_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - name: player_melee_response
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - type: pad
+        size: 8
+      - name: actor_firing_parameters
+        type: TagDependency
+        meta:
+          tag_classes:
+            - actor_variant
+      - name: near_reticle_range
+        type: float
+        meta:
+          unit: world units
+      - name: far_reticle_range
+        type: float
+        meta:
+          unit: world units
+      - name: intersection_reticle_range
+        type: float
+      - type: pad
+        size: 2
+      - name: zoom_levels
+        type: uint16
+      - name: zoom_magnification_range
+        type: Bounds
+        type_args:
+          T: float
+        comments:
+          en: >-
+            Minimum is the magnification amount for the first zoom level, and
+            maximum is the magnification amount for the final zoom level
+      - name: autoaim_angle
+        type: Angle
+        comments:
+          en: >
+            Determines the aiming cone where projectiles paths will be pulled
+            towards the target. This is the "red reticle" angle.
+      - name: autoaim_range
+        type: float
+        meta:
+          unit: world units
+        comments:
+          en: The maximum range of the autoaim cone.
+      - name: magnetism_angle
+        type: Angle
+        comments:
+          en: >
+            For controller input, sets the angle where crosshair "stickiness"
+            becomes a factor and aiming direction automatically tracks targets.
+      - name: magnetism_range
+        type: float
+        meta:
+          unit: world units
+        comments:
+          en: The maximum target distance for magnetism to apply.
+      - name: deviation_angle
+        type: Angle
+        comments:
+          en: >
+            Used for vehicle weapons to control the maximum angle of deviation
+            when the aiming direction does not match the direction the weapon is
+            facing. For example, the Ghost's deviation angle of 45 degrees
+            allows the driver to fire in the direction they are aiming even if
+            the Ghost has not yet turned to face that direction. Compare this to
+            the Warthog gun's tighter 10 degree limit.
+      - type: pad
+        size: 4
+      - name: movement_penalized
+        type: WeaponMovementPenalized
+        comments:
+          en: >
+            **Unused**. This was meant to slow the player when using certain
+            weapons like the rocket launcher, but it has no effect ingame
+            regardless of the options, penalty values used, or game mode.
+      - type: pad
+        size: 2
+      - name: forward_movement_penalty
+        type: Fraction
+        comments:
+          en: No effect.
+      - name: sideways_movement_penalty
+        type: Fraction
+        comments:
+          en: No effect.
+      - type: pad
+        size: 4
+      - name: minimum_target_range
+        type: float
+      - name: looking_time_modifier
+        type: float
+      - type: pad
+        size: 4
+      - name: light_power_on_time
+        type: float
+        meta:
+          unit: seconds
+      - name: light_power_off_time
+        type: float
+        meta:
+          unit: seconds
+      - name: light_power_on_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: light_power_off_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+            - effect
+      - name: age_heat_recovery_penalty
+        type: float
+      - name: age_rate_of_fire_penalty
+        type: float
+      - name: age_misfire_start
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: age_misfire_chance
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 12
+      - name: first_person_model
+        type: TagDependency
+        meta:
+          tag_classes:
+            - gbxmodel
+            - model
+      - name: first_person_animations
+        type: TagDependency
+        meta:
+          tag_classes:
+            - model_animations
+      - type: pad
+        size: 4
+      - name: hud_interface
+        type: TagDependency
+        meta:
+          tag_classes:
+            - weapon_hud_interface
+      - name: pickup_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: zoom_in_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: zoom_out_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 12
+      - name: active_camo_ding
+        type: float
+      - name: active_camo_regrowth_rate
+        type: float
+      - type: pad
+        size: 12
+      - type: pad
+        size: 2
+      - name: weapon_type
+        type: WeaponType
+      - name: more_predicted_resources
+        type: Block
+        type_args:
+          T: PredictedResource
+        meta:
+          hek_max_count: 1024
+          cache_only: true
+      - name: magazines
+        type: Block
+        type_args:
+          T: WeaponMagazine
+        meta:
+          hek_max_count: 2
+      - name: triggers
+        type: Block
+        type_args:
+          T: WeaponTrigger
+        meta:
+          hek_max_count: 2

@@ -1,0 +1,359 @@
+decal:
+  structName: Decal
+  structModule: h1/tags/decal
+  id: deca
+shader_transparent_chicago_extended:
+  structName: ShaderTransparentChicagoExtended
+  structModule: h1/tags/shader_transparent_chicago_extended
+  parentName: shader
+  id: scex
+bitmap:
+  structName: Bitmap
+  structModule: h1/tags/bitmap
+  id: bitm
+light_volume:
+  structName: LightVolume
+  structModule: h1/tags/light_volume
+  id: mgs2
+vehicle:
+  structName: Vehicle
+  structModule: h1/tags/vehicle
+  parentName: unit
+  id: vehi
+device_light_fixture:
+  structName: DeviceLightFixture
+  structModule: h1/tags/device_light_fixture
+  parentName: device
+  id: lifi
+biped:
+  structName: Biped
+  structModule: h1/tags/biped
+  parentName: unit
+  id: bipd
+multiplayer_scenario_description:
+  structName: MultiplayerScenarioDescription
+  structModule: h1/tags/multiplayer_scenario_description
+  id: mply
+device_control:
+  structName: DeviceControl
+  structModule: h1/tags/device_control
+  parentName: device
+  id: ctrl
+lens_flare:
+  structName: LensFlare
+  structModule: h1/tags/lens_flare
+  id: lens
+sound_environment:
+  structName: SoundEnvironment
+  structModule: h1/tags/sound_environment
+  id: snde
+particle:
+  structName: Particle
+  structModule: h1/tags/particle
+  id: part
+shader_transparent_chicago:
+  structName: ShaderTransparentChicago
+  structModule: h1/tags/shader_transparent_chicago
+  parentName: shader
+  id: schi
+hud_message_text:
+  structName: HUDMessageText
+  structModule: h1/tags/hud_message_text
+  id: 'hmt '
+shader_transparent_meter:
+  structName: ShaderTransparentMeter
+  structModule: h1/tags/shader_transparent_meter
+  parentName: shader
+  id: smet
+scenery:
+  structName: Scenery
+  structModule: h1/tags/scenery
+  parentName: object
+  id: scen
+font:
+  structName: Font
+  structModule: h1/tags/font
+  id: font
+model_animations:
+  structName: ModelAnimations
+  structModule: h1/tags/model_animations
+  id: antr
+light:
+  structName: Light
+  structModule: h1/tags/light
+  id: ligh
+detail_object_collection:
+  structName: DetailObjectCollection
+  structModule: h1/tags/detail_object_collection
+  id: dobc
+weapon:
+  structName: Weapon
+  structModule: h1/tags/weapon
+  parentName: item
+  id: weap
+unicode_string_list:
+  structName: UnicodeStringList
+  structModule: h1/tags/unicode_string_list
+  id: ustr
+placeholder:
+  structName: Placeholder
+  structModule: h1/tags/placeholder
+  parentName: object
+  id: plac
+actor:
+  structName: Actor
+  structModule: h1/tags/actor
+  id: actr
+garbage:
+  structName: Garbage
+  structModule: h1/tags/garbage
+  parentName: item
+  id: garb
+shader:
+  structName: Shader
+  structModule: h1/tags/shader
+  id: shdr
+material_effects:
+  structName: MaterialEffects
+  structModule: h1/tags/material_effects
+  id: foot
+device_machine:
+  structName: DeviceMachine
+  structModule: h1/tags/device_machine
+  parentName: device
+  id: mach
+item_collection:
+  structName: ItemCollection
+  structModule: h1/tags/item_collection
+  id: itmc
+sound_looping:
+  structName: SoundLooping
+  structModule: h1/tags/sound_looping
+  id: lsnd
+weather_particle_system:
+  structName: WeatherParticleSystem
+  structModule: h1/tags/weather_particle_system
+  id: rain
+ui_widget_collection:
+  structName: UIWidgetCollection
+  structModule: h1/tags/ui_widget_collection
+  id: 'Soul'
+sky:
+  structName: Sky
+  structModule: h1/tags/sky
+  id: 'sky '
+dialogue:
+  structName: Dialogue
+  structModule: h1/tags/dialogue
+  id: udlg
+projectile:
+  structName: Projectile
+  structModule: h1/tags/projectile
+  parentName: object
+  id: proj
+unit_hud_interface:
+  structName: UnitHUDInterface
+  structModule: h1/tags/unit_hud_interface
+  id: unhi
+continuous_damage_effect:
+  structName: ContinuousDamageEffect
+  structModule: h1/tags/continuous_damage_effect
+  id: 'cdmg'
+  unused: true
+shader_transparent_plasma:
+  structName: ShaderTransparentPlasma
+  structModule: h1/tags/shader_transparent_plasma
+  parentName: shader
+  id: spla
+globals:
+  structName: Globals
+  structModule: h1/tags/globals
+  id: matg
+particle_system:
+  structName: ParticleSystem
+  structModule: h1/tags/particle_system
+  id: pctl
+shader_model:
+  structName: ShaderModel
+  structModule: h1/tags/shader_model
+  parentName: shader
+  id: soso
+contrail:
+  structName: Contrail
+  structModule: h1/tags/contrail
+  id: cont
+hud_number:
+  structName: HUDNumber
+  structModule: h1/tags/hud_number
+  id: 'hud#'
+item:
+  structName: Item
+  structModule: h1/tags/item
+  parentName: object
+  id: item
+object:
+  structName: Object
+  structModule: h1/tags/object
+  id: obje
+device:
+  structName: Device
+  structModule: h1/tags/device
+  parentName: object
+  id: devi
+shader_transparent_glass:
+  structName: ShaderTransparentGlass
+  structModule: h1/tags/shader_transparent_glass
+  parentName: shader
+  id: sgla
+preferences_network_game:
+  structName: PreferencesNetworkGame
+  structModule: h1/tags/preferences_network_game
+  id: ngpr
+effect:
+  structName: Effect
+  structModule: h1/tags/effect
+  id: effe
+string_list:
+  structName: StringList
+  structModule: h1/tags/string_list
+  id: 'str#'
+sound:
+  structName: Sound
+  structModule: h1/tags/sound
+  id: snd!
+spheroid:
+  structName: Spheroid
+  structModule: h1/tags/spheroid
+  id: 'boom'
+  unused: true
+model_collision_geometry:
+  structName: ModelCollisionGeometry
+  structModule: h1/tags/model_collision_geometry
+  id: coll
+wind:
+  structName: Wind
+  structModule: h1/tags/wind
+  id: wind
+tag_collection:
+  structName: TagCollection
+  structModule: h1/tags/tag_collection
+  id: tagc
+glow:
+  structName: Glow
+  structModule: h1/tags/glow
+  id: glw!
+model:
+  structName: Model
+  structModule: h1/tags/model
+  id: mode
+hud_globals:
+  structName: HUDGlobals
+  structModule: h1/tags/hud_globals
+  id: hudg
+shader_environment:
+  structName: ShaderEnvironment
+  structModule: h1/tags/shader_environment
+  parentName: shader
+  id: senv
+physics:
+  structName: Physics
+  structModule: h1/tags/physics
+  id: phys
+unit:
+  structName: Unit
+  structModule: h1/tags/unit
+  parentName: object
+  id: unit
+scenario:
+  structName: Scenario
+  structModule: h1/tags/scenario
+  id: scnr
+lightning:
+  structName: Lightning
+  structModule: h1/tags/lightning
+  id: elec
+color_table:
+  structName: ColorTable
+  structModule: h1/tags/color_table
+  id: colo
+point_physics:
+  structName: PointPhysics
+  structModule: h1/tags/point_physics
+  id: pphy
+equipment:
+  structName: Equipment
+  structModule: h1/tags/equipment
+  parentName: item
+  id: eqip
+virtual_keyboard:
+  structName: VirtualKeyboard
+  structModule: h1/tags/virtual_keyboard
+  id: vcky
+fog:
+  structName: Fog
+  structModule: h1/tags/fog
+  id: 'fog '
+shader_transparent_generic:
+  structName: ShaderTransparentGeneric
+  structModule: h1/tags/shader_transparent_generic
+  parentName: shader
+  id: sotr
+input_device_defaults:
+  structName: InputDeviceDefaults
+  structModule: h1/tags/input_device_defaults
+  id: devc
+meter:
+  structName: Meter
+  structModule: h1/tags/meter
+  id: metr
+  unused: true
+shader_transparent_water:
+  structName: ShaderTransparentWater
+  structModule: h1/tags/shader_transparent_water
+  parentName: shader
+  id: swat
+damage_effect:
+  structName: DamageEffect
+  structModule: h1/tags/damage_effect
+  id: jpt!
+actor_variant:
+  structName: ActorVariant
+  structModule: h1/tags/actor_variant
+  id: actv
+camera_track:
+  structName: CameraTrack
+  structModule: h1/tags/camera_track
+  id: trak
+grenade_hud_interface:
+  structName: GrenadeHUDInterface
+  structModule: h1/tags/grenade_hud_interface
+  id: grhi
+flag:
+  structName: Flag
+  structModule: h1/tags/flag
+  id: flag
+ui_widget_definition:
+  structName: UIWidgetDefinition
+  structModule: h1/tags/ui_widget_definition
+  id: DeLa
+sound_scenery:
+  structName: SoundScenery
+  structModule: h1/tags/sound_scenery
+  parentName: object
+  id: ssce
+weapon_hud_interface:
+  structName: WeaponHUDInterface
+  structModule: h1/tags/weapon_hud_interface
+  id: wphi
+antenna:
+  structName: Antenna
+  structModule: h1/tags/antenna
+  id: ant!
+gbxmodel:
+  structName: GBXModel
+  structModule: h1/tags/gbxmodel
+  id: mod2
+scenario_structure_bsp:
+  structName: ScenarioStructureBSP
+  structModule: h1/tags/scenario_structure_bsp
+  id: sbsp

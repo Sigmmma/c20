@@ -1,0 +1,43 @@
+entry_type: ItemCollection
+imports:
+  h1/tags/common:
+    - Block
+    - TagDependency
+type_defs:
+  ItemCollectionPermutation:
+    class: struct
+    assert_size: 84
+    meta:
+      pre_compile: true
+    fields:
+      - type: pad
+        size: 32
+      - name: weight
+        type: float
+      - name: item
+        type: TagDependency
+        meta:
+          tag_classes:
+            - item
+      - type: pad
+        size: 32
+  ItemCollection:
+    class: struct
+    meta:
+      tag_id: itmc
+    assert_size: 92
+    fields:
+      - name: permutations
+        type: Block
+        type_args:
+          T: ItemCollectionPermutation
+        meta:
+          hek_max_count: 32
+      - name: default_spawn_time
+        type: uint16
+        meta:
+          unit: seconds
+      - type: pad
+        size: 2
+      - type: pad
+        size: 76

@@ -1,0 +1,37 @@
+entry_type: MultiplayerScenarioDescription
+imports:
+  h1/tags/common:
+    - Block
+    - TagDependency
+    - TagString
+type_defs:
+  MultiplayerScenarioDescriptionScenarioDescription:
+    class: struct
+    assert_size: 68
+    fields:
+      - name: descriptive_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: displayed_map_name
+        type: TagDependency
+        meta:
+          tag_classes:
+            - unicode_string_list
+      - name: scenario_tag_directory_path
+        type: TagString
+      - type: pad
+        size: 4
+  MultiplayerScenarioDescription:
+    class: struct
+    meta:
+      tag_id: mply
+    assert_size: 12
+    fields:
+      - name: multiplayer_scenarios
+        type: Block
+        type_args:
+          T: MultiplayerScenarioDescriptionScenarioDescription
+        meta:
+          hek_max_count: 32

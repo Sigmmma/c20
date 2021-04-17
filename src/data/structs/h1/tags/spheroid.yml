@@ -1,0 +1,12 @@
+entry_type: Spheroid
+imports: {}
+type_defs:
+  Spheroid:
+    class: struct
+    meta:
+      tag_id: 'boom'
+    fields:
+      - type: pad
+        size: 1
+        comments:
+          en: This type has yet to be documented.

@@ -1,0 +1,458 @@
+entry_type: DamageEffect
+imports:
+  h1/tags/common:
+    - FunctionType
+    - ColorARGB
+    - Angle
+    - WaveFunction
+    - TagDependency
+type_defs:
+  DamageEffectFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: do_not_scale_damage_by_distance
+  DamageEffectScreenFlashType:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: lighten
+      - name: darken
+      - name: max
+      - name: min
+      - name: invert
+      - name: tint
+  DamageEffectScreenFlashPriority:
+    class: enum
+    size: 2
+    options:
+      - name: low
+      - name: medium
+      - name: high
+  DamageEffectSideEffect:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: harmless
+      - name: lethal_to_the_unsuspecting
+      - name: emp
+  DamageEffectCategory:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: falling
+      - name: bullet
+      - name: grenade
+      - name: high_explosive
+      - name: sniper
+      - name: melee
+      - name: flame
+      - name: mounted_weapon
+      - name: vehicle
+      - name: plasma
+      - name: needle
+      - name: shotgun
+  DamageEffectDamageFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: does_not_hurt_owner
+      - name: can_cause_headshots
+        comments:
+          en: >
+            If enabled, any headshot against an unshielded enemy will kill it
+            regardless of the amount of damage inflicted. Even a 1-damage pistol
+            still instantly kills a Hunter because of this flag. It is an
+            instant kill even if the shield threshold is met with a headshot
+            (after shields have been reduced to 0 by the damage effect but
+            health is full). For example, even though the pistol deals 25 damage
+            and players have 75 shield vitality, if the final shot is a headshot
+            the player dies.
+
+            Although there is also a _can cause multiplayer headshots_ flag, it
+            has a separate meaning and this flag applies to both SP and MP.
+
+            A model's headshot area is determined by its `head`
+            [region][gbxmodel#regions].
+      - name: pings_resistant_units
+      - name: does_not_hurt_friends
+      - name: does_not_ping_units
+      - name: detonates_explosives
+        comments:
+          en: >
+            If enabled, causes the effect to trigger the explosion of dropped
+            grenades within its radius, used for explosion chaining. This only
+            applies to maps loaded in singleplayer mode. Note that the [item][]
+            receiving damage (e.g. the grenade [equipment][]) must also have its
+            _destroyed by explosions_ flag enabled. If the grenade has been
+            placed within the scenario in Sapien, the _does accelerate_ flag
+            will also need to be checked in the properties window.
+      - name: only_hurts_shields
+      - name: causes_flaming_death
+      - name: damage_indicators_always_point_down
+      - name: skips_shields
+      - name: only_hurts_one_infection_form
+      - name: can_cause_multiplayer_headshots
+        comments:
+          en: >
+            Applies a 2x damage multiplier to headshots in multiplayer (based on
+            how the map was loaded, not scenario type). This multiplier stacks
+            with material modifiers below, so for example a cyborg armor
+            modifier of 2 with this flag enabled results in a 4x headshot damage
+            modifier.
+
+            A model's headshot area is determined by its `head`
+            [region][gbxmodel#regions].
+      - name: infection_form_pop
+  DamageEffect:
+    class: struct
+    meta:
+      tag_id: jpt!
+      post_cache_deformat: true
+      pre_compile: true
+    comments:
+      en: >
+        Properties for the application of damage including material modifiers,
+        screen effects, acceleration, and area of effect.
+    assert_size: 672
+    fields:
+      - name: radius
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+        comments:
+          en: >
+            The minimum radius determines the sphere in which damage is 100% of
+            _damage upper bound_. Damage fades linearly to _damage lower bound_
+            at the maximum radius. Outside the maximum radius, 0 damage is
+            dealt. The _aoe core radius_ field does not affect this calculation.
+      - name: cutoff_scale
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: flags
+        type: DamageEffectFlags
+      - type: pad
+        size: 16
+      - type: pad
+        size: 4
+      - name: type
+        type: DamageEffectScreenFlashType
+      - name: priority
+        type: DamageEffectScreenFlashPriority
+      - type: pad
+        size: 8
+      - type: pad
+        size: 4
+      - name: duration
+        type: float
+        meta:
+          unit: seconds
+      - name: fade_function
+        type: FunctionType
+      - type: pad
+        size: 2
+      - type: pad
+        size: 4
+      - type: pad
+        size: 4
+      - name: maximum_intensity
+        type: float
+        meta:
+          min: 0
+          max: 1
+          default: 1
+      - type: pad
+        size: 4
+      - name: color
+        type: ColorARGB
+      - name: low_frequency_vibrate_frequency
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: low_frequency_vibrate_duration
+        type: float
+        meta:
+          unit: seconds
+      - name: low_frequency_vibrate_fade_function
+        type: FunctionType
+      - type: pad
+        size: 2
+      - type: pad
+        size: 8
+      - name: high_frequency_vibrate_frequency
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: high_frequency_vibrate_duration
+        type: float
+        meta:
+          unit: seconds
+      - name: high_frequency_vibrate_fade_function
+        type: FunctionType
+      - type: pad
+        size: 2
+      - type: pad
+        size: 4
+      - type: pad
+        size: 16
+      - type: pad
+        size: 8
+      - name: temporary_camera_impulse_duration
+        type: float
+        meta:
+          unit: seconds
+      - name: temporary_camera_impulse_fade_function
+        type: FunctionType
+      - type: pad
+        size: 2
+      - name: temporary_camera_impulse_rotation
+        type: Angle
+      - name: temporary_camera_impulse_pushback
+        type: float
+        meta:
+          unit: world units
+      - name: jitter
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+      - type: pad
+        size: 8
+      - name: permanent_camera_impulse_angle
+        type: Angle
+      - type: pad
+        size: 4
+      - type: pad
+        size: 12
+      - name: camera_shaking_duration
+        type: float
+        meta:
+          unit: seconds
+        comments:
+          en: >
+            Controls how long camera shaking lasts. On PC, short camera shakes
+            (0.05) get skipped occasionally at high FPS since this feature is
+            still [tied to frame rate][renderer#pc-regressions]. This is fixed
+            and interpolated by [Chimera][].
+      - name: camera_shaking_falloff_function
+        type: FunctionType
+      - type: pad
+        size: 2
+      - name: camera_shaking_random_translation
+        type: float
+        meta:
+          unit: world units
+      - name: camera_shaking_random_rotation
+        type: Angle
+      - type: pad
+        size: 4
+      - type: pad
+        size: 8
+      - name: camera_shaking_wobble_function
+        type: WaveFunction
+      - type: pad
+        size: 2
+      - name: camera_shaking_wobble_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - name: camera_shaking_wobble_weight
+        type: float
+      - type: pad
+        size: 12
+      - type: pad
+        size: 16
+      - type: pad
+        size: 4
+      - name: sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 108
+      - type: pad
+        size: 4
+      - name: breaking_effect_forward_velocity
+        type: float
+        meta:
+          unit: world units per second
+      - name: breaking_effect_forward_radius
+        type: float
+        meta:
+          unit: world units
+      - name: breaking_effect_forward_exponent
+        type: float
+      - type: pad
+        size: 4
+      - type: pad
+        size: 8
+      - name: breaking_effect_outward_velocity
+        type: float
+        meta:
+          unit: world units per second
+      - name: breaking_effect_outward_radius
+        type: float
+        meta:
+          unit: world units
+      - name: breaking_effect_outward_exponent
+        type: float
+      - type: pad
+        size: 8
+      - type: pad
+        size: 4
+      - name: damage_side_effect
+        type: DamageEffectSideEffect
+      - name: damage_category
+        type: DamageEffectCategory
+      - name: damage_flags
+        type: DamageEffectDamageFlags
+      - name: damage_aoe_core_radius
+        type: float
+        meta:
+          unit: world units
+        comments:
+          en: >
+            Objects within this radius will be damaged regardless of
+            obstructions in the [BSP][scenario_structure_bsp]. Outside this
+            radius, there must be a line of sight between the effect and target.
+            Contrary to the Guerilla tooltip, this field does not determine if
+            the damage has an area of effect; see _radius_.
+      - name: damage_lower_bound
+        type: float
+        comments:
+          en: >
+            Sets the minimum amount of damage done when this effect is applied
+            in a scaled way. For example, projectiles can have min and max
+            damage ranges for air and water.
+      - name: damage_upper_bound
+        type: Bounds
+        type_args:
+          T: float
+        comments:
+          en: Maximum damage will be randomly chosen from this range.
+      - name: damage_vehicle_passthrough_penalty
+        type: float
+      - name: damage_active_camouflage_damage
+        type: float
+      - name: damage_stun
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: damage_maximum_stun
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: damage_stun_time
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 4
+      - name: damage_instantaneous_acceleration
+        type: float
+        comments:
+          en: >
+            Controls how much moveable objects are accelerated by this effect.
+            This is scaled by the _acceleration scale_ field of [object][].
+      - type: pad
+        size: 8
+      - name: dirt
+        type: float
+      - name: sand
+        type: float
+      - name: stone
+        type: float
+      - name: snow
+        type: float
+      - name: wood
+        type: float
+      - name: metal_hollow
+        type: float
+      - name: metal_thin
+        type: float
+      - name: metal_thick
+        type: float
+      - name: rubber
+        type: float
+      - name: glass
+        type: float
+      - name: force_field
+        type: float
+      - name: grunt
+        type: float
+      - name: hunter_armor
+        type: float
+      - name: hunter_skin
+        type: float
+      - name: elite
+        type: float
+      - name: jackal
+        type: float
+      - name: jackal_energy_shield
+        type: float
+      - name: engineer_skin
+        type: float
+      - name: engineer_force_field
+        type: float
+      - name: flood_combat_form
+        type: float
+      - name: flood_carrier_form
+        type: float
+      - name: cyborg_armor
+        type: float
+        comments:
+          en: >
+            Also labeled as simply **cyborg** in Guerilla. Used to modify damage
+            on all body parts of the cyborg (spartan) biped.
+      - name: cyborg_energy_shield
+        type: float
+        comments:
+          en: >
+            Damage modifier for the "cyborg energy shield" material type. See
+            the _shield material type_ field of the unit's
+            [model_collision_geometry][] tag.
+      - name: human_armor
+        type: float
+      - name: human_skin
+        type: float
+      - name: sentinel
+        type: float
+      - name: monitor
+        type: float
+      - name: plastic
+        type: float
+      - name: water
+        type: float
+      - name: leaves
+        type: float
+      - name: elite_energy_shield
+        type: float
+        comments:
+          en: >
+            Damage modifier for the "elite energy shield" material type. See the
+            _shield material type_ field of the unit's
+            [model_collision_geometry][] tag. Note that this field receives a
+            [hard-coded singleplayer adjustment][tool#hardcoded-tag-patches] at
+            map compile time for the pistol's damage effect.
+      - name: ice
+        type: float
+      - name: hunter_shield
+        type: float
+      - type: pad
+        size: 12
+      - type: pad
+        size: 16

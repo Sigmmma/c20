@@ -168,9 +168,9 @@ Beyond the [basic markdown features][mdbasic], c20 adds a few special extensions
   The YAML content follows this format:
   ```yml
   # determines the "main" structure
-  entryType: Savegame
+  entry_type: Savegame
   # if provided, shows offsets in table
-  showAbsoluteOffsets: true
+  showOffsets: true
   # root for HTML ID generation
   id: savegame
   # definitions for type names

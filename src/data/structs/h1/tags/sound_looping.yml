@@ -1,0 +1,204 @@
+entry_type: SoundLooping
+imports:
+  h1/tags/common:
+    - TagDependency
+    - Block
+    - Fraction
+    - Angle
+type_defs:
+  SoundLoopingFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: deafening_to_ais
+      - name: not_a_loop
+        comments:
+          en: >-
+            Prevents the sound from looping. When played with
+            `sound_looping_start`, it will play only once.
+      - name: stops_music
+  SoundLoopingTrackFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: fade_in_at_start
+      - name: fade_out_at_stop
+      - name: fade_in_alternate
+  SoundLoopingTrack:
+    class: struct
+    assert_size: 160
+    fields:
+      - name: flags
+        type: SoundLoopingTrackFlags
+      - name: gain
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+          default: 1
+      - name: fade_in_duration
+        type: float
+        meta:
+          unit: seconds
+        comments:
+          en: >
+            How many seconds it takes for this track to fade in, such as when
+            entering a
+            [cluster][scenario_structure_bsp#clusters-and-cluster-data] with a
+            [background
+            sound][scenario_structure_bsp#tag-field-background-sound-palette].
+      - name: fade_out_duration
+        type: float
+        meta:
+          unit: seconds
+        comments:
+          en: How many seconds it takes for this track to fade out.
+      - type: pad
+        size: 32
+      - name: start
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+        comments:
+          en: >
+            The sound that will play for this track when this *sound_looping*
+            begins playing. This field is optional.
+      - name: loop
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+        comments:
+          en: A sound to loop indefinitely while the *sound_looping* is playing.
+      - name: end
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+        comments:
+          en: The sound that will play for this track when fading out.
+      - type: pad
+        size: 32
+      - name: alternate_loop
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: alternate_end
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+  SoundLoopingDetailFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: don't_play_with_alternate
+      - name: don't_play_without_alternate
+  SoundLoopingDetail:
+    class: struct
+    assert_size: 104
+    fields:
+      - name: sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: random_period_bounds
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: gain
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+          default: 1
+      - name: flags
+        type: SoundLoopingDetailFlags
+      - type: pad
+        size: 48
+      - name: yaw_bounds
+        type: Bounds
+        meta:
+          default:
+            - -3.14159265359
+            - 3.14159265359
+        type_args:
+          T: Angle
+      - name: pitch_bounds
+        type: Bounds
+        meta:
+          default:
+            - -1.57079632679
+            - 1.57079632679
+        type_args:
+          T: Angle
+      - name: distance_bounds
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+  SoundLooping:
+    class: struct
+    meta:
+      tag_id: lsnd
+      pre_compile: true
+      post_compile: true
+    assert_size: 84
+    fields:
+      - name: flags
+        type: SoundLoopingFlags
+      - name: zero_detail_sound_period
+        type: float
+      - name: zero_detail_unknown_floats
+        type: float
+        count: 2
+        endianness: little
+      - name: one_detail_sound_period
+        type: float
+      - name: one_detail_unknown_floats
+        type: float
+        count: 2
+        endianness: little
+      - name: unknown_int
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: maximum_distance
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 8
+      - name: continuous_damage_effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - continuous_damage_effect
+      - name: tracks
+        type: Block
+        type_args:
+          T: SoundLoopingTrack
+        meta:
+          hek_max_count: 4
+        comments:
+          en: >
+            Tracks can be considered the "layers" of the *sound_looping*.
+            Although many tracks can be added, the engine is not be capable of
+            playing more than 4 of each [sound
+            class][sound#tag-field-sound-class] simultaneously when on high
+            sound quality setting (2 on low or in Sapien). Extra tracks past
+            these limits will not be played.
+      - name: detail_sounds
+        type: Block
+        type_args:
+          T: SoundLoopingDetail
+        meta:
+          hek_max_count: 32

@@ -1,0 +1,176 @@
+entry_type: Glow
+imports:
+  h1/tags/common:
+    - TagString
+    - FunctionOut
+    - ColorARGB
+    - TagDependency
+type_defs:
+  GlowBoundaryEffect:
+    class: enum
+    size: 2
+    options:
+      - name: bounce
+      - name: wrap
+  GlowNormalParticleDistribution:
+    class: enum
+    size: 2
+    options:
+      - name: distributed_randomly
+      - name: distributed_uniformly
+  GlowTrailingParticleDistribution:
+    class: enum
+    size: 2
+    options:
+      - name: emit_vertically
+      - name: emit_normal_up
+      - name: emit_randomly
+  GlowFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: modify_particle_color_in_range
+      - name: particles_move_backwards
+      - name: partices_move_in_both_directions
+      - name: trailing_particles_fade_over_time
+      - name: trailing_particles_shrink_over_time
+      - name: trailing_particles_slow_over_time
+  Glow:
+    class: struct
+    meta:
+      tag_id: glw!
+      post_cache_deformat: true
+      pre_compile: true
+    comments:
+      en: Used to create glowing effects like the Elite's energy sword.
+    assert_size: 340
+    fields:
+      - name: attachment_marker
+        type: TagString
+      - name: number_of_particles
+        type: uint16
+      - name: boundary_effect
+        type: GlowBoundaryEffect
+      - name: normal_particle_distribution
+        type: GlowNormalParticleDistribution
+      - name: trailing_particle_distribution
+        type: GlowTrailingParticleDistribution
+      - name: glow_flags
+        type: GlowFlags
+      - type: pad
+        size: 28
+      - type: pad
+        size: 2
+      - type: pad
+        size: 2
+      - type: pad
+        size: 4
+      - name: attachment_0
+        type: FunctionOut
+        meta:
+          shifted_by_one: true
+      - type: pad
+        size: 2
+      - name: particle_rotational_velocity
+        type: float
+      - name: particle_rot_vel_mul_low
+        type: float
+      - name: particle_rot_vel_mul_high
+        type: float
+      - name: attachment_1
+        type: FunctionOut
+        meta:
+          shifted_by_one: true
+      - type: pad
+        size: 2
+      - name: effect_rotational_velocity
+        type: float
+      - name: effect_rot_vel_mul_low
+        type: float
+      - name: effect_rot_vel_mul_high
+        type: float
+      - name: attachment_2
+        type: FunctionOut
+        meta:
+          shifted_by_one: true
+      - type: pad
+        size: 2
+      - name: effect_translational_velocity
+        type: float
+      - name: effect_trans_vel_mul_low
+        type: float
+      - name: effect_trans_vel_mul_high
+        type: float
+      - name: attachment_3
+        type: FunctionOut
+        meta:
+          shifted_by_one: true
+      - type: pad
+        size: 2
+      - name: min_distance_particle_to_object
+        type: float
+      - name: max_distance_particle_to_object
+        type: float
+      - name: distance_to_object_mul_low
+        type: float
+      - name: distance_to_object_mul_high
+        type: float
+      - type: pad
+        size: 8
+      - name: attachment_4
+        type: FunctionOut
+        meta:
+          shifted_by_one: true
+      - type: pad
+        size: 2
+      - name: particle_size_bounds
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+      - name: size_attachment_multiplier
+        type: Bounds
+        type_args:
+          T: float
+      - name: attachment_5
+        type: FunctionOut
+        meta:
+          shifted_by_one: true
+      - type: pad
+        size: 2
+      - name: color_bound_0
+        type: ColorARGB
+      - name: color_bound_1
+        type: ColorARGB
+      - name: scale_color_0
+        type: ColorARGB
+      - name: scale_color_1
+        type: ColorARGB
+      - name: color_rate_of_change
+        type: float
+      - name: fading_percentage_of_glow
+        type: float
+      - name: particle_generation_freq
+        type: float
+        meta:
+          unit: Hz
+      - name: lifetime_of_trailing_particles
+        type: float
+        meta:
+          unit: seconds
+      - name: velocity_of_trailing_particles
+        type: float
+        meta:
+          unit: world units per second
+      - name: trailing_particle_minimum_t
+        type: float
+      - name: trailing_particle_maximum_t
+        type: float
+      - type: pad
+        size: 52
+      - name: texture
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap

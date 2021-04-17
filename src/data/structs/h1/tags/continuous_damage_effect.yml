@@ -1,0 +1,12 @@
+entry_type: ContinuousDamageEffect
+imports: {}
+type_defs:
+  ContinuousDamageEffect:
+    class: struct
+    meta:
+      tag_id: 'cdmg'
+    fields:
+      - type: pad
+        size: 1
+        comments:
+          en: This type has yet to be documented.

@@ -1,0 +1,39 @@
+entry_type: CameraTrack
+imports:
+  h1/tags/common:
+    - IsUnusedFlag
+    - Block
+    - Point3D
+    - Quaternion
+type_defs:
+  CameraTrackControlPoint:
+    class: struct
+    assert_size: 60
+    fields:
+      - name: position
+        type: Point3D
+      - name: orientation
+        type: Quaternion
+      - type: pad
+        size: 32
+  CameraTrack:
+    class: struct
+    meta:
+      tag_id: trak
+    comments:
+      en: >
+        Defines rotational constraints for the game's camera when controlling
+        [bipeds][biped] or occupying [vehicles][vehicle] (e.g. prevents looking
+        all the way up or down).
+    assert_size: 48
+    fields:
+      - name: flags
+        type: IsUnusedFlag
+      - name: control_points
+        type: Block
+        type_args:
+          T: CameraTrackControlPoint
+        meta:
+          hek_max_count: 16
+      - type: pad
+        size: 32

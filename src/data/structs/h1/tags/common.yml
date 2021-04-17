@@ -1,0 +1,596 @@
+id: common
+type_defs:
+  ScenarioScriptNodeValue:
+    class: alias
+    type: byte
+    count: 4
+  Angle:
+    class: alias
+    type: float
+  Fraction:
+    class: alias
+    type: float
+  Index:
+    class: alias
+    type: uint16
+  TagID:
+    class: alias
+    type: uint32
+  TagEngineId:
+    class: enum
+    size: 4
+    options:
+      - name: none
+        value: 4294967295
+      - name: 'null'
+        value: 0
+      - name: actor
+        value: 1633907826
+      - name: actor_variant
+        value: 1633907830
+      - name: antenna
+        value: 1634628641
+      - name: model_animations
+        value: 1634628722
+      - name: biped
+        value: 1651077220
+      - name: bitmap
+        value: 1651078253
+      - name: spheroid
+        value: 1651470189
+      - name: continuous_damage_effect
+        value: 1667525991
+      - name: model_collision_geometry
+        value: 1668246636
+      - name: color_table
+        value: 1668246639
+      - name: contrail
+        value: 1668247156
+      - name: device_control
+        value: 1668575852
+      - name: decal
+        value: 1684366177
+      - name: ui_widget_definition
+        value: 1147489377
+      - name: input_device_defaults
+        value: 1684371043
+      - name: device
+        value: 1684371049
+      - name: detail_object_collection
+        value: 1685021283
+      - name: effect
+        value: 1701209701
+      - name: equipment
+        value: 1701931376
+      - name: flag
+        value: 1718378855
+      - name: fog
+        value: 1718576928
+      - name: font
+        value: 1718578804
+      - name: material_effects
+        value: 1718579060
+      - name: garbage
+        value: 1734439522
+      - name: glow
+        value: 1735161633
+      - name: grenade_hud_interface
+        value: 1735551081
+      - name: hud_message_text
+        value: 1752003616
+      - name: hud_number
+        value: 1752523811
+      - name: hud_globals
+        value: 1752523879
+      - name: item
+        value: 1769235821
+      - name: item_collection
+        value: 1769237859
+      - name: damage_effect
+        value: 1785754657
+      - name: lens_flare
+        value: 1818586739
+      - name: lightning
+        value: 1701602659
+      - name: device_light_fixture
+        value: 1818846825
+      - name: light
+        value: 1818847080
+      - name: sound_looping
+        value: 1819504228
+      - name: device_machine
+        value: 1835098984
+      - name: globals
+        value: 1835103335
+      - name: meter
+        value: 1835365490
+      - name: light_volume
+        value: 1835496242
+      - name: gbxmodel
+        value: 1836016690
+      - name: model
+        value: 1836016741
+      - name: multiplayer_scenario_description
+        value: 1836084345
+      - name: preferences_network_game
+        value: 1852272754
+      - name: object
+        value: 1868720741
+      - name: particle
+        value: 1885434484
+      - name: particle_system
+        value: 1885566060
+      - name: physics
+        value: 1885895027
+      - name: placeholder
+        value: 1886151011
+      - name: point_physics
+        value: 1886414969
+      - name: projectile
+        value: 1886547818
+      - name: weather_particle_system
+        value: 1918986606
+      - name: scenario_structure_bsp
+        value: 1935831920
+      - name: scenery
+        value: 1935893870
+      - name: shader_transparent_chicago_extended
+        value: 1935893880
+      - name: shader_transparent_chicago
+        value: 1935894633
+      - name: scenario
+        value: 1935896178
+      - name: shader_environment
+        value: 1936027254
+      - name: shader_transparent_glass
+        value: 1936157793
+      - name: shader
+        value: 1936221298
+      - name: sky
+        value: 1936423200
+      - name: shader_transparent_meter
+        value: 1936549236
+      - name: sound
+        value: 1936614433
+      - name: sound_environment
+        value: 1936614501
+      - name: shader_model
+        value: 1936683887
+      - name: shader_transparent_generic
+        value: 1936684146
+      - name: ui_widget_collection
+        value: 1399813484
+      - name: shader_transparent_plasma
+        value: 1936747617
+      - name: sound_scenery
+        value: 1936941925
+      - name: string_list
+        value: 1937011235
+      - name: shader_transparent_water
+        value: 1937203572
+      - name: tag_collection
+        value: 1952540515
+      - name: camera_track
+        value: 1953653099
+      - name: dialogue
+        value: 1969515623
+      - name: unit_hud_interface
+        value: 1970169961
+      - name: unit
+        value: 1970170228
+      - name: unicode_string_list
+        value: 1970500722
+      - name: virtual_keyboard
+        value: 1986227065
+      - name: vehicle
+        value: 1986357353
+      - name: weapon
+        value: 2003132784
+      - name: wind
+        value: 2003398244
+      - name: weapon_hud_interface
+        value: 2003855465
+      - name: invader_bitmap
+        value: 1700948340
+        meta:
+          non_standard: true
+      - name: invader_scenario
+        value: 1399025266
+        meta:
+          non_standard: true
+      - name: invader_sound
+        value: 1702063716
+        meta:
+          non_standard: true
+      - name: invader_font
+        value: 1852206708
+        meta:
+          non_standard: true
+      - name: invader_ui_widget_definition
+        value: 1853192036
+        meta:
+          non_standard: true
+      - name: invader_unit_hud_interface
+        value: 1853188201
+        meta:
+          non_standard: true
+      - name: invader_weapon_hud_interface
+        value: 1853319273
+        meta:
+          non_standard: true
+      - name: shader_transparent_glsl
+        value: 1937008492
+        meta:
+          non_standard: true
+  Vector2D:
+    class: struct
+    assert_size: 8
+    fields:
+      - name: i
+        type: float
+      - name: j
+        type: float
+  Vector3D:
+    class: struct
+    assert_size: 12
+    fields:
+      - name: i
+        type: float
+      - name: j
+        type: float
+      - name: k
+        type: float
+  Plane2D:
+    class: struct
+    assert_size: 12
+    fields:
+      - name: vector
+        type: Vector2D
+      - name: w
+        type: float
+  Point2D:
+    class: struct
+    type: struct
+    size: 8
+    fields:
+      - name: x
+        type: float
+      - name: 'y'
+        type: float
+  Point3D:
+    class: struct
+    type: struct
+    assert_size: 12
+    fields:
+      - name: x
+        type: float
+      - name: 'y'
+        type: float
+      - name: z
+        type: float
+  Bounds:
+    class: struct
+    args:
+      - T
+    fields:
+      - name: min
+        type: T
+      - name: max
+        type: T
+  Point2DInt:
+    class: struct
+    assert_size: 4
+    fields:
+      - name: x
+        type: int16
+      - name: 'y'
+        type: int16
+  Plane3D:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: vector
+        type: Vector3D
+        comments:
+          en: A 3-float normal vector.
+      - name: w
+        type: float
+        comments:
+          en: Distance from origin (along normal).
+  Matrix:
+    class: struct
+    assert_size: 36
+    fields:
+      - name: elements
+        type: float
+        count: 9
+  Quaternion:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: i
+        type: float
+      - name: j
+        type: float
+      - name: k
+        type: float
+      - name: w
+        type: float
+  ColorRGB:
+    class: struct
+    assert_size: 12
+    fields:
+      - name: red
+        type: float
+      - name: green
+        type: float
+      - name: blue
+        type: float
+  Euler2D:
+    class: struct
+    assert_size: 8
+    fields:
+      - name: yaw
+        type: Angle
+      - name: pitch
+        type: Angle
+  Euler3D:
+    class: struct
+    assert_size: 12
+    fields:
+      - name: yaw
+        type: Angle
+      - name: pitch
+        type: Angle
+      - name: roll
+        type: Angle
+  ColorARGB:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: alpha
+        type: float
+      - name: red
+        type: float
+      - name: green
+        type: float
+      - name: blue
+        type: float
+  Rectangle2D:
+    class: struct
+    assert_size: 8
+    fields:
+      - name: top
+        type: int16
+      - name: left
+        type: int16
+      - name: bottom
+        type: int16
+      - name: right
+        type: int16
+  ColorARGBInt:
+    class: struct
+    assert_size: 4
+    comments:
+      en: 'RGB Color with alpha, with 8-bit color depth per channel (0-255)'
+    fields:
+      - name: alpha
+        type: uint8
+      - name: red
+        type: uint8
+      - name: green
+        type: uint8
+      - name: blue
+        type: uint8
+  TagString:
+    class: struct
+    fields:
+      - name: buffer
+        type: char
+        count: 32
+  TagDependency:
+    class: struct
+    fields:
+      - name: tag_class
+        type: TagEngineId
+      - name: path_pointer
+        type: ptr32
+        type_args:
+          T: char
+        meta:
+          compiled: true
+      - name: path_length
+        type: uint32
+      - name: tag_id
+        type: TagID
+  Block:
+    class: struct
+    args:
+      - T
+    assert_size: 12
+    comments:
+      en: Header for a variable-sized array of data in a tag.
+    fields:
+      - name: item_count
+        type: uint32
+        comments:
+          en: Gives the number of items in this block.
+      - name: pointer
+        type: ptr64
+        type_args:
+          T: T
+        meta:
+          compiled: true
+        comments:
+          en: Pointer to the first item.
+  PredictedResourceType:
+    class: enum
+    size: 2
+    options:
+      - name: bitmap
+      - name: sound
+  PredictedResource:
+    class: struct
+    assert_size: 8
+    fields:
+      - name: type
+        type: PredictedResourceType
+      - name: resource_index
+        type: Index
+      - name: tag
+        type: TagID
+  TagDataOffset:
+    class: struct
+    assert_size: 20
+    fields:
+      - name: size
+        type: uint32
+      - name: external
+        endianness: little
+        type: uint32
+      - name: file_offset
+        type: uint32
+      - name: pointer
+        type: ptr64
+  FramebufferBlendFunction:
+    class: enum
+    size: 2
+    options:
+      - name: alpha blend
+      - name: multiply
+      - name: double multiply
+      - name: add
+      - name: subtract
+      - name: component min
+      - name: component max
+      - name: alpha multiply add
+  FramebufferFadeMode:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: fade when perpendicular
+      - name: fade when parallel
+  FunctionOut:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: a out
+      - name: b out
+      - name: c out
+      - name: d out
+  WaveFunction:
+    class: enum
+    size: 2
+    options:
+      - name: one
+      - name: zero
+      - name: cosine
+      - name: cosine variable period
+      - name: diagonal wave
+      - name: diagonal wave variable period
+      - name: slide
+      - name: slide variable period
+      - name: noise
+      - name: jitter
+      - name: wander
+      - name: spark
+  MaterialType:
+    class: enum
+    size: 2
+    options:
+      - name: dirt
+      - name: sand
+      - name: stone
+      - name: snow
+      - name: wood
+      - name: metal hollow
+      - name: metal thin
+      - name: metal thick
+      - name: rubber
+      - name: glass
+      - name: force field
+      - name: grunt
+      - name: hunter armor
+      - name: hunter skin
+      - name: elite
+      - name: jackal
+      - name: jackal energy shield
+      - name: engineer skin
+      - name: engineer force field
+      - name: flood combat form
+      - name: flood carrier form
+      - name: cyborg armor
+      - name: cyborg energy shield
+      - name: human armor
+      - name: human skin
+      - name: sentinel
+      - name: monitor
+      - name: plastic
+      - name: water
+      - name: leaves
+      - name: elite energy shield
+      - name: ice
+      - name: hunter shield
+  FunctionType:
+    class: enum
+    size: 2
+    options:
+      - name: linear
+      - name: early
+      - name: very early
+      - name: late
+      - name: very late
+      - name: cosine
+  FunctionBoundsMode:
+    class: enum
+    size: 2
+    options:
+      - name: clip
+      - name: clip and normalize
+      - name: scale to fit
+  FunctionScaleBy:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: a in
+      - name: b in
+      - name: c in
+      - name: d in
+      - name: a out
+      - name: b out
+      - name: c out
+      - name: d out
+  FunctionNameNullable:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: a
+      - name: b
+      - name: c
+      - name: d
+  GrenadeType:
+    class: enum
+    size: 2
+    options:
+      - name: human fragmentation
+      - name: covenant plasma
+  IsUnusedFlag:
+    class: bitfield
+    size: 4
+    bits:
+      - name: unused
+  IsUnfilteredFlag:
+    class: bitfield
+    size: 2
+    bits:
+      - name: unfiltered
+  ColorInterpolationFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: blend in hsv
+      - name: more colors

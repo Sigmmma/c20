@@ -1,0 +1,81 @@
+entry_type: Meter
+imports:
+  h1/tags/common:
+    - IsUnusedFlag
+    - TagDependency
+    - ColorARGB
+    - TagDataOffset
+type_defs:
+  MeterInterpolateColors:
+    class: enum
+    size: 2
+    options:
+      - name: linearly
+      - name: faster_near_empty
+      - name: faster_near_full
+      - name: through_random_noise
+  MeterAnchorColors:
+    class: enum
+    size: 2
+    options:
+      - name: at_both_ends
+      - name: at_empty
+      - name: at_full
+  Meter:
+    class: struct
+    meta:
+      tag_id: metr
+      postprocess_hek_data: true
+      pre_compile: true
+    comments:
+      en: Likely a leftover from pre-CE development.
+    assert_size: 172
+    fields:
+      - name: flags
+        type: IsUnusedFlag
+      - name: stencil_bitmaps
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_cached: true
+        comments:
+          en: Don't use this! This gets dereferenced on map build.
+      - name: source_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+          non_cached: true
+        comments:
+          en: Don't use this! This gets dereferenced on map build.
+      - name: stencil_sequence_index
+        type: uint16
+      - name: source_sequence_index
+        type: uint16
+      - type: pad
+        size: 16
+      - type: pad
+        size: 4
+      - name: interpolate_colors
+        type: MeterInterpolateColors
+      - name: anchor_colors
+        type: MeterAnchorColors
+      - type: pad
+        size: 8
+      - name: empty_color
+        type: ColorARGB
+      - name: full_color
+        type: ColorARGB
+      - type: pad
+        size: 20
+      - name: unmask_distance
+        type: float
+      - name: mask_distance
+        type: float
+      - type: pad
+        size: 20
+      - name: encoded_stencil
+        type: TagDataOffset
+        meta:
+          cache_only: true

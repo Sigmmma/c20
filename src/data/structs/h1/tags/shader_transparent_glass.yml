@@ -1,0 +1,135 @@
+entry_type: ShaderTransparentGlass
+imports:
+  h1/tags/shader:
+    - Shader
+  h1/tags/common:
+    - ColorRGB
+    - TagDependency
+    - Fraction
+type_defs:
+  ShaderTransparentGlassFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: alpha_tested
+      - name: decal
+      - name: two_sided
+      - name: bump_map_is_specular_mask
+  ShaderTransparentGlassReflectionType:
+    class: enum
+    size: 2
+    options:
+      - name: bumped_cube_map
+      - name: flat_cube_map
+      - name: dynamic_mirror
+  ShaderTransparentGlass:
+    class: struct
+    extends:
+      type: Shader
+    meta:
+      tag_id: sgla
+      pre_compile: true
+    assert_size: 480
+    fields:
+      - name: shader_transparent_glass_flags
+        type: ShaderTransparentGlassFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 40
+      - name: background_tint_color
+        type: ColorRGB
+        meta:
+          default:
+            - 1
+            - 1
+            - 1
+      - name: background_tint_map_scale
+        type: float
+        meta:
+          default: 1
+      - name: background_tint_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 20
+      - type: pad
+        size: 2
+      - name: reflection_type
+        type: ShaderTransparentGlassReflectionType
+      - name: perpendicular_brightness
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: perpendicular_tint_color
+        type: ColorRGB
+      - name: parallel_brightness
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: parallel_tint_color
+        type: ColorRGB
+      - name: reflection_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: bump_map_scale
+        type: float
+        meta:
+          default: 1
+      - name: bump_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 128
+      - type: pad
+        size: 4
+      - name: diffuse_map_scale
+        type: float
+        meta:
+          default: 1
+      - name: diffuse_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: diffuse_detail_map_scale
+        type: float
+        meta:
+          default: 1
+      - name: diffuse_detail_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 28
+      - type: pad
+        size: 4
+      - name: specular_map_scale
+        type: float
+        meta:
+          default: 1
+      - name: specular_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: specular_detail_map_scale
+        type: float
+        meta:
+          default: 1
+      - name: specular_detail_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 28

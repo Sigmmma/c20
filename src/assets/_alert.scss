@@ -1,0 +1,17 @@
+@import "_constants";
+
+.alert {
+  display: flow-root;
+  border-radius: $border-radius;
+  padding: 0 $padding-containers;
+  margin-bottom: $padding-containers;
+  &.type-info {
+    background: $bg-info;
+  }
+  &.type-danger {
+    background: $bg-danger;
+  }
+  &.type-success {
+    background: $bg-success;
+  }
+}

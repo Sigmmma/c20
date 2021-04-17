@@ -50,29 +50,22 @@ An explicit choice was made to avoid typical managed or self-hosted Wiki platfor
 * [Marked.js](https://github.com/markedjs/marked) for Markdown rendering. This library is extremely customizable; we customize header rendering to support anchor links and have a plaintext renderer to support search and opengraph previews.
 
 ### Building and testing
-In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite, this project requires [Node.js](https://nodejs.org/en/) and [Invader](https://github.com/Kavawuvi/invader) is included as a submodule for its tag definitions. Run the following shell commands to build and locally serve the website:
+In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite, this project requires [installing Node.js v11+](https://nodejs.org/en/). Run the following shell commands to build and locally serve the website:
 
 ```sh
 # install dependencies
-git submodule update --init
 npm ci
 
 # build content into `./dist`
 npm run dev
 ```
 
-You should be able to visit http://localhost:8080/ in a browser and see the built website. Note that if you make changes to source content, it will need to be rebuilt with `npm run build` before you see changes in the browser.
+You should be able to visit http://localhost:8080/ in a browser and see the built website. The website will be automatically rebuilt if you make changes to source content. Refresh your browser to see changes.
 
 If a different port is desired, set the environment variable `C20_PORT`:
 
 ```sh
 C20_PORT=9001 npm run dev
-```
-
-If needed, the invader version can be updated with:
-
-```sh
-git submodule update --remote
 ```
 
 ### Releasing

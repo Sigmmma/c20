@@ -221,7 +221,7 @@ tool.exe build-cache-file "levels\test\tutorial\tutorial"
 The resulting map file can be found in Halo's `maps` directory.
 
 ## Hardcoded tag patches
-There are a number of gameplay-balancing tag patches ("Jason Jones edits") made at runtime on Xbox, but also at map compilation time by [Tool][]. On both platforms, these patches are only made to singleplayer maps.
+There are a number of gameplay-balancing tag patches ("Jason Jones edits") made at runtime on Xbox, but also at map compilation time by [Tool][]. On both platforms, these patches are only made to [singleplayer scenarios][scenario#tag-field-type].
 
 | Tag type        | Tag path                          | Changes
 |-----------------|-----------------------------------|----------------

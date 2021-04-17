@@ -1,0 +1,194 @@
+entry_type: Fog
+imports:
+  h1/tags/common:
+    - Fraction
+    - ColorRGB
+    - ColorARGBInt
+    - TagDependency
+type_defs:
+  FogFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: is_water
+        comments:
+          en: >
+            Determines if the volume behind (anti-normal to) this fog plane is a
+            "water fog volume", which causes it to be considered underwater.
+            This affects vehicles' ability to travel over water.
+      - name: atmosphere_dominant
+        comments:
+          en: >
+            As documented in [Guerilla][], this was originally used to fix
+            polygon popping when atmospheric fog density reached 1.0 within the
+            confines of the map and interacted with fog planes. It is only
+            enabled in c10's swamp fog tag on both Xbox and PC. This flag is
+            possibly changing fog render order and therefore also coincidentally
+            fixes the shader inconsistency between Xbox and PC which causes the
+            Assault on the Control Room snowy fog to look incorrect on PC.
+      - name: fog_screen_only
+        comments:
+          en: Unknown purpose. This flag was not set in any original Halo maps.
+  FogScreenFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: no_environment_multipass
+      - name: no_model_multipass
+      - name: no_texture_based_falloff
+  Fog:
+    class: struct
+    meta:
+      tag_id: 'fog '
+    comments:
+      en: Describes the appearance of fog planes.
+    assert_size: 396
+    fields:
+      - name: flags
+        type: FogFlags
+      - type: pad
+        size: 4
+      - type: pad
+        size: 76
+      - type: pad
+        size: 4
+      - name: maximum_density
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+        comments:
+          en: >
+            Scales how dense the fog is at its opaque distance and depth, where
+            `1` is the fully opaque _color_ and `0` is transparent.
+      - type: pad
+        size: 4
+      - name: opaque_distance
+        type: float
+        meta:
+          unit: world units
+        comments:
+          en: >
+            The distance from the player where the fog reaches its _maximum
+            density_.
+      - type: pad
+        size: 4
+      - name: opaque_depth
+        type: float
+        meta:
+          unit: world units
+        comments:
+          en: >
+            The distance from the fog plane where the fog reaches its _maximum
+            density_.
+      - type: pad
+        size: 8
+      - name: distance_to_water_plane
+        type: float
+        meta:
+          unit: world units
+      - name: color
+        type: ColorRGB
+      - name: flags_1
+        type: FogScreenFlags
+      - name: layer_count
+        type: uint16
+      - name: distance_gradient
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+      - name: density_gradient
+        type: Bounds
+        meta:
+          min: 0
+          max: 1
+        type_args:
+          T: Fraction
+      - name: start_distance_from_fog_plane
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 4
+      - name: screen_layers_color
+        type: ColorARGBInt
+        comments:
+          en: >
+            Sets the colour of the screen layer volumetrics particles. Note that
+            this effect only works on the original Xbox version of the game.
+      - name: rotation_multiplier
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: strafing_multiplier
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: zoom_multiplier
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 8
+      - name: map_scale
+        type: float
+      - name: map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: animation_period
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 4
+      - name: wind_velocity
+        type: Bounds
+        meta:
+          unit: world units per second
+        type_args:
+          T: float
+      - name: wind_period
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: wind_acceleration_weight
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: wind_perpendicular_weight
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 8
+      - name: background_sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound_looping
+        comments:
+          en: >
+            Overrides the background sound of the cluster while under the fog
+            plane. This is used for underwater areas.
+      - name: sound_environment
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound_environment
+        comments:
+          en: >
+            Overrides the sound environment of the cluster while under the fog
+            plane. This is used for underwater areas.
+      - type: pad
+        size: 120

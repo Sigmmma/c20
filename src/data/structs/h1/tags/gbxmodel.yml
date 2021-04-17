@@ -1,0 +1,180 @@
+entry_type: GBXModel
+imports:
+  h1/tags/model:
+    - ModelFlags
+    - ModelMarker
+    - ModelNode
+    - ModelRegion
+    - ModelGeometryPart
+    - ModelShaderReference
+  h1/tags/common:
+    - Block
+    - IsUnusedFlag
+type_defs:
+  GBXModelGeometryPart:
+    class: struct
+    extends:
+      type: ModelGeometryPart
+    assert_size: 132
+    meta:
+      post_cache_parse: true
+      unsafe_to_dedupe: true
+      pre_compile: true
+      read_only: true
+    fields:
+      - type: pad
+        size: 1
+      - type: pad
+        size: 1
+      - type: pad
+        size: 1
+      - name: local_node_count
+        type: uint8
+        meta:
+          max: 22
+          read_only: true
+      - name: local_node_indices
+        type: uint8
+        count: 22
+        meta:
+          hidden: true
+        comments:
+          en: >-
+            Local nodes are used to indirectly refer to a real node. So, if
+            local nodes are used, a vertex says node #4, and local node #4
+            refers to node #5, then the vertex is node #5. There really doesn't
+            seem to be any benefit to using local nodes, considering compressed
+            vertices (which can only address 42 nodes) don't even use them. They
+            just make the models unnecessarily more convoluted while taking up
+            more space.
+      - type: pad
+        size: 2
+  GBXModelGeometry:
+    class: struct
+    assert_size: 48
+    meta:
+      read_only: true
+    fields:
+      - name: flags
+        type: IsUnusedFlag
+      - type: pad
+        size: 32
+      - name: parts
+        type: Block
+        type_args:
+          T: GBXModelGeometryPart
+        meta:
+          hek_max_count: 32
+  GBXModel:
+    class: struct
+    meta:
+      tag_id: mod2
+      post_cache_deformat: true
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+      read_only: true
+    comments:
+      en: >-
+        Stores the render model of [objects][object] in the Gearbox port of the
+        game (and its derivatives).
+    assert_size: 232
+    fields:
+      - name: flags
+        type: ModelFlags
+      - name: node_list_checksum
+        type: int32
+      - name: super_high_detail_cutoff
+        type: float
+        meta:
+          unit: pixels
+      - name: high_detail_cutoff
+        type: float
+        meta:
+          unit: pixels
+      - name: medium_detail_cutoff
+        type: float
+        meta:
+          unit: pixels
+      - name: low_detail_cutoff
+        type: float
+        meta:
+          unit: pixels
+      - name: super_low_detail_cutoff
+        type: float
+        meta:
+          unit: pixels
+      - name: super_low_detail_node_count
+        type: uint16
+        meta:
+          cache_only: true
+          unit: nodes
+      - name: low_detail_node_count
+        type: uint16
+        meta:
+          cache_only: true
+          unit: nodes
+      - name: medium_detail_node_count
+        type: uint16
+        meta:
+          cache_only: true
+          unit: nodes
+      - name: high_detail_node_count
+        type: uint16
+        meta:
+          cache_only: true
+          unit: nodes
+      - name: super_high_detail_node_count
+        type: uint16
+        meta:
+          cache_only: true
+          unit: nodes
+      - type: pad
+        size: 2
+      - type: pad
+        size: 8
+      - name: base_map_u_scale
+        type: float
+        meta:
+          default: 1
+      - name: base_map_v_scale
+        type: float
+        meta:
+          default: 1
+      - type: pad
+        size: 116
+      - name: markers
+        type: Block
+        type_args:
+          T: ModelMarker
+        meta:
+          hek_max_count: 256
+          hidden: true
+          max: 0
+      - name: nodes
+        type: Block
+        type_args:
+          T: ModelNode
+        meta:
+          hek_max_count: 64
+          max: 255
+      - name: regions
+        type: Block
+        type_args:
+          T: ModelRegion
+        meta:
+          hek_max_count: 32
+          max: 255
+      - name: geometries
+        type: Block
+        type_args:
+          T: GBXModelGeometry
+        meta:
+          hek_max_count: 256
+          max: 65535
+      - name: shaders
+        type: Block
+        type_args:
+          T: ModelShaderReference
+        meta:
+          hek_max_count: 32

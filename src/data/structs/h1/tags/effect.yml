@@ -1,0 +1,326 @@
+entry_type: Effect
+imports:
+  h1/tags/common:
+    - Index
+    - Block
+    - TagString
+    - Fraction
+    - TagDependency
+    - Angle
+    - Euler2D
+    - Point3D
+    - Vector3D
+    - ColorARGB
+type_defs:
+  EffectFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: deleted_when_attachment_deactivates
+      - name: required_for_gameplay_cannot_optimize_out
+      - name: do_not_cull
+        meta:
+          cache_only: true
+  EffectLocation:
+    class: struct
+    assert_size: 32
+    fields:
+      - name: marker_name
+        type: TagString
+  EffectCreateIn1:
+    class: enum
+    size: 2
+    options:
+      - name: any_environment
+      - name: air_only
+      - name: water_only
+      - name: space_only
+  EffectCreateIn2:
+    class: enum
+    size: 2
+    options:
+      - name: either_mode
+      - name: violent_mode_only
+      - name: nonviolent_mode_only
+  EffectPartFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: face_down_regardless_of_location_decals
+      - name: unused
+        meta:
+          cache_only: true
+      - name: make_effect_work
+        meta:
+          cache_only: true
+  EffectPartScalesValues:
+    class: bitfield
+    size: 4
+    bits:
+      - name: velocity
+      - name: velocity_delta
+      - name: velocity_cone_angle
+      - name: angular_velocity
+      - name: angular_velocity_delta
+      - name: type_specific_scale
+  EffectPart:
+    class: struct
+    assert_size: 104
+    fields:
+      - name: create_in_1
+        type: EffectCreateIn1
+      - name: create_in_2
+        type: EffectCreateIn2
+      - name: location
+        type: Index
+        meta:
+          index_of: locations
+      - name: flags
+        type: EffectPartFlags
+      - type: pad
+        size: 12
+      - name: type_class
+        type: uint32
+        meta:
+          cache_only: true
+      - name: type
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+            - object
+            - particle_system
+            - sound
+            - decal
+            - light
+      - type: pad
+        size: 24
+      - name: velocity_bounds
+        type: Bounds
+        meta:
+          unit: world units per second
+        type_args:
+          T: float
+      - name: velocity_cone_angle
+        type: Angle
+      - name: angular_velocity_bounds
+        type: Bounds
+        meta:
+          unit: degrees per second
+        type_args:
+          T: Angle
+      - name: radius_modifier_bounds
+        type: Bounds
+        type_args:
+          T: float
+      - type: pad
+        size: 4
+      - name: a_scales_values
+        type: EffectPartScalesValues
+      - name: b_scales_values
+        type: EffectPartScalesValues
+  EffectCreate:
+    class: enum
+    size: 2
+    options:
+      - name: independent_of_camera_mode
+      - name: only_in_first_person
+      - name: only_in_third_person
+      - name: in_first_person_if_possible
+  EffectParticleFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: stay_attached_to_marker
+      - name: random_initial_angle
+      - name: tint_from_object_color
+      - name: interpolate_tint_as_hsv
+      - name: across_the_long_hue_path
+  EffectDistributionFunction:
+    class: enum
+    size: 2
+    options:
+      - name: start
+      - name: end
+      - name: constant
+      - name: buildup
+      - name: falloff
+      - name: buildup_and_falloff
+  EffectParticleScalesValues:
+    class: bitfield
+    size: 4
+    bits:
+      - name: velocity
+      - name: velocity_delta
+      - name: velocity_cone_angle
+      - name: angular_velocity
+      - name: angular_velocity_delta
+      - name: count
+      - name: count_delta
+      - name: distribution_radius
+      - name: distribution_radius_delta
+      - name: particle_radius
+      - name: particle_radius_delta
+      - name: tint
+  EffectParticle:
+    class: struct
+    assert_size: 232
+    meta:
+      post_compile: true
+    fields:
+      - name: create_in_1
+        type: EffectCreateIn1
+      - name: create_in_2
+        type: EffectCreateIn2
+      - name: create
+        type: EffectCreate
+      - type: pad
+        size: 2
+      - name: location
+        type: Index
+        meta:
+          index_of: locations
+      - type: pad
+        size: 2
+      - name: relative_direction
+        type: Euler2D
+      - name: relative_offset
+        type: Point3D
+      - name: relative_direction_vector
+        type: Vector3D
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 40
+      - name: particle_type
+        type: TagDependency
+        meta:
+          tag_classes:
+            - particle
+      - name: flags
+        type: EffectParticleFlags
+      - name: distribution_function
+        type: EffectDistributionFunction
+      - type: pad
+        size: 2
+      - name: count
+        type: Bounds
+        type_args:
+          T: uint16
+      - name: distribution_radius
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+      - type: pad
+        size: 12
+      - name: velocity
+        type: Bounds
+        meta:
+          unit: world units per second
+        type_args:
+          T: float
+      - name: velocity_cone_angle
+        type: Angle
+      - name: angular_velocity
+        type: Bounds
+        meta:
+          unit: degrees per second
+        type_args:
+          T: Angle
+      - type: pad
+        size: 8
+      - name: radius
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+      - type: pad
+        size: 8
+      - name: tint_lower_bound
+        type: ColorARGB
+      - name: tint_upper_bound
+        type: ColorARGB
+      - type: pad
+        size: 16
+      - name: a_scales_values
+        type: EffectParticleScalesValues
+      - name: b_scales_values
+        type: EffectParticleScalesValues
+  EffectEvent:
+    class: struct
+    assert_size: 68
+    fields:
+      - type: pad
+        size: 4
+      - name: skip_fraction
+        type: Fraction
+      - name: delay_bounds
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: duration_bounds
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - type: pad
+        size: 20
+      - name: parts
+        type: Block
+        type_args:
+          T: EffectPart
+        meta:
+          hek_max_count: 32
+      - name: particles
+        type: Block
+        type_args:
+          T: EffectParticle
+        meta:
+          hek_max_count: 32
+  Effect:
+    class: struct
+    meta:
+      tag_id: effe
+      post_compile: true
+    comments:
+      en: >
+        A multi-purpose tag used for responses to various events like material
+        impacts, sound effects, and detonations.
+    assert_size: 64
+    fields:
+      - name: flags
+        type: EffectFlags
+      - name: loop_start_event
+        type: Index
+        meta:
+          index_of: events
+      - name: loop_stop_event
+        type: Index
+        meta:
+          index_of: events
+      - name: maximum_damage_radius
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 28
+      - name: locations
+        type: Block
+        type_args:
+          T: EffectLocation
+        meta:
+          hek_max_count: 32
+      - name: events
+        type: Block
+        type_args:
+          T: EffectEvent
+        meta:
+          hek_max_count: 32

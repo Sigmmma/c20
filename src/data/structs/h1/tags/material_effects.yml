@@ -1,0 +1,71 @@
+entry_type: MaterialEffects
+imports:
+  h1/tags/common:
+    - Block
+    - TagDependency
+type_defs:
+  MaterialEffectsMaterialEffectMaterial:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: effect
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+        comments:
+          en: >
+            The effect to locally spawn at the interaction/collision point,
+            which can do things like create decals, particles, lights, etc.
+      - name: sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+        comments:
+          en: >
+            A sound to play at the interaction/collision point. It is also
+            possible to add a sound _part_ to the effect above, but using this
+            field may prevent the game from cutting this sound during
+            effect-intense scenes.
+      - type: pad
+        size: 16
+  MaterialEffectsMaterialEffect:
+    class: struct
+    assert_size: 28
+    fields:
+      - name: materials
+        type: Block
+        type_args:
+          T: MaterialEffectsMaterialEffectMaterial
+        meta:
+          hek_max_count: 33
+        comments:
+          en: >
+            This block has positional entries for every hard-coded material
+            type. These are the same material types seen in [damage_effect][]
+            modifiers.
+      - type: pad
+        size: 16
+  MaterialEffects:
+    class: struct
+    meta:
+      tag_id: foot
+    comments:
+      en: >
+        Spawns effects when moving objects interact with surfaces, like tread
+        marks, splashing footsteps, and scattering rocks.
+    assert_size: 140
+    fields:
+      - name: effects
+        type: Block
+        type_args:
+          T: MaterialEffectsMaterialEffect
+        meta:
+          hek_max_count: 13
+        comments:
+          en: >
+            This block has positional entries for different types of material
+            interactions, such as walking, impacts, and vehicle tire slip.
+      - type: pad
+        size: 128

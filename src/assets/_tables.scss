@@ -1,0 +1,74 @@
+@import "_constants";
+
+table {
+  border-collapse: collapse;
+  margin-bottom: $padding-flow;
+  width: 100%;
+
+  td, th {
+    padding: $padding-containers-small;
+    border: 1px solid $border-color;
+    vertical-align: top;
+
+    *:first-child {
+      margin-top: 0;
+    }
+    *:last-child {
+      margin-bottom: 0;
+    }
+  }
+  th {
+    text-align: left;
+    background: $bg-overlay;
+  }
+}
+
+table.type-def {
+  background: $bg-content;
+  & {
+    margin-bottom: 0;
+  }
+
+  tr.field-type-TagDependency {
+    background: mix($bg-tag, $bg-content, 35%);
+  }
+
+  tr.field-type-ptr32, tr.field-type-ptr64, tr.field-type-TagDataOffset {
+    background: mix($bg-info, $bg-content, 35%);
+  }
+
+  tr.field-type-Block {
+    .field-name {
+      text-transform: uppercase;
+      font-weight: bold;
+    }
+  }
+
+  .embedded-type {
+    background: $bg-inset;
+  }
+
+  td.field-type {
+    word-wrap: anywhere;
+  }
+
+  tr.field-type-pad, tr.field-meta-cache_only, tr.field-meta-unused {
+    color: $fg-faded;
+    .field-meta {
+      border-color: $fg-faded;
+    }
+  }
+}
+
+.field-metas {
+  list-style: none;
+  padding: 0;
+  margin-top: 0;
+}
+
+.field-meta {
+  display: inline-block;
+  border-radius: $border-radius;
+  border: 1px solid $fg;
+  padding: 0 0.2em;
+}

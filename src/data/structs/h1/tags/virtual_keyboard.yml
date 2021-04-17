@@ -1,0 +1,121 @@
+entry_type: VirtualKeyboard
+imports:
+  h1/tags/common:
+    - TagDependency
+    - Block
+type_defs:
+  VirtualKeyboardKeyboardKey:
+    class: enum
+    size: 2
+    options:
+      - name: '1'
+      - name: '2'
+      - name: '3'
+      - name: '4'
+      - name: '5'
+      - name: '6'
+      - name: '7'
+      - name: '8'
+      - name: '9'
+      - name: '0'
+      - name: a
+      - name: b
+      - name: c
+      - name: d
+      - name: e
+      - name: f
+      - name: g
+      - name: h
+      - name: i
+      - name: j
+      - name: k
+      - name: l
+      - name: m
+      - name: 'n'
+      - name: o
+      - name: p
+      - name: q
+      - name: r
+      - name: s
+      - name: t
+      - name: u
+      - name: v
+      - name: w
+      - name: x
+      - name: 'y'
+      - name: z
+      - name: done
+      - name: shift
+      - name: caps_lock
+      - name: symbols
+      - name: backspace
+      - name: left
+      - name: right
+      - name: space
+  VirtualKeyboardVirtualKey:
+    class: struct
+    assert_size: 80
+    fields:
+      - name: keyboard_key
+        type: VirtualKeyboardKeyboardKey
+      - name: lowercase_character
+        type: int16
+      - name: shift_character
+        type: int16
+      - name: caps_character
+        type: int16
+      - name: symbols_character
+        type: int16
+      - name: shift_caps_character
+        type: int16
+      - name: shift_symbols_character
+        type: int16
+      - name: caps_symbols_character
+        type: int16
+      - name: unselected_background_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: selected_background_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: active_background_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: sticky_background_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+  VirtualKeyboard:
+    class: struct
+    meta:
+      tag_id: vcky
+    assert_size: 60
+    fields:
+      - name: display_font
+        type: TagDependency
+        meta:
+          tag_classes:
+            - font
+      - name: background_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: special_key_labels_string_list
+        type: TagDependency
+        meta:
+          tag_classes:
+            - unicode_string_list
+      - name: virtual_keys
+        type: Block
+        type_args:
+          T: VirtualKeyboardVirtualKey
+        meta:
+          hek_max_count: 44

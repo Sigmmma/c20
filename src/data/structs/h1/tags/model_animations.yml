@@ -1,0 +1,565 @@
+entry_type: ModelAnimations
+imports:
+  h1/tags/common:
+    - Block
+    - Index
+    - TagString
+    - Angle
+    - TagDependency
+    - Vector3D
+    - Fraction
+    - TagDataOffset
+type_defs:
+  AnimationFunction:
+    class: enum
+    size: 2
+    options:
+      - name: a_out
+      - name: b_out
+      - name: c_out
+      - name: d_out
+  AnimationFunctionControls:
+    class: enum
+    size: 2
+    options:
+      - name: frame
+      - name: scale
+  ModelAnimationsAnimationGraphObjectOverlay:
+    class: struct
+    assert_size: 20
+    fields:
+      - name: animation
+        type: Index
+        meta:
+          index_of: animations
+      - name: function
+        type: AnimationFunction
+      - name: function_controls
+        type: AnimationFunctionControls
+      - type: pad
+        size: 2
+      - type: pad
+        size: 12
+  ModelAnimationsAnimationWeaponClassAnimation:
+    class: struct
+    assert_size: 2
+    fields:
+      - name: animation
+        type: Index
+        meta:
+          index_of: animations
+  ModelAnimationsAnimationGraphUnitSeatikPoint:
+    class: struct
+    assert_size: 64
+    fields:
+      - name: marker
+        type: TagString
+      - name: attach_to_marker
+        type: TagString
+  ModelAnimationsAnimationWeaponTypeAnimation:
+    class: struct
+    assert_size: 2
+    fields:
+      - name: animation
+        type: Index
+        meta:
+          index_of: animations
+  ModelAnimationsAnimationGraphWeaponType:
+    class: struct
+    assert_size: 60
+    fields:
+      - name: label
+        type: TagString
+      - type: pad
+        size: 16
+      - name: animations
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationWeaponTypeAnimation
+        meta:
+          hek_max_count: 16
+  ModelAnimationsAnimationGraphWeapon:
+    class: struct
+    assert_size: 188
+    fields:
+      - name: name
+        type: TagString
+      - name: grip_marker
+        type: TagString
+      - name: hand_marker
+        type: TagString
+      - name: right_yaw_per_frame
+        type: Angle
+      - name: left_yaw_per_frame
+        type: Angle
+      - name: right_frame_count
+        type: uint16
+      - name: left_frame_count
+        type: uint16
+      - name: down_pitch_per_frame
+        type: Angle
+      - name: up_pitch_per_frame
+        type: Angle
+      - name: down_pitch_frame_count
+        type: uint16
+      - name: up_pitch_frame_count
+        type: uint16
+      - type: pad
+        size: 32
+      - name: animations
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationWeaponClassAnimation
+        meta:
+          hek_max_count: 55
+      - name: ik_point
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationGraphUnitSeatikPoint
+        meta:
+          hek_max_count: 4
+      - name: weapon_types
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationGraphWeaponType
+        meta:
+          hek_max_count: 10
+  ModelAnimationsAnimationGraphUnitSeat:
+    class: struct
+    assert_size: 100
+    fields:
+      - name: label
+        type: TagString
+      - name: right_yaw_per_frame
+        type: Angle
+      - name: left_yaw_per_frame
+        type: Angle
+      - name: right_frame_count
+        type: uint16
+      - name: left_frame_count
+        type: uint16
+      - name: down_pitch_per_frame
+        type: Angle
+      - name: up_pitch_per_frame
+        type: Angle
+      - name: down_pitch_frame_count
+        type: uint16
+      - name: up_pitch_frame_count
+        type: uint16
+      - type: pad
+        size: 8
+      - name: animations
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationWeaponClassAnimation
+        meta:
+          hek_max_count: 33
+      - name: ik_points
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationGraphUnitSeatikPoint
+        meta:
+          hek_max_count: 4
+      - name: weapons
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationGraphWeapon
+        meta:
+          hek_max_count: 16
+  ModelAnimationsWeaponAnimation:
+    class: struct
+    assert_size: 2
+    fields:
+      - name: animation
+        type: Index
+        meta:
+          index_of: animations
+  ModelAnimationsAnimationGraphWeaponAnimations:
+    class: struct
+    assert_size: 28
+    fields:
+      - type: pad
+        size: 16
+      - name: animations
+        type: Block
+        type_args:
+          T: ModelAnimationsWeaponAnimation
+        meta:
+          hek_max_count: 11
+  ModelAnimationsVehicleAnimation:
+    class: struct
+    assert_size: 2
+    fields:
+      - name: animation
+        type: Index
+        meta:
+          index_of: animations
+  ModelAnimationSuspensionAnimation:
+    class: struct
+    assert_size: 20
+    fields:
+      - name: mass_point_index
+        type: Index
+      - name: animation
+        type: Index
+        meta:
+          index_of: animations
+      - name: full_extension_ground_depth
+        type: float
+      - name: full_compression_ground_depth
+        type: float
+      - type: pad
+        size: 8
+  ModelAnimationsAnimationGraphVehicleAnimations:
+    class: struct
+    assert_size: 116
+    fields:
+      - name: right_yaw_per_frame
+        type: Angle
+      - name: left_yaw_per_frame
+        type: Angle
+      - name: right_frame_count
+        type: uint16
+      - name: left_frame_count
+        type: uint16
+      - name: down_pitch_per_frame
+        type: Angle
+      - name: up_pitch_per_frame
+        type: Angle
+      - name: down_pitch_frame_count
+        type: uint16
+      - name: up_pitch_frame_count
+        type: uint16
+      - type: pad
+        size: 68
+      - name: animations
+        type: Block
+        type_args:
+          T: ModelAnimationsVehicleAnimation
+        meta:
+          hek_max_count: 8
+      - name: suspension_animations
+        type: Block
+        type_args:
+          T: ModelAnimationSuspensionAnimation
+        meta:
+          hek_max_count: 8
+  ModelAnimationsDeviceAnimation:
+    class: struct
+    assert_size: 2
+    fields:
+      - name: animation
+        type: Index
+        meta:
+          index_of: animations
+  ModelAnimationsDeviceAnimations:
+    class: struct
+    assert_size: 96
+    fields:
+      - type: pad
+        size: 84
+      - name: animations
+        type: Block
+        type_args:
+          T: ModelAnimationsDeviceAnimation
+        meta:
+          hek_max_count: 2
+  ModelAnimationsUnitDamageAnimations:
+    class: struct
+    assert_size: 2
+    fields:
+      - name: animation
+        type: Index
+        meta:
+          index_of: animations
+  ModelAnimationsFirstPersonWeapon:
+    class: struct
+    assert_size: 2
+    fields:
+      - name: animation
+        type: Index
+        meta:
+          index_of: animations
+          hek_max_count: 176
+  ModelAnimationsAnimationGraphFirstPersonWeaponAnimations:
+    class: struct
+    assert_size: 28
+    fields:
+      - type: pad
+        size: 16
+      - name: animations
+        type: Block
+        type_args:
+          T: ModelAnimationsFirstPersonWeapon
+        meta:
+          hek_max_count: 28
+  ModelAnimationsAnimationGraphSoundReference:
+    class: struct
+    assert_size: 20
+    fields:
+      - name: sound
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - type: pad
+        size: 4
+  ModelAnimationsFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: compress_all_animations
+      - name: force_idle_compression
+  ModelAnimationsAnimationGraphNodeFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: ball_socket
+      - name: hinge
+      - name: no_movement
+  ModelAnimationsAnimationGraphNode:
+    class: struct
+    assert_size: 64
+    fields:
+      - name: name
+        type: TagString
+      - name: next_sibling_node_index
+        type: Index
+        meta:
+          index_of: nodes
+          read_only: true
+      - name: first_child_node_index
+        type: Index
+        meta:
+          index_of: nodes
+          read_only: true
+      - name: parent_node_index
+        type: Index
+        meta:
+          index_of: nodes
+          read_only: true
+      - type: pad
+        size: 2
+      - name: node_joint_flags
+        type: ModelAnimationsAnimationGraphNodeFlags
+      - name: base_vector
+        type: Vector3D
+        meta:
+          read_only: true
+      - name: vector_range
+        type: float
+        meta:
+          read_only: true
+      - type: pad
+        size: 4
+  AnimationType:
+    class: enum
+    size: 2
+    options:
+      - name: base
+      - name: overlay
+      - name: replacement
+  AnimationFrameInfoType:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: dx_dy
+      - name: dx_dy_dyaw
+      - name: dx_dy_dz_dyaw
+  ModelAnimationsAnimationFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: compressed_data
+      - name: world_relative
+      - name: 25hz_pal
+  ModelAnimationsAnimation:
+    class: struct
+    assert_size: 180
+    meta:
+      post_cache_deformat: true
+      pre_compile: true
+    fields:
+      - name: name
+        type: TagString
+        meta:
+          read_only: true
+      - name: type
+        type: AnimationType
+        meta:
+          read_only: true
+      - name: frame_count
+        type: uint16
+        meta:
+          read_only: true
+      - name: frame_size
+        type: uint16
+        meta:
+          read_only: true
+      - name: frame_info_type
+        type: AnimationFrameInfoType
+        meta:
+          read_only: true
+      - name: node_list_checksum
+        type: uint32
+        meta:
+          read_only: true
+      - name: node_count
+        type: uint16
+        meta:
+          read_only: true
+      - name: loop_frame_index
+        type: Index
+      - name: weight
+        type: Fraction
+      - name: key_frame_index
+        type: Index
+      - name: second_key_frame_index
+        type: Index
+      - name: next_animation
+        type: Index
+        meta:
+          index_of: animations
+          read_only: true
+      - name: flags
+        type: ModelAnimationsAnimationFlags
+      - name: sound
+        type: Index
+        meta:
+          index_of: sound references
+      - name: sound_frame_index
+        type: Index
+      - name: left_foot_frame_index
+        type: int8
+      - name: right_foot_frame_index
+        type: int8
+      - name: main_animation_index
+        type: uint16
+        meta:
+          cache_only: true
+        endianness: little
+      - name: relative_weight
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: frame_info
+        type: TagDataOffset
+      - name: node_transform_flag_data
+        type: uint32
+        count: 2
+        meta:
+          hidden: true
+        comments:
+          en: >-
+            These are two bitfields. Each bits refer to a node to which the
+            transformation applies. The first field refers to the first 32 nodes
+            and the second field is the second 32 nodes.
+      - type: pad
+        size: 8
+      - name: node_rotation_flag_data
+        type: uint32
+        count: 2
+        meta:
+          hidden: true
+        comments:
+          en: >-
+            These are two bitfields. Each bits refer to a node to which the
+            transformation applies. The first field refers to the first 32 nodes
+            and the second field is the second 32 nodes.
+      - type: pad
+        size: 8
+      - name: node_scale_flag_data
+        type: uint32
+        count: 2
+        meta:
+          hidden: true
+        comments:
+          en: >-
+            These are two bitfields. Each bits refer to a node to which the
+            transformation applies. The first field refers to the first 32 nodes
+            and the second field is the second 32 nodes.
+      - type: pad
+        size: 4
+      - name: offset_to_compressed_data
+        type: uint32
+        meta:
+          read_only: true
+      - name: default_data
+        type: TagDataOffset
+      - name: frame_data
+        type: TagDataOffset
+  ModelAnimations:
+    class: struct
+    meta:
+      tag_id: antr
+      pre_compile: true
+    assert_size: 128
+    fields:
+      - name: objects
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationGraphObjectOverlay
+        meta:
+          hek_max_count: 4
+      - name: units
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationGraphUnitSeat
+        meta:
+          hek_max_count: 33
+      - name: weapons
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationGraphWeaponAnimations
+        meta:
+          hek_max_count: 16
+      - name: vehicles
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationGraphVehicleAnimations
+        meta:
+          hek_max_count: 1
+      - name: devices
+        type: Block
+        type_args:
+          T: ModelAnimationsDeviceAnimations
+        meta:
+          hek_max_count: 2
+      - name: unit_damage
+        type: Block
+        type_args:
+          T: ModelAnimationsUnitDamageAnimations
+        meta:
+          hek_max_count: 176
+      - name: first_person_weapons
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationGraphFirstPersonWeaponAnimations
+        meta:
+          hek_max_count: 28
+      - name: sound_references
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationGraphSoundReference
+        meta:
+          hek_max_count: 514
+      - name: limp_body_node_radius
+        type: float
+      - name: flags
+        type: ModelAnimationsFlags
+      - type: pad
+        size: 2
+      - name: nodes
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimationGraphNode
+        meta:
+          hek_max_count: 64
+      - name: animations
+        type: Block
+        type_args:
+          T: ModelAnimationsAnimation
+        meta:
+          hek_max_count: 2048

@@ -1,9 +1,0 @@
-name: sound_scenery
-id: ssce
-parentName: object
-invaderStructName: SoundScenery
-comments:
-  en: >
-    Identical to [scenery][] but with collision rules like [device_light_fixture][].
-    Used for invisible emitters of localized sound like rivers and waterfalls.
-  fields: []

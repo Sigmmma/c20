@@ -1,0 +1,601 @@
+entry_type: Actor
+imports:
+  h1/tags/common:
+    - Angle
+    - Vector3D
+    - Vector2D
+    - TagDependency
+type_defs:
+  ActorFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: can_see_in_darkness
+      - name: sneak_uncovering_target
+      - name: sneak_uncovering_pursuit_position
+      - name: unused
+      - name: shoot_at_target_s_last_location
+      - name: try_to_stay_still_when_crouched
+      - name: crouch_when_not_in_combat
+      - name: crouch_when_guarding
+      - name: unused_1
+      - name: must_crouch_to_shoot
+      - name: panic_when_surprised
+      - name: always_charge_at_enemies
+      - name: gets_in_vehicles_with_player
+      - name: start_firing_before_aligned
+      - name: standing_must_move_forward
+      - name: crouching_must_move_forward
+      - name: defensive_crouch_while_charging
+      - name: use_stalking_behavior
+      - name: stalking_freeze_if_exposed
+      - name: always_berserk_in_attacking_mode
+      - name: berserking_uses_panicked_movement
+      - name: flying
+      - name: panicked_by_unopposable_enemy
+      - name: crouch_when_hiding_from_unopposable
+      - name: always_charge_in_attacking_mode
+      - name: dive_off_ledges
+      - name: swarm
+      - name: suicidal_melee_attack
+      - name: cannot_move_while_crouching
+      - name: fixed_crouch_facing
+      - name: crouch_when_in_line_of_fire
+      - name: avoid_friends_line_of_fire
+  ActorMoreFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: avoid_all_enemy_attack_vectors
+      - name: must_stand_to_fire
+      - name: must_stop_to_fire
+      - name: disallow_vehicle_combat
+      - name: pathfinding_ignores_danger
+      - name: panic_in_groups
+      - name: no_corpse_shooting
+  ActorType:
+    class: enum
+    size: 2
+    options:
+      - name: elite
+      - name: jackal
+      - name: grunt
+      - name: hunter
+      - name: engineer
+      - name: assassin
+      - name: player
+      - name: marine
+      - name: crew
+      - name: combat_form
+      - name: infection_form
+      - name: carrier_form
+      - name: monitor
+      - name: sentinel
+      - name: none
+      - name: mounted_weapon
+  ActorUnreachableDangerTrigger:
+    class: enum
+    size: 2
+    options:
+      - name: never
+      - name: visible
+      - name: shooting
+      - name: shooting_near_us
+      - name: damaging_us
+      - name: unused
+      - name: unused1
+      - name: unused2
+      - name: unused3
+      - name: unused4
+  ActorDefensiveCrouchType:
+    class: enum
+    size: 2
+    options:
+      - name: never
+      - name: danger
+      - name: low_shields
+      - name: hide_behind_shield
+      - name: any_target
+      - name: flood_shamble
+  Actor:
+    class: struct
+    meta:
+      tag_id: actr
+      post_compile: true
+    comments:
+      en: >-
+        Defines basic AI behaviour. Can be futher customized using the
+        [actor_variant][] tag.
+    assert_size: 1272
+    fields:
+      - name: flags
+        type: ActorFlags
+      - name: more_flags
+        type: ActorMoreFlags
+      - type: pad
+        size: 12
+      - name: type
+        type: ActorType
+      - type: pad
+        size: 2
+      - name: max_vision_distance
+        type: float
+        meta:
+          unit: world units
+      - name: central_vision_angle
+        type: Angle
+      - name: max_vision_angle
+        type: Angle
+      - type: pad
+        size: 4
+      - name: peripheral_vision_angle
+        type: Angle
+      - name: peripheral_distance
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 4
+      - name: standing_gun_offset
+        type: Vector3D
+      - name: crouching_gun_offset
+        type: Vector3D
+      - name: hearing_distance
+        type: float
+        meta:
+          unit: world units
+      - name: notice_projectile_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: notice_vehicle_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 8
+      - name: combat_perception_time
+        type: float
+        meta:
+          unit: seconds
+      - name: guard_perception_time
+        type: float
+        meta:
+          unit: seconds
+      - name: non_combat_perception_time
+        type: float
+        meta:
+          unit: seconds
+      - name: inverse_combat_perception_time
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: inverse_guard_perception_time
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: inverse_non_combat_perception_time
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 8
+      - name: dive_into_cover_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: emerge_from_cover_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: dive_from_grenade_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: pathfinding_radius
+        type: float
+        meta:
+          unit: world units
+      - name: glass_ignorance_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: stationary_movement_dist
+        type: float
+        meta:
+          unit: world units
+      - name: free_flying_sidestep
+        type: float
+        meta:
+          unit: world units
+      - name: begin_moving_angle
+        type: Angle
+      - name: cosine_begin_moving_angle
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: maximum_aiming_deviation
+        type: Vector2D
+      - name: maximum_looking_deviation
+        type: Vector2D
+      - name: noncombat_look_delta_l
+        type: Angle
+      - name: noncombat_look_delta_r
+        type: Angle
+      - name: combat_look_delta_l
+        type: Angle
+      - name: combat_look_delta_r
+        type: Angle
+      - name: idle_aiming_range
+        type: Vector2D
+      - name: idle_looking_range
+        type: Vector2D
+      - name: event_look_time_modifier
+        type: Bounds
+        type_args:
+          T: float
+      - name: noncombat_idle_facing
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: noncombat_idle_aiming
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: noncombat_idle_looking
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: guard_idle_facing
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: guard_idle_aiming
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: guard_idle_looking
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: combat_idle_facing
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: combat_idle_aiming
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: combat_idle_looking
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - type: pad
+        size: 8
+      - name: cosine_maximum_aiming_deviation
+        type: Vector2D
+        meta:
+          cache_only: true
+        endianness: little
+      - name: cosine_maximum_looking_deviation
+        type: Vector2D
+        meta:
+          cache_only: true
+        endianness: little
+      - name: do_not_use
+        type: TagDependency
+        meta:
+          tag_classes:
+            - weapon
+          unused: true
+      - type: pad
+        size: 268
+      - name: do_not_use_1
+        type: TagDependency
+        meta:
+          tag_classes:
+            - projectile
+          unused: true
+      - name: unreachable_danger_trigger
+        type: ActorUnreachableDangerTrigger
+      - name: vehicle_danger_trigger
+        type: ActorUnreachableDangerTrigger
+      - name: player_danger_trigger
+        type: ActorUnreachableDangerTrigger
+      - type: pad
+        size: 2
+      - name: danger_trigger_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: friends_killed_trigger
+        type: int16
+      - name: friends_retreating_trigger
+        type: int16
+      - type: pad
+        size: 12
+      - name: retreat_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - type: pad
+        size: 8
+      - name: cowering_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: friend_killed_panic_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: leader_type
+        type: ActorType
+      - type: pad
+        size: 2
+      - name: leader_killed_panic_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: panic_damage_threshold
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: surprise_distance
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 28
+      - name: hide_behind_cover_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: hide_target_not_visible_time
+        type: float
+        meta:
+          unit: seconds
+      - name: hide_shield_fraction
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: attack_shield_fraction
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: pursue_shield_fraction
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 16
+      - name: defensive_crouch_type
+        type: ActorDefensiveCrouchType
+      - type: pad
+        size: 2
+      - name: attacking_crouch_threshold
+        type: float
+      - name: defending_crouch_threshold
+        type: float
+      - name: min_stand_time
+        type: float
+        meta:
+          unit: seconds
+      - name: min_crouch_time
+        type: float
+        meta:
+          unit: seconds
+      - name: defending_hide_time_modifier
+        type: float
+      - name: attacking_evasion_threshold
+        type: float
+      - name: defending_evasion_threshold
+        type: float
+      - name: evasion_seek_cover_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: evasion_delay_time
+        type: float
+        meta:
+          unit: seconds
+      - name: max_seek_cover_distance
+        type: float
+        meta:
+          unit: world units
+      - name: cover_damage_threshold
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: stalking_discovery_time
+        type: float
+        meta:
+          unit: seconds
+      - name: stalking_max_distance
+        type: float
+        meta:
+          unit: world units
+      - name: stationary_facing_angle
+        type: Angle
+      - name: change_facing_stand_time
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 4
+      - name: uncover_delay_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: target_search_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: pursuit_position_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: num_positions_(coord)
+        type: uint16
+        meta:
+          min: 0
+      - name: num_positions_(normal)
+        type: uint16
+        meta:
+          min: 0
+      - type: pad
+        size: 32
+      - name: melee_attack_delay
+        type: float
+        meta:
+          unit: seconds
+      - name: melee_fudge_factor
+        type: float
+        meta:
+          unit: world units
+      - name: melee_charge_time
+        type: float
+        meta:
+          unit: seconds
+      - name: melee_leap_range
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
+      - name: melee_leap_velocity
+        type: float
+        meta:
+          unit: world units per tick
+          min: 0
+          max: 1
+      - name: melee_leap_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: melee_leap_ballistic
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: berserk_damage_amount
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: berserk_damage_threshold
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: berserk_proximity
+        type: float
+        meta:
+          unit: world units
+      - name: suicide_sensing_dist
+        type: float
+        meta:
+          unit: world units
+      - name: berserk_grenade_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 12
+      - name: guard_position_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: combat_position_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: old_position_avoid_dist
+        type: float
+        meta:
+          unit: world units
+      - name: friend_avoid_dist
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 40
+      - name: noncombat_idle_speech_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: combat_idle_speech_time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - type: pad
+        size: 48
+      - type: pad
+        size: 128
+      - name: do_not_use_2
+        type: TagDependency
+        meta:
+          tag_classes:
+            - actor
+          unused: true
+      - type: pad
+        size: 48

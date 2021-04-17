@@ -1,0 +1,501 @@
+entry_type: Unit
+imports:
+  h1/tags/object:
+    - Object
+    - ObjectNoise
+  h1/tags/common:
+    - TagDependency
+    - Angle
+    - TagString
+    - Block
+    - Point3D
+    - Fraction
+    - GrenadeType
+    - Vector3D
+    - Index
+type_defs:
+  UnitFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: circular_aiming
+      - name: destroyed_after_dying
+      - name: half_speed_interpolation
+      - name: fires_from_camera
+      - name: entrance_inside_bounding_sphere
+      - name: unused
+      - name: causes_passenger_dialogue
+      - name: resists_pings
+      - name: melee_attack_is_fatal
+      - name: don't_reface_during_pings
+      - name: has_no_aiming
+      - name: simple_creature
+      - name: impact_melee_attaches_to_unit
+      - name: impact_melee_dies_on_shields
+      - name: cannot_open_doors_automatically
+      - name: melee_attackers_cannot_attach
+      - name: not_instantly_killed_by_melee
+        comments:
+          en: >
+            If enabled, prevents the unit from being instantly killed by a melee
+            to their back. This is used for the Flood.
+      - name: shield_sapping
+      - name: runs_around_flaming
+      - name: inconsequential
+      - name: special_cinematic_unit
+      - name: ignored_by_autoaiming
+      - name: shields_fry_infection_forms
+      - name: integrated_light_cntrls_weapon
+      - name: integrated_light_lasts_forever
+  UnitDefaultTeam:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: player
+      - name: human
+      - name: covenant
+      - name: flood
+      - name: sentinel
+      - name: unused6
+      - name: unused7
+      - name: unused8
+      - name: unused9
+  UnitFunctionIn:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: driver_seat_power
+      - name: gunner_seat_power
+      - name: aiming_change
+      - name: mouth_aperture
+      - name: integrated_light_power
+      - name: can_blink
+      - name: shield_sapping
+  UnitCameraTrack:
+    class: struct
+    assert_size: 28
+    fields:
+      - name: track
+        type: TagDependency
+        meta:
+          tag_classes:
+            - camera_track
+      - type: pad
+        size: 12
+  UnitMotionSensorBlipSize:
+    class: enum
+    size: 2
+    options:
+      - name: medium
+      - name: small
+      - name: large
+  MCCUnitType:
+    class: enum
+    size: 2
+    options:
+      - name: brute
+      - name: grunt
+      - name: jackal
+      - name: skirmisher
+      - name: marine
+      - name: spartan
+      - name: drone
+      - name: hunter
+      - name: flood_infection
+      - name: flood_carrier
+      - name: flood_combat
+      - name: flood_pure
+      - name: sentinel
+      - name: elite
+      - name: huragok
+      - name: mule
+      - name: turret
+      - name: mongoose
+      - name: warthog
+      - name: scorpion
+      - name: hornet
+      - name: pelican
+      - name: revenant
+      - name: seraph
+      - name: shade
+      - name: watchtower
+      - name: ghost
+      - name: chopper
+      - name: prowler
+      - name: wraith
+      - name: banshee
+      - name: phantom
+      - name: scarab
+      - name: guntower
+      - name: spirit
+      - name: broadsword
+      - name: mammoth
+      - name: lich
+      - name: mantis
+      - name: wasp
+      - name: phaeton
+      - name: watcher
+      - name: knight
+      - name: crawler
+  UnitUnitHudInterface:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: hud
+        type: TagDependency
+        meta:
+          tag_classes:
+            - unit_hud_interface
+      - type: pad
+        size: 32
+  UnitDialogueVariant:
+    class: struct
+    assert_size: 24
+    fields:
+      - name: variant_number
+        type: int16
+      - type: pad
+        size: 2
+      - type: pad
+        size: 4
+      - name: dialogue
+        type: TagDependency
+        meta:
+          tag_classes:
+            - dialogue
+  UnitPoweredSeat:
+    class: struct
+    assert_size: 68
+    fields:
+      - type: pad
+        size: 4
+      - name: driver_powerup_time
+        type: float
+        meta:
+          unit: seconds
+      - name: driver_powerdown_time
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 56
+  UnitWeapon:
+    class: struct
+    assert_size: 36
+    fields:
+      - name: weapon
+        type: TagDependency
+        meta:
+          tag_classes:
+            - weapon
+      - type: pad
+        size: 20
+  UnitSeatFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: invisible
+      - name: locked
+      - name: driver
+      - name: gunner
+      - name: third_person_camera
+      - name: allows_weapons
+      - name: third_person_on_enter
+      - name: first_person_camera_slaved_to_gun
+      - name: allow_vehicle_communication_animations
+      - name: not_valid_without_driver
+      - name: allow_ai_noncombatants
+  UnitSeat:
+    class: struct
+    assert_size: 284
+    fields:
+      - name: flags
+        type: UnitSeatFlags
+      - name: label
+        type: TagString
+      - name: marker_name
+        type: TagString
+      - type: pad
+        size: 32
+      - name: acceleration_scale
+        type: Vector3D
+      - type: pad
+        size: 12
+      - name: yaw_rate
+        type: float
+        meta:
+          unit: degrees per second
+      - name: pitch_rate
+        type: float
+        meta:
+          unit: degrees per second
+      - name: camera_marker_name
+        type: TagString
+      - name: camera_submerged_marker_name
+        type: TagString
+      - name: pitch_auto_level
+        type: Angle
+      - name: pitch_range
+        type: Bounds
+        type_args:
+          T: Angle
+      - name: camera_tracks
+        type: Block
+        type_args:
+          T: UnitCameraTrack
+        meta:
+          hek_max_count: 2
+      - name: unit_hud_interface
+        type: Block
+        type_args:
+          T: UnitUnitHudInterface
+        meta:
+          hek_max_count: 2
+      - type: pad
+        size: 4
+      - name: hud_text_message_index
+        type: Index
+      - type: pad
+        size: 2
+      - name: yaw_minimum
+        type: Angle
+      - name: yaw_maximum
+        type: Angle
+      - name: built_in_gunner
+        type: TagDependency
+        meta:
+          tag_classes:
+            - actor_variant
+      - type: pad
+        size: 20
+  Unit:
+    class: struct
+    extends:
+      type: Object
+    meta:
+      tag_id: unit
+    comments:
+      en: >-
+        Parent tag of [bipeds][biped] and [vehicles][vehicle], containing fields
+        common to these AI-driven or controllable objects.
+    assert_size: 752
+    fields:
+      - name: unit_flags
+        type: UnitFlags
+      - name: default_team
+        type: UnitDefaultTeam
+      - name: constant_sound_volume
+        type: ObjectNoise
+      - name: rider_damage_fraction
+        type: float
+        meta:
+          min: 0
+      - name: integrated_light_toggle
+        type: TagDependency
+        meta:
+          tag_classes:
+            - effect
+      - name: unit_a_in
+        type: UnitFunctionIn
+      - name: unit_b_in
+        type: UnitFunctionIn
+      - name: unit_c_in
+        type: UnitFunctionIn
+      - name: unit_d_in
+        type: UnitFunctionIn
+      - name: camera_field_of_view
+        type: Angle
+        meta:
+          default: 1.22173
+      - name: camera_stiffness
+        type: float
+      - name: camera_marker_name
+        type: TagString
+      - name: camera_submerged_marker_name
+        type: TagString
+      - name: pitch_auto_level
+        type: Angle
+      - name: pitch_range
+        type: Bounds
+        type_args:
+          T: Angle
+      - name: camera_tracks
+        type: Block
+        type_args:
+          T: UnitCameraTrack
+      - name: seat_acceleration_scale
+        type: Point3D
+      - type: pad
+        size: 12
+      - name: soft_ping_threshold
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: soft_ping_interrupt_time
+        type: float
+        meta:
+          unit: seconds
+      - name: hard_ping_threshold
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: hard_ping_interrupt_time
+        type: float
+        meta:
+          unit: seconds
+      - name: hard_death_threshold
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: feign_death_threshold
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: feign_death_time
+        type: float
+        meta:
+          unit: seconds
+      - name: distance_of_evade_anim
+        type: float
+        meta:
+          unit: world units
+      - name: distance_of_dive_anim
+        type: float
+        meta:
+          unit: world units
+      - type: pad
+        size: 4
+      - name: stunned_movement_threshold
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: feign_death_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: feign_repeat_chance
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: spawned_actor
+        type: TagDependency
+        meta:
+          tag_classes:
+            - actor_variant
+      - name: spawned_actor_count
+        type: Bounds
+        type_args:
+          T: uint16
+      - name: spawned_velocity
+        type: float
+      - name: aiming_velocity_maximum
+        type: Angle
+        meta:
+          unit: degrees per second
+      - name: aiming_acceleration_maximum
+        type: Angle
+        meta:
+          unit: degrees per second squared
+      - name: casual_aiming_modifier
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: looking_velocity_maximum
+        type: Angle
+        meta:
+          unit: degrees per second
+      - name: looking_acceleration_maximum
+        type: Angle
+        meta:
+          unit: degrees per second squared
+      - type: pad
+        size: 8
+      - name: ai_vehicle_radius
+        type: float
+      - name: ai_danger_radius
+        type: float
+      - name: melee_damage
+        type: TagDependency
+        meta:
+          tag_classes:
+            - damage_effect
+      - name: motion_sensor_blip_size
+        type: UnitMotionSensorBlipSize
+      - type: pad
+        size: 2
+      - name: mcc_unit_type
+        type: MCCUnitType
+        meta:
+          mcc_only: true
+        comments:
+          en: >-
+            only used for scoring in Halo: CE Anniversary (MCC only); overridden
+            by actor_variant's unit type if unit is an actor
+      - type: pad
+        size: 10
+      - name: new_hud_interfaces
+        type: Block
+        type_args:
+          T: UnitUnitHudInterface
+        meta:
+          hek_max_count: 2
+      - name: dialogue_variants
+        type: Block
+        type_args:
+          T: UnitDialogueVariant
+        meta:
+          hek_max_count: 16
+      - name: grenade_velocity
+        type: float
+        meta:
+          unit: world units per second
+        comments:
+          en: >
+            The velocity of thrown grenades. This field is used for the player,
+            but overidden by [actor_variant _grenade
+            velocity_][actor_variant#tag-field-grenade-velocity] for AI. The
+            [projectile _initial
+            velocity_][projectile#tag-field-initial-velocity] for grenades is
+            not used.
+      - name: grenade_type
+        type: GrenadeType
+      - name: grenade_count
+        type: uint16
+      - name: soft_ping_interrupt_ticks
+        type: int16
+        meta:
+          cache_only: true
+        endianness: little
+      - name: hard_ping_interrupt_ticks
+        type: int16
+        meta:
+          cache_only: true
+        endianness: little
+      - name: powered_seats
+        type: Block
+        type_args:
+          T: UnitPoweredSeat
+        meta:
+          hek_max_count: 2
+      - name: weapons
+        type: Block
+        type_args:
+          T: UnitWeapon
+        meta:
+          hek_max_count: 4
+      - name: seats
+        type: Block
+        type_args:
+          T: UnitSeat
+        meta:
+          hek_max_count: 16

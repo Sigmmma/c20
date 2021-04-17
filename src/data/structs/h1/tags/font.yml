@@ -1,0 +1,114 @@
+entry_type: Font
+imports:
+  h1/tags/common:
+    - Block
+    - Index
+    - TagDependency
+    - TagDataOffset
+type_defs:
+  FontCharacterIndex:
+    class: struct
+    assert_size: 2
+    fields:
+      - name: character_index
+        type: Index
+        meta:
+          index_of: characters
+  FontCharacterTables:
+    class: struct
+    assert_size: 12
+    fields:
+      - name: character_table
+        type: Block
+        type_args:
+          T: FontCharacterIndex
+        meta:
+          hek_max_count: 256
+          max: 256
+  FontCharacter:
+    class: struct
+    assert_size: 20
+    meta:
+      pre_compile: true
+      read_only: true
+    fields:
+      - name: character
+        type: uint16
+      - name: character_width
+        type: int16
+      - name: bitmap_width
+        type: int16
+      - name: bitmap_height
+        type: int16
+      - name: bitmap_origin_x
+        type: int16
+      - name: bitmap_origin_y
+        type: int16
+      - name: hardware_character_index
+        type: uint16
+      - type: pad
+        size: 2
+      - name: pixels_offset
+        type: int32
+  Font:
+    class: struct
+    meta:
+      tag_id: font
+      pre_compile: true
+    assert_size: 156
+    fields:
+      - name: flags
+        type: int32
+      - name: ascending_height
+        type: int16
+      - name: descending_height
+        type: int16
+      - name: leading_height
+        type: int16
+      - name: leading_width
+        type: int16
+        meta:
+          cache_only: true
+        comments:
+          en: >-
+            you can't actually set this; it gets overridden with (ascending
+            height + descending height) / 5 on map build
+      - type: pad
+        size: 36
+      - name: character_tables
+        type: Block
+        type_args:
+          T: FontCharacterTables
+        meta:
+          hek_max_count: 256
+          cache_only: true
+          max: 256
+      - name: bold
+        type: TagDependency
+        meta:
+          tag_classes:
+            - font
+      - name: italic
+        type: TagDependency
+        meta:
+          tag_classes:
+            - font
+      - name: condense
+        type: TagDependency
+        meta:
+          tag_classes:
+            - font
+      - name: underline
+        type: TagDependency
+        meta:
+          tag_classes:
+            - font
+      - name: characters
+        type: Block
+        type_args:
+          T: FontCharacter
+        meta:
+          hek_max_count: 32000
+          read_only: true
+      - name: pixels
+        type: TagDataOffset

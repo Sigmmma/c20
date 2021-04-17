@@ -1,0 +1,32 @@
+entry_type: HUDNumber
+imports:
+  h1/tags/common:
+    - TagDependency
+type_defs:
+  HUDNumber:
+    class: struct
+    meta:
+      tag_id: 'hud#'
+    assert_size: 100
+    fields:
+      - name: digits_bitmap
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: bitmap_digit_width
+        type: int8
+      - name: screen_digit_width
+        type: int8
+      - name: x_offset
+        type: int8
+      - name: y_offset
+        type: int8
+      - name: decimal_point_width
+        type: int8
+      - name: colon_width
+        type: int8
+      - type: pad
+        size: 2
+      - type: pad
+        size: 76

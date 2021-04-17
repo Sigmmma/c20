@@ -1,0 +1,134 @@
+entry_type: Shader
+imports:
+  h1/tags/common:
+    - ColorRGB
+    - MaterialType
+    - TagDependency
+type_defs:
+  ShaderFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: simple_parameterization
+        comments:
+          en: >
+            Causes [lightmap][scenario_structure_bsp#lightmaps] UVs for this
+            material to be based on existing texture UVs rather than generated
+            completely anew by Tool/Sapien. This can be used to fix squiggly or
+            jagged shadowing artifacts often seen on large complex surfaces
+            using a single material.
+
+            Note that any overlapping UV faces may cause lighting artifacts
+            because one part of the lightmap texture is being used to represent
+            different locations.
+      - name: ignore_normals
+        comments:
+          en: >
+            Lighting will ignore surface normals (the direction faces point).
+            Use this for shaders where the surface normals are not a good
+            representation of lighting directionality, such as foliage mapped to
+            flat planes for trees and bushes.
+      - name: transparent_lit
+  ShaderDetailLevel:
+    class: enum
+    size: 2
+    options:
+      - name: high
+        comments:
+          en: >
+            The surface will receive the highest possible quality of lightmaps.
+            Shadows will be sharper and there will be greater detail in local
+            variations in lighting.
+      - name: medium
+        comments:
+          en: The surface will receive a medium quality of lightmaps.
+      - name: low
+        comments:
+          en: The surface will receive a low quality of lightmaps.
+      - name: turd
+        comments:
+          en: >
+            The surface will receive the worst possible quality of lightmaps.
+            Use this for shaders which will be used in areas which do not need
+            detailed shadows or the player is unlikely to visit in order to save
+            texture space.
+  ShaderPhysicsFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: unused
+  Shader:
+    class: struct
+    meta:
+      tag_id: shdr
+    assert_size: 40
+    fields:
+      - name: shader_flags
+        type: ShaderFlags
+      - name: detail_level
+        type: ShaderDetailLevel
+        comments:
+          en: >
+            Determines how detailed lightmaps will be for surfaces using this
+            shader. This affects various [radiosity tessellation
+            parameters][tool#radiosity-quality-technical-details].
+      - name: power
+        type: float
+      - name: color_of_emitted_light
+        type: ColorRGB
+      - name: tint_color
+        type: ColorRGB
+      - name: physics_flags
+        type: ShaderPhysicsFlags
+        meta:
+          hidden: true
+      - name: material_type
+        type: MaterialType
+      - name: shader_type
+        type: uint16
+        meta:
+          volatile: true
+        endianness: little
+      - type: pad
+        size: 2
+  ShaderColorFunctionType:
+    class: enum
+    size: 2
+    options:
+      - name: current
+      - name: next_map
+      - name: multiply
+      - name: double_multiply
+      - name: add
+      - name: add_signed_current
+      - name: add_signed_next_map
+      - name: subtract_current
+      - name: subtract_next_map
+      - name: blend_current_alpha
+      - name: blend_current_alpha_inverse
+      - name: blend_next_map_alpha
+      - name: blend_next_map_alpha_inverse
+  ShaderDetailFunction:
+    class: enum
+    size: 2
+    options:
+      - name: double_biased_multiply
+      - name: multiply
+      - name: double_biased_add
+  ShaderFirstMapType:
+    class: enum
+    size: 2
+    options:
+      - name: 2d_map
+      - name: first_map_is_reflection_cube_map
+      - name: first_map_is_object_centered_cube_map
+      - name: first_map_is_viewer_centered_cube_map
+  ShaderTransparentExtraLayer:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: shader
+        type: TagDependency
+        meta:
+          tag_classes:
+            - shader

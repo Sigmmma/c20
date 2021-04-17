@@ -21,7 +21,14 @@ const html = commonTags.stripIndent(commonTags.html);
 
 const classes = (classArr) => classArr.length > 0 ? `class="${classArr.join(" ")}"` : "";
 
-const localizer = R.curry((bundle, lang, key) => bundle[key][lang]);
+const localizer = R.curry((bundle, lang) => {
+  return (key, safe) => {
+    if (!bundle[key] && !safe) {
+      throw new Error(`Missing localizations for key ${key}`);
+    }
+    return bundle[key] ? bundle[key][lang] : null;
+  };
+});
 
 const anchor = (href, body) => html`
   <a href="${href}">${body}</a>
@@ -31,9 +38,9 @@ const defAnchor = (href) => html`<sup>${anchor(href, "?")}</sup>`;
 
 const pageAnchor = R.curry((lang, page) => anchor(page.tryLocalizedPath(lang), escapeHtml(page.tryLocalizedTitle(lang))));
 
-const tagAnchor = (ctx, tag, hash) => {
-  const url = ctx.resolveUrl(tag.name, hash);
-  return anchor(url, breakTagName(tag.name));
+const tagAnchor = (ctx, tagName, hash) => {
+  const url = ctx.resolveUrl(tagName, hash);
+  return anchor(url, breakTagName(tagName));
 };
 
 const heading = (hTag, title, cssClass) => html`
@@ -43,19 +50,26 @@ const heading = (hTag, title, cssClass) => html`
   </${hTag}>
 `;
 
-const detailsList = (summary, items, openThreshold) => {
-  if (openThreshold === undefined) {
-    openThreshold = DEFAULT_OPEN_THRESHOLD;
+const detailsList = (summary, items, maxOpen, allowInline) => {
+  if (maxOpen === undefined) {
+    maxOpen = DEFAULT_OPEN_THRESHOLD;
+  }
+  if (allowInline === undefined) {
+    allowInline = true;
   }
   if (items.length == 0) {
     return null;
-  } else if (items.length <= openThreshold) {
-    return html`
-      <details open>
-        <summary>${summary}</summary>
-        ${ul(items)}
-      </details>
-    `;
+  } else if (items.length <= maxOpen) {
+    if (items.length == 1 && allowInline) {
+      return html`<p>${summary}: ${items[0]}</p>`;
+    } else {
+      return html`
+        <details open>
+          <summary>${summary}</summary>
+          ${ul(items)}
+        </details>
+      `;
+    }
   } else {
     return html`
       <details>
@@ -89,6 +103,8 @@ const alert = (type, body) => html`
   </div>
 `;
 
+const renderHex = (num) => html`<code title="${num}">0x${num.toString(16).toUpperCase()}</code>`;
+
 const figure = (href, caption) => html`
   <figure>
     <a href="${href}">
@@ -113,6 +129,7 @@ module.exports = {
   ol,
   detailsList,
   alert,
+  renderHex,
   slugify,
   REPO_URL,
   DISCORD_URL

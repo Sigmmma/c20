@@ -1,0 +1,2498 @@
+entry_type: Scenario
+imports:
+  h1/tags/common:
+    - TagDependency
+    - Block
+    - PredictedResource
+    - TagString
+    - FunctionScaleBy
+    - WaveFunction
+    - Fraction
+    - FunctionType
+    - FunctionBoundsMode
+    - TagDataOffset
+    - Point3D
+    - Index
+    - Euler3D
+    - ColorRGB
+    - Angle
+    - Euler2D
+    - Rectangle2D
+    - ColorARGBInt
+  h1/tags/object:
+    - ObjectType
+  h1/tags/actor:
+    - ActorType
+type_defs:
+  ScenarioSky:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: sky
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sky
+        comments:
+          en: >-
+            A reference to a [sky][] tag which can be used by a BSP in this
+            scenario.
+  ScenarioType:
+    class: enum
+    size: 2
+    options:
+      - name: singleplayer
+        comments:
+          en: >-
+            The map is meant to be used for [singleplayer][map#singleplayer] and
+            loaded with the `map_name` command. Cannot be played in multiplayer.
+            This also causes map compilers like Tool and invader to apply certain
+            [hardcoded tag patches][tool#hardcoded-tag-patches].
+      - name: multiplayer
+        comments:
+          en: The map is meant for multiplayer and can be loaded with `sv_map`.
+      - name: user_interface
+        comments:
+          en: >-
+            The map is meant to serve as [ui.map][map#ui] for the game's main
+            menu.
+  ScenarioFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: cortana_hack
+      - name: use_demo_ui
+  ScenarioChildScenario:
+    class: struct
+    assert_size: 32
+    fields:
+      - name: child_scenario
+        type: TagDependency
+        meta:
+          tag_classes:
+            - scenario
+        comments:
+          en: >-
+            This scenario tag will be merged into the main scenario tag (and
+            dereferenced) on map build.
+      - type: pad
+        size: 16
+  ScenarioFunctionFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: scripted
+      - name: invert
+      - name: additive
+      - name: always_active
+  ScenarioFunction:
+    class: struct
+    assert_size: 120
+    fields:
+      - name: flags
+        type: ScenarioFunctionFlags
+      - name: name
+        type: TagString
+      - name: period
+        type: float
+        meta:
+          unit: seconds
+      - name: scale_period_by
+        type: FunctionScaleBy
+      - name: function
+        type: WaveFunction
+      - name: scale_function_by
+        type: FunctionScaleBy
+      - name: wobble_function
+        type: WaveFunction
+      - name: wobble_period
+        type: float
+        meta:
+          unit: seconds
+      - name: wobble_magnitude
+        type: float
+        meta:
+          unit: percent
+      - name: square_wave_threshold
+        type: Fraction
+      - name: step_count
+        type: uint16
+      - name: map_to
+        type: FunctionType
+      - name: sawtooth_count
+        type: uint16
+      - type: pad
+        size: 2
+      - name: scale_result_by
+        type: FunctionScaleBy
+      - name: bounds_mode
+        type: FunctionBoundsMode
+      - name: bounds
+        type: Bounds
+        type_args:
+          T: float
+      - type: pad
+        size: 4
+      - type: pad
+        size: 2
+      - name: turn_off_with
+        type: FunctionScaleBy
+      - type: pad
+        size: 16
+      - type: pad
+        size: 16
+  ScenarioEditorComment:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: position
+        type: Point3D
+      - type: pad
+        size: 16
+      - name: comment
+        type: TagDataOffset
+  ScenarioObjectName:
+    class: struct
+    assert_size: 36
+    fields:
+      - name: name
+        type: TagString
+      - name: object_type
+        type: ObjectType
+        meta:
+          cache_only: true
+        endianness: little
+      - name: object_index
+        type: Index
+        meta:
+          cache_only: true
+        endianness: little
+  ScenarioSpawnNotPlaced:
+    class: bitfield
+    size: 2
+    bits:
+      - name: automatically
+      - name: on_easy
+      - name: on_normal
+      - name: on_hard
+  SpawnPrelude:
+    class: struct
+    assert_size: 32
+    fields:
+      - name: type
+        type: Index
+      - name: name
+        type: Index
+        meta:
+          index_of: object names
+      - name: not_placed
+        type: ScenarioSpawnNotPlaced
+      - name: desired_permutation
+        type: Index
+      - name: position
+        type: Point3D
+      - name: rotation
+        type: Euler3D
+  ScenarioScenery:
+    class: struct
+    extends:
+      type: SpawnPrelude
+    assert_size: 72
+    fields:
+      - name: bsp_indices
+        type: uint16
+        meta:
+          cache_only: true
+        comments:
+          en: unused in Halo PC; bitmask
+      - type: pad
+        size: 6
+      - type: pad
+        size: 16
+      - type: pad
+        size: 8
+      - type: pad
+        size: 8
+  ScenarioSceneryPalette:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: name
+        type: TagDependency
+        meta:
+          tag_classes:
+            - scenery
+          non_null: true
+      - type: pad
+        size: 32
+  ScenarioUnitFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: dead
+  ScenarioBiped:
+    class: struct
+    extends:
+      type: SpawnPrelude
+    assert_size: 120
+    fields:
+      - type: pad
+        size: 8
+      - type: pad
+        size: 16
+      - type: pad
+        size: 8
+      - type: pad
+        size: 8
+      - name: body_vitality_modifier
+        type: float
+        meta:
+          min: 0
+      - name: flags
+        type: ScenarioUnitFlags
+      - type: pad
+        size: 8
+      - type: pad
+        size: 32
+  ScenarioBipedPalette:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: name
+        type: TagDependency
+        meta:
+          tag_classes:
+            - biped
+          non_null: true
+      - type: pad
+        size: 32
+  ScenarioVehicleMultiplayerSpawnFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: slayer_default
+        comments:
+          en: >-
+            The vehicle will spawn in Slayer when the gametype specifies default
+            vehicle settings.
+      - name: ctf_default
+        comments:
+          en: >-
+            The vehicle will spawn in CTF when the gametype specifies default
+            vehicle settings.
+      - name: king_default
+        comments:
+          en: >-
+            The vehicle will spawn in King of the Hill when the gametype
+            specifies default vehicle settings.
+      - name: oddball_default
+        comments:
+          en: >-
+            The vehicle will spawn in Oddball when the gametype specifies
+            default vehicle settings.
+      - name: unused
+      - name: unused1
+      - name: unused2
+      - name: unused3
+      - name: slayer_allowed
+        comments:
+          en: >-
+            The vehicle spawn is permitted in Slayer when the gametype is using
+            custom vehicle settings.
+      - name: ctf_allowed
+        comments:
+          en: >-
+            The vehicle spawn is permitted in CTF when the gametype is using
+            custom vehicle settings.
+      - name: king_allowed
+        comments:
+          en: >-
+            The vehicle spawn is permitted in King of the Hill when the gametype
+            is using custom vehicle settings.
+      - name: oddball_allowed
+        comments:
+          en: >-
+            The vehicle spawn is permitted in Oddball when the gametype is using
+            custom vehicle settings.
+      - name: unused4
+      - name: unused5
+      - name: unused6
+      - name: unused7
+  ScenarioVehicle:
+    class: struct
+    extends:
+      type: SpawnPrelude
+    assert_size: 120
+    fields:
+      - type: pad
+        size: 8
+      - type: pad
+        size: 16
+      - type: pad
+        size: 8
+      - type: pad
+        size: 8
+      - name: body_vitality
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: flags
+        type: ScenarioUnitFlags
+      - type: pad
+        size: 8
+      - name: multiplayer_team_index
+        type: int8
+        comments:
+          en: >-
+            Determines which team the vehicle belongs to for gametype settings.
+            Index `0` is for red team, and index `1` is blue.
+      - type: pad
+        size: 1
+      - name: multiplayer_spawn_flags
+        type: ScenarioVehicleMultiplayerSpawnFlags
+      - type: pad
+        size: 28
+  ScenarioVehiclePalette:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: name
+        type: TagDependency
+        meta:
+          tag_classes:
+            - vehicle
+          non_null: true
+      - type: pad
+        size: 32
+  ScenarioItemFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: initially_at_rest
+      - name: obsolete
+      - name: does_accelerate
+  ScenarioEquipment:
+    class: struct
+    extends:
+      type: SpawnPrelude
+    assert_size: 40
+    fields:
+      - type: pad
+        size: 2
+      - name: flags
+        type: ScenarioItemFlags
+      - type: pad
+        size: 4
+  ScenarioEquipmentPalette:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: name
+        type: TagDependency
+        meta:
+          tag_classes:
+            - equipment
+          non_null: true
+      - type: pad
+        size: 32
+  ScenarioWeapon:
+    class: struct
+    extends:
+      type: SpawnPrelude
+    assert_size: 92
+    fields:
+      - type: pad
+        size: 8
+      - type: pad
+        size: 16
+      - type: pad
+        size: 8
+      - type: pad
+        size: 8
+      - name: rounds_reserved
+        type: uint16
+        comments:
+          en: does not include loaded rounds; cannot go above maximum rounds
+      - name: rounds_loaded
+        type: uint16
+      - name: flags
+        type: ScenarioItemFlags
+      - type: pad
+        size: 2
+      - type: pad
+        size: 12
+  ScenarioWeaponPalette:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: name
+        type: TagDependency
+        meta:
+          tag_classes:
+            - weapon
+          non_null: true
+      - type: pad
+        size: 32
+  ScenarioDeviceGroupFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: can_change_only_once
+  ScenarioDeviceGroup:
+    class: struct
+    assert_size: 52
+    fields:
+      - name: name
+        type: TagString
+        meta:
+          non_null: true
+      - name: initial_value
+        type: float
+        meta:
+          min: 0
+          max: 1
+      - name: flags
+        type: ScenarioDeviceGroupFlags
+      - type: pad
+        size: 12
+  ScenarioDeviceFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: initially_open
+      - name: initially_off
+      - name: can_change_only_once
+      - name: position_reversed
+      - name: not_usable_from_any_side
+  ScenarioMachineFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: does_not_operate_automatically
+      - name: one_sided
+      - name: never_appears_locked
+      - name: opened_by_melee_attack
+  ScenarioMachine:
+    class: struct
+    extends:
+      type: SpawnPrelude
+    assert_size: 64
+    fields:
+      - type: pad
+        size: 8
+      - name: power_group
+        type: Index
+        meta:
+          index_of: device groups
+      - name: position_group
+        type: Index
+        meta:
+          index_of: device groups
+      - name: device_flags
+        type: ScenarioDeviceFlags
+      - name: machine_flags
+        type: ScenarioMachineFlags
+      - type: pad
+        size: 12
+  ScenarioMachinePalette:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: name
+        type: TagDependency
+        meta:
+          tag_classes:
+            - device_machine
+          non_null: true
+      - type: pad
+        size: 32
+  ScenarioControlFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: usable_from_both_sides
+  ScenarioControl:
+    class: struct
+    extends:
+      type: SpawnPrelude
+    assert_size: 64
+    fields:
+      - type: pad
+        size: 8
+      - name: power_group
+        type: Index
+        meta:
+          index_of: device groups
+      - name: position_group
+        type: Index
+        meta:
+          index_of: device groups
+      - name: device_flags
+        type: ScenarioDeviceFlags
+      - name: control_flags
+        type: ScenarioControlFlags
+      - name: no_name
+        type: int16
+      - type: pad
+        size: 2
+      - type: pad
+        size: 8
+  ScenarioControlPalette:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: name
+        type: TagDependency
+        meta:
+          tag_classes:
+            - device_control
+          non_null: true
+      - type: pad
+        size: 32
+  ScenarioLightFixture:
+    class: struct
+    extends:
+      type: SpawnPrelude
+    assert_size: 88
+    fields:
+      - name: bsp_indices
+        type: uint16
+        meta:
+          cache_only: true
+        comments:
+          en: unused in Halo PC; bitmask
+      - type: pad
+        size: 6
+      - name: power_group
+        type: Index
+        meta:
+          index_of: device groups
+      - name: position_group
+        type: Index
+        meta:
+          index_of: device groups
+      - name: device_flags
+        type: ScenarioDeviceFlags
+      - name: color
+        type: ColorRGB
+      - name: intensity
+        type: float
+      - name: falloff_angle
+        type: Angle
+      - name: cutoff_angle
+        type: Angle
+      - type: pad
+        size: 16
+  ScenarioLightFixturePalette:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: name
+        type: TagDependency
+        meta:
+          tag_classes:
+            - device_light_fixture
+          non_null: true
+      - type: pad
+        size: 32
+  ScenarioSoundScenery:
+    class: struct
+    extends:
+      type: SpawnPrelude
+    assert_size: 40
+    fields:
+      - type: pad
+        size: 8
+  ScenarioSoundSceneryPalette:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: name
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound_scenery
+          non_null: true
+      - type: pad
+        size: 32
+  ScenarioPlayerStartingProfile:
+    class: struct
+    assert_size: 104
+    fields:
+      - name: name
+        type: TagString
+      - name: starting_health_modifier
+        type: Fraction
+        meta:
+          min: 0
+          max: 1
+      - name: starting_shield_modifier
+        type: Fraction
+        meta:
+          min: 0
+          max: 3
+      - name: primary_weapon
+        type: TagDependency
+        meta:
+          tag_classes:
+            - weapon
+      - name: primary_rounds_loaded
+        type: uint16
+      - name: primary_rounds_reserved
+        type: uint16
+        comments:
+          en: does not include loaded ammo; can go above maximum rounds
+      - name: secondary_weapon
+        type: TagDependency
+        meta:
+          tag_classes:
+            - weapon
+      - name: secondary_rounds_loaded
+        type: uint16
+      - name: secondary_rounds_reserved
+        type: uint16
+        comments:
+          en: does not include loaded ammo; can go above maximum rounds
+      - name: starting_fragmentation_grenade_count
+        type: int8
+      - name: starting_plasma_grenade_count
+        type: int8
+      - name: starting_unknown_grenade_count_1
+        type: int8
+      - name: starting_unknown_grenade_count_2
+        type: int8
+      - type: pad
+        size: 20
+  ScenarioSpawnType:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: ctf
+      - name: slayer
+      - name: oddball
+      - name: king_of_the_hill
+      - name: race
+      - name: terminator
+      - name: stub
+      - name: ignored1
+      - name: ignored2
+      - name: ignored3
+      - name: ignored4
+      - name: all_games
+      - name: all_except_ctf
+      - name: all_except_race_ctf
+  ScenarioPlayerStartingLocation:
+    class: struct
+    assert_size: 52
+    fields:
+      - name: position
+        type: Point3D
+      - name: facing
+        type: Angle
+      - name: team_index
+        type: Index
+      - name: bsp_index
+        type: Index
+        meta:
+          index_of: structure bsps
+      - name: type_0
+        type: ScenarioSpawnType
+      - name: type_1
+        type: ScenarioSpawnType
+      - name: type_2
+        type: ScenarioSpawnType
+      - name: type_3
+        type: ScenarioSpawnType
+      - type: pad
+        size: 24
+  ScenarioTriggerVolume:
+    class: struct
+    assert_size: 96
+    fields:
+      - name: unknown
+        type: uint16
+        endianness: little
+      - type: pad
+        size: 2
+      - name: name
+        type: TagString
+        comments:
+          en: The name of the volume which can be used in scripts.
+      - name: float_1
+        type: float
+      - name: float_2
+        type: float
+      - name: float_3
+        type: float
+      - name: float_4
+        type: float
+      - name: float_5
+        type: float
+      - name: float_6
+        type: float
+      - name: float_7
+        type: float
+      - name: float_8
+        type: float
+      - name: float_9
+        type: float
+      - name: starting_corner
+        type: Point3D
+        comments:
+          en: The 3D world-unit coordinates of one corner of the volume.
+      - name: ending_corner_offset
+        type: Point3D
+        comments:
+          en: >-
+            The offset distances from the starting corner to the opposite
+            corner.
+  ScenarioRecordedAnimation:
+    class: struct
+    assert_size: 64
+    fields:
+      - name: name
+        type: TagString
+      - name: version
+        type: int8
+      - name: raw_animation_data
+        type: int8
+      - name: unit_control_data_version
+        type: int8
+      - type: pad
+        size: 1
+      - name: length_of_animation
+        type: uint16
+      - type: pad
+        size: 2
+      - type: pad
+        size: 4
+      - name: recorded_animation_event_stream
+        type: TagDataOffset
+  ScenarioNetgameFlagType:
+    class: enum
+    size: 2
+    options:
+      - name: ctf_flag
+        comments:
+          en: >
+            **The CTF flags MUST be the first two entries in the netgame flags
+            list**, or players will be stuck "waiting for space to clear"
+            instead of spawning or the game may crash. It does not matter which
+            team index is placed first, just that the first two entries are the
+            flags. Red team's flag uses team index `0`, and blue team `1`. The
+            _facing_ value is not used to orient the flag pole (the skull faces
+            in the world's +X direction).
+      - name: ctf_vehicle
+        comments:
+          en: _Unused._
+      - name: oddball_ball_spawn
+        comments:
+          en: >
+            Halo's oddball gamemode settings allow up to 16 simultaneous
+            oddballs, so maps should include 16 unique oddball spawns. The
+            oddball will spawn facing the world +X direction regardless of the
+            _facing_ field. Use team index `0` for the first oddball spawn,
+            which should be in a team-neutral location of the map. Increment the
+            team index for each subsequent oddball spawn (up to index `15`).
+            Halo will spawn balls at each flag _in order_ of their index, so
+            ensure flags are alternated across the map to prevent an unfair
+            advantage to a team already occupying an area.
+      - name: race_track
+        comments:
+          en: >
+            Determines the checkpoints for race game modes. The game supports up
+            to 32 race track points. The team index should be numbered
+            sequentially without gaps, starting at `0` in a team-neutral
+            location. In Rally mode, checkpoints will be selected in random
+            order.
+      - name: race_vehicle
+        comments:
+          en: >
+            Used by Halo to spawn vehicles near players at the start of Race
+            games, so you should place up to 16 of them near player spawn points
+            used for Race. _Team index_ is not used. The [green marker
+            handle][placeholder] should be pointed in the direction the vehicle
+            will face forward.
+      - name: vegas_bank
+        comments:
+          en: _Unused._
+      - name: teleport_from
+        comments:
+          en: >
+            Teleporter entry node. _Team index_ determines the "channel" and
+            links entry and exit nodes together.
+      - name: teleport_to
+        comments:
+          en: >
+            Teleporter exit node. _Team index_ determines the "channel" and
+            links entry and exit nodes together. The _difference_ in facing
+            direction (yaw) between the entry and exit nodes is added to the
+            player's yaw to determine their facing direction on exit. For
+            example, if the entry node's _facing_ is -90 degrees and the exit's
+            is 0 degrees (a difference of +90 degrees), then a player entering
+            the teleporter facing North would exit facing East.
+      - name: hill_flag
+        comments:
+          en: >
+            Defines the boundaries of a King mode hill. Each hill should be
+            placed as a series of 3-8 hill flags with the same _team index_,
+            with index `0` being the default for non-moving hill mode. At least
+            two hills should be placed to support moving hill mode. The _facing_
+            field is not used.
+  ScenarioNetgameFlags:
+    class: struct
+    assert_size: 148
+    fields:
+      - name: position
+        type: Point3D
+        comments:
+          en: The location in 3D space of this netgame flag.
+      - name: facing
+        type: Angle
+        comments:
+          en: >
+            The direction that the netgame flag faces (yaw). How this is used
+            depends on the _type_ of the flag.
+      - name: type
+        type: ScenarioNetgameFlagType
+        comments:
+          en: Determines which purpose this netgame flag serves.
+      - name: team_index
+        type: Index
+        comments:
+          en: >
+            The meaning of this field depends on the netgame flag type, and is
+            not necessarily about teams. See the above type descriptions for
+            more details on usage.
+      - name: weapon_group
+        type: TagDependency
+        meta:
+          tag_classes:
+            - item_collection
+        comments:
+          en: _Unused._
+      - type: pad
+        size: 112
+  ScenarioNetgameEquipmentFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: levitate
+  ScenarioNetgameEquipment:
+    class: struct
+    assert_size: 144
+    meta:
+      post_compile: true
+    fields:
+      - name: flags
+        type: ScenarioNetgameEquipmentFlags
+      - name: type_0
+        type: ScenarioSpawnType
+      - name: type_1
+        type: ScenarioSpawnType
+      - name: type_2
+        type: ScenarioSpawnType
+      - name: type_3
+        type: ScenarioSpawnType
+      - name: team_index
+        type: Index
+      - name: spawn_time
+        type: uint16
+        meta:
+          unit: seconds
+        comments:
+          en: 0 = use default spawn time in item_collection
+      - name: unknown_ffffffff
+        type: uint32
+        meta:
+          cache_only: 'true'
+        comments:
+          en: always 0xFFFFFFFF?
+      - type: pad
+        size: 44
+      - name: position
+        type: Point3D
+      - name: facing
+        type: Angle
+      - name: item_collection
+        type: TagDependency
+        meta:
+          tag_classes:
+            - item_collection
+      - type: pad
+        size: 48
+  ScenarioStartingEquipmentFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: no_grenades
+      - name: plasma_grenades
+  ScenarioStartingEquipment:
+    class: struct
+    assert_size: 204
+    fields:
+      - name: flags
+        type: ScenarioStartingEquipmentFlags
+      - name: type_0
+        type: ScenarioSpawnType
+      - name: type_1
+        type: ScenarioSpawnType
+      - name: type_2
+        type: ScenarioSpawnType
+      - name: type_3
+        type: ScenarioSpawnType
+      - type: pad
+        size: 48
+      - name: item_collection_1
+        type: TagDependency
+        meta:
+          tag_classes:
+            - item_collection
+      - name: item_collection_2
+        type: TagDependency
+        meta:
+          tag_classes:
+            - item_collection
+      - name: item_collection_3
+        type: TagDependency
+        meta:
+          tag_classes:
+            - item_collection
+      - name: item_collection_4
+        type: TagDependency
+        meta:
+          tag_classes:
+            - item_collection
+      - name: item_collection_5
+        type: TagDependency
+        meta:
+          tag_classes:
+            - item_collection
+      - name: item_collection_6
+        type: TagDependency
+        meta:
+          tag_classes:
+            - item_collection
+      - type: pad
+        size: 48
+  ScenarioBSPSwitchTriggerVolume:
+    class: struct
+    assert_size: 8
+    fields:
+      - name: trigger_volume
+        type: Index
+        meta:
+          index_of: trigger volumes
+      - name: source
+        type: Index
+        meta:
+          index_of: structure bsps
+      - name: destination
+        type: Index
+        meta:
+          index_of: structure bsps
+      - name: unknown
+        type: uint16
+        endianness: little
+  ScenarioDecal:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: decal_type
+        type: Index
+        meta:
+          index_of: decal palette
+      - name: yaw
+        type: int8
+      - name: pitch
+        type: int8
+      - name: position
+        type: Point3D
+  ScenarioDecalPalette:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: reference
+        type: TagDependency
+        meta:
+          tag_classes:
+            - decal
+  ScenarioDetailObjectCollectionPalette:
+    class: struct
+    assert_size: 48
+    fields:
+      - name: reference
+        type: TagDependency
+        meta:
+          tag_classes:
+            - detail_object_collection
+      - type: pad
+        size: 32
+  ScenarioActorPalette:
+    class: struct
+    assert_size: 16
+    fields:
+      - name: reference
+        type: TagDependency
+        meta:
+          tag_classes:
+            - actor_variant
+  ScenarioEncounterFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: not_initially_created
+      - name: respawn_enabled
+      - name: initially_blind
+      - name: initially_deaf
+      - name: initially_braindead
+      - name: 3d_firing_positions
+      - name: manual_bsp_index_specified
+  ScenarioTeamIndex:
+    class: enum
+    size: 2
+    options:
+      - name: default_by_unit
+      - name: player
+      - name: human
+      - name: covenant
+      - name: flood
+      - name: sentinel
+      - name: unused6
+      - name: unused7
+      - name: unused8
+      - name: unused9
+  ScenarioSearchBehavior:
+    class: enum
+    size: 2
+    options:
+      - name: normal
+      - name: never
+      - name: tenacious
+  ScenarioReturnState:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: sleeping
+      - name: alert
+      - name: moving_repeat_same_position
+      - name: moving_loop
+      - name: moving_loop_back_and_forth
+      - name: moving_loop_randomly
+      - name: moving_randomly
+      - name: guarding
+      - name: guarding_at_guard_position
+      - name: searching
+      - name: fleeing
+  ScenarioSquadFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: unused
+      - name: never_search
+      - name: start_timer_immediately
+      - name: no_timer_delay_forever
+      - name: magic_sight_after_timer
+      - name: automatic_migration
+  ScenarioUniqueLeaderType:
+    class: enum
+    size: 2
+    options:
+      - name: normal
+      - name: none
+      - name: random
+      - name: sgt_johnson
+      - name: sgt_lehto
+  ScenarioSquadAttacking:
+    class: bitfield
+    size: 4
+    bits:
+      - name: a
+      - name: b
+      - name: c
+      - name: d
+      - name: e
+      - name: f
+      - name: g
+      - name: h
+      - name: i
+      - name: j
+      - name: k
+      - name: l
+      - name: m
+      - name: 'n'
+      - name: o
+      - name: p
+      - name: q
+      - name: r
+      - name: s
+      - name: t
+      - name: u
+      - name: v
+      - name: w
+      - name: x
+      - name: 'y'
+      - name: z
+  ScenarioMajorUpgrade:
+    class: enum
+    size: 2
+    options:
+      - name: normal
+      - name: few
+      - name: many
+      - name: none
+      - name: all
+  ScenarioMovePosition:
+    class: struct
+    assert_size: 80
+    fields:
+      - name: position
+        type: Point3D
+      - name: facing
+        type: Angle
+      - name: weight
+        type: float
+      - name: time
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - name: animation
+        type: Index
+        meta:
+          index_of: ai animation references
+      - name: sequence_id
+        type: int8
+      - type: pad
+        size: 1
+      - type: pad
+        size: 8
+      - name: cluster_index
+        type: Index
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 34
+      - name: surface_index
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+  ScenarioActorStartingLocationFlags:
+    class: bitfield
+    size: 1
+    bits:
+      - name: required
+  ScenarioActorStartingLocation:
+    class: struct
+    assert_size: 28
+    fields:
+      - name: position
+        type: Point3D
+      - name: facing
+        type: Angle
+      - name: cluster_index
+        type: Index
+        meta:
+          cache_only: true
+        endianness: little
+      - name: sequence_id
+        type: int8
+      - name: flags
+        type: ScenarioActorStartingLocationFlags
+      - name: return_state
+        type: ScenarioReturnState
+      - name: initial_state
+        type: ScenarioReturnState
+      - name: actor_type
+        type: Index
+        meta:
+          index_of: actor palette
+      - name: command_list
+        type: Index
+        meta:
+          index_of: command lists
+  ScenarioSquad:
+    class: struct
+    assert_size: 232
+    fields:
+      - name: name
+        type: TagString
+      - name: actor_type
+        type: Index
+        meta:
+          index_of: actor palette
+      - name: platoon
+        type: Index
+        meta:
+          index_of: platoons
+      - name: Tinitial_state
+        type: ScenarioReturnState
+      - name: Treturn_state
+        type: ScenarioReturnState
+      - name: flags
+        type: ScenarioSquadFlags
+      - name: unique_leader_type
+        type: ScenarioUniqueLeaderType
+      - type: pad
+        size: 2
+      - type: pad
+        size: 28
+      - type: pad
+        size: 2
+      - name: maneuver_to_squad
+        type: Index
+      - name: squad_delay_time
+        type: float
+      - name: attacking
+        type: ScenarioSquadAttacking
+      - name: attacking_search
+        type: ScenarioSquadAttacking
+      - name: attacking_guard
+        type: ScenarioSquadAttacking
+      - name: defending
+        type: ScenarioSquadAttacking
+      - name: defending_search
+        type: ScenarioSquadAttacking
+      - name: defending_guard
+        type: ScenarioSquadAttacking
+      - name: pursuing
+        type: ScenarioSquadAttacking
+      - type: pad
+        size: 4
+      - type: pad
+        size: 8
+      - name: normal_diff_count
+        type: uint16
+      - name: insane_diff_count
+        type: uint16
+      - name: major_upgrade
+        type: ScenarioMajorUpgrade
+      - type: pad
+        size: 2
+      - name: respawn_min_actors
+        type: uint16
+      - name: respawn_max_actors
+        type: uint16
+      - name: respawn_total
+        type: uint16
+      - type: pad
+        size: 2
+      - name: respawn_delay
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - type: pad
+        size: 48
+      - name: move_positions
+        type: Block
+        type_args:
+          T: ScenarioMovePosition
+        meta:
+          hek_max_count: 64
+      - name: starting_locations
+        type: Block
+        type_args:
+          T: ScenarioActorStartingLocation
+        meta:
+          hek_max_count: 32
+      - type: pad
+        size: 12
+  ScenarioPlatoonFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: flee_when_maneuvering
+      - name: say_advancing_when_maneuver
+      - name: start_in_defending_state
+  ScenarioChangeAttackingDefendingStateWhen:
+    class: enum
+    size: 2
+    options:
+      - name: never
+      - name: 75_strength
+      - name: 50_strength
+      - name: 25_strength
+      - name: anybody_dead
+      - name: 25_dead
+      - name: 50_dead
+      - name: 75_dead
+      - name: all_but_one_dead
+      - name: all_dead
+  ScenarioPlatoon:
+    class: struct
+    assert_size: 172
+    fields:
+      - name: name
+        type: TagString
+      - name: flags
+        type: ScenarioPlatoonFlags
+      - type: pad
+        size: 12
+      - name: change_attacking_defending_state_when
+        type: ScenarioChangeAttackingDefendingStateWhen
+      - name: happens_to
+        type: Index
+        meta:
+          index_of: platoons
+      - type: pad
+        size: 4
+      - type: pad
+        size: 4
+      - name: maneuver_when
+        type: ScenarioChangeAttackingDefendingStateWhen
+      - name: happens_to_1
+        type: Index
+        meta:
+          index_of: platoons
+      - type: pad
+        size: 4
+      - type: pad
+        size: 4
+      - type: pad
+        size: 64
+      - type: pad
+        size: 36
+  ScenarioGroupIndex:
+    class: enum
+    size: 2
+    options:
+      - name: a
+      - name: b
+      - name: c
+      - name: d
+      - name: e
+      - name: f
+      - name: g
+      - name: h
+      - name: i
+      - name: j
+      - name: k
+      - name: l
+      - name: m
+      - name: 'n'
+      - name: o
+      - name: p
+      - name: q
+      - name: r
+      - name: s
+      - name: t
+      - name: u
+      - name: v
+      - name: w
+      - name: x
+      - name: 'y'
+      - name: z
+  ScenarioFiringPosition:
+    class: struct
+    assert_size: 24
+    meta:
+      pre_compile: true
+    fields:
+      - name: position
+        type: Point3D
+      - name: group_index
+        type: ScenarioGroupIndex
+      - name: cluster_index
+        type: Index
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 4
+      - name: surface_index
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+  ScenarioEncounter:
+    class: struct
+    assert_size: 176
+    fields:
+      - name: name
+        type: TagString
+      - name: flags
+        type: ScenarioEncounterFlags
+      - name: team_index
+        type: ScenarioTeamIndex
+      - name: one
+        type: int16
+        meta:
+          cache_only: true
+        endianness: little
+      - name: search_behavior
+        type: ScenarioSearchBehavior
+      - name: manual_bsp_index
+        type: Index
+        meta:
+          index_of: structure bsps
+      - name: respawn_delay
+        type: Bounds
+        meta:
+          unit: seconds
+        type_args:
+          T: float
+      - type: pad
+        size: 74
+      - name: precomputed_bsp_index
+        type: Index
+        meta:
+          cache_only: true
+        endianness: little
+      - name: squads
+        type: Block
+        type_args:
+          T: ScenarioSquad
+        meta:
+          hek_max_count: 64
+      - name: platoons
+        type: Block
+        type_args:
+          T: ScenarioPlatoon
+        meta:
+          hek_max_count: 32
+      - name: firing_positions
+        type: Block
+        type_args:
+          T: ScenarioFiringPosition
+        meta:
+          hek_max_count: 512
+      - name: player_starting_locations
+        type: Block
+        type_args:
+          T: ScenarioPlayerStartingLocation
+        meta:
+          hek_max_count: 256
+  ScenarioCommandListFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: allow_initiative
+      - name: allow_targeting
+      - name: disable_looking
+      - name: disable_communication
+      - name: disable_falling_damage
+      - name: manual_bsp_index
+  ScenarioAtomType:
+    class: enum
+    size: 2
+    options:
+      - name: pause
+      - name: go_to
+      - name: go_to_and_face
+      - name: move_in_direction
+      - name: look
+      - name: animation_mode
+      - name: crouch
+      - name: shoot
+      - name: grenade
+      - name: vehicle
+      - name: running_jump
+      - name: targeted_jump
+      - name: script
+      - name: animate
+      - name: recording
+      - name: action
+      - name: vocalize
+      - name: targeting
+      - name: initiative
+      - name: wait
+      - name: loop
+      - name: die
+      - name: move_immediate
+      - name: look_random
+      - name: look_player
+      - name: look_object
+      - name: set_radius
+      - name: teleport
+  ScenarioCommand:
+    class: struct
+    assert_size: 32
+    fields:
+      - name: atom_type
+        type: ScenarioAtomType
+      - name: atom_modifier
+        type: int16
+      - name: parameter1
+        type: float
+      - name: parameter2
+        type: float
+      - name: point_1
+        type: Index
+        meta:
+          index_of: points
+      - name: point_2
+        type: Index
+        meta:
+          index_of: points
+      - name: animation
+        type: Index
+        meta:
+          index_of: ai animation references
+      - name: script
+        type: Index
+        meta:
+          index_of: ai script references
+      - name: recording
+        type: Index
+        meta:
+          index_of: ai recording references
+      - name: command
+        type: Index
+        meta:
+          index_of: commands
+      - name: object_name
+        type: Index
+        meta:
+          index_of: object names
+      - type: pad
+        size: 6
+  ScenarioCommandPoint:
+    class: struct
+    assert_size: 20
+    fields:
+      - name: position
+        type: Point3D
+      - name: surface_index
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 4
+  ScenarioCommandList:
+    class: struct
+    assert_size: 96
+    fields:
+      - name: name
+        type: TagString
+      - name: flags
+        type: ScenarioCommandListFlags
+      - type: pad
+        size: 8
+      - name: manual_bsp_index
+        type: Index
+        meta:
+          index_of: structure bsps
+      - name: precomputed_bsp_index
+        type: Index
+        meta:
+          cache_only: true
+        endianness: little
+      - name: commands
+        type: Block
+        type_args:
+          T: ScenarioCommand
+        meta:
+          hek_max_count: 64
+          max: 65534
+      - name: points
+        type: Block
+        type_args:
+          T: ScenarioCommandPoint
+        meta:
+          hek_max_count: 64
+          max: 65534
+      - type: pad
+        size: 24
+  ScenarioAIAnimationReference:
+    class: struct
+    assert_size: 60
+    fields:
+      - name: animation_name
+        type: TagString
+      - name: animation_graph
+        type: TagDependency
+        meta:
+          tag_classes:
+            - model_animations
+      - type: pad
+        size: 12
+  ScenarioAIScriptReference:
+    class: struct
+    assert_size: 40
+    fields:
+      - name: script_name
+        type: TagString
+      - type: pad
+        size: 8
+  ScenarioAIRecordingReference:
+    class: struct
+    assert_size: 40
+    fields:
+      - name: recording_name
+        type: TagString
+      - type: pad
+        size: 8
+  ScenarioAIConversationFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: stop_if_death
+      - name: stop_if_damaged
+      - name: stop_if_visible_enemy
+      - name: stop_if_alerted_to_enemy
+      - name: player_must_be_visible
+      - name: stop_other_actions
+      - name: keep_trying_to_play
+      - name: player_must_be_looking
+  ScenarioAIConversationParticipantFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: optional
+      - name: has_alternate
+      - name: is_alternate
+  ScenarioSelectionType:
+    class: enum
+    size: 2
+    options:
+      - name: friendly_actor
+      - name: disembodied
+      - name: in_player_s_vehicle
+      - name: not_in_a_vehicle
+      - name: prefer_sergeant
+      - name: any_actor
+      - name: radio_unit
+      - name: radio_sergeant
+  ScenarioAIConversationParticipant:
+    class: struct
+    assert_size: 84
+    fields:
+      - type: pad
+        size: 2
+      - name: flags
+        type: ScenarioAIConversationParticipantFlags
+      - name: selection_type
+        type: ScenarioSelectionType
+      - name: actor_type
+        type: ActorType
+      - name: use_this_object
+        type: Index
+        meta:
+          index_of: object names
+      - name: set_new_name
+        type: Index
+        meta:
+          index_of: object names
+      - type: pad
+        size: 12
+      - name: variant_numbers
+        type: uint16
+        count: 6
+        meta:
+          cache_only: true
+        endianness: little
+        comments:
+          en: >-
+            Determines which kind of variant gets a given line. By default, this
+            matches by tag path (bisenti = 2, fitzgerald/jenkins = 4, aussie =
+            5, mendoza = 6, sarge/johnson = 100, sarge2/lehto = 101, everything
+            else = 0, null = 65535)
+      - name: encounter_name
+        type: TagString
+      - name: encounter_index
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 12
+  ScenarioAIConversationLineFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: addressee_look_at_speaker
+      - name: everyone_look_at_speaker
+      - name: everyone_look_at_addressee
+      - name: wait_after_until_told_to_advance
+      - name: wait_until_speaker_nearby
+      - name: wait_until_everyone_nearby
+  ScenarioAddressee:
+    class: enum
+    size: 2
+    options:
+      - name: none
+      - name: player
+      - name: participant
+  ScenarioAIConversationLine:
+    class: struct
+    assert_size: 124
+    fields:
+      - name: flags
+        type: ScenarioAIConversationLineFlags
+      - name: participant
+        type: Index
+        meta:
+          index_of: participants
+      - name: addressee
+        type: ScenarioAddressee
+        meta:
+          index_of: participants
+      - name: addressee_participant
+        type: Index
+        meta:
+          index_of: participants
+      - type: pad
+        size: 4
+      - name: line_delay_time
+        type: float
+      - type: pad
+        size: 12
+      - name: variant_1
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: variant_2
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: variant_3
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: variant_4
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: variant_5
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+      - name: variant_6
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sound
+  ScenarioAIConversation:
+    class: struct
+    assert_size: 116
+    fields:
+      - name: name
+        type: TagString
+      - name: flags
+        type: ScenarioAIConversationFlags
+      - type: pad
+        size: 2
+      - name: trigger_distance
+        type: float
+        meta:
+          unit: seconds
+      - name: run_to_player_dist
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 36
+      - name: participants
+        type: Block
+        type_args:
+          T: ScenarioAIConversationParticipant
+        meta:
+          hek_max_count: 8
+      - name: lines
+        type: Block
+        type_args:
+          T: ScenarioAIConversationLine
+        meta:
+          hek_max_count: 32
+      - type: pad
+        size: 12
+  ScenarioScriptType:
+    class: enum
+    size: 2
+    options:
+      - name: startup
+      - name: dormant
+      - name: continuous
+      - name: static
+      - name: stub
+  ScenarioScriptValueType:
+    class: enum
+    size: 2
+    options:
+      - name: unparsed
+      - name: special_form
+      - name: function_name
+      - name: passthrough
+      - name: void
+      - name: boolean
+      - name: real
+      - name: short
+      - name: long
+      - name: string
+      - name: script
+      - name: trigger_volume
+      - name: cutscene_flag
+      - name: cutscene_camera_point
+      - name: cutscene_title
+      - name: cutscene_recording
+      - name: device_group
+      - name: ai
+      - name: ai_command_list
+      - name: starting_profile
+      - name: conversation
+      - name: navpoint
+      - name: hud_message
+      - name: object_list
+      - name: sound
+      - name: effect
+      - name: damage
+      - name: looping_sound
+      - name: animation_graph
+      - name: actor_variant
+      - name: damage_effect
+      - name: object_definition
+      - name: game_difficulty
+      - name: team
+      - name: ai_default_state
+      - name: actor_type
+      - name: hud_corner
+      - name: object
+      - name: unit
+      - name: vehicle
+      - name: weapon
+      - name: device
+      - name: scenery
+      - name: object_name
+      - name: unit_name
+      - name: vehicle_name
+      - name: weapon_name
+      - name: device_name
+      - name: scenery_name
+  ScenarioScript:
+    class: struct
+    assert_size: 92
+    meta:
+      read_only: true
+    fields:
+      - name: name
+        type: TagString
+      - name: script_type
+        type: ScenarioScriptType
+      - name: return_type
+        type: ScenarioScriptValueType
+      - name: root_expression_index
+        type: int32
+      - type: pad
+        size: 52
+  ScenarioGlobal:
+    class: struct
+    assert_size: 92
+    meta:
+      read_only: true
+    fields:
+      - name: name
+        type: TagString
+      - name: type
+        type: ScenarioScriptValueType
+      - type: pad
+        size: 2
+      - type: pad
+        size: 4
+      - name: initialization_expression_index
+        type: int32
+      - type: pad
+        size: 48
+  ScenarioReference:
+    class: struct
+    assert_size: 40
+    meta:
+      read_only: true
+    fields:
+      - type: pad
+        size: 24
+      - name: reference
+        type: TagDependency
+        meta:
+          tag_classes:
+            - '*'
+  ScenarioSourceFile:
+    class: struct
+    assert_size: 52
+    meta:
+      read_only: true
+    fields:
+      - name: name
+        type: TagString
+      - name: source
+        type: TagDataOffset
+  ScenarioCutsceneFlag:
+    class: struct
+    assert_size: 92
+    fields:
+      - name: unknown
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: name
+        type: TagString
+      - name: position
+        type: Point3D
+      - name: facing
+        type: Euler2D
+      - type: pad
+        size: 36
+  ScenarioCutsceneCameraPoint:
+    class: struct
+    assert_size: 104
+    fields:
+      - name: unknown
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: name
+        type: TagString
+      - type: pad
+        size: 4
+      - name: position
+        type: Point3D
+      - name: orientation
+        type: Euler3D
+      - name: field_of_view
+        type: Angle
+      - type: pad
+        size: 36
+  ScenarioTextStyle:
+    class: enum
+    size: 2
+    options:
+      - name: plain
+      - name: bold
+      - name: italic
+      - name: condense
+      - name: underline
+  ScenarioJustification:
+    class: enum
+    size: 2
+    options:
+      - name: left
+      - name: right
+      - name: center
+  ScenarioCutsceneTitle:
+    class: struct
+    assert_size: 96
+    meta:
+      post_cache_deformat: true
+      pre_compile: true
+    fields:
+      - name: unknown
+        type: uint32
+        meta:
+          cache_only: true
+        endianness: little
+      - name: name
+        type: TagString
+      - type: pad
+        size: 4
+      - name: text_bounds
+        type: Rectangle2D
+      - name: string_index
+        type: Index
+      - name: text_style
+        type: ScenarioTextStyle
+      - name: justification
+        type: ScenarioJustification
+      - type: pad
+        size: 2
+      - type: pad
+        size: 4
+      - name: text_color
+        type: ColorARGBInt
+      - name: shadow_color
+        type: ColorARGBInt
+      - name: fade_in_time
+        type: float
+      - name: up_time
+        type: float
+      - name: fade_out_time
+        type: float
+      - type: pad
+        size: 16
+  ScenarioBSP:
+    class: struct
+    assert_size: 32
+    fields:
+      - name: bsp_start
+        type: uint32
+        meta:
+          cache_only: true
+          drop_on_extract_hidden: true
+        endianness: little
+      - name: bsp_size
+        type: uint32
+        meta:
+          cache_only: true
+          drop_on_extract_hidden: true
+        endianness: little
+      - name: bsp_address
+        type: uint32
+        meta:
+          cache_only: true
+          drop_on_extract_hidden: true
+        endianness: little
+      - type: pad
+        size: 4
+      - name: structure_bsp
+        type: TagDependency
+        meta:
+          tag_classes:
+            - scenario_structure_bsp
+  Scenario:
+    class: struct
+    meta:
+      tag_id: scnr
+      post_cache_deformat: true
+      postprocess_hek_data: true
+      pre_compile: true
+      post_compile: true
+    comments:
+      en: >
+        The main "root" tag for a multiplayer, singeplayer, or UI map. Contains
+        data about spawn locations, objects, BSPs, skies, scripts, and more.
+    assert_size: 1456
+    fields:
+      - name: don't_use
+        type: TagDependency
+        meta:
+          tag_classes:
+            - scenario_structure_bsp
+          unused: true
+      - name: won't_use
+        type: TagDependency
+        meta:
+          tag_classes:
+            - scenario_structure_bsp
+          unused: true
+      - name: can't_use
+        type: TagDependency
+        meta:
+          tag_classes:
+            - sky
+          unused: true
+      - name: skies
+        type: Block
+        type_args:
+          T: ScenarioSky
+        meta:
+          hek_max_count: 8
+      - name: type
+        type: ScenarioType
+        comments:
+          en: >-
+            Determines the type of map this scenario represents. This primarily
+            affects how the game
+      - name: flags
+        type: ScenarioFlags
+      - name: child_scenarios
+        type: Block
+        type_args:
+          T: ScenarioChildScenario
+        meta:
+          hek_max_count: 16
+          ignore_cached: true
+      - name: local_north
+        type: float
+      - type: pad
+        size: 20
+      - type: pad
+        size: 136
+      - name: predicted_resources
+        type: Block
+        type_args:
+          T: PredictedResource
+        meta:
+          hek_max_count: 1024
+          cache_only: true
+      - name: functions
+        type: Block
+        type_args:
+          T: ScenarioFunction
+        meta:
+          hek_max_count: 32
+      - name: editor_scenario_data
+        type: TagDataOffset
+      - name: comments
+        type: Block
+        type_args:
+          T: ScenarioEditorComment
+        meta:
+          hek_max_count: 1024
+      - type: pad
+        size: 224
+      - name: object_names
+        type: Block
+        type_args:
+          T: ScenarioObjectName
+        meta:
+          hek_max_count: 512
+          max: 65534
+          read_only: true
+      - name: scenery
+        type: Block
+        type_args:
+          T: ScenarioScenery
+        meta:
+          hek_max_count: 2000
+          max: 65535
+      - name: scenery_palette
+        type: Block
+        type_args:
+          T: ScenarioSceneryPalette
+        meta:
+          hek_max_count: 100
+          max: 65534
+      - name: bipeds
+        type: Block
+        type_args:
+          T: ScenarioBiped
+        meta:
+          hek_max_count: 128
+          max: 65535
+        comments:
+          en: >
+            Special-purpose bipeds placed in the map, typically used for
+            scripted characters and cutscenes. AI should instead be spawned
+            using [encounters](#tag-field-encounters), since the [actors][actor]
+            will be properly difficulty-scaled.
+
+            Although there is technically a very high limit to this block,
+            unmodified [Sapien][] only supports up to 128 bipeds being placed.
+      - name: biped_palette
+        type: Block
+        type_args:
+          T: ScenarioBipedPalette
+        meta:
+          hek_max_count: 100
+          max: 65534
+      - name: vehicles
+        type: Block
+        type_args:
+          T: ScenarioVehicle
+        meta:
+          hek_max_count: 80
+          max: 65535
+      - name: vehicle_palette
+        type: Block
+        type_args:
+          T: ScenarioVehiclePalette
+        meta:
+          hek_max_count: 100
+          max: 65534
+      - name: equipment
+        type: Block
+        type_args:
+          T: ScenarioEquipment
+        meta:
+          hek_max_count: 256
+          max: 65535
+      - name: equipment_palette
+        type: Block
+        type_args:
+          T: ScenarioEquipmentPalette
+        meta:
+          hek_max_count: 100
+          max: 65534
+      - name: weapons
+        type: Block
+        type_args:
+          T: ScenarioWeapon
+        meta:
+          hek_max_count: 128
+          max: 65535
+        comments:
+          en: >
+            Weapon placements for singeplayer. Multiplayer weapon spawns should
+            be placed using [netgame equipment](#tag-field-netgame-equipment)
+            instead.
+      - name: weapon_palette
+        type: Block
+        type_args:
+          T: ScenarioWeaponPalette
+        meta:
+          hek_max_count: 100
+          max: 65534
+        comments:
+          en: >-
+            The types of weapons that can be placed throughout a singeplayer
+            scenario.
+      - name: device_groups
+        type: Block
+        type_args:
+          T: ScenarioDeviceGroup
+        meta:
+          hek_max_count: 128
+          max: 65534
+      - name: machines
+        type: Block
+        type_args:
+          T: ScenarioMachine
+        meta:
+          hek_max_count: 400
+          max: 65535
+      - name: machine_palette
+        type: Block
+        type_args:
+          T: ScenarioMachinePalette
+        meta:
+          hek_max_count: 100
+          max: 65534
+      - name: controls
+        type: Block
+        type_args:
+          T: ScenarioControl
+        meta:
+          hek_max_count: 100
+          max: 65535
+      - name: control_palette
+        type: Block
+        type_args:
+          T: ScenarioControlPalette
+        meta:
+          hek_max_count: 100
+          max: 65534
+      - name: light_fixtures
+        type: Block
+        type_args:
+          T: ScenarioLightFixture
+        meta:
+          hek_max_count: 500
+          max: 65535
+      - name: light_fixture_palette
+        type: Block
+        type_args:
+          T: ScenarioLightFixturePalette
+        meta:
+          hek_max_count: 100
+          max: 65534
+      - name: sound_scenery
+        type: Block
+        type_args:
+          T: ScenarioSoundScenery
+        meta:
+          hek_max_count: 256
+          max: 65535
+      - name: sound_scenery_palette
+        type: Block
+        type_args:
+          T: ScenarioSoundSceneryPalette
+        meta:
+          hek_max_count: 100
+          max: 65534
+      - type: pad
+        size: 84
+      - name: player_starting_profile
+        type: Block
+        type_args:
+          T: ScenarioPlayerStartingProfile
+        meta:
+          hek_max_count: 256
+      - name: player_starting_locations
+        type: Block
+        type_args:
+          T: ScenarioPlayerStartingLocation
+        meta:
+          hek_max_count: 256
+      - name: trigger_volumes
+        type: Block
+        type_args:
+          T: ScenarioTriggerVolume
+        meta:
+          hek_max_count: 256
+          max: 65534
+        comments:
+          en: >
+            Axis-aligned volumes which can be used in scripts to test for the
+            presence an object: `(volume_test_object "volume_name" <object>)`.
+            An example use case is [kill volumes][kill-volumes].
+      - name: recorded_animations
+        type: Block
+        type_args:
+          T: ScenarioRecordedAnimation
+        meta:
+          hek_max_count: 1024
+      - name: netgame_flags
+        type: Block
+        type_args:
+          T: ScenarioNetgameFlags
+        meta:
+          hek_max_count: 200
+        comments:
+          en: >-
+            Multiplayer-specific markers like flag locations, oddball spawns,
+            and teleporters.
+      - name: netgame_equipment
+        type: Block
+        type_args:
+          T: ScenarioNetgameEquipment
+        meta:
+          hek_max_count: 200
+      - name: starting_equipment
+        type: Block
+        type_args:
+          T: ScenarioStartingEquipment
+        meta:
+          hek_max_count: 200
+      - name: bsp_switch_trigger_volumes
+        type: Block
+        type_args:
+          T: ScenarioBSPSwitchTriggerVolume
+        meta:
+          hek_max_count: 256
+          cache_only: true
+      - name: decals
+        type: Block
+        type_args:
+          T: ScenarioDecal
+        meta:
+          hek_max_count: 65536
+      - name: decal_palette
+        type: Block
+        type_args:
+          T: ScenarioDecalPalette
+        meta:
+          hek_max_count: 128
+      - name: detail_object_collection_palette
+        type: Block
+        type_args:
+          T: ScenarioDetailObjectCollectionPalette
+        meta:
+          hek_max_count: 32
+      - type: pad
+        size: 84
+      - name: actor_palette
+        type: Block
+        type_args:
+          T: ScenarioActorPalette
+        meta:
+          hek_max_count: 64
+      - name: encounters
+        type: Block
+        type_args:
+          T: ScenarioEncounter
+        meta:
+          hek_max_count: 128
+      - name: command_lists
+        type: Block
+        type_args:
+          T: ScenarioCommandList
+        meta:
+          hek_max_count: 256
+      - name: ai_animation_references
+        type: Block
+        type_args:
+          T: ScenarioAIAnimationReference
+        meta:
+          hek_max_count: 128
+      - name: ai_script_references
+        type: Block
+        type_args:
+          T: ScenarioAIScriptReference
+        meta:
+          hek_max_count: 128
+      - name: ai_recording_references
+        type: Block
+        type_args:
+          T: ScenarioAIRecordingReference
+        meta:
+          hek_max_count: 128
+      - name: ai_conversations
+        type: Block
+        type_args:
+          T: ScenarioAIConversation
+        meta:
+          hek_max_count: 128
+      - name: script_syntax_data
+        type: TagDataOffset
+        meta:
+          compile_ignore: true
+      - name: script_string_data
+        type: TagDataOffset
+      - name: scripts
+        type: Block
+        type_args:
+          T: ScenarioScript
+        meta:
+          hek_max_count: 512
+          read_only: true
+      - name: globals
+        type: Block
+        type_args:
+          T: ScenarioGlobal
+        meta:
+          hek_max_count: 128
+          read_only: true
+      - name: references
+        type: Block
+        type_args:
+          T: ScenarioReference
+        meta:
+          hek_max_count: 256
+          read_only: true
+      - name: source_files
+        type: Block
+        type_args:
+          T: ScenarioSourceFile
+        meta:
+          hek_max_count: 8
+          non_cached: true
+          volatile: true
+          read_only: true
+      - type: pad
+        size: 24
+      - name: cutscene_flags
+        type: Block
+        type_args:
+          T: ScenarioCutsceneFlag
+        meta:
+          hek_max_count: 512
+      - name: cutscene_camera_points
+        type: Block
+        type_args:
+          T: ScenarioCutsceneCameraPoint
+        meta:
+          hek_max_count: 512
+      - name: cutscene_titles
+        type: Block
+        type_args:
+          T: ScenarioCutsceneTitle
+        meta:
+          hek_max_count: 64
+      - type: pad
+        size: 108
+      - name: custom_object_names
+        type: TagDependency
+        meta:
+          tag_classes:
+            - unicode_string_list
+      - name: ingame_help_text
+        type: TagDependency
+        meta:
+          tag_classes:
+            - unicode_string_list
+      - name: hud_messages
+        type: TagDependency
+        meta:
+          tag_classes:
+            - hud_message_text
+      - name: structure_bsps
+        type: Block
+        type_args:
+          T: ScenarioBSP
+        meta:
+          hek_max_count: 32
+          max: 16

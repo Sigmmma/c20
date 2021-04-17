@@ -1,0 +1,224 @@
+imports:
+  h1/tags/common:
+    - FramebufferBlendFunction
+    - Point2D
+    - TagDependency
+    - Block
+    - ColorRGB
+    - WaveFunction
+type_defs:
+  HUDInterfaceAnchor:
+    class: enum
+    size: 2
+    options:
+      - name: top_left
+      - name: top_right
+      - name: bottom_left
+      - name: bottom_right
+      - name: center
+  HUDInterfaceFlashFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: reverse_default_flashing_colors
+  HUDInterfaceMessagingFlags:
+    class: bitfield
+    size: 1
+    bits:
+      - name: use_text_from_string_list_instead
+      - name: override_default_color
+      - name: width_offset_is_absolute_icon_width
+  HUDInterfaceMeterFlags:
+    class: bitfield
+    size: 1
+    bits:
+      - name: use_min_max_for_state_changes
+      - name: interpolate_between_min_max_flash_colors_as_state_changes
+      - name: interpolate_color_along_hsv_space
+      - name: more_colors_for_hsv_interpolation
+      - name: invert_interpolation
+  HUDInterfaceMultitextureOverlayAnchor:
+    class: enum
+    size: 2
+    options:
+      - name: texture
+      - name: screen
+  HUDInterfaceZeroToOneBlendFunction:
+    class: enum
+    size: 2
+    options:
+      - name: add
+      - name: subtract
+      - name: multiply
+      - name: multiply2x
+      - name: dot
+  HUDInterfaceWrapMode:
+    class: enum
+    size: 2
+    options:
+      - name: clamp
+      - name: wrap
+  HUDInterfaceDestinationType:
+    class: enum
+    size: 2
+    options:
+      - name: tint_0_1
+      - name: horizontal_offset
+      - name: vertical_offset
+      - name: fade_0_1
+  HUDInterfaceDestination:
+    class: enum
+    size: 2
+    options:
+      - name: geometry_offset
+      - name: primary_map
+      - name: secondary_map
+      - name: tertiary_map
+  HUDInterfaceSource:
+    class: enum
+    size: 2
+    options:
+      - name: player_pitch
+      - name: player_pitch_tangent
+      - name: player_yaw
+      - name: weapon_ammo_total
+      - name: weapon_ammo_loaded
+      - name: weapon_heat
+      - name: explicit_uses_low_bound
+      - name: weapon_zoom_level
+  HUDInterfaceMultitextureOverlayEffector:
+    class: struct
+    assert_size: 220
+    fields:
+      - type: pad
+        size: 64
+      - name: destination_type
+        type: HUDInterfaceDestinationType
+      - name: destination
+        type: HUDInterfaceDestination
+      - name: source
+        type: HUDInterfaceSource
+      - type: pad
+        size: 2
+      - name: in_bounds
+        type: Bounds
+        meta:
+          unit: source units
+        type_args:
+          T: float
+      - name: out_bounds
+        type: Bounds
+        meta:
+          unit: pixels
+        type_args:
+          T: float
+      - type: pad
+        size: 64
+      - name: tint_color_lower_bound
+        type: ColorRGB
+      - name: tint_color_upper_bound
+        type: ColorRGB
+      - name: periodic_function
+        type: WaveFunction
+      - type: pad
+        size: 2
+      - name: function_period
+        type: float
+        meta:
+          unit: seconds
+      - name: function_phase
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 32
+  HUDInterfaceMultitextureOverlay:
+    class: struct
+    assert_size: 480
+    fields:
+      - type: pad
+        size: 2
+      - name: type
+        type: int16
+      - name: framebuffer_blend_function
+        type: FramebufferBlendFunction
+      - type: pad
+        size: 2
+      - type: pad
+        size: 32
+      - name: primary_anchor
+        type: HUDInterfaceAnchor
+      - name: secondary_anchor
+        type: HUDInterfaceMultitextureOverlayAnchor
+      - name: tertiary_anchor
+        type: HUDInterfaceMultitextureOverlayAnchor
+      - name: zero_to_one_blend_function
+        type: HUDInterfaceZeroToOneBlendFunction
+      - name: one_to_two_blend_function
+        type: HUDInterfaceZeroToOneBlendFunction
+      - type: pad
+        size: 2
+      - name: primary_scale
+        type: Point2D
+      - name: secondary_scale
+        type: Point2D
+      - name: tertiary_scale
+        type: Point2D
+      - name: primary_offset
+        type: Point2D
+      - name: secondary_offset
+        type: Point2D
+      - name: tertiary_offset
+        type: Point2D
+      - name: primary
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: secondary
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: tertiary
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - name: primary_wrap_mode
+        type: HUDInterfaceWrapMode
+      - name: secondary_wrap_mode
+        type: HUDInterfaceWrapMode
+      - name: tertiary_wrap_mode
+        type: HUDInterfaceWrapMode
+      - type: pad
+        size: 2
+      - type: pad
+        size: 184
+      - name: effectors
+        type: Block
+        type_args:
+          T: HUDInterfaceMultitextureOverlayEffector
+        meta:
+          hek_max_count: 30
+      - type: pad
+        size: 128
+  HUDInterfaceNumberFlags:
+    class: bitfield
+    size: 1
+    bits:
+      - name: show_leading_zeros
+      - name: only_show_when_zoomed
+      - name: draw_a_trailing_m
+  HUDInterfaceOverlayFlashFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: flashes_when_active
+  HUDInterfaceScalingFlags:
+    class: bitfield
+    size: 2
+    bits:
+      - name: don't_scale_offset
+      - name: don't_scale_size
+      - name: use_high_res_scale

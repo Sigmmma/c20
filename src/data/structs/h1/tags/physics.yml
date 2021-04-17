@@ -1,0 +1,192 @@
+entry_type: Physics
+imports:
+  h1/tags/common:
+    - Fraction
+    - Point3D
+    - Block
+    - Matrix
+    - TagString
+    - Vector3D
+type_defs:
+  PhysicsInertialMatrix:
+    class: struct
+    assert_size: 36
+    fields:
+      - name: matrix
+        type: Matrix
+  PhysicsPoweredMassPointFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: ground_friction
+      - name: water_friction
+      - name: air_friction
+      - name: water_lift
+      - name: air_lift
+      - name: thrust
+      - name: antigrav
+  PhysicsPoweredMassPoint:
+    class: struct
+    assert_size: 128
+    fields:
+      - name: name
+        type: TagString
+      - name: flags
+        type: PhysicsPoweredMassPointFlags
+      - name: antigrav_strength
+        type: float
+      - name: antigrav_offset
+        type: float
+      - name: antigrav_height
+        type: float
+      - name: antigrav_damp_fraction
+        type: float
+      - name: antigrav_normal_k1
+        type: float
+      - name: antigrav_normal_k0
+        type: float
+      - type: pad
+        size: 68
+  PhysicsMassPointFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: metallic
+  PhysicsFrictionType:
+    class: enum
+    size: 2
+    options:
+      - name: point
+      - name: forward
+      - name: left
+      - name: up
+  PhysicsMassPoint:
+    class: struct
+    assert_size: 128
+    fields:
+      - name: name
+        type: TagString
+      - name: powered_mass_point
+        type: int16
+      - name: model_node
+        type: int16
+      - name: flags
+        type: PhysicsMassPointFlags
+      - name: relative_mass
+        type: float
+      - name: mass
+        type: float
+      - name: relative_density
+        type: float
+      - name: density
+        type: float
+      - name: position
+        type: Point3D
+      - name: forward
+        type: Vector3D
+      - name: up
+        type: Vector3D
+      - name: friction_type
+        type: PhysicsFrictionType
+      - type: pad
+        size: 2
+      - name: friction_parallel_scale
+        type: float
+      - name: friction_perpendicular_scale
+        type: float
+      - name: radius
+        type: float
+      - type: pad
+        size: 20
+  Physics:
+    class: struct
+    meta:
+      tag_id: phys
+      post_cache_deformat: true
+      postprocess_hek_data: true
+    comments:
+      en: 'Models the dynamic physics and propulsion of [vehicles][vehicle].'
+    assert_size: 128
+    fields:
+      - name: radius
+        type: float
+      - name: moment_scale
+        type: Fraction
+      - name: mass
+        type: float
+      - name: center_of_mass
+        type: Point3D
+      - name: density
+        type: float
+      - name: gravity_scale
+        type: float
+      - name: ground_friction
+        type: float
+        comments:
+          en: >
+            A coefficient which modifies the amount of friction applied to the
+            vehicle when colliding with "ground" surfaces, which may just mean
+            any BSP surface which is not a water plane. It is unknown if this
+            also modifies friction on scenery collisions. A typical value from
+            the Warthog is 0.23.
+      - name: ground_depth
+        type: float
+      - name: ground_damp_fraction
+        type: Fraction
+      - name: ground_normal_k1
+        type: float
+        comments:
+          en: >
+            Used to determine how steep of a surface the vehicle can climb
+            before its powered mass points no longer have an effect. A typical
+            value is ~0.7, while a value near 1.0 allows vertical climbing
+            assuming sufficient friction.
+      - name: ground_normal_k0
+        type: float
+        comments:
+          en: >
+            This is also used to determine how steep of a surface the vehicle
+            can climb and seems to be some sort of lower range bound for fading
+            out powered mass points. A typical value is ~0.5, with -1.0 allowing
+            vertical wall climbing.
+      - type: pad
+        size: 4
+      - name: water_friction
+        type: float
+      - name: water_depth
+        type: float
+      - name: water_density
+        type: float
+      - type: pad
+        size: 4
+      - name: air_friction
+        type: Fraction
+      - type: pad
+        size: 4
+      - name: xx_moment
+        type: float
+      - name: yy_moment
+        type: float
+      - name: zz_moment
+        type: float
+      - name: inertial_matrix_and_inverse
+        type: Block
+        type_args:
+          T: PhysicsInertialMatrix
+        meta:
+          hek_max_count: 2
+          volatile: true
+          min: 2
+          max: 2
+      - name: powered_mass_points
+        type: Block
+        type_args:
+          T: PhysicsPoweredMassPoint
+        meta:
+          hek_max_count: 32
+      - name: mass_points
+        type: Block
+        type_args:
+          T: PhysicsMassPoint
+        meta:
+          hek_max_count: 32

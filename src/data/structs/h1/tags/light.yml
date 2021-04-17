@@ -1,0 +1,161 @@
+entry_type: Light
+imports:
+  h1/tags/common:
+    - Angle
+    - ColorInterpolationFlags
+    - ColorARGB
+    - TagDependency
+    - WaveFunction
+    - ColorRGB
+    - FunctionType
+type_defs:
+  LightFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: dynamic
+      - name: no_specular
+      - name: don't_light_own_object
+      - name: supersize_in_first_person
+      - name: first_person_flashlight
+      - name: don't_fade_active_camouflage
+  Light:
+    class: struct
+    meta:
+      tag_id: ligh
+      post_cache_deformat: 'true'
+      pre_compile: true
+    comments:
+      en: >-
+        A dynamic light source which can be attached to objects and
+        [effects][effect].
+    assert_size: 352
+    fields:
+      - name: flags
+        type: LightFlags
+      - name: radius
+        type: float
+        meta:
+          default: 1
+      - name: radius_modifer
+        type: Bounds
+        meta:
+          default:
+            - 1
+            - 1
+        type_args:
+          T: float
+      - name: falloff_angle
+        type: Angle
+        meta:
+          default: 3.14159274101257
+      - name: cutoff_angle
+        type: Angle
+        meta:
+          default: 3.14159274101257
+      - name: lens_flare_only_radius
+        type: float
+      - name: cos_falloff_angle
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: cos_cutoff_angle
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - name: unknown_two
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+        comments:
+          en: Not setting this to 2 breaks the first person flashlight.
+      - name: sin_cutoff_angle
+        type: float
+        meta:
+          cache_only: true
+        endianness: little
+      - type: pad
+        size: 8
+      - name: interpolation_flags
+        type: ColorInterpolationFlags
+      - name: color_lower_bound
+        type: ColorARGB
+      - name: color_upper_bound
+        type: ColorARGB
+      - type: pad
+        size: 12
+      - name: primary_cube_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 2
+      - name: texture_animation_function
+        type: WaveFunction
+      - name: texture_animation_period
+        type: float
+        meta:
+          unit: seconds
+      - name: secondary_cube_map
+        type: TagDependency
+        meta:
+          tag_classes:
+            - bitmap
+      - type: pad
+        size: 2
+      - name: yaw_function
+        type: WaveFunction
+      - name: yaw_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - type: pad
+        size: 2
+      - name: roll_function
+        type: WaveFunction
+      - name: roll_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - type: pad
+        size: 2
+      - name: pitch_function
+        type: WaveFunction
+      - name: pitch_period
+        type: float
+        meta:
+          unit: seconds
+          default: 1
+      - type: pad
+        size: 8
+      - name: lens_flare
+        type: TagDependency
+        meta:
+          tag_classes:
+            - lens_flare
+      - type: pad
+        size: 24
+      - name: intensity
+        type: float
+      - name: color
+        type: ColorRGB
+      - type: pad
+        size: 16
+      - name: duration
+        type: float
+        meta:
+          unit: seconds
+      - type: pad
+        size: 2
+      - name: falloff_function
+        type: FunctionType
+      - type: pad
+        size: 8
+      - type: pad
+        size: 92

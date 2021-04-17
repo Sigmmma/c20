@@ -1,0 +1,102 @@
+entry_type: Flag
+imports:
+  h1/tags/common:
+    - IsUnusedFlag
+    - TagDependency
+    - Block
+    - TagString
+type_defs:
+  FlagTrailingEdgeShape:
+    class: enum
+    size: 2
+    options:
+      - name: flat
+      - name: concave_triangular
+      - name: convex_triangular
+      - name: trapezoid_short_top
+      - name: trapezoid_short_bottom
+  FlagAttachedEdgeShape:
+    class: enum
+    size: 2
+    options:
+      - name: flat
+      - name: concave_triangular
+  FlagAttachmentPoint:
+    class: struct
+    assert_size: 52
+    fields:
+      - name: height_to_next_attachment
+        type: int16
+        meta:
+          unit: vertices
+      - type: pad
+        size: 2
+      - type: pad
+        size: 16
+      - name: marker_name
+        type: TagString
+  Flag:
+    class: struct
+    meta:
+      tag_id: flag
+    comments:
+      en: >-
+        Properties for a simulated cloth-like material which can be attached to
+        objects.
+    assert_size: 96
+    fields:
+      - name: flags
+        type: IsUnusedFlag
+      - name: trailing_edge_shape
+        type: FlagTrailingEdgeShape
+      - name: trailing_edge_shape_offset
+        type: int16
+        meta:
+          unit: vertices
+      - name: attached_edge_shape
+        type: FlagAttachedEdgeShape
+      - type: pad
+        size: 2
+      - name: width
+        type: int16
+        meta:
+          unit: vertices
+      - name: height
+        type: int16
+        meta:
+          unit: vertices
+      - name: cell_width
+        type: float
+        meta:
+          unit: world units
+      - name: cell_height
+        type: float
+        meta:
+          unit: world units
+      - name: red_flag_shader
+        type: TagDependency
+        meta:
+          tag_classes:
+            - shader
+      - name: physics
+        type: TagDependency
+        meta:
+          tag_classes:
+            - point_physics
+      - name: wind_noise
+        type: float
+        meta:
+          unit: world units per second
+      - type: pad
+        size: 8
+      - name: blue_flag_shader
+        type: TagDependency
+        meta:
+          tag_classes:
+            - shader
+      - name: attachment_points
+        type: Block
+        type_args:
+          T: FlagAttachmentPoint
+        meta:
+          hek_max_count: 4
