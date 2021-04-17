@@ -112,7 +112,7 @@ module.exports = async function(ctx) {
 
   const structRender = structDisplay(ctx, {
     showOffsets: false,
-    skipPadding: true,
+    skipPadding: !tag.unused, //show padding for leftover tags; it might be of interest
     simpleTypes: true,
     entry_type: tag.structName,
     id: "tag-field",
