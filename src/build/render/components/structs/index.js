@@ -112,7 +112,7 @@ function structDisplay(ctx, opts) {
 
   function renderFieldName(fieldName, pathId) {
     if (!fieldName) return null;
-    fieldName = fieldName.replaceAll("_", " ");
+    fieldName = fieldName.replace(/_/g, " ");
     if (!pathId) return escapeHtml(fieldName);
     const pathTitle = escapeHtml(pathId.slice(1).join("/"));
     const pathIdAttr = slugify(pathId.join("-"));
@@ -161,7 +161,7 @@ function structDisplay(ctx, opts) {
               if (fieldTypeArgs && (fieldTypeName == "Block" || fieldTypeName == "ptr32" || fieldTypeName == "ptr64")) {
                 embeddedType = instantiateType(typeDefs, {type: Object.values(fieldTypeArgs)[0]}, instantiatedType.type_args, {});
                 if (embeddedType.typeDef.class) {
-                  headings.push({title: field.name.replaceAll("_", " "), id: slugify(fieldPathId.join("-")), level: fieldPathId.length});
+                  headings.push({title: field.name.replace(/_/g, " "), id: slugify(fieldPathId.join("-")), level: fieldPathId.length});
                 } else {
                   embeddedType = undefined;
                 }
