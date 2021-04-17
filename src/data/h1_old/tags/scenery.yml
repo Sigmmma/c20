@@ -1,9 +1,0 @@
-name: scenery
-id: scen
-parentName: object
-invaderStructName: Scenery
-comments:
-  en: >
-    Fixed decoration objects like boulders, plants, and crates. Placed in the
-    level using [Sapien][].
-  fields: []

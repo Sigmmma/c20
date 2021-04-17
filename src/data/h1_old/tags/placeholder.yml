@@ -1,5 +1,0 @@
-name: placeholder
-id: plac
-parentName: object
-comments:
-  en: Used only by [Sapien][] to represent interactive handles/markers.

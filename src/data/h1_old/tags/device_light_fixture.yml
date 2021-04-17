@@ -1,7 +1,0 @@
-name: device_light_fixture
-id: lifi
-parentName: device
-invaderStructName: DeviceLightFixture
-comments:
-  en: Used for dynamically toggled light sources or decorate lighting objects.
-  fields: []

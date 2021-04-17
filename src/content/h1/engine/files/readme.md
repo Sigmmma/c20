@@ -45,7 +45,7 @@ The structure of this file is not fully mapped out, however some fields are know
 
 ```.struct
 entry_type: Savegame
-show_offsets: true
+showOffsets: true
 id: savegame
 imports:
   h1/files/savegame.bin:
@@ -59,7 +59,7 @@ The file structure follows. All data is [little-endian](https://en.wikipedia.org
 
 ```.struct
 entry_type: Profile
-show_offsets: true
+showOffsets: true
 id: profile
 imports:
   h1/files/blam.sav:

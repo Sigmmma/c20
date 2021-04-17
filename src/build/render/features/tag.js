@@ -1,5 +1,5 @@
 const R = require("ramda");
-const {renderMarkdownInline, heading, structDisplay, detailsList, defAnchor, html, localizer, tagAnchor, alert} = require("../components");
+const {renderMarkdownInline, heading, structDisplay, detailsList, defAnchor, html, localizer, tagAnchor, alert, slugify} = require("../components");
 const {walkTypeDefs} = require("../../../data/structs");
 
 const localizations = localizer({
@@ -50,7 +50,6 @@ module.exports = async function(ctx) {
     return {};
   }
 
-
   const localize = localizations(lang);
 
   const tagNameArg = page.tagName.split("/");
@@ -60,6 +59,7 @@ module.exports = async function(ctx) {
   const engineId = `<code>${tag.id}</code>${defAnchor(ctx.resolveUrl("h1/tags", "engine-ids"))}`;
   const metaSections = [];
   const searchTerms = [];
+  const headingText = localize("tagStructureHeading");
 
   if (tag.parent) {
     metaSections.push({
@@ -105,57 +105,42 @@ module.exports = async function(ctx) {
       body: detailsList(
         localize("referencedBy"),
         tag.referencedBy.map(otherTag => tagAnchor(ctx, otherTag.name)),
-        0
+        1
       )
     });
   }
 
+  const structRender = structDisplay(ctx, {
+    showOffsets: false,
+    skipPadding: true,
+    simpleTypes: true,
+    entry_type: tag.structName,
+    id: "tag-field",
+    noRootExtend: true,
+    imports: {
+      [tag.structModule]: tag.structName
+    }
+  });
+
   const bodyHtml = html`
-    ${heading("h1", localize("tagStructureHeading"), "clear")}
+    ${heading("h1", headingText, "clear")}
     ${tag.parent && alert("info", html`
       <p>${localize("inheritInfo")(tag.name, tagAnchor(ctx, tag.parent.name))}</p>
     `)}
-    ${structDisplay(ctx, {
-      show_offsets: false,
-      skip_padding: true,
-      simple_types: true,
-      entry_type: tag.structName,
-      id: "tag-struct",
-      noRootExtend: true,
-      imports: {
-        [tag.structModule]: tag.structName
-      }
-    })}
+    ${structRender.html}
   `;
-
-  const walkOpts = {noRootExtend: true};
-  const addSearchTerms = (part) => {
-    if (part.name) {
-      searchTerms.push(part.name.split("_"));
-    }
-    if (part.comments && part.comments[lang]) {
-      searchTerms.push(part.comments[lang]);
-    }
-  };
-  walkTypeDefs(tag.structName, tag.structModule, ctx.data.structs, walkOpts, (typeDef) => {
-    addSearchTerms(typeDef);
-    if (typeDef.class == "struct") {
-      typeDef.fields.forEach(f => addSearchTerms(f));
-    } else if (typeDef.class == "bitfield") {
-      typeDef.bits.forEach(b => addSearchTerms(b));
-    } else if (typeDef.class == "enum") {
-      typeDef.options.forEach(o => addSearchTerms(o));
-    }
-  });
 
   return {
     keywords: [tag.id],
     html: bodyHtml,
-    // headings,
+    headings: [
+      {title: headingText, id: slugify(headingText), level: 1},
+      ...structRender.headings
+    ],
     metaSections,
-    searchText: searchTerms.join(" "),
+    searchText: structRender.searchTerms.join(" "),
     metaTitle: `\u{1F3F7} Tag: ${tagName} (${engineId})`,
     metaClass: "content-tag",
-    // thanks: localizeThanks(ctx, ctx.data[game].tagThanks)
+    thanks: localizeThanks(ctx, ctx.data.tagThanks[game])
   };
 };

@@ -103,6 +103,8 @@ const alert = (type, body) => html`
   </div>
 `;
 
+const renderHex = (num) => html`<code title="${num}">0x${num.toString(16).toUpperCase()}</code>`;
+
 const figure = (href, caption) => html`
   <figure>
     <a href="${href}">
@@ -127,6 +129,7 @@ module.exports = {
   ol,
   detailsList,
   alert,
+  renderHex,
   slugify,
   REPO_URL,
   DISCORD_URL

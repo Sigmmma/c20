@@ -1,98 +1,8 @@
 const fs = require("fs");
 const path = require("path");
-const {html, escapeHtml, localizer, slugify, detailsList, tagAnchor} = require("./bits");
-const {instantiateType, buildTypeDefs} = require("../../../data/structs");
-
-const localizations = localizer({
-  field: {
-    en: "Field",
-    es: "Campo"
-  },
-  type: {
-    en: "Type",
-    es: "Tipo"
-  },
-  flag: {
-    en: "Flag",
-    es: "Bandera"
-  },
-  mask: {
-    en: "Mask",
-    es: "Máscara"
-  },
-  value: {
-    en: "Value",
-    es: "Valor"
-  },
-  option: {
-    en: "Option",
-    es: "Opción"
-  },
-  seeIndex: {
-    en: "See indexed location"
-  },
-  comments: {
-    en: "Comments",
-    es: "Comentarios"
-  },
-  offset: {
-    en: "Offset (relative)",
-  },
-  meta_unit: {
-    en: "Unit"
-  },
-  meta_compile_processed: {
-    en: "Processed during compile"
-  },
-  meta_mcc_only: {
-    en: "MCC only"
-  },
-  meta_xbox_only: {
-    en: "Xbox only"
-  },
-  meta_cache_only: {
-    en: "Cache only"
-  },
-  meta_non_cached: {
-    en: "Non-cached"
-  },
-  meta_non_null: {
-    en: "Non-null"
-  },
-  meta_read_only: {
-    en: "Read-only"
-  },
-  meta_volatile: {
-    en: "Volatile"
-  },
-  meta_unused: {
-    en: "Unused"
-  },
-  meta_shifted_by_one: {
-    en: "Shifted by one"
-  },
-  meta_hek_maximum: {
-    en: "HEK max"
-  },
-  meta_hek_max_count: {
-    en: "HEK max count"
-  },
-  meta_non_standard: {
-    en: "Non-standard"
-  },
-  meta_flagged: {
-    en: "Flagged"
-  },
-  meta_default: {
-    en: "Default"
-  },
-  meta_max: {
-    en: "Max"
-  },
-  meta_min: {
-    en: "Min"
-  }
-});
+const {html, escapeHtml, slugify, detailsList, tagAnchor, renderHex} = require("../bits");
+const {instantiateType, buildTypeDefs} = require("../../../../data/structs");
+const localizations = require("./localizations");
 
 function processMeta(meta) {
   if (!meta || Object.keys(meta).length == 0) {
@@ -111,23 +21,42 @@ function joinPathId(pathId, next) {
 }
 
 function structDisplay(ctx, opts) {
-  const {renderMarkdown} = require("./markdown"); //todo: untangle circular dep
+  const {renderMarkdown} = require("../markdown"); //todo: untangle circular dep
   const localize = localizations(ctx.lang);
   const {
     type_defs: typeDefsArg,
     entry_type,
-    show_offsets,
-    skip_padding,
-    show_entry_comments,
+    showOffsets,
+    skipPadding,
+    showEntryComments,
     noRootExtend,
-    instantiationOpts,
-    simple_types,
+    simpleTypes,
     id
   } = opts;
 
   const typeDefs = buildTypeDefs(typeDefsArg, opts.imports, ctx.data.structs);
-
+  const searchTerms = [];
+  const headings = [];
   const seenTypes = {};
+
+  function addSearchTermsForPart(part) {
+    if (part.name) {
+      searchTerms.push(part.name.split("_"));
+    }
+    if (part.comments && part.comments[ctx.lang]) {
+      searchTerms.push(renderMarkdown(ctx, part.comments[ctx.lang], true));
+    }
+  }
+  function addSearchTermsForTypeDef(typeDef) {
+    addSearchTermsForPart(typeDef);
+    if (typeDef.class == "struct") {
+      typeDef.fields.forEach(f => addSearchTermsForPart(f));
+    } else if (typeDef.class == "bitfield") {
+      typeDef.bits.forEach(b => addSearchTermsForPart(b));
+    } else if (typeDef.class == "enum") {
+      typeDef.options.forEach(o => addSearchTermsForPart(o));
+    }
+  }
 
   function renderComments(part) {
     const meta = Object.entries(processMeta(part.meta) || {})
@@ -149,13 +78,13 @@ function structDisplay(ctx, opts) {
   function renderStructFieldType(field, {typeDef, totalSize, singleSize, variableSize, count, type_args, typeName}) {
     let typeStr = typeName;
     if (typeDef.class == "bitfield" || typeDef.class == "enum") {
-      if (simple_types) {
+      if (simpleTypes) {
         typeStr = typeDef.class;
       } else {
         typeStr += `: ${typeDef.class}${singleSize * 8}`;
       }
     }
-    if (!simple_types && type_args) {
+    if (!simpleTypes && type_args) {
       typeStr += `<${Object.values(type_args).join(", ")}>`;
     }
     if (variableSize !== undefined) {
@@ -194,19 +123,15 @@ function structDisplay(ctx, opts) {
     `;
   }
 
-  function renderHex(num) {
-    return html`<code title="${num}">0x${num.toString(16).toUpperCase()}</code>`;
-  }
-
   function renderStructAsTable(instantiatedType, pathId) {
-    const widths = 50 / (show_offsets ? 3 : 2);
+    const widths = 50 / (showOffsets ? 3 : 2);
     let offset = 0;
     return html`
-      <table class="type-def struct ${skip_padding ? "skip-padding" : ""}">
+      <table class="type-def struct">
         <thead>
           <tr>
             <th style="width:${widths}%">${localize("field")}</th>
-            ${show_offsets && html`
+            ${showOffsets && html`
               <th style="width:${widths}%">${localize("offset")}</th>
             `}
             <th style="width:${widths}%">${localize("type")}</th>
@@ -215,6 +140,10 @@ function structDisplay(ctx, opts) {
         </thead>
         <tbody>
           ${instantiatedType.typeDef.fields.map(field => {
+            if (skipPadding && field.type == "pad") {
+              return null;
+            }
+
             const fieldPathId = joinPathId(pathId, field.name);
             const fieldOffset = offset;
             const instantiatedFieldType = instantiateType(typeDefs, field, instantiatedType.type_args, {});
@@ -231,7 +160,9 @@ function structDisplay(ctx, opts) {
             if (fieldTypeName != "TagDependency") {
               if (fieldTypeArgs && (fieldTypeName == "Block" || fieldTypeName == "ptr32" || fieldTypeName == "ptr64")) {
                 embeddedType = instantiateType(typeDefs, {type: Object.values(fieldTypeArgs)[0]}, instantiatedType.type_args, {});
-                if (!embeddedType.typeDef.class) {
+                if (embeddedType.typeDef.class) {
+                  headings.push({title: field.name.replaceAll("_", " "), id: slugify(fieldPathId.join("-")), level: fieldPathId.length});
+                } else {
                   embeddedType = undefined;
                 }
               } else if (fieldTypeDef.class) {
@@ -249,7 +180,7 @@ function structDisplay(ctx, opts) {
             return html`
               <tr class="${rowClasses.join(" ")}">
                 <td class="field-name">${renderFieldName(field.name, fieldPathId)}</td>
-                ${show_offsets && html`
+                ${showOffsets && html`
                   <td class="field-offset">${renderHex(fieldOffset)}</td>
                 `}
                 <td class="field-type">
@@ -259,7 +190,7 @@ function structDisplay(ctx, opts) {
               </tr>
               ${embeddedType && !hasSeenType && html`
                 <tr class="embedded-type">
-                  <td colspan="${show_offsets ? 4 : 3}">
+                  <td colspan="${showOffsets ? 4 : 3}">
                     ${renderTypeAsTable(embeddedType, fieldPathId)}
                   </td>
                 </tr>
@@ -321,8 +252,9 @@ function structDisplay(ctx, opts) {
   }
 
   function renderTypeAsTable(instantiatedType, pathId) {
+    addSearchTermsForTypeDef(instantiatedType.typeDef);
     return html`
-      ${(show_entry_comments || entry_type != instantiatedType.typeName) &&
+      ${(showEntryComments || entry_type != instantiatedType.typeName) &&
         renderComments(instantiatedType.typeDef)
       }
       ${(() => {
@@ -341,10 +273,13 @@ function structDisplay(ctx, opts) {
     `;
   }
 
-  return renderTypeAsTable(instantiateType(typeDefs, {type: entry_type}, null, {noRootExtend: noRootExtend}), [id || ""]);
+  return {
+    html: renderTypeAsTable(instantiateType(typeDefs, {type: entry_type}, null, {noRootExtend: noRootExtend}), [id || ""]),
+    searchTerms,
+    headings
+  };
 }
 
 module.exports = {
   structDisplay,
-  //renderStructYamlPlaintext, todo
 };

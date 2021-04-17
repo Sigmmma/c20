@@ -46,6 +46,8 @@ type_defs:
           en: >-
             The map is meant to be used for [singleplayer][map#singleplayer] and
             loaded with the `map_name` command. Cannot be played in multiplayer.
+            This also causes map compilers like Tool and invader to apply certain
+            [hardcoded tag patches][tool#hardcoded-tag-patches].
       - name: multiplayer
         comments:
           en: The map is meant for multiplayer and can be loaded with `sv_map`.

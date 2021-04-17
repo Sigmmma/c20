@@ -1,7 +1,0 @@
-name: garbage
-id: garb
-parentName: item
-invaderStructName: Garbage
-comments:
-  en: ...
-  fields: []

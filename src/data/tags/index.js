@@ -23,7 +23,7 @@ async function loadTags(structModules) {
   Object.entries(allTags).forEach(([game, gameTags]) => {
     Object.entries(gameTags).forEach(([tagName, tagInfo]) => {
       tagInfo.name = tagName;
-      // tagInfo.struct = R.path([game, "tags", tagName, "type_defs", tagInfo.structName], structModules);
+      tagInfo.struct = R.path([...tagInfo.structModule.split("/"), "type_defs", tagInfo.structName], structModules);
       tagInfo.parent = gameTags[tagInfo.parentName];
       tagInfo.references = findDirectTagRefs(tagInfo.structName, tagInfo.structModule, structModules, tagName)
         .filter(r => r != "*")
