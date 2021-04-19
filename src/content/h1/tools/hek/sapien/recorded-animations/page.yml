@@ -1,0 +1,10 @@
+title:
+  en: Recorded Animations
+keywords:
+  en:
+    - animations
+alerts:
+  - type: danger
+    md:
+      en: >-
+        This feature does not function in the Gearbox HEK release.

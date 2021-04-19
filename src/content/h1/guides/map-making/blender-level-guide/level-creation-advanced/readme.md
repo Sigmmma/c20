@@ -12,18 +12,18 @@ Assuming you still have your tutorial level loaded you can continue on from wher
 ![](1G.png)
 
 1. Select your box (level) object
-2. [Change context mode](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#context-mode) from object mode to edit mode.
-3. Set your [selection mode](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#geometry-selection-type)  to face selection.
+2. [Change context mode](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) from object mode to edit mode.
+3. Set your [selection mode](https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/introduction.html)  to face selection.
 4. Select the bottom of the box (level) object. Only the face that has your "example_tutorial_ground" material applied should be selected.
-5. Drag your cursor over your 3D viewport and right click. It should bring up a [face context menu](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#geometry-context-menu).
-6. Select the [subdivide](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#subdividing) option from the menu. Repeat this process 4 times to match our setup.
+5. Drag your cursor over your 3D viewport and right click. It should bring up a [face context menu](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/introduction.html#accessing-mesh-tools).
+6. Select the [subdivide](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/subdivide.html) option from the menu. Repeat this process 4 times to match our setup.
 
 The end result of this should look something like this:
 
 ![](1H.png)
 
 ```.alert info
-You may have noticed that I am seeing through the object in this image. If you want to enable this then you can enable [backface culling](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#backface-culling) in shading options. You must be in the solid renderer for this option to work. You can also enable the xray option here to select faces through other faces. This will make working in backface culling mode less awkward.
+You may have noticed that I am seeing through the object in this image. If you want to enable this then you can enable [backface culling](https://docs.blender.org/manual/en/latest/render/workbench/options.html) in shading options. You must be in the solid renderer for this option to work. You can also enable the xray option here to select faces through other faces. This will make working in backface culling mode less awkward.
 ```
 
 ![](1I.png)
@@ -35,14 +35,14 @@ We will need to create some hills on the edge of our level that our players can'
 ![](1J.png)
 
 1. Select your box (level) object.
-2. [Change context mode](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#context-mode) from object mode to edit mode.
-3. Set your [selection mode](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#geometry-selection-type) to face selection.
+2. [Change context mode](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) from object mode to edit mode.
+3. Set your [selection mode](https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/introduction.html) to face selection.
 4. Select two rows of quads on the west and east and select one row on the north and south.
-5. Select the [move tool.](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#set-transform)
+5. Select the [move tool.](https://docs.blender.org/manual/en/latest/scene_layout/object/properties/transforms.html)
 6. Move the planes to around 128 units up on the Z axis.
 
 ```.alert info
-You can find the exact units you are setting during translation by looking in the top left by default. It sould look something like the image below.
+You can find the exact units you are setting during translation by looking in the top left by default. It should look something like the image below.
 ```
 
 ![Depending on your setting this could be in any other corner. This is the default place for it though](1K.png)
@@ -55,14 +55,14 @@ The first step is the generate a mask for where we will be sculpting our hills. 
 ![](1L.png)
 
 1. Ensure the steps from the [creating the border for our level](#creating-the-border-for-our-level) section is complete.
-2. [Change context mode](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#context-mode) to sculpt mode.
+2. [Change context mode](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) to sculpt mode.
 3. Find the "Face Sets" dropdown option.
 4. In the "Face Sets" dropdown there will be an option labeled "Face Set From Edit Mode Selection"
 
 ![](1M.png)
 
 ## Sculpt tool settings
-A couple of things to keep in mind while working in [sculpt mode](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#sculpting). If you don't see the tool settings for setting things like brush radius and strength then you'll want to right click the context option and set some settings there.
+A couple of things to keep in mind while working in [sculpt mode](https://docs.blender.org/manual/en/latest/grease_pencil/modes/sculpting/introduction.html). If you don't see the tool settings for setting things like brush radius and strength then you'll want to right click the context option and set some settings there.
 
 It should look something like this. Make sure the option labeled _Show Tool Settings_ is checked.
 
@@ -83,7 +83,7 @@ From here we will change a few settings. You can choose to ignore these suggesti
 This is where the face set you created comes into play. We will be using it to hide the geometry we do not want to edit currently.
 
 1. Drag your cursor over a patch of colored geometry that was generated from the face set.
-2. Click the <kbd>H</kbd> key. This should [hide](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#hide) all geometry except for the geometry connected to the face set we currently hovering over.
+2. Click the <kbd>H</kbd> key. This should [hide](https://docs.blender.org/manual/en/latest/scene_layout/object/editing/show_hide.html) all geometry except for the geometry connected to the face set we currently hovering over.
 3. Left click on the remaining geometry until you have hills you are satisfied with. You can always hit <kbd>Ctrl + Z</kbd> to undo if you are unsatisfied with any of your work.
 
 The end result should look something like the following image.
@@ -119,33 +119,33 @@ Let's finally take care of that area we didn't mess with on the +X axis. Select 
 
 ![](1Y.png)
 
-Go ahead and use the [subdivide](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#subdividing) function on the selected faces again. Only one time so that we get the effect we need. The end result should look something like this:
+Go ahead and use the [subdivide](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/subdivide.html) function on the selected faces again. Only one time so that we get the effect we need. The end result should look something like this:
 
 ![](1Z.png)
 
 Now we have the amount of polygons we need to work with.
 
-Go head and select the vertices that are inside the dirt texture. Bring them down a few units on the Z axis using the [translation tool](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#set-transform). The end result should look something like this:
+Go head and select the vertices that are inside the dirt texture. Bring them down a few units on the Z axis using the [translation tool](https://docs.blender.org/manual/en/latest/scene_layout/object/properties/transforms.html). The end result should look something like this:
 
 ![](2A.png)
 
-Now go to the add tab and add a plane object like you did with the cubes. Make sure to set frame to be the parent on the plane object. Let's now move the object over to the stream bed and [scale](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#set-transform) it so that it covers it completely.
+Now go to the add tab and add a plane object like you did with the cubes. Make sure to set frame to be the parent on the plane object. Let's now move the object over to the stream bed and [scale](https://docs.blender.org/manual/en/latest/scene_layout/object/properties/transforms.html) it so that it covers it completely.
 
 You will probably have to manually edit both the geometry of the level and of the stream for this to look correct. Let's go over some of the steps you will have to do.
 
-1. Take your plane and [scale](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#set-transform) it to properly cover the stream bed area.
+1. Take your plane and [scale](https://docs.blender.org/manual/en/latest/scene_layout/object/properties/transforms.html) it to properly cover the stream bed area.
 ![](2B.png)
-2. While having the plane selected, change your [context](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#context-mode) from object mode to edit mode. We will add 8 segments to our plane so that we can make it fit the stream a bit better. Use edge select and select only the sides of the plane. Run [subdivide](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#subdividing) around 4 times to get the 8 segments you need.
+2. While having the plane selected, change your [context](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) from object mode to edit mode. We will add 8 segments to our plane so that we can make it fit the stream a bit better. Use edge select and select only the sides of the plane. Run [subdivide](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/edge/subdivide.html) around 4 times to get the 8 segments you need.
 ![](2C.png)
-3. [Move](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#set-transform) the plane to somewhere a bit below the stream bed. You may have to edit the surrounding geometry to get this to look right.
+3. [Move](https://docs.blender.org/manual/en/latest/scene_layout/object/properties/transforms.html) the plane to somewhere a bit below the stream bed. You may have to edit the surrounding geometry to get this to look right.
 ![](2D.png)
-4. Run a [smart UV unwrap](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#uv-creation) while you're here.
+4. Run a [smart UV unwrap](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/uv.html#bpy-ops-uv-smart-project) while you're here.
 5. Edit the shape of the stream in edit mode to get it to fit the stream and get the texture to look like it's bending with the shape of the stream. This is why we created the segments a while back.
 ![](2E.png)
 
 ## Adding a material
 
-Let's add a material to our stream object. Go ahead and [add a new material](https://general-101.github.io/HEK-Docs/w/Blender%20Overview/Blender_Overview.html#material-creation) named "example_tutorial_stream". We need to also assign the texture this material is going to use so that we can see how our UVs will look.
+Let's add a material to our stream object. Go ahead and [add a new material](https://docs.blender.org/manual/en/latest/render/materials/assignment.html) named "example_tutorial_stream". We need to also assign the texture this material is going to use so that we can see how our UVs will look.
 
 Go ahead and set your base color to an image node and navigate to `(HEK Install Path)\data\levels\test\(Level Name)\bitmaps`.
 
@@ -161,7 +161,7 @@ Now that we've set up our materials and textures let's make sure our UVs are cor
 
 ## UV mapping our stream
 
-Go ahead and open a viewport for a UV editor if you don't have one open already. Once you have it open select all faces of the stream mesh with the <kbd>A</kbd> key. You should see the UV for the mesh in the UV editor now. Let's go over a few tools you'll need to know for manually adjusting UVs.
+Go ahead and open a viewport for a UV editor if you don't have one open already. Once you have it open select all faces of the stream mesh with the <kbd>A</kbd> key. You should see the UV for the mesh in the UV editor now. Let's go over a few tools you'll need to know for manually adjusting UVs:
 
 * The highlighted options are your selection modes like the ones found in edit mode. You can pick from vertex, edge, face, and island selection. We will go with island for this example.
 ![](2H.png)
@@ -257,16 +257,16 @@ The second image further explains the above procedures.
 ## Creation of the base structure geometry
 
 1. Go to the "Mesh" tab and add a cube shaped mesh.
-2. Set the dimensions of the cube to X: 96.0 Y: 280.0 Z: 96.0
+2. Set the dimensions of the cube to X: `96.0` Y: `280.0` Z: `96.0`
 3. Select the edges along the Y axis and subdivide them.
 ![](2S.png)
 ![](2T.png)
-4. Position the cube so that it's somewhat center of the dirt patch but closer to the middle. We will be doing X: 0.0 Y: -820.0 Z: 48.0
+4. Position the cube so that it's somewhat center of the dirt patch but closer to the middle. We will be doing X: `0.0` Y: `-820.0` Z: `48.0`
 
 The box will now be manipulated to create a ramp and simple hallway.
 
 1. Select the new box object you made and change your context from object mode to edit mode.
-2. Merge the two edges facing the center of the map. Here's how to do that.
+2. Merge the two edges facing the center of the map. Here's how to do that:
 	* A: Use vertex selection for this. You'll need it to merge the vertices.
 	* B: Start with the verts on the left side from top to bottom
 	* C: While having your cursor over your 3D viewport hit the <kbd>M</kbd> key to bring up the merge menu. Select the "At Last" option from the menu.
@@ -445,9 +445,9 @@ Go into face selection and select one of the base faces. Press the key combo <kb
 Now that the blue base has been separated into a separate object, we will start creating materials for our base object.
 The following steps and example images will demonstrate the application of our new materials needed to complete the base structure.
 
-Start by creating the listed materials in your base object along with assigning the texture we will be using for the material. Just like before you can find these images in...
+Start by creating the listed materials in your base object along with assigning the texture we will be using for the material. Just like before you can find these images in:
 
-```(HEK Install Path)\data\levels\test\tutorial\bitmaps```
+`(HEK Install Path)\data\levels\test\tutorial\bitmaps`
 
 | Name                          | Diffuse Map (.tif file)          |
 | ----------------------------- | -------------------------------- |
@@ -627,12 +627,12 @@ Later, when the level is running in the game, use rasterizer_wireframe 1 to view
 Now let's set divide up the level using standard portals.
 
 1. Create a plane and rotate it 90 degrees on the Y axis. Make sure to apply the rotation with <kbd>Ctrl</kbd> + <kbd>A</kbd> and then set the dimensions of the plane to Y: 3600.0 Z: 2000.0. Set the position of the plane to X: 0.0 Y: 0.0 Z: 650.0. Subdivide the top and bottom plane edges to get five sections.
-2. Make sure the sections you created split the map somewhat nicely. The values we used for ours is...
+2. Make sure the sections you created split the map somewhat nicely. The values we used for ours is:
 	* X: 0.0 Y: -1200.0 Z: 650.0
 	* X: 0.0 Y: -400.0 Z: 650.0
 	* X: 0.0 Y: 400.0 Z: 650.0
 	* X: 0.0 Y: 1200.0 Z: 650.0
-3. Duplicate the object so that it splits the map into five sections. The location for the planes in the image from left to right is...
+3. Duplicate the object so that it splits the map into five sections. The location for the planes in the image from left to right is:
 	* X: -750.0 Y: 0.0 Z: 650.0
 	* X: -300.0 Y: 0.0 Z: 650.0
 	* X: 300.0 Y: 0.0 Z: 650.0
@@ -648,14 +648,14 @@ It's probably a good idea to make frequent backups as you make progress just in 
 
 1. Go to File dropdown in the top left and click it.
 2. Click on the menu item labeled "Save As".
-3. A window named "Blender File Dialog" should come up. Navigate to ```(HEK Install Path)\data\levels\test\(Level Name)\models``` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory][level-creation-beginner#creation-of-a-level-directory] section.
+3. A window named "Blender File Dialog" should come up. Navigate to `(HEK Install Path)\data\levels\test\(Level Name)\models` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory][level-creation-beginner#creation-of-a-level-directory] section.
 4. Click on the button labeled "Save As".
 
 You've now saved your level. The file as is will be used for future sections in this tutorial.
 
 # Conclusion of level creation
 The level geometry is now "complete" and can be successfully exported and compiled and is ready to go through the steps that will get it running in Halo.
-As previously mentioned, a completed version or example version of the level created in the tutorial sections can be found under...
+As previously mentioned, a completed version or example version of the level created in the tutorial sections can be found under:
 
 `(HEK Install Path)\data\levels\test\tutorial`
 

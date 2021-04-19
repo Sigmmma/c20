@@ -65,6 +65,8 @@ tool.exe unicode-strings "ui\mp_map_ui"
 
 For the example above, Tool would expect to find text files at `data\ui\mp_map_ui\`. Assuming no errors, a file named "prisoner.txt" would be compiled into `tags\ui\mp_map_ui\prisoner.unicode_string_list`. Each text file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the text filename.
 
+For more in depth instructions see the following link on [compiling text files.][unicode_string_list#creating-a-proper-text-file-for-unicode-string-lists]
+
 # Batch bitmap compilation
 [TIFF][wiki-tiff] (.tif) images can be compiled into a [bitmap][] using the `bitmaps` verb:
 
@@ -244,7 +246,9 @@ tool.exe hud-messages "levels\a10" "a10"
 
 For the example above, Tool would expect to find a text file at `data\levels\a10\hud messages.hmt`. Assuming no errors, a file named "hud messages.hmt" would be compiled into `tags\levels\a10\hud messages.hud_message_text`.
 
-It's important that you have the name of the file be "hud messages". Tool specifically looks for a file with this name when compiling hud messages. You also need an extension of .HMT for this to work. Simply renaming it from .TXT to .HMT will take care of that. The text file must also exist in the root of the scenario folder in data. Only the default campaign levels are considered valid scenarios.
+It's important that you have the name of the file be "hud messages". Tool specifically looks for a file with this name when compiling hud messages. You also need an extension of .HMT for this to work. Simply renaming it from .TXT to .HMT will take care of that. The text file must also exist in the root of the scenario folder in data.
+
+For more in depth instructions see the following link on [compiling hmt files.][hud_message_text#creating-a-proper-text-file-for-hud-messages]
 
 # Lightmaps
 <figure>
