@@ -1,5 +1,10 @@
 Invader is an [open source][invader-repo] modding toolkit for Halo 1, supporting multiple [editions][h1#editions-and-versions] depending on the tool. It aims to replace tools of the [HEK][hek] with an emphasis on tag data correctness and validation. Most of its tools are [command-line][] operated like [Tool][], although _invader-edit-qt_ is a GUI tag editor similar to [Guerilla][].
 
+# invader-string
+Generates [string_list][] and [unicode_string_list][] tags from [string source data][strings-txt].
+
+[_See invader documentation for usage._](https://github.com/SnowyMouse/invader#invader-string)
+
 # invader-extract
 This tool extracts [tags][] from [maps][map]. It supports Custom Edition, demo, retail, and also tags from Halo beta build 1749.
 

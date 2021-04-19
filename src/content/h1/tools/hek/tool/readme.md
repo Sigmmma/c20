@@ -53,7 +53,9 @@ tool.exe strings "weapons\assault rifle"
 
 For the example above, Tool would expect to find text files at `data\weapons\assault rifle\`. Assuming no errors, a file named "assault rifle.txt" would be compiled into `tags\weapons\assault rifle.string_list`. Each text file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the text filename.
 
-**Avoid using this this command for strings because [string_list][] is an unused tag types. Use unicode strings instead.**
+```.alert danger
+There is generally no reason to compile [string_list][] tags. Use the newer [unicode_string_list][] instead.
+```
 
 # Unicode String compilation
 UTF-16 text files containing strings can be compiled into a [unicode_string_list][] using the `unicode-strings` verb:
@@ -65,7 +67,7 @@ tool.exe unicode-strings "ui\mp_map_ui"
 
 For the example above, Tool would expect to find text files at `data\ui\mp_map_ui\`. Assuming no errors, a file named "prisoner.txt" would be compiled into `tags\ui\mp_map_ui\prisoner.unicode_string_list`. Each text file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the text filename.
 
-For more in depth instructions see the following link on [compiling text files.][unicode_string_list#creating-a-proper-text-file-for-unicode-string-lists]
+For more in depth instructions see the [string list format reference][strings-txt#creating-a-text-file-for-string-lists].
 
 # Batch bitmap compilation
 [TIFF][wiki-tiff] (.tif) images can be compiled into a [bitmap][] using the `bitmaps` verb:
@@ -237,7 +239,7 @@ These changes are made only to the resulting tag data in the map file, but be ca
 This will open a window to preview font packaged installed on your machine. From there you can select a font to package into a valid tag for Halo to make use of.
 
 # HUD messages compilation
-UTF-16 text files with an .HMT extension can be compiled into a [hud_message_text][] using the `hud-messages` verb:
+UTF-16 text files with an [.HMT extension][hmt] can be compiled into a [hud_message_text][] using the `hud-messages` verb:
 
 ```sh
 # hud-messages <path> <scenario-name>
@@ -246,9 +248,14 @@ tool.exe hud-messages "levels\a10" "a10"
 
 For the example above, Tool would expect to find a text file at `data\levels\a10\hud messages.hmt`. Assuming no errors, a file named "hud messages.hmt" would be compiled into `tags\levels\a10\hud messages.hud_message_text`.
 
-It's important that you have the name of the file be "hud messages". Tool specifically looks for a file with this name when compiling hud messages. You also need an extension of .HMT for this to work. Simply renaming it from .TXT to .HMT will take care of that. The text file must also exist in the root of the scenario folder in data.
+It's important that the file's name be "hud messages.hmt". Tool specifically looks for a file with this name when compiling HUD messages. You can simply edit the ".hmt" file with notepad. Simply renaming it from .TXT to .HMT will take care of that. The text file must also exist in the root of the scenario folder in data.
 
-For more in depth instructions see the following link on [compiling hmt files.][hud_message_text#creating-a-proper-text-file-for-hud-messages]
+[_See more in-depth instructions_][hmt#creating-a-text-file-for-hud-messages].
+
+| Error | Solution
+|------------------------------------------------------------------|----------
+| `the text specified is not 16-bit unicode text`                  | Ensure the file is saved with UTF-16 LE encoding.
+| `cannot import hud message text that isn't named "hud messages"` | Rename the file to "hud messages.hmt".
 
 # Lightmaps
 <figure>

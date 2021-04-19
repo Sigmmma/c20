@@ -2,3 +2,6 @@ title:
   en: hud_message_text
 stub: true
 tagName: hud_message_text
+img: hmt.jpg
+imgCaption:
+  en: Level objectives are one use of this tag.

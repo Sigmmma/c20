@@ -13,6 +13,8 @@ workflowItems:
       - JerryBrick
       - surrealwaffle
   # tools:
+  Text editors:
+    url: https://en.wikipedia.org/wiki/Text_editor
   Blender:
     page: blender
     authors:
@@ -155,6 +157,9 @@ workflowItems:
     authors:
       - Kavawuvi
       - Vaporeon
+  invader-string:
+    inherit: Invader
+    heading: invader-string
   invader-extract:
     inherit: Invader
     heading: invader-extract
@@ -173,6 +178,8 @@ workflowItems:
   # resources:
   wrl:
     page: wrl
+  hmt:
+    page: hmt
   jms:
     page: jms
   Animation data:
@@ -199,6 +206,8 @@ workflowItems:
     url: https://en.wikipedia.org/wiki/FLAC
   txt:
     url: https://en.wikipedia.org/wiki/Plain_text
+  Strings text:
+    page: strings-txt
   map:
     page: map
   tags:
@@ -496,6 +505,9 @@ similarItems:
     - model
     - gbxmodel
   -
+    - string_list
+    - unicode_string_list
+  -
     - Photoshop
     - GIMP
     - Krita
@@ -616,8 +628,20 @@ workflows:
     from: physics
     to: 3ds Max
   # text
-  - using: Mozzarilla
-    from: txt
+  - using:
+      - Tool
+      - Mozzarilla
+    from: hmt
+    to: hud_message_text
+  - using: Text editors
+    edit:
+      - hmt
+      - Strings text
+  - using:
+      - Tool
+      - Mozzarilla
+      - invader-string
+    from: Strings text
     to:
       - string_list
       - unicode_string_list
@@ -685,7 +709,9 @@ workflows:
     to:
       - gbxmodel
       - physics
-  # map compilation/extraction
+  # map compilation/extraction and editing
+  - using: Assembly
+    edit: map
   - using:
       - Tool
       - OS_Tool

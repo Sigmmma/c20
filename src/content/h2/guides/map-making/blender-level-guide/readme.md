@@ -43,7 +43,7 @@ As stated before compiled assets will end up in a path that mirrors the path of 
 ```
 
 # Key differences from CE
-While the level pipeline for Halo 2 hasn't changed much from CE, there are some important differences in workflow that we should bring up.
+While the level pipeline for Halo 2 hasn't changed much from CE, there are some important differences in workflow that we should bring up:
 
 1. While the CE export script would only export geometry if it was the child of an object with a node prefix, the Halo 2 export script will instead export every object in the scene whether or not it is the child of an object that starts with a node prefix. If you do not wish for an object to be exported then you can hide the object with the H key.
 2. Instead of .JMS, Halo 2 makes use of a new level format known as .ASS. This format has support for multiple separate objects as well as instance geometry. While H2Tool has some support for importing geometry stored in the JMS format, ASS is the new and proper format to be using.

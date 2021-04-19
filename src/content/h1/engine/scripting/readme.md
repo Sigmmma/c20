@@ -101,28 +101,25 @@ blocks, as well as `static` scripts.
 ; The second condition is true, so 6 will be returned from
 ; the cond block, since it is the final expression.
 (cond
-	(
-		(= 0 1)
-		(print "I will never run")
-		5
-	)
-	(
-		(= 1 1)
-		(print "I will always run!")
-		6
-	)
-	(
-		(= 2 2)
-		(print "I would run if the code above me hadn't.")
-		7
-	)
+  (
+    (= 0 1)
+    (print "I will never run")
+    5
+  )
+  (
+    (= 1 1)
+    (print "I will always run!")
+    6
+  )
+  (
+    (= 2 2)
+    (print "I would run if the code above me hadn't.")
+    7
+  )
 )
 ```
 
-
 # Gotchas and limits
-[Back to HSC reference][scripting#hsc-reference]
-
 ## Using begin_random in startup scripts
 The [random number generator][rng] used for things like `begin_random` is
 [seeded][rng-seed] on the same tick that `startup` scripts run. This means the
@@ -198,14 +195,14 @@ stack memory.
 ; things happen that are "nested" within one another
 
 (if ;; some condition
-	(begin
-		(if  ;; some condition
-			(begin
-				;; ... do something
-			)
-		)
-		;; ... do something else
-	)
+  (begin
+    (if ;; some condition
+      (begin
+        ;; ... do something
+      )
+    )
+    ;; ... do something else
+  )
 )
 ```
 
@@ -214,7 +211,7 @@ nested statements. The maximum number of nested statements is somewhere between
 10 and 16 levels deep, depending on if you're invoking static scripts, if you're
 invoking methods with parameters, and other things.
 
-```.alert
+```.alert danger
 **WARNING: The game *DOES NOT* guard against exceeding stack memory!!**
 
 If you exceed a script's stack memory, it will
@@ -228,7 +225,7 @@ arbitrary things. It might wake up when it's supposed to be asleep. It might
 switch to a new BSP for no reason. It might crash the game. It might make
 objects flicker randomly.
 
-```.alert
+```.alert danger
 There is not currently a reliable way to exactly tell when stack memory has been
 exceeded. The "10 to 16 nested levels" advice is an estimate based on
 experimentation, and also directly depends on the number of parameters in

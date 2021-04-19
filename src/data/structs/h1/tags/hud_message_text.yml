@@ -35,6 +35,8 @@ type_defs:
     meta:
       tag_id: 'hmt '
     assert_size: 128
+    comments:
+      en: Contains the text for messages that appear on the HUD like objectives and interactions.
     fields:
       - name: text_data
         type: TagDataOffset
