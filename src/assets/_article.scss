@@ -111,15 +111,16 @@ details {
 }
 
 a.header-anchor {
-  color: $fg-faded;
-  opacity: 0;
-  padding: 0 0.5em;
-  transition: opacity $transition-time;
+  color: inherit;
+  text-decoration: none;
   &:after {
+    padding: 0 0.5em;
     content: '#';
+    color: $fg-faded;
+    opacity: 0.25;
+    transition: opacity $transition-time;
   }
-  &:hover {
-    text-decoration: none;
+  &:hover:after {
     opacity: 1;
   }
 }

@@ -20,9 +20,17 @@ ScriptTypes:
   rows:
     - type: continuous
       info:
-        en: Runs every tick
-        es: 
-      ex: (script continuous check_player_health)
+        en: Runs every tick (simulation frame of the engine), at 30 ticks per second.
+        es:
+      ex: >-
+        (script continuous kill_players_in_zone
+          (if (volume_test_object kill_volume (list_get (players) 0))
+            (unit_kill (unit (list_get (players) 0)))
+          )
+          (if (volume_test_object kill_volume (list_get (players) 1))
+            (unit_kill (unit (list_get (players) 1)))
+          )
+        )
 
     - type: dormant
       info:
@@ -30,20 +38,34 @@ ScriptTypes:
           Sleeps until started with `wake`, runs until there are no instructions
           left, then stops. Calling `wake` a second time will not restart the
           script.
-        es: 
-      ex: (script dormant wait_for_it)
+        es:
+      ex: >-
+        (script dormant save_valley_canyon
+          (sleep_until (= 0 (ai_living_count valley_canyon)) 10)
+          (game_save_no_timeout)
+        )
 
     - type: startup
       info:
         en: Performed only on map startup.
-        es: 
-      ex: (script startup init_things)
+        es:
+      ex: >-
+        (script startup mission_a30
+          (hud_show_motion_sensor false)
+          (fade_out 0 0 0 0)
+          (print "mission script is running")
+          (ai_allegiance player human)
+          ;...
+        )
 
     - type: static
       info:
         en: Performed when called from another script.
-        es: 
-      ex: (script static unit player0)
+        es:
+      ex: >-
+        (script static "unit" player0
+          (unit (list_get (players) 0))
+        )
 
     - type: stub
       info:
@@ -59,7 +81,7 @@ ScriptTypes:
           another script file.
           <br/><br/>
           If you're familiar with C function prototypes, this is very similar.
-        es: 
+        es:
       ex: (script stub object player0)
 
 ValueTypes:
@@ -73,7 +95,7 @@ ValueTypes:
     - key: info
       name:
         en: Details
-        es: 
+        es:
       format: text
     - key: ex
       name:
@@ -85,56 +107,56 @@ ValueTypes:
     - type: boolean
       info:
         en: A value that is true or false
-        es: 
+        es:
       ex: true <br/> false
 
     - type: real
       info:
         en: 'Floating point (decimal) value <br/> Value Range: 3.4E +/- 38 (6 digits)'
-        es: 
+        es:
       ex: '3.000000'
 
     - type: short
       info:
         en: 'Short integer value <br/> Value Range: +/- 32,767'
-        es: 
+        es:
       ex: '2'
 
     - type: long
       info:
         en: 'Long integer value <br/> Value Range: +/- 2,147,483,648'
-        es: 
+        es:
       ex: '2000000000'
 
     - type: string
       info:
         en: >
           String of characters in double quotes <br/> Max number of characters: 32
-        es: 
+        es:
       ex: '"This is a string."'
 
     - type: trigger_volume
       info:
         en: A "Trigger Volumes" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: cutscene_flag
       info:
         en: A "Cutscene Flags" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: cutscene_camera_point
       info:
         en: A "Cutscene Camera Points" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: cutscene_title
       info:
         en: A "Cutscene Titles" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: cutscene_recording
@@ -142,115 +164,115 @@ ValueTypes:
         en: >
           A "Cutscene Recording" value that isn't in the public HaloCE
           [scenario][] tag?
-        es: 
+        es:
       ex:
 
     - type: device_group
       info:
         en: A "Device Groups" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: ai
       info:
         en: An "Encounters" value
-        es: 
+        es:
       ex:
 
     - type: ai_command_list
       info:
         en: A "Command Lists" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: starting_profile
       info:
         en: A "Player Starting Profile" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: conversation
       info:
         en: A "AI Conversations" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: navpoint
       info:
-        en: 
-        es: 
+        en:
+        es:
       ex:
 
     - type: hud_message
       info:
         en: '[HUD message text][hud_message_text]'
-        es: 
+        es:
       ex:
 
     - type: object_list
       info:
         en: An object list
-        es: 
+        es:
       ex:
 
     - type: sound
       info:
         en: '[Sound][]'
-        es: 
+        es:
       ex:
 
     - type: effect
       info:
         en: '[Effect][]'
-        es: 
+        es:
       ex:
 
     - type: damage
       info:
         en: '[Damage Effect][damage_effect]'
-        es: 
+        es:
       ex:
 
     - type: looping_sound
       info:
         en: '[Sound Looping][sound_looping]'
-        es: 
+        es:
       ex:
 
     - type: animation_graph
       info:
         en: '[Model Animations][model_animations]'
-        es: 
+        es:
       ex:
 
     - type: actor_variant
       info:
         en: '[Actor variant][actor_variant]'
-        es: 
+        es:
       ex:
 
     - type: damage_effect
       info:
         en: '[Damage Effect][damage_effect]'
-        es: 
+        es:
       ex:
 
     - type: object_definition
       info:
-        en: 
-        es: 
+        en:
+        es:
       ex:
 
     - type: game_difficulty
       info:
         en: easy <br/> normal <br/> hard <br/> impossible
-        es: 
+        es:
       ex:
 
     - type: team
       info:
         en: player <br/> human <br/> covenant <br/> flood <br/> sentinal
-        es: 
+        es:
       ex:
 
     - type: ai_default_state
@@ -258,105 +280,99 @@ ValueTypes:
         en: >
           none <br/> sleeping <br/> alert <br/> moving <br/> guarding <br/>
           searching <br/> fleeing
-        es: 
+        es:
       ex:
 
     - type: actor_type
       info:
         en: ie, elite
-        es: 
+        es:
       ex:
 
     - type: hud_corner
       info:
         en: top_left <br/> top_right <br/> bottom_left <br/> bottom_right
-        es: 
+        es:
       ex:
 
     - type: object
       info:
         en: '[Object][]'
-        es: 
+        es:
       ex:
 
     - type: unit
       info:
         en: '[Unit][]'
-        es: 
+        es:
       ex:
 
     - type: vehicle
       info:
         en: '[Vehicle][]'
-        es: 
+        es:
       ex:
 
     - type: weapon
       info:
         en: '[Weapon][]'
-        es: 
+        es:
       ex:
 
     - type: device
       info:
         en: '[Device][]'
-        es: 
+        es:
       ex:
 
     - type: scenery
       info:
         en: '[Scenery][]'
-        es: 
+        es:
       ex:
 
     - type: object_name
       info:
         en: An "Object Names" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: unit_name
       info:
         en: A "Bipeds" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: vehicle_name
       info:
         en: A "Vehicles" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: weapon_name
       info:
         en: A "Weapons" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: device_name
       info:
         en: A "Device" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
     - type: scenery_name
       info:
         en: A "Scenery" value (a block in the [scenario][] tag)
-        es: 
+        es:
       ex:
 
 OperatorsAndKeywords:
   columns:
     - key: type
-      href: true
       name:
         en: Expression
-        es: 
-      format: code
-    - key: info
-      name:
-        en: Details
-        es: 
+        es:
       format: text
     - key: ex
       name:
@@ -365,3725 +381,4521 @@ OperatorsAndKeywords:
       format: text
   rows:
     - slug: plus
-      type: (+ <number_1> <number_2> [... <number_n>])
-      info:
-        en: Returns the sum of all specified expressions
-        es: 
-      ex: '`(+ 5 6 7 8 9)` returns: 35'
+      type: |
+        ```hsc
+        (+ <number_1> <number_2> [... <number_n>])
+        ```
+        Returns the sum of all specified expressions.
+      ex: |
+        ```hsc
+        (+ 5 6 7 8 9)
+        ; returns: 35
+        ```
 
     - slug: minus
-      type: (- <number_1> <number_2>)
-      info:
-        en: Returns the difference of two expressions
-        es: 
-      ex: '`(- 10 5)` returns: 5'
+      type: |
+        ```hsc
+        (- <number_1> <number_2>)
+        ```
+        Returns the difference of two expressions.
+      ex: |
+        ```hsc
+        (- 10 5)
+        ; returns: 5
+        ```
 
     - slug: mult
-      type: (* <number_1> <number_2> [... <number_n>])
-      info:
-        en: Returns the product of all specified expressions
-        es: 
-      ex: '`(* 5 5)` returns: 25 <br/> `(* 5.5 6)` returns: 33'
+      type: |
+        ```hsc
+        (* <number_1> <number_2> [... <number_n>])
+        ```
+        Returns the product of all specified expressions.
+      ex: |
+        ```hsc
+        (* 5 5)
+        ; returns: 25
+        (* 5.5 6)
+        ; returns: 33
+        ```
 
     - slug: div
-      type: (/ <number_1> <number_2>)
-      info:
-        en: Returns the quotient of two expressions
-        es: 
-      ex: '`(/ 10 5)`  returns: 2 <br/> `(/ 2.5 2)` returns: 1.25'
+      type: |
+        ```hsc
+        (/ <number_1> <number_2>)
+        ```
+        Returns the quotient of two expressions.
+      ex: |
+        ```hsc
+        (/ 10 5)
+        ; returns: 2
+        (/ 2.5 2)
+        ; returns: 1.25
 
     - slug: eq
-      type: (= <expression_1> <expression_2>)
-      info:
-        en: Returns true if two expressions are equal
-        es: 
-      ex: '`(= (hud_get_timer_ticks) 0)`'
+      type: |
+        ```hsc
+        (= <expression_1> <expression_2>)
+        ```
+        Returns true if two expressions are equal.
+      ex: |
+        ```hsc
+        (= (hud_get_timer_ticks) 0)
+        ```
 
     - slug: ne
-      type: (!= <expression_1> <expression_2>)
-      info:
-        en: Returns true if two expressions are not equal
-        es: 
-      ex: '`(!= (hud_get_timer_ticks) 0)`'
+      type: |
+        ```hsc
+        (!= <expression_1> <expression_2>)
+        ```
+        Returns true if two expressions are not equal.
+      ex: |
+        ```hsc
+        (!= (hud_get_timer_ticks) 0)
+        ```
 
     - slug: gt
-      type: (> <number_1> <number_2>)
-      info:
-        en: Returns true if `number_1` is larger than `number_2`
-        es: 
-      ex: '`(> 10 5)` returns: true <br/> `(> 5 10)` returns: false'
+      type: |
+        ```hsc
+        (> <number_1> <number_2>)
+        ```
+        Returns true if `number_1` is larger than `number_2`.
+      ex: |
+        ```hsc
+        (> 10 5)
+        ; returns: true
+        (> 5 10)
+        ; returns: false
+        ```
 
     - slug: lt
-      type: (< <number_1> <number_2>)
-      info:
-        en: Returns true if `number_1` is smaller than `number_2`
-        es: 
-      ex: '`(> 4 8)` returns: true <br/> `(> 8 4)` returns: false'
+      type: |
+        ```hsc
+        (< <number_1> <number_2>)
+        ```
+        Returns true if `number_1` is smaller than `number_2`.
+      ex: |
+        ```hsc
+        (> 4 8)
+        ; returns: true
+        (> 8 4)
+        ; returns: false
+        ```
 
     - slug: ge
-      type: (>= <number_1> <number_2>)
-      info:
-        en: Returns true if `number_1` is larger than or equal `number_2`
-        es: 
-      ex: '`(>= 10 10)` returns: true <br/> `(>= 5 10)` returns: false'
+      type: |
+        ```hsc
+        (>= <number_1> <number_2>)
+        ```
+        Returns true if `number_1` is larger than or equal `number_2`.
+      ex: |
+        ```hsc
+        (>= 10 10)
+        ; returns: true
+        (>= 5 10)
+        ; returns: false
+        ```
 
     - slug: le
-      type: (<= <number_1> <number_2>)
-      info:
-        en: Returns true if `number_1` is smaller than or equal `number_2`
-        es: 
-      ex: '`(>= 4 4)` returns: true <br/> `(>= 8 4)` returns: false'
+      type: |
+        ```hsc
+        (<= <number_1> <number_2>)
+        ```
+        Returns true if `number_1` is smaller than or equal `number_2`.
+      ex: |
+        ```hsc
+        (>= 4 4)
+        ; returns: true
+        (>= 8 4)
+        ; returns: false
+        ```
 
     - slug: and
-      type: (and <boolean_1> <boolean_2> [... <boolean_n>])
-      info:
-        en: Returns true if all specified expressions are true
-        es: 
-      ex: '`(and (player_action_test_action) true)`'
+      type: |
+        ```hsc
+        (and <boolean_1> <boolean_2> [... <boolean_n>])
+        ```
+        Returns true if all specified expressions are true.
+      ex: |
+        ```hsc
+        (and (player_action_test_action) true)
+        ```
 
     - slug: begin
-      type: (begin <expression_1> <expression_2> [... <expression_n>])
-      info:
-        en: >
-          Returns the last expression in a sequence after evaluating the
-          sequence in order
-        es: 
-      ex: '`(begin something something_else 20)` returns: 20'
+      type: |
+        ```hsc
+        (begin
+          <expression_1>
+          <expression_2>
+          [... <expression_n>]
+        )
+        ```
+        Returns the last expression in a sequence after evaluating the
+        sequence in order
+      ex: |
+        ```hsc
+        (begin
+          something
+          something_else
+          20
+        )
+        ; returns: 20
+        ```
 
     - slug: begin_random
-      type: (begin_random <expression_1> <expression_2> [... <expression_n>])
-      info:
-        en: >
-          Evaluates the sequence of expressions in random order and returns the
-          last value evaluated
-        es: 
-      ex: '`(begin_random something something_else 20)`'
+      type: |
+        ```hsc
+        (begin_random
+          <expression_1>
+          <expression_2>
+          [... <expression_n>]
+        )
+        ```
+        Evaluates the sequence of expressions in random order and returns the
+        last value evaluated
+      ex: |
+        ```hsc
+        (begin_random
+          something
+          something_else
+          20
+        )
+        ```
 
     - slug: cond
-      type: (cond (<boolean_1> <result_1>) [(<boolean_2> <result_2>) [...]])
-      info:
-        en: Returns the value associated with the first true condition
-        es: 
-      ex: '`(cond false_val 10 true_val 20)` returns: 20'
+      type: |
+        ```hsc
+        (cond
+          (<boolean_1> <result_1>)
+          [(<boolean_2> <result_2>) [...]]
+        )
+        ```
+        Returns the value associated with the first true condition. Has no default value.
+      ex: |
+        ```hsc
+        (cond
+          (false_val 10)
+          (true_val 20)
+        )
+        ; returns: 20
+        ```
 
     - slug: global
-      type: (global <type> <name> <inital value>)
-      info:
-        en: Makes a new global script variable
-        es: 
-      ex: '`(global boolean bsl_sucks true)`'
+      type: |
+        ```hsc
+        (global <type> <name> <inital value>)
+        ```
+        Makes a new global script variable.
+      ex: |
+        ```hsc
+        (global boolean bsl_sucks true)
+        ```
 
     - slug: if
-      type: (if <boolean> <expression> [<else>])
-      info:
-        en: Returns one of two values based on the value of a condition
-        es: 
-      ex: '`(if (bsl_sucks) (print "Stop whining."))`'
+      type: |
+        ```hsc
+        (if <boolean>
+          <expression>
+          [<else>]
+        )
+        ```
+        Returns one of two values based on the value of a condition.
+      ex: |
+        ```hsc
+        (if (bsl_sucks)
+          (print "Stop whining.")
+        )
+        ```
 
     - slug: inspect
-      type: (inspect <expression>)
-      info:
-        en: Prints the value of an expression to the screen for debugging purposes
-        es: 
-      ex: '`(inspect (+ 3 4))` outputs: 7'
+      type: |
+        ```hsc
+        (inspect <expression>)
+        ```
+        Prints the value of an expression to the screen for debugging purposes.
+      ex: |
+        ```hsc
+        (inspect (+ 3 4))
+        ; outputs: 7
+        ```
 
     - slug: min
-      type: (min <number_1> <number_2> [... <number_n>])
-      info:
-        en: Returns the minimum of all specified expressions
-        es: 
-      ex: '`(min 1 3 2 4 5 7 6 8 9)` returns: 1'
+      type: |
+        ```hsc
+        (min <number_1> <number_2> [... <number_n>])
+        ```
+        Returns the minimum of all specified expressions.
+      ex: |
+        ```hsc
+        (min 60 5 10)
+        ; returns: 5
+        ```
 
     - slug: max
-      type: (max <number_1> <number_2> [... <number_n>])
-      info:
-        en: Returns the maximum of all specified expressions
-        es: 
-      ex: '`(max 1 3 2 4 5 7 6 8 9)` returns: 9'
+      type: |
+        ```hsc
+        (max <number_1> <number_2> [... <number_n>])
+        ```
+        Returns the maximum of all specified expressions.
+      ex: |
+        ```hsc
+        (max 60 5 10)
+        ; returns: 60
+        ```
 
     - slug: not
-      type: (not <boolean>)
-      info:
-        en: Returns the opposite of the expression
-        es: 
-      ex: '`(not bsl_sucks)` returns: false'
+      type: |
+        ```hsc
+        (not <boolean>)
+        ```
+        Returns the opposite of the expression.
+      ex: |
+        ```hsc
+        (not bsl_sucks)
+        ; returns: false
+        ```
 
     - slug: or
-      type: (or <boolean_1> <boolean_2> [... <boolean_n>])
-      info:
-        en: Returns true if any specified expressions are true
-        es: 
-      ex: '`(or (player_action_test_action) true)` returns: true'
+      type: |
+        ```hsc
+        (or <boolean_1> <boolean_2> [... <boolean_n>])
+        ```
+        Returns true if any specified expressions are true.
+      ex: |
+        ```hsc
+        (or (player_action_test_action) true)
+        ; returns: true
+        ```
 
     - slug: script
-      type: (script <script type> [<return type>] <name>)
-      info:
-        en: Defines a new script
-        es: 
+      type: |
+        ```hsc
+        (script <script type> [<return type>] <name>)
+        ```
+        Defines a new script.
       ex: '[See above example][scripting#basics]'
 
     - slug: set
-      type: (set <variable name> <value>)
-      info:
-        en: Sets the value of a defined global variable
-        es: 
-      ex: '`(set bsl_sucks true)`'
+      type: |
+        ```hsc
+        (set <variable name> <value>)
+        ```
+        Sets the value of a defined global variable.
+      ex: |
+        ```hsc
+        (set bsl_sucks true)
+        ```
 
     - slug: sleep
-      type: (sleep <short> [<script>])
-      info:
-        en: >
-          Pauses execution of this script (or, optionally, another script) for
-          the specified number of ticks (1 tick = 1/30 second)
-        es: 
-      ex: '`(sleep 30 more_weapons)`'
+      type: |
+        ```hsc
+        (sleep <short> [<script>])
+        ```
+        Pauses execution of this script (or, optionally, another script) for
+        the specified number of ticks (1 tick = 1/30 second)
+      ex: |
+        ```hsc
+        (sleep 30 more_weapons)
+        ```
 
     - slug: sleep_until
-      type: (sleep_until <condition> [short_1] [short_2])
-      info:
-        en: >
-          Pauses execution of this script until `condition` is true.
-          By default, this checks once per second. If `short_1` is specified, it
-          checks every `short_1` ticks instead. By default, this will await the
-          condition indefinitely. `short_2` can be used to timeout after a
-          certain number of ticks, instead. After the timeout, the script will
-          continue on as if `condition` became true.
-        es: 
-      ex: '`(sleep_until false 5 600)`'
+      type: |
+        ```hsc
+        (sleep_until <condition> [short_1] [short_2])
+        ```
+        Pauses execution of this script until `condition` is true.
+        By default, this checks once per second. If `short_1` is specified, it
+        checks every `short_1` ticks instead. By default, this will await the
+        condition indefinitely. `short_2` can be used to timeout after a
+        certain number of ticks, instead. After the timeout, the script will
+        continue on as if `condition` became true.
+      ex: |
+        ```hsc
+        (sleep_until false 5 600)
+        ```
 
     - slug: wake
-      type: (wake <script name>)
-      info:
-        en: Wakes a sleeping or dormant script in the next update
-        es: 
-      ex: '`(wake more_weapons)`'
+      type: |
+        ```hsc
+        (wake <script name>)
+        ```
+        Wakes a sleeping or dormant script in the next update.
+      ex: |
+        ```hsc
+        (wake more_weapons)
+        ```
 
     - slug: thread_sleep
-      type: (thread_sleep <long>)
-      info:
-        en: Sleeps the calling thread for the specified number of ms
-        es: 
-      ex: '`(thread_sleep 20)` returns: sleeps for 20ms'
+      type: |
+        ```hsc
+        (thread_sleep <long>)
+        ```
+        Sleeps the calling thread for the specified number of ms.
+      ex: |
+        ```hsc
+        (thread_sleep 20)
+        ; returns: sleeps for 20ms
+        ```
 
 Functions:
   columns:
-    - key: type
-      href: true
-      name:
-        en: Expression
-        es: 
-      format: code
     - key: info
       name:
-        en: Details
-        es: 
-      format: text
-    - key: ex
-      name:
-        en: Usage Example
-        es: 
+        en: Function
       format: text
   rows:
     - slug: activate_nav_point_flag
-      type: (activate_nav_point_flag <navpoint> <unit> <cutscene_flag> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (activate_nav_point_flag <navpoint> <unit> <cutscene_flag> <real>)
+
+          ```
+
           Activates a nav point type <string> attached to (local) player <unit>
           anchored to a flag with a vertical offset <real>. If the player is not
           local to the machine, this will fail.
-        es: 
-      ex: 
-
     - slug: activate_nav_point_object
-      type: (activate_nav_point_object <navpoint> <unit> <object> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (activate_nav_point_object <navpoint> <unit> <object> <real>)
+
+          ```
+
           Activates a nav point type <string> attached to (local) player <unit>
           anchored to an object with a vertical offset <real>. If the player is
           not local to the machine, this will fail.
-        es: 
-      ex: 
-
     - slug: activate_team_nav_point_flag
-      type: (activate_team_nav_point_flag <navpoint> <team> <cutscene_flag> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (activate_team_nav_point_flag <navpoint> <team> <cutscene_flag>
+          <real>)
+
+          ```
+
           Activates a nav point type <string> attached to a team anchored to a
           flag with a vertical offset <real>. If the player is not local to the
           machine, this will fail.
-        es: 
-      ex: 
-
     - slug: activate_team_nav_point_object
-      type: (activate_team_nav_point_object <navpoint> <team> <object> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (activate_team_nav_point_object <navpoint> <team> <object> <real>)
+
+          ```
+
           Activates a nav point type <string> attached to a team anchored to an
           object with a vertical offset <real>. If the player is not local to
           the machine, this will fail.
-        es: 
-      ex: 
-
     - slug: ai_actors
-      type: (ai_actors <ai>)
       info:
-        en: Converts an ai reference to an object list
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_actors <ai>)
+          ```
+          Converts an ai reference to an object list
     - slug: ai_allegiance
-      type: (ai_allegiance <team> <team>)
       info:
-        en: Creates an allegiance between two teams
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_allegiance <team> <team>)
+          ```
+          Creates an allegiance between two teams
     - slug: ai_allegiance_broken
-      type: (ai_allegiance_broken <team> <team>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_allegiance_broken <team> <team>)
+
+          ```
+
           Returns whether two teams have an allegiance that is currently broken
           by traitorous behavior
-        es: 
-      ex: 
-
     - slug: ai_allegiance_remove
-      type: (ai_allegiance_remove <team> <team>)
       info:
-        en: Destroys an allegiance between two teams
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_allegiance_remove <team> <team>)
+          ```
+          Destroys an allegiance between two teams
     - slug: ai_allow_charge
-      type: (ai_allow_charge <ai> <boolean>)
       info:
-        en: Either enables or disables charging behavior for a group of actors
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_allow_charge <ai> <boolean>)
+          ```
+          Either enables or disables charging behavior for a group of actors
     - slug: ai_allow_dormant
-      type: (ai_allow_dormant <ai> <boolean>)
       info:
-        en: Either enables or disables automatic dormancy for a group of actors
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_allow_dormant <ai> <boolean>)
+          ```
+          Either enables or disables automatic dormancy for a group of actors
     - slug: ai_attach
-      type: (ai_attach <unit> <ai>)
       info:
-        en: Attaches the specified unit to the specified encounter
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_attach <unit> <ai>)
+          ```
+          Attaches the specified unit to the specified encounter
     - slug: ai_attach_free
-      type: (ai_attach_free <unit> <actor_variant>)
       info:
-        en: Attaches a unit to a newly created free actor of the specified type
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_attach_free <unit> <actor_variant>)
+          ```
+          Attaches a unit to a newly created free actor of the specified type
     - slug: ai_attack
-      type: (ai_attack <ai>)
       info:
-        en: Makes the specified platoon(s) go into the attacking state
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_attack <ai>)
+          ```
+          Makes the specified platoon(s) go into the attacking state
     - slug: ai_automatic_migration_target
-      type: (ai_automatic_migration_target <ai> <boolean>)
       info:
-        en: Enables or disables a squad as being an automatic migration target
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_automatic_migration_target <ai> <boolean>)
+          ```
+          Enables or disables a squad as being an automatic migration target
     - slug: ai_berserk
-      type: (ai_berserk <ai> <boolean>)
       info:
-        en: Forces a group of actors to start or stop berserking
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_berserk <ai> <boolean>)
+          ```
+          Forces a group of actors to start or stop berserking
     - slug: ai_braindead
-      type: (ai_braindead <ai> <boolean>)
       info:
-        en: Makes a group of actors braindead, or restores them to life (in their initial state)
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (ai_braindead <ai> <boolean>)
+
+          ```
+
+          Makes a group of actors braindead, or restores them to life (in their
+          initial state)
     - slug: ai_braindead_by_unit
-      type: (ai_braindead_by_unit <object_list> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_braindead_by_unit <object_list> <boolean>)
+
+          ```
+
           Makes a list of objects braindead, or restores them to life. If you
           pass in a vehicle index, it makes all actors in that vehicle braindead
           (including any built-in guns).
-        es: 
-      ex: 
-
     - slug: ai_command_list
-      type: (ai_command_list <ai> <ai_command_list>)
       info:
-        en: Tells a group of actors to begin executing the specified command list
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_command_list <ai> <ai_command_list>)
+          ```
+          Tells a group of actors to begin executing the specified command list
     - slug: ai_command_list_advance
-      type: (ai_command_list_advance <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_command_list_advance <ai>)
+
+          ```
+
           Tells a group of actors that are running a command list that they may
           advance further along the list (if they are waiting for a stimulus)
-        es: 
-      ex: 
-
     - slug: ai_command_list_advance_by_unit
-      type: (ai_command_list_advance_by_unit <unit>)
       info:
-        en: Just like ai_command_list_advance but operates upon a unit instead
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_command_list_advance_by_unit <unit>)
+          ```
+          Just like ai_command_list_advance but operates upon a unit instead
     - slug: ai_command_list_by_unit
-      type: (ai_command_list_by_unit <unit> <ai_command_list>)
       info:
-        en: Tells a named unit to begin executing the specified command list
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_command_list_by_unit <unit> <ai_command_list>)
+          ```
+          Tells a named unit to begin executing the specified command list
     - slug: ai_command_list_status
-      type: (ai_command_list_status <object_list>)
       info:
-        en: >
-          Gets the status of a number of units running command lists:
-          0 = none, 1 = finished command list, 2 = waiting for stimulus,
-          3 = running command list
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (ai_command_list_status <object_list>)
+
+          ```
+
+          Gets the status of a number of units running command lists: 0 = none,
+          1 = finished command list, 2 = waiting for stimulus, 3 = running
+          command list
     - slug: ai_conversation
-      type: (ai_conversation <conversation>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_conversation <conversation>)
+
+          ```
+
           Tries to add an entry to the list of conversations waiting to play.
           Returns FALSE if the required units could not be found to play the
           conversation, or if the player is too far away and the 'delay' flag is
           not set.
-        es: 
-      ex: 
-
     - slug: ai_conversation_advance
-      type: (ai_conversation_advance <conversation>)
       info:
-        en: Tells a conversation that it may advance
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_conversation_advance <conversation>)
+          ```
+          Tells a conversation that it may advance
     - slug: ai_conversation_line
-      type: (ai_conversation_line <conversation>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_conversation_line <conversation>)
+
+          ```
+
           Returns which line the conversation is currently playing, or 999 if
           the conversation is not currently playing.
-        es: 
-      ex: 
-
     - slug: ai_command_list_status
-      type: (ai_conversation_status <conversation>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_conversation_status <conversation>)
+
+          ```
+
           Returns the status of a conversation (0=none, 1=trying to begin,
           2=waiting for guys to get in position, 3=playing, 4=waiting to
           advance, 5=could not begin, 6=finished successfully, 7=aborted midway)
-        es: 
-      ex: 
-
     - slug: ai_conversation_stop
-      type: (ai_conversation_stop <conversation>)
       info:
-        en: Stops a conversation from playing or trying to play
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_conversation_stop <conversation>)
+          ```
+          Stops a conversation from playing or trying to play
     - slug: ai_debug_communication_focus
-      type: (ai_debug_communication_focus <string(s)>)
       info:
-        en: Focuses (or stops focusing) a set of unit vocalization types
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_debug_communication_focus <string(s)>)
+          ```
+          Focuses (or stops focusing) a set of unit vocalization types
     - slug: ai_debug_communication_ignore
-      type: (ai_debug_communication_ignore <string(s)>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_debug_communication_ignore <string(s)>)
+
+          ```
+
           Ignores (or stops ignoring) a set of AI communication types when
           printing out communications
-        es: 
-      ex: 
-
     - slug: ai_debug_communication_suppress
-      type: (ai_debug_communication_suppress <string(s)>)
       info:
-        en: Suppresses (or stops suppressing) a set of AI communication types
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_debug_communication_suppress <string(s)>)
+          ```
+          Suppresses (or stops suppressing) a set of AI communication types
     - slug: ai_debug_sound_point_set
-      type: (ai_debug_sound_point_set)
       info:
-        en: Drops the AI debugging sound point at the camera location
-        es: 
-      ex: '`(ai_debug_sound_point_set)`'
+        en: |-
+          ```hsc
+          (ai_debug_sound_point_set)
 
+          ```
+          Drops the AI debugging sound point at the camera location
     - slug: ai_debug_speak
-      type: (ai_debug_speak <string>)
       info:
-        en: Makes the currently selected AI speak a vocalization
-        es: 
-      ex: '`(ai_speak "pain minor")`'
-
+        en: |-
+          ```hsc
+          (ai_debug_speak <string>)
+          (ai_speak "pain minor")
+          ```
+          Makes the currently selected AI speak a vocalization
     - slug: ai_debug_speak_list
-      type: (ai_debug_speak_list <string>)
       info:
-        en: Makes the currently selected AI speak a list of vocalizations
-        es: 
-      ex: '`(ai_speak_list "involuntary")`'
-
+        en: |-
+          ```hsc
+          (ai_debug_speak_list <string>)
+          (ai_speak_list "involuntary")
+          ```
+          Makes the currently selected AI speak a list of vocalizations
     - slug: ai_debug_teleport_to
-      type: (ai_debug_teleport_to <ai>)
       info:
-        en: Teleports all players to the specified encounter
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_debug_teleport_to <ai>)
+          ```
+          Teleports all players to the specified encounter
     - slug: ai_debug_vocalize
-      type: (ai_debug_vocalize <string> <string>)
       info:
-        en: Makes the selected AI vocalize
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_debug_vocalize <string> <string>)
+          ```
+          Makes the selected AI vocalize
     - slug: ai_defend
-      type: (ai_defend <ai>)
       info:
-        en: Makes the specified platoon(s) go into the defending state
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_defend <ai>)
+          ```
+          Makes the specified platoon(s) go into the defending state
     - slug: ai_deselect
-      type: (ai_deselect)
       info:
-        en: Clears the selected encounter
-        es: 
-      ex: '`(ai_deselect)`'
+        en: |-
+          ```hsc
+          (ai_deselect)
 
+          ```
+          Clears the selected encounter
     - slug: ai_detach
-      type: (ai_detach <unit>)
       info:
-        en: Detaches the specified unit from all AI
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_detach <unit>)
+          ```
+          Detaches the specified unit from all AI
     - slug: ai_dialogue_triggers
-      type: (ai_dialogue_triggers <boolean>)
       info:
-        en: Turns impromptu dialogue on or off
-        es: 
-      ex: '`(ai_dialogue_triggers true)` <br/> `(ai_dialogue_triggers false)`'
-
+        en: |-
+          ```hsc
+          (ai_dialogue_triggers <boolean>)
+          (ai_dialogue_triggers true)
+          (ai_dialogue_triggers false)
+          ```
+          Turns impromptu dialogue on or off
     - slug: ai_disregard
-      type: (ai_disregard <object_list> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_disregard <object_list> <boolean>)
+
+          (ai_disregard (players) true)
+
+          (ai_disregard (players) false)
+
+          ```
+
           If true, forces all actors to completely disregard the specified
           units, otherwise lets them acknowledge the units again.
-        es: 
-      ex: '`(ai_disregard (players) true)` <br/> `(ai_disregard (players) false)`'
-
     - slug: ai_erase
-      type: (ai_erase <ai>)
       info:
-        en: Erases the specified encounter and/or squad
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_erase <ai>)
+          ```
+          Erases the specified encounter and/or squad
     - slug: ai_erase_all
-      type: (ai_erase_all)
       info:
-        en: Erases all AI
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_erase_all)
+          ```
+          Erases all AI
     - slug: ai_exit_vehicle
-      type: (ai_exit_vehicle <ai>)
       info:
-        en: Tells a group of actors to get out of any vehicles that they are in
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_exit_vehicle <ai>)
+          ```
+          Tells a group of actors to get out of any vehicles that they are in
     - slug: ai_follow_distance
-      type: (ai_follow_distance <ai> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_follow_distance <ai> <real>)
+
+          ```
+
           Sets the distance threshold which will cause squads to migrate when
           following someone
-        es: 
-      ex: 
-
     - slug: ai_follow_target_ai
-      type: (ai_follow_target_ai <ai> <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_follow_target_ai <ai> <ai>)
+
+          ```
+
           Sets the follow target for an encounter to be a group of AI
           (encounter, squad or platoon)
-        es: 
-      ex: 
-
     - slug: ai_follow_target_disable
-      type: (ai_follow_target_disable <ai>)
       info:
-        en: Turns off following for an encounter
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_follow_target_disable <ai>)
+          ```
+          Turns off following for an encounter
     - slug: ai_follow_target_players
-      type: (ai_follow_target_players <ai>)
       info:
-        en: Sets the follow target for an encounter to be the closest player
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_follow_target_players <ai>)
+          ```
+          Sets the follow target for an encounter to be the closest player
     - slug: ai_follow_target_unit
-      type: (ai_follow_target_unit <ai> <unit>)
       info:
-        en: Sets the follow target for an encounter to be a specific unit
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_follow_target_unit <ai> <unit>)
+          ```
+          Sets the follow target for an encounter to be a specific unit
     - slug: ai_force_active
-      type: (ai_force_active <ai> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_force_active <ai> <boolean>)
+
+          ```
+
           Forces an encounter to remain active (i.e. not freeze in place) even
           if there are no players nearby
-        es: 
-      ex: 
-
     - slug: ai_force_active_by_unit
-      type: (ai_force_active_by_unit <unit> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_force_active_by_unit <unit> <boolean>)
+
+          ```
+
           Forces a named actor that is NOT in an encounter to remain active
           (i.e. not freeze in place) even if there are no players nearby
-        es: 
-      ex: 
-
     - slug: ai_free
-      type: (ai_free <ai>)
       info:
-        en: Removes a group of actors from their encounter and sets them free
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_free <ai>)
+          ```
+          Removes a group of actors from their encounter and sets them free
     - slug: ai_free_units
-      type: (ai_free_units <object_list>)
       info:
-        en: Removes a set of units from their encounter (if any) and sets them free
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (ai_free_units <object_list>)
+
+          ```
+
+          Removes a set of units from their encounter (if any) and sets them
+          free
     - slug: ai_go_to_vehicle
-      type: (ai_go_to_vehicle <ai> <unit> <string>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_go_to_vehicle <ai> <unit> <string>)
+
+          ```
+
           Tells a group of actors to get into a vehicle, in the
           substring-specified seats (e.g. passenger for pelican). Does not
           interrupt any actors who are already going to vehicles.
-        es: 
-      ex: 
-
     - slug: ai_go_to_vehicle_override
-      type: (ai_go_to_vehicle_override <ai> <unit> <string>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_go_to_vehicle_override <ai> <unit> <string>)
+
+          ```
+
           Tells a group of actors to get into a vehicle, in the
           substring-specified seats (e.g. passenger for pelican). Any actors who
           are already going to vehicles will stop and go to this one instead!
-        es: 
-      ex: 
-
     - slug: ai_going_to_vehicle
-      type: (ai_going_to_vehicle <unit>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_going_to_vehicle <unit>)
+
+          ```
+
           Return the number of actors that are still trying to get into the
           specified vehicle
-        es: 
-      ex: 
-
     - slug: ai_grenades
-      type: (ai_grenades <boolean>)
       info:
-        en: Turns grenade inventory on or off
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_grenades <boolean>)
+          ```
+          Turns grenade inventory on or off
     - slug: ai_is_attacking
-      type: (ai_is_attacking <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_is_attacking <ai>)
+
+          ```
+
           Returns whether a platoon is in the attacking mode (or if an encounter
-          is specified, returns whether any platoon in that encounter is attacking)
-        es: 
-      ex: 
-
+          is specified, returns whether any platoon in that encounter is
+          attacking)
     - slug: ai_kill
-      type: (ai_kill <ai>)
       info:
-        en: Instantly kills the specified encounter and/or squad
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_kill <ai>)
+          ```
+          Instantly kills the specified encounter and/or squad
     - slug: ai_kill_silent
-      type: (ai_kill_silent <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_kill_silent <ai>)
+
+          ```
+
           Instantly and silently (no animation or sound played) kills the
           specified encounter and/or squad
-        es: 
-      ex: 
-
     - slug: ai_lines
-      type: (ai_lines)
       info:
-        en: Cycles through AI line-spray modes
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_lines)
+          ```
+          Cycles through AI line-spray modes
     - slug: ai_link_activation
-      type: (ai_link_activation <ai> <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_link_activation <ai> <ai>)
+
+          ```
+
           Links the first encounter so that it will be made active whenever it
           detects that the second encounter is active
-        es: 
-      ex: 
-
     - slug: ai_living_count
-      type: (ai_living_count <ai>)
       info:
-        en: Return the number of living actors in the specified encounter and/or squad
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (ai_living_count <ai>)
+
+          ```
+
+          Return the number of living actors in the specified encounter and/or
+          squad
     - slug: ai_living_fraction
-      type: (ai_living_fraction <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_living_fraction <ai>)
+
+          ```
+
           Return the fraction `[0-1]` of living actors in the specified
           encounter and/or squad
-        es: 
-      ex: 
-
     - slug: ai_look_at_object
-      type: (ai_look_at_object <unit> <object>)
       info:
-        en: Tells an actor to look at an object until further notice
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_look_at_object <unit> <object>)
+          ```
+          Tells an actor to look at an object until further notice
     - slug: ai_magically_see_encounter
-      type: (ai_magically_see_encounter <ai> <ai>)
       info:
-        en: Makes one encounter magically aware of another
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_magically_see_encounter <ai> <ai>)
+          ```
+          Makes one encounter magically aware of another
     - slug: ai_magically_see_players
-      type: (ai_magically_see_players <ai>)
       info:
-        en: Makes an encounter magically aware of nearby players
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_magically_see_players <ai>)
+          ```
+          Makes an encounter magically aware of nearby players
     - slug: ai_magically_see_unit
-      type: (ai_magically_see_unit <ai> <unit>)
       info:
-        en: Makes an encounter magically aware of the specified unit
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_magically_see_unit <ai> <unit>)
+          ```
+          Makes an encounter magically aware of the specified unit
     - slug: ai_maneuver
-      type: (ai_maneuver <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_maneuver <ai>)
+
+          ```
+
           Makes all squads in the specified platoon(s) maneuver to their
           designated maneuver squads
-        es: 
-      ex: 
-
     - slug: ai_maneuver_enable
-      type: (ai_maneuver_enable <ai> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_maneuver_enable <ai> <boolean>)
+
+          ```
+
           Enables or disables the maneuver/retreat rule for an encounter or
           platoon. The rule will still trigger, but none of the actors will be
           given the order to change squads.
-        es: 
-      ex: 
-
     - slug: ai_migrate
-      type: (ai_migrate <ai> <ai>)
       info:
-        en: Makes all or part of an encounter move to another encounter
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_migrate <ai> <ai>)
+          ```
+          Makes all or part of an encounter move to another encounter
     - slug: ai_migrate_and_speak
-      type: (ai_migrate_and_speak <ai> <ai> <string>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_migrate_and_speak <ai> <ai> <string>)
+
+          ```
+
           Makes all or part of an encounter move to another encounter, and say
           their `advance` or `retreat` speech lines.
-        es: 
-      ex: 
-
     - slug: ai_migrate_by_unit
-      type: (ai_migrate_by_unit <object_list> <ai>)
       info:
-        en: Makes a named vehicle or group of units move to another encounter
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_migrate_by_unit <object_list> <ai>)
+          ```
+          Makes a named vehicle or group of units move to another encounter
     - slug: ai_nonswarm_count
-      type: (ai_nonswarm_count <ai>)
       info:
-        en: Return the number of non-swarm actors in the specified encounter and/or squad
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (ai_nonswarm_count <ai>)
+
+          ```
+
+          Return the number of non-swarm actors in the specified encounter
+          and/or squad
     - slug: ai_place
-      type: (ai_place <ai>)
       info:
-        en: Places the specified encounter on the map
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_place <ai>)
+          ```
+          Places the specified encounter on the map
     - slug: ai_playfight
-      type: (ai_playfight <ai> <boolean>)
       info:
-        en: Sets an encounter to be playfighting or not
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_playfight <ai> <boolean>)
+          ```
+          Sets an encounter to be playfighting or not
     - slug: ai_prefer_target
-      type: (ai_prefer_target <object_list> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_prefer_target <object_list> <boolean>)
+
+          ```
+
           If true, *ALL* enemies will prefer to attack the specified units. If
           false, removes the preference.
-        es: 
-      ex: 
-
     - slug: ai_reconnect
-      type: (ai_reconnect)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_reconnect)
+
+          ```
+
           Reconnects all AI information to the current structure bsp (use this
           after you create encounters or command lists in sapien, or place new
           firing points or command list points)
-        es: 
-      ex: 
-
     - slug: ai_renew
-      type: (ai_renew <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_renew <ai>)
+
+          ```
+
           Refreshes the health and grenade count of a group of actors, so they
           are as good as new
-        es: 
-      ex: 
-
     - slug: ai_retreat
-      type: (ai_retreat <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_retreat <ai>)
+
+          ```
+
           Makes all squads in the specified platoon(s) maneuver to their
           designated maneuver squads
-        es: 
-      ex: 
-
     - slug: ai_select
-      type: (ai_select <ai>)
       info:
-        en: Selects the specified encounter
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_select <ai>)
+          ```
+          Selects the specified encounter
     - slug: ai_set_blind
-      type: (ai_set_blind <ai> <boolean>)
       info:
-        en: Enables or disables sight for actors in the specified encounter
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_set_blind <ai> <boolean>)
+          ```
+          Enables or disables sight for actors in the specified encounter
     - slug: ai_set_current_state
-      type: (ai_set_current_state <ai> <ai_default_state>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_set_current_state <ai> <ai_default_state>)
+
+          ```
+
           Sets the current state of a group of actors. WARNING: may have
           unpredictable results on actors that are in combat.
-        es: 
-      ex: 
-
     - slug: ai_set_deaf
-      type: (ai_set_deaf <ai> <boolean>)
       info:
-        en: Enables or disables hearing for actors in the specified encounter
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_set_deaf <ai> <boolean>)
+          ```
+          Enables or disables hearing for actors in the specified encounter
     - slug: ai_set_respawn
-      type: (ai_set_respawn <ai> <boolean>)
       info:
-        en: Enables or disables respawning in the specified encounter
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_set_respawn <ai> <boolean>)
+          ```
+          Enables or disables respawning in the specified encounter
     - slug: ai_set_return_state
-      type: (ai_set_return_state <ai> <ai_default_state>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_set_return_state <ai> <ai_default_state>)
+
+          ```
+
           Sets the state that a group of actors will return to when they have
           nothing to do
-        es: 
-      ex: 
-
     - slug: ai_set_team
-      type: (ai_set_team <ai> <team>)
       info:
-        en: Makes an encounter change to a new team
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_set_team <ai> <team>)
+          ```
+          Makes an encounter change to a new team
     - slug: ai_spawn_actor
-      type: (ai_spawn_actor <ai>)
       info:
-        en: Spawns a single actor in the specified encounter and/or squad
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_spawn_actor <ai>)
+          ```
+          Spawns a single actor in the specified encounter and/or squad
     - slug: ai_status
-      type: (ai_status <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_status <ai>)
+
+          ```
+
           Returns the most severe combat status of a group of actors
           (0=inactive, 1=noncombat, 2=guarding, 3=search/suspicious, 4=definite
-          enemy(heard or magic awareness), 5=visible enemy, 6=engaging in combat)
-        es: 
-      ex: 
-
+          enemy(heard or magic awareness), 5=visible enemy, 6=engaging in
+          combat)
     - slug: ai_stop_looking
-      type: (ai_stop_looking <unit>)
       info:
-        en: Tells an actor to stop looking at whatever it's looking at
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_stop_looking <unit>)
+          ```
+          Tells an actor to stop looking at whatever it's looking at
     - slug: ai_strength
-      type: (ai_strength <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_strength <ai>)
+
+          ```
+
           Return the current strength (average body vitality from 0-1) of the
           specified encounter and/or squad
-        es: 
-      ex: 
-
     - slug: ai_swarm_count
-      type: (ai_swarm_count <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_swarm_count <ai>)
+
+          ```
+
           Return the number of swarm actors in the specified encounter and/or
           squad
-        es: 
-      ex: 
-
     - slug: ai_teleport_to_starting_location
-      type: (ai_teleport_to_starting_location <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_teleport_to_starting_location <ai>)
+
+          ```
+
           Teleports a group of actors to the starting locations of their current
           squad(s)
-        es: 
-      ex: 
-
     - slug: ai_teleport_to_starting_location_if_unsupported
-      type: (ai_teleport_to_starting_location_if_unsupported <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_teleport_to_starting_location_if_unsupported <ai>)
+
+          ```
+
           Teleports a group of actors to the starting locations of their current
           squad(s), only if they are not supported by solid ground (i.e. if they
           are falling after switching BSPs).
-        es: 
-      ex: 
-
     - slug: ai_try_to_fight_nothing
-      type: (ai_try_to_fight_nothing <ai>)
       info:
-        en: Removes the preferential target setting from a group of actors
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_try_to_fight_nothing <ai>)
+          ```
+          Removes the preferential target setting from a group of actors
     - slug: ai_try_to_fight
-      type: (ai_try_to_fight <ai> <ai>)
       info:
-        en: Causes a group of actors to preferentially target another group of actors
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (ai_try_to_fight <ai> <ai>)
+
+          ```
+
+          Causes a group of actors to preferentially target another group of
+          actors
     - slug: ai_try_to_fight_player
-      type: (ai_try_to_fight_player <ai>)
       info:
-        en: Causes a group of actors to preferentially target the player
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (ai_try_to_fight_player <ai>)
+          ```
+          Causes a group of actors to preferentially target the player
     - slug: ai_vehicle_encounter
-      type: (ai_vehicle_encounter <unit> <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_vehicle_encounter <unit> <ai>)
+
+          ```
+
           Sets a vehicle to "belong" to a particular encounter/squad. Any actors
           who get into the vehicle will be placed in this squad. Vehicles
           potentially drivable by multiple teams need their own encounter!
-        es: 
-      ex: 
-
     - slug: ai_vehicle_enterable_actor_type
-      type: (ai_vehicle_enterable_actor_type <unit> <actor_type>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_vehicle_enterable_actor_type <unit> <actor_type>)
+
+          ```
+
           Sets a vehicle as being impulsively enterable for actors of a certain
           type (grunt, elite, marine etc)
-        es: 
-      ex: 
-
     - slug: ai_vehicle_enterable_actors
-      type: (ai_vehicle_enterable_actors <unit> <ai>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_vehicle_enterable_actors <unit> <ai>)
+
+          ```
+
           Sets a vehicle as being impulsively enterable for a certain
           encounter/squad of actors
-        es: 
-      ex: 
-
     - slug: ai_vehicle_enterable_disable
-      type: (ai_vehicle_enterable_disable <unit>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_vehicle_enterable_disable <unit>)
+
+          ```
+
           Disables actors from impulsively getting into a vehicle (this is the
           default state for newly placed vehicles)
-        es: 
-      ex: 
-
     - slug: ai_vehicle_enterable_distance
-      type: (ai_vehicle_enterable_distance <unit> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (ai_vehicle_enterable_distance <unit> <real>)
+
+          ```
+
           Sets a vehicle as being impulsively enterable for actors within a
           certain distance
-        es: 
-      ex: 
-
     - slug: ai_vehicle_enterable_team
-      type: (ai_vehicle_enterable_team <unit> <team>)
       info:
-        en: Sets a vehicle as being impulsively enterable for actors on a certain team
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (ai_vehicle_enterable_team <unit> <team>)
+
+          ```
+
+          Sets a vehicle as being impulsively enterable for actors on a certain
+          team
     - slug: attract_mode_start
-      type: (attract_mode_start)
       info:
-        en: N/A in pc
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (attract_mode_start)
+          ```
+          N/A in pc
     - slug: bind
-      type: (bind <string> <string> <string>)
       info:
-        en: Binds an input device/button combination to a game control
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (bind <string> <string> <string>)
+          ```
+          Binds an input device/button combination to a game control
     - slug: breakable_surfaces_enable
-      type: (breakable_surfaces_enable <boolean>)
       info:
-        en: Enables or disables breakability of all breakable surfaces on level
-        es: 
-      ex: '`(breakable_surfaces_enable false)`'
-
+        en: |-
+          ```hsc
+          (breakable_surfaces_enable <boolean>)
+          (breakable_surfaces_enable false)
+          ```
+          Enables or disables breakability of all breakable surfaces on level
     - slug: breakable_surfaces_reset
-      type: (breakable_surfaces_reset)
       info:
-        en: Restores all breakable surfaces
-        es: 
-      ex: '`(breakable_surfaces_reset)`'
+        en: |-
+          ```hsc
+          (breakable_surfaces_reset)
 
+          ```
+          Restores all breakable surfaces
     - slug: camera_control
-      type: (camera_control <boolean>)
       info:
-        en: Toggles script control of the camera
-        es: 
-      ex: '`(camera_control true)` <br/> `(camera_control false)`'
-
+        en: |-
+          ```hsc
+          (camera_control <boolean>)
+          (camera_control true)
+          (camera_control false)
+          ```
+          Toggles script control of the camera
     - slug: camera_set
-      type: (camera_set <cutscene_camera_point> <short>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (camera_set <cutscene_camera_point> <short>)
+
+          (camera_set somewhere_point 100)
+
+          ```
+
           Moves the camera to the specified camera point over the specified
           number of ticks
-        es: 
-      ex: '`(camera_set somewhere_point 100)`'
-
     - slug: camera_set_animation
-      type: (camera_set_animation <animation_graph> <string>)
       info:
-        en: Begins a prerecorded camera animation
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (camera_set_animation <animation_graph> <string>)
+          ```
+          Begins a prerecorded camera animation
     - slug: camera_set_dead
-      type: (camera_set_dead <unit>)
       info:
-        en: Makes the scripted camera zoom out around a unit as if it were dead
-        es: 
-      ex: '`(camera_set_dead player0)`'
-
+        en: |-
+          ```hsc
+          (camera_set_dead <unit>)
+          (camera_set_dead player0)
+          ```
+          Makes the scripted camera zoom out around a unit as if it were dead
     - slug: camera_set_first_person
-      type: (camera_set_first_person <unit>)
       info:
-        en: Makes the scripted camera follow a unit
-        es: 
-      ex: '`(camera_set_first_person player0)`'
-
+        en: |-
+          ```hsc
+          (camera_set_first_person <unit>)
+          (camera_set_first_person player0)
+          ```
+          Makes the scripted camera follow a unit
     - slug: camera_set_relative
-      type: (camera_set_relative <cutscene_camera_point> <short> <object>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (camera_set_relative <cutscene_camera_point> <short> <object>)
+
+          (camera_set_relative somewhere_point 200 warthog_mp_1)
+
+          ```
+
           Moves the camera to the specified camera point over the specified
           number of ticks (position is relative to the specified object)
-        es: 
-      ex: '`(camera_set_relative somewhere_point 200 warthog_mp_1)`'
-
     - slug: camera_time
-      type: (camera_time)
       info:
-        en: Returns the number of ticks remaining in the current camera interpolation
-        es: 
-      ex: '`(camera_time)`'
+        en: >-
+          ```hsc
 
+          (camera_time)
+
+
+          ```
+
+          Returns the number of ticks remaining in the current camera
+          interpolation
     - slug: change_team
-      type: (change_team <short>)
       info:
-        en: Change your team (0=red, 1=blue, else=auto)
-        es: 
-      ex: >
-        `(change_team 0)`   returns: changes you to red <br/>
-        `(change_team 1)`   returns: changes you to blue <br/>
-        `(change_team  2)`  returns: auto balance
-
+        en: |-
+          ```hsc
+          (change_team <short>)
+          (change_team 0)
+          ; changes you to red
+          (change_team 1)
+          ; changes you to blue
+          (change_team 2)
+          ; auto balance
+          ```
+          Change your team (0=red, 1=blue, else=auto)
     - slug: cheat_active_camouflage
-      type: (cheat_active_camouflage)
       info:
-        en: Gives the player active camouflage
-        es: 
-      ex: '`(cheat_active_camouflage)`'
+        en: |-
+          ```hsc
+          (cheat_active_camouflage)
 
+          ```
+          Gives the player active camouflage
     - slug: cheat_active_camouflage_local_player
-      type: (cheat_active_camouflage_local_player <short>)
       info:
-        en: Gives the player active camouflage
-        es: 
-      ex: '`(cheat_active_camouflage_local_player 1)`'
-
+        en: |-
+          ```hsc
+          (cheat_active_camouflage_local_player <short>)
+          (cheat_active_camouflage_local_player 1)
+          ```
+          Gives the player active camouflage
     - slug: cheat_all_powerups
-      type: (cheat_all_powerups)
       info:
-        en: Drops all powerups near player
-        es: 
-      ex: '`(cheat_all_powerups)`'
+        en: |-
+          ```hsc
+          (cheat_all_powerups)
 
+          ```
+          Drops all powerups near player
     - slug: cheat_all_vehicles
-      type: (cheat_all_vehicles)
       info:
-        en: Drops all vehicles on player
-        es: 
-      ex: '`(cheat_all_vehicles)`'
+        en: |-
+          ```hsc
+          (cheat_all_vehicles)
 
+          ```
+          Drops all vehicles on player
     - slug: cheat_all_weapons
-      type: (cheat_all_weapons)
       info:
-        en: Drops all weapons near player
-        es: 
-      ex: '`(cheat_all_weapons)`'
+        en: |-
+          ```hsc
+          (cheat_all_weapons)
 
+          ```
+          Drops all weapons near player
     - slug: cheat_spawn_warthog
-      type: (cheat_spawn_warthog)
       info:
-        en: Drops a warthog near player
-        es: 
-      ex: '`(cheat_spawn_warthog)`'
+        en: |-
+          ```hsc
+          (cheat_spawn_warthog)
 
+          ```
+          Drops a warthog near player
     - slug: cheat_teleport_to_camera
-      type: (cheat_teleport_to_camera)
       info:
-        en: Teleports player to camera location
-        es: 
-      ex: '`(cheat_teleport_to_camera)`'
+        en: |-
+          ```hsc
+          (cheat_teleport_to_camera)
 
+          ```
+          Teleports player to camera location
     - slug: cheats_load
-      type: (cheats_load)
       info:
-        en: Reloads the cheats.txt file
-        es: 
-      ex: '`(cheats_load)`'
+        en: |-
+          ```hsc
+          (cheats_load)
 
+          ```
+          Reloads the cheats.txt file
     - slug: checkpoint_load
-      type: (checkpoint_load <string>)
       info:
-        en: Load a saved checkpoint
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (checkpoint_load <string>)
+          ```
+          Load a saved checkpoint
     - slug: checkpoint_save
-      type: (checkpoint_save)
       info:
-        en: Save last solo checkpoint
-        es: 
-      ex: '`(checkpoint_save)`'
+        en: |-
+          ```hsc
+          (checkpoint_save)
 
+          ```
+          Save last solo checkpoint
     - slug: cinematic_abort
-      type: (cinematic_abort)
       info:
-        en: Aborts a cinematic
-        es: 
-      ex: '`(cinematic_abort)`'
+        en: |-
+          ```hsc
+          (cinematic_abort)
 
+          ```
+          Aborts a cinematic
     - slug: cinematic_screen_effect_set_convolution
-      type: (cinematic_screen_effect_set_convolution <short> <short> <real> <real> <real>)
       info:
-        en: Sets the convolution effect
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (cinematic_screen_effect_set_convolution <short> <short> <real> <real>
+          <real>)
+
+          ```
+
+          Sets the convolution effect
     - slug: cinematic_screen_effect_set_filter
-      type: (cinematic_screen_effect_set_filter <real> <real> <real> <real> <boolean> <real>)
       info:
-        en: Sets the filter effect
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (cinematic_screen_effect_set_filter <real> <real> <real> <real>
+          <boolean> <real>)
+
+          ```
+
+          Sets the filter effect
     - slug: cinematic_screen_effect_set_filter_desaturation_tint
-      type: (cinematic_screen_effect_set_filter_desaturation_tint <real> <real> <real>)
       info:
-        en: Sets the desaturation filter tint color
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (cinematic_screen_effect_set_filter_desaturation_tint <real> <real>
+          <real>)
+
+          ```
+
+          Sets the desaturation filter tint color
     - slug: cinematic_screen_effect_set_video
-      type: (cinematic_screen_effect_set_video <short> <real>)
       info:
-        en: >
-          Sets the video effect: `<noise intensity[0,1]>`,
-          `<overbright: 0=none, 1=2x, 2=4x>`
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (cinematic_screen_effect_set_video <short> <real>)
+
+          ```
+
+          Sets the video effect: `<noise intensity[0,1]>`, `<overbright: 0=none,
+          1=2x, 2=4x>`
     - slug: cinematic_screen_effect_start
-      type: (cinematic_screen_effect_start <boolean>)
       info:
-        en: Starts screen effect; pass true to clear
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (cinematic_screen_effect_start <boolean>)
+          ```
+          Starts screen effect; pass true to clear
     - slug: cinematic_screen_effect_stop
-      type: (cinematic_screen_effect_stop)
       info:
-        en: Returns control of the screen effects to the rest of the game
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (cinematic_screen_effect_stop)
+          ```
+          Returns control of the screen effects to the rest of the game
     - slug: cinematic_set_near_clip_distance
-      type: (cinematic_set_near_clip_distance <real>)
       info:
-        en: 
-        es: 
-      ex: 
-
+        en: |
+          ```hsc
+          (cinematic_set_near_clip_distance <real>)
+          ```
     - slug: cinematic_set_title
-      type: (cinematic_set_title <cutscene_title>)
       info:
-        en: Activates the chapter title
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (cinematic_set_title <cutscene_title>)
+          ```
+          Activates the chapter title
     - slug: cinematic_set_title_delayed
-      type: (cinematic_set_title_delayed <cutscene_title> <real>)
       info:
-        en: Activates the chapter title, delayed by <real> seconds
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (cinematic_set_title_delayed <cutscene_title> <real>)
+          ```
+          Activates the chapter title, delayed by <real> seconds
     - slug: cinematic_show_letterbox
-      type: (cinematic_show_letterbox <boolean>)
       info:
-        en: Sets or removes the letterbox bars
-        es: 
-      ex: '`(cinematic_show_letterbox true)` <br/> `(cinematic_show_letterbox false)`'
-
+        en: |-
+          ```hsc
+          (cinematic_show_letterbox <boolean>)
+          (cinematic_show_letterbox true)
+          (cinematic_show_letterbox false)
+          ```
+          Sets or removes the letterbox bars
     - slug: cinematic_skip_start_internal
-      type: (cinematic_skip_start_internal)
       info:
-        en: 
-        es: 
-      ex: '`(cinematic_skip_start_internal)`'
+        en: |
+          ```hsc
+          (cinematic_skip_start_internal)
 
+          ```
     - slug: cinematic_skip_stop_internal
-      type: (cinematic_skip_stop_internal)
       info:
-        en: 
-        es: 
-      ex: '`(cinematic_skip_stop_internal)`'
+        en: |
+          ```hsc
+          (cinematic_skip_stop_internal)
 
+          ```
     - slug: cinematic_start
-      type: (cinematic_start)
       info:
-        en: Initializes game to start a cinematic (interruptive) cutscene
-        es: 
-      ex: '`(cinematic_start)`'
+        en: |-
+          ```hsc
+          (cinematic_start)
 
+          ```
+          Initializes game to start a cinematic (interruptive) cutscene
     - slug: cinematic_stop
-      type: (cinematic_stop)
       info:
-        en: Initializes the game to end a cinematic (interruptive) cutscene
-        es: 
-      ex: '`(cinematic_stop)`'
+        en: |-
+          ```hsc
+          (cinematic_stop)
 
+          ```
+          Initializes the game to end a cinematic (interruptive) cutscene
     - slug: cinematic_suppress_bsp_object_creation
-      type: (cinematic_suppress_bsp_object_creation <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (cinematic_suppress_bsp_object_creation <boolean>)
+
+          (cinematic_suppress_bsp_object_creation true)
+
+          (cinematic_suppress_bsp_object_creation false)
+
+          ```
+
           Suppresses or enables the automatic creation of objects during
           cutscenes due to a bsp switch
-        es: 
-      ex: >
-        `(cinematic_suppress_bsp_object_creation true)` <br/>
-        `(cinematic_suppress_bsp_object_creation false)`
-
     - slug: config_one_control
-      type: (config_one_control <string>)
       info:
-        en: Test function to configure a single control
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (config_one_control <string>)
+          ```
+          Test function to configure a single control
     - slug: connect
-      type: (connect <string> <string>)
       info:
-        en: 'Attempt to connect to server - use ip:port password as parameters'
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (connect <string> <string>)
+          ```
+          Attempt to connect to server - use ip:port password as parameters
     - slug: crash
-      type: (crash <string>)
       info:
-        en: Crashes (for debugging)
-        es: 
-      ex: '`(crash "Something is wrong")`'
-
+        en: |-
+          ```hsc
+          (crash <string>)
+          (crash "Something is wrong")
+          ```
+          Crashes (for debugging)
     - slug: custom_animation
-      type: (custom_animation <unit> <animation_graph> <string> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (custom_animation <unit> <animation_graph> <string> <boolean>)
+
+          ```
+
           Starts a custom animation playing on a unit (interpolates into
           animation if last parameter is true)
-        es: 
-      ex: 
-
     - slug: custom_animation_list
-      type: (custom_animation_list <object_list> <animation_graph> <string> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (custom_animation_list <object_list> <animation_graph> <string>
+          <boolean>)
+
+          ```
+
           Starts a custom animation playing on a unit list (interpolates into
           animation if last parameter is true)
-        es: 
-      ex: 
-
     - slug: damage_new
-      type: (damage_new <damage> <cutscene_flag>)
       info:
-        en: Causes the specified damage at the specified flag
-        es: 
-      ex: '`(damage_new "scenery\emitters\burning_flame\flame" enter_lava_flag)`'
-
+        en: |-
+          ```hsc
+          (damage_new <damage> <cutscene_flag>)
+          (damage_new "scenery\emitters\burning_flame\flame" enter_lava_flag)
+          ```
+          Causes the specified damage at the specified flag
     - slug: damage_object
-      type: (damage_object <damage> <object>)
       info:
-        en: Causes the specified damage at the specified object
-        es: 
-      ex: '`(damage_object "weapons\assault rifle\bullet" player0)`'
-
+        en: |-
+          ```hsc
+          (damage_object <damage> <object>)
+          (damage_object "weapons\assault rifle\bullet" player0)
+          ```
+          Causes the specified damage at the specified object
     - slug: deactivate_nav_point_flag
-      type: (deactivate_nav_point_flag <unit> <cutscene_flag>)
       info:
-        en: Deactivates a nav point type attached to a player <unit> anchored to a flag
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (deactivate_nav_point_flag <unit> <cutscene_flag>)
+
+          ```
+
+          Deactivates a nav point type attached to a player <unit> anchored to a
+          flag
     - slug: deactivate_nav_point_object
-      type: (deactivate_nav_point_object <unit> <object>)
       info:
-        en: Deactivates a nav point type attached to a player <unit> anchored to an object
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (deactivate_nav_point_object <unit> <object>)
+
+          ```
+
+          Deactivates a nav point type attached to a player <unit> anchored to
+          an object
     - slug: deactivate_team_nav_point_flag
-      type: (deactivate_team_nav_point_flag <team> <cutscene_flag>)
       info:
-        en: Deactivates a nav point type attached to a team anchored to a flag
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (deactivate_team_nav_point_flag <team> <cutscene_flag>)
+          ```
+          Deactivates a nav point type attached to a team anchored to a flag
     - slug: deactivate_team_nav_point_object
-      type: (deactivate_team_nav_point_object <team> <object>)
       info:
-        en: Deactivates a nav point type attached to a team anchored to an object
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (deactivate_team_nav_point_object <team> <object>)
+          ```
+          Deactivates a nav point type attached to a team anchored to an object
     - slug: debug_camera_load
-      type: (debug_camera_load)
       info:
-        en: Loads the saved camera position and facing
-        es: 
-      ex: '`(debug_camera_load)`'
+        en: |-
+          ```hsc
+          (debug_camera_load)
 
+          ```
+          Loads the saved camera position and facing
     - slug: debug_camera_save
-      type: (debug_camera_save)
       info:
-        en: Saves the camera position and facing
-        es: 
-      ex: '`(debug_camera_save)`'
+        en: |-
+          ```hsc
+          (debug_camera_save)
 
+          ```
+          Saves the camera position and facing
     - slug: debug_memory
-      type: (debug_memory)
       info:
-        en: Dumps memory leaks
-        es: 
-      ex: '`(debug_memory)`'
+        en: |-
+          ```hsc
+          (debug_memory)
 
+          ```
+          Dumps memory leaks
     - slug: debug_memory_by_file
-      type: (debug_memory_by_file)
       info:
-        en: Dumps memory leaks by source file
-        es: 
-      ex: '`(debug_memory_by_file)`'
+        en: |-
+          ```hsc
+          (debug_memory_by_file)
 
+          ```
+          Dumps memory leaks by source file
     - slug: debug_memory_for_file
-      type: (debug_memory_for_file <string>)
       info:
-        en: Dumps memory leaks from the specified source file
-        es: 
-      ex: '`(debug_memory_for_file "\halopc\haloce\source\tag_files\tag_groups.c")`'
-
+        en: |-
+          ```hsc
+          (debug_memory_for_file <string>)
+          (debug_memory_for_file "\halopc\haloce\source\tag_files\tag_groups.c")
+          ```
+          Dumps memory leaks from the specified source file
     - slug: debug_teleport_player
-      type: (debug_teleport_player <short> <short>)
       info:
-        en: 
-        es: 
-      ex: 
-
+        en: |
+          ```hsc
+          (debug_teleport_player <short> <short>)
+          ```
     - slug: debug_sounds_distances
-      type: (debug_sounds_distances <string> <real> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (debug_sounds_distances <string> <real> <real>)
+
+          ```
+
           Changes the minimum and maximum distances for all sound classes
           matching the substring
-        es: 
-      ex: 
-
     - slug: debug_sounds_enable
-      type: (debug_sounds_enable <string> <boolean>)
       info:
-        en: Enables or disabled all sound classes matching the substring
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (debug_sounds_enable <string> <boolean>)
+          ```
+          Enables or disabled all sound classes matching the substring
     - slug: debug_sounds_wet
-      type: (debug_sounds_wet <string> <real>)
       info:
-        en: Changes the reverb level for all sound classes matching the substring
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (debug_sounds_wet <string> <real>)
+          ```
+          Changes the reverb level for all sound classes matching the substring
     - slug: debug_tags
-      type: (debug_tags)
       info:
-        en: Writes all memory being used by tag files into tag_dump.txt
-        es: 
-      ex: '`(debug_tags)`'
+        en: |-
+          ```hsc
+          (debug_tags)
 
+          ```
+          Writes all memory being used by tag files into tag_dump.txt
     - slug: delete_save_game_files
-      type: (delete_save_game_files)
       info:
-        en: Delete all custom profile files
-        es: 
-      ex: '`(delete_save_game_files)`'
+        en: |-
+          ```hsc
+          (delete_save_game_files)
 
+          ```
+          Delete all custom profile files
     - slug: device_get_position
-      type: (device_get_position <device>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (device_get_position <device>)
+
+          ```
+
           Gets the current position of the given device (used for devices
           without explicit device groups)
-        es: 
-      ex: 
-
     - slug: device_get_power
-      type: (device_get_power <device>)
       info:
-        en: Gets the current power of a named device
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (device_get_power <device>)
+          ```
+          Gets the current power of a named device
     - slug: device_group_change_only_once_more_set
-      type: (device_group_change_only_once_more_set <device_group> <boolean>)
       info:
-        en: true allows a device to change states only once
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (device_group_change_only_once_more_set <device_group> <boolean>)
+          ```
+          true allows a device to change states only once
     - slug: device_group_get
-      type: (device_group_get <device_group>)
       info:
-        en: Returns the desired value of the specified device group
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (device_group_get <device_group>)
+          ```
+          Returns the desired value of the specified device group
     - slug: device_group_set
-      type: (device_group_set <device_group> <real>)
       info:
-        en: Changes the desired value of the specified device group
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (device_group_set <device_group> <real>)
+          ```
+          Changes the desired value of the specified device group
     - slug: device_group_set_immediate
-      type: (device_group_set_immediate <device_group> <real>)
       info:
-        en: Instantaneously changes the value of the specified device group
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (device_group_set_immediate <device_group> <real>)
+          ```
+          Instantaneously changes the value of the specified device group
     - slug: device_one_sided_set
-      type: (device_one_sided_set <device> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (device_one_sided_set <device> <boolean>)
+
+          ```
+
           true makes the given device one-sided (only able to be opened from one
           direction), false makes it two-sided
-        es: 
-      ex: 
-
     - slug: device_operates_automatically_set
-      type: (device_operates_automatically_set <device> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (device_operates_automatically_set <device> <boolean>)
+
+          ```
+
           true makes the given device open automatically when any biped is
           nearby, false makes it not
-        es: 
-      ex: 
-
     - slug: device_get_position
-      type: (device_get_position <device>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (device_get_position <device>)
+
+          ```
+
           Gets the current position of the given device (used for devices
           without explicit device groups)
-        es: 
-      ex: 
-
     - slug: device_set_position
-      type: (device_set_position <device> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (device_set_position <device> <real>)
+
+          (device_set_position <device> 1.0)
+
+          ```
+
           Set the desired position of the given device (used for devices without
           explicit device groups)
-        es: 
-      ex: '`(device_set_position <device> 1.0)`'
-
     - slug: device_set_position_immediate
-      type: (device_set_position_immediate <device> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (device_set_position_immediate <device> <real>)
+
+          (device_set_position_immediate <device> 1.0)
+
+          ```
+
           Instantaneously changes the position of the given device (used for
           devices without explicit device groups
-        es: 
-      ex: '`(device_set_position_immediate <device> 1.0)`'
-
     - slug: device_set_power
-      type: (device_set_power <device> <real>)
       info:
-        en: Immediately sets the power of a named device to the given value
-        es: 
-      ex: '`(device_set_power <device> 1.0)`'
-
+        en: |-
+          ```hsc
+          (device_set_power <device> <real>)
+          (device_set_power <device> 1.0)
+          ```
+          Immediately sets the power of a named device to the given value
     - slug: display_scenario_help
-      type: (display_scenario_help <short>)
       info:
-        en: Display in-game help dialog
-        es: 
-      ex: '`(display_scenario_help 1)`'
-
+        en: |-
+          ```hsc
+          (display_scenario_help <short>)
+          (display_scenario_help 1)
+          ```
+          Display in-game help dialog
     - slug: effect_new
-      type: (effect_new <effect> <cutscene_flag>)
       info:
-        en: Starts the specified effect at the specified flag
-        es: 
-      ex: '`(effect_new "effects\coop teleport" teleporting_flag)`'
-
+        en: |-
+          ```hsc
+          (effect_new <effect> <cutscene_flag>)
+          (effect_new "effects\coop teleport" teleporting_flag)
+          ```
+          Starts the specified effect at the specified flag
     - slug: effect_new_on_object_marker
-      type: (effect_new_on_object_marker <effect> <object> <string>)
       info:
-        en: Starts the specified effect on the specified object at the specified marker
-        es: 
-      ex: '`(effect_new_on_object_marker "effects\burning large" warthog_mp "driver")`'
+        en: >-
+          ```hsc
 
+          (effect_new_on_object_marker <effect> <object> <string>)
+
+          (effect_new_on_object_marker "effects\burning large" warthog_mp
+          "driver")
+
+          ```
+
+          Starts the specified effect on the specified object at the specified
+          marker
     - slug: enable_hud_help_flash
-      type: (enable_hud_help_flash <boolean>)
       info:
-        en: Starts/stops the help text flashing
-        es: 
-      ex: '`(enable_hud_help_flash true)` <br/> `(enable_hud_help_flash false)`'
-
+        en: |-
+          ```hsc
+          (enable_hud_help_flash <boolean>)
+          (enable_hud_help_flash true)
+          (enable_hud_help_flash false)
+          ```
+          Starts/stops the help text flashing
     - slug: error_overflow_suppression
-      type: (error_overflow_suppression <boolean>)
       info:
-        en: Enables or disables the suppression of error spamming
-        es: 
-      ex: '`(error_overflow_suppression true)` <br/> `(error_overflow_suppression false)`'
-
+        en: |-
+          ```hsc
+          (error_overflow_suppression <boolean>)
+          (error_overflow_suppression true)
+          (error_overflow_suppression false)
+          ```
+          Enables or disables the suppression of error spamming
     - slug: fade_in
-      type: (fade_in <real> <real> <real> <short>)
       info:
-        en: Does a screen fade in from a particular color in the amount of ticks
-        es: 
-      ex: '`(fade_in 0.0 0.0 0.0 100)`'
-
+        en: |-
+          ```hsc
+          (fade_in <real> <real> <real> <short>)
+          (fade_in 0.0 0.0 0.0 100)
+          ```
+          Does a screen fade in from a particular color in the amount of ticks
     - slug: fade_out
-      type: (fade_out <real> <real> <real> <short>)
       info:
-        en: Does a screen fade out to a particular color in the amount of ticks
-        es: 
-      ex: '`(fade_out 1.0 1.0 1.0 100)`'
-
+        en: |-
+          ```hsc
+          (fade_out <real> <real> <real> <short>)
+          (fade_out 1.0 1.0 1.0 100)
+          ```
+          Does a screen fade out to a particular color in the amount of ticks
     - slug: fast_setup_network_server
-      type: (fast_setup_network_server <string> <string> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (fast_setup_network_server <string> <string> <boolean>)
+
+          ```
+
           Sets up a network server with the given map name, game variant, and
           true for remote connections, false for not
-        es: 
-      ex: 
-
     - slug: game_all_quiet
-      type: (game_all_quiet)
       info:
-        en: Returns false if there are bad guys around, projectiles in the air, etc.
-        es: 
-      ex: '`(game_all_quiet)`'
+        en: >-
+          ```hsc
 
+          (game_all_quiet)
+
+
+          ```
+
+          Returns false if there are bad guys around, projectiles in the air,
+          etc.
     - slug: game_difficulty_get
-      type: (game_difficulty_get)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (game_difficulty_get)
+
+
+          ```
+
           Returns the current difficulty setting, but lies to you and will never
           return easy, instead returning normal
-        es: 
-      ex: '`(game_difficulty_get)`'
-
     - slug: game_difficulty_get_real
-      type: (game_difficulty_get_real)
       info:
-        en: Returns the actual current difficulty setting without lying
-        es: 
-      ex: '`(game_difficulty_get_real)`'
+        en: |-
+          ```hsc
+          (game_difficulty_get_real)
 
+          ```
+          Returns the actual current difficulty setting without lying
     - slug: game_difficulty_set
-      type: (game_difficulty_set <game_difficulty>)
       info:
-        en: Changes the difficulty setting for the next map to be loaded
-        es: 
-      ex: >
-        `(game_difficulty_set easy)` <br/>
-        `(game_difficulty_set normal)` <br/>
-        `(game_difficulty_set hard)` <br/>
-        `(game_difficulty_set impossible)`
-
+        en: |-
+          ```hsc
+          (game_difficulty_set <game_difficulty>)
+          (game_difficulty_set easy)
+          (game_difficulty_set normal)
+          (game_difficulty_set hard)
+          (game_difficulty_set impossible)
+          ```
+          Changes the difficulty setting for the next map to be loaded
     - slug: game_is_cooperative
-      type: (game_is_cooperative)
       info:
-        en: Returns true if the game is cooperative
-        es: 
-      ex: '`(game_is_cooperative)`'
+        en: |-
+          ```hsc
+          (game_is_cooperative)
 
+          ```
+          Returns true if the game is cooperative
     - slug: game_lost
-      type: (game_lost)
       info:
-        en: Causes the player to revert to his previous saved game
-        es: 
-      ex: '`(game_lost)`'
+        en: |-
+          ```hsc
+          (game_lost)
 
+          ```
+          Causes the player to revert to his previous saved game
     - slug: game_revert
-      type: (game_revert)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (game_revert)
+
+
+          ```
+
           Reverts to last saved game, if any (for testing, the first bastard
           that does this to me gets it in the head)
-        es: 
-      ex: '`(game_revert)`'
-
     - slug: game_reverted
-      type: (game_reverted)
       info:
-        en: Don't use this for anything, you black-hearted bastards
-        es: 
-      ex: '`(game_reverted)`'
+        en: |-
+          ```hsc
+          (game_reverted)
 
+          ```
+          Don't use this for anything, you black-hearted bastards
     - slug: game_safe_to_save
-      type: (game_safe_to_save)
       info:
-        en: Returns false if it would be a bad idea to save the player's game right now
-        es: 
-      ex: '`(game_safe_to_save)`'
+        en: >-
+          ```hsc
 
+          (game_safe_to_save)
+
+
+          ```
+
+          Returns false if it would be a bad idea to save the player's game
+          right now
     - slug: game_safe_to_speak
-      type: (game_safe_to_speak)
       info:
-        en: Returns false if it would be a bad idea to save the player's game right now
-        es: 
-      ex: '`(game_safe_to_speak)`'
+        en: >-
+          ```hsc
 
+          (game_safe_to_speak)
+
+
+          ```
+
+          Returns false if it would be a bad idea to save the player's game
+          right now
     - slug: game_save
-      type: (game_save)
       info:
-        en: >
-          Checks to see if it is safe to save game, then saves (gives up after
-          8 seconds)
-        es: 
-      ex: '`(game_save)`'
+        en: >-
+          ```hsc
 
+          (game_save)
+
+
+          ```
+
+          Checks to see if it is safe to save game, then saves (gives up after 8
+          seconds)
     - slug: game_save_cancel
-      type: (game_save_cancel)
       info:
-        en: Cancels any pending game_save, timeout or not
-        es: 
-      ex: '`(game_save_cancel)`'
+        en: |-
+          ```hsc
+          (game_save_cancel)
 
+          ```
+          Cancels any pending game_save, timeout or not
     - slug: game_save_no_timeout
-      type: (game_save_no_timeout)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (game_save_no_timeout)
+
+
+          ```
+
           Checks to see if it is safe to save game, then saves (this version
           never gives up)
-        es: 
-      ex: '`(game_save_no_timeout)`'
-
     - slug: game_save_totally_unsafe
-      type: (game_save_totally_unsafe)
       info:
-        en: Saves disregarding player's current situation
-        es: 
-      ex: '`(game_save_totally_unsafe)`'
+        en: |-
+          ```hsc
+          (game_save_totally_unsafe)
 
+          ```
+          Saves disregarding player's current situation
     - slug: game_saving
-      type: (game_saving)
       info:
-        en: Checks to see if the game is trying to save the map
-        es: 
-      ex: '`(game_saving)`'
+        en: |-
+          ```hsc
+          (game_saving)
 
+          ```
+          Checks to see if the game is trying to save the map
     - slug: game_skip_ticks
-      type: (game_skip_ticks <short>)
       info:
-        en: Skips <short> amount of game ticks. ONLY USE IN CUTSCENES!!!
-        es: 
-      ex: '`(game_skip_ticks 5)`'
-
+        en: |-
+          ```hsc
+          (game_skip_ticks <short>)
+          (game_skip_ticks 5)
+          ```
+          Skips <short> amount of game ticks. ONLY USE IN CUTSCENES!!!
     - slug: game_speed
-      type: (game_speed <real>)
       info:
-        en: Changes the game speed
-        es: 
-      ex: '`(game_speed 0.5)`'
-
+        en: |-
+          ```hsc
+          (game_speed <real>)
+          (game_speed 0.5)
+          ```
+          Changes the game speed
     - slug: game_time
-      type: (game_time)
       info:
-        en: Gets ticks elapsed since the start of the game
-        es: 
-      ex: '`(game_time)`'
+        en: |-
+          ```hsc
+          (game_time)
 
+          ```
+          Gets ticks elapsed since the start of the game
     - slug: game_won
-      type: (game_won)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (game_won)
+
+
+          ```
+
           Causes the player to successfully finish the current level and move on
           to the next
-        es: 
-      ex: '`(game_won)`'
-
     - slug: garbage_collect_now
-      type: (garbage_collect_now)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (garbage_collect_now)
+
+
+          ```
+
           Causes all garbage objects except those visible to a player to be
           collected immediately
-        es: 
-      ex: '`(garbage_collect_now)`'
-
     - slug: get_digital_forward_throttle
-      type: (get_digital_forward_throttle <short>)
       info:
-        en: Gets the amount of forward throttle applied by digital device stimuli
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (get_digital_forward_throttle <short>)
+          ```
+          Gets the amount of forward throttle applied by digital device stimuli
     - slug: get_digital_strafe_throttle
-      type: (get_digital_strafe_throttle <short>)
       info:
-        en: Gets the amount of strafe throttle applied by digital device stimuli
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (get_digital_strafe_throttle <short>)
+          ```
+          Gets the amount of strafe throttle applied by digital device stimuli
     - slug: get_digital_yaw_increment
-      type: (get_digital_yaw_increment <short>)
       info:
-        en: Gets the increment in yaw applied by digital device stimuli
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (get_digital_yaw_increment <short>)
+          ```
+          Gets the increment in yaw applied by digital device stimuli
     - slug: get_digital_pitch_increment
-      type: (get_digital_pitch_increment <short>)
       info:
-        en: Gets the increment in pitch applied by digital device stimuli
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (get_digital_pitch_increment <short>)
+          ```
+          Gets the increment in pitch applied by digital device stimuli
     - slug: get_gamepad_forward_threshold
-      type: (get_gamepad_forward_threshold <short>)
       info:
-        en: Gets the threshold beyond which gamepad movement is full forward throttle
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (get_gamepad_forward_threshold <short>)
+
+          ```
+
+          Gets the threshold beyond which gamepad movement is full forward
+          throttle
     - slug: get_gamepad_strafe_threshold
-      type: (get_gamepad_strafe_threshold <short>)
       info:
-        en: Gets the threshold beyond which gamepad movement is full strafe throttle
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (get_gamepad_strafe_threshold <short>)
+
+          ```
+
+          Gets the threshold beyond which gamepad movement is full strafe
+          throttle
     - slug: get_gamepad_yaw_scale
-      type: (get_gamepad_yaw_scale <short>)
       info:
-        en: Gets the scale for gamepad control of yaw
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (get_gamepad_yaw_scale <short>)
+          ```
+          Gets the scale for gamepad control of yaw
     - slug: get_gamepad_pitch_scale
-      type: (get_gamepad_pitch_scale <short>)
       info:
-        en: Gets the scale for gamepad control of pitch
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (get_gamepad_pitch_scale <short>)
+          ```
+          Gets the scale for gamepad control of pitch
     - slug: get_mouse_forward_threshold
-      type: (get_mouse_forward_threshold <short>)
       info:
-        en: Gets the threshold beyond which mouse movement is full forward throttle
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (get_mouse_forward_threshold <short>)
+
+          ```
+
+          Gets the threshold beyond which mouse movement is full forward
+          throttle
     - slug: get_mouse_strafe_threshold
-      type: (get_mouse_strafe_threshold <short>)
       info:
-        en: Gets the threshold beyond which mouse movement is full strafe throttle
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (get_mouse_strafe_threshold <short>)
+          ```
+          Gets the threshold beyond which mouse movement is full strafe throttle
     - slug: get_mouse_yaw_scale
-      type: (get_mouse_yaw_scale <short>)
       info:
-        en: Gets the scale for mouse control of yaw
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (get_mouse_yaw_scale <short>)
+          ```
+          Gets the scale for mouse control of yaw
     - slug: get_mouse_pitch_scale
-      type: (get_mouse_pitch_scale <short>)
       info:
-        en: Gets the scale for mouse control of pitch
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (get_mouse_pitch_scale <short>)
+          ```
+          Gets the scale for mouse control of pitch
     - slug: get_yaw_rate
-      type: (get_yaw_rate <short>)
       info:
-        en: Gets the yaw rate for the given player number
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (get_yaw_rate <short>)
+          ```
+          Gets the yaw rate for the given player number
     - slug: get_pitch_rate
-      type: (get_pitch_rate <short>)
       info:
-        en: Gets the yaw rate for the given player number
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (get_pitch_rate <short>)
+          ```
+          Gets the yaw rate for the given player number
     - slug: hammer_begin
-      type: (hammer_begin <string> <string> <long> <short> <short>)
       info:
-        en: Hammers the server by connecting and disconnecting repeatedly
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (hammer_begin <string> <string> <long> <short> <short>)
+          ```
+          Hammers the server by connecting and disconnecting repeatedly
     - slug: hammer_stop
-      type: (hammer_stop)
       info:
-        en: Stops hammering the server
-        es: 
-      ex: '`(hammer_stop)`'
+        en: |-
+          ```hsc
+          (hammer_stop)
 
+          ```
+          Stops hammering the server
     - slug: help
-      type: (help <string>)
       info:
-        en: Prints a description of the named function
-        es: 
-      ex: '`(help cheats_load)`'
-
+        en: |-
+          ```hsc
+          (help <string>)
+          (help cheats_load)
+          ```
+          Prints a description of the named function
     - slug: hud_blink_health
-      type: (hud_blink_health <boolean>)
       info:
-        en: Starts/stops manual blinking of the health panel
-        es: 
-      ex: '`(hud_blink_health true)` <br/> `(hud_blink_health false)`'
-
+        en: |-
+          ```hsc
+          (hud_blink_health <boolean>)
+          (hud_blink_health true)
+          (hud_blink_health false)
+          ```
+          Starts/stops manual blinking of the health panel
     - slug: hud_blink_motion_sensor
-      type: (hud_blink_motion_sensor <boolean>)
       info:
-        en: Starts/stops manual blinking of the motion sensor panel
-        es: 
-      ex: '`(hud_blink_motion_sensor true)` <br/> `(hud_blink_motion_sensor false)`'
-
+        en: |-
+          ```hsc
+          (hud_blink_motion_sensor <boolean>)
+          (hud_blink_motion_sensor true)
+          (hud_blink_motion_sensor false)
+          ```
+          Starts/stops manual blinking of the motion sensor panel
     - slug: hud_blink_shield
-      type: (hud_blink_shield <boolean>)
       info:
-        en: Starts/stops manual blinking of the shield panel
-        es: 
-      ex: '`(hud_blink_shield true)` <br/> `(hud_blink_shield false)`'
-
+        en: |-
+          ```hsc
+          (hud_blink_shield <boolean>)
+          (hud_blink_shield true)
+          (hud_blink_shield false)
+          ```
+          Starts/stops manual blinking of the shield panel
     - slug: hud_clear_messages
-      type: (hud_clear_messages)
       info:
-        en: Clears all non-state messages on the hud
-        es: 
-      ex: '`(hud_clear_messages)`'
+        en: |-
+          ```hsc
+          (hud_clear_messages)
 
+          ```
+          Clears all non-state messages on the hud
     - slug: hud_get_timer_ticks
-      type: (hud_get_timer_ticks)
       info:
-        en: Returns the ticks left on the hud timer
-        es: 
-      ex: '`(hud_get_timer_ticks)`'
+        en: |-
+          ```hsc
+          (hud_get_timer_ticks)
 
+          ```
+          Returns the ticks left on the hud timer
     - slug: hud_help_flash_restart
-      type: (hud_help_flash_restart)
       info:
-        en: Resets the timer for the help text flashing
-        es: 
-      ex: '`(hud_help_flash_restart)`'
+        en: |-
+          ```hsc
+          (hud_help_flash_restart)
 
+          ```
+          Resets the timer for the help text flashing
     - slug: input_activate_joy
-      type: (input_activate_joy <short> <short>)
       info:
-        en: Activates an enumerated joystick into a logical joystick slot
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (input_activate_joy <short> <short>)
+          ```
+          Activates an enumerated joystick into a logical joystick slot
     - slug: input_deactivate_joy
-      type: (input_deactivate_joy <short>)
       info:
-        en: Deactivates an enumerated joystick, freeing up the logical joystick slot
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (input_deactivate_joy <short>)
+
+          ```
+
+          Deactivates an enumerated joystick, freeing up the logical joystick
+          slot
     - slug: input_find_default
-      type: (input_find_default <string>)
       info:
-        en: Test function that looks up a default profile for a deviceid
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (input_find_default <string>)
+          ```
+          Test function that looks up a default profile for a deviceid
     - slug: input_find_joystick
-      type: (input_find_joystick <string>)
       info:
-        en: Test function to find a joystick by GUID (string representation)
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (input_find_joystick <string>)
+          ```
+          Test function to find a joystick by GUID (string representation)
     - slug: input_get_joy_count
-      type: (input_get_joy_count)
       info:
-        en: Test function to return the number of joysticks enumerated
-        es: 
-      ex: '`(input_get_joy_count)`'
+        en: |-
+          ```hsc
+          (input_get_joy_count)
 
+          ```
+          Test function to return the number of joysticks enumerated
     - slug: input_is_joy_active
-      type: (input_is_joy_active <short>)
       info:
-        en: Test function to determine if an enumerated joystick is activated or not
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (input_is_joy_active <short>)
+
+          ```
+
+          Test function to determine if an enumerated joystick is activated or
+          not
     - slug: input_show_joystick_info
-      type: (input_show_joystick_info)
       info:
-        en: Test function to show the enumerated joystick information for all joystick
-        es: 
-      ex: '`(input_show_joystick_info)`'
+        en: >-
+          ```hsc
 
+          (input_show_joystick_info)
+
+
+          ```
+
+          Test function to show the enumerated joystick information for all
+          joystick
     - slug: list_count
-      type: (list_count <object_list>)
       info:
-        en: Returns the number of objects in a list
-        es: 
-      ex: '`(list_count the_warthogs)`'
-
+        en: |-
+          ```hsc
+          (list_count <object_list>)
+          (list_count the_warthogs)
+          ```
+          Returns the number of objects in a list
     - slug: list_get
-      type: (list_get <object_list> <short>)
       info:
-        en: Returns an item in an object list
-        es: 
-      ex: '`(list_get the_warthogs 3)`'
-
+        en: |-
+          ```hsc
+          (list_get <object_list> <short>)
+          (list_get the_warthogs 3)
+          ```
+          Returns an item in an object list
     - slug: magic_melee_attack
-      type: (magic_melee_attack)
       info:
-        en: Causes player's unit to start a melee attack
-        es: 
-      ex: '`(magic_melee_attack)`'
+        en: |-
+          ```hsc
+          (magic_melee_attack)
 
+          ```
+          Causes player's unit to start a melee attack
     - slug: magic_seat_name
-      type: (magic_seat_name <string>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (magic_seat_name <string>)
+
+          ```
+
           All units controlled by the player will assume the given seat name
           (valid values are 'asleep', 'alert', 'stand', 'crouch' and 'flee')
-        es: 
-      ex: 
-
     - slug: map_name
-      type: (map_name <string>)
       info:
-        en: Changes the name of the solo player map
-        es: 
-      ex: '`(map_name "a10")`'
-
+        en: |-
+          ```hsc
+          (map_name <string>)
+          (map_name "a10")
+          ```
+          Changes the name of the solo player map
     - slug: map_reset
-      type: (map_reset)
       info:
-        en: Starts the map from the beginning
-        es: 
-      ex: '`(map_reset)`'
+        en: |-
+          ```hsc
+          (map_reset)
 
+          ```
+          Starts the map from the beginning
     - slug: message_metrics_clear
-      type: (message_metrics_clear)
       info:
-        en: Clears network messaging metrics
-        es: 
-      ex: '`(message_metrics_clear)`'
+        en: |-
+          ```hsc
+          (message_metrics_clear)
 
+          ```
+          Clears network messaging metrics
     - slug: message_metrics_dump
-      type: (message_metrics_dump <string>)
       info:
-        en: Dumps network messaging metrics to given file ("" for default)
-        es: 
-      ex: '`(message_metrics_dump "")`'
-
+        en: |-
+          ```hsc
+          (message_metrics_dump <string>)
+          (message_metrics_dump "")
+          ```
+          Dumps network messaging metrics to given file ("" for default)
     - slug: multiplayer_map_name
-      type: (multiplayer_map_name <string>)
       info:
-        en: Changes the name of the multiplayer map
-        es: 
-      ex: '`(multiplayer_map_name "schwinnzno1_alpha01a")`'
-
+        en: |-
+          ```hsc
+          (multiplayer_map_name <string>)
+          (multiplayer_map_name "schwinnzno1_alpha01a")
+          ```
+          Changes the name of the multiplayer map
     - slug: net_graph_clear
-      type: (net_graph_clear)
       info:
-        en: Clears the net_graph
-        es: 
-      ex: '`(net_graph_clear)`'
+        en: |-
+          ```hsc
+          (net_graph_clear)
 
+          ```
+          Clears the net_graph
     - slug: net_graph_show
-      type: (net_graph_show <string> <string>)
       info:
-        en: Changes the net_graph display (bytes/packets, sent/received)
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (net_graph_show <string> <string>)
+          ```
+          Changes the net_graph display (bytes/packets, sent/received)
     - slug: network_client_dump
-      type: (network_client_dump)
       info:
-        en: Dumps info on network client
-        es: 
-      ex: '`(network_client_dump)`'
+        en: |-
+          ```hsc
+          (network_client_dump)
 
+          ```
+          Dumps info on network client
     - slug: network_server_dump
-      type: (network_server_dump)
       info:
-        en: Dumps info on network server
-        es: 
-      ex: '`(network_server_dump)`'
+        en: |-
+          ```hsc
+          (network_server_dump)
 
+          ```
+          Dumps info on network server
     - slug: numeric_countdown_timer_get
-      type: (numeric_countdown_timer_get <short>)
       info:
-        en: '`<digit_index>`'
-        es: 
-      ex: >
-        `(numeric_countdown_timer_get 1)` <br/>
-        `(numeric_countdown_timer_get -1)`
-
+        en: |-
+          ```hsc
+          (numeric_countdown_timer_get <short>)
+          (numeric_countdown_timer_get 1)
+          (numeric_countdown_timer_get -1)
+          ```
+          `<digit_index>`
     - slug: numeric_countdown_timer_restart
-      type: (numeric_countdown_timer_restart)
       info:
-        en: Reset the timer
-        es: 
-      ex: '`(numeric_countdown_timer_restart)`'
+        en: |-
+          ```hsc
+          (numeric_countdown_timer_restart)
 
+          ```
+          Reset the timer
     - slug: numeric_countdown_timer_set
-      type: (numeric_countdown_timer_set <long> <boolean>)
       info:
-        en: '`<milliseconds>`, `<auto_start>`'
-        es: 
-      ex: >
-        `(numeric_countdown_timer_set 15500 false)` <br/>
-        `(numeric_countdown_timer_set 10000 false)`
-
+        en: |-
+          ```hsc
+          (numeric_countdown_timer_set <long> <boolean>)
+          (numeric_countdown_timer_set 15500 false)
+          (numeric_countdown_timer_set 10000 false)
+          ```
+          `<milliseconds>`, `<auto_start>`
     - slug: numeric_countdown_timer_stop
-      type: (numeric_countdown_timer_stop)
       info:
-        en: Stop the timer
-        es: 
-      ex: '`(numeric_countdown_timer_stop)`'
+        en: |-
+          ```hsc
+          (numeric_countdown_timer_stop)
 
+          ```
+          Stop the timer
     - slug: object_beautify
-      type: (object_beautify <object> <boolean>)
       info:
-        en: Makes an object pretty for the remainder of the levels' cutscenes
-        es: 
-      ex: '`(object_beautify chief true)` <br/> `(object_beautify chief false)`'
-
+        en: |-
+          ```hsc
+          (object_beautify <object> <boolean>)
+          (object_beautify chief true)
+          (object_beautify chief false)
+          ```
+          Makes an object pretty for the remainder of the levels' cutscenes
     - slug: object_can_take_damage
-      type: (object_can_take_damage <object_list>)
       info:
-        en: Allows an object to take damage again
-        es:
-      ex: '`(object_can_take_damage (players))`'
-
+        en: |-
+          ```hsc
+          (object_can_take_damage <object_list>)
+          (object_can_take_damage (players))
+          ```
+          Allows an object to take damage again
     - slug: object_cannot_take_damage
-      type: (object_cannot_take_damage <object_list>)
       info:
-        en: Prevents an object from taking damage
-        es: 
-      ex: '`(object_cannot_take_damage (players))`'
-
+        en: |-
+          ```hsc
+          (object_cannot_take_damage <object_list>)
+          (object_cannot_take_damage (players))
+          ```
+          Prevents an object from taking damage
     - slug: object_create
-      type: (object_create <object_name>)
       info:
-        en: Creates an object from the scenario
-        es: 
-      ex: '`(object_create warthog_mp_1)`'
-
+        en: |-
+          ```hsc
+          (object_create <object_name>)
+          (object_create warthog_mp_1)
+          ```
+          Creates an object from the scenario
     - slug: object_create_anew
-      type: (object_create_anew <object_name>)
       info:
-        en: Creates an object, destroying it first if it already exists
-        es: 
-      ex: '`(object_create_anew banshee_mp_1)`'
-
+        en: |-
+          ```hsc
+          (object_create_anew <object_name>)
+          (object_create_anew banshee_mp_1)
+          ```
+          Creates an object, destroying it first if it already exists
     - slug: object_create_anew_containing
-      type: (object_create_anew_containing <string>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (object_create_anew_containing <string>)
+
+          (object_create_anew_containing "pelican")
+
+          ```
+
           Creates anew all objects from the scenario whose names contain the
           given substring
-        es: 
-      ex: '`(object_create_anew_containing "pelican")`'
-
     - slug: object_create_containing
-      type: (object_create_containing <string>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (object_create_containing <string>)
+
+          (object_create_containing "warthog")
+
+          ```
+
           Creates all objects from the scenario whose names contain the given
           substring
-        es: 
-      ex: '`(object_create_containing "warthog")`'
-
     - slug: object_destroy
-      type: (object_destroy <object>)
       info:
-        en: Destroys an object
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (object_destroy <object>)
+          ```
+          Destroys an object
     - slug: object_destroy_all
-      type: (object_destroy_all)
       info:
-        en: Destroys all non player objects
-        es: 
-      ex: '`(object_destroy_all)`'
+        en: |-
+          ```hsc
+          (object_destroy_all)
 
+          ```
+          Destroys all non player objects
     - slug: object_destroy_containing
-      type: (object_destroy_containing <string>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (object_destroy_containing <string>)
+
+          (object_destroy_containing "pelican")
+
+          ```
+
           Destroys all objects from the scenario whose names contain the given
           substring
-        es:
-      ex: '`(object_destroy_containing "pelican")`'
-
     - slug: object_pvs_activate
-      type: (object_pvs_activate <object>)
       info:
-        en: Just another (old) name for object_pvs_set_object
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (object_pvs_activate <object>)
+          ```
+          Just another (old) name for object_pvs_set_object
     - slug: object_pvs_clear
-      type: (object_pvs_clear)
       info:
-        en: Removes the special place that activates everything it sees
-        es: 
-      ex: '`(object_pvs_clear)`'
+        en: |-
+          ```hsc
+          (object_pvs_clear)
 
+          ```
+          Removes the special place that activates everything it sees
     - slug: object_pvs_set_camera
-      type: (object_pvs_set_camera <cutscene_camera_point>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (object_pvs_set_camera <cutscene_camera_point>)
+
+          ```
+
           Sets the specified cutscene camera point as the special place that
           activates everything it sees
-        es: 
-      ex: 
-
     - slug: object_pvs_set_object
-      type: (object_pvs_set_object <object>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (object_pvs_set_object <object>)
+
+          ```
+
           Sets the specified object as the special place that activates
           everything it sees
-        es: 
-      ex: 
-
     - slug: object_set_collideable
-      type: (object_set_collideable <object> <boolean>)
       info:
-        en: '`false` prevents any object from colliding with the given object'
-        es: 
-      ex: >
-        `(object_set_collideable player0 true)` <br/>
-        `(object_set_collideable player0 false)`
-
+        en: |-
+          ```hsc
+          (object_set_collideable <object> <boolean>)
+          (object_set_collideable player0 true)
+          (object_set_collideable player0 false)
+          ```
+          `false` prevents any object from colliding with the given object
     - slug: object_set_facing
-      type: (object_set_facing <object> <cutscene_flag>)
       info:
-        en: Turns the specified object in the direction of the specified flag
-        es: 
-      ex: '`(object_set_facing player0 blue_base_flag)`'
-
+        en: |-
+          ```hsc
+          (object_set_facing <object> <cutscene_flag>)
+          (object_set_facing player0 blue_base_flag)
+          ```
+          Turns the specified object in the direction of the specified flag
     - slug: object_set_melee_attack_inhibited
-      type: (object_set_melee_attack_inhibited <object> <boolean>)
       info:
-        en: '`false` prevents object from using melee attack'
-        es: 
-      ex: >
-        `(object_set_melee_attack_inhibited player0 true)` <br/>
-        `(object_set_melee_attack_inhibited player0 false)`
-
+        en: |-
+          ```hsc
+          (object_set_melee_attack_inhibited <object> <boolean>)
+          (object_set_melee_attack_inhibited player0 true)
+          (object_set_melee_attack_inhibited player0 false)
+          ```
+          `false` prevents object from using melee attack
     - slug: object_set_permutation
-      type: (object_set_permutation <object> <string> <string>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (object_set_permutation <object> <string> <string>)
+
+          (object_set_permutation player0 "right arm" ~damaged)
+
+          ```
+
           Sets the desired region (use `""` for all regions) to the permutation
           with the given name
-        es: 
-      ex: '`(object_set_permutation player0 "right arm" ~damaged)`'
-
     - slug: object_set_ranged_attack_inhibited
-      type: (object_set_ranged_attack_inhibited <object> <boolean>)
       info:
-        en: '`false` prevents object from using ranged attack'
-        es: 
-      ex: >
-        `(object_set_ranged_attack_inhibited player0 true)` <br/>
-        `(object_set_ranged_attack_inhibited player0 false)`
-
+        en: |-
+          ```hsc
+          (object_set_ranged_attack_inhibited <object> <boolean>)
+          (object_set_ranged_attack_inhibited player0 true)
+          (object_set_ranged_attack_inhibited player0 false)
+          ```
+          `false` prevents object from using ranged attack
     - slug: object_set_scale
-      type: (object_set_scale <object> <real> <short>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (object_set_scale <object> <real> <short>)
+
+          (object_set_scale player0 1.5 10)
+
+          ```
+
           sets the scale for a given object and interpolates over the given
           number of frames to achieve that scale
-        es: 
-      ex: '`(object_set_scale player0 1.5 10)`'
-
     - slug: object_set_shield
-      type: (object_set_shield <object> <real>)
       info:
-        en: Sets the shield vitality of the specified object (between 0 and 1)
-        es: 
-      ex: "`(object_set_shield player0 1.0)` Sets player's shield to full"
-
+        en: |-
+          ```hsc
+          (object_set_shield <object> <real>)
+          (object_set_shield player0 1.0)
+          ```
+          Sets the shield vitality of the specified object (between 0 and 1)
     - slug: object_teleport
-      type: (object_teleport <object> <cutscene_flag>)
       info:
-        en: Moves the specified object to the specified flag
-        es: 
-      ex: '`(object_teleport player0 red_base_flag)`'
-
+        en: |-
+          ```hsc
+          (object_teleport <object> <cutscene_flag>)
+          (object_teleport player0 red_base_flag)
+          ```
+          Moves the specified object to the specified flag
     - slug: object_type_predict
-      type: (object_type_predict <object_definition>)
       info:
-        en: Loads textures necessary to draw an object that's about to come on-screen
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (object_type_predict <object_definition>)
+
+          ```
+
+          Loads textures necessary to draw an object that's about to come
+          on-screen
     - slug: objects_attach
-      type: (objects_attach <object> <string> <object> <string>)
       info:
-        en: Attaches the second object to the first; both strings can be empty
-        es: 
-      ex: '`(objects_attach chief "right hand" ar1 "")`'
-
+        en: |-
+          ```hsc
+          (objects_attach <object> <string> <object> <string>)
+          (objects_attach chief "right hand" ar1 "")
+          ```
+          Attaches the second object to the first; both strings can be empty
     - slug: objects_can_see_flag
-      type: (objects_can_see_flag <object_list> <cutscene_flag> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (objects_can_see_flag <object_list> <cutscene_flag> <real>)
+
+          (objects_can_see_flag the_warthogs tunnel_flag 45)
+
+          ```
+
           Returns `true` if any of the specified units are looking within the
           specified number of degrees of the flag
-        es: 
-      ex: '`(objects_can_see_flag the_warthogs tunnel_flag 45)`'
-
     - slug: objects_can_see_object
-      type: (objects_can_see_object <object_list> <object> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (objects_can_see_object <object_list> <object> <real>)
+
+          (objects_can_see_object the_warthogs player0 90)
+
+          ```
+
           Returns `true` if any of the specified units are looking within the
           specified number of degrees of the object
-        es: 
-      ex: '`(objects_can_see_object the_warthogs player0 90)`'
-
     - slug: objects_delete_by_definition
-      type: (objects_delete_by_definition <object_definition>)
       info:
-        en: Deletes all objects of type `<definition>`
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (objects_delete_by_definition <object_definition>)
+          ```
+          Deletes all objects of type `<definition>`
     - slug: objects_detach
-      type: (objects_detach <object> <object>)
       info:
-        en: Detaches from the given parent object the given child object
-        es: 
-      ex: '`(objects_detach chief ar1)`'
-
+        en: |-
+          ```hsc
+          (objects_detach <object> <object>)
+          (objects_detach chief ar1)
+          ```
+          Detaches from the given parent object the given child object
     - slug: objects_predict
-      type: (objects_predict <object_list>)
       info:
-        en: Loads textures necessary to draw a objects that are about to come on-screen
-        es: 
-      ex: '`(objects_predict the_bipeds)`'
+        en: >-
+          ```hsc
 
+          (objects_predict <object_list>)
+
+          (objects_predict the_bipeds)
+
+          ```
+
+          Loads textures necessary to draw a objects that are about to come
+          on-screen
     - slug: pause_hud_timer
-      type: (pause_hud_timer <boolean>)
       info:
-        en: Pauses or unpauses the hud timer
-        es: 
-      ex: '`(pause_hud_timer true)` <br/> `(pause_hud_timer false)`'
-
+        en: |-
+          ```hsc
+          (pause_hud_timer <boolean>)
+          (pause_hud_timer true)
+          (pause_hud_timer false)
+          ```
+          Pauses or unpauses the hud timer
     - slug: play_update_history
-      type: (play_update_history <long> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (play_update_history <long> <boolean>)
+
+          ```
+
           Playback client input history starting from the specified last
           completed update id
-        es: 
-      ex: 
-
     - slug: playback
-      type: (playback)
       info:
-        en: Starts game in film playback mode
-        es: 
-      ex: (playback)
-
+        en: |-
+          ```hsc
+          (playback)
+          ```
+          Starts game in film playback mode
     - slug: player0_joystick_set_is_normal
-      type: (player0_joystick_set_is_normal)
       info:
-        en: Returns `true` if player0 is using the normal joystick set
-        es: 
-      ex: (player0_joystick_set_is_normal)
-
+        en: |-
+          ```hsc
+          (player0_joystick_set_is_normal)
+          ```
+          Returns `true` if player0 is using the normal joystick set
     - slug: player0_look_invert_pitch
-      type: (player0_look_invert_pitch <boolean>)
       info:
-        en: Invert player0's look
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (player0_look_invert_pitch <boolean>)
+          ```
+          Invert player0's look
     - slug: player0_look_pitch_is_inverted
-      type: (player0_look_pitch_is_inverted)
       info:
-        en: Returns `true` if player0's look pitch is inverted
-        es: 
-      ex: '`(player0_look_pitch_is_inverted)`'
+        en: |-
+          ```hsc
+          (player0_look_pitch_is_inverted)
 
+          ```
+          Returns `true` if player0's look pitch is inverted
     - slug: player_action_test_accept
-      type: (player_action_test_accept)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_accept)
+
+
+          ```
+
           Returns `true` if any player has hit accept since the last call to
           `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_accept)`'
-
     - slug: player_action_test_action
-      type: (player_action_test_action)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_action)
+
+
+          ```
+
           Returns `true` if any player has hit the action key since the last
           call to `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_action)`'
-
     - slug: player_action_test_back
-      type: (player_action_test_back)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_back)
+
+
+          ```
+
           Returns `true` if any player has hit the back key since the last call
           to `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_back)`'
-
     - slug: player_action_test_grenade_trigger
-      type: (player_action_test_grenade_trigger)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_grenade_trigger)
+
+
+          ```
+
           Returns `true` if any player has used grenade trigger since the last
           call to `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_grenade_trigger)`'
-
     - slug: player_action_test_jump
-      type: (player_action_test_jump)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_jump)
+
+
+          ```
+
           Returns `true` if any player has jumped since the last call to
           `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_jump)`'
-
     - slug: player_action_test_look_relative_all_directions
-      type: (player_action_test_look_relative_all_directions)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_look_relative_all_directions)
+
+
+          ```
+
           Returns `true` if any player has looked up, down, left, and right
           since the last call to `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_look_relative_all_directions)`'
-
     - slug: player_action_test_look_relative_down
-      type: (player_action_test_look_relative_down)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_look_relative_down)
+
+
+          ```
+
           Returns `true` if any player has looked down since the last call to
           `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_look_relative_down)`'
-
     - slug: player_action_test_look_relative_left
-      type: (player_action_test_look_relative_left)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_look_relative_left)
+
+
+          ```
+
           Returns `true` if any player has looked left since the last call to
           `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_look_relative_left)`'
-
     - slug: player_action_test_look_relative_right
-      type: (player_action_test_look_relative_right)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_look_relative_right)
+
+
+          ```
+
           Returns `true` if any player has looked right since the last call to
           `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_look_relative_right)`'
-
     - slug: player_action_test_look_relative_up
-      type: (player_action_test_look_relative_up)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_look_relative_up)
+
+
+          ```
+
           Returns `true` if any player has looked up since the last call to
           `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_look_relative_up)`'
-
     - slug: player_action_test_move_relative_all_directions
-      type: (player_action_test_move_relative_all_directions)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_move_relative_all_directions)
+
+
+          ```
+
           Returns `true` if any player has moved forward, backward, left, and
           right since the last call to `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_move_relative_all_directions)`'
-
     - slug: player_action_test_primary_trigger
-      type: (player_action_test_primary_trigger)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_primary_trigger)
+
+
+          ```
+
           Returns `true` if any player has used primary trigger since the last
           call to `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_primary_trigger)`'
-
     - slug: player_action_test_reset
-      type: (player_action_test_reset)
       info:
-        en: Resets the player action test state so that all tests will return `false`
-        es: 
-      ex: '`(player_action_test_reset)`'
+        en: >-
+          ```hsc
 
+          (player_action_test_reset)
+
+
+          ```
+
+          Resets the player action test state so that all tests will return
+          `false`
     - slug: player_action_test_zoom
-      type: (player_action_test_zoom)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_action_test_zoom)
+
+
+          ```
+
           Returns `true` if any player has hit the zoom button since the last
           call to `(player_action_test_reset)`
-        es: 
-      ex: '`(player_action_test_zoom)`'
-
     - slug: player_add_equipment
-      type: (player_add_equipment <unit> <starting_profile> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (player_add_equipment <unit> <starting_profile> <boolean>)
+
+          ```
+
           Adds/resets the player's health, shield, and inventory (weapons and
           grenades) to the named profile. Resets if third parameter is `true`,
           adds if `false`.
-        es: 
-      ex: 
-
     - slug: player_camera_control
-      type: (player_camera_control <boolean>)
       info:
-        en: Enables/disables camera control globally
-        es: 
-      ex: '`(player_camera_control true)` <br/> `(player_camera_control false)`'
-
+        en: |-
+          ```hsc
+          (player_camera_control <boolean>)
+          (player_camera_control true)
+          (player_camera_control false)
+          ```
+          Enables/disables camera control globally
     - slug: player_effect_set_max_rotation
-      type: (player_effect_set_max_rotation <real> <real> <real>)
       info:
-        en: '`<yaw>` `<pitch>` `<roll>`'
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (player_effect_set_max_rotation <real> <real> <real>)
+          ```
+          `<yaw>` `<pitch>` `<roll>`
     - slug: player_effect_set_max_translation
-      type: (player_effect_set_max_translation <real> <real> <real>)
       info:
-        en: '`<x>` `<y>` `<z>`'
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (player_effect_set_max_translation <real> <real> <real>)
+          ```
+          `<x>` `<y>` `<z>`
     - slug: player_effect_set_max_vibrate
-      type: (player_effect_set_max_vibrate <real> <real>)
       info:
-        en: '`<left>` `<right>`'
-        es: 
-      ex:
-
+        en: |-
+          ```hsc
+          (player_effect_set_max_vibrate <real> <real>)
+          ```
+          `<left>` `<right>`
     - slug: player_effect_start
-      type: (player_effect_start <real> <real>)
       info:
-        en: '`<max_intensity>` `<attack time>`'
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (player_effect_start <real> <real>)
+          ```
+          `<max_intensity>` `<attack time>`
     - slug: player_effect_stop
-      type: (player_effect_stop <real>)
       info:
-        en: '`<decay>`'
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (player_effect_stop <real>)
+          ```
+          `<decay>`
     - slug: player_enable_input
-      type: (player_enable_input <boolean>)
       info:
-        en: Toggle player input. The player can still free-look, but nothing else.
-        es: 
-      ex: '`(player_enable_input true)` <br/> `(player_enable_input false)`'
-
+        en: |-
+          ```hsc
+          (player_enable_input <boolean>)
+          (player_enable_input true)
+          (player_enable_input false)
+          ```
+          Toggle player input. The player can still free-look, but nothing else.
     - slug: players_unzoom_all
-      type: (players_unzoom_all)
       info:
-        en: Resets zoom levels on all players
-        es: 
-      ex: '`(players_unzoom_all)`'
+        en: |-
+          ```hsc
+          (players_unzoom_all)
 
+          ```
+          Resets zoom levels on all players
     - slug: print
-      type: (print <string>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (print <string>)
+
+          (print "50 dollars for this?!")
+
+          ```
+
           Prints a string to the console. Printed text will not appear in the
           console unless devmode is enabled (devmode 4). You can give a `print`
           call a [format](http://www.cplusplus.com/reference/cstdio/printf/)
           string (e.g. `"I have %d apples"`), but **cannot** give it format
           arguments, meaning **a format string can cause the function to read
           invalid memory and crash the game!**
-        es: 
-      ex: >
-        `(print "50 dollars for this?!")`
-        prints "50 dollars for this?!" to the console
-
     - slug: print_binds
-      type: (print_binds)
       info:
-        en: Prints a list of all input bindings
-        es: 
-      ex: '`(print_binds)`'
+        en: |-
+          ```hsc
+          (print_binds)
 
+          ```
+          Prints a list of all input bindings
     - slug: profile_activate
-      type: (profile_activate <string>)
       info:
-        en: Activates profile sections based on a substring
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (profile_activate <string>)
+          ```
+          Activates profile sections based on a substring
     - slug: profile_deactivate
-      type: (profile_deactivate <string>)
       info:
-        en: Deactivates profile sections based on a substring
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (profile_deactivate <string>)
+          ```
+          Deactivates profile sections based on a substring
     - slug: profile_dump
-      type: (profile_dump <string>)
       info:
-        en: Dumps profile based on a substring
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (profile_dump <string>)
+          ```
+          Dumps profile based on a substring
     - slug: profile_graph_toggle
-      type: (profile_graph_toggle <string>)
       info:
-        en: Enables or disables profile graph display of a particular value
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (profile_graph_toggle <string>)
+          ```
+          Enables or disables profile graph display of a particular value
     - slug: profile_load
-      type: (profile_load <string>)
       info:
-        en: Load any included builtin profiles and create profiles on disk
-        es: 
-      ex: '`(profile_load "a hobo")` returns: loads the profile "a hobo"'
-
+        en: |-
+          ```hsc
+          (profile_load <string>)
+          (profile_load "a hobo")
+          ; loads the profile "a hobo"
+          ```
+          Load any included builtin profiles and create profiles on disk
     - slug: profile_reset
-      type: (profile_reset)
       info:
-        en: Resets profiling data
-        es: 
-      ex: '`(profile_reset)`'
+        en: |-
+          ```hsc
+          (profile_reset)
 
+          ```
+          Resets profiling data
     - slug: profile_service_clear_timers
-      type: (profile_service_clear_timers)
       info:
-        en: Clears the timers that are present in the profiling service
-        es: 
-      ex: '`(profile_service_clear_timers)`'
+        en: |-
+          ```hsc
+          (profile_service_clear_timers)
 
+          ```
+          Clears the timers that are present in the profiling service
     - slug: profile_service_dump_timers
-      type: (profile_service_dump_timers)
       info:
-        en: Dumps the profiling service timers
-        es: 
-      ex: '`(profile_service_dump_timers)`'
+        en: |-
+          ```hsc
+          (profile_service_dump_timers)
 
+          ```
+          Dumps the profiling service timers
     - slug: profile_unlock_solo_levels
-      type: (profile_unlock_solo_levels)
       info:
-        en: Unlocks all the solo player levels for player 1's profile
-        es: 
-      ex: '`(profile_unlock_solo_levels)`'
+        en: |-
+          ```hsc
+          (profile_unlock_solo_levels)
 
+          ```
+          Unlocks all the solo player levels for player 1's profile
     - slug: quit
-      type: (quit)
       info:
-        en: Quits the game
-        es: 
-      ex: '`(quit)`'
+        en: |-
+          ```hsc
+          (quit)
 
+          ```
+          Quits the game
     - slug: rasterizer_decals_flush
-      type: (rasterizer_decals_flush)
       info:
-        en: Flush all decals
-        es:
-      ex: '`(rasterizer_decals_flush)`'
+        en: |-
+          ```hsc
+          (rasterizer_decals_flush)
 
+          ```
+          Flush all decals
     - slug: rasterizer_fixed_function_ambient
-      type: (rasterizer_fixed_function_ambient <long>)
       info:
-        en: Set the ambient light value for fixed function
-        es: 
-      ex: '`(rasterizer_fixed_function_ambient 200)`'
-
+        en: |-
+          ```hsc
+          (rasterizer_fixed_function_ambient <long>)
+          (rasterizer_fixed_function_ambient 200)
+          ```
+          Set the ambient light value for fixed function
     - slug: rasterizer_fps_accumulate
-      type: (rasterizer_fps_accumulate)
       info:
-        en: Average fps
-        es: 
-      ex: '`(rasterizer_fps_accumulate)`'
+        en: |-
+          ```hsc
+          (rasterizer_fps_accumulate)
 
+          ```
+          Average fps
     - slug: rasterizer_lights_reset_for_new_map
-      type: (rasterizer_lights_reset_for_new_map)
       info:
-        en: 
-        es: 
-      ex: 
-
+        en: |
+          ```hsc
+          (rasterizer_lights_reset_for_new_map)
+          ```
     - slug: rasterizer_model_ambient_reflection_tint
-      type: (rasterizer_model_ambient_reflection_tint <real> <real> <real> <real>)
       info:
-        en: 
-        es: 
-      ex: 
-
+        en: |
+          ```hsc
+          (rasterizer_model_ambient_reflection_tint <real> <real> <real> <real>)
+          ```
     - slug: rasterizer_reload_effects
-      type: (rasterizer_reload_effects)
       info:
-        en: Check for shader changes
-        es: 
-      ex: '`(rasterizer_reload_effects)`'
+        en: |-
+          ```hsc
+          (rasterizer_reload_effects)
 
+          ```
+          Check for shader changes
     - slug: recording_kill
-      type: (recording_kill <unit>)
       info:
-        en: Kill the specified unit's cutscene recording
-        es: 
-      ex: '`(recording_kill player0)`'
-
+        en: |-
+          ```hsc
+          (recording_kill <unit>)
+          (recording_kill player0)
+          ```
+          Kill the specified unit's cutscene recording
     - slug: recording_play
-      type: (recording_play <unit> <cutscene_recording>)
       info:
-        en: Make the specified unit run the specified cutscene recording
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (recording_play <unit> <cutscene_recording>)
+          ```
+          Make the specified unit run the specified cutscene recording
     - slug: recording_play_and_delete
-      type: (recording_play_and_delete <unit> <cutscene_recording>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (recording_play_and_delete <unit> <cutscene_recording>)
+
+          ```
+
           Make the specified unit run the specified cutscene recording, deletes
           the unit when the animation finishes
-        es: 
-      ex: 
-
     - slug: recording_play_and_hover
-      type: (recording_play_and_hover <vehicle> <cutscene_recording>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (recording_play_and_hover <vehicle> <cutscene_recording>)
+
+          ```
+
           Make the specified vehicle run the specified cutscene recording,
           hovers the vehicle when the animation finishes
-        es: 
-      ex:
-
     - slug: recording_time
-      type: (recording_time <unit>)
       info:
-        en: Return the time remaining in the specified unit's cutscene recording
-        es: 
-      ex: '`(recording_time player0)`'
-
+        en: |-
+          ```hsc
+          (recording_time <unit>)
+          (recording_time player0)
+          ```
+          Return the time remaining in the specified unit's cutscene recording
     - slug: render_effects
-      type: (render_effects <boolean>)
       info:
-        en: Render game effects if `true`
-        es: 
-      ex: '`(render_effects true)` <br/> `(render_effects false)`'
-
+        en: |-
+          ```hsc
+          (render_effects <boolean>)
+          (render_effects true)
+          (render_effects false)
+          ```
+          Render game effects if `true`
     - slug: render_lights
-      type: (render_lights <boolean>)
       info:
-        en: Enables/disables dynamic lights
-        es: 
-      ex: '`(render_lights true)` <br/> `(render_lights false)`'
-
+        en: |-
+          ```hsc
+          (render_lights <boolean>)
+          (render_lights true)
+          (render_lights false)
+          ```
+          Enables/disables dynamic lights
     - slug: scenery_animation_start
-      type: (scenery_animation_start <scenery> <animation_graph> <string>)
       info:
-        en: Starts a custom animation playing on a piece of scenery
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (scenery_animation_start <scenery> <animation_graph> <string>)
+          ```
+          Starts a custom animation playing on a piece of scenery
     - slug: scenery_animation_start_at_frame
-      type: (scenery_animation_start_at_frame <scenery> <animation_graph> <string> <short>)
       info:
-        en: Starts a custom animation playing on a piece of scenery at a specific frame
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (scenery_animation_start_at_frame <scenery> <animation_graph> <string>
+          <short>)
+
+          ```
+
+          Starts a custom animation playing on a piece of scenery at a specific
+          frame
     - slug: script_recompile
-      type: (script_recompile)
       info:
-        en: Recompiles scripts
-        es: 
-      ex: '`(script_recompile)`'
+        en: |-
+          ```hsc
+          (script_recompile)
 
+          ```
+          Recompiles scripts
     - slug: script_screen_effect_set_value
-      type: (script_screen_effect_set_value <short> <real>)
       info:
-        en: Sets a screen effect script value
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (script_screen_effect_set_value <short> <real>)
+          ```
+          Sets a screen effect script value
     - slug: set_digital_forward_throttle
-      type: (set_digital_forward_throttle <short> <real>)
       info:
-        en: Sets the amount of forward throttle applied by digital device stimuli
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (set_digital_forward_throttle <short> <real>)
+          ```
+          Sets the amount of forward throttle applied by digital device stimuli
     - slug: set_digital_pitch_increment
-      type: (set_digital_pitch_increment <short> <real>)
       info:
-        en: Sets the increment in pitch applied by digital device stimuli
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (set_digital_pitch_increment <short> <real>)
+          ```
+          Sets the increment in pitch applied by digital device stimuli
     - slug: set_digital_strafe_throttle
-      type: (set_digital_strafe_throttle <short> <real>)
       info:
-        en: Sets the amount of strafe throttle applied by digital device stimuli
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (set_digital_strafe_throttle <short> <real>)
+          ```
+          Sets the amount of strafe throttle applied by digital device stimuli
     - slug: set_digital_yaw_increment
-      type: (set_digital_yaw_increment <short> <real>)
       info:
-        en: Sets the increment in yaw applied by digital device stimuli
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (set_digital_yaw_increment <short> <real>)
+          ```
+          Sets the increment in yaw applied by digital device stimuli
     - slug: set_gamepad_forward_threshold
-      type: (set_gamepad_forward_threshold <short> <real>)
       info:
-        en: Sets the threshold beyond which gamepad movement is full forward throttle
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (set_gamepad_forward_threshold <short> <real>)
+
+          ```
+
+          Sets the threshold beyond which gamepad movement is full forward
+          throttle
     - slug: set_gamepad_pitch_scale
-      type: (set_gamepad_pitch_scale <short> <real>)
       info:
-        en: Sets the scale for gamepad control of pitch
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (set_gamepad_pitch_scale <short> <real>)
+          ```
+          Sets the scale for gamepad control of pitch
     - slug: set_gamepad_strafe_threshold
-      type: (set_gamepad_strafe_threshold <short> <real>)
       info:
-        en: Sets the threshold beyond which gamepad movement is full strafe throttle
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (set_gamepad_strafe_threshold <short> <real>)
+
+          ```
+
+          Sets the threshold beyond which gamepad movement is full strafe
+          throttle
     - slug: set_gamepad_yaw_scale
-      type: (set_gamepad_yaw_scale <short> <real>)
       info:
-        en: Sets the scale for gamepad control of yaw
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (set_gamepad_yaw_scale <short> <real>)
+          ```
+          Sets the scale for gamepad control of yaw
     - slug: set_gamma
-      type: (set_gamma <long>)
       info:
-        en: Set the gamma
-        es: 
-      ex: '`(set_gamma 200)`'
-
+        en: |-
+          ```hsc
+          (set_gamma <long>)
+          (set_gamma 200)
+          ```
+          Set the gamma
     - slug: set_mouse_forward_threshold
-      type: (set_mouse_forward_threshold <short> <real>)
       info:
-        en: Sets the threshold beyond which mouse movement is full forward throttle
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (set_mouse_forward_threshold <short> <real>)
+
+          ```
+
+          Sets the threshold beyond which mouse movement is full forward
+          throttle
     - slug: set_mouse_pitch_scale
-      type: (set_mouse_pitch_scale <short> <real>)
       info:
-        en: Sets the scale for mouse control of pitch
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (set_mouse_pitch_scale <short> <real>)
+          ```
+          Sets the scale for mouse control of pitch
     - slug: set_mouse_strafe_threshold
-      type: (set_mouse_strafe_threshold <short> <real>)
       info:
-        en: Sets the threshold beyond which mouse movement is full strafe throttle
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (set_mouse_strafe_threshold <short> <real>)
+          ```
+          Sets the threshold beyond which mouse movement is full strafe throttle
     - slug: set_mouse_yaw_scale
-      type: (set_mouse_yaw_scale <short> <real>)
       info:
-        en: Sets the scale for mouse control of yaw
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (set_mouse_yaw_scale <short> <real>)
+          ```
+          Sets the scale for mouse control of yaw
     - slug: set_pitch_rate
-      type: (set_pitch_rate <short> <real>)
       info:
-        en: Sets the yaw rate for the given player number
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (set_pitch_rate <short> <real>)
+          ```
+          Sets the yaw rate for the given player number
     - slug: set_yaw_rate
-      type: (set_yaw_rate <short> <real>)
       info:
-        en: Sets the yaw rate for the given player number
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (set_yaw_rate <short> <real>)
+          ```
+          Sets the yaw rate for the given player number
     - slug: show_hud
-      type: (show_hud <boolean>)
       info:
-        en: Shows or hides the hud
-        es: 
-      ex: '`(show_hud true)` <br/> `(show_hud false)`'
-
+        en: |-
+          ```hsc
+          (show_hud <boolean>)
+          (show_hud true)
+          (show_hud false)
+          ```
+          Shows or hides the hud
     - slug: show_hud_help_text
-      type: (show_hud_help_text <boolean>)
       info:
-        en: Shows or hides the hud help text
-        es: 
-      ex: '`(show_hud_help_text true)` <br/> `(show_hud_help_text false)`'
-
+        en: |-
+          ```hsc
+          (show_hud_help_text <boolean>)
+          (show_hud_help_text true)
+          (show_hud_help_text false)
+          ```
+          Shows or hides the hud help text
     - slug: show_hud_timer
-      type: (show_hud_timer <boolean>)
       info:
-        en: Displays the hud timer
-        es:
-      ex: '`(show_hud_timer true)` <br/> `(show_hud_timer false)`'
-
+        en: |-
+          ```hsc
+          (show_hud_timer <boolean>)
+          (show_hud_timer true)
+          (show_hud_timer false)
+          ```
+          Displays the hud timer
     - slug: show_player_update_stats
-      type: (show_player_update_stats)
       info:
-        en: Shows update history playback stats
-        es: 
-      ex: '`(show_player_update_stats)`'
+        en: |-
+          ```hsc
+          (show_player_update_stats)
 
+          ```
+          Shows update history playback stats
     - slug: sound_cache_dump_to_file
-      type: (sound_cache_dump_to_file)
       info:
-        en: 
-        es: 
-      ex: '`(sound_cache_dump_to_file)`'
+        en: |
+          ```hsc
+          (sound_cache_dump_to_file)
 
+          ```
     - slug: sound_cache_flush
-      type: (sound_cache_flush)
       info:
-        en: 
-        es: 
-      ex: '`(sound_cache_flush)`'
+        en: |
+          ```hsc
+          (sound_cache_flush)
 
+          ```
     - slug: sound_class_set_gain
-      type: (sound_class_set_gain <string> <real> <short>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (sound_class_set_gain <string> <real> <short>)
+
+          ```
+
           Changes the gain on the specified sound class(es) to the specified
           game over the specified number of ticks.
-        es: 
-      ex: 
-
     - slug: sound_eax_enabled
-      type: (sound_eax_enabled)
       info:
-        en: Returns true if EAX extensions are enabled
-        es: 
-      ex: '`(sound_eax_enabled)`'
+        en: |-
+          ```hsc
+          (sound_eax_enabled)
 
+          ```
+          Returns true if EAX extensions are enabled
     - slug: sound_enable
-      type: (sound_enable <boolean>)
       info:
-        en: Enables or disables all sound
-        es: 
-      ex: '`(sound_enable true)` <br/> `(sound_enable false)`'
-
+        en: |-
+          ```hsc
+          (sound_enable <boolean>)
+          (sound_enable true)
+          (sound_enable false)
+          ```
+          Enables or disables all sound
     - slug: sound_enable_eax
-      type: (sound_enable_eax <boolean>)
       info:
-        en: Enable or disable EAX extensions
-        es: 
-      ex: '`(sound_enable_eax true)` <br/> `(sound_enable_eax false)`'
-
+        en: |-
+          ```hsc
+          (sound_enable_eax <boolean>)
+          (sound_enable_eax true)
+          (sound_enable_eax false)
+          ```
+          Enable or disable EAX extensions
     - slug: sound_enable_hardware
-      type: (sound_enable_hardware <boolean> <boolean>)
       info:
-        en: Enable or disable hardware sound buffers
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (sound_enable_hardware <boolean> <boolean>)
+          ```
+          Enable or disable hardware sound buffers
     - slug: sound_get_effects_gain
-      type: (sound_get_effects_gain)
       info:
-        en: Returns the game's effects gain
-        es: 
-      ex: '`(sound_get_effects_gain)`'
+        en: |-
+          ```hsc
+          (sound_get_effects_gain)
 
+          ```
+          Returns the game's effects gain
     - slug: sound_get_gain
-      type: (sound_get_gain <string>)
       info:
-        en: Absolutely do not use this either
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (sound_get_gain <string>)
+          ```
+          Absolutely do not use this either
     - slug: sound_get_master_gain
-      type: (sound_get_master_gain)
       info:
-        en: Returns the game's master gain
-        es: 
-      ex: '`(sound_get_master_gain)`'
+        en: |-
+          ```hsc
+          (sound_get_master_gain)
 
+          ```
+          Returns the game's master gain
     - slug: sound_get_music_gain
-      type: (sound_get_music_gain)
       info:
-        en: Returns the game's music gain
-        es: 
-      ex: '`(sound_get_music_gain)`'
+        en: |-
+          ```hsc
+          (sound_get_music_gain)
 
+          ```
+          Returns the game's music gain
     - slug: sound_get_supplementary_buffers
-      type: (sound_get_supplementary_buffers)
       info:
-        en: Get the amount of supplementary buffers
-        es: 
-      ex: '`(sound_get_supplementary_buffers)`'
+        en: |-
+          ```hsc
+          (sound_get_supplementary_buffers)
 
+          ```
+          Get the amount of supplementary buffers
     - slug: sound_impulse_predict
-      type: (sound_impulse_predict <sound> <boolean>)
       info:
-        en: Loads an impulse sound into the sound cache ready for playback
-        es: 
-      ex: >
-        `(sound_impulse_predict "sound\sfx\impulse\ting\ting" true)` <br/>
-        `(sound_impulse_predict "sound\sfx\impulse\ting\ting" false)`
-
+        en: |-
+          ```hsc
+          (sound_impulse_predict <sound> <boolean>)
+          (sound_impulse_predict "sound\sfx\impulse\ting\ting" true)
+          (sound_impulse_predict "sound\sfx\impulse\ting\ting" false)
+          ```
+          Loads an impulse sound into the sound cache ready for playback
     - slug: sound_impulse_start
-      type: (sound_impulse_start <sound> <object> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (sound_impulse_start <sound> <object> <real>)
+
+          ```
+
           Plays an impulse sound from the specified source object (or "none"),
           with the specified scale
-        es: 
-      ex: 
-
     - slug: sound_impulse_stop
-      type: (sound_impulse_stop <sound>)
       info:
-        en: Stops the specified impulse sound
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (sound_impulse_stop <sound>)
+          ```
+          Stops the specified impulse sound
     - slug: sound_impulse_time
-      type: (sound_impulse_time <sound>)
       info:
-        en: Returns the time remaining for the specified impulse sound
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (sound_impulse_time <sound>)
+          ```
+          Returns the time remaining for the specified impulse sound
     - slug: sound_looping_predict
-      type: (sound_looping_predict <looping_sound>)
       info:
-        en: 
-        es: 
-      ex: 
-
+        en: |
+          ```hsc
+          (sound_looping_predict <looping_sound>)
+          ```
     - slug: sound_looping_set_alternate
-      type: (sound_looping_set_alternate <looping_sound> <boolean>)
       info:
-        en: Enables or disables the alternate loop/alternate end for a looping sound
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (sound_looping_set_alternate <looping_sound> <boolean>)
+
+          ```
+
+          Enables or disables the alternate loop/alternate end for a looping
+          sound
     - slug: sound_looping_set_scale
-      type: (sound_looping_set_scale <looping_sound> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (sound_looping_set_scale <looping_sound> <real>)
+
+          ```
+
           Changes the scale of the sound (which should affect the volume) within
           the range 0 to 1
-        es: 
-      ex: 
-
     - slug: sound_looping_start
-      type: (sound_looping_start <looping_sound> <object> <real>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (sound_looping_start <looping_sound> <object> <real>)
+
+          ```
+
           Plays a looping sound from the specified source object (or "none"),
           with the specified scale
-        es: 
-      ex: 
-
     - slug: sound_looping_stop
-      type: (sound_looping_stop <looping_sound>)
       info:
-        en: Stops the specified looping sound
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (sound_looping_stop <looping_sound>)
+          ```
+          Stops the specified looping sound
     - slug: sound_set_effects_gain
-      type: (sound_set_effects_gain <real>)
       info:
-        en: Set the game's effects gain
-        es: 
-      ex: '`(sound_set_effects_gain 2.0)`'
-
+        en: |-
+          ```hsc
+          (sound_set_effects_gain <real>)
+          (sound_set_effects_gain 2.0)
+          ```
+          Set the game's effects gain
     - slug: sound_set_env
-      type: (sound_set_env <short>)
       info:
-        en: Change environment preset
-        es: 
-      ex: '`(sound_set_env 1)`'
-
+        en: |-
+          ```hsc
+          (sound_set_env <short>)
+          (sound_set_env 1)
+          ```
+          Change environment preset
     - slug: sound_set_factor
-      type: (sound_set_factor <real>)
       info:
-        en: Set the DSound factor value
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (sound_set_factor <real>)
+          ```
+          Set the DSound factor value
     - slug: sound_set_gain
-      type: (sound_set_gain <string> <real>)
       info:
-        en: Absolutely do not use this
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (sound_set_gain <string> <real>)
+          ```
+          Absolutely do not use this
     - slug: sound_set_master_gain
-      type: (sound_set_master_gain <real>)
       info:
-        en: Set the game's master gain
-        es: 
-      ex: '`(sound_set_master_gain 0.5)`'
-
+        en: |-
+          ```hsc
+          (sound_set_master_gain <real>)
+          (sound_set_master_gain 0.5)
+          ```
+          Set the game's master gain
     - slug: sound_set_music_gain
-      type: (sound_set_music_gain <real>)
       info:
-        en: Set the game's music gain
-        es: 
-      ex: '`(sound_set_music_gain 3.0)`'
-
+        en: |-
+          ```hsc
+          (sound_set_music_gain <real>)
+          (sound_set_music_gain 3.0)
+          ```
+          Set the game's music gain
     - slug: sound_set_rolloff
-      type: (sound_set_rolloff <real>)
       info:
-        en: Set the DSound rolloff value
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (sound_set_rolloff <real>)
+          ```
+          Set the DSound rolloff value
     - slug: sound_set_supplementary_buffers
-      type: (sound_set_supplementary_buffers <short> <boolean>)
       info:
-        en: Set the amount of supplementary buffers
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (sound_set_supplementary_buffers <short> <boolean>)
+          ```
+          Set the amount of supplementary buffers
     - slug: structure_bsp_index
-      type: (structure_bsp_index)
       info:
-        en: Returns the current structure bsp index
-        es: 
-      ex: '`(structure_bsp_index)`'
+        en: |-
+          ```hsc
+          (structure_bsp_index)
 
+          ```
+          Returns the current structure bsp index
     - slug: structure_lens_flares_place
-      type: (structure_lens_flares_place)
       info:
-        en: Places lens flares in the structure bsp
-        es: 
-      ex: '`(structure_lens_flares_place)`'
+        en: |-
+          ```hsc
+          (structure_lens_flares_place)
 
+          ```
+          Places lens flares in the structure bsp
     - slug: sv_ban
-      type: (sv_ban <player index or name> [duration(m,h,d)])
       info:
-        en: >
-          **(Server Only)** The given player is kicked and added to `banned.txt`.
-          Use `sv_players` to find the player's index. You can also specify an
-          optional duration for timed ban. Use 0 to follow `sv_ban_penalty` rules.
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (sv_ban <player index or name> [duration(m,h,d)])
+
+          ```
+
+          **(Server Only)** The given player is kicked and added to
+          `banned.txt`. Use `sv_players` to find the player's index. You can
+          also specify an optional duration for timed ban. Use 0 to follow
+          `sv_ban_penalty` rules.
     - slug: sv_banlist
-      type: (sv_banlist)
       info:
-        en: Print a list of banned players
-        es: 
-      ex: '`(sv_banlist)`'
+        en: |-
+          ```hsc
+          (sv_banlist)
 
+          ```
+          Print a list of banned players
     - slug: sv_end_game
-      type: (sv_end_game)
       info:
-        en: End the current game
-        es: 
-      ex: '`(sv_end_game)`'
+        en: |-
+          ```hsc
+          (sv_end_game)
 
+          ```
+          End the current game
     - slug: sv_kick
-      type: (sv_kick <player index or name>)
       info:
-        en: '**(Server Only)** Kicks the specified player from the server'
-        es: 
-      ex: '`(sv_kick "Micro$oft")` Kicks player `Micro$oft`'
-
+        en: |-
+          ```hsc
+          (sv_kick <player index or name>)
+          (sv_kick "Micro$oft")
+          ```
+          **(Server Only)** Kicks the specified player from the server
     - slug: sv_map
-      type: (sv_map <string> <string>)
       info:
-        en: >
-          **(Server Only)** Usage: `sv_map <mapname> <variantname>` <br/>
-          Aborts the current game and playlist, and starts the specified game
-          mode on the specified map.
-        es: 
-      ex: '`(sv_map bloodgulch slayer)`'
+        en: >-
+          ```hsc
 
+          (sv_map <string> <string>)
+
+          (sv_map bloodgulch slayer)
+
+          ```
+
+          **(Server Only)** Usage: `sv_map <mapname> <variantname>` <br/> Aborts
+          the current game and playlist, and starts the specified game mode on
+          the specified map.
     - slug: sv_map_next
-      type: (sv_map_next)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (sv_map_next)
+
+
+          ```
+
           **(Server Only)** Abort the current game and begin the next game in
           the playlist
-        es: 
-      ex: '`(sv_map_next)`'
-
     - slug: sv_map_reset
-      type: (sv_map_reset)
       info:
-        en: '**(Server Only)** Reset the current game'
-        es: 
-      ex: '`(sv_map_reset)`'
+        en: |-
+          ```hsc
+          (sv_map_reset)
 
+          ```
+          **(Server Only)** Reset the current game
     - slug: sv_mapcycle
-      type: (sv_mapcycle)
       info:
-        en: Print the contents of the currently loaded mapcycle file
-        es: 
-      ex: '`(sv_mapcycle)`'
+        en: |-
+          ```hsc
+          (sv_mapcycle)
 
+          ```
+          Print the contents of the currently loaded mapcycle file
     - slug: sv_mapcycle_add
-      type: (sv_mapcycle_add <string> <string>)
       info:
-        en: >
-          Usage: `sv_mapcycle_add <mapname> <variantname>` <br/>
-          Add a new game to the end of the mapcycle file
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (sv_mapcycle_add <string> <string>)
+
+          ```
+
+          Usage: `sv_mapcycle_add <mapname> <variantname>` <br/> Add a new game
+          to the end of the mapcycle file
     - slug: sv_mapcycle_begin
-      type: (sv_mapcycle_begin)
       info:
-        en: Restart or begin playing the currently loaded mapcycle file
-        es: 
-      ex: '`(sv_mapcycle_begin)`'
+        en: |-
+          ```hsc
+          (sv_mapcycle_begin)
 
+          ```
+          Restart or begin playing the currently loaded mapcycle file
     - slug: sv_mapcycle_del
-      type: (sv_mapcycle_del <long>)
       info:
-        en: >
-          Usage: `sv_mapcycle_del <index>` <br/>
-          Removes the game at `<index>`. Will not affect running games.
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (sv_mapcycle_del <long>)
+
+          ```
+
+          Usage: `sv_mapcycle_del <index>` <br/> Removes the game at `<index>`.
+          Will not affect running games.
     - slug: sv_maxplayers
-      type: (sv_maxplayers [short])
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (sv_maxplayers [short])
+
+          (sv_maxplayers 10)
+
+          ```
+
           Sets the maximum number of players (between 1 and 16). If no value is
           given, displays the current value.
-        es: 
-      ex: '`(sv_maxplayers 10)`'
-
     - slug: sv_name
-      type: (sv_name [name])
       info:
-        en: Sets the name of the server. If no name is given, displays the current name.
-        es: 
-      ex: >
-        `(sv_name)` Displays current sever name <br/>
-        `(sv_name "yousuck")` Sets "yousuck" as sever name
+        en: >-
+          ```hsc
 
+          (sv_name [name])
+
+          (sv_name)
+
+          (sv_name "yousuck")
+
+          ```
+
+          Sets the name of the server. If no name is given, displays the current
+          name.
     - slug: sv_parameters_dump
-      type: (sv_parameters_dump)
       info:
-        en: Dumps out the local parameter configuration to `parameters.cfg` file
-        es: 
-      ex: '`(sv_parameters_dump)`'
+        en: |-
+          ```hsc
+          (sv_parameters_dump)
 
+          ```
+          Dumps out the local parameter configuration to `parameters.cfg` file
     - slug: sv_parameters_reload
-      type: (sv_parameters_reload)
       info:
-        en: '**(Server Only)** Reloads the `parameters.cfg` file'
-        es: 
-      ex: '`(sv_parameters_reload)`'
+        en: |-
+          ```hsc
+          (sv_parameters_reload)
 
+          ```
+          **(Server Only)** Reloads the `parameters.cfg` file
     - slug: sv_password
-      type: (sv_password [password])
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (sv_password [password])
+
+          (sv_password)
+
+          (sv_password "1234")
+
+          ```
+
           Sets the server password. If no password is given, displays the
           current password.
-        es: 
-      ex: >
-        `(sv_password)` Displays sever password <br/>
-        `(sv_password "1234")` Sets "1234" as sever password
-
     - slug: sv_players
-      type: (sv_players)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (sv_players)
+
+
+          ```
+
           **(Server Only)** Prints (*not* returns) a list of players in the
           current game
-        es: 
-      ex: '`(sv_players)`'
-
     - slug: sv_status
-      type: (sv_status)
       info:
-        en: Shows status of the server
-        es: 
-      ex: '`(sv_status)`'
+        en: |-
+          ```hsc
+          (sv_status)
 
+          ```
+          Shows status of the server
     - slug: sv_unban
-      type: (sv_unban <long>)
       info:
-        en: >
-          **(Server Only)** Usage: `sv_unban <index>` <br/>
-          Removes player at index in the banlist. Use `sv_banlist` to find the index.
-        es: 
-      ex: '`(sv_unban 1)`'
+        en: >-
+          ```hsc
 
+          (sv_unban <long>)
+
+          (sv_unban 1)
+
+          ```
+
+          **(Server Only)** Usage: `sv_unban <index>` <br/> Removes player at
+          index in the banlist. Use `sv_banlist` to find the index.
     - slug: switch_bsp
-      type: (switch_bsp <short>)
       info:
-        en: Switches to a different structure bsp
-        es: 
-      ex: '`(switch_bsp 0)`'
-
+        en: |-
+          ```hsc
+          (switch_bsp <short>)
+          (switch_bsp 0)
+          ```
+          Switches to a different structure bsp
     - slug: texture_cache_flush
-      type: (texture_cache_flush)
       info:
-        en: Don't make me kick your ass
-        es: 
-      ex: '`(texture_cache_flush)`'
+        en: |-
+          ```hsc
+          (texture_cache_flush)
 
+          ```
+          Don't make me kick your ass
     - slug: time_code_reset
-      type: (time_code_reset)
       info:
-        en: Resets the time code timer
-        es: 
-      ex: '`(time_code_reset)`'
+        en: |-
+          ```hsc
+          (time_code_reset)
 
+          ```
+          Resets the time code timer
     - slug: time_code_show
-      type: (time_code_show <boolean>)
       info:
-        en: Shows the time code timer
-        es: 
-      ex: '`(time_code_show true)` <br/> `(time_code_show false)`'
-
+        en: |-
+          ```hsc
+          (time_code_show <boolean>)
+          (time_code_show true)
+          (time_code_show false)
+          ```
+          Shows the time code timer
     - slug: time_code_start
-      type: (time_code_start <boolean>)
       info:
-        en: Starts/stops the time code timer
-        es: 
-      ex: '`(time_code_start true)` <br/> `(time_code_start false)`'
-
+        en: |-
+          ```hsc
+          (time_code_start <boolean>)
+          (time_code_start true)
+          (time_code_start false)
+          ```
+          Starts/stops the time code timer
     - slug: ui_widget_show_path
-      type: (ui_widget_show_path <boolean>)
       info:
-        en: 
-        es: 
-      ex: >
-        `(ui_widget_show_path true)` <br/>
-        `(ui_widget_show_path false)`
-
+        en: |
+          ```hsc
+          (ui_widget_show_path <boolean>)
+          (ui_widget_show_path true)
+          (ui_widget_show_path false)
+          ```
     - slug: unbind
-      type: (unbind <string> <string>)
       info:
-        en: Unbinds an input device/button combination
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (unbind <string> <string>)
+          ```
+          Unbinds an input device/button combination
     - slug: unit
-      type: (unit <object>)
       info:
-        en: Converts an object to a unit
-        es: 
-      ex: '`(unit chief)`'
-
+        en: |-
+          ```hsc
+          (unit <object>)
+          (unit (list_get (players) 0))
+          ```
+          Converts an object to a unit
     - slug: unit_aim_without_turning
-      type: (unit_aim_without_turning <unit> <boolean>)
       info:
-        en: Allows a unit to aim in place without turning
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (unit_aim_without_turning <unit> <boolean>)
+          ```
+          Allows a unit to aim in place without turning
     - slug: unit_can_blink
-      type: (unit_can_blink <unit> <boolean>)
       info:
-        en: Allows a unit to blink or not (units never blink when they are dead)
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (unit_can_blink <unit> <boolean>)
+          ```
+          Allows a unit to blink or not (units never blink when they are dead)
     - slug: unit_close
-      type: (unit_close <unit>)
       info:
-        en: Closes the hatches on a given unit
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (unit_close <unit>)
+          ```
+          Closes the hatches on a given unit
     - slug: unit_custom_animation_at_frame
-      type: (unit_custom_animation_at_frame <unit> <animation_graph> <string> <boolean> <short>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (unit_custom_animation_at_frame <unit> <animation_graph> <string>
+          <boolean> <short>)
+
+          ```
+
           Starts a custom animation playing on a unit at a specific frame index
           (interpolates into animation if next to last parameter is `true`).
-        es: 
-      ex: 
-
     - slug: unit_doesnt_drop_items
-      type: (unit_doesnt_drop_items <object_list>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (unit_doesnt_drop_items <object_list>)
+
+          (unit_doesnt_drop_items (players))
+
+          ```
+
           Prevents any of the given units from dropping weapons or grenades when
           they die
-        es: 
-      ex: '`(unit_doesnt_drop_items (players))`'
-
     - slug: unit_enter_vehicle
-      type: (unit_enter_vehicle <unit> <vehicle> <string>)
       info:
-        en: Puts the specified unit in the specified vehicle (in the named seat)
-        es: 
-      ex: '`(unit_enter_vehicle player0 warthog_mp_2 "gunner")`'
-
+        en: |-
+          ```hsc
+          (unit_enter_vehicle <unit> <vehicle> <string>)
+          (unit_enter_vehicle player0 warthog_mp_2 "gunner")
+          ```
+          Puts the specified unit in the specified vehicle (in the named seat)
     - slug: unit_exit_vehicle
-      type: (unit_exit_vehicle <unit>)
       info:
-        en: Makes a unit exit its vehicle
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (unit_exit_vehicle <unit>)
+          ```
+          Makes a unit exit its vehicle
     - slug: unit_get_current_flashlight_state
-      type: (unit_get_current_flashlight_state <unit>)
       info:
-        en: Gets the unit's current flashlight state
-        es: 
-      ex: '`(unit_get_current_flashlight_state player0)`'
-
+        en: |-
+          ```hsc
+          (unit_get_current_flashlight_state <unit>)
+          (unit_get_current_flashlight_state player0)
+          ```
+          Gets the unit's current flashlight state
     - slug: unit_get_custom_animation_time
-      type: (unit_get_custom_animation_time <unit>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (unit_get_custom_animation_time <unit>)
+
+          ```
+
           Returns the number of ticks remaining in a unit's custom animation (or
           zero, if the animation is over)
-        es: 
-      ex: 
-
     - slug: unit_get_health
-      type: (unit_get_health <unit>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (unit_get_health <unit>)
+
+          (unit_get_health player0)
+
+          ```
+
           Returns the health of the given unit as a `real` between 0 and 1].
           Returns -1 if the unit does not exist.
-        es: 
-      ex: '`(unit_get_health player0)`'
-
     - slug: unit_get_shield
-      type: (unit_get_shield <unit>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (unit_get_shield <unit>)
+
+          (unit_get_shield player0)
+
+          ```
+
           Returns the shield of the given unit as a `real` between 0 and 1.
           Returns -1 if the unit does not exist.
-        es: 
-      ex: '`(unit_get_shield player0)`'
-
     - slug: unit_get_total_grenade_count
-      type: (unit_get_total_grenade_count <unit>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (unit_get_total_grenade_count <unit>)
+
+          (unit_get_total_grenade_count player0)
+
+          ```
+
           Returns the total number of grenades for the given unit, or 0 if the
           unit does not exist.
-        es: 
-      ex: '`(unit_get_total_grenade_count player0)`'
-
     - slug: unit_has_weapon
-      type: (unit_has_weapon <unit> <object_definition>)
       info:
-        en: Returns `true` if the <unit> has <object> as a weapon, `false` otherwise
-        es: 
-      ex: '`(unit_has_weapon player0 plasma_cannon)`'
+        en: >-
+          ```hsc
 
+          (unit_has_weapon <unit> <object_definition>)
+
+          (unit_has_weapon player0 plasma_cannon)
+
+          ```
+
+          Returns `true` if the <unit> has <object> as a weapon, `false`
+          otherwise
     - slug: unit_has_weapon_readied
-      type: (unit_has_weapon_readied <unit> <object_definition>)
       info:
-        en: Returns `true` if the <unit> has <object> as the primary weapon, `false` otherwise
-        es: 
-      ex: '`(unit_has_weapon_readied player0 plasma_cannon)`'
+        en: >-
+          ```hsc
 
+          (unit_has_weapon_readied <unit> <object_definition>)
+
+          (unit_has_weapon_readied player0 plasma_cannon)
+
+          ```
+
+          Returns `true` if the <unit> has <object> as the primary weapon,
+          `false` otherwise
     - slug: unit_impervious
-      type: (unit_impervious <object_list> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (unit_impervious <object_list> <boolean>)
+
+          (unit_impervious (players) true)
+
+          (unit_impervious (players) false)
+
+          ```
+
           Prevents any of the given units from being knocked around or playing
           ping animations
-        es: 
-      ex: >
-        `(unit_impervious (players) true)` <br/>
-        `(unit_impervious (players) false)`
-
     - slug: unit_is_playing_custom_animation
-      type: (unit_is_playing_custom_animation <unit>)
       info:
-        en: Returns `true` if the given unit is still playing a custom animation
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (unit_is_playing_custom_animation <unit>)
+          ```
+          Returns `true` if the given unit is still playing a custom animation
     - slug: unit_kill
-      type: (unit_kill <unit>)
       info:
-        en: Kills a given unit, no saving throw
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (unit_kill <unit>)
+          ```
+          Kills a given unit, no saving throw
     - slug: unit_kill_silent
-      type: (unit_kill_silent <unit>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (unit_kill_silent <unit>)
+
+          ```
+
           Kills a given unit silently (doesn't make them play their normal death
           animation or sound)
-        es: 
-      ex: 
-
     - slug: unit_open
-      type: (unit_open <unit>)
       info:
-        en: Opens the hatches on the given unit
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (unit_open <unit>)
+          ```
+          Opens the hatches on the given unit
     - slug: unit_set_current_vitality
-      type: (unit_set_current_vitality <unit> <real> <real>)
       info:
-        en: Sets a unit's current body and shield vitality
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (unit_set_current_vitality <unit> <real> <real>)
+          ```
+          Sets a unit's current body and shield vitality
     - slug: unit_set_desired_flashlight_state
-      type: (unit_set_desired_flashlight_state <unit> <boolean>)
       info:
-        en: Sets the unit's desired flashlight state
-        es: 
-      ex: >
-        `(unit_set_desired_flashlight_state player0 true)` <br/>
-        `(unit_set_desired_flashlight_state player0 false)`
-
+        en: |-
+          ```hsc
+          (unit_set_desired_flashlight_state <unit> <boolean>)
+          (unit_set_desired_flashlight_state player0 true)
+          (unit_set_desired_flashlight_state player0 false)
+          ```
+          Sets the unit's desired flashlight state
     - slug: unit_set_emotion
-      type: (unit_set_emotion <unit> <short>)
       info:
-        en: Sets a unit's facial expression (-1 is none, other values depend on unit)
-        es: 
-      ex: 
+        en: >-
+          ```hsc
 
+          (unit_set_emotion <unit> <short>)
+
+          ```
+
+          Sets a unit's facial expression (-1 is none, other values depend on
+          unit)
     - slug: unit_set_emotion_animation
-      type: (unit_set_emotion_animation <unit> <string>)
       info:
-        en: Sets the emotion animation to be used for the given unit
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (unit_set_emotion_animation <unit> <string>)
+          ```
+          Sets the emotion animation to be used for the given unit
     - slug: unit_set_enterable_by_player
-      type: (unit_set_enterable_by_player <unit> <boolean>)
       info:
-        en: Can be used to prevent the player from entering a vehicle
-        es: 
-      ex: >
-        `(unit_set_enterable_by_player warthog_mp_3 true)` <br/>
-        `(unit_set_enterable_by_player warthog_mp_3 false)`
-
+        en: |-
+          ```hsc
+          (unit_set_enterable_by_player <unit> <boolean>)
+          (unit_set_enterable_by_player warthog_mp_3 true)
+          (unit_set_enterable_by_player warthog_mp_3 false)
+          ```
+          Can be used to prevent the player from entering a vehicle
     - slug: unit_set_maximum_vitality
-      type: (unit_set_maximum_vitality <unit> <real> <real>)
       info:
-        en: Sets a unit's maximum body and shield vitality
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (unit_set_maximum_vitality <unit> <real> <real>)
+          ```
+          Sets a unit's maximum body and shield vitality
     - slug: unit_set_seat
-      type: (unit_set_seat <unit> <string>)
       info:
-        en: This unit will assume the named seat
-        es: 
-      ex: '`(unit_set_seat player0 "driver")`'
-
+        en: |-
+          ```hsc
+          (unit_set_seat <unit> <string>)
+          (unit_set_seat player0 "driver")
+          ```
+          This unit will assume the named seat
     - slug: unit_solo_player_integrated_night_vision_is_active
-      type: (unit_solo_player_integrated_night_vision_is_active)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (unit_solo_player_integrated_night_vision_is_active)
+
+
+          ```
+
           Returns whether the night-vision mode could be activated via the
           flashlight button
-        es: 
-      ex: '`(unit_solo_player_integrated_night_vision_is_active)`'
-
     - slug: unit_stop_custom_animation
-      type: (unit_stop_custom_animation <unit>)
       info:
-        en: Stops the custom animation running on the given unit
-        es: 
-      ex: 
-
+        en: |-
+          ```hsc
+          (unit_stop_custom_animation <unit>)
+          ```
+          Stops the custom animation running on the given unit
     - slug: unit_suspended
-      type: (unit_suspended <unit> <boolean>)
       info:
-        en: Stops gravity from working on the given unit
-        es: 
-      ex: >
-        `(unit_suspended player0 true)` <br/>
-        `(unit_suspended player0 false)`
-
+        en: |-
+          ```hsc
+          (unit_suspended <unit> <boolean>)
+          (unit_suspended player0 true)
+          (unit_suspended player0 false)
+          ```
+          Stops gravity from working on the given unit
     - slug: units_set_current_vitality
-      type: (units_set_current_vitality <object_list> <real> <real>)
       info:
-        en: Sets a group of units' current body and shield vitality
-        es: 
-      ex: '`(units_set_current_vitality (players) 75 75)`'
-
+        en: |-
+          ```hsc
+          (units_set_current_vitality <object_list> <real> <real>)
+          (units_set_current_vitality (players) 75 75)
+          ```
+          Sets a group of units' current body and shield vitality
     - slug: units_set_desired_flashlight_state
-      type: (units_set_desired_flashlight_state <object_list> <boolean>)
       info:
-        en: Sets the units' desired flashlight state
-        es: 
-      ex: >
-        `(units_set_desired_flashlight_state (players) true)` <br/>
-        `(units_set_desired_flashlight_state (players) false)`
-
+        en: |-
+          ```hsc
+          (units_set_desired_flashlight_state <object_list> <boolean>)
+          (units_set_desired_flashlight_state (players) true)
+          (units_set_desired_flashlight_state (players) false)
+          ```
+          Sets the units' desired flashlight state
     - slug: units_set_maximum_vitality
-      type: (units_set_maximum_vitality <object_list> <real> <real>)
       info:
-        en: Sets a group of units' maximum body and shield vitality
-        es: 
-      ex: '`(units_set_maximum_vitality (players) 75 75)`'
-
+        en: |-
+          ```hsc
+          (units_set_maximum_vitality <object_list> <real> <real>)
+          (units_set_maximum_vitality (players) 75 75)
+          ```
+          Sets a group of units' maximum body and shield vitality
     - slug: vehicle_driver
-      type: (vehicle_driver <unit>)
       info:
-        en: Returns the driver of a vehicle
-        es: 
-      ex: '`(vehicle_driver the_ghost)`'
-
+        en: |-
+          ```hsc
+          (vehicle_driver <unit>)
+          (vehicle_driver the_ghost)
+          ```
+          Returns the driver of a vehicle
     - slug: vehicle_gunner
-      type: (vehicle_gunner <unit>)
       info:
-        en: Returns the gunner of a vehicle
-        es: 
-      ex: '`(vehicle_gunner the_warthog)`'
-
+        en: |-
+          ```hsc
+          (vehicle_gunner <unit>)
+          (vehicle_gunner the_warthog)
+          ```
+          Returns the gunner of a vehicle
     - slug: vehicle_hover
-      type: (vehicle_hover <vehicle> <boolean>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (vehicle_hover <vehicle> <boolean>)
+
+          (vehicle_hover "vehicles\warthog\warthog" true)
+
+          (vehicle_hover "vehicles\warthog\warthog" false)
+
+          ```
+
           Stops the vehicle from running real physics and runs fake hovering
           physics instead
-        es: 
-      ex: >
-        `(vehicle_hover "vehicles\warthog\warthog" true)` <br/>
-        `(vehicle_hover "vehicles\warthog\warthog" false)`
-
     - slug: vehicle_load_magic
-      type: (vehicle_load_magic <unit> <string> <object_list>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (vehicle_load_magic <unit> <string> <object_list>)
+
+          (vehicle_load_magic pelican_1 "" (players))
+
+          ```
+
           Makes a list of units (named or by encounter) magically get into a
           vehicle, in the substring-specified seats (e.g. "CD-passenger". Empty
           string matches all seats).
-        es: 
-      ex: '`(vehicle_load_magic pelican_1 "" (players))`'
-
     - slug: vehicle_riders
-      type: (vehicle_riders <unit>)
       info:
-        en: Returns a list of all riders in a vehicle
-        es: 
-      ex: '`(vehicle_riders the_tanks)`'
-
+        en: |-
+          ```hsc
+          (vehicle_riders <unit>)
+          (vehicle_riders the_tanks)
+          ```
+          Returns a list of all riders in a vehicle
     - slug: vehicle_test_seat
-      type: (vehicle_test_seat <vehicle> <string> <unit>)
       info:
-        en: Tests whether the named seat has a specified unit in it
-        es: 
-      ex: '`(vehicle_test_seat banshee_mp_1 "driver" player0)`'
-
+        en: |-
+          ```hsc
+          (vehicle_test_seat <vehicle> <string> <unit>)
+          (vehicle_test_seat banshee_mp_1 "driver" player0)
+          ```
+          Tests whether the named seat has a specified unit in it
     - slug: vehicle_test_seat_list
-      type: (vehicle_test_seat_list <vehicle> <string> <object_list>)
       info:
-        en: Tests whether the named seat has an object in the object list
-        es: 
-      ex: '`(vehicle_test_seat_list ghost_mp_2 "driver" (players))`'
-
+        en: |-
+          ```hsc
+          (vehicle_test_seat_list <vehicle> <string> <object_list>)
+          (vehicle_test_seat_list ghost_mp_2 "driver" (players))
+          ```
+          Tests whether the named seat has an object in the object list
     - slug: vehicle_unload
-      type: (vehicle_unload <unit> <string>)
       info:
-        en: >
+        en: >-
+          ```hsc
+
+          (vehicle_unload <unit> <string>)
+
+          (vehicle_unload hog w-driver)
+
+          ```
+
           Makes units get out of a vehicle from the substring-specified seats
           (e.g. "CD-passenger". Empty string matches all seats).
-        es: 
-      ex: '`(vehicle_unload hog w-driver)`'
-
     - slug: version
-      type: (version)
       info:
-        en: Prints the build version
-        es: 
-      ex: '`(version)`'
+        en: |-
+          ```hsc
+          (version)
 
+          ```
+          Prints the build version
     - slug: volume_teleport_players_not_inside
-      type: (volume_teleport_players_not_inside <trigger_volume> <cutscene_flag>)
       info:
-        en: Moves all players outside a specified trigger volume to a specified flag
-        es: 
-      ex: '`(volume_teleport_players_not_inside hidden_trigger omgtelprot)`'
+        en: >-
+          ```hsc
 
+          (volume_teleport_players_not_inside <trigger_volume> <cutscene_flag>)
+
+          (volume_teleport_players_not_inside hidden_trigger omgtelprot)
+
+          ```
+
+          Moves all players outside a specified trigger volume to a specified
+          flag
     - slug: volume_test_object
-      type: (volume_test_object <trigger_volume> <object>)
       info:
-        en: Returns `true` if the specified object is within the specified volume
-        es: 
-      ex: '`(volume_test_object trig_volume1 player0)`'
-
+        en: |-
+          ```hsc
+          (volume_test_object <trigger_volume> <object>)
+          (volume_test_object trig_volume1 player0)
+          ```
+          Returns `true` if the specified object is within the specified volume
     - slug: volume_test_objects
-      type: (volume_test_objects <trigger_volume> <object_list>)
       info:
-        en: Returns `true` if any of the specified objects are within the specified volume
-        es: 
-      ex: '`(volume_test_objects trig_volume2 (players))`'
+        en: >-
+          ```hsc
 
+          (volume_test_objects <trigger_volume> <object_list>)
+
+          (volume_test_objects trig_volume2 (players))
+
+          ```
+
+          Returns `true` if any of the specified objects are within the
+          specified volume
     - slug: volume_test_objects_all
-      type: (volume_test_objects_all <trigger_volume> <object_list>)
       info:
-        en: Returns `true` if any of the specified objects are within the specified volume
-        es: 
-      ex: '`(volume_test_objects_all trig_volume2 (players))`'
+        en: >-
+          ```hsc
 
+          (volume_test_objects_all <trigger_volume> <object_list>)
+
+          (volume_test_objects_all trig_volume2 (players))
+
+          ```
+
+          Returns `true` if any of the specified objects are within the
+          specified volume

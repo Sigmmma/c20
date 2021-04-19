@@ -19,7 +19,7 @@ const slugify = (title) => title
 const escapeHtml = (s) => commonTags.safeHtml`${s}`;
 const html = commonTags.stripIndent(commonTags.html);
 
-const classes = (classArr) => classArr.length > 0 ? `class="${classArr.join(" ")}"` : "";
+const classes = (classArr) => classArr && classArr.length > 0 ? `class="${classArr.join(" ")}"` : "";
 
 const localizer = R.curry((bundle, lang) => {
   return (key, safe) => {
@@ -34,8 +34,8 @@ const anchor = (href, body) => html`
   <a href="${href}">${body}</a>
 `;
 
-const jump = (text, body, style=true) => html`
-  <a href="#${slugify(text)}" ${style && 'class="header-anchor"'}>${body}</a>
+const jump = (id, body) => html`
+  <a class="header-anchor" href="#${slugify(id)}">${body}</a>
 `;
 
 const defAnchor = (href) => html`<sup>${anchor(href, "?")}</sup>`;
@@ -49,8 +49,7 @@ const tagAnchor = (ctx, tagName, hash) => {
 
 const heading = (hTag, title, cssClass) => html`
   <${hTag} id="${slugify(title)}"${cssClass ? ` class=${cssClass}` : ""}>
-    ${title}
-    <a href="#${slugify(title)}" class="header-anchor"></a>
+    ${jump(slugify(title), title)}
   </${hTag}>
 `;
 

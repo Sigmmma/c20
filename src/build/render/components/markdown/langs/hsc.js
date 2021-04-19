@@ -63,6 +63,16 @@ function build(consoleMode) {
       className: 'literal',
       begin: /\b(true|false|easy|normal|hard|impossible)\b/
     };
+    var PLACEHOLDER = {
+      className: 'comment placeholder',
+      begin: "<[^\\s=]",
+      end: "\\S>"
+    };
+    var PLACEHOLDER_OPTIONAL = {
+      className: 'comment placeholder',
+      begin: "\\[\\S",
+      end: "\\S\\]"
+    };
     var LIST = consoleMode ? {
       begin: '(?:\\(|^)',
       end: '(\\)|$|;)'
@@ -87,7 +97,7 @@ function build(consoleMode) {
       excludeEnd: true,
       starts: BODY,
     };
-    var DEFAULT_CONTAINS = [COMMENT, LIST, STRING, NUMBER, LITERAL, SYMBOL];
+    var DEFAULT_CONTAINS = [COMMENT, PLACEHOLDER, PLACEHOLDER_OPTIONAL, LIST, STRING, NUMBER, LITERAL, SYMBOL];
 
     var GLOBAL = {
       beginKeywords: globals,
@@ -105,14 +115,14 @@ function build(consoleMode) {
       ].concat(DEFAULT_CONTAINS)
     };
 
-    LIST.contains = [hljs.COMMENT('comment', ''), GLOBAL, NAME, OPERATOR, BODY];
+    LIST.contains = [hljs.COMMENT('comment', ''), PLACEHOLDER, PLACEHOLDER_OPTIONAL, GLOBAL, NAME, OPERATOR, BODY];
     BODY.contains = DEFAULT_CONTAINS;
 
     return {
       name: 'HaloScript',
       aliases: ['hsc'],
       illegal: /\S/,
-      contains: [LIST, STRING, COMMENT, NUMBER, LITERAL]
+      contains: [LIST, PLACEHOLDER, PLACEHOLDER_OPTIONAL, STRING, COMMENT, NUMBER, LITERAL]
     };
   };
 };

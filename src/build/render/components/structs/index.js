@@ -1,6 +1,6 @@
 const fs = require("fs");
 const path = require("path");
-const {html, escapeHtml, slugify, detailsList, tagAnchor, renderHex} = require("../bits");
+const {html, escapeHtml, slugify, detailsList, tagAnchor, renderHex, jump} = require("../bits");
 const {instantiateType, buildTypeDefs} = require("../../../../data/structs");
 const localizations = require("./localizations");
 
@@ -118,7 +118,7 @@ function structDisplay(ctx, opts) {
     const pathIdAttr = slugify(pathId.join("-"));
     return html`
       <span title="${pathTitle}" id="${pathIdAttr}">
-        ${escapeHtml(fieldName)}<a href="#${pathIdAttr}" class="header-anchor"></a>
+        ${jump(pathIdAttr, escapeHtml(fieldName))}
       </span>
     `;
   }

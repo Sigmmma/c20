@@ -1,10 +1,13 @@
 const yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
-const {html, jump, slugify} = require("./bits");
+const {html, jump, slugify, anchor} = require("./bits");
+const R = require("ramda");
+
+const AUTO_INDEX_THRESHOLD = 100;
 
 function renderTableYaml(ctx, optsYaml) {
-  const {renderMarkdown} = require("./markdown"); //todo: untangle circular dep
+  const {renderMarkdown, renderMarkdownInline} = require("./markdown"); //todo: untangle circular dep
 
   const opts = yaml.load(optsYaml);
 
@@ -60,10 +63,10 @@ function renderTableYaml(ctx, optsYaml) {
     if (format === "text") {
       return renderMarkdown(ctx, translated);
     } else if (format === "code") {
-      return renderMarkdown(ctx, "`" + translated + "`");
+      return renderMarkdownInline(ctx, "`" + translated + "`");
     } else if (format.startsWith("codeblock")) {
       const syntax = format.split("-")[1]; // Could be undef. That's ok.
-      return renderMarkdown(ctx, "```" + syntax + "\n" + translated + "\n```");
+      return renderMarkdown(ctx, "\n```" + syntax + "\n" + translated + "\n```");
     } // Could implement others here
     else {
       throw YamlError(`unsupported column format: ${format}`);
@@ -79,36 +82,63 @@ function renderTableYaml(ctx, optsYaml) {
   // A column's content can optionally be used as a row link.
   const hrefCol = data.columns.find(col => col.href);
 
+  let rowsSorted = data.rows;
+  const rowsIndex = [];
+  if (opts.rowSortKey) {
+    rowsSorted = R.sortBy(
+      R.compose(R.toUpper, R.prop(opts.rowSortKey)),
+      data.rows
+    );
+    if (opts.rowLinks && rowsSorted.length >= AUTO_INDEX_THRESHOLD) {
+      rowsSorted.forEach((row, index) => {
+        const indexKey = row[opts.rowSortKey][0].toUpperCase();
+        if (rowsIndex.length == 0 || rowsIndex[rowsIndex.length - 1].indexKey != indexKey) {
+          rowsIndex.push({indexKey, id: id(row, index)});
+        }
+      });
+    }
+  }
+
   // Construct the table.
   // If rowLinks is enabled but no column is marked as href, an additional
   // column will be inserted for a link to each row.
   return html`
+    ${rowsIndex.length > 0 && html`
+      <p>
+        <nav>
+          ${rowsIndex.map(firstRow => anchor(`#${firstRow.id}`, firstRow.indexKey)).join(" · ")}
+        </nav>
+      </p>
+    `}
     <table>
       <thead>
         <tr>
-        ${ opts.rowLinks && !hrefCol && "<th>#</th>" }
-        ${ data.columns.map(col =>
-          html`<th style="${col.style}">${markdownToHtml('text', col.name)}</th>`
-        ) }
+          ${data.columns.map((col, i) => html`
+            <th style="${col.style}" colspan="${opts.rowLinks && !hrefCol && i == 0 ? 2: 1}">
+              ${markdownToHtml('text', col.name)}
+            </th>
+          `)}
         </tr>
       </thead>
       <tbody>
-        ${ data.rows.map((row, index) =>
-          html`<tr id="${opts.rowLinks && id(row, index)}">
-            ${ opts.rowLinks && !hrefCol && `<td>${jump(id(row, index))}</td>` }
-            ${ data.columns.map(col =>
-              html`<td style="${col.style}">${
-                opts.rowLinks && col === hrefCol ?
-                  jump(
-                    id(row, index),
-                    markdownToHtml(col.format, row[col.key]),
-                    false
-                  ) :
-                  markdownToHtml(col.format, row[col.key])
-              }</td>`
-            ) }
-          </tr>`
-        ) }
+        ${rowsSorted.map((row, index) => html`
+          <tr id="${opts.rowLinks && id(row, index)}">
+            ${opts.rowLinks && !hrefCol && html`
+              <td>${jump(id(row, index))}</td>
+            `}
+            ${data.columns.map(col => html`
+              <td style="${col.style}">
+    ${opts.rowLinks && col === hrefCol ?
+      jump(
+        id(row, index),
+        markdownToHtml(col.format, row[col.key]),
+      ) :
+      markdownToHtml(col.format, row[col.key])
+    }
+              </td>
+            `)}
+          </tr>
+        `)}
       </tbody>
     </table>
   `;

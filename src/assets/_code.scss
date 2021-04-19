@@ -15,12 +15,21 @@ code {
   }
 
   &.language-hsc:before {
+    transition: opacity $transition-time;
     content: ".hsc";
     float: right;
-    opacity: 0.5;
+    opacity: 0;
     color: $fg-faded;
     font-style: italic;
   }
+
+  .placeholder {
+    text-decoration: underline;
+  }
+}
+
+pre:hover code.language-hsc:before {
+  opacity: 0.5;
 }
 
 pre:hover code.language-console > .hljs-name:before {

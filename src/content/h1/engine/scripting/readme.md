@@ -21,20 +21,20 @@ screen.
 
 
 # HSC reference
-[Additional important script engine info below][scripting#gotchas]
+[Additional important script engine info below][scripting#gotchas-and-limits]
 
 ## Basics
 Scripts have the following structure:
 ```hsc
 (script <script type> <return type (static scripts only)> <script name>
-	<code>
+  <code>
 )
 ```
 
 Example:
 ```hsc
 (script startup say_this_map_r0x
-	(sv_say "This map r0xx0rz!")
+  (sv_say "This map r0xx0rz!")
 )
 ```
 
@@ -72,31 +72,11 @@ rowLinks: true
 
 
 ## Functions
-[A][scripting#functions-activate-nav-point-flag] ·
-[B][scripting#functions-bind] ·
-[C][scripting#functions-camera-control] ·
-[D][scripting#functions-damage-new] ·
-[E][scripting#functions-effect-new] ·
-[F][scripting#functions-fade-in] ·
-[G][scripting#functions-game-all-quiet] ·
-[H][scripting#functions-hammer-begin] ·
-[I][scripting#functions-input-activate-joy] ·
-[L][scripting#functions-list-count] ·
-[M][scripting#functions-magic-melee-attack] ·
-[N][scripting#functions-net-graph-clear] ·
-[O][scripting#functions-object-beautify] ·
-[P][scripting#functions-pause-hud-timer] ·
-[Q][scripting#functions-quit] ·
-[R][scripting#functions-rasterizer-decals-flush] ·
-[S][scripting#functions-scenery-animation-start] ·
-[T][scripting#functions-texture-cache-flush] ·
-[U][scripting#functions-ui-widget-show-path] ·
-[V][scripting#functions-vehicle-driver]
-
 ```.table
 tableDefs: hsc.yml
 tableName: Functions
 rowLinks: true
+rowSortKey: slug
 ```
 
 
@@ -140,7 +120,7 @@ blocks, as well as `static` scripts.
 ```
 
 
-# Gotchas
+# Gotchas and limits
 [Back to HSC reference][scripting#hsc-reference]
 
 ## Using begin_random in startup scripts
