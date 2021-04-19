@@ -258,17 +258,17 @@ this program is *purely* for making writing HSC easier. Scripts using the Halo
 Script Preprocessor are still subject to all of the above limits.
 
 For example, the following block:
-```c
+```hsc
 #define UNIT_IN_COMBAT (= 6 (ai_command_list_status my_unit))
 
 (if UNIT_IN_COMBAT
-	sleep(30)
+  (sleep 30)
 )
 ```
 ...becomes this:
 ```hsc
 (if (= 6 (ai_command_list_status my_unit))
-	sleep(30)
+  (sleep 30)
 )
 ```
 

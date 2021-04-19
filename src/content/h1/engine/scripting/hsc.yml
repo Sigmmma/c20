@@ -1028,7 +1028,7 @@ Functions:
         en: |-
           ```hsc
           (ai_debug_speak <string>)
-          (ai_speak "pain minor")
+          (ai_debug_speak "pain minor")
           ```
           Makes the currently selected AI speak a vocalization
     - slug: ai_debug_speak_list
@@ -1036,7 +1036,7 @@ Functions:
         en: |-
           ```hsc
           (ai_debug_speak_list <string>)
-          (ai_speak_list "involuntary")
+          (ai_debug_speak_list "involuntary")
           ```
           Makes the currently selected AI speak a list of vocalizations
     - slug: ai_debug_teleport_to

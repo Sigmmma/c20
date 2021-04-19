@@ -59,6 +59,14 @@ function build(consoleMode) {
         relevance: 0
       }
     );
+    //hsc preprocessor extension
+    var PREPROCESSOR = hljs.COMMENT(
+      '#',
+      '$',
+      {
+        className: 'meta'
+      }
+    );
     var LITERAL = {
       className: 'literal',
       begin: /\b(true|false|easy|normal|hard|impossible)\b/
@@ -122,7 +130,7 @@ function build(consoleMode) {
       name: 'HaloScript',
       aliases: ['hsc'],
       illegal: /\S/,
-      contains: [LIST, PLACEHOLDER, PLACEHOLDER_OPTIONAL, STRING, COMMENT, NUMBER, LITERAL]
+      contains: [LIST, PLACEHOLDER, PLACEHOLDER_OPTIONAL, STRING, COMMENT, NUMBER, LITERAL, PREPROCESSOR]
     };
   };
 };
