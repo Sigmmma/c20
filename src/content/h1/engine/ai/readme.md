@@ -31,6 +31,8 @@ _Firing positions_ are discrete locations stored in the [scenario's][scenario] e
 
 For example, the AI may move to a firing position if it has a clear line of sight to an enemy's _presumed_ location (remember, AI have an incomplete knowledge model) and is in [the actor's desired range][actor_variant#tag-field-desired-combat-range].
 
+Firing positions are also used when AI are scripted to following a target with the [`ai_follow_*`][scripting#functions-ai-follow-target-players] functions. They will move to firing positions with the same letter label that their target is near.
+
 # Pathfinding
 Pathfinding is the system which allows AI to navigate between locations. It relies in part on precomputed [BSP pathfinding data][scenario_structure_bsp#pathfinding-data] and [object pathfinding spheres][model_collision_geometry#pathfinding-spheres] to know available paths and possible obstacles.
 

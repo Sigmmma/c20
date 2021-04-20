@@ -1155,14 +1155,16 @@ Functions:
           ```hsc
           (ai_follow_target_players <ai>)
           ```
-          Sets the follow target for an encounter to be the closest player
+          Sets the follow target for an encounter to be the closest player. AI
+          follow their target by [moving to firing positions][ai#firing-positions]
+          near their target with the same letter label.
     - slug: ai_follow_target_unit
       info:
         en: |-
           ```hsc
           (ai_follow_target_unit <ai> <unit>)
           ```
-          Sets the follow target for an encounter to be a specific unit
+          Sets the follow target for an encounter to be a specific [unit][].
     - slug: ai_force_active
       info:
         en: >-

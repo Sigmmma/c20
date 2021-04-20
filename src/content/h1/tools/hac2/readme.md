@@ -1,0 +1,1 @@
+**Halo Anticheat 2** (**HAC2**) is a client mod for Halo Custom Edition which adds features like server bookmarks, FOV and HUD adjustment, automatic map downloading via [HaloNet][map-sharing#halonet], and more.

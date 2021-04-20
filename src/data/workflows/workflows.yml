@@ -5,6 +5,8 @@
 # by referencing these names with `workflowName`, `toolName`, or `tagName`.
 workflowItems:
   # mods:
+  HAC2:
+    page: hac2
   Chimera:
     page: chimera
     authors:
@@ -495,6 +497,10 @@ workflowItems:
 # opts in to workflows, these may appear in the metabox to show similar or
 # alternative items.
 similarItems:
+  -
+    - OpenSauce
+    - Chimera
+    - HAC2
   -
     - wrl
     - wrl 2.0
