@@ -15,6 +15,7 @@ See also:
 * [The renderer][renderer]
 * [The physics engine][physics-engine]
 * [AI system][ai]
+* [Sound system][sound-system]
 * [In-memory game state][game-state]
 * [Scripting engine][scripting]
 * [Netcode][]

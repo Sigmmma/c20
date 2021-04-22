@@ -2316,7 +2316,7 @@ type_defs:
           max: 65534
         comments:
           en: >
-            Axis-aligned volumes which can be used in scripts to test for the
+            Cuboid volumes which can be used in [scripts][scripting] to test for the
             presence an object: `(volume_test_object "volume_name" <object>)`.
             An example use case is [kill volumes][kill-volumes].
       - name: recorded_animations

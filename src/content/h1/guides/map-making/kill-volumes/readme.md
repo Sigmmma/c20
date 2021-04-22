@@ -1,4 +1,4 @@
-Map authors who want to prevent players from reaching certain areas can use **kill volumes** (aka **death barriers** or **kill zones**). These are cubic 3D trigger volumes which are scripted to instantly kill any player that enters them. Adding them to a map is easy:
+Map authors who want to prevent players from reaching certain areas can use **kill volumes** (aka **death barriers** or **kill zones**). These are cuboid 3D trigger volumes which are scripted to instantly kill any player that enters them. Adding them to a map is easy:
 
 # Adding trigger volumes
 The first step is to add trigger volumes to your map's [scenario][] using [Sapien][].
@@ -6,9 +6,10 @@ The first step is to add trigger volumes to your map's [scenario][] using [Sapie
 1. Select "Trigger volumes" in the Hierarchy view
 2. Right click on the ground in the Game window to place a volume
 3. Left click and drag the faces of the new volume to adjust its size
-4. Using the Properties palette, give the volume a suitable name like `kill_volume` (should be lower-case)
+4. Rotate the volume using the active marker if needed
+5. Using the Properties palette, give the volume a suitable name like `kill_volume` (should be lower-case)
 
-Trigger volumes are axis-aligned and cannot be rotated, so you may need to place multiple with different names.
+To cover a larger area, you may need to place multiple volumes with different names.
 
 ![](trigger-volume.jpg)
 
@@ -72,7 +73,7 @@ In the script file, paste the following:
 )
 ```
 
-Because Halo scripts do not support [loops][], we must repeat the test for all 16 players (indexes 0 to 15). For a singleplayer map, just testing for players 0 and 1 is sufficient. Note that the script contains the name of the trigger volume, `kill_volume`, so adjust if your volume is named differently.
+Because Halo scripts do not support [loops][], we must repeat the test for all 16 players (indexes 0 to 15). For a singleplayer map, just testing for players 0 and 1 is sufficient since MCC only supports up to 2 players in co-op. Note that the script contains the name of the trigger volume, `kill_volume`, so adjust if your volume is named differently.
 
 If you created multiple trigger volumes, you will need to repeat the above code for each trigger volume name.
 

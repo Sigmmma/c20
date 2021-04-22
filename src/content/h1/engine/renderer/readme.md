@@ -7,7 +7,14 @@
   </figcaption>
 </figure>
 
-The **renderer** or **rasterizer** is the system of [Halo's engine][engine] responsible for drawing the scene to the screen. Each [ported edition][h1] of Halo has a slightly different renderer in terms of how well it reproduces the classic Xbox appearance. Halo uses the DirectX 9 API and shader version 2.0, being an early adopter of programmable shaders. Since support in user hardware was not as widespread as today, the renderer can be configured with [argumements][arguments#graphics-options] to use older shader versions or even [fixed function][ff] compatibility.
+The **renderer** or **rasterizer** is the system of [Halo's engine][engine] responsible for drawing the scene to the screen. Each [ported edition][h1] of Halo has a slightly different renderer in terms of how well it reproduces the classic Xbox appearance.
+
+Gearbox-era Halo uses the DirectX 9 API and shader version 2.0, being an early adopter of programmable shaders. Since support in user hardware was not as widespread as today, the renderer can be configured with [argumements][arguments#graphics-options] to use older shader versions or even [fixed function][ff] compatibility.
+
+# Texture cache
+Textures to be rendered are loaded in a texture cache in memory. When a texture must be drawn that is not in this cache, it will be loaded from a [map cache file][map] (possibly a shared resource map) or the [tags directory][tags] depending on the build of the engine. This is called a _cache miss_ and, because it takes some time to stream data, the engine may not render the desired effect. This is the reason why weapons will sometimes not produce projectile [decals][decal] on the first impact.
+
+The [predicted resources][scenario#tag-field-predicted-resources] block seen in some tag classes are meant to give the engine a hint about what textures (and sounds) should be cached.
 
 # Lighting
 Halo's lighting engine benefits from the fact that there is no dynamic time of day. Most dynamic [lights][light] are small. Similar to other games of the time, Halo uses "baked" global illumination in the form of [lightmaps][]. This lighting information is used on the environment ([BSP][scenario_structure_bsp]) and encodes localized light directions and tinting to shade [objects][object].

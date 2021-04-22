@@ -35,3 +35,6 @@ let damage_done = material_damage_multiplier * raw_damage;
 Or, more visually:
 
 ![Diagram of damage falloff for the shotgun](shotgun-example.png)
+
+# Related commands
+* [`cheat_reflexive_damage_effects`][developer-console#debugfunctions-cheat-reflexive-damage-effects]: makes it easier to test damage effects

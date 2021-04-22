@@ -1,0 +1,16 @@
+title:
+  en: Developer console
+stub: true
+img: prompt.jpg
+imgCaption:
+  en: The console prompt open with a command entered
+keywords:
+  en:
+    - script
+    - hsc
+    - bsl
+    - devmode
+    - console
+thanks:
+  Conscars:
+    en: Documenting developer mode functions

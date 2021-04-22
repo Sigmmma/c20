@@ -108,7 +108,7 @@ ValueTypes:
       info:
         en: A value that is true or false
         es:
-      ex: true <br/> false
+      ex: true <br/> false <br/> 1 <br/> 0
 
     - type: real
       info:
@@ -551,7 +551,7 @@ OperatorsAndKeywords:
         )
         ```
         Evaluates the sequence of expressions in random order and returns the
-        last value evaluated
+        last value evaluated. This function can contain up to 32 expressions.
       ex: |
         ```hsc
         (begin_random
@@ -752,8 +752,8 @@ Functions:
 
           ```
 
-          Activates a nav point type <string> attached to (local) player <unit>
-          anchored to a flag with a vertical offset <real>. If the player is not
+          Activates a nav point type `<string>` attached to (local) player `<unit>`
+          anchored to a flag with a vertical offset `<real>`. If the player is not
           local to the machine, this will fail.
     - slug: activate_nav_point_object
       info:
@@ -1705,7 +1705,8 @@ Functions:
           (breakable_surfaces_enable <boolean>)
           (breakable_surfaces_enable false)
           ```
-          Enables or disables breakability of all breakable surfaces on level
+          Enables or disables breakability of all [breakable surfaces][scenario_structure_bsp#tag-field-breakable-surfaces]
+          in the level
     - slug: breakable_surfaces_reset
       info:
         en: |-
@@ -1748,7 +1749,7 @@ Functions:
         en: |-
           ```hsc
           (camera_set_dead <unit>)
-          (camera_set_dead player0)
+          (camera_set_dead (player0))
           ```
           Makes the scripted camera zoom out around a unit as if it were dead
     - slug: camera_set_first_person
@@ -1756,7 +1757,7 @@ Functions:
         en: |-
           ```hsc
           (camera_set_first_person <unit>)
-          (camera_set_first_person player0)
+          (camera_set_first_person (player0))
           ```
           Makes the scripted camera follow a unit
     - slug: camera_set_relative
@@ -1778,7 +1779,6 @@ Functions:
           ```hsc
 
           (camera_time)
-
 
           ```
 
@@ -2074,7 +2074,7 @@ Functions:
         en: |-
           ```hsc
           (damage_object <damage> <object>)
-          (damage_object "weapons\assault rifle\bullet" player0)
+          (damage_object "weapons\assault rifle\bullet" (player0))
           ```
           Causes the specified damage at the specified object
     - slug: deactivate_nav_point_flag
@@ -2189,7 +2189,6 @@ Functions:
         en: |-
           ```hsc
           (debug_tags)
-
           ```
           Writes all memory being used by tag files into tag_dump.txt
     - slug: delete_save_game_files
@@ -2444,16 +2443,15 @@ Functions:
         en: |-
           ```hsc
           (game_lost)
-
           ```
-          Causes the player to revert to his previous saved game
+          Causes the player to revert to their previous saved checkpoint. For
+          example, this is used when Keyes dies in _Truth and Reconciliation_.
     - slug: game_revert
       info:
         en: >-
           ```hsc
 
           (game_revert)
-
 
           ```
 
@@ -2464,7 +2462,6 @@ Functions:
         en: |-
           ```hsc
           (game_reverted)
-
           ```
           Don't use this for anything, you black-hearted bastards
     - slug: game_safe_to_save
@@ -2473,7 +2470,6 @@ Functions:
           ```hsc
 
           (game_safe_to_save)
-
 
           ```
 
@@ -2486,7 +2482,6 @@ Functions:
 
           (game_safe_to_speak)
 
-
           ```
 
           Returns false if it would be a bad idea to save the player's game
@@ -2498,7 +2493,6 @@ Functions:
 
           (game_save)
 
-
           ```
 
           Checks to see if it is safe to save game, then saves (gives up after 8
@@ -2508,16 +2502,15 @@ Functions:
         en: |-
           ```hsc
           (game_save_cancel)
-
           ```
-          Cancels any pending game_save, timeout or not
+          Cancels any pending `game_save`, timeout or not. This prevents a
+          checkpoint from being created during a known loss situation.
     - slug: game_save_no_timeout
       info:
         en: >-
           ```hsc
 
           (game_save_no_timeout)
-
 
           ```
 
@@ -2536,9 +2529,8 @@ Functions:
         en: |-
           ```hsc
           (game_saving)
-
           ```
-          Checks to see if the game is trying to save the map
+          Checks to see if the game is trying to save a checkpoint
     - slug: game_skip_ticks
       info:
         en: |-
@@ -2570,7 +2562,6 @@ Functions:
 
           (game_won)
 
-
           ```
 
           Causes the player to successfully finish the current level and move on
@@ -2581,7 +2572,6 @@ Functions:
           ```hsc
 
           (garbage_collect_now)
-
 
           ```
 
@@ -3111,8 +3101,8 @@ Functions:
         en: |-
           ```hsc
           (object_set_collideable <object> <boolean>)
-          (object_set_collideable player0 true)
-          (object_set_collideable player0 false)
+          (object_set_collideable (player0) true)
+          (object_set_collideable (player0) false)
           ```
           `false` prevents any object from colliding with the given object
     - slug: object_set_facing
@@ -3120,7 +3110,7 @@ Functions:
         en: |-
           ```hsc
           (object_set_facing <object> <cutscene_flag>)
-          (object_set_facing player0 blue_base_flag)
+          (object_set_facing (player0) blue_base_flag)
           ```
           Turns the specified object in the direction of the specified flag
     - slug: object_set_melee_attack_inhibited
@@ -3128,8 +3118,8 @@ Functions:
         en: |-
           ```hsc
           (object_set_melee_attack_inhibited <object> <boolean>)
-          (object_set_melee_attack_inhibited player0 true)
-          (object_set_melee_attack_inhibited player0 false)
+          (object_set_melee_attack_inhibited (player0) true)
+          (object_set_melee_attack_inhibited (player0) false)
           ```
           `false` prevents object from using melee attack
     - slug: object_set_permutation
@@ -3139,7 +3129,7 @@ Functions:
 
           (object_set_permutation <object> <string> <string>)
 
-          (object_set_permutation player0 "right arm" ~damaged)
+          (object_set_permutation (player0) "right arm" ~damaged)
 
           ```
 
@@ -3150,8 +3140,8 @@ Functions:
         en: |-
           ```hsc
           (object_set_ranged_attack_inhibited <object> <boolean>)
-          (object_set_ranged_attack_inhibited player0 true)
-          (object_set_ranged_attack_inhibited player0 false)
+          (object_set_ranged_attack_inhibited (player0) true)
+          (object_set_ranged_attack_inhibited (player0) false)
           ```
           `false` prevents object from using ranged attack
     - slug: object_set_scale
@@ -3161,7 +3151,9 @@ Functions:
 
           (object_set_scale <object> <real> <short>)
 
-          (object_set_scale player0 1.5 10)
+          (object_set_scale (player0) 1.5 10)
+
+          (object_set_scale insertion_pelican 0.25 30)
 
           ```
 
@@ -3172,7 +3164,7 @@ Functions:
         en: |-
           ```hsc
           (object_set_shield <object> <real>)
-          (object_set_shield player0 1.0)
+          (object_set_shield (player0) 1.0)
           ```
           Sets the shield vitality of the specified object (between 0 and 1)
     - slug: object_teleport
@@ -3180,7 +3172,7 @@ Functions:
         en: |-
           ```hsc
           (object_teleport <object> <cutscene_flag>)
-          (object_teleport player0 red_base_flag)
+          (object_teleport (player0) red_base_flag)
           ```
           Moves the specified object to the specified flag
     - slug: object_type_predict
@@ -3222,7 +3214,7 @@ Functions:
 
           (objects_can_see_object <object_list> <object> <real>)
 
-          (objects_can_see_object the_warthogs player0 90)
+          (objects_can_see_object the_warthogs (player0) 90)
 
           ```
 
@@ -3283,28 +3275,28 @@ Functions:
           (playback)
           ```
           Starts game in film playback mode
-    - slug: player0_joystick_set_is_normal
+    - slug: (player0)_joystick_set_is_normal
       info:
         en: |-
           ```hsc
-          (player0_joystick_set_is_normal)
+          ((player0)_joystick_set_is_normal)
           ```
-          Returns `true` if player0 is using the normal joystick set
-    - slug: player0_look_invert_pitch
+          Returns `true` if (player0) is using the normal joystick set
+    - slug: (player0)_look_invert_pitch
       info:
         en: |-
           ```hsc
-          (player0_look_invert_pitch <boolean>)
+          ((player0)_look_invert_pitch <boolean>)
           ```
-          Invert player0's look
-    - slug: player0_look_pitch_is_inverted
+          Invert (player0)'s look
+    - slug: (player0)_look_pitch_is_inverted
       info:
         en: |-
           ```hsc
-          (player0_look_pitch_is_inverted)
+          ((player0)_look_pitch_is_inverted)
 
           ```
-          Returns `true` if player0's look pitch is inverted
+          Returns `true` if (player0)'s look pitch is inverted
     - slug: player_action_test_accept
       info:
         en: >-
@@ -3697,7 +3689,7 @@ Functions:
         en: |-
           ```hsc
           (recording_kill <unit>)
-          (recording_kill player0)
+          (recording_kill (player0))
           ```
           Kill the specified unit's cutscene recording
     - slug: recording_play
@@ -3734,7 +3726,7 @@ Functions:
         en: |-
           ```hsc
           (recording_time <unit>)
-          (recording_time player0)
+          (recording_time (player0))
           ```
           Return the time remaining in the specified unit's cutscene recording
     - slug: render_effects
@@ -4512,7 +4504,7 @@ Functions:
         en: |-
           ```hsc
           (unit_enter_vehicle <unit> <vehicle> <string>)
-          (unit_enter_vehicle player0 warthog_mp_2 "gunner")
+          (unit_enter_vehicle (player0) warthog_mp_2 "gunner")
           ```
           Puts the specified unit in the specified vehicle (in the named seat)
     - slug: unit_exit_vehicle
@@ -4527,7 +4519,7 @@ Functions:
         en: |-
           ```hsc
           (unit_get_current_flashlight_state <unit>)
-          (unit_get_current_flashlight_state player0)
+          (unit_get_current_flashlight_state (player0))
           ```
           Gets the unit's current flashlight state
     - slug: unit_get_custom_animation_time
@@ -4548,7 +4540,7 @@ Functions:
 
           (unit_get_health <unit>)
 
-          (unit_get_health player0)
+          (unit_get_health (player0))
 
           ```
 
@@ -4561,7 +4553,7 @@ Functions:
 
           (unit_get_shield <unit>)
 
-          (unit_get_shield player0)
+          (unit_get_shield (player0))
 
           ```
 
@@ -4574,7 +4566,7 @@ Functions:
 
           (unit_get_total_grenade_count <unit>)
 
-          (unit_get_total_grenade_count player0)
+          (unit_get_total_grenade_count (player0))
 
           ```
 
@@ -4587,7 +4579,7 @@ Functions:
 
           (unit_has_weapon <unit> <object_definition>)
 
-          (unit_has_weapon player0 plasma_cannon)
+          (unit_has_weapon (player0) plasma_cannon)
 
           ```
 
@@ -4600,7 +4592,7 @@ Functions:
 
           (unit_has_weapon_readied <unit> <object_definition>)
 
-          (unit_has_weapon_readied player0 plasma_cannon)
+          (unit_has_weapon_readied (player0) plasma_cannon)
 
           ```
 
@@ -4665,10 +4657,10 @@ Functions:
         en: |-
           ```hsc
           (unit_set_desired_flashlight_state <unit> <boolean>)
-          (unit_set_desired_flashlight_state player0 true)
-          (unit_set_desired_flashlight_state player0 false)
+          (unit_set_desired_flashlight_state (player0) true)
+          (unit_set_desired_flashlight_state (player0) false)
           ```
-          Sets the unit's desired flashlight state
+          Turns the unit's flashlight on or off
     - slug: unit_set_emotion
       info:
         en: >-
@@ -4708,7 +4700,7 @@ Functions:
         en: |-
           ```hsc
           (unit_set_seat <unit> <string>)
-          (unit_set_seat player0 "driver")
+          (unit_set_seat (player0) "driver")
           ```
           This unit will assume the named seat
     - slug: unit_solo_player_integrated_night_vision_is_active
@@ -4735,8 +4727,8 @@ Functions:
         en: |-
           ```hsc
           (unit_suspended <unit> <boolean>)
-          (unit_suspended player0 true)
-          (unit_suspended player0 false)
+          (unit_suspended (player0) true)
+          (unit_suspended (player0) false)
           ```
           Stops gravity from working on the given unit
     - slug: units_set_current_vitality
@@ -4822,7 +4814,7 @@ Functions:
         en: |-
           ```hsc
           (vehicle_test_seat <vehicle> <string> <unit>)
-          (vehicle_test_seat banshee_mp_1 "driver" player0)
+          (vehicle_test_seat banshee_mp_1 "driver" (player0))
           ```
           Tests whether the named seat has a specified unit in it
     - slug: vehicle_test_seat_list
@@ -4872,7 +4864,7 @@ Functions:
         en: |-
           ```hsc
           (volume_test_object <trigger_volume> <object>)
-          (volume_test_object trig_volume1 player0)
+          (volume_test_object trig_volume1 (player0))
           ```
           Returns `true` if the specified object is within the specified volume
     - slug: volume_test_objects
@@ -4899,5 +4891,5 @@ Functions:
 
           ```
 
-          Returns `true` if any of the specified objects are within the
+          Returns `true` if all of the specified objects are within the
           specified volume

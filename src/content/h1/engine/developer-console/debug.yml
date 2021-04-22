@@ -1,0 +1,3182 @@
+DebugFunctions:
+  columns:
+    - key: info
+      name:
+        en: Function
+      format: text
+  rows:
+    - slug: help
+      info:
+        en: |-
+          ```hsc
+          (help [string])
+          ```
+          Prints help information for a function name.
+    - slug: ai_debug_ballistic_lineoffire_freeze
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_ballistic_lineoffire_freeze)
+          ```
+    - slug: ai_debug_blind
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_blind)
+          ```
+    - slug: ai_debug_communication_focus_enable
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_communication_focus_enable)
+          ```
+    - slug: ai_debug_communication_random_disabled
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_communication_random_disabled)
+          ```
+    - slug: ai_debug_communication_timeout_disabled
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_communication_timeout_disabled)
+          ```
+    - slug: ai_debug_communication_unit_repeat_disabled
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_communication_unit_repeat_disabled)
+          ```
+    - slug: ai_debug_deaf
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_deaf)
+          ```
+    - slug: ai_debug_disable_wounded_sounds
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_disable_wounded_sounds)
+          ```
+    - slug: ai_debug_evaluate_all_positions
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_evaluate_all_positions)
+          ```
+    - slug: ai_debug_fast_los
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_fast_los)
+          ```
+    - slug: ai_debug_flee_always
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_flee_always)
+          ```
+    - slug: ai_debug_force_all_active
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_force_all_active)
+          ```
+    - slug: ai_debug_force_crouch
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_force_crouch)
+          ```
+    - slug: ai_debug_force_vocalizations
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_force_vocalizations)
+          ```
+    - slug: ai_debug_ignore_player
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_ignore_player)
+          ```
+    - slug: ai_debug_invisible_player
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_invisible_player)
+          ```
+    - slug: ai_debug_oversteer_disable
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_oversteer_disable)
+          ```
+    - slug: ai_debug_path
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_path)
+          ```
+    - slug: ai_debug_path_accept_radius
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_path_accept_radius)
+          ```
+    - slug: ai_debug_path_attractor
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_path_attractor)
+          ```
+    - slug: ai_debug_path_attractor_radius
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_path_attractor_radius)
+          ```
+    - slug: ai_debug_path_attractor_weight
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_path_attractor_weight)
+          ```
+    - slug: ai_debug_path_disable_obstacle_avoidance
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_path_disable_obstacle_avoidance)
+          ```
+    - slug: ai_debug_path_disable_smoothing
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_path_disable_smoothing)
+          ```
+    - slug: ai_debug_path_end_freeze
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_path_end_freeze)
+          ```
+    - slug: ai_debug_path_flood
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_path_flood)
+          ```
+    - slug: ai_debug_path_maximum_radius
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_path_maximum_radius)
+          ```
+    - slug: ai_debug_path_start_freeze
+      info:
+        en: |-
+          ```hsc
+          (ai_debug_path_start_freeze)
+          ```
+    - slug: ai_fix_actor_variants
+      info:
+        en: |-
+          ```hsc
+          (ai_fix_actor_variants)
+          ```
+    - slug: ai_fix_defending_guard_firing_positions
+      info:
+        en: |-
+          ```hsc
+          (ai_fix_defending_guard_firing_positions)
+          ```
+    - slug: ai_print_acknowledgement
+      info:
+        en: |-
+          ```hsc
+          (ai_print_acknowledgement)
+          ```
+    - slug: ai_print_allegiance
+      info:
+        en: |-
+          ```hsc
+          (ai_print_allegiance)
+          ```
+    - slug: ai_print_automatic_migration
+      info:
+        en: |-
+          ```hsc
+          (ai_print_automatic_migration)
+          ```
+    - slug: ai_print_bsp_transition
+      info:
+        en: |-
+          ```hsc
+          (ai_print_bsp_transition)
+          ```
+    - slug: ai_print_command_lists
+      info:
+        en: |-
+          ```hsc
+          (ai_print_command_lists)
+          ```
+    - slug: ai_print_communication
+      info:
+        en: |-
+          ```hsc
+          (ai_print_communication)
+          ```
+    - slug: ai_print_communication_player
+      info:
+        en: |-
+          ```hsc
+          (ai_print_communication_player)
+          ```
+    - slug: ai_print_conversations
+      info:
+        en: |-
+          ```hsc
+          (ai_print_conversations)
+          ```
+    - slug: ai_print_damage_modifiers
+      info:
+        en: |-
+          ```hsc
+          (ai_print_damage_modifiers)
+          ```
+    - slug: ai_print_evaluation_statistics
+      info:
+        en: |-
+          ```hsc
+          (ai_print_evaluation_statistics)
+          ```
+    - slug: ai_print_killing_sprees
+      info:
+        en: |-
+          ```hsc
+          (ai_print_killing_sprees)
+          ```
+    - slug: ai_print_lost_speech
+      info:
+        en: |-
+          ```hsc
+          (ai_print_lost_speech)
+          ```
+    - slug: ai_print_major_upgrade
+      info:
+        en: |-
+          ```hsc
+          (ai_print_major_upgrade)
+          ```
+    - slug: ai_print_migration
+      info:
+        en: |-
+          ```hsc
+          (ai_print_migration)
+          ```
+    - slug: ai_print_oversteer
+      info:
+        en: |-
+          ```hsc
+          (ai_print_oversteer)
+          ```
+    - slug: ai_print_placement
+      info:
+        en: |-
+          ```hsc
+          (ai_print_placement)
+          ```
+    - slug: ai_print_pursuit_checks
+      info:
+        en: |-
+          ```hsc
+          (ai_print_pursuit_checks)
+          ```
+    - slug: ai_print_respawn
+      info:
+        en: |-
+          ```hsc
+          (ai_print_respawn)
+          ```
+    - slug: ai_print_rule_values
+      info:
+        en: |-
+          ```hsc
+          (ai_print_rule_values)
+          ```
+    - slug: ai_print_rules
+      info:
+        en: |-
+          ```hsc
+          (ai_print_rules)
+          ```
+    - slug: ai_print_scripting
+      info:
+        en: |-
+          ```hsc
+          (ai_print_scripting)
+          ```
+    - slug: ai_print_secondary_looking
+      info:
+        en: |-
+          ```hsc
+          (ai_print_secondary_looking)
+          ```
+    - slug: ai_print_speech
+      info:
+        en: |-
+          ```hsc
+          (ai_print_speech)
+          ```
+    - slug: ai_print_speech_timers
+      info:
+        en: |-
+          ```hsc
+          (ai_print_speech_timers)
+          ```
+    - slug: ai_print_surprise
+      info:
+        en: |-
+          ```hsc
+          (ai_print_surprise)
+          ```
+    - slug: ai_print_uncovering
+      info:
+        en: |-
+          ```hsc
+          (ai_print_uncovering)
+          ```
+    - slug: ai_print_unfinished_paths
+      info:
+        en: |-
+          ```hsc
+          (ai_print_unfinished_paths)
+          ```
+    - slug: ai_print_vocalizations
+      info:
+        en: |-
+          ```hsc
+          (ai_print_vocalizations)
+          ```
+    - slug: ai_profile_disable
+      info:
+        en: |-
+          ```hsc
+          (ai_profile_disable)
+          ```
+    - slug: ai_profile_random
+      info:
+        en: |-
+          ```hsc
+          (ai_profile_random)
+          ```
+    - slug: ai_render
+      info:
+        en: |-
+          ```hsc
+          (ai_render)
+          ```
+    - slug: ai_render_activation
+      info:
+        en: |-
+          ```hsc
+          (ai_render_activation)
+          ```
+    - slug: ai_render_active_cover_seeking
+      info:
+        en: |-
+          ```hsc
+          (ai_render_active_cover_seeking)
+          ```
+    - slug: ai_render_aiming_validity
+      info:
+        en: |-
+          ```hsc
+          (ai_render_aiming_validity)
+          ```
+    - slug: ai_render_aiming_vectors
+      info:
+        en: |-
+          ```hsc
+          (ai_render_aiming_vectors)
+          ```
+    - slug: ai_render_all_actors
+      info:
+        en: |-
+          ```hsc
+          (ai_render_all_actors)
+          ```
+    - slug: ai_render_audibility
+      info:
+        en: |-
+          ```hsc
+          (ai_render_audibility)
+          ```
+    - slug: ai_render_ballistic_lineoffire
+      info:
+        en: |-
+          ```hsc
+          (ai_render_ballistic_lineoffire)
+          ```
+    - slug: ai_render_burst_geometry
+      info:
+        en: |-
+          ```hsc
+          (ai_render_burst_geometry)
+          ```
+    - slug: ai_render_charge_decisions
+      info:
+        en: |-
+          ```hsc
+          (ai_render_charge_decisions)
+          ```
+    - slug: ai_render_control
+      info:
+        en: |-
+          ```hsc
+          (ai_render_control)
+          ```
+    - slug: ai_render_current_state
+      info:
+        en: |-
+          ```hsc
+          (ai_render_current_state)
+          ```
+    - slug: ai_render_danger_zones
+      info:
+        en: |-
+          ```hsc
+          (ai_render_danger_zones)
+          ```
+    - slug: ai_render_detailed_state
+      info:
+        en: |-
+          ```hsc
+          (ai_render_detailed_state)
+          ```
+    - slug: ai_render_dialogue_variants
+      info:
+        en: |-
+          ```hsc
+          (ai_render_dialogue_variants)
+          ```
+    - slug: ai_render_emotions
+      info:
+        en: |-
+          ```hsc
+          (ai_render_emotions)
+          ```
+    - slug: ai_render_encounter_activeregion
+      info:
+        en: |-
+          ```hsc
+          (ai_render_encounter_activeregion)
+          ```
+    - slug: ai_render_evaluations
+      info:
+        en: |-
+          ```hsc
+          (ai_render_evaluations)
+          ```
+    - slug: ai_render_firing_positions
+      info:
+        en: |-
+          ```hsc
+          (ai_render_firing_positions)
+          ```
+    - slug: ai_render_grenade_decisions
+      info:
+        en: |-
+          ```hsc
+          (ai_render_grenade_decisions)
+          ```
+    - slug: ai_render_gun_positions
+      info:
+        en: |-
+          ```hsc
+          (ai_render_gun_positions)
+          ```
+    - slug: ai_render_idle_look
+      info:
+        en: |-
+          ```hsc
+          (ai_render_idle_look)
+          ```
+    - slug: ai_render_inactive_actors
+      info:
+        en: |-
+          ```hsc
+          (ai_render_inactive_actors)
+          ```
+    - slug: ai_render_lineoffire
+      info:
+        en: |-
+          ```hsc
+          (ai_render_lineoffire)
+          ```
+    - slug: ai_render_lineoffire_crouching
+      info:
+        en: |-
+          ```hsc
+          (ai_render_lineoffire_crouching)
+          ```
+    - slug: ai_render_lineofsight
+      info:
+        en: |-
+          ```hsc
+          (ai_render_lineofsight)
+          ```
+    - slug: ai_render_melee_check
+      info:
+        en: |-
+          ```hsc
+          (ai_render_melee_check)
+          ```
+    - slug: ai_render_paths
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths)
+          ```
+    - slug: ai_render_paths_avoidance_obstacles
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_avoidance_obstacles)
+          ```
+    - slug: ai_render_paths_avoidance_search
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_avoidance_search)
+          ```
+    - slug: ai_render_paths_avoidance_segment
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_avoidance_segment)
+          ```
+    - slug: ai_render_paths_avoided
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_avoided)
+          ```
+    - slug: ai_render_paths_current
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_current)
+          ```
+    - slug: ai_render_paths_destination
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_destination)
+          ```
+    - slug: ai_render_paths_failed
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_failed)
+          ```
+    - slug: ai_render_paths_nodes
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_nodes)
+          ```
+    - slug: ai_render_paths_nodes_all
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_nodes_all)
+          ```
+    - slug: ai_render_paths_nodes_closest
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_nodes_closest)
+          ```
+    - slug: ai_render_paths_nodes_costs
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_nodes_costs)
+          ```
+    - slug: ai_render_paths_nodes_polygons
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_nodes_polygons)
+          ```
+    - slug: ai_render_paths_raw
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_raw)
+          ```
+    - slug: ai_render_paths_selected_only
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_selected_only)
+          ```
+    - slug: ai_render_paths_smoothed
+      info:
+        en: |-
+          ```hsc
+          (ai_render_paths_smoothed)
+          ```
+    - slug: ai_render_player_aiming_blocked
+      info:
+        en: |-
+          ```hsc
+          (ai_render_player_aiming_blocked)
+          ```
+    - slug: ai_render_player_ratings
+      info:
+        en: |-
+          ```hsc
+          (ai_render_player_ratings)
+          ```
+    - slug: ai_render_postcombat
+      info:
+        en: |-
+          ```hsc
+          (ai_render_postcombat)
+          ```
+    - slug: ai_render_projectile_aiming
+      info:
+        en: |-
+          ```hsc
+          (ai_render_projectile_aiming)
+          ```
+    - slug: ai_render_props
+      info:
+        en: |-
+          ```hsc
+          (ai_render_props)
+          ```
+    - slug: ai_render_props_no_friends
+      info:
+        en: |-
+          ```hsc
+          (ai_render_props_no_friends)
+          ```
+    - slug: ai_render_props_target_weight
+      info:
+        en: |-
+          ```hsc
+          (ai_render_props_target_weight)
+          ```
+    - slug: ai_render_props_unopposable
+      info:
+        en: |-
+          ```hsc
+          (ai_render_props_unopposable)
+          ```
+    - slug: ai_render_props_unreachable
+      info:
+        en: |-
+          ```hsc
+          (ai_render_props_unreachable)
+          ```
+    - slug: ai_render_props_web
+      info:
+        en: |-
+          ```hsc
+          (ai_render_props_web)
+          ```
+    - slug: ai_render_pursuit
+      info:
+        en: |-
+          ```hsc
+          (ai_render_pursuit)
+          ```
+    - slug: ai_render_recent_damage
+      info:
+        en: |-
+          ```hsc
+          (ai_render_recent_damage)
+          ```
+    - slug: ai_render_secondary_looking
+      info:
+        en: |-
+          ```hsc
+          (ai_render_secondary_looking)
+          ```
+    - slug: ai_render_shooting
+      info:
+        en: |-
+          ```hsc
+          (ai_render_shooting)
+          ```
+    - slug: ai_render_spatial_effects
+      info:
+        en: |-
+          ```hsc
+          (ai_render_spatial_effects)
+          ```
+    - slug: ai_render_speech
+      info:
+        en: |-
+          ```hsc
+          (ai_render_speech)
+          ```
+    - slug: ai_render_states
+      info:
+        en: |-
+          ```hsc
+          (ai_render_states)
+          ```
+    - slug: ai_render_support_surfaces
+      info:
+        en: |-
+          ```hsc
+          (ai_render_support_surfaces)
+          ```
+    - slug: ai_render_targets
+      info:
+        en: |-
+          ```hsc
+          (ai_render_targets)
+          ```
+    - slug: ai_render_targets_last_visible
+      info:
+        en: |-
+          ```hsc
+          (ai_render_targets_last_visible)
+          ```
+    - slug: ai_render_teams
+      info:
+        en: |-
+          ```hsc
+          (ai_render_teams)
+          ```
+    - slug: ai_render_threats
+      info:
+        en: |-
+          ```hsc
+          (ai_render_threats)
+          ```
+    - slug: ai_render_trigger
+      info:
+        en: |-
+          ```hsc
+          (ai_render_trigger)
+          ```
+    - slug: ai_render_vector_avoidance
+      info:
+        en: |-
+          ```hsc
+          (ai_render_vector_avoidance)
+          ```
+    - slug: ai_render_vector_avoidance_avoid_t
+      info:
+        en: |-
+          ```hsc
+          (ai_render_vector_avoidance_avoid_t)
+          ```
+    - slug: ai_render_vector_avoidance_clear_time
+      info:
+        en: |-
+          ```hsc
+          (ai_render_vector_avoidance_clear_time)
+          ```
+    - slug: ai_render_vector_avoidance_intermediate
+      info:
+        en: |-
+          ```hsc
+          (ai_render_vector_avoidance_intermediate)
+          ```
+    - slug: ai_render_vector_avoidance_objects
+      info:
+        en: |-
+          ```hsc
+          (ai_render_vector_avoidance_objects)
+          ```
+    - slug: ai_render_vector_avoidance_rays
+      info:
+        en: |-
+          ```hsc
+          (ai_render_vector_avoidance_rays)
+          ```
+    - slug: ai_render_vector_avoidance_sense_t
+      info:
+        en: |-
+          ```hsc
+          (ai_render_vector_avoidance_sense_t)
+          ```
+    - slug: ai_render_vector_avoidance_weights
+      info:
+        en: |-
+          ```hsc
+          (ai_render_vector_avoidance_weights)
+          ```
+    - slug: ai_render_vehicle_avoidance
+      info:
+        en: |-
+          ```hsc
+          (ai_render_vehicle_avoidance)
+          ```
+    - slug: ai_render_vehicles_enterable
+      info:
+        en: |-
+          ```hsc
+          (ai_render_vehicles_enterable)
+          ```
+    - slug: ai_render_vision_cones
+      info:
+        en: |-
+          ```hsc
+          (ai_render_vision_cones)
+          ```
+    - slug: ai_render_vitality
+      info:
+        en: |-
+          ```hsc
+          (ai_render_vitality)
+          ```
+    - slug: ai_show
+      info:
+        en: |-
+          ```hsc
+          (ai_show)
+          ```
+    - slug: ai_show_actors
+      info:
+        en: |-
+          ```hsc
+          (ai_show_actors)
+          ```
+    - slug: ai_show_line_of_sight
+      info:
+        en: |-
+          ```hsc
+          (ai_show_line_of_sight)
+          ```
+    - slug: ai_show_paths
+      info:
+        en: |-
+          ```hsc
+          (ai_show_paths)
+          ```
+    - slug: ai_show_prop_types
+      info:
+        en: |-
+          ```hsc
+          (ai_show_prop_types)
+          ```
+    - slug: ai_show_sound_distance
+      info:
+        en: |-
+          ```hsc
+          (ai_show_sound_distance)
+          ```
+    - slug: ai_show_stats
+      info:
+        en: |-
+          ```hsc
+          (ai_show_stats)
+          ```
+    - slug: ai_show_swarms
+      info:
+        en: |-
+          ```hsc
+          (ai_show_swarms)
+          ```
+    - slug: allow_client_side_weapon_projectiles
+      info:
+        en: |-
+          ```hsc
+          (allow_client_side_weapon_projectiles)
+          ```
+    - slug: allow_out_of_sync
+      info:
+        en: |-
+          ```hsc
+          (allow_out_of_sync)
+          ```
+    - slug: biped_incremental_rate
+      info:
+        en: |-
+          ```hsc
+          (biped_incremental_rate [short])
+          ```
+          Unknown purpose. Default value is 7.
+    - slug: breakable_surfaces
+      info:
+        en: |-
+          ```hsc
+          (breakable_surfaces [boolean])
+          ```
+          Enables or disables the breakable surfaces effect. If disabled, breakable
+          surfaces will simply disappear rather than shatter.
+    - slug: cheat_bottomless_clip
+      info:
+        en: |-
+          ```hsc
+          (cheat_bottomless_clip [boolean])
+          ```
+          Prevents player weapons from generating heat and depleting battery or ammo rounds.
+    - slug: cheat_bump_possession
+      info:
+        en: |-
+          ```hsc
+          (cheat_bump_possession [boolean])
+          ```
+          Allows the player to "possess" other characters by walking into them.
+          The player will then be able to control the possessed character and see
+          the world from its view.
+    - slug: cheat_controller
+      info:
+        en: |-
+          ```hsc
+          (cheat_controller [boolean])
+          ```
+          If enabled, the game load a `cheats.txt` file which binds controller buttons
+          to console commands. Known only to work in Halo beta versions.
+    - slug: cheat_deathless_player
+      info:
+        en: |-
+          ```hsc
+          (cheat_deathless_player [boolean])
+          ```
+          Prevents players from being killed, including all multiplayer clients
+          if enabled on the server. Although the players can still take damage,
+          being reduced to 0 health or falling long distances will not kill them.
+          This also prevents players from being killed with `unit_kill`.
+    - slug: cheat_infinite_ammo
+      info:
+        en: |-
+          ```hsc
+          (cheat_infinite_ammo [boolean])
+          ```
+          Prevents weapons from depleting battery or _reserve_ ammo. Weapons will
+          still generate heat. Magazine-based weapons will still empty their current
+          magazine, but reloading will not use up any reserve ammo.
+    - slug: cheat_jetpack
+      info:
+        en: |-
+          ```hsc
+          (cheat_jetpack [boolean])
+          ```
+          If enabled, players take no fall damage. In MCC, holding crouch while
+          mid-air will also cause the player to hover.
+    - slug: cheat_medusa
+      info:
+        en: |-
+          ```hsc
+          (cheat_medusa [boolean])
+          ```
+          Causes enemy AI to be killed instantly if they "look" at or become aware of
+          the player. This does not include allies like Marines, even after allegiance
+          has been broken by killing them. It is unknown if the command is hard-coded
+          to kill certain AI types.
+    - slug: cheat_omnipotent
+      info:
+        en: |-
+          ```hsc
+          (cheat_omnipotent [boolean])
+          ```
+          The player will instantly kill any [unit][] they damage, including destroying
+          vehicles. Even multiplayer vehicles can be "killed" and rendered inoperable.
+    - slug: cheat_reflexive_damage_effects
+      info:
+        en: |-
+          ```hsc
+          (cheat_reflexive_damage_effects [boolean])
+          ```
+          Any [damage_effect][] applied to other characters, even dead ones,
+          will appear on the player's screen regardless of who applied the damage.
+          For example, if an Elite shoots a flood infection form, the player will
+          see their screen flash blue and damage direction indicators appear.
+          The player takes no _actual_ damage. This can be helpful for testing
+          visual effects.
+    - slug: cheat_super_jump
+      info:
+        en: |-
+          ```hsc
+          (cheat_super_jump [boolean])
+          ```
+          Players jump to an extreme height, and will die of fall damage if
+          [`cheat_jetpack`](#debugfunctions-cheat-jetpack) or
+          [`cheat_deathless_player`](#debugfunctions-cheat-deathless-player)
+          are not used. This can be used to quickly reach areas when
+          testing maps.
+    - slug: cls
+      info:
+        en: |-
+          ```hsc
+          (cls)
+          ```
+          Clears the screen of developer console output and tab completions.
+    - slug: cl_remote_player_action_queue_limit
+      info:
+        en: |-
+          ```hsc
+          (cl_remote_player_action_queue_limit [long])
+          ```
+          Unknown purpose. May be used to limit how many total actions from
+          clients are allowed to be queued on the server. Defaults to `2`.
+    - slug: cl_remote_player_action_queue_tick_limit
+      info:
+        en: |-
+          ```hsc
+          (cl_remote_player_action_queue_tick_limit [long])
+          ```
+          Unknown purpose. May be used to limit how long actions from
+          clients are allowed to be queued on the server before they are
+          ignored. Defaults to `6`.
+    - slug: client_log_destination
+      info:
+        en: |-
+          ```hsc
+          (client_log_destination [long])
+          ```
+          Unknown purpose.
+    - slug: collision_debug
+      info:
+        en: |-
+          ```hsc
+          (collision_debug [boolean])
+          ```
+          If enabled, the center of the view is used to test for collisions. A
+          red normal-aligned marker will be shown where the ray from the center of
+          view collides with a surface. The collision surface itself, whether [BSP][scenario_structure_bsp]
+          or [model][model_collision_geometry], will be outline in red. Information
+          about the collision surface will be shown in the top left corner of the screen,
+          including plane and surface indices from the BSP structure, material type,
+          and how many degrees the surface's normal differs from vertical.
+
+          The types of surfaces which the test ray hits or ignores can be toggled
+          with the `collision_debug_flag_*` commands. The maximum range of the ray
+          is controlled with `collision_debug_length`.
+    - slug: collision_debug_features
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_features [boolean])
+          ```
+          Toggles the display of _collision features_ near the player, which can be spheres,
+          cylinders, or prisms. These features will be outlined in blue and green.
+          Collision size can be adjusted with `collision_debug_width`
+          and `collision_debug_height`. The test point can be frozen in place using
+          `collision_debug_repeat`.
+    - slug: collision_debug_flag_back_facing_surfaces
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_back_facing_surfaces [boolean])
+          ```
+          When `collision_debug` or `collision_debug_spray` are enabled, causes
+          the test rays to collide with back-facing surfaces (those facing away
+          from the camera). Defaults to `false`.
+    - slug: collision_debug_flag_front_facing_surfaces
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_front_facing_surfaces [boolean])
+          ```
+          When `collision_debug` or `collision_debug_spray` are enabled,
+          causes the test rays to collide with front-facing surfaces (those
+          facing towards the camera). Defaults to `true`. Disabling this will
+          have no effect unless `collision_debug_flag_back_facing_surfaces`
+          is also enabled.
+    - slug: collision_debug_flag_ignore_breakable_surfaces
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_ignore_breakable_surfaces [boolean])
+          ```
+          Toggles if collision debug rays ignore breakable surfaces.
+          Defaults to `false`.
+    - slug: collision_debug_flag_ignore_invisible_surfaces
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_ignore_invisible_surfaces [boolean])
+          ```
+          Toggles if collision debug rays ignore invisible surfaces
+          (e.g. collision-only player clipping). Defaults to `true`.
+    - slug: collision_debug_flag_ignore_two_sided_surfaces
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_ignore_two_sided_surfaces [boolean])
+          ```
+          Toggles if collision debug rays ignore two-sided surfaces.
+          Defaults to `false`.
+    - slug: collision_debug_flag_media
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_media [boolean])
+          ```
+          Toggles if collision debug rays collide with water surfaces.
+    - slug: collision_debug_flag_objects
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_objects [boolean])
+          ```
+          Toggles if collision debug rays collide with any class of [object's][object]
+          [collision geometry][model_collision_geometry]. This setting will be
+          ignored if any more specific object flag is enabled, such as
+          `collision_debug_flag_objects_equipment`.
+    - slug: collision_debug_flag_objects_bipeds
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_objects_bipeds [boolean])
+          ```
+          Toggles if collision debug rays collide with [bipeds][biped].
+    - slug: collision_debug_flag_objects_controls
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_objects_controls [boolean])
+          ```
+          Toggles if collision debug rays collide with [device_control][].
+    - slug: collision_debug_flag_objects_equipment
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_objects_equipment [boolean])
+          ```
+          Toggles if collision debug rays collide with [equipment][].
+    - slug: collision_debug_flag_objects_light_fixtures
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_objects_light_fixtures [boolean])
+          ```
+          Toggles if collision debug rays collide with [device_light_fixture][].
+    - slug: collision_debug_flag_objects_machines
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_objects_machines [boolean])
+          ```
+          Toggles if collision debug rays collide with [device_machine][].
+    - slug: collision_debug_flag_objects_placeholders
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_objects_placeholders [boolean])
+          ```
+          Toggles if collision debug rays collide with [placeholders][placeholder].
+          This would require a custom placeholder to have an effect, since the
+          placeholder tags that come with the HEK have no collision model.
+    - slug: collision_debug_flag_objects_projectiles
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_objects_projectiles [boolean])
+          ```
+          Toggles if collision debug rays collide with [projectiles][projectile].
+          Note that most projectiles do not have a collision model.
+    - slug: collision_debug_flag_objects_scenery
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_objects_scenery [boolean])
+          ```
+          Toggles if collision debug rays collide with [scenery][].
+    - slug: collision_debug_flag_objects_vehicles
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_objects_vehicles [boolean])
+          ```
+          Toggles if collision debug rays collide with [vehicles][vehicle].
+    - slug: collision_debug_flag_objects_weapons
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_objects_weapons [boolean])
+          ```
+          Toggles if collision debug rays collide with [weapons][weapon].
+    - slug: collision_debug_flag_skip_passthrough_bipeds
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_skip_passthrough_bipeds [boolean])
+          ```
+          Unknown purpose. Does not seem to affect collision ray tests against bipeds.
+    - slug: collision_debug_flag_structure
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_structure [boolean])
+          ```
+          Toggles if collision debug rays collide with the [structure BSP][scenario_structure_bsp].
+          Collisions with [model_collision_geometry] BSPs are unaffected.
+    - slug: collision_debug_flag_try_to_keep_location_valid
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_try_to_keep_location_valid [boolean])
+          ```
+          Unknown purpose.
+    - slug: collision_debug_flag_use_vehicle_physics
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_flag_use_vehicle_physics [boolean])
+          ```
+          If enabled, collision debug rays will collide with vehicle
+          [physics spheres][physics#mass-points] rather than their [model_collision_geometry][].
+    - slug: collision_debug_height
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_height <real>)
+          ```
+          When `collision_debug` and `collision_debug_features` are enabled, controls
+          the height in world units of collision features. Defaults to `0.0`.
+    - slug: collision_debug_length
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_length [real])
+          ```
+          Sets the maximum test ray length for `collision_debug` and `collision_debug_spray`
+          in world units. When the ray reaches this maxmimum, a floating green marker
+          will be shown for `collision_debug` while spray rays will simply not be shown.
+          Defaults to `100.0`.
+    - slug: collision_debug_phantom_bsp
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_phantom_bsp [boolean])
+          ```
+          Causes a floating pink cube and label "phantom bsp" to appear whenever
+          a test ray from the center of the screen intersects with
+          [phantom BSP][scenario_structure_bsp#phantom-bsp]. It can be helpful to
+          pair this with `collision_debug_spray`.
+    - slug: collision_debug_point_x
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_point_x)
+          ```
+    - slug: collision_debug_point_y
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_point_y)
+          ```
+    - slug: collision_debug_point_z
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_point_z)
+          ```
+    - slug: collision_debug_repeat
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_repeat [boolean])
+          ```
+          Setting this to `true` will freeze the test rays and points for
+          `collision_debug`, `collision_debug_phantom_bsp`, `collision_debug_spray`,
+          and `collision_debug_features`, allowing you to move and view the debug
+          information from another angle.
+    - slug: collision_debug_spray
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_spray [boolean])
+          ```
+          Setting this to `true` will cause collision ray tests to be performed in
+          a dense grid from the viewport. This operates independently of the
+          `collision_debug` setting, and only the destination hit markers are shown.
+          Can be affected by collision flags, length, and frozen with `collision_debug_repeat`.
+    - slug: collision_debug_vector_i
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_vector_i)
+          ```
+    - slug: collision_debug_vector_j
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_vector_j)
+          ```
+    - slug: collision_debug_vector_k
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_vector_k)
+          ```
+    - slug: collision_debug_width
+      info:
+        en: |-
+          ```hsc
+          (collision_debug_width [real])
+          ```
+          When `collision_debug` and `collision_debug_features` are enabled, controls
+          the width in world units of collision features. Defaults to `0.0`.
+    - slug: collision_log_detailed
+      info:
+        en: |-
+          ```hsc
+          (collision_log_detailed)
+          ```
+    - slug: collision_log_extended
+      info:
+        en: |-
+          ```hsc
+          (collision_log_extended)
+          ```
+    - slug: collision_log_render
+      info:
+        en: |-
+          ```hsc
+          (collision_log_render)
+          ```
+    - slug: collision_log_time
+      info:
+        en: |-
+          ```hsc
+          (collision_log_time)
+          ```
+    - slug: collision_log_totals_only
+      info:
+        en: |-
+          ```hsc
+          (collision_log_totals_only)
+          ```
+    - slug: console_dump_to_file
+      info:
+        en: |-
+          ```hsc
+          (console_dump_to_file)
+          ```
+    - slug: controls_enable_crouch
+      info:
+        en: |-
+          ```hsc
+          (controls_enable_crouch)
+          ```
+    - slug: controls_enable_doubled_spin
+      info:
+        en: |-
+          ```hsc
+          (controls_enable_doubled_spin)
+          ```
+    - slug: controls_swap_doubled_spin_state
+      info:
+        en: |-
+          ```hsc
+          (controls_swap_doubled_spin_state)
+          ```
+    - slug: controls_swapped
+      info:
+        en: |-
+          ```hsc
+          (controls_swapped)
+          ```
+    - slug: debug_bink
+      info:
+        en: |-
+          ```hsc
+          (debug_bink)
+          ```
+    - slug: debug_biped_limp_body_disable
+      info:
+        en: |-
+          ```hsc
+          (debug_biped_limp_body_disable)
+          ```
+    - slug: debug_biped_physics
+      info:
+        en: |-
+          ```hsc
+          (debug_biped_physics)
+          ```
+    - slug: debug_biped_skip_collision
+      info:
+        en: |-
+          ```hsc
+          (debug_biped_skip_collision)
+          ```
+    - slug: debug_biped_skip_update
+      info:
+        en: |-
+          ```hsc
+          (debug_biped_skip_update)
+          ```
+    - slug: debug_bsp
+      info:
+        en: |-
+          ```hsc
+          (debug_bsp [boolean])
+          ```
+          Toggles the display of
+          [structure BSP node][scenario_structure_bsp#tag-field-collision-bsp-bsp3d-nodes]
+          traversal for the camera location. At each level, the node and plane indices
+          are shown as well as a `+` or `-` symbol indicating if the camera was on the
+          front or back side of the plane.
+    - slug: debug_camera
+      info:
+        en: |-
+          ```hsc
+          (debug_camera)
+          ```
+    - slug: debug_collision_skip_objects
+      info:
+        en: |-
+          ```hsc
+          (debug_collision_skip_objects)
+          ```
+    - slug: debug_collision_skip_vectors
+      info:
+        en: |-
+          ```hsc
+          (debug_collision_skip_vectors)
+          ```
+    - slug: debug_damage
+      info:
+        en: |-
+          ```hsc
+          (debug_damage [boolean])
+          ```
+          When enabled, looking at any collideable [object][] and pressing
+          <kbd>Space</kbd> will display the object's body and shield vitalities
+          on the HUD.
+    - slug: debug_damage_taken
+      info:
+        en: |-
+          ```hsc
+          (debug_damage_taken [boolean])
+          ```
+          Logs damage to the player as messages at the bottom of the screen. Includes
+          body and shield vitality and the damage source.
+    - slug: debug_decals
+      info:
+        en: |-
+          ```hsc
+          (debug_decals)
+          ```
+    - slug: debug_detail_objects
+      info:
+        en: |-
+          ```hsc
+          (debug_detail_objects)
+          ```
+    - slug: debug_effects_nonviolent
+      info:
+        en: |-
+          ```hsc
+          (debug_effects_nonviolent)
+          ```
+    - slug: debug_fog_planes
+      info:
+        en: |-
+          ```hsc
+          (debug_fog_planes)
+          ```
+    - slug: debug_framerate
+      info:
+        en: |-
+          ```hsc
+          (debug_framerate)
+          ```
+    - slug: debug_frustum
+      info:
+        en: |-
+          ```hsc
+          (debug_frustum)
+          ```
+    - slug: debug_game_save
+      info:
+        en: |-
+          ```hsc
+          (debug_game_save)
+          ```
+    - slug: debug_inactive_objects
+      info:
+        en: |-
+          ```hsc
+          (debug_inactive_objects)
+          ```
+    - slug: debug_input
+      info:
+        en: |-
+          ```hsc
+          (debug_input [boolean])
+          ```
+          Displays a series of ticks at the top of the screen which do not seem
+          to be affected by player input. May be a broken feature?
+    - slug: debug_input_target
+      info:
+        en: |-
+          ```hsc
+          (debug_input_target)
+          ```
+    - slug: debug_leaf_index
+      info:
+        en: |-
+          ```hsc
+          (debug_leaf_index)
+          ```
+    - slug: debug_leaf_portal_index
+      info:
+        en: |-
+          ```hsc
+          (debug_leaf_portal_index)
+          ```
+    - slug: debug_leaf_portals
+      info:
+        en: |-
+          ```hsc
+          (debug_leaf_portals)
+          ```
+    - slug: debug_lights
+      info:
+        en: |-
+          ```hsc
+          (debug_lights)
+          ```
+    - slug: debug_looping_sound
+      info:
+        en: |-
+          ```hsc
+          (debug_looping_sound)
+          ```
+    - slug: debug_material_effects
+      info:
+        en: |-
+          ```hsc
+          (debug_material_effects)
+          ```
+    - slug: debug_motion_sensor_draw_all_units
+      info:
+        en: |-
+          ```hsc
+          (debug_motion_sensor_draw_all_units)
+          ```
+    - slug: debug_no_drawing
+      info:
+        en: |-
+          ```hsc
+          (debug_no_drawing [boolean])
+          ```
+          If enabled, completely stops the game from rendering new frames. This
+          includes preventing the rendering of the developer console itself, so
+          disabling this feature can be tricky. If you think the console is still
+          open, press <kbd>Up</kbd> to re-enter the previous command, then
+          replace its final argument with `true` or `1` and press <kbd>Enter</kbd>
+          to resume rendering.
+    - slug: debug_no_frustum_clip
+      info:
+        en: |-
+          ```hsc
+          (debug_no_frustum_clip)
+          ```
+    - slug: debug_object_garbage_collection
+      info:
+        en: |-
+          ```hsc
+          (debug_object_garbage_collection)
+          ```
+    - slug: debug_object_lights
+      info:
+        en: |-
+          ```hsc
+          (debug_object_lights)
+          ```
+    - slug: debug_objects
+      info:
+        en: |-
+          ```hsc
+          (debug_objects)
+          ```
+    - slug: debug_objects_biped_autoaim_pills
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_biped_autoaim_pills)
+          ```
+    - slug: debug_objects_biped_messages
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_biped_messages)
+          ```
+    - slug: debug_objects_biped_physics_pills
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_biped_physics_pills)
+          ```
+    - slug: debug_objects_bounding_spheres
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_bounding_spheres)
+          ```
+    - slug: debug_objects_collision_models
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_collision_models)
+          ```
+    - slug: debug_objects_devices
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_devices)
+          ```
+    - slug: debug_objects_equipment_messages
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_equipment_messages)
+          ```
+    - slug: debug_objects_names
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_names)
+          ```
+    - slug: debug_objects_pathfinding_spheres
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_pathfinding_spheres)
+          ```
+    - slug: debug_objects_physics
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_physics)
+          ```
+    - slug: debug_objects_position_velocity
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_position_velocity)
+          ```
+    - slug: debug_objects_projectile_messages
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_projectile_messages)
+          ```
+    - slug: debug_objects_root_node
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_root_node)
+          ```
+    - slug: debug_objects_unit_mouth_apeture
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_unit_mouth_apeture)
+          ```
+    - slug: debug_objects_unit_seats
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_unit_seats)
+          ```
+    - slug: debug_objects_unit_vectors
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_unit_vectors)
+          ```
+    - slug: debug_objects_vehicle_messages
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_vehicle_messages)
+          ```
+    - slug: debug_objects_vehicle_powered_mass_points
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_vehicle_powered_mass_points)
+          ```
+    - slug: debug_objects_weapon_messages
+      info:
+        en: |-
+          ```hsc
+          (debug_objects_weapon_messages)
+          ```
+    - slug: debug_obstacle_path
+      info:
+        en: |-
+          ```hsc
+          (debug_obstacle_path)
+          ```
+    - slug: debug_obstacle_path_goal_point_x
+      info:
+        en: |-
+          ```hsc
+          (debug_obstacle_path_goal_point_x)
+          ```
+    - slug: debug_obstacle_path_goal_point_y
+      info:
+        en: |-
+          ```hsc
+          (debug_obstacle_path_goal_point_y)
+          ```
+    - slug: debug_obstacle_path_goal_surface_index
+      info:
+        en: |-
+          ```hsc
+          (debug_obstacle_path_goal_surface_index)
+          ```
+    - slug: debug_obstacle_path_on_failure
+      info:
+        en: |-
+          ```hsc
+          (debug_obstacle_path_on_failure)
+          ```
+    - slug: debug_obstacle_path_start_point_x
+      info:
+        en: |-
+          ```hsc
+          (debug_obstacle_path_start_point_x)
+          ```
+    - slug: debug_obstacle_path_start_point_y
+      info:
+        en: |-
+          ```hsc
+          (debug_obstacle_path_start_point_y)
+          ```
+    - slug: debug_obstacle_path_start_surface_index
+      info:
+        en: |-
+          ```hsc
+          (debug_obstacle_path_start_surface_index)
+          ```
+    - slug: debug_permanent_decals
+      info:
+        en: |-
+          ```hsc
+          (debug_permanent_decals)
+          ```
+    - slug: debug_physics_disable_penetration_freeze
+      info:
+        en: |-
+          ```hsc
+          (debug_physics_disable_penetration_freeze)
+          ```
+    - slug: debug_player
+      info:
+        en: |-
+          ```hsc
+          (debug_player)
+          ```
+    - slug: debug_player_color
+      info:
+        en: |-
+          ```hsc
+          (debug_player_color)
+          ```
+    - slug: debug_player_teleport
+      info:
+        en: |-
+          ```hsc
+          (debug_player_teleport)
+          ```
+    - slug: debug_point_physics
+      info:
+        en: |-
+          ```hsc
+          (debug_point_physics [boolean])
+          ```
+          Renders green or red markers wherever [point_physics][] are being
+          simulated, except for the [weather_particle_system][]. This includes
+          [flags][flag], [antenna][], [contrails][contrail], [particles][particle],
+          and [particle_systems][particle_system].
+    - slug: debug_pvs
+      info:
+        en: |-
+          ```hsc
+          (debug_pvs <boolean>)
+          ```
+          Alias of `debug_portals`, but with a mandatory argument.
+    - slug: debug_portals
+      info:
+        en: |-
+          ```hsc
+          (debug_portals [boolean])
+          ```
+          Draws structure BSP portals as red outlines.
+    - slug: debug_recording
+      info:
+        en: |-
+          ```hsc
+          (debug_recording)
+          ```
+    - slug: debug_recording_newlines
+      info:
+        en: |-
+          ```hsc
+          (debug_recording_newlines)
+          ```
+    - slug: debug_render_freeze
+      info:
+        en: |-
+          ```hsc
+          (debug_render_freeze [boolean])
+          ```
+          Freezes the rendering viewport at the current camera location. The camera
+          may still move after frozen, but all portal-based culling, [skybox][sky]
+          origin, FP models, and some debug overlays will still be based on the
+          previously frozen camera location. This command is useful for inspecting
+          portal behaviour where the camera cannot directly see.
+    - slug: debug_score
+      info:
+        en: |-
+          ```hsc
+          (debug_score [long])
+          ```
+          Unknown purpose. Does not affect the player's multiplayer score.
+    - slug: debug_scripting
+      info:
+        en: |-
+          ```hsc
+          (debug_scripting [boolean])
+          ```
+          Displays a table of active [script][scripting] threads, with their name,
+          sleep time, and currently executing function.
+    - slug: debug_sound
+      info:
+        en: |-
+          ```hsc
+          (debug_sound [boolean])
+          ```
+          [Sound][] sources will be labeled in 3D with their [tag path][tags#tag-path]
+          and a bounding sphere showing their range.
+    - slug: debug_sound_cache
+      info:
+        en: |-
+          ```hsc
+          (debug_sound_cache [boolean])
+          ```
+          If enabled, [sound cache][sound-system#sound-cache] statistics will be shown
+          in the top left corner of the screen, including how full it is.
+    - slug: debug_sound_cache_graph
+      info:
+        en: |-
+          ```hsc
+          (debug_sound_cache_graph [boolean])
+          ```
+          Shows a graph of sound cache slots at the top of the screen, similar to
+          `texture_cache_graph`. Can be used in Sapien/debug builds.
+    - slug: debug_sound_channels
+      info:
+        en: |-
+          ```hsc
+          (debug_sound_channels [boolean])
+          ```
+          Displays the utilization of [sound channel][sound-system#channels] limits in the top left
+          corner of the screen.
+    - slug: debug_sound_channels_detail
+      info:
+        en: |-
+          ```hsc
+          (debug_sound_channels_detail [boolean])
+          ```
+          Displays two columns of number pairs while sounds play with an unknown meaning.
+    - slug: debug_sound_environment
+      info:
+        en: |-
+          ```hsc
+          (debug_sound_environment [boolean])
+          ```
+          If enabled, shows the tag path of the [cluster's][scenario_structure_bsp#clusters-and-cluster-data]
+          current [sound_environment][].
+    - slug: debug_sound_hardware
+      info:
+        en: |-
+          ```hsc
+          (debug_sound_hardware [boolean])
+          ```
+          Unknown purpose.
+    - slug: debug_sprites
+      info:
+        en: |-
+          ```hsc
+          (debug_sprites [boolean])
+          ```
+          Renders 2D sprite effects like particles as simple white triangle
+          outlines instead of with textures. This also displays some sprite
+          statistics at the top of the screen.
+    - slug: debug_structure
+      info:
+        en: |-
+          ```hsc
+          (debug_structure [boolean])
+          ```
+          When enbled, all [scenario_structure_bsp][] collision surfaces will be
+          rendered with green outlines.
+    - slug: debug_texture_cache
+      info:
+        en: |-
+          ```hsc
+          (debug_texture_cache [boolean])
+          ```
+          If enabled, causes red messages to appear in the HUD which are
+          related to texture and/or sound cache events. Exact meaning unknown.
+    - slug: debug_trigger_volumes
+      info:
+        en: |-
+          ```hsc
+          (debug_trigger_volumes [boolean])
+          ```
+          Renders all scenario [trigger volumes][scenario#trigger-volumes] and their names.
+    - slug: debug_unit_all_animations
+      info:
+        en: |-
+          ```hsc
+          (debug_unit_all_animations)
+          ```
+    - slug: debug_unit_animations
+      info:
+        en: |-
+          ```hsc
+          (debug_unit_animations)
+          ```
+    - slug: debug_unit_illumination
+      info:
+        en: |-
+          ```hsc
+          (debug_unit_illumination)
+          ```
+    - slug: developer_mode
+      info:
+        en: |-
+          ```hsc
+          (developer_mode)
+          ```
+    - slug: disconnect
+      info:
+        en: |-
+          ```hsc
+          (disconnect)
+          ```
+          Force-disconnects from the current multiplayer session and returns to the menu.
+          This can be handy for quickly leaving a server after a game has ended without
+          having to wait for the "Quit" option in the post-game lobby.
+    - slug: director_camera_switch_fast
+      info:
+        en: |-
+          ```hsc
+          (director_camera_switch_fast)
+          ```
+    - slug: director_camera_switching
+      info:
+        en: |-
+          ```hsc
+          (director_camera_switching)
+          ```
+    - slug: display_framerate
+      info:
+        en: |-
+          ```hsc
+          (display_framerate)
+          ```
+    - slug: display_precache_progress
+      info:
+        en: |-
+          ```hsc
+          (display_precache_progress)
+          ```
+    - slug: effects_corpse_nonviolent
+      info:
+        en: |-
+          ```hsc
+          (effects_corpse_nonviolent)
+          ```
+    - slug: equipment_incremental_rate
+      info:
+        en: |-
+          ```hsc
+          (equipment_incremental_rate)
+          ```
+    - slug: error_suppress_all
+      info:
+        en: |-
+          ```hsc
+          (error_suppress_all)
+          ```
+    - slug: f0
+      info:
+        en: |-
+          ```hsc
+          (f0)
+          ```
+    - slug: f1
+      info:
+        en: |-
+          ```hsc
+          (f1)
+          ```
+    - slug: f2
+      info:
+        en: |-
+          ```hsc
+          (f2)
+          ```
+    - slug: f3
+      info:
+        en: |-
+          ```hsc
+          (f3)
+          ```
+    - slug: f4
+      info:
+        en: |-
+          ```hsc
+          (f4)
+          ```
+    - slug: f5
+      info:
+        en: |-
+          ```hsc
+          (f5)
+          ```
+    - slug: find_all_fucked_up_shit
+      info:
+        en: |-
+          ```hsc
+          (find_all_fucked_up_shit)
+          ```
+    - slug: force_all_player_views_to_default_player
+      info:
+        en: |-
+          ```hsc
+          (force_all_player_views_to_default_player)
+          ```
+    - slug: framerate_lock
+      info:
+        en: |-
+          ```hsc
+          (framerate_lock)
+          ```
+    - slug: framerate_throttle
+      info:
+        en: |-
+          ```hsc
+          (framerate_throttle)
+          ```
+    - slug: freeze_flying_camera
+      info:
+        en: |-
+          ```hsc
+          (freeze_flying_camera)
+          ```
+    - slug: global_connection_dont_timeout
+      info:
+        en: |-
+          ```hsc
+          (global_connection_dont_timeout)
+          ```
+    - slug: hud_filter
+      info:
+        en: |-
+          ```hsc
+          (hud_filter [boolean])
+          ```
+          Unknown purpose.
+    - slug: leaf_to_leaf_latency
+      info:
+        en: |-
+          ```hsc
+          (leaf_to_leaf_latency [boolean])
+          ```
+          If enabled, causes the game to perform server latency analysis. Periodically,
+          20 samples will be taken and statistics will appear on the screen.
+    - slug: local_player_log_level
+      info:
+        en: |-
+          ```hsc
+          (local_player_log_level)
+          ```
+    - slug: local_player_update_rate
+      info:
+        en: |-
+          ```hsc
+          (local_player_update_rate)
+          ```
+    - slug: local_player_vehicle_update_rate
+      info:
+        en: |-
+          ```hsc
+          (local_player_vehicle_update_rate)
+          ```
+    - slug: log_server_player_update_history
+      info:
+        en: |-
+          ```hsc
+          (log_server_player_update_history)
+          ```
+    - slug: loud_dialog_hack
+      info:
+        en: |-
+          ```hsc
+          (loud_dialog_hack)
+          ```
+    - slug: model_animation_bullshit0
+      info:
+        en: |-
+          ```hsc
+          (model_animation_bullshit0)
+          ```
+    - slug: model_animation_bullshit1
+      info:
+        en: |-
+          ```hsc
+          (model_animation_bullshit1)
+          ```
+    - slug: model_animation_bullshit2
+      info:
+        en: |-
+          ```hsc
+          (model_animation_bullshit2)
+          ```
+    - slug: model_animation_bullshit3
+      info:
+        en: |-
+          ```hsc
+          (model_animation_bullshit3)
+          ```
+    - slug: model_animation_compression
+      info:
+        en: |-
+          ```hsc
+          (model_animation_compression)
+          ```
+    - slug: model_animation_data_compressed_size
+      info:
+        en: |-
+          ```hsc
+          (model_animation_data_compressed_size)
+          ```
+    - slug: model_animation_data_compression_savings_in_bytes
+      info:
+        en: |-
+          ```hsc
+          (model_animation_data_compression_savings_in_bytes)
+          ```
+    - slug: model_animation_data_compression_savings_in_bytes_at_import
+      info:
+        en: |-
+          ```hsc
+          (model_animation_data_compression_savings_in_bytes_at_import)
+          ```
+    - slug: model_animation_data_compression_savings_in_percent
+      info:
+        en: |-
+          ```hsc
+          (model_animation_data_compression_savings_in_percent)
+          ```
+    - slug: model_animation_data_uncompressed_size
+      info:
+        en: |-
+          ```hsc
+          (model_animation_data_uncompressed_size)
+          ```
+    - slug: mouse_acceleration
+      info:
+        en: |-
+          ```hsc
+          (mouse_acceleration)
+          ```
+    - slug: multiplayer_draw_teammates_names
+      info:
+        en: |-
+          ```hsc
+          (multiplayer_draw_teammates_names)
+          ```
+    - slug: multiplayer_hit_sound_volume
+      info:
+        en: |-
+          ```hsc
+          (multiplayer_hit_sound_volume)
+          ```
+    - slug: net_bandwidth
+      info:
+        en: |-
+          ```hsc
+          (net_bandwidth)
+          ```
+    - slug: net_graph_enabled
+      info:
+        en: |-
+          ```hsc
+          (net_graph_enabled)
+          ```
+    - slug: net_graph_period
+      info:
+        en: |-
+          ```hsc
+          (net_graph_period)
+          ```
+    - slug: network_connect_timeout
+      info:
+        en: |-
+          ```hsc
+          (network_connect_timeout)
+          ```
+    - slug: object_light_ambient_base
+      info:
+        en: |-
+          ```hsc
+          (object_light_ambient_base)
+          ```
+    - slug: object_light_ambient_scale
+      info:
+        en: |-
+          ```hsc
+          (object_light_ambient_scale)
+          ```
+    - slug: object_light_interpolate
+      info:
+        en: |-
+          ```hsc
+          (object_light_interpolate)
+          ```
+    - slug: object_light_secondary_scale
+      info:
+        en: |-
+          ```hsc
+          (object_light_secondary_scale)
+          ```
+    - slug: object_prediction
+      info:
+        en: |-
+          ```hsc
+          (object_prediction)
+          ```
+    - slug: oddball_baseline_rate
+      info:
+        en: |-
+          ```hsc
+          (oddball_baseline_rate)
+          ```
+    - slug: pad3
+      info:
+        en: |-
+          ```hsc
+          (pad3)
+          ```
+    - slug: pad3_scale
+      info:
+        en: |-
+          ```hsc
+          (pad3_scale)
+          ```
+    - slug: player_autoaim
+      info:
+        en: |-
+          ```hsc
+          (player_autoaim)
+          ```
+    - slug: player_magnetism
+      info:
+        en: |-
+          ```hsc
+          (player_magnetism)
+          ```
+    - slug: player_spawn_count
+      info:
+        en: |-
+          ```hsc
+          (player_spawn_count)
+          ```
+    - slug: profile_display
+      info:
+        en: |-
+          ```hsc
+          (profile_display)
+          ```
+    - slug: profile_dump_frames
+      info:
+        en: |-
+          ```hsc
+          (profile_dump_frames)
+          ```
+    - slug: profile_dump_lost_frames
+      info:
+        en: |-
+          ```hsc
+          (profile_dump_lost_frames)
+          ```
+    - slug: profile_graph
+      info:
+        en: |-
+          ```hsc
+          (profile_graph [boolean])
+          ```
+          Broken feature -- causes a crash.
+    - slug: profile_timebase_ticks
+      info:
+        en: |-
+          ```hsc
+          (profile_timebase_ticks)
+          ```
+    - slug: projectile_incremental_rate
+      info:
+        en: |-
+          ```hsc
+          (projectile_incremental_rate)
+          ```
+    - slug: rasterizer_active_camouflage
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_active_camouflage)
+          ```
+    - slug: rasterizer_active_camouflage_multipass
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_active_camouflage_multipass)
+          ```
+    - slug: rasterizer_bump_mapping
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_bump_mapping)
+          ```
+    - slug: rasterizer_d3dlight_attenuation0
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_d3dlight_attenuation0)
+          ```
+    - slug: rasterizer_d3dlight_attenuation1
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_d3dlight_attenuation1)
+          ```
+    - slug: rasterizer_d3dlight_attenuation2
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_d3dlight_attenuation2)
+          ```
+    - slug: rasterizer_d3dlight_falloff
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_d3dlight_falloff)
+          ```
+    - slug: rasterizer_d3dlight_phi
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_d3dlight_phi)
+          ```
+    - slug: rasterizer_d3dlight_theta
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_d3dlight_theta)
+          ```
+    - slug: rasterizer_debug_geometry
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_debug_geometry)
+          ```
+    - slug: rasterizer_debug_geometry_multipass
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_debug_geometry_multipass)
+          ```
+    - slug: rasterizer_debug_meter_shader
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_debug_meter_shader)
+          ```
+    - slug: rasterizer_debug_model_lod
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_debug_model_lod)
+          ```
+    - slug: rasterizer_debug_model_vertices
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_debug_model_vertices)
+          ```
+    - slug: rasterizer_debug_transparents
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_debug_transparents)
+          ```
+    - slug: rasterizer_detail_objects
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_detail_objects)
+          ```
+    - slug: rasterizer_detail_objects_offset_multiplier
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_detail_objects_offset_multiplier)
+          ```
+    - slug: rasterizer_draw_first_person_weapon_first
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_draw_first_person_weapon_first)
+          ```
+    - slug: rasterizer_DXTC_noise
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_DXTC_noise)
+          ```
+    - slug: rasterizer_dynamic_lit_geometry
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_dynamic_lit_geometry)
+          ```
+    - slug: rasterizer_dynamic_screen_geometry
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_dynamic_screen_geometry)
+          ```
+    - slug: rasterizer_dynamic_unlit_geometry
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_dynamic_unlit_geometry)
+          ```
+    - slug: rasterizer_effects_level
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_effects_level)
+          ```
+    - slug: rasterizer_environment
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment)
+          ```
+    - slug: rasterizer_environment_alpha_testing
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_alpha_testing)
+          ```
+    - slug: rasterizer_environment_decals
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_decals)
+          ```
+    - slug: rasterizer_environment_diffuse_lights
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_diffuse_lights)
+          ```
+    - slug: rasterizer_environment_diffuse_textures
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_diffuse_textures)
+          ```
+    - slug: rasterizer_environment_fog
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_fog)
+          ```
+    - slug: rasterizer_environment_fog_screen
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_fog_screen)
+          ```
+    - slug: rasterizer_environment_lightmaps
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_lightmaps)
+          ```
+    - slug: rasterizer_environment_reflection_lightmap_mask
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_reflection_lightmap_mask)
+          ```
+    - slug: rasterizer_environment_reflection_mirrors
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_reflection_mirrors)
+          ```
+    - slug: rasterizer_environment_reflections
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_reflections)
+          ```
+    - slug: rasterizer_environment_shadows
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_shadows)
+          ```
+    - slug: rasterizer_environment_specular_lightmaps
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_specular_lightmaps)
+          ```
+    - slug: rasterizer_environment_specular_lights
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_specular_lights)
+          ```
+    - slug: rasterizer_environment_specular_mask
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_specular_mask)
+          ```
+    - slug: rasterizer_environment_transparents
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_environment_transparents)
+          ```
+    - slug: rasterizer_far_clip_distance
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_far_clip_distance [real])
+          ```
+          Sets the [far clip distance](https://en.wikipedia.org/wiki/Clipping_(computer_graphics)),
+          which is the maximum draw distance (world units). Defaults to `1024.0`.
+    - slug: rasterizer_filthy_decal_fog_hack
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_filthy_decal_fog_hack)
+          ```
+    - slug: rasterizer_first_person_weapon_far_clip_distance
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_first_person_weapon_far_clip_distance [real])
+          ```
+          Sets the [far clip distance](https://en.wikipedia.org/wiki/Clipping_(computer_graphics)),
+          for the first person arms and weapon. Defaults to `1024.0`.
+          The world clipping distance can be set with `rasterizer_far_clip_distance`.
+    - slug: rasterizer_first_person_weapon_near_clip_distance
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_first_person_weapon_near_clip_distance [real])
+          ```
+          Sets the [near clip distance](https://en.wikipedia.org/wiki/Clipping_(computer_graphics))
+          of the first person arms and weapon. Defaults to `0.0.011719`.
+    - slug: rasterizer_floating_point_zbuffer
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_floating_point_zbuffer)
+          ```
+    - slug: rasterizer_fog_atmosphere
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_fog_atmosphere)
+          ```
+    - slug: rasterizer_fog_plane
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_fog_plane)
+          ```
+    - slug: rasterizer_fps
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_fps)
+          ```
+    - slug: rasterizer_frame_bounds_bottom
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_frame_bounds_bottom)
+          ```
+    - slug: rasterizer_frame_bounds_left
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_frame_bounds_left)
+          ```
+    - slug: rasterizer_frame_bounds_right
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_frame_bounds_right)
+          ```
+    - slug: rasterizer_frame_bounds_top
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_frame_bounds_top)
+          ```
+    - slug: rasterizer_frame_drop_ms
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_frame_drop_ms)
+          ```
+    - slug: rasterizer_framerate_stabilization
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_framerate_stabilization)
+          ```
+    - slug: rasterizer_framerate_throttle
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_framerate_throttle)
+          ```
+    - slug: rasterizer_hud_motion_sensor
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_hud_motion_sensor)
+          ```
+    - slug: rasterizer_lens_flares
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_lens_flares)
+          ```
+    - slug: rasterizer_lens_flares_occlusion
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_lens_flares_occlusion)
+          ```
+    - slug: rasterizer_lens_flares_occlusion_debug
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_lens_flares_occlusion_debug)
+          ```
+    - slug: rasterizer_lightmap_ambient
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_lightmap_ambient)
+          ```
+    - slug: rasterizer_lightmap_mode
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_lightmap_mode)
+          ```
+    - slug: rasterizer_lightmaps_filtering
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_lightmaps_filtering)
+          ```
+    - slug: rasterizer_lightmaps_incident_radiosity
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_lightmaps_incident_radiosity)
+          ```
+    - slug: rasterizer_mode
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_mode)
+          ```
+    - slug: rasterizer_model_lighting_ambient
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_model_lighting_ambient)
+          ```
+    - slug: rasterizer_model_transparents
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_model_transparents)
+          ```
+    - slug: rasterizer_models
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_models)
+          ```
+    - slug: rasterizer_near_clip_distance
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_near_clip_distance [real])
+          ```
+          Sets the [near clip distance](https://en.wikipedia.org/wiki/Clipping_(computer_graphics)),
+          which is the minimum draw distance (world units). Defaults to `0.0625`.
+          This does not appear to work fully, as the near clip distance will only
+          be adjusted for one frame.
+    - slug: rasterizer_plasma_energy
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_plasma_energy)
+          ```
+    - slug: rasterizer_profile_log
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_profile_log)
+          ```
+    - slug: rasterizer_profile_objectlock_time
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_profile_objectlock_time)
+          ```
+    - slug: rasterizer_profile_print_locks
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_profile_print_locks)
+          ```
+    - slug: rasterizer_ray_of_buddha
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_ray_of_buddha)
+          ```
+    - slug: rasterizer_refresh_rate
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_refresh_rate)
+          ```
+    - slug: rasterizer_safe_frame_bounds
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_safe_frame_bounds)
+          ```
+    - slug: rasterizer_screen_effects
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_screen_effects)
+          ```
+    - slug: rasterizer_screen_flashes
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_screen_flashes)
+          ```
+    - slug: rasterizer_secondary_render_target_debug
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_secondary_render_target_debug)
+          ```
+    - slug: rasterizer_shadows_convolution
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_shadows_convolution)
+          ```
+    - slug: rasterizer_shadows_debug
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_shadows_debug)
+          ```
+    - slug: rasterizer_smart
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_smart)
+          ```
+    - slug: rasterizer_soft_filter
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_soft_filter)
+          ```
+    - slug: rasterizer_splitscreen_VB_optimization
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_splitscreen_VB_optimization)
+          ```
+    - slug: rasterizer_stats
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_stats)
+          ```
+    - slug: rasterizer_stencil_mask
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_stencil_mask)
+          ```
+    - slug: rasterizer_transparent_pixel_counter
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_transparent_pixel_counter)
+          ```
+    - slug: rasterizer_water
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_water)
+          ```
+    - slug: rasterizer_water_mipmapping
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_water_mipmapping)
+          ```
+    - slug: rasterizer_wireframe
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_wireframe)
+          ```
+    - slug: rasterizer_zbias
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_zbias)
+          ```
+    - slug: rasterizer_zoffset
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_zoffset)
+          ```
+    - slug: rasterizer_zsprites
+      info:
+        en: |-
+          ```hsc
+          (rasterizer_zsprites)
+          ```
+    - slug: recover_saved_games_hack
+      info:
+        en: |-
+          ```hsc
+          (recover_saved_games_hack)
+          ```
+    - slug: remote_player_action_baseline_update_rate
+      info:
+        en: |-
+          ```hsc
+          (remote_player_action_baseline_update_rate)
+          ```
+    - slug: remote_player_action_update_rate
+      info:
+        en: |-
+          ```hsc
+          (remote_player_action_update_rate)
+          ```
+    - slug: remote_player_log_level
+      info:
+        en: |-
+          ```hsc
+          (remote_player_log_level)
+          ```
+    - slug: remote_player_position_baseline_update_rate
+      info:
+        en: |-
+          ```hsc
+          (remote_player_position_baseline_update_rate)
+          ```
+    - slug: remote_player_position_update_rate
+      info:
+        en: |-
+          ```hsc
+          (remote_player_position_update_rate)
+          ```
+    - slug: remote_player_vehicle_baseline_update_rate
+      info:
+        en: |-
+          ```hsc
+          (remote_player_vehicle_baseline_update_rate)
+          ```
+    - slug: remote_player_vehicle_update_rate
+      info:
+        en: |-
+          ```hsc
+          (remote_player_vehicle_update_rate)
+          ```
+    - slug: render_contrails
+      info:
+        en: |-
+          ```hsc
+          (render_contrails)
+          ```
+    - slug: render_model_index_counts
+      info:
+        en: |-
+          ```hsc
+          (render_model_index_counts)
+          ```
+    - slug: render_model_markers
+      info:
+        en: |-
+          ```hsc
+          (render_model_markers [boolean])
+          ```
+          If enabled, all [model markers][gbxmodel#markers] will be rendered in
+          3D with their name and rotation axis.
+    - slug: render_model_no_geometry
+      info:
+        en: |-
+          ```hsc
+          (render_model_no_geometry)
+          ```
+    - slug: render_model_nodes
+      info:
+        en: |-
+          ```hsc
+          (render_model_nodes)
+          ```
+    - slug: render_model_vertex_counts
+      info:
+        en: |-
+          ```hsc
+          (render_model_vertex_counts)
+          ```
+    - slug: render_particles
+      info:
+        en: |-
+          ```hsc
+          (render_particles)
+          ```
+    - slug: render_psystems
+      info:
+        en: |-
+          ```hsc
+          (render_psystems)
+          ```
+    - slug: render_shadows
+      info:
+        en: |-
+          ```hsc
+          (render_shadows)
+          ```
+    - slug: render_wsystems
+      info:
+        en: |-
+          ```hsc
+          (render_wsystems)
+          ```
+    - slug: rider_ejection
+      info:
+        en: |-
+          ```hsc
+          (rider_ejection)
+          ```
+    - slug: run_game_scripts
+      info:
+        en: |-
+          ```hsc
+          (run_game_scripts)
+          ```
+    - slug: screenshot_count
+      info:
+        en: |-
+          ```hsc
+          (screenshot_count)
+          ```
+    - slug: screenshot_size
+      info:
+        en: |-
+          ```hsc
+          (screenshot_size)
+          ```
+    - slug: slow_server_startup_safety_zone_in_seconds
+      info:
+        en: |-
+          ```hsc
+          (slow_server_startup_safety_zone_in_seconds)
+          ```
+    - slug: sound_cache_size
+      info:
+        en: |-
+          ```hsc
+          (sound_cache_size)
+          ```
+    - slug: sound_gain_under_dialog
+      info:
+        en: |-
+          ```hsc
+          (sound_gain_under_dialog)
+          ```
+    - slug: sound_obstruction_ratio
+      info:
+        en: |-
+          ```hsc
+          (sound_obstruction_ratio)
+          ```
+    - slug: speed_hack_detection
+      info:
+        en: |-
+          ```hsc
+          (speed_hack_detection)
+          ```
+    - slug: speed_hack_log_level
+      info:
+        en: |-
+          ```hsc
+          (speed_hack_log_level)
+          ```
+    - slug: structures_use_pvs_for_vs
+      info:
+        en: |-
+          ```hsc
+          (structures_use_pvs_for_vs)
+          ```
+    - slug: stun_enable
+      info:
+        en: |-
+          ```hsc
+          (stun_enable)
+          ```
+    - slug: sv_client_action_queue_limit
+      info:
+        en: |-
+          ```hsc
+          (sv_client_action_queue_limit)
+          ```
+    - slug: sv_client_action_queue_tick_limit
+      info:
+        en: |-
+          ```hsc
+          (sv_client_action_queue_tick_limit)
+          ```
+    - slug: sv_mapcycle_timeout
+      info:
+        en: |-
+          ```hsc
+          (sv_mapcycle_timeout)
+          ```
+    - slug: sv_public
+      info:
+        en: |-
+          ```hsc
+          (sv_public)
+          ```
+    - slug: sv_tk_ban
+      info:
+        en: |-
+          ```hsc
+          (sv_tk_ban)
+          ```
+    - slug: temporary_hud
+      info:
+        en: |-
+          ```hsc
+          (temporary_hud [boolean])
+          ```
+          Renders a debug HUD with basic weapon information in text and line-drawn
+          circular reticules representing the current error angle. Works in debug builds only.
+    - slug: terminal_render
+      info:
+        en: |-
+          ```hsc
+          (terminal_render)
+          ```
+    - slug: texture_cache_graph
+      info:
+        en: |-
+          ```hsc
+          (texture_cache_graph [boolean])
+          ```
+          Toggles a live representation of the [texture cache][renderer#texture-cache]
+          in the top left corner of the screen, depicting which entries are being
+          loaded and evicted. Works in debug builds only.
+    - slug: texture_cache_list
+      info:
+        en: |-
+          ```hsc
+          (texture_cache_list [boolean])
+          ```
+          Shows a live list of all bitmap tag paths currently loaded in the
+          [texture cache][renderer#texture-cache]. Works in debug builds only.
+    - slug: texture_cache_flush
+      info:
+        en: |-
+          ```hsc
+          (texture_cache_flush)
+          ```
+          Clears all loaded textures from the [texture cache][renderer#texture-cache].
+          Works in debug builds only.
+    - slug: transport_dumping
+      info:
+        en: |-
+          ```hsc
+          (transport_dumping)
+          ```
+    - slug: use_new_vehicle_update_scheme
+      info:
+        en: |-
+          ```hsc
+          (use_new_vehicle_update_scheme)
+          ```
+    - slug: use_super_remote_players_action_update
+      info:
+        en: |-
+          ```hsc
+          (use_super_remote_players_action_update)
+          ```
+    - slug: vehicle_incremental_rate
+      info:
+        en: |-
+          ```hsc
+          (vehicle_incremental_rate)
+          ```
+    - slug: weapon_incremental_rate
+      info:
+        en: |-
+          ```hsc
+          (weapon_incremental_rate)
+          ```
+    - slug: weather
+      info:
+        en: |-
+          ```hsc
+          (weather [boolean])
+          ```
+          Toggles the rendering of all [weather_particle_system][]. Defaults to `true`.
