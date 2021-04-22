@@ -5,6 +5,9 @@ Don't confuse this tag with the Xbox-only [model][], which Gearbox modified for 
 # Shaders
 Each [part](#tag-field-geometries-parts) of a model can reference a different [shader][], like the Warthog's windscreen using a [shader_transparent_glass][] while its body uses a [shader_model][]. While a model can _technically_ reference any kind of shader, referencing a [shader_environment][] (used for [BSPs][scenario_structure_bsp]) is **not recommended** because it [renders incorrectly][renderer#pc-regressions] in Custom Edition.
 
+# Nodes
+Nodes can be thought of as the model's "skeleton" and can be animated to move parts of the model. Each vertex can be influenced by up to 2 nodes.
+
 # Markers
 Markers are simple named points with orientation attached to a model. Since they are parented by nodes, they can be animated. Markers can be used for a variety of purposes, such as attaching objects together with scripts (e.g. Pelicans carrying Warthogs), attaching widgets like [antenna][], or firing [projectiles][projectile] from in the case of weapons.
 

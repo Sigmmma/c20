@@ -1061,9 +1061,8 @@ DebugFunctions:
           ```hsc
           (collision_debug_features [boolean])
           ```
-          Toggles the display of _collision features_ near the player, which can be spheres,
-          cylinders, or prisms. These features will be outlined in blue and green.
-          Collision size can be adjusted with `collision_debug_width`
+          Toggles the display of _collision features_ near the player, which can be spheres (red),
+          cylinders (blue), or prisms (green). Collision size can be adjusted with `collision_debug_width`
           and `collision_debug_height`. The test point can be frozen in place using
           `collision_debug_repeat`.
     - slug: collision_debug_flag_back_facing_surfaces
@@ -1362,26 +1361,30 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (controls_enable_crouch)
+          (controls_enable_crouch [boolean])
           ```
+          No visible effect. May be related to controller input during development.
     - slug: controls_enable_doubled_spin
       info:
         en: |-
           ```hsc
-          (controls_enable_doubled_spin)
+          (controls_enable_doubled_spin [boolean])
           ```
+          No visible effect. May be related to controller input during development.
     - slug: controls_swap_doubled_spin_state
       info:
         en: |-
           ```hsc
-          (controls_swap_doubled_spin_state)
+          (controls_swap_doubled_spin_state [boolean])
           ```
+          No visible effect. May be related to controller input during development.
     - slug: controls_swapped
       info:
         en: |-
           ```hsc
-          (controls_swapped)
+          (controls_swapped [boolean])
           ```
+          No visible effect. May be related to controller input during development.
     - slug: debug_bink
       info:
         en: |-
@@ -1392,8 +1395,14 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (debug_biped_limp_body_disable)
+          (debug_biped_limp_body_disable [boolean])
           ```
+          When set to `true`, pauses the biped limp body system, which is responsible for
+          moving [model nodes][gbxmodel#nodes] towards the ground when a biped has
+          died and has come to rest on the [structure BSP][scenario_structure_bsp].
+          Bipeds will lay roughly at right angle, but they will not conform to
+          the shape of the surfaces below them. If set to `false`, the limp body system
+          will take effect again even for existing dead bipeds.
     - slug: debug_biped_physics
       info:
         en: |-
@@ -1404,8 +1413,12 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (debug_biped_skip_collision)
+          (debug_biped_skip_collision [boolean])
           ```
+          If `true`, disables collision checks for [bipeds][biped]. They will be able
+          to keep "walking" horizontally, but cannot jump or collide with any objects
+          the BSP, and are unaffected by gravity. They will still be forced to stay crouched
+          if crouching below or within a collideable surface.
     - slug: debug_biped_skip_update
       info:
         en: |-
