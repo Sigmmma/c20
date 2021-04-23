@@ -1512,20 +1512,25 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (debug_fog_planes)
+          (debug_fog_planes [boolean])
           ```
+          Outlines the edges of [fog][] plane volumes with white lines.
     - slug: debug_framerate
       info:
         en: |-
           ```hsc
-          (debug_framerate)
+          (debug_framerate [boolean])
           ```
+          No visible effect. Replaced with the <kbd>Ctrl + F12</kbd> hotkey?
     - slug: debug_frustum
       info:
         en: |-
           ```hsc
-          (debug_frustum)
+          (debug_frustum [boolean])
           ```
+          Draws a series of red lines between corners and midpoints of the screen
+          within the view frustrum. These can be seen to intersect with level
+          geometry.
     - slug: debug_game_save
       info:
         en: |-
@@ -1814,14 +1819,19 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (debug_player_color)
+          (debug_player_color [short])
           ```
+          Sets the [player's armour color][hard-coded-data#multiplayer-armor-colors]
+          in non-team games. The setting will take effect when the player respawns.
+          The default value `-1` causes the player's [profile setting][engine/files#profile-player-details-player-color]
+          to be used.
     - slug: debug_player_teleport
       info:
         en: |-
           ```hsc
-          (debug_player_teleport)
+          (debug_player_teleport [boolean])
           ```
+          Displays a green physics pill where a co-op player would spawn if safe.
     - slug: debug_point_physics
       info:
         en: |-
@@ -2019,8 +2029,9 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (display_framerate)
+          (display_framerate [boolean])
           ```
+          No visible effect.
     - slug: display_precache_progress
       info:
         en: |-
@@ -2031,8 +2042,9 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (effects_corpse_nonviolent)
+          (effects_corpse_nonviolent [boolean])
           ```
+          Toggles if shooting bodies produces additional blood effects.
     - slug: equipment_incremental_rate
       info:
         en: |-
@@ -2226,8 +2238,10 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (mouse_acceleration)
+          (mouse_acceleration [real])
           ```
+          Controls the amount of mouse input acceleration. Set to `0` for none.
+          Defaults to `0.7`.
     - slug: multiplayer_draw_teammates_names
       info:
         en: |-
@@ -2648,8 +2662,9 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (rasterizer_fog_plane)
+          (rasterizer_fog_plane [boolea])
           ```
+          Toggles the rendering of [fog][].
     - slug: rasterizer_fps
       info:
         en: |-

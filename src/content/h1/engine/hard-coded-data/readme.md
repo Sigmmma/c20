@@ -22,26 +22,28 @@ values are both listed in red-green-blue order. Note that these colors will look
 somewhat different ingame, since cubemaps and specular maps are applied over the
 diffuse color listed here.
 
-| Name   | Color                                       | HEX       | RGB           |
-|--------|---------------------------------------------|-----------|---------------|
-| White  |<div style="background: #FFFFFF">&nbsp;</div>| `#FFFFFF` | 255, 255, 255 |
-| Black  |<div style="background: #000000">&nbsp;</div>| `#000000` |   0,   0,   0 |
-| Red    |<div style="background: #FE0000">&nbsp;</div>| `#FE0000` | 254,   0,   0 |
-| Blue   |<div style="background: #0201E3">&nbsp;</div>| `#0201E3` |   2,   1, 227 |
-| Gray   |<div style="background: #707E71">&nbsp;</div>| `#707E71` | 112, 126, 113 |
-| Yellow |<div style="background: #FFFF01">&nbsp;</div>| `#FFFF01` | 255, 255,   1 |
-| Green  |<div style="background: #00FF01">&nbsp;</div>| `#00FF01` |   0, 255,   1 |
-| Pink   |<div style="background: #FF56B9">&nbsp;</div>| `#FF56B9` | 255,  86, 185 |
-| Purple |<div style="background: #AB10F4">&nbsp;</div>| `#AB10F4` | 171,  16, 244 |
-| Cyan   |<div style="background: #01FFFF">&nbsp;</div>| `#01FFFF` |   1, 255, 255 |
-| Cobalt |<div style="background: #6493ED">&nbsp;</div>| `#6493ED` | 100, 147, 237 |
-| Orange |<div style="background: #FF7F00">&nbsp;</div>| `#FF7F00` | 255, 127,   0 |
-| Teal   |<div style="background: #1ECC91">&nbsp;</div>| `#1ECC91` |  30, 204, 145 |
-| Sage   |<div style="background: #006401">&nbsp;</div>| `#006401` |   0, 100,   1 |
-| Brown  |<div style="background: #603814">&nbsp;</div>| `#603814` |  96,  56,  20 |
-| Tan    |<div style="background: #C69C6C">&nbsp;</div>| `#C69C6C` | 198, 156, 108 |
-| Maroon |<div style="background: #9D0B0E">&nbsp;</div>| `#9D0B0E` | 157,  11,  14 |
-| Salmon |<div style="background: #F5999E">&nbsp;</div>| `#F5999E` | 245, 153, 158 |
+| Index | Name   | Color                                       | HEX       | RGB           |
+|-------|--------|---------------------------------------------|-----------|---------------|
+| 0     | White  |<div style="background: #FFFFFF">&nbsp;</div>| `#FFFFFF` | 255, 255, 255 |
+| 1     | Black  |<div style="background: #000000">&nbsp;</div>| `#000000` |   0,   0,   0 |
+| 2     | Red    |<div style="background: #FE0000">&nbsp;</div>| `#FE0000` | 254,   0,   0 |
+| 3     | Blue   |<div style="background: #0201E3">&nbsp;</div>| `#0201E3` |   2,   1, 227 |
+| 4     | Gray   |<div style="background: #707E71">&nbsp;</div>| `#707E71` | 112, 126, 113 |
+| 5     | Yellow |<div style="background: #FFFF01">&nbsp;</div>| `#FFFF01` | 255, 255,   1 |
+| 6     | Green  |<div style="background: #00FF01">&nbsp;</div>| `#00FF01` |   0, 255,   1 |
+| 7     | Pink   |<div style="background: #FF56B9">&nbsp;</div>| `#FF56B9` | 255,  86, 185 |
+| 8     | Purple |<div style="background: #AB10F4">&nbsp;</div>| `#AB10F4` | 171,  16, 244 |
+| 9     | Cyan   |<div style="background: #01FFFF">&nbsp;</div>| `#01FFFF` |   1, 255, 255 |
+| 10    | Cobalt |<div style="background: #6493ED">&nbsp;</div>| `#6493ED` | 100, 147, 237 |
+| 11    | Orange |<div style="background: #FF7F00">&nbsp;</div>| `#FF7F00` | 255, 127,   0 |
+| 12    | Teal   |<div style="background: #1ECC91">&nbsp;</div>| `#1ECC91` |  30, 204, 145 |
+| 13    | Sage   |<div style="background: #006401">&nbsp;</div>| `#006401` |   0, 100,   1 |
+| 14    | Brown  |<div style="background: #603814">&nbsp;</div>| `#603814` |  96,  56,  20 |
+| 15    | Tan    |<div style="background: #C69C6C">&nbsp;</div>| `#C69C6C` | 198, 156, 108 |
+| 16    | Maroon |<div style="background: #9D0B0E">&nbsp;</div>| `#9D0B0E` | 157,  11,  14 |
+| 17    | Salmon |<div style="background: #F5999E">&nbsp;</div>| `#F5999E` | 245, 153, 158 |
+
+The developer console command [`debug_player_color [index]`][developer-console#debugfunctions-debug-player-color] can be used to set this during gameplay.
 
 # Engine-referenced tag paths
 These [tag paths][tags#tag-references-and-paths] are directly referenced by the game engine at runtime. Not every map needs to have these, but depending on which ones are missing, different things can happen. Maps might not load, menus might not appear, sounds might not play, etc.
