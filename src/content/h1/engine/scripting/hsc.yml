@@ -3275,26 +3275,25 @@ Functions:
           (playback)
           ```
           Starts game in film playback mode
-    - slug: (player0)_joystick_set_is_normal
+    - slug: player0_joystick_set_is_normal
       info:
         en: |-
           ```hsc
-          ((player0)_joystick_set_is_normal)
+          (player0_joystick_set_is_normal)
           ```
           Returns `true` if (player0) is using the normal joystick set
-    - slug: (player0)_look_invert_pitch
+    - slug: player0_look_invert_pitch
       info:
         en: |-
           ```hsc
-          ((player0)_look_invert_pitch <boolean>)
+          (player0_look_invert_pitch <boolean>)
           ```
-          Invert (player0)'s look
-    - slug: (player0)_look_pitch_is_inverted
+          Invert player0's look
+    - slug: player0_look_pitch_is_inverted
       info:
         en: |-
           ```hsc
-          ((player0)_look_pitch_is_inverted)
-
+          (player0_look_pitch_is_inverted)
           ```
           Returns `true` if (player0)'s look pitch is inverted
     - slug: player_action_test_accept

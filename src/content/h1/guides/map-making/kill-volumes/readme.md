@@ -4,10 +4,10 @@ Map authors who want to prevent players from reaching certain areas can use **ki
 The first step is to add trigger volumes to your map's [scenario][] using [Sapien][].
 
 1. Select "Trigger volumes" in the Hierarchy view
-2. Right click on the ground in the Game window to place a volume
-3. Left click and drag the faces of the new volume to adjust its size
-4. Rotate the volume using the active marker if needed
-5. Using the Properties palette, give the volume a suitable name like `kill_volume` (should be lower-case)
+1. Right click on the ground in the Game window to place a volume
+1. Left click and drag the faces of the new volume to adjust its size
+1. Rotate the volume using the active marker if needed
+1. Using the Properties palette, give the volume a suitable name like `kill_volume` (should be lower-case)
 
 To cover a larger area, you may need to place multiple volumes with different names.
 

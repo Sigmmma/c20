@@ -59,7 +59,7 @@ The following is a comprehensive list of arguments. Not all are not documented i
 | Argument                      | Description
 |-------------------------------|----------------
 |`-?` or `-help`                | Displays a list of _most_ arguments. Will fail if using a modified `strings.dll`, e.g. with the [Chimera][] mod
-|`-console`                     | Enables the debugging console, which can be opened with the <kbd>~</kbd> (tilde) key. This console can be used to enter Halo script commands and is similar to Sapien's console, though many Sapien-related commands have no effect. Note that most client mods like HAC2 and [Chimera][] enable this automatically.
+|`-console`                     | Enables the [developer console][developer-console], which can be opened with the <kbd>~</kbd> (tilde) key. This console can be used to enter Halo script commands and is similar to [Sapien's][sapien] console, though many Sapien-related commands have no effect. Note that most client mods like HAC2 and [Chimera][] enable this automatically.
 |`-devmode`                     | Enables developer mode commands ([Custom Edition][h1] only). This also prevents Internet gameplay when mods are not used. Most client mods like HAC2 and [Chimera][] enable this mode automatically.
 |`-exec example.txt`            | Causes the game or dedicated server to run the file of console commands on startup.
 |`-name <name>`                 | Sets the name of the player profile.
