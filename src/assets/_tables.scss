@@ -25,6 +25,9 @@ table {
 
 table.type-def {
   background: $bg-content;
+  box-shadow: none;
+  transition: box-shadow $transition-time;
+
   & {
     margin-bottom: 0;
   }
@@ -42,6 +45,10 @@ table.type-def {
       text-transform: uppercase;
       font-weight: bold;
     }
+  }
+
+  & &:hover {
+    box-shadow: 0 0 0 2px rgba($logo-color, 0.35);
   }
 
   .embedded-type {

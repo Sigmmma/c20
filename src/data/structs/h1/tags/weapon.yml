@@ -738,7 +738,8 @@ type_defs:
         comments:
           en: >
             Determines the aiming cone where projectiles paths will be pulled
-            towards the target. This is the "red reticle" angle.
+            towards the target biped's [autoaim pill][biped#physics-and-autoaim-pills].
+            This is the "red reticle" angle.
       - name: autoaim_range
         type: float
         meta:

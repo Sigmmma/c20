@@ -1399,9 +1399,10 @@ DebugFunctions:
           (debug_biped_limp_body_disable [boolean])
           ```
           When set to `true`, pauses the biped limp body system, which is responsible for
-          moving [model nodes][gbxmodel#nodes] towards the ground when a biped has
+          moving [model nodes][gbxmodel#nodes] towards the ground when an
+          [eligible][biped#tag-field-biped-flags-uses-limp-body-physics] biped has
           died and has come to rest on the [structure BSP][scenario_structure_bsp].
-          Bipeds will lay roughly at right angle, but they will not conform to
+          Bipeds will lay roughly at the right angle, but they will not conform to
           the shape of the surfaces below them. If set to `false`, the limp body system
           will take effect again even for existing dead bipeds.
     - slug: debug_biped_physics
@@ -1633,14 +1634,19 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (debug_objects)
+          (debug_objects [boolean])
           ```
+          When enabled, toggles if debug information is visible on objects
+          (such as bounding sphere and collision models). Individual debug
+          features can be toggled with the `debug_objects_*` commands.
     - slug: debug_objects_biped_autoaim_pills
       info:
         en: |-
           ```hsc
-          (debug_objects_biped_autoaim_pills)
+          (debug_objects_biped_autoaim_pills [boolean])
           ```
+          When `debug_objects` is enabled, displays
+          [biped autoaim pills][biped#physics-and-autoaim-pills] in red.
     - slug: debug_objects_biped_messages
       info:
         en: |-
@@ -1651,20 +1657,26 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (debug_objects_biped_physics_pills)
+          (debug_objects_biped_physics_pills [boolean])
           ```
+          When `debug_objects` is enabled, displays
+          [biped physics pills][biped#physics-and-autoaim-pills] in white.
     - slug: debug_objects_bounding_spheres
       info:
         en: |-
           ```hsc
-          (debug_objects_bounding_spheres)
+          (debug_objects_bounding_spheres [boolean])
           ```
+          When `debug_objects` is enabled, displays yellow spheres for [object
+          bounding radius][object#tag-field-bounding-radius].
     - slug: debug_objects_collision_models
       info:
         en: |-
           ```hsc
-          (debug_objects_collision_models)
+          (debug_objects_collision_models [boolean])
           ```
+          When `debug_objects` is enabled, displays green meshes for object
+          [collision models][model_collision_geometry].
     - slug: debug_objects_devices
       info:
         en: |-
@@ -3017,8 +3029,10 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (render_model_nodes)
+          (render_model_nodes [boolean])
           ```
+          If enabled, all model skeletons will be rendered. Nodes are shown as
+          axis gizmos and connected to their parents by white lines.
     - slug: render_model_vertex_counts
       info:
         en: |-
@@ -3158,7 +3172,8 @@ DebugFunctions:
           (temporary_hud [boolean])
           ```
           Renders a debug HUD with basic weapon information in text and line-drawn
-          circular reticules representing the current error angle. Works in debug builds only.
+          circular reticules representing the current error angle (yellow) and
+          autoaim angle (blue, or red if autoaim active). Works in debug builds only.
     - slug: terminal_render
       info:
         en: |-

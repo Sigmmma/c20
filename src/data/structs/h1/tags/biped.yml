@@ -15,6 +15,10 @@ type_defs:
     bits:
       - name: turns_without_animating
       - name: uses_player_physics
+        comments:
+          en: >
+            The physics pill height will be controlled by standing and crouching
+            collision heights rather being a simple sphere.
       - name: flying
       - name: physics_pill_centered_at_origin
       - name: spherical
@@ -189,20 +193,35 @@ type_defs:
         type: float
         meta:
           unit: seconds
+        comments:
+          en: >
+            Controls how long it takes to transition between standing and crouching
+            positions.
       - type: pad
         size: 24
       - name: standing_collision_height
         type: float
         meta:
           unit: world units
+        comments:
+          en: >
+            Sets the height of the physics pill when the biped _uses player physics_
+            and is standing.
       - name: crouching_collision_height
         type: float
         meta:
           unit: world units
+        comments:
+          en: >
+            Sets the height of the physics pill when the biped _uses player physics_
+            and is crouching.
       - name: collision_radius
         type: float
         meta:
           unit: world units
+        comments:
+          en: >
+            Sets the radius of the physics pill/sphere.
       - type: pad
         size: 40
       - name: autoaim_width
