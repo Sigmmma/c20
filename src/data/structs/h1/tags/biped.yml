@@ -22,6 +22,11 @@ type_defs:
       - name: flying
       - name: physics_pill_centered_at_origin
       - name: spherical
+        comments:
+          en: >
+            The [autoaim pill](#physics-and-autoaim-pills) is a sphere at the
+            midpoint between the head and pelvis nodes, rather than a capsule
+            spanning the head and pelvis nodes.
       - name: passes_through_other_bipeds
       - name: can_climb_any_surface
       - name: immune_to_falling_damage
@@ -270,10 +275,20 @@ type_defs:
         meta:
           cache_only: true
         endianness: little
+        comments:
+          en: >
+            Index of the "head" model node used to create the biped's
+            [autoaim pill](#physics-and-autoaim-pills). The pill also
+            uses the "pelvis" node.
       - name: pelvis_model_node_index
         type: Index
         meta:
           cache_only: true
+        comments:
+          en: >
+            Index of the "pelvis" model node used to create the biped's
+            [autoaim pill](#physics-and-autoaim-pills). The pill also
+            uses the "head" node.
         endianness: little
       - name: contact_point
         type: Block

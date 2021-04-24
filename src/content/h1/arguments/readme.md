@@ -69,7 +69,7 @@ The following is a comprehensive list of arguments. Not all are not documented i
 |`-nosound`                     | Disables all sound.
 |`-novideo`                     | Disables the `.bik` videos which play at game startup (retail). This option can also prevent Custom Edition crashes when using the Mesa graphics driver. The mod [Chimera][] sets this option automatically.
 |`-nowindowskey` or `-nowinkey` | Prevents the Windows key from opening the start menu and minimizing the game.
-|`-path <path>`                 | Sets the path for which Halo looks for profiles and gametypes. Normally `%USERPROFILE%\Documents\My Games\Halo[ CE]`
+|`-path <path>`                 | Sets the path for which Halo looks for profiles and gametypes, normally `%USERPROFILE%\Documents\My Games\Halo[ CE]`. Chimera users can also set this in `chimera.ini`.
 |`-safemode`                    | Disables as much as possible from the game in case you're experiencing crashes.
 |`-screenshot` or `-screenshots`| Enables the "Print Screen" key to generate [TGA format][about-tga] screenshots in Halo's `screenshots` directory.
 |`-timedemo`                    | A benchmarking mode which runs sped-up intro cinematics of several hard-coded maps (`ui`, `a30`, `b30`, `c10`, and `d20`) and appends benchmarking output to the file [timedemo.txt](#appendix%3A-timedemo-output) in Halo's directory. Replacing the stock maps with custom maps works as well. The duration of `-timedemo` is affected by the framerate.
