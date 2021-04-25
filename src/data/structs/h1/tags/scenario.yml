@@ -2142,6 +2142,11 @@ type_defs:
           hek_max_count: 512
           max: 65534
           read_only: true
+        comments:
+          en: >
+            Contains the names of all named objects in the scenario. These names
+            are referenced by index for each type of placed object if that object is
+            named. The console command [`debug_objects_names`][developer-console#debugfunctions-debug-objects-names] can display these.
       - name: scenery
         type: Block
         type_args:

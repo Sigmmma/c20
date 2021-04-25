@@ -1693,8 +1693,10 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (debug_objects_names)
+          (debug_objects_names [boolean])
           ```
+          Toggles the display of object names, for [named objects][scenario#tag-field-object-names].
+          The names are shown in purple.
     - slug: debug_objects_pathfinding_spheres
       info:
         en: |-
