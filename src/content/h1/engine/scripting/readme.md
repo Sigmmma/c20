@@ -174,10 +174,13 @@ whitespace in the final script, while keeping them in your source file.
 
 ## Number of source files is limited
 A scenario's scripts can be split into multiple files, but the number of files
-you can have is limited.
+you can have is limited to 8.
 
 ```.alert
-Info on exact limit and errors thrown when exceeding it (if any) needed here!
+Sapien silently fails to load all of the files if there are more than 8. It
+loads the first 8 in some determined order ("asciibetical"?), then excludes the
+rest. No errors are thrown unless scripts fail to compile because of the
+excluded files.
 ```
 
 ## Stack space is limited
