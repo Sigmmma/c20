@@ -248,6 +248,17 @@ type_defs:
         type: float
         meta:
           unit: world units
+        comments:
+          en: |-
+            This is used to help cull objects for rendering which are not
+            visible and also determines the shadow map size for dynamic object shadows.
+            The radius should contain this object completely, but not be too large.
+            Setting it too high will cause the object to draw unccessarily when
+            off-screen, but setting it too low will cause the object to have clipped
+            shadows and pop in and out of visibility at the edges of the screen.
+
+            This can be visualized in Sapien using
+            [debug_objects_bounding_spheres][developer-console#debugfunctions-debug-objects-bounding-spheres].
       - name: bounding_offset
         type: Point3D
       - name: origin_offset

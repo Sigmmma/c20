@@ -3,6 +3,9 @@ Like the [renderer's texture cache][renderer#texture-cache], the sound system al
 
 The [predicted resources][scenario#tag-field-predicted-resources] block seen in some tag classes are meant to give the engine a hint about what sounds (and textures) should be cached.
 
+# Sound obstruction
+Sounds which are playing behind an obstruction are muffled. An obstruction is anything which blocks a collision ray test between the sound source and the camera. This may be the [BSP][scenario_structure_bsp] or an object with [collision geometry][model_collision_geometry].
+
 # Channels
 The engine has the following channel limits:
 

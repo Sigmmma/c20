@@ -1062,7 +1062,7 @@ DebugFunctions:
           ```hsc
           (collision_debug_features [boolean])
           ```
-          Toggles the display of _collision features_ near the player, which can be spheres (red),
+          Toggles the display of _collision features_ near the camera, which can be spheres (red),
           cylinders (blue), or prisms (green). Collision size can be adjusted with `collision_debug_width`
           and `collision_debug_height`. The test point can be frozen in place using
           `collision_debug_repeat`.
@@ -1236,7 +1236,7 @@ DebugFunctions:
           ```hsc
           (collision_debug_height <real>)
           ```
-          When `collision_debug` and `collision_debug_features` are enabled, controls
+          When and `collision_debug_features` is enabled, controls
           the height in world units of collision features. Defaults to `0.0`.
     - slug: collision_debug_length
       info:
@@ -1449,7 +1449,7 @@ DebugFunctions:
           - BSP leaf and cluster indices
           - Ground point coordinates and BSP surface index (point directly below the camera on the ground)
           - Facing direction (yaw angle)
-          - Tag path of the ground point surface's shader
+          - Tag path of the shader pointed at by the camera
     - slug: debug_collision_skip_objects
       info:
         en: |-
@@ -1474,6 +1474,7 @@ DebugFunctions:
           - [Object lighting][renderer#lighting] will be unable to determine if an object
             exists in direct sunlight from the [sky][], resulting in incorrect lighting
             and shadow direction when an object moves.
+          - [Sounds][sound] behind obstructions will not be muffled.
     - slug: debug_damage
       info:
         en: |-
@@ -1501,8 +1502,11 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (debug_detail_objects)
+          (debug_detail_objects [boolean])
           ```
+          When enabled, active [detail object][detail_object_collection] cells
+          will be outlined in blue and individual detail objects are highlighted
+          with red markers.
     - slug: debug_effects_nonviolent
       info:
         en: |-
@@ -1668,7 +1672,8 @@ DebugFunctions:
           (debug_objects_bounding_spheres [boolean])
           ```
           When `debug_objects` is enabled, displays yellow spheres for [object
-          bounding radius][object#tag-field-bounding-radius].
+          bounding radius][object#tag-field-bounding-radius]. This setting defaults
+          to `true`, so the spheres will be visible already when turning on `debug_objects`.
     - slug: debug_objects_collision_models
       info:
         en: |-
@@ -1676,7 +1681,8 @@ DebugFunctions:
           (debug_objects_collision_models [boolean])
           ```
           When `debug_objects` is enabled, displays green meshes for object
-          [collision models][model_collision_geometry].
+          [collision models][model_collision_geometry]. This setting defaults
+          to `true`, so the meshes will be visible already when turning on `debug_objects`.
     - slug: debug_objects_devices
       info:
         en: |-
@@ -2266,8 +2272,10 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (multiplayer_hit_sound_volume)
+          (multiplayer_hit_sound_volume [real])
           ```
+          Sets the gain of the hit sound heard when damage is dealt in multiplayer.
+          Defaults to `0.2`.
     - slug: net_bandwidth
       info:
         en: |-
@@ -2489,20 +2497,23 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (rasterizer_detail_objects)
+          (rasterizer_detail_objects [boolean])
           ```
+          Toggles the rendering of [detail objects][detail_object_collection].
     - slug: rasterizer_detail_objects_offset_multiplier
       info:
         en: |-
           ```hsc
-          (rasterizer_detail_objects_offset_multiplier)
+          (rasterizer_detail_objects_offset_multiplier [boolean])
           ```
+          Defaults to `0.4`. No visible effect on detail objects when changed.
     - slug: rasterizer_draw_first_person_weapon_first
       info:
         en: |-
           ```hsc
-          (rasterizer_draw_first_person_weapon_first)
+          (rasterizer_draw_first_person_weapon_first [boolean])
           ```
+          No visible effect.
     - slug: rasterizer_DXTC_noise
       info:
         en: |-
@@ -2755,26 +2766,33 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (rasterizer_lightmap_ambient)
+          (rasterizer_lightmap_ambient [real])
           ```
+          Defaults to `1.0`. No visible effect when changed.
     - slug: rasterizer_lightmap_mode
       info:
         en: |-
           ```hsc
-          (rasterizer_lightmap_mode)
+          (rasterizer_lightmap_mode [short])
           ```
+          If the mode is `0`, the default, BSP specular reflections will be multiplied
+          by the [lightmap][lightmaps]. Any other value results in reflections being
+          unaltered.
     - slug: rasterizer_lightmaps_filtering
       info:
         en: |-
           ```hsc
-          (rasterizer_lightmaps_filtering)
+          (rasterizer_lightmaps_filtering [boolean])
           ```
+          Enables or disables [texture filtering](https://en.wikipedia.org/wiki/Texture_filtering)
+          for lightmaps. When disabled, lightmaps will appear blocky and jagged.
     - slug: rasterizer_lightmaps_incident_radiosity
       info:
         en: |-
           ```hsc
-          (rasterizer_lightmaps_incident_radiosity)
+          (rasterizer_lightmaps_incident_radiosity [boolean])
           ```
+          No visible effect.
     - slug: rasterizer_mode
       info:
         en: |-
@@ -2837,8 +2855,9 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (rasterizer_ray_of_buddha)
+          (rasterizer_ray_of_buddha [boolean])
           ```
+          Toggles the [sky's][sky] sun effect.
     - slug: rasterizer_refresh_rate
       info:
         en: |-
@@ -2873,26 +2892,32 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (rasterizer_shadows_convolution)
+          (rasterizer_shadows_convolution [boolean])
           ```
+          Toggles the blurring of dynamic object shadows. Defaults to `true`.
     - slug: rasterizer_shadows_debug
       info:
         en: |-
           ```hsc
-          (rasterizer_shadows_debug)
+          (rasterizer_shadows_debug [boolean])
           ```
+          When enabled, all dynamic object shadow maps will be rendered with a partially-shadowed
+          background, making their rectangular boundaries visible. The size of this rectangle
+          depends on the object's [bounding radius][object#tag-field-bounding-radius].
     - slug: rasterizer_smart
       info:
         en: |-
           ```hsc
-          (rasterizer_smart)
+          (rasterizer_smart [boolean])
           ```
+          No visible effect.
     - slug: rasterizer_soft_filter
       info:
         en: |-
           ```hsc
-          (rasterizer_soft_filter)
+          (rasterizer_soft_filter [boolean])
           ```
+          No visible effect.
     - slug: rasterizer_splitscreen_VB_optimization
       info:
         en: |-
@@ -2903,8 +2928,9 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (rasterizer_stats)
+          (rasterizer_stats [boolean])
           ```
+          Displays framerate statistics on the screen, including average, min, max, and dropped.
     - slug: rasterizer_stencil_mask
       info:
         en: |-
@@ -2933,8 +2959,11 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (rasterizer_wireframe)
+          (rasterizer_wireframe [boolean])
           ```
+          Toggles rendering in wireframe mode, which only draws pixels along triangle
+          edges rather than filling trangles. This can be useful for troubleshooting
+          portals.
     - slug: rasterizer_zbias
       info:
         en: |-
@@ -2945,8 +2974,10 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (rasterizer_zoffset)
+          (rasterizer_zoffset [real])
           ```
+          Controls how far away from surfaces new [decals][decal] are generated, e.g. for
+          projectile impacts. Defaults to `0.003906`. The units are _not_ world units.
     - slug: rasterizer_zsprites
       info:
         en: |-
@@ -3069,8 +3100,10 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (rider_ejection)
+          (rider_ejection [boolean])
           ```
+          Toggles if bipeds are ejected from overturned vehicles, including players
+          and AI characters. Defaults to `true`.
     - slug: run_game_scripts
       info:
         en: |-
@@ -3111,8 +3144,12 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (sound_obstruction_ratio)
+          (sound_obstruction_ratio [real])
           ```
+          Controls how "muffled" sounds are when heard behind an obstruction like
+          the [BSP][scenario_structure_bsp] or an object with [collision geometry][model_collision_geometry].
+          Defaults to `0.1`. A value of `0` means "not muffled", while a value above about `6`
+          effectively sounds them.
     - slug: speed_hack_detection
       info:
         en: |-
