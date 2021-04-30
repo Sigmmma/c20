@@ -12,6 +12,8 @@ cls
 sv_map bloodgulch slayer
 ```
 
+Similarly, [Sapien][] loads `editor_init.txt`.
+
 ## OpenSauce users
 If using the [OpenSauce mod][opensauce], use the file name `initc.txt` instead.
 

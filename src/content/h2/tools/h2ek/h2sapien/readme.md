@@ -51,5 +51,14 @@ Some of these shortcuts are only used in certain windows or editor modes.
   * None
 * <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
 
+# editor_init.txt
+At startup, H2Sapien will load `editor_init.txt` if present in the same folder. This file can contain console commands, one per line, which are executed automatically for you. For example:
+
+```inittxt
+error_geometry_hide_all
+debug_objects 1
+;a comment
+```
+
 # Compatibility
 Windows users have experienced saving issues related to the Virtual Store. Ensure you have the [right permissions][tips#windows-virtual-store] before editing tags.
