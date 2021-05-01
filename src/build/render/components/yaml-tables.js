@@ -11,15 +11,20 @@ function renderTableYaml(ctx, optsYaml) {
 
   const opts = yaml.load(optsYaml);
 
-  if (!opts.tableDefs)
-    throw new Error("Missing table value: tableDefs");
+  if (!opts.tableDefs && !opts.tableDataModule)
+    throw new Error("Missing table value: tableDefs or tableDataModule");
 
   if (!opts.tableName)
     throw new Error("Missing table value: tableName");
 
-  const data = yaml.load(
-    fs.readFileSync(path.join(ctx.page.dirPath, opts.tableDefs), "utf8")
-  )[opts.tableName];
+  let data = null;
+  if (opts.tableDataModule) {
+    data = R.path([...opts.tableDataModule.split("/"), opts.tableName], ctx.data);
+  } else {
+    data = yaml.load(
+      fs.readFileSync(path.join(ctx.page.dirPath, opts.tableDefs), "utf8")
+    )[opts.tableName];
+  }
 
   // De-duplicate common YAML error message stuff
   function YamlError(reason) {
@@ -27,7 +32,7 @@ function renderTableYaml(ctx, optsYaml) {
   }
 
   if (!data)
-    throw YamlError('not found');
+    throw YamlError('table data not found');
 
   if (!data.columns)
     throw YamlError('missing entry: columns');
@@ -96,6 +101,13 @@ function renderTableYaml(ctx, optsYaml) {
           rowsIndex.push({indexKey, id: id(row, index)});
         }
       });
+    }
+  }
+
+  if (opts.rowTagFilter) {
+    rowsSorted = rowsSorted.filter(row => row.tags && row.tags.includes(opts.rowTagFilter));
+    if (rowsSorted.length == 0) {
+      throw YamlError(`Table filtered to 0 rows: ${opts.tableName}, ${opts.rowTagFilter}`);
     }
   }
 
