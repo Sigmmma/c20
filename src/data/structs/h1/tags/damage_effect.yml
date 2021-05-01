@@ -38,6 +38,8 @@ type_defs:
       - name: harmless
       - name: lethal_to_the_unsuspecting
       - name: emp
+        comments:
+          en: Completely depletes target [units'][unit] energy shields, no matter their amount.
   DamageEffectCategory:
     class: enum
     size: 2
