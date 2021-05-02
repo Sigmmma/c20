@@ -46,12 +46,8 @@ When a JMS is compiled to BSP by [tool], connected convex faces with the materia
 
 The game can only support a maximum of 8 visible weather polyhedra. Beyond this point, some polyhedra will be ignored and [Sapien][] will print warnings.
 
-# Pathfinding data
-The BSP contains data on traversable surfaces which aid AI in pathfinding (walking to a destination). This data is generated automatically during BSP compilation and is retained even in when the BSP is compiled into multiplayer maps.
-
-_See more about the [pathfinding system][ai#pathfinding]._
-
 # Lightmaps
+_Lightmaps_ are the visual representation of the BSP, and are stored in a separate representation from its collision data. The lightmaps data includes the renderable triangles and a precalculated radiosity bitmap.
 
 _See main page: [Lightmaps][]._
 
@@ -108,6 +104,21 @@ On a technical level, cases of phantom BSP are [dividing planes](#tag-field-coll
 </figure>
 
 BSP holes or leaks are another type of collision artifact where items or players can fall through the map. It is not known what causes this, but it can be resolved by altering triangulation around the affected area (rotating edges). Compiling the BSP with [phantom_tool][] also prevents this.
+
+# Pathfinding data
+The BSP contains data on traversable surfaces which aid AI in pathfinding (walking to a destination). This data is generated automatically during BSP compilation and is retained even in when the BSP is compiled into multiplayer maps.
+
+_See more about the [pathfinding system][ai#pathfinding]._
+
+# Related commands
+These commands are entered into the [developer console][developer-console].
+
+```.table
+tableDataModule: hsc/h1/debug
+tableName: DebugFunctions
+rowSortKey: slug
+rowTagFilter: scenario_structure_bsp
+```
 
 [about-bsp]: https://en.wikipedia.org/wiki/Binary_space_partitioning
 [convex]: https://en.wikipedia.org/wiki/Convex_set

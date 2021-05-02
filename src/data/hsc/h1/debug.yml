@@ -1045,6 +1045,9 @@ DebugFunctions:
           ```
           Unknown purpose.
     - slug: collision_debug
+      tags:
+        - model_collision_geometry
+        - scenario_structure_bsp
       info:
         en: |-
           ```hsc
@@ -1062,6 +1065,9 @@ DebugFunctions:
           with the `collision_debug_flag_*` commands. The maximum range of the ray
           is controlled with `collision_debug_length`.
     - slug: collision_debug_features
+      tags:
+        - model_collision_geometry
+        - scenario_structure_bsp
       info:
         en: |-
           ```hsc
@@ -1213,6 +1219,8 @@ DebugFunctions:
           ```
           Unknown purpose. Does not seem to affect collision ray tests against bipeds.
     - slug: collision_debug_flag_structure
+      tags:
+        - scenario_structure_bsp
       info:
         en: |-
           ```hsc
@@ -1254,6 +1262,9 @@ DebugFunctions:
           will be shown for `collision_debug` while spray rays will simply not be shown.
           Defaults to `100.0`.
     - slug: collision_debug_phantom_bsp
+      tags:
+        - scenario_structure_bsp
+        - model_collision_geometry
       info:
         en: |-
           ```hsc
@@ -1417,6 +1428,8 @@ DebugFunctions:
           (debug_biped_physics)
           ```
     - slug: debug_biped_skip_collision
+      tags:
+        - biped
       info:
         en: |-
           ```hsc
@@ -1433,6 +1446,8 @@ DebugFunctions:
           (debug_biped_skip_update)
           ```
     - slug: debug_bsp
+      tags:
+        - scenario_structure_bsp
       info:
         en: |-
           ```hsc
@@ -1444,6 +1459,8 @@ DebugFunctions:
           are shown as well as a `+` or `-` symbol indicating if the camera was on the
           front or back side of the plane.
     - slug: debug_camera
+      tags:
+        - scenario_structure_bsp
       info:
         en: |-
           ```hsc
@@ -1596,11 +1613,15 @@ DebugFunctions:
           (debug_lights)
           ```
     - slug: debug_looping_sound
+      tags:
+        - sound
       info:
         en: |-
           ```hsc
-          (debug_looping_sound)
+          (debug_looping_sound [boolean])
           ```
+          Displays active [sound_looping][] with cyan spheres for their maxmimum
+          distance and blue spheres for their minimum.
     - slug: debug_material_effects
       info:
         en: |-
@@ -1684,6 +1705,8 @@ DebugFunctions:
           bounding radius][object#tag-field-bounding-radius]. This setting defaults
           to `true`, so the spheres will be visible already when turning on `debug_objects`.
     - slug: debug_objects_collision_models
+      tags:
+        - model_collision_geometry
       info:
         en: |-
           ```hsc
@@ -1713,11 +1736,15 @@ DebugFunctions:
           Toggles the display of object names, for [named objects][scenario#tag-field-object-names].
           The names are shown in purple.
     - slug: debug_objects_pathfinding_spheres
+      tags:
+        - model_collision_geometry
       info:
         en: |-
           ```hsc
-          (debug_objects_pathfinding_spheres)
+          (debug_objects_pathfinding_spheres [boolean])
           ```
+          When `debug_objects` is enabled, displays object [pathfinding spheres][model_collision_geometry#pathfinding-spheres]
+          in blue.
     - slug: debug_objects_physics
       info:
         en: |-
@@ -1879,6 +1906,8 @@ DebugFunctions:
           ```
           Alias of `debug_portals`, but with a mandatory argument.
     - slug: debug_portals
+      tags:
+        - scenario_structure_bsp
       info:
         en: |-
           ```hsc
@@ -1924,14 +1953,19 @@ DebugFunctions:
           Displays a table of active [script][scripting] threads, with their name,
           sleep time, and currently executing function.
     - slug: debug_sound
+      tags:
+        - sound
+        - sound_scenery
       info:
         en: |-
           ```hsc
           (debug_sound [boolean])
           ```
           [Sound][] sources will be labeled in 3D with their [tag path][tags#tag-path]
-          and a bounding sphere showing their range.
+          and a their minimum and maximum distances shown as red and yellow spheres, respectively.
     - slug: debug_sound_cache
+      tags:
+        - sound
       info:
         en: |-
           ```hsc
@@ -1939,7 +1973,19 @@ DebugFunctions:
           ```
           If enabled, [sound cache][sound-system#sound-cache] statistics will be shown
           in the top left corner of the screen, including how full it is.
+    - slug: sound_cache_dump_to_file
+      tags:
+        - sound
+      info:
+        en: |-
+          ```hsc
+          (sound_cache_dump_to_file)
+          ```
+          Writes the sound cache information from `debug_sound_cache` and a listing of
+          currently cached sounds to `sound_cache_dump.txt`.
     - slug: debug_sound_cache_graph
+      tags:
+        - sound
       info:
         en: |-
           ```hsc
@@ -1948,6 +1994,8 @@ DebugFunctions:
           Shows a graph of sound cache slots at the top of the screen, similar to
           `texture_cache_graph`. Can be used in Sapien/debug builds.
     - slug: debug_sound_channels
+      tags:
+        - sound
       info:
         en: |-
           ```hsc
@@ -1956,6 +2004,8 @@ DebugFunctions:
           Displays the utilization of [sound channel][sound-system#channels] limits in the top left
           corner of the screen.
     - slug: debug_sound_channels_detail
+      tags:
+        - sound
       info:
         en: |-
           ```hsc
@@ -1963,6 +2013,9 @@ DebugFunctions:
           ```
           Displays two columns of number pairs while sounds play with an unknown meaning.
     - slug: debug_sound_environment
+      tags:
+        - sound
+        - scenario_structure_bsp
       info:
         en: |-
           ```hsc
@@ -1987,6 +2040,8 @@ DebugFunctions:
           outlines instead of with textures. This also displays some sprite
           statistics at the top of the screen.
     - slug: debug_structure
+      tags:
+        - scenario_structure_bsp
       info:
         en: |-
           ```hsc
@@ -2278,6 +2333,8 @@ DebugFunctions:
           (multiplayer_draw_teammates_names)
           ```
     - slug: multiplayer_hit_sound_volume
+      tags:
+        - sound
       info:
         en: |-
           ```hsc
@@ -2578,11 +2635,15 @@ DebugFunctions:
           (rasterizer_environment_diffuse_lights)
           ```
     - slug: rasterizer_environment_diffuse_textures
+      tags:
+        - lightmaps
       info:
         en: |-
           ```hsc
-          (rasterizer_environment_diffuse_textures)
+          (rasterizer_environment_diffuse_textures [boolean])
           ```
+          Disables diffuse textures in the [BSP][scenario_structure_bsp],
+          showing just the lightmap shading and specular components.
     - slug: rasterizer_environment_fog
       info:
         en: |-
@@ -2596,11 +2657,15 @@ DebugFunctions:
           (rasterizer_environment_fog_screen)
           ```
     - slug: rasterizer_environment_lightmaps
+      tags:
+        - lightmaps
       info:
         en: |-
           ```hsc
-          (rasterizer_environment_lightmaps)
+          (rasterizer_environment_lightmaps [boolean])
           ```
+          Toggles the rendering of structure BSP [lightmaps][]. When disabled,
+          the level will be completely invisible.
     - slug: rasterizer_environment_reflection_lightmap_mask
       info:
         en: |-
@@ -2779,6 +2844,8 @@ DebugFunctions:
           ```
           Defaults to `1.0`. No visible effect when changed.
     - slug: rasterizer_lightmap_mode
+      tags:
+        - lightmaps
       info:
         en: |-
           ```hsc
@@ -2788,6 +2855,8 @@ DebugFunctions:
           by the [lightmap][lightmaps]. Any other value results in reflections being
           unaltered.
     - slug: rasterizer_lightmaps_filtering
+      tags:
+        - lightmaps
       info:
         en: |-
           ```hsc
@@ -3150,6 +3219,8 @@ DebugFunctions:
           (sound_gain_under_dialog)
           ```
     - slug: sound_obstruction_ratio
+      tags:
+        - sound
       info:
         en: |-
           ```hsc
@@ -3158,7 +3229,7 @@ DebugFunctions:
           Controls how "muffled" sounds are when heard behind an obstruction like
           the [BSP][scenario_structure_bsp] or an object with [collision geometry][model_collision_geometry].
           Defaults to `0.1`. A value of `0` means "not muffled", while a value above about `6`
-          effectively sounds them.
+          effectively mutes them.
     - slug: speed_hack_detection
       info:
         en: |-

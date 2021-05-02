@@ -18,8 +18,14 @@ All [objects][object] receive their lighting from the environment using data in 
 Only moving objects like [units][unit] cast real-time shadows; [scenery][] cast shadows in the baked lightmap using the object's [collision model][model_collision_geometry] rather than its [render model][gbxmodel], likely because the collision model is stored using a BSP structure which is more efficient to perform lighting calculations with.
 
 # Related commands
+These commands are entered into the [developer console][developer-console].
 
-* `rasterizer_environment_diffuse_textures 0`: Disables diffuse textures in the BSP, showing just the lightmap and specular components.
+```.table
+tableDataModule: hsc/h1/debug
+tableName: DebugFunctions
+rowSortKey: slug
+rowTagFilter: lightmaps
+```
 
 [radiosity]: https://en.wikipedia.org/wiki/Radiosity_(computer_graphics)
 [shadow-mapping]: https://en.wikipedia.org/wiki/Shadow_mapping

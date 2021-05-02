@@ -28,11 +28,6 @@ Pathfinding spheres can also be created automatically in some cases:
 ## Limits
 model_collision_geometry tags can only have up to 16 pathfinding spheres<sup>(confirmation needed)</sup>, up to 8 regions, and up to 33 permutations to a region.
 
-## Related commands
-
-* `debug_objects_pathfinding_spheres 1`
-  Can be used to view pathfinding spheres in Sapien.
-
 # Animation
 Unlike [BSPs][scenario_structure_bsp], collision geometry can have a self-intersecting mesh. However, this is only permitted between meshes parented by different nodes (e.g. limbs of a biped intersecting each other or the torso). Collision geometry cannot have weighted skinning for animations, so rigidly follows parent nodes in animations.
 
@@ -50,3 +45,13 @@ collision_debug_phantom_bsp 1
 ```
 
 To fix them, use similar tricks as fixing level phantom BSP: avoiding nearly co-planar faces and slightly altering the collision model around the problematic location.
+
+# Related commands
+These commands are entered into the [developer console][developer-console].
+
+```.table
+tableDataModule: hsc/h1/debug
+tableName: DebugFunctions
+rowSortKey: slug
+rowTagFilter: model_collision_geometry
+```
