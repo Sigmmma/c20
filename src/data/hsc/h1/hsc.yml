@@ -3751,20 +3751,28 @@ Functions:
         en: |-
           ```hsc
           (scenery_animation_start <scenery> <animation_graph> <string>)
+          (scenery_animation_start fighter_clouds "cinematics\animations\h_fighter\x70\x70" "x70_3")
           ```
-          Starts a custom animation playing on a piece of scenery
+          Starts a custom animation playing on a piece of scenery.
     - slug: scenery_animation_start_at_frame
       info:
-        en: >-
+        en: |-
           ```hsc
-
-          (scenery_animation_start_at_frame <scenery> <animation_graph> <string>
-          <short>)
-
+          (scenery_animation_start_at_frame <scenery> <animation_graph> <string> <short>)
+          (scenery_animation_start_at_frame fighter_launch "cinematics\animations\h_fighter\x70\x70" "x70_2" 100)
           ```
-
-          Starts a custom animation playing on a piece of scenery at a specific
-          frame
+          Starts a custom animation playing on a piece of scenery at a specific frame.
+    - slug: scenery_get_animation_time
+      info:
+        en: |-
+          ```hsc
+          (scenery_get_animation_time <scenery>)
+          (scenery_get_animation_time fighter_launch)
+          ```
+          Returns the number of ticks/frames remaining in a custom animation
+          (or zero, if the animation is over). This function intentionally returns
+          a value **2 frames lower** than the actual remaining frame count so scripts
+          waiting for the animation to end can do something before it's over.
     - slug: script_recompile
       info:
         en: |-
@@ -4523,15 +4531,15 @@ Functions:
           Gets the unit's current flashlight state
     - slug: unit_get_custom_animation_time
       info:
-        en: >-
+        en: |-
           ```hsc
-
           (unit_get_custom_animation_time <unit>)
-
+          (unit_get_custom_animation_time chief_insertion)
           ```
-
-          Returns the number of ticks remaining in a unit's custom animation (or
-          zero, if the animation is over)
+          Returns the number of ticks remaining in a unit's custom animation
+          (or zero, if the animation is over). This function intentionally returns
+          a value **2 frames lower** than the actual remaining frame count so scripts
+          waiting for the animation to end can do something before it's over.
     - slug: unit_get_health
       info:
         en: >-

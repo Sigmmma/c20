@@ -14,6 +14,8 @@ Press <kbd>Enter</kbd> to run the command.
 
 The console supports <kbd>Tab</kbd> completion of function names and `cls` for clearing output. You can also use `help <function name>` to get argument information.
 
+Clipboard contents can be pasted into the console with <kbd>Right Click</kbd>.
+
 # Commands reference
 
 ```.table
