@@ -17,7 +17,7 @@ The console supports <kbd>Tab</kbd> completion of function names and `cls` for c
 # Commands reference
 
 ```.table
-tableDefs: debug.yml
+tableDataModule: hsc/h1/debug
 tableName: DebugFunctions
 rowLinks: true
 rowSortKey: slug

@@ -241,11 +241,14 @@ DebugFunctions:
           (ai_print_conversations)
           ```
     - slug: ai_print_damage_modifiers
+      tags:
+        - damage
       info:
         en: |-
           ```hsc
-          (ai_print_damage_modifiers)
+          (ai_print_damage_modifiers [boolean])
           ```
+          When an encounter is [selected][sapien#encounters-and-ai], damage modifiers are logged at the bottom of the screen.
     - slug: ai_print_evaluation_statistics
       info:
         en: |-
@@ -986,6 +989,8 @@ DebugFunctions:
           The player will instantly kill any [unit][] they damage, including destroying
           vehicles. Even multiplayer vehicles can be "killed" and rendered inoperable.
     - slug: cheat_reflexive_damage_effects
+      tags:
+        - damage
       info:
         en: |-
           ```hsc
@@ -1476,6 +1481,8 @@ DebugFunctions:
             and shadow direction when an object moves.
           - [Sounds][sound] behind obstructions will not be muffled.
     - slug: debug_damage
+      tags:
+        - damage
       info:
         en: |-
           ```hsc
@@ -1485,6 +1492,8 @@ DebugFunctions:
           <kbd>Space</kbd> will display the object's body and shield vitalities
           on the HUD.
     - slug: debug_damage_taken
+      tags:
+        - damage
       info:
         en: |-
           ```hsc

@@ -50,14 +50,14 @@ Example:
 
 ## Script types
 ```.table
-tableDefs: hsc.yml
+tableDataModule: hsc/h1/hsc
 tableName: ScriptTypes
 rowLinks: true
 ```
 
 ## Value types
 ```.table
-tableDefs: hsc.yml
+tableDataModule: hsc/h1/hsc
 tableName: ValueTypes
 rowLinks: true
 ```
@@ -65,7 +65,7 @@ rowLinks: true
 
 ## Operators and keywords
 ```.table
-tableDefs: hsc.yml
+tableDataModule: hsc/h1/hsc
 tableName: OperatorsAndKeywords
 rowLinks: true
 ```
@@ -73,7 +73,7 @@ rowLinks: true
 
 ## Functions
 ```.table
-tableDefs: hsc.yml
+tableDataModule: hsc/h1/hsc
 tableName: Functions
 rowLinks: true
 rowSortKey: slug
