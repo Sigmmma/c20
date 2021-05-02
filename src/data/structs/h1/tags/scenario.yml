@@ -777,13 +777,11 @@ type_defs:
       - name: ctf_flag
         comments:
           en: >
-            **The CTF flags MUST be the first two entries in the netgame flags
-            list**, or players will be stuck "waiting for space to clear"
-            instead of spawning or the game may crash. It does not matter which
-            team index is placed first, just that the first two entries are the
-            flags. Red team's flag uses team index `0`, and blue team `1`. The
-            _facing_ value is not used to orient the flag pole (the skull faces
-            in the world's +X direction).
+            Two netgame flags should be placed for the CTF flags, with red team's
+            flag using team index `0`, and blue team `1`. The _facing_ value is
+            not used to orient the flag pole (the skull faces in the world's +X
+            direction). Be careful not to place the CTF flags on the wrong side
+            of the map or it [may prevent players from spawning][game-modes#ctf].
       - name: ctf_vehicle
         comments:
           en: _Unused._
@@ -2338,7 +2336,7 @@ type_defs:
           hek_max_count: 200
         comments:
           en: >-
-            Multiplayer-specific markers like flag locations, oddball spawns,
+            [Multiplayer game mode][game-modes] markers like flag locations, oddball spawns,
             and teleporters.
       - name: netgame_equipment
         type: Block
