@@ -139,7 +139,7 @@ module.exports = async function(ctx) {
     ],
     metaSections,
     searchText: structRender.searchTerms.join(" "),
-    metaTitle: `\u{1F3F7} Tag: ${tagName} (${engineId})`,
+    metaTitle: `Tag: ${tagName} (${engineId})`,
     metaClass: "content-tag",
     thanks: localizeThanks(ctx, ctx.data.tagThanks[game])
   };

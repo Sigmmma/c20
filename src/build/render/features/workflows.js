@@ -138,7 +138,7 @@ module.exports = async function(ctx) {
     return {};
   }
 
-  const defaultMetaTitle = `\u{2699}\u{FE0F} ${page.tryLocalizedTitle(ctx.lang)}`;
+  const defaultMetaTitle = page.tryLocalizedTitle(ctx.lang);
   const metaSections = [];
   const itemInfo = ctx.data.workflows.getWorkflowItem(workflowItemName);
 
@@ -163,7 +163,7 @@ module.exports = async function(ctx) {
 
   return {
     metaSections,
-    metaTitle: page.toolName ? `\u{1F527} ${localize("tool")}: ${page.toolName}` : defaultMetaTitle,
+    metaTitle: page.toolName ? `${localize("tool")}: ${page.toolName}` : defaultMetaTitle,
     metaClass: page.toolName ? "content-tool" : undefined,
   };
 };

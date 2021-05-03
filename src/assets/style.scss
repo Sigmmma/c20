@@ -1,13 +1,41 @@
 @import "_constants";
+@import url("/assets/night-owl.css");
 
-//todo: dark/light theme support
-// :root {
-//   --test: red;
-// }
-//
-// html[data-theme="light"] {
-//   --test: blue;
-// }
+:root {
+  --bg: #{$bg-dark};
+  --fg: #{$fg-dark};
+  --fg-faded: #{$fg-faded-dark};
+  --fg-strong: #{$fg-strong-dark};
+  --bg-overlay: #{$bg-overlay-dark};
+  --bg-inset: #{$bg-inset-dark};
+  --border-color: #{$border-color-dark};
+  --fg-link: #{$fg-link-dark};
+}
+
+html[data-theme="dark"] {
+  #toggle-theme .dark {
+    display: none;
+  }
+}
+
+html[data-theme="light"] {
+  --bg: #{$bg-light};
+  --fg: #{$fg-light};
+  --fg-faded: #{$fg-faded-light};
+  --fg-strong: #{$fg-strong-light};
+  --bg-overlay: #{$bg-overlay-light};
+  --bg-inset: #{$bg-inset-light};
+  --border-color: #{$border-color-light};
+  --fg-link: #{$fg-link-light};
+
+  #toggle-theme .light {
+    display: none;
+  }
+
+  .c20-logo::before {
+    filter: brightness(50%);
+  }
+}
 
 @font-face {
   font-family: ConvectionRegular;
@@ -21,10 +49,10 @@ html, body {
 }
 
 body {
-  color: $fg;
-  background: $bg-page;
-  background-image: url("/assets/bg.jpg");
-  background-repeat: repeat;
+  color: var(--fg);
+  background: var(--bg);
+  // background-image: url("/assets/bg.jpg");
+  // background-repeat: repeat;
   line-height: 1.3;
   font-family: $font-family;
   font-size: $font-size;
@@ -39,6 +67,17 @@ body {
 @import "_tables";
 @import "_alert";
 
+.feather {
+  width: 1em;
+  height: 1em;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+  vertical-align: sub;
+}
+
 .unit-converter {
   display: flex;
   flex-wrap: wrap;
@@ -50,45 +89,65 @@ body {
 }
 
 .content-faded {
-  color: $fg-faded;
+  color: var(--fg-faded);
 }
 .content-tool {
   background: $bg-tool;
 }
 .content-tool-minor {
-  background: mix($bg-tool, $bg-content, 35%);
+  background: $bg-tool-minor;
 }
 .content-tag {
   background: $bg-tag;
 }
 .content-tag-minor {
-  background: mix($bg-tag, $bg-content, 35%);
+  background: $bg-tag-minor;
 }
 .content-tag-minor.field-unused {
-  background: $bg-content;
+  background: var(--bg);
 }
 
-.top-header {
+.search-input {
+  margin-top: $padding-md;
+  display: inline-block;
+  transition: width $transition-time;
+  width: 100%;
+  &:focus, &.nonempty {
+    width: 100%;
+    border-radius: $border-radius $border-radius 0 0;
+  }
+}
+
+.sidebar-header {
   display: flex;
   flex-direction: row;
   align-items: baseline;
-  padding: $padding-containers-small $padding-containers;
-  background: $bg-header;
+  padding: $padding-sm $padding-md;
   justify-content: space-between;
-  border-bottom: 1px solid $border-color-header;
+  border-bottom: 1px solid var(--border-color);;
 
-  .c20-logo {
-    font-family: $font-family-headers;
+  .c20-logo::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: url("/assets/librarian.png");
     background-repeat: no-repeat;
     background-size: contain;
+  }
+
+  .c20-logo {
+    position: relative;
+    font-family: $font-family-headers;
     padding-left: 48px;
     margin-right: 1em;
     line-height: 40px;
     font-size: $font-size-logo;
     text-decoration: none;
     font-weight: bold;
-    color: $fg;
+    color: var(--fg);
   }
 
   .c20-name-short {
@@ -105,44 +164,34 @@ body {
 
   .clear-button {
     float: right;
-    margin-top: $padding-flow;
-    margin-left: $padding-flow;
-  }
-
-  .search-input {
-    display: inline-block;
-    transition: width $transition-time;
-    width: 60%;
-    &:focus, &.nonempty {
-      width: 100%;
-      border-radius: $border-radius $border-radius 0 0;
-    }
+    margin-top: $padding-sm;
+    margin-left: $padding-sm;
   }
 
   .search-results {
     width: 100%;
     position: absolute;
-    background: $bg-overlay;
-    border: 1px solid $border-color;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-color);;
     border-top: none;
     border-radius: 0 0 $border-radius $border-radius;
-    padding: 0 $padding-containers;
+    padding: 0 $padding-md;
     display: flow-root;
 
     ul {
       list-style: none;
-      margin: 0 0 $padding-containers 0;
+      margin: 0 0 $padding-md 0;
       padding: 0;
     }
 
     li {
-      border: 1px solid $border-color;
+      border: 1px solid var(--border-color);;
       border-top: none;
-      padding: $padding-containers-small;
-      padding-bottom: $padding-containers-small - 2px;
+      padding: $padding-sm;
+      padding-bottom: $padding-sm - 2px;
 
       &:first-child {
-        border-top: 1px solid $border-color;
+        border-top: 1px solid var(--border-color);;
         border-top-left-radius: $border-radius;
         border-top-right-radius: $border-radius;
       }
@@ -169,41 +218,65 @@ body {
   }
 }
 
-.content-sidebar {
+.page-sidebar {
   grid-area: sidebar;
-  padding: 0 $padding-containers;
-  max-width: 20em;
+  background: var(--bg-inset);
 
-  & > ul, ol {
-    padding-left: 1em;
+  .sidebar-inner {
+    overflow-y: scroll;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    background: linear-gradient(0deg, rgba(black, 0.25), var(--bg-inset) 2.5%) fixed no-repeat;
+  }
+
+  .sidebar-nav {
+    padding: 0 $padding-md;
   }
 }
 
-.content-main {
+.page-content-main {
+  padding: 0  $padding-lg;
   grid-area: main;
   display: flex;
   flex-direction: column;
 }
 
-.breadcrumbs {
-  padding: $padding-containers;
-  ol {
-    list-style: none;
-    display: block;
-    margin: 0;
-    padding: 0;
-  }
-  li {
-    display: inline-block;
-    &:first-child::before {
-      content: none;
+.page-title {
+  border-bottom: 1px solid var(--border-color);;
+  margin-bottom: $padding-md;
+
+  .title-line {
+    display: flex;
+    align-content: space-between;
+    align-items: baseline;
+
+    h1 {
+      margin-top: 0;
+      font-size: 2.2em;
+      border-bottom: none;
+      flex-grow: 1;
     }
-    &::before {
-      content: '›';
+  }
+
+  .breadcrumbs {
+    margin: $padding-md 0;
+
+    ol {
+      list-style: none;
+      display: block;
+      margin: 0;
+      padding: 0;
+    }
+    li {
       display: inline-block;
-      font-weight: bold;
-      font-size: 1rem;
-      margin: 0 5px;
+      &::after {
+        content: '›';
+        display: inline-block;
+        font-weight: bold;
+        font-size: 1rem;
+        margin: 0 5px;
+      }
     }
   }
 }
@@ -211,31 +284,26 @@ body {
 .content-article {
   max-width: $width-content;
   width: 100%;
-  margin-right: auto;
   display: flow-root;
-  padding: 0 $padding-containers;
-  background: $bg-content;
-  border: 1px solid $border-color;
-  border-radius: $border-radius $border-radius 0 0;
 
   .metabox, figure, aside {
     float: right;
     clear: right;
     width: 35%;
-    background: $bg-overlay;
-    border: 1px solid $border-color;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-color);;
     border-bottom-width: 0;
     border-radius: $border-radius;
     overflow: hidden;
-    margin: 0 0 $padding-containers $padding-containers;
+    margin: 0 0 $padding-md $padding-md;
 
     figcaption {
       font-style: italic;
     }
     section, figcaption {
       display: flow-root;
-      border-bottom: 1px solid $border-color;
-      padding: 0 $padding-containers;
+      border-bottom: 1px solid var(--border-color);;
+      padding: 0 $padding-md;
     }
     section.header {
       text-align: center;
@@ -254,23 +322,23 @@ body {
 
 .content-footer {
   grid-area: footer;
-  margin-bottom: $padding-containers;
-  padding: 0 $padding-containers;
+  margin-bottom: $padding-md;
+  padding: 0 $padding-md;
   display: flow-root;
   text-align: center;
   max-width: $width-content;
   border-top: 0;
-  color: $fg-faded;
+  color: var(--fg-faded);
 
   a {
-    color: $fg-faded;
+    color: var(--fg-faded);
   }
 }
 
-.content-layout {
+.page-layout {
   display: grid;
   grid-template-rows: max-content 1fr;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: 26em auto;
   grid-template-areas:
     "sidebar main"
     "sidebar footer";
@@ -278,15 +346,19 @@ body {
 
 //mobile view
 @media all and (max-width: 45em) {
-  .top-header {
-    padding: $padding-containers-small;
+  // .top-header {
+  //   padding: $padding-sm;
+  // }
+
+  .page-content-main {
+    padding: 0 $padding-sm;
   }
 
   .desktop-only {
     display: none;
   }
 
-  .content-layout {
+  .page-layout {
     grid-template-columns: 100%;
     grid-template-areas: "main" "sidebar" "footer";
   }

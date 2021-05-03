@@ -9,24 +9,21 @@ const breadcrumbs = (ctx) => {
   const breadcrumbs = [];
   let currPage = ctx.page;
 
-  while (currPage) {
-    breadcrumbs.push(currPage);
+  while (currPage.parent) {
     currPage = currPage.parent;
+    breadcrumbs.push(currPage);
   }
 
-  if (breadcrumbs.length < 2) {
+  if (breadcrumbs.length == 0) {
     return null;
   }
 
-  return ol(breadcrumbs.reverse().map((crumbPage, i) => {
+  return ol(breadcrumbs.reverse().map((crumbPage) => {
     //the homepage gets a special title to avoid repetition with the header
     const crumbPageTitle = crumbPage.parent ?
       escapeHtml(crumbPage.tryLocalizedTitle(ctx.lang)) :
       homeTitleOverride[ctx.lang];
-    //the current page is not a link
-    return (i < breadcrumbs.length - 1) ?
-      anchor(crumbPage.tryLocalizedPath(ctx.lang), crumbPageTitle) :
-      crumbPageTitle;
+    return anchor(crumbPage.tryLocalizedPath(ctx.lang), crumbPageTitle);
   }));
 };
 

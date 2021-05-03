@@ -1,14 +1,14 @@
 @import "_constants";
 
 button {
-  background: $bg-inset;
-  color: $fg;
+  background: var(--bg-inset);
+  color: var(--fg);
   border-radius: $border-radius;
-  border: 1px solid $border-color;
-  padding: $padding-containers-small 1em;
+  border: 1px solid var(--border-color);;
+  padding: $padding-sm 1em;
 
   &:hover {
-    background: $bg-overlay;
+    background: var(--bg-overlay);
     cursor: pointer;
   }
 }
@@ -18,9 +18,9 @@ label, legend {
 }
 
 fieldset {
-  border: 1px solid $border-color;
-  // background: $bg-inset;
-  margin-bottom: $padding-flow;
+  border: 1px solid var(--border-color);;
+  // background: var(--bg-inset);
+  margin-bottom: $padding-sm;
 
   label {
     font-weight: normal;
@@ -33,29 +33,29 @@ label {
 
 progress, meter {
   width: 100%;
-  background: $bg-inset;
-  border: 1px solid $border-color;
+  background: var(--bg-inset);
+  border: 1px solid var(--border-color);;
 }
 
 input {
   display: block;
   border-radius: $border-radius;
-  border: 1px solid $border-color;
-  background: $bg-inset;
-  padding: $padding-containers-small;
+  border: 1px solid var(--border-color);;
+  background: var(--bg-inset);
+  padding: $padding-sm;
   font-size: $font-size;
-  color: $fg;
+  color: var(--fg);
 
   &:focus {
-    box-shadow: 0px 0px $padding-containers-small rgba($bg-info, 0.6) inset;
+    box-shadow: 0px 0px $padding-sm rgba($bg-info, 0.6) inset;
   }
 
   &:disabled {
     cursor: not-allowed;
-    background: $bg-content;
+    background: var(--bg);
     transition: background $transition-time;
     &:hover {
-      background: $bg-overlay;
+      background: var(--bg-overlay);
     }
   }
 }
@@ -71,15 +71,15 @@ input[type="radio"] {
     position: absolute;
     margin-left: -26px;
     padding: 8px;
-    border: 2px solid $border-color;
+    border: 2px solid var(--border-color);;
     border-radius: 2em;
   }
   &:checked + label:before {
-    border: 2px solid $fg-strong;
-    background: $fg-link;
+    border: 2px solid var(--fg-strong);
+    background: var(--fg-link);
   }
   &:checked + label {
-    color: $fg-strong;
+    color: var(--fg-strong);
   }
 }
 
@@ -94,14 +94,14 @@ input[type="checkbox"] {
     position: absolute;
     margin-left: -26px;
     padding: 8px;
-    border: 2px solid $border-color;
+    border: 2px solid var(--border-color);;
   }
   &:checked + label:before {
-    border: 2px solid $fg-strong;
-    background: $fg-link;
+    border: 2px solid var(--fg-strong);
+    background: var(--fg-link);
   }
   &:checked + label {
-    color: $fg-strong;
+    color: var(--fg-strong);
   }
 }
 

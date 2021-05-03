@@ -1,29 +1,42 @@
-$bg-header: #002a32;
-$bg-page: #191d22;
-$bg-overlay: #293037;
-$bg-content: #23292f;
-$bg-inset: #191d22;
-$bg-info: #373457;
-$bg-danger: #53332c;
-$bg-success: #1c3e34;
-$bg-tag: #0b352b;
-$bg-tool: #171b4b;
-$fg: #ccc;
-$fg-faded: #888;
-$fg-strong: #eee;
-$fg-link: #4fbdff;
+$bg-dark: #23292f;
+$fg-dark: #ccc;
+$fg-faded-dark: mix($fg-dark, $bg-dark, 35%);
+$fg-strong-dark: lighten($fg-dark, 35%);
+$bg-overlay-dark: lighten($bg-dark, 5%);
+$bg-inset-dark: darken($bg-dark, 3%);
+$border-color-dark: lighten($bg-dark, 10%);
+$fg-link-dark: #6dc0f2;
+
+$bg-light: #eeeeeb;
+$fg-light: #111;
+$fg-faded-light: mix($fg-light, $bg-light, 35%);
+$fg-strong-light: darken($fg-light, 35%);
+$bg-overlay-light: lighten($bg-light, 5%);
+$bg-inset-light: darken($bg-light, 5%);
+$border-color-light: darken($bg-light, 20%);
+$fg-link-light: #0038bb;
+
+$bg-info: rgba(105, 107, 255, 0.3);
+$bg-danger: rgba(213, 88, 39, 0.3);
+$bg-success: rgba(41, 217, 102, 0.3);
+$bg-tag: rgba(163, 0, 255, 0.32);
+$bg-tag-minor: rgba(163, 0, 255, 0.1);
+$bg-tool: rgba(0, 100, 255, 0.14);
+$bg-tool-minor: rgba(0, 100, 255, 0.07);
 $logo-color: #00cacb;
-$border-color: #39434d;
-$border-color-header: #184851;
+
 $border-radius: 4px;
-$padding-containers: 20px;
-$padding-flow: 16px;
-$padding-containers-small: 10px;
+
+$padding-lg: 32px;
+$padding-md: 16px;
+$padding-sm: 8px;
+
 $font-size: 12pt;
 $font-size-logo: 14pt;
 $font-family: "Avenir", "Noto Sans", "Helvetica", sans-serif;
 $font-family-headers: "ConvectionRegular", $font-family;
 $font-family-code: "Fira Code", Menlo, Consolas, Monaco, monospace;
 $font-size-code: 10pt;
-$width-content: 65em;
+
+$width-content: 80em;
 $transition-time: 0.25s;

@@ -2,12 +2,12 @@
 
 table {
   border-collapse: collapse;
-  margin-bottom: $padding-flow;
+  margin-bottom: $padding-sm;
   width: 100%;
 
   td, th {
-    padding: $padding-containers-small;
-    border: 1px solid $border-color;
+    padding: $padding-sm;
+    border: 1px solid var(--border-color);;
     vertical-align: top;
 
     *:first-child {
@@ -19,12 +19,12 @@ table {
   }
   th {
     text-align: left;
-    background: $bg-overlay;
+    background: var(--bg-overlay);
   }
 }
 
 table.type-def {
-  background: $bg-content;
+  background: var(--bg);
   box-shadow: none;
   transition: box-shadow $transition-time;
 
@@ -33,11 +33,11 @@ table.type-def {
   }
 
   tr.field-type-TagDependency {
-    background: mix($bg-tag, $bg-content, 35%);
+    background: $bg-tag-minor;
   }
 
   tr.field-type-ptr32, tr.field-type-ptr64, tr.field-type-TagDataOffset {
-    background: mix($bg-info, $bg-content, 35%);
+    background: $bg-info;
   }
 
   tr.field-type-Block {
@@ -52,7 +52,7 @@ table.type-def {
   }
 
   .embedded-type {
-    background: $bg-inset;
+    background: var(--bg-inset);
   }
 
   td.field-type {
@@ -60,9 +60,9 @@ table.type-def {
   }
 
   tr.field-type-pad, tr.field-meta-cache_only, tr.field-meta-unused {
-    color: $fg-faded;
+    color: var(--fg-faded);
     .field-meta {
-      border-color: $fg-faded;
+      border-color: var(--fg-faded);
     }
   }
 }
@@ -76,6 +76,6 @@ table.type-def {
 .field-meta {
   display: inline-block;
   border-radius: $border-radius;
-  border: 1px solid $fg;
+  border: 1px solid var(--fg);
   padding: 0 0.2em;
 }

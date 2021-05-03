@@ -1,7 +1,7 @@
 pre, code {
   font-family: $font-family-code;
   font-size: $font-size-code;
-  background: $bg-inset;
+  background: var(--bg-inset);
   border-radius: $border-radius;
 }
 
@@ -19,7 +19,7 @@ code {
     content: ".hsc";
     float: right;
     opacity: 0;
-    color: $fg-faded;
+    color: var(--fg-faded);
     font-style: italic;
   }
 
@@ -39,6 +39,7 @@ pre:hover code.language-console > .hljs-name:before {
 pre {
   padding: 1em;
   overflow-x: auto;
+  border: 1px solid var(--border-color);
   code {
     padding: 0;
     border: none;

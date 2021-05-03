@@ -30,6 +30,15 @@ const localizer = R.curry((bundle, lang) => {
   };
 });
 
+const icon = (name, title) => html`
+  <svg class="feather" ${title ? `aria-labelledby="title"` : ""}>
+    ${title && html`
+      <title>${title}</title>
+    `}
+    <use xlink:href="/assets/feather-sprite.svg#${name}"/>
+  </svg>
+`;
+
 const anchor = (href, body) => html`
   <a href="${href}">${body}</a>
 `;
@@ -134,6 +143,7 @@ module.exports = {
   detailsList,
   alert,
   renderHex,
+  icon,
   slugify,
   REPO_URL,
   DISCORD_URL

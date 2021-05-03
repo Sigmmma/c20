@@ -336,10 +336,15 @@ function hashFlash() {
 window.addEventListener("hashchange", hashFlash, false);
 hashFlash();
 
-//todo: support theme changing
-// document.documentElement.dataset.theme = window.localStorage.getItem("theme") || "dark";
-// document.getElementById("toggle-theme").addEventListener("click", () => {
-//   const data = document.documentElement.dataset;
-//   data.theme = data.theme == "dark" ? "light" : "dark";
-//   window.localStorage.setItem("theme", data.theme);
-// });
+function setSyntax() {
+  document.getElementById("syntax").href = document.documentElement.dataset.theme == "dark" ?
+    "/assets/night-owl.css" : "/assets/solarized-light.css";
+}
+document.documentElement.dataset.theme = window.localStorage.getItem("theme") || "dark";
+document.getElementById("toggle-theme").addEventListener("click", () => {
+  const data = document.documentElement.dataset;
+  data.theme = data.theme == "dark" ? "light" : "dark";
+  window.localStorage.setItem("theme", data.theme);
+  setSyntax();
+});
+setSyntax();

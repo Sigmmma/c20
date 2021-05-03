@@ -3,8 +3,8 @@
 .alert {
   display: flow-root;
   border-radius: $border-radius;
-  padding: 0 $padding-containers;
-  margin-bottom: $padding-containers;
+  padding: 0 $padding-md;
+  margin-bottom: $padding-md;
   &.type-info {
     background: $bg-info;
   }

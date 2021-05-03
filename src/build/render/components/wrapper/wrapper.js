@@ -1,8 +1,7 @@
 const R = require("ramda");
-const {html, escapeHtml, REPO_URL, pageAnchor, localizer, detailsList} = require("../bits");
+const {html, escapeHtml, REPO_URL, pageAnchor, localizer, detailsList, DISCORD_URL, icon} = require("../bits");
 const {renderMarkdown} = require("../markdown");
 const footer = require("./footer");
-const header = require("./header");
 const breadcrumbs = require("./breadcrumbs");
 const metabox = require("./metabox");
 const toc = require("./toc");
@@ -103,36 +102,57 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
         <link rel="preload" type="application/json" as="fetch" href="/assets/search-index_${lang}.json">
         <link rel="icon" type="image/png" href="/assets/librarian.png">
         <link rel="stylesheet" href="/assets/style.css"/>
-        <link rel="stylesheet" href="/assets/night-owl.css"/>
+        <link id="syntax" rel="stylesheet" href="/assets/night-owl.css"/>
+        <script>document.documentElement.dataset.theme = window.localStorage.getItem("theme") || "dark";</script>
       </head>
       <body>
-        ${header(ctx, localize("siteName"))}
-        <div class="content-layout">
-          <aside class="content-sidebar">
-            ${headings.length > TOC_MIN_HEADERS && html`
-              <h2 id="table-of-contents">${localize("toc")}</h2>
-              ${toc(headings)}
-            `}
-            ${page.children && page.children.length > 0 &&
-              detailsList(html`<h2>${localize("children")}</h2>`, page.children.map(pageAnchor(lang)))
-            }
-            ${page.related && page.related.length > 0 &&
-              detailsList(html`<h2>${localize("related")}</h2>`, page.related.map(pageAnchor(lang)))
-            }
-            ${detailsList(html`<h2>${localize("main")}</h2>`, mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId])))}
-          </aside>
-          <main role="main" class="content-main">
-            <nav class="breadcrumbs">
-              ${breadcrumbs(ctx)}
-            </nav>
+        <div class="page-layout">
+          <div class="page-sidebar">
+            <div class="sidebar-inner">
+              <header class="sidebar-header">
+                <a class="c20-logo" href="${ctx.resolveUrl("/")}">
+                  <span class="c20-name-short">c20</span>
+                  <span class="c20-name-long">${localize("siteName")}</span>
+                </a>
+                <button id="toggle-theme">
+                  <span class="dark">${icon("moon", "Dark mode")}</span>
+                  <span class="light">${icon("sun", "Light mode")}</span>
+                </button>
+              </header>
+              <nav class="sidebar-nav">
+                <div id="c20-search-mountpoint"></div>
+                ${headings.length > TOC_MIN_HEADERS && html`
+                  <h2 id="table-of-contents">${icon("info")} ${localize("toc")}</h2>
+                  ${toc(headings)}
+                `}
+                ${page.children && page.children.length > 0 &&
+                  detailsList(html`<h2>${icon("arrow-down-circle")} ${localize("children")}</h2>`, page.children.map(pageAnchor(lang)))
+                }
+                ${page.related && page.related.length > 0 &&
+                  detailsList(html`<h2>${localize("related")}</h2>`, page.related.map(pageAnchor(lang)))
+                }
+                ${detailsList(html`<h2>${icon("help-circle")} ${localize("main")}</h2>`, mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId])))}
+
+                <nav class="c20-top-nav">
+                  <a href="${DISCORD_URL}">${icon("message-square", "Chat")} Discord</a>
+                </nav>
+              </nav>
+            </div>
+          </div>
+          <main role="main" class="page-content-main">
             <article class="content-article">
               <div class="page-title">
-                <h1 class="page-title">${escapeHtml(page.tryLocalizedTitle(lang))}</h1>
-                <div class="edit-buttons">
-                  ${otherLangs.map(otherLang => html`
-                    <a href="${page.localizedPaths[otherLang]}">${langNames[otherLang]}</a> /
-                  `)}
-                  <a href="${editPageUrl}">${localize("edit")}</a>
+                <nav class="breadcrumbs">
+                  ${breadcrumbs(ctx)}
+                </nav>
+                <div class="title-line">
+                  <h1 class="page-title">${escapeHtml(page.tryLocalizedTitle(lang))}</h1>
+                  <div class="edit-buttons">
+                    ${otherLangs.map(otherLang => html`
+                      <a href="${page.localizedPaths[otherLang]}">${langNames[otherLang]}</a> /
+                    `)}
+                    <a href="${editPageUrl}">${localize("edit")}</a>
+                  </div>
                 </div>
               </div>
     ${metabox(ctx, metaboxProps)}
