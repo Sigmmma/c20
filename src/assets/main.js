@@ -328,7 +328,7 @@ function hashFlash() {
       heading.classList.add("destination");
       setTimeout(() => {
         heading.classList.remove("destination");
-      }, 500);
+      }, 1500);
     }
   }
 }
@@ -338,7 +338,7 @@ hashFlash();
 
 function setSyntax() {
   document.getElementById("syntax").href = document.documentElement.dataset.theme == "dark" ?
-    "/assets/night-owl.css" : "/assets/solarized-light.css";
+    "/assets/night-owl.css" : "/assets/github.css";
 }
 document.documentElement.dataset.theme = window.localStorage.getItem("theme") || "dark";
 document.getElementById("toggle-theme").addEventListener("click", () => {

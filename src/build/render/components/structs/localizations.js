@@ -25,6 +25,9 @@ module.exports = localizer({
     en: "Option",
     es: "Opción"
   },
+  emptyStruct: {
+    en: "This structure contains no additional fields."
+  },
   seeIndex: {
     en: "See indexed location"
   },

@@ -11,6 +11,8 @@ ul {
 img, video {
   display: block;
   width: 100%;
+  margin-right: auto;
+  margin-left: auto;
 }
 
 .content-article {
@@ -91,7 +93,7 @@ summary h6 {
 }
 
 details {
-  margin: $padding-sm 0;
+  margin: var(--padding-sm) 0;
 }
 
 a.header-anchor {
@@ -128,8 +130,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .destination {
-  transition: all $transition-time cubic-bezier(0, 3, 1, -3);
-  text-shadow: 0 0 $padding-sm var(--fg-strong), 0 0 $padding-md $logo-color;
+  text-decoration: underline;
+  transition: all $transition-time cubic-bezier(0, 6, 1, -6);
+  text-shadow: 0 0 var(--padding-sm) var(--fg-strong), 0 0 var(--padding-md) $logo-color;
+}
+
+html[data-theme="light"] {
+  .destination {
+    text-shadow: 0 0 var(--padding-md) var(--fg-link);
+  }
 }
 
 h1 {
@@ -147,7 +156,7 @@ blockquote {
   font-style: italic;
   background: var(--bg-inset);
   border-radius: $border-radius;
-  padding: 0 $padding-sm;
+  padding: 0 var(--padding-sm);
   margin-left: 0;
 }
 

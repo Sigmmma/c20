@@ -126,6 +126,13 @@ function structDisplay(ctx, opts) {
   function renderStructAsTable(instantiatedType, pathId) {
     const widths = 50 / (showOffsets ? 3 : 2);
     let offset = 0;
+
+    if (instantiatedType.typeDef.fields.length == 0) {
+      return html`
+        <p><em>${localize("emptyStruct")}</em></p>
+      `;
+    }
+
     return html`
       <table class="type-def struct">
         <thead>

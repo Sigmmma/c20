@@ -5,7 +5,7 @@ button {
   color: var(--fg);
   border-radius: $border-radius;
   border: 1px solid var(--border-color);;
-  padding: $padding-sm 1em;
+  padding: var(--padding-sm) 1em;
 
   &:hover {
     background: var(--bg-overlay);
@@ -20,7 +20,7 @@ label, legend {
 fieldset {
   border: 1px solid var(--border-color);;
   // background: var(--bg-inset);
-  margin-bottom: $padding-sm;
+  margin-bottom: var(--padding-sm);
 
   label {
     font-weight: normal;
@@ -42,12 +42,12 @@ input {
   border-radius: $border-radius;
   border: 1px solid var(--border-color);;
   background: var(--bg-inset);
-  padding: $padding-sm;
+  padding: var(--padding-sm);
   font-size: $font-size;
   color: var(--fg);
 
   &:focus {
-    box-shadow: 0px 0px $padding-sm rgba($bg-info, 0.6) inset;
+    box-shadow: 0px 0px var(--padding-sm) rgba($bg-info, 0.6) inset;
   }
 
   &:disabled {

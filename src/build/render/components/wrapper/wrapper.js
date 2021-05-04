@@ -26,7 +26,7 @@ const localizations = localizer({
     es: "La Biblioteca de Reclaimers"
   },
   toc: {
-    en: "On this page",
+    en: "Page contents",
     es: "En esta página"
   },
   children: {
@@ -122,8 +122,10 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
               <nav class="sidebar-nav">
                 <div id="c20-search-mountpoint"></div>
                 ${headings.length > TOC_MIN_HEADERS && html`
-                  <h2 id="table-of-contents">${icon("info")} ${localize("toc")}</h2>
-                  ${toc(headings)}
+                  <div class="sidebar-toc">
+                    <h2 id="table-of-contents">${icon("list")} ${localize("toc")}</h2>
+                    ${toc(headings)}
+                  </div>
                 `}
                 ${page.children && page.children.length > 0 &&
                   detailsList(html`<h2>${icon("arrow-down-circle")} ${localize("children")}</h2>`, page.children.map(pageAnchor(lang)))
@@ -133,9 +135,9 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
                 }
                 ${detailsList(html`<h2>${icon("help-circle")} ${localize("main")}</h2>`, mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId])))}
 
-                <nav class="c20-top-nav">
+                <p>
                   <a href="${DISCORD_URL}">${icon("message-square", "Chat")} Discord</a>
-                </nav>
+                </p>
               </nav>
             </div>
           </div>

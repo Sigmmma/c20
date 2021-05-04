@@ -8,11 +8,11 @@ const toc = (headings) => {
   let currentLevel = 0;
   for (let heading of headings.filter(it => it.level <= TOC_LEVELS)) {
     if (heading.level > currentLevel) {
-      listHtml += `\n${"  ".repeat(currentLevel)}<ul>`;
+      listHtml += `\n${"  ".repeat(currentLevel)}<ol>`;
       currentLevel = heading.level;
     } else if (heading.level < currentLevel) {
       currentLevel = heading.level;
-      listHtml += `</li>\n${"  ".repeat(currentLevel)}</ul>`;
+      listHtml += `</li>\n${"  ".repeat(currentLevel)}</ol>`;
       listHtml += `\n${"  ".repeat(currentLevel)}</li>`;
     } else {
       listHtml += "</li>";
@@ -21,7 +21,7 @@ const toc = (headings) => {
   }
   while (currentLevel > 0) {
     currentLevel--;
-    listHtml += `</li>\n${"  ".repeat(currentLevel)}</ul>`;
+    listHtml += `</li>\n${"  ".repeat(currentLevel)}</ol>`;
   }
 
   return listHtml;
