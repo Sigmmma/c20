@@ -11,8 +11,6 @@ ul {
 img, video {
   display: block;
   width: 100%;
-  margin-right: auto;
-  margin-left: auto;
 }
 
 .content-article {
@@ -23,7 +21,7 @@ img, video {
     transition: filter $transition-time / 2;
   }
 
-  figure img {
+  figure img, .metabox img {
     width: 100%;
     max-height: none;
   }

@@ -1,14 +1,21 @@
 @import "_constants";
 
 button {
-  background: var(--bg-inset);
+  background: var(--bg-overlay);
   color: var(--fg);
   border-radius: $border-radius;
   border: 1px solid var(--border-color);;
   padding: var(--padding-sm) 1em;
+  margin: var(--padding-sm) 0;
+  box-shadow: 0px -2px 0px rgba(black, 0.1) inset;
+
+  &.nobg {
+    background: none;
+    box-shadow: none;
+  }
 
   &:hover {
-    background: var(--bg-overlay);
+    background: var(--bg);
     cursor: pointer;
   }
 }
@@ -38,15 +45,19 @@ progress, meter {
 }
 
 input {
+  margin: var(--padding-sm) 0;
   display: block;
   border-radius: $border-radius;
   border: 1px solid var(--border-color);;
-  background: var(--bg-inset);
+  background: var(--bg-overlay);
   padding: var(--padding-sm);
   font-size: $font-size;
   color: var(--fg);
+  box-shadow: 0px 2px 2px rgba(black, 0.1) inset;
 
   &:focus {
+    outline-offset: -2px;
+    outline-width: 2px;
     box-shadow: 0px 0px var(--padding-sm) rgba($bg-info, 0.6) inset;
   }
 

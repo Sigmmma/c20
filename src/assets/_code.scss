@@ -37,8 +37,9 @@ pre:hover code.language-console > .hljs-name:before {
 }
 
 pre {
-  padding: 1em;
-  overflow-x: auto;
+  display: flow-root;
+  padding: var(--padding-sm);
+  white-space: pre-wrap;
   border: 1px solid var(--border-color);
   code {
     padding: 0;

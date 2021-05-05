@@ -290,16 +290,22 @@ class Search extends Component {
       ${isNonEmptyQuery && html`
         <nav class="search-results">
           <button class="clear-button" onClick=${clearInput}>${localize("close")}</button>
-          <h1>${localize("searchResults")}</h1>
-          <p class="desktop-only"><small dangerouslySetInnerHTML=${{__html: localize("searchHotkeys")}}/></p>
+          <div class="results-header">
+            <h2>${localize("searchResults")}</h2>
+            <p class="desktop-only"><small dangerouslySetInnerHTML=${{__html: localize("searchHotkeys")}}/></p>
+          </div>
           ${this.state.searchResults.length > 0 ? html`
-            <ul>
+            <ul class="link-list">
               ${this.state.searchResults.map((result, i) => {
                 //render each search result, ensuring that the user's selected one gets highlighted by CSS:
                 const isSelected = i == this.state.selectedResultIndex;
+                const pathPrefix = result.id.slice(1).split("/").slice(0, -1).join("/");
                 return html`
                   <li class=${isSelected ? "selected" : ""}>
-                    <a href=${result.id}>${result.title}</a>
+                    <a href=${result.id}>
+                      ${result.title}
+                      ${pathPrefix != "" && html` <span class="path-prefix">(${pathPrefix})</span>`}
+                    </a>
                   </li>`;
               })}
             </ul>

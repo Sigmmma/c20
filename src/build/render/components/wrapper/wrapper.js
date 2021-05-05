@@ -8,7 +8,7 @@ const toc = require("./toc");
 const thanksList = require("./thanksList");
 
 const TOC_MIN_HEADERS = 2;
-const COLLAPSE_CHILD_PAGES = 8;
+const COLLAPSE_CHILD_PAGES = 20;
 const PREVIEW_LENGTH_CHARS = 100;
 
 const mainTopics = [
@@ -114,7 +114,7 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
                   <span class="c20-name-short">c20</span>
                   <span class="c20-name-long">${localize("siteName")}</span>
                 </a>
-                <button id="toggle-theme">
+                <button class="nobg" id="toggle-theme">
                   <span class="dark">${icon("moon", "Dark mode")}</span>
                   <span class="light">${icon("sun", "Light mode")}</span>
                 </button>
@@ -128,12 +128,12 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
                   </div>
                 `}
                 ${page.children && page.children.length > 0 &&
-                  detailsList(html`<h2>${icon("arrow-down-circle")} ${localize("children")}</h2>`, page.children.map(pageAnchor(lang)))
+                  detailsList(html`<h2>${localize("children")}</h2>`, page.children.map(pageAnchor(lang)), COLLAPSE_CHILD_PAGES, 0)
                 }
                 ${page.related && page.related.length > 0 &&
                   detailsList(html`<h2>${localize("related")}</h2>`, page.related.map(pageAnchor(lang)))
                 }
-                ${detailsList(html`<h2>${icon("help-circle")} ${localize("main")}</h2>`, mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId])))}
+                ${detailsList(html`<h2>${localize("main")}</h2>`, mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId])))}
 
                 <p>
                   <a href="${DISCORD_URL}">${icon("message-square", "Chat")} Discord</a>

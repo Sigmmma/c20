@@ -16,6 +16,10 @@
   --padding-sm: #{$padding-sm-desktop};
 }
 
+#toggle-theme {
+  margin: 0;
+}
+
 html[data-theme="dark"] {
   #toggle-theme .dark {
     display: none;
@@ -39,6 +43,20 @@ html[data-theme="light"] {
   .c20-logo::before {
     filter: brightness(50%);
   }
+}
+
+//firefox can use scrollbar-color but it looks fine as-is
+//webkit scrollbars are ugly:
+*::-webkit-scrollbar {
+  width: 14px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--bg-overlay);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--fg-faded);
+  border-radius: 20px;
+  border: 2px solid var(--bg-overlay);
 }
 
 @font-face {
@@ -108,17 +126,6 @@ body {
   background: var(--bg);
 }
 
-.search-input {
-  margin-top: var(--padding-md);
-  display: inline-block;
-  transition: width $transition-time;
-  width: 100%;
-  &:focus, &.nonempty {
-    width: 100%;
-    border-radius: $border-radius $border-radius 0 0;
-  }
-}
-
 .sidebar-header {
   display: flex;
   flex-direction: row;
@@ -162,48 +169,61 @@ body {
     flex-grow: 1;
     position: relative;
   }
+}
+
+.search-input {
+  margin-top: var(--padding-md);
+  transition: width $transition-time;
+  width: 100%;
+
+  &.nonempty {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-bottom: 0;
+  }
+}
+
+.search-results {
+  margin-top: 0;
+  background: var(--bg);
+  border-radius: 0 0 $border-radius $border-radius;
+  border: 1px solid var(--border-color);
+  border-top: none;
+  display: flow-root;
 
   .clear-button {
     float: right;
-    margin-top: var(--padding-sm);
-    margin-left: var(--padding-sm);
+    margin: var(--padding-sm);
   }
 
-  .search-results {
-    width: 100%;
-    position: absolute;
-    background: var(--bg-overlay);
-    border: 1px solid var(--border-color);;
-    border-top: none;
-    border-radius: 0 0 $border-radius $border-radius;
+  .results-header {
     padding: 0 var(--padding-md);
-    display: flow-root;
+  }
 
-    ul {
-      list-style: none;
-      margin: 0 0 var(--padding-md) 0;
-      padding: 0;
+  .link-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 0;
+  }
+
+  .link-list li {
+    border-top: 1px solid var(--border-color);
+
+    &.selected {
+      background: $bg-info;
     }
 
-    li {
-      border: 1px solid var(--border-color);;
-      border-top: none;
+    a {
+      display: block;
       padding: var(--padding-sm);
-      padding-bottom: var(--padding-sm) - 2px;
+      text-decoration: none;
 
-      &:first-child {
-        border-top: 1px solid var(--border-color);;
-        border-top-left-radius: $border-radius;
-        border-top-right-radius: $border-radius;
+      &:hover {
+        background: var(--bg-overlay);
       }
 
-      &:last-child {
-        border-bottom-left-radius: $border-radius;
-        border-bottom-right-radius: $border-radius;
-      }
-
-      &.selected {
-        background: $bg-info;
+      .path-prefix {
+        color: var(--fg-faded);
       }
     }
   }
@@ -286,6 +306,7 @@ body {
   display: flow-root;
 
   .metabox, figure, aside {
+    min-width: 15em;
     float: right;
     clear: right;
     width: 30%;
