@@ -190,19 +190,21 @@ body {
   border-top: none;
   display: flow-root;
 
-  .clear-button {
-    float: right;
-    margin: var(--padding-sm);
-  }
-
   .results-header {
-    padding: 0 var(--padding-md);
+    padding: 0 var(--padding-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .link-list {
     list-style: none;
     padding: 0;
-    margin-bottom: 0;
+    margin: 0;
+  }
+
+  .null-result {
+    padding: 0 var(--padding-sm);
   }
 
   .link-list li {
@@ -216,6 +218,7 @@ body {
       display: block;
       padding: var(--padding-sm);
       text-decoration: none;
+      position: relative;
 
       &:hover {
         background: var(--bg-overlay);
@@ -223,6 +226,12 @@ body {
 
       .path-prefix {
         color: var(--fg-faded);
+      }
+
+      kbd {
+        margin-right: var(--padding-sm);
+        position: absolute;
+        right: 0;
       }
     }
   }
@@ -357,7 +366,7 @@ body {
 .page-layout {
   display: grid;
   grid-template-rows: max-content 1fr;
-  grid-template-columns: 26em auto;
+  grid-template-columns: 24em auto;
   grid-template-areas:
     "sidebar main"
     "sidebar footer";

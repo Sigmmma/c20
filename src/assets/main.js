@@ -39,8 +39,8 @@ const localize = (key) => ({
     es: "Longitud del campo de fútbol americano",
   },
   searchPlaceholder: {
-    en: "Search c20...",
-    es: "Buscar c20..."
+    en: "Search c20... [S]",
+    es: "Buscar c20... [S]"
   },
   searchResults: {
     en: "Search results",
@@ -49,10 +49,6 @@ const localize = (key) => ({
   close: {
     en: "Close",
     es: "Cerrar"
-  },
-  searchHotkeys: {
-    en: "Hotkeys: <kbd>s</kbd> to search, <kbd>Up/Down</kbd> to choose result, <kbd>Enter</kbd> to select, <kbd>Esc</kbd> to close.",
-    es: "Teclas de acceso rápido: <kbd>s</kbd> para buscar, <kbd>Arriba/Abajo</kbd> para elegir el resultado, <kbd>Enter</kbd> para seleccionar, <kbd>Esc</kbd> para cerrar."
   },
   searchNoResults: {
     en: "No results found for",
@@ -173,7 +169,7 @@ class Search extends Component {
       disabled: true,
       query: "",
       searchResults: [],
-      selectedResultIndex: -1
+      selectedResultIndex: 0
     };
   }
 
@@ -182,7 +178,7 @@ class Search extends Component {
       this.setState({
         query: "",
         searchResults: [],
-        selectedResultIndex: -1
+        selectedResultIndex: 0
       });
       if (this.inputRef) {
         this.inputRef.blur();
@@ -196,11 +192,11 @@ class Search extends Component {
     } else if (e.key == "ArrowUp") {
       this.setState({selectedResultIndex: Math.max(
         this.state.selectedResultIndex - 1,
-        -1
+        0
       )});
       e.preventDefault(); //prevent moving the cursor left in the input
     } else if (e.key == "Enter") {
-      if (this.state.selectedResultIndex != -1) {
+      if (this.state.searchResults.length != 0) {
         window.location = this.state.searchResults[this.state.selectedResultIndex].id;
       }
     }
@@ -222,7 +218,7 @@ class Search extends Component {
       this.setState({
         query,
         searchResults,
-        selectedResultIndex: -1
+        selectedResultIndex: 0
       });
     }
   }
@@ -261,7 +257,7 @@ class Search extends Component {
       this.setState({
         query: "",
         searchResults: [],
-        selectedResultIndex: -1
+        selectedResultIndex: 0
       });
       if (this.inputRef) {
         this.inputRef.blur();
@@ -289,10 +285,9 @@ class Search extends Component {
       />
       ${isNonEmptyQuery && html`
         <nav class="search-results">
-          <button class="clear-button" onClick=${clearInput}>${localize("close")}</button>
           <div class="results-header">
             <h2>${localize("searchResults")}</h2>
-            <p class="desktop-only"><small dangerouslySetInnerHTML=${{__html: localize("searchHotkeys")}}/></p>
+            <button class="clear-button" onClick=${clearInput}>${localize("close")} <span class="desktop-only">[Esc]</span></button>
           </div>
           ${this.state.searchResults.length > 0 ? html`
             <ul class="link-list">
@@ -305,12 +300,13 @@ class Search extends Component {
                     <a href=${result.id}>
                       ${result.title}
                       ${pathPrefix != "" && html` <span class="path-prefix">(${pathPrefix})</span>`}
+                      ${isSelected && html` <kbd class="desktop-only">⬍ Enter</kbd>`}
                     </a>
                   </li>`;
               })}
             </ul>
           ` : html`
-            <p>${localize("searchNoResults")} <strong>${this.state.query}</strong></p>
+            <p class="null-result">${localize("searchNoResults")} <strong>${this.state.query}</strong></p>
           `}
         </nav>
       `}
