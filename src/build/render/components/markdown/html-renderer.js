@@ -38,7 +38,7 @@ module.exports = function(ctx) {
   };
 
   renderer.code = (code, infostring, escaped) => {
-    const extensionMatch = infostring.match(/^\.(\w+)(?:\s+(.+))?/);
+    const extensionMatch = infostring ? infostring.match(/^\.(\w+)(?:\s+(.+))?/) : null;
     if (extensionMatch) {
       const extensionType = extensionMatch[1];
       const extensionArgs = extensionMatch[2];
@@ -54,7 +54,7 @@ module.exports = function(ctx) {
       }
       throw new Error(`Unrecognized markdown extension: ${extensionType}`);
     }
-    return `<pre><code class="language-${infostring}">${highlight(code, infostring)}</code></pre>`;
+    return `<pre><code class="language-${infostring || "plaintext"}">${highlight(code, infostring)}</code></pre>`;
   };
 
   return {
