@@ -66,6 +66,8 @@ The renderer needed to be adapted for the range of user hardware for the PC port
 # Limits
 At most 512 [objects][object] can be rendered at once.
 
+The maximum rendered [BSP][scenario_structure_bsp] triangle limit is 16k, though mods like [Chimera][] increase this to 32k.
+
 At large distances from the [origin][origin-wiki] (starting at approximately 1,000 world units), the effects of low 32-bit floating point precision become apparent in greater [z-fighting][z-fight-wiki] and jittering of moving vertices from the inability to represent small distances. The game is hard-coded to prevent the camera from moving outside of a 10,000-world unit cube centered at the origin (5,000 units along any axis). Game mechanics and mesh rendering begin to break down around 1 million world units.
 
 # Troubleshooting

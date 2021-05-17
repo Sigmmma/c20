@@ -345,6 +345,12 @@ weapon_hud_interface:
   structName: WeaponHUDInterface
   structModule: h1/tags/weapon_hud_interface
   id: wphi
+weapon_collection:
+  id: wpcl
+  structName: WeaponCollection
+  structModule: h1/tags/weapon_collection
+  vestigial: true
+  unused: true
 antenna:
   structName: Antenna
   structModule: h1/tags/antenna

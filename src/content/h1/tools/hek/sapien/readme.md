@@ -227,6 +227,13 @@ EXCEPTION halt in \halopc\haloce\source\rasterizer\dx9\rasterizer_dx9.c,#2014: g
 Try moving or resizing your [fog plane(s)][scenario_structure_bsp#fog-planes].
       </td>
     </tr>
+    <tr>
+      <td>EXCEPTION halt in \halopc\haloce\source\tag_files\tag_groups.c,#2419: group_tag==NONE || tag_group_get(group_tag)</td>
+      <td>
+
+Sapien has encountered an unrecognized tag class, such as an [OpenSauce][OpenSauce#new-tag-types] tag or [vestigial tag][tags#unused-tags]. Remove references to this tag class.
+      </td>
+    </tr>
   </tbody>
 </table>
 

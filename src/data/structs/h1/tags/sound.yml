@@ -240,6 +240,10 @@ type_defs:
       unsafe_to_dedupe: true
       pre_compile: true
     assert_size: 164
+    comments:
+      en: |-
+        Contains sound data such as sound effects and music and parameters affecting
+        how sounds are played by the [sound system][sound-system].
     fields:
       - name: flags
         type: SoundFlags

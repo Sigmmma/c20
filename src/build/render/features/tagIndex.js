@@ -11,7 +11,7 @@ const localizations = localizer({
     es: "Tags no utilizadas"
   },
   unusedTagsIntro: {
-    en: `These vestigal tags were found within the game engine or tools, but are no longer used.
+    en: `These vestigial tags were found within the game engine or tools, but are no longer used.
          They were used during Halo's development and then partially removed before release.
          The tags are listed here for informational purposes only, and you will not need to use them.`,
     es: `Estas tags vestigales se encontraron dentro del motor o las herramientas del juego, pero ya no se utilizan.
@@ -55,7 +55,7 @@ const tagsTable = (ctx, tags) => {
           const tagComments = R.path(["struct", "comments", ctx.lang], tag);
           return html`
             <tr>
-              <td>${tagAnchor(ctx, tag.name)}</td>
+              <td>${tag.vestigial ? tag.name : tagAnchor(ctx, tag.name)}</td>
               <td><code>${tag.id}</code></td>
               <td>${tag.parent && tagAnchor(ctx, tag.parent.name)}</td>
               <td>
