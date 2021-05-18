@@ -122,7 +122,7 @@ workflowItems:
   OpenSauce:
     page: opensauce
     authors:
-      - Kornman
+      - kornman00
       - TheFieryScythe
       - ChokingVictim
   OS_Guerilla:
