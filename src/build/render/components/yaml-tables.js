@@ -94,6 +94,9 @@ function renderTableYaml(ctx, optsYaml) {
       R.compose(R.toUpper, R.prop(opts.rowSortKey)),
       data.rows
     );
+    if (opts.rowSortReverse) {
+      rowsSorted = R.reverse(rowsSorted);
+    }
     if (opts.rowLinks && rowsSorted.length >= AUTO_INDEX_THRESHOLD) {
       rowsSorted.forEach((row, index) => {
         const indexKey = row[opts.rowSortKey][0].toUpperCase();

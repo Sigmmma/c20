@@ -1,5 +1,29 @@
 Welcome to the guides hub! Here you'll find links to various guides ranging from basic map-making to more advanced topics. This hub is a work in progress and will grow over time. Until it is more complete, we recommend the official [HEK tutorial][hek] as a starting point.
 
+# External tutorials list
+
+```.alert danger
+The content of these external tutorials has not been vetted and they may contain outdated information. Always use the latest available versions of any tools used to get the benefits of bug fixes since the tutorial was made.
+```
+
+## Beginner
+```.table
+tableDefs: tutorials.yml
+tableName: Tutorials
+rowTagFilter: beginner
+rowSortKey: updated
+rowSortReverse: true
+```
+
+## Other
+```.table
+tableDefs: tutorials.yml
+tableName: Tutorials
+rowTagFilter: other
+rowSortKey: updated
+rowSortReverse: true
+```
+
 # Research techniques
 Modding knowledge tends to be pretty spread out, and the official [HEK][] tutorial covers only the most basic map-making process. While this library, community tutorials, and chat channels help to fill the gaps, there often isn't specific information available. Some techniques you can use to find answers are:
 

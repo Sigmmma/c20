@@ -1,0 +1,61 @@
+# http://www.halocetutorials.tk
+Tutorials:
+  columns:
+    - key: name
+      name:
+        en: Name
+      format: text
+    - key: description
+      name:
+        en: Description
+      format: text
+    - key: authors
+      name:
+        en: Authors
+      format: text
+    - key: updated
+      name:
+        en: Last updated
+      format: text
+    - key: links
+      name:
+        en: Links
+      format: text
+  rows:
+    - name:
+        en: Mo's Halo tutorials
+      description:
+        en: A set of tutorials on how to do things for CE, the modern way.
+      authors: MosesOfEgypt
+      updated: "2019"
+      tags:
+        - beginner
+        - mek
+      links:
+        en: |-
+          - Setting up your environment: [YouTube](https://www.youtube.com/watch?v=HEGhQmwJAfw)
+          - Refinery introduction | Extracting tags from protected maps: [YouTube](https://www.youtube.com/watch?v=iGEjtX4u9FI)
+          - Mozzarilla introduction | Making a basic custom weapon: [YouTube](https://www.youtube.com/watch?v=1UcWrZWeTYk)
+    - name:
+        en: How to easily share tags/assets
+      description:
+        en: How to easily share tags/assets using Refinery
+      authors: gbMichelle
+      updated: "2019"
+      tags:
+        - beginner
+        - mek
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=u2AQny-3mTs)"
+    - name:
+        en: Black Art of Halo Mods
+      description:
+        en: |-
+          A PDF version of the famous book that some hardcore Halo modding fans used
+          to have. Is likely a bit outdated by now.
+      authors: Stephen Cawood & Patrick Chin
+      updated: "2006"
+      tags:
+        - other
+      links:
+        en: "[Google Drive](https://drive.google.com/file/d/0B1LjERLq599jUG1YVUt0T1Ywa0U/view)"
