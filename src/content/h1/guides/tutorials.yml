@@ -11,7 +11,7 @@ Tutorials:
       format: text
     - key: authors
       name:
-        en: Authors
+        en: Author(s)
       format: text
     - key: updated
       name:
@@ -39,7 +39,7 @@ Tutorials:
     - name:
         en: How to easily share tags/assets
       description:
-        en: How to easily share tags/assets using Refinery
+        en: How to easily share [tags][] and assets using [Refinery][].
       authors: gbMichelle
       updated: "2019"
       tags:
@@ -59,3 +59,558 @@ Tutorials:
         - other
       links:
         en: "[Google Drive](https://drive.google.com/file/d/0B1LjERLq599jUG1YVUt0T1Ywa0U/view)"
+    - name:
+        en: Halo Editing Kit official tutorial
+      description:
+        en: The official tutorial that comes with your HEK install.
+      authors: Gearbox
+      updated: "2004"
+      tags:
+        - level
+      links:
+        en: >-
+          [halomaps.org](http://hce.halomaps.org/hek/),
+          [halonet.net](http://reclaimed.halonet.net/content/tutorial/HEK_Tutorial/index.html),
+          [haloce.org](https://www.haloce.org/HEK_Tutorial/index.html),
+          [nikon.bungie.org](http://nikon.bungie.org/misc/hek_tutorial/)
+    - name:
+        en: Complete mapping tutorial
+      description:
+        en: An old, but still relevant beginners tutorial on making a map from start to finish for CE.
+      authors: LlamaJuice
+      updated: "2007"
+      tags:
+        - level
+      links:
+        en: |-
+          * Part 1 Setting up the enviroment: [YouTube](https://www.youtube.com/watch?v=3O0yHL-IzXc)
+          * Part 2 Modeling (1/3): [YouTube](https://www.youtube.com/watch?v=t_DUsUpktuA)
+          * Part 2 Modeling (2/3): [YouTube](https://www.youtube.com/watch?v=UQFI0J0cS8I)
+          * Part 2 Modeling (3/3): [YouTube](https://www.youtube.com/watch?v=h7c4yyUvOOI)
+          * Part 3 Texturing (1/3): [YouTube](https://www.youtube.com/watch?v=rUxEF2L6cuI&feature=youtu.be)
+          * Part 3 Texturing (2/3): [YouTube](https://www.youtube.com/watch?v=f-22rMaBMP8)
+          * Part 3 Texturing (3/3): [YouTube](https://www.youtube.com/watch?v=dp0FZVhvpe8)
+          * Part 4 Sapien, Tool, Guerilla (1/3): [YouTube](https://www.youtube.com/watch?v=JE9ayihOlW4)
+          * Part 4 Sapien, Tool, Guerilla (2/3): [YouTube](https://www.youtube.com/watch?v=n-TWErzSxGM)
+          * Part 4 Sapien, Tool, Guerilla (3/3): [YouTube](https://www.youtube.com/watch?v=eFWD2w-2J9g)
+    - name:
+        en: Terrain modeling tutorial
+      description:
+        en: An in-depth look at how Higuy (a Lumoria dev) models his outdoor terrain, using [3ds Max][3dsmax].
+      authors: Higuy
+      updated: "2010"
+      tags:
+        - level
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=finpBm_J7F0), [Vimeo](https://vimeo.com/11781231)"
+    - name:
+        en: Phantom BSP tutorial
+      description:
+        en: A simple tutorial to help you fix [invisible walls][scenario_structure_bsp#phantom-bsp] that only block bullets and vehicles in your maps.
+      authors: Siliconmaster
+      updated: "2010"
+      tags:
+        - level
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=Qg6Xj67tU6E), [YouTube](https://www.youtube.com/watch?v=S4fHSwJdEHo)"
+    - name:
+        en: Making a waterfall
+      description:
+        en: A simple tutorial that explains how to make a Halo 1 style waterfall.
+      authors: TheGhost
+      updated: "2005"
+      tags:
+        - level
+      links:
+        en: "[Google Drive](https://drive.google.com/file/d/0B1LjERLq599jR1VPaW5IdXIxbm8/view)"
+    - name:
+        en: BSP errors explanation
+      description:
+        en: An image illustrating common geometry errors encountered during [structure compilation][tool#structure-compilation].
+      authors: "?"
+      updated: "?"
+      tags:
+        - level
+      links:
+        en: "[Imgur](https://i.imgur.com/rdoKsDn.jpg), [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jUnZOS2tGWkxLaHM/view)"
+    - name:
+        en: Detail objects tutorial
+      description:
+        en: A tutorial on how to make and place [detail objects][detail_object_collection] like little grasses and tiny rocks.
+      authors: ZexGX
+      updated: "2007"
+      tags:
+        - level
+      links:
+        en: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/detail_objects_collection/zexgx_dobc.pdf)"
+    - name:
+        en: Intro to water
+      description:
+        en: Explains how to make a water plane. Note that "water" is a shader from b30, but you can make your own [water material][shader_transparent_water].
+      authors: Wildrender
+      updated: "2013"
+      tags:
+        - level
+      links:
+        en: "[Youtube](https://www.youtube.com/watch?v=PoMD6fh9Fhk)"
+    - name:
+        en: Weather poly tutorial
+      description:
+        en: This tutorial will help you make [weather polyhedra][scenario_structure_bsp#weather-polyhedra] for your map.
+      authors: Dsalimander
+      updated: "2018"
+      tags:
+        - level
+      links:
+        en: "[Mediafire](https://www.mediafire.com/file/xdsgihdmgozhhn7/halo-weather-poly-tutorial.pdf/file)"
+    - name:
+        en: Custom lighting in 3ds Max using Aether (video version)
+      description:
+        en: A slightly less detailed than the [written tutorial][aether#aether-tutorial-for-3ds-max], but is defenitly helpful for the people who are better at listening and watching than reading. This is an advanced topic.
+      authors: MattDratt
+      updated: "2014"
+      tags:
+        - level
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=x4cYQFW4Pxw)"
+    - name:
+        en: Setting up OpenSauce 4.0 directional lightmaps (DLMs)
+      description:
+        en: An extensive explanation on how to set up directional lightmaps/radiosity normals in Halo CE to give your levels more visual depth. This is an advanced topic.
+      authors: The [OpenSauce][] team
+      updated: "2015"
+      tags:
+        - level
+      links:
+        en: |-
+          [OpenSauce Bitbucket Wiki (archive.org)](http://web.archive.org/web/20200701041640/https://bitbucket.org/KornnerStudios/opensauce-release/wiki/Halo1/Doc_Halo1_DirectionalLightmaps)
+    - name:
+        en: Dropship tutorial - custom animations
+      description:
+        en: >-
+          A tutorial that teaches you very basic animation, combined with how you
+          can make a dropship fly into the level without having it use a recording
+          of you flying it in. Also teaches you how to load a dropship with enemies
+          and how to make it open and close it's doors.
+      authors: MattDratt
+      updated: "2016"
+      tags:
+        - ai-scripting
+      links: "[YouTube](https://www.youtube.com/watch?v=6hTJ_6sWSeU)"
+    - name:
+        en: AI that follow the player
+      description:
+        en: >-
+          A tutorial that teaches you how to set up AI that follow you. You'll
+          also learn how to make firing positions and some basic scripting to
+          make it work.
+      authors: MattDratt
+      updated: "2014"
+      tags:
+        - ai-scripting
+      links: "[YouTube](https://www.youtube.com/watch?v=uWtwOHCB23Q)"
+    - name:
+        en: Setting up a singleplayer map and scripts
+      description:
+        en: "This is a starting tutorial for those who are getting into SP mapping for Halo: Custom Edition."
+      authors: MattDratt
+      updated: "2013"
+      tags:
+        - ai-scripting
+      links: "[YouTube](https://www.youtube.com/watch?v=UXa_ZPRehas)"
+    - name:
+        en: OpenSauce scripting interfaces
+      description:
+        en: Describes the scripting capabilities special to [OpenSauce][].
+      authors: The OpenSauce Team
+      updated: "2015"
+      tags:
+        - ai-scripting
+      links: "[OpenSauce Bitbucket Wiki](http://web.archive.org/web/20200701041643/https://bitbucket.org/KornnerStudios/opensauce-release/wiki/Halo1/Doc_Halo1_NewScriptInterfaces)"
+    - name:
+        en: A few scripting tutorials
+      description:
+        en: A few tutorials by the person considered the master of CE scripting.
+      authors: Kirby_422
+      updated: "2012"
+      tags:
+        - ai-scripting
+      links: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/kirby_scripting/scripting_tuts.html)"
+    - name:
+        en: The Halo CE campaign scripts
+      description:
+        en: With these you can see how Bungie scripted things, if you want to compile them in a scenario though you'll have to rename their extension to _.hsc_.
+      authors: Z-team
+      updated: N/A
+      tags:
+        - ai-scripting
+      links: >-
+        [GitHub](https://github.com/Dwood15/HaloScripts/),
+        [halonet.net](http://reclaimed.halonet.net/content/campaign_and_ui_scripts/Zteam-Campaign_and_UI_Scripts.zip)
+    - name:
+        en: Using TSC:E and SPV3 scripting features in your own map
+      description:
+        en: A tutorial that goes over a lot of things to help you set up the TSC:E abilities and vehicle scripts.
+      authors: FtDSpartn
+      updated: "2015"
+      tags:
+        - ai-scripting
+      links: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/tsce_scripting/tsce_scripting_tuts.html)"
+    - name:
+        en: Making Marine AI more agressive and useful
+      description:
+        en: Allowing Marines to fire more aggressively at close range.
+      authors: Rododo
+      updated: "2014"
+      tags:
+        - ai-scripting
+      links: >-
+        [Imgur](https://i.imgur.com/repWwv7.png),
+        [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jUjNMUkFObzNhdGc/view)
+    - name:
+        en: Scripting tutorial
+      description:
+        en: A deep dive into the value types, control flow, and script types of [HaloScript][scripting].
+      authors: Nickster5000
+      updated: "2017"
+      tags:
+        - ai-scripting
+      links: >-
+        [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jMkZDWk1HZS1jQUE/view),
+        [Mega.nz](https://mega.nz/#!xMFX1LwT!vkWp5m-w-lRaf3kEPo2f4zAQ4FNfOFyj-MKuk5jATv8)
+    - name:
+        en: HUD tutorial
+      description:
+        en: A tutorial that covers a lot of the basics about creating a HUD for Halo CE. While this covers a lot, it does not cover everything.
+      authors: Jesse
+      updated: "2010"
+      tags:
+        - hud
+      links:
+        en: "[HaloCE3.com (PDF)](https://haloce3.com/tutorials/JessesHUD.pdf)"
+    - name:
+        en: Custom Reticle tutorial
+      description:
+        en: A simple tutorial explaining how to make a custom reticle for your weapon.
+      authors: Yoda73811
+      updated: "2013"
+      tags:
+        - hud
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=_OcGHYe-Azk)"
+    - name:
+        en: UI Overview
+      description:
+        en: A simple overview to get you started with making menus and such.
+      authors: Giraffe
+      updated: "2015"
+      tags:
+        - hud
+      links:
+        en: "[OpenCarnage](https://opencarnage.net/index.php?/topic/5028-ui-overview/)"
+    - name:
+        en: Create basic lineart from photos
+      description:
+        en: A tutorial covering how to make lineart for HUD weapons.
+      authors: Melissa Evans
+      updated: "?"
+      tags:
+        - hud
+      links:
+        en: "[www.melissaevans.com](http://www.melissaevans.com/tutorials/create-basic-line-art-from-your-photos)"
+    - name:
+        en: Scope masks
+      description:
+        en: This video will demonstrate the rules and settings applicable to scope masks used with zoomable [weapons][weapon].
+      authors: Jesse
+      updated: "2019"
+      tags:
+        - hud
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=djI2sWboVSo)"
+    - name:
+        en: Physics/vehicle tutorial
+      description:
+        en: Explains how to make physics tags for vehicles in Halo CE.
+      authors: aLTis94
+      updated: "2015"
+      tags:
+        - objects
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=3U6aQdOIrEw)"
+    - name:
+        en: Custom weapons tutorial
+      description:
+        en: A playlist of 29 videos where Yoda models and makes a weapon fully functional in Halo CE.
+      authors: Yoda73811
+      updated: "2012"
+      tags:
+        - objects
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=HHVmD-RU-fk&list=PLsYFcdY5bHyKaq_pA2nUJ1qkreXemLsnV&index=2)"
+    - name:
+        en: Custom projectile tutorial
+      description:
+        en: A simple tutorial on how to make a projectile for your weapon in CE.
+      authors: Yoda73811
+      updated: "2013"
+      tags:
+        - objects
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=fmXT2mxmIuQ)"
+    - name:
+        en: Custom character tutorial
+      description:
+        en: A playlist of 3 videos where Yoda skins, imports and makes a model work as a character in CE.
+      authors: Yoda73811
+      updated: "2013"
+      tags:
+        - objects
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=rC3hqIyjthc&list=PLsYFcdY5bHyIEj38SFXPRgTCqItJMyLRi)"
+    - name:
+        en: Custom FP arm rig tutorial
+      description:
+        en: Similar to the Custom Character tutorial, but specifically for custom FP arm rigs. This is not a tutorial for an animation/IK rig, check the animation section for that.
+      authors: Yoda73811
+      updated: "2013"
+      tags:
+        - objects
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=BBfJk2yf4CM&list=PLsYFcdY5bHyI-O9TO8PEqoU_ObhqTvq_U)"
+    - name:
+        en: Scenery tutorial
+      description:
+        en: A basic tutorial covering how to create a static scenery piece.
+      authors: Yoda73811
+      updated: "2013"
+      tags:
+        - objects
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=GnDIwR-uSaY)"
+    - name:
+        en: IK controllers for FP arms
+      description:
+        en: A tutorial on how to set up simple IKs for the halo FP arms.
+      authors: t3h lag
+      updated: "2010"
+      tags:
+        - animation
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=xpdIP91iSq0)"
+    - name:
+        en: t3h lag's FP animation tutorials
+      description:
+        en: A playlist of multiple tutorials which should get you to know all the basics of first person animation.
+      authors: t3h lag
+      updated: "2010"
+      tags:
+        - animation
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=SbARMDLmgto&list=PLCB63376A645F5BF6&index=4)"
+    - name:
+        en: Link constraints in a reload animation
+      description:
+        en: Helps you get to know more about link constraints, a technique to animate multiple bones together for the duration of their movement together.
+      authors: ImBrokeRU
+      updated: "2012"
+      tags:
+        - animation
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=ZogedB4Sfpk)"
+    - name:
+        en: Automatic forearm Twist
+      description:
+        en: A technique to automatically rotate forearms when animating wrists.
+      authors: ImBrokeRU
+      updated: "2012"
+      tags:
+        - animation
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=TJmMTJboqJ8)"
+    - name:
+        en: Third person overlay name and frame schemes
+      description:
+        en: Useful for setting up vehicles that have turrets or completely custom bipeds that need new aiming overlays.
+      authors: Advancebo
+      updated: "2009"
+      tags:
+        - animation
+      links:
+        en: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/animation_info/animation_stuff.html)"
+    - name:
+        en: Animation export types
+      description:
+        en: Helps you export animations with the right [file type][animation-data].
+      authors: CtrlAltDestroy
+      updated: "2009"
+      tags:
+        - animation
+      links:
+        en: "[halonet.net (scroll down)](http://reclaimed.halonet.net/content/tutorial/animation_info/animation_stuff.html)"
+    - name:
+        en: Recorded animations tutorial
+      description:
+        en: Tutorial for recording you playing the game for stuff like cutscenes.
+      authors: "{NP} Final"
+      updated: "2012"
+      tags:
+        - animation
+      links:
+        en: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/record_recorded_animations/recording_recorded_animations.html)"
+    - name:
+        en: Dropship tutorial - custom animations
+      description:
+        en: A tutorial that teaches you very basic animation, combined with how you can make a dropship fly into the level without having it use a recording of you flying it in. Also teaches you how to load a dropship with enemies and how to make it open and close it's doors.
+      authors: MattDratt
+      updated: "2016"
+      tags:
+        - animation
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=6hTJ_6sWSeU)"
+    - name:
+        en: About animation types
+      description:
+        en: A little explanation on how certain animation types were used in TSC:E
+      authors: t3h lag
+      updated: "2013"
+      tags:
+        - animation
+      links:
+        en: "[Google Drive](https://drive.google.com/file/d/1yTAWVGyKf4AT78_-9cMjomQsfIKLTWPh/view?usp=drive_open)"
+    - name:
+        en: Creating a custom muzzle flash bitmap
+      description:
+        en: This tutorial is how to create a custom muzzle flash, or anything else that can be applied to this.
+      authors: Advancebo
+      updated: "2009"
+      tags:
+        - effects
+      links:
+        en: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/muzzle_flash_bitmap/creating_custom_muzzle_flash_bitmap.html)"
+    - name:
+        en: Custom muzzle flash tutorial
+      description:
+        en: This tutorial covers how to get a custom muzzle flash into halo custom edition. It does not cover the creation of the bitmap itself.
+      authors: Yoda73811
+      updated: "2013"
+      tags:
+        - effects
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=MZXCB5-qadk)"
+    - name:
+        en: LODs
+      description:
+        en: A short and simple tutorial on how to import [LODs][gbxmodel#level-of-detail] (level of detail models) into CE.
+      authors: aLTis94
+      updated: "2016"
+      tags:
+        - objects
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=FQuXch9Ecm8)"
+    - name:
+        en: Proper LOD cutoffs
+      description:
+        en: How to set the right LOD transition values to avoid it being too visible.
+      authors: MosesofEgypt
+      updated: "2014"
+      tags:
+        - objects
+      links:
+        en: "[Google Drive](https://drive.google.com/file/d/0B1LjERLq599jRExac2lVNmc1Wlk/view)"
+    - name:
+        en: Halo CE bitmap compression
+      description:
+        en: Statistics and tips for people who want to get the most out of their [bitmaps][bitmap].
+      authors: gbMichelle
+      updated: "2017"
+      tags:
+        - other
+      links:
+        en: "[Google Docs](https://docs.google.com/spreadsheets/d/e/2PACX-1vRMqBgxVXHlkIV0vTyXrgmy4dXuz9vDHbfqHVKR2ICe6qi1p0smjxm0bCUG_C_uAV2VZoG0RJ-SDrja/pubhtml)"
+    - name:
+        en: Tag manipulation in SAPP
+      description:
+        en: How to edit tags in SAPP, the dedicated server mod.
+      authors: "002"
+      updated: "2016"
+      tags:
+        - other
+      links:
+        en: "[OpenCarnage](https://opencarnage.net/index.php?/topic/6249-tag-manipulation-in-sapp/)"
+    - name:
+        en: Saving space by making portals fully coplanar
+      description:
+        en: How to stay under the [BSP][scenario_structure_bsp] portal limit by optimizing the amount of data Halo needs to store them.
+      authors: MosesofEgypt
+      updated: "2014"
+      tags:
+        - level
+      links:
+        en: "[Imgur](https://i.imgur.com/MxYJRNM.png)"
+    - name:
+        en: Extracting models from Halo Online
+      description:
+        en: No talking, just someone showing you how to do it.
+      authors: "?"
+      updated: "?"
+      tags:
+        - other
+      links:
+        en: "[Google Drive](https://drive.google.com/file/d/0B1LjERLq599jYldMU1pFeFNzWWc/view)"
+    - name:
+        en: World units explanation
+      description:
+        en: An explanation of the size of [world units][scale] and their equivalents.
+      authors: Ki11erFTW
+      updated: "?"
+      tags:
+        - other
+      links:
+        en: >-
+          [Imgur](https://i.imgur.com/t38bFOy.png),
+          [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jQjgxVVhZcW1rN1U/view)
+    - name:
+        en: Aim assist explanation
+      description:
+        en: An explanation about how aim assist in Halo CE works.
+      authors: t3h m00kz
+      updated: "?"
+      tags:
+        - other
+      links:
+        en: >-
+          [Imgur](https://i.imgur.com/SGlHXQT.png),
+          [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jUlAxOVYyY2M4czA/view)
+    - name:
+        en: "[OpenSauce][] shader model tutorial and discussion"
+      description:
+        en: An interesting read if you want to get a better understanding on the OpenSauce shader model tag.
+      authors: Waffles
+      updated: "2012"
+      tags:
+        - other
+      links:
+        en: "[Google Drive](https://drive.google.com/file/d/0B1LjERLq599jQWZ4b2M5RXphWWs/view)"
+    - name:
+        en: Colorchange mask explanation GIF
+      description:
+        en: An animated representation of how color change with [shader_model multipurpose maps works][shader_model#multipurpose-map].
+      authors: Giraffe
+      updated: "?"
+      tags:
+        - other
+      links:
+        en: >-
+          [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jdmE0ZmJXNDY4eEU/view),
+          [Imgur](https://i.imgur.com/NaDSnKP.gifv)
+    - name:
+        en: Shader transparent rundown
+      description:
+        en: An extensive explanation of how [shader_transparent][shader_transparent_chicago] based shaders work.
+      authors: MosesOfEgypt
+      updated: "2019"
+      tags:
+        - other
+      links:
+        en: "[Google Drive](https://drive.google.com/file/d/1Rm9LoAKPgepOH1wLQfRHNiaVa1iwVEaO/view)"

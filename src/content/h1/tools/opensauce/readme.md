@@ -36,3 +36,5 @@ These extended tag types are specific to OpenSauce .yelo maps and are only suppo
 
 # Game features
 Note that OpenSauce uses the filename `initc.txt` for [init scripts][arguments#init-txt] instead.
+
+Crash reports can be found in `<DRIVE>:\Users<USER>\Documents\My Games\Halo CE\OpenSauce\Reports`.

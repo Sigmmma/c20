@@ -1702,8 +1702,9 @@ DebugFunctions:
           (debug_objects_bounding_spheres [boolean])
           ```
           When `debug_objects` is enabled, displays yellow spheres for [object
-          bounding radius][object#tag-field-bounding-radius]. This setting defaults
-          to `true`, so the spheres will be visible already when turning on `debug_objects`.
+          bounding radius][object#tag-field-bounding-radius]. The sphere will be
+          black when the object is _inactive_. This setting defaults to `true`,
+          so the spheres will be visible already when turning on `debug_objects`.
     - slug: debug_objects_collision_models
       tags:
         - model_collision_geometry
@@ -2650,12 +2651,16 @@ DebugFunctions:
           ```hsc
           (rasterizer_environment_fog)
           ```
+          Toggles environmental [sky fog][sky#tag-field-outdoor-fog-color] and
+          [fog plane][fog] colors. Does not affect _fog screen_.
     - slug: rasterizer_environment_fog_screen
       info:
         en: |-
           ```hsc
-          (rasterizer_environment_fog_screen)
+          (rasterizer_environment_fog_screen [boolean])
           ```
+          Toggles the cloudy [fog screen][fog] effect of fog planes, seen in
+          the levels a30, c10, and c40.
     - slug: rasterizer_environment_lightmaps
       tags:
         - lightmaps

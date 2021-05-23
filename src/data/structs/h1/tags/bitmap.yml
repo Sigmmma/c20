@@ -301,6 +301,11 @@ type_defs:
           non_cached: true
           volatile: true
           read_only: true
+        comments:
+          en: >-
+            Contains the original raw source data used to compile this bitmap tag,
+            if available. Bitmap tags which have been extracted from [cache files][map]
+            will not have this data.
       - name: processed_pixel_data
         type: TagDataOffset
         meta:

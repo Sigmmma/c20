@@ -573,6 +573,10 @@ type_defs:
         type: float
         meta:
           unit: world units
+        comments:
+          en: >-
+            Constraints the minimum distance that this actor can be from its
+            allies. Increase this to avoid actors "clumping" together.
       - type: pad
         size: 40
       - name: noncombat_idle_speech_time

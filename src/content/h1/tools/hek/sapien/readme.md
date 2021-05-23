@@ -4,6 +4,10 @@ configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] l
 
 It is roughly analagous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which supports many more debug commands than the in-game one.
 
+# Menu options
+## Switch BSP
+It is common for singleplayer scenarios to be comprised of multiple [BSPs][scenario_structure_bsp]. The _Edit > Switch BSP_ option is used to change between them. **Always use this option to switch BSPs** and don't use [`switch_bsp`][scripting#functions-switch-bsp] in the [console][developer-console]. The menu option performs additional functions that maintain proper editor state, whereas `switch_bsp` is intended for level scripts.
+
 # Windows
 ## Game window
 The game window is the main interface when interacting with objects in the level. It is also where you can run commands by pressing the <kbd>~</kbd> (tilde) key. The resolution and aspect ratio cannot be adjusted.
@@ -41,6 +45,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>~</kbd>: Opens the command console.
 * <kbd>Space</kbd>: clones the selected object to the camera's location and orientation. If multiple objects are selected, uses the first.
 * <kbd>Pause/Break</kbd>: Pauses your Sapien instance. Press "OK" in the opened window to resume Sapien.
+* <kbd>Control + B</kbd>: Open the BSP switch dialog window.
 * <kbd>Control + Shift + B</kbd>: Creates the file `baggage.txt`. If you end up getting a maximum tag slots error or are [running low on tag space][map#limits], this file shows the memory usage of tags in the editor.
 * <kbd>Shift + Click</kbd>: Select a group of objects or keep previously placed objects selected. You can also use it to select the first and last object in the hierarchy list to select everything in-between at once. Useful for deleting multiple objects or moving them all at once.
 * <kbd>Control + Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
