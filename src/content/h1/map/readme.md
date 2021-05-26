@@ -1,8 +1,8 @@
-A **map**, also known as a **cache file**, is a bundle of compiled [tags][] which can be loaded and used by [Halo][h1]. With the exception of _resource maps_, each map represents a playable campaign, multiplayer level, or main menu.
+A **map**, also known as a **cache file**, is a bundle of processed [tags][] which can be loaded and used by [Halo][h1]. With the exception of [_resource maps_](#resource-maps), each map represents a playable campaign, multiplayer level, or main menu.
 
-Tags within a map file are not exactly the same as they exist in your source `tags` directory. When tags are compiled into a map, data is prepared for how it will be used at runtime. [Tag path references][tags#tag-references-and-paths] are replaced with pre-calculated pointers, [child scenarios][scenario#child-scenarios] are merged, extra fields are calculated, and the metadata for [bitmaps][bitmap] and [sounds][sound] is separated from their raw data.
+Tags within a map file are not exactly the same as they exist in your source `tags` directory. When tags are compiled into a map, data is prepared for how it will be used at runtime. [Tag path references][tags#tag-references-and-paths] are replaced with pre-calculated indices or pointers, [child scenarios][scenario#child-scenarios] are merged, extra fields are calculated, and the metadata for [bitmaps][bitmap] and [sounds][sound] is separated from their raw data.
 
-Maps are found in Halo's `maps` directory. Maps in subdirectories are not loaded by the game. Mods like [Chimera][] and HAC2 store [downloaded](map-sharing#halonet) maps in a separate location and force the game to load them regardless.
+Maps are found in Halo's `maps` directory and have the ".map" extension. Maps in subdirectories are not loaded by the game. Mods like [Chimera][] and HAC2 store [downloaded](map-sharing#halonet) maps in a separate location and force the game to load them regardless.
 
 # Map types
 With the exception of resource maps, the type of a map is determined by the type field in the compiled [scenario][] tag.
@@ -19,7 +19,9 @@ The special `ui.map` contains resources for the game's main menu, including [bit
 Custom UI maps which intend to add a campaign menu to Custom Edition must include a dummy first menu item since the game is hardcoded to remove it.
 
 ## Resource maps
-The maps `bitmaps.map`, `sounds.map`, and `loc.map` are special _resource maps_, and contain commonly referenced tags which do not need to be duplicated within each playable map referencing them. Instead, these shared tags are excluded by [tool][] at map compilation time (seen as "cache hits" in its output). Compiling custom resource maps from tags<sup>how?</sup> can be an effective way to reduce the net filesize of a campaign overhaul mod.
+The maps `bitmaps.map`, `sounds.map`, and `loc.map` are special _resource maps_, and contain commonly referenced tags which do not need to be duplicated within each playable map referencing them. Instead, these shared tags are excluded by [Tool][] at map compilation time (seen as "cache hits" in its output). Compiling custom resource maps from tags<sup>how?</sup> can be an effective way to reduce the net filesize of a campaign overhaul mod.
+
+The Windows and Mac versions of H1PC, as released by Gearbox and Macsoft, respectively, also includes two additional files with .map extensions: bitmaps.map and sounds.map. H1CE introduces a third file, loc.map. These are not actual cache files and are not generally loaded directly by the game. Instead, the game uses it to share data between maps. For the retail version, this is to save disk space. For Halo Custom Edition, this is to provide basic localization so maps will appear to be the correct language regardless of the language the user is playing. Consequently, Halo Custom Edition's resource maps contain the actual tag data for bitmaps, sounds, strings, and fonts. No other version of the game has resource maps presently. However, Halo: Combat EvolvedAnniversary on MCC does support loading Halo: Custom Edition maps (thus using thesethree caches for loading such maps). It also has its own system for loading bitmap andsound data through ipaks and FSBs.ipak is a format made by Saber Interactive. Currently, it is exclusively used for bitmaps in inHalo: Combat Evolved Anniversary maps if playing on Halo: Combat Evolved on MCC, andthis applies to both the anniversary graphics and classic graphics. Similar to bitmaps.map,it contains bitmap data. However, unlike bitmaps.map, it does not always correspond tothe actual tag data. For example, a bitmap tag may claim to be 256x256 16-bit, but thebitmap in the ipak might be larger, such as 512x512 with 32-bit color. The game will effectivelydownscale it to 256x256.FSBs (FMOD sound bank, not front-side bus!) are a proprietary format for the FMODsound effects engine used by Halo: Combat Evolved Anniversary. Like sounds.map, it containssound data, and like ipak, this sound data does not necessarily correspond to tag data. Assuch, it can be various formats (e.g. MPEG, Ogg Vorbis, PCM, ADPCM, etc.).BecauseFSBs do not contain mouth data yet all languages of this version of the game had theirmaps built with English tags, stock Halo: Combat Evolved Anniversary maps will only playEnglish mouth data even when on another language.
 
 # Other map formats
 In addition to [CEA's compressed map format][cea#changes], some custom map formats have been developed for use by a modified game client:
@@ -62,5 +64,16 @@ Each section is loaded in a different way:
 * Raw data is streamed from the map file as needed and dynamically allocated in a loaded resource pool/cache. The texture cache is cleared during maps loads and BSP switches. Some tags like [BSPs][scenario_structure_bsp] and [scenarios][scenario] contain a "predicted resources" block which hints to the game which data should be loaded into these caches.
 
 Tags from resource maps are also loaded into the tag space as needed. Halo CEA uses compressed maps and additional files to store sounds and bitmaps, so loads maps [differently][cea#changes].
+
+# Data structure
+
+```.struct
+entry_type: MapCacheFile
+showOffsets: true
+id: map
+imports:
+  h1/files/map:
+    - MapCacheFile
+```
 
 [os-maps]: https://haloce3.com/category/downloads/open-sauce-maps/

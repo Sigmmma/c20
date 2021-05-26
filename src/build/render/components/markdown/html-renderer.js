@@ -1,3 +1,4 @@
+const R = require("ramda");
 const yaml = require("js-yaml");
 const marked = require("marked");
 const hljs = require("highlight.js");
@@ -6,6 +7,7 @@ const vrmlLang = require("./langs/vrml");
 const {heading, alert, figure} = require("../bits");
 const {structDisplay} = require("../structs");
 const {renderTableYaml} = require("../yaml-tables");
+const autoAbbreviations = require("./abbreviations");
 
 hljs.registerLanguage("vrml", vrmlLang);
 hljs.registerLanguage("hsc", hscLang);
@@ -21,6 +23,18 @@ module.exports = function(ctx) {
   //https://marked.js.org/#/USING_PRO.md#renderer
   const renderer = new marked.Renderer();
   const {renderMarkdown} = require("./index");
+
+  const processAbbreviations = (text) => {
+    autoAbbreviations.forEach(([short, full]) => {
+      if (full[ctx.lang]) {
+        text = text.replaceAll(short, `<abbr title="${full[ctx.lang]}">${short}</abbr>`);
+      }
+    });
+    return text;
+  };
+
+  renderer.text = R.pipe(processAbbreviations, renderer.text);
+  renderer.paragraph = R.pipe(processAbbreviations, renderer.paragraph);
 
   renderer.heading = function(text, level) {
     const hN = "h" + level;
