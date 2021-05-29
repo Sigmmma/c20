@@ -46,9 +46,10 @@ type_defs:
       - name: no_remastered_sync
         comments:
           en: Has the effect of disabling the remastered graphics mode.
-  Header:
+  CacheFileHeader:
     class: struct
     assert_size: 2048
+    endianness: little
     fields:
       - name: head_magic
         type: char
@@ -104,7 +105,11 @@ type_defs:
       - name: scenario_type
         type: ScenarioType
         comments:
-          en: On Xbox, this tells the game which disk cache to decompress the map into.
+          en: >-
+            On Xbox, this tells the game which disk cache to decompress the map into.
+            The singleplayer is 278 MiB, multiplayer is 47 MiB, and UI is 35 MiB.
+            For example, setting this to `0` would always load the map to the singleplayer
+            cache even if it's a multiplayer map by [scenario type][scenario#tag-field-type].
       - type: pad
         size: 2
       - name: checksum
@@ -113,6 +118,8 @@ type_defs:
           en: CRC32 checksum which verifies the integrity of BSP, model, and tag data.
       - name: h1a_flags
         type: H1AFlags
+        meta:
+          mcc_only: true
         comments:
           en: A bitfield which customizes how the cache file is treated by H1A in MCC.
       - type: pad
@@ -125,9 +132,129 @@ type_defs:
           en: >-
             Always takes the value `foot`, or `1718579060` as a uint32. This
             identifies the end of the header.
-  MapCacheFile:
+  DemoCacheFileHeader:
     class: struct
+    assert_size: 2048
     endianness: little
     fields:
-      - name: header
-        type: Header
+      - type: pad
+        size: 0x2
+        comments:
+          en: Filled with garbage values
+      - name: scenario_type
+        type: ScenarioType
+        comments:
+          en: >-
+            On Xbox, this tells the game which disk cache to decompress the map into.
+            The singleplayer is 278 MiB, multiplayer is 47 MiB, and UI is 35 MiB.
+            For example, setting this to `0` would always load the map to the singleplayer
+            cache even if it's a multiplayer map by [scenario type][scenario#tag-field-type].
+      - type: pad
+        size: 0x2BC
+        comments:
+          en: Filled with garbage values
+      - name: head_magic
+        type: char
+        count: 4
+        value: "head"
+        comments:
+          en: >-
+            Always takes the value `Ehad`, or `1164469604` as a uint32.
+      - name: tag_data_size
+        type: uint32
+        comments:
+          en: Length of the tag data in bytes.
+      - name: build_version
+        type: char
+        count: 32
+        comments:
+          en: >-
+            Must match the engine version on Xbox, `01.10.12.2276`. Otherwise this
+            version can represent the version of the game build the cache file is for
+            or the version of the tool which compiled it (as is the case with `invader-build`).
+      - type: pad
+        size: 0x2A0
+        comments:
+          en: Filled with garbage values
+      - name: cache_version
+        type: CacheVersion
+        value: 6
+        comments:
+          en: >-
+            Identifies the cache file version, which differs by release of the game.
+            This must match the demo cache file version (`6`) for the map be loadable.
+      - name: scenario_name
+        type: char
+        count: 32
+        comments:
+          en: >-
+            The name of the [scenario][] tag which this map was compiled from, e.g.
+            `bloodgulch`. Must match the filename. Null-terminated.
+      - type: pad
+        size: 0x4
+        comments:
+          en: Filled with garbage values
+      - name: checksum
+        type: uint32
+        comments:
+          en: CRC32 checksum which verifies the integrity of BSP, model, and tag data.
+      - type: pad
+        size: 0x34
+        comments:
+          en: Filled with garbage values
+      - name: file_size
+        type: uint32
+        comments:
+          en: Length of the map in bytes when uncompressed.
+      - name: tag_data_offset
+        type: uint32
+        comments:
+          en: Offset into the file to the [tag][tags] data.
+      - name: foot_magic
+        type: char
+        count: 4
+        value: "foot"
+        comments:
+          en: >-
+            Always takes the value `Gfot`, or `1197895540` as a uint32. This
+            identifies the end of the header.
+      - type: pad
+        size: 0x20C
+        comments:
+          en: Filled with garbage values
+  ResourceMapType:
+    class: enum
+    size: 4
+    options:
+      - name: bitmaps
+        comments:
+          en: The file contains [bitmap][] tags.
+      - name: sounds
+        comments:
+          en: The file contains [sound][] tags.
+      - name: loc
+        comments:
+          en: The file contains [font][] and [unicode_string_list][] tags.
+  ResourceMapHeader:
+    class: struct
+    fields:
+      - name: type
+        type: ResourceMapType
+        comments:
+          en: The type of data found in this resource map.
+      - name: cache_version
+        type: CacheVersion
+        comments:
+          en: >-
+            Identifies the cache file version, which differs by release of the game.
+            This must match the game's cache file version for the map be loadable.
+      - name: file_size
+        type: uint32
+        comments:
+          en: Length of the map in bytes when uncompressed.
+      - type: pad
+        size: 4
+      - name: tag_data_offset
+        type: uint32
+        comments:
+          en: Offset into the file to the [tag][tags] data.

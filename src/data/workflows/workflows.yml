@@ -177,6 +177,9 @@ workflowItems:
   invader-sound:
     inherit: Invader
     heading: invader-sound
+  invader-resource:
+    inherit: Invader
+    heading: invader-resource
   # resources:
   wrl:
     page: wrl

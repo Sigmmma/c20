@@ -34,6 +34,7 @@ function structDisplay(ctx, opts) {
     id
   } = opts;
 
+  const noEmbed = opts.noEmbed || [];
   const typeDefs = buildTypeDefs(typeDefsArg, opts.imports, ctx.data.structs);
   const searchTerms = [];
   const headings = [];
@@ -164,7 +165,7 @@ function structDisplay(ctx, opts) {
             }
 
             let embeddedType = undefined;
-            if (fieldTypeName != "TagDependency") {
+            if (!noEmbed.includes(fieldTypeName)) {
               if (fieldTypeArgs && (fieldTypeName == "Block" || fieldTypeName == "ptr32" || fieldTypeName == "ptr64")) {
                 embeddedType = instantiateType(typeDefs, {type: Object.values(fieldTypeArgs)[0]}, instantiatedType.type_args, {});
                 if (embeddedType.typeDef.class) {

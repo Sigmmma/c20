@@ -5,23 +5,25 @@ Tags within a map file are not exactly the same as they exist in your source `ta
 Maps are found in Halo's `maps` directory and have the ".map" extension. Maps in subdirectories are not loaded by the game. Mods like [Chimera][] and HAC2 store [downloaded](map-sharing#halonet) maps in a separate location and force the game to load them regardless.
 
 # Map types
-With the exception of resource maps, the type of a map is determined by the type field in the compiled [scenario][] tag.
+The type of a map is determined by the [scenario type field][scenario#tag-field-type] when the scenario is compiled, with the exception of resource maps which are not compiled from one.
 
 ## Multiplayer
-The most common type of map, these were compiled with a scenario type of "multiplayer". Multiplayer maps can be loaded through the ingame menu or with the command `sv_map`. Loading a multiplayer map using `map_name` will trap the player in the level without the ability to use the menu.
+In H1CE, multiplayer maps can be loaded through the in-game menu or with the [command][developer-console] `sv_map <map> <gametype>`. Loading a multiplayer map using `map_name <map>` will trap the player in the level without the ability to use the menu.
 
 ## Singleplayer
-Singleplayer/campaign maps can be compiled by setting the scenario's type to "singleplayer". Besides via a modded `ui.map`, campaign maps can then be loaded with `map_name`. This map type is also used by modders creating scripted firefight maps. When [Tool][] compiles this map type, it strips multiplayer information from [globals][] and applies some balancing [tag patches][tool#hardcoded-tag-patches].
+To load a singleplayer map in H1CE, you can either use a modded `ui.map` which includes menu options to launch it, or load it directly using the `map_name <map>` console command. When [Tool][] compiles this map type, it strips multiplayer information from [globals][] and applies some balancing [tag patches][tool#hardcoded-tag-patches]. These patches are applied at runtime in H1X.
 
 ## UI
 The special `ui.map` contains resources for the game's main menu, including [bitmaps][bitmap] for its UI elements like the server browser and the Halo ring background. The [HEK][] supports the creation of custom UI maps. When Tool compiles a UI map, it strips multiplayer info and fall damage blocks from [globals][].
 
-Custom UI maps which intend to add a campaign menu to Custom Edition must include a dummy first menu item since the game is hardcoded to remove it.
+Custom UI maps which intend to add a campaign menu to H1CE must include a dummy first menu item since the game is hardcoded to remove it.
 
 ## Resource maps
-The maps `bitmaps.map`, `sounds.map`, and `loc.map` are special _resource maps_, and contain commonly referenced tags which do not need to be duplicated within each playable map referencing them. Instead, these shared tags are excluded by [Tool][] at map compilation time (seen as "cache hits" in its output). Compiling custom resource maps from tags<sup>how?</sup> can be an effective way to reduce the net filesize of a campaign overhaul mod.
+Resource maps provide a way for certain tags to be stored _external_ to a playable map rather than its tags being totally self-contained. These maps themselves are not playable and have a different [header structure](#resource-map-header), but instead contain shared tags referenced by normal map files. This feature was introduced with H1PC with `bitmaps.map` and `sounds.map` to store [bitmap][] and [sound][] tags respectively, and `loc.map` was added in H1CE to store [font][] and [unicode_string_list][].
 
-The Windows and Mac versions of H1PC, as released by Gearbox and Macsoft, respectively, also includes two additional files with .map extensions: bitmaps.map and sounds.map. H1CE introduces a third file, loc.map. These are not actual cache files and are not generally loaded directly by the game. Instead, the game uses it to share data between maps. For the retail version, this is to save disk space. For Halo Custom Edition, this is to provide basic localization so maps will appear to be the correct language regardless of the language the user is playing. Consequently, Halo Custom Edition's resource maps contain the actual tag data for bitmaps, sounds, strings, and fonts. No other version of the game has resource maps presently. However, Halo: Combat EvolvedAnniversary on MCC does support loading Halo: Custom Edition maps (thus using thesethree caches for loading such maps). It also has its own system for loading bitmap andsound data through ipaks and FSBs.ipak is a format made by Saber Interactive. Currently, it is exclusively used for bitmaps in inHalo: Combat Evolved Anniversary maps if playing on Halo: Combat Evolved on MCC, andthis applies to both the anniversary graphics and classic graphics. Similar to bitmaps.map,it contains bitmap data. However, unlike bitmaps.map, it does not always correspond tothe actual tag data. For example, a bitmap tag may claim to be 256x256 16-bit, but thebitmap in the ipak might be larger, such as 512x512 with 32-bit color. The game will effectivelydownscale it to 256x256.FSBs (FMOD sound bank, not front-side bus!) are a proprietary format for the FMODsound effects engine used by Halo: Combat Evolved Anniversary. Like sounds.map, it containssound data, and like ipak, this sound data does not necessarily correspond to tag data. Assuch, it can be various formats (e.g. MPEG, Ogg Vorbis, PCM, ADPCM, etc.).BecauseFSBs do not contain mouth data yet all languages of this version of the game had theirmaps built with English tags, stock Halo: Combat Evolved Anniversary maps will only playEnglish mouth data even when on another language.
+When playable maps are compiled using [Tool][], any needed tags for the map which are already present in a resource map will be excluded and referenced by pointer to the loaded resource map instead. The resource maps were created once using an internal version of Tool and were not originally intended to be modified, though [invader-resource][invader#invader-resource] is capable of compiling new ones. Using incompatible resource maps will result in glitched textures, sounds, and text.
+
+Storing bitmaps and sounds in common files had the benefit of reducing the disk space needed for H1PC's maps because multiple maps are able to reference the same data rather than duplicating it. The other benefit is that the resource map can be swapped out with another to alter tag content without affecting the dependent maps. In the case of `loc.map`, the file itself contains common UI messages and prompts but varies by language of the H1CE installation. This means a custom map can be compiled once but still have localized messages when used in another language of the game, as opposed to compiling a version of the map for each language.
 
 # Other map formats
 In addition to [CEA's compressed map format][cea#changes], some custom map formats have been developed for use by a modified game client:
@@ -65,15 +67,46 @@ Each section is loaded in a different way:
 
 Tags from resource maps are also loaded into the tag space as needed. Halo CEA uses compressed maps and additional files to store sounds and bitmaps, so loads maps [differently][cea#changes].
 
-# Data structure
+# File structure
+
+## Cache file header
+Normal (non-resource) cache files begin with a header which is always 2048 bytes long.
 
 ```.struct
-entry_type: MapCacheFile
+entry_type: CacheFileHeader
 showOffsets: true
-id: map
+id: map-header
 imports:
   h1/files/map:
-    - MapCacheFile
+    - CacheFileHeader
+```
+
+## Cache file header (demo)
+Demo versions of H1PC use a different cache file header structure with reordered fields and extra padding between them as a means to make it harder to port retail cache files to the demo. The header is still 2048 bytes long.
+
+```.struct
+entry_type: DemoCacheFileHeader
+showOffsets: true
+id: demo-map-header
+noEmbed:
+  - CacheVersion
+imports:
+  h1/files/map:
+    - DemoCacheFileHeader
+```
+
+## Resource map header
+Demo versions of H1PC use a different cache file header structure with reordered fields and extra padding between them as a means to make it harder to port retail cache files to the demo. The header is still 2048 bytes long.
+
+```.struct
+entry_type: ResourceMapHeader
+showOffsets: true
+noEmbed:
+  - CacheVersion
+id: resource-header
+imports:
+  h1/files/map:
+    - ResourceMapHeader
 ```
 
 [os-maps]: https://haloce3.com/category/downloads/open-sauce-maps/

@@ -3,7 +3,7 @@ module.exports = Object.entries({
     en: "Halo 1 for Xbox (Bungie)"
   },
   H1PC: {
-    en: "Halo 1 PC retail (Gearbox)"
+    en: "Halo 1 PC retail for Windows and Mac (Gearbox)"
   },
   H1CE: {
     en: "Halo Custom Edition (Gearbox)"
