@@ -378,12 +378,16 @@ TODO
 
 # Recover TIFF from bitmap tag
 
+Extracts the images from a [bitmap][] tag saving them as [TIFF][wiki-tiff] files in the `recovered` folder in the H1A-EK root directory. The naming scheme `<bitmap_tag_name>_<index>.tif` is used.
+
 ```sh
 # recover-tif <bitmap>
-tool.exe TODO
+tool recover-tif "rasterizer\default 2d"
 ```
 
-TODO
+For the example above, Tool would create 4 bitmaps named: `default 2d_0.tif`, `default 2d_1.tif`, `default 2d_2.tif` and `default 2d_3.tif`.
+
+The command uses the compressed texture and not the source plate data.
 
 # Sounds compilation
 A 16-bit [WAV][wiki-wav] file can be compiled into a [sound][] tag using the `sounds` verb:
