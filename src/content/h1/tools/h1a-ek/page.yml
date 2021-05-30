@@ -10,10 +10,12 @@ info:
     
     * The tools can be [downloaded through steam](https://store.steampowered.com/app/fake_steam_appid).
     
-stub: true
+related:
+  - /h1/tools/hek
+stub: false
 toolName: H1A-EK
 alerts:
-  - type: alert
+  - type: info
     md:
       en: >-
         After downloading the H1A-EK, please read `README_MODDING.txt`
