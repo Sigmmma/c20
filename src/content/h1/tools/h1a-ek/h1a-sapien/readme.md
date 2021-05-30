@@ -115,16 +115,19 @@ debug_objects 1
 Sapien requires DX11 support, it is currently unknown if it can be run under WINE.
 
 # Limits
-As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual memory even on modern 64-bit Windows systems for compatibility. While this memory limit is usually not an issue, an abundance of large textures and other large assets in a map may cause Sapien to crash. To work around this, `sapien.exe` can be patched to tell the OS it supports 4 GB of virtual memory using a utility like [NTCore][ntcore]. To do this:
+As an 32-bit application Sapien is limited to 2 GB of virtual memory even on modern 64-bit Windows systems for compatibility. While this memory limit is usually not an issue, an abundance of large textures and other large assets in a map may cause Sapien to crash. To work around this, `sapien.exe` can be patched to tell the OS it supports 4 GB of virtual memory using a utility like [NTCore][ntcore]. To do this:
 
 * Install [NTCore 4GB Patch](https://ntcore.com/?page_id=371)
 * Run the 4GB Patch.
 * Select the Sapien executable.
 * NTCore will apply the patch. After it's finished, press OK. Sapien has now been patched to support 4 GB of virtual memory.
 
+Keep in mind this is not officially supported and could in theory cause hard to debug issues.
+
 [wine]: https://www.winehq.org/
 [dxvk]: https://github.com/doitsujin/dxvk
 [ntcore]: https://ntcore.com/?page_id=371
+
 
 # Troubleshooting
 ## Interface
@@ -142,6 +145,10 @@ As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual mem
         <p>Open the registry key <code>HKEY_CURRENT_USER\Software\i343\halo1a_sapien</code> using regedit and delete all entries ending with "rect".</p>
       </td>
     </tr>
+	<tr>
+	  <td>Can't change the open scenario</td>
+	  <td>This is a known issue, simply close Sapien and open it again; this will allow you to open the scenario.</td>
+	</tr>
   </tbody>
 </table>
 
@@ -198,15 +205,6 @@ This may be caused by a multi-core processor. Try running in Windows 98 compatib
     </tr>
     <tr>
       <td>
-EXCEPTION halt in \halopc\haloce\source\rasterizer\rasterizer_transparent_geometry.c,#137: group->sorted_index>=0 && group->sorted_index<transparent_geometry_group_count
-      </td>
-      <td>
-
-An [object][] has _transparent self occlusion_ enabled while also referencing a transparent [shader][] with _extra layers_. This is not a problem in-game.
-      </td>
-    </tr>
-    <tr>
-      <td>
 EXCEPTION halt in \halopc\haloce\source\rasterizer\dx9\rasterizer_dx9.c,#2014: global_window_parameters.fog.planar_maximum_depth>0.0f
       </td>
       <td>
@@ -223,5 +221,3 @@ Sapien has encountered an unrecognized tag class, such as an [OpenSauce][OpenSau
     </tr>
   </tbody>
 </table>
-
-[msaa]: https://en.wikipedia.org/wiki/Multisample_anti-aliasing
