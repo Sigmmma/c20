@@ -1,4 +1,4 @@
-**Sapien**, part of the [HEK][], is a visual [scenario][] and
+**H1A Sapien**, part of the [H1A-EK][], is a visual [scenario][] and
 [BSP][scenario_structure_bsp] editor used to populate levels with objects,
 configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile [scripts][scripting], and more. Sapien shares some systems with Halo itself, including its AI system to support interactive AI scripting and debugging. Other systems, such as weather rendering, are not represented.
 
@@ -99,7 +99,7 @@ radiosity_start
 radiosity_save
 ```
 
-If you want progress feedback updated more frequently, you can set `radiosity_step_count 1`. See [Tool's lightmaps documentation][tool#lightmaps] for an explanation of the `radiosity_quality` value. Using [LM_Tool][] is recommended for high quality lightmaps since it is easier to control the stop parameter (when to save) and is faster than using Sapien or Tool.
+If you want progress feedback updated more frequently, you can set `radiosity_step_count 1`. See [Tool's lightmaps documentation][tool#lightmaps] for an explanation of the `radiosity_quality` value. Using [H1A tool][h1a-tool] with asserts disabled is recommended for high quality lightmaps since it is easier to control the stop parameter (when to save) and is faster than using Sapien.
 
 # editor_init.txt
 At startup, Sapien will load `editor_init.txt` if present in the same folder. This file can contain [console commands][developer-console], one per line, which are executed automatically for you. For example:
@@ -111,9 +111,8 @@ debug_objects 1
 ```
 
 # Compatibility
-Windows users have experienced saving issues related to the Virtual Store. Ensure you have the [right permissions][tips#windows-virtual-store] before editing tags.
 
-On Linux, Sapien can be run successfully using [Wine][] but is not yet compatible with [DXVK][]. Use built-in or standard native DirectX libraries instead.
+Sapien requires DX11 support, it is currently unknown if it can be run under WINE.
 
 # Limits
 As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual memory even on modern 64-bit Windows systems for compatibility. While this memory limit is usually not an issue, an abundance of large textures and other large assets in a map may cause Sapien to crash. To work around this, `sapien.exe` can be patched to tell the OS it supports 4 GB of virtual memory using a utility like [NTCore][ntcore]. To do this:
@@ -138,33 +137,16 @@ As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual mem
   </thead>
   <tbody>
     <tr>
-      <td>The game window is completely black and does not display the console when <kbd>~</kbd> (tilde) is pressed.</td>
-      <td>
-
-Sapien, like Halo, does not support [MSAA][msaa]. Add Sapien as a program in your graphics control panel and disable anti-aliasing for it.
-      </td>
-    </tr>
-    <tr>
-      <td>The "edit types" window does not allow tags to be added.</td>
-      <td>Unknown. Potential issue with Windows compatibility modes. Try running without a compatibility mode.</td>
-    </tr>
-    <tr>
       <td>Child windows are not visible or stuck outside the main window.</td>
       <td>
-        <p>Open the registry key <code>HKEY_USERS\S-1-5-21-0-0-0-1000\Software\Microsoft\Microsoft Games\Halo HEK\sapien</code> (user ID may vary) using regedit and delete all entries ending with "rect".</p>
+        <p>Open the registry key <code>HKEY_CURRENT_USER\Software\i343\halo1a_sapien</code> using regedit and delete all entries ending with "rect".</p>
       </td>
-    </tr>
-    <tr>
-      <td>
-        Sapien debug wireframe colors and bounding radii change at angles and turn black, making it hard to identify their types.
-      </td>
-      <td>None known.</td>
     </tr>
   </tbody>
 </table>
 
 ## Crashes
-When Sapien crashes, check `debug.txt` for hints. You can ignore `Couldn't read map file './sapienbeta.map'`.
+When Sapien crashes, check `debug.txt` for hints.
 
 <table>
   <thead>

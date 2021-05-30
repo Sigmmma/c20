@@ -1,4 +1,4 @@
-**Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [HEK][].
+**H1A Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [H1A-EK][].
 
 # Model compilation
 A [JMS][] file containing model geometry can be compiled into a [gbxmodel][] using the `model` verb:
@@ -42,20 +42,6 @@ tool.exe animations "characters\cyborg"
 For the example above, Tool would expect to find corresponding animation data files at `data\characters\cyborg\animations\`. Assuming no errors, it would be compiled into `tags\characters\cyborg\cyborg.model_animations`.
 
 See the [animation data][animation-data] page for more info on the various extensions used during animation importing and their purpose.
-
-# String compilation
-UTF-8 text files containing strings can be compiled into a [string_list][] using the `strings` verb:
-
-```sh
-# strings <source-directory>
-tool.exe strings "weapons\assault rifle"
-```
-
-For the example above, Tool would expect to find text files at `data\weapons\assault rifle\`. Assuming no errors, a file named "assault rifle.txt" would be compiled into `tags\weapons\assault rifle.string_list`. Each text file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the text filename.
-
-```.alert danger
-There is generally no reason to compile [string_list][] tags. Use the newer [unicode_string_list][] instead.
-```
 
 # Unicode String compilation
 UTF-16 text files containing strings can be compiled into a [unicode_string_list][] using the `unicode-strings` verb:
@@ -215,17 +201,17 @@ Replace type with a string of your choosing from the following list.
 The sound class will influence the capabilities of the sound tag, and may be used when the map is compiled or at runtime. See the [sound class field][sound#tag-field-sound-class] for more info.
 
 # Build cache file
-A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb. Simply provide your scenario's tag path:
+A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb. Simply provide your scenario's tag path and choose classic or remastered mode (the last two arguments are optional):
 
 ```sh
-# build-cache-file <scenario-name>
-tool.exe build-cache-file "levels\test\tutorial\tutorial"
+# build-cache-file <scenario-name> <classic|remastered> [write-resource-maps] [log-tag-loads]
+tool.exe build-cache-file "levels\test\tutorial\tutorial classic 0 0"
 ```
 
 The resulting map file can be found in Halo's `maps` directory.
 
 ## Hardcoded tag patches
-There are a number of gameplay-balancing tag patches ("Jason Jones edits") made at runtime on Xbox, but also at map compilation time by [Tool][]. On both platforms, these patches are only made to [singleplayer scenarios][scenario#tag-field-type].
+There are a number of gameplay-balancing tag patches ("Jason Jones edits") made at runtime on Xbox, but also at map compilation time by Tool. On both platforms, these patches are only made to [singleplayer scenarios][scenario#tag-field-type].
 
 | Tag type        | Tag path                          | Changes
 |-----------------|-----------------------------------|----------------
@@ -267,7 +253,7 @@ It's important that the file's name be "hud messages.hmt". Tool specifically loo
   </figcaption>
 </figure>
 
-Both Tool and [Sapien][sapien#radiosity] can be used to generate [lightmaps][] (radiosity). Using Tool, you will need the following arguments:
+Both Tool and [Sapien][h1a-sapien#radiosity] can be used to generate [lightmaps][] (radiosity). Using Tool, you will need the following arguments:
 
 1. **Scenario [tag path][tags#tag-references-and-paths]**: This is _not_ a file path! Leave off the ".scenario" extension and start the path from within the tags directory.
 2. **BSP name:** The name of the BSP tag without the file extension. Although this is labeled as "bsp index" in Tool's usage, it is not intended to be a numeric value.
@@ -283,7 +269,12 @@ tool.exe lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.01
 
 After a short time, you should observe a number counting down towards 0. The radiosity process will stop once this number reaches your "stop" argument. If the number counts _up_ instead, it indicates an issue with your level geometry and you should cancel radiosity to address it (check for [WRL][] warnings).
 
-Consider using the faster [LM_Tool][] instead for rendering final lightmaps.
+Consider using the `-noassert` command line flag to increase speed at the expense of skipping error checking.
+
+```sh
+# lightmaps <scenario> <bsp index> <quality> <stop threshhold>
+tool.exe lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.01 -noassert
+```
 
 ## Radiosity quality technical details
 
@@ -325,12 +316,6 @@ tool.exe merge-scenery "levels\a10\a10" "levels\a30\a30"
 
 For the example above, Tool would expect to find a source scenario tag file at `tags\levels\a10\a10`. The tag blocks in the scenery tag block will be copied over to the destination scenario tag file at `tags\levels\a30\a30`. This will not include scenery palette tag block or object names tag block so watch out for bad indices.
 
-# Zoners model upgrade
-Upgrades [models][model] to [gbxmodel][], likely used to port models from the Xbox edition of the game to PC by Gearbox.
-
-```sh
-tool.exe zoners_model_upgrade
-```
 
 # Import device defaults
 Unknown purpose.
