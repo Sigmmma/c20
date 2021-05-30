@@ -104,8 +104,8 @@ workflowItems:
   H1A-EK:
     page: h1a-ek
     authors:
-      - Bungie
       - 343 Industries
+      - Bungie
       - Saber Interactive
       - Gearbox
   H1A-Tool:
