@@ -77,6 +77,63 @@ There are a number of gameplay-balancing tag patches ("Jason Jones edits") made 
 
 These changes are made only to the resulting tag data in the map file, but be careful when extracting tags from singleplayer maps (both PC and Xbox)! You will actually overwrite the original weapon tags and cause your custom multiplayer maps to _also_ use these values.
 
+# Build resource list
+
+```sh
+tool build-resource-list <scenario-name>
+```
+
+TODO
+
+# Camera track
+
+```sh
+tool camera-track source-file
+```
+
+TODO
+
+# Check bitmaps
+
+```sh
+tool check-bitmaps root-directory
+```
+
+TODO
+
+# Check lights
+
+```sh
+tool check-lights root-directory
+```
+
+TODO
+
+# Check map
+
+```sh
+tool check-map <scenario-name>
+```
+
+TODO
+
+# Check shaders
+
+```sh
+tool check-shaders root-directory
+```
+
+TODO
+
+# Check tags
+
+```sh
+tool check-tags root-directory
+```
+
+TODO
+
+
 # Collision geometry compilation
 A [JMS][] file containing a collision model can be compiled into a [model_collision_geometry][] using the `collision-geometry` verb:
 
@@ -93,6 +150,78 @@ Permutations and LODs are also supported using the same file name conventions as
 # <permutation_string> <lod_level>.JMS
 base superhigh.JMS
 ```
+
+# Compile shaders
+
+```sh
+tool compile-shaders <xbox1|xbox1_debug|dx11|dx11_debug> <fx|psh|vsh|all>
+```
+
+TODO
+
+# Copy detail objects
+
+```sh
+tool copy-detail-objects <source scenario> <destination scenario>
+```
+
+TODO
+
+# Dump metagame info
+
+```sh
+tool dump-metagame-info
+```
+
+TODO
+
+# Export bitmaps
+
+```sh
+tool export-bitmaps <path>
+```
+
+TODO
+
+# Export sounds to FSB
+
+```sh
+tool export-sounds-to-fsb sound\sfx
+```
+
+TODO
+
+# Export tag to xml
+
+```sh
+tool export-tag-to-xml <tag file> <output file>
+```
+
+TODO
+
+# Creating a JMA file from an FBX file
+
+```sh
+tool fbx-to-jma <in-file> <out-file>
+```
+
+TODO
+
+# Creating a JMS file from an FBX file
+
+```sh
+tool fbx-to-jms <in-file> <out-file>
+```
+
+TODO
+
+# Find dialogue
+
+```sh
+tool find-dialogue <dialogue tag> <directory>
+```
+
+TODO
 
 # HUD messages compilation
 UTF-16 text files with an [.HMT extension][hmt] can be compiled into a [hud_message_text][] using the `hud-messages` verb:
@@ -219,6 +348,15 @@ tool.exe physics "vehicles\wraith"
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\vehicles\wraith\physics\wraith.JMS`. Assuming no errors, it would be compiled into `tags\wraith\wraith.physics`.
 
+# Plate
+
+```sh
+# plate source-path scale[2,8] alpha[0.0,1.0] desired_sequence_count
+tool.exe TODO
+```
+
+TODO
+
 # Process sounds
 This command searches for sounds in a tag directory and sets the values in the [sound][] tag.
 
@@ -229,6 +367,23 @@ tool.exe process-sounds "sound\sfx\ambience\a10" "klax" gain+ 1
 
 For the example above, Tool would expect to find a set of sound tags at `tags\sound\sfx\ambience\a10\`. Any sound tags that contain the substring "klax" in the filename will have a value of 1 added to gain.
 
+# Profile bitmap
+
+```sh
+# profile-bitmaps <directory>
+tool.exe TODO
+```
+
+TODO
+
+# Recover TIFF from bitmap tag
+
+```sh
+# recover-tif <bitmap>
+tool.exe TODO
+```
+
+TODO
 
 # Sounds compilation
 A 16-bit [WAV][wiki-wav] file can be compiled into a [sound][] tag using the `sounds` verb:
