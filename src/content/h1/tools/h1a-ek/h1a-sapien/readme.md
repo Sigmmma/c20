@@ -165,10 +165,9 @@ When Sapien crashes, check `debug.txt` for hints.
   <tbody>
     <tr>
       <td>
-\halopc\haloce\source\rasterizer\dx9\rasterizer_dx9_hardware_bitmaps.c(148): E_OUTOFMEMORY in IDirect3DDevice9_CreateTexture(global_d3d_device, width, height, bitmap->mipmap_count+1-mip_levels_to_drop, 0, rasterizer_bitmap_format_table[bitmap->format], D3DPOOL_MANAGED, &(IDirect3DTexture9*)bitmap->hardware_format, NULL) (code=-2147024882, error=<can't get description>)
-10.01.19 17:07:33  couldn't allocate #1398128 tag data for 'bitmap_pixel_data'
+	  E_OUTOFMEMORY/out of memory/couldn't allocate xyz/insufficient memory
       </td>
-      <td>You are running out of memory. Try freeing up more physical memory on your system, and/or using a <a href="#limits">large address aware Sapien</a>.</td>
+      <td>You are running out of addressable memory. Try freeing up more physical memory on your system, and/or using a <a href="#limits">large address aware Sapien</a>.</td>
     </tr>
     <tr>
       <td>
