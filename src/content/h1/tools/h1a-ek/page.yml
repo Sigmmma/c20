@@ -1,0 +1,19 @@
+title:
+  en: Halo CE Anniversary Editing Kit (H1A-EK)
+img: hek.jpg
+imgCaption:
+  en: >-
+    [Sapien][h1a-sapien], [Guerilla][h1a-guerilla], and [Tool][h1a-tool] have returned!
+info:
+  en: >
+    * Release date: 9999
+    
+    * The tools can be [downloaded through steam](https://store.steampowered.com/app/fake_steam_appid).
+    
+stub: true
+toolName: H1A-EK
+alerts:
+  - type: alert
+    md:
+      en: >-
+        After downloading the H1A-EK, please read `README_MODDING.txt`
