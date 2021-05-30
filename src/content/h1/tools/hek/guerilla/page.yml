@@ -10,3 +10,8 @@ keywords:
   en:
     - tag-editor
 toolName: Guerilla
+alerts:
+  - type: danger
+  - md:
+      en: >-
+       This is an article about the legacy Guerilla for use with [Halo: Custom Edition][h1], for the H1A Guerilla for MCC see [H1A Guerilla][h1a-guerilla]

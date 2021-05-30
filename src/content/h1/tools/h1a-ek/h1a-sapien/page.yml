@@ -5,6 +5,11 @@ keywords:
   en:
     - scenario
 toolName: H1A-Sapien
+alerts:
+  - type: danger
+  - md:
+      en: >-
+       This is an article about the H1A Sapien for use with MCC, for the legacy Sapien for [Halo: Custom Edition][h1] see [Sapien][]
 thanks:
   General_101:
     en: Additional Sapien hotkey documentation
