@@ -1,6 +1,6 @@
 The [Halo Editing Kit][hek] was first released alongside [Halo: Custom Edition][h1]. It consists of modified and often cut down versions of Bungie's internal tools.
 
-Updated versions of these internal tools were released by 343 Industries as the official modding tools for the MCC version of [Halo: Combat Evolved Anniversary][h1/cea].
+Updated versions of some of these internal tools were released by 343 Industries as the official modding tools for the MCC version of [Halo: Combat Evolved Anniversary][h1/cea].
 
 # Notable changes
 
