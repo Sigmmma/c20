@@ -51,7 +51,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Control + Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
 * Hold <kbd>Tab</kbd>: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.
 * In the hierarchy view, pressing a key will cycle through all folders that start with that character. For example, pressing <kbd>A</kbd> while having the "Missions" folder expanded will immediately take you to the "AI" folder.
-* <kbd>N</kbd>: This hotkey will snap a selected object to the normal of the ground below it. **This hotkey is broken in the Gearbox HEK release and can cause Sapien to crash when restarted. Do not use it!** It also causes editor icons and name overlays to disappear for the session.
+* <kbd>N</kbd>: This hotkey will snap a selected object to the normal of the ground below it. **This hotkey is broken in the Gearbox HEK release and can cause Sapien to crash when restarted. Do not use it!** It also causes editor icons and name overlays to disappear for the session. This issue is fixed in [H1A Sapien][h1a-sapien].
 
 ## Encounters and AI
 * <kbd>Middle mouse + F1</kbd>: Selects the spawned actor in the center of the game view.
@@ -141,7 +141,7 @@ As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual mem
       <td>The game window is completely black and does not display the console when <kbd>~</kbd> (tilde) is pressed.</td>
       <td>
 
-Sapien, like Halo, does not support [MSAA][msaa]. Add Sapien as a program in your graphics control panel and disable anti-aliasing for it.
+Sapien, like Halo, does not support [MSAA][msaa]. Add Sapien as a program in your graphics control panel and disable anti-aliasing for it. Fixed in [H1A Sapien][h1a-sapien]
       </td>
     </tr>
     <tr>
@@ -158,7 +158,7 @@ Sapien, like Halo, does not support [MSAA][msaa]. Add Sapien as a program in you
       <td>
         Sapien debug wireframe colors and bounding radii change at angles and turn black, making it hard to identify their types.
       </td>
-      <td>None known.</td>
+      <td>None known for Gearbox Sapien, fixed in [H1A Sapien][h1a-sapien] </td>
     </tr>
   </tbody>
 </table>
@@ -193,7 +193,7 @@ EXCEPTION halt in \halopc\haloce\source\sound\sound_dsound_pc.c,#1940: propertie
       </td>
       <td>
 
-You have a [bitmap][] tag which is too large. Do not exceed dimensions of 2048 pixels because support is GPU-dependent; technically DirectX 9 did not allow sizes over this limit.
+You have a [bitmap][] tag which is too large. Do not exceed dimensions of 2048 pixels because support is GPU-dependent; technically DirectX 9 did not allow sizes over this limit. This issue is fixed in [H1A Sapien][h1a-sapien] as it updated to DX11 which doesn't have this issue.
       </td>
     </tr>
     <tr>
@@ -211,7 +211,7 @@ EXCEPTION halt in /halopc/haloce/source/cseries/profile.c,#442: parent_timesecti
       </td>
       <td>
 
-This may be caused by a multi-core processor. Try running in Windows 98 compatibility mode, or setting the process affinity to a single core using Task Manager before opening the scenario.
+This may be caused by a multi-core processor. Try running in Windows 98 compatibility mode, or setting the process affinity to a single core using Task Manager before opening the scenario. This issue is fixed in [H1A Sapien][h1a-sapien].
       </td>
     </tr>
     <tr>
@@ -220,7 +220,7 @@ EXCEPTION halt in \halopc\haloce\source\rasterizer\rasterizer_transparent_geomet
       </td>
       <td>
 
-An [object][] has _transparent self occlusion_ enabled while also referencing a transparent [shader][] with _extra layers_. This is not a problem in-game.
+An [object][] has _transparent self occlusion_ enabled while also referencing a transparent [shader][] with _extra layers_. This is not a problem in-game. This issue is fixed in [H1A Sapien][h1a-sapien].
       </td>
     </tr>
     <tr>
