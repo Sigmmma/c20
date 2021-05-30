@@ -5,6 +5,8 @@ keywords:
   en:
     - scenario
 toolName: H1A-Sapien
+related:
+  - /h1/tools/hek/sapien
 alerts:
   - type: info
   - md:

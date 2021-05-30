@@ -5,6 +5,8 @@ keywords:
   en:
     - tag-editor
 toolName: H1A-Guerilla
+related:
+  - /h1/tools/hek/guerilla
 alerts:
   - type: info
   - md:

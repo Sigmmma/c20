@@ -6,6 +6,8 @@ keywords:
     - radiosity
     - cli
 toolName: H1A-Tool
+related:
+  - /h1/tools/hek/tool
 alerts:
   - type: info
   - md:
