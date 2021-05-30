@@ -178,15 +178,6 @@ EXCEPTION halt in \halopc\haloce\source\sound\sound_dsound_pc.c,#1940: propertie
     </tr>
     <tr>
       <td>
-\halopc\haloce\source\rasterizer\dx9\rasterizer_dx9_hardware_bitmaps.c(148): E_OUTOFMEMORY in IDirect3DDevice9_CreateTexture(global_d3d_device, width, height, bitmap->mipmap_count+1-mip_levels_to_drop, 0, rasterizer_bitmap_format_table[bitmap->format], D3DPOOL_MANAGED, &(IDirect3DTexture9*)bitmap->hardware_format, NULL) (code=-2147024882, error=<can't get description>)
-      </td>
-      <td>
-
-You have a [bitmap][] tag which is too large. Do not exceed dimensions of 2048 pixels because support is GPU-dependent; technically DirectX 9 did not allow sizes over this limit.
-      </td>
-    </tr>
-    <tr>
-      <td>
 EXCEPTION halt in .\\\\detail_object_tool_handler.cpp,#103: &diffuse_color: assert_valid_real_rgb_color(-9.395227, -3.398408, -2.530689)
       </td>
       <td>
