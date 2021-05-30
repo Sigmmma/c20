@@ -1,5 +1,23 @@
 **H1A Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [H1A-EK][].
 
+# Changes from legacy Tool
+If you are used to the legacy tools here is a quick primer on what's changed, if you are new to halo modding you can skip this section.
+
+- Commands can now include optional arguments
+- The tags and data directories can now be set when launching Sapien (`-tags_dir <tags path>` and `-data_dir <data path>` respectively).
+- The `-noassert` command line flag can be used to disable all asserts (useful for lightmapping).
+- Lightmapping code has been optimised to be faster even with asserts enabled.
+- Most logs are now saved to a `reports` subfolder (similarly to Halo 2+).
+- Bitmap DXT1-3 (BC1-3) encoding now uses DirectXTex, instead of some S3TC code, this should result in higher quality.
+- `sounds_by_type` has been renamed to `sounds-by-type`.
+- `build-cache-file` has new arguments.
+- `structure` now includes an optional argument to fix phantom BSPs
+- Documentation for some existing commands was fixed.
+- `zoners_model_upgrade` and `strings` commands have been removed.
+- Lots of new commands have been added and old bugs fixed.
+
+The new commands allow along other things better error checking of tags, exporting some data needed for the S3D engine and creating JMS and JMA files from FBX.
+
 # Model compilation
 A [JMS][] file containing model geometry can be compiled into a [gbxmodel][] using the `model` verb:
 
