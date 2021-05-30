@@ -187,15 +187,6 @@ A [detail object][detail_object_collection] was painted outside the map. Be care
     </tr>
     <tr>
       <td>
-EXCEPTION halt in /halopc/haloce/source/cseries/profile.c,#442: parent_timesection->self_msec >= child_timesection->elapsed_msec
-      </td>
-      <td>
-
-This may be caused by a multi-core processor. Try running in Windows 98 compatibility mode, or setting the process affinity to a single core using Task Manager before opening the scenario.
-      </td>
-    </tr>
-    <tr>
-      <td>
 EXCEPTION halt in \halopc\haloce\source\rasterizer\dx9\rasterizer_dx9.c,#2014: global_window_parameters.fog.planar_maximum_depth>0.0f
       </td>
       <td>
