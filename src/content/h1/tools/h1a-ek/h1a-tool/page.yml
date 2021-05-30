@@ -6,3 +6,12 @@ keywords:
     - radiosity
     - cli
 toolName: H1A-Tool
+thanks:
+  gbMichelle:
+    en: Hardcoded tag patch reversing
+  MosesOfEgypt:
+    en: Explanation of radiosity passes
+  General_101:
+    en: Documenting tool commands
+  Kavawuvi:
+    en: Warning about Tool only using marker from superhigh LOD
