@@ -171,13 +171,13 @@ When Sapien crashes, check `debug.txt` for hints.
     </tr>
     <tr>
       <td>
-EXCEPTION halt in \halopc\haloce\source\sound\sound_dsound_pc.c,#1940: properties->gain>=0.f && properties->gain<=1.f
+EXCEPTION halt in \...\sound\sound_dsound_pc.c,#1966: properties->gain>=0.f && properties->gain<=1.f
       </td>
       <td>Restart your PC and the issue should go away.</td>
     </tr>
     <tr>
       <td>
-EXCEPTION halt in .\\\\detail_object_tool_handler.cpp,#103: &diffuse_color: assert_valid_real_rgb_color(-9.395227, -3.398408, -2.530689)
+todo
       </td>
       <td>
 
@@ -186,7 +186,7 @@ A [detail object][detail_object_collection] was painted outside the map. Be care
     </tr>
     <tr>
       <td>
-EXCEPTION halt in \halopc\haloce\source\rasterizer\dx9\rasterizer_dx9.c,#2014: global_window_parameters.fog.planar_maximum_depth>0.0f
+EXCEPTION halt in \\...\rasterizer\dx9\rasterizer_dx9.c,#1461: global_window_parameters.fog.planar_maximum_depth>0.0f
       </td>
       <td>
 
@@ -194,7 +194,7 @@ Try moving or resizing your [fog plane(s)][scenario_structure_bsp#fog-planes].
       </td>
     </tr>
     <tr>
-      <td>EXCEPTION halt in \halopc\haloce\source\tag_files\tag_groups.c,#2419: group_tag==NONE || tag_group_get(group_tag)</td>
+      <td>EXCEPTION halt in \\...\tag_files\tag_groups.c,#3395: group_tag==NONE || tag_group_get(group_tag)</td>
       <td>
 
 Sapien has encountered an unrecognized tag class, such as an [OpenSauce][OpenSauce#new-tag-types] tag or [vestigial tag][tags#unused-tags]. Remove references to this tag class.
