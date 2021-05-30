@@ -109,7 +109,7 @@ See main page: [recorded-animations][]
 * <kbd>Shift + Control + Right Click</kbd>: As above, but also deleted the cell itself.
 
 # Radiosity
-Both Tool and Sapien can be used to generate [lightmaps][]. To use Sapien, enter the following console commands:
+Both Tool and Sapien can be used to generate [lightmaps][]. Using H1A Tool is suggested for all but the simplest lightmaps or debugging as it doesn't require as many resources or for the window to be in-focus.  To use Sapien, enter the following console commands:
 
 ```console-h1a
 ;0 for low quality, 1 for high, or a value like 0.8
@@ -120,7 +120,7 @@ radiosity_start
 radiosity_save
 ```
 
-If you want progress feedback updated more frequently, you can set `radiosity_step_count 1`. See [Tool's lightmaps documentation][tool#lightmaps] for an explanation of the `radiosity_quality` value. Using [H1A tool][h1a-tool] with asserts disabled is recommended for high quality lightmaps since it is easier to control the stop parameter (when to save) and is faster than using Sapien.
+If you want progress feedback updated more frequently, you can set `radiosity_step_count 1`. See [Tool's lightmaps documentation][h1a-tool#lightmaps] for an explanation of the `radiosity_quality` value. Using [H1A tool][h1a-tool] with asserts disabled is **strongly recommended** for high quality lightmaps since it is easier to control the stop parameter (when to save) and is faster than using Sapien.
 
 # editor_init.txt
 At startup, Sapien will load `editor_init.txt` if present in the same folder. This file can contain [console commands][developer-console], one per line, which are executed automatically for you. For example:
