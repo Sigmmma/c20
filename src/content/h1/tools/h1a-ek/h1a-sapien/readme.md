@@ -111,7 +111,7 @@ See main page: [recorded-animations][]
 # Radiosity
 Both Tool and Sapien can be used to generate [lightmaps][]. To use Sapien, enter the following console commands:
 
-```console
+```console-h1a
 ;0 for low quality, 1 for high, or a value like 0.8
 radiosity_quality 1
 ;begins radiosity. numbers will start to count down

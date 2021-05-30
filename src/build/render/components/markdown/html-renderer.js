@@ -10,6 +10,7 @@ const {renderTableYaml} = require("../yaml-tables");
 hljs.registerLanguage("vrml", vrmlLang);
 hljs.registerLanguage("hsc", hscLang);
 hljs.registerLanguage("console", consoleLang);
+hljs.registerLanguage("console-h1a", consoleLang);
 hljs.registerLanguage("inittxt", consoleLang);
 
 function highlight(code, language) {

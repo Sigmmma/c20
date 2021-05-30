@@ -14,6 +14,12 @@ code {
     color: fuchsia;
   }
 
+  &.language-console-h1a > .hljs-name:before {
+    content: "h1( ";
+    transition: opacity $transition-time;
+    color: fuchsia;
+  }
+
   &.language-hsc:before {
     transition: opacity $transition-time;
     content: ".hsc";
@@ -35,6 +41,11 @@ pre:hover code.language-hsc:before {
 pre:hover code.language-console > .hljs-name:before {
   opacity: 0.5;
 }
+
+pre:hover code.language-console-h1a > .hljs-name:before {
+  opacity: 0.5;
+}
+
 
 pre {
   display: flow-root;
