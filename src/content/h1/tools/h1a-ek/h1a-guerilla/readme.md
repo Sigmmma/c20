@@ -4,3 +4,15 @@ It is rumored that Guerilla was created later in Halo's development and tags may
 
 # Saved workspaces
 Using _File > Save/Load Workspace_, you can save and reload a file which contains the current state of open tags and their window positions. Guerilla automatically creates a file `guerilla.cfg` with the last window state when closed.
+
+# Changes from legacy Guerilla
+If you are used to the legacy tools here is a quick primer on what's changed, if you are new to halo modding you can skip this section.
+
+A few features have been backported from Halo 2.
+
+- Tag blocks can now be collapsed.
+- UI elements have been upgraded to look more modern.
+- *Expert mode* and *Show tag block sizes* options.
+- A zoom level feature has been added to the bitmap viewer.
+
+Some errors have also been fixed and the some unused UI options have been removed.
