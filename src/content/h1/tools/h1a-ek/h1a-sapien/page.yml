@@ -6,7 +6,7 @@ keywords:
     - scenario
 toolName: H1A-Sapien
 alerts:
-  - type: danger
+  - type: info
   - md:
       en: >-
        This is an article about the H1A Sapien for use with MCC, for the legacy Sapien for [Halo: Custom Edition][h1] see [Sapien][]

@@ -7,7 +7,7 @@ keywords:
     - cli
 toolName: H1A-Tool
 alerts:
-  - type: danger
+  - type: info
   - md:
       en: >-
        This is an article about the H1A Tool for use with MCC, for the legacy Tool for [Halo: Custom Edition][h1] see [Tool][]
