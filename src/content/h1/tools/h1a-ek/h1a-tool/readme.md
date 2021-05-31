@@ -69,10 +69,26 @@ A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb.
 
 ```sh
 # build-cache-file <scenario-name> <classic|remastered> [write-resource-maps] [log-tag-loads]
-tool build-cache-file "levels\test\tutorial\tutorial classic 0 0"
+tool build-cache-file "levels\test\tutorial\tutorial" classic 0 # classic graphics with update resource disabled
+tool build-cache-file "levels\test\tutorial\tutorial" remastered
 ```
 
-The resulting map file can be found in Halo's `maps` directory.
+The resulting map file can be found in editing kit's `maps` directory.
+
+## Classic and remastered mode
+
+- "classic" is intended for custom maps that don't support remastered graphics.
+- "remastered" is intended for building maps compatible with S3D-based remastered graphics and sounds.
+
+Using classic graphics is recommended for most custom maps.
+
+## Updating resource maps
+
+By default `build-cache-file` will update the resource maps, this can be disabled to match the behavior of legacy Tool.
+
+## Log tag loads
+
+Tag loads during cache compilation can be logged to `tool_tags_loaded.txt`, this helps build a list of tags needed for a scenario if you are releasing a tag set.
 
 ## Hardcoded tag patches
 There are a number of gameplay-balancing tag patches ("Jason Jones edits") made at runtime on Xbox, but also at map compilation time by Tool. On both platforms, these patches are only made to [singleplayer scenarios][scenario#tag-field-type].
