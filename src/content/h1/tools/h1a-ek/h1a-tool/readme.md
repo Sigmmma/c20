@@ -23,7 +23,7 @@ The new commands allow along other things better error checking of tags, exporti
 
 ```sh
 # animations <source-directory>
-tool.exe animations "characters\cyborg"
+tool animations "characters\cyborg"
 ```
 
 For the example above, Tool would expect to find corresponding animation data files at `data\characters\cyborg\animations\`. Assuming no errors, it would be compiled into `tags\characters\cyborg\cyborg.model_animations`.
@@ -35,7 +35,7 @@ Compile a single TIFF image into a [bitmap][] using the `bitmap` verb:
 
 ```sh
 # bitmap <source-file>
-tool.exe bitmaps "characters\cyborg\bitmaps\cyborg"
+tool bitmaps "characters\cyborg\bitmaps\cyborg"
 ```
 
 For the example above, Tool would expect to find a _.tif or .tiff_ file at `data\characters\cyborg\bitmaps\cyborg.tif`. Assuming no errors, the image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\cyborg.bitmap`. The bitmap filename will come from the image filename.
@@ -47,7 +47,7 @@ As with the `bitmaps` verb, TIFF files must have at least 8-bit colour depth and
 
 ```sh
 # bitmaps <source-directory>
-tool.exe bitmaps "characters\cyborg\bitmaps"
+tool bitmaps "characters\cyborg\bitmaps"
 ```
 
 For the example above, Tool would expect to find .tif/.tiff files at `data\characters\cyborg\bitmaps\`. Assuming no errors, each image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\`. Each image file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the image filename.
@@ -59,7 +59,7 @@ A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb.
 
 ```sh
 # build-cache-file <scenario-name> <classic|remastered> [write-resource-maps] [log-tag-loads]
-tool.exe build-cache-file "levels\test\tutorial\tutorial classic 0 0"
+tool build-cache-file "levels\test\tutorial\tutorial classic 0 0"
 ```
 
 The resulting map file can be found in Halo's `maps` directory.
@@ -147,7 +147,7 @@ A [JMS][] file containing a collision model can be compiled into a [model_collis
 
 ```sh
 # collision-geometry <source-directory>
-tool.exe collision-geometry "scenery\rock"
+tool collision-geometry "scenery\rock"
 ```
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenery\rock\physics\rock.JMS`. Assuming no errors, it would be compiled into `tags\scenery\rock\rock.model_collision_geometry`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
@@ -259,7 +259,7 @@ UTF-16 text files with an [.HMT extension][hmt] can be compiled into a [hud_mess
 
 ```sh
 # hud-messages <path> <scenario-name>
-tool.exe hud-messages "levels\a10" "a10"
+tool hud-messages "levels\a10" "a10"
 ```
 
 For the example above, Tool would expect to find a text file at `data\levels\a10\hud messages.hmt`. Assuming no errors, a file named "hud messages.hmt" would be compiled into `tags\levels\a10\hud messages.hud_message_text`.
@@ -278,7 +278,7 @@ Unknown purpose.
 
 ```sh
 # import-device-defaults <defaults|profiles> <savegame path>
-tool.exe import-device-defaults <defaults|profiles> <savegame path>
+tool import-device-defaults <defaults|profiles> <savegame path>
 ```
 
 # Lightmaps
@@ -302,7 +302,7 @@ For example:
 
 ```sh
 # lightmaps <scenario> <bsp index> <quality> <stop threshhold>
-tool.exe lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.01
+tool lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.01
 ```
 
 After a short time, you should observe a number counting down towards 0. The radiosity process will stop once this number reaches your "stop" argument. If the number counts _up_ instead, it indicates an issue with your level geometry and you should cancel radiosity to address it (check for [WRL][] warnings).
@@ -311,7 +311,7 @@ Consider using the `-noassert` command line flag to increase speed at the expens
 
 ```sh
 # lightmaps <scenario> <bsp index> <quality> <stop threshhold>
-tool.exe lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.01 -noassert
+tool lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.01 -noassert
 ```
 
 ## Radiosity quality technical details
@@ -343,7 +343,7 @@ A [JMS][] file containing model geometry can be compiled into a [gbxmodel][] usi
 
 ```sh
 # model <source-directory>
-tool.exe model "scenery\rock"
+tool model "scenery\rock"
 ```
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenery\rock\models\rock.JMS`. Assuming no errors, it would be compiled into `tags\scenery\rock\rock.gbxmodel`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
@@ -374,7 +374,7 @@ A [JMS][] file containing collision spheres can be compiled into a [physics][] u
 
 ```sh
 # physics <source-directory>
-tool.exe physics "vehicles\wraith"
+tool physics "vehicles\wraith"
 ```
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\vehicles\wraith\physics\wraith.JMS`. Assuming no errors, it would be compiled into `tags\wraith\wraith.physics`.
@@ -404,7 +404,7 @@ This command searches for sounds in a tag directory and sets the values in the [
 
 ```sh
 # process-sounds <root path> <substring> <gain+|gain-|gain=|maximum-distance|minimum-distance> <value>
-tool.exe process-sounds "sound\sfx\ambience\a10" "klax" gain+ 1
+tool process-sounds "sound\sfx\ambience\a10" "klax" gain+ 1
 ```
 
 For the example above, Tool would expect to find a set of sound tags at `tags\sound\sfx\ambience\a10\`. Any sound tags that contain the substring "klax" in the filename will have a value of 1 added to gain.
@@ -413,7 +413,7 @@ For the example above, Tool would expect to find a set of sound tags at `tags\so
 
 ```sh
 # profile-bitmaps <directory>
-tool.exe TODO
+tool TODO
 ```
 
 TODO
@@ -436,7 +436,7 @@ A 16-bit [WAV][wiki-wav] file can be compiled into a [sound][] tag using the `so
 
 ```sh
 # sounds <source-directory> platform<xbox,wav,ogg> ogg_only_value_flag<quality or bitrate>
-tool.exe sounds "vehicles\ghost" ogg 1
+tool sounds "vehicles\ghost" ogg 1
 ```
 
 The "ogg_only_value_flag" argument is only required if "platform" is OGG, and must be a [real number][wiki-real] in the range `0.0 - 1.0`. The value `0` is the lowest quality and `1` is the highest.
@@ -450,7 +450,7 @@ A 16-bit WAV file can be compiled into a [sound][] tag using the `sounds_by_type
 
 ```sh
 # sounds_by_type <source-directory> type<sound_class> <round to 64 samples:yes/no>
-tool.exe sounds_by_type "vehicles\ghost" projectile_impact yes
+tool sounds_by_type "vehicles\ghost" projectile_impact yes
 ```
 
 Sounds imported with this command will default to Xbox platform so make sure you have the codec installed.
@@ -498,7 +498,7 @@ A [JMS][] file containing level geometry can be compiled into a [scenario_struct
 
 ```sh
 # structure <scenario-directory> <bsp-name>
-tool.exe structure levels\a30 a30_a
+tool structure levels\a30 a30_a
 ```
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\levels\a30\models\a30_a.JMS`. Assuming no errors, it would be compiled into `tags\levels\a30\a30_a.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
@@ -512,7 +512,7 @@ Updates [breakable surface data][scenario_structure_bsp#tag-field-breakable-surf
 
 ```sh
 # structure-breakable-surfaces <bsp-path>
-tool.exe structure-breakable-surfaces "levels\a10\a10a"
+tool structure-breakable-surfaces "levels\a10\a10a"
 ```
 
 # Structure lens flares
@@ -520,7 +520,7 @@ This command updates a BSP's [lens flare markers][scenario_structure_bsp#lens-fl
 
 ```sh
 # structure-lens-flares <bsp-path>
-tool.exe structure-lens-flares "levels\a10\a10a"
+tool structure-lens-flares "levels\a10\a10a"
 ```
 
 
@@ -529,7 +529,7 @@ UTF-16 text files containing strings can be compiled into a [unicode_string_list
 
 ```sh
 # unicode-strings <source-directory>
-tool.exe unicode-strings "ui\mp_map_ui"
+tool unicode-strings "ui\mp_map_ui"
 ```
 
 For the example above, Tool would expect to find text files at `data\ui\mp_map_ui\`. Assuming no errors, a file named "prisoner.txt" would be compiled into `tags\ui\mp_map_ui\prisoner.unicode_string_list`. Each text file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the text filename.
