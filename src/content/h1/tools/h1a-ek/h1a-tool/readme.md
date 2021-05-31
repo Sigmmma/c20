@@ -90,11 +90,16 @@ It is your responsibility to ensure this path exists, it will fail silently if i
 
 # Camera track
 
+This commands takes a JMA file directly and converts it to a camera_track for the game. The length of the animation should be at most 16 as that is the max number of control points a camera track tag can contain. The JMA should contain a skeleton made up of a single bone that will change its position each frame. The orientation of the bone will determine the position and rotation of the control point for that index. The name of the JMA file will be the name of the tag.
+
 ```sh
-tool camera-track source-file
+# camera-track source-file
+tool camera-track data\cameras\ohno.jma
 ```
 
-TODO
+**Currently this command is case sensitive when it attempts to check if the source file file is a JMA file.** Only use lower case for the extension when typing the command into Tool. The actual case of the file itself is irrelevant.
+
+**<i>You need to use a standard file path not a path relative to the `data` folder</i>**, the command will also not save the the camera track in a location mirroring the data path but in the root tags directory (e.g. the command in the example above will create a tag called `ohno.camera_track` not `cameras\ohno.camera_track`).
 
 # Check bitmaps
 
