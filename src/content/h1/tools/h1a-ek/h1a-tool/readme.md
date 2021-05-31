@@ -18,6 +18,16 @@ If you are used to the legacy tools here is a quick primer on what's changed, if
 
 The new commands allow along other things better error checking of tags, exporting some data needed for the S3D engine and creating JMS and JMA files from FBX.
 
+# Conventions used in this article
+
+- `<arg>` - refers to a mandatory argument.
+- `[arg]` - refers to an optional argument (you can omit these).
+- parentheses appended to the `arg` name are used to encode valid argument values.
+- `arg(option1, option2)` - Either `option1` or `option2` can be passed as `arg`.
+- `arg(optionClass)` - Any value of `optionClass` can be used.
+- `Tool` or `tool.exe` - refers to the subject of this article, the H1A Tool, if the legacy Tool is being referred to that will be made explicit.
+
+
 # Animation compilation
 [Animation data][animation-data] files containing transforms for a skeleton can be compiled into a [model_animations][] tag using the `animations` verb:
 
@@ -93,7 +103,7 @@ It is your responsibility to ensure this path exists, it will fail silently if i
 This commands takes a JMA file directly and converts it to a camera_track for the game. The length of the animation should be at most 16 as that is the max number of control points a camera track tag can contain. The JMA should contain a skeleton made up of a single bone that will change its position each frame. The orientation of the bone will determine the position and rotation of the control point for that index. The name of the JMA file will be the name of the tag.
 
 ```sh
-# camera-track source-file
+# camera-track <source-file>
 tool camera-track data\cameras\ohno.jma
 ```
 
@@ -104,7 +114,7 @@ tool camera-track data\cameras\ohno.jma
 # Check bitmaps
 
 ```sh
-# check-bitmaps root-directory
+# check-bitmaps <root-directory>
 tool check-bitmaps levels\test\my_broke_level
 ```
 
@@ -113,7 +123,7 @@ Checks all the [bitmap][] tags in a tag path (including sub-directories). Errors
 # Check lights
 
 ```sh
-# check-lights root-directory
+# check-lights <root-directory>
 tool check-lights levels\test\my_broke_level
 ```
 
@@ -131,7 +141,7 @@ Checks the scenario tag and tags it references for issues. Errors will be printe
 # Check shaders
 
 ```sh
-# check-shaders root-directory
+# check-shaders <root-directory>
 tool check-shaders levels\test\my_broke_level
 ```
 
@@ -140,7 +150,7 @@ Checks all the [shader][] tags in a tag path (including sub-directories). Errors
 # Check tags
 
 ```sh
-# check-tags root-directory
+# check-tags <root-directory>
 tool check-tags levels\test\my_broke_level
 ```
 
@@ -394,7 +404,7 @@ For the example above, Tool would expect to find a corresponding JMS file at `da
 The plate command takes a set of images and places them in a sequence surrounded by a border to be imported as either sprites or animated images.
 
 ```sh
-# plate source-path scale[2,8] alpha[0.0,1.0] desired_sequence_count
+# plate <source-path> <scale(2,8)> <alpha(0.0,1.0)> <desired-sequence-count>
 tool plate "scenery\rock\bitmaps" 2 0.5 2
 ```
 
@@ -446,7 +456,7 @@ The command uses the compressed texture and not the source plate data.
 A 16-bit [WAV][wiki-wav] file can be compiled into a [sound][] tag using the `sounds` verb:
 
 ```sh
-# sounds <source-directory> platform<xbox,wav,ogg> ogg_only_value_flag<quality or bitrate>
+# sounds <source-directory> <platform(xbox,wav,ogg)> ogg_only_value_flag<quality or bitrate>
 tool sounds "vehicles\ghost" ogg 1
 ```
 
@@ -460,7 +470,7 @@ Regardless of the platform you choose, the sound file you import should still be
 A 16-bit WAV file can be compiled into a [sound][] tag using the `sounds_by_type` verb:
 
 ```sh
-# sounds_by_type <source-directory> type<sound_class> <round to 64 samples:yes/no>
+# sounds_by_type <source-directory> <type(sound_class)> <round to 64 samples:yes/no>
 tool sounds_by_type "vehicles\ghost" projectile_impact yes
 ```
 
