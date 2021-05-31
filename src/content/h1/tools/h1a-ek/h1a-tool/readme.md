@@ -213,13 +213,16 @@ tool fbx-to-jms <in-file> <out-file>
 
 TODO
 
-# Find dialogue
+# Find and add sounds to a dialogue tag
+
+This command allows scanning a directory (including sub-directories) for sound references to add to a dialogue tag.
 
 ```sh
-tool find-dialogue <dialogue tag> <directory>
+# find-dialogue <dialogue tag> <directory>
+tool find-dialogue test\test_dialogue sound\dialog\jackal\combat2
 ```
 
-TODO
+The command can at most process 512 sounds during one invocation as that is the size of the buffer it stores the filenames in. If you invoke it on a larger directory it will say it found 512 files even when there are more in the directory.
 
 # HUD messages compilation
 UTF-16 text files with an [.HMT extension][hmt] can be compiled into a [hud_message_text][] using the `hud-messages` verb:
