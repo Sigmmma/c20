@@ -186,11 +186,13 @@ Dumps information about the "metagame" (MCC scoring information) to a file calle
 
 # Export bitmaps
 
+Helper command for S3D development, exports all bitmaps in the tags matching a predefined criteria.
+
 ```sh
-tool export-bitmaps <path>
+# export-bitmaps <path>
+tool export-bitmaps E:\s3d\h1a\preload\images
 ```
 
-TODO
 
 # Export sounds to FSB
 
