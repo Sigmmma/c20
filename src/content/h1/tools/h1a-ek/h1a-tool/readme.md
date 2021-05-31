@@ -348,12 +348,23 @@ For the example above, Tool would expect to find a corresponding JMS file at `da
 
 # Plate
 
+The plate command takes a set of images and places them in a sequence surrounded by a border to be imported as either sprites or animated images.
+
 ```sh
 # plate source-path scale[2,8] alpha[0.0,1.0] desired_sequence_count
-tool.exe TODO
+tool plate "scenery\rock\bitmaps" 2 0.5 2
 ```
 
-TODO
+## Arguments
+
+*Source Directory*:  Folder containing the `.tif` files.
+
+*Scale*: How much the images are scaled down by (8 results in a smaller image than 2).
+
+*Alpha*: Blending alpha of border between image and surrounding mask.
+
+*Desired Sequence Count*: Number of images you want to include, must be lower than the number of images in the folder or the command will crash. The final sequence count may not reflect the requested count. It's recommended to set this to exactly the number of images in the folder.
+
 
 # Process sounds
 This command searches for sounds in a tag directory and sets the values in the [sound][] tag.
