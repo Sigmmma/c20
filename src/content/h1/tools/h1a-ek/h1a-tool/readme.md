@@ -94,42 +94,47 @@ TODO
 # Check bitmaps
 
 ```sh
-tool check-bitmaps root-directory
+# check-bitmaps root-directory
+tool check-bitmaps levels\test\my_broke_level
 ```
 
-TODO
+Checks all the [bitmap][] tags in a tag path (including sub-directories). Errors will be printed to console.
 
 # Check lights
 
 ```sh
-tool check-lights root-directory
+# check-lights root-directory
+tool check-lights levels\test\my_broke_level
 ```
 
-TODO
+Checks all the [light][] tags in a tag path (including sub-directories). Errors will be printed to console.
 
 # Check map
 
 ```sh
 tool check-map <scenario-name>
+tool check-map levels\test\my_broke_level\my_broke_level
 ```
 
-TODO
+Checks the scenario tag and tags it references for issues. Errors will be printed to console.
 
 # Check shaders
 
 ```sh
-tool check-shaders root-directory
+# check-shaders root-directory
+tool check-shaders levels\test\my_broke_level
 ```
 
-TODO
+Checks all the [shader][] tags in a tag path (including sub-directories). Errors will be printed to console.
 
 # Check tags
 
 ```sh
-tool check-tags root-directory
+# check-tags root-directory
+tool check-tags levels\test\my_broke_level
 ```
 
-TODO
+Equivalent to consecutively running `check-bitmaps`, `check-shaders` and `check-lights` for the same path.
 
 
 # Collision geometry compilation
