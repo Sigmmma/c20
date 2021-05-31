@@ -197,10 +197,13 @@ TODO
 # Export tag to xml
 
 ```sh
-tool export-tag-to-xml <tag file> <output file>
+# export-tag-to-xml <tag file> <output file>
+tool export-tag-to-xml D:\SteamLibrary\steamapps\common\H1A-EK\tags\ui\english.virtual_keyboard english.virtual_keyboard.xml
 ```
 
-TODO
+Exports a tag to an XML file, some data isn't include this can only be used to compare tags not as an alternative storage format.
+
+**NB: The path to the tag file needs to be fully qualified, a relative path won't work**
 
 # Creating a JMA file from an FBX file
 
