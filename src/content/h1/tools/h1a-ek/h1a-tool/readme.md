@@ -414,12 +414,13 @@ For the example above, Tool would expect to find a set of sound tags at `tags\so
 
 # Profile bitmap
 
+Obsolete command for checking if bitmaps match certain criteria
+
 ```sh
 # profile-bitmaps <directory>
-tool TODO
+tool levels\test\my_map\bitmaps
 ```
 
-TODO
 
 # Recover TIFF from bitmap tag
 
