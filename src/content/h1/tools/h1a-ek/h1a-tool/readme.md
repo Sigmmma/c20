@@ -154,13 +154,14 @@ Permutations and LODs are also supported using the same file name conventions as
 base superhigh.JMS
 ```
 
-# Compile shaders
+# Compiling DX11 shaders
 
 ```sh
 tool compile-shaders <xbox1|xbox1_debug|dx11|dx11_debug> <fx|psh|vsh|all>
 ```
 
-TODO
+Compiles the [shader files](https://en.wikipedia.org/wiki/Shader) in the `shaders` subdirectory into `fx.bin`, `psh.bin` and `vsh.bin`. These are not the same as the [shader][] tags and unless you have a working understanding of 3D graphics programming you don't need to touch this command.
+The `xbox1` and `xbox_debug` commands won't work without a copy of the XDK; [which is not publicly available](https://docs.microsoft.com/en-us/gaming/xbox-live/get-started/setup-ide/managed-partners/vstudio-xbox/live-where-to-get-xdk).
 
 # Copy detail objects
 
