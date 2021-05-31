@@ -200,18 +200,27 @@ TODO
 # Creating a JMA file from an FBX file
 
 ```sh
-tool fbx-to-jma <in-file> <out-file>
+# fbx-to-jma <in-file> <out-file>
+
+tool fbx-to-jms data\characters\cyborg\models\cyborg_my_custom_anim.fbx data\characters\cyborg\animations\cyborg_my_custom_anim.jma
+tool fbx-to-jms E:\my_fbx_files\cyborg_dab.fbx data\characters\cyborg\animations\cyborg_my_custom_anim.jms
 ```
 
-TODO
+**<i>You need to use a standard file path not a path relative to the `data` folder</i>**
+
+For some details on how to setup the FBX file see [FBX for H1A][fbx-for-h1a].
 
 # Creating a JMS file from an FBX file
 
 ```sh
-tool fbx-to-jms <in-file> <out-file>
+# fbx-to-jms <in-file> <out-file>
+tool fbx-to-jms data\characters\cyborg\models\cyborg.fbx data\characters\cyborg\models\cyborg.jms
+tool fbx-to-jms E:\my_fbx_files\better_cyborg.fbx data\characters\cyborg\models\cyborg.jms
 ```
 
-TODO
+**<i>You need to use a standard file path not a path relative to the `data` folder</i>**
+
+For some details on how to setup the FBX file see [FBX for H1A][fbx-for-h1a].
 
 # Find and add sounds to a dialogue tag
 

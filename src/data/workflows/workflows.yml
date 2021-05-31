@@ -228,6 +228,8 @@ workflowItems:
     page: strings-txt
   map:
     page: map
+  fbx-h1a: # FBX files setup for import into H1A
+    page: fbx-for-h1a
   tags:
     page: h1/tags
   actor:
@@ -545,16 +547,20 @@ similarItems:
     - invader-edit-qt
   -
     - Tool
+    - H1A-Tool
     - OS_Tool
     - LM_Tool
     - phantom_tool
   -
+    - H1A-Tool
     - phantom_tool
     - Ghostbuster
   -
+    - H1A-Tool
     - LM_Tool
     - Aether
   -
+    - H1A-Sapien
     - Sapien
     - OS_Sapien
   -
@@ -564,6 +570,7 @@ similarItems:
     - Blendkrieg
     - CAD animation exporter
     - Chimp
+    - H1A-Tool
   -
     - Blender .gbxmodel Importer
     - Bluestreak
@@ -650,6 +657,10 @@ workflows:
   - using: Halo Physics Importer
     from: physics
     to: 3ds Max
+    
+  - using: H1A-Tool
+    from: fbx-h1a
+    to: jms
   # text
   - using:
       - Tool
