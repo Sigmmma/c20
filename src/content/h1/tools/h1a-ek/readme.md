@@ -9,7 +9,7 @@ This is just a brief overview of some of the more important changes in no partic
 - [Blitzkrieg][hek/blitzkrieg] was not re-released. 
 Use [Jointed Model Blender Toolset][tools/jointed-model-blender-toolset] or the new tool commands for converting [Autodesk FBX](https://en.wikipedia.org/wiki/FBX) to JMS and JMA files.
 
-- The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the often considered to be obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API.
+- The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API.
 
 - Asserts can be disabled using the `-noassert` command line flag negating the need for modifications like [LM tool][hek/lm_tool].
 
