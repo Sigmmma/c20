@@ -534,7 +534,7 @@ The sound class will influence the capabilities of the sound tag, and may be use
 A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] using the `structure` verb:
 
 ```sh
-# structure <scenario-directory> <bsp-name>
+# structure <scenario-directory> <bsp-name> [fix-phantom-bsp]
 tool structure levels\a30 a30_a
 ```
 
@@ -543,6 +543,14 @@ For the example above, Tool would expect to find a corresponding JMS file at `da
 Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
 Multiple JMS files can be placed in a level's `models` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
+
+## Phantom BSP fix
+
+The optional argument can be used to fix [collision artifacts][scenario_structure_bsp#collision-artifacts] like phantom BSP. 
+
+The produced BSP tag will be slightly larger than a normal BSP.
+
+For more details see [phantom_tool][] as it uses the same approach.
 
 # Structure breakable surfaces
 Updates [breakable surface data][scenario_structure_bsp#tag-field-breakable-surfaces] for an existing BSP tag. Saves the tag if only if there was no error.
