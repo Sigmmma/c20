@@ -43,16 +43,14 @@ For the example above, Tool would expect to find a _.tif or .tiff_ file at `data
 As with the `bitmaps` verb, TIFF files must have at least 8-bit colour depth and are typically 32-bit.
 
 # Batch bitmap compilation
-[TIFF][wiki-tiff] (.tif) images can be compiled into a [bitmap][] using the `bitmaps` verb:
+[TIFF][wiki-tiff] (.tif/.tiff) images can be compiled into a [bitmap][] using the `bitmaps` verb:
 
 ```sh
 # bitmaps <source-directory>
 tool.exe bitmaps "characters\cyborg\bitmaps"
 ```
 
-For the example above, Tool would expect to find .tif files at `data\characters\cyborg\bitmaps\`. Assuming no errors, each image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\`. Each image file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the image filename.
-
-Be aware that **all images must use the _.tif_ extension** for this command to work. If you have _.tiff_ files in the source directory, then rename their extensions to _.tif_.
+For the example above, Tool would expect to find .tif/.tiff files at `data\characters\cyborg\bitmaps\`. Assuming no errors, each image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\`. Each image file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the image filename.
 
 Tool supports TIFF files with a [colour depth][wiki-color] of at least 8 bits per pixel, 32-bit color (8 bits per channel) being typical.
 
