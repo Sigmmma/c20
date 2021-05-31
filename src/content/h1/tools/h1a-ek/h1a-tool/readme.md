@@ -117,7 +117,7 @@ Checks all the [light][] tags in a tag path (including sub-directories). Errors 
 # Check map
 
 ```sh
-tool check-map <scenario-name>
+# check-map <scenario-name>
 tool check-map levels\test\my_broke_level\my_broke_level
 ```
 
@@ -162,7 +162,8 @@ base superhigh.JMS
 # Compiling DX11 shaders
 
 ```sh
-tool compile-shaders <xbox1|xbox1_debug|dx11|dx11_debug> <fx|psh|vsh|all>
+# compile-shaders <xbox1|xbox1_debug|dx11|dx11_debug> <fx|psh|vsh|all>
+tool compile-shaders dx11 all
 ```
 
 Compiles the [shader files](https://en.wikipedia.org/wiki/Shader) in the `shaders` subdirectory into `fx.bin`, `psh.bin` and `vsh.bin`. These are not the same as the [shader][] tags and unless you have a working understanding of 3D graphics programming you don't need to touch this command.
@@ -199,6 +200,7 @@ tool export-bitmaps E:\s3d\h1a\preload\images
 H1A uses FMOD as it's sound middleware, this command builds a FMOD SoundBank file for that use-case.
 
 ```sh
+# export-sounds-to-fsb <sound\sfx path>
 tool export-sounds-to-fsb sound\sfx
 ```
 
@@ -235,6 +237,7 @@ For some details on how to setup the FBX file see [FBX for H1A][fbx-for-h1a].
 
 ```sh
 # fbx-to-jms <in-file> <out-file>
+
 tool fbx-to-jms data\characters\cyborg\models\cyborg.fbx data\characters\cyborg\models\cyborg.jms
 tool fbx-to-jms E:\my_fbx_files\better_cyborg.fbx data\characters\cyborg\models\cyborg.jms
 ```
