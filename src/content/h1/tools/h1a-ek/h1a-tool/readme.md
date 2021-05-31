@@ -196,11 +196,16 @@ tool export-bitmaps E:\s3d\h1a\preload\images
 
 # Export sounds to FSB
 
+H1A uses FMOD as it's sound middleware, this command builds a FMOD SoundBank file for that use-case.
+
 ```sh
 tool export-sounds-to-fsb sound\sfx
 ```
 
-TODO
+Builds a `sounds_adpcm.fsb` and `sounds_adpcm.lst.bin` using `data\sounds\tags.lst` to decide which sounds it needs to include, you can find a copy of this file in your MCC install at: `<MCC root>\halo1\sound\pc\lst\tags.lst`
+
+Make sure you have plenty of free disk space as it will cache the sound data in `.fsbcache`. This directory can be deleted once you are done building the SoundBank.
+
 
 # Export tag to xml
 
