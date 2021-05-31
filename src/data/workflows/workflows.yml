@@ -660,7 +660,9 @@ workflows:
     
   - using: H1A-Tool
     from: fbx-h1a
-    to: jms
+    to:
+      - jms
+      - Animation data
   # text
   - using:
       - Tool
