@@ -171,11 +171,13 @@ The `xbox1` and `xbox_debug` commands won't work without a copy of the XDK; [whi
 
 # Copy detail objects
 
+This command takes two scenarios and copies detail objects from the source to the destination. The scenarios do not have to be the same but it was probably intended to be used on child scenarios. This command has no output to indicate success or failure.
 ```sh
-tool copy-detail-objects <source scenario> <destination scenario>
+# copy-detail-objects <source scenario> <destination scenario>
+tool copy-detail-objects levels\test\deathisland\deathisland levels\test\my_deathisland_test\my_deathisland_test
 ```
 
-TODO
+As there is no error checking you will have to check if the detail object got copied correctly yourself.
 
 # Dump metagame info
 
