@@ -77,11 +77,16 @@ These changes are made only to the resulting tag data in the map file, but be ca
 
 # Build resource list
 
+Resource lists are used by the S3D engine (engine developed in-house by [Saber Interactive](https://en.wikipedia.org/wiki/Saber_Interactive) that's used for the remastered graphics)
+
 ```sh
-tool build-resource-list <scenario-name>
+# build-resource-list <scenario-name>
+tool build-resource-list a10
+tool build-resource-list bloodgulch
 ```
 
-TODO
+The command will create the resource list in the `...\preload\lsa` folder relative to the current working directory. 
+It is your responsibility to ensure this path exists, it will fail silently if it doesn't. 
 
 # Camera track
 
