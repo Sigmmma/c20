@@ -176,7 +176,7 @@ TODO
 tool dump-metagame-info
 ```
 
-TODO
+Dumps information about the "metagame" (MCC scoring information) to a file called `metagame_info_dump.txt` in the current directory.
 
 # Export bitmaps
 
