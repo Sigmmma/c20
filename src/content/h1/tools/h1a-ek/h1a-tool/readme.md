@@ -264,7 +264,7 @@ tool fbx-to-jms E:\my_fbx_files\cyborg_dab.fbx data\characters\cyborg\animations
 
 **<i>You need to use a standard file path not a path relative to the `data` folder</i>**
 
-For some details on how to setup the FBX file see [FBX for H1A][fbx-for-h1a].
+For some details on how to setup the FBX file see [FBX for H1A][using-fbx-in-h1a].
 
 # Creating a JMS file from an FBX file
 
@@ -277,7 +277,7 @@ tool fbx-to-jms E:\my_fbx_files\better_cyborg.fbx data\characters\cyborg\models\
 
 **<i>You need to use a standard file path not a path relative to the `data` folder</i>**
 
-For some details on how to setup the FBX file see [FBX for H1A][fbx-for-h1a].
+For some details on how to setup the FBX file see [FBX for H1A][using-fbx-in-h1a].
 
 # Find and add sounds to a dialogue tag
 

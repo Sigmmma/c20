@@ -232,7 +232,7 @@ workflowItems:
   map:
     page: map
   fbx-h1a: # FBX files setup for import into H1A
-    page: fbx-for-h1a
+    page: using-fbx-in-h1a
   tags:
     page: h1/tags
   actor:
