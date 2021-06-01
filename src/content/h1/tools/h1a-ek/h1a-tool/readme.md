@@ -198,7 +198,7 @@ tool compile-shaders dx11 all
 ```
 
 Compiles the [shader files](https://en.wikipedia.org/wiki/Shader) in the `shaders` subdirectory into `fx.bin`, `psh.bin` and `vsh.bin`. These are not the same as the [shader][] tags and unless you have a working understanding of 3D graphics programming you don't need to touch this command.
-The `xbox1` and `xbox_debug` commands won't work without a copy of the XDK; [which is not publicly available](https://docs.microsoft.com/en-us/gaming/xbox-live/get-started/setup-ide/managed-partners/vstudio-xbox/live-where-to-get-xdk).
+The `xbox1` and `xbox1_debug` commands won't work without a copy of the XDK; [which is not publicly available](https://docs.microsoft.com/en-us/gaming/xbox-live/get-started/setup-ide/managed-partners/vstudio-xbox/live-where-to-get-xdk).
 
 # Copy detail objects
 
