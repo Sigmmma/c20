@@ -1,19 +1,18 @@
 title:
-  en: Tool
-img: tool.jpg
-imgCaption:
-  en: '`tool structure` being used to compile a JMS'
+  en: H1A Tool
 keywords:
   en:
     - lightmap
     - radiosity
     - cli
-toolName: Tool
+toolName: H1A-Tool
+related:
+  - /h1/tools/hek/tool
 alerts:
   - type: info
   - md:
       en: >-
-       This is an article about the legacy Tool for use with [Halo: Custom Edition][h1], for the H1A Tool for MCC see [H1A Tool][h1a-Tool]
+       This is an article about the H1A Tool for use with MCC, for the legacy Tool for [Halo: Custom Edition][h1] see [Tool][]
 thanks:
   gbMichelle:
     en: Hardcoded tag patch reversing

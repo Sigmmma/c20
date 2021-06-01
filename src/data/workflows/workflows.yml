@@ -101,6 +101,22 @@ workflowItems:
   Sapien:
     inherit: HEK
     page: sapien
+  H1A-EK:
+    page: h1a-ek
+    authors:
+      - 343 Industries
+      - Bungie
+      - Saber Interactive
+      - Gearbox
+  H1A-Tool:
+    inherit: H1A-EK
+    page: h1a-tool
+  H1A-Guerilla:
+    inherit: H1A-EK
+    page: h1a-guerilla
+  H1A-Sapien:
+    inherit: H1A-EK
+    page: h1a-sapien
   Lightmaps:
     page:  lightmaps
   Aether:
@@ -212,6 +228,8 @@ workflowItems:
     page: strings-txt
   map:
     page: map
+  fbx-h1a: # FBX files setup for import into H1A
+    page: fbx-for-h1a
   tags:
     page: h1/tags
   actor:
@@ -523,21 +541,26 @@ similarItems:
     - Gmax
   -
     - Guerilla
+    - H1A-Guerilla
     - OS_Guerilla
     - Mozzarilla
     - invader-edit-qt
   -
     - Tool
+    - H1A-Tool
     - OS_Tool
     - LM_Tool
     - phantom_tool
   -
+    - H1A-Tool
     - phantom_tool
     - Ghostbuster
   -
+    - H1A-Tool
     - LM_Tool
     - Aether
   -
+    - H1A-Sapien
     - Sapien
     - OS_Sapien
   -
@@ -547,6 +570,7 @@ similarItems:
     - Blendkrieg
     - CAD animation exporter
     - Chimp
+    - H1A-Tool
   -
     - Blender .gbxmodel Importer
     - Bluestreak
@@ -633,6 +657,12 @@ workflows:
   - using: Halo Physics Importer
     from: physics
     to: 3ds Max
+    
+  - using: H1A-Tool
+    from: fbx-h1a
+    to:
+      - jms
+      - Animation data
   # text
   - using:
       - Tool
@@ -693,6 +723,7 @@ workflows:
     to: h2/scenario_structure_bsp
   - using:
       - Tool
+      - H1A-Tool
       - OS_Tool
       - phantom_tool
     from: jms
@@ -720,6 +751,7 @@ workflows:
     edit: map
   - using:
       - Tool
+      - H1A-Tool
       - OS_Tool
       - invader-build
     from: scenario
@@ -734,6 +766,7 @@ workflows:
     edit: h1/scenario_structure_bsp
   - using:
       - Tool
+      - H1A-Tool
       - LM_Tool
       - Aether
       - Sapien
@@ -773,6 +806,7 @@ workflows:
   # scenario editing
   - using:
       - Sapien
+      - H1A-Sapien
       - OS_Sapien
     edit:
       - h1/scenario_structure_bsp
@@ -780,6 +814,7 @@ workflows:
   # general purpose tag editors
   - using:
       - Guerilla
+      - H1A-Guerilla
       - Mozzarilla
       - invader-edit-qt
       - OS_Guerilla

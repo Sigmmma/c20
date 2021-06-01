@@ -1,0 +1,11 @@
+title:
+  en: FBX for H1A
+keywords:
+  en:
+    - FBX
+    - Model
+    - Animation
+workflowName: fbx-h1a
+stub: true
+related:
+  - /h1/tools/h1a-ek/h1a-tool

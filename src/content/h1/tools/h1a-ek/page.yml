@@ -1,0 +1,21 @@
+title:
+  en: H1A Editing Kit (H1A-EK) [343i]
+img: hek.jpg
+imgCaption:
+  en: >-
+    [Sapien][h1a-sapien], [Guerilla][h1a-guerilla], and [Tool][h1a-tool] have returned!
+info:
+  en: >
+    * Release date: 9999
+    
+    * The tools can be [downloaded through Steam](https://store.steampowered.com/app/fake_steam_appid).
+    
+related:
+  - /h1/tools/hek
+stub: false
+toolName: H1A-EK
+alerts:
+  - type: info
+    md:
+      en: >-
+        After downloading the H1A-EK, please read `README_MODDING.txt`

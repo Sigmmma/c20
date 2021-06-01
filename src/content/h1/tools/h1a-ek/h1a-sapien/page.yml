@@ -1,18 +1,17 @@
 title:
-  en: Sapien
-img: netgame_equipment_04_large.gif
-imgCaption:
-  en: Sapien being used to place item spawns in `tutorial.map`
+  en: H1A Sapien
 stub: true
 keywords:
   en:
     - scenario
-toolName: Sapien
+toolName: H1A-Sapien
+related:
+  - /h1/tools/hek/sapien
 alerts:
   - type: info
   - md:
       en: >-
-       This is an article about the legacy Sapien for use with [Halo: Custom Edition][h1], for the H1A Sapien for MCC see [H1A Sapien][h1a-sapien]
+       This is an article about the H1A Sapien for use with MCC, for the legacy Sapien for [Halo: Custom Edition][h1] see [Sapien][]
 thanks:
   General_101:
     en: Additional Sapien hotkey documentation
@@ -26,7 +25,5 @@ thanks:
     en: Discovering fog plane fix
   Jakey:
     en: 'Known issues, transparent self occlusion crash explanation'
-  GAIGHER:
-    en: Multi-core crash solution
   InfernoPlus:
     en: Sound gain crash solution

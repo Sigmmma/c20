@@ -1,8 +1,28 @@
-**Sapien**, part of the [HEK][], is a visual [scenario][] and
+**H1A Sapien**, part of the [H1A-EK][], is a visual [scenario][] and
 [BSP][scenario_structure_bsp] editor used to populate levels with objects,
 configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile [scripts][scripting], and more. Sapien shares some systems with Halo itself, including its AI system to support interactive AI scripting and debugging. Other systems, such as weather rendering, are not represented.
 
 It is roughly analagous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which supports many more debug commands than the in-game one.
+
+# Changes from legacy Sapien
+If you are used to the legacy tools here is a quick primer on what's changed, if you are new to halo modding you can skip this section.
+
+- `debug_structure` is automatically enabled when the camera is outside the BSP along with world bounds rendering (Backported from [Halo 2's Sapien][h2ek/h2sapien]).
+- The tags and data directories can now be set when launching Sapien (`-tags_dir <tags path>` and `-data_dir <data path>` respectively).
+- Multiple Sapien instances can now be launched at once (use the `-multipleinstance` command line flag).
+- DX11 graphics APIs are now used instead of the legacy D3D9 APIs, this should result in better performance and support on modern systems.
+- Game view resolution has been noticeable increased. 
+- Interpolation code from H1A is included and `framerate_throttle` is disabled by default, allowing for smooth animation and movement.
+- Console history buffer increased to 16 entries from 8.
+- Mouse can now be locked without having to press down the middle mouse button by opening the console and closing it.
+- Camera speed can be boosted by pressing <kbd>Control</kbd>
+- `debug_objects` behavior has been changed.
+- File open/save dialogs have been upgraded where possible.
+- UI has been cleaned up a bit with unused elements removed and others renamed.
+
+## Getting legacy `debug_objects`
+
+Enable `debug_objects_bounding_spheres` and `debug_objects_collision_models ` alongside `debug_objects` to get the bounding spheres and collision debug to render. 
 
 # Menu options
 ## Switch BSP
@@ -12,7 +32,7 @@ It is common for singleplayer scenarios to be comprised of multiple [BSPs][scena
 ## Game window
 The game window is the main interface when interacting with objects in the level. It is also where you can run commands by pressing the <kbd>~</kbd> (tilde) key. The resolution and aspect ratio cannot be adjusted.
 
-Movement of the camera is done in the same way as the in-game debug camera; **hold the middle mouse button** plus:
+Movement of the camera is done in the same way as the in-game debug camera; **hold the middle mouse button**  (unless you lock the mouse) plus:
 
 * Use the mouse to aim
 * Move with <kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, and <kbd>D</kbd>
@@ -42,7 +62,7 @@ This window is unused and can be ignored.
 Some of these shortcuts are only used in certain windows or editor modes.
 
 ## General
-* <kbd>~</kbd>: Opens the command console.
+* <kbd>~</kbd>: Opens the command console, pressing it again or pressing <kbd>enter</kbd> on an empty console will close it.
 * <kbd>Space</kbd>: clones the selected object to the camera's location and orientation. If multiple objects are selected, uses the first.
 * <kbd>Pause/Break</kbd>: Pauses your Sapien instance. Press "OK" in the opened window to resume Sapien.
 * <kbd>Control + B</kbd>: Open the BSP switch dialog window.
@@ -51,7 +71,8 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Control + Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
 * Hold <kbd>Tab</kbd>: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.
 * In the hierarchy view, pressing a key will cycle through all folders that start with that character. For example, pressing <kbd>A</kbd> while having the "Missions" folder expanded will immediately take you to the "AI" folder.
-* <kbd>N</kbd>: This hotkey will snap a selected object to the normal of the ground below it. **This hotkey is broken in the Gearbox HEK release and can cause Sapien to crash when restarted. Do not use it!** It also causes editor icons and name overlays to disappear for the session. This issue is fixed in [H1A Sapien][h1a-sapien].
+* <kbd>N</kbd>: This hotkey will snap a selected object to the normal of the ground below it.
+* Open the console, then close it to lock the mouse allowing you to use the game view without needing to hold <kbd>Middle mouse</kbd> down. Press <kbd>Middle mouse</kbd> to unlock it.
 
 ## Encounters and AI
 * <kbd>Middle mouse + F1</kbd>: Selects the spawned actor in the center of the game view.
@@ -88,9 +109,9 @@ See main page: [recorded-animations][]
 * <kbd>Shift + Control + Right Click</kbd>: As above, but also deleted the cell itself.
 
 # Radiosity
-Both Tool and Sapien can be used to generate [lightmaps][]. To use Sapien, enter the following console commands:
+Both Tool and Sapien can be used to generate [lightmaps][]. Using H1A Tool is suggested for all but the simplest lightmaps or debugging as it doesn't require as many resources or for the window to be in-focus.  To use Sapien, enter the following console commands:
 
-```console
+```console-h1a
 ;0 for low quality, 1 for high, or a value like 0.8
 radiosity_quality 1
 ;begins radiosity. numbers will start to count down
@@ -99,7 +120,7 @@ radiosity_start
 radiosity_save
 ```
 
-If you want progress feedback updated more frequently, you can set `radiosity_step_count 1`. See [Tool's lightmaps documentation][tool#lightmaps] for an explanation of the `radiosity_quality` value. Using [LM_Tool][] is recommended for high quality lightmaps since it is easier to control the stop parameter (when to save) and is faster than using Sapien or Tool.
+If you want progress feedback updated more frequently, you can set `radiosity_step_count 1`. See [Tool's lightmaps documentation][h1a-tool#lightmaps] for an explanation of the `radiosity_quality` value. Using [H1A tool][h1a-tool] with asserts disabled is **strongly recommended** for high quality lightmaps since it is easier to control the stop parameter (when to save) and is faster than using Sapien.
 
 # editor_init.txt
 At startup, Sapien will load `editor_init.txt` if present in the same folder. This file can contain [console commands][developer-console], one per line, which are executed automatically for you. For example:
@@ -111,21 +132,23 @@ debug_objects 1
 ```
 
 # Compatibility
-Windows users have experienced saving issues related to the Virtual Store. Ensure you have the [right permissions][tips#windows-virtual-store] before editing tags.
 
-On Linux, Sapien can be run successfully using [Wine][] but is not yet compatible with [DXVK][]. Use built-in or standard native DirectX libraries instead.
+Sapien requires DX11 support, it is currently unknown if it can be run under WINE.
 
 # Limits
-As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual memory even on modern 64-bit Windows systems for compatibility. While this memory limit is usually not an issue, an abundance of large textures and other large assets in a map may cause Sapien to crash. To work around this, `sapien.exe` can be patched to tell the OS it supports 4 GB of virtual memory using a utility like [NTCore][ntcore]. To do this:
+As an 32-bit application Sapien is limited to 2 GB of virtual memory even on modern 64-bit Windows systems for compatibility. While this memory limit is usually not an issue, an abundance of large textures and other large assets in a map may cause Sapien to crash. To work around this, `sapien.exe` can be patched to tell the OS it supports 4 GB of virtual memory using a utility like [NTCore][ntcore]. To do this:
 
 * Install [NTCore 4GB Patch](https://ntcore.com/?page_id=371)
 * Run the 4GB Patch.
 * Select the Sapien executable.
 * NTCore will apply the patch. After it's finished, press OK. Sapien has now been patched to support 4 GB of virtual memory.
 
+Keep in mind this is not officially supported and could in theory cause hard to debug issues.
+
 [wine]: https://www.winehq.org/
 [dxvk]: https://github.com/doitsujin/dxvk
 [ntcore]: https://ntcore.com/?page_id=371
+
 
 # Troubleshooting
 ## Interface
@@ -138,33 +161,24 @@ As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual mem
   </thead>
   <tbody>
     <tr>
-      <td>The game window is completely black and does not display the console when <kbd>~</kbd> (tilde) is pressed.</td>
-      <td>
-
-Sapien, like Halo, does not support [MSAA][msaa]. Add Sapien as a program in your graphics control panel and disable anti-aliasing for it. Fixed in [H1A Sapien][h1a-sapien]
-      </td>
-    </tr>
-    <tr>
-      <td>The "edit types" window does not allow tags to be added.</td>
-      <td>Unknown. Potential issue with Windows compatibility modes. Try running without a compatibility mode.</td>
-    </tr>
-    <tr>
       <td>Child windows are not visible or stuck outside the main window.</td>
       <td>
-        <p>Open the registry key <code>HKEY_USERS\S-1-5-21-0-0-0-1000\Software\Microsoft\Microsoft Games\Halo HEK\sapien</code> (user ID may vary) using regedit and delete all entries ending with "rect".</p>
+        <p>Open the registry key <code>HKEY_CURRENT_USER\Software\i343\halo1a_sapien</code> using regedit and delete all entries ending with "rect".</p>
       </td>
     </tr>
     <tr>
-      <td>
-        Sapien debug wireframe colors and bounding radii change at angles and turn black, making it hard to identify their types.
-      </td>
-      <td>None known for Gearbox Sapien, fixed in [H1A Sapien][h1a-sapien] </td>
+      <td>Can't change the open scenario</td>
+      <td>This is a known issue, simply close Sapien and open it again; this will allow you to open the scenario.</td>
+    </tr>
+    <tr>
+      <td>Mouse is locked to game view</td>
+      <td>This is a new feature that might be confusing to some users of the legacy HEK, simply press the middle mouse button to unlock it.</td>
     </tr>
   </tbody>
 </table>
 
 ## Crashes
-When Sapien crashes, check `debug.txt` for hints. You can ignore `Couldn't read map file './sapienbeta.map'`.
+When Sapien crashes, check `debug.txt` for hints.
 
 <table>
   <thead>
@@ -176,56 +190,19 @@ When Sapien crashes, check `debug.txt` for hints. You can ignore `Couldn't read 
   <tbody>
     <tr>
       <td>
-\halopc\haloce\source\rasterizer\dx9\rasterizer_dx9_hardware_bitmaps.c(148): E_OUTOFMEMORY in IDirect3DDevice9_CreateTexture(global_d3d_device, width, height, bitmap->mipmap_count+1-mip_levels_to_drop, 0, rasterizer_bitmap_format_table[bitmap->format], D3DPOOL_MANAGED, &(IDirect3DTexture9*)bitmap->hardware_format, NULL) (code=-2147024882, error=<can't get description>)
-10.01.19 17:07:33  couldn't allocate #1398128 tag data for 'bitmap_pixel_data'
+	  E_OUTOFMEMORY/out of memory/couldn't allocate xyz/insufficient memory
       </td>
-      <td>You are running out of memory. Try freeing up more physical memory on your system, and/or using a <a href="#limits">large address aware Sapien</a>.</td>
+      <td>You are running out of addressable memory. Try freeing up more physical memory on your system, and/or using a <a href="#limits">large address aware Sapien</a>.</td>
     </tr>
     <tr>
       <td>
-EXCEPTION halt in \halopc\haloce\source\sound\sound_dsound_pc.c,#1940: properties->gain>=0.f && properties->gain<=1.f
+EXCEPTION halt in \...\sound\sound_dsound_pc.c,#1966: properties->gain>=0.f && properties->gain<=1.f
       </td>
       <td>Restart your PC and the issue should go away.</td>
     </tr>
     <tr>
       <td>
-\halopc\haloce\source\rasterizer\dx9\rasterizer_dx9_hardware_bitmaps.c(148): E_OUTOFMEMORY in IDirect3DDevice9_CreateTexture(global_d3d_device, width, height, bitmap->mipmap_count+1-mip_levels_to_drop, 0, rasterizer_bitmap_format_table[bitmap->format], D3DPOOL_MANAGED, &(IDirect3DTexture9*)bitmap->hardware_format, NULL) (code=-2147024882, error=<can't get description>)
-      </td>
-      <td>
-
-You have a [bitmap][] tag which is too large. Do not exceed dimensions of 2048 pixels because support is GPU-dependent; technically DirectX 9 did not allow sizes over this limit. This issue is fixed in [H1A Sapien][h1a-sapien] as it updated to DX11 which doesn't have this issue.
-      </td>
-    </tr>
-    <tr>
-      <td>
-EXCEPTION halt in .\\\\detail_object_tool_handler.cpp,#103: &diffuse_color: assert_valid_real_rgb_color(-9.395227, -3.398408, -2.530689)
-      </td>
-      <td>
-
-A [detail object][detail_object_collection] was painted outside the map. Be careful when painting around corners and small spaces, and save frequently.
-      </td>
-    </tr>
-    <tr>
-      <td>
-EXCEPTION halt in /halopc/haloce/source/cseries/profile.c,#442: parent_timesection->self_msec >= child_timesection->elapsed_msec
-      </td>
-      <td>
-
-This may be caused by a multi-core processor. Try running in Windows 98 compatibility mode, or setting the process affinity to a single core using Task Manager before opening the scenario. This issue is fixed in [H1A Sapien][h1a-sapien].
-      </td>
-    </tr>
-    <tr>
-      <td>
-EXCEPTION halt in \halopc\haloce\source\rasterizer\rasterizer_transparent_geometry.c,#137: group->sorted_index>=0 && group->sorted_index<transparent_geometry_group_count
-      </td>
-      <td>
-
-An [object][] has _transparent self occlusion_ enabled while also referencing a transparent [shader][] with _extra layers_. This is not a problem in-game. This issue is fixed in [H1A Sapien][h1a-sapien].
-      </td>
-    </tr>
-    <tr>
-      <td>
-EXCEPTION halt in \halopc\haloce\source\rasterizer\dx9\rasterizer_dx9.c,#2014: global_window_parameters.fog.planar_maximum_depth>0.0f
+EXCEPTION halt in \\...\rasterizer\dx9\rasterizer_dx9.c,#1461: global_window_parameters.fog.planar_maximum_depth>0.0f
       </td>
       <td>
 
@@ -233,7 +210,7 @@ Try moving or resizing your [fog plane(s)][scenario_structure_bsp#fog-planes].
       </td>
     </tr>
     <tr>
-      <td>EXCEPTION halt in \halopc\haloce\source\tag_files\tag_groups.c,#2419: group_tag==NONE || tag_group_get(group_tag)</td>
+      <td>EXCEPTION halt in \\...\tag_files\tag_groups.c,#3395: group_tag==NONE || tag_group_get(group_tag)</td>
       <td>
 
 Sapien has encountered an unrecognized tag class, such as an [OpenSauce][OpenSauce#new-tag-types] tag or [vestigial tag][tags#unused-tags]. Remove references to this tag class.
@@ -241,5 +218,3 @@ Sapien has encountered an unrecognized tag class, such as an [OpenSauce][OpenSau
     </tr>
   </tbody>
 </table>
-
-[msaa]: https://en.wikipedia.org/wiki/Multisample_anti-aliasing
