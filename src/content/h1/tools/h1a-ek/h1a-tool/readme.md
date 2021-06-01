@@ -314,7 +314,7 @@ Unknown purpose.
 
 ```sh
 # import-device-defaults <defaults|profiles> <savegame path>
-tool import-device-defaults <defaults|profiles> <savegame path>
+tool import-device-defaults <(defaults,profiles)> <savegame path>
 ```
 
 # Lightmaps
@@ -346,8 +346,7 @@ After a short time, you should observe a number counting down towards 0. The rad
 Consider using the `-noassert` command line flag to increase speed at the expense of skipping error checking.
 
 ```sh
-# lightmaps <scenario> <bsp index> <quality> <stop threshhold>
-tool lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.01 -noassert
+tool lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.0001 -noassert
 ```
 
 ## Radiosity quality technical details
