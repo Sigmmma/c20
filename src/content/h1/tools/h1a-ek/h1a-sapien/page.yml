@@ -5,6 +5,9 @@ keywords:
   en:
     - scenario
 toolName: H1A-Sapien
+img: h1a-sapien-c20.png
+imgCaption:
+  en: The editing chapter titles on the c20 campaign scenario using H1A Sapien.
 related:
   - /h1/tools/hek/sapien
 alerts:
@@ -13,8 +16,10 @@ alerts:
       en: >-
        This is an article about the H1A Sapien for use with MCC, for the legacy Sapien for [Halo: Custom Edition][h1] see [Sapien][]
 thanks:
+  num0005:
+    en: Update for H1A
   General_101:
-    en: Additional Sapien hotkey documentation
+    en: Additional Sapien hotkey documentation and update for H1A.
   The Cereal Killer:
     en: Discovering Sapien keyboard shortcuts
   kirby_422:

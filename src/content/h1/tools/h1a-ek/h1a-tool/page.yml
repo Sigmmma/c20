@@ -6,6 +6,9 @@ keywords:
     - radiosity
     - cli
 toolName: H1A-Tool
+img: h1a-tool-structure.png
+imgCaption:
+  en: The tutorial map being compiled from a JMS.
 related:
   - /h1/tools/hek/tool
 alerts:
@@ -14,11 +17,13 @@ alerts:
       en: >-
        This is an article about the H1A Tool for use with MCC, for the legacy Tool for [Halo: Custom Edition][h1] see [Tool][]
 thanks:
+  num0005:
+    en: Documenting H1A commands and updating documentation for other commands.
   gbMichelle:
     en: Hardcoded tag patch reversing
   MosesOfEgypt:
     en: Explanation of radiosity passes
   General_101:
-    en: Documenting tool commands
+    en: Documenting tool commands (legacy and some H1A)
   Kavawuvi:
     en: Warning about Tool only using marker from superhigh LOD
