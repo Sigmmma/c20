@@ -149,7 +149,7 @@ type_defs:
       - name: do_not_screw_up_the_model
         type: uint32
         meta:
-          xbox_only: true
+          h1x_only: true
           cache_only: true
         endianness: little
         comments:
@@ -167,7 +167,7 @@ type_defs:
       - name: rendered_vertices_index_pointer
         type: ptr32
         meta:
-          xbox_only: true
+          h1x_only: true
           cache_only: true
         endianness: little
         comments:
@@ -175,7 +175,7 @@ type_defs:
       - name: set_this_or_die
         type: uint32
         meta:
-          xbox_only: true
+          h1x_only: true
           cache_only: true
         endianness: little
         comments:
@@ -191,7 +191,7 @@ type_defs:
       - name: lightmap_vertices_index_pointer
         type: ptr32
         meta:
-          xbox_only: true
+          h1x_only: true
           cache_only: true
         endianness: little
         comments:

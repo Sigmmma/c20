@@ -44,11 +44,11 @@ module.exports = localizer({
   meta_compile_processed: {
     en: "Processed during compile"
   },
-  meta_mcc_only: {
-    en: "MCC only"
+  meta_h1a_only: {
+    en: "H1A only"
   },
-  meta_xbox_only: {
-    en: "Xbox only"
+  meta_h1x_only: {
+    en: "H1X only"
   },
   meta_cache_only: {
     en: "Cache only"

@@ -14,8 +14,10 @@ Each edition of the game has a slightly different tag set in its maps. Be aware 
 * H1A in MCC restores [shader_transparent_generic][] functionality and Keyes' uniform.
 
 # Tag structure
+Each tag class is a binary (non-text) data structure with a fixed layout and size.
+
 ## Tag references and paths
-A _tag path_ is like a URL for a tag. References from one tag file to another are stored as tag paths with an accompanying [engine ID](#engine-ids) for the type. For example, the path `levels\test\tutorial\tutorial` and engine ID `sbsp` is how the tutorial [scenario][] references its [BSP][scenario_structure_bsp]. Tag paths are assumed relative to a `tags` directory, but are not literal filesystem paths since they don't contain an extension.
+A _tag path_ is like a URL for a tag. References from one tag file to another are stored as tag paths with an accompanying [group ID](#group-ids) for the type. For example, the path `levels\test\tutorial\tutorial` and group ID `sbsp` is how the tutorial [scenario][] references its [BSP][scenario_structure_bsp]. Tag paths are assumed relative to a `tags` directory, but are not literal filesystem paths since they don't contain an extension.
 
 Be careful when moving or renaming tag files; you may create "dead links" in other tags that referenced them. Either correct the broken references after moving tags, or use [invader-refactor][invader] to move tags safely.
 
@@ -26,7 +28,7 @@ Tag paths also appear in arguments to [Tool][] and scripting.
 ## Blocks
 A _tag block_ field, also known as a _reflexive_, is essentially a list of smaller data structures within a tag. An example is the [scenario][] tag containing a block of vehicle spawns points. In visual tag editors, blocks appear as a list of elements which are often editable by adding or removing elements. A block field internally consists of an item count and a pointer to an array of structures of the expected type.
 
-## Engine IDs
+## Group IDs
 To identity tag types in-engine and within tag data, Halo uses compact fixed-size (4 character) identifiers rather than the longer tag names/extensions seen in the [HEK][]. Some examples include `bitm` for [bitmap][bitmap], `snd!` for [sound][], and `DeLa` for [ui_widget_definition][]. These identifiers are case-sensitive and may be padded with trailing spaces.
 
 ## Unused tags and fields

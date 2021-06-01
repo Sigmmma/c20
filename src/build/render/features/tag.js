@@ -56,7 +56,7 @@ module.exports = async function(ctx) {
   const game = tagNameArg.length > 1 ? tagNameArg[0] : "h1";
   const tagName = tagNameArg.length > 1 ? tagNameArg[1] : tagNameArg[0];
   const tag = data.tags[game][tagName];
-  const engineId = `<code>${tag.id}</code>${defAnchor(ctx.resolveUrl("h1/tags", "engine-ids"))}`;
+  const groupId = `<code>${tag.id}</code>${defAnchor(ctx.resolveUrl("h1/tags", "group-ids"))}`;
   const metaSections = [];
   const searchTerms = [];
   const headingText = localize("tagStructureHeading");
@@ -140,7 +140,7 @@ module.exports = async function(ctx) {
     ],
     metaSections,
     searchText: structRender.searchTerms.join(" "),
-    metaTitle: `Tag: ${tagName} (${engineId})`,
+    metaTitle: `Tag: ${tagName} (${groupId})`,
     metaClass: "content-tag",
     thanks: localizeThanks(ctx, ctx.data.tagThanks[game])
   };

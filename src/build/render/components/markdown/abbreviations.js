@@ -10,5 +10,5 @@ module.exports = Object.entries({
   },
   H1A: {
     en: "Halo 1 Anniversary for MCC, aka. CEA (343i)"
-  },
+  }
 });

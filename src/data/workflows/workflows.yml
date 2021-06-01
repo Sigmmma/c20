@@ -604,9 +604,7 @@ workflows:
     edit: wrl 2.0
   - using: WRL to OBJ converter
     from: wrl
-    to:
-      - obj
-      - Blender
+    to: obj
   - using:
       - Blitzkrieg
       - Bluestreak
@@ -615,6 +613,9 @@ workflows:
     to: jms
   - using: Blender .gbxmodel Importer
     from: gbxmodel
+    to: Blender
+  - using: Jointed Model Blender Toolset
+    from: wrl
     to: Blender
   - using: Jointed Model Blender Toolset
     from:

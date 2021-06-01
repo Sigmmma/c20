@@ -33,8 +33,8 @@ type_defs:
       - name: 32-bit
       - name: monochrome
         meta:
-          xbox_only: true
-          mcc_only: true
+          h1x_only: true
+          h1a_only: true
         comments:
           en: >
             This format is only supported on Xbox and MCC. Using this format

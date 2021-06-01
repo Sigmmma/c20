@@ -13,6 +13,11 @@ thanks:
   gbMichelle:
     en: How maps are loaded into memory
   Kavawuvi:
-    en: Map base memory addresses and file structure
+    en: >-
+      [Documenting](https://opencarnage.net/index.php?/topic/6693-halo-map-file-structure-revision-21/)
+      the map file structure, base addresses, and [Invader code](https://github.com/SnowyMouse/invader)
+      for reference
   hellux:
     en: Testing and documenting tag space on Xbox
+  WaeV:
+    en: "[Diagrams and overview](https://opencarnage.net/index.php?/topic/2869-mapfiles-an-overview/&page=1) of the map file structure."

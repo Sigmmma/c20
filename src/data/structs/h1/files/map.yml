@@ -11,7 +11,8 @@ type_defs:
         comments:
           en: >-
             The original classic Xbox version of Halo 1. This version also means
-            the data _after_ the cache header is zlib compressed.
+            the data _after_ the cache header is zlib compressed. [_Stubbs_][engine#other-games]
+            maps also use this version.
       - name: demo
         value: 6
         comments:
@@ -70,17 +71,19 @@ type_defs:
       - name: file_size
         type: uint32
         comments:
-          en: Length of the map in bytes when uncompressed.
+          en: >-
+            Length of the map in bytes when uncompressed. Halo checks this to
+            ensure the map is within the [size limit][map#map-file-size-limit].
       - name: padding_length
         type: uint32
         comments:
           en: Length of the padding after the map in bytes. Only used on Xbox.
         meta:
-          xbox_only: true
+          h1x_only: true
       - name: tag_data_offset
         type: uint32
         comments:
-          en: Offset into the file to the [tag][tags] data.
+          en: Offset into the file to the [tag data header](#tag-data-header).
       - name: tag_data_size
         type: uint32
         comments:
@@ -119,7 +122,7 @@ type_defs:
       - name: h1a_flags
         type: H1AFlags
         meta:
-          mcc_only: true
+          h1a_only: true
         comments:
           en: A bitfield which customizes how the cache file is treated by H1A in MCC.
       - type: pad
@@ -235,26 +238,160 @@ type_defs:
       - name: loc
         comments:
           en: The file contains [font][] and [unicode_string_list][] tags.
+  ResourceMapResource:
+    class: struct
+    assert_size: 0xC
+    fields:
+      - name: path_offset
+        type: uint32
+      - name: size
+        type: uint32
+      - name: data_offset
+        type: uint32
   ResourceMapHeader:
     class: struct
+    assert_size: 0x10
     fields:
       - name: type
         type: ResourceMapType
         comments:
           en: The type of data found in this resource map.
-      - name: cache_version
-        type: CacheVersion
+      - name: paths_offset
+        type: uint32
         comments:
           en: >-
-            Identifies the cache file version, which differs by release of the game.
-            This must match the game's cache file version for the map be loadable.
-      - name: file_size
+            Offset to tag paths.
+      - name: resources_offset
         type: uint32
         comments:
-          en: Length of the map in bytes when uncompressed.
-      - type: pad
-        size: 4
-      - name: tag_data_offset
+          en: Offset to resource indices.
+      - name: resource_count
         type: uint32
         comments:
-          en: Offset into the file to the [tag][tags] data.
+          en: The number of resources contained in this file.
+  TagDataHeaderBase:
+    class: struct
+    fields:
+      - name: tag_array_pointer
+        type: ptr32
+        comments:
+          en: A pointer to the tag array, which lists all tags in the map.
+      - name: checksum
+        type: uint32
+        comments:
+          en: A CRC32 checksum of the tag files used in the map.
+      - name: scenario_tag_id
+        type: uint32
+        comments:
+          en: Unique ID of the [scenario][] tag in the tag array.
+      - name: tag_count
+        type: uint32
+        comments:
+          en: The number of tags in the tag array.
+      - name: model_part_count
+        type: uint32
+        comments:
+          en: Number of model parts in the map.
+  TagDataHeaderPC:
+    class: struct
+    extends:
+      type: TagDataHeaderBase
+    fields:
+      - name: model_data_file_offset
+        type: uint32
+        comments:
+          en: File offset to the vertex data.
+      - name: model_part_count_pc
+        type: uint32
+        comments:
+          en: This is a repeat of the model part count field.
+      - name: vertex_data_size
+        type: uint32
+        comments:
+          en: Size of the vertex data in bytes.
+      - name: model_data_size
+        type: uint32
+        comments:
+          en: Total size of the model data in bytes.
+      - name: magic
+        type: char
+        count: 4
+        value: "tags"
+        comments:
+          en: Typically equal to "tags", or `1952540531` as a `uint32`.
+  TagDataHeaderXbox:
+    class: struct
+    extends:
+      type: TagDataHeaderBase
+    fields:
+      - name: vertex_data_pointer
+        type: ptr32
+        comments:
+          en: This is a pointer to the vertex data.
+      - name: model_part_count_xbox
+        type: uint32
+        comments:
+          en: This is a repeat of the model part count field.
+      - name: triangle_data_pointer
+        type: ptr32
+        comments:
+          en: This is a pointer to the triangle data.
+      - name: magic
+        type: char
+        count: 4
+        value: "tags"
+        comments:
+          en: Typically equal to "tags", or `1952540531` as a `uint32`.
+  TagDataRef:
+    class: alias
+    type: ptr32
+  TagArrayEntry:
+    class: struct
+    # assert_size: 32
+    fields:
+      - name: primary_group_id
+        type: char
+        count: 4
+        comments:
+          en: The group ID of the tag's primary tag class.
+      - name: secondary_group_id
+        type: char
+        count: 4
+        comments:
+          en: >-
+            The group ID of the tag's secondary (parent) tag class. For
+            example, this would be [object][] for [device_machine][] tags.
+      - name: tertiary_group_id
+        type: char
+        count: 4
+        comments:
+          en: >-
+            The group ID of the tag's tertiary (grandparent) tag class. For
+            example, this would be [object][] for [device_machine][] tags.
+      - name: tag_id
+        type: uint32
+        comments:
+          en: Unique ID of the tag.
+      - name: tag_path_pointer
+        type: ptr32
+        type_args:
+          T: char
+        comments:
+          en: >-
+            Pointer to the [tag path][tags#tag-references-and-paths] string.
+            This data may unusable in [protected maps][map#protected-maps] and is
+            technically not needed at runtime except for [debugging purposes][developer-console].
+      - name: tag_data_ref
+        type: TagDataRef
+        comments:
+          en: >-
+            This field can be interpreted as either a `ptr32` to the tag's data within
+            this cache file when loaded by the game, or as a `uint32` _resource index_
+            if the tag data is external (found in a [resource map][map#resource-maps]).
+            H1X maps will never use a resource index since that feature was not implemented
+            yet. Resource indices are replaced by a pointer to a loaded tag at runtime
+            except in the case of [sound][] tags.
+      - name: is_external
+        type: uint32
+        comments:
+          en: If the value is `1`, the tag data is external. This field is padding in H1X.

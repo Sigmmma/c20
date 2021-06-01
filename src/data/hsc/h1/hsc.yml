@@ -3237,8 +3237,8 @@ Functions:
 
           ```
 
-          Loads textures necessary to draw a objects that are about to come
-          on-screen
+          Loads textures necessary to draw objects that are about to come
+          on-screen, using the object's [predicted resources][object#tag-field-predicted-resources].
     - slug: pause_hud_timer
       info:
         en: |-
