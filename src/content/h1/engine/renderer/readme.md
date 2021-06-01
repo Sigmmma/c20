@@ -36,7 +36,7 @@ The renderer needed to be adapted for the range of user hardware for the PC port
 
 * The _detail after reflection_ flag of [shader_model][] is working in reverse of how it should. Enabling the flag should cause detail maps to apply after specularity/cubemaps. The client mod [Chimera][] has a built-in fix which is disabled for Halo Custom Edition (but enabled in Retail) except in the Vaporeon builds.
 * The reflections of [projectile][] _widgets_ like [light_volumes][light_volume] in mirrored surfaces are misaligned. _Attachments_ like [contrails][contrail] are not affected, nor are vehicle widgets. This works correctly on Xbox and MCC only.
-* The [fog][] screen layers effect for simulated volumetric fog does not render at all.
+* The [fog][] screen layers effect for simulated volumetric fog does not render at all and fog planes do not render over the skybox.
 * HUD shield meters are missing their flash effect when drained.
 * Monochrome bitmaps and p8 bump map formats are unsupported.
 * Custom Edition skips rendering some effects when they are not loaded yet, such as the engine lens flares in a10's intro or initial bullet hole decals. This is to prevent stuttering since some raw data must be loaded from map files if it is not already in the asset cache.

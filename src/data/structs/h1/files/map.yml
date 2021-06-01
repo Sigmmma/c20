@@ -1,0 +1,397 @@
+imports:
+  h1/tags/scenario:
+    - ScenarioType
+type_defs:
+  CacheVersion:
+    class: enum
+    size: 4
+    options:
+      - name: xbox
+        value: 5
+        comments:
+          en: >-
+            The original classic Xbox version of Halo 1. This version also means
+            the data _after_ the cache header is zlib compressed. [_Stubbs_][engine#other-games]
+            maps also use this version.
+      - name: demo
+        value: 6
+        comments:
+          en: >-
+            The PC demo version. This special version is one of the reasons why
+            PC retail maps will not work in the demo.
+      - name: pc
+        value: 7
+        comments:
+          en: >-
+            The PC retail version of the game, ported by Gearbox, as well as its
+            derivatives like H1A on Xbox and MCC stock maps.
+      - name: h1a_custom
+        value: 13
+        comments:
+          en: >-
+            For MCC H1A support of custom maps.
+      - name: custom_edition
+        value: 609
+        comments:
+          en: For Halo Custom Edition maps.
+  H1AFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: use_bitmaps_map
+        comments:
+          en: Use the bitmaps.map resource map rather than Saber's resource system.
+      - name: use_sounds_map
+        comments:
+          en: Use the sounds.map resource map rather than Saber's resource system.
+      - name: no_remastered_sync
+        comments:
+          en: Has the effect of disabling the remastered graphics mode.
+  CacheFileHeader:
+    class: struct
+    assert_size: 2048
+    endianness: little
+    fields:
+      - name: head_magic
+        type: char
+        count: 4
+        value: "head"
+        comments:
+          en: >-
+            Always takes the value `head`, or `1751474532` as a uint32. This
+            identifies the start of the header.
+      - name: cache_version
+        type: CacheVersion
+        comments:
+          en: >-
+            Identifies the cache file version, which differs by release of the game.
+            This must match the game's cache file version for the map be loadable.
+            Later games use additional versions, such as H2V's version `8`, which
+            are omitted here.
+      - name: file_size
+        type: uint32
+        comments:
+          en: >-
+            Length of the map in bytes when uncompressed. Halo checks this to
+            ensure the map is within the [size limit][map#map-file-size-limit].
+      - name: padding_length
+        type: uint32
+        comments:
+          en: Length of the padding after the map in bytes. Only used on Xbox.
+        meta:
+          h1x_only: true
+      - name: tag_data_offset
+        type: uint32
+        comments:
+          en: Offset into the file to the [tag data header](#tag-data-header).
+      - name: tag_data_size
+        type: uint32
+        comments:
+          en: Length of the tag data in bytes.
+      - type: pad
+        size: 8
+      - name: scenario_name
+        type: char
+        count: 32
+        comments:
+          en: >-
+            The name of the [scenario][] tag which this map was compiled from, e.g.
+            `bloodgulch`. Must match the filename, except in H1A. Null-terminated.
+      - name: build_version
+        type: char
+        count: 32
+        comments:
+          en: >-
+            Must match the engine version on Xbox, `01.10.12.2276`. Otherwise this
+            version can represent the version of the game build the cache file is for
+            or the version of the tool which compiled it (as is the case with `invader-build`).
+      - name: scenario_type
+        type: ScenarioType
+        comments:
+          en: >-
+            On Xbox, this tells the game which disk cache to decompress the map into.
+            The singleplayer is 278 MiB, multiplayer is 47 MiB, and UI is 35 MiB.
+            For example, setting this to `0` would always load the map to the singleplayer
+            cache even if it's a multiplayer map by [scenario type][scenario#tag-field-type].
+      - type: pad
+        size: 2
+      - name: checksum
+        type: uint32
+        comments:
+          en: CRC32 checksum which verifies the integrity of BSP, model, and tag data.
+      - name: h1a_flags
+        type: H1AFlags
+        meta:
+          h1a_only: true
+        comments:
+          en: A bitfield which customizes how the cache file is treated by H1A in MCC.
+      - type: pad
+        size: 0x790
+      - name: foot_magic
+        type: char
+        count: 4
+        value: "foot"
+        comments:
+          en: >-
+            Always takes the value `foot`, or `1718579060` as a uint32. This
+            identifies the end of the header.
+  DemoCacheFileHeader:
+    class: struct
+    assert_size: 2048
+    endianness: little
+    fields:
+      - type: pad
+        size: 0x2
+        comments:
+          en: Filled with garbage values
+      - name: scenario_type
+        type: ScenarioType
+        comments:
+          en: >-
+            On Xbox, this tells the game which disk cache to decompress the map into.
+            The singleplayer is 278 MiB, multiplayer is 47 MiB, and UI is 35 MiB.
+            For example, setting this to `0` would always load the map to the singleplayer
+            cache even if it's a multiplayer map by [scenario type][scenario#tag-field-type].
+      - type: pad
+        size: 0x2BC
+        comments:
+          en: Filled with garbage values
+      - name: head_magic
+        type: char
+        count: 4
+        value: "head"
+        comments:
+          en: >-
+            Always takes the value `Ehad`, or `1164469604` as a uint32.
+      - name: tag_data_size
+        type: uint32
+        comments:
+          en: Length of the tag data in bytes.
+      - name: build_version
+        type: char
+        count: 32
+        comments:
+          en: >-
+            Must match the engine version on Xbox, `01.10.12.2276`. Otherwise this
+            version can represent the version of the game build the cache file is for
+            or the version of the tool which compiled it (as is the case with `invader-build`).
+      - type: pad
+        size: 0x2A0
+        comments:
+          en: Filled with garbage values
+      - name: cache_version
+        type: CacheVersion
+        value: 6
+        comments:
+          en: >-
+            Identifies the cache file version, which differs by release of the game.
+            This must match the demo cache file version (`6`) for the map be loadable.
+      - name: scenario_name
+        type: char
+        count: 32
+        comments:
+          en: >-
+            The name of the [scenario][] tag which this map was compiled from, e.g.
+            `bloodgulch`. Must match the filename. Null-terminated.
+      - type: pad
+        size: 0x4
+        comments:
+          en: Filled with garbage values
+      - name: checksum
+        type: uint32
+        comments:
+          en: CRC32 checksum which verifies the integrity of BSP, model, and tag data.
+      - type: pad
+        size: 0x34
+        comments:
+          en: Filled with garbage values
+      - name: file_size
+        type: uint32
+        comments:
+          en: Length of the map in bytes when uncompressed.
+      - name: tag_data_offset
+        type: uint32
+        comments:
+          en: Offset into the file to the [tag][tags] data.
+      - name: foot_magic
+        type: char
+        count: 4
+        value: "foot"
+        comments:
+          en: >-
+            Always takes the value `Gfot`, or `1197895540` as a uint32. This
+            identifies the end of the header.
+      - type: pad
+        size: 0x20C
+        comments:
+          en: Filled with garbage values
+  ResourceMapType:
+    class: enum
+    size: 4
+    options:
+      - name: bitmaps
+        comments:
+          en: The file contains [bitmap][] tags.
+      - name: sounds
+        comments:
+          en: The file contains [sound][] tags.
+      - name: loc
+        comments:
+          en: The file contains [font][] and [unicode_string_list][] tags.
+  ResourceMapResource:
+    class: struct
+    assert_size: 0xC
+    fields:
+      - name: path_offset
+        type: uint32
+      - name: size
+        type: uint32
+      - name: data_offset
+        type: uint32
+  ResourceMapHeader:
+    class: struct
+    assert_size: 0x10
+    fields:
+      - name: type
+        type: ResourceMapType
+        comments:
+          en: The type of data found in this resource map.
+      - name: paths_offset
+        type: uint32
+        comments:
+          en: >-
+            Offset to tag paths.
+      - name: resources_offset
+        type: uint32
+        comments:
+          en: Offset to resource indices.
+      - name: resource_count
+        type: uint32
+        comments:
+          en: The number of resources contained in this file.
+  TagDataHeaderBase:
+    class: struct
+    fields:
+      - name: tag_array_pointer
+        type: ptr32
+        comments:
+          en: A pointer to the tag array, which lists all tags in the map.
+      - name: checksum
+        type: uint32
+        comments:
+          en: A CRC32 checksum of the tag files used in the map.
+      - name: scenario_tag_id
+        type: uint32
+        comments:
+          en: Unique ID of the [scenario][] tag in the tag array.
+      - name: tag_count
+        type: uint32
+        comments:
+          en: The number of tags in the tag array.
+      - name: model_part_count
+        type: uint32
+        comments:
+          en: Number of model parts in the map.
+  TagDataHeaderPC:
+    class: struct
+    extends:
+      type: TagDataHeaderBase
+    fields:
+      - name: model_data_file_offset
+        type: uint32
+        comments:
+          en: File offset to the vertex data.
+      - name: model_part_count_pc
+        type: uint32
+        comments:
+          en: This is a repeat of the model part count field.
+      - name: vertex_data_size
+        type: uint32
+        comments:
+          en: Size of the vertex data in bytes.
+      - name: model_data_size
+        type: uint32
+        comments:
+          en: Total size of the model data in bytes.
+      - name: magic
+        type: char
+        count: 4
+        value: "tags"
+        comments:
+          en: Typically equal to "tags", or `1952540531` as a `uint32`.
+  TagDataHeaderXbox:
+    class: struct
+    extends:
+      type: TagDataHeaderBase
+    fields:
+      - name: vertex_data_pointer
+        type: ptr32
+        comments:
+          en: This is a pointer to the vertex data.
+      - name: model_part_count_xbox
+        type: uint32
+        comments:
+          en: This is a repeat of the model part count field.
+      - name: triangle_data_pointer
+        type: ptr32
+        comments:
+          en: This is a pointer to the triangle data.
+      - name: magic
+        type: char
+        count: 4
+        value: "tags"
+        comments:
+          en: Typically equal to "tags", or `1952540531` as a `uint32`.
+  TagDataRef:
+    class: alias
+    type: ptr32
+  TagArrayEntry:
+    class: struct
+    # assert_size: 32
+    fields:
+      - name: primary_group_id
+        type: char
+        count: 4
+        comments:
+          en: The group ID of the tag's primary tag class.
+      - name: secondary_group_id
+        type: char
+        count: 4
+        comments:
+          en: >-
+            The group ID of the tag's secondary (parent) tag class. For
+            example, this would be [object][] for [device_machine][] tags.
+      - name: tertiary_group_id
+        type: char
+        count: 4
+        comments:
+          en: >-
+            The group ID of the tag's tertiary (grandparent) tag class. For
+            example, this would be [object][] for [device_machine][] tags.
+      - name: tag_id
+        type: uint32
+        comments:
+          en: Unique ID of the tag.
+      - name: tag_path_pointer
+        type: ptr32
+        type_args:
+          T: char
+        comments:
+          en: >-
+            Pointer to the [tag path][tags#tag-references-and-paths] string.
+            This data may unusable in [protected maps][map#protected-maps] and is
+            technically not needed at runtime except for [debugging purposes][developer-console].
+      - name: tag_data_ref
+        type: TagDataRef
+        comments:
+          en: >-
+            This field can be interpreted as either a `ptr32` to the tag's data within
+            this cache file when loaded by the game, or as a `uint32` _resource index_
+            if the tag data is external (found in a [resource map][map#resource-maps]).
+            H1X maps will never use a resource index since that feature was not implemented
+            yet. Resource indices are replaced by a pointer to a loaded tag at runtime
+            except in the case of [sound][] tags.
+      - name: is_external
+        type: uint32
+        comments:
+          en: If the value is `1`, the tag data is external. This field is padding in H1X.

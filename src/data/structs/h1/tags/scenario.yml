@@ -46,8 +46,6 @@ type_defs:
           en: >-
             The map is meant to be used for [singleplayer][map#singleplayer] and
             loaded with the `map_name` command. Cannot be played in multiplayer.
-            This also causes map compilers like Tool and invader to apply certain
-            [hardcoded tag patches][tool#hardcoded-tag-patches].
       - name: multiplayer
         comments:
           en: The map is meant for multiplayer and can be loaded with `sv_map`.
@@ -2092,8 +2090,9 @@ type_defs:
         type: ScenarioType
         comments:
           en: >-
-            Determines the type of map this scenario represents. This primarily
-            affects how the game
+            Determines the type of map this scenario represents. This also causes
+            map compilers like Tool and invader to apply certain
+            [hardcoded tag patches][tool#hardcoded-tag-patches].
       - name: flags
         type: ScenarioFlags
       - name: child_scenarios
@@ -2499,3 +2498,10 @@ type_defs:
         meta:
           hek_max_count: 32
           max: 16
+        comments:
+          en: >-
+            The list of [BSPs][scenario_structure_bsp] belonging to this
+            scenario that can be [switched between][scenario_structure_bsp#bsp-transitions].
+            Multiplayer scenarios typically have just one, while
+            singleplayer scenarios often have multiple. This block also
+            contains information used during [map loading][map#map-loading].

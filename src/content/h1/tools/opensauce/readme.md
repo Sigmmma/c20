@@ -13,7 +13,7 @@ OpenSauce is incompatible with [Chimera][]. Attempting to use both at the same t
 # New tag types
 These extended tag types are specific to OpenSauce .yelo maps and are only supported by the OpenSauce mod:
 
-|Engine ID|Tag name
+|Group ID|Tag name
 |---------|------------------------
 |avti     |actor_variant_transform_in
 |avto     |actor_variant_transform_out

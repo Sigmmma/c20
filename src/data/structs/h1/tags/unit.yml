@@ -436,7 +436,7 @@ type_defs:
       - name: mcc_unit_type
         type: MCCUnitType
         meta:
-          mcc_only: true
+          h1a_only: true
         comments:
           en: >-
             only used for scoring in Halo: CE Anniversary (MCC only); overridden

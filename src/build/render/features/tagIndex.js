@@ -22,8 +22,8 @@ const localizations = localizer({
     en: "Tag name",
     es: "Nombre de tag"
   },
-  engineId: {
-    en: "Engine ID",
+  groupId: {
+    en: "Group ID",
     es: "ID del motor"
   },
   parent: {
@@ -45,7 +45,7 @@ const tagsTable = (ctx, tags) => {
       <thead>
         <tr>
           <th>${localize("tagName")}</th>
-          <th><a href="${ctx.resolveUrl("tags", "engine-ids")}">${localize("engineId")}</a></th>
+          <th><a href="${ctx.resolveUrl("tags", "group-ids")}">${localize("groupId")}</a></th>
           <th>${localize("parent")}</th>
           <th>${localize("purpose")}</th>
         </tr>

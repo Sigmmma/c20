@@ -104,7 +104,7 @@ digraph G {
   h1final -> nhe;
   mac_204 -> halomd;
 
-  # cea and mcc
+  # h1a and mcc
   pc_gold -> ann;
   ann -> mcc_xbone [label="Campaign"];
   pc_gold -> mcc_xbone [label="Multiplayer"];

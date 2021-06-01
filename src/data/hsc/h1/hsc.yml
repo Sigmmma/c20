@@ -2866,13 +2866,12 @@ Functions:
           (map_name <string>)
           (map_name "a10")
           ```
-          Changes the name of the solo player map
+          Loads a singleplayer map by name.
     - slug: map_reset
       info:
         en: |-
           ```hsc
           (map_reset)
-
           ```
           Starts the map from the beginning
     - slug: message_metrics_clear
@@ -2880,7 +2879,6 @@ Functions:
         en: |-
           ```hsc
           (message_metrics_clear)
-
           ```
           Clears network messaging metrics
     - slug: message_metrics_dump
@@ -2904,7 +2902,6 @@ Functions:
         en: |-
           ```hsc
           (net_graph_clear)
-
           ```
           Clears the net_graph
     - slug: net_graph_show
@@ -2919,7 +2916,6 @@ Functions:
         en: |-
           ```hsc
           (network_client_dump)
-
           ```
           Dumps info on network client
     - slug: network_server_dump
@@ -2927,7 +2923,6 @@ Functions:
         en: |-
           ```hsc
           (network_server_dump)
-
           ```
           Dumps info on network server
     - slug: numeric_countdown_timer_get
@@ -2944,7 +2939,6 @@ Functions:
         en: |-
           ```hsc
           (numeric_countdown_timer_restart)
-
           ```
           Reset the timer
     - slug: numeric_countdown_timer_set
@@ -2961,7 +2955,6 @@ Functions:
         en: |-
           ```hsc
           (numeric_countdown_timer_stop)
-
           ```
           Stop the timer
     - slug: object_beautify
@@ -3043,7 +3036,6 @@ Functions:
         en: |-
           ```hsc
           (object_destroy_all)
-
           ```
           Destroys all non player objects
     - slug: object_destroy_containing
@@ -3065,15 +3057,14 @@ Functions:
           ```hsc
           (object_pvs_activate <object>)
           ```
-          Just another (old) name for object_pvs_set_object
+          Just another (old) name for object_pvs_set_object.
     - slug: object_pvs_clear
       info:
         en: |-
           ```hsc
           (object_pvs_clear)
-
           ```
-          Removes the special place that activates everything it sees
+          Removes the special place that activates everything it sees.
     - slug: object_pvs_set_camera
       info:
         en: >-
@@ -3084,7 +3075,7 @@ Functions:
           ```
 
           Sets the specified cutscene camera point as the special place that
-          activates everything it sees
+          activates everything it sees.
     - slug: object_pvs_set_object
       info:
         en: >-
@@ -3095,7 +3086,7 @@ Functions:
           ```
 
           Sets the specified object as the special place that activates
-          everything it sees
+          everything it sees.
     - slug: object_set_collideable
       info:
         en: |-
@@ -3246,8 +3237,8 @@ Functions:
 
           ```
 
-          Loads textures necessary to draw a objects that are about to come
-          on-screen
+          Loads textures necessary to draw objects that are about to come
+          on-screen, using the object's [predicted resources][object#tag-field-predicted-resources].
     - slug: pause_hud_timer
       info:
         en: |-

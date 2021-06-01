@@ -92,13 +92,13 @@ thanks:
     en: English description of contribution
     es: Spanish description of contribution
 # Some pages contain headings which are directly referenced by code in this
-# project, e.g. the link to explain engine IDs from a tag page's metabox
+# project, e.g. the link to explain group IDs from a tag page's metabox
 # title. This YAML config allows a page to expose a stable heading ID alias
 # to this code so certain sub-topics can be reliably linked to even if the exact
 # wording of a title changes over time or by language. Most pages will not need
 # to include this data.
 headingRefs:
-  engine-ids:
+  group-ids:
     es: id-de-motor
 # Identifies this page as a workflow item from workflows.yml, causing workflows
 # to be added to the metabox. This can be omitted if either `toolName` or
@@ -283,7 +283,7 @@ Some wiki content is automatically generated based on YAML data files. These can
 * All headings in a markdown document start at H1 (a single "#") and sub-headings must never skip a level; you can't have an H3 follow an H1.
 * Titles use sentence case, with the first word capitalized only. The exception is if the title or parts of it are a proper noun like a person's name.
 * In-universe proper nouns or nicknames should be capitalized, like Warthog.
-* When referencing tag types, use their file name extensions rather than engine IDs. When mentioning them without a hyperlink, style them with italic _emphasis_.
+* When referencing tag types, use their file name extensions rather than group IDs. When mentioning them without a hyperlink, style them with italic _emphasis_.
 * When referring to tag fields, style them with italic _emphasis_.
 * When stating raw data values and offsets, use `code` tags.
 * Blocks of Halo script should use the `hsc` language. Blocks of console commands should use `console`. This ensures proper syntax highlighting.

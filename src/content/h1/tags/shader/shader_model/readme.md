@@ -27,7 +27,7 @@ The _multipurpose map_ is an optional bitmap whose individual channels provide g
   </figcaption>
 </figure>
 
-When Gearbox ported Halo to PC, the channels were reordered and **don't match [Guerilla's][guerilla] description**. This is also true for all Gearbox-derived ports like [CEA][].
+When Gearbox ported Halo to PC, the channels were reordered and **don't match [Guerilla's][guerilla] description**. This is also true for all Gearbox-derived ports like [H1A][cea].
 
 * **Red:** is an auxiliary mask. It can mask the [detail map](#tag-field-detail-mask) if the [detail mask](#tag-field-detail-mask) is set to _multipurpose map alpha_. Despite the option saying "alpha" in Guerilla it really means the red channel in this context.
 * **Green:** Masks self-illumination, used for lights on the model. The self-illumination is added to diffuse light and _then_ multiplied with diffuse colour, rather than being added _after_. This means pure black areas of the diffuse map cannot have self-illumination.

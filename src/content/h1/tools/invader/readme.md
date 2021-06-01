@@ -44,4 +44,7 @@ Note that the changes done in common with [Tool][tool#hardcoded-tag-patches] are
 # invader-sound
 ...
 
+# invader-resource
+...
+
 [invader-repo]: https://github.com/Kavawuvi/invader

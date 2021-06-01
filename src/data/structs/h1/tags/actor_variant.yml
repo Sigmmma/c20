@@ -152,7 +152,7 @@ type_defs:
       - name: mcc_unit_type
         type: MCCUnitType
         meta:
-          mcc_only: true
+          h1a_only: true
         comments:
           en: >
             Used for kill scoring and achievements in MCC. Since this field was

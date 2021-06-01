@@ -2,7 +2,7 @@ Halo 2's tags are similar to [Halo 1's][h1/tags], but there are many more types.
 
 # Tag list
 
-|Name|Engine ID|Parent|
+|Name|Group ID|Parent|
 |----|---------|------|
 |ai_dialogue_globals|`adlg`||
 |ai_mission_dialogue|`mdlg`||

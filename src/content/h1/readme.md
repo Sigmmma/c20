@@ -69,12 +69,12 @@ The Mac edition has a mod called [Halo Mini Demo][halomd], or **HaloMD**, which 
 The free demo versions of Halo 1 on Mac and PC include just the multiplayer map Blood Gulch and the campaign mission _The Silent Cartographer_ (b30). Upon closing the demo, players are presented with the [iconic Sergeant Johnson advertisement][demo-ad] (`demo.bik`).
 
 ## Anniversary (Xbox 360)
-In 2011, Halo: Combat Evolved Anniversary was released for Xbox 360. Often called **HCEX** internally or **CEA** by the community. It was developed by [343 Industries][343i] and [Saber Interactive][saber] as a remaster of the original Halo: Combat Evolved, and is derived from the Gearbox PC port. This edition contains the secondary _Saber3D_ engine for its remastered graphics mode.
+In 2011, Halo: Combat Evolved Anniversary was released for Xbox 360. Often called **CEA** by the community. It was developed by [343 Industries][343i] and [Saber Interactive][saber] as a remaster of the original Halo: Combat Evolved, and is derived from the Gearbox PC port. This edition contains the secondary _Saber3D_ engine for its remastered graphics mode.
 
 ## MCC (PC and Xbox One)
 Halo: The Master Chief collection (MCC) is actively maintained by [343 Industries][343i] for both PC and Xbox One. It brings the Halo series under a single [Game as a Service][gaas], including unified matchmaking and progression experiences. The PC port uses [Unreal Engine][unreal] as a menu and input layer over the respective engines of each included Halo game.
 
-It is possible to compile custom maps for MCC PC using older versions of Invader and [SeT][].
+It is possible to compile custom maps for MCC PC using [Invader][] and [SeT][].
 
 [gearbox]: https://en.wikipedia.org/wiki/Gearbox_Software
 [bungie]: https://en.wikipedia.org/wiki/Bungie
