@@ -1,4 +1,8 @@
-**phantom_tool** is a modified version of [Tool][] which allows the compilation of [BSPs][scenario_structure_bsp] without [collision artifacts][scenario_structure_bsp#collision-artifacts] like phantom BSP. This is done by enabling unused code in Tool which fixes phantom BSP.
+**phantom_tool** is a modified version of [H1CE Tool][hek/tool] which allows the compilation of [BSPs][scenario_structure_bsp] without [collision artifacts][scenario_structure_bsp#collision-artifacts] like phantom BSP. This is done by enabling orphaned code in Tool which fixes phantom BSP.
+
+```.alert
+The Tool feature enabled by this mod is properly supported in [H1A Tool][h1a-tool] using the `-fix-phantom-bsp` flag.
+```
 
 The produced BSP tag will be slightly larger than a normal Tool-compiled BSP because the unused code seems to include more redundancy of surfaces at the leaves of the BSP tree.
 

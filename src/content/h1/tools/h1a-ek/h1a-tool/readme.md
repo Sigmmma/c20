@@ -5,7 +5,7 @@ If you are used to the legacy tools here is a quick primer on what's changed, if
 
 - Commands can now include optional arguments
 - The tags and data directories can now be set when launching Sapien (`-tags_dir <tags path>` and `-data_dir <data path>` respectively).
-- The `-noassert` command line flag can be used to disable all asserts (useful for lightmapping).
+- The `-noassert` command line flag can be used with any verb to disable all asserts (useful for lightmapping).
 - Lightmapping code has been optimised to be faster even with asserts enabled.
 - Most logs are now saved to a `reports` subfolder (similarly to Halo 2+).
 - Bitmap DXT1-3 (BC1-3) encoding now uses DirectXTex, instead of some S3TC code, this should result in higher quality.
@@ -111,8 +111,8 @@ tool build-resource-list a10
 tool build-resource-list bloodgulch
 ```
 
-The command will create the resource list in the `...\preload\lsa` folder relative to the current working directory. 
-It is your responsibility to ensure this path exists, it will fail silently if it doesn't. 
+The command will create the resource list in the `...\preload\lsa` folder relative to the current working directory.
+It is your responsibility to ensure this path exists, it will fail silently if it doesn't.
 
 # Camera track
 
@@ -546,7 +546,7 @@ Multiple JMS files can be placed in a level's `models` directory for multiple BS
 
 ## Phantom BSP fix
 
-The optional argument can be used to fix [collision artifacts][scenario_structure_bsp#collision-artifacts] like phantom BSP. 
+The optional argument can be used to fix [collision artifacts][scenario_structure_bsp#collision-artifacts] like phantom BSP.
 
 The produced BSP tag will be slightly larger than a normal BSP.
 

@@ -1,5 +1,5 @@
 title:
-  en: H1A Editing Kit (H1A-EK) [343i]
+  en: H1A Editing Kit (343i)
 img: hek.jpg
 imgCaption:
   en: >-
@@ -7,9 +7,9 @@ imgCaption:
 info:
   en: >
     * Release date: 9999
-    
+
     * The tools can be [downloaded through Steam](https://store.steampowered.com/app/fake_steam_appid).
-    
+
 related:
   - /h1/tools/hek
 stub: false
