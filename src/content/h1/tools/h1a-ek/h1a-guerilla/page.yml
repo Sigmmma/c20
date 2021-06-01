@@ -1,6 +1,9 @@
 title:
   en: H1A Guerilla (343i)
 stub: true
+img: h1a-guerilla.png
+imgCaption:
+  en: Recreation of a screenshot from the HEK tutorial showing the a [scenario's][scenario] [sky][] reference being changed.
 keywords:
   en:
     - tag-editor
