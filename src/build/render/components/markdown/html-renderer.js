@@ -27,7 +27,7 @@ module.exports = function(ctx) {
   const processAbbreviations = (text) => {
     autoAbbreviations.forEach(([short, full]) => {
       if (full[ctx.lang]) {
-        text = text.replaceAll(short, `<abbr title="${full[ctx.lang]}">${short}</abbr>`);
+        text = text.replace(new RegExp(short, "g"), `<abbr title="${full[ctx.lang]}">${short}</abbr>`);
       }
     });
     return text;
