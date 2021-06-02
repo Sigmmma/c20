@@ -8,7 +8,7 @@ keywords:
 toolName: H1A-Tool
 img: h1a-tool-structure.png
 imgCaption:
-  en: The tutorial map being compiled from a JMS.
+  en: The tutorial map structure being compiled from a JMS.
 related:
   - /h1/tools/hek/tool
 alerts:
