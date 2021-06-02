@@ -3,9 +3,7 @@
 ```.alert danger
 **Do not use tool_pro!** It was found to contain malware that phones home, among other things.
 
-If you need these increased defaults, use
-[invader-build][invader#invader-build]. It supports these modifications natively
-for more target engines (and does not contain malware).
+If you need these increased defaults, use [invader-build][invader#invader-build]. It supports these modifications natively for more target engines (and does not contain malware).
 ```
 
 # Hex edits
@@ -17,6 +15,5 @@ The following hex edits are required to replicate this behaviour:
 These edits work with [OS_Tool][OpenSauce] as well.
 
 # Malware
-tool_pro was removed from Halomaps after Dennis reviewed it and found it to
-contain malware that "phones home" during use.
+tool_pro was removed from Halomaps after Dennis reviewed it and found it to contain malware that "phones home" during use.
 
