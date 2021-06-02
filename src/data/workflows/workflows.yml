@@ -95,12 +95,18 @@ workflowItems:
   Tool:
     inherit: HEK
     page: tool
+    buildTypes:
+      - tag_test
   Guerilla:
     inherit: HEK
     page: guerilla
+    buildTypes:
+      - tag_test
   Sapien:
     inherit: HEK
     page: sapien
+    buildTypes:
+      - tag_test
   H1A-EK:
     page: h1a-ek
     authors:
@@ -112,17 +118,17 @@ workflowItems:
     inherit: H1A-EK
     page: h1a-tool
     buildTypes:
-      - tags_play
+      - tag_play
   H1A-Guerilla:
     inherit: H1A-EK
     page: h1a-guerilla
     buildTypes:
-      - tags_play
+      - tag_play
   H1A-Sapien:
     inherit: H1A-EK
     page: h1a-sapien
     buildTypes:
-      - tags_play
+      - tag_play
   Lightmaps:
     page:  lightmaps
   Aether:
