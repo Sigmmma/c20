@@ -28,7 +28,7 @@ const localizations = localizer({
   },
   buildTypes: {
 	  en: "Build type(s)",
-	  es: "$build_type_es"
+	  es: "Tipo(s) de compilación"
   },
   bidiUsingThis: {
     en: (item) => `${item} to/from`,
