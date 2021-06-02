@@ -27,3 +27,9 @@ H1A supports multiple levels of optimization depending on what features are need
 5. **debug**: Includes full error checking and isn't optimized, this is used internally for development.
 
 Legacy Halo 1 used different levels but the same general concepts apply.
+
+# Conventions
+The following convention is used when referring to the build type:
+`<cache/tag>_<build_configuration>`
+
+E.g. `cache_debug` refers to a *cache* build (loads resources from cache/"map" files) at the *debug* optimization level (no optimizations, full error checking).

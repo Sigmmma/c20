@@ -153,7 +153,7 @@ module.exports = async function(ctx) {
   }
   if (itemInfo.buildTypes && itemInfo.buildTypes.length > 0) {
     metaSections.push({
-      body: detailsList(anchor(ctx.resolveUrl("build-types"), localize("buildTypes")), itemInfo.buildTypes)
+      body: detailsList(anchor(ctx.resolveUrl("build-types", "conventions"), localize("buildTypes")), itemInfo.buildTypes)
     });
   }
   if (itemInfo.similarTo && itemInfo.similarTo.length > 0) {
