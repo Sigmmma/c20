@@ -17,6 +17,10 @@ abbr:hover {
   cursor: help;
 }
 
+a abbr:hover {
+  cursor: pointer;
+}
+
 .content-article {
   img, video {
     width: auto;

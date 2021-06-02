@@ -306,7 +306,6 @@ meter:
   structName: Meter
   structModule: h1/tags/meter
   id: metr
-  unused: true
 shader_transparent_water:
   structName: ShaderTransparentWater
   structModule: h1/tags/shader_transparent_water

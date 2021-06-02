@@ -2,6 +2,10 @@ entry_type: ContinuousDamageEffect
 imports: {}
 type_defs:
   ContinuousDamageEffect:
+    comments:
+      en: >-
+        This tag class is not used in any stock maps, nor does it appear to have
+        any effect when referenced from a [sound_looping][].
     class: struct
     meta:
       tag_id: 'cdmg'
