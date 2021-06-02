@@ -28,7 +28,7 @@ type_defs:
       postprocess_hek_data: true
       pre_compile: true
     comments:
-      en: Likely a leftover from pre-CE development.
+      en: Used for the global health and shield HUD meters.
     assert_size: 172
     fields:
       - name: flags

@@ -24,12 +24,12 @@ type_defs:
         comments:
           en: >-
             The PC retail version of the game, ported by Gearbox, as well as its
-            derivatives like H1A on Xbox and MCC stock maps.
-      - name: h1a_custom
+            earlier derivatives like H1A for Xbox 360.
+      - name: h1a_mcc
         value: 13
         comments:
           en: >-
-            For MCC H1A support of custom maps.
+            The version for stock and custom maps for H1A in MCC.
       - name: custom_edition
         value: 609
         comments:
