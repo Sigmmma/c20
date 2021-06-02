@@ -1,4 +1,4 @@
-Guerilla is a visual [tag][tags] editor. Although it can visualize [bitmaps][bitmap] and play sounds, it is primarily focused on editing and viewing the structured fields which comprise tags. It does not offer ingame previews or interactive placement of [objects][object], which is [Sapien's][h1a-sapien] role.
+**H1A Guerilla** is a visual [tag][tags] editor. Although it can visualize [bitmaps][bitmap] and play sounds, it is primarily focused on editing and viewing the structured fields which comprise tags. It does not offer ingame previews or interactive placement of [objects][object], which is [Sapien's][h1a-sapien] role.
 
 # Saved workspaces
 Using _File > Save/Load Workspace_, you can save and reload a file which contains the current state of open tags and their window positions. Guerilla automatically creates a file `guerilla.cfg` with the last window state when closed.
@@ -14,3 +14,7 @@ A few features have been backported from Halo 2.
 - A zoom level feature has been added to the bitmap viewer.
 
 Some errors have also been fixed and the some unused UI options have been removed.
+
+# Using a custom tags path
+
+See [using custom content paths][using-custom-content-paths], you only need to set a tags directory as Geurilla doesn't use the data folder. It should work without any major issues.

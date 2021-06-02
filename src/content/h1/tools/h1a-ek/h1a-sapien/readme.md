@@ -24,6 +24,12 @@ If you are used to the legacy tools here is a quick primer on what's changed, if
 
 Enable `debug_objects_bounding_spheres` and `debug_objects_collision_models ` alongside `debug_objects` to get the bounding spheres and collision debug to render. 
 
+# Command line flags
+Command line flags can be passed to H1A Sapien at launch to change run-time behavior. These features are experimental and might not work as expected.
+ 
+- `-multipleinstance` command line flag can be used to allow multiple instances of Sapien to be launched at once.
+- `-data_dir` and `-tags_dir` can be used to change the tags and data directories. See [using custom content paths][using-custom-content-paths].
+
 # Menu options
 ## Switch BSP
 It is common for singleplayer scenarios to be comprised of multiple [BSPs][scenario_structure_bsp]. The _Edit > Switch BSP_ option is used to change between them. **Always use this option to switch BSPs** and don't use [`switch_bsp`][scripting#functions-switch-bsp] in the [console][developer-console]. The menu option performs additional functions that maintain proper editor state, whereas `switch_bsp` is intended for level scripts.

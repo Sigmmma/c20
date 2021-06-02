@@ -27,6 +27,10 @@ The new commands allow along other things better error checking of tags, exporti
 - `arg(optionClass)` - Any value of `optionClass` can be used.
 - `Tool` or `tool.exe` - refers to the subject of this article, the H1A Tool, if the legacy Tool is being referred to that will be made explicit.
 
+# Command line flags
+
+- `-noassert` command line flag can be used with any verb to disable all asserts.
+- `-data_dir` and `-tags_dir` can be used to change the tags and data directories, this might not work with all verbs as it's experimental. See [using custom content paths][using-custom-content-paths].
 
 # Animation compilation
 [Animation data][animation-data] files containing transforms for a skeleton can be compiled into a [model_animations][] tag using the `animations` verb:

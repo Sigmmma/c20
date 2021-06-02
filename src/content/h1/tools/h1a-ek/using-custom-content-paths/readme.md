@@ -8,7 +8,7 @@ If no content path is given the tools fallback to using the `data` and `tags` su
 # Example usage
 
 ```sh
-tool -tags_dir hek_tags build-cache-file levels\test\tutorial\tutorial classic # packages the tutorial map using asserts located in the "hek_tags" tags directory
+tool -tags_dir hek_tags build-cache-file levels\test\tutorial\tutorial classic # packages the tutorial map using assets located in the "hek_tags" tags directory
 sapien -tags_dir "E:\my_custom_tagset\tags" -data_dir "E:\my_custom_tagset\data" # launch Sapien using your custom tag+data set located in "E:\my_custom_tagset\"
 guerilla -tags_dir "E:\Program Files (x86)\Microsoft Games\Halo Custom Edition\tags" # Edit old HEK tags using the new Guerilla release
 ```
