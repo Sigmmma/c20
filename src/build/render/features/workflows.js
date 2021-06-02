@@ -26,6 +26,10 @@ const localizations = localizer({
     en: "Edit with",
     es: "Editar con"
   },
+  buildTypes: {
+	  en: "Build type(s)",
+	  es: "$build_type_es"
+  },
   bidiUsingThis: {
     en: (item) => `${item} to/from`,
     es: (item) => `${item} a/de`
@@ -145,6 +149,11 @@ module.exports = async function(ctx) {
   if (itemInfo.authors && itemInfo.authors.length > 0) {
     metaSections.push({
       body: detailsList(localize("authors"), itemInfo.authors)
+    });
+  }
+  if (itemInfo.buildTypes && itemInfo.buildTypes.length > 0) {
+    metaSections.push({
+      body: detailsList(anchor(ctx.resolveUrl("build-types"), localize("buildTypes")), itemInfo.buildTypes)
     });
   }
   if (itemInfo.similarTo && itemInfo.similarTo.length > 0) {
