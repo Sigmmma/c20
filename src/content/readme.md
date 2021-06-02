@@ -1,6 +1,6 @@
 ![.figure "This installation's research facilities are most impressive! Perhaps we'll have time to see them later."](343.jpg)
 
-Welcome to **The Reclaimers Library**, a project which aims to document and centralize the immense tribal knowledge of the [Halo: Combat Evolved][h1] modding community. We cover [engine details][engine], the [Halo Editing Kit][hek], community tools, and [guides][] for custom content creation.
+Welcome to **The Reclaimers Library**, a project which aims to document and centralize the immense tribal knowledge of the [Halo: Combat Evolved][h1] modding community. We cover [engine details][engine], the legacy [Halo Editing Kit][hek], its re-released the [H1A Editing Kit][h1a-ek], community tools, and [guides][] for custom content creation.
 
 # Why mod Halo?
 _Modding_ is the modification of a game by its players. This can include unofficial bug fixes, new content, and changes to existing content.
