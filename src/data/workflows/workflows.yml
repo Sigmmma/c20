@@ -180,6 +180,10 @@ workflowItems:
   invader-resource:
     inherit: Invader
     heading: invader-resource
+  HEKPlus:
+    page: hek-plus
+    authors:
+      - SteelIXB
   # resources:
   wrl:
     page: wrl
@@ -510,6 +514,7 @@ similarItems:
   -
     - Refinery
     - invader-extract
+    - HEKPlus
   -
     - model
     - gbxmodel
