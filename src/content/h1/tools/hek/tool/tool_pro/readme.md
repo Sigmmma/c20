@@ -1,7 +1,7 @@
 **tool_pro** was a community-modified version of [H1CE Tool][hek/tool] which extended the [map cache file size limit][map#map-file-size-limit] and vertex buffer beyond their defaults.
 
 ```.alert danger
-Do not use tool_pro! It was found to contain malware that phones home, among other things.
+**Do not use tool_pro!** It was found to contain malware that phones home, among other things.
 
 If you need these increased defaults, use
 [invader-build][invader#invader-build]. It supports these modifications natively

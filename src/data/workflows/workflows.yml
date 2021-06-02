@@ -184,6 +184,8 @@ workflowItems:
     page: hek-plus
     authors:
       - SteelIXB
+  tool_pro:
+    page: tool_pro
   # resources:
   wrl:
     page: wrl
@@ -539,6 +541,8 @@ similarItems:
     - OS_Tool
     - LM_Tool
     - phantom_tool
+    - tool_pro
+    - invader-build
   -
     - phantom_tool
     - Ghostbuster
