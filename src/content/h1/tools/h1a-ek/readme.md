@@ -14,4 +14,4 @@ Use [Jointed Model Blender Toolset][tools/jointed-model-blender-toolset] or the 
 - The functionality used by [phantom_tool][hek/tool/phantom_tool] to remove [collision artifacts][scenario_structure_bsp#collision-artifacts] is now exposed without needing to modify tool.
 - Resource maps can optionally be modified by tool when building a cache file to include all the resource data for the scenario being packaged.
 - All the tags used in retail MCC plus the ones used for the old HEK tutorial are included alongside the tools, meaning tag extraction or prebuilt tag sets are no longer required if someone wants to mod the stock maps.
-- The tools are in general faster and more responsive (partially due to manual optimizations, partially due to being built with a modern optimizing compiler).
+- The tools are in general faster and more responsive (in part due to manual optimizations, in part due to [*play* builds][build-types#optimization-options] built with a modern optimizing compiler being used instead of *test* builds).
