@@ -129,6 +129,11 @@ workflowItems:
     page: h1a-sapien
     buildTypes:
       - tag_play
+  H1A-standlone:
+    inherit: H1A-EK
+    page: h1a-standlone
+    buildTypes:
+      - tag_test
   Lightmaps:
     page:  lightmaps
   Aether:

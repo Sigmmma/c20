@@ -1,0 +1,1 @@
+The H1A-EK includes a **standalone build** of that game. This build doesn't include network functionality and it intended for testing single-player maps. It includes AI debugging code not included in other published builds of the engine.
