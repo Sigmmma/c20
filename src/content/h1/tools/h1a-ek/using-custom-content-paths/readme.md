@@ -11,6 +11,7 @@ If no content path is given the tools fallback to using the `data` and `tags` su
 tool -tags_dir hek_tags build-cache-file levels\test\tutorial\tutorial classic # packages the tutorial map using assets located in the "hek_tags" tags directory
 sapien -tags_dir "E:\my_custom_tagset\tags" -data_dir "E:\my_custom_tagset\data" # launch Sapien using your custom tag+data set located in "E:\my_custom_tagset\"
 guerilla -tags_dir "E:\Program Files (x86)\Microsoft Games\Halo Custom Edition\tags" # Edit old HEK tags using the new Guerilla release
+halo_tag_test -tags_dir "E:\my_custom_tagset\tags" -windowed # Test your custom tagset in the standalone build
 ```
 
 # Known issues
@@ -26,3 +27,7 @@ No major issues but file selection dialog default to the last path used - make s
 ## Tool
 
 Some verbs might not work correctly, if something isn't working correctly try using that verb without content paths overrides.
+
+## Standalone
+
+No known issues.

@@ -7,10 +7,10 @@ keywords:
     - h1a
     
 toolName: H1A-standlone
-img: h1a-standlone.png
+img: halo_tag_test.png
 stub: true
 imgCaption:
-  en: This doesn't look like anything to me.
+  en: Using some `ai_render_*` and `ai_debug_*` globals
 thanks:
   num0005:
     en: Documenting H1A standlone build.

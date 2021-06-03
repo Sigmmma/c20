@@ -11,7 +11,7 @@ If you are used to the legacy tools here is a quick primer on what's changed, if
 - Bitmap DXT1-3 (BC1-3) encoding now uses DirectXTex, instead of some S3TC code, this should result in higher quality.
 - `sounds_by_type` has been renamed to `sounds-by-type`.
 - `build-cache-file` has new arguments.
-- `structure` now includes an optional argument to fix phantom BSPs
+- `structure` and `collision-geometry` now includes an optional argument to fix phantom BSPs
 - Documentation for some existing commands was fixed.
 - `zoners_model_upgrade` and `strings` commands have been removed.
 - Lots of new commands have been added and old bugs fixed.
@@ -31,6 +31,7 @@ The new commands allow along other things better error checking of tags, exporti
 
 - `-noassert` command line flag can be used with any verb to disable all asserts.
 - `-data_dir` and `-tags_dir` can be used to change the tags and data directories, this might not work with all verbs as it's experimental. See [using custom content paths][using-custom-content-paths].
+- `-pause` wait for user input before exiting, useful for custom launchers
 
 # Animation compilation
 [Animation data][animation-data] files containing transforms for a skeleton can be compiled into a [model_animations][] tag using the `animations` verb:
@@ -124,12 +125,8 @@ This commands takes a JMA file directly and converts it to a camera_track for th
 
 ```sh
 # camera-track <source-file>
-tool camera-track data\cameras\ohno.jma
+tool camera-track cameras\ohno.jma
 ```
-
-**Currently this command is case sensitive when it attempts to check if the source file file is a JMA file.** Only use lower case for the extension when typing the command into Tool. The actual case of the file itself is irrelevant.
-
-**<i>You need to use a standard file path not a path relative to the `data` folder</i>**, the command will also not save the the camera track in a location mirroring the data path but in the root tags directory (e.g. the command in the example above will create a tag called `ohno.camera_track` not `cameras\ohno.camera_track`).
 
 # Check bitmaps
 
@@ -181,7 +178,7 @@ Equivalent to consecutively running `check-bitmaps`, `check-shaders` and `check-
 A [JMS][] file containing a collision model can be compiled into a [model_collision_geometry][] using the `collision-geometry` verb:
 
 ```sh
-# collision-geometry <source-directory>
+# collision-geometry <source-directory> [fix-phantom-bsp]
 tool collision-geometry "scenery\rock"
 ```
 
@@ -193,6 +190,8 @@ Permutations and LODs are also supported using the same file name conventions as
 # <permutation_string> <lod_level>.JMS
 base superhigh.JMS
 ```
+
+The optional argument can be used to fix [collision artifacts][scenario_structure_bsp#collision-artifacts] for more details see [phantom_tool][] as it uses the same approach.
 
 # Compiling DX11 shaders
 
@@ -221,15 +220,6 @@ tool dump-metagame-info
 ```
 
 Dumps information about the "metagame" (MCC scoring information) to a file called `metagame_info_dump.txt` in the current directory.
-
-# Export bitmaps
-
-Helper command for S3D development, exports all bitmaps in the tags matching a predefined criteria.
-
-```sh
-# export-bitmaps <path>
-tool export-bitmaps E:\s3d\h1a\preload\images
-```
 
 
 # Export sounds to FSB
@@ -429,13 +419,13 @@ tool plate "scenery\rock\bitmaps" 2 0.5 2
 
 ## Arguments
 
-*Source Directory*:  Folder containing the `.tif` files.
+*Source Directory*:  Folder containing the `.tif` files, these should be at least 24-bit.
 
 *Scale*: How much the images are scaled down by (8 results in a smaller image than 2).
 
 *Alpha*: Blending alpha of border between image and surrounding mask.
 
-*Desired Sequence Count*: Number of images you want to include, must be lower than the number of images in the folder or the command will crash. The final sequence count may not reflect the requested count. It's recommended to set this to exactly the number of images in the folder.
+*Desired Sequence Count*: Number of images you want to include, it's recommended to set this to exactly the number of images in the folder.
 
 
 # Process sounds
@@ -447,15 +437,6 @@ tool process-sounds "sound\sfx\ambience\a10" "klax" gain+ 1
 ```
 
 For the example above, Tool would expect to find a set of sound tags at `tags\sound\sfx\ambience\a10\`. Any sound tags that contain the substring "klax" in the filename will have a value of 1 added to gain.
-
-# Profile bitmap
-
-Obsolete command for checking if bitmaps match certain criteria
-
-```sh
-# profile-bitmaps <directory>
-tool levels\test\my_map\bitmaps
-```
 
 
 # Recover TIFF from bitmap tag
