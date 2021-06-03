@@ -34,7 +34,7 @@ To identity tag types in-engine and within tag data, Halo uses compact fixed-siz
 ## Unused tags and fields
 The types of tags and their structures changed during the game's development. Evidence of this can be seen in Halo's engine, the HEK's tools and tags, and official maps.
 
-For example, [Guerilla][] allows users to create new [spheroid][] tags despite them containing no fields and being totally useless. The [actor][] tag contains an unused [weapon][] reference and probably predates the creation of [actor_variant][], which references both.
+For example, [H1CE Guerilla][hek/guerilla] allows users to create new [spheroid][] tags despite them containing no fields and being totally useless. The [actor][] tag contains an unused [weapon][] reference and probably predates the creation of [actor_variant][], which references both.
 
 ## Invalid data
 Not only were fields added and removed during development, but some were repurposed to different types without correcting existing tag instances. This has resulted in tags which shipped with Halo's maps containing some technically invalid data. The tag `warthog gunner.actor_variant` still contains a [projectile][] reference overlapping the space of 4 fields (starting with grenade type) in the final version of the tag structure.

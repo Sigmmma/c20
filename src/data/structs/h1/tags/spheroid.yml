@@ -8,7 +8,7 @@ type_defs:
     comments:
       en: >-
         Spheroid is an unused leftover tag class from earlier in Halo's development.
-        Although references to it can be seen in the H1CE HEK, It no longer exists in
+        Although references to it can be seen in the H1CE HEK, it no longer exists in
         the [H1A-EK][].
     fields:
       - type: pad

@@ -466,7 +466,6 @@ workflowItems:
     inherit: tags
     page: sound_scenery
   spheroid:
-    inherit: tags
     page: spheroid
   string_list:
     inherit: tags
@@ -687,7 +686,7 @@ workflows:
   - using: Halo Physics Importer
     from: physics
     to: 3ds Max
-    
+
   - using: H1A-Tool
     from: fbx-h1a
     to:
@@ -850,6 +849,10 @@ workflows:
       - OS_Guerilla
       - Reclaimer
     edit: tags
+  - using:
+      - Guerilla
+      - OS_Guerilla
+    edit: spheroid
   # shaders
   - using: Mozzarilla
     from: shader_transparent_chicago_extended
