@@ -1,16 +1,294 @@
 entry_type: ContinuousDamageEffect
-imports: {}
+imports:
+  h1/tags/common:
+    - Bounds
+    - WaveFunction
+  h1/tags/damage_effect:
+    - DamageEffectSideEffect
+    - DamageEffectCategory
+    - DamageEffectDamageFlags
 type_defs:
   ContinuousDamageEffect:
+    assert_size: 512
     comments:
       en: >-
-        This tag class is not used in any stock maps, nor does it appear to have
-        any effect when referenced from a [sound_looping][].
+        Creates a continuous screen shake and controller vibration within a radius
+        of a [sound_looping][] source. This tag class is not used in any stock maps
+        and the effect only applies while certain [damage_effect][] are also applying
+        to the player.
     class: struct
     meta:
       tag_id: 'cdmg'
     fields:
-      - type: pad
-        size: 1
+      - name: radius
+        type: Bounds
+        meta:
+          unit: world units
+        type_args:
+          T: float
         comments:
-          en: This type has yet to be documented.
+          en: >
+            The minimum radius (falloff start) maximum (cutoff) fade the scale
+            of the effect's camera shake linearly by distance from the [sound_looping][]
+            source which references this tag class.
+      - name: cutoff_scale
+        type: float
+        meta:
+          unused: true
+          min: 0
+          max: 1
+        comments:
+          en: This value does not affect the cutoff radius or effect scale.
+      - type: pad
+        size: 24
+      - name: low_frequency
+        type: float
+        meta:
+          min: 0
+          max: 1
+        comments:
+          en: >-
+            Power of the low frequency controller vibration. This is scaled by
+            distance but not the wobble function.
+      - name: high_frequency
+        type: float
+        meta:
+          min: 0
+          max: 1
+        comments:
+          en: >-
+            Power of the high frequency controller vibration. This is scaled by
+            distance but not the wobble function.
+      - type: pad
+        size: 24
+      - name: random translation
+        type: float
+        meta:
+          unit: world units
+        comments:
+          en: >-
+            The maximum distance that the player view can move for camera shake.
+            It is scaled by distance and wobble.
+      - name: random rotation
+        type: Angle
+        meta:
+          unit: degrees
+        comments:
+          en: >-
+            The maximum angle that the player view can rotate for camera shake.
+            It is scaled by distance and wobble.
+      - type: pad
+        size: 12
+      - name: wobble_function
+        type: WaveFunction
+      - type: pad
+        size: 2
+      - name: wobble_function_period
+        type: float
+        meta:
+          unit: seconds
+        comments:
+          en: Controls the repeating duration of a periodic wobble function.
+      - name: wobble_weight
+        type: float
+        comments:
+          en: >-
+            Sets the influence of the wobble function in dynamically scaling
+            translational and rotational camera shake. A value of `0.0` signifies
+            that the wobble function has no effect and the shake strength is based
+            purely on distance; a value of `1.0` signifies that the shake strength
+            is scaled by both the wobble function and distance equally.
+        meta:
+          min: 0
+          max: 1
+      - type: pad
+        size: 192
+      - name: damage_side_effect
+        type: DamageEffectSideEffect
+        meta:
+          unused: true
+      - name: damage_category
+        type: DamageEffectCategory
+        meta:
+          unused: true
+      - name: damage_flags
+        type: DamageEffectDamageFlags
+        meta:
+          unused: true
+      - type: pad
+        size: 4
+      - name: damage_lower_bound
+        type: float
+        meta:
+          unused: true
+      - name: damage_upper_bound
+        type: Bounds
+        meta:
+          unused: true
+        type_args:
+          T: float
+      - name: damage_vehicle_passthrough_penalty
+        type: float
+        meta:
+          unused: true
+      - type: pad
+        size: 4
+      - name: damage_stun
+        type: float
+        meta:
+          unused: true
+          min: 0
+          max: 1
+      - name: damage_maximum_stun
+        type: float
+        meta:
+          unused: true
+          min: 0
+          max: 1
+      - name: damage_stun_time
+        type: float
+        meta:
+          unused: true
+          unit: seconds
+      - type: pad
+        size: 4
+      - name: damage_instantaneous_acceleration
+        type: float
+        meta:
+          unused: true
+      - type: pad
+        size: 8
+      - name: dirt
+        type: float
+        meta:
+          unused: true
+      - name: sand
+        type: float
+        meta:
+          unused: true
+      - name: stone
+        type: float
+        meta:
+          unused: true
+      - name: snow
+        type: float
+        meta:
+          unused: true
+      - name: wood
+        type: float
+        meta:
+          unused: true
+      - name: metal_hollow
+        type: float
+        meta:
+          unused: true
+      - name: metal_thin
+        type: float
+        meta:
+          unused: true
+      - name: metal_thick
+        type: float
+        meta:
+          unused: true
+      - name: rubber
+        type: float
+        meta:
+          unused: true
+      - name: glass
+        type: float
+        meta:
+          unused: true
+      - name: force_field
+        type: float
+        meta:
+          unused: true
+      - name: grunt
+        type: float
+        meta:
+          unused: true
+      - name: hunter_armor
+        type: float
+        meta:
+          unused: true
+      - name: hunter_skin
+        type: float
+        meta:
+          unused: true
+      - name: elite
+        type: float
+        meta:
+          unused: true
+      - name: jackal
+        type: float
+        meta:
+          unused: true
+      - name: jackal_energy_shield
+        type: float
+        meta:
+          unused: true
+      - name: engineer_skin
+        type: float
+        meta:
+          unused: true
+      - name: engineer_force_field
+        type: float
+        meta:
+          unused: true
+      - name: flood_combat_form
+        type: float
+        meta:
+          unused: true
+      - name: flood_carrier_form
+        type: float
+        meta:
+          unused: true
+      - name: cyborg_armor
+        type: float
+        meta:
+          unused: true
+      - name: cyborg_energy_shield
+        type: float
+        meta:
+          unused: true
+      - name: human_armor
+        type: float
+        meta:
+          unused: true
+      - name: human_skin
+        type: float
+        meta:
+          unused: true
+      - name: sentinel
+        type: float
+        meta:
+          unused: true
+      - name: monitor
+        type: float
+        meta:
+          unused: true
+      - name: plastic
+        type: float
+        meta:
+          unused: true
+      - name: water
+        type: float
+        meta:
+          unused: true
+      - name: leaves
+        type: float
+        meta:
+          unused: true
+      - name: elite_energy_shield
+        type: float
+        meta:
+          unused: true
+      - name: ice
+        type: float
+        meta:
+          unused: true
+      - name: hunter_shield
+        type: float
+        meta:
+          unused: true
+      - type: pad
+        size: 28

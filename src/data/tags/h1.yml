@@ -159,7 +159,6 @@ continuous_damage_effect:
   structName: ContinuousDamageEffect
   structModule: h1/tags/continuous_damage_effect
   id: 'cdmg'
-  unused: true
 shader_transparent_plasma:
   structName: ShaderTransparentPlasma
   structModule: h1/tags/shader_transparent_plasma

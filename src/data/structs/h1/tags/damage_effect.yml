@@ -4,6 +4,7 @@ imports:
     - FunctionType
     - ColorARGB
     - Angle
+    - Bounds
     - WaveFunction
     - TagDependency
 type_defs:
