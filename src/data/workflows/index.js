@@ -39,7 +39,7 @@ async function loadWorkflows() {
 
       const similarTo = similarItems
         .flatMap(group => group.includes(itemName) ? group : [])
-        .filter(otherName => otherName != itemName);
+        .filter(otherName => otherName != itemName && !workflowItems[otherName].deprecated);
 
       const workflows = workflowsExpanded.filter(flow =>
         flow.edit == itemName ||
