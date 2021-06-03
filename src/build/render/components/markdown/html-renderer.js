@@ -26,12 +26,19 @@ module.exports = function(ctx) {
   const {renderMarkdown} = require("./index");
 
   const processAbbreviations = (text) => {
-    autoAbbreviations.forEach(([short, full]) => {
-      if (full[ctx.lang]) {
-        text = text.replace(new RegExp(short, "g"), `<abbr title="${full[ctx.lang]}">${short}</abbr>`);
-      }
+    //take all the keywords to replace and make a regex pattern out of them so we can rely on regex precedence
+    const replacementPattern = new RegExp(
+      `(${
+        Object.keys(autoAbbreviations)
+          .map(short => short.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+          .join("|")
+      })`,
+      "g"
+    );
+    return text.replace(replacementPattern, (short) => {
+      const replacement = R.path([short, ctx.lang], autoAbbreviations);
+      return replacement ? `<abbr title="${replacement}">${short}</abbr>` : short;
     });
-    return text;
   };
 
   renderer.text = R.pipe(processAbbreviations, renderer.text);

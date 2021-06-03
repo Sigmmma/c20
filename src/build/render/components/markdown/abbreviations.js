@@ -1,4 +1,4 @@
-module.exports = Object.entries({
+module.exports = {
   "H1X": {
     en: "Halo 1 for Xbox (Bungie)"
   },
@@ -14,4 +14,4 @@ module.exports = Object.entries({
   "H1A": {
     en: "Halo 1 Anniversary for MCC, aka. CEA (343i)"
   }
-});
+};
