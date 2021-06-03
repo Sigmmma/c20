@@ -182,9 +182,11 @@ workflowItems:
     heading: invader-resource
   HEKPlus:
     page: hek-plus
+    deprecated: true
     authors:
       - SteelIXB
   tool_pro:
+    deprecated: true
     page: tool_pro
   # resources:
   wrl:
@@ -740,6 +742,7 @@ workflows:
   - using:
       - Refinery
       - invader-extract
+      - HEKPlus
     from: map
     to: tags
   # lightmaps and bsps

@@ -18,6 +18,10 @@ const localizations = localizer({
     en: "Workflows",
     es: "Flujos de trabajo"
   },
+  deprecatedWorkflows: {
+    en: "Deprecated workflows",
+    es: "Flujos de trabajo obsoletos"
+  },
   edit: {
     en: "Edit",
     es: "Editar"
@@ -68,8 +72,9 @@ const isReverse = (flowA, flowB) => {
     flowA.to == flowB.from;
 };
 
-const workflowsList = (ctx, thisItem, workflows) => {
+const workflowsList = (ctx, thisItem, itemInfo) => {
   const itemAnchor = (itemName) => workflowItemAnchor(ctx, itemName);
+  const {workflows, deprecated} = itemInfo;
   const localize = localizations(ctx.lang);
 
   const labeledFlows = {};
@@ -81,18 +86,31 @@ const workflowsList = (ctx, thisItem, workflows) => {
   };
 
   for (let flow of workflows) {
-    //at this time we don't need to show cyclic flows
+    //at this time we don't need to show cyclic flows or deprecated ones
     if (isReverse(flow, flow)) {
       continue;
     }
 
     if (flow.edit && flow.using) {
+      const flowHasDeprecatedItems =
+        ctx.data.workflows.getWorkflowItem(flow.edit).deprecated ||
+        ctx.data.workflows.getWorkflowItem(flow.using).deprecated;
+      if (flowHasDeprecatedItems && !ctx.data.workflows.getWorkflowItem(thisItem).deprecated) {
+        continue;
+      }
       if (flow.using == thisItem) {
         pushLabeledFlow("edit", localize("edit"), flow.edit, itemAnchor(flow.edit));
       } else {
         pushLabeledFlow("edit-with", localize("editWith"), flow.using, itemAnchor(flow.using));
       }
     } else if (flow.from && flow.to && flow.using) {
+      const flowHasDeprecatedItems =
+        ctx.data.workflows.getWorkflowItem(flow.using).deprecated ||
+        ctx.data.workflows.getWorkflowItem(flow.from).deprecated ||
+        ctx.data.workflows.getWorkflowItem(flow.to).deprecated;
+      if (flowHasDeprecatedItems && !ctx.data.workflows.getWorkflowItem(thisItem).deprecated) {
+        continue;
+      }
       //we only want one list item for bi-directional flow pairs
       const hasReverse = workflows.find(other => !flowsEqual(flow, other) && isReverse(other, flow));
       if (hasReverse) {
@@ -118,7 +136,7 @@ const workflowsList = (ctx, thisItem, workflows) => {
   }
 
   return detailsList(
-    localize("workflows"),
+    localize(deprecated ? "deprecatedWorkflows" : "workflows"),
     Object.values(labeledFlows).map(({base, items}) => {
       items = Object.values(items);
       if (items.length == 1) {
@@ -157,7 +175,7 @@ module.exports = async function(ctx) {
   if (itemInfo.workflows && itemInfo.workflows.length > 0) {
     metaSections.push({
       cssClass: "content-tool-minor",
-      body: workflowsList(ctx, workflowItemName, itemInfo.workflows)
+      body: workflowsList(ctx, workflowItemName, itemInfo)
     });
   }
 
