@@ -180,6 +180,12 @@ workflowItems:
   invader-resource:
     inherit: Invader
     heading: invader-resource
+  HEKPlus:
+    page: hek-plus
+    authors:
+      - SteelIXB
+  tool_pro:
+    page: tool_pro
   # resources:
   wrl:
     page: wrl
@@ -510,6 +516,7 @@ similarItems:
   -
     - Refinery
     - invader-extract
+    - HEKPlus
   -
     - model
     - gbxmodel
@@ -534,6 +541,8 @@ similarItems:
     - OS_Tool
     - LM_Tool
     - phantom_tool
+    - tool_pro
+    - invader-build
   -
     - phantom_tool
     - Ghostbuster
