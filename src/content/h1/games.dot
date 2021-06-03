@@ -1,50 +1,57 @@
 digraph G {
-  # xbox
-  node [style=filled color="#8fcc86"]
-  xbox_pre [label="Unknown pre-release build"]
-  xbox_1749 [label="Xbox beta 1749\nBuild: 01.08.15.1749"]
-  xbox_ntsc_beta [label="Xbox NTSC beta\nBuild: 01.09.25.2247\nEngine version: 5"]
-  xbox_ntsc_retail [label="Xbox NTSC retail release\nBuild: 01.10.12.2276\nEngine version: 5"]
-  xbox_pal_retail [label="Xbox PAL retail release\nBuild: 01.01.14.2342\nEngine version: 5"]
+  subgraph h1x {
+    node [style=filled color="#8fcc86"]
+    h1x_pre [label="Unknown pre-release build"]
+    h1x_1749 [label="H1X beta 1749\nBuild: 01.08.15.1749"]
+    h1x_ntsc_beta [label="H1X NTSC beta\nBuild: 01.09.25.2247\nCache version: 5"]
+    h1x_ntsc_retail [label="H1X NTSC retail release\nBuild: 01.10.12.2276\nCache version: 5"]
+    h1x_pal_retail [label="H1X PAL retail release\nBuild: 01.01.14.2342\nCache version: 5"]
+  }
 
-  # pc
-  node [style=filled color="#c8cc86"];
-  pc_beta [label="PC beta \"1.5\"\nBuild: 01.07.30.0452\nEngine version: 7"];
-  pc_gold [label="PC gold master\nBuild: 01.00.00.0563\nEngine version: 7"];
-  pc_100 [label="PC 1.00 retail release\nBuild: 01.00.00.0564\nEngine version: 7"];
-  pc_101 [label="PC update 1.01"];
-  pc_102 [label="PC update 1.02"];
-  pc_103 [label="PC update 1.03"];
-  pc_104 [label="PC update 1.04"];
-  pc_107 [label="PC update 1.07"];
-  pc_108 [label="PC update 1.08"];
-  pc_109 [label="PC update 1.09"];
-  pc_110 [label="PC update 1.10\nBuild: 1.0.10.0621"];
-  pc_demo [label="PC demo\nBuild: 01.00.00.0576\nEngine version: 6"];
+  subgraph h1pc {
+    node [style=filled color="#c8cc86"];
+    pc_beta1 [label="H1PC beta\nBuild: 01.05.22.0268"];
+    pc_beta2 [label="H1PC beta \"1.5\"\nBuild: 01.07.30.0452\nCache version: 7"];
+    pc_gold [label="H1PC gold master\nBuild: 01.00.00.0563\nCache version: 7"];
+    pc_100 [label="H1PC 1.00 retail release\nBuild: 01.00.00.0564\nCache version: 7"];
+    pc_101 [label="H1PC 1.01"];
+    pc_102 [label="H1PC 1.02"];
+    pc_103 [label="H1PC 1.03"];
+    pc_104 [label="H1PC 1.04"];
+    pc_107 [label="H1PC 1.07"];
+    pc_108 [label="H1PC 1.08"];
+    pc_109 [label="H1PC 1.09"];
+    pc_110 [label="H1PC 1.10\nBuild: 1.0.10.0621"];
+    pc_demo [label="H1PC demo\nBuild: 01.00.00.0576\nCache version: 6"];
+  }
 
-  # custom edition
-  node [style=filled color="#8686cc"];
-  ce_100 [label="Custom Edition\nBuild: 01.00.00.0609\nEngine version: 609"];
-  ce_107 [label="CE update 1.07"];
-  ce_108 [label="CE update 1.08"];
-  ce_109 [label="CE update 1.09"];
-  ce_110 [label="CE update 1.10"];
+  subgraph h1ce {
+    node [style=filled color="#8686cc"];
+    h1ce_100 [label="H1CE\nBuild: 01.00.00.0609\nCache version: 609"];
+    h1ce_107 [label="H1CE 1.07"];
+    h1ce_108 [label="H1CE 1.08"];
+    h1ce_109 [label="H1CE 1.09"];
+    h1ce_110 [label="H1CE 1.10\nBuild: 01.00.10.0621"];
+  }
 
-  # mac
-  node [style=filled color="#cca286"];
-  mac_retail [label="PowerPC Mac retail release\nEngine version: 7"];
-  mac_universal [label="Mac universal binary"];
-  mac_204 [label="Mac update 2.0.4"];
-  mac_demo [label="PowerPC Mac Demo\nEngine version: 6"];
+  subgraph mac {
+    node [style=filled color="#cca286"];
+    mac_retail [label="PowerPC Mac retail release\nCache version: 7"];
+    mac_universal [label="Mac universal binary"];
+    mac_204 [label="Mac update 2.0.4"];
+    mac_demo [label="PowerPC Mac Demo\nCache version: 6"];
+  }
 
-  # anniversary (invader uses cache v563)
-  node [style=filled color="#cc86c9"];
-  ann [label="Anniversary (Xbox 360)\nBuild: 01.00.01.0563"];
-  mcc_xbone [label="MCC (Xbox One)"];
-  mcc_xbone_china [label="MCC (Xbox One)\nCensored Chinese version"];
-  mcc_pc [label="MCC (PC)"];
-  mcc_pc_live [label="", fixedsize="false", width=0, height=0, shape=none];
-  mcc_xbone_live [label="", fixedsize="false", width=0, height=0, shape=none];
+  subgraph h1a {
+    node [style=filled color="#cc86c9"];
+    h1a_360 [label="H1A (Xbox 360)\nBuild: 01.00.01.0563"];
+    h1a_xbone [label="H1A MCC (XB1)"];
+    h1a_xbone_china [label="H1A \"Pegasus\" (China) (XB1)"];
+    h1a_pc [label="H1A MCC (PC)"];
+    h1a_pc_s7 [label="H1A Season 7 (PC)"];
+    h1a_pc_live [label="", fixedsize="false", width=0, height=0, shape=none];
+    h1a_xbone_live [label="", fixedsize="false", width=0, height=0, shape=none];
+  }
 
   #mods
   node [style=filled color="#afafaf"];
@@ -53,17 +60,21 @@ digraph G {
   nhe [label="Neutral Host Edition (mod)"];
   halomd [label="HaloMD (mod)"];
 
-  # xbox line
-  xbox_pre -> xbox_1749;
-  xbox_1749 -> xbox_ntsc_beta;
-  xbox_ntsc_beta -> xbox_ntsc_retail;
-  xbox_ntsc_retail -> xbox_pal_retail;
+  #other games
+  node [style=filled color="#88afaf"];
+  h2 [label="Halo 2"];
+
+  h1x_pre -> h1x_1749;
+  h1x_1749 -> h1x_ntsc_beta;
+  h1x_ntsc_beta -> h1x_ntsc_retail;
+  h1x_ntsc_retail -> h1x_pal_retail;
 
   # gearbox pc line
-  xbox_pre -> pc_beta [label="Sources"];
-  xbox_ntsc_retail -> pc_beta [label="Some tags"];
-  pc_beta -> pc_gold [label="(MP scoreboard made to use console font)"];
-  xbox_ntsc_retail -> pc_gold [label="Most tags other than\ngeneric shaders and some MP BSPs"];
+  h1x_pre -> pc_beta1 [label="Code"];
+  pc_beta1 -> pc_beta2;
+  h1x_ntsc_retail -> pc_beta2 [label="Some tags"];
+  pc_beta2 -> pc_gold [label="(MP scoreboard made to use console font)"];
+  h1x_ntsc_retail -> pc_gold [label="Most tags"];
   pc_gold -> pc_100 [label="(MP scoreboard fixed by\nchanging console font in globals)"];
   pc_100 -> pc_101 [label="Day one crash fix"];
   pc_101 -> pc_102 [label="Multi-instance dedis, rcon,\nminor bug fixes, chat crash fix"];
@@ -77,16 +88,16 @@ digraph G {
   pc_101 -> pc_demo [label="Engine"];
 
   # custom edition line
-  pc_104 -> ce_100 [label="Engine"];
-  pc_100 -> ce_100 [label="Tags"];
-  ce_100 -> ce_107;
-  pc_107 -> ce_107 [label="Patches"];
-  ce_107 -> ce_108;
-  pc_108 -> ce_108 [label="Patches"];
-  ce_108 -> ce_109;
-  pc_109 -> ce_109 [label="Patches"];
-  ce_109 -> ce_110;
-  pc_110 -> ce_110 [label="Patches"];
+  pc_104 -> h1ce_100 [label="Engine"];
+  pc_100 -> h1ce_100 [label="Tags"];
+  h1ce_100 -> h1ce_107;
+  pc_107 -> h1ce_107 [label="Patches"];
+  h1ce_107 -> h1ce_108;
+  pc_108 -> h1ce_108 [label="Patches"];
+  h1ce_108 -> h1ce_109;
+  pc_109 -> h1ce_109 [label="Patches"];
+  h1ce_109 -> h1ce_110;
+  pc_110 -> h1ce_110 [label="Patches"];
 
   # mac
   pc_demo -> mac_demo [label="Cache files"];
@@ -99,17 +110,20 @@ digraph G {
   pc_109 -> mac_204 [label="Patches"];
 
   # mods
-  xbox_ntsc_retail -> h15;
+  h1x_ntsc_retail -> h15;
   h15 -> h1final;
   h1final -> nhe;
   mac_204 -> halomd;
 
   # h1a and mcc
-  pc_gold -> ann;
-  ann -> mcc_xbone [label="Campaign"];
-  pc_gold -> mcc_xbone [label="Multiplayer"];
-  mcc_xbone -> mcc_pc;
-  mcc_xbone -> mcc_xbone_live [label="Active updates"];
-  mcc_xbone -> mcc_xbone_china;
-  mcc_pc -> mcc_pc_live [label="Active updates"];
+  pc_gold -> h1a_360;
+  h1a_360 -> h1a_xbone [label="Campaign"];
+  pc_gold -> h1a_xbone [label="Multiplayer"];
+  h1a_xbone -> h1a_pc;
+  h1a_xbone -> h1a_xbone_live [label="Active updates"];
+  h1a_xbone -> h1a_xbone_china;
+  h1a_pc -> h1a_pc_s7;
+  h1ce_110 -> h1a_pc_s7 [label="Code"];
+  h2 -> h1a_pc_s7 [label="Code"];
+  h1a_pc_s7 -> h1a_pc_live [label="Active updates"];
 }
