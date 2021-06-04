@@ -61,7 +61,13 @@ With your BSP mesh selected, press the Fix Materials button. This will set all o
 
 ## Importing objects
 
-To import your objects, you are going to need TheGhost's [gbxmodel importer](http://hce.halomaps.org/index.cfm?fid=1972), so install that first. In the Aether script utility there is a Marker Tools button. Press it and a window will pop up which is what we are going to use to place all of our objects. Hit the Open Marker File button and select one of the `.aemk` files you exported from Aether earlier. Once you have done so, the Markers list will be populated with the object types used in the map. Look at the first object in the scenery list. It's handy to have your scenario open in [Guerilla][] at this point so that you can easily find out what gbxmodel you need to open, as well as what bitmaps you need to extract.
+To import your objects, you are going to need TheGhost's [gbxmodel importer](http://hce.halomaps.org/index.cfm?fid=1972), so install that first. In the Aether script utility there is a _Marker Tools_ button. Press it and a window will pop up which is what we are going to use to place all of our objects. Hit the _Open Marker File_ button and select one of the `.aemk` files you exported from Aether earlier. Once you have done so, the Markers list will be populated with the object types used in the map. Look at the first object in the scenery list. It's handy to have your scenario open in [Guerilla][] at this point so that you can easily find out what gbxmodel you need to open, as well as what bitmaps you need to extract.
+
+```.alert
+If importing markers causes the script utility to hang/freeze, try deleting any comment lines (beginning with "#") at the start of the marker file. For example:
+
+![](aemk-fix.jpg)
+```
 
 <figure>
   <a href="Fix_Materials.jpg">

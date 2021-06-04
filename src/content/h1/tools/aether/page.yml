@@ -17,4 +17,6 @@ keywords:
 thanks:
   Reindeer:
     en: Porting Aether documentation from ModaWiki
+  aLTis:
+    en: Finding a fix for frozen marker importing
 toolName: Aether
