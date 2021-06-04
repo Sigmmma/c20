@@ -2,7 +2,7 @@
 import os
 
 """
-png_compress.py: Loseslessly compress all png files
+png_compress.py: Loseslessly compress all png files. This script it slow but compresses the PNGs as well as possible.
 Requires: oxipng
 Author: num0005
 """
@@ -17,7 +17,7 @@ for subdir, dirs, files in os.walk(os.path.join("..", "content")):
             old_size = os.path.getsize(file_path)
             
             print(F"Compressing {file_path}")
-            os.system(F"oxipng -o 1 --strip safe \"{file_path}\"")
+            os.system(F"oxipng -o 6 --strip safe \"{file_path}\"")
             
             size_change = old_size - os.path.getsize(file_path)
             
