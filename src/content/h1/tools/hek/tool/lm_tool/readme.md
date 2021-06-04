@@ -2,6 +2,8 @@
 
 ```.alert
 The updated [H1A Tool][h1a-tool] supports a `-noassert` flag that, with its other lightmapping optimizations, greatly outperforms LM_Tool and is now the fastest lightmapping solution.
+
+![](lm-time.jpg)
 ```
 
 # Installation
