@@ -20,7 +20,7 @@ def FileExists(file_name):
     
 total_reduction = 0
 files_compressed = 0
-for subdir, dirs, files in os.walk(".."):
+for subdir, dirs, files in os.walk(os.path.join("..", "content")):
     for file in files:
         ext = os.path.splitext(file)[-1].lower()
         if ext == ".png":
@@ -61,6 +61,8 @@ for subdir, dirs, files in os.walk(".."):
             
             if FileExists(readme_file_name):
                 ReplaceInFile(readme_file_name, file, jpeg_name)
+            print(F"Deletintg old png")
+            os.remove(file_path)
 
 
 print(f"=== {files_compressed} files compressed! ===")
