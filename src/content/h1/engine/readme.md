@@ -25,8 +25,8 @@ Note that on Xbox, the engine makes some in-memory [tag edits][tool#hardcoded-ta
 # Other games
 
 <figure>
-  <a href="stubbs.png">
-    <img src="stubbs.png" alt=""/>
+  <a href="stubbs.jpg">
+    <img src="stubbs.jpg" alt=""/>
   </a>
   <figcaption>
     <p>A Stubbs map extracted and re-used in CMT's Project Oddball</p>

@@ -77,11 +77,11 @@ The level must be a sealed. The level must be a contiguous structure that forms 
 We will now select the edges that go across the level and cut them in half. We will then delete the other half so that we can mirror our changes through a mirror modifier. This will help us have to only do our modeling work once.
 
 1. Start by selecting the edges as shown in the following image. Make sure that you are in [edit mode](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) and have your selection type set to [edge select](https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/introduction.html).
-	* ![](A.png)
+	* ![](A.jpg)
 2. Once you have the edges selected, you can right click to bring up the context menu. Click the subdivide option to split the edges down the middle.
-	* ![](B.png)
+	* ![](B.jpg)
 3. Now go ahead and switch from [edge select](https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/introduction.html) to [face select.](https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/introduction.html) Select all of the highlighted faces as shown in the following image. Press the <kbd>X</kbd> key once you are done to bring up the delete menu. Select the "Faces" option to be left with only half of the structure.
-	* ![](C.png)
+	* ![](C.jpg)
 4. Lets finish this off by adding a modifier to our level object to mirror the geometry.
 
 ## Modifiers and you

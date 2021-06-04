@@ -19,7 +19,7 @@ The `Watson` directory and the files within it (`dw15.exe`, various `dwintl.dll`
 
 # Multiplayer chat: Keystone, controls, and content
 
-![.figure An example modified chat editbox, a practice abandoned after mods implemented better chat systems.](editbox.png)
+![.figure An example modified chat editbox, a practice abandoned after mods implemented better chat systems.](editbox.jpg)
 
 The library `Keystone.dll` is used for [Halo's][h1] stock multiplayer chat functionality. The game also requires the library `msxml.dll` to be installed on the system for chat to display properly. An installer can be found in Halo's `redist` directory.
 

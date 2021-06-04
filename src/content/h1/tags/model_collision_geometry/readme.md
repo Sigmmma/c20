@@ -10,7 +10,7 @@ Collision geometry, rather than the [model][gbxmodel], is used to cast [scenery]
 
 # Pathfinding spheres
 
-![.figure Pathfinding spheres (blue) for a50 shown in [Sapien][] after running `debug_objects_pathfinding_spheres 1`](pathfinding-spheres.png)
+![.figure Pathfinding spheres (blue) for a50 shown in [Sapien][] after running `debug_objects_pathfinding_spheres 1`](pathfinding-spheres.jpg)
 
 AI can figure out where to go by checking the pathfinding data on the [BSP][scenario_structure_bsp]. However, since objects like [scenery][] and [units][unit] are not part of the BSP, Bungie implemented _pathfinding spheres_: spherical markers on objects that AI actively avoid walking into.
 

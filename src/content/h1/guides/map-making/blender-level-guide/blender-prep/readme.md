@@ -9,7 +9,7 @@ See the above link for setting up the Blender addon for exporting Halo assets if
 ## Undo count
 Consider increasing the number of edits you can undo in Blender by changing the setting in preferences. Be aware that increasing this setting will use up more of your system RAM, so keep the value reasonable.
 
-![Undo steps setting of 128](A.png)
+![Undo steps setting of 128](A.jpg)
 
 ## Hotkeys
 There will probably be certain Blender functions you will be using repeatedly so it's probably a good idea to setup some quick hotkeys for important functions. You could do this later if you're not sure what you need now.
@@ -27,7 +27,7 @@ An option added by the exporter to keep settings you don't need to care about hi
 ## Workspace
 Since we are modeling lets be sure to pick the correct workspace for our work. Choose the "Modeling" workspace found in the top left by default. You don't need to see things like the timeline if you're just making a level so this should help simplify the experience.
 
-![The Modeling tab is at the top of the editor window.](E.png)
+![The Modeling tab is at the top of the editor window.](E.jpg)
 
 ## Clip start and end
 The scale at which Halo levels are modeled is quite large. For instances, outdoor spaces like Bloodgulch are upwards of [1000 Blender units (JMS)][scale] across. By default, Blender scenes have a viewport [clipping range][wiki-clipping] of `0.01 m` to `1000 m`. This means that parts of your model may be cut off when zooming out to large scales. Blender's clipping distances can be adjusted in the View settings pane (press <kbd>N</kbd> and select the View tab).

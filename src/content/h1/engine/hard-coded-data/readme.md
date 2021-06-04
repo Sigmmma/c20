@@ -5,8 +5,8 @@ cannot be directly changed or controlled.
 # Multiplayer armor colors
 
 <figure>
-  <a href="armor_colors.png">
-    <img src="armor_colors.png" alt="Armor colors in order"/>
+  <a href="armor_colors.jpg">
+    <img src="armor_colors.jpg" alt="Armor colors in order"/>
   </a>
   <figcaption>
     <p>Spartan armor colors with shaders as they appear ingame.</p>

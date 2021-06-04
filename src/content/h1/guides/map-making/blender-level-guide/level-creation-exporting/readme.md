@@ -10,7 +10,7 @@ If there are any images that you find difficult to read then try opening the ima
 # Finding the export menu
 We will be starting by finding the export menu for our [Blender][blender] exporter. Find the File menu in the toolbar on the top left and open it to reveal the contents. In the menu you will see a few options but the only option relevant to you is the menu option labeled *Export*. To export our geometry as a *.JMS* file you will want to select the option labeled *Halo Jointed Model Skeleton (.jms)*:
 
-![A nice export menu so thoughtfully provided by our benefactors](A.png)
+![A nice export menu so thoughtfully provided by our benefactors](A.jpg)
 
 An export menu should appear on your screen after clicking *Halo Jointed Model Skeleton (.jms)*. It should look something like this:
 
@@ -21,7 +21,7 @@ Lets break down each of the options found in the menu.
 ## Game version
 The *Game Version* option lets us choose our target game, which we will set to *Halo CE*:
 
-![Why wait for the future when you can let it come to you! This feature will let you quickly export for any title](C.png)
+![Why wait for the future when you can let it come to you! This feature will let you quickly export for any title](C.jpg)
 
 ## File details
 A CE-specific box that will let us set the filename for our *JMS* from the menu easily without having to rename the file manually. Using either of these options will overwrite whatever the user inputs as the filename:
