@@ -215,6 +215,15 @@ class Search extends Component {
         }
       }
 
+      //sort by if the query is a substring of the page title
+      searchResults.sort((a, b) => {
+        const aIncludes = a.title.toLowerCase().includes(query.toLowerCase());
+        const bIncludes = b.title.toLowerCase().includes(query.toLowerCase());
+        if (aIncludes && !bIncludes) return -1;
+        if (bIncludes && !aIncludes) return 1;
+        return 0;
+      });
+
       this.setState({
         query,
         searchResults,
