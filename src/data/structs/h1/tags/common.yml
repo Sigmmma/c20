@@ -388,6 +388,8 @@ type_defs:
       - name: buffer
         type: char
         count: 32
+        comments:
+          en: Null-terminated string in 32-char buffer.
   TagDependency:
     class: struct
     fields:

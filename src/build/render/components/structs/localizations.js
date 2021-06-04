@@ -74,6 +74,9 @@ module.exports = localizer({
   meta_hek_maximum: {
     en: "HEK max"
   },
+  meta_h1a_ek_max_count: {
+    en: "H1A-EK max"
+  },
   meta_hek_max_count: {
     en: "HEK max count"
   },

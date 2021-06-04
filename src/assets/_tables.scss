@@ -64,6 +64,9 @@ table.type-def {
     .field-meta {
       border-color: var(--fg-faded);
     }
+    & a {
+      opacity: 0.5;
+    }
   }
 }
 

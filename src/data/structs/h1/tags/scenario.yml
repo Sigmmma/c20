@@ -695,6 +695,9 @@ type_defs:
         type: Index
         meta:
           index_of: structure bsps
+          unused: true
+        comments:
+          en: The game does not read from this field. It is hidden in [H1A Guerilla][h1a-guerilla].
       - name: type_0
         type: ScenarioSpawnType
       - name: type_1
@@ -865,10 +868,11 @@ type_defs:
       - name: weapon_group
         type: TagDependency
         meta:
+          unused: true
           tag_classes:
             - item_collection
         comments:
-          en: _Unused._
+          en: Unused by the game. Hidden in [H1A tools][h1a-ek].
       - type: pad
         size: 112
   ScenarioNetgameEquipmentFlags:
@@ -1979,6 +1983,14 @@ type_defs:
       - name: left
       - name: right
       - name: center
+  ScenarioCutsceneTitleFlags:
+    class: bitfield
+    size: 4
+    bits:
+      - name: wrap_horizontally
+      - name: wrap_vertically
+      - name: center_vertically
+      - name: bottom_justify
   ScenarioCutsceneTitle:
     class: struct
     assert_size: 96
@@ -2001,12 +2013,22 @@ type_defs:
         type: Index
       - name: text_style
         type: ScenarioTextStyle
+        comments:
+          en: >-
+            Sets the title text style. This field is hidden in
+            [H1CE Guerilla][hek/guerilla], but visible in
+            [H1A Guerilla][h1a-guerilla].
       - name: justification
         type: ScenarioJustification
       - type: pad
         size: 2
-      - type: pad
-        size: 4
+      - name: text_flags
+        type: ScenarioCutsceneTitleFlags
+        comments:
+          en: >-
+            Positioning flags for the title. This field is hidden in
+            [H1CE Guerilla][hek/guerilla], but visible in
+            [H1A Guerilla][h1a-guerilla].
       - name: text_color
         type: ColorARGBInt
       - name: shadow_color
@@ -2068,18 +2090,24 @@ type_defs:
           tag_classes:
             - scenario_structure_bsp
           unused: true
+        comments:
+          en: Deprecated field, hidden in [H1A Guerilla][h1a-guerilla].
       - name: won't_use
         type: TagDependency
         meta:
           tag_classes:
             - scenario_structure_bsp
           unused: true
+        comments:
+          en: Deprecated field, hidden in [H1A Guerilla][h1a-guerilla].
       - name: can't_use
         type: TagDependency
         meta:
           tag_classes:
             - sky
           unused: true
+        comments:
+          en: Deprecated field, hidden in [H1A Guerilla][h1a-guerilla].
       - name: skies
         type: Block
         type_args:
@@ -2137,13 +2165,16 @@ type_defs:
           T: ScenarioObjectName
         meta:
           hek_max_count: 512
-          max: 65534
+          h1a_ek_max_count: 640
+          theoretical_max: 65534
           read_only: true
         comments:
           en: >
             Contains the names of all named objects in the scenario. These names
             are referenced by index for each type of placed object if that object is
-            named. The console command [`debug_objects_names`][developer-console#debugfunctions-debug-objects-names] can display these.
+            named. The console command [`debug_objects_names`][developer-console#debugfunctions-debug-objects-names]
+            can display these. The maximum number of names was increased to 640 (from Halo 2)
+            in H1A.
       - name: scenery
         type: Block
         type_args:
@@ -2157,14 +2188,15 @@ type_defs:
           T: ScenarioSceneryPalette
         meta:
           hek_max_count: 100
-          max: 65534
+          h1a_ek_max_count: 256
+          theoretical_max: 65534
       - name: bipeds
         type: Block
         type_args:
           T: ScenarioBiped
         meta:
           hek_max_count: 128
-          max: 65535
+          theoretical_max: 65535
         comments:
           en: >
             Special-purpose bipeds placed in the map, typically used for
@@ -2180,21 +2212,29 @@ type_defs:
           T: ScenarioBipedPalette
         meta:
           hek_max_count: 100
-          max: 65534
+          h1a_ek_max_count: 256
+          theoretical_max: 65534
       - name: vehicles
         type: Block
         type_args:
           T: ScenarioVehicle
         meta:
           hek_max_count: 80
-          max: 65535
+          h1a_ek_max_count: 256
+          theoretical_max: 65535
+        comments:
+          en: >
+            Vehicle spawn points, which can be used for both singleplayer and
+            multiplayer modes. [Netgame flags][scenario#tag-field-netgame-flags-type-race-vehicle]
+            are used in race mode. The limit was raised to 256 in H1A.
       - name: vehicle_palette
         type: Block
         type_args:
           T: ScenarioVehiclePalette
         meta:
           hek_max_count: 100
-          max: 65534
+          h1a_ek_max_count: 256
+          theoretical_max: 65534
       - name: equipment
         type: Block
         type_args:
@@ -2208,7 +2248,8 @@ type_defs:
           T: ScenarioEquipmentPalette
         meta:
           hek_max_count: 100
-          max: 65534
+          h1a_ek_max_count: 256
+          theoretical_max: 65534
       - name: weapons
         type: Block
         type_args:
@@ -2227,7 +2268,8 @@ type_defs:
           T: ScenarioWeaponPalette
         meta:
           hek_max_count: 100
-          max: 65534
+          h1a_ek_max_count: 256
+          theoretical_max: 65534
         comments:
           en: >-
             The types of weapons that can be placed throughout a singeplayer
@@ -2252,7 +2294,8 @@ type_defs:
           T: ScenarioMachinePalette
         meta:
           hek_max_count: 100
-          max: 65534
+          h1a_ek_max_count: 256
+          theoretical_max: 65534
       - name: controls
         type: Block
         type_args:
@@ -2266,7 +2309,8 @@ type_defs:
           T: ScenarioControlPalette
         meta:
           hek_max_count: 100
-          max: 65534
+          h1a_ek_max_count: 256
+          theoretical_max: 65534
       - name: light_fixtures
         type: Block
         type_args:
@@ -2280,7 +2324,8 @@ type_defs:
           T: ScenarioLightFixturePalette
         meta:
           hek_max_count: 100
-          max: 65534
+          h1a_ek_max_count: 256
+          theoretical_max: 65534
       - name: sound_scenery
         type: Block
         type_args:
@@ -2294,7 +2339,8 @@ type_defs:
           T: ScenarioSoundSceneryPalette
         meta:
           hek_max_count: 100
-          max: 65534
+          h1a_ek_max_count: 256
+          theoretical_max: 65534
       - type: pad
         size: 84
       - name: player_starting_profile
