@@ -46,6 +46,7 @@ for subdir, dirs, files in os.walk(os.path.join("..", "content")):
             if size_change < 1024:
                 print(F"Size change smaller than a kilobyte or negative, skipping")
                 os.remove(jpeg_path)
+                continue
             
             print(F"Size reduced by {size_change/1024} KiB!")
             
