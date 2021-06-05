@@ -2864,9 +2864,15 @@ Functions:
         en: |-
           ```hsc
           (map_name <string>)
+          ; in cache builds:
           (map_name "a10")
+          ; in tags builds:
+          (map_name "levels\a10\a10")
           ```
-          Loads a singleplayer map by name.
+          Loads a singleplayer map by scenario name. If using the
+          [H1A standalone build][h1a-standalone-build], which directly loads
+          tags instead of [cache files][map], use the scenario
+          [tag path][tags#tag-references-and-paths] instead.
     - slug: map_reset
       info:
         en: |-
