@@ -66,19 +66,8 @@ info:
 # progress and also prevents the page from being added to the sitemap (used by
 # search bots). Once a page has reached a useful state, remove this flag.
 stub: true
-# In addition to the stub alert above, you can provide custom alerts to bring
-# the reader's attention to certain information. Some example use cases are
-# recommending that the reader visits prerequisite pages, warning them against
-# using unmaintained tools, or congratulating them after reaching the final
-# step of a multi-page guide.
-alerts:
-  # Valid types are "danger", "success", and "info" (the default if not given).
-  - type: danger
-    # Provide the alert content in markdown format. Supports auto-reflinks.
-    # You can provided text for just one language of the page if desired.
-    md:
-      en: This process may damage your computer!
-      es: ¡Este proceso puede dañar su computadora!
+# The alerts option is deprecated. Use inline markdown alerts instead.
+alerts: []
 # It's important to credit those who discovered something about the engine,
 # researched a topic, helped answer questions, or otherwise contributed towards
 # a page. Thanked individuals are listed at the bottom of a page, and appear

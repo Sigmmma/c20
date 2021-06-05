@@ -37,14 +37,14 @@ Unlike [BSPs][scenario_structure_bsp], collision geometry can have a self-inters
 
 Although phantom BSP is typically seen in the context of level geometry, it can also affect model collision geometry because this tag uses the same collision data structures as a [scenario_structure_bsp][scenario_structure_bsp#phantom-bsp]. In the case of models, phantom BSP is limited to the object's bounding radius.
 
-Like with level geometry, these can be troubleshooted in [Sapien] by running the console commands:
+Like with level geometry, these can be troubleshooted in [Sapien][] by running the console commands:
 
 ```console
 collision_debug 1
 collision_debug_phantom_bsp 1
 ```
 
-To fix them, use similar tricks as fixing level phantom BSP: avoiding nearly co-planar faces and slightly altering the collision model around the problematic location.
+To fix them, use similar tricks as fixing level phantom BSP: fixing cases of nearly co-planar faces reported in your [WRL file][wrl] and/or slightly altering the collision model around the problematic location. If changes to the source geometry do not resolve the phantom BSP, you can use [H1A Tool][h1a-tool] with the `fix-phantom-bsp` option enabled or [phantom_tool][] to compile the collision.
 
 # Related commands
 These commands are entered into the [developer console][developer-console].

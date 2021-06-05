@@ -11,7 +11,7 @@ If you are used to the legacy tools here is a quick primer on what's changed, if
 - Bitmap DXT1-3 (BC1-3) encoding now uses DirectXTex, instead of some S3TC code, this should result in higher quality.
 - `sounds_by_type` has been renamed to `sounds-by-type`.
 - `build-cache-file` has new arguments.
-- `structure` and `collision-geometry` now includes an optional argument to fix phantom BSPs
+- `structure` and `collision-geometry` now include an optional argument to fix phantom BSP.
 - Documentation for some existing commands was fixed.
 - `zoners_model_upgrade` and `strings` commands have been removed.
 - Lots of new commands have been added and old bugs fixed.
@@ -180,6 +180,7 @@ A [JMS][] file containing a collision model can be compiled into a [model_collis
 ```sh
 # collision-geometry <source-directory> [fix-phantom-bsp]
 tool collision-geometry "scenery\rock"
+tool collision-geometry "scenery\rock" true
 ```
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenery\rock\physics\rock.JMS`. Assuming no errors, it would be compiled into `tags\scenery\rock\rock.model_collision_geometry`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
@@ -191,7 +192,7 @@ Permutations and LODs are also supported using the same file name conventions as
 base superhigh.JMS
 ```
 
-The optional argument can be used to fix [collision artifacts][scenario_structure_bsp#collision-artifacts] for more details see [phantom_tool][] as it uses the same approach.
+The optional argument fixes [model collision artifacts][model_collision_geometry#phantom-bsp] by enabling the same fixup code used for structure BSPs.
 
 # Compiling DX11 shaders
 
@@ -520,6 +521,8 @@ A [JMS][] file containing level geometry can be compiled into a [scenario_struct
 ```sh
 # structure <scenario-directory> <bsp-name> [fix-phantom-bsp]
 tool structure levels\a30 a30_a
+tool structure levels\test\tutorial tutorial
+tool structure levels\test\tutorial tutorial true
 ```
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\levels\a30\models\a30_a.JMS`. Assuming no errors, it would be compiled into `tags\levels\a30\a30_a.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
@@ -529,12 +532,7 @@ Structure compilation converts the raw polygon and materials data from the JMS i
 Multiple JMS files can be placed in a level's `models` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 ## Phantom BSP fix
-
-The optional argument can be used to fix [collision artifacts][scenario_structure_bsp#collision-artifacts] like phantom BSP.
-
-The produced BSP tag will be slightly larger than a normal BSP.
-
-For more details see [phantom_tool][] as it uses the same approach.
+When the optional argument `[fix-phantom-bsp]` is `true` [collision artifacts][scenario_structure_bsp#collision-artifacts] like phantom BSP will be fixed at the cost of a larger BSP tag (collision data grows about 23%). This option performs the same fix which [phantom_tool][] enabled.
 
 # Structure breakable surfaces
 Updates [breakable surface data][scenario_structure_bsp#tag-field-breakable-surfaces] for an existing BSP tag. Saves the tag if only if there was no error.

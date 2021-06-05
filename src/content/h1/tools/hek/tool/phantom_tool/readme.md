@@ -1,12 +1,14 @@
-**phantom_tool** is a modified version of [H1CE Tool][hek/tool] which allows the compilation of [BSPs][scenario_structure_bsp] without [collision artifacts][scenario_structure_bsp#collision-artifacts] like phantom BSP. This is done by enabling orphaned code in Tool which fixes phantom BSP.
+**phantom_tool** is a modified version of [H1CE Tool][hek/tool] which allows the compilation of [BSPs][scenario_structure_bsp] and [model_collision_geometry][] without [collision artifacts][scenario_structure_bsp#collision-artifacts] like phantom BSP. This is done by enabling orphaned code in Tool which fixes phantom BSP.
 
 ```.alert
-The Tool feature enabled by this mod is properly supported in [H1A Tool][h1a-tool] using the `-fix-phantom-bsp` flag.
+**You do not need this tool if you're working with the H1A Editing Kit.**
+
+The code enabled by this mod is properly supported in [H1A Tool][h1a-tool] using the `fix-phantom-bsp` option for both the `structure` and `collision-geometry` verbs.
 ```
 
-The produced BSP tag will be slightly larger than a normal Tool-compiled BSP because the unused code seems to include more redundancy of surfaces at the leaves of the BSP tree.
+The produced tags will have larger (by about 23%) collision data compared to tags compiled without the fix applied. The code seems to include more duplication of surfaces at the leaves of the BSP tree.
 
-This tool should be used instead of [Ghostbuster][] when you have access to the source [JMS][].
+This tool or [H1A Tool][h1a-tool] should be used instead of [Ghostbuster][] when you have access to the source [JMS][].
 
 # Installation and usage
 Move `phantom_tool.exe` to your Halo CE install and use it in the exact same way as regular Tool [structure compilation][tool#structure-compilation]:

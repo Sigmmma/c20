@@ -1,5 +1,9 @@
 **Ghostbuster** is a [command-line][] tool used to detect and fix [phantom BSP][scenario_structure_bsp#phantom-bsp]. Given a BSP tag, the tool attempts to detect phantom collision surfaces and fixes them by modifying the BSP node structure.
 
+```.alert danger
+Ghostbuster should only be used as a last resort if you do not have access to the source [JMS][] for a BSP. Ghostbuster can create [collision holes][scenario_structure_bsp#bsp-holes] and misses some phantom BSP. Otherwise, use [phantom_tool][] or [H1A Tool][h1a-tool] to compile a BSP from JMS without phantom BSP.
+```
+
 Specifically, it searches for BSP nodes with dividing planes where [Tool][] has incorrectly assumed that one side is "outside" the map and reuses the same child node for both sides of the failed node.
 
 Ghostbuster is built on the [Reclaimer][] library.
@@ -14,7 +18,7 @@ Ghostbuster modifies BSP tags in-place unless the `-dryrun` flag is added, so it
 python3 ghostbuster.py <path to BSP tag>
 ```
 
-# Caveats
+# Known issues
 Due to rounding errors and the nature of how phantom BSP are detected, the script may report and "fix" a large number of false positives or miss some phantom BSP. This may cause collision holes where items fall through the map in the affected area.
 
 Always attempt to fix phantom BSP firstly by resolving any nearly coplanar faces indicated in the [WRL error geometry file][wrl], and secondly by using [phantom_tool][] if that's not working.
