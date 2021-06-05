@@ -61,6 +61,8 @@ async function loadWorkflows() {
       throw new Error(`The workflow item '${originalItemName}' does not define a page or URL`);
     }
 
+    result.similarTo = [...new Set(result.similarTo)]; //unique only
+
     return result;
   };
 
