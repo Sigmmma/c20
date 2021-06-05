@@ -44,6 +44,9 @@ module.exports = localizer({
   meta_compile_processed: {
     en: "Processed during compile"
   },
+  meta_pegasus_only: {
+    en: "Pegasus (China) only"
+  },
   meta_h1a_only: {
     en: "H1A only"
   },
