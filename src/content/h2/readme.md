@@ -1,6 +1,6 @@
 <figure>
-  <a href="h2cover.png">
-    <img src="h2cover.png" alt="""/>
+  <a href="h2cover.jpg">
+    <img src="h2cover.jpg" alt="""/>
   </a>
   <figcaption>
     <p>Halo 2's box art</p>

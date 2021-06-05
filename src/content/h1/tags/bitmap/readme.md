@@ -119,11 +119,11 @@ _NOTE: Having multiple cube maps in one bitmap does not randomize them._
 
 |Unfolded|Sprite Sequence|Multiple in one tag|
 |--------|------------|-------------------|
-<img src="bitmap_cubemap_swamp.png" width="200">|<img src="bitmap_cubemap_beach.png" width="200"><br><br><img src="bitmap_cubemap_grunt.png" width="200">|<img src="bitmap_cubemap_elite_multiple.png" width="200">|
+<img src="bitmap_cubemap_swamp.jpg" width="200">|<img src="bitmap_cubemap_beach.jpg" width="200"><br><br><img src="bitmap_cubemap_grunt.jpg" width="200">|<img src="bitmap_cubemap_elite_multiple.jpg" width="200">|
 
 # Sprites
 
-<img src="bitmap_sprites_source_vs_tag.png" width="600">
+<img src="bitmap_sprites_source_vs_tag.jpg" width="600">
 
 The sprite type allows a bitmap to contain a non-power-of-two texture, with support for animations with multiple permutations (sequences). Sprites are typically used for particles.
 

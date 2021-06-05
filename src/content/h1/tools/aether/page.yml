@@ -1,6 +1,6 @@
 title:
   en: Aether
-img: aether.png
+img: aether.jpg
 imgCaption:
   en: |
     Timberland's [BSP][scenario_structure_bsp] and [scenery][] extracted
@@ -17,4 +17,6 @@ keywords:
 thanks:
   Reindeer:
     en: Porting Aether documentation from ModaWiki
+  aLTis:
+    en: Finding a fix for frozen marker importing
 toolName: Aether

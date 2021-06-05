@@ -6,7 +6,7 @@ keywords:
     - cache
     - h1a
 toolName: H1A-standlone
-img: halo_tag_test.png
+img: halo_tag_test.jpg
 stub: true
 imgCaption:
   en: Using some `ai_render_*` and `ai_debug_*` globals

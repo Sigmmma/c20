@@ -165,7 +165,7 @@ Be sure to keep your material names lowercase as all tags paths in Halo should n
 We will now be going over how to apply your newly created materials to faces in your scene.
 
 1. Select the box (level) object.
-	* <a href="O.png" target="_blank"> <img src="O.png" title="Match the numbers in the image to the numbers in the list below." style="max-width: 400px; height: auto; "/> </a>
+	* <a href="O.jpg" target="_blank"> <img src="O.jpg" title="Match the numbers in the image to the numbers in the list below." style="max-width: 400px; height: auto; "/> </a>
 2. [Change context mode](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) from object mode to edit mode.
 3. Make sure you are in [face selection](https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/introduction.html) so that you can properly select the object faces.
 4. [Select all](https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/introduction.html#select-menu) faces of the cube except for the bottom area.
@@ -190,16 +190,16 @@ Follow the instructions below to begin.
 
 Now that you set up your scene there is one more detail you should be aware of. You may notice that if your viewport shading settings are set to this.
 
-<a href="T.png" target="_blank">
-	<img src="T.png" title="Settings that will render textures assigned to materials in solid shading." style="max-width: 400px; height: auto; "/>
+<a href="T.jpg" target="_blank">
+	<img src="T.jpg" title="Settings that will render textures assigned to materials in solid shading." style="max-width: 400px; height: auto; "/>
 </a>
 
 You will not have to switch to rendered viewport shading to see your textures but you have to deal with image alpha. If you do not want to see the alpha you can disable it in the newly created UV window. Move your cursor over your UV editing window and bring up the [UV properties window.](https://docs.blender.org/manual/en/latest/editors/image/image_settings.html#common-options)
 
 This will let you set some specific settings for your materials. Make sure to have a surface that has the "example_tutorial_ground" material selected in the viewport on the left so that we set the settings for the proper material.
 
-<a href="U.png" target="_blank">
-	<img src="U.png" title="Disable alpha so that the material isn't see through." style="max-width: 400px; height: auto; "/>
+<a href="U.jpg" target="_blank">
+	<img src="U.jpg" title="Disable alpha so that the material isn't see through." style="max-width: 400px; height: auto; "/>
 </a>
 
 Change the setting labeled "Alpha" from "Straight" to "None".
@@ -212,8 +212,8 @@ Using the info you learned from [here](https://docs.blender.org/manual/en/latest
 
 The result from that should be something that looks like this.
 
-<a href="X.png" target="_blank">
-	<img src="X.png" title="You can use smart UV project to quickly unwrap on object but you will eventually need to use unwraps and UV seams to manually fix certain objects. More on this in future sections." style="max-width: 400px; height: auto; "/>
+<a href="X.jpg" target="_blank">
+	<img src="X.jpg" title="You can use smart UV project to quickly unwrap on object but you will eventually need to use unwraps and UV seams to manually fix certain objects. More on this in future sections." style="max-width: 400px; height: auto; "/>
 </a>
 
 # Assigning sharp edges
@@ -221,12 +221,12 @@ A key difference between work in Blender VS 3DS Max is that Blender does not hav
 
 The purpose of assigning sharp edges is to make our polygon count seem higher than it actually is or just design more aesthetically pleasing geometry. Geometry with properly set edges can have drastic effects on a piece of geometry. See the following examples.
 
-<a href="Y.png" target="_blank">
-	<img src="Y.png" title="These two meshes have the same number of faces yet look pretty different. More on this in future sections." style="max-width: 400px; height: auto; "/>
+<a href="Y.jpg" target="_blank">
+	<img src="Y.jpg" title="These two meshes have the same number of faces yet look pretty different. More on this in future sections." style="max-width: 400px; height: auto; "/>
 </a>
 
-<a href="Z.png" target="_blank">
-	<img src="Z.png" title="Assigning sharp edges and setting up a proper edge split modifier can help you get the look you need." style="max-width: 400px; height: auto; "/>
+<a href="Z.jpg" target="_blank">
+	<img src="Z.jpg" title="Assigning sharp edges and setting up a proper edge split modifier can help you get the look you need." style="max-width: 400px; height: auto; "/>
 </a>
 
 As you can see we have two cylinder objects that have the same number of faces but two different looks. The object on the left could be considered a pipe or a paint can while the object on the right could be a hex nut. Making proper use of sharp edges can get you the look you need for your objects.
@@ -235,16 +235,16 @@ Normals if it isn't clear is the direction the face or vertex is pointing in and
 
 Firstly lets set shading to smooth so that we can see the effects of our sharp edges properly.
 
-<a href="1A.png" target="_blank">
-	<img src="1A.png" title="Lets set our shading to smooth." style="max-width: 400px; height: auto; "/>
+<a href="1A.jpg" target="_blank">
+	<img src="1A.jpg" title="Lets set our shading to smooth." style="max-width: 400px; height: auto; "/>
 </a>
 
 1. Make sure you have the box (level) object selected. Now [set shading to smooth](https://docs.blender.org/manual/en/latest/scene_layout/object/editing/shading.html)
 
 The result should look something like this.
 
-<a href="1B.png" target="_blank">
-	<img src="1B.png" title="A blank canvas." style="max-width: 400px; height: auto; "/>
+<a href="1B.jpg" target="_blank">
+	<img src="1B.jpg" title="A blank canvas." style="max-width: 400px; height: auto; "/>
 </a>
 
 Now that we finished our work we can begin to mark the edges as sharp.
