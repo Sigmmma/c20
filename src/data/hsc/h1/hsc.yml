@@ -940,18 +940,6 @@ Functions:
           Gets the status of a number of units running command lists: 0 = none,
           1 = finished command list, 2 = waiting for stimulus, 3 = running
           command list
-    - slug: ai_conversation_status
-      info:
-        en: >-
-          ```hsc
-
-          (ai_conversation_status <conversation>)
-
-          ```
-
-          Returns the status of a conversation (0=none, 1=trying to begin,
-          2=waiting for guys to get in position, 3=playing, 4=waiting to
-          advance, 5=could not begin, 6=finished successfully, 7=aborted midway)
     - slug: ai_conversation
       info:
         en: >-
@@ -983,6 +971,18 @@ Functions:
 
           Returns which line the conversation is currently playing, or 999 if
           the conversation is not currently playing.
+    - slug: ai_conversation_status
+      info:
+        en: >-
+          ```hsc
+
+          (ai_conversation_status <conversation>)
+
+          ```
+
+          Returns the status of a conversation (0=none, 1=trying to begin,
+          2=waiting for guys to get in position, 3=playing, 4=waiting to
+          advance, 5=could not begin, 6=finished successfully, 7=aborted midway)
     - slug: ai_conversation_stop
       info:
         en: |-
