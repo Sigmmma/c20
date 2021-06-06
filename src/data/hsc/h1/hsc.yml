@@ -792,6 +792,13 @@ Functions:
           Activates a nav point type <string> attached to a team anchored to an
           object with a vertical offset <real>. If the player is not local to
           the machine, this will fail.
+    - slug: ai
+      info:
+        en: |-
+          ```hsc
+          (ai <boolean>)
+          ```
+          turns all AI on or off.
     - slug: ai_actors
       info:
         en: |-
@@ -1592,6 +1599,20 @@ Functions:
           Teleports a group of actors to the starting locations of their current
           squad(s), only if they are not supported by solid ground (i.e. if they
           are falling after switching BSPs).
+    - slug: ai_timer_expire
+      info:
+        en: |-
+          ```hsc
+          (ai_timer_expire <ai>)
+          ```
+          makes a squad's delay timer expire and releases them to enter combat.
+    - slug: ai_timer_start
+      info:
+        en: |-
+          ```hsc
+          (ai_timer_start <ai>)
+          ```
+          makes a squad's delay timer start counting.
     - slug: ai_try_to_fight
       info:
         en: >-
@@ -2016,6 +2037,13 @@ Functions:
 
           Suppresses or enables the automatic creation of objects during
           cutscenes due to a bsp switch
+    - slug: cls
+      info:
+        en: |-
+          ```hsc
+          (cls)
+          ```
+          clears console text from the screen
     - slug: config_one_control
       info:
         en: |-
@@ -2030,6 +2058,48 @@ Functions:
           (connect <string> <string>)
           ```
           Attempt to connect to server - use ip:port password as parameters
+    - slug: core_load
+      info:
+        en: |-
+          ```hsc
+          (core_load)
+          ```
+          loads debug game state from core\core.bin
+    - slug: core_load_at_startup
+      info:
+        en: |-
+          ```hsc
+          (core_load_at_startup)
+          ```
+          loads debug game state from core\core.bin as soon as the map is initialized
+    - slug: core_load_name
+      info:
+        en: |-
+          ```hsc
+          (core_load_name <string>)
+          ```
+          loads debug game state from core\<path>
+    - slug: core_load_name_at_startup
+      info:
+        en: |-
+          ```hsc
+          (core_load_name_at_startup <string>)
+          ```
+          loads debug game state from core\<path> as soon as the map is initialized
+    - slug: core_save
+      info:
+        en: |-
+          ```hsc
+          (core_save)
+          ```
+          saves debug game state to core\core.bin
+    - slug: core_save_name
+      info:
+        en: |-
+          ```hsc
+          (core_save_name <string>)
+          ```
+          saves debug game state to core\<path>
     - slug: crash
       info:
         en: |-
@@ -2153,6 +2223,13 @@ Functions:
           (debug_memory_for_file "\halopc\haloce\source\tag_files\tag_groups.c")
           ```
           Dumps memory leaks from the specified source file
+    - slug: debug_pvs
+      info:
+        en: |-
+          ```hsc
+          (debug_pvs <boolean>)
+          ```
+          displays the current pvs.
     - slug: debug_sounds_distances
       info:
         en: >-
@@ -2278,6 +2355,13 @@ Functions:
 
           true makes the given device open automatically when any biped is
           nearby, false makes it not
+    - slug: device_set_never_appears_locked
+      info:
+        en: |-
+          ```hsc
+          (device_set_never_appears_locked <device> <boolean>)
+          ```
+          changes a machine's never_appears_locked flag, but only if paul is a bastard
     - slug: device_set_position
       info:
         en: >-
@@ -2312,6 +2396,13 @@ Functions:
           (device_set_power <device> 1.0)
           ```
           Immediately sets the power of a named device to the given value
+    - slug: disconnect
+      info:
+        en: |-
+          ```hsc
+          (disconnect)
+          ```
+          Disconnect from a server
     - slug: display_scenario_help
       info:
         en: |-
@@ -2555,6 +2646,13 @@ Functions:
 
           ```
           Gets ticks elapsed since the start of the game
+    - slug: game_variant
+      info:
+        en: |-
+          ```hsc
+          (game_variant <string>)
+          ```
+          set the game engine
     - slug: game_won
       info:
         en: >-
@@ -2761,6 +2859,97 @@ Functions:
 
           ```
           Resets the timer for the help text flashing
+    - slug: hud_set_help_text
+      info:
+        en: |-
+          ```hsc
+          (hud_set_help_text <hud_message>)
+          ```
+          displays <message> as the help text
+    - slug: hud_set_objective_text
+      info:
+        en: |-
+          ```hsc
+          (hud_set_objective_text <hud_message>)
+          ```
+          sets <message> as the current objective
+    - slug: hud_set_timer_position
+      info:
+        en: |-
+          ```hsc
+          (hud_set_timer_position <short> <short> <hud_corner>)
+          ```
+          sets the timer upper left position to (x, y)=>(<short>, <short>)
+    - slug: hud_set_timer_time
+      info:
+        en: |-
+          ```hsc
+          (hud_set_timer_time <short> <short>)
+          ```
+          sets the time for the timer to <short> minutes and <short> seconds, and starts and displays timer
+    - slug: hud_set_timer_warning_time
+      info:
+        en: |-
+          ```hsc
+          (hud_set_timer_warning_time <short> <short>)
+          ```
+          sets the warning time for the timer to <short> minutes and <short> seconds
+    - slug: hud_show_crosshair
+      info:
+        en: |-
+          ```hsc
+          (hud_show_crosshair <boolean>)
+          ```
+          hides/shows the weapon crosshair
+    - slug: hud_show_health
+      info:
+        en: |-
+          ```hsc
+          (hud_show_health <boolean>)
+          ```
+          hides/shows the health panel
+    - slug: hud_show_motion_sensor
+      info:
+        en: |-
+          ```hsc
+          (hud_show_motion_sensor <boolean>)
+          ```
+          hides/shows the motion sensor panel
+    - slug: hud_show_shield
+      info:
+        en: |-
+          ```hsc
+          (hud_show_shield <boolean>)
+          ```
+          hides/shows the shield panel
+    - slug: hud_team_background_set_pos
+      info:
+        en: |-
+          ```hsc
+          (hud_team_background_set_pos <long> <long>)
+          ```
+          shit
+    - slug: hud_team_background_set_scale
+      info:
+        en: |-
+          ```hsc
+          (hud_team_background_set_scale <real> <real>)
+          ```
+          shit
+    - slug: hud_team_icon_set_pos
+      info:
+        en: |-
+          ```hsc
+          (hud_team_icon_set_pos <long> <long>)
+          ```
+          shit
+    - slug: hud_team_icon_set_scale
+      info:
+        en: |-
+          ```hsc
+          (hud_team_icon_set_scale <real> <real>)
+          ```
+          shit
     - slug: input_activate_joy
       info:
         en: |-
@@ -3232,6 +3421,13 @@ Functions:
           (objects_detach chief ar1)
           ```
           Detaches from the given parent object the given child object
+    - slug: objects_dump_memory
+      info:
+        en: |-
+          ```hsc
+          (objects_dump_memory)
+          ```
+          debugs object memory usage
     - slug: objects_predict
       info:
         en: >-
@@ -3526,6 +3722,13 @@ Functions:
           (player_enable_input false)
           ```
           Toggle player input. The player can still free-look, but nothing else.
+    - slug: players
+      info:
+        en: |-
+          ```hsc
+          (players)
+          ```
+          returns a list of the players
     - slug: players_unzoom_all
       info:
         en: |-
@@ -3636,6 +3839,34 @@ Functions:
 
           ```
           Quits the game
+    - slug: radiosity_debug_point
+      info:
+        en: |-
+          ```hsc
+          (radiosity_debug_point)
+          ```
+          tests sun occlusion at a point.
+    - slug: radiosity_save
+      info:
+        en: |-
+          ```hsc
+          (radiosity_save)
+          ```
+          saves radiosity solution.
+    - slug: radiosity_start
+      info:
+        en: |-
+          ```hsc
+          (radiosity_start)
+          ```
+          starts radiosity computation.
+    - slug: random_range
+      info:
+        en: |-
+          ```hsc
+          (random_range <short> <short>)
+          ```
+          returns a random value in the range [lower bound, upper bound)
     - slug: rasterizer_decals_flush
       info:
         en: |-
@@ -3680,6 +3911,20 @@ Functions:
 
           ```
           Check for shader changes
+    - slug: rcon
+      info:
+        en: |-
+          ```hsc
+          (rcon [rcon password] [command])
+          ```
+          Sends a command for server to execute at console. Use \" to send quotes.
+    - slug: real_random_range
+      info:
+        en: |-
+          ```hsc
+          (real_random_range <real> <real>)
+          ```
+          returns a random value in the range [lower bound, upper bound)
     - slug: recording_kill
       info:
         en: |-
@@ -3725,6 +3970,19 @@ Functions:
           (recording_time (player0))
           ```
           Return the time remaining in the specified unit's cutscene recording
+    - slug: reload_shader_transparent_chicago
+      info:
+        en: |
+          ```hsc
+          (reload_shader_transparent_chicago)
+          ```
+    - slug: remote_player_stats
+      info:
+        en: |-
+          ```hsc
+          (remote_player_stats <string>)
+          ```
+          Displays the prediction stats of the specified remote player.
     - slug: render_effects
       info:
         en: |-
@@ -3770,6 +4028,13 @@ Functions:
           (or zero, if the animation is over). This function intentionally returns
           a value **2 frames lower** than the actual remaining frame count so scripts
           waiting for the animation to end can do something before it's over.
+    - slug: script_doc
+      info:
+        en: |-
+          ```hsc
+          (script_doc)
+          ```
+          saves a file called hs_doc.txt with parameters for all script commands.
     - slug: script_recompile
       info:
         en: |-
@@ -4191,6 +4456,13 @@ Functions:
 
           ```
           Places lens flares in the structure bsp
+    - slug: sv_ban_penalty
+      info:
+        en: |-
+          ```hsc
+          (sv_ban_penalty [(#)(m,h,d), 0=infinite])
+          ```
+          Specify up to 4 ban times for repeat ban/TK offenders.
     - slug: sv_ban
       info:
         en: >-
@@ -4212,6 +4484,20 @@ Functions:
 
           ```
           Print a list of banned players
+    - slug: sv_banlist_file
+      info:
+        en: |-
+          ```hsc
+          (sv_banlist_file [alphanumeric banlist file suffix])
+          ```
+          Sets and opens the file to be used for the player ban list.
+    - slug: 'sv_banopt:'
+      info:
+        en: |-
+          ```hsc
+          (sv_ban [player # or name] opt:[duration (#)(m,h,d)])
+          ```
+          <Server Only> Player is kicked and added to banned.txt.  Use sv_players to find the index.Specify optional duration for timed ban.  Use 0 to follow sv_ban_penalty rules.
     - slug: sv_end_game
       info:
         en: |-
@@ -4220,6 +4506,27 @@ Functions:
 
           ```
           End the current game
+    - slug: sv_friendly_fire
+      info:
+        en: |-
+          ```hsc
+          (sv_friendly_fire ["0" = defaults, "1" = off, "2" = shields, "3" = on])
+          ```
+          Use to provide a global override for the gametype friendly fire setting.
+    - slug: sv_gamelist
+      info:
+        en: |-
+          ```hsc
+          (sv_gamelist [substring])
+          ```
+          Display a list of game types, matching an optional substring.
+    - slug: sv_get_player_action_queue_length
+      info:
+        en: |-
+          ```hsc
+          (sv_get_player_action_queue_length <string>)
+          ```
+          Displays the action queue length for the specified player.
     - slug: sv_kick
       info:
         en: |-
@@ -4228,6 +4535,41 @@ Functions:
           (sv_kick "Micro$oft")
           ```
           **(Server Only)** Kicks the specified player from the server
+    - slug: sv_log_echo_chat
+      info:
+        en: |-
+          ```hsc
+          (sv_log_echo_chat [preference])
+          ```
+          Enables or disbles chat echo to the console. Set the preference to 0to disable chat echo, or 1 to enable chat echo.If the preference is not specified, displays the current preference.
+    - slug: sv_log_enabled
+      info:
+        en: |-
+          ```hsc
+          (sv_log_enabled ["1" to enable, "0" to disable])
+          ```
+          Enables or disables server logging. If 0/1 is not given, displays thecurrent logging status.
+    - slug: sv_log_file
+      info:
+        en: |-
+          ```hsc
+          (sv_log_file [log file name])
+          ```
+          Sets the server log file name. If no name is given, displays thecurrent log file name.
+    - slug: sv_log_note
+      info:
+        en: |-
+          ```hsc
+          (sv_log_note <string>)
+          ```
+          Leave a note in the server log
+    - slug: sv_log_rotation_threshold
+      info:
+        en: |-
+          ```hsc
+          (sv_log_rotation_threshold [threshold in kilobytes])
+          ```
+          Sets the log rotation threshold. When a log file's size (in kilobytes) exceedsthis number, it will be rotated. Set to 0 to disable log rotation.If the threshold is not specified, displays the current threshold.
     - slug: sv_map
       info:
         en: >-
@@ -4300,6 +4642,13 @@ Functions:
 
           Usage: `sv_mapcycle_del <index>` <br/> Removes the game at `<index>`.
           Will not affect running games.
+    - slug: sv_maplist
+      info:
+        en: |-
+          ```hsc
+          (sv_maplist [substring])
+          ```
+          Display a list of maps, matching an optional substring.
     - slug: sv_maxplayers
       info:
         en: >-
@@ -4313,6 +4662,13 @@ Functions:
 
           Sets the maximum number of players (between 1 and 16). If no value is
           given, displays the current value.
+    - slug: sv_motd
+      info:
+        en: |-
+          ```hsc
+          (sv_motd [motd file name])
+          ```
+          Sets the server message of the day file name. If no name is given, displays thecurrent motd file name. Set to "" to turn motd off.
     - slug: sv_name
       info:
         en: >-
@@ -4371,6 +4727,27 @@ Functions:
 
           **(Server Only)** Prints (*not* returns) a list of players in the
           current game
+    - slug: sv_rcon_password
+      info:
+        en: |-
+          ```hsc
+          (sv_rcon_password [remote console password])
+          ```
+          Sets the server remote console password. If no password is given, displays thecurrent password. Enter "" to disable rcon.
+    - slug: sv_say
+      info:
+        en: |-
+          ```hsc
+          (sv_say <string>)
+          ```
+          <Server Only> Usage: "sv_say <message>"Send a message to users
+    - slug: sv_single_flag_force_reset
+      info:
+        en: |-
+          ```hsc
+          (sv_single_flag_force_reset [boolean])
+          ```
+          Force the flag to reset in single flag CTF games when the timer expires, even if held by a player.If not specified, displays the current value.
     - slug: sv_status
       info:
         en: |-
@@ -4379,6 +4756,27 @@ Functions:
 
           ```
           Shows status of the server
+    - slug: sv_timelimit
+      info:
+        en: |-
+          ```hsc
+          (sv_timelimit ["-1" = default, "0" = infinite, <time in minutes>])
+          ```
+          Use to provide a global override for the gametype timelimit setting.
+    - slug: sv_tk_cooldown
+      info:
+        en: |-
+          ```hsc
+          (sv_tk_cooldown [time (#)(s,m)])
+          ```
+          Specify a TK point cooldown period, after which players lose a TK point.
+    - slug: sv_tk_grace
+      info:
+        en: |-
+          ```hsc
+          (sv_tk_grace [time (#)(s,m)])
+          ```
+          Specify the grace period for TK during which you don't get a TK point.
     - slug: sv_unban
       info:
         en: >-
@@ -4408,6 +4806,13 @@ Functions:
 
           ```
           Don't make me kick your ass
+    - slug: thread_sleep
+      info:
+        en: |-
+          ```hsc
+          (thread_sleep <long>)
+          ```
+          Sleeps the calling thread for the specified number of ms.
     - slug: time_code_reset
       info:
         en: |-
@@ -4434,6 +4839,13 @@ Functions:
           (time_code_start false)
           ```
           Starts/stops the time code timer
+    - slug: track_remote_player_position_updates
+      info:
+        en: |-
+          ```hsc
+          (track_remote_player_position_updates <string>)
+          ```
+          Sets the name of the remote player whose position update are to be tracked.
     - slug: ui_widget_show_path
       info:
         en: |
