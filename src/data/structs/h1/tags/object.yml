@@ -250,8 +250,13 @@ type_defs:
           unit: world units
         comments:
           en: |-
-            This is used to help cull objects for rendering which are not
-            visible and also determines the shadow map size for dynamic object shadows.
+            The bounding radius sets the approximate maximum size of the object
+            and is used for a variety of optimizations by the game:
+
+            * Culling objects for rendering which are not partially on screen.
+            * Setting the shadow map size for dynamic object shadows.
+            * Selecting an appropriate [LOD][gbxmodel#level-of-detail].
+
             The radius should contain this object completely, but not be too large.
             Setting it too high will cause the object to draw unccessarily when
             off-screen, but setting it too low will cause the object to have clipped

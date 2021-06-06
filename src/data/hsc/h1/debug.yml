@@ -1703,8 +1703,8 @@ DebugFunctions:
           ```
           When `debug_objects` is enabled, displays yellow spheres for [object
           bounding radius][object#tag-field-bounding-radius]. The sphere will be
-          black when the object is _inactive_. This setting defaults to `true`,
-          so the spheres will be visible already when turning on `debug_objects`.
+          black when the object is _inactive_. This setting defaults to `true`
+          in H1CE Sapien but not H1A Sapien.
     - slug: debug_objects_collision_models
       tags:
         - model_collision_geometry
@@ -1715,7 +1715,7 @@ DebugFunctions:
           ```
           When `debug_objects` is enabled, displays green meshes for object
           [collision models][model_collision_geometry]. This setting defaults
-          to `true`, so the meshes will be visible already when turning on `debug_objects`.
+          to `true` in H1CE Sapien but not H1A Sapien.
     - slug: debug_objects_devices
       info:
         en: |-
@@ -2546,8 +2546,11 @@ DebugFunctions:
       info:
         en: |-
           ```hsc
-          (rasterizer_debug_model_lod)
+          (rasterizer_debug_model_lod [short])
           ```
+          Forces certain object [LODs][gbxmodel#level-of-detail] to be used.
+          A value of `4` is the highest quality, and `0` the worst. The default
+          value `-1` returns to automatic behaviour.
     - slug: rasterizer_debug_model_vertices
       info:
         en: |-

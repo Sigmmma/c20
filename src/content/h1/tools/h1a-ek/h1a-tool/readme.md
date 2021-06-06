@@ -185,7 +185,7 @@ tool collision-geometry "scenery\rock" true
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenery\rock\physics\rock.JMS`. Assuming no errors, it would be compiled into `tags\scenery\rock\rock.model_collision_geometry`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
 
-Permutations and LODs are also supported using the same file name conventions as [render model compilation](tool#model-compilation):
+Permutations and LODs are also supported using the same file name conventions as [render model compilation](#model-compilation):
 
 ```sh
 # <permutation_string> <lod_level>.JMS

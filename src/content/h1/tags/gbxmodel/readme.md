@@ -55,7 +55,7 @@ Permutations are not [network synchronized][netcode].
   </figcaption>
 </figure>
 
-Models can contain multiple levels of detail (LODs) which are rendered for the object depending on its on-screen size. An object which is very distant and small does not need a lot of geometric detail, so it can be rendered using a simplified mesh with fewer or simpler shaders in order to keep framerates high in busy scenes.
+Models can contain multiple levels of detail (LODs), ranging from simplified meshes with reduced shader count to high detail meshes with numerous complex shaders. The game will select a LOD based on the on-screen diameter of the object's [bounding sphere][object#tag-field-bounding-radius] in pixels. Objects which are very distant or small don't need a lot of geometric detail, so they can be rendered using low quality LODs to keep the framerate high in busy scenes.
 
 Halo CE supports 5 LODs whose [pixel cutoffs](#tag-field-super-high-detail-cutoff) can be configured in this tag. From best to worst quality:
 

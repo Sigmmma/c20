@@ -3311,7 +3311,8 @@ Functions:
           (object_beautify chief true)
           (object_beautify chief false)
           ```
-          Makes an object pretty for the remainder of the levels' cutscenes
+          Makes an object use its highest quality [LOD][gbxmodel#level-of-detail]
+          for the remainder of the levels' cutscenes.
     - slug: object_can_take_damage
       info:
         en: |-

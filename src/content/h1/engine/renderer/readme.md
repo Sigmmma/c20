@@ -11,6 +11,8 @@ The **renderer** or **rasterizer** is the system of [Halo's engine][engine] resp
 
 Gearbox-era Halo uses the DirectX 9 API and shader version 2.0, being an early adopter of programmable shaders. Since support in user hardware was not as widespread as today, the renderer can be configured with [arguments][arguments#graphics-options] to use older shader versions or even [fixed function][ff] compatibility.
 
+Current versions of H1A use DirectX 11 instead.
+
 # Texture cache
 Textures to be rendered are loaded in a texture cache in memory. When a texture must be drawn that is not in this cache, it will be loaded from a [map cache file][map] (possibly a shared resource map) or the [tags directory][tags] depending on the build of the engine. This is called a _cache miss_ and, because it takes some time to stream data, the engine may not render the desired effect. This is the reason why weapons will sometimes not produce projectile [decals][decal] on the first impact.
 
