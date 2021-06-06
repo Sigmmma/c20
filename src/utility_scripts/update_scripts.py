@@ -91,22 +91,41 @@ with open(sys.argv[3], "r") as file:
 # some functions are documented elsewhere (or shouldn't be doc'ed), ignore those
 ignore = ("inspect", "not", "pin", "oid_dump", "oid_watch")
 
+# regex for finding the HS usage
+prog = re.compile("```hsc(.|\n)*?```")
+
+# regex for stripping HS usage formatting
+strip_usage_formatting = re.compile("```hsc\n*|\n*```")
+
 functions_yml: CommentedSeq = hsc_yml_data["Functions"]["rows"]
 print(functions_yml[0])
 offset_last = 0
 for command in commands:
     if command.name in ignore:
         continue
-    command_found = False
+    yml_function = None
     for function in functions_yml:
         if command.name == function["slug"]:
             offset_last = functions_yml.index(function)
-            command_found = True
-    if not command_found:
+            yml_function = function
+    if not yml_function:
         print(command.name + " is undoc!")
         print(offset_last)
         functions_yml.insert(offset_last + 1, create_function_yml(command))
         offset_last += 1
+    elif not "mcc_only" in yml_function:
+        info_en = yml_function["info"]["en"]
+        usage_info_old = re.sub(strip_usage_formatting, "", re.search(prog, info_en)[0])
+        usage = usage_info_old.split("\n")
+        usage[0] = command.command # change/update main usage string to H1A
+        new_usage = "```hsc\n" + "\n".join(usage) + "\n```"
+        ## python in it's great wisdom processes escapes in the replacement string
+        # https://docs.python.org/3/library/re.html#re.sub
+        # so we use a function instead to not have to deal with that
+        def get_new_usage(matchobj):
+            return new_usage
+        new_info_en = re.sub(prog, get_new_usage, info_en)
+        yml_function["info"]["en"] = new_info_en
 
 print("Saving updated yml!")
 with open(sys.argv[3], "w") as file:
