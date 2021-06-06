@@ -940,7 +940,7 @@ Functions:
           Gets the status of a number of units running command lists: 0 = none,
           1 = finished command list, 2 = waiting for stimulus, 3 = running
           command list
-    - slug: ai_command_list_status
+    - slug: ai_conversation_status
       info:
         en: >-
           ```hsc
