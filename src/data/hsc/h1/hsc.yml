@@ -755,6 +755,22 @@ Functions:
           Activates a nav point type `<string>` attached to (local) player `<unit>`
           anchored to a flag with a vertical offset `<real>`. If the player is not
           local to the machine, this will fail.
+    - slug: abs_integer
+      info:
+        en: |-
+          ```hsc
+          (<long> abs_integer <long>)
+          ```
+          return the absolute (non-negative) value of an integer
+      mcc_only: 'true'
+    - slug: abs_real
+      info:
+        en: |-
+          ```hsc
+          (<real> abs_real <real>)
+          ```
+          return the absolute (non-negative) value of a real
+      mcc_only: 'true'
     - slug: activate_nav_point_object
       info:
         en: >-
@@ -1719,6 +1735,70 @@ Functions:
           (bind <string> <string> <string>)
           ```
           Binds an input device/button combination to a game control
+    - slug: bit_test
+      info:
+        en: |-
+          ```hsc
+          (<long> bit_test <long> <short>)
+          ```
+          <flags> <bit_index>
+      mcc_only: 'true'
+    - slug: bit_toggle
+      info:
+        en: |-
+          ```hsc
+          (<long> bit_toggle <long> <short> <boolean>)
+          ```
+          <flags> <bit_index> <on_or_off>
+      mcc_only: 'true'
+    - slug: bitwise_and
+      info:
+        en: |-
+          ```hsc
+          (<long> bitwise_and <long> <long>)
+          ```
+          <lhs> AND <rhs>
+      mcc_only: 'true'
+    - slug: bitwise_flags_toggle
+      info:
+        en: |-
+          ```hsc
+          (<long> bitwise_flags_toggle <long> <long> <boolean>)
+          ```
+          <value> <flags> <on_or_off>
+      mcc_only: 'true'
+    - slug: bitwise_left_shift
+      info:
+        en: |-
+          ```hsc
+          (<long> bitwise_left_shift <long> <short>)
+          ```
+          <value> LHS <bit_count>
+      mcc_only: 'true'
+    - slug: bitwise_or
+      info:
+        en: |-
+          ```hsc
+          (<long> bitwise_or <long> <long>)
+          ```
+          <lhs> OR <rhs>
+      mcc_only: 'true'
+    - slug: bitwise_right_shift
+      info:
+        en: |-
+          ```hsc
+          (<long> bitwise_right_shift <long> <short>)
+          ```
+          <value> RHS <bit_count>
+      mcc_only: 'true'
+    - slug: bitwise_xor
+      info:
+        en: |-
+          ```hsc
+          (<long> bitwise_xor <long> <long>)
+          ```
+          <lhs> XOR <rhs>
+      mcc_only: 'true'
     - slug: breakable_surfaces_enable
       info:
         en: |-
@@ -2191,6 +2271,30 @@ Functions:
 
           ```
           Loads the saved camera position and facing
+    - slug: debug_camera_load_name
+      info:
+        en: |-
+          ```hsc
+          (<void> debug_camera_load_name <string>)
+          ```
+          loads the camera position and facing from <name>_<map_name>.txt
+      mcc_only: 'true'
+    - slug: debug_camera_load_simple_name
+      info:
+        en: |-
+          ```hsc
+          (<void> debug_camera_load_simple_name <string>)
+          ```
+          loads the camera position and facing from camera_<name>.txt
+      mcc_only: 'true'
+    - slug: debug_camera_load_text
+      info:
+        en: |-
+          ```hsc
+          (<void> debug_camera_load_text <string>)
+          ```
+          loads the camera position and facing from a passed in string
+      mcc_only: 'true'
     - slug: debug_camera_save
       info:
         en: |-
@@ -2199,6 +2303,22 @@ Functions:
 
           ```
           Saves the camera position and facing
+    - slug: debug_camera_save_name
+      info:
+        en: |-
+          ```hsc
+          (<void> debug_camera_save_name <string>)
+          ```
+          saves the camera position and facing to <name>_<map_name>.txt
+      mcc_only: 'true'
+    - slug: debug_camera_save_simple_name
+      info:
+        en: |-
+          ```hsc
+          (<void> debug_camera_save_simple_name <string>)
+          ```
+          saves the camera position and facing to camera_<name>.txt
+      mcc_only: 'true'
     - slug: debug_memory
       info:
         en: |-
@@ -2521,6 +2641,13 @@ Functions:
           (game_difficulty_set impossible)
           ```
           Changes the difficulty setting for the next map to be loaded
+    - slug: game_is_authoritative
+      info:
+        en: |
+          ```hsc
+          (<boolean> game_is_authoritative)
+          ```
+      mcc_only: 'true'
     - slug: game_is_cooperative
       info:
         en: |-
@@ -3021,6 +3148,14 @@ Functions:
           (list_count the_warthogs)
           ```
           Returns the number of objects in a list
+    - slug: list_count_not_dead
+      info:
+        en: |-
+          ```hsc
+          (<short> list_count_not_dead <object_list>)
+          ```
+          returns the number of objects in a list that aren't dead
+      mcc_only: 'true'
     - slug: list_get
       info:
         en: |-
@@ -3029,6 +3164,22 @@ Functions:
           (list_get the_warthogs 3)
           ```
           Returns an item in an object list
+    - slug: local_players
+      info:
+        en: |-
+          ```hsc
+          (<object_list> local_players)
+          ```
+          returns a list of the living player units on the local machine
+      mcc_only: 'true'
+    - slug: log_print
+      info:
+        en: |-
+          ```hsc
+          (<void> log_print <string>)
+          ```
+          prints a string to the hs log file.
+      mcc_only: 'true'
     - slug: magic_melee_attack
       info:
         en: |-
@@ -3421,6 +3572,22 @@ Functions:
           (objects_detach chief ar1)
           ```
           Detaches from the given parent object the given child object
+    - slug: objects_distance_to_flag
+      info:
+        en: |-
+          ```hsc
+          (<real> objects_distance_to_flag <object_list> <cutscene_flag>)
+          ```
+          returns minimum distance from any of the specified objects to the specified flag. (returns -1 if there are no objects, or no flag, to check)
+      mcc_only: 'true'
+    - slug: objects_distance_to_object
+      info:
+        en: |-
+          ```hsc
+          (<real> objects_distance_to_object <object_list> <object>)
+          ```
+          returns minimum distance from any of the specified objects to the specified destination object. (returns -1 if there are no objects to check)
+      mcc_only: 'true'
     - slug: objects_dump_memory
       info:
         en: |-
@@ -3450,6 +3617,30 @@ Functions:
           (pause_hud_timer false)
           ```
           Pauses or unpauses the hud timer
+    - slug: physics_constants_reset
+      info:
+        en: |-
+          ```hsc
+          (<void> physics_constants_reset)
+          ```
+          resets all physics constants to earthly values
+      mcc_only: 'true'
+    - slug: physics_get_gravity
+      info:
+        en: |-
+          ```hsc
+          (<real> physics_get_gravity)
+          ```
+          get the current global gravity acceleration relative to halo standard gravity
+      mcc_only: 'true'
+    - slug: physics_set_gravity
+      info:
+        en: |-
+          ```hsc
+          (<void> physics_set_gravity <real>)
+          ```
+          set global gravity acceleration relative to halo standard gravity
+      mcc_only: 'true'
     - slug: play_update_history
       info:
         en: >-
@@ -3729,6 +3920,14 @@ Functions:
           (players)
           ```
           returns a list of the players
+    - slug: players_on_multiplayer_team
+      info:
+        en: |-
+          ```hsc
+          (<object_list> players_on_multiplayer_team <short>)
+          ```
+          returns a list of the living player units on the MP team
+      mcc_only: 'true'
     - slug: players_unzoom_all
       info:
         en: |-
@@ -3762,6 +3961,14 @@ Functions:
 
           ```
           Prints a list of all input bindings
+    - slug: print_if
+      info:
+        en: |-
+          ```hsc
+          (<void> print_if <boolean> <string>)
+          ```
+          prints a string to the console if the condition is true.
+      mcc_only: 'true'
     - slug: profile_activate
       info:
         en: |-
@@ -3860,6 +4067,14 @@ Functions:
           (radiosity_start)
           ```
           starts radiosity computation.
+    - slug: rally_point_save_name
+      info:
+        en: |-
+          ```hsc
+          (<boolean> rally_point_save_name <string>)
+          ```
+          saves game state as rally point to core\<path>
+      mcc_only: 'true'
     - slug: random_range
       info:
         en: |-
@@ -4798,6 +5013,22 @@ Functions:
           (switch_bsp 0)
           ```
           Switches to a different structure bsp
+    - slug: TestPrintBool
+      info:
+        en: |-
+          ```hsc
+          (<void> TestPrintBool <string> <boolean>)
+          ```
+          Prints the specified boolean with the format '<string> = '<boolean>' to the Shell.
+      mcc_only: 'true'
+    - slug: TestPrintReal
+      info:
+        en: |-
+          ```hsc
+          (<void> TestPrintReal <string> <real>)
+          ```
+          Prints the specified real with the format '<string> = '<real>' to the Shell.
+      mcc_only: 'true'
     - slug: texture_cache_flush
       info:
         en: |-
