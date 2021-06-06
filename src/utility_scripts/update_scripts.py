@@ -98,7 +98,9 @@ prog = re.compile("```hsc(.|\n)*?```")
 strip_usage_formatting = re.compile("```hsc\n*|\n*```")
 
 functions_yml: CommentedSeq = hsc_yml_data["Functions"]["rows"]
-print(functions_yml[0])
+
+h1a_functions = []
+
 offset_last = 0
 for command in commands:
     if command.name in ignore:
@@ -108,10 +110,13 @@ for command in commands:
         if command.name == function["slug"]:
             offset_last = functions_yml.index(function)
             yml_function = function
+            h1a_functions.append(yml_function)
     if not yml_function:
         print(command.name + " is undoc!")
         print(offset_last)
-        functions_yml.insert(offset_last + 1, create_function_yml(command))
+        yml_function = create_function_yml(command)
+        h1a_functions.append(yml_function)
+        functions_yml.insert(offset_last + 1, yml_function)
         offset_last += 1
     elif not "mcc_only" in yml_function:
         info_en = yml_function["info"]["en"]
@@ -127,7 +132,16 @@ for command in commands:
         new_info_en = re.sub(prog, get_new_usage, info_en)
         yml_function["info"]["en"] = new_info_en
     else:
-        dict["mcc_only"] = True # should have used a boolean in the first place
+        yml_function["mcc_only"] = True # should have used a boolean in the first place
+        
+for function in functions_yml:
+    name = function["slug"]
+    if not function in h1a_functions:
+        print("Marking " + name + " as gearbox only")
+        function["gearbox_only"] = True 
+    if name.startswith("sv_"):
+        print("Marking " + name + " as gearbox only (as it's an sv_ function")
+        function["gearbox_only"] = True 
 
 print("Saving updated yml!")
 with open(sys.argv[3], "w") as file:
