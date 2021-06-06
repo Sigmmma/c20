@@ -81,7 +81,7 @@ def create_function_yml(script_command: ScriptCommand) -> dict:
     dict["slug"] = script_command.name
     dict["info"] = info
     if is_mcc:
-        dict["mcc_only"] = "true"
+        dict["mcc_only"] = True
 
     return dict
 
@@ -126,6 +126,8 @@ for command in commands:
             return new_usage
         new_info_en = re.sub(prog, get_new_usage, info_en)
         yml_function["info"]["en"] = new_info_en
+    else:
+        dict["mcc_only"] = True # should have used a boolean in the first place
 
 print("Saving updated yml!")
 with open(sys.argv[3], "w") as file:
