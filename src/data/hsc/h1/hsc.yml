@@ -940,6 +940,18 @@ Functions:
           Gets the status of a number of units running command lists: 0 = none,
           1 = finished command list, 2 = waiting for stimulus, 3 = running
           command list
+    - slug: ai_command_list_status
+      info:
+        en: >-
+          ```hsc
+
+          (ai_conversation_status <conversation>)
+
+          ```
+
+          Returns the status of a conversation (0=none, 1=trying to begin,
+          2=waiting for guys to get in position, 3=playing, 4=waiting to
+          advance, 5=could not begin, 6=finished successfully, 7=aborted midway)
     - slug: ai_conversation
       info:
         en: >-
@@ -971,18 +983,6 @@ Functions:
 
           Returns which line the conversation is currently playing, or 999 if
           the conversation is not currently playing.
-    - slug: ai_command_list_status
-      info:
-        en: >-
-          ```hsc
-
-          (ai_conversation_status <conversation>)
-
-          ```
-
-          Returns the status of a conversation (0=none, 1=trying to begin,
-          2=waiting for guys to get in position, 3=playing, 4=waiting to
-          advance, 5=could not begin, 6=finished successfully, 7=aborted midway)
     - slug: ai_conversation_stop
       info:
         en: |-
@@ -1592,13 +1592,6 @@ Functions:
           Teleports a group of actors to the starting locations of their current
           squad(s), only if they are not supported by solid ground (i.e. if they
           are falling after switching BSPs).
-    - slug: ai_try_to_fight_nothing
-      info:
-        en: |-
-          ```hsc
-          (ai_try_to_fight_nothing <ai>)
-          ```
-          Removes the preferential target setting from a group of actors
     - slug: ai_try_to_fight
       info:
         en: >-
@@ -1610,6 +1603,13 @@ Functions:
 
           Causes a group of actors to preferentially target another group of
           actors
+    - slug: ai_try_to_fight_nothing
+      info:
+        en: |-
+          ```hsc
+          (ai_try_to_fight_nothing <ai>)
+          ```
+          Removes the preferential target setting from a group of actors
     - slug: ai_try_to_fight_player
       info:
         en: |-
@@ -2153,12 +2153,6 @@ Functions:
           (debug_memory_for_file "\halopc\haloce\source\tag_files\tag_groups.c")
           ```
           Dumps memory leaks from the specified source file
-    - slug: debug_teleport_player
-      info:
-        en: |
-          ```hsc
-          (debug_teleport_player <short> <short>)
-          ```
     - slug: debug_sounds_distances
       info:
         en: >-
@@ -2191,6 +2185,12 @@ Functions:
           (debug_tags)
           ```
           Writes all memory being used by tag files into tag_dump.txt
+    - slug: debug_teleport_player
+      info:
+        en: |
+          ```hsc
+          (debug_teleport_player <short> <short>)
+          ```
     - slug: delete_save_game_files
       info:
         en: |-
@@ -2199,6 +2199,17 @@ Functions:
 
           ```
           Delete all custom profile files
+    - slug: device_get_position
+      info:
+        en: >-
+          ```hsc
+
+          (device_get_position <device>)
+
+          ```
+
+          Gets the current position of the given device (used for devices
+          without explicit device groups)
     - slug: device_get_position
       info:
         en: >-
@@ -2267,17 +2278,6 @@ Functions:
 
           true makes the given device open automatically when any biped is
           nearby, false makes it not
-    - slug: device_get_position
-      info:
-        en: >-
-          ```hsc
-
-          (device_get_position <device>)
-
-          ```
-
-          Gets the current position of the given device (used for devices
-          without explicit device groups)
     - slug: device_set_position
       info:
         en: >-
@@ -2584,6 +2584,13 @@ Functions:
           (get_digital_forward_throttle <short>)
           ```
           Gets the amount of forward throttle applied by digital device stimuli
+    - slug: get_digital_pitch_increment
+      info:
+        en: |-
+          ```hsc
+          (get_digital_pitch_increment <short>)
+          ```
+          Gets the increment in pitch applied by digital device stimuli
     - slug: get_digital_strafe_throttle
       info:
         en: |-
@@ -2598,13 +2605,6 @@ Functions:
           (get_digital_yaw_increment <short>)
           ```
           Gets the increment in yaw applied by digital device stimuli
-    - slug: get_digital_pitch_increment
-      info:
-        en: |-
-          ```hsc
-          (get_digital_pitch_increment <short>)
-          ```
-          Gets the increment in pitch applied by digital device stimuli
     - slug: get_gamepad_forward_threshold
       info:
         en: >-
@@ -2616,6 +2616,13 @@ Functions:
 
           Gets the threshold beyond which gamepad movement is full forward
           throttle
+    - slug: get_gamepad_pitch_scale
+      info:
+        en: |-
+          ```hsc
+          (get_gamepad_pitch_scale <short>)
+          ```
+          Gets the scale for gamepad control of pitch
     - slug: get_gamepad_strafe_threshold
       info:
         en: >-
@@ -2634,13 +2641,6 @@ Functions:
           (get_gamepad_yaw_scale <short>)
           ```
           Gets the scale for gamepad control of yaw
-    - slug: get_gamepad_pitch_scale
-      info:
-        en: |-
-          ```hsc
-          (get_gamepad_pitch_scale <short>)
-          ```
-          Gets the scale for gamepad control of pitch
     - slug: get_mouse_forward_threshold
       info:
         en: >-
@@ -2652,6 +2652,13 @@ Functions:
 
           Gets the threshold beyond which mouse movement is full forward
           throttle
+    - slug: get_mouse_pitch_scale
+      info:
+        en: |-
+          ```hsc
+          (get_mouse_pitch_scale <short>)
+          ```
+          Gets the scale for mouse control of pitch
     - slug: get_mouse_strafe_threshold
       info:
         en: |-
@@ -2666,25 +2673,18 @@ Functions:
           (get_mouse_yaw_scale <short>)
           ```
           Gets the scale for mouse control of yaw
-    - slug: get_mouse_pitch_scale
-      info:
-        en: |-
-          ```hsc
-          (get_mouse_pitch_scale <short>)
-          ```
-          Gets the scale for mouse control of pitch
-    - slug: get_yaw_rate
-      info:
-        en: |-
-          ```hsc
-          (get_yaw_rate <short>)
-          ```
-          Gets the yaw rate for the given player number
     - slug: get_pitch_rate
       info:
         en: |-
           ```hsc
           (get_pitch_rate <short>)
+          ```
+          Gets the yaw rate for the given player number
+    - slug: get_yaw_rate
+      info:
+        en: |-
+          ```hsc
+          (get_yaw_rate <short>)
           ```
           Gets the yaw rate for the given player number
     - slug: hammer_begin
