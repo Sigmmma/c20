@@ -748,7 +748,7 @@ Functions:
         en: >-
           ```hsc
 
-          (activate_nav_point_flag <navpoint> <unit> <cutscene_flag> <real>)
+          (<void> activate_nav_point_flag <navpoint> <unit> <cutscene_flag> <real>)
 
           ```
 
@@ -762,7 +762,7 @@ Functions:
           (<long> abs_integer <long>)
           ```
           return the absolute (non-negative) value of an integer
-      mcc_only: 'true'
+      mcc_only: true
     - slug: abs_real
       info:
         en: |-
@@ -770,63 +770,62 @@ Functions:
           (<real> abs_real <real>)
           ```
           return the absolute (non-negative) value of a real
-      mcc_only: 'true'
+      mcc_only: true
     - slug: activate_nav_point_object
       info:
         en: >-
           ```hsc
 
-          (activate_nav_point_object <navpoint> <unit> <object> <real>)
+          (<void> activate_nav_point_object <navpoint> <unit> <object> <real>)
 
           ```
 
-          Activates a nav point type <string> attached to (local) player <unit>
-          anchored to an object with a vertical offset <real>. If the player is
-          not local to the machine, this will fail.
+          Activates a nav point type <string> attached to (local) player <unit> anchored
+          to an object with a vertical offset <real>. If the player is not local to
+          the machine, this will fail.
     - slug: activate_team_nav_point_flag
       info:
         en: >-
           ```hsc
 
-          (activate_team_nav_point_flag <navpoint> <team> <cutscene_flag>
-          <real>)
+          (<void> activate_team_nav_point_flag <navpoint> <team> <cutscene_flag> <real>)
 
           ```
 
-          Activates a nav point type <string> attached to a team anchored to a
-          flag with a vertical offset <real>. If the player is not local to the
-          machine, this will fail.
+          Activates a nav point type <string> attached to a team anchored to a flag
+          with a vertical offset <real>. If the player is not local to the machine,
+          this will fail.
     - slug: activate_team_nav_point_object
       info:
         en: >-
           ```hsc
 
-          (activate_team_nav_point_object <navpoint> <team> <object> <real>)
+          (<void> activate_team_nav_point_object <navpoint> <team> <object> <real>)
 
           ```
 
-          Activates a nav point type <string> attached to a team anchored to an
-          object with a vertical offset <real>. If the player is not local to
-          the machine, this will fail.
+          Activates a nav point type <string> attached to a team anchored to an object
+          with a vertical offset <real>. If the player is not local to the machine,
+          this will fail.
     - slug: ai
       info:
         en: |-
           ```hsc
-          (ai <boolean>)
+          (<void> ai <boolean>)
           ```
           turns all AI on or off.
     - slug: ai_actors
       info:
         en: |-
           ```hsc
-          (ai_actors <ai>)
+          (<object_list> ai_actors <ai>)
           ```
           Converts an ai reference to an object list
     - slug: ai_allegiance
       info:
         en: |-
           ```hsc
-          (ai_allegiance <team> <team>)
+          (<void> ai_allegiance <team> <team>)
           ```
           Creates an allegiance between two teams
     - slug: ai_allegiance_broken
@@ -834,66 +833,66 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_allegiance_broken <team> <team>)
+          (<boolean> ai_allegiance_broken <team> <team>)
 
           ```
 
-          Returns whether two teams have an allegiance that is currently broken
-          by traitorous behavior
+          Returns whether two teams have an allegiance that is currently broken by
+          traitorous behavior
     - slug: ai_allegiance_remove
       info:
         en: |-
           ```hsc
-          (ai_allegiance_remove <team> <team>)
+          (<void> ai_allegiance_remove <team> <team>)
           ```
           Destroys an allegiance between two teams
     - slug: ai_allow_charge
       info:
         en: |-
           ```hsc
-          (ai_allow_charge <ai> <boolean>)
+          (<void> ai_allow_charge <ai> <boolean>)
           ```
           Either enables or disables charging behavior for a group of actors
     - slug: ai_allow_dormant
       info:
         en: |-
           ```hsc
-          (ai_allow_dormant <ai> <boolean>)
+          (<void> ai_allow_dormant <ai> <boolean>)
           ```
           Either enables or disables automatic dormancy for a group of actors
     - slug: ai_attach
       info:
         en: |-
           ```hsc
-          (ai_attach <unit> <ai>)
+          (<void> ai_attach <unit> <ai>)
           ```
           Attaches the specified unit to the specified encounter
     - slug: ai_attach_free
       info:
         en: |-
           ```hsc
-          (ai_attach_free <unit> <actor_variant>)
+          (<void> ai_attach_free <unit> <actor_variant>)
           ```
           Attaches a unit to a newly created free actor of the specified type
     - slug: ai_attack
       info:
         en: |-
           ```hsc
-          (ai_attack <ai>)
+          (<void> ai_attack <ai>)
           ```
           Makes the specified platoon(s) go into the attacking state
     - slug: ai_automatic_migration_target
       info:
         en: |-
           ```hsc
-          (ai_automatic_migration_target <ai> <boolean>)
+          (<void> ai_automatic_migration_target <ai> <boolean>)
           ```
           Enables or disables a squad as being an automatic migration target
     - slug: ai_berserk
       info:
         en: |-
           ```hsc
-          (ai_berserk <ai> <boolean>)
+          (<void> ai_berserk <ai> <boolean>)
           ```
           Forces a group of actors to start or stop berserking
     - slug: ai_braindead
@@ -901,29 +900,29 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_braindead <ai> <boolean>)
+          (<void> ai_braindead <ai> <boolean>)
 
           ```
 
-          Makes a group of actors braindead, or restores them to life (in their
-          initial state)
+          Makes a group of actors braindead, or restores them to life (in their initial
+          state)
     - slug: ai_braindead_by_unit
       info:
         en: >-
           ```hsc
 
-          (ai_braindead_by_unit <object_list> <boolean>)
+          (<void> ai_braindead_by_unit <object_list> <boolean>)
 
           ```
 
-          Makes a list of objects braindead, or restores them to life. If you
-          pass in a vehicle index, it makes all actors in that vehicle braindead
-          (including any built-in guns).
+          Makes a list of objects braindead, or restores them to life. If you pass
+          in a vehicle index, it makes all actors in that vehicle braindead (including
+          any built-in guns).
     - slug: ai_command_list
       info:
         en: |-
           ```hsc
-          (ai_command_list <ai> <ai_command_list>)
+          (<void> ai_command_list <ai> <ai_command_list>)
           ```
           Tells a group of actors to begin executing the specified command list
     - slug: ai_command_list_advance
@@ -931,24 +930,24 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_command_list_advance <ai>)
+          (<void> ai_command_list_advance <ai>)
 
           ```
 
-          Tells a group of actors that are running a command list that they may
-          advance further along the list (if they are waiting for a stimulus)
+          Tells a group of actors that are running a command list that they may advance
+          further along the list (if they are waiting for a stimulus)
     - slug: ai_command_list_advance_by_unit
       info:
         en: |-
           ```hsc
-          (ai_command_list_advance_by_unit <unit>)
+          (<void> ai_command_list_advance_by_unit <unit>)
           ```
           Just like ai_command_list_advance but operates upon a unit instead
     - slug: ai_command_list_by_unit
       info:
         en: |-
           ```hsc
-          (ai_command_list_by_unit <unit> <ai_command_list>)
+          (<void> ai_command_list_by_unit <unit> <ai_command_list>)
           ```
           Tells a named unit to begin executing the specified command list
     - slug: ai_command_list_status
@@ -956,31 +955,29 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_command_list_status <object_list>)
+          (<short> ai_command_list_status <object_list>)
 
           ```
 
-          Gets the status of a number of units running command lists: 0 = none,
-          1 = finished command list, 2 = waiting for stimulus, 3 = running
-          command list
+          Gets the status of a number of units running command lists: 0 = none, 1
+          = finished command list, 2 = waiting for stimulus, 3 = running command list
     - slug: ai_conversation
       info:
         en: >-
           ```hsc
 
-          (ai_conversation <conversation>)
+          (<boolean> ai_conversation <conversation>)
 
           ```
 
-          Tries to add an entry to the list of conversations waiting to play.
-          Returns FALSE if the required units could not be found to play the
-          conversation, or if the player is too far away and the 'delay' flag is
-          not set.
+          Tries to add an entry to the list of conversations waiting to play. Returns
+          FALSE if the required units could not be found to play the conversation,
+          or if the player is too far away and the 'delay' flag is not set.
     - slug: ai_conversation_advance
       info:
         en: |-
           ```hsc
-          (ai_conversation_advance <conversation>)
+          (<void> ai_conversation_advance <conversation>)
           ```
           Tells a conversation that it may advance
     - slug: ai_conversation_line
@@ -988,36 +985,36 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_conversation_line <conversation>)
+          (<short> ai_conversation_line <conversation>)
 
           ```
 
-          Returns which line the conversation is currently playing, or 999 if
-          the conversation is not currently playing.
+          Returns which line the conversation is currently playing, or 999 if the
+          conversation is not currently playing.
     - slug: ai_conversation_status
       info:
         en: >-
           ```hsc
 
-          (ai_conversation_status <conversation>)
+          (<short> ai_conversation_status <conversation>)
 
           ```
 
-          Returns the status of a conversation (0=none, 1=trying to begin,
-          2=waiting for guys to get in position, 3=playing, 4=waiting to
-          advance, 5=could not begin, 6=finished successfully, 7=aborted midway)
+          Returns the status of a conversation (0=none, 1=trying to begin, 2=waiting
+          for guys to get in position, 3=playing, 4=waiting to advance, 5=could not
+          begin, 6=finished successfully, 7=aborted midway)
     - slug: ai_conversation_stop
       info:
         en: |-
           ```hsc
-          (ai_conversation_stop <conversation>)
+          (<void> ai_conversation_stop <conversation>)
           ```
           Stops a conversation from playing or trying to play
     - slug: ai_debug_communication_focus
       info:
         en: |-
           ```hsc
-          (ai_debug_communication_focus <string(s)>)
+          (<void> ai_debug_communication_focus <string(s)>)
           ```
           Focuses (or stops focusing) a set of unit vocalization types
     - slug: ai_debug_communication_ignore
@@ -1025,17 +1022,17 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_debug_communication_ignore <string(s)>)
+          (<void> ai_debug_communication_ignore <string(s)>)
 
           ```
 
-          Ignores (or stops ignoring) a set of AI communication types when
-          printing out communications
+          Ignores (or stops ignoring) a set of AI communication types when printing
+          out communications
     - slug: ai_debug_communication_suppress
       info:
         en: |-
           ```hsc
-          (ai_debug_communication_suppress <string(s)>)
+          (<void> ai_debug_communication_suppress <string(s)>)
           ```
           Suppresses (or stops suppressing) a set of AI communication types
     - slug: ai_debug_sound_point_set
@@ -1046,6 +1043,7 @@ Functions:
 
           ```
           Drops the AI debugging sound point at the camera location
+      gearbox_only: true
     - slug: ai_debug_speak
       info:
         en: |-
@@ -1054,6 +1052,7 @@ Functions:
           (ai_debug_speak "pain minor")
           ```
           Makes the currently selected AI speak a vocalization
+      gearbox_only: true
     - slug: ai_debug_speak_list
       info:
         en: |-
@@ -1062,6 +1061,7 @@ Functions:
           (ai_debug_speak_list "involuntary")
           ```
           Makes the currently selected AI speak a list of vocalizations
+      gearbox_only: true
     - slug: ai_debug_teleport_to
       info:
         en: |-
@@ -1069,6 +1069,7 @@ Functions:
           (ai_debug_teleport_to <ai>)
           ```
           Teleports all players to the specified encounter
+      gearbox_only: true
     - slug: ai_debug_vocalize
       info:
         en: |-
@@ -1076,11 +1077,12 @@ Functions:
           (ai_debug_vocalize <string> <string>)
           ```
           Makes the selected AI vocalize
+      gearbox_only: true
     - slug: ai_defend
       info:
         en: |-
           ```hsc
-          (ai_defend <ai>)
+          (<void> ai_defend <ai>)
           ```
           Makes the specified platoon(s) go into the defending state
     - slug: ai_deselect
@@ -1091,18 +1093,19 @@ Functions:
 
           ```
           Clears the selected encounter
+      gearbox_only: true
     - slug: ai_detach
       info:
         en: |-
           ```hsc
-          (ai_detach <unit>)
+          (<void> ai_detach <unit>)
           ```
           Detaches the specified unit from all AI
     - slug: ai_dialogue_triggers
       info:
         en: |-
           ```hsc
-          (ai_dialogue_triggers <boolean>)
+          (<void> ai_dialogue_triggers <boolean>)
           (ai_dialogue_triggers true)
           (ai_dialogue_triggers false)
           ```
@@ -1112,7 +1115,7 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_disregard <object_list> <boolean>)
+          (<void> ai_disregard <object_list> <boolean>)
 
           (ai_disregard (players) true)
 
@@ -1120,27 +1123,27 @@ Functions:
 
           ```
 
-          If true, forces all actors to completely disregard the specified
-          units, otherwise lets them acknowledge the units again.
+          If true, forces all actors to completely disregard the specified units,
+          otherwise lets them acknowledge the units again.
     - slug: ai_erase
       info:
         en: |-
           ```hsc
-          (ai_erase <ai>)
+          (<void> ai_erase <ai>)
           ```
           Erases the specified encounter and/or squad
     - slug: ai_erase_all
       info:
         en: |-
           ```hsc
-          (ai_erase_all)
+          (<void> ai_erase_all)
           ```
           Erases all AI
     - slug: ai_exit_vehicle
       info:
         en: |-
           ```hsc
-          (ai_exit_vehicle <ai>)
+          (<void> ai_exit_vehicle <ai>)
           ```
           Tells a group of actors to get out of any vehicles that they are in
     - slug: ai_follow_distance
@@ -1148,35 +1151,35 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_follow_distance <ai> <real>)
+          (<void> ai_follow_distance <ai> <real>)
 
           ```
 
-          Sets the distance threshold which will cause squads to migrate when
-          following someone
+          Sets the distance threshold which will cause squads to migrate when following
+          someone
     - slug: ai_follow_target_ai
       info:
         en: >-
           ```hsc
 
-          (ai_follow_target_ai <ai> <ai>)
+          (<void> ai_follow_target_ai <ai> <ai>)
 
           ```
 
-          Sets the follow target for an encounter to be a group of AI
-          (encounter, squad or platoon)
+          Sets the follow target for an encounter to be a group of AI (encounter,
+          squad or platoon)
     - slug: ai_follow_target_disable
       info:
         en: |-
           ```hsc
-          (ai_follow_target_disable <ai>)
+          (<void> ai_follow_target_disable <ai>)
           ```
           Turns off following for an encounter
     - slug: ai_follow_target_players
       info:
         en: |-
           ```hsc
-          (ai_follow_target_players <ai>)
+          (<void> ai_follow_target_players <ai>)
           ```
           Sets the follow target for an encounter to be the closest player. AI
           follow their target by [moving to firing positions][ai#firing-positions]
@@ -1185,7 +1188,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (ai_follow_target_unit <ai> <unit>)
+          (<void> ai_follow_target_unit <ai> <unit>)
           ```
           Sets the follow target for an encounter to be a specific [unit][].
     - slug: ai_force_active
@@ -1193,28 +1196,28 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_force_active <ai> <boolean>)
+          (<void> ai_force_active <ai> <boolean>)
 
           ```
 
-          Forces an encounter to remain active (i.e. not freeze in place) even
-          if there are no players nearby
+          Forces an encounter to remain active (i.e. not freeze in place) even if
+          there are no players nearby
     - slug: ai_force_active_by_unit
       info:
         en: >-
           ```hsc
 
-          (ai_force_active_by_unit <unit> <boolean>)
+          (<void> ai_force_active_by_unit <unit> <boolean>)
 
           ```
 
-          Forces a named actor that is NOT in an encounter to remain active
-          (i.e. not freeze in place) even if there are no players nearby
+          Forces a named actor that is NOT in an encounter to remain active (i.e.
+          not freeze in place) even if there are no players nearby
     - slug: ai_free
       info:
         en: |-
           ```hsc
-          (ai_free <ai>)
+          (<void> ai_free <ai>)
           ```
           Removes a group of actors from their encounter and sets them free
     - slug: ai_free_units
@@ -1222,52 +1225,51 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_free_units <object_list>)
+          (<void> ai_free_units <object_list>)
 
           ```
 
-          Removes a set of units from their encounter (if any) and sets them
-          free
+          Removes a set of units from their encounter (if any) and sets them free
     - slug: ai_go_to_vehicle
       info:
         en: >-
           ```hsc
 
-          (ai_go_to_vehicle <ai> <unit> <string>)
+          (<void> ai_go_to_vehicle <ai> <unit> <string>)
 
           ```
 
-          Tells a group of actors to get into a vehicle, in the
-          substring-specified seats (e.g. passenger for pelican). Does not
-          interrupt any actors who are already going to vehicles.
+          Tells a group of actors to get into a vehicle, in the substring-specified
+          seats (e.g. passenger for pelican). Does not interrupt any actors who are
+          already going to vehicles.
     - slug: ai_go_to_vehicle_override
       info:
         en: >-
           ```hsc
 
-          (ai_go_to_vehicle_override <ai> <unit> <string>)
+          (<void> ai_go_to_vehicle_override <ai> <unit> <string>)
 
           ```
 
-          Tells a group of actors to get into a vehicle, in the
-          substring-specified seats (e.g. passenger for pelican). Any actors who
-          are already going to vehicles will stop and go to this one instead!
+          Tells a group of actors to get into a vehicle, in the substring-specified
+          seats (e.g. passenger for pelican). Any actors who are already going to
+          vehicles will stop and go to this one instead!
     - slug: ai_going_to_vehicle
       info:
         en: >-
           ```hsc
 
-          (ai_going_to_vehicle <unit>)
+          (<short> ai_going_to_vehicle <unit>)
 
           ```
 
-          Return the number of actors that are still trying to get into the
-          specified vehicle
+          Return the number of actors that are still trying to get into the specified
+          vehicle
     - slug: ai_grenades
       info:
         en: |-
           ```hsc
-          (ai_grenades <boolean>)
+          (<void> ai_grenades <boolean>)
           ```
           Turns grenade inventory on or off
     - slug: ai_is_attacking
@@ -1275,18 +1277,17 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_is_attacking <ai>)
+          (<boolean> ai_is_attacking <ai>)
 
           ```
 
-          Returns whether a platoon is in the attacking mode (or if an encounter
-          is specified, returns whether any platoon in that encounter is
-          attacking)
+          Returns whether a platoon is in the attacking mode (or if an encounter is
+          specified, returns whether any platoon in that encounter is attacking)
     - slug: ai_kill
       info:
         en: |-
           ```hsc
-          (ai_kill <ai>)
+          (<void> ai_kill <ai>)
           ```
           Instantly kills the specified encounter and/or squad
     - slug: ai_kill_silent
@@ -1294,12 +1295,12 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_kill_silent <ai>)
+          (<void> ai_kill_silent <ai>)
 
           ```
 
-          Instantly and silently (no animation or sound played) kills the
-          specified encounter and/or squad
+          Instantly and silently (no animation or sound played) kills the specified
+          encounter and/or squad
     - slug: ai_lines
       info:
         en: |-
@@ -1307,65 +1308,65 @@ Functions:
           (ai_lines)
           ```
           Cycles through AI line-spray modes
+      gearbox_only: true
     - slug: ai_link_activation
       info:
         en: >-
           ```hsc
 
-          (ai_link_activation <ai> <ai>)
+          (<void> ai_link_activation <ai> <ai>)
 
           ```
 
-          Links the first encounter so that it will be made active whenever it
-          detects that the second encounter is active
+          Links the first encounter so that it will be made active whenever it detects
+          that the second encounter is active
     - slug: ai_living_count
       info:
         en: >-
           ```hsc
 
-          (ai_living_count <ai>)
+          (<short> ai_living_count <ai>)
 
           ```
 
-          Return the number of living actors in the specified encounter and/or
-          squad
+          Return the number of living actors in the specified encounter and/or squad
     - slug: ai_living_fraction
       info:
         en: >-
           ```hsc
 
-          (ai_living_fraction <ai>)
+          (<real> ai_living_fraction <ai>)
 
           ```
 
-          Return the fraction `[0-1]` of living actors in the specified
-          encounter and/or squad
+          Return the fraction `[0-1]` of living actors in the specified encounter
+          and/or squad
     - slug: ai_look_at_object
       info:
         en: |-
           ```hsc
-          (ai_look_at_object <unit> <object>)
+          (<void> ai_look_at_object <unit> <object>)
           ```
           Tells an actor to look at an object until further notice
     - slug: ai_magically_see_encounter
       info:
         en: |-
           ```hsc
-          (ai_magically_see_encounter <ai> <ai>)
+          (<void> ai_magically_see_encounter <ai> <ai>)
           ```
           Makes one encounter magically aware of another
     - slug: ai_magically_see_players
       info:
         en: |-
           ```hsc
-          (ai_magically_see_players <ai>)
+          (<void> ai_magically_see_players <ai>)
           ```
           Makes an encounter magically aware of nearby players
     - slug: ai_magically_see_unit
       info:
         en: |-
           ```hsc
-          (ai_magically_see_unit <ai> <unit>)
+          (<void> ai_magically_see_unit <ai> <unit>)
           ```
           Makes an encounter magically aware of the specified unit
     - slug: ai_maneuver
@@ -1373,29 +1374,29 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_maneuver <ai>)
+          (<void> ai_maneuver <ai>)
 
           ```
 
-          Makes all squads in the specified platoon(s) maneuver to their
-          designated maneuver squads
+          Makes all squads in the specified platoon(s) maneuver to their designated
+          maneuver squads
     - slug: ai_maneuver_enable
       info:
         en: >-
           ```hsc
 
-          (ai_maneuver_enable <ai> <boolean>)
+          (<void> ai_maneuver_enable <ai> <boolean>)
 
           ```
 
-          Enables or disables the maneuver/retreat rule for an encounter or
-          platoon. The rule will still trigger, but none of the actors will be
-          given the order to change squads.
+          Enables or disables the maneuver/retreat rule for an encounter or platoon.
+          The rule will still trigger, but none of the actors will be given the order
+          to change squads.
     - slug: ai_migrate
       info:
         en: |-
           ```hsc
-          (ai_migrate <ai> <ai>)
+          (<void> ai_migrate <ai> <ai>)
           ```
           Makes all or part of an encounter move to another encounter
     - slug: ai_migrate_and_speak
@@ -1403,17 +1404,17 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_migrate_and_speak <ai> <ai> <string>)
+          (<void> ai_migrate_and_speak <ai> <ai> <string>)
 
           ```
 
-          Makes all or part of an encounter move to another encounter, and say
-          their `advance` or `retreat` speech lines.
+          Makes all or part of an encounter move to another encounter, and say their
+          `advance` or `retreat` speech lines.
     - slug: ai_migrate_by_unit
       info:
         en: |-
           ```hsc
-          (ai_migrate_by_unit <object_list> <ai>)
+          (<void> ai_migrate_by_unit <object_list> <ai>)
           ```
           Makes a named vehicle or group of units move to another encounter
     - slug: ai_nonswarm_count
@@ -1421,24 +1422,24 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_nonswarm_count <ai>)
+          (<short> ai_nonswarm_count <ai>)
 
           ```
 
-          Return the number of non-swarm actors in the specified encounter
-          and/or squad
+          Return the number of non-swarm actors in the specified encounter and/or
+          squad
     - slug: ai_place
       info:
         en: |-
           ```hsc
-          (ai_place <ai>)
+          (<void> ai_place <ai>)
           ```
           Places the specified encounter on the map
     - slug: ai_playfight
       info:
         en: |-
           ```hsc
-          (ai_playfight <ai> <boolean>)
+          (<void> ai_playfight <ai> <boolean>)
           ```
           Sets an encounter to be playfighting or not
     - slug: ai_prefer_target
@@ -1446,58 +1447,58 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_prefer_target <object_list> <boolean>)
+          (<void> ai_prefer_target <object_list> <boolean>)
 
           ```
 
-          If true, *ALL* enemies will prefer to attack the specified units. If
-          false, removes the preference.
+          If true, *ALL* enemies will prefer to attack the specified units. If false,
+          removes the preference.
     - slug: ai_reconnect
       info:
         en: >-
           ```hsc
 
-          (ai_reconnect)
+          (<void> ai_reconnect)
 
           ```
 
-          Reconnects all AI information to the current structure bsp (use this
-          after you create encounters or command lists in sapien, or place new
-          firing points or command list points)
+          Reconnects all AI information to the current structure bsp (use this after
+          you create encounters or command lists in sapien, or place new firing points
+          or command list points)
     - slug: ai_renew
       info:
         en: >-
           ```hsc
 
-          (ai_renew <ai>)
+          (<void> ai_renew <ai>)
 
           ```
 
-          Refreshes the health and grenade count of a group of actors, so they
-          are as good as new
+          Refreshes the health and grenade count of a group of actors, so they are
+          as good as new
     - slug: ai_retreat
       info:
         en: >-
           ```hsc
 
-          (ai_retreat <ai>)
+          (<void> ai_retreat <ai>)
 
           ```
 
-          Makes all squads in the specified platoon(s) maneuver to their
-          designated maneuver squads
+          Makes all squads in the specified platoon(s) maneuver to their designated
+          maneuver squads
     - slug: ai_select
       info:
         en: |-
           ```hsc
-          (ai_select <ai>)
+          (<void> ai_select <ai>)
           ```
           Selects the specified encounter
     - slug: ai_set_blind
       info:
         en: |-
           ```hsc
-          (ai_set_blind <ai> <boolean>)
+          (<void> ai_set_blind <ai> <boolean>)
           ```
           Enables or disables sight for actors in the specified encounter
     - slug: ai_set_current_state
@@ -1505,24 +1506,24 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_set_current_state <ai> <ai_default_state>)
+          (<void> ai_set_current_state <ai> <ai_default_state>)
 
           ```
 
-          Sets the current state of a group of actors. WARNING: may have
-          unpredictable results on actors that are in combat.
+          Sets the current state of a group of actors. WARNING: may have unpredictable
+          results on actors that are in combat.
     - slug: ai_set_deaf
       info:
         en: |-
           ```hsc
-          (ai_set_deaf <ai> <boolean>)
+          (<void> ai_set_deaf <ai> <boolean>)
           ```
           Enables or disables hearing for actors in the specified encounter
     - slug: ai_set_respawn
       info:
         en: |-
           ```hsc
-          (ai_set_respawn <ai> <boolean>)
+          (<void> ai_set_respawn <ai> <boolean>)
           ```
           Enables or disables respawning in the specified encounter
     - slug: ai_set_return_state
@@ -1530,24 +1531,24 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_set_return_state <ai> <ai_default_state>)
+          (<void> ai_set_return_state <ai> <ai_default_state>)
 
           ```
 
-          Sets the state that a group of actors will return to when they have
-          nothing to do
+          Sets the state that a group of actors will return to when they have nothing
+          to do
     - slug: ai_set_team
       info:
         en: |-
           ```hsc
-          (ai_set_team <ai> <team>)
+          (<void> ai_set_team <ai> <team>)
           ```
           Makes an encounter change to a new team
     - slug: ai_spawn_actor
       info:
         en: |-
           ```hsc
-          (ai_spawn_actor <ai>)
+          (<void> ai_spawn_actor <ai>)
           ```
           Spawns a single actor in the specified encounter and/or squad
     - slug: ai_status
@@ -1555,19 +1556,18 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_status <ai>)
+          (<short> ai_status <ai>)
 
           ```
 
-          Returns the most severe combat status of a group of actors
-          (0=inactive, 1=noncombat, 2=guarding, 3=search/suspicious, 4=definite
-          enemy(heard or magic awareness), 5=visible enemy, 6=engaging in
-          combat)
+          Returns the most severe combat status of a group of actors (0=inactive,
+          1=noncombat, 2=guarding, 3=search/suspicious, 4=definite enemy(heard or
+          magic awareness), 5=visible enemy, 6=engaging in combat)
     - slug: ai_stop_looking
       info:
         en: |-
           ```hsc
-          (ai_stop_looking <unit>)
+          (<void> ai_stop_looking <unit>)
           ```
           Tells an actor to stop looking at whatever it's looking at
     - slug: ai_strength
@@ -1575,58 +1575,56 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_strength <ai>)
+          (<real> ai_strength <ai>)
 
           ```
 
-          Return the current strength (average body vitality from 0-1) of the
-          specified encounter and/or squad
+          Return the current strength (average body vitality from 0-1) of the specified
+          encounter and/or squad
     - slug: ai_swarm_count
       info:
         en: >-
           ```hsc
 
-          (ai_swarm_count <ai>)
+          (<short> ai_swarm_count <ai>)
 
           ```
 
-          Return the number of swarm actors in the specified encounter and/or
-          squad
+          Return the number of swarm actors in the specified encounter and/or squad
     - slug: ai_teleport_to_starting_location
       info:
         en: >-
           ```hsc
 
-          (ai_teleport_to_starting_location <ai>)
+          (<void> ai_teleport_to_starting_location <ai>)
 
           ```
 
-          Teleports a group of actors to the starting locations of their current
-          squad(s)
+          Teleports a group of actors to the starting locations of their current squad(s)
     - slug: ai_teleport_to_starting_location_if_unsupported
       info:
         en: >-
           ```hsc
 
-          (ai_teleport_to_starting_location_if_unsupported <ai>)
+          (<void> ai_teleport_to_starting_location_if_unsupported <ai>)
 
           ```
 
-          Teleports a group of actors to the starting locations of their current
-          squad(s), only if they are not supported by solid ground (i.e. if they
-          are falling after switching BSPs).
+          Teleports a group of actors to the starting locations of their current squad(s),
+          only if they are not supported by solid ground (i.e. if they are falling
+          after switching BSPs).
     - slug: ai_timer_expire
       info:
         en: |-
           ```hsc
-          (ai_timer_expire <ai>)
+          (<void> ai_timer_expire <ai>)
           ```
           makes a squad's delay timer expire and releases them to enter combat.
     - slug: ai_timer_start
       info:
         en: |-
           ```hsc
-          (ai_timer_start <ai>)
+          (<void> ai_timer_start <ai>)
           ```
           makes a squad's delay timer start counting.
     - slug: ai_try_to_fight
@@ -1634,24 +1632,23 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_try_to_fight <ai> <ai>)
+          (<void> ai_try_to_fight <ai> <ai>)
 
           ```
 
-          Causes a group of actors to preferentially target another group of
-          actors
+          Causes a group of actors to preferentially target another group of actors
     - slug: ai_try_to_fight_nothing
       info:
         en: |-
           ```hsc
-          (ai_try_to_fight_nothing <ai>)
+          (<void> ai_try_to_fight_nothing <ai>)
           ```
           Removes the preferential target setting from a group of actors
     - slug: ai_try_to_fight_player
       info:
         en: |-
           ```hsc
-          (ai_try_to_fight_player <ai>)
+          (<void> ai_try_to_fight_player <ai>)
           ```
           Causes a group of actors to preferentially target the player
     - slug: ai_vehicle_encounter
@@ -1659,68 +1656,67 @@ Functions:
         en: >-
           ```hsc
 
-          (ai_vehicle_encounter <unit> <ai>)
+          (<void> ai_vehicle_encounter <unit> <ai>)
 
           ```
 
-          Sets a vehicle to "belong" to a particular encounter/squad. Any actors
-          who get into the vehicle will be placed in this squad. Vehicles
-          potentially drivable by multiple teams need their own encounter!
+          Sets a vehicle to "belong" to a particular encounter/squad. Any actors who
+          get into the vehicle will be placed in this squad. Vehicles potentially
+          drivable by multiple teams need their own encounter!
     - slug: ai_vehicle_enterable_actor_type
       info:
         en: >-
           ```hsc
 
-          (ai_vehicle_enterable_actor_type <unit> <actor_type>)
+          (<void> ai_vehicle_enterable_actor_type <unit> <actor_type>)
 
           ```
 
-          Sets a vehicle as being impulsively enterable for actors of a certain
-          type (grunt, elite, marine etc)
+          Sets a vehicle as being impulsively enterable for actors of a certain type
+          (grunt, elite, marine etc)
     - slug: ai_vehicle_enterable_actors
       info:
         en: >-
           ```hsc
 
-          (ai_vehicle_enterable_actors <unit> <ai>)
+          (<void> ai_vehicle_enterable_actors <unit> <ai>)
 
           ```
 
-          Sets a vehicle as being impulsively enterable for a certain
-          encounter/squad of actors
+          Sets a vehicle as being impulsively enterable for a certain encounter/squad
+          of actors
     - slug: ai_vehicle_enterable_disable
       info:
         en: >-
           ```hsc
 
-          (ai_vehicle_enterable_disable <unit>)
+          (<void> ai_vehicle_enterable_disable <unit>)
 
           ```
 
-          Disables actors from impulsively getting into a vehicle (this is the
-          default state for newly placed vehicles)
+          Disables actors from impulsively getting into a vehicle (this is the default
+          state for newly placed vehicles)
     - slug: ai_vehicle_enterable_distance
       info:
         en: >-
           ```hsc
 
-          (ai_vehicle_enterable_distance <unit> <real>)
+          (<void> ai_vehicle_enterable_distance <unit> <real>)
 
           ```
 
-          Sets a vehicle as being impulsively enterable for actors within a
-          certain distance
+          Sets a vehicle as being impulsively enterable for actors within a certain
+          distance
     - slug: ai_vehicle_enterable_team
       info:
         en: >-
           ```hsc
 
-          (ai_vehicle_enterable_team <unit> <team>)
+          (<void> ai_vehicle_enterable_team <unit> <team>)
 
           ```
 
-          Sets a vehicle as being impulsively enterable for actors on a certain
-          team
+          Sets a vehicle as being impulsively enterable for actors on a certain team
     - slug: attract_mode_start
       info:
         en: |-
@@ -1728,11 +1724,12 @@ Functions:
           (attract_mode_start)
           ```
           N/A in pc
+      gearbox_only: true
     - slug: bind
       info:
         en: |-
           ```hsc
-          (bind <string> <string> <string>)
+          (<void> bind <string> <string> <string>)
           ```
           Binds an input device/button combination to a game control
     - slug: bit_test
@@ -1742,7 +1739,7 @@ Functions:
           (<long> bit_test <long> <short>)
           ```
           <flags> <bit_index>
-      mcc_only: 'true'
+      mcc_only: true
     - slug: bit_toggle
       info:
         en: |-
@@ -1750,7 +1747,7 @@ Functions:
           (<long> bit_toggle <long> <short> <boolean>)
           ```
           <flags> <bit_index> <on_or_off>
-      mcc_only: 'true'
+      mcc_only: true
     - slug: bitwise_and
       info:
         en: |-
@@ -1758,7 +1755,7 @@ Functions:
           (<long> bitwise_and <long> <long>)
           ```
           <lhs> AND <rhs>
-      mcc_only: 'true'
+      mcc_only: true
     - slug: bitwise_flags_toggle
       info:
         en: |-
@@ -1766,7 +1763,7 @@ Functions:
           (<long> bitwise_flags_toggle <long> <long> <boolean>)
           ```
           <value> <flags> <on_or_off>
-      mcc_only: 'true'
+      mcc_only: true
     - slug: bitwise_left_shift
       info:
         en: |-
@@ -1774,7 +1771,7 @@ Functions:
           (<long> bitwise_left_shift <long> <short>)
           ```
           <value> LHS <bit_count>
-      mcc_only: 'true'
+      mcc_only: true
     - slug: bitwise_or
       info:
         en: |-
@@ -1782,7 +1779,7 @@ Functions:
           (<long> bitwise_or <long> <long>)
           ```
           <lhs> OR <rhs>
-      mcc_only: 'true'
+      mcc_only: true
     - slug: bitwise_right_shift
       info:
         en: |-
@@ -1790,7 +1787,7 @@ Functions:
           (<long> bitwise_right_shift <long> <short>)
           ```
           <value> RHS <bit_count>
-      mcc_only: 'true'
+      mcc_only: true
     - slug: bitwise_xor
       info:
         en: |-
@@ -1798,12 +1795,12 @@ Functions:
           (<long> bitwise_xor <long> <long>)
           ```
           <lhs> XOR <rhs>
-      mcc_only: 'true'
+      mcc_only: true
     - slug: breakable_surfaces_enable
       info:
         en: |-
           ```hsc
-          (breakable_surfaces_enable <boolean>)
+          (<void> breakable_surfaces_enable <boolean>)
           (breakable_surfaces_enable false)
           ```
           Enables or disables breakability of all [breakable surfaces][scenario_structure_bsp#tag-field-breakable-surfaces]
@@ -1812,15 +1809,14 @@ Functions:
       info:
         en: |-
           ```hsc
-          (breakable_surfaces_reset)
-
+          (<void> breakable_surfaces_reset)
           ```
           Restores all breakable surfaces
     - slug: camera_control
       info:
         en: |-
           ```hsc
-          (camera_control <boolean>)
+          (<void> camera_control <boolean>)
           (camera_control true)
           (camera_control false)
           ```
@@ -1830,26 +1826,26 @@ Functions:
         en: >-
           ```hsc
 
-          (camera_set <cutscene_camera_point> <short>)
+          (<void> camera_set <cutscene_camera_point> <short>)
 
           (camera_set somewhere_point 100)
 
           ```
 
-          Moves the camera to the specified camera point over the specified
-          number of ticks
+          Moves the camera to the specified camera point over the specified number
+          of ticks
     - slug: camera_set_animation
       info:
         en: |-
           ```hsc
-          (camera_set_animation <animation_graph> <string>)
+          (<void> camera_set_animation <animation_graph> <string>)
           ```
           Begins a prerecorded camera animation
     - slug: camera_set_dead
       info:
         en: |-
           ```hsc
-          (camera_set_dead <unit>)
+          (<void> camera_set_dead <unit>)
           (camera_set_dead (player0))
           ```
           Makes the scripted camera zoom out around a unit as if it were dead
@@ -1857,7 +1853,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (camera_set_first_person <unit>)
+          (<void> camera_set_first_person <unit>)
           (camera_set_first_person (player0))
           ```
           Makes the scripted camera follow a unit
@@ -1866,30 +1862,29 @@ Functions:
         en: >-
           ```hsc
 
-          (camera_set_relative <cutscene_camera_point> <short> <object>)
+          (<void> camera_set_relative <cutscene_camera_point> <short> <object>)
 
           (camera_set_relative somewhere_point 200 warthog_mp_1)
 
           ```
 
-          Moves the camera to the specified camera point over the specified
-          number of ticks (position is relative to the specified object)
+          Moves the camera to the specified camera point over the specified number
+          of ticks (position is relative to the specified object)
     - slug: camera_time
       info:
         en: >-
           ```hsc
 
-          (camera_time)
+          (<short> camera_time)
 
           ```
 
-          Returns the number of ticks remaining in the current camera
-          interpolation
+          Returns the number of ticks remaining in the current camera interpolation
     - slug: change_team
       info:
         en: |-
           ```hsc
-          (change_team <short>)
+          (<void> change_team <short>)
           (change_team 0)
           ; changes you to red
           (change_team 1)
@@ -1902,15 +1897,14 @@ Functions:
       info:
         en: |-
           ```hsc
-          (cheat_active_camouflage)
-
+          (<void> cheat_active_camouflage)
           ```
           Gives the player active camouflage
     - slug: cheat_active_camouflage_local_player
       info:
         en: |-
           ```hsc
-          (cheat_active_camouflage_local_player <short>)
+          (<void> cheat_active_camouflage_local_player <short>)
           (cheat_active_camouflage_local_player 1)
           ```
           Gives the player active camouflage
@@ -1918,55 +1912,49 @@ Functions:
       info:
         en: |-
           ```hsc
-          (cheat_all_powerups)
-
+          (<void> cheat_all_powerups)
           ```
           Drops all powerups near player
     - slug: cheat_all_vehicles
       info:
         en: |-
           ```hsc
-          (cheat_all_vehicles)
-
+          (<void> cheat_all_vehicles)
           ```
           Drops all vehicles on player
     - slug: cheat_all_weapons
       info:
         en: |-
           ```hsc
-          (cheat_all_weapons)
-
+          (<void> cheat_all_weapons)
           ```
           Drops all weapons near player
     - slug: cheat_spawn_warthog
       info:
         en: |-
           ```hsc
-          (cheat_spawn_warthog)
-
+          (<void> cheat_spawn_warthog)
           ```
           Drops a warthog near player
     - slug: cheat_teleport_to_camera
       info:
         en: |-
           ```hsc
-          (cheat_teleport_to_camera)
-
+          (<void> cheat_teleport_to_camera)
           ```
           Teleports player to camera location
     - slug: cheats_load
       info:
         en: |-
           ```hsc
-          (cheats_load)
-
+          (<void> cheats_load)
           ```
           Reloads the cheats.txt file
     - slug: checkpoint_load
       info:
         en: |-
           ```hsc
-          (checkpoint_load <string>)
+          (<void> checkpoint_load <string>)
           ```
           Load a saved checkpoint
     - slug: checkpoint_save
@@ -1977,12 +1965,12 @@ Functions:
 
           ```
           Save last solo checkpoint
+      gearbox_only: true
     - slug: cinematic_abort
       info:
         en: |-
           ```hsc
-          (cinematic_abort)
-
+          (<void> cinematic_abort)
           ```
           Aborts a cinematic
     - slug: cinematic_screen_effect_set_convolution
@@ -1990,7 +1978,7 @@ Functions:
         en: >-
           ```hsc
 
-          (cinematic_screen_effect_set_convolution <short> <short> <real> <real>
+          (<void> cinematic_screen_effect_set_convolution <short> <short> <real> <real>
           <real>)
 
           ```
@@ -2001,8 +1989,8 @@ Functions:
         en: >-
           ```hsc
 
-          (cinematic_screen_effect_set_filter <real> <real> <real> <real>
-          <boolean> <real>)
+          (<void> cinematic_screen_effect_set_filter <real> <real> <real> <real> <boolean>
+          <real>)
 
           ```
 
@@ -2012,7 +2000,7 @@ Functions:
         en: >-
           ```hsc
 
-          (cinematic_screen_effect_set_filter_desaturation_tint <real> <real>
+          (<void> cinematic_screen_effect_set_filter_desaturation_tint <real> <real>
           <real>)
 
           ```
@@ -2023,51 +2011,51 @@ Functions:
         en: >-
           ```hsc
 
-          (cinematic_screen_effect_set_video <short> <real>)
+          (<void> cinematic_screen_effect_set_video <short> <real>)
 
           ```
 
-          Sets the video effect: `<noise intensity[0,1]>`, `<overbright: 0=none,
-          1=2x, 2=4x>`
+          Sets the video effect: `<noise intensity[0,1]>`, `<overbright: 0=none, 1=2x,
+          2=4x>`
     - slug: cinematic_screen_effect_start
       info:
         en: |-
           ```hsc
-          (cinematic_screen_effect_start <boolean>)
+          (<void> cinematic_screen_effect_start <boolean>)
           ```
           Starts screen effect; pass true to clear
     - slug: cinematic_screen_effect_stop
       info:
         en: |-
           ```hsc
-          (cinematic_screen_effect_stop)
+          (<void> cinematic_screen_effect_stop)
           ```
           Returns control of the screen effects to the rest of the game
     - slug: cinematic_set_near_clip_distance
       info:
         en: |
           ```hsc
-          (cinematic_set_near_clip_distance <real>)
+          (<void> cinematic_set_near_clip_distance <real>)
           ```
     - slug: cinematic_set_title
       info:
         en: |-
           ```hsc
-          (cinematic_set_title <cutscene_title>)
+          (<void> cinematic_set_title <cutscene_title>)
           ```
           Activates the chapter title
     - slug: cinematic_set_title_delayed
       info:
         en: |-
           ```hsc
-          (cinematic_set_title_delayed <cutscene_title> <real>)
+          (<void> cinematic_set_title_delayed <cutscene_title> <real>)
           ```
           Activates the chapter title, delayed by <real> seconds
     - slug: cinematic_show_letterbox
       info:
         en: |-
           ```hsc
-          (cinematic_show_letterbox <boolean>)
+          (<void> cinematic_show_letterbox <boolean>)
           (cinematic_show_letterbox true)
           (cinematic_show_letterbox false)
           ```
@@ -2076,30 +2064,26 @@ Functions:
       info:
         en: |
           ```hsc
-          (cinematic_skip_start_internal)
-
+          (<void> cinematic_skip_start_internal)
           ```
     - slug: cinematic_skip_stop_internal
       info:
         en: |
           ```hsc
-          (cinematic_skip_stop_internal)
-
+          (<void> cinematic_skip_stop_internal)
           ```
     - slug: cinematic_start
       info:
         en: |-
           ```hsc
-          (cinematic_start)
-
+          (<void> cinematic_start)
           ```
           Initializes game to start a cinematic (interruptive) cutscene
     - slug: cinematic_stop
       info:
         en: |-
           ```hsc
-          (cinematic_stop)
-
+          (<void> cinematic_stop)
           ```
           Initializes the game to end a cinematic (interruptive) cutscene
     - slug: cinematic_suppress_bsp_object_creation
@@ -2107,7 +2091,7 @@ Functions:
         en: >-
           ```hsc
 
-          (cinematic_suppress_bsp_object_creation <boolean>)
+          (<void> cinematic_suppress_bsp_object_creation <boolean>)
 
           (cinematic_suppress_bsp_object_creation true)
 
@@ -2115,13 +2099,13 @@ Functions:
 
           ```
 
-          Suppresses or enables the automatic creation of objects during
-          cutscenes due to a bsp switch
+          Suppresses or enables the automatic creation of objects during cutscenes
+          due to a bsp switch
     - slug: cls
       info:
         en: |-
           ```hsc
-          (cls)
+          (<void> cls)
           ```
           clears console text from the screen
     - slug: config_one_control
@@ -2131,6 +2115,7 @@ Functions:
           (config_one_control <string>)
           ```
           Test function to configure a single control
+      gearbox_only: true
     - slug: connect
       info:
         en: |-
@@ -2138,53 +2123,54 @@ Functions:
           (connect <string> <string>)
           ```
           Attempt to connect to server - use ip:port password as parameters
+      gearbox_only: true
     - slug: core_load
       info:
         en: |-
           ```hsc
-          (core_load)
+          (<void> core_load)
           ```
           loads debug game state from core\core.bin
     - slug: core_load_at_startup
       info:
         en: |-
           ```hsc
-          (core_load_at_startup)
+          (<void> core_load_at_startup)
           ```
           loads debug game state from core\core.bin as soon as the map is initialized
     - slug: core_load_name
       info:
         en: |-
           ```hsc
-          (core_load_name <string>)
+          (<void> core_load_name <string>)
           ```
           loads debug game state from core\<path>
     - slug: core_load_name_at_startup
       info:
         en: |-
           ```hsc
-          (core_load_name_at_startup <string>)
+          (<void> core_load_name_at_startup <string>)
           ```
           loads debug game state from core\<path> as soon as the map is initialized
     - slug: core_save
       info:
         en: |-
           ```hsc
-          (core_save)
+          (<void> core_save)
           ```
           saves debug game state to core\core.bin
     - slug: core_save_name
       info:
         en: |-
           ```hsc
-          (core_save_name <string>)
+          (<boolean> core_save_name <string>)
           ```
           saves debug game state to core\<path>
     - slug: crash
       info:
         en: |-
           ```hsc
-          (crash <string>)
+          (<void> crash <string>)
           (crash "Something is wrong")
           ```
           Crashes (for debugging)
@@ -2193,29 +2179,29 @@ Functions:
         en: >-
           ```hsc
 
-          (custom_animation <unit> <animation_graph> <string> <boolean>)
+          (<boolean> custom_animation <unit> <animation_graph> <string> <boolean>)
 
           ```
 
-          Starts a custom animation playing on a unit (interpolates into
-          animation if last parameter is true)
+          Starts a custom animation playing on a unit (interpolates into animation
+          if last parameter is true)
     - slug: custom_animation_list
       info:
         en: >-
           ```hsc
 
-          (custom_animation_list <object_list> <animation_graph> <string>
+          (<boolean> custom_animation_list <object_list> <animation_graph> <string>
           <boolean>)
 
           ```
 
-          Starts a custom animation playing on a unit list (interpolates into
-          animation if last parameter is true)
+          Starts a custom animation playing on a unit list (interpolates into animation
+          if last parameter is true)
     - slug: damage_new
       info:
         en: |-
           ```hsc
-          (damage_new <damage> <cutscene_flag>)
+          (<void> damage_new <damage> <cutscene_flag>)
           (damage_new "scenery\emitters\burning_flame\flame" enter_lava_flag)
           ```
           Causes the specified damage at the specified flag
@@ -2223,7 +2209,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (damage_object <damage> <object>)
+          (<void> damage_object <damage> <object>)
           (damage_object "weapons\assault rifle\bullet" (player0))
           ```
           Causes the specified damage at the specified object
@@ -2232,43 +2218,41 @@ Functions:
         en: >-
           ```hsc
 
-          (deactivate_nav_point_flag <unit> <cutscene_flag>)
+          (<void> deactivate_nav_point_flag <unit> <cutscene_flag>)
 
           ```
 
-          Deactivates a nav point type attached to a player <unit> anchored to a
-          flag
+          Deactivates a nav point type attached to a player <unit> anchored to a flag
     - slug: deactivate_nav_point_object
       info:
         en: >-
           ```hsc
 
-          (deactivate_nav_point_object <unit> <object>)
+          (<void> deactivate_nav_point_object <unit> <object>)
 
           ```
 
-          Deactivates a nav point type attached to a player <unit> anchored to
-          an object
+          Deactivates a nav point type attached to a player <unit> anchored to an
+          object
     - slug: deactivate_team_nav_point_flag
       info:
         en: |-
           ```hsc
-          (deactivate_team_nav_point_flag <team> <cutscene_flag>)
+          (<void> deactivate_team_nav_point_flag <team> <cutscene_flag>)
           ```
           Deactivates a nav point type attached to a team anchored to a flag
     - slug: deactivate_team_nav_point_object
       info:
         en: |-
           ```hsc
-          (deactivate_team_nav_point_object <team> <object>)
+          (<void> deactivate_team_nav_point_object <team> <object>)
           ```
           Deactivates a nav point type attached to a team anchored to an object
     - slug: debug_camera_load
       info:
         en: |-
           ```hsc
-          (debug_camera_load)
-
+          (<void> debug_camera_load)
           ```
           Loads the saved camera position and facing
     - slug: debug_camera_load_name
@@ -2278,7 +2262,7 @@ Functions:
           (<void> debug_camera_load_name <string>)
           ```
           loads the camera position and facing from <name>_<map_name>.txt
-      mcc_only: 'true'
+      mcc_only: true
     - slug: debug_camera_load_simple_name
       info:
         en: |-
@@ -2286,7 +2270,7 @@ Functions:
           (<void> debug_camera_load_simple_name <string>)
           ```
           loads the camera position and facing from camera_<name>.txt
-      mcc_only: 'true'
+      mcc_only: true
     - slug: debug_camera_load_text
       info:
         en: |-
@@ -2294,13 +2278,12 @@ Functions:
           (<void> debug_camera_load_text <string>)
           ```
           loads the camera position and facing from a passed in string
-      mcc_only: 'true'
+      mcc_only: true
     - slug: debug_camera_save
       info:
         en: |-
           ```hsc
-          (debug_camera_save)
-
+          (<void> debug_camera_save)
           ```
           Saves the camera position and facing
     - slug: debug_camera_save_name
@@ -2310,7 +2293,7 @@ Functions:
           (<void> debug_camera_save_name <string>)
           ```
           saves the camera position and facing to <name>_<map_name>.txt
-      mcc_only: 'true'
+      mcc_only: true
     - slug: debug_camera_save_simple_name
       info:
         en: |-
@@ -2318,7 +2301,7 @@ Functions:
           (<void> debug_camera_save_simple_name <string>)
           ```
           saves the camera position and facing to camera_<name>.txt
-      mcc_only: 'true'
+      mcc_only: true
     - slug: debug_memory
       info:
         en: |-
@@ -2327,6 +2310,7 @@ Functions:
 
           ```
           Dumps memory leaks
+      gearbox_only: true
     - slug: debug_memory_by_file
       info:
         en: |-
@@ -2335,6 +2319,7 @@ Functions:
 
           ```
           Dumps memory leaks by source file
+      gearbox_only: true
     - slug: debug_memory_for_file
       info:
         en: |-
@@ -2343,11 +2328,12 @@ Functions:
           (debug_memory_for_file "\halopc\haloce\source\tag_files\tag_groups.c")
           ```
           Dumps memory leaks from the specified source file
+      gearbox_only: true
     - slug: debug_pvs
       info:
         en: |-
           ```hsc
-          (debug_pvs <boolean>)
+          (<void> debug_pvs <boolean>)
           ```
           displays the current pvs.
     - slug: debug_sounds_distances
@@ -2361,11 +2347,12 @@ Functions:
 
           Changes the minimum and maximum distances for all sound classes
           matching the substring
+      gearbox_only: true
     - slug: debug_sounds_enable
       info:
         en: |-
           ```hsc
-          (debug_sounds_enable <string> <boolean>)
+          (<void> debug_sounds_enable <string> <boolean>)
           ```
           Enables or disabled all sound classes matching the substring
     - slug: debug_sounds_wet
@@ -2375,6 +2362,7 @@ Functions:
           (debug_sounds_wet <string> <real>)
           ```
           Changes the reverb level for all sound classes matching the substring
+      gearbox_only: true
     - slug: debug_tags
       info:
         en: |-
@@ -2382,11 +2370,12 @@ Functions:
           (debug_tags)
           ```
           Writes all memory being used by tag files into tag_dump.txt
+      gearbox_only: true
     - slug: debug_teleport_player
       info:
         en: |
           ```hsc
-          (debug_teleport_player <short> <short>)
+          (<void> debug_teleport_player <short> <short>)
           ```
     - slug: delete_save_game_files
       info:
@@ -2396,6 +2385,7 @@ Functions:
 
           ```
           Delete all custom profile files
+      gearbox_only: true
     - slug: device_get_position
       info:
         en: >-
@@ -2412,45 +2402,45 @@ Functions:
         en: >-
           ```hsc
 
-          (device_get_position <device>)
+          (<real> device_get_position <device>)
 
           ```
 
-          Gets the current position of the given device (used for devices
-          without explicit device groups)
+          Gets the current position of the given device (used for devices without
+          explicit device groups)
     - slug: device_get_power
       info:
         en: |-
           ```hsc
-          (device_get_power <device>)
+          (<real> device_get_power <device>)
           ```
           Gets the current power of a named device
     - slug: device_group_change_only_once_more_set
       info:
         en: |-
           ```hsc
-          (device_group_change_only_once_more_set <device_group> <boolean>)
+          (<void> device_group_change_only_once_more_set <device_group> <boolean>)
           ```
           true allows a device to change states only once
     - slug: device_group_get
       info:
         en: |-
           ```hsc
-          (device_group_get <device_group>)
+          (<real> device_group_get <device_group>)
           ```
           Returns the desired value of the specified device group
     - slug: device_group_set
       info:
         en: |-
           ```hsc
-          (device_group_set <device_group> <real>)
+          (<boolean> device_group_set <device_group> <real>)
           ```
           Changes the desired value of the specified device group
     - slug: device_group_set_immediate
       info:
         en: |-
           ```hsc
-          (device_group_set_immediate <device_group> <real>)
+          (<void> device_group_set_immediate <device_group> <real>)
           ```
           Instantaneously changes the value of the specified device group
     - slug: device_one_sided_set
@@ -2458,28 +2448,28 @@ Functions:
         en: >-
           ```hsc
 
-          (device_one_sided_set <device> <boolean>)
+          (<void> device_one_sided_set <device> <boolean>)
 
           ```
 
-          true makes the given device one-sided (only able to be opened from one
-          direction), false makes it two-sided
+          true makes the given device one-sided (only able to be opened from one direction),
+          false makes it two-sided
     - slug: device_operates_automatically_set
       info:
         en: >-
           ```hsc
 
-          (device_operates_automatically_set <device> <boolean>)
+          (<void> device_operates_automatically_set <device> <boolean>)
 
           ```
 
-          true makes the given device open automatically when any biped is
-          nearby, false makes it not
+          true makes the given device open automatically when any biped is nearby,
+          false makes it not
     - slug: device_set_never_appears_locked
       info:
         en: |-
           ```hsc
-          (device_set_never_appears_locked <device> <boolean>)
+          (<void> device_set_never_appears_locked <device> <boolean>)
           ```
           changes a machine's never_appears_locked flag, but only if paul is a bastard
     - slug: device_set_position
@@ -2487,32 +2477,32 @@ Functions:
         en: >-
           ```hsc
 
-          (device_set_position <device> <real>)
+          (<boolean> device_set_position <device> <real>)
 
           (device_set_position <device> 1.0)
 
           ```
 
-          Set the desired position of the given device (used for devices without
-          explicit device groups)
+          Set the desired position of the given device (used for devices without explicit
+          device groups)
     - slug: device_set_position_immediate
       info:
         en: >-
           ```hsc
 
-          (device_set_position_immediate <device> <real>)
+          (<void> device_set_position_immediate <device> <real>)
 
           (device_set_position_immediate <device> 1.0)
 
           ```
 
-          Instantaneously changes the position of the given device (used for
-          devices without explicit device groups
+          Instantaneously changes the position of the given device (used for devices
+          without explicit device groups
     - slug: device_set_power
       info:
         en: |-
           ```hsc
-          (device_set_power <device> <real>)
+          (<void> device_set_power <device> <real>)
           (device_set_power <device> 1.0)
           ```
           Immediately sets the power of a named device to the given value
@@ -2523,11 +2513,12 @@ Functions:
           (disconnect)
           ```
           Disconnect from a server
+      gearbox_only: true
     - slug: display_scenario_help
       info:
         en: |-
           ```hsc
-          (display_scenario_help <short>)
+          (<void> display_scenario_help <short>)
           (display_scenario_help 1)
           ```
           Display in-game help dialog
@@ -2535,7 +2526,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (effect_new <effect> <cutscene_flag>)
+          (<void> effect_new <effect> <cutscene_flag>)
           (effect_new "effects\coop teleport" teleporting_flag)
           ```
           Starts the specified effect at the specified flag
@@ -2544,20 +2535,18 @@ Functions:
         en: >-
           ```hsc
 
-          (effect_new_on_object_marker <effect> <object> <string>)
+          (<void> effect_new_on_object_marker <effect> <object> <string>)
 
-          (effect_new_on_object_marker "effects\burning large" warthog_mp
-          "driver")
+          (effect_new_on_object_marker "effects\burning large" warthog_mp "driver")
 
           ```
 
-          Starts the specified effect on the specified object at the specified
-          marker
+          Starts the specified effect on the specified object at the specified marker
     - slug: enable_hud_help_flash
       info:
         en: |-
           ```hsc
-          (enable_hud_help_flash <boolean>)
+          (<void> enable_hud_help_flash <boolean>)
           (enable_hud_help_flash true)
           (enable_hud_help_flash false)
           ```
@@ -2566,7 +2555,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (error_overflow_suppression <boolean>)
+          (<void> error_overflow_suppression <boolean>)
           (error_overflow_suppression true)
           (error_overflow_suppression false)
           ```
@@ -2575,7 +2564,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (fade_in <real> <real> <real> <short>)
+          (<void> fade_in <real> <real> <real> <short>)
           (fade_in 0.0 0.0 0.0 100)
           ```
           Does a screen fade in from a particular color in the amount of ticks
@@ -2583,7 +2572,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (fade_out <real> <real> <real> <short>)
+          (<void> fade_out <real> <real> <real> <short>)
           (fade_out 1.0 1.0 1.0 100)
           ```
           Does a screen fade out to a particular color in the amount of ticks
@@ -2598,43 +2587,40 @@ Functions:
 
           Sets up a network server with the given map name, game variant, and
           true for remote connections, false for not
+      gearbox_only: true
     - slug: game_all_quiet
       info:
         en: >-
           ```hsc
 
-          (game_all_quiet)
-
+          (<boolean> game_all_quiet)
 
           ```
 
-          Returns false if there are bad guys around, projectiles in the air,
-          etc.
+          Returns false if there are bad guys around, projectiles in the air, etc.
     - slug: game_difficulty_get
       info:
         en: >-
           ```hsc
 
-          (game_difficulty_get)
-
+          (<game_difficulty> game_difficulty_get)
 
           ```
 
-          Returns the current difficulty setting, but lies to you and will never
-          return easy, instead returning normal
+          Returns the current difficulty setting, but lies to you and will never return
+          easy, instead returning normal
     - slug: game_difficulty_get_real
       info:
         en: |-
           ```hsc
-          (game_difficulty_get_real)
-
+          (<game_difficulty> game_difficulty_get_real)
           ```
           Returns the actual current difficulty setting without lying
     - slug: game_difficulty_set
       info:
         en: |-
           ```hsc
-          (game_difficulty_set <game_difficulty>)
+          (<void> game_difficulty_set <game_difficulty>)
           (game_difficulty_set easy)
           (game_difficulty_set normal)
           (game_difficulty_set hard)
@@ -2647,20 +2633,19 @@ Functions:
           ```hsc
           (<boolean> game_is_authoritative)
           ```
-      mcc_only: 'true'
+      mcc_only: true
     - slug: game_is_cooperative
       info:
         en: |-
           ```hsc
-          (game_is_cooperative)
-
+          (<boolean> game_is_cooperative)
           ```
           Returns true if the game is cooperative
     - slug: game_lost
       info:
         en: |-
           ```hsc
-          (game_lost)
+          (<void> game_lost)
           ```
           Causes the player to revert to their previous saved checkpoint. For
           example, this is used when Keyes dies in _Truth and Reconciliation_.
@@ -2669,17 +2654,17 @@ Functions:
         en: >-
           ```hsc
 
-          (game_revert)
+          (<void> game_revert)
 
           ```
 
-          Reverts to last saved game, if any (for testing, the first bastard
-          that does this to me gets it in the head)
+          Reverts to last saved game, if any (for testing, the first bastard that
+          does this to me gets it in the head)
     - slug: game_reverted
       info:
         en: |-
           ```hsc
-          (game_reverted)
+          (<boolean> game_reverted)
           ```
           Don't use this for anything, you black-hearted bastards
     - slug: game_safe_to_save
@@ -2687,39 +2672,38 @@ Functions:
         en: >-
           ```hsc
 
-          (game_safe_to_save)
+          (<boolean> game_safe_to_save)
 
           ```
 
-          Returns false if it would be a bad idea to save the player's game
-          right now
+          Returns false if it would be a bad idea to save the player's game right
+          now
     - slug: game_safe_to_speak
       info:
         en: >-
           ```hsc
 
-          (game_safe_to_speak)
+          (<boolean> game_safe_to_speak)
 
           ```
 
-          Returns false if it would be a bad idea to save the player's game
-          right now
+          Returns false if it would be a bad idea to save the player's game right
+          now
     - slug: game_save
       info:
         en: >-
           ```hsc
 
-          (game_save)
+          (<void> game_save)
 
           ```
 
-          Checks to see if it is safe to save game, then saves (gives up after 8
-          seconds)
+          Checks to see if it is safe to save game, then saves (gives up after 8 seconds)
     - slug: game_save_cancel
       info:
         en: |-
           ```hsc
-          (game_save_cancel)
+          (<void> game_save_cancel)
           ```
           Cancels any pending `game_save`, timeout or not. This prevents a
           checkpoint from being created during a known loss situation.
@@ -2728,32 +2712,31 @@ Functions:
         en: >-
           ```hsc
 
-          (game_save_no_timeout)
+          (<void> game_save_no_timeout)
 
           ```
 
-          Checks to see if it is safe to save game, then saves (this version
-          never gives up)
+          Checks to see if it is safe to save game, then saves (this version never
+          gives up)
     - slug: game_save_totally_unsafe
       info:
         en: |-
           ```hsc
-          (game_save_totally_unsafe)
-
+          (<void> game_save_totally_unsafe)
           ```
           Saves disregarding player's current situation
     - slug: game_saving
       info:
         en: |-
           ```hsc
-          (game_saving)
+          (<boolean> game_saving)
           ```
           Checks to see if the game is trying to save a checkpoint
     - slug: game_skip_ticks
       info:
         en: |-
           ```hsc
-          (game_skip_ticks <short>)
+          (<void> game_skip_ticks <short>)
           (game_skip_ticks 5)
           ```
           Skips <short> amount of game ticks. ONLY USE IN CUTSCENES!!!
@@ -2761,7 +2744,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (game_speed <real>)
+          (<void> game_speed <real>)
           (game_speed 0.5)
           ```
           Changes the game speed
@@ -2769,15 +2752,14 @@ Functions:
       info:
         en: |-
           ```hsc
-          (game_time)
-
+          (<long> game_time)
           ```
           Gets ticks elapsed since the start of the game
     - slug: game_variant
       info:
         en: |-
           ```hsc
-          (game_variant <string>)
+          (<void> game_variant <string>)
           ```
           set the game engine
     - slug: game_won
@@ -2785,23 +2767,23 @@ Functions:
         en: >-
           ```hsc
 
-          (game_won)
+          (<void> game_won)
 
           ```
 
-          Causes the player to successfully finish the current level and move on
-          to the next
+          Causes the player to successfully finish the current level and move on to
+          the next
     - slug: garbage_collect_now
       info:
         en: >-
           ```hsc
 
-          (garbage_collect_now)
+          (<void> garbage_collect_now)
 
           ```
 
-          Causes all garbage objects except those visible to a player to be
-          collected immediately
+          Causes all garbage objects except those visible to a player to be collected
+          immediately
     - slug: get_digital_forward_throttle
       info:
         en: |-
@@ -2809,6 +2791,7 @@ Functions:
           (get_digital_forward_throttle <short>)
           ```
           Gets the amount of forward throttle applied by digital device stimuli
+      gearbox_only: true
     - slug: get_digital_pitch_increment
       info:
         en: |-
@@ -2816,6 +2799,7 @@ Functions:
           (get_digital_pitch_increment <short>)
           ```
           Gets the increment in pitch applied by digital device stimuli
+      gearbox_only: true
     - slug: get_digital_strafe_throttle
       info:
         en: |-
@@ -2823,6 +2807,7 @@ Functions:
           (get_digital_strafe_throttle <short>)
           ```
           Gets the amount of strafe throttle applied by digital device stimuli
+      gearbox_only: true
     - slug: get_digital_yaw_increment
       info:
         en: |-
@@ -2830,6 +2815,7 @@ Functions:
           (get_digital_yaw_increment <short>)
           ```
           Gets the increment in yaw applied by digital device stimuli
+      gearbox_only: true
     - slug: get_gamepad_forward_threshold
       info:
         en: >-
@@ -2841,6 +2827,7 @@ Functions:
 
           Gets the threshold beyond which gamepad movement is full forward
           throttle
+      gearbox_only: true
     - slug: get_gamepad_pitch_scale
       info:
         en: |-
@@ -2848,6 +2835,7 @@ Functions:
           (get_gamepad_pitch_scale <short>)
           ```
           Gets the scale for gamepad control of pitch
+      gearbox_only: true
     - slug: get_gamepad_strafe_threshold
       info:
         en: >-
@@ -2859,6 +2847,7 @@ Functions:
 
           Gets the threshold beyond which gamepad movement is full strafe
           throttle
+      gearbox_only: true
     - slug: get_gamepad_yaw_scale
       info:
         en: |-
@@ -2866,6 +2855,7 @@ Functions:
           (get_gamepad_yaw_scale <short>)
           ```
           Gets the scale for gamepad control of yaw
+      gearbox_only: true
     - slug: get_mouse_forward_threshold
       info:
         en: >-
@@ -2877,6 +2867,7 @@ Functions:
 
           Gets the threshold beyond which mouse movement is full forward
           throttle
+      gearbox_only: true
     - slug: get_mouse_pitch_scale
       info:
         en: |-
@@ -2884,6 +2875,7 @@ Functions:
           (get_mouse_pitch_scale <short>)
           ```
           Gets the scale for mouse control of pitch
+      gearbox_only: true
     - slug: get_mouse_strafe_threshold
       info:
         en: |-
@@ -2891,6 +2883,7 @@ Functions:
           (get_mouse_strafe_threshold <short>)
           ```
           Gets the threshold beyond which mouse movement is full strafe throttle
+      gearbox_only: true
     - slug: get_mouse_yaw_scale
       info:
         en: |-
@@ -2898,18 +2891,19 @@ Functions:
           (get_mouse_yaw_scale <short>)
           ```
           Gets the scale for mouse control of yaw
+      gearbox_only: true
     - slug: get_pitch_rate
       info:
         en: |-
           ```hsc
-          (get_pitch_rate <short>)
+          (<real> get_pitch_rate <short>)
           ```
           Gets the yaw rate for the given player number
     - slug: get_yaw_rate
       info:
         en: |-
           ```hsc
-          (get_yaw_rate <short>)
+          (<real> get_yaw_rate <short>)
           ```
           Gets the yaw rate for the given player number
     - slug: hammer_begin
@@ -2919,6 +2913,7 @@ Functions:
           (hammer_begin <string> <string> <long> <short> <short>)
           ```
           Hammers the server by connecting and disconnecting repeatedly
+      gearbox_only: true
     - slug: hammer_stop
       info:
         en: |-
@@ -2927,11 +2922,12 @@ Functions:
 
           ```
           Stops hammering the server
+      gearbox_only: true
     - slug: help
       info:
         en: |-
           ```hsc
-          (help <string>)
+          (<void> help <string>)
           (help cheats_load)
           ```
           Prints a description of the named function
@@ -2939,7 +2935,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (hud_blink_health <boolean>)
+          (<void> hud_blink_health <boolean>)
           (hud_blink_health true)
           (hud_blink_health false)
           ```
@@ -2948,7 +2944,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (hud_blink_motion_sensor <boolean>)
+          (<void> hud_blink_motion_sensor <boolean>)
           (hud_blink_motion_sensor true)
           (hud_blink_motion_sensor false)
           ```
@@ -2957,7 +2953,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (hud_blink_shield <boolean>)
+          (<void> hud_blink_shield <boolean>)
           (hud_blink_shield true)
           (hud_blink_shield false)
           ```
@@ -2966,87 +2962,84 @@ Functions:
       info:
         en: |-
           ```hsc
-          (hud_clear_messages)
-
+          (<void> hud_clear_messages)
           ```
           Clears all non-state messages on the hud
     - slug: hud_get_timer_ticks
       info:
         en: |-
           ```hsc
-          (hud_get_timer_ticks)
-
+          (<short> hud_get_timer_ticks)
           ```
           Returns the ticks left on the hud timer
     - slug: hud_help_flash_restart
       info:
         en: |-
           ```hsc
-          (hud_help_flash_restart)
-
+          (<void> hud_help_flash_restart)
           ```
           Resets the timer for the help text flashing
     - slug: hud_set_help_text
       info:
         en: |-
           ```hsc
-          (hud_set_help_text <hud_message>)
+          (<void> hud_set_help_text <hud_message>)
           ```
           displays <message> as the help text
     - slug: hud_set_objective_text
       info:
         en: |-
           ```hsc
-          (hud_set_objective_text <hud_message>)
+          (<void> hud_set_objective_text <hud_message>)
           ```
           sets <message> as the current objective
     - slug: hud_set_timer_position
       info:
         en: |-
           ```hsc
-          (hud_set_timer_position <short> <short> <hud_corner>)
+          (<void> hud_set_timer_position <short> <short> <hud_corner>)
           ```
           sets the timer upper left position to (x, y)=>(<short>, <short>)
     - slug: hud_set_timer_time
       info:
         en: |-
           ```hsc
-          (hud_set_timer_time <short> <short>)
+          (<void> hud_set_timer_time <short> <short>)
           ```
           sets the time for the timer to <short> minutes and <short> seconds, and starts and displays timer
     - slug: hud_set_timer_warning_time
       info:
         en: |-
           ```hsc
-          (hud_set_timer_warning_time <short> <short>)
+          (<void> hud_set_timer_warning_time <short> <short>)
           ```
           sets the warning time for the timer to <short> minutes and <short> seconds
     - slug: hud_show_crosshair
       info:
         en: |-
           ```hsc
-          (hud_show_crosshair <boolean>)
+          (<void> hud_show_crosshair <boolean>)
           ```
           hides/shows the weapon crosshair
     - slug: hud_show_health
       info:
         en: |-
           ```hsc
-          (hud_show_health <boolean>)
+          (<void> hud_show_health <boolean>)
           ```
           hides/shows the health panel
     - slug: hud_show_motion_sensor
       info:
         en: |-
           ```hsc
-          (hud_show_motion_sensor <boolean>)
+          (<void> hud_show_motion_sensor <boolean>)
           ```
           hides/shows the motion sensor panel
     - slug: hud_show_shield
       info:
         en: |-
           ```hsc
-          (hud_show_shield <boolean>)
+          (<void> hud_show_shield <boolean>)
           ```
           hides/shows the shield panel
     - slug: hud_team_background_set_pos
@@ -3056,6 +3049,7 @@ Functions:
           (hud_team_background_set_pos <long> <long>)
           ```
           shit
+      gearbox_only: true
     - slug: hud_team_background_set_scale
       info:
         en: |-
@@ -3063,6 +3057,7 @@ Functions:
           (hud_team_background_set_scale <real> <real>)
           ```
           shit
+      gearbox_only: true
     - slug: hud_team_icon_set_pos
       info:
         en: |-
@@ -3070,6 +3065,7 @@ Functions:
           (hud_team_icon_set_pos <long> <long>)
           ```
           shit
+      gearbox_only: true
     - slug: hud_team_icon_set_scale
       info:
         en: |-
@@ -3077,6 +3073,7 @@ Functions:
           (hud_team_icon_set_scale <real> <real>)
           ```
           shit
+      gearbox_only: true
     - slug: input_activate_joy
       info:
         en: |-
@@ -3084,6 +3081,7 @@ Functions:
           (input_activate_joy <short> <short>)
           ```
           Activates an enumerated joystick into a logical joystick slot
+      gearbox_only: true
     - slug: input_deactivate_joy
       info:
         en: >-
@@ -3095,6 +3093,7 @@ Functions:
 
           Deactivates an enumerated joystick, freeing up the logical joystick
           slot
+      gearbox_only: true
     - slug: input_find_default
       info:
         en: |-
@@ -3102,6 +3101,7 @@ Functions:
           (input_find_default <string>)
           ```
           Test function that looks up a default profile for a deviceid
+      gearbox_only: true
     - slug: input_find_joystick
       info:
         en: |-
@@ -3109,6 +3109,7 @@ Functions:
           (input_find_joystick <string>)
           ```
           Test function to find a joystick by GUID (string representation)
+      gearbox_only: true
     - slug: input_get_joy_count
       info:
         en: |-
@@ -3117,6 +3118,7 @@ Functions:
 
           ```
           Test function to return the number of joysticks enumerated
+      gearbox_only: true
     - slug: input_is_joy_active
       info:
         en: >-
@@ -3128,6 +3130,7 @@ Functions:
 
           Test function to determine if an enumerated joystick is activated or
           not
+      gearbox_only: true
     - slug: input_show_joystick_info
       info:
         en: >-
@@ -3140,11 +3143,12 @@ Functions:
 
           Test function to show the enumerated joystick information for all
           joystick
+      gearbox_only: true
     - slug: list_count
       info:
         en: |-
           ```hsc
-          (list_count <object_list>)
+          (<short> list_count <object_list>)
           (list_count the_warthogs)
           ```
           Returns the number of objects in a list
@@ -3155,12 +3159,12 @@ Functions:
           (<short> list_count_not_dead <object_list>)
           ```
           returns the number of objects in a list that aren't dead
-      mcc_only: 'true'
+      mcc_only: true
     - slug: list_get
       info:
         en: |-
           ```hsc
-          (list_get <object_list> <short>)
+          (<object> list_get <object_list> <short>)
           (list_get the_warthogs 3)
           ```
           Returns an item in an object list
@@ -3171,7 +3175,7 @@ Functions:
           (<object_list> local_players)
           ```
           returns a list of the living player units on the local machine
-      mcc_only: 'true'
+      mcc_only: true
     - slug: log_print
       info:
         en: |-
@@ -3179,13 +3183,12 @@ Functions:
           (<void> log_print <string>)
           ```
           prints a string to the hs log file.
-      mcc_only: 'true'
+      mcc_only: true
     - slug: magic_melee_attack
       info:
         en: |-
           ```hsc
-          (magic_melee_attack)
-
+          (<void> magic_melee_attack)
           ```
           Causes player's unit to start a melee attack
     - slug: magic_seat_name
@@ -3193,17 +3196,17 @@ Functions:
         en: >-
           ```hsc
 
-          (magic_seat_name <string>)
+          (<void> magic_seat_name <string>)
 
           ```
 
-          All units controlled by the player will assume the given seat name
-          (valid values are 'asleep', 'alert', 'stand', 'crouch' and 'flee')
+          All units controlled by the player will assume the given seat name (valid
+          values are 'asleep', 'alert', 'stand', 'crouch' and 'flee')
     - slug: map_name
       info:
         en: |-
           ```hsc
-          (map_name <string>)
+          (<void> map_name <string>)
           ; in cache builds:
           (map_name "a10")
           ; in tags builds:
@@ -3217,7 +3220,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (map_reset)
+          (<void> map_reset)
           ```
           Starts the map from the beginning
     - slug: message_metrics_clear
@@ -3227,6 +3230,7 @@ Functions:
           (message_metrics_clear)
           ```
           Clears network messaging metrics
+      gearbox_only: true
     - slug: message_metrics_dump
       info:
         en: |-
@@ -3235,11 +3239,12 @@ Functions:
           (message_metrics_dump "")
           ```
           Dumps network messaging metrics to given file ("" for default)
+      gearbox_only: true
     - slug: multiplayer_map_name
       info:
         en: |-
           ```hsc
-          (multiplayer_map_name <string>)
+          (<void> multiplayer_map_name <string>)
           (multiplayer_map_name "schwinnzno1_alpha01a")
           ```
           Changes the name of the multiplayer map
@@ -3250,6 +3255,7 @@ Functions:
           (net_graph_clear)
           ```
           Clears the net_graph
+      gearbox_only: true
     - slug: net_graph_show
       info:
         en: |-
@@ -3257,6 +3263,7 @@ Functions:
           (net_graph_show <string> <string>)
           ```
           Changes the net_graph display (bytes/packets, sent/received)
+      gearbox_only: true
     - slug: network_client_dump
       info:
         en: |-
@@ -3264,6 +3271,7 @@ Functions:
           (network_client_dump)
           ```
           Dumps info on network client
+      gearbox_only: true
     - slug: network_server_dump
       info:
         en: |-
@@ -3271,11 +3279,12 @@ Functions:
           (network_server_dump)
           ```
           Dumps info on network server
+      gearbox_only: true
     - slug: numeric_countdown_timer_get
       info:
         en: |-
           ```hsc
-          (numeric_countdown_timer_get <short>)
+          (<short> numeric_countdown_timer_get <short>)
           (numeric_countdown_timer_get 1)
           (numeric_countdown_timer_get -1)
           ```
@@ -3284,14 +3293,14 @@ Functions:
       info:
         en: |-
           ```hsc
-          (numeric_countdown_timer_restart)
+          (<void> numeric_countdown_timer_restart)
           ```
           Reset the timer
     - slug: numeric_countdown_timer_set
       info:
         en: |-
           ```hsc
-          (numeric_countdown_timer_set <long> <boolean>)
+          (<void> numeric_countdown_timer_set <long> <boolean>)
           (numeric_countdown_timer_set 15500 false)
           (numeric_countdown_timer_set 10000 false)
           ```
@@ -3300,14 +3309,14 @@ Functions:
       info:
         en: |-
           ```hsc
-          (numeric_countdown_timer_stop)
+          (<void> numeric_countdown_timer_stop)
           ```
           Stop the timer
     - slug: object_beautify
       info:
         en: |-
           ```hsc
-          (object_beautify <object> <boolean>)
+          (<void> object_beautify <object> <boolean>)
           (object_beautify chief true)
           (object_beautify chief false)
           ```
@@ -3317,7 +3326,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (object_can_take_damage <object_list>)
+          (<void> object_can_take_damage <object_list>)
           (object_can_take_damage (players))
           ```
           Allows an object to take damage again
@@ -3325,7 +3334,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (object_cannot_take_damage <object_list>)
+          (<void> object_cannot_take_damage <object_list>)
           (object_cannot_take_damage (players))
           ```
           Prevents an object from taking damage
@@ -3333,7 +3342,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (object_create <object_name>)
+          (<void> object_create <object_name>)
           (object_create warthog_mp_1)
           ```
           Creates an object from the scenario
@@ -3341,7 +3350,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (object_create_anew <object_name>)
+          (<void> object_create_anew <object_name>)
           (object_create_anew banshee_mp_1)
           ```
           Creates an object, destroying it first if it already exists
@@ -3350,39 +3359,38 @@ Functions:
         en: >-
           ```hsc
 
-          (object_create_anew_containing <string>)
+          (<void> object_create_anew_containing <string>)
 
           (object_create_anew_containing "pelican")
 
           ```
 
-          Creates anew all objects from the scenario whose names contain the
-          given substring
+          Creates anew all objects from the scenario whose names contain the given
+          substring
     - slug: object_create_containing
       info:
         en: >-
           ```hsc
 
-          (object_create_containing <string>)
+          (<void> object_create_containing <string>)
 
           (object_create_containing "warthog")
 
           ```
 
-          Creates all objects from the scenario whose names contain the given
-          substring
+          Creates all objects from the scenario whose names contain the given substring
     - slug: object_destroy
       info:
         en: |-
           ```hsc
-          (object_destroy <object>)
+          (<void> object_destroy <object>)
           ```
           Destroys an object
     - slug: object_destroy_all
       info:
         en: |-
           ```hsc
-          (object_destroy_all)
+          (<void> object_destroy_all)
           ```
           Destroys all non player objects
     - slug: object_destroy_containing
@@ -3390,26 +3398,25 @@ Functions:
         en: >-
           ```hsc
 
-          (object_destroy_containing <string>)
+          (<void> object_destroy_containing <string>)
 
           (object_destroy_containing "pelican")
 
           ```
 
-          Destroys all objects from the scenario whose names contain the given
-          substring
+          Destroys all objects from the scenario whose names contain the given substring
     - slug: object_pvs_activate
       info:
         en: |-
           ```hsc
-          (object_pvs_activate <object>)
+          (<void> object_pvs_activate <object>)
           ```
           Just another (old) name for object_pvs_set_object.
     - slug: object_pvs_clear
       info:
         en: |-
           ```hsc
-          (object_pvs_clear)
+          (<void> object_pvs_clear)
           ```
           Removes the special place that activates everything it sees.
     - slug: object_pvs_set_camera
@@ -3417,28 +3424,28 @@ Functions:
         en: >-
           ```hsc
 
-          (object_pvs_set_camera <cutscene_camera_point>)
+          (<void> object_pvs_set_camera <cutscene_camera_point>)
 
           ```
 
-          Sets the specified cutscene camera point as the special place that
-          activates everything it sees.
+          Sets the specified cutscene camera point as the special place that activates
+          everything it sees.
     - slug: object_pvs_set_object
       info:
         en: >-
           ```hsc
 
-          (object_pvs_set_object <object>)
+          (<void> object_pvs_set_object <object>)
 
           ```
 
-          Sets the specified object as the special place that activates
-          everything it sees.
+          Sets the specified object as the special place that activates everything
+          it sees.
     - slug: object_set_collideable
       info:
         en: |-
           ```hsc
-          (object_set_collideable <object> <boolean>)
+          (<void> object_set_collideable <object> <boolean>)
           (object_set_collideable (player0) true)
           (object_set_collideable (player0) false)
           ```
@@ -3447,7 +3454,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (object_set_facing <object> <cutscene_flag>)
+          (<void> object_set_facing <object> <cutscene_flag>)
           (object_set_facing (player0) blue_base_flag)
           ```
           Turns the specified object in the direction of the specified flag
@@ -3455,7 +3462,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (object_set_melee_attack_inhibited <object> <boolean>)
+          (<void> object_set_melee_attack_inhibited <object> <boolean>)
           (object_set_melee_attack_inhibited (player0) true)
           (object_set_melee_attack_inhibited (player0) false)
           ```
@@ -3465,19 +3472,19 @@ Functions:
         en: >-
           ```hsc
 
-          (object_set_permutation <object> <string> <string>)
+          (<void> object_set_permutation <object> <string> <string>)
 
           (object_set_permutation (player0) "right arm" ~damaged)
 
           ```
 
-          Sets the desired region (use `""` for all regions) to the permutation
-          with the given name
+          Sets the desired region (use `""` for all regions) to the permutation with
+          the given name
     - slug: object_set_ranged_attack_inhibited
       info:
         en: |-
           ```hsc
-          (object_set_ranged_attack_inhibited <object> <boolean>)
+          (<void> object_set_ranged_attack_inhibited <object> <boolean>)
           (object_set_ranged_attack_inhibited (player0) true)
           (object_set_ranged_attack_inhibited (player0) false)
           ```
@@ -3487,7 +3494,7 @@ Functions:
         en: >-
           ```hsc
 
-          (object_set_scale <object> <real> <short>)
+          (<void> object_set_scale <object> <real> <short>)
 
           (object_set_scale (player0) 1.5 10)
 
@@ -3495,13 +3502,13 @@ Functions:
 
           ```
 
-          sets the scale for a given object and interpolates over the given
-          number of frames to achieve that scale
+          sets the scale for a given object and interpolates over the given number
+          of frames to achieve that scale
     - slug: object_set_shield
       info:
         en: |-
           ```hsc
-          (object_set_shield <object> <real>)
+          (<void> object_set_shield <object> <real>)
           (object_set_shield (player0) 1.0)
           ```
           Sets the shield vitality of the specified object (between 0 and 1)
@@ -3509,7 +3516,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (object_teleport <object> <cutscene_flag>)
+          (<void> object_teleport <object> <cutscene_flag>)
           (object_teleport (player0) red_base_flag)
           ```
           Moves the specified object to the specified flag
@@ -3518,17 +3525,16 @@ Functions:
         en: >-
           ```hsc
 
-          (object_type_predict <object_definition>)
+          (<void> object_type_predict <object_definition>)
 
           ```
 
-          Loads textures necessary to draw an object that's about to come
-          on-screen
+          Loads textures necessary to draw an object that's about to come on-screen
     - slug: objects_attach
       info:
         en: |-
           ```hsc
-          (objects_attach <object> <string> <object> <string>)
+          (<void> objects_attach <object> <string> <object> <string>)
           (objects_attach chief "right hand" ar1 "")
           ```
           Attaches the second object to the first; both strings can be empty
@@ -3537,39 +3543,39 @@ Functions:
         en: >-
           ```hsc
 
-          (objects_can_see_flag <object_list> <cutscene_flag> <real>)
+          (<boolean> objects_can_see_flag <object_list> <cutscene_flag> <real>)
 
           (objects_can_see_flag the_warthogs tunnel_flag 45)
 
           ```
 
-          Returns `true` if any of the specified units are looking within the
-          specified number of degrees of the flag
+          Returns `true` if any of the specified units are looking within the specified
+          number of degrees of the flag
     - slug: objects_can_see_object
       info:
         en: >-
           ```hsc
 
-          (objects_can_see_object <object_list> <object> <real>)
+          (<boolean> objects_can_see_object <object_list> <object> <real>)
 
           (objects_can_see_object the_warthogs (player0) 90)
 
           ```
 
-          Returns `true` if any of the specified units are looking within the
-          specified number of degrees of the object
+          Returns `true` if any of the specified units are looking within the specified
+          number of degrees of the object
     - slug: objects_delete_by_definition
       info:
         en: |-
           ```hsc
-          (objects_delete_by_definition <object_definition>)
+          (<void> objects_delete_by_definition <object_definition>)
           ```
           Deletes all objects of type `<definition>`
     - slug: objects_detach
       info:
         en: |-
           ```hsc
-          (objects_detach <object> <object>)
+          (<void> objects_detach <object> <object>)
           (objects_detach chief ar1)
           ```
           Detaches from the given parent object the given child object
@@ -3580,7 +3586,7 @@ Functions:
           (<real> objects_distance_to_flag <object_list> <cutscene_flag>)
           ```
           returns minimum distance from any of the specified objects to the specified flag. (returns -1 if there are no objects, or no flag, to check)
-      mcc_only: 'true'
+      mcc_only: true
     - slug: objects_distance_to_object
       info:
         en: |-
@@ -3588,12 +3594,12 @@ Functions:
           (<real> objects_distance_to_object <object_list> <object>)
           ```
           returns minimum distance from any of the specified objects to the specified destination object. (returns -1 if there are no objects to check)
-      mcc_only: 'true'
+      mcc_only: true
     - slug: objects_dump_memory
       info:
         en: |-
           ```hsc
-          (objects_dump_memory)
+          (<void> objects_dump_memory)
           ```
           debugs object memory usage
     - slug: objects_predict
@@ -3601,19 +3607,19 @@ Functions:
         en: >-
           ```hsc
 
-          (objects_predict <object_list>)
+          (<void> objects_predict <object_list>)
 
           (objects_predict the_bipeds)
 
           ```
 
-          Loads textures necessary to draw objects that are about to come
-          on-screen, using the object's [predicted resources][object#tag-field-predicted-resources].
+          Loads textures necessary to draw objects that are about to come on-screen,
+          using the object's [predicted resources][object#tag-field-predicted-resources].
     - slug: pause_hud_timer
       info:
         en: |-
           ```hsc
-          (pause_hud_timer <boolean>)
+          (<void> pause_hud_timer <boolean>)
           (pause_hud_timer true)
           (pause_hud_timer false)
           ```
@@ -3625,7 +3631,7 @@ Functions:
           (<void> physics_constants_reset)
           ```
           resets all physics constants to earthly values
-      mcc_only: 'true'
+      mcc_only: true
     - slug: physics_get_gravity
       info:
         en: |-
@@ -3633,7 +3639,7 @@ Functions:
           (<real> physics_get_gravity)
           ```
           get the current global gravity acceleration relative to halo standard gravity
-      mcc_only: 'true'
+      mcc_only: true
     - slug: physics_set_gravity
       info:
         en: |-
@@ -3641,7 +3647,7 @@ Functions:
           (<void> physics_set_gravity <real>)
           ```
           set global gravity acceleration relative to halo standard gravity
-      mcc_only: 'true'
+      mcc_only: true
     - slug: play_update_history
       info:
         en: >-
@@ -3653,32 +3659,33 @@ Functions:
 
           Playback client input history starting from the specified last
           completed update id
+      gearbox_only: true
     - slug: playback
       info:
         en: |-
           ```hsc
-          (playback)
+          (<void> playback)
           ```
           Starts game in film playback mode
     - slug: player0_joystick_set_is_normal
       info:
         en: |-
           ```hsc
-          (player0_joystick_set_is_normal)
+          (<boolean> player0_joystick_set_is_normal)
           ```
           Returns `true` if (player0) is using the normal joystick set
     - slug: player0_look_invert_pitch
       info:
         en: |-
           ```hsc
-          (player0_look_invert_pitch <boolean>)
+          (<void> player0_look_invert_pitch <boolean>)
           ```
           Invert player0's look
     - slug: player0_look_pitch_is_inverted
       info:
         en: |-
           ```hsc
-          (player0_look_pitch_is_inverted)
+          (<boolean> player0_look_pitch_is_inverted)
           ```
           Returns `true` if (player0)'s look pitch is inverted
     - slug: player_action_test_accept
@@ -3686,186 +3693,164 @@ Functions:
         en: >-
           ```hsc
 
-          (player_action_test_accept)
-
+          (<boolean> player_action_test_accept)
 
           ```
 
-          Returns `true` if any player has hit accept since the last call to
-          `(player_action_test_reset)`
+          Returns `true` if any player has hit accept since the last call to `(player_action_test_reset)`
     - slug: player_action_test_action
       info:
         en: >-
           ```hsc
 
-          (player_action_test_action)
-
+          (<boolean> player_action_test_action)
 
           ```
 
-          Returns `true` if any player has hit the action key since the last
-          call to `(player_action_test_reset)`
+          Returns `true` if any player has hit the action key since the last call
+          to `(player_action_test_reset)`
     - slug: player_action_test_back
       info:
         en: >-
           ```hsc
 
-          (player_action_test_back)
-
+          (<boolean> player_action_test_back)
 
           ```
 
-          Returns `true` if any player has hit the back key since the last call
-          to `(player_action_test_reset)`
+          Returns `true` if any player has hit the back key since the last call to
+          `(player_action_test_reset)`
     - slug: player_action_test_grenade_trigger
       info:
         en: >-
           ```hsc
 
-          (player_action_test_grenade_trigger)
-
+          (<boolean> player_action_test_grenade_trigger)
 
           ```
 
-          Returns `true` if any player has used grenade trigger since the last
-          call to `(player_action_test_reset)`
+          Returns `true` if any player has used grenade trigger since the last call
+          to `(player_action_test_reset)`
     - slug: player_action_test_jump
       info:
         en: >-
           ```hsc
 
-          (player_action_test_jump)
-
+          (<boolean> player_action_test_jump)
 
           ```
 
-          Returns `true` if any player has jumped since the last call to
-          `(player_action_test_reset)`
+          Returns `true` if any player has jumped since the last call to `(player_action_test_reset)`
     - slug: player_action_test_look_relative_all_directions
       info:
         en: >-
           ```hsc
 
-          (player_action_test_look_relative_all_directions)
-
+          (<boolean> player_action_test_look_relative_all_directions)
 
           ```
 
-          Returns `true` if any player has looked up, down, left, and right
-          since the last call to `(player_action_test_reset)`
+          Returns `true` if any player has looked up, down, left, and right since
+          the last call to `(player_action_test_reset)`
     - slug: player_action_test_look_relative_down
       info:
         en: >-
           ```hsc
 
-          (player_action_test_look_relative_down)
-
+          (<boolean> player_action_test_look_relative_down)
 
           ```
 
-          Returns `true` if any player has looked down since the last call to
-          `(player_action_test_reset)`
+          Returns `true` if any player has looked down since the last call to `(player_action_test_reset)`
     - slug: player_action_test_look_relative_left
       info:
         en: >-
           ```hsc
 
-          (player_action_test_look_relative_left)
-
+          (<boolean> player_action_test_look_relative_left)
 
           ```
 
-          Returns `true` if any player has looked left since the last call to
-          `(player_action_test_reset)`
+          Returns `true` if any player has looked left since the last call to `(player_action_test_reset)`
     - slug: player_action_test_look_relative_right
       info:
         en: >-
           ```hsc
 
-          (player_action_test_look_relative_right)
-
+          (<boolean> player_action_test_look_relative_right)
 
           ```
 
-          Returns `true` if any player has looked right since the last call to
-          `(player_action_test_reset)`
+          Returns `true` if any player has looked right since the last call to `(player_action_test_reset)`
     - slug: player_action_test_look_relative_up
       info:
         en: >-
           ```hsc
 
-          (player_action_test_look_relative_up)
-
+          (<boolean> player_action_test_look_relative_up)
 
           ```
 
-          Returns `true` if any player has looked up since the last call to
-          `(player_action_test_reset)`
+          Returns `true` if any player has looked up since the last call to `(player_action_test_reset)`
     - slug: player_action_test_move_relative_all_directions
       info:
         en: >-
           ```hsc
 
-          (player_action_test_move_relative_all_directions)
-
+          (<boolean> player_action_test_move_relative_all_directions)
 
           ```
 
-          Returns `true` if any player has moved forward, backward, left, and
-          right since the last call to `(player_action_test_reset)`
+          Returns `true` if any player has moved forward, backward, left, and right
+          since the last call to `(player_action_test_reset)`
     - slug: player_action_test_primary_trigger
       info:
         en: >-
           ```hsc
 
-          (player_action_test_primary_trigger)
-
+          (<boolean> player_action_test_primary_trigger)
 
           ```
 
-          Returns `true` if any player has used primary trigger since the last
-          call to `(player_action_test_reset)`
+          Returns `true` if any player has used primary trigger since the last call
+          to `(player_action_test_reset)`
     - slug: player_action_test_reset
       info:
         en: >-
           ```hsc
 
-          (player_action_test_reset)
-
+          (<void> player_action_test_reset)
 
           ```
 
-          Resets the player action test state so that all tests will return
-          `false`
+          Resets the player action test state so that all tests will return `false`
     - slug: player_action_test_zoom
       info:
         en: >-
           ```hsc
 
-          (player_action_test_zoom)
-
+          (<boolean> player_action_test_zoom)
 
           ```
 
-          Returns `true` if any player has hit the zoom button since the last
-          call to `(player_action_test_reset)`
+          Returns `true` if any player has hit the zoom button since the last call
+          to `(player_action_test_reset)`
     - slug: player_add_equipment
       info:
         en: >-
           ```hsc
 
-          (player_add_equipment <unit> <starting_profile> <boolean>)
+          (<void> player_add_equipment <unit> <starting_profile> <boolean>)
 
           ```
 
-          Adds/resets the player's health, shield, and inventory (weapons and
-          grenades) to the named profile. Resets if third parameter is `true`,
-          adds if `false`.
+          Adds/resets the player's health, shield, and inventory (weapons and grenades)
+          to the named profile. Resets if third parameter is `true`, adds if `false`.
     - slug: player_camera_control
       info:
         en: |-
           ```hsc
-          (player_camera_control <boolean>)
+          (<boolean> player_camera_control <boolean>)
           (player_camera_control true)
           (player_camera_control false)
           ```
@@ -3874,42 +3859,42 @@ Functions:
       info:
         en: |-
           ```hsc
-          (player_effect_set_max_rotation <real> <real> <real>)
+          (<void> player_effect_set_max_rotation <real> <real> <real>)
           ```
           `<yaw>` `<pitch>` `<roll>`
     - slug: player_effect_set_max_translation
       info:
         en: |-
           ```hsc
-          (player_effect_set_max_translation <real> <real> <real>)
+          (<void> player_effect_set_max_translation <real> <real> <real>)
           ```
           `<x>` `<y>` `<z>`
     - slug: player_effect_set_max_vibrate
       info:
         en: |-
           ```hsc
-          (player_effect_set_max_vibrate <real> <real>)
+          (<void> player_effect_set_max_vibrate <real> <real>)
           ```
           `<left>` `<right>`
     - slug: player_effect_start
       info:
         en: |-
           ```hsc
-          (player_effect_start <real> <real>)
+          (<void> player_effect_start <real> <real>)
           ```
           `<max_intensity>` `<attack time>`
     - slug: player_effect_stop
       info:
         en: |-
           ```hsc
-          (player_effect_stop <real>)
+          (<void> player_effect_stop <real>)
           ```
           `<decay>`
     - slug: player_enable_input
       info:
         en: |-
           ```hsc
-          (player_enable_input <boolean>)
+          (<void> player_enable_input <boolean>)
           (player_enable_input true)
           (player_enable_input false)
           ```
@@ -3918,7 +3903,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (players)
+          (<object_list> players)
           ```
           returns a list of the players
     - slug: players_on_multiplayer_team
@@ -3928,13 +3913,12 @@ Functions:
           (<object_list> players_on_multiplayer_team <short>)
           ```
           returns a list of the living player units on the MP team
-      mcc_only: 'true'
+      mcc_only: true
     - slug: players_unzoom_all
       info:
         en: |-
           ```hsc
-          (players_unzoom_all)
-
+          (<void> players_unzoom_all)
           ```
           Resets zoom levels on all players
     - slug: print
@@ -3942,24 +3926,22 @@ Functions:
         en: >-
           ```hsc
 
-          (print <string>)
+          (<void> print <string>)
 
           (print "50 dollars for this?!")
 
           ```
 
-          Prints a string to the console. Printed text will not appear in the
-          console unless devmode is enabled (devmode 4). You can give a `print`
-          call a [format](http://www.cplusplus.com/reference/cstdio/printf/)
-          string (e.g. `"I have %d apples"`), but **cannot** give it format
-          arguments, meaning **a format string can cause the function to read
-          invalid memory and crash the game!**
+          Prints a string to the console. Printed text will not appear in the console
+          unless devmode is enabled (devmode 4). You can give a `print` call a [format](http://www.cplusplus.com/reference/cstdio/printf/)
+          string (e.g. `"I have %d apples"`), but **cannot** give it format arguments,
+          meaning **a format string can cause the function to read invalid memory
+          and crash the game!**
     - slug: print_binds
       info:
         en: |-
           ```hsc
-          (print_binds)
-
+          (<void> print_binds)
           ```
           Prints a list of all input bindings
     - slug: print_if
@@ -3969,7 +3951,7 @@ Functions:
           (<void> print_if <boolean> <string>)
           ```
           prints a string to the console if the condition is true.
-      mcc_only: 'true'
+      mcc_only: true
     - slug: profile_activate
       info:
         en: |-
@@ -3977,6 +3959,7 @@ Functions:
           (profile_activate <string>)
           ```
           Activates profile sections based on a substring
+      gearbox_only: true
     - slug: profile_deactivate
       info:
         en: |-
@@ -3984,6 +3967,7 @@ Functions:
           (profile_deactivate <string>)
           ```
           Deactivates profile sections based on a substring
+      gearbox_only: true
     - slug: profile_dump
       info:
         en: |-
@@ -3991,6 +3975,7 @@ Functions:
           (profile_dump <string>)
           ```
           Dumps profile based on a substring
+      gearbox_only: true
     - slug: profile_graph_toggle
       info:
         en: |-
@@ -3998,11 +3983,12 @@ Functions:
           (profile_graph_toggle <string>)
           ```
           Enables or disables profile graph display of a particular value
+      gearbox_only: true
     - slug: profile_load
       info:
         en: |-
           ```hsc
-          (profile_load <string>)
+          (<void> profile_load <string>)
           (profile_load "a hobo")
           ; loads the profile "a hobo"
           ```
@@ -4015,6 +4001,7 @@ Functions:
 
           ```
           Resets profiling data
+      gearbox_only: true
     - slug: profile_service_clear_timers
       info:
         en: |-
@@ -4023,6 +4010,7 @@ Functions:
 
           ```
           Clears the timers that are present in the profiling service
+      gearbox_only: true
     - slug: profile_service_dump_timers
       info:
         en: |-
@@ -4031,6 +4019,7 @@ Functions:
 
           ```
           Dumps the profiling service timers
+      gearbox_only: true
     - slug: profile_unlock_solo_levels
       info:
         en: |-
@@ -4039,33 +4028,33 @@ Functions:
 
           ```
           Unlocks all the solo player levels for player 1's profile
+      gearbox_only: true
     - slug: quit
       info:
         en: |-
           ```hsc
-          (quit)
-
+          (<void> quit)
           ```
           Quits the game
     - slug: radiosity_debug_point
       info:
         en: |-
           ```hsc
-          (radiosity_debug_point)
+          (<void> radiosity_debug_point)
           ```
           tests sun occlusion at a point.
     - slug: radiosity_save
       info:
         en: |-
           ```hsc
-          (radiosity_save)
+          (<void> radiosity_save)
           ```
           saves radiosity solution.
     - slug: radiosity_start
       info:
         en: |-
           ```hsc
-          (radiosity_start)
+          (<void> radiosity_start)
           ```
           starts radiosity computation.
     - slug: rally_point_save_name
@@ -4075,27 +4064,26 @@ Functions:
           (<boolean> rally_point_save_name <string>)
           ```
           saves game state as rally point to core\<path>
-      mcc_only: 'true'
+      mcc_only: true
     - slug: random_range
       info:
         en: |-
           ```hsc
-          (random_range <short> <short>)
+          (<short> random_range <short> <short>)
           ```
           returns a random value in the range [lower bound, upper bound)
     - slug: rasterizer_decals_flush
       info:
         en: |-
           ```hsc
-          (rasterizer_decals_flush)
-
+          (<void> rasterizer_decals_flush)
           ```
           Flush all decals
     - slug: rasterizer_fixed_function_ambient
       info:
         en: |-
           ```hsc
-          (rasterizer_fixed_function_ambient <long>)
+          (<void> rasterizer_fixed_function_ambient <long>)
           (rasterizer_fixed_function_ambient 200)
           ```
           Set the ambient light value for fixed function
@@ -4103,28 +4091,26 @@ Functions:
       info:
         en: |-
           ```hsc
-          (rasterizer_fps_accumulate)
-
+          (<void> rasterizer_fps_accumulate)
           ```
           Average fps
     - slug: rasterizer_lights_reset_for_new_map
       info:
         en: |
           ```hsc
-          (rasterizer_lights_reset_for_new_map)
+          (<void> rasterizer_lights_reset_for_new_map)
           ```
     - slug: rasterizer_model_ambient_reflection_tint
       info:
         en: |
           ```hsc
-          (rasterizer_model_ambient_reflection_tint <real> <real> <real> <real>)
+          (<void> rasterizer_model_ambient_reflection_tint <real> <real> <real> <real>)
           ```
     - slug: rasterizer_reload_effects
       info:
         en: |-
           ```hsc
-          (rasterizer_reload_effects)
-
+          (<void> rasterizer_reload_effects)
           ```
           Check for shader changes
     - slug: rcon
@@ -4134,18 +4120,19 @@ Functions:
           (rcon [rcon password] [command])
           ```
           Sends a command for server to execute at console. Use \" to send quotes.
+      gearbox_only: true
     - slug: real_random_range
       info:
         en: |-
           ```hsc
-          (real_random_range <real> <real>)
+          (<real> real_random_range <real> <real>)
           ```
           returns a random value in the range [lower bound, upper bound)
     - slug: recording_kill
       info:
         en: |-
           ```hsc
-          (recording_kill <unit>)
+          (<void> recording_kill <unit>)
           (recording_kill (player0))
           ```
           Kill the specified unit's cutscene recording
@@ -4153,7 +4140,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (recording_play <unit> <cutscene_recording>)
+          (<boolean> recording_play <unit> <cutscene_recording>)
           ```
           Make the specified unit run the specified cutscene recording
     - slug: recording_play_and_delete
@@ -4161,28 +4148,28 @@ Functions:
         en: >-
           ```hsc
 
-          (recording_play_and_delete <unit> <cutscene_recording>)
+          (<boolean> recording_play_and_delete <unit> <cutscene_recording>)
 
           ```
 
-          Make the specified unit run the specified cutscene recording, deletes
-          the unit when the animation finishes
+          Make the specified unit run the specified cutscene recording, deletes the
+          unit when the animation finishes
     - slug: recording_play_and_hover
       info:
         en: >-
           ```hsc
 
-          (recording_play_and_hover <vehicle> <cutscene_recording>)
+          (<boolean> recording_play_and_hover <vehicle> <cutscene_recording>)
 
           ```
 
-          Make the specified vehicle run the specified cutscene recording,
-          hovers the vehicle when the animation finishes
+          Make the specified vehicle run the specified cutscene recording, hovers
+          the vehicle when the animation finishes
     - slug: recording_time
       info:
         en: |-
           ```hsc
-          (recording_time <unit>)
+          (<short> recording_time <unit>)
           (recording_time (player0))
           ```
           Return the time remaining in the specified unit's cutscene recording
@@ -4190,7 +4177,7 @@ Functions:
       info:
         en: |
           ```hsc
-          (reload_shader_transparent_chicago)
+          (<void> reload_shader_transparent_chicago)
           ```
     - slug: remote_player_stats
       info:
@@ -4199,11 +4186,12 @@ Functions:
           (remote_player_stats <string>)
           ```
           Displays the prediction stats of the specified remote player.
+      gearbox_only: true
     - slug: render_effects
       info:
         en: |-
           ```hsc
-          (render_effects <boolean>)
+          (<void> render_effects <boolean>)
           (render_effects true)
           (render_effects false)
           ```
@@ -4212,7 +4200,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (render_lights <boolean>)
+          (<boolean> render_lights <boolean>)
           (render_lights true)
           (render_lights false)
           ```
@@ -4221,7 +4209,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (scenery_animation_start <scenery> <animation_graph> <string>)
+          (<void> scenery_animation_start <scenery> <animation_graph> <string>)
           (scenery_animation_start fighter_clouds "cinematics\animations\h_fighter\x70\x70" "x70_3")
           ```
           Starts a custom animation playing on a piece of scenery.
@@ -4229,7 +4217,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (scenery_animation_start_at_frame <scenery> <animation_graph> <string> <short>)
+          (<void> scenery_animation_start_at_frame <scenery> <animation_graph> <string> <short>)
           (scenery_animation_start_at_frame fighter_launch "cinematics\animations\h_fighter\x70\x70" "x70_2" 100)
           ```
           Starts a custom animation playing on a piece of scenery at a specific frame.
@@ -4237,7 +4225,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (scenery_get_animation_time <scenery>)
+          (<short> scenery_get_animation_time <scenery>)
           (scenery_get_animation_time fighter_launch)
           ```
           Returns the number of ticks/frames remaining in a custom animation
@@ -4248,22 +4236,21 @@ Functions:
       info:
         en: |-
           ```hsc
-          (script_doc)
+          (<void> script_doc)
           ```
           saves a file called hs_doc.txt with parameters for all script commands.
     - slug: script_recompile
       info:
         en: |-
           ```hsc
-          (script_recompile)
-
+          (<void> script_recompile)
           ```
           Recompiles scripts
     - slug: script_screen_effect_set_value
       info:
         en: |-
           ```hsc
-          (script_screen_effect_set_value <short> <real>)
+          (<void> script_screen_effect_set_value <short> <real>)
           ```
           Sets a screen effect script value
     - slug: set_digital_forward_throttle
@@ -4273,6 +4260,7 @@ Functions:
           (set_digital_forward_throttle <short> <real>)
           ```
           Sets the amount of forward throttle applied by digital device stimuli
+      gearbox_only: true
     - slug: set_digital_pitch_increment
       info:
         en: |-
@@ -4280,6 +4268,7 @@ Functions:
           (set_digital_pitch_increment <short> <real>)
           ```
           Sets the increment in pitch applied by digital device stimuli
+      gearbox_only: true
     - slug: set_digital_strafe_throttle
       info:
         en: |-
@@ -4287,6 +4276,7 @@ Functions:
           (set_digital_strafe_throttle <short> <real>)
           ```
           Sets the amount of strafe throttle applied by digital device stimuli
+      gearbox_only: true
     - slug: set_digital_yaw_increment
       info:
         en: |-
@@ -4294,6 +4284,7 @@ Functions:
           (set_digital_yaw_increment <short> <real>)
           ```
           Sets the increment in yaw applied by digital device stimuli
+      gearbox_only: true
     - slug: set_gamepad_forward_threshold
       info:
         en: >-
@@ -4305,6 +4296,7 @@ Functions:
 
           Sets the threshold beyond which gamepad movement is full forward
           throttle
+      gearbox_only: true
     - slug: set_gamepad_pitch_scale
       info:
         en: |-
@@ -4312,6 +4304,7 @@ Functions:
           (set_gamepad_pitch_scale <short> <real>)
           ```
           Sets the scale for gamepad control of pitch
+      gearbox_only: true
     - slug: set_gamepad_strafe_threshold
       info:
         en: >-
@@ -4323,6 +4316,7 @@ Functions:
 
           Sets the threshold beyond which gamepad movement is full strafe
           throttle
+      gearbox_only: true
     - slug: set_gamepad_yaw_scale
       info:
         en: |-
@@ -4330,11 +4324,12 @@ Functions:
           (set_gamepad_yaw_scale <short> <real>)
           ```
           Sets the scale for gamepad control of yaw
+      gearbox_only: true
     - slug: set_gamma
       info:
         en: |-
           ```hsc
-          (set_gamma <long>)
+          (<void> set_gamma <long>)
           (set_gamma 200)
           ```
           Set the gamma
@@ -4349,6 +4344,7 @@ Functions:
 
           Sets the threshold beyond which mouse movement is full forward
           throttle
+      gearbox_only: true
     - slug: set_mouse_pitch_scale
       info:
         en: |-
@@ -4356,6 +4352,7 @@ Functions:
           (set_mouse_pitch_scale <short> <real>)
           ```
           Sets the scale for mouse control of pitch
+      gearbox_only: true
     - slug: set_mouse_strafe_threshold
       info:
         en: |-
@@ -4363,6 +4360,7 @@ Functions:
           (set_mouse_strafe_threshold <short> <real>)
           ```
           Sets the threshold beyond which mouse movement is full strafe throttle
+      gearbox_only: true
     - slug: set_mouse_yaw_scale
       info:
         en: |-
@@ -4370,25 +4368,26 @@ Functions:
           (set_mouse_yaw_scale <short> <real>)
           ```
           Sets the scale for mouse control of yaw
+      gearbox_only: true
     - slug: set_pitch_rate
       info:
         en: |-
           ```hsc
-          (set_pitch_rate <short> <real>)
+          (<void> set_pitch_rate <short> <real>)
           ```
           Sets the yaw rate for the given player number
     - slug: set_yaw_rate
       info:
         en: |-
           ```hsc
-          (set_yaw_rate <short> <real>)
+          (<void> set_yaw_rate <short> <real>)
           ```
           Sets the yaw rate for the given player number
     - slug: show_hud
       info:
         en: |-
           ```hsc
-          (show_hud <boolean>)
+          (<boolean> show_hud <boolean>)
           (show_hud true)
           (show_hud false)
           ```
@@ -4397,7 +4396,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (show_hud_help_text <boolean>)
+          (<boolean> show_hud_help_text <boolean>)
           (show_hud_help_text true)
           (show_hud_help_text false)
           ```
@@ -4406,7 +4405,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (show_hud_timer <boolean>)
+          (<void> show_hud_timer <boolean>)
           (show_hud_timer true)
           (show_hud_timer false)
           ```
@@ -4419,44 +4418,42 @@ Functions:
 
           ```
           Shows update history playback stats
+      gearbox_only: true
     - slug: sound_cache_dump_to_file
       info:
         en: |
           ```hsc
-          (sound_cache_dump_to_file)
-
+          (<void> sound_cache_dump_to_file)
           ```
     - slug: sound_cache_flush
       info:
         en: |
           ```hsc
-          (sound_cache_flush)
-
+          (<void> sound_cache_flush)
           ```
     - slug: sound_class_set_gain
       info:
         en: >-
           ```hsc
 
-          (sound_class_set_gain <string> <real> <short>)
+          (<void> sound_class_set_gain <string> <real> <short>)
 
           ```
 
-          Changes the gain on the specified sound class(es) to the specified
-          game over the specified number of ticks.
+          Changes the gain on the specified sound class(es) to the specified game
+          over the specified number of ticks.
     - slug: sound_eax_enabled
       info:
         en: |-
           ```hsc
-          (sound_eax_enabled)
-
+          (<boolean> sound_eax_enabled)
           ```
           Returns true if EAX extensions are enabled
     - slug: sound_enable
       info:
         en: |-
           ```hsc
-          (sound_enable <boolean>)
+          (<void> sound_enable <boolean>)
           (sound_enable true)
           (sound_enable false)
           ```
@@ -4465,7 +4462,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (sound_enable_eax <boolean>)
+          (<void> sound_enable_eax <boolean>)
           (sound_enable_eax true)
           (sound_enable_eax false)
           ```
@@ -4474,53 +4471,49 @@ Functions:
       info:
         en: |-
           ```hsc
-          (sound_enable_hardware <boolean> <boolean>)
+          (<void> sound_enable_hardware <boolean> <boolean>)
           ```
           Enable or disable hardware sound buffers
     - slug: sound_get_effects_gain
       info:
         en: |-
           ```hsc
-          (sound_get_effects_gain)
-
+          (<real> sound_get_effects_gain)
           ```
           Returns the game's effects gain
     - slug: sound_get_gain
       info:
         en: |-
           ```hsc
-          (sound_get_gain <string>)
+          (<real> sound_get_gain <string>)
           ```
           Absolutely do not use this either
     - slug: sound_get_master_gain
       info:
         en: |-
           ```hsc
-          (sound_get_master_gain)
-
+          (<real> sound_get_master_gain)
           ```
           Returns the game's master gain
     - slug: sound_get_music_gain
       info:
         en: |-
           ```hsc
-          (sound_get_music_gain)
-
+          (<real> sound_get_music_gain)
           ```
           Returns the game's music gain
     - slug: sound_get_supplementary_buffers
       info:
         en: |-
           ```hsc
-          (sound_get_supplementary_buffers)
-
+          (<short> sound_get_supplementary_buffers)
           ```
           Get the amount of supplementary buffers
     - slug: sound_impulse_predict
       info:
         en: |-
           ```hsc
-          (sound_impulse_predict <sound> <boolean>)
+          (<void> sound_impulse_predict <sound> <boolean>)
           (sound_impulse_predict "sound\sfx\impulse\ting\ting" true)
           (sound_impulse_predict "sound\sfx\impulse\ting\ting" false)
           ```
@@ -4530,77 +4523,76 @@ Functions:
         en: >-
           ```hsc
 
-          (sound_impulse_start <sound> <object> <real>)
+          (<void> sound_impulse_start <sound> <object> <real>)
 
           ```
 
-          Plays an impulse sound from the specified source object (or "none"),
-          with the specified scale
+          Plays an impulse sound from the specified source object (or "none"), with
+          the specified scale
     - slug: sound_impulse_stop
       info:
         en: |-
           ```hsc
-          (sound_impulse_stop <sound>)
+          (<void> sound_impulse_stop <sound>)
           ```
           Stops the specified impulse sound
     - slug: sound_impulse_time
       info:
         en: |-
           ```hsc
-          (sound_impulse_time <sound>)
+          (<long> sound_impulse_time <sound>)
           ```
           Returns the time remaining for the specified impulse sound
     - slug: sound_looping_predict
       info:
         en: |
           ```hsc
-          (sound_looping_predict <looping_sound>)
+          (<void> sound_looping_predict <looping_sound>)
           ```
     - slug: sound_looping_set_alternate
       info:
         en: >-
           ```hsc
 
-          (sound_looping_set_alternate <looping_sound> <boolean>)
+          (<void> sound_looping_set_alternate <looping_sound> <boolean>)
 
           ```
 
-          Enables or disables the alternate loop/alternate end for a looping
-          sound
+          Enables or disables the alternate loop/alternate end for a looping sound
     - slug: sound_looping_set_scale
       info:
         en: >-
           ```hsc
 
-          (sound_looping_set_scale <looping_sound> <real>)
+          (<void> sound_looping_set_scale <looping_sound> <real>)
 
           ```
 
-          Changes the scale of the sound (which should affect the volume) within
-          the range 0 to 1
+          Changes the scale of the sound (which should affect the volume) within the
+          range 0 to 1
     - slug: sound_looping_start
       info:
         en: >-
           ```hsc
 
-          (sound_looping_start <looping_sound> <object> <real>)
+          (<void> sound_looping_start <looping_sound> <object> <real>)
 
           ```
 
-          Plays a looping sound from the specified source object (or "none"),
-          with the specified scale
+          Plays a looping sound from the specified source object (or "none"), with
+          the specified scale
     - slug: sound_looping_stop
       info:
         en: |-
           ```hsc
-          (sound_looping_stop <looping_sound>)
+          (<void> sound_looping_stop <looping_sound>)
           ```
           Stops the specified looping sound
     - slug: sound_set_effects_gain
       info:
         en: |-
           ```hsc
-          (sound_set_effects_gain <real>)
+          (<void> sound_set_effects_gain <real>)
           (sound_set_effects_gain 2.0)
           ```
           Set the game's effects gain
@@ -4608,7 +4600,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (sound_set_env <short>)
+          (<void> sound_set_env <short>)
           (sound_set_env 1)
           ```
           Change environment preset
@@ -4616,21 +4608,21 @@ Functions:
       info:
         en: |-
           ```hsc
-          (sound_set_factor <real>)
+          (<void> sound_set_factor <real>)
           ```
           Set the DSound factor value
     - slug: sound_set_gain
       info:
         en: |-
           ```hsc
-          (sound_set_gain <string> <real>)
+          (<void> sound_set_gain <string> <real>)
           ```
           Absolutely do not use this
     - slug: sound_set_master_gain
       info:
         en: |-
           ```hsc
-          (sound_set_master_gain <real>)
+          (<void> sound_set_master_gain <real>)
           (sound_set_master_gain 0.5)
           ```
           Set the game's master gain
@@ -4638,7 +4630,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (sound_set_music_gain <real>)
+          (<void> sound_set_music_gain <real>)
           (sound_set_music_gain 3.0)
           ```
           Set the game's music gain
@@ -4646,30 +4638,28 @@ Functions:
       info:
         en: |-
           ```hsc
-          (sound_set_rolloff <real>)
+          (<void> sound_set_rolloff <real>)
           ```
           Set the DSound rolloff value
     - slug: sound_set_supplementary_buffers
       info:
         en: |-
           ```hsc
-          (sound_set_supplementary_buffers <short> <boolean>)
+          (<void> sound_set_supplementary_buffers <short> <boolean>)
           ```
           Set the amount of supplementary buffers
     - slug: structure_bsp_index
       info:
         en: |-
           ```hsc
-          (structure_bsp_index)
-
+          (<short> structure_bsp_index)
           ```
           Returns the current structure bsp index
     - slug: structure_lens_flares_place
       info:
         en: |-
           ```hsc
-          (structure_lens_flares_place)
-
+          (<void> structure_lens_flares_place)
           ```
           Places lens flares in the structure bsp
     - slug: sv_ban_penalty
@@ -4679,6 +4669,7 @@ Functions:
           (sv_ban_penalty [(#)(m,h,d), 0=infinite])
           ```
           Specify up to 4 ban times for repeat ban/TK offenders.
+      gearbox_only: true
     - slug: sv_ban
       info:
         en: >-
@@ -4692,6 +4683,7 @@ Functions:
           `banned.txt`. Use `sv_players` to find the player's index. You can
           also specify an optional duration for timed ban. Use 0 to follow
           `sv_ban_penalty` rules.
+      gearbox_only: true
     - slug: sv_banlist
       info:
         en: |-
@@ -4700,6 +4692,7 @@ Functions:
 
           ```
           Print a list of banned players
+      gearbox_only: true
     - slug: sv_banlist_file
       info:
         en: |-
@@ -4707,6 +4700,7 @@ Functions:
           (sv_banlist_file [alphanumeric banlist file suffix])
           ```
           Sets and opens the file to be used for the player ban list.
+      gearbox_only: true
     - slug: 'sv_banopt:'
       info:
         en: |-
@@ -4714,6 +4708,7 @@ Functions:
           (sv_ban [player # or name] opt:[duration (#)(m,h,d)])
           ```
           <Server Only> Player is kicked and added to banned.txt.  Use sv_players to find the index.Specify optional duration for timed ban.  Use 0 to follow sv_ban_penalty rules.
+      gearbox_only: true
     - slug: sv_end_game
       info:
         en: |-
@@ -4722,6 +4717,7 @@ Functions:
 
           ```
           End the current game
+      gearbox_only: true
     - slug: sv_friendly_fire
       info:
         en: |-
@@ -4729,6 +4725,7 @@ Functions:
           (sv_friendly_fire ["0" = defaults, "1" = off, "2" = shields, "3" = on])
           ```
           Use to provide a global override for the gametype friendly fire setting.
+      gearbox_only: true
     - slug: sv_gamelist
       info:
         en: |-
@@ -4736,6 +4733,7 @@ Functions:
           (sv_gamelist [substring])
           ```
           Display a list of game types, matching an optional substring.
+      gearbox_only: true
     - slug: sv_get_player_action_queue_length
       info:
         en: |-
@@ -4743,6 +4741,7 @@ Functions:
           (sv_get_player_action_queue_length <string>)
           ```
           Displays the action queue length for the specified player.
+      gearbox_only: true
     - slug: sv_kick
       info:
         en: |-
@@ -4751,6 +4750,7 @@ Functions:
           (sv_kick "Micro$oft")
           ```
           **(Server Only)** Kicks the specified player from the server
+      gearbox_only: true
     - slug: sv_log_echo_chat
       info:
         en: |-
@@ -4758,6 +4758,7 @@ Functions:
           (sv_log_echo_chat [preference])
           ```
           Enables or disbles chat echo to the console. Set the preference to 0to disable chat echo, or 1 to enable chat echo.If the preference is not specified, displays the current preference.
+      gearbox_only: true
     - slug: sv_log_enabled
       info:
         en: |-
@@ -4765,6 +4766,7 @@ Functions:
           (sv_log_enabled ["1" to enable, "0" to disable])
           ```
           Enables or disables server logging. If 0/1 is not given, displays thecurrent logging status.
+      gearbox_only: true
     - slug: sv_log_file
       info:
         en: |-
@@ -4772,6 +4774,7 @@ Functions:
           (sv_log_file [log file name])
           ```
           Sets the server log file name. If no name is given, displays thecurrent log file name.
+      gearbox_only: true
     - slug: sv_log_note
       info:
         en: |-
@@ -4779,6 +4782,7 @@ Functions:
           (sv_log_note <string>)
           ```
           Leave a note in the server log
+      gearbox_only: true
     - slug: sv_log_rotation_threshold
       info:
         en: |-
@@ -4786,20 +4790,22 @@ Functions:
           (sv_log_rotation_threshold [threshold in kilobytes])
           ```
           Sets the log rotation threshold. When a log file's size (in kilobytes) exceedsthis number, it will be rotated. Set to 0 to disable log rotation.If the threshold is not specified, displays the current threshold.
+      gearbox_only: true
     - slug: sv_map
       info:
         en: >-
           ```hsc
 
-          (sv_map <string> <string>)
+          (<void> sv_map <string> <string>)
 
           (sv_map bloodgulch slayer)
 
           ```
 
-          **(Server Only)** Usage: `sv_map <mapname> <variantname>` <br/> Aborts
-          the current game and playlist, and starts the specified game mode on
-          the specified map.
+          **(Server Only)** Usage: `sv_map <mapname> <variantname>` <br/> Aborts the
+          current game and playlist, and starts the specified game mode on the specified
+          map.
+      gearbox_only: true
     - slug: sv_map_next
       info:
         en: >-
@@ -4812,6 +4818,7 @@ Functions:
 
           **(Server Only)** Abort the current game and begin the next game in
           the playlist
+      gearbox_only: true
     - slug: sv_map_reset
       info:
         en: |-
@@ -4820,6 +4827,7 @@ Functions:
 
           ```
           **(Server Only)** Reset the current game
+      gearbox_only: true
     - slug: sv_mapcycle
       info:
         en: |-
@@ -4828,6 +4836,7 @@ Functions:
 
           ```
           Print the contents of the currently loaded mapcycle file
+      gearbox_only: true
     - slug: sv_mapcycle_add
       info:
         en: >-
@@ -4839,6 +4848,7 @@ Functions:
 
           Usage: `sv_mapcycle_add <mapname> <variantname>` <br/> Add a new game
           to the end of the mapcycle file
+      gearbox_only: true
     - slug: sv_mapcycle_begin
       info:
         en: |-
@@ -4847,6 +4857,7 @@ Functions:
 
           ```
           Restart or begin playing the currently loaded mapcycle file
+      gearbox_only: true
     - slug: sv_mapcycle_del
       info:
         en: >-
@@ -4858,6 +4869,7 @@ Functions:
 
           Usage: `sv_mapcycle_del <index>` <br/> Removes the game at `<index>`.
           Will not affect running games.
+      gearbox_only: true
     - slug: sv_maplist
       info:
         en: |-
@@ -4865,6 +4877,7 @@ Functions:
           (sv_maplist [substring])
           ```
           Display a list of maps, matching an optional substring.
+      gearbox_only: true
     - slug: sv_maxplayers
       info:
         en: >-
@@ -4878,6 +4891,7 @@ Functions:
 
           Sets the maximum number of players (between 1 and 16). If no value is
           given, displays the current value.
+      gearbox_only: true
     - slug: sv_motd
       info:
         en: |-
@@ -4885,6 +4899,7 @@ Functions:
           (sv_motd [motd file name])
           ```
           Sets the server message of the day file name. If no name is given, displays thecurrent motd file name. Set to "" to turn motd off.
+      gearbox_only: true
     - slug: sv_name
       info:
         en: >-
@@ -4900,6 +4915,7 @@ Functions:
 
           Sets the name of the server. If no name is given, displays the current
           name.
+      gearbox_only: true
     - slug: sv_parameters_dump
       info:
         en: |-
@@ -4908,6 +4924,7 @@ Functions:
 
           ```
           Dumps out the local parameter configuration to `parameters.cfg` file
+      gearbox_only: true
     - slug: sv_parameters_reload
       info:
         en: |-
@@ -4916,6 +4933,7 @@ Functions:
 
           ```
           **(Server Only)** Reloads the `parameters.cfg` file
+      gearbox_only: true
     - slug: sv_password
       info:
         en: >-
@@ -4931,6 +4949,7 @@ Functions:
 
           Sets the server password. If no password is given, displays the
           current password.
+      gearbox_only: true
     - slug: sv_players
       info:
         en: >-
@@ -4943,6 +4962,7 @@ Functions:
 
           **(Server Only)** Prints (*not* returns) a list of players in the
           current game
+      gearbox_only: true
     - slug: sv_rcon_password
       info:
         en: |-
@@ -4950,6 +4970,7 @@ Functions:
           (sv_rcon_password [remote console password])
           ```
           Sets the server remote console password. If no password is given, displays thecurrent password. Enter "" to disable rcon.
+      gearbox_only: true
     - slug: sv_say
       info:
         en: |-
@@ -4957,6 +4978,7 @@ Functions:
           (sv_say <string>)
           ```
           <Server Only> Usage: "sv_say <message>"Send a message to users
+      gearbox_only: true
     - slug: sv_single_flag_force_reset
       info:
         en: |-
@@ -4964,6 +4986,7 @@ Functions:
           (sv_single_flag_force_reset [boolean])
           ```
           Force the flag to reset in single flag CTF games when the timer expires, even if held by a player.If not specified, displays the current value.
+      gearbox_only: true
     - slug: sv_status
       info:
         en: |-
@@ -4972,6 +4995,7 @@ Functions:
 
           ```
           Shows status of the server
+      gearbox_only: true
     - slug: sv_timelimit
       info:
         en: |-
@@ -4979,6 +5003,7 @@ Functions:
           (sv_timelimit ["-1" = default, "0" = infinite, <time in minutes>])
           ```
           Use to provide a global override for the gametype timelimit setting.
+      gearbox_only: true
     - slug: sv_tk_cooldown
       info:
         en: |-
@@ -4986,6 +5011,7 @@ Functions:
           (sv_tk_cooldown [time (#)(s,m)])
           ```
           Specify a TK point cooldown period, after which players lose a TK point.
+      gearbox_only: true
     - slug: sv_tk_grace
       info:
         en: |-
@@ -4993,6 +5019,7 @@ Functions:
           (sv_tk_grace [time (#)(s,m)])
           ```
           Specify the grace period for TK during which you don't get a TK point.
+      gearbox_only: true
     - slug: sv_unban
       info:
         en: >-
@@ -5006,11 +5033,12 @@ Functions:
 
           **(Server Only)** Usage: `sv_unban <index>` <br/> Removes player at
           index in the banlist. Use `sv_banlist` to find the index.
+      gearbox_only: true
     - slug: switch_bsp
       info:
         en: |-
           ```hsc
-          (switch_bsp <short>)
+          (<void> switch_bsp <short>)
           (switch_bsp 0)
           ```
           Switches to a different structure bsp
@@ -5021,7 +5049,7 @@ Functions:
           (<void> TestPrintBool <string> <boolean>)
           ```
           Prints the specified boolean with the format '<string> = '<boolean>' to the Shell.
-      mcc_only: 'true'
+      mcc_only: true
     - slug: TestPrintReal
       info:
         en: |-
@@ -5029,7 +5057,7 @@ Functions:
           (<void> TestPrintReal <string> <real>)
           ```
           Prints the specified real with the format '<string> = '<real>' to the Shell.
-      mcc_only: 'true'
+      mcc_only: true
     - slug: texture_cache_flush
       info:
         en: |-
@@ -5038,6 +5066,7 @@ Functions:
 
           ```
           Don't make me kick your ass
+      gearbox_only: true
     - slug: thread_sleep
       info:
         en: |-
@@ -5045,19 +5074,19 @@ Functions:
           (thread_sleep <long>)
           ```
           Sleeps the calling thread for the specified number of ms.
+      gearbox_only: true
     - slug: time_code_reset
       info:
         en: |-
           ```hsc
-          (time_code_reset)
-
+          (<void> time_code_reset)
           ```
           Resets the time code timer
     - slug: time_code_show
       info:
         en: |-
           ```hsc
-          (time_code_show <boolean>)
+          (<void> time_code_show <boolean>)
           (time_code_show true)
           (time_code_show false)
           ```
@@ -5066,7 +5095,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (time_code_start <boolean>)
+          (<void> time_code_start <boolean>)
           (time_code_start true)
           (time_code_start false)
           ```
@@ -5078,11 +5107,12 @@ Functions:
           (track_remote_player_position_updates <string>)
           ```
           Sets the name of the remote player whose position update are to be tracked.
+      gearbox_only: true
     - slug: ui_widget_show_path
       info:
         en: |
           ```hsc
-          (ui_widget_show_path <boolean>)
+          (<void> ui_widget_show_path <boolean>)
           (ui_widget_show_path true)
           (ui_widget_show_path false)
           ```
@@ -5090,14 +5120,14 @@ Functions:
       info:
         en: |-
           ```hsc
-          (unbind <string> <string>)
+          (<void> unbind <string> <string>)
           ```
           Unbinds an input device/button combination
     - slug: unit
       info:
         en: |-
           ```hsc
-          (unit <object>)
+          (<unit> unit <object>)
           (unit (list_get (players) 0))
           ```
           Converts an object to a unit
@@ -5105,21 +5135,21 @@ Functions:
       info:
         en: |-
           ```hsc
-          (unit_aim_without_turning <unit> <boolean>)
+          (<void> unit_aim_without_turning <unit> <boolean>)
           ```
           Allows a unit to aim in place without turning
     - slug: unit_can_blink
       info:
         en: |-
           ```hsc
-          (unit_can_blink <unit> <boolean>)
+          (<void> unit_can_blink <unit> <boolean>)
           ```
           Allows a unit to blink or not (units never blink when they are dead)
     - slug: unit_close
       info:
         en: |-
           ```hsc
-          (unit_close <unit>)
+          (<void> unit_close <unit>)
           ```
           Closes the hatches on a given unit
     - slug: unit_custom_animation_at_frame
@@ -5127,31 +5157,31 @@ Functions:
         en: >-
           ```hsc
 
-          (unit_custom_animation_at_frame <unit> <animation_graph> <string>
+          (<boolean> unit_custom_animation_at_frame <unit> <animation_graph> <string>
           <boolean> <short>)
 
           ```
 
-          Starts a custom animation playing on a unit at a specific frame index
-          (interpolates into animation if next to last parameter is `true`).
+          Starts a custom animation playing on a unit at a specific frame index (interpolates
+          into animation if next to last parameter is `true`).
     - slug: unit_doesnt_drop_items
       info:
         en: >-
           ```hsc
 
-          (unit_doesnt_drop_items <object_list>)
+          (<void> unit_doesnt_drop_items <object_list>)
 
           (unit_doesnt_drop_items (players))
 
           ```
 
-          Prevents any of the given units from dropping weapons or grenades when
-          they die
+          Prevents any of the given units from dropping weapons or grenades when they
+          die
     - slug: unit_enter_vehicle
       info:
         en: |-
           ```hsc
-          (unit_enter_vehicle <unit> <vehicle> <string>)
+          (<void> unit_enter_vehicle <unit> <vehicle> <string>)
           (unit_enter_vehicle (player0) warthog_mp_2 "gunner")
           ```
           Puts the specified unit in the specified vehicle (in the named seat)
@@ -5159,14 +5189,14 @@ Functions:
       info:
         en: |-
           ```hsc
-          (unit_exit_vehicle <unit>)
+          (<void> unit_exit_vehicle <unit>)
           ```
           Makes a unit exit its vehicle
     - slug: unit_get_current_flashlight_state
       info:
         en: |-
           ```hsc
-          (unit_get_current_flashlight_state <unit>)
+          (<boolean> unit_get_current_flashlight_state <unit>)
           (unit_get_current_flashlight_state (player0))
           ```
           Gets the unit's current flashlight state
@@ -5174,7 +5204,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (unit_get_custom_animation_time <unit>)
+          (<short> unit_get_custom_animation_time <unit>)
           (unit_get_custom_animation_time chief_insertion)
           ```
           Returns the number of ticks remaining in a unit's custom animation
@@ -5186,72 +5216,71 @@ Functions:
         en: >-
           ```hsc
 
-          (unit_get_health <unit>)
+          (<real> unit_get_health <unit>)
 
           (unit_get_health (player0))
 
           ```
 
-          Returns the health of the given unit as a `real` between 0 and 1].
-          Returns -1 if the unit does not exist.
+          Returns the health of the given unit as a `real` between 0 and 1]. Returns
+          -1 if the unit does not exist.
     - slug: unit_get_shield
       info:
         en: >-
           ```hsc
 
-          (unit_get_shield <unit>)
+          (<real> unit_get_shield <unit>)
 
           (unit_get_shield (player0))
 
           ```
 
-          Returns the shield of the given unit as a `real` between 0 and 1.
-          Returns -1 if the unit does not exist.
+          Returns the shield of the given unit as a `real` between 0 and 1. Returns
+          -1 if the unit does not exist.
     - slug: unit_get_total_grenade_count
       info:
         en: >-
           ```hsc
 
-          (unit_get_total_grenade_count <unit>)
+          (<short> unit_get_total_grenade_count <unit>)
 
           (unit_get_total_grenade_count (player0))
 
           ```
 
-          Returns the total number of grenades for the given unit, or 0 if the
-          unit does not exist.
+          Returns the total number of grenades for the given unit, or 0 if the unit
+          does not exist.
     - slug: unit_has_weapon
       info:
         en: >-
           ```hsc
 
-          (unit_has_weapon <unit> <object_definition>)
+          (<boolean> unit_has_weapon <unit> <object_definition>)
 
           (unit_has_weapon (player0) plasma_cannon)
 
           ```
 
-          Returns `true` if the <unit> has <object> as a weapon, `false`
-          otherwise
+          Returns `true` if the <unit> has <object> as a weapon, `false` otherwise
     - slug: unit_has_weapon_readied
       info:
         en: >-
           ```hsc
 
-          (unit_has_weapon_readied <unit> <object_definition>)
+          (<boolean> unit_has_weapon_readied <unit> <object_definition>)
 
           (unit_has_weapon_readied (player0) plasma_cannon)
 
           ```
 
-          Returns `true` if the <unit> has <object> as the primary weapon,
-          `false` otherwise
+          Returns `true` if the <unit> has <object> as the primary weapon, `false`
+          otherwise
     - slug: unit_impervious
       info:
         en: >-
           ```hsc
 
-          (unit_impervious <object_list> <boolean>)
+          (<void> unit_impervious <object_list> <boolean>)
 
           (unit_impervious (players) true)
 
@@ -5259,20 +5288,20 @@ Functions:
 
           ```
 
-          Prevents any of the given units from being knocked around or playing
-          ping animations
+          Prevents any of the given units from being knocked around or playing ping
+          animations
     - slug: unit_is_playing_custom_animation
       info:
         en: |-
           ```hsc
-          (unit_is_playing_custom_animation <unit>)
+          (<boolean> unit_is_playing_custom_animation <unit>)
           ```
           Returns `true` if the given unit is still playing a custom animation
     - slug: unit_kill
       info:
         en: |-
           ```hsc
-          (unit_kill <unit>)
+          (<void> unit_kill <unit>)
           ```
           Kills a given unit, no saving throw
     - slug: unit_kill_silent
@@ -5280,31 +5309,31 @@ Functions:
         en: >-
           ```hsc
 
-          (unit_kill_silent <unit>)
+          (<void> unit_kill_silent <unit>)
 
           ```
 
-          Kills a given unit silently (doesn't make them play their normal death
-          animation or sound)
+          Kills a given unit silently (doesn't make them play their normal death animation
+          or sound)
     - slug: unit_open
       info:
         en: |-
           ```hsc
-          (unit_open <unit>)
+          (<void> unit_open <unit>)
           ```
           Opens the hatches on the given unit
     - slug: unit_set_current_vitality
       info:
         en: |-
           ```hsc
-          (unit_set_current_vitality <unit> <real> <real>)
+          (<void> unit_set_current_vitality <unit> <real> <real>)
           ```
           Sets a unit's current body and shield vitality
     - slug: unit_set_desired_flashlight_state
       info:
         en: |-
           ```hsc
-          (unit_set_desired_flashlight_state <unit> <boolean>)
+          (<void> unit_set_desired_flashlight_state <unit> <boolean>)
           (unit_set_desired_flashlight_state (player0) true)
           (unit_set_desired_flashlight_state (player0) false)
           ```
@@ -5314,24 +5343,23 @@ Functions:
         en: >-
           ```hsc
 
-          (unit_set_emotion <unit> <short>)
+          (<void> unit_set_emotion <unit> <short>)
 
           ```
 
-          Sets a unit's facial expression (-1 is none, other values depend on
-          unit)
+          Sets a unit's facial expression (-1 is none, other values depend on unit)
     - slug: unit_set_emotion_animation
       info:
         en: |-
           ```hsc
-          (unit_set_emotion_animation <unit> <string>)
+          (<void> unit_set_emotion_animation <unit> <string>)
           ```
           Sets the emotion animation to be used for the given unit
     - slug: unit_set_enterable_by_player
       info:
         en: |-
           ```hsc
-          (unit_set_enterable_by_player <unit> <boolean>)
+          (<void> unit_set_enterable_by_player <unit> <boolean>)
           (unit_set_enterable_by_player warthog_mp_3 true)
           (unit_set_enterable_by_player warthog_mp_3 false)
           ```
@@ -5340,14 +5368,14 @@ Functions:
       info:
         en: |-
           ```hsc
-          (unit_set_maximum_vitality <unit> <real> <real>)
+          (<void> unit_set_maximum_vitality <unit> <real> <real>)
           ```
           Sets a unit's maximum body and shield vitality
     - slug: unit_set_seat
       info:
         en: |-
           ```hsc
-          (unit_set_seat <unit> <string>)
+          (<void> unit_set_seat <unit> <string>)
           (unit_set_seat (player0) "driver")
           ```
           This unit will assume the named seat
@@ -5356,25 +5384,24 @@ Functions:
         en: >-
           ```hsc
 
-          (unit_solo_player_integrated_night_vision_is_active)
-
+          (<boolean> unit_solo_player_integrated_night_vision_is_active)
 
           ```
 
-          Returns whether the night-vision mode could be activated via the
-          flashlight button
+          Returns whether the night-vision mode could be activated via the flashlight
+          button
     - slug: unit_stop_custom_animation
       info:
         en: |-
           ```hsc
-          (unit_stop_custom_animation <unit>)
+          (<void> unit_stop_custom_animation <unit>)
           ```
           Stops the custom animation running on the given unit
     - slug: unit_suspended
       info:
         en: |-
           ```hsc
-          (unit_suspended <unit> <boolean>)
+          (<void> unit_suspended <unit> <boolean>)
           (unit_suspended (player0) true)
           (unit_suspended (player0) false)
           ```
@@ -5383,7 +5410,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (units_set_current_vitality <object_list> <real> <real>)
+          (<void> units_set_current_vitality <object_list> <real> <real>)
           (units_set_current_vitality (players) 75 75)
           ```
           Sets a group of units' current body and shield vitality
@@ -5391,7 +5418,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (units_set_desired_flashlight_state <object_list> <boolean>)
+          (<void> units_set_desired_flashlight_state <object_list> <boolean>)
           (units_set_desired_flashlight_state (players) true)
           (units_set_desired_flashlight_state (players) false)
           ```
@@ -5400,7 +5427,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (units_set_maximum_vitality <object_list> <real> <real>)
+          (<void> units_set_maximum_vitality <object_list> <real> <real>)
           (units_set_maximum_vitality (players) 75 75)
           ```
           Sets a group of units' maximum body and shield vitality
@@ -5408,7 +5435,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (vehicle_driver <unit>)
+          (<unit> vehicle_driver <unit>)
           (vehicle_driver the_ghost)
           ```
           Returns the driver of a vehicle
@@ -5416,7 +5443,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (vehicle_gunner <unit>)
+          (<unit> vehicle_gunner <unit>)
           (vehicle_gunner the_warthog)
           ```
           Returns the gunner of a vehicle
@@ -5425,7 +5452,7 @@ Functions:
         en: >-
           ```hsc
 
-          (vehicle_hover <vehicle> <boolean>)
+          (<void> vehicle_hover <vehicle> <boolean>)
 
           (vehicle_hover "vehicles\warthog\warthog" true)
 
@@ -5433,27 +5460,27 @@ Functions:
 
           ```
 
-          Stops the vehicle from running real physics and runs fake hovering
-          physics instead
+          Stops the vehicle from running real physics and runs fake hovering physics
+          instead
     - slug: vehicle_load_magic
       info:
         en: >-
           ```hsc
 
-          (vehicle_load_magic <unit> <string> <object_list>)
+          (<short> vehicle_load_magic <unit> <string> <object_list>)
 
           (vehicle_load_magic pelican_1 "" (players))
 
           ```
 
-          Makes a list of units (named or by encounter) magically get into a
-          vehicle, in the substring-specified seats (e.g. "CD-passenger". Empty
-          string matches all seats).
+          Makes a list of units (named or by encounter) magically get into a vehicle,
+          in the substring-specified seats (e.g. "CD-passenger". Empty string matches
+          all seats).
     - slug: vehicle_riders
       info:
         en: |-
           ```hsc
-          (vehicle_riders <unit>)
+          (<object_list> vehicle_riders <unit>)
           (vehicle_riders the_tanks)
           ```
           Returns a list of all riders in a vehicle
@@ -5461,7 +5488,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (vehicle_test_seat <vehicle> <string> <unit>)
+          (<boolean> vehicle_test_seat <vehicle> <string> <unit>)
           (vehicle_test_seat banshee_mp_1 "driver" (player0))
           ```
           Tests whether the named seat has a specified unit in it
@@ -5469,7 +5496,7 @@ Functions:
       info:
         en: |-
           ```hsc
-          (vehicle_test_seat_list <vehicle> <string> <object_list>)
+          (<boolean> vehicle_test_seat_list <vehicle> <string> <object_list>)
           (vehicle_test_seat_list ghost_mp_2 "driver" (players))
           ```
           Tests whether the named seat has an object in the object list
@@ -5478,20 +5505,19 @@ Functions:
         en: >-
           ```hsc
 
-          (vehicle_unload <unit> <string>)
+          (<short> vehicle_unload <unit> <string>)
 
           (vehicle_unload hog w-driver)
 
           ```
 
-          Makes units get out of a vehicle from the substring-specified seats
-          (e.g. "CD-passenger". Empty string matches all seats).
+          Makes units get out of a vehicle from the substring-specified seats (e.g.
+          "CD-passenger". Empty string matches all seats).
     - slug: version
       info:
         en: |-
           ```hsc
-          (version)
-
+          (<void> version)
           ```
           Prints the build version
     - slug: volume_teleport_players_not_inside
@@ -5499,19 +5525,18 @@ Functions:
         en: >-
           ```hsc
 
-          (volume_teleport_players_not_inside <trigger_volume> <cutscene_flag>)
+          (<void> volume_teleport_players_not_inside <trigger_volume> <cutscene_flag>)
 
           (volume_teleport_players_not_inside hidden_trigger omgtelprot)
 
           ```
 
-          Moves all players outside a specified trigger volume to a specified
-          flag
+          Moves all players outside a specified trigger volume to a specified flag
     - slug: volume_test_object
       info:
         en: |-
           ```hsc
-          (volume_test_object <trigger_volume> <object>)
+          (<boolean> volume_test_object <trigger_volume> <object>)
           (volume_test_object trig_volume1 (player0))
           ```
           Returns `true` if the specified object is within the specified volume
@@ -5520,24 +5545,24 @@ Functions:
         en: >-
           ```hsc
 
-          (volume_test_objects <trigger_volume> <object_list>)
+          (<boolean> volume_test_objects <trigger_volume> <object_list>)
 
           (volume_test_objects trig_volume2 (players))
 
           ```
 
-          Returns `true` if any of the specified objects are within the
-          specified volume
+          Returns `true` if any of the specified objects are within the specified
+          volume
     - slug: volume_test_objects_all
       info:
         en: >-
           ```hsc
 
-          (volume_test_objects_all <trigger_volume> <object_list>)
+          (<boolean> volume_test_objects_all <trigger_volume> <object_list>)
 
           (volume_test_objects_all trig_volume2 (players))
 
           ```
 
-          Returns `true` if all of the specified objects are within the
-          specified volume
+          Returns `true` if all of the specified objects are within the specified
+          volume
