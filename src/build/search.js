@@ -8,7 +8,8 @@ const MiniSearch = require("minisearch");
 const STOP_WORDS = {
   en: new Set([
     "halo", "and", "or", "not", "to", "from", "at", "in", "a", "the", "be", "are",
-    "is", "as", "its", "it", "this", "that", "these", "any", "e", "g", "for"
+    "is", "as", "its", "it", "this", "that", "these", "any", "e", "g", "for", "of",
+	"on", "with", "you", "do", "but", "by", "an", "will", "all", "would"
   ]),
   es: new Set([
     "halo", "y", "o", "no", "a", "de", "en", "una", "uno", "la", "el", "ser",
