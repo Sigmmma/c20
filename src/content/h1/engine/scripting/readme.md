@@ -215,7 +215,7 @@ nested statements. The maximum number of nested statements is somewhere between
 invoking methods with parameters, and other things.
 
 ```.alert danger
-**WARNING: The game *DOES NOT* guard against exceeding stack memory!!**
+**WARNING: The game *DOES NOT* guard against exceeding stack memory in release builds!!**
 
 If you exceed a script's stack memory, it will
 [overflow](http://en.wikipedia.org/wiki/Buffer_overflow) into other scripts'
@@ -230,9 +230,8 @@ objects flicker randomly.
 
 ```.alert danger
 There is not currently a reliable way to exactly tell when stack memory has been
-exceeded. The "10 to 16 nested levels" advice is an estimate based on
-experimentation, and also directly depends on the number of parameters in
-function calls.
+exceeded in [release][build-types] builds. `play` and lower optimization levels will crash with `a problem occurred while executing the script <script name>: corrupted stack. (valid_thread(thread))`. 
+You can use the [H1A standalone build][h1a-standalone-build] or Sapien to detect overflows.
 ```
 
 ## Console scripts
