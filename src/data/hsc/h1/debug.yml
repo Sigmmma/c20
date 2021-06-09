@@ -2872,6 +2872,7 @@ DebugFunctions:
           ```
           Enables or disables [texture filtering](https://en.wikipedia.org/wiki/Texture_filtering)
           for lightmaps. When disabled, lightmaps will appear blocky and jagged.
+          Has no effect in H1A.
     - slug: rasterizer_lightmaps_incident_radiosity
       info:
         en: |-
