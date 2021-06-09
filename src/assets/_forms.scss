@@ -96,23 +96,8 @@ input[type="radio"] {
 
 input[type="checkbox"] {
   display: inline-block;
-  margin: 0;
-  padding: 0;
-  opacity: 0;
-  & + label:before {
-    content: '';
-    display: inline-block;
-    position: absolute;
-    margin-left: -26px;
-    padding: 8px;
-    border: 2px solid var(--border-color);;
-  }
-  &:checked + label:before {
-    border: 2px solid var(--fg-strong);
-    background: var(--fg-link);
-  }
-  &:checked + label {
-    color: var(--fg-strong);
+  & + label {
+    margin-left: var(--padding-sm);
   }
 }
 

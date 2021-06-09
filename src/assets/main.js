@@ -55,8 +55,8 @@ const localize = (key) => ({
     es: "No se encontraron resultados para",
   },
   limitToChildPaths: {
-	  en: "Child pages only",
-	  es: "$limitToChildPaths"
+    en: "Child pages only",
+    es: "$limitToChildPaths"
   }
 }[key][lang]);
 
@@ -178,16 +178,6 @@ class Search extends Component {
     };
   }
 
-  updateFilterCheckbox() {
-    let toggleButtonElement = document.getElementById("filter-results");
-    toggleButtonElement.checked = this.state.filterChildPaths;
-  }
-
-  toggleFilterChildPages() {
-    this.state.filterChildPaths = !this.state.filterChildPaths;
-    this.handleChange(this.inputRef.value);
-  }
-
   handleKeyDown(e) {
     if (e.key == "Escape") {
       this.setState({
@@ -214,15 +204,10 @@ class Search extends Component {
       if (this.state.searchResults.length != 0) {
         window.location = this.state.searchResults[this.state.selectedResultIndex].id;
       }
-    } else if (e.key == "Control") {
-		  if (this.state.query != "") {
-			  this.toggleFilterChildPages();
-        this.updateFilterCheckbox();
-		  }
-	  }
+    }
   }
 
-  handleChange(query) {
+  handleChange(query, filterChildPaths) {
     if (!this.state.disabled) {
       let searchResults = this.searchIndex.search(query);
 
@@ -235,6 +220,12 @@ class Search extends Component {
         }
       }
 
+      if (filterChildPaths) {
+        searchResults = this.state.searchResults.filter(result =>
+          result.id.startsWith(window.location.pathname)
+        );
+      }
+
       //sort by if the query is a substring of the page title
       searchResults.sort((a, b) => {
         const aIncludes = a.title.toLowerCase().includes(query.toLowerCase());
@@ -244,15 +235,10 @@ class Search extends Component {
         return 0;
       });
 
-      if (this.state.filterChildPaths) {
-        searchResults = searchResults.filter(result => {
-          return result.id.startsWith(window.location.pathname);
-        });
-      }
-
       this.setState({
         query,
         searchResults,
+        filterChildPaths,
         selectedResultIndex: 0
       });
     }
@@ -301,9 +287,9 @@ class Search extends Component {
   }
 
   render() {
-    const clearInput = () => this.handleChange("");
-    const toggleFilterChildPages = () => { this.toggleFilterChildPages();}
-    const handleInput = (e) => this.handleChange(e.target.value);
+    const clearInput = () => this.handleChange("", this.state.filterChildPaths);
+    const handleInput = (e) => this.handleChange(e.target.value, this.state.filterChildPaths);
+    const handleFilter = () => this.handleChange(this.state.query, !this.state.filterChildPaths);
     const isNonEmptyQuery = this.state.query && this.state.query != "";
     //save a reference to the DOM element which gets rendered, so we can focus it later
     const saveInputRef = (el) => this.inputRef = el;
@@ -325,10 +311,10 @@ class Search extends Component {
             <h2>${localize("searchResults")}</h2>
             <button class="clear-button" onClick=${clearInput}>${localize("close")} <span class="desktop-only">[Esc]</span></button>
           </div>
-          <span class="results-toggle-child-pages">
-            <input type="checkbox" id="filter-results" onClick=${toggleFilterChildPages} checked=${this.state.filterChildPaths}/>
-            <label for="filter-results">${localize("limitToChildPaths")} <span class="desktop-only">[Control]</span></label>
-          </span>
+          <div class="results-toggle-child-pages">
+            <input type="checkbox" id="filter-results" onClick=${handleFilter} checked=${this.state.filterChildPaths}/>
+            <label for="filter-results">${localize("limitToChildPaths")}</label>
+          </div>
           ${this.state.searchResults.length > 0 ? html`
             <ul class="link-list">
               ${this.state.searchResults.map((result, i) => {
