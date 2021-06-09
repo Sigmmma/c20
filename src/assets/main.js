@@ -53,6 +53,10 @@ const localize = (key) => ({
   searchNoResults: {
     en: "No results found for",
     es: "No se encontraron resultados para",
+  },
+  limitToChildPaths: {
+	  en: "Child pages only",
+	  es: "$limitToChildPaths"
   }
 }[key][lang]);
 
@@ -167,10 +171,21 @@ class Search extends Component {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.state = {
       disabled: true,
+      filterChildPaths: false,
       query: "",
       searchResults: [],
       selectedResultIndex: 0
     };
+  }
+
+  updateFilterCheckbox() {
+    let toggleButtonElement = document.getElementById("filter-results");
+    toggleButtonElement.checked = this.state.filterChildPaths;
+  }
+
+  toggleFilterChildPages() {
+    this.state.filterChildPaths = !this.state.filterChildPaths;
+    this.handleChange(this.inputRef.value);
   }
 
   handleKeyDown(e) {
@@ -199,7 +214,12 @@ class Search extends Component {
       if (this.state.searchResults.length != 0) {
         window.location = this.state.searchResults[this.state.selectedResultIndex].id;
       }
-    }
+    } else if (e.key == "Control") {
+		  if (this.state.query != "") {
+			  this.toggleFilterChildPages();
+        this.updateFilterCheckbox();
+		  }
+	  }
   }
 
   handleChange(query) {
@@ -223,6 +243,12 @@ class Search extends Component {
         if (bIncludes && !aIncludes) return 1;
         return 0;
       });
+
+      if (this.state.filterChildPaths) {
+        searchResults = searchResults.filter(result => {
+          return result.id.startsWith(window.location.pathname);
+        });
+      }
 
       this.setState({
         query,
@@ -276,6 +302,7 @@ class Search extends Component {
 
   render() {
     const clearInput = () => this.handleChange("");
+    const toggleFilterChildPages = () => { this.toggleFilterChildPages();}
     const handleInput = (e) => this.handleChange(e.target.value);
     const isNonEmptyQuery = this.state.query && this.state.query != "";
     //save a reference to the DOM element which gets rendered, so we can focus it later
@@ -298,6 +325,10 @@ class Search extends Component {
             <h2>${localize("searchResults")}</h2>
             <button class="clear-button" onClick=${clearInput}>${localize("close")} <span class="desktop-only">[Esc]</span></button>
           </div>
+          <span class="results-toggle-child-pages">
+            <input type="checkbox" id="filter-results" onClick=${toggleFilterChildPages} checked=${this.state.filterChildPaths}/>
+            <label for="filter-results">${localize("limitToChildPaths")} <span class="desktop-only">[Control]</span></label>
+          </span>
           ${this.state.searchResults.length > 0 ? html`
             <ul class="link-list">
               ${this.state.searchResults.map((result, i) => {

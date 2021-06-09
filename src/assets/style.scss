@@ -197,6 +197,12 @@ body {
     align-items: center;
   }
 
+  .results-toggle-child-pages {
+    padding: var(--padding-lg);
+    display: flex;
+    align-items: left;
+  }
+
   .link-list {
     list-style: none;
     padding: 0;
