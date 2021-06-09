@@ -243,10 +243,10 @@ scenario script's memory, causing the above mentioned issues.
 ## When to use short vs long
 There are two integer variable types: `short` and `long`. Both hold whole
 numbers, but `long` variables can hold much larger numbers than `short`
-variables. The tradeoff is that `short` variables only consume half as much
-memory as `long` variables. [Given HSC's tight memory
-constraints][scripting#stack-space-is-limited], this means
-**you should only use `long` when you need large numbers!**
+variable. It's worth noting both use the same amount of memory, 
+so you should decide the type you use based on what range of values makes sense or the values the functions you call accept (avoids a [cast][]).
+
+If you need to optimize memory usage you can use the bitwise functions to implement a [bitfield][].
 
 
 # Extensions
@@ -277,3 +277,5 @@ For example, the following block:
 [rng-seed]: https://en.wikipedia.org/wiki/Random_seed
 [stack]: http://en.wikipedia.org/wiki/Call_stack
 [hsc-pre]: http://hce.halomaps.org/index.cfm?fid=6552
+[bitfield]: https://en.wikipedia.org/wiki/Bit_field
+[cast]: https://en.wikipedia.org/wiki/Type_conversion
