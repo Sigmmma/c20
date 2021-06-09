@@ -62,6 +62,23 @@ tableName: ValueTypes
 rowLinks: true
 ```
 
+### Value type casting
+
+HaloScript supports converting data from one type to another, this is called [type casting][cast] or just casting. Type casting in HaloScript is done automatically when needed but it's good to keep it in mind as not all types can be converted. Passthrough can be converted to any type and void can be converted to from any type. They are however not the inverse of each other as void destroys the data during conversion.
+
+The rules for object name types are equivalent to the matching object types. Object names can be converted to the equivalent object. 
+
+| Target Type     | Source type(s)            | 
+| --------------- | ----------------          |
+| boolean         | real, long, short, string |
+| real            | any enum, short, long     |
+| long            | short, real               |
+| short           | long, real                |
+| object_list     | any object or object_name |
+| void            | any type                  |
+| any type        | passthrough               |
+| object          | an other object type      |
+| unit            | vehicle                   |
 
 ## Operators and keywords
 ```.table
@@ -244,7 +261,7 @@ scenario script's memory, causing the above mentioned issues.
 There are two integer variable types: `short` and `long`. Both hold whole
 numbers, but `long` variables can hold much larger numbers than `short`
 variables. It's worth noting both use the same amount of memory, 
-so you should decide the type you use based on what range of values makes sense or the values the functions you call accept (avoids a [cast][]).
+so you should decide the type you use based on what range of values makes sense or the values the functions you call accept (avoids a [cast][scripting#value-type-casting]).
 
 If you need to optimize memory usage you can use the bitwise functions to implement a [bitfield][].
 
