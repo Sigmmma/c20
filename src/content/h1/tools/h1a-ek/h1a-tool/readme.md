@@ -453,11 +453,22 @@ For the example above, Tool would create 4 bitmaps named: `default 2d_0.tif`, `d
 
 The command uses the compressed texture and not the source plate data.
 
+# Accessing script documentation
+
+The `script_doc` verb can be used to access function and global documentation.
+
+```sh
+# script_doc [function|global name]
+tool script_doc # generate a full hs_doc.txt
+tool script_doc recording_play # get documentation for the `recording_play` function
+tool script_doc developer_mode # get documentation for the `developer_mode` global
+```
+
 # Sounds compilation
 A 16-bit [WAV][wiki-wav] file can be compiled into a [sound][] tag using the `sounds` verb:
 
 ```sh
-# sounds <source-directory> <platform(xbox,wav,ogg)> ogg_only_value_flag<quality or bitrate>
+# sounds <source-directory> <platform(xbox,wav,ogg)> [ogg_only_value_flag<quality or bitrate>]
 tool sounds "vehicles\ghost" ogg 1
 ```
 
