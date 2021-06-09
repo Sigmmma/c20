@@ -104,6 +104,16 @@ ValueTypes:
       format: text
   slugKey: type
   rows:
+    - type: void
+      info:
+        en: Nothing
+        es:
+      ex: N/A
+    - type: passthrough
+      info:
+        en: Anything, used by some control flow functions.
+        es:
+      ex: N/A
     - type: boolean
       info:
         en: A value that is true or false
