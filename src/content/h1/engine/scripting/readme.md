@@ -243,7 +243,7 @@ scenario script's memory, causing the above mentioned issues.
 ## When to use short vs long
 There are two integer variable types: `short` and `long`. Both hold whole
 numbers, but `long` variables can hold much larger numbers than `short`
-variable. It's worth noting both use the same amount of memory, 
+variables. It's worth noting both use the same amount of memory, 
 so you should decide the type you use based on what range of values makes sense or the values the functions you call accept (avoids a [cast][]).
 
 If you need to optimize memory usage you can use the bitwise functions to implement a [bitfield][].
