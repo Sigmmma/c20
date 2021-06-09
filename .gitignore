@@ -6,3 +6,5 @@ nohup.out
 /src/content/**/todo
 *.swp
 oxipng.exe
+hs_doc*.txt
+*.code-workspace
