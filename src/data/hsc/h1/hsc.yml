@@ -118,32 +118,42 @@ ValueTypes:
       info:
         en: A value that is true or false
         es:
-      ex: true <br/> false <br/> 1 <br/> 0
+      ex: >-
+        `true`<br/>
+        `false`<br/>
+        `1`<br/>
+        `0`
 
     - type: real
       info:
         en: 'Floating point (decimal) value <br/> Value Range: 3.4E +/- 38 (6 digits)'
         es:
-      ex: '3.000000'
+      ex: '`3.000000`'
 
     - type: short
       info:
-        en: 'Short integer value <br/> Value Range: +/- 32,767'
+        en: >-
+          16-bit short integer value, stored in [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement).
+          <br>
+          Value Range: `−32,768` to `32,767`
         es:
-      ex: '2'
+      ex: '`2`'
 
     - type: long
       info:
-        en: 'Long integer value <br/> Value Range: +/- 2,147,483,648'
+        en: >-
+          32-bit long integer value, stored in [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement).
+          <br>
+          Value Range: `-2,147,483,648` to `2,147,483,647`
         es:
-      ex: '2000000000'
+      ex: '`2000000000`'
 
     - type: string
       info:
         en: >
           String of characters in double quotes <br/> Max number of characters: 32
         es:
-      ex: '"This is a string."'
+      ex: '`"This is a string."`'
 
     - type: trigger_volume
       info:
@@ -1747,64 +1757,93 @@ Functions:
         en: |-
           ```hsc
           (<long> bit_test <long> <short>)
+          (bit_test 2 1) ;1
+          (bit_test 2 0) ;0
           ```
-          <flags> <bit_index>
+          Returns `1` or `0` for the bit at the given position.
       mcc_only: true
     - slug: bit_toggle
       info:
         en: |-
           ```hsc
           (<long> bit_toggle <long> <short> <boolean>)
+          (bit_toggle 0 2 true) ;4 (0000 => 0100)
+          (bit_toggle 7 0 false) ;6 (0111 => 0110)
           ```
-          <flags> <bit_index> <on_or_off>
+          Sets the value's bit at the given position on or off.
       mcc_only: true
     - slug: bitwise_and
       info:
         en: |-
           ```hsc
           (<long> bitwise_and <long> <long>)
+          (bitwise_and 6 3) ;2 (0110 & 0011 = 0010)
           ```
-          <lhs> AND <rhs>
+          Returns the [bitwise AND](https://en.wikipedia.org/wiki/Bitwise_operation#AND)
+          of two numbers. If a bit is `1` in both of the inputs, it is `1` in the
+          output and otherwise `0`.
       mcc_only: true
     - slug: bitwise_flags_toggle
       info:
         en: |-
           ```hsc
           (<long> bitwise_flags_toggle <long> <long> <boolean>)
+          (bitwise_flags_toggle 13 3 true) ;15 (1101 => 1111)
+          (bitwise_flags_toggle 13 3 false) ;12 (1101 => 1100)
           ```
-          <value> <flags> <on_or_off>
+          Uses the second argument as a mask to toggle bits on or off in the
+          first argument.
       mcc_only: true
     - slug: bitwise_left_shift
       info:
         en: |-
           ```hsc
           (<long> bitwise_left_shift <long> <short>)
+          (bitwise_left_shift 1 4) ;16 (00001 << 4 = 10000)
+          (bitwise_left_shift 5 1) ;10 (00101 << 1 = 01010)
           ```
-          <value> LHS <bit_count>
+          Performs a [bitwise left shift](https://en.wikipedia.org/wiki/Bitwise_operation#Logical_shift)
+          of a value by the given bit count. All bits are moved to the left by a
+          number of positions, with the rightmost bits filling with 0's.
+          Returns `0` if the positions argument is negative. This has the effect
+          of multiplying the argument by a power of 2.
       mcc_only: true
     - slug: bitwise_or
       info:
         en: |-
           ```hsc
           (<long> bitwise_or <long> <long>)
+          (bitwise_or 6 3) ;7 (0110 | 0011 = 0111)
           ```
-          <lhs> OR <rhs>
+          Returns the [bitwise OR](https://en.wikipedia.org/wiki/Bitwise_operation#OR)
+          of two numbers. If a bit is `1` in either or both of the inputs, it is
+          `1` in the output and otherwise `0`.
       mcc_only: true
     - slug: bitwise_right_shift
       info:
         en: |-
           ```hsc
           (<long> bitwise_right_shift <long> <short>)
+          (bitwise_right_shift 13 2) ;3 (1101 >> 2 = 0011)
+          (bitwise_right_shift -1 1) ;2147483647
           ```
-          <value> RHS <bit_count>
+          Performs an [unsigned right shift](https://en.wikipedia.org/wiki/Bitwise_operation#Logical_shift)
+          (also called logical or zero filling shift) of a value by the given bit count.
+          All bits are moved to the right by a number of positions, with the leftmost
+          bits filling with 0's. Returns `0` if the positions argument is negative.
       mcc_only: true
     - slug: bitwise_xor
       info:
         en: |-
           ```hsc
           (<long> bitwise_xor <long> <long>)
+          (bitwise_xor 5 5) ;0 (0101 ^ 0101 = 0000)
+          (bitwise_xor 12 15) ;3 (1100 ^ 1111 = 0011)
           ```
-          <lhs> XOR <rhs>
+          Returns the [bitwise XOR](https://en.wikipedia.org/wiki/Bitwise_operation#XOR)
+          (exclusive or) of two numbers. If a bit differs in both inputs, it is
+          `1` in the output and otherwise `0`. In other words, one or the other
+          bit must be `1` but not both.
       mcc_only: true
     - slug: breakable_surfaces_enable
       info:
