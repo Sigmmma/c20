@@ -14,6 +14,7 @@ If you are used to the legacy tools here is a quick primer on what's changed, if
 - `structure` and `collision-geometry` now include an optional argument to fix phantom BSP.
 - Documentation for some existing commands was fixed.
 - `zoners_model_upgrade` and `strings` commands have been removed.
+- `loc.map` resource files are no longer generated as they are not used by H1A (aside from H1CE backwards compatibility).
 - Lots of new commands have been added and old bugs fixed.
 
 The new commands allow along other things better error checking of tags, exporting some data needed for the S3D engine and creating JMS and JMA files from FBX.
@@ -83,7 +84,7 @@ The resulting map file can be found in editing kit's `maps` directory.
 ## Classic and remastered mode
 
 - "classic" is intended for custom maps that don't support remastered graphics.
-- "remastered" is intended for building maps compatible with S3D-based remastered graphics and sounds.
+- "remastered" is intended for building maps compatible with S3D-based remastered graphics and sounds. Some HUD bitmaps will be read from S3D data files not tags. 
 
 Using classic graphics is recommended for most custom maps.
 
