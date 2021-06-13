@@ -124,7 +124,11 @@ type_defs:
         meta:
           h1a_only: true
         comments:
-          en: A bitfield which customizes how the cache file is treated by H1A in MCC.
+          en: >-
+            A bitfield which customizes how the cache file is treated by H1A in MCC.
+            These are set by [Tool][h1a-tool#classic-and-remastered-mode] when
+            building a cache file depending on the choice between `classic` and
+            `remastered`.
       - type: pad
         size: 0x790
       - name: foot_magic

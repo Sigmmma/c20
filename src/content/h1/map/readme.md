@@ -26,7 +26,7 @@ The special `ui.map` contains resources for the game's main menu, including [bit
 Custom UI maps which intend to add a campaign menu to H1CE must include a dummy first menu item since the game is hardcoded to remove it.
 
 ## Resource maps
-Resource maps provide a way for certain tags to be stored _external_ to a playable map rather than its tags being totally self-contained. These maps themselves are not playable and have a different [header structure](#resource-map-header), but instead contain shared tags referenced by normal map files. This feature was introduced with H1PC with `bitmaps.map` and `sounds.map` to store [bitmap][] and [sound][] tags respectively, and `loc.map` was added in H1CE to store [font][] and [unicode_string_list][].
+Resource maps provide a way for certain tags to be stored _external_ to a playable map rather than its tags being totally self-contained. These maps themselves are not playable and have a different [header structure](#resource-map-header), but instead contain shared tags referenced by normal map files. This feature was introduced with H1PC with `bitmaps.map` and `sounds.map` to store [bitmap][] and [sound][] tags respectively, and `loc.map` was added in H1CE to store [font][] and [unicode_string_list][]. MCC H1A no longer uses `loc.map` except for backwards compatibility with maps compiled for Custom Edition.
 
 When playable maps are compiled using [Tool][], any needed tags for the map which are already present in a resource map will be excluded and referenced by pointer to the loaded resource map instead. The resource maps were created once using an internal version of Tool and were not originally intended to be modified, though [invader-resource][invader#invader-resource] and [OpenSauce][] are capable of compiling new ones. Using incompatible resource maps will result in glitched textures, sounds, and text.
 
@@ -48,9 +48,9 @@ Because of these differences, map authors may need to create multiple tag sets t
 Maps with the extension `.yelo` are compiled with [OS_Tool][opensauce#os-tool] and can only be played using H1CE with the [OpenSauce][] mod, which extends Halo's engine with new tag types, higher limits, and extra renderer features. These maps are typically [custom campaign missions][os-maps] specifically designed to take advantage of these extensions. [Refinery][] supports extracting OpenSauce tags from these maps.
 
 # Protected maps
-A _protected map_ is a map which has been intentionally corrupted in a way which still allows it to be loaded and played in-game, but hinders attempts to extract tags from it by removing or scrambling data like [tag paths](#resource-header-tag-path-pointer).
+A _protected map_ is a map which has been intentionally corrupted in a way which still allows it to be loaded and played in-game, but hinders attempts to extract tags from it by removing or scrambling data like [tag paths](#resource-header-tag-path-pointer). It is now a discouraged practice.
 
-Map protection was unfortunately common in the H1CE modding scene in the 2000s as a way to prevent others from using ones custom tags, and it has overall negatively impacted the community because the resulting maps are crash-prone, cannot be easily be ported to newer engines like H1A, and new modders cannot extract their tags cleanly for study. It is now a discouraged practice.
+Map protection was unfortunately common in the H1CE modding scene in the 2000s as a way to prevent others from using ones custom tags, and it has overall negatively impacted the community because the resulting maps are crash-prone, cannot be easily be ported to newer engines like H1A, and new modders cannot extract their tags cleanly for study. H1A even explicitly checks for and refuses to load protected maps.
 
 [Refinery][] can "deprotect" maps for tag extraction but the results may require cleanup.
 
@@ -103,7 +103,7 @@ Each section is loaded in a different way:
 * The active BSP is loaded into the _end_ of the tag space. When a BSP switch occurs, the new BSP data is read from the map file using [information stored in the scenario tag][scenario#tag-field-structure-bsps] and replaces the previous data in-memory. In H1A, it is loaded at a separate dedicated location instead.
 * Raw data is streamed from the map file as needed and dynamically allocated in the [sound cache][sound-system#sound-cache] and [texture cache][renderer#texture-cache]. The texture cache is cleared during maps loads and BSP switches. Some tags like [BSPs][scenario_structure_bsp] and [scenarios][scenario] contain a "predicted resources" block which hints to the game which data should be loaded into these caches.
 
-Tags from resource maps are also loaded into the tag space as needed. Halo CEA uses compressed maps and additional files to store sounds and bitmaps, so loads maps [differently][cea#changes].
+Tags from resource maps are also loaded into the tag space as needed. Halo CEA uses compressed maps and additional files to store sounds and bitmaps, so loads maps [differently][h1a#changes].
 
 # File structure
 Generally map files consist of a map header section followed by BSP, model, raw data, and indexed tag definitions. The header structure and/or values vary by game. Not all maps may look like this exactly, due to map protection or differences in map compiler. All data is [little-endian](https://en.wikipedia.org/wiki/Endianness).

@@ -2214,7 +2214,8 @@ Functions:
           ```hsc
           (<boolean> core_save_name <string>)
           ```
-          saves debug game state to core\<path>
+          Saves debug game state to core\<path> in pre-H1A versions of the game.
+          In H1A this function was hijacked for campaign segments.
     - slug: crash
       info:
         en: |-
@@ -3918,6 +3919,15 @@ Functions:
           (<void> player_effect_set_max_translation <real> <real> <real>)
           ```
           `<x>` `<y>` `<z>`
+    - slug: player_effect_set_max_rumble
+      info:
+        en: |-
+          ```hsc
+          (<void> player_effect_set_max_rumble <real> <real>)
+          ```
+          **This is not a real HSC function**, but rather a hard-coded alias for
+          `player_effect_set_max_vibrate` present in pre-H1A season 7 versions
+          of Halo.
     - slug: player_effect_set_max_vibrate
       info:
         en: |-
@@ -3983,9 +3993,10 @@ Functions:
 
           Prints a string to the console. Printed text will not appear in the console
           unless devmode is enabled (devmode 4). You can give a `print` call a [format](http://www.cplusplus.com/reference/cstdio/printf/)
-          string (e.g. `"I have %d apples"`), but **cannot** give it format arguments,
+          string in H1CE (e.g. `"I have %d apples"`), but **cannot** give it format arguments,
           meaning **a format string can cause the function to read invalid memory
-          and crash the game!**
+          and crash the game!**. The string is no longer interpreted as a format
+          string in H1A.
     - slug: print_binds
       info:
         en: |-
@@ -4112,7 +4123,8 @@ Functions:
           ```hsc
           (<boolean> rally_point_save_name <string>)
           ```
-          saves game state as rally point to core\<path>
+          Saves game state as rally point to `core\<path>`. This replicates
+          `core_save_name` in pre-H1A versions of the game.
       mcc_only: true
     - slug: random_range
       info:
@@ -4287,7 +4299,8 @@ Functions:
           ```hsc
           (<void> script_doc)
           ```
-          saves a file called hs_doc.txt with parameters for all script commands.
+          Saves a file called hs_doc.txt with parameters for all script commands.
+          In the [H1A-EK][] this also includes external globals at the end of the file.
     - slug: script_recompile
       info:
         en: |-
@@ -5352,7 +5365,8 @@ Functions:
           ```hsc
           (<void> unit_kill <unit>)
           ```
-          Kills a given unit, no saving throw
+          Kills a given unit, no saving throw. This will crash pre-H1A MCC versions
+          of the game if the unit doesn't exist.
     - slug: unit_kill_silent
       info:
         en: >-
@@ -5363,7 +5377,7 @@ Functions:
           ```
 
           Kills a given unit silently (doesn't make them play their normal death animation
-          or sound)
+          or sound). This will crash pre-H1A MCC versions of the game if the unit doesn't exist.
     - slug: unit_open
       info:
         en: |-

@@ -165,7 +165,7 @@ function structDisplay(ctx, opts) {
             }
 
             let embeddedType = undefined;
-            if (!noEmbed.includes(fieldTypeName)) {
+            if (!noEmbed.includes(fieldTypeName) && !(field.meta && field.meta.unused)) {
               if (fieldTypeArgs && (fieldTypeName == "Block" || fieldTypeName == "ptr32" || fieldTypeName == "ptr64")) {
                 embeddedType = instantiateType(typeDefs, {type: Object.values(fieldTypeArgs)[0]}, instantiatedType.type_args, {});
                 if (embeddedType.typeDef.class) {

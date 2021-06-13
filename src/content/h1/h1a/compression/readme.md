@@ -1,4 +1,4 @@
-**CEA compression** is an algorithm used to compress certain files of [Halo: Combat Evolved Aniversary][cea] (H1A). It works by breaking a file down into smaller chunks, and compressing each chunk with [zlib][]. The [offsets][offset-wiki] to the beginning of each chunk are then stored in the [header][header-wiki] of the file. Each file is [little endian][little-endian-wiki].
+**CEA compression** is an algorithm used to compress certain files of [Halo: Combat Evolved Aniversary][h1a] (H1A). It works by breaking a file down into smaller chunks, and compressing each chunk with [zlib][]. The [offsets][offset-wiki] to the beginning of each chunk are then stored in the [header][header-wiki] of the file. Each file is [little endian][little-endian-wiki].
 
 This should not be confused with [H1X map compression][map#compressed-maps]. Only older versions of H1A compressed map files using this algorithm.
 

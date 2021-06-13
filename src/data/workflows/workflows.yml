@@ -682,7 +682,9 @@ workflows:
     to:
       - Animation data
       - Blender
-  - using: CAD animation exporter
+  - using:
+      - CAD animation exporter
+      - Blitzkrieg
     from: 3ds Max
     to: Animation data
   - using: Halo Physics Importer

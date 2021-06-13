@@ -132,6 +132,7 @@ The markdown files contain the main body content of the article and are where mo
 
 Beyond the [basic markdown features][mdbasic], c20 adds a few special extensions:
 
+* Inline HTML is supported for anything not covered through markdown or c20's features. Be careful not to accidentally write text which would be interpreted as HTML tags (e.g. when writing command line or HSC usage docs).
 * [Tables][tables], although for larger tables you will want to switch to raw inline HTML or our YAML table extension.
 * YAML tables allow you to display YAML data sets as a table. They have a number of options for applying styles and formatting to the table.
   YAML tables can be added to a page like so:

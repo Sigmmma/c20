@@ -30,7 +30,10 @@ module.exports = async function(ctx) {
     searchText: R.pipe(
       R.pathOr([], ["alerts"]),
       R.filter(R.path(["md", lang])),
-      R.map(({md}) => renderMarkdown(ctx, md[lang], true)),
+      R.map(({md}) => {
+        console.warn(`Page ${page.pageId} is using the deprecated YAML alerts feature. Use inline markdown alerts instead.`);
+        return renderMarkdown(ctx, md[lang], true)
+      }),
       R.join(" ")
     )(page)
   };

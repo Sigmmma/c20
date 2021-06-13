@@ -1,4 +1,4 @@
-Oftentimes in your CE modding adventures, you will face situations where something simply _doesn't work_ the way you expected, and maybe you're no closer to a solution after hours or days of trying things. While this site, community tutorials, and chat channels can help, there often isn't specific help available.
+Oftentimes in your CE modding adventures you will face situations where something simply _doesn't work_ the way you expected, and maybe you're no closer to a solution after hours or days of trying things. While this site, community tutorials, and chat channels can help, there often isn't specific help available.
 
 This page offers general techniques to help you prevent and troubleshoot your problems to get unblocked.
 
@@ -14,9 +14,10 @@ Make small incremental changes one step at a time and check that each is having 
 ## Having a good setup
 Your modding setup, like your CE installation and tools, needs to be a reliable foundation for everything that follows. Make sure you're starting off on the right foot:
 
-* [Prevent the Windows virtual store from interfering][tips#windows-virtual-store].
+* [Prevent the Windows virtual store from interfering][tips#windows-virtual-store] when modding H1CE.
 * Use the latest versions of any tools you're relying on.
-* Use tags extracted from modern tools like [invader-extract][invader#invader-extract] and [Refinery][] rather than HEK+.
+* Use officially released tags, and if you must use extracted ones then use modern extractors like [invader-extract][invader#invader-extract] and [Refinery][] rather than [HEK+][hek-plus].
+* Mark any tags you do not intend on modifying as read-only. Guerilla will grey out fields for these tags as a reminder for you to make edited copies of them.
 
 ## Reading documentation
 Before you jump in to making changes, make sure you understand the process and what you're doing. There are [tutorials][guides] and [documentation][/] available to help you. If using unfamiliar tools or mods, make sure to read any "README" files that come with them.

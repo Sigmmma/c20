@@ -1,17 +1,131 @@
-The [Halo Editing Kit][hek] was first released alongside [Halo: Custom Edition][h1]. It consists of modified and often cut down versions of Bungie's internal tools.
+```.alert
+After downloading the H1A-EK, please read `README_MODDING.txt`.
+```
 
-Updated versions of some of these internal tools were released by 343 Industries as the official modding tools for the MCC version of [Halo: Combat Evolved Anniversary][h1/cea].
+The **H1A Editing Kit** (**H1A-EK**) is the set of official modding tools used to create custom multiplayer and singleplayer maps targeting the PC MCC version of [Halo: Combat Evolved Anniversary][h1/h1a]. It was first released by 343 Industries during Season 7 of MCC in 2021.
 
-# Notable changes
+This editing kit will be familiar to users of the [legacy HEK][hek] for [Halo: Custom Edition][h1#custom-edition-pc] released by Gearbox in 2003. However, this rerelease has received [significant updates and fixes](#what-39-s-new) including a complete source [tag set][tags] for the game's stock maps. Some features from [Halo 2 tools][h2ek] have even been backported. The tools can also receive further updates over time owing to their distribution via [Steam][].
 
-This is just a brief overview of some of the more important changes in no particular order, the updated toolkit includes a lot of minor and QOL changes. More complete descriptions are included on the pages for the individual tools.
+These tools are based on the internal tools originally created by Bungie during the game's development but have been updated and sometimes trimmed down for public use.
 
-- [Blitzkrieg][hek/blitzkrieg] was not re-released.
-Use [Jointed Model Blender Toolset][tools/jointed-model-blender-toolset] or the new tool commands for converting [Autodesk FBX](https://en.wikipedia.org/wiki/FBX) to JMS and JMA files.
-- The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API.
-- Asserts can be disabled using the `-noassert` command line flag negating the need for modifications like [LM tool][hek/tool/lm_tool].
-- Tag and data directories can also be set using command line the flags `-tags_dir` and `-data_dir` respectively.
-- The functionality used by [phantom_tool][hek/tool/phantom_tool] to remove [collision artifacts][scenario_structure_bsp#collision-artifacts] is now exposed without needing to modify tool.
-- Resource maps can optionally be modified by tool when building a cache file to include all the resource data for the scenario being packaged.
-- All the tags used in retail MCC plus the ones used for the old HEK tutorial are included alongside the tools, meaning tag extraction or prebuilt tag sets are no longer required if someone wants to mod the stock maps.
-- The tools are in general faster and more responsive (in part due to manual optimizations, in part due to [*play* builds][build-types#optimization-options] built with a modern optimizing compiler being used instead of *test* builds).
+# What's new?
+If you're coming from the legacy [HEK][hek] for Custom Edition you may be wondering what's new and great about the updated H1A tools and engine. Don't worry, we've got you covered! Features which have been brought to Custom Edition parity from earlier versions of H1A may be mentioned below.
+
+## Exporters
+* [Blitzkrieg][hek/blitzkrieg] was not rereleased. Use [Jointed Model Blender Toolset][tools/jointed-model-blender-toolset] or the new Tool commands for converting [Autodesk FBX](https://en.wikipedia.org/wiki/FBX) to JMS and JMA files.
+
+## Content
+* All the [tags][] used in retail MCC plus the ones used for the old HEK tutorial are included alongside the tools, meaning tag extraction with [Refinery][] or [invader-extract][invader#invader-extract] or prebuilt tag sets are no longer required if someone wants to mod the stock maps.
+* The original source [HSC scripts][scripting] are included for all campaign missions.
+
+## All tools
+* The tools are in general faster and more responsive (in part due to manual optimizations, in part due to [*play* builds][build-types#optimization-options] built with a modern optimizing compiler being used instead of *test* builds).
+* The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
+* Asserts can be disabled using the `-noassert` command line flag.
+* The tags, data, and maps directories can now be set when running all tools. See [custom content paths][using-custom-content-paths] for more info. This makes it easier to work with different tag sets.
+
+## Tool
+* Lots of new verbs have been added. See the [Tool][h1a-tool] page for more details.
+* The `bitmaps` verb now accepts both `.tiff` and `.tif` extensions like `bitmap` does.
+* [Resource maps][map#resource-maps] can optionally be modified by Tool when building a cache file to include all the resource data for the scenario being packaged.
+* The functionality used by [phantom_tool][hek/tool/phantom_tool] to remove [collision artifacts][scenario_structure_bsp#collision-artifacts] is now exposed as an argument for compiling [BSPs][scenario_structure_bsp] and [model_collision_geometry][].
+* Argument parsing is now less primitive. Verbs can include optional arguments and flags and any unrecognized options are presented to the user.
+* Lightmapping code has been optimized and is even faster with the `-noassert` command line flag. Lightmapping now takes roughly a quarter of the time of legacy Tool and is even faster than [LM tool][hek/tool/lm_tool]. Additionally this code now only uses 32-bit integers instead of an unsafe mix with 16-bit ones, and 16 MiB stack reserve. This increases the crash stability of radiosity.
+* Most logs (like `debug.txt`) are now saved to a `reports` subfolder (similarly to Halo 2+).
+* [WRL][] files are now saved alongside the [JMS][] file being compiled rather than the HEK root.
+* Bitmap DXT1-3 (BC1-3) encoding now uses [DirectXTex](https://github.com/Microsoft/DirectXTex) instead of some S3TC code. This should result in higher quality similar to the original XDK.
+* `sounds_by_type` has been renamed to `sounds-by-type`.
+* `build-cache-file` has [new arguments][h1a-tool#build-cache-file].
+* `structure` and `collision-geometry` now include an optional argument to fix phantom BSP.
+* The usage printout when Tool is run without arguments is now sorted. Argument descriptions for some existing verbs like `lightmaps` were also corrected.
+* `zoners_model_upgrade` and `strings` verbs have been removed.
+* `loc.map` [resource maps][map#resource-maps] are no longer generated or used as they are not used by H1A (aside from H1CE backwards compatibility).
+* Tool will now log errors when the user attempts to use swarm actors in firing-position based combat; _always charge at enemies_ must be set to prevent runtime crashes.
+* Tool supports a `-pause` flag which keeps the process running after completion until the user presses <kbd>Enter</kbd>. This was meant for community-made launchers like [Osoyoos](https://github.com/num0005/Osoyoos-Launcher).
+
+## Sapien
+* When [Sapien][h1a-sapien] crashes it will attempt to autosave the scenario to a new file.
+* The [lightmap][lightmaps] painting feature was fixed. The user can perform touchups to fix light leaks or add missing lights and save changes to the lightmap.
+* The _View_ menu now includes ways to reopen the _Output window_ and _Tool window_ if they are closed.
+* The _Game window_ resolution has been increased from 800x600 to 1280x720 (widescreen).
+* Interpolation code from H1A is included and `framerate_throttle` is disabled by default, allowing for smooth animation and movement.
+* When the camera is outside the [BSP][scenario_structure_bsp], you will now see structure debug lines by default (`debug_structure_automatic`) (like [H2 Sapien][h2ek/h2sapien]). This helps you find the BSP if you get lost or the camera begins outside it, as with b40.
+* Sapien now features a modern Windows file open dialog which includes locations like quick access. This is also true for the _Edit Types_ menu when finding new tags to add to a palette.
+* The camera speed can be temporarily boosted by holding <kbd>Control</kbd>.
+* Multiple Sapien instances can now be launched at once using the `-multipleinstance` [command line][command-line] flag.
+* UI has been cleaned up a bit with unsupported elements removed (e.g. _File > New_) and others renamed.
+* Stability improvement:
+  * [Detail object][detail_object_collection] painting is possibly more stable now. More testing is needed to confirm.
+  * Sapien now closes gracefully from recording mode instead of crashing.
+  * Closing the _Output window_ now properly sets its handle to NULL.
+
+## Guerilla
+* Guerilla now features a modern Windows file open dialog which includes locations like quick access.
+* H2 Guerilla backported features:
+  * Tag blocks can now be collapsed.
+  * UI elements have been upgraded to look more modern, with wider inputs.
+  * *Expert mode*, *Show tag block sizes*, and *Copy tag name* options.
+  * A zoom level feature has been added to the bitmap viewer. The alpha channel drop-down label has also been corrected.
+* Some unused UI options have been removed.
+* When tags are loaded for editing, tag references with an unknown [group ID][tags#group-ids] are now clamped to NONE. This fixes cases like the leftover [weapon_collection][tags#unused-tags] reference in the Bloodgulch scenario from causing downstream problems.
+* _Save as_ now makes copies of read-only tags editable without having to reopen the tag.
+* Hover-over tooltips for flags after unused sections are no longer off-by-one, e.g. multiplayer spawn flags for vehicles.
+
+## HaloScript and console
+* The [developer console][developer-console] now supports the <kbd>Home</kbd> and <kbd>End</kbd> keys to move the cursor to the start and end of the input line.
+* Console history size has been increased from 8 to 16 entries.
+* Many defunct globals and functions have been removed because they are not functioning or applicable to H1A (e.g. for troubleshooting Gearbox netcode).
+* The `script_doc` HSC function now includes external globals in the output file in addition to functions.
+* Script docs and `help` output now show return value types for functions.
+* The `print` function no longer unsafely interprets its argument as a format string.
+* `unit_kill` and `unit_kill_silent` no longer crash the game if the given unit does not exist.
+* Custom Edition-specific functions like `sv_say` and `multiplayer_draw_teammates_names` were stubbed out for compatibility with CE maps (avoids crashes).
+* Unrecognized script functions and globals will now cause script data to be dropped rather than crashing the game.
+* Numerous new [functions][scripting#functions] were added:
+  * Numeric functions: `pin`, `abs_integer`, `abs_real`.
+  * Logical functions: `bitwise_and`, `bitwise_or`, `bitwise_xor`, `bitwise_left_shift`, `bitwise_right_shift`, `bitwise_flags_toggle`, `bit_toggle`, `bit_test`.
+  * Listing players: `players_on_multiplayer_team`, `local_players`.
+  * Printing: `print_if`, `log_print`.
+  * Distances: `objects_distance_to_object`, `objects_distance_to_flag`.
+  * Physics: `physics_set_gravity`, `physics_get_gravity`, `physics_constants_reset`.
+  * Debug camera: `debug_camera_save_name`, `debug_camera_load_name`, `debug_camera_save_simple_name`, `debug_camera_load_simple_name`, `debug_camera_load_text`.
+  * Other: `objects_delete_by_definition`, `list_count_not_dead`, `game_is_authoritative`, `debug_structure_automatic`.
+* `rally_point_save_name` was added to replicate legacy `core_save_name` which was repurposed in H1A.
+* Globals and functions are no longer locked to specific contexts like server.
+* `player_effect_set_max_rumble` is no longer a hard-coded alias for `player_effect_set_max_vibrate`. Map scripts (like a10 and d40) were updated.
+
+## Debug globals
+* `debug_structure` shows invisible collision surfaces in semi-transparent red and includes a BSP bounding box now (Halo 2 Sapien backport).
+* `debug_objects` behavior has been changed. It no longer shows bounding spheres and collision geometry by default but these can still be toggled on their own.
+
+## Tag classes
+* [shader_model][] received a [new flag][shader_model#tag-field-shader-model-flags-multipurpose-map-use-xbox-channel-order] to use Xbox channel order for the multipurpose map.
+* [gbxmodel][] node limit was increased from 48 to 63 to match Custom Edition 1.10.
+* [scenery][] received a new [flags field][scenery#tag-field-flags] which is unused in current versions of MCC.
+* [scenario][] received numerous changes:
+  * Unused fields have been marked deprecated and no longer appear in Guerilla and Sapien:
+    * The first 3 tag references: ["don't use"][scenario#tag-field-dont-use], "won't use", "can't use".
+    * The [functions block][scenario#tag-field-functions].
+    * Player start location [BSP index field][scenario#tag-field-player-starting-locations-bsp-index].
+    * Netgame flags [weapon group][scenario#tag-field-netgame-flags-weapon-group].
+  * The previously hidden cutscene title fields [_text style_][scenario#tag-field-cutscene-titles-text-style] and [_text flags_][scenario#tag-field-cutscene-titles-text-flags] are now exposed.
+  * [BSP switch trigger volumes][scenario#tag-field-bsp-switch-trigger-volumes] source and destination BSPs are now typed as proper block indices rather than integers, which causes Guerilla to display them as drop-downs.
+  * Increased limits backported from Halo 2:
+    * Bump `MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK` from 100 to 256.
+    * Bump `MAXIMUM_VEHICLE_DATUMS_PER_SCENARIO` from 80 to 256.
+    * Bump `MAXIMUM_OBJECT_NAMES_PER_SCENARIO` from 512 to 640.
+
+## Maps and map loading
+* The [map file size limit][map#map-file-size-limit] was increased to 2 GiB.
+* [Tag space][map#tag-space] is increased from 23 MiB to 64 MiB.
+* A new [flags field][map#map-header-h1a-flags] was added to the cache header for controlling H1A features.
+* Tags, BSP verts (16 MiB), and game state are now stored in separate dedicated allocations rather than one giant one.
+* [Protected maps][map#protected-maps] will be detected and force a crash because they are unsupported.    
+
+## Game state
+Due to changes in the game state structure, savegames from before season 7 are invalidated.
+
+* Some AI-related [game state][game-state] was space-optimized (roughly 90 KiB savings) to make room for growing other datum arrays.
+* Bump [antennas][antenna] limit from 12 to 24.
+
+[steam]: https://store.steampowered.com/

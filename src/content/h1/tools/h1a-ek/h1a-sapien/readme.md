@@ -1,32 +1,20 @@
+```.alert
+This is an article about the H1A Sapien for use with MCC, for the legacy Sapien for [Halo: Custom Edition][h1] see [Sapien (Gearbox)][hek/sapien]. You may also be interested in a [summary of changes][h1a-ek#sapien] from legacy Sapien.
+```
+
 **H1A Sapien**, part of the [H1A-EK][], is a visual [scenario][] and
 [BSP][scenario_structure_bsp] editor used to populate levels with objects,
 configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile [scripts][scripting], and more. Sapien shares some systems with Halo itself, including its AI system to support interactive AI scripting and debugging. Other systems, such as weather rendering, are not represented.
 
-It is roughly analagous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which supports many more debug commands than the in-game one.
-
-# Changes from legacy Sapien
-If you are used to the legacy tools here is a quick primer on what's changed, if you are new to halo modding you can skip this section.
-
-- `debug_structure` is automatically enabled when the camera is outside the BSP along with world bounds rendering (Backported from [Halo 2's Sapien][h2ek/h2sapien]).
-- The tags and data directories can now be set when launching Sapien (`-tags_dir <tags path>` and `-data_dir <data path>` respectively).
-- Multiple Sapien instances can now be launched at once (use the `-multipleinstance` command line flag).
-- DX11 graphics APIs are now used instead of the legacy D3D9 APIs, this should result in better performance and support on modern systems.
-- Game view resolution has been noticeable increased. 
-- Interpolation code from H1A is included and `framerate_throttle` is disabled by default, allowing for smooth animation and movement.
-- Console history buffer increased to 16 entries from 8.
-- Mouse can now be locked without having to press down the middle mouse button by opening the console and closing it.
-- Camera speed can be boosted by pressing <kbd>Control</kbd>
-- `debug_objects` behavior has been changed.
-- File open/save dialogs have been upgraded where possible.
-- UI has been cleaned up a bit with unused elements removed and others renamed.
+It is roughly analagous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a [scripting console][developer-console].
 
 ## Getting legacy `debug_objects`
 
-Enable `debug_objects_bounding_spheres` and `debug_objects_collision_models ` alongside `debug_objects` to get the bounding spheres and collision debug to render. 
+Enable `debug_objects_bounding_spheres` and `debug_objects_collision_models` alongside `debug_objects` to get the bounding spheres and collision debug to render.
 
 # Command line flags
 Command line flags can be passed to H1A Sapien at launch to change run-time behavior. These features are experimental and might not work as expected.
- 
+
 - `-multipleinstance` command line flag can be used to allow multiple instances of Sapien to be launched at once.
 - `-data_dir` and `-tags_dir` can be used to change the tags and data directories. See [using custom content paths][using-custom-content-paths].
 
@@ -45,6 +33,7 @@ Movement of the camera is done in the same way as the in-game debug camera; **ho
 * Go up with <kbd>R</kbd> and down with <kbd>F</kbd>
 * Increase camera speed by scrolling down or pressing <kbd>Shift</kbd>
 * Decrease camera speed by scrolling up
+* Temporarily boost camera speed by holding <kbd>Ctrl</kbd> (new in H1A Sapien)
 
 Camera rotation with the <kbd>G</kbd> key is only supported in-game and not in Sapien.
 

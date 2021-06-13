@@ -989,10 +989,14 @@ type_defs:
         type: Index
         meta:
           index_of: structure bsps
+        comments:
+          en: The source BSP, stored as an index into the scenario BSPs block.
       - name: destination
         type: Index
         meta:
           index_of: structure bsps
+        comments:
+          en: The destination BSP, stored as an index into the scenario BSPs block.
       - name: unknown
         type: uint16
         endianness: little
@@ -2148,7 +2152,10 @@ type_defs:
         type_args:
           T: ScenarioFunction
         meta:
+          unused: true
           hek_max_count: 32
+        comments:
+          en: Marked deprecated in H1A and no longer appears in H1A tools.
       - name: editor_scenario_data
         type: TagDataOffset
       - name: comments

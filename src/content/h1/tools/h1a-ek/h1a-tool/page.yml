@@ -11,11 +11,6 @@ imgCaption:
   en: The tutorial map structure being compiled from a JMS.
 related:
   - /h1/tools/hek/tool
-alerts:
-  - type: info
-  - md:
-      en: >-
-       This is an article about the H1A Tool for use with MCC, for the legacy Tool for [Halo: Custom Edition][h1] see [Tool][]
 thanks:
   num0005:
     en: Documenting H1A commands and updating documentation for other commands.

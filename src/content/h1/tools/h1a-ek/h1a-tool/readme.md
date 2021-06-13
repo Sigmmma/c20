@@ -1,23 +1,10 @@
-**H1A Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [H1A-EK][].
+```.alert
+This is an article about the H1A Tool for use with MCC. For the legacy Tool for [Halo: Custom Edition][h1] see [Tool (Gearbox)][tool]. You may also be interested in a [summary of changes][h1a-ek#tool] from legacy Tool.
+```
 
-# Changes from legacy Tool
-If you are used to the legacy tools here is a quick primer on what's changed, if you are new to halo modding you can skip this section.
+**H1A Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [H1A-EK][] by 343 Industries in 2021.
 
-- Commands can now include optional arguments
-- The tags and data directories can now be set when launching Sapien (`-tags_dir <tags path>` and `-data_dir <data path>` respectively).
-- The `-noassert` command line flag can be used with any verb to disable all asserts (useful for lightmapping).
-- Lightmapping code has been optimised to be faster even with asserts enabled.
-- Most logs are now saved to a `reports` subfolder (similarly to Halo 2+).
-- Bitmap DXT1-3 (BC1-3) encoding now uses DirectXTex, instead of some S3TC code, this should result in higher quality.
-- `sounds_by_type` has been renamed to `sounds-by-type`.
-- `build-cache-file` has new arguments.
-- `structure` and `collision-geometry` now include an optional argument to fix phantom BSP.
-- Documentation for some existing commands was fixed.
-- `zoners_model_upgrade` and `strings` commands have been removed.
-- `loc.map` resource files are no longer generated as they are not used by H1A (aside from H1CE backwards compatibility).
-- Lots of new commands have been added and old bugs fixed.
-
-The new commands allow along other things better error checking of tags, exporting some data needed for the S3D engine and creating JMS and JMA files from FBX.
+This new version of Tool has many differences from the 2003 Gearbox Tool. Most notably, it includes far more verbs and new options for existing ones. A major addition is the FBX to JMS/JMA toolchain and features supporting Saber's remastered mode.
 
 # Conventions used in this article
 
@@ -31,8 +18,8 @@ The new commands allow along other things better error checking of tags, exporti
 # Command line flags
 
 - `-noassert` command line flag can be used with any verb to disable all asserts.
-- `-data_dir` and `-tags_dir` can be used to change the tags and data directories, this might not work with all verbs as it's experimental. See [using custom content paths][using-custom-content-paths].
-- `-pause` wait for user input before exiting, useful for custom launchers
+- `-data_dir`, `-tags_dir`, and `-game_root_dir` can be used to change the tags, data, and maps directories. This might not work with all verbs as it's experimental. See [using custom content paths][using-custom-content-paths].
+- `-pause` wait for user input before exiting, useful for custom launchers.
 
 # Animation compilation
 [Animation data][animation-data] files containing transforms for a skeleton can be compiled into a [model_animations][] tag using the `animations` verb:
@@ -56,7 +43,7 @@ tool bitmaps "characters\cyborg\bitmaps\cyborg"
 
 For the example above, Tool would expect to find a _.tif or .tiff_ file at `data\characters\cyborg\bitmaps\cyborg.tif`. Assuming no errors, the image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\cyborg.bitmap`. The bitmap filename will come from the image filename.
 
-As with the `bitmaps` verb, TIFF files must have at least 8-bit colour depth and are typically 32-bit.
+As with the `bitmaps` verb, TIFF files must have at least 8-bit colour depth and are typically 32-bit. Image data is encoded using DirectXTex.
 
 # Batch bitmap compilation
 [TIFF][wiki-tiff] (.tif/.tiff) images can be compiled into a [bitmap][] using the `bitmaps` verb:
@@ -79,21 +66,17 @@ tool build-cache-file "levels\test\tutorial\tutorial" classic 0 # classic graphi
 tool build-cache-file "levels\test\tutorial\tutorial" remastered
 ```
 
-The resulting map file can be found in editing kit's `maps` directory.
+The resulting map file can be found in the editing kit's `maps` directory. This verb also generates reports under `reports\<mapname>` including a compilation-specific `debug.txt` and a `tag_dump.txt`.
 
 ## Classic and remastered mode
 
-- "classic" is intended for custom maps that don't support remastered graphics.
-- "remastered" is intended for building maps compatible with S3D-based remastered graphics and sounds. Some HUD bitmaps will be read from S3D data files not tags. 
-
-Using classic graphics is recommended for most custom maps.
+* "classic" is intended for custom maps that don't support remastered graphics.
+* "remastered" is intended for building maps compatible with S3D-based remastered graphics and sounds. Some HUD bitmaps will be read from S3D data files not tags.
 
 ## Updating resource maps
-
-By default `build-cache-file` will update the resource maps, this can be disabled to match the behavior of legacy Tool.
+By default `build-cache-file` will update the `bitmaps.map` and `sounds.map` resource maps, this can be disabled to match the behavior of legacy Tool. Tool will neither update nor read `loc.map` because it is unused in H1A aside from H1CE compatibility.
 
 ## Log tag loads
-
 Tag loads during cache compilation can be logged to `tool_tags_loaded.txt`, this helps build a list of tags needed for a scenario if you are releasing a tag set.
 
 ## Hardcoded tag patches

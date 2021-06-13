@@ -1303,6 +1303,9 @@ DebugFunctions:
           and `collision_debug_features`, allowing you to move and view the debug
           information from another angle.
     - slug: collision_debug_spray
+      tags:
+        - model_collision_geometry
+        - scenario_structure_bsp
       info:
         en: |-
           ```hsc
