@@ -118,6 +118,13 @@ Additional information on the Reference Frame and Sealed World Rules and other t
 6. While having the box selected [change the context mode](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) from object mode to edit mode
 	* The following steps will make the box satisfy the Sealed World Rules and will link it to the frame, in effect making it a simple Halo level in terms of geometry.
 7. [Flip all the normals](https://docs.blender.org/manual/en/latest/modeling/meshes/editing/mesh/normals.html#recalculate) for the box inwards, the interior of the box will be the playable area of the level.
+	* There are two ways you can confirm the direction of the normals on the model. They are as follows:
+	* Backface culling: This option will render the geometry transparent when viewed from the opposite side of the face normal.
+		* ![Find backface culling in the viewport shading options menu](A.jpg)
+		* [Backface culling docs](https://docs.blender.org/manual/en/latest/render/workbench/options.html)
+	* Normal overlay: This option will render lines coming out the center of the face to indicate the direction it is pointing. This option will only be available to you if you are in edit mode for the object you wish to examine.
+		* ![Find normals in the viewport overlay options menu](B.jpg)
+		* [Normal overlay docs](https://docs.blender.org/manual/en/latest/editors/3dview/display/overlays.html#normals)
 8. [Set context](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) back to object mode if you haven't already.
 9. [Set the parent](https://docs.blender.org/manual/en/latest/scene_layout/object/editing/parent.html) of the box to the Reference Frame (frame).
 
