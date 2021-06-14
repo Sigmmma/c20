@@ -68,6 +68,10 @@ tool build-cache-file "levels\test\tutorial\tutorial" remastered
 
 The resulting map file can be found in the editing kit's `maps` directory. This verb also generates reports under `reports\<mapname>` including a compilation-specific `debug.txt` and a `tag_dump.txt`.
 
+```.alert
+H1A Tool recompiles scripts during cache compilation using **source files** from the data directory when available. Legacy Tool _only_ used sources stored [within the scenario tag][scenario#tag-field-source-files] which was sometimes a source of confusion.
+```
+
 ## Classic and remastered mode
 
 * "classic" is intended for custom maps that don't support remastered graphics.

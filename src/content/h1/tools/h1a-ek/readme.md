@@ -26,21 +26,24 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 
 ## Tool
 * Lots of new verbs have been added. See the [Tool][h1a-tool] page for more details.
-* The `bitmaps` verb now accepts both `.tiff` and `.tif` extensions like `bitmap` does.
-* [Resource maps][map#resource-maps] can optionally be modified by Tool when building a cache file to include all the resource data for the scenario being packaged.
-* The functionality used by [phantom_tool][hek/tool/phantom_tool] to remove [collision artifacts][scenario_structure_bsp#collision-artifacts] is now exposed as an argument for compiling [BSPs][scenario_structure_bsp] and [model_collision_geometry][].
-* Argument parsing is now less primitive. Verbs can include optional arguments and flags and any unrecognized options are presented to the user.
 * Lightmapping code has been optimized and is even faster with the `-noassert` command line flag. Lightmapping now takes roughly a quarter of the time of legacy Tool and is even faster than [LM tool][hek/tool/lm_tool]. Additionally this code now only uses 32-bit integers instead of an unsafe mix with 16-bit ones, and 16 MiB stack reserve. This increases the crash stability of radiosity.
 * Most logs (like `debug.txt`) are now saved to a `reports` subfolder (similarly to Halo 2+).
-* [WRL][] files are now saved alongside the [JMS][] file being compiled rather than the HEK root.
-* Bitmap DXT1-3 (BC1-3) encoding now uses [DirectXTex](https://github.com/Microsoft/DirectXTex) instead of some S3TC code. This should result in higher quality similar to the original XDK.
-* `sounds_by_type` has been renamed to `sounds-by-type`.
-* `build-cache-file` has [new arguments][h1a-tool#build-cache-file].
-* `structure` and `collision-geometry` now include an optional argument to fix phantom BSP.
-* The usage printout when Tool is run without arguments is now sorted. Argument descriptions for some existing verbs like `lightmaps` were also corrected.
-* `zoners_model_upgrade` and `strings` verbs have been removed.
-* `loc.map` [resource maps][map#resource-maps] are no longer generated or used as they are not used by H1A (aside from H1CE backwards compatibility).
-* Tool will now log errors when the user attempts to use swarm actors in firing-position based combat; _always charge at enemies_ must be set to prevent runtime crashes.
+* Bitmaps compilation
+  * Bitmap DXT1-3 (BC1-3) encoding now uses [DirectXTex](https://github.com/Microsoft/DirectXTex) instead of some S3TC code. This should result in higher quality similar to the original XDK.
+  * The `bitmaps` verb now accepts both `.tiff` and `.tif` extensions like `bitmap` does.
+* Map compilation ([`build-cache-file`][h1a-tool#build-cache-file]):
+  * Script data is recompiled from source files when available rather than just the data stored in the scenario tag.
+  * [Resource maps][map#resource-maps] can optionally be updated to include all the resource data for the scenario being packaged.
+  * Maps can target "classic" or "remastered" mode.
+  * `loc.map` [resource maps][map#resource-maps] are no longer generated or used as they are not used by H1A (aside from H1CE backwards compatibility).
+  * Tool will now log errors when the user attempts to use swarm actors in firing-position based combat; _always charge at enemies_ must be set to prevent runtime crashes.
+* Model compilation:
+  * The functionality used by [phantom_tool][hek/tool/phantom_tool] to remove [collision artifacts][scenario_structure_bsp#collision-artifacts] is now exposed as an argument for compiling [BSPs][scenario_structure_bsp] (`structure` verb) and [model_collision_geometry][] (`collision-geometry`).
+  * [WRL][] files are saved alongside the [JMS][] file being compiled rather than the HEK root. The user is now told that this file was generated.
+* Usage clarity:
+  * Argument parsing is now less primitive. Verbs can include optional arguments and flags and any unrecognized options are presented to the user.
+  * The usage printout when Tool is run without arguments is now sorted. The names and argument descriptions of some existing verbs have been updated for clarity and consistency.
+  * `zoners_model_upgrade` and `strings` verbs have been removed since they weren't useful.
 * Tool supports a `-pause` flag which keeps the process running after completion until the user presses <kbd>Enter</kbd>. This was meant for community-made launchers like [Osoyoos](https://github.com/num0005/Osoyoos-Launcher).
 
 ## Sapien
@@ -56,7 +59,8 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * UI has been cleaned up a bit with unsupported elements removed (e.g. _File > New_) and others renamed.
 * Stability improvement:
   * [Detail object][detail_object_collection] painting is possibly more stable now. More testing is needed to confirm.
-  * Sapien now closes gracefully from recording mode instead of crashing.
+  * Sapien no longer crashes if a BSP fog plane has a fog region set to NONE.
+  * Recording and model view modes no longer cause a crash on closing Sapien.
   * Closing the _Output window_ now properly sets its handle to NULL.
 
 ## Guerilla
@@ -77,8 +81,6 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * Many defunct globals and functions have been removed because they are not functioning or applicable to H1A (e.g. for troubleshooting Gearbox netcode).
 * The `script_doc` HSC function now includes external globals in the output file in addition to functions.
 * Script docs and `help` output now show return value types for functions.
-* The `print` function no longer unsafely interprets its argument as a format string.
-* `unit_kill` and `unit_kill_silent` no longer crash the game if the given unit does not exist.
 * Custom Edition-specific functions like `sv_say` and `multiplayer_draw_teammates_names` were stubbed out for compatibility with CE maps (avoids crashes).
 * Unrecognized script functions and globals will now cause script data to be dropped rather than crashing the game.
 * Numerous new [functions][scripting#functions] were added:
@@ -90,15 +92,20 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * Physics: `physics_set_gravity`, `physics_get_gravity`, `physics_constants_reset`.
   * Debug camera: `debug_camera_save_name`, `debug_camera_load_name`, `debug_camera_save_simple_name`, `debug_camera_load_simple_name`, `debug_camera_load_text`.
   * Other: `objects_delete_by_definition`, `list_count_not_dead`, `game_is_authoritative`, `debug_structure_automatic`.
+* Changes to existing functions:
+  * The `print` function no longer unsafely interprets its argument as a format string.
+  * `unit_kill` and `unit_kill_silent` no longer crash the game if the given unit does not exist.
+  * `debug_camera_save` and `debug_camera_load` now save and load `camera_<mapname>.txt` instead of `camera.txt`. A console message is now logged when the camera file isn't found.
+  * `player_effect_set_max_rumble` is no longer a hard-coded alias for `player_effect_set_max_vibrate`. Map scripts (like a10 and d40) were updated.
 * `rally_point_save_name` was added to replicate legacy `core_save_name` which was repurposed in H1A.
 * Globals and functions are no longer locked to specific contexts like server.
-* `player_effect_set_max_rumble` is no longer a hard-coded alias for `player_effect_set_max_vibrate`. Map scripts (like a10 and d40) were updated.
 
 ## Debug globals
 * `debug_structure` shows invisible collision surfaces in semi-transparent red and includes a BSP bounding box now (Halo 2 Sapien backport).
 * `debug_objects` behavior has been changed. It no longer shows bounding spheres and collision geometry by default but these can still be toggled on their own.
 
 ## Tag classes
+* [unit][unit#tag-field-metagame-type] and [actor_variant][actor_variant#tag-field-metagame-type] now each include the _metagame type_ and _metagame class_ fields for MCC's scoring system.
 * [shader_model][] received a [new flag][shader_model#tag-field-shader-model-flags-multipurpose-map-use-xbox-channel-order] to use Xbox channel order for the multipurpose map.
 * [gbxmodel][] node limit was increased from 48 to 63 to match Custom Edition 1.10.
 * [scenery][] received a new [flags field][scenery#tag-field-flags] which is unused in current versions of MCC.
@@ -109,8 +116,9 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
     * Player start location [BSP index field][scenario#tag-field-player-starting-locations-bsp-index].
     * Netgame flags [weapon group][scenario#tag-field-netgame-flags-weapon-group].
   * The previously hidden cutscene title fields [_text style_][scenario#tag-field-cutscene-titles-text-style] and [_text flags_][scenario#tag-field-cutscene-titles-text-flags] are now exposed.
+  * [Script source text][scenario#tag-field-source-files-source] is now visible in Guerilla and Sapien.
   * [BSP switch trigger volumes][scenario#tag-field-bsp-switch-trigger-volumes] source and destination BSPs are now typed as proper block indices rather than integers, which causes Guerilla to display them as drop-downs.
-  * Increased limits backported from Halo 2:
+  * Increased limits:
     * Bump `MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK` from 100 to 256.
     * Bump `MAXIMUM_VEHICLE_DATUMS_PER_SCENARIO` from 80 to 256.
     * Bump `MAXIMUM_OBJECT_NAMES_PER_SCENARIO` from 512 to 640.

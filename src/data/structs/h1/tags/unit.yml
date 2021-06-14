@@ -91,7 +91,19 @@ type_defs:
       - name: medium
       - name: small
       - name: large
-  MCCUnitType:
+  MCCMetagameClass:
+    class: enum
+    size: 2
+    options:
+      - name: infantry
+      - name: leader
+      - name: hero
+      - name: specialist
+      - name: light_vehicle
+      - name: heavy_vehicle
+      - name: giant_vehicle
+      - name: standard_vehicle
+  MCCMetagameType:
     class: enum
     size: 2
     options:
@@ -101,7 +113,9 @@ type_defs:
       - name: skirmisher
       - name: marine
       - name: spartan
-      - name: drone
+      - name: bugger
+        comments:
+          en: Also called "drone".
       - name: hunter
       - name: flood_infection
       - name: flood_carrier
@@ -109,7 +123,9 @@ type_defs:
       - name: flood_pure
       - name: sentinel
       - name: elite
-      - name: huragok
+      - name: engineer
+        comments:
+          en: Also called "huragok".
       - name: mule
       - name: turret
       - name: mongoose
@@ -123,22 +139,30 @@ type_defs:
       - name: watchtower
       - name: ghost
       - name: chopper
-      - name: prowler
+      - name: mauler
+        comments:
+          en: Also called "prowler".
       - name: wraith
       - name: banshee
       - name: phantom
       - name: scarab
       - name: guntower
-      - name: spirit
+      - name: tuning_fork
+        comments:
+          en: Also called "spirit".
       - name: broadsword
       - name: mammoth
       - name: lich
       - name: mantis
       - name: wasp
       - name: phaeton
-      - name: watcher
+      - name: bishop
+        comments:
+          en: Also called "watcher".
       - name: knight
-      - name: crawler
+      - name: pawn
+        comments:
+          en: Also called "crawler".
   UnitUnitHudInterface:
     class: struct
     assert_size: 48
@@ -433,16 +457,26 @@ type_defs:
         type: UnitMotionSensorBlipSize
       - type: pad
         size: 2
-      - name: mcc_unit_type
-        type: MCCUnitType
+      - name: metagame_type
+        type: MCCMetagameType
         meta:
           h1a_only: true
         comments:
           en: >-
-            only used for scoring in Halo: CE Anniversary (MCC only); overridden
-            by actor_variant's unit type if unit is an actor
+            Only used for scoring in H1A (MCC only); overridden by
+            [actor_variant's metagame type][actor_variant#tag-field-metagame-type]
+            if unit is an actor.
+      - name: metagame_class
+        type: MCCMetagameClass
+        meta:
+          h1a_only: true
+        comments:
+          en: >-
+            Only used for scoring in H1A (MCC only); overridden by
+            [actor_variant's metagame class][actor_variant#tag-field-metagame-class]
+            if unit is an actor.
       - type: pad
-        size: 10
+        size: 8
       - name: new_hud_interfaces
         type: Block
         type_args:

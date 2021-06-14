@@ -10,7 +10,8 @@ imports:
     - Block
     - ColorRGB
   h1/tags/unit:
-    - MCCUnitType
+    - MCCMetagameType
+    - MCCMetagameClass
 type_defs:
   ActorVariantFlags:
     class: bitfield
@@ -149,19 +150,26 @@ type_defs:
             controlled by both the per-difficulty _major upgrade_ [globals][]
             multipliers and the _major upgrade_ squad setting in the
             [scenario][].
-      - name: mcc_unit_type
-        type: MCCUnitType
+      - name: metagame_type
+        type: MCCMetagameType
         meta:
           h1a_only: true
         comments:
           en: >
             Used for kill scoring and achievements in MCC. Since this field was
             padding in pre-MCC editions, maps compiled for MCC should use
-            MCC-extracted _actor\_variant_ tags or set these fields, or else
+            MCC-native _actor\_variant_ tags or set these fields, or else
             enemies may be scored as Brutes or other unexpected types due to
             having zeroed-out or garbage data.
+      - name: metagame_class
+        type: MCCMetagameClass
+        meta:
+          h1a_only: true
+        comments:
+          en: >
+            Used for kill scoring and achievements in MCC.
       - type: pad
-        size: 22
+        size: 20
       - name: movement_type
         type: ActorVariantMovementType
       - type: pad

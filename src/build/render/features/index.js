@@ -23,5 +23,6 @@ module.exports = [
   require("./tagIndex"),
   require("./tag"),
   require("./thanks"),
+  require("./keywords"),
   require("./thanksIndex"),
 ];

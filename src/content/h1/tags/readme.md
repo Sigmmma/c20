@@ -7,7 +7,7 @@ The name "tag" was inspired by [XML tags][about-xml], which also have types and 
 # Differences between editions
 Each edition of the game has a slightly different tag set in its maps. Be aware of this when extracting tags with [Refinery][] or [invader-extract][invader#invader-extract] or mixing tags.
 
-* Some tag classes have fields which only apply in certain editions, for example the [MCC unit type][actor_variant#tag-field-mcc-unit-type].
+* Some tag classes have fields which only apply in certain editions, for example H1A's [actor metagame type][actor_variant#tag-field-metagame-type].
 * PC retail and Custom Edition are based on a slightly older version of Xbox tags, with the most famous difference being Keyes' uniform.
 * Gearbox replaced [model][] with [gbxmodel][] and during the Xbox to PC port, and replaced instances of [shader_transparent_generic][] with [shader_transparent_chicago][] or other transparent shader classes.
 * Gearbox made several changes to [damage_effect][] stuns in Custom Edition tags only.

@@ -60,6 +60,10 @@ type_defs:
         type: ColorRGB
       - name: power
         type: float
+        meta:
+          min: 0
+        comments:
+          en: The irradiance power of the sky light. This value must not be negative.
       - name: test_distance
         type: float
       - type: pad
@@ -95,10 +99,18 @@ type_defs:
         type: ColorRGB
       - name: indoor_ambient_radiosity_power
         type: float
+        meta:
+          min: 0
+        comments:
+          en: This value must not be negative.
       - name: outdoor_ambient_radiosity_color
         type: ColorRGB
       - name: outdoor_ambient_radiosity_power
         type: float
+        meta:
+          min: 0
+        comments:
+          en: This value must not be negative.
       - name: outdoor_fog_color
         type: ColorRGB
       - type: pad
