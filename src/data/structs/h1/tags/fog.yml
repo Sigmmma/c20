@@ -70,7 +70,8 @@ type_defs:
         comments:
           en: >
             The distance from the player where the fog reaches its _maximum
-            density_. This value must not be negative or zero.
+            density_. This value must not be negative or zero (causes a crash in
+            pre-H1A versions).
       - type: pad
         size: 4
       - name: opaque_depth
@@ -80,7 +81,8 @@ type_defs:
         comments:
           en: >
             The distance from the fog plane where the fog reaches its _maximum
-            density_. This value must not be negative or zero.
+            density_. This value must not be negative or zero (causes a crash in
+            pre-H1A versions).
       - type: pad
         size: 8
       - name: distance_to_water_plane

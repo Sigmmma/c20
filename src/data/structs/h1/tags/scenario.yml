@@ -2475,14 +2475,20 @@ type_defs:
         type: TagDataOffset
         meta:
           compile_ignore: true
+          hek_max_count: 19001
+          h1a_ek_max_count: SHORT_MAX
       - name: script_string_data
         type: TagDataOffset
+        meta:
+          hek_max_size: 256kb
+          h1a_ek_max_size: 800kb
       - name: scripts
         type: Block
         type_args:
           T: ScenarioScript
         meta:
           hek_max_count: 512
+          h1a_ek_max_count: 1024
           read_only: true
       - name: globals
         type: Block
@@ -2490,6 +2496,7 @@ type_defs:
           T: ScenarioGlobal
         meta:
           hek_max_count: 128
+          h1a_ek_max_count: 512
           read_only: true
       - name: references
         type: Block
@@ -2497,6 +2504,7 @@ type_defs:
           T: ScenarioReference
         meta:
           hek_max_count: 256
+          h1a_ek_max_count: 512
           read_only: true
       - name: source_files
         type: Block
@@ -2504,6 +2512,9 @@ type_defs:
           T: ScenarioSourceFile
         meta:
           hek_max_count: 8
+          hek_max_size: 256 KiB
+          h1a_ek_max_count: 16
+          h1a_ek_max_size: 1 MiB
           non_cached: true
           volatile: true
           read_only: true

@@ -762,6 +762,10 @@ Functions:
       name:
         en: Function
       format: text
+    # - key: context
+    #   name:
+    #     en: Context
+    #   format: text
   rows:
     - slug: activate_nav_point_flag
       info:
@@ -782,7 +786,7 @@ Functions:
           (<long> abs_integer <long>)
           ```
           return the absolute (non-negative) value of an integer
-      mcc_only: true
+      context: H1A only
     - slug: abs_real
       info:
         en: |-
@@ -790,7 +794,7 @@ Functions:
           (<real> abs_real <real>)
           ```
           return the absolute (non-negative) value of a real
-      mcc_only: true
+      context: H1A only
     - slug: activate_nav_point_object
       info:
         en: >-
@@ -1063,7 +1067,7 @@ Functions:
 
           ```
           Drops the AI debugging sound point at the camera location
-      gearbox_only: true
+      context: Gearbox only
     - slug: ai_debug_speak
       info:
         en: |-
@@ -1072,7 +1076,7 @@ Functions:
           (ai_debug_speak "pain minor")
           ```
           Makes the currently selected AI speak a vocalization
-      gearbox_only: true
+      context: Gearbox only
     - slug: ai_debug_speak_list
       info:
         en: |-
@@ -1081,7 +1085,7 @@ Functions:
           (ai_debug_speak_list "involuntary")
           ```
           Makes the currently selected AI speak a list of vocalizations
-      gearbox_only: true
+      context: Gearbox only
     - slug: ai_debug_teleport_to
       info:
         en: |-
@@ -1089,7 +1093,7 @@ Functions:
           (ai_debug_teleport_to <ai>)
           ```
           Teleports all players to the specified encounter
-      gearbox_only: true
+      context: Gearbox only
     - slug: ai_debug_vocalize
       info:
         en: |-
@@ -1097,7 +1101,7 @@ Functions:
           (ai_debug_vocalize <string> <string>)
           ```
           Makes the selected AI vocalize
-      gearbox_only: true
+      context: Gearbox only
     - slug: ai_defend
       info:
         en: |-
@@ -1113,7 +1117,7 @@ Functions:
 
           ```
           Clears the selected encounter
-      gearbox_only: true
+      context: Gearbox only
     - slug: ai_detach
       info:
         en: |-
@@ -1328,7 +1332,7 @@ Functions:
           (ai_lines)
           ```
           Cycles through AI line-spray modes
-      gearbox_only: true
+      context: Gearbox only
     - slug: ai_link_activation
       info:
         en: >-
@@ -1744,7 +1748,7 @@ Functions:
           (attract_mode_start)
           ```
           N/A in pc
-      gearbox_only: true
+      context: Gearbox only
     - slug: bind
       info:
         en: |-
@@ -1761,7 +1765,7 @@ Functions:
           (bit_test 2 0) ;0
           ```
           Returns `1` or `0` for the bit at the given position.
-      mcc_only: true
+      context: H1A only
     - slug: bit_toggle
       info:
         en: |-
@@ -1771,7 +1775,7 @@ Functions:
           (bit_toggle 7 0 false) ;6 (0111 => 0110)
           ```
           Sets the value's bit at the given position on or off.
-      mcc_only: true
+      context: H1A only
     - slug: bitwise_and
       info:
         en: |-
@@ -1782,7 +1786,7 @@ Functions:
           Returns the [bitwise AND](https://en.wikipedia.org/wiki/Bitwise_operation#AND)
           of two numbers. If a bit is `1` in both of the inputs, it is `1` in the
           output and otherwise `0`.
-      mcc_only: true
+      context: H1A only
     - slug: bitwise_flags_toggle
       info:
         en: |-
@@ -1793,7 +1797,7 @@ Functions:
           ```
           Uses the second argument as a mask to toggle bits on or off in the
           first argument.
-      mcc_only: true
+      context: H1A only
     - slug: bitwise_left_shift
       info:
         en: |-
@@ -1807,7 +1811,7 @@ Functions:
           number of positions, with the rightmost bits filling with 0's.
           Returns `0` if the positions argument is negative. This has the effect
           of multiplying the argument by a power of 2.
-      mcc_only: true
+      context: H1A only
     - slug: bitwise_or
       info:
         en: |-
@@ -1818,7 +1822,7 @@ Functions:
           Returns the [bitwise OR](https://en.wikipedia.org/wiki/Bitwise_operation#OR)
           of two numbers. If a bit is `1` in either or both of the inputs, it is
           `1` in the output and otherwise `0`.
-      mcc_only: true
+      context: H1A only
     - slug: bitwise_right_shift
       info:
         en: |-
@@ -1831,7 +1835,7 @@ Functions:
           (also called logical or zero filling shift) of a value by the given bit count.
           All bits are moved to the right by a number of positions, with the leftmost
           bits filling with 0's. Returns `0` if the positions argument is negative.
-      mcc_only: true
+      context: H1A only
     - slug: bitwise_xor
       info:
         en: |-
@@ -1844,7 +1848,7 @@ Functions:
           (exclusive or) of two numbers. If a bit differs in both inputs, it is
           `1` in the output and otherwise `0`. In other words, one or the other
           bit must be `1` but not both.
-      mcc_only: true
+      context: H1A only
     - slug: breakable_surfaces_enable
       info:
         en: |-
@@ -1941,7 +1945,7 @@ Functions:
           (change_team 2)
           ; auto balance
           ```
-          Change your team (0=red, 1=blue, else=auto)
+          Change your team (0=red, 1=blue, else=auto). Removed in H1A.
     - slug: cheat_active_camouflage
       info:
         en: |-
@@ -2014,7 +2018,7 @@ Functions:
 
           ```
           Save last solo checkpoint
-      gearbox_only: true
+      context: Gearbox only
     - slug: cinematic_abort
       info:
         en: |-
@@ -2164,7 +2168,7 @@ Functions:
           (config_one_control <string>)
           ```
           Test function to configure a single control
-      gearbox_only: true
+      context: Gearbox only
     - slug: connect
       info:
         en: |-
@@ -2172,7 +2176,7 @@ Functions:
           (connect <string> <string>)
           ```
           Attempt to connect to server - use ip:port password as parameters
-      gearbox_only: true
+      context: Gearbox only
     - slug: core_load
       info:
         en: |-
@@ -2312,7 +2316,7 @@ Functions:
           (<void> debug_camera_load_name <string>)
           ```
           loads the camera position and facing from <name>_<map_name>.txt
-      mcc_only: true
+      context: H1A only
     - slug: debug_camera_load_simple_name
       info:
         en: |-
@@ -2320,7 +2324,7 @@ Functions:
           (<void> debug_camera_load_simple_name <string>)
           ```
           loads the camera position and facing from camera_<name>.txt
-      mcc_only: true
+      context: H1A only
     - slug: debug_camera_load_text
       info:
         en: |-
@@ -2328,7 +2332,7 @@ Functions:
           (<void> debug_camera_load_text <string>)
           ```
           loads the camera position and facing from a passed in string
-      mcc_only: true
+      context: H1A only
     - slug: debug_camera_save
       info:
         en: |-
@@ -2343,7 +2347,7 @@ Functions:
           (<void> debug_camera_save_name <string>)
           ```
           saves the camera position and facing to <name>_<map_name>.txt
-      mcc_only: true
+      context: H1A only
     - slug: debug_camera_save_simple_name
       info:
         en: |-
@@ -2351,7 +2355,7 @@ Functions:
           (<void> debug_camera_save_simple_name <string>)
           ```
           saves the camera position and facing to camera_<name>.txt
-      mcc_only: true
+      context: H1A only
     - slug: debug_memory
       info:
         en: |-
@@ -2360,7 +2364,7 @@ Functions:
 
           ```
           Dumps memory leaks
-      gearbox_only: true
+      context: Gearbox only
     - slug: debug_memory_by_file
       info:
         en: |-
@@ -2369,7 +2373,7 @@ Functions:
 
           ```
           Dumps memory leaks by source file
-      gearbox_only: true
+      context: Gearbox only
     - slug: debug_memory_for_file
       info:
         en: |-
@@ -2378,7 +2382,7 @@ Functions:
           (debug_memory_for_file "\halopc\haloce\source\tag_files\tag_groups.c")
           ```
           Dumps memory leaks from the specified source file
-      gearbox_only: true
+      context: Gearbox only
     - slug: debug_pvs
       info:
         en: |-
@@ -2397,7 +2401,7 @@ Functions:
 
           Changes the minimum and maximum distances for all sound classes
           matching the substring
-      gearbox_only: true
+      context: Gearbox only
     - slug: debug_sounds_enable
       info:
         en: |-
@@ -2412,7 +2416,7 @@ Functions:
           (debug_sounds_wet <string> <real>)
           ```
           Changes the reverb level for all sound classes matching the substring
-      gearbox_only: true
+      context: Gearbox only
     - slug: debug_tags
       info:
         en: |-
@@ -2420,7 +2424,7 @@ Functions:
           (debug_tags)
           ```
           Writes all memory being used by tag files into tag_dump.txt
-      gearbox_only: true
+      context: Gearbox only
     - slug: debug_teleport_player
       info:
         en: |
@@ -2435,7 +2439,7 @@ Functions:
 
           ```
           Delete all custom profile files
-      gearbox_only: true
+      context: Gearbox only
     - slug: device_get_position
       info:
         en: >-
@@ -2563,7 +2567,7 @@ Functions:
           (disconnect)
           ```
           Disconnect from a server
-      gearbox_only: true
+      context: Gearbox only
     - slug: display_scenario_help
       info:
         en: |-
@@ -2637,7 +2641,7 @@ Functions:
 
           Sets up a network server with the given map name, game variant, and
           true for remote connections, false for not
-      gearbox_only: true
+      context: Gearbox only
     - slug: game_all_quiet
       info:
         en: >-
@@ -2683,7 +2687,7 @@ Functions:
           ```hsc
           (<boolean> game_is_authoritative)
           ```
-      mcc_only: true
+      context: H1A only
     - slug: game_is_cooperative
       info:
         en: |-
@@ -2841,7 +2845,7 @@ Functions:
           (get_digital_forward_throttle <short>)
           ```
           Gets the amount of forward throttle applied by digital device stimuli
-      gearbox_only: true
+      context: Gearbox only
     - slug: get_digital_pitch_increment
       info:
         en: |-
@@ -2849,7 +2853,7 @@ Functions:
           (get_digital_pitch_increment <short>)
           ```
           Gets the increment in pitch applied by digital device stimuli
-      gearbox_only: true
+      context: Gearbox only
     - slug: get_digital_strafe_throttle
       info:
         en: |-
@@ -2857,7 +2861,7 @@ Functions:
           (get_digital_strafe_throttle <short>)
           ```
           Gets the amount of strafe throttle applied by digital device stimuli
-      gearbox_only: true
+      context: Gearbox only
     - slug: get_digital_yaw_increment
       info:
         en: |-
@@ -2865,7 +2869,7 @@ Functions:
           (get_digital_yaw_increment <short>)
           ```
           Gets the increment in yaw applied by digital device stimuli
-      gearbox_only: true
+      context: Gearbox only
     - slug: get_gamepad_forward_threshold
       info:
         en: >-
@@ -2877,7 +2881,7 @@ Functions:
 
           Gets the threshold beyond which gamepad movement is full forward
           throttle
-      gearbox_only: true
+      context: Gearbox only
     - slug: get_gamepad_pitch_scale
       info:
         en: |-
@@ -2885,7 +2889,7 @@ Functions:
           (get_gamepad_pitch_scale <short>)
           ```
           Gets the scale for gamepad control of pitch
-      gearbox_only: true
+      context: Gearbox only
     - slug: get_gamepad_strafe_threshold
       info:
         en: >-
@@ -2897,7 +2901,7 @@ Functions:
 
           Gets the threshold beyond which gamepad movement is full strafe
           throttle
-      gearbox_only: true
+      context: Gearbox only
     - slug: get_gamepad_yaw_scale
       info:
         en: |-
@@ -2905,7 +2909,7 @@ Functions:
           (get_gamepad_yaw_scale <short>)
           ```
           Gets the scale for gamepad control of yaw
-      gearbox_only: true
+      context: Gearbox only
     - slug: get_mouse_forward_threshold
       info:
         en: >-
@@ -2917,7 +2921,7 @@ Functions:
 
           Gets the threshold beyond which mouse movement is full forward
           throttle
-      gearbox_only: true
+      context: Gearbox only
     - slug: get_mouse_pitch_scale
       info:
         en: |-
@@ -2925,7 +2929,7 @@ Functions:
           (get_mouse_pitch_scale <short>)
           ```
           Gets the scale for mouse control of pitch
-      gearbox_only: true
+      context: Gearbox only
     - slug: get_mouse_strafe_threshold
       info:
         en: |-
@@ -2933,7 +2937,7 @@ Functions:
           (get_mouse_strafe_threshold <short>)
           ```
           Gets the threshold beyond which mouse movement is full strafe throttle
-      gearbox_only: true
+      context: Gearbox only
     - slug: get_mouse_yaw_scale
       info:
         en: |-
@@ -2941,7 +2945,7 @@ Functions:
           (get_mouse_yaw_scale <short>)
           ```
           Gets the scale for mouse control of yaw
-      gearbox_only: true
+      context: Gearbox only
     - slug: get_pitch_rate
       info:
         en: |-
@@ -2963,7 +2967,7 @@ Functions:
           (hammer_begin <string> <string> <long> <short> <short>)
           ```
           Hammers the server by connecting and disconnecting repeatedly
-      gearbox_only: true
+      context: Gearbox only
     - slug: hammer_stop
       info:
         en: |-
@@ -2972,7 +2976,7 @@ Functions:
 
           ```
           Stops hammering the server
-      gearbox_only: true
+      context: Gearbox only
     - slug: help
       info:
         en: |-
@@ -3099,7 +3103,7 @@ Functions:
           (hud_team_background_set_pos <long> <long>)
           ```
           shit
-      gearbox_only: true
+      context: Gearbox only
     - slug: hud_team_background_set_scale
       info:
         en: |-
@@ -3107,7 +3111,7 @@ Functions:
           (hud_team_background_set_scale <real> <real>)
           ```
           shit
-      gearbox_only: true
+      context: Gearbox only
     - slug: hud_team_icon_set_pos
       info:
         en: |-
@@ -3115,7 +3119,7 @@ Functions:
           (hud_team_icon_set_pos <long> <long>)
           ```
           shit
-      gearbox_only: true
+      context: Gearbox only
     - slug: hud_team_icon_set_scale
       info:
         en: |-
@@ -3123,7 +3127,7 @@ Functions:
           (hud_team_icon_set_scale <real> <real>)
           ```
           shit
-      gearbox_only: true
+      context: Gearbox only
     - slug: input_activate_joy
       info:
         en: |-
@@ -3131,7 +3135,7 @@ Functions:
           (input_activate_joy <short> <short>)
           ```
           Activates an enumerated joystick into a logical joystick slot
-      gearbox_only: true
+      context: Gearbox only
     - slug: input_deactivate_joy
       info:
         en: >-
@@ -3143,7 +3147,7 @@ Functions:
 
           Deactivates an enumerated joystick, freeing up the logical joystick
           slot
-      gearbox_only: true
+      context: Gearbox only
     - slug: input_find_default
       info:
         en: |-
@@ -3151,7 +3155,7 @@ Functions:
           (input_find_default <string>)
           ```
           Test function that looks up a default profile for a deviceid
-      gearbox_only: true
+      context: Gearbox only
     - slug: input_find_joystick
       info:
         en: |-
@@ -3159,7 +3163,7 @@ Functions:
           (input_find_joystick <string>)
           ```
           Test function to find a joystick by GUID (string representation)
-      gearbox_only: true
+      context: Gearbox only
     - slug: input_get_joy_count
       info:
         en: |-
@@ -3168,7 +3172,7 @@ Functions:
 
           ```
           Test function to return the number of joysticks enumerated
-      gearbox_only: true
+      context: Gearbox only
     - slug: input_is_joy_active
       info:
         en: >-
@@ -3180,7 +3184,7 @@ Functions:
 
           Test function to determine if an enumerated joystick is activated or
           not
-      gearbox_only: true
+      context: Gearbox only
     - slug: input_show_joystick_info
       info:
         en: >-
@@ -3193,7 +3197,7 @@ Functions:
 
           Test function to show the enumerated joystick information for all
           joystick
-      gearbox_only: true
+      context: Gearbox only
     - slug: list_count
       info:
         en: |-
@@ -3209,7 +3213,7 @@ Functions:
           (<short> list_count_not_dead <object_list>)
           ```
           returns the number of objects in a list that aren't dead
-      mcc_only: true
+      context: H1A only
     - slug: list_get
       info:
         en: |-
@@ -3225,7 +3229,7 @@ Functions:
           (<object_list> local_players)
           ```
           returns a list of the living player units on the local machine
-      mcc_only: true
+      context: H1A only
     - slug: log_print
       info:
         en: |-
@@ -3233,7 +3237,7 @@ Functions:
           (<void> log_print <string>)
           ```
           prints a string to the hs log file.
-      mcc_only: true
+      context: H1A only
     - slug: magic_melee_attack
       info:
         en: |-
@@ -3273,6 +3277,17 @@ Functions:
           (<void> map_reset)
           ```
           Starts the map from the beginning
+    - slug: mcc_mission_segment
+      info:
+        en: |-
+          ```hsc
+          (<boolean> mcc_mission_segment <string>)
+          (mcc_mission_segment "03_escape") ;from a10
+          (mcc_mission_segment "04_first_shoot") ;from a10
+          ```
+          Signals a mission segment being reached to MCC. Usually done at the same time
+          as a checkpoint (`game_save`). H1A MCC only.
+      context: H1A only
     - slug: message_metrics_clear
       info:
         en: |-
@@ -3280,7 +3295,7 @@ Functions:
           (message_metrics_clear)
           ```
           Clears network messaging metrics
-      gearbox_only: true
+      context: Gearbox only
     - slug: message_metrics_dump
       info:
         en: |-
@@ -3289,7 +3304,7 @@ Functions:
           (message_metrics_dump "")
           ```
           Dumps network messaging metrics to given file ("" for default)
-      gearbox_only: true
+      context: Gearbox only
     - slug: multiplayer_map_name
       info:
         en: |-
@@ -3305,7 +3320,7 @@ Functions:
           (net_graph_clear)
           ```
           Clears the net_graph
-      gearbox_only: true
+      context: Gearbox only
     - slug: net_graph_show
       info:
         en: |-
@@ -3313,7 +3328,7 @@ Functions:
           (net_graph_show <string> <string>)
           ```
           Changes the net_graph display (bytes/packets, sent/received)
-      gearbox_only: true
+      context: Gearbox only
     - slug: network_client_dump
       info:
         en: |-
@@ -3321,7 +3336,7 @@ Functions:
           (network_client_dump)
           ```
           Dumps info on network client
-      gearbox_only: true
+      context: Gearbox only
     - slug: network_server_dump
       info:
         en: |-
@@ -3329,7 +3344,7 @@ Functions:
           (network_server_dump)
           ```
           Dumps info on network server
-      gearbox_only: true
+      context: Gearbox only
     - slug: numeric_countdown_timer_get
       info:
         en: |-
@@ -3636,7 +3651,7 @@ Functions:
           (<real> objects_distance_to_flag <object_list> <cutscene_flag>)
           ```
           returns minimum distance from any of the specified objects to the specified flag. (returns -1 if there are no objects, or no flag, to check)
-      mcc_only: true
+      context: H1A only
     - slug: objects_distance_to_object
       info:
         en: |-
@@ -3644,7 +3659,7 @@ Functions:
           (<real> objects_distance_to_object <object_list> <object>)
           ```
           returns minimum distance from any of the specified objects to the specified destination object. (returns -1 if there are no objects to check)
-      mcc_only: true
+      context: H1A only
     - slug: objects_dump_memory
       info:
         en: |-
@@ -3681,7 +3696,7 @@ Functions:
           (<void> physics_constants_reset)
           ```
           resets all physics constants to earthly values
-      mcc_only: true
+      context: H1A only
     - slug: physics_get_gravity
       info:
         en: |-
@@ -3689,7 +3704,7 @@ Functions:
           (<real> physics_get_gravity)
           ```
           get the current global gravity acceleration relative to halo standard gravity
-      mcc_only: true
+      context: H1A only
     - slug: physics_set_gravity
       info:
         en: |-
@@ -3697,7 +3712,7 @@ Functions:
           (<void> physics_set_gravity <real>)
           ```
           set global gravity acceleration relative to halo standard gravity
-      mcc_only: true
+      context: H1A only
     - slug: play_update_history
       info:
         en: >-
@@ -3709,7 +3724,7 @@ Functions:
 
           Playback client input history starting from the specified last
           completed update id
-      gearbox_only: true
+      context: Gearbox only
     - slug: playback
       info:
         en: |-
@@ -3972,7 +3987,7 @@ Functions:
           (<object_list> players_on_multiplayer_team <short>)
           ```
           returns a list of the living player units on the MP team
-      mcc_only: true
+      context: H1A only
     - slug: players_unzoom_all
       info:
         en: |-
@@ -4011,7 +4026,7 @@ Functions:
           (<void> print_if <boolean> <string>)
           ```
           prints a string to the console if the condition is true.
-      mcc_only: true
+      context: H1A only
     - slug: profile_activate
       info:
         en: |-
@@ -4019,7 +4034,7 @@ Functions:
           (profile_activate <string>)
           ```
           Activates profile sections based on a substring
-      gearbox_only: true
+      context: Gearbox only
     - slug: profile_deactivate
       info:
         en: |-
@@ -4027,7 +4042,7 @@ Functions:
           (profile_deactivate <string>)
           ```
           Deactivates profile sections based on a substring
-      gearbox_only: true
+      context: Gearbox only
     - slug: profile_dump
       info:
         en: |-
@@ -4035,7 +4050,7 @@ Functions:
           (profile_dump <string>)
           ```
           Dumps profile based on a substring
-      gearbox_only: true
+      context: Gearbox only
     - slug: profile_graph_toggle
       info:
         en: |-
@@ -4043,7 +4058,7 @@ Functions:
           (profile_graph_toggle <string>)
           ```
           Enables or disables profile graph display of a particular value
-      gearbox_only: true
+      context: Gearbox only
     - slug: profile_load
       info:
         en: |-
@@ -4061,7 +4076,7 @@ Functions:
 
           ```
           Resets profiling data
-      gearbox_only: true
+      context: Gearbox only
     - slug: profile_service_clear_timers
       info:
         en: |-
@@ -4070,7 +4085,7 @@ Functions:
 
           ```
           Clears the timers that are present in the profiling service
-      gearbox_only: true
+      context: Gearbox only
     - slug: profile_service_dump_timers
       info:
         en: |-
@@ -4079,7 +4094,7 @@ Functions:
 
           ```
           Dumps the profiling service timers
-      gearbox_only: true
+      context: Gearbox only
     - slug: profile_unlock_solo_levels
       info:
         en: |-
@@ -4088,7 +4103,7 @@ Functions:
 
           ```
           Unlocks all the solo player levels for player 1's profile
-      gearbox_only: true
+      context: Gearbox only
     - slug: quit
       info:
         en: |-
@@ -4117,15 +4132,6 @@ Functions:
           (<void> radiosity_start)
           ```
           starts radiosity computation.
-    - slug: rally_point_save_name
-      info:
-        en: |-
-          ```hsc
-          (<boolean> rally_point_save_name <string>)
-          ```
-          Saves game state as rally point to `core\<path>`. This replicates
-          `core_save_name` in pre-H1A versions of the game.
-      mcc_only: true
     - slug: random_range
       info:
         en: |-
@@ -4147,7 +4153,8 @@ Functions:
           (<void> rasterizer_fixed_function_ambient <long>)
           (rasterizer_fixed_function_ambient 200)
           ```
-          Set the ambient light value for fixed function
+          Set the ambient light value for fixed function. Removed in H1A since
+          there is no longer a fixed function render pipeline.
     - slug: rasterizer_fps_accumulate
       info:
         en: |-
@@ -4181,7 +4188,7 @@ Functions:
           (rcon [rcon password] [command])
           ```
           Sends a command for server to execute at console. Use \" to send quotes.
-      gearbox_only: true
+      context: Gearbox only
     - slug: real_random_range
       info:
         en: |-
@@ -4247,7 +4254,7 @@ Functions:
           (remote_player_stats <string>)
           ```
           Displays the prediction stats of the specified remote player.
-      gearbox_only: true
+      context: Gearbox only
     - slug: render_effects
       info:
         en: |-
@@ -4322,7 +4329,7 @@ Functions:
           (set_digital_forward_throttle <short> <real>)
           ```
           Sets the amount of forward throttle applied by digital device stimuli
-      gearbox_only: true
+      context: Gearbox only
     - slug: set_digital_pitch_increment
       info:
         en: |-
@@ -4330,7 +4337,7 @@ Functions:
           (set_digital_pitch_increment <short> <real>)
           ```
           Sets the increment in pitch applied by digital device stimuli
-      gearbox_only: true
+      context: Gearbox only
     - slug: set_digital_strafe_throttle
       info:
         en: |-
@@ -4338,7 +4345,7 @@ Functions:
           (set_digital_strafe_throttle <short> <real>)
           ```
           Sets the amount of strafe throttle applied by digital device stimuli
-      gearbox_only: true
+      context: Gearbox only
     - slug: set_digital_yaw_increment
       info:
         en: |-
@@ -4346,7 +4353,7 @@ Functions:
           (set_digital_yaw_increment <short> <real>)
           ```
           Sets the increment in yaw applied by digital device stimuli
-      gearbox_only: true
+      context: Gearbox only
     - slug: set_gamepad_forward_threshold
       info:
         en: >-
@@ -4358,7 +4365,7 @@ Functions:
 
           Sets the threshold beyond which gamepad movement is full forward
           throttle
-      gearbox_only: true
+      context: Gearbox only
     - slug: set_gamepad_pitch_scale
       info:
         en: |-
@@ -4366,7 +4373,7 @@ Functions:
           (set_gamepad_pitch_scale <short> <real>)
           ```
           Sets the scale for gamepad control of pitch
-      gearbox_only: true
+      context: Gearbox only
     - slug: set_gamepad_strafe_threshold
       info:
         en: >-
@@ -4378,7 +4385,7 @@ Functions:
 
           Sets the threshold beyond which gamepad movement is full strafe
           throttle
-      gearbox_only: true
+      context: Gearbox only
     - slug: set_gamepad_yaw_scale
       info:
         en: |-
@@ -4386,7 +4393,7 @@ Functions:
           (set_gamepad_yaw_scale <short> <real>)
           ```
           Sets the scale for gamepad control of yaw
-      gearbox_only: true
+      context: Gearbox only
     - slug: set_gamma
       info:
         en: |-
@@ -4394,7 +4401,7 @@ Functions:
           (<void> set_gamma <long>)
           (set_gamma 200)
           ```
-          Set the gamma
+          Set the gamma. Removed in H1A.
     - slug: set_mouse_forward_threshold
       info:
         en: >-
@@ -4406,7 +4413,7 @@ Functions:
 
           Sets the threshold beyond which mouse movement is full forward
           throttle
-      gearbox_only: true
+      context: Gearbox only
     - slug: set_mouse_pitch_scale
       info:
         en: |-
@@ -4414,7 +4421,7 @@ Functions:
           (set_mouse_pitch_scale <short> <real>)
           ```
           Sets the scale for mouse control of pitch
-      gearbox_only: true
+      context: Gearbox only
     - slug: set_mouse_strafe_threshold
       info:
         en: |-
@@ -4422,7 +4429,7 @@ Functions:
           (set_mouse_strafe_threshold <short> <real>)
           ```
           Sets the threshold beyond which mouse movement is full strafe throttle
-      gearbox_only: true
+      context: Gearbox only
     - slug: set_mouse_yaw_scale
       info:
         en: |-
@@ -4430,7 +4437,7 @@ Functions:
           (set_mouse_yaw_scale <short> <real>)
           ```
           Sets the scale for mouse control of yaw
-      gearbox_only: true
+      context: Gearbox only
     - slug: set_pitch_rate
       info:
         en: |-
@@ -4480,7 +4487,7 @@ Functions:
 
           ```
           Shows update history playback stats
-      gearbox_only: true
+      context: Gearbox only
     - slug: sound_cache_dump_to_file
       info:
         en: |
@@ -4731,7 +4738,7 @@ Functions:
           (sv_ban_penalty [(#)(m,h,d), 0=infinite])
           ```
           Specify up to 4 ban times for repeat ban/TK offenders.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_ban
       info:
         en: >-
@@ -4745,7 +4752,7 @@ Functions:
           `banned.txt`. Use `sv_players` to find the player's index. You can
           also specify an optional duration for timed ban. Use 0 to follow
           `sv_ban_penalty` rules.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_banlist
       info:
         en: |-
@@ -4754,7 +4761,7 @@ Functions:
 
           ```
           Print a list of banned players
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_banlist_file
       info:
         en: |-
@@ -4762,7 +4769,7 @@ Functions:
           (sv_banlist_file [alphanumeric banlist file suffix])
           ```
           Sets and opens the file to be used for the player ban list.
-      gearbox_only: true
+      context: Gearbox only
     - slug: 'sv_banopt:'
       info:
         en: |-
@@ -4770,7 +4777,7 @@ Functions:
           (sv_ban [player # or name] opt:[duration (#)(m,h,d)])
           ```
           <Server Only> Player is kicked and added to banned.txt.  Use sv_players to find the index.Specify optional duration for timed ban.  Use 0 to follow sv_ban_penalty rules.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_end_game
       info:
         en: |-
@@ -4779,7 +4786,7 @@ Functions:
 
           ```
           End the current game
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_friendly_fire
       info:
         en: |-
@@ -4787,7 +4794,7 @@ Functions:
           (sv_friendly_fire ["0" = defaults, "1" = off, "2" = shields, "3" = on])
           ```
           Use to provide a global override for the gametype friendly fire setting.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_gamelist
       info:
         en: |-
@@ -4795,7 +4802,7 @@ Functions:
           (sv_gamelist [substring])
           ```
           Display a list of game types, matching an optional substring.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_get_player_action_queue_length
       info:
         en: |-
@@ -4803,7 +4810,7 @@ Functions:
           (sv_get_player_action_queue_length <string>)
           ```
           Displays the action queue length for the specified player.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_kick
       info:
         en: |-
@@ -4812,7 +4819,7 @@ Functions:
           (sv_kick "Micro$oft")
           ```
           **(Server Only)** Kicks the specified player from the server
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_log_echo_chat
       info:
         en: |-
@@ -4820,7 +4827,7 @@ Functions:
           (sv_log_echo_chat [preference])
           ```
           Enables or disbles chat echo to the console. Set the preference to 0to disable chat echo, or 1 to enable chat echo.If the preference is not specified, displays the current preference.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_log_enabled
       info:
         en: |-
@@ -4828,7 +4835,7 @@ Functions:
           (sv_log_enabled ["1" to enable, "0" to disable])
           ```
           Enables or disables server logging. If 0/1 is not given, displays thecurrent logging status.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_log_file
       info:
         en: |-
@@ -4836,7 +4843,7 @@ Functions:
           (sv_log_file [log file name])
           ```
           Sets the server log file name. If no name is given, displays thecurrent log file name.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_log_note
       info:
         en: |-
@@ -4844,7 +4851,7 @@ Functions:
           (sv_log_note <string>)
           ```
           Leave a note in the server log
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_log_rotation_threshold
       info:
         en: |-
@@ -4852,7 +4859,7 @@ Functions:
           (sv_log_rotation_threshold [threshold in kilobytes])
           ```
           Sets the log rotation threshold. When a log file's size (in kilobytes) exceedsthis number, it will be rotated. Set to 0 to disable log rotation.If the threshold is not specified, displays the current threshold.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_map
       info:
         en: >-
@@ -4867,7 +4874,7 @@ Functions:
           **(Server Only)** Usage: `sv_map <mapname> <variantname>` <br/> Aborts the
           current game and playlist, and starts the specified game mode on the specified
           map.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_map_next
       info:
         en: >-
@@ -4880,7 +4887,7 @@ Functions:
 
           **(Server Only)** Abort the current game and begin the next game in
           the playlist
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_map_reset
       info:
         en: |-
@@ -4889,7 +4896,7 @@ Functions:
 
           ```
           **(Server Only)** Reset the current game
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_mapcycle
       info:
         en: |-
@@ -4898,7 +4905,7 @@ Functions:
 
           ```
           Print the contents of the currently loaded mapcycle file
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_mapcycle_add
       info:
         en: >-
@@ -4910,7 +4917,7 @@ Functions:
 
           Usage: `sv_mapcycle_add <mapname> <variantname>` <br/> Add a new game
           to the end of the mapcycle file
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_mapcycle_begin
       info:
         en: |-
@@ -4919,7 +4926,7 @@ Functions:
 
           ```
           Restart or begin playing the currently loaded mapcycle file
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_mapcycle_del
       info:
         en: >-
@@ -4931,7 +4938,7 @@ Functions:
 
           Usage: `sv_mapcycle_del <index>` <br/> Removes the game at `<index>`.
           Will not affect running games.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_maplist
       info:
         en: |-
@@ -4939,7 +4946,7 @@ Functions:
           (sv_maplist [substring])
           ```
           Display a list of maps, matching an optional substring.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_maxplayers
       info:
         en: >-
@@ -4953,7 +4960,7 @@ Functions:
 
           Sets the maximum number of players (between 1 and 16). If no value is
           given, displays the current value.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_motd
       info:
         en: |-
@@ -4961,7 +4968,7 @@ Functions:
           (sv_motd [motd file name])
           ```
           Sets the server message of the day file name. If no name is given, displays thecurrent motd file name. Set to "" to turn motd off.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_name
       info:
         en: >-
@@ -4977,7 +4984,7 @@ Functions:
 
           Sets the name of the server. If no name is given, displays the current
           name.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_parameters_dump
       info:
         en: |-
@@ -4986,7 +4993,7 @@ Functions:
 
           ```
           Dumps out the local parameter configuration to `parameters.cfg` file
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_parameters_reload
       info:
         en: |-
@@ -4995,7 +5002,7 @@ Functions:
 
           ```
           **(Server Only)** Reloads the `parameters.cfg` file
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_password
       info:
         en: >-
@@ -5011,7 +5018,7 @@ Functions:
 
           Sets the server password. If no password is given, displays the
           current password.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_players
       info:
         en: >-
@@ -5024,7 +5031,7 @@ Functions:
 
           **(Server Only)** Prints (*not* returns) a list of players in the
           current game
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_rcon_password
       info:
         en: |-
@@ -5032,7 +5039,7 @@ Functions:
           (sv_rcon_password [remote console password])
           ```
           Sets the server remote console password. If no password is given, displays thecurrent password. Enter "" to disable rcon.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_say
       info:
         en: |-
@@ -5040,7 +5047,7 @@ Functions:
           (sv_say <string>)
           ```
           <Server Only> Usage: "sv_say <message>"Send a message to users
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_single_flag_force_reset
       info:
         en: |-
@@ -5048,7 +5055,7 @@ Functions:
           (sv_single_flag_force_reset [boolean])
           ```
           Force the flag to reset in single flag CTF games when the timer expires, even if held by a player.If not specified, displays the current value.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_status
       info:
         en: |-
@@ -5057,7 +5064,7 @@ Functions:
 
           ```
           Shows status of the server
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_timelimit
       info:
         en: |-
@@ -5065,7 +5072,7 @@ Functions:
           (sv_timelimit ["-1" = default, "0" = infinite, <time in minutes>])
           ```
           Use to provide a global override for the gametype timelimit setting.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_tk_cooldown
       info:
         en: |-
@@ -5073,7 +5080,7 @@ Functions:
           (sv_tk_cooldown [time (#)(s,m)])
           ```
           Specify a TK point cooldown period, after which players lose a TK point.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_tk_grace
       info:
         en: |-
@@ -5081,7 +5088,7 @@ Functions:
           (sv_tk_grace [time (#)(s,m)])
           ```
           Specify the grace period for TK during which you don't get a TK point.
-      gearbox_only: true
+      context: Gearbox only
     - slug: sv_unban
       info:
         en: >-
@@ -5095,7 +5102,7 @@ Functions:
 
           **(Server Only)** Usage: `sv_unban <index>` <br/> Removes player at
           index in the banlist. Use `sv_banlist` to find the index.
-      gearbox_only: true
+      context: Gearbox only
     - slug: switch_bsp
       info:
         en: |-
@@ -5110,16 +5117,18 @@ Functions:
           ```hsc
           (<void> TestPrintBool <string> <boolean>)
           ```
-          Prints the specified boolean with the format '<string> = '<boolean>' to the Shell.
-      mcc_only: true
+          Prints the specified boolean with the format `<string> = <boolean>` to the Shell.
+          Currently this does not work.
+      context: H1A only
     - slug: TestPrintReal
       info:
         en: |-
           ```hsc
           (<void> TestPrintReal <string> <real>)
           ```
-          Prints the specified real with the format '<string> = '<real>' to the Shell.
-      mcc_only: true
+          Prints the specified real with the format `<string> = <real>` to the Shell.
+          Currently this does not work.
+      context: H1A only
     - slug: texture_cache_flush
       info:
         en: |-
@@ -5128,7 +5137,7 @@ Functions:
 
           ```
           Don't make me kick your ass
-      gearbox_only: true
+      context: Gearbox only
     - slug: thread_sleep
       info:
         en: |-
@@ -5136,7 +5145,7 @@ Functions:
           (thread_sleep <long>)
           ```
           Sleeps the calling thread for the specified number of ms.
-      gearbox_only: true
+      context: Gearbox only
     - slug: time_code_reset
       info:
         en: |-
@@ -5169,7 +5178,7 @@ Functions:
           (track_remote_player_position_updates <string>)
           ```
           Sets the name of the remote player whose position update are to be tracked.
-      gearbox_only: true
+      context: Gearbox only
     - slug: ui_widget_show_path
       info:
         en: |

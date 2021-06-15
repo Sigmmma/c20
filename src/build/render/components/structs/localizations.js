@@ -78,10 +78,16 @@ module.exports = localizer({
     en: "HEK max"
   },
   meta_h1a_ek_max_count: {
-    en: "H1A-EK max"
+    en: "H1A-EK max count"
   },
   meta_hek_max_count: {
     en: "HEK max count"
+  },
+  meta_h1a_ek_max_size: {
+    en: "H1A-EK max size"
+  },
+  meta_hek_max_size: {
+    en: "HEK max size"
   },
   meta_non_standard: {
     en: "Non-standard"

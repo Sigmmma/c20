@@ -18,7 +18,9 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * All the [tags][] used in retail MCC plus the ones used for the old HEK tutorial are included alongside the tools, meaning tag extraction with [Refinery][] or [invader-extract][invader#invader-extract] or prebuilt tag sets are no longer required if someone wants to mod the stock maps.
 * The original source [HSC scripts][scripting] are included for all campaign missions.
 
-## All tools
+## General
+* Negative [fog][] opaque distance and depth no longer causes a crash.
+* Negative power values for [skies][sky] no longer causes a radiosity crash.
 * The tools are in general faster and more responsive (in part due to manual optimizations, in part due to [*play* builds][build-types#optimization-options] built with a modern optimizing compiler being used instead of *test* builds).
 * The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
 * Asserts can be disabled using the `-noassert` command line flag.
@@ -26,24 +28,28 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 
 ## Tool
 * Lots of new verbs have been added. See the [Tool][h1a-tool] page for more details.
+* A `-verbose` flag can be added to see additional logging.
 * Lightmapping code has been optimized and is even faster with the `-noassert` command line flag. Lightmapping now takes roughly a quarter of the time of legacy Tool and is even faster than [LM tool][hek/tool/lm_tool]. Additionally this code now only uses 32-bit integers instead of an unsafe mix with 16-bit ones, and 16 MiB stack reserve. This increases the crash stability of radiosity.
 * Most logs (like `debug.txt`) are now saved to a `reports` subfolder (similarly to Halo 2+).
 * Bitmaps compilation
   * Bitmap DXT1-3 (BC1-3) encoding now uses [DirectXTex](https://github.com/Microsoft/DirectXTex) instead of some S3TC code. This should result in higher quality similar to the original XDK.
   * The `bitmaps` verb now accepts both `.tiff` and `.tif` extensions like `bitmap` does.
 * Map compilation ([`build-cache-file`][h1a-tool#build-cache-file]):
-  * Script data is recompiled from source files when available rather than just the data stored in the scenario tag.
+  * Script data is properly recompiled from source files when available now. A bug previously caused Tool to always fall back to sources stored in the scenario tag.
   * [Resource maps][map#resource-maps] can optionally be updated to include all the resource data for the scenario being packaged.
   * Maps can target "classic" or "remastered" mode.
   * `loc.map` [resource maps][map#resource-maps] are no longer generated or used as they are not used by H1A (aside from H1CE backwards compatibility).
   * Tool will now log errors when the user attempts to use swarm actors in firing-position based combat; _always charge at enemies_ must be set to prevent runtime crashes.
-* Model compilation:
+* Model and structure compilation:
   * The functionality used by [phantom_tool][hek/tool/phantom_tool] to remove [collision artifacts][scenario_structure_bsp#collision-artifacts] is now exposed as an argument for compiling [BSPs][scenario_structure_bsp] (`structure` verb) and [model_collision_geometry][] (`collision-geometry`).
   * [WRL][] files are saved alongside the [JMS][] file being compiled rather than the HEK root. The user is now told that this file was generated.
-* Usage clarity:
+  * When compiling a structure BSP and shaders do not yet exist, the chosen types of shaders will now be generated in the level's `shaders` directory instead of the tags root.
+* Usage and feedback clarity:
   * Argument parsing is now less primitive. Verbs can include optional arguments and flags and any unrecognized options are presented to the user.
   * The usage printout when Tool is run without arguments is now sorted. The names and argument descriptions of some existing verbs have been updated for clarity and consistency.
   * `zoners_model_upgrade` and `strings` verbs have been removed since they weren't useful.
+  * Tool will now tell you if it couldn't find a directory rather than simply logging nothing like the `model` verb did.
+  * Tool will no longer exception (but will log errors) when compiling a [gbxmodel][] where the [JMS][] has invalid node weights (two nodes where one has weight `1.0`).
 * Tool supports a `-pause` flag which keeps the process running after completion until the user presses <kbd>Enter</kbd>. This was meant for community-made launchers like [Osoyoos](https://github.com/num0005/Osoyoos-Launcher).
 
 ## Sapien
@@ -97,7 +103,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * `unit_kill` and `unit_kill_silent` no longer crash the game if the given unit does not exist.
   * `debug_camera_save` and `debug_camera_load` now save and load `camera_<mapname>.txt` instead of `camera.txt`. A console message is now logged when the camera file isn't found.
   * `player_effect_set_max_rumble` is no longer a hard-coded alias for `player_effect_set_max_vibrate`. Map scripts (like a10 and d40) were updated.
-* `rally_point_save_name` was added to replicate legacy `core_save_name` which was repurposed in H1A.
+* H1A's versions of map scripts no longer use a repurposed `core_save_name` to signal mission segments. The function again behaves like legacy and a new `mcc_mission_segment` function was added instead.
 * Globals and functions are no longer locked to specific contexts like server.
 
 ## Debug globals
@@ -119,9 +125,16 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * [Script source text][scenario#tag-field-source-files-source] is now visible in Guerilla and Sapien.
   * [BSP switch trigger volumes][scenario#tag-field-bsp-switch-trigger-volumes] source and destination BSPs are now typed as proper block indices rather than integers, which causes Guerilla to display them as drop-downs.
   * Increased limits:
-    * Bump `MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK` from 100 to 256.
-    * Bump `MAXIMUM_VEHICLE_DATUMS_PER_SCENARIO` from 80 to 256.
-    * Bump `MAXIMUM_OBJECT_NAMES_PER_SCENARIO` from 512 to 640.
+    * `MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK` from 100 to 256.
+    * `MAXIMUM_VEHICLE_DATUMS_PER_SCENARIO` from 80 to 256.
+    * `MAXIMUM_OBJECT_NAMES_PER_SCENARIO` from 512 to 640.
+    * `MAXIMUM_HS_SCRIPTS_PER_SCENARIO` from 512 to 1024.
+    * `MAXIMUM_HS_GLOBALS_PER_SCENARIO` from 128 to 512.
+    * `MAXIMUM_HS_REFERENCES_PER_SCENARIO` from 256 to 512.
+    * `MAXIMUM_HS_SOURCE_FILES_PER_SCENARIO` from 8 to 16.
+    * `MAXIMUM_HS_STRING_DATA_PER_SCENARIO` from 256kb to 800kb.
+    * `MAXIMUM_HS_SOURCE_DATA_PER_FILE` from 256kb to 1MB.
+    * `MAXIMUM_HS_SYNTAX_NODES_PER_SCENARIO` from 19001 to SHORT_MAX.
 
 ## Maps and map loading
 * The [map file size limit][map#map-file-size-limit] was increased to 2 GiB.
