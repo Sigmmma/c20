@@ -48,7 +48,8 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * Argument parsing is now less primitive. Verbs can include optional arguments and flags and any unrecognized options are presented to the user.
   * The usage printout when Tool is run without arguments is now sorted. The names and argument descriptions of some existing verbs have been updated for clarity and consistency.
   * `zoners_model_upgrade` and `strings` verbs have been removed since they weren't useful.
-  * Tool will now tell you if it couldn't find a directory rather than simply logging nothing like the `model` verb did.
+  * Tool will now tell you if it couldn't find a directory rather than simply logging nothing like some verbs previously did (looking at you `model`).
+  * Verbs which accept a tag path as an argument will now automatically strip `data\` and `tags\` prefixes, allowing you to use tab completion on the command line (Halo 3 backport).
   * Tool will no longer exception (but will log errors) when compiling a [gbxmodel][] where the [JMS][] has invalid node weights (two nodes where one has weight `1.0`).
 * Tool supports a `-pause` flag which keeps the process running after completion until the user presses <kbd>Enter</kbd>. This was meant for community-made launchers like [Osoyoos](https://github.com/num0005/Osoyoos-Launcher).
 

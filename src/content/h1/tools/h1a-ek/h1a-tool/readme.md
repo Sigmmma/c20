@@ -427,20 +427,6 @@ tool process-sounds "sound\sfx\ambience\a10" "klax" gain+ 1
 
 For the example above, Tool would expect to find a set of sound tags at `tags\sound\sfx\ambience\a10\`. Any sound tags that contain the substring "klax" in the filename will have a value of 1 added to gain.
 
-
-# Recover TIFF from bitmap tag
-
-Extracts the images from a [bitmap][] tag saving them as [TIFF][wiki-tiff] files in the `recovered` folder in the H1A-EK root directory. The naming scheme `<bitmap_tag_name>_<index>.tif` is used.
-
-```sh
-# recover-tif <bitmap>
-tool recover-tif "rasterizer\default 2d"
-```
-
-For the example above, Tool would create 4 bitmaps named: `default 2d_0.tif`, `default 2d_1.tif`, `default 2d_2.tif` and `default 2d_3.tif`.
-
-The command uses the compressed texture and not the source plate data.
-
 # Accessing script documentation
 
 The `script_doc` verb can be used to access function and global documentation.
