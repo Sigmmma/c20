@@ -2,7 +2,7 @@
 [Blender 3D Software](https://www.blender.org/) -> The Blender application that we will be using to create our assets.
 
 # Setting up Blender
-[Installing the Blender addon](https://general-101.github.io/HEK-Docs/w/Plugin/Install/Install.html)
+[Installing the Blender addon][jointed-model-blender-toolset]
 
 See the above link for setting up the Blender addon for exporting Halo assets if you haven't installed the addon already. Beyond that there may be a few other settings you may want to adjust with before starting with any modeling.
 
