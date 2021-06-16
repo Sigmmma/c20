@@ -230,6 +230,14 @@ type_defs:
             Makes it so that in multiplayer the projectile does is not
             syncronized over the network and is instead created by client
             trigger simulation.
+      - name: use_unit_adjust_projectile_ray_from_halo1
+        meta:
+          h1a_only: true
+        comments:
+          en: >-
+            By default, the engine now uses the logic found in later Halos to
+            address projectile bugs. This flag forces the original H1 behavior
+            and is used for the Covenant dropship turret.
   WeaponOverchargedAction:
     class: enum
     size: 2
@@ -474,9 +482,7 @@ type_defs:
             example, the shotgun has this value set to 15. Each projectile is
             scattered by error angle independently.
       - name: distribution_angle
-        type: float
-        meta:
-          unit: degrees
+        type: Angle
         comments:
           en: >
             Affects the spread of projectiles when _projectiles per shot_ is

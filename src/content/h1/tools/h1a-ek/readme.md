@@ -4,9 +4,11 @@ After downloading the H1A-EK, please read `README_MODDING.txt`.
 
 The **H1A Editing Kit** (**H1A-EK**) is the set of official modding tools used to create custom multiplayer and singleplayer maps targeting the PC MCC version of [Halo: Combat Evolved Anniversary][h1/h1a]. It was first released by 343 Industries during Season 7 of MCC in 2021.
 
-This editing kit will be familiar to users of the [legacy HEK][hek] for [Halo: Custom Edition][h1#custom-edition-pc] released by Gearbox in 2003. However, this rerelease has received [significant updates and fixes](#what-39-s-new) including a complete source [tag set][tags] for the game's stock maps. Some features from [Halo 2 tools][h2ek] have even been backported. The tools can also receive further updates over time owing to their distribution via [Steam][].
+This editing kit will be familiar to users of the [legacy HEK][hek] for [Halo: Custom Edition][h1#custom-edition-pc] released by Gearbox in 2003. However, this rerelease has received [significant updates and fixes](#what-39-s-new) including a complete source [tag set][tags] for the game's stock maps. Some features from [Halo 2 tools][h2ek] and later have even been backported. The tools can also receive further updates over time owing to their distribution via [Steam][].
 
 These tools are based on the internal tools originally created by Bungie during the game's development but have been updated and sometimes trimmed down for public use.
+
+Using the H1A-EK to author content for H1CE rather than H1A is not officially supported due to the amount of changes in the engine. **Use at your own risk.**
 
 # What's new?
 If you're coming from the legacy [HEK][hek] for Custom Edition you may be wondering what's new and great about the updated H1A tools and engine. Don't worry, we've got you covered! Features which have been brought to Custom Edition parity from earlier versions of H1A may be mentioned below.
@@ -15,7 +17,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * [Blitzkrieg][hek/blitzkrieg] was not rereleased. Use [Jointed Model Blender Toolset][tools/jointed-model-blender-toolset] or the new Tool commands for converting [Autodesk FBX](https://en.wikipedia.org/wiki/FBX) to JMS and JMA files.
 
 ## Content
-* All the [tags][] used in retail MCC plus the ones used for the old HEK tutorial are included alongside the tools, meaning tag extraction with [Refinery][] or [invader-extract][invader#invader-extract] or prebuilt tag sets are no longer required if someone wants to mod the stock maps.
+* All the [tags][] used in retail MCC plus the ones used for the old HEK tutorial are included alongside the tools, meaning tag extraction with [Refinery][] or [invader-extract][invader#invader-extract] or prebuilt tag sets are no longer required if someone wants to mod the stock maps. Note that these tags are partially incompatible with H1CE due to their use [new flags][weapon#tag-field-triggers-flags-use-unit-adjust-projectile-ray-from-halo1], [shader_transparent_generic][], etc. The tags are intended for targeting H1A.
 * The original source [HSC scripts][scripting] are included for all campaign missions.
 
 ## General
@@ -25,6 +27,11 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
 * Asserts can be disabled using the `-noassert` command line flag.
 * The tags, data, and maps directories can now be set when running all tools. See [custom content paths][using-custom-content-paths] for more info. This makes it easier to work with different tag sets.
+
+## Visual
+* The renderer uses DX11 instead of DX9 now.
+* First person models now use the highest [LOD][gbxmodel#level-of-detail] available instead of the lowest.
+* `MAXIMUM_RENDERED_OBJECTS` increased from 256 to 512.
 
 ## Tool
 * Lots of new verbs have been added. See the [Tool][h1a-tool] page for more details.
@@ -69,6 +76,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * Sapien no longer crashes if a BSP fog plane has a fog region set to NONE.
   * Recording and model view modes no longer cause a crash on closing Sapien.
   * Closing the _Output window_ now properly sets its handle to NULL.
+  * The _New instance_ and _Delete_ buttons in the hierarchy view are now properly disabled when not applicable.
 
 ## Guerilla
 * Guerilla now features a modern Windows file open dialog which includes locations like quick access.
@@ -81,6 +89,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * When tags are loaded for editing, tag references with an unknown [group ID][tags#group-ids] are now clamped to NONE. This fixes cases like the leftover [weapon_collection][tags#unused-tags] reference in the Bloodgulch scenario from causing downstream problems.
 * _Save as_ now makes copies of read-only tags editable without having to reopen the tag.
 * Hover-over tooltips for flags after unused sections are no longer off-by-one, e.g. multiplayer spawn flags for vehicles.
+* Fixed a crash from changing a "go to" command list atom _modifier_ field in the [scenario][] tag.
 
 ## HaloScript and console
 * The [developer console][developer-console] now supports the <kbd>Home</kbd> and <kbd>End</kbd> keys to move the cursor to the start and end of the input line.
@@ -114,9 +123,13 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 ## Tag classes
 * [unit][unit#tag-field-metagame-type] and [actor_variant][actor_variant#tag-field-metagame-type] now each include the _metagame type_ and _metagame class_ fields for MCC's scoring system.
 * [shader_model][] received a [new flag][shader_model#tag-field-shader-model-flags-multipurpose-map-use-xbox-channel-order] to use Xbox channel order for the multipurpose map.
+* Some runtime tag fields have been made invisible, such as [object][], [weapon][], and [scenario_structure_bsp][] predicted resources, some other BSP fields, and [gbxmodel][] markers.
 * [gbxmodel][] node limit was increased from 48 to 63 to match Custom Edition 1.10.
 * [scenery][] received a new [flags field][scenery#tag-field-flags] which is unused in current versions of MCC.
-* [scenario][] received numerous changes:
+* [weapon][]:
+  * Trigger [distribution angle][weapon#tag-field-triggers-distribution-angle] is now typed as an "angle" instead of a plain float so it can be edited in degrees (radians internally).
+  * Trigger flags has a [new option][weapon#tag-field-triggers-flags-use-unit-adjust-projectile-ray-from-halo1] to force legacy (buggy) aiming behaviour seen in the Spirit dropship's turret.
+* [scenario][]:
   * Unused fields have been marked deprecated and no longer appear in Guerilla and Sapien:
     * The first 3 tag references: ["don't use"][scenario#tag-field-dont-use], "won't use", "can't use".
     * The [functions block][scenario#tag-field-functions].
@@ -124,6 +137,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
     * Netgame flags [weapon group][scenario#tag-field-netgame-flags-weapon-group].
   * The previously hidden cutscene title fields [_text style_][scenario#tag-field-cutscene-titles-text-style] and [_text flags_][scenario#tag-field-cutscene-titles-text-flags] are now exposed.
   * [Script source text][scenario#tag-field-source-files-source] is now visible in Guerilla and Sapien.
+  * Netgame flags _team index_ was renamed to [_usage id_][scenario#tag-field-netgame-flags-usage-id] and explanations were added in the tag for how to set this ID depending on the flag type.
   * [BSP switch trigger volumes][scenario#tag-field-bsp-switch-trigger-volumes] source and destination BSPs are now typed as proper block indices rather than integers, which causes Guerilla to display them as drop-downs.
   * Increased limits:
     * `MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK` from 100 to 256.
@@ -135,7 +149,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
     * `MAXIMUM_HS_SOURCE_FILES_PER_SCENARIO` from 8 to 16.
     * `MAXIMUM_HS_STRING_DATA_PER_SCENARIO` from 256kb to 800kb.
     * `MAXIMUM_HS_SOURCE_DATA_PER_FILE` from 256kb to 1MB.
-    * `MAXIMUM_HS_SYNTAX_NODES_PER_SCENARIO` from 19001 to SHORT_MAX.
+    * `MAXIMUM_HS_SYNTAX_NODES_PER_SCENARIO` from 19001 to 65535.
 
 ## Maps and map loading
 * The [map file size limit][map#map-file-size-limit] was increased to 2 GiB.

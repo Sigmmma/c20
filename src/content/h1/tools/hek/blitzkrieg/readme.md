@@ -1,6 +1,6 @@
 **Blitzkrieg** is the legacy [3ds Max][3dsmax] to [JMS][] and [animation data][animation-data] exporter plugin which shipped with the original [HEK][] for H1CE in 2003.
 
-The plugin does not support vertex weights needed for character animations and is not 3ds Max version independent (targets Max 5). Many Max users later opted to use the community-made [Bluestreak exporter][bluestreak] instead which could also be used with the free [Gmax][].
+The plugin does not support vertex weights needed for character animations and only works on Max versions 5-8. Many Max users later opted to use the community-made [Bluestreak exporter][bluestreak] instead which could also be used with the free [Gmax][] or newer Max versions.
 
 ```.alert
 The [H1A-EK][] does not include a Blitzkrieg equivalent for modern versions of 3ds Max but rather implemented an [FBX to JMS and JMA][using-fbx-in-h1a] process into [Tool][h1a-tool#creating-a-jms-file-from-an-fbx-file]. Max can export scenes to FBX format to take advantage of this.

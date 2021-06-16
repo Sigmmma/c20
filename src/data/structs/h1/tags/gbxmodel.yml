@@ -150,7 +150,8 @@ type_defs:
         meta:
           hek_max_count: 256
           hidden: true
-          max: 0
+        comments:
+          en: Generated in postprocessing from the markers in the model's permutations.
       - name: nodes
         type: Block
         type_args:

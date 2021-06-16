@@ -59,13 +59,24 @@ table.type-def {
     word-wrap: anywhere;
   }
 
-  tr.field-type-pad, tr.field-meta-cache_only, tr.field-meta-unused {
+  tr.field-type-pad, tr.field-meta-cache_only, tr.field-meta-unused, tr.field-meta-hidden {
     color: var(--fg-faded);
     .field-meta {
       border-color: var(--fg-faded);
     }
     & a {
       opacity: 0.5;
+    }
+
+    //ugh -- we want the embedded tables for boring fields to also be boring
+    & + tr.embedded-type {
+      color: var(--fg-faded);
+      .field-meta {
+        border-color: var(--fg-faded);
+      }
+      & a {
+        opacity: 0.5;
+      }
     }
   }
 }

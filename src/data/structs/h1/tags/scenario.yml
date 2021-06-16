@@ -858,13 +858,13 @@ type_defs:
         type: ScenarioNetgameFlagType
         comments:
           en: Determines which purpose this netgame flag serves.
-      - name: team_index
+      - name: usage_id
         type: Index
         comments:
           en: >
-            The meaning of this field depends on the netgame flag type, and is
-            not necessarily about teams. See the above type descriptions for
-            more details on usage.
+            Also called **team_index** in legacy HEK. The meaning of this field
+            depends on the netgame flag type, and is not necessarily about teams.
+            See the above type descriptions for more details on usage.
       - name: weapon_group
         type: TagDependency
         meta:

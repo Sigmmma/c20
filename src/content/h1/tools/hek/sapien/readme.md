@@ -239,6 +239,13 @@ Try moving or resizing your [fog plane(s)][scenario_structure_bsp#fog-planes].
 Sapien has encountered an unrecognized tag class, such as an [OpenSauce][OpenSauce#new-tag-types] tag or [vestigial tag][tags#unused-tags]. Remove references to this tag class.
       </td>
     </tr>
+    <tr>
+      <td>EXCEPTION halt in .\hierarchy_items.cpp,#2030: can_add_manually</td>
+      <td>
+
+You clicked "New instance" when the button is meant to be disabled. Fixed in H1A.
+      </td>
+    </tr>
   </tbody>
 </table>
 

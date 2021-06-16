@@ -12,7 +12,7 @@ cls
 sv_map bloodgulch slayer
 ```
 
-Similarly, [Sapien][] loads `editor_init.txt`.
+Similarly, [Sapien][h1a-sapien] loads `editor_init.txt`.
 
 ## OpenSauce users
 If using the [OpenSauce mod][opensauce], use the file name `initc.txt` instead.
@@ -20,7 +20,7 @@ If using the [OpenSauce mod][opensauce], use the file name `initc.txt` instead.
 # Arguments
 Halo accepts [command line/shortcut arguments][about-args] to customize how the game launches and what features are enabled. From a terminal or Windows command prompt, such arguments are provided after the executable name, e.g. `haloce.exe -screenshot` to run the game with screenshot mode enabled. These arguments can also be added in Windows by editing a shortcut to the Halo executable.
 
-Many of these settings can be configured in-game, so it is not usually necessary to provide them as arguments.
+With H1CE many of these settings can be configured in-game, so it is not usually necessary to provide them as arguments. However, `-vidmode` is useful for the [H1A standalone build][h1a-standalone-build] which cannot be configured in-game.
 
 ## How to add arguments to a shortcut (Windows)
 
@@ -31,7 +31,7 @@ Windows users looking to avoid having to use the [command prompt][command-line#c
 </a>
 
 ## Arguments list
-The following is a comprehensive list of arguments. Not all are not documented in Halo's `Readme.rtf` or `-help` output.
+The following is a comprehensive list of arguments. Not all are not documented in Halo's `Readme.rtf` or `-help` output. Many arguments below are not applicable to the [H1A standalone build][h1a-standalone-build] which does not include a fixed function rendering pipeline or networking.
 
 ### Graphics options
 | Argument                      | Description

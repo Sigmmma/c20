@@ -56,6 +56,9 @@ module.exports = localizer({
   meta_cache_only: {
     en: "Cache only"
   },
+  meta_hidden: {
+    en: "Hidden"
+  },
   meta_non_cached: {
     en: "Non-cached"
   },

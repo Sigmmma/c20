@@ -8,9 +8,16 @@ configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] l
 
 It is roughly analagous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a [scripting console][developer-console].
 
-## Getting legacy `debug_objects`
+## Getting legacy debug_objects
+If you prefer legacy Sapien's `debug_objects 1` default appearance, simply set the following globals:
 
-Enable `debug_objects_bounding_spheres` and `debug_objects_collision_models` alongside `debug_objects` to get the bounding spheres and collision debug to render.
+```
+debug_objects_collision_models 1
+debug_objects_bounding_spheres 1
+debug_objects_root_node 0
+```
+
+You can even place these in your `editor_init.txt` so they are run automatically at startup.
 
 # Command line flags
 Command line flags can be passed to H1A Sapien at launch to change run-time behavior. These features are experimental and might not work as expected.

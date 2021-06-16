@@ -175,6 +175,17 @@ kbd {
   background: var(--bg-inset);
   border-radius: 4px;
   font-weight: bold;
-  border: 1px solid var(--border-color);;
+  border: 1px solid var(--border-color);
   box-shadow: 0 2px 0 -1px var(--bg-overlay), 0 2px 0 var(--border-color);;
+}
+
+//need to generalize this later
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: $border-radius;
+  background: var(--bg-overlay);
+  display: flow-root;
+  padding: var(--padding-md);
+  background-blend-mode: exclusion;
+  background-position: center;
 }

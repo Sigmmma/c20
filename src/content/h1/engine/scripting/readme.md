@@ -66,9 +66,9 @@ rowLinks: true
 
 HaloScript supports converting data from one type to another, this is called [type casting][cast] or just casting. Type casting in HaloScript is done automatically when needed but it's good to keep it in mind as not all types can be converted. Passthrough can be converted to any type and void can be converted to from any type. They are however not the inverse of each other as void destroys the data during conversion.
 
-The rules for object name types are equivalent to the matching object types. Object names can be converted to the equivalent object. 
+The rules for object name types are equivalent to the matching object types. Object names can be converted to the equivalent object.
 
-| Target Type     | Source type(s)            | 
+| Target Type     | Source type(s)            |
 | --------------- | ----------------          |
 | boolean         | real, long, short, string |
 | real            | any enum, short, long     |
@@ -146,17 +146,15 @@ amount of time to complete evaluation, the following items will be random as
 expected.
 
 ## Syntax nodes are limited
-```.alert
-The exact limit of syntax nodes is not currently known.
-```
-
 Syntax nodes are sections of memory that the game allocates to handle the
 structure of scripts when it compiles them. Syntax data is stuff like
 parentheses, function names, variable names... anything that has syntactic
 meaning for the script system.
 
-There is a maximum number of syntax nodes that the game can allocate when
-compiling scripts. If you exceed this limit, scripts will not compile. This
+The maximum number of syntax nodes that the game can allocate when
+compiling scripts is **19001** in legacy and **65535** (SHORT_MAX) in H1A.
+
+If you exceed this limit, scripts will not compile. This
 limit is cumulative across both individual scenarios and child scenarios.
 So, even if the main scenario compiles, it might not work once you add its
 children (if its children have scripts of their own). If you hit this limit,
@@ -167,11 +165,11 @@ something has to go. This can sometimes be a long and painful process.
 In addition to syntax nodes, the total number of globals and scripts (`startup`,
 `dormant`, etc...) is also limited.
 
-| Type    | Limit |
-|---------|-------|
-| scripts | 1024  |
-| globals |  128  |
-| threads |  256  |
+| Type    | Legacy limit | H1A limit |
+|---------|--------------|-----------|
+| scripts | 512          | 1024      |
+| globals | 128          | 512       |
+| threads | 256          | -         |
 
 ## Source file size is limited
 The game will not compile scripts for a source file above a given size. Comments
@@ -247,7 +245,7 @@ objects flicker randomly.
 
 ```.alert danger
 There is not currently a reliable way to exactly tell when stack memory has been
-exceeded in [release][build-types] builds. `play` and lower optimization levels will crash with `a problem occurred while executing the script <script name>: corrupted stack. (valid_thread(thread))`. 
+exceeded in [release][build-types] builds. `play` and lower optimization levels will crash with `a problem occurred while executing the script <script name>: corrupted stack. (valid_thread(thread))`.
 You can use the [H1A standalone build][h1a-standalone-build] or Sapien to detect overflows.
 ```
 
@@ -260,7 +258,7 @@ scenario script's memory, causing the above mentioned issues.
 ## When to use short vs long
 There are two integer variable types: `short` and `long`. Both hold whole
 numbers, but `long` variables can hold much larger numbers than `short`
-variables. It's worth noting both use the same amount of memory, 
+variables. It's worth noting both use the same amount of memory,
 so you should decide the type you use based on what range of values makes sense or the values the functions you call accept (avoids a [cast][scripting#value-type-casting]).
 
 If you need to optimize memory usage you can use the bitwise functions to implement a [bitfield][].
