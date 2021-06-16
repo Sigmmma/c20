@@ -32,6 +32,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * The renderer uses DX11 instead of DX9 now.
 * First person models now use the highest [LOD][gbxmodel#level-of-detail] available instead of the lowest.
 * `MAXIMUM_RENDERED_OBJECTS` increased from 256 to 512.
+* Many [Gearbox visual bugs][renderer#gearbox-regressions] were fixed. For example, the restoration of [shader_transparent_generic][] and environment bump mapping.
 
 ## Tool
 * Lots of new verbs have been added. See the [Tool][h1a-tool] page for more details.

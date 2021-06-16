@@ -21,7 +21,7 @@ type_defs:
           en: >
             If enabled, detail maps should be applied _over_ specular
             reflections. This flag does not work as intended in the [PC
-            renderer][renderer#pc-regressions] but can be worked around with
+            renderer][renderer#gearbox-regressions] but can be worked around with
             [Chimera][].
       - name: two_sided
       - name: not_alpha_tested

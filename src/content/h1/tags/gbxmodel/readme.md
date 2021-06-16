@@ -3,7 +3,7 @@ The Gearbox model tag contains the marker points and render models for [objects]
 Don't confuse this tag with the Xbox-only [model][], which Gearbox modified for the PC port. It is therefore used in all [derivatives][h1] of that port, like Mac, Demo, and MCC. Unlike the Xbox version, the Gearbox model uses uncompressed vertices.
 
 # Shaders
-Each [part](#tag-field-geometries-parts) of a model can reference a different [shader][], like the Warthog's windscreen using a [shader_transparent_glass][] while its body uses a [shader_model][]. While a model can _technically_ reference any kind of shader, referencing a [shader_environment][] (used for [BSPs][scenario_structure_bsp]) is **not recommended** because it [renders incorrectly][renderer#pc-regressions] in Custom Edition.
+Each [part](#tag-field-geometries-parts) of a model can reference a different [shader][], like the Warthog's windscreen using a [shader_transparent_glass][] while its body uses a [shader_model][]. While a model can _technically_ reference any kind of shader, referencing a [shader_environment][] (used for [BSPs][scenario_structure_bsp]) is **not recommended** because it [renders incorrectly][renderer#gearbox-regressions] in Custom Edition.
 
 # Nodes
 Nodes can be thought of as the model's "skeleton" and can be animated to move parts of the model. Each vertex can be influenced by up to 2 nodes. H1A and H1CE 1.10 allow up to 63 model nodes. Older versions of H1CE and H1X allow 48.

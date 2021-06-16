@@ -41,7 +41,7 @@ Often called **retail** or **PC**, this edition is the classic port of Halo 1 to
 * Addition of a dedicated server, `haloceded.exe`
 * The [model][] tag was modified into [gbxmodel][]
 * A new "jet" particle creation physics type was added to the [particle_system][] tag
-* [Regressions in visuals][renderer#pc-regressions] and assets due to platform differences and the port being based on a pre-release version of Xbox Halo 1
+* [Regressions in visuals][renderer#gearbox-regressions] and assets due to platform differences and the port being based on a pre-release version of Xbox Halo 1
 
 The game received several patches since its release to address remote exploits, remove the CD requirement, replace the GameSpy Arcade lobby, and other minor improvements. Its current version is `1.0.10` ([2014][patch]).
 

@@ -4,6 +4,9 @@ One of its quirks is the ability to switch between the Saber3d and [blam!][engin
 
 As of season 7, H1A represents a merger between the original H1CE and H1PC branches of the engine.
 
+# Modding
+H1A officially supports modding with the release of the upgraded [H1A Editing Kit][h1a-ek]. The editing kit can be downloaded via Steam and used to make custom maps. At this time, users must turn EAC off and replace existing stock maps with custom ones in order to play them.
+
 # Changes
 The H1A engine saw some adjustments to the [map][] format. This made it difficult for some existing [modding programs][tools] to read the new format.
 
