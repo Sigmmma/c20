@@ -62,22 +62,31 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * Tool supports a `-pause` flag which keeps the process running after completion until the user presses <kbd>Enter</kbd>. This was meant for community-made launchers like [Osoyoos](https://github.com/num0005/Osoyoos-Launcher).
 
 ## Sapien
+![.figure Pictured: kornman00 eliminating editing kit bugs, circa June 2021](kornman.jpg)
+
 * When [Sapien][h1a-sapien] crashes it will attempt to autosave the scenario to a new file.
 * The [lightmap][lightmaps] painting feature was fixed. The user can perform touchups to fix light leaks or add missing lights and save changes to the lightmap.
-* The _View_ menu now includes ways to reopen the _Output window_ and _Tool window_ if they are closed.
-* The _Game window_ resolution has been increased from 800x600 to 1280x720 (widescreen).
-* Interpolation code from H1A is included and `framerate_throttle` is disabled by default, allowing for smooth animation and movement.
-* When the camera is outside the [BSP][scenario_structure_bsp], you will now see structure debug lines by default (`debug_structure_automatic`) (like [H2 Sapien][h2ek/h2sapien]). This helps you find the BSP if you get lost or the camera begins outside it, as with b40.
-* Sapien now features a modern Windows file open dialog which includes locations like quick access. This is also true for the _Edit Types_ menu when finding new tags to add to a palette.
-* The camera speed can be temporarily boosted by holding <kbd>Control</kbd>.
-* Multiple Sapien instances can now be launched at once using the `-multipleinstance` [command line][command-line] flag.
-* UI has been cleaned up a bit with unsupported elements removed (e.g. _File > New_) and others renamed.
+* Game window improvements:
+  * Weather and particle effects like smoke and fire will now render.
+  * When the camera is outside the [BSP][scenario_structure_bsp], you will now see structure debug lines by default (`debug_structure_automatic`) (like [H2 Sapien][h2ek/h2sapien]). This helps you find the BSP if you get lost or the camera begins outside it, as with b40.
+  * Interpolation code from H1A is included and `framerate_throttle` is disabled by default, allowing for smooth animation and movement.
+  * The camera speed can be temporarily boosted by holding <kbd>Control</kbd>.
+  * The _Game window_ resolution has been increased from 800x600 to 1280x720 (widescreen).
+  * Multiple Sapien instances can now be launched at once using the `-multipleinstance` [command line][command-line] flag.
+* User interface improvements:
+  * Sapien now features a modern Windows file open dialog which includes locations like quick access. This is also true for the _Edit Types_ menu when finding new tags to add to a palette.
+  * UI has been cleaned up a bit with unsupported elements removed (e.g. _File > New_) and others renamed.
+  * Added "Clear" button to tag reference dialog.
+  * The _View_ menu now includes ways to reopen the _Output window_ and _Tool window_ if they are closed.
+  * Widened layouts for strings, references, block indices, etc.
+  * When placing [netgame flags][scenario#tag-field-netgame-flags], the _Properties palette_ now includes explanations for how to set up each [game mode][game-modes].
 * Stability improvement:
   * [Detail object][detail_object_collection] painting is possibly more stable now. More testing is needed to confirm.
   * Sapien no longer crashes if a BSP fog plane has a fog region set to NONE.
   * Recording and model view modes no longer cause a crash on closing Sapien.
   * Closing the _Output window_ now properly sets its handle to NULL.
   * The _New instance_ and _Delete_ buttons in the hierarchy view are now properly disabled when not applicable.
+  * Fixed issues with invalid platoon indices.
 
 ## Guerilla
 * Guerilla now features a modern Windows file open dialog which includes locations like quick access.
@@ -123,8 +132,8 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 
 ## Tag classes
 * [unit][unit#tag-field-metagame-type] and [actor_variant][actor_variant#tag-field-metagame-type] now each include the _metagame type_ and _metagame class_ fields for MCC's scoring system.
-* [shader_model][] received a [new flag][shader_model#tag-field-shader-model-flags-multipurpose-map-use-xbox-channel-order] to use Xbox channel order for the multipurpose map.
-* Some runtime tag fields have been made invisible, such as [object][], [weapon][], and [scenario_structure_bsp][] predicted resources, some other BSP fields, and [gbxmodel][] markers.
+* [shader_model][] received a [new flag][shader_model#tag-field-shader-model-flags-multipurpose-map-uses-og-xbox-channel-order] to use "OG Xbox" channel order for the multipurpose map. Guerilla's explanation of channel usage is now updated to explain both H1X and Gearbox+ channel orders.
+* Some runtime tag fields have been made invisible, such as [object][], [weapon][], and [scenario_structure_bsp][] predicted resources, some other BSP fields, and [gbxmodel][] markers (processed from permutations).
 * [gbxmodel][] node limit was increased from 48 to 63 to match Custom Edition 1.10.
 * [scenery][] received a new [flags field][scenery#tag-field-flags] which is unused in current versions of MCC.
 * [weapon][]:
@@ -139,7 +148,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * The previously hidden cutscene title fields [_text style_][scenario#tag-field-cutscene-titles-text-style] and [_text flags_][scenario#tag-field-cutscene-titles-text-flags] are now exposed.
   * [Script source text][scenario#tag-field-source-files-source] is now visible in Guerilla and Sapien.
   * Netgame flags _team index_ was renamed to [_usage id_][scenario#tag-field-netgame-flags-usage-id] and explanations were added in the tag for how to set this ID depending on the flag type.
-  * [BSP switch trigger volumes][scenario#tag-field-bsp-switch-trigger-volumes] source and destination BSPs are now typed as proper block indices rather than integers, which causes Guerilla to display them as drop-downs.
+  * [BSP switch trigger volumes][scenario#tag-field-bsp-switch-trigger-volumes] source and destination BSPs are now typed as proper block indices rather than integers, which causes Guerilla to display them as drop-downs. This block is also hidden unless in expert mode since it is populated during postprocessing.
   * Increased limits:
     * `MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK` from 100 to 256.
     * `MAXIMUM_VEHICLE_DATUMS_PER_SCENARIO` from 80 to 256.

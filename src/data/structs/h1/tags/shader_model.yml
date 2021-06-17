@@ -28,7 +28,7 @@ type_defs:
       - name: alpha_blended_decal
       - name: true_atmospheric_fog
       - name: disable_two_sided_culling
-      - name: multipurpose_map_use_xbox_channel_order
+      - name: multipurpose_map_uses_og_xbox_channel_order
         meta:
           h1a_only: true
         comments:

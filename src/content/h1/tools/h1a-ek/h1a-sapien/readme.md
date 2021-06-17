@@ -8,7 +8,7 @@ configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] l
 
 It is roughly analagous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a [scripting console][developer-console].
 
-## Getting legacy debug_objects
+# Getting legacy debug_objects
 If you prefer legacy Sapien's `debug_objects 1` default appearance, simply set the following globals:
 
 ```
@@ -217,6 +217,10 @@ Try moving or resizing your [fog plane(s)][scenario_structure_bsp#fog-planes].
 
 Sapien has encountered an unrecognized tag class, such as an [OpenSauce][OpenSauce#new-tag-types] tag or [vestigial tag][tags#unused-tags]. Remove references to this tag class.
       </td>
+    </tr>
+    <tr>
+      <td>EXCEPTION halt in e:\jenkins\workspace\mcch1codebuild\mcc\main\h1\code\h1a2\sources\sound\sound_dsound_pc.c,#2083: play_cursor_position >= 0 && play_cursor_position < GetAvgBytesPerSecond(sound_samples_per_second(channel_type_sample_rate(channel->type_flags)), channel_get_num_channels(channel_index))</td>
+      <td>A sound device was lost while Sapien was running. Make sure you don't unplug anything.</td>
     </tr>
   </tbody>
 </table>
