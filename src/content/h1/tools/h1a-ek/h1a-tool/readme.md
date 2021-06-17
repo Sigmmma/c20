@@ -37,7 +37,7 @@ See the [animation data][animation-data] page for more info on the various exten
 Compile a single TIFF image into a [bitmap][] using the `bitmap` verb:
 
 ```sh
-# bitmap <source-file>
+# bitmap <source-file> [debug-plate?]
 tool bitmaps "characters\cyborg\bitmaps\cyborg"
 ```
 
@@ -49,7 +49,7 @@ As with the `bitmaps` verb, TIFF files must have at least 8-bit colour depth and
 [TIFF][wiki-tiff] (.tif/.tiff) images can be compiled into a [bitmap][] using the `bitmaps` verb:
 
 ```sh
-# bitmaps <source-directory>
+# bitmaps <source-directory> [2d|3d|cubemaps|sprites|interface] [debug-plate?]
 tool bitmaps "characters\cyborg\bitmaps"
 ```
 
@@ -69,7 +69,7 @@ tool build-cache-file "levels\test\tutorial\tutorial" remastered
 The resulting map file can be found in the editing kit's `maps` directory. This verb also generates reports under `reports\<mapname>` including a compilation-specific `debug.txt` and a `tag_dump.txt`.
 
 ```.alert
-H1A Tool recompiles scripts during cache compilation using **source files** from the data directory when available. Legacy Tool _only_ used sources stored [within the scenario tag][scenario#tag-field-source-files] which was sometimes a source of confusion.
+H1A Tool recompiles scripts during cache compilation using **source files** from the data directory when available. Legacy Tool _only_ used sources stored (and only in certain situations) [within the scenario tag][scenario#tag-field-source-files] which was sometimes a source of confusion.
 ```
 
 ## Classic and remastered mode
@@ -239,7 +239,7 @@ Exports a tag to an XML file, some data isn't include this can only be used to c
 # Creating a JMA file from an FBX file
 
 ```sh
-# fbx-to-jma <in-file> <out-file>
+# fbx-to-jma <in-file> <out-file> [animation-start-keyframe] [animation-end-keyframe]
 
 tool fbx-to-jms data\characters\cyborg\models\cyborg_my_custom_anim.fbx data\characters\cyborg\animations\cyborg_my_custom_anim.jma
 tool fbx-to-jms E:\my_fbx_files\cyborg_dab.fbx data\characters\cyborg\animations\cyborg_my_custom_anim.jms
@@ -248,6 +248,8 @@ tool fbx-to-jms E:\my_fbx_files\cyborg_dab.fbx data\characters\cyborg\animations
 **<i>You need to use a standard file path not a path relative to the `data` folder</i>**
 
 For some details on how to setup the FBX file see [FBX for H1A][using-fbx-in-h1a].
+
+The start and end keyframes are optional and will default to including the full animation provided.
 
 # Creating a JMS file from an FBX file
 
