@@ -213,6 +213,12 @@ workflowItems:
   invader-resource:
     inherit: Invader
     heading: invader-resource
+  Osoyoos Launcher:
+    authors:
+      - num0005
+      - General_101
+      - Osoyoos contributors
+    page: osoyoos
   HEKPlus:
     page: hek-plus
     deprecated: true
