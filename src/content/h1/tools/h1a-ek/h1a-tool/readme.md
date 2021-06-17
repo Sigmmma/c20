@@ -116,15 +116,6 @@ This commands takes a JMA file directly and converts it to a camera_track for th
 tool camera-track cameras\ohno.jma
 ```
 
-# Check bitmaps
-
-```sh
-# check-bitmaps <root-directory>
-tool check-bitmaps levels\test\my_broke_level
-```
-
-Checks all the [bitmap][] tags in a tag path (including sub-directories). Errors will be printed to console.
-
 # Check lights
 
 ```sh
@@ -159,7 +150,7 @@ Checks all the [shader][] tags in a tag path (including sub-directories). Errors
 tool check-tags levels\test\my_broke_level
 ```
 
-Equivalent to consecutively running `check-bitmaps`, `check-shaders` and `check-lights` for the same path.
+Equivalent to consecutively running `check-shaders` and `check-lights` for the same path.
 
 
 # Collision geometry compilation
