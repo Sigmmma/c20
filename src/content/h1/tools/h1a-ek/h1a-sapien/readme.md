@@ -137,21 +137,6 @@ debug_objects 1
 
 Sapien requires DX11 support, it is currently unknown if it can be run under WINE.
 
-# Limits
-As an 32-bit application Sapien is limited to 2 GB of virtual memory even on modern 64-bit Windows systems for compatibility. While this memory limit is usually not an issue, an abundance of large textures and other large assets in a map may cause Sapien to crash. To work around this, `sapien.exe` can be patched to tell the OS it supports 4 GB of virtual memory using a utility like [NTCore][ntcore]. To do this:
-
-* Install [NTCore 4GB Patch](https://ntcore.com/?page_id=371)
-* Run the 4GB Patch.
-* Select the Sapien executable.
-* NTCore will apply the patch. After it's finished, press OK. Sapien has now been patched to support 4 GB of virtual memory.
-
-Keep in mind this is not officially supported and could in theory cause hard to debug issues.
-
-[wine]: https://www.winehq.org/
-[dxvk]: https://github.com/doitsujin/dxvk
-[ntcore]: https://ntcore.com/?page_id=371
-
-
 # Troubleshooting
 ## Interface
 <table>
@@ -190,12 +175,6 @@ When Sapien crashes, check `debug.txt` for hints.
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>
-	  E_OUTOFMEMORY/out of memory/couldn't allocate xyz/insufficient memory
-      </td>
-      <td>You are running out of addressable memory. Try freeing up more physical memory on your system, and/or using a <a href="#limits">large address aware Sapien</a>.</td>
-    </tr>
     <tr>
       <td>
 EXCEPTION halt in \...\sound\sound_dsound_pc.c,#1966: properties->gain>=0.f && properties->gain<=1.f

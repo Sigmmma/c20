@@ -27,6 +27,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
 * Asserts can be disabled using the `-noassert` command line flag.
 * The tags, data, and maps directories can now be set when running all tools. See [custom content paths][using-custom-content-paths] for more info. This makes it easier to work with different tag sets.
+* All tools are large address aware (LAA), though they still use at most 32 bit indices for everything.
 
 ## Visual
 * The renderer uses DX11 instead of DX9 now.

@@ -116,12 +116,14 @@ Windows users have experienced saving issues related to the Virtual Store. Ensur
 On Linux, Sapien can be run successfully using [Wine][] but is not yet compatible with [DXVK][]. Use built-in or standard native DirectX libraries instead.
 
 # Limits
-As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual memory even on modern 64-bit Windows systems for compatibility. While this memory limit is usually not an issue, an abundance of large textures and other large assets in a map may cause Sapien to crash. To work around this, `sapien.exe` can be patched to tell the OS it supports 4 GB of virtual memory using a utility like [NTCore][ntcore]. To do this:
+As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual memory even on modern 64-bit Windows systems for compatibility. While this memory limit is usually not an issue, an abundance of large textures and other large assets in a map may cause Sapien to crash. To work around this, `sapien.exe` can be patched to tell the OS it supports 4 GB of virtual memory (large address aware, or LAA) using a utility like [NTCore][ntcore]. To do this:
 
 * Install [NTCore 4GB Patch](https://ntcore.com/?page_id=371)
 * Run the 4GB Patch.
 * Select the Sapien executable.
 * NTCore will apply the patch. After it's finished, press OK. Sapien has now been patched to support 4 GB of virtual memory.
+
+[H1A Sapien][h1a-sapien] is already LAA.
 
 [wine]: https://www.winehq.org/
 [dxvk]: https://github.com/doitsujin/dxvk
