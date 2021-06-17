@@ -1,5 +1,5 @@
 ```.alert
-This guide assumes you have already gone through [level creation - beginner][level-creation-beginner] and [level creation - advanced][level-creation-advanced].
+This guide assumes you have already gone through [level creation - beginner][level-creation-beginner] and [level creation - advanced][level-creation-advanced] or have the end result file ready.
 ```
 
 # Introduction
@@ -16,68 +16,9 @@ An export menu should appear on your screen after clicking *Halo Jointed Model S
 
 ![Plenty of options for you to mess with. Lets dig in!](B.png)
 
-Lets break down each of the options found in the menu.
+Use the following settings for a proper level export. [Generate asset subdirectories][level-creation-exporting#scene-options] is optional.
 
-## Game version
-The *Game Version* option lets us choose our target game, which we will set to *Halo CE*:
-
-![Why wait for the future when you can let it come to you! This feature will let you quickly export for any title](C.png)
-
-## File details
-A CE-specific box that will let us set the filename for our *JMS* from the menu easily without having to rename the file manually. Using either of these options will overwrite whatever the user inputs as the filename:
-
-* Permutation - String: Type in a name for the model permutation here. This string will default to "unnamed" if LOD is used but permutation is not filled in. See the [GBXmodel permutations section][gbxmodel#permutations] for details on permutations' purpose in Halo.
-* LOD - Dropdown: Select a [level of detail][gbxmodel#level-of-detail] to use for the file here. If the LOD is set to none but permutation is filled in then LOD will default to "Super High".
-	
-For our instance we will be leaving these alone.
-
-![Automation! The joy and gloom of people everywhere.](D.png)
-
-## Mask options
-These options will allow you to exclude or include specific geometry types from your scene in the final export. Let's go over the options now:
-
-* Export Hidden Geometry - bool: Whether or not we export geometry that is hidden from the viewport. Nodes are exported regardless of visibility but any other geo in the scene will be excluded from the final JMS if hidden and this box is unchecked.
-* Export Render Geometry - bool: Whether or not we export render geometry. Any geometry that is not a node and does not use the collision geometry prefix(@) is considered render geometry. If there is no render geometry then no JMS will be written
-* Export Collision Geometry - bool: Whether or not we export collision geometry. Any geometry that is not a node and does use the collision geometry prefix(@) is considered collision geometry. Collision geometry is exported to a separate JMS file and "_collision" is added to the filename unless the settings in file details have been filled in. If there is no collision geometry then no collision JMS will be written.
-		
-For our instance we will be leaving these alone.
-
-![Exclude these objects for your own benefit](E.png)
-
-## Scene options
-These options are mostly intended to help you automate how you want to handle geometry on export and the resulting files:
-
-* Generate Asset Subdirectories - bool: Whether or not we generate the relevant subdirectories wherever we export our file. If this option is checked then the output will become "Output directory + blend filename(folder) + model type models/physics(folder) + filename.JMS. If it is exported to an already existing valid folder setup then it will reuse that directory by replacing the existing JMS no matter what level it is written to. All that matters is that the parent folder name matches the blend filename and that it contains a valid subdirectory such as "models" or "physics". If this is unchecked then it will just write the JMS to as is to wherever the user sets the output to without generating folders.
-* Apply Modifiers - bool: Whether or not we apply modifiers that exist on the object on export. This option does not affect the geometry in the scene permanently so it's a great way to add a mirror modifier to your scene and exporting it without permanently applying it to your object.
-* Triangulate - bool: Whether or not we triangulate faces in our geometry on export. This option does not affect the geometry in your scene permanently.
-* Clean and Normalize Weights - bool: Whether or not we remove vertex groups that have a weight value of 0.0 and ensure that all vertex groups add up to 1.0.
-* Use Edge Split - bool: Whether or not we automatically add an edge split modifier to all objects in the scene before export. While the modifier addition is permanent, the results from the modifier aren't and only affect the exported JMS.	
-* Use Scene Export Settings - bool: Whether or not we automatically add an edge split modifier to all objects in the scene before export. While the modifier addition is permanent, the results from the modifier aren't and only affect the exported JMS.	
-		
-For our instance we will be leaving these alone.
-
-![For your convenience](F.png)
-
-## Edge split
-This box will only appear if the user has enabled *Edge Split* in *Scene Options*. See the following link to get documentation on what the settings here do:
-
-[Edge Split Blender Docs](https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/edge_split.html)
-
-
-For our instance we will be leaving these alone.
-
-![For your convenience](G.png)
-
-## Scale
-This box will let you scale your geometry on export. This setting does not permanently affect your scene. Your choices are as follows:
-
-* Default(JMS) - int: Export position values for object are 1:1 with Blender. No modifications here.
-* World Units - int: Export position values are multiplied by 100 units.
-* Custom - int: Export position values are multiplied by a custom value.
-
-For our instance we will be leaving these alone.
-
-![For your convenience](H.png)
+![Be sure to read the additional information section for a description of each option](B1.jpg)
 
 # Selecting your directory
 After you have set the settings you've wanted you can start browsing for a directory to dump the files into. The directory we will be choosing will be the following:
@@ -99,7 +40,57 @@ Now that you've exported your level you can compile the results in tool and see 
 ```
 
 # Additional information
-Lets now go over what wasn't covered during the export section.
+Lets break down each of the options found in the menu.
+
+## Game version
+The *Game Version* option lets us choose our target game:
+
+![Why wait for the future when you can let it come to you! This feature will let you quickly export for any title](C.png)
+
+## File details
+A CE-specific box that will let us set the filename for our *JMS* from the menu easily without having to rename the file manually. Using either of these options will overwrite whatever the user inputs as the filename:
+
+* Permutation - String: Type in a name for the model permutation here. This string will default to "unnamed" if LOD is used but permutation is not filled in. See the [GBXmodel permutations section][gbxmodel#permutations] for details on permutations' purpose in Halo.
+* LOD - Dropdown: Select a [level of detail][gbxmodel#level-of-detail] to use for the file here. If the LOD is set to none but permutation is filled in then LOD will default to "Super High".
+
+![Automation! The joy and gloom of people everywhere.](D.png)
+
+## Mask options
+These options will allow you to exclude or include specific geometry types from your scene in the final export. Let's go over the options now:
+
+* Export Hidden Geometry - bool: Whether or not we export geometry that is hidden from the viewport. Nodes are exported regardless of visibility but any other geo in the scene will be excluded from the final JMS if hidden and this box is unchecked.
+* Export Render Geometry - bool: Whether or not we export render geometry. Any geometry that is not a node and does not use the collision geometry prefix(@) is considered render geometry. If there is no render geometry then no JMS will be written
+* Export Collision Geometry - bool: Whether or not we export collision geometry. Any geometry that is not a node and does use the collision geometry prefix(@) is considered collision geometry. Collision geometry is exported to a separate JMS file and "_collision" is added to the filename unless the settings in file details have been filled in. If there is no collision geometry then no collision JMS will be written.
+
+![Exclude these objects for your own benefit](E.png)
+
+## Scene options
+These options are mostly intended to help you automate how you want to handle geometry on export and the resulting files:
+
+* Generate Asset Subdirectories - bool: Whether or not we generate the relevant subdirectories wherever we export our file. If this option is checked then the output will become "Output directory + blend filename(folder) + model type models/physics(folder) + filename.JMS. If it is exported to an already existing valid folder setup then it will reuse that directory by replacing the existing JMS no matter what level it is written to. All that matters is that the parent folder name matches the blend filename and that it contains a valid subdirectory such as "models" or "physics". If this is unchecked then it will just write the JMS to as is to wherever the user sets the output to without generating folders.
+* Apply Modifiers - bool: Whether or not we apply modifiers that exist on the object on export. This option does not affect the geometry in the scene permanently so it's a great way to add a mirror modifier to your scene and exporting it without permanently applying it to your object.
+* Triangulate - bool: Whether or not we triangulate faces in our geometry on export. This option does not affect the geometry in your scene permanently.
+* Clean and Normalize Weights - bool: Whether or not we remove vertex groups that have a weight value of 0.0 and ensure that all vertex groups add up to 1.0.
+* Use Edge Split - bool: Whether or not we automatically add an edge split modifier to all objects in the scene before export. While the modifier addition is permanent, the results from the modifier aren't and only affect the exported JMS.	
+* Use Scene Export Settings - bool: Whether or not we automatically add an edge split modifier to all objects in the scene before export. While the modifier addition is permanent, the results from the modifier aren't and only affect the exported JMS.	
+
+![For your convenience](F.png)
+
+## Edge split
+This box will only appear if the user has enabled *Edge Split* in *Scene Options*. See the following link to get documentation on what the settings here do:
+
+[Edge Split Blender Docs](https://docs.blender.org/manual/en/latest/modeling/modifiers/generate/edge_split.html)
+
+![For your convenience](G.png)
+
+## Scale
+This box will let you scale your geometry on export. This setting does not permanently affect your scene. Your choices are as follows:
+
+* Default(JMS) - int: Export position values for object are 1:1 with Blender. No modifications here.
+* World Units - int: Export position values are multiplied by 100 units.
+* Custom - int: Export position values are multiplied by a custom value.
+
+![For your convenience](H.png)
 
 # Scene settings
 Now that we've gone over the settings in the export menu lets go over the scene settings menu that can be used with the *Use Scene Export Settings* option. You can find the scene settings menu by navigating to the following section of the blender menu as seen in this image:
