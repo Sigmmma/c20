@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-update_scripts.py <MCC[1, 0]> <hs doc path> <yml file>: Update HS script docs using H1/H1A hs_doc.txt
+update_scripts.py <MCC[1, 0]> <hs doc path> <yml file>: Update HS script docs using H1/H1A hs_doc.txt, check by hand to see if all the changes it makes make sense.
 Requires: Python 3.7, ruamel.yaml
 Author: num0005
 """

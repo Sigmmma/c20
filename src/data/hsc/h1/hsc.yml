@@ -1067,7 +1067,7 @@ Functions:
 
           ```
           Drops the AI debugging sound point at the camera location
-      context: Gearbox only
+      context: Test builds only
     - slug: ai_debug_speak
       info:
         en: |-
@@ -1076,7 +1076,7 @@ Functions:
           (ai_debug_speak "pain minor")
           ```
           Makes the currently selected AI speak a vocalization
-      context: Gearbox only
+      context: Test builds only
     - slug: ai_debug_speak_list
       info:
         en: |-
@@ -1085,7 +1085,7 @@ Functions:
           (ai_debug_speak_list "involuntary")
           ```
           Makes the currently selected AI speak a list of vocalizations
-      context: Gearbox only
+      context: Test builds only
     - slug: ai_debug_teleport_to
       info:
         en: |-
@@ -1093,7 +1093,7 @@ Functions:
           (ai_debug_teleport_to <ai>)
           ```
           Teleports all players to the specified encounter
-      context: Gearbox only
+      context: Test builds only
     - slug: ai_debug_vocalize
       info:
         en: |-
@@ -1101,7 +1101,7 @@ Functions:
           (ai_debug_vocalize <string> <string>)
           ```
           Makes the selected AI vocalize
-      context: Gearbox only
+      context: Test builds only
     - slug: ai_defend
       info:
         en: |-
@@ -1117,7 +1117,7 @@ Functions:
 
           ```
           Clears the selected encounter
-      context: Gearbox only
+      context: Test builds only
     - slug: ai_detach
       info:
         en: |-
@@ -1332,7 +1332,7 @@ Functions:
           (ai_lines)
           ```
           Cycles through AI line-spray modes
-      context: Gearbox only
+      context: Test builds only
     - slug: ai_link_activation
       info:
         en: >-
@@ -2018,7 +2018,6 @@ Functions:
 
           ```
           Save last solo checkpoint
-      context: Gearbox only
     - slug: cinematic_abort
       info:
         en: |-
@@ -2424,7 +2423,7 @@ Functions:
           (debug_tags)
           ```
           Writes all memory being used by tag files into tag_dump.txt
-      context: Gearbox only
+      context: Test builds only
     - slug: debug_teleport_player
       info:
         en: |
@@ -4034,7 +4033,7 @@ Functions:
           (profile_activate <string>)
           ```
           Activates profile sections based on a substring
-      context: Gearbox only
+      context: Test builds only
     - slug: profile_deactivate
       info:
         en: |-
@@ -4042,7 +4041,7 @@ Functions:
           (profile_deactivate <string>)
           ```
           Deactivates profile sections based on a substring
-      context: Gearbox only
+      context: Test builds only
     - slug: profile_dump
       info:
         en: |-
@@ -4050,7 +4049,7 @@ Functions:
           (profile_dump <string>)
           ```
           Dumps profile based on a substring
-      context: Gearbox only
+      context: Test builds only
     - slug: profile_graph_toggle
       info:
         en: |-
@@ -4058,7 +4057,7 @@ Functions:
           (profile_graph_toggle <string>)
           ```
           Enables or disables profile graph display of a particular value
-      context: Gearbox only
+      context: Test builds only
     - slug: profile_load
       info:
         en: |-
@@ -4076,7 +4075,7 @@ Functions:
 
           ```
           Resets profiling data
-      context: Gearbox only
+      context: Test builds only
     - slug: profile_service_clear_timers
       info:
         en: |-
