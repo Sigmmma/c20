@@ -78,10 +78,10 @@ Additional information on the Reference Frame and Sealed World Rules and other t
 		* ![Find normals in the viewport overlay options menu](B.jpg)
 		* [Normal overlay docs](https://docs.blender.org/manual/en/latest/editors/3dview/display/overlays.html#normals)
 8. [Set context](https://docs.blender.org/manual/en/latest/editors/3dview/modes.html) back to object mode if you haven't already.
-9. [Set the parent](https://docs.blender.org/manual/en/latest/scene_layout/object/editing/parent.html) of the box to the Reference Frame (frame).
+9. With both your level and frame object selected, [set the parent](https://docs.blender.org/manual/en/latest/scene_layout/object/editing/parent.html) of the box (level) to the Reference Frame (frame) with frame being the active object.
 
 ```.alert info
-The last object you selected is considered the active object and will be the parent of all other objects you have selected when doing Set to parent object.
+The last object you selected is considered the active object and will be the parent of all other objects you have selected when doing set to parent object.
 ```
 
 # Application of materials
