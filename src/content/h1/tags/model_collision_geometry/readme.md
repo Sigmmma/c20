@@ -25,8 +25,8 @@ Pathfinding spheres can also be created automatically in some cases:
 * Vehicle mass points (see [physics][]) also count as pathfinding spheres. AI will actively avoid these.
 * [Bipeds][biped] by default also have a pathfinding sphere around their feet with the same width as their physics pill.
 
-## Limits
-model_collision_geometry tags can only have up to 16 pathfinding spheres<sup>(confirmation needed)</sup>, up to 8 regions, and up to 33 permutations to a region.
+# Limits
+model_collision_geometry tags can only have up to 32 pathfinding spheres in legacy (256 in H1A), up to 8 regions, and up to 33 permutations to a region.
 
 # Animation
 Unlike [BSPs][scenario_structure_bsp], collision geometry can have a self-intersecting mesh. However, this is only permitted between meshes parented by different nodes (e.g. limbs of a biped intersecting each other or the torso). Collision geometry cannot have weighted skinning for animations, so rigidly follows parent nodes in animations.

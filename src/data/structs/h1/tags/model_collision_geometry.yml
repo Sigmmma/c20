@@ -654,7 +654,13 @@ type_defs:
           T: ModelCollisionGeometrySphere
         meta:
           hek_max_count: 32
+          h1a_ek_max_count: 256
           volatile: true
+        comments:
+          en: >-
+            Spheres which approximate the shape of the model for
+            [AI pathfinding][ai#pathfinding] avoidance. The sphere limit was
+            increased to match Reach's in H1A.
       - name: nodes
         type: Block
         type_args:

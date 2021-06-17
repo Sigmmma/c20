@@ -135,6 +135,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * [shader_model][] received a [new flag][shader_model#tag-field-shader-model-flags-multipurpose-map-uses-og-xbox-channel-order] to use "OG Xbox" channel order for the multipurpose map. Guerilla's explanation of channel usage is now updated to explain both H1X and Gearbox+ channel orders.
 * Some runtime tag fields have been made invisible, such as [object][], [weapon][], and [scenario_structure_bsp][] predicted resources, some other BSP fields, and [gbxmodel][] markers (processed from permutations).
 * [gbxmodel][] node limit was increased from 48 to 63 to match Custom Edition 1.10.
+* [model_collision_geometry pathfinding sphere][model_collision_geometry#pathfinding-spheres] limit increased from 32 to 256.
 * [scenery][] received a new [flags field][scenery#tag-field-flags] which is unused in current versions of MCC.
 * [weapon][]:
   * Trigger [distribution angle][weapon#tag-field-triggers-distribution-angle] is now typed as an "angle" instead of a plain float so it can be edited in degrees (radians internally).
@@ -166,7 +167,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * [Tag space][map#tag-space] is increased from 23 MiB to 64 MiB.
 * A new [flags field][map#map-header-h1a-flags] was added to the cache header for controlling H1A features.
 * Tags, BSP verts (16 MiB), and game state are now stored in separate dedicated allocations rather than one giant one.
-* [Protected maps][map#protected-maps] will be detected and force a crash because they are unsupported.    
+* [Protected maps][map#protected-maps] will be detected and force a crash because they are unsupported.
 
 ## Game state
 Due to changes in the game state structure, savegames from before season 7 are invalidated.
