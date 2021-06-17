@@ -22,7 +22,7 @@ Halo 1 uses Bungie's proprietary [Blam!][engine] engine, which also formed the b
   </figcaption>
 </figure>
 
-## Xbox
+## Xbox (Bungie, 2001)
 Sometimes called **h1x** or **OG Xbox**, this is the classic first release of Halo 1 for the original Xbox. It supports LAN multiplayer and spawned a competitive community which is still active. While original Xbox consoles are hard to come by, [emulation][xemu] is an emerging alternative. Low resolution aside, the Xbox edition offers a superior graphical experience compared to its ported cousins. Though it is a more involved process, custom maps created with the [HEK][] can be ported back to Xbox.
 
 Xbox has a rich history of modding, notably:
@@ -30,7 +30,7 @@ Xbox has a rich history of modding, notably:
 * **Halo 1.5**, which adds [new competitive maps][h15]. [Custom edition ports][h15-maps-ce] of these maps are also available
 * [**Halo 1 Final**][h1final] (and its **Neutral Host Edition**) is a newer competitive mod with modified sounds, time callouts, and a selection of stock and H1.5 2v2-oriented maps
 
-## Halo PC
+## Halo PC (Gearbox Software, 2003)
 Often called **retail** or **PC**, this edition is the classic port of Halo 1 to Windows PC by developer [Gearbox Software][gearbox] and publisher [Microsoft Game Studios][microsoft]. Compared to the Xbox version, the PC port included a number of changes (for better and worse):
 
 * Modification of some multiplayer maps' level geometry
@@ -47,7 +47,7 @@ The game received several patches since its release to address remote exploits, 
 
 A **beta version** of Halo PC can also be found online. It has [unfinished versions of PC-exclusive content][pc-beta-2] and [weapon tuning][pc-beta-1] similar to pre-release Xbox versions.
 
-## Custom Edition (PC)
+## Custom Edition (PC, Gearbox Software, 2004)
 Custom edition, often called **Halo CE** or **CE** is a standalone version of Halo PC which supports custom maps created by the [HEK][], [released in 2004][custom-edition-launch]. Like Halo PC it features a server browser and its own `haloceded.exe` dedicated server, but lacks the campaign. [Maps][map] are incompatible between the editions.
 
 CE has many more differences from PC. To name a few:
@@ -60,7 +60,7 @@ CE has many more differences from PC. To name a few:
 
 Custom Edition has become the de facto standard PC title due to its support of custom maps, actively maintained client and server mods, and [campaign ports][refined]. Like retail, its current version is `1.0.10` ([2014][patch]).
 
-## Mac
+## Mac (Westlake Interactive, 2003)
 The Gearbox PC port (retail) was itself ported to Mac by _Westlake Interactive_ and published by _MacSoft_. No significant changes were made aside from platform compatibility, and maps are byte-for-byte identical to retail's. With _MacSoft's_ shutdown in 2011, this version has not been receiving the latest patches. [Nil's fix][nil-fix] enables its continued use with intel GPUs on OSX Mavericks and the post-Gamespy lobby master server.
 
 The Mac edition has a mod called [Halo Mini Demo][halomd], or **HaloMD**, which allows it to be played on modern systems. The plugin [**Halo+**][halo-plus] by Samuco can be used to enhance to experience, and a [netcode translator][halomd-bridge] can be used to connect to Custom Editions servers.
@@ -68,13 +68,14 @@ The Mac edition has a mod called [Halo Mini Demo][halomd], or **HaloMD**, which 
 ## Demo (PC and Mac)
 The free demo versions of Halo 1 on Mac and PC include just the multiplayer map Blood Gulch and the campaign mission _The Silent Cartographer_ (b30). Upon closing the demo, players are presented with the [iconic Sergeant Johnson advertisement][demo-ad] (`demo.bik`).
 
-## Anniversary (Xbox 360)
+## Anniversary (Xbox 360, 343 Industries, 2011)
 In 2011, Halo: Combat Evolved Anniversary was released for Xbox 360. Often called **CEA** by the community. It was developed by [343 Industries][343i] and [Saber Interactive][saber] as a remaster of the original Halo: Combat Evolved, and is derived from the Gearbox PC port. This edition contains the secondary _Saber3D_ engine for its remastered graphics mode.
 
-## MCC (PC and Xbox One)
+## MCC (PC and Xbox One, 343 Industries, 2014-2021)
 Halo: The Master Chief collection (MCC) is actively maintained by [343 Industries][343i] for both PC and Xbox One. It brings the Halo series under a single [Game as a Service][gaas], including unified matchmaking and progression experiences. The PC port uses [Unreal Engine][unreal] as a menu and input layer over the respective engines of each included Halo game.
 
-It is possible to compile custom maps for MCC PC using [Invader][] and [SeT][].
+Custom maps can be created for MCC PC using the official [H1A Editing kit][h1a-ek].
+The community tool [Invader][] also supports building H1A caches. The [SeT][] supports modifying S3D content (this is not supported by the offical tools).
 
 [gearbox]: https://en.wikipedia.org/wiki/Gearbox_Software
 [bungie]: https://en.wikipedia.org/wiki/Bungie
