@@ -27,7 +27,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
 * Asserts can be disabled using the `-noassert` command line flag.
 * The tags, data, and maps directories can now be set when running all tools. See [custom content paths][using-custom-content-paths] for more info. This makes it easier to work with different tag sets.
-* All tools are large address aware (LAA), though they still use at most 32 bit indices for everything.
+* All tools are still 32-bit but they are now large address aware (LAA). This allows them to use up to 4 GiB of virtual memory instead of 2, which prevents Sapien from running out of memory when editing scenarios with many large assets.
 
 ## Visual
 * The renderer uses DX11 instead of DX9 now.
@@ -60,7 +60,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * Tool will now tell you if it couldn't find a directory rather than simply logging nothing like some verbs previously did (looking at you `model`).
   * Verbs which accept a tag path as an argument will now automatically strip `data\` and `tags\` prefixes, allowing you to use tab completion on the command line (Halo 3 backport).
   * Tool will no longer exception (but will log errors) when compiling a [gbxmodel][] where the [JMS][] has invalid node weights (two nodes where one has weight `1.0`).
-* Tool supports a `-pause` flag which keeps the process running after completion until the user presses <kbd>Enter</kbd>. This was meant for community-made launchers like [Osoyoos](https://github.com/num0005/Osoyoos-Launcher).
+* Tool supports a `-pause` flag which keeps the process running after completion until the user presses <kbd>Enter</kbd>. This was meant for community-made launchers like [Osoyoos][].
 
 ## Sapien
 ![.figure Pictured: kornman00 eliminating editing kit bugs, circa June 2021](kornman.jpg)

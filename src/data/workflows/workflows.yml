@@ -213,7 +213,7 @@ workflowItems:
   invader-resource:
     inherit: Invader
     heading: invader-resource
-  Osoyoos Launcher:
+  Osoyoos launcher:
     authors:
       - num0005
       - General_101
