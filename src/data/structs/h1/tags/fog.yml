@@ -18,14 +18,18 @@ type_defs:
             This affects vehicles' ability to travel over water.
       - name: atmosphere_dominant
         comments:
-          en: >
+          en: >-
             As documented in [Guerilla][], this was originally used to fix
             polygon popping when atmospheric fog density reached 1.0 within the
             confines of the map and interacted with fog planes. It is only
-            enabled in c10's swamp fog tag on both Xbox and PC. This flag is
-            possibly changing fog render order and therefore also coincidentally
-            fixes the shader inconsistency between Xbox and PC which causes the
-            Assault on the Control Room snowy fog to look incorrect on PC.
+            enabled in c10's swamp fog tag.
+
+
+            This flag can be used as a workaround on H1PC and H1CE to fix fog not
+            rendering over the sky, a [renderer bug][renderer#gearbox-regressions]
+            introduced during the PC port. Some [Chimera][] builds automatically
+            flip this flag at runtime. It is **not necessary** to use this flag
+            as a visual workaround in H1A because fog rendering has been fixed.
       - name: fog_screen_only
         comments:
           en: Unknown purpose. This flag was not set in any original Halo maps.
@@ -119,7 +123,7 @@ type_defs:
         comments:
           en: >
             Sets the colour of the screen layer volumetrics particles. Note that
-            this effect only works on the original Xbox version of the game.
+            this effect only works in H1X and H1A.
       - name: rotation_multiplier
         type: Fraction
         meta:
@@ -130,6 +134,8 @@ type_defs:
         meta:
           min: 0
           max: 1
+        comments:
+          en: Scales the parallax movement of the fog screen layer during strafing.
       - name: zoom_multiplier
         type: Fraction
         meta:

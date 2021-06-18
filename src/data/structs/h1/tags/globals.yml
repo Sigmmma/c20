@@ -366,8 +366,8 @@ type_defs:
         comments:
           en: >
             This bitmap is used as a lookup table of precalculated vector
-            normalizations for visual effects like reflections. In Custom
-            Edition it is also [incorrectly used][renderer#gearbox-regressions] as
+            normalizations for visual effects like reflections. In H1CE
+            it is also [incorrectly used][renderer#gearbox-regressions] as
             the reflection cube map when a [shader_transparent_glass][] uses
             bump-mapped reflections.
       - name: atmospheric_fog_density

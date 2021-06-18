@@ -122,7 +122,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * The [developer console][developer-console] now supports the <kbd>Home</kbd> and <kbd>End</kbd> keys to move the cursor to the start and end of the input line.
 * Console history size has been increased from 8 to 16 entries.
 * Many defunct globals and functions have been removed because they are not functioning or applicable to H1A (e.g. for troubleshooting Gearbox netcode).
-* The `script_doc` HSC function now includes external globals in the output file in addition to functions.
+* The `script_doc` HSC function now includes external globals in the output file in addition to functions. Many instances of profanity in function descriptions have been cleaned up.
 * Script docs and `help` output now show return value types for functions.
 * Custom Edition-specific functions like `sv_say` and `multiplayer_draw_teammates_names` were stubbed out for compatibility with CE maps (avoids crashes).
 * Unrecognized script functions and globals will now cause script data to be dropped rather than crashing the game.

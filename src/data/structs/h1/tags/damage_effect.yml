@@ -243,10 +243,10 @@ type_defs:
           unit: seconds
         comments:
           en: >
-            Controls how long camera shaking lasts. On PC, short camera shakes
-            (0.05) get skipped occasionally at high FPS since this feature is
+            Controls how long camera shaking lasts. In H1CE and H1CE, short camera
+            shakes (0.05) get skipped occasionally at high FPS since this feature is
             still [tied to frame rate][renderer#gearbox-regressions]. This is fixed
-            and interpolated by [Chimera][].
+            and interpolated by [Chimera][] and by H1A natively.
       - name: camera_shaking_falloff_function
         type: FunctionType
       - type: pad

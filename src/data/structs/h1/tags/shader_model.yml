@@ -20,9 +20,9 @@ type_defs:
         comments:
           en: >
             If enabled, detail maps should be applied _over_ specular
-            reflections. This flag does not work as intended in the [PC
+            reflections. This flag does not work as intended in the [Gearbox
             renderer][renderer#gearbox-regressions] but can be worked around with
-            [Chimera][].
+            [Chimera][]. It is fixed in H1A.
       - name: two_sided
       - name: not_alpha_tested
       - name: alpha_blended_decal

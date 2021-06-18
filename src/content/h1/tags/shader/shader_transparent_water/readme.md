@@ -8,7 +8,7 @@ Flowing water with rapids, like waterfalls and rivers, can instead use [shader_t
 Water shaders do not tile their base maps. Instead, the edges of the texture are "smeared" infinitely.
 
 # Known issues
-Ripple maps are [not rendered correctly][renderer#gearbox-regressions] in PC retail and Custom Edition compared to Xbox. The highest level of detail [mipmap][] is used for the most distant areas, but water closer to the camera uses the lowest detail mipmap. This is the opposite of how it should be, and results in distant water suffering from major [aliasing][]. The water shader was fixed in MCC.
+Ripple maps are [not rendered correctly][renderer#gearbox-regressions] in H1PC and H1CE compared to classic Xbox. The highest level of detail [mipmap][] is used for the most distant areas, but water closer to the camera uses the lowest detail mipmap. This is the opposite of how it should be, and results in distant water suffering from major [aliasing][]. The water shader was fixed in H1A.
 
 [refined]: https://www.reddit.com/r/HaloCERefined/
 [mipmap]: https://en.wikipedia.org/wiki/Mipmap
