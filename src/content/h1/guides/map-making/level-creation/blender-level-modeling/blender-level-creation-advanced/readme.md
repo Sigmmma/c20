@@ -1,5 +1,5 @@
 ```.alert
-This guide assumes you are already familiar with the [basics of Blender map-making][level-creation-beginner]. You may also need the provided files from that guide, such as the Spartan model.
+This guide assumes you are already familiar with the [basics of Blender map-making][blender-level-creation-beginner]. You may also need the provided files from that guide, such as the Spartan model.
 ```
 
 # Modifying the level
@@ -75,7 +75,7 @@ From here we will change a few settings. You can choose to ignore these suggesti
 2. Set the axis that your sculpt goes in. You can lock all changes you make to a particular axis. In this case we will go with Z since we are making some hills.
 ![](1P.jpg)
 3. You can set the direction of your sculpt to be positive or negative. In terms of directions this would mean either up or down respectively if you were doing changes locked to the Z axis.
-![](1Q.png)
+![](1Q.jpg)
 4. Change the radius of your brush so that you affect a larger area. The default is 50 units so we will change it to around 100 units.
 ![](1R.png)
 
@@ -564,7 +564,7 @@ Now that the blue base structure has been completed, it can be copied and used t
 1. Start by selecting your blue base structure object and adding a mirror modifier to the object.
 2. Set the mirror modifier to these settings. This will create a mirror of the structure of the Y axis. Once it's set, apply the modifier to make it a permanent addition.
 
-![](4S.png)
+![](4S.jpg)
 
 Select all of the faces of the newly created structure. You can quickly do this by hovering your mouse over sections of the structure and pressing the <kbd>L</kbd> hotkey to select linked geometry. Once that is done hit the <kbd>P</kbd> key and then select "Selection" or press <kbd>S</kbd>. Once you've finished separating it you can rename the object to "red base".
 
@@ -648,7 +648,7 @@ It's probably a good idea to make frequent backups as you make progress just in 
 
 1. Go to File dropdown in the top left and click it.
 2. Click on the menu item labeled "Save As".
-3. A window named "Blender File Dialog" should come up. Navigate to `(HEK Install Path)\data\levels\test\(Level Name)\models` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory][level-creation-beginner#creation-of-a-level-directory] section.
+3. A window named "Blender File Dialog" should come up. Navigate to `(HEK Install Path)\data\levels\test\(Level Name)\models` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory][file-directories#creation-of-a-level-directory] section.
 4. Click on the button labeled "Save As".
 
 You've now saved your level. The file as is will be used for future sections in this tutorial.
@@ -663,7 +663,7 @@ The source and related materials have been provided as a reference to aid in the
 
 
 ```.alert success
-Once the user has successfully completed the tutorials in _Level creation_ they can proceed to the [next section][level-creation-exporting].
+Once the user has successfully completed the tutorials in _Level creation_ they can proceed to the [next section][exporting].
 
 Please note that the section _Level exporting_ and the subsequent sections will assume that the end user has completed all of the examples and tutorials up to and including those in _Level creation_. The remaining sections in _Multiplayer level design_ will use the completed "tutorial.blend" file from these sections.
 ```

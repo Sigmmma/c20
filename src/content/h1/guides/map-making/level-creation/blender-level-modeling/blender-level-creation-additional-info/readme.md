@@ -1,10 +1,11 @@
 # File List
-[Multiple Skies Example Blend](https://drive.google.com/file/d/1k55u_cATxIHayTQeFGjXz58tlTpUuCV2/view?usp=sharing) -> A blend file showcasing how to use multiple skies in a level.
-
-[Weather Portals Example Blend](https://drive.google.com/file/d/1Nfjg2E7CP_rxpt9UIshCljRT3pCMkfXD/view?usp=sharing) -> A blend file showcasing how to use the special +weatherpoly material in a level.
+| File Link                                                                                                         | Description
+|------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------
+[Multiple Skies Example Blend](https://drive.google.com/file/d/1k55u_cATxIHayTQeFGjXz58tlTpUuCV2/view?usp=sharing)  | The Blender application that we will be using to create our assets.
+[Weather Portals Example Blend](https://drive.google.com/file/d/1Nfjg2E7CP_rxpt9UIshCljRT3pCMkfXD/view?usp=sharing) | A blend file showcasing how to use the special +weatherpoly material in a level.
 
 # Multiple skies
-It's possible to use multiple skies in your level by adding a digit to the end of your "+sky" material. If we wanted three skies in our level for example we would have the following:
+It's possible to use multiple skies in your level by adding a digit to the end of your `+sky` material. If we wanted three skies in our level for example we would have the following:
 
 ```
 +sky0
@@ -27,34 +28,30 @@ You can compare the videos below to see the difference.
 
 Here's what the hallway looks like without a weatherpoly volume.
 
-<a href="5B.mp4" target="_blank">
+<a href="A.mp4" target="_blank">
 	<video controls>
-		<source src="5B.mp4" type="video/mp4">
+		<source src="A.mp4" type="video/mp4">
 	</video>
 </a>
 
 Here's what the hallway looks like with a weatherpoly volume.
 
-<a href="5C.mp4" target="_blank">
+<a href="B.mp4" target="_blank">
 	<video controls>
-		<source src="5C.mp4" type="video/mp4">
+		<source src="B.mp4" type="video/mp4">
 	</video>
 </a>
 
-The weatherpoly geometry is included in the [BSP tag][scenario_structure_bsp#weather-polyhedra] when you compile your [JMS][]. There can be a max of 8 on screen at any given time. Any weatherpolys that go over this limit will have no effect. [Sapien][] will print a message in the console if you hit this limit.
+The weather poly geometry is included in the [BSP tag][scenario_structure_bsp#weather-polyhedra] when you compile your [JMS][]. There can be a max of 8 on screen at any given time. Any weather polys that go over this limit will have no effect. [Sapien][] will print a message in the console if you hit this limit.
 
 # Markers
 You can use markers to snap objects to a specific location in a level. You can create a marker object by adding a mesh object to your scene and having the first character of the name use a "#" symbol.
 
-<a href="5D.jpg" target="_blank">
-	<img src="5D.jpg" title="An example of a marker in a scene." style="max-width: 400px; height: auto; "/>
-</a>
+![](C.jpg "An example of a marker in a scene.")
 
 Once the level is compiled you can toggle the "Snap to markers" checkbox in the _Tool window_.
 
-<a href="5E.jpg" target="_blank">
-	<img src="5E.jpg" title="Here is where you can find the option along with what should show up in the game view once you enable it." style="max-width: 400px; height: auto; "/>
-</a>
+![](D.jpg "Here is where you can find the option along with what should show up in the game view once you enable it.")
 
 Once the option is enabled all markers in the BSP will be rendered on screen. Spawning an object and moving it near the marker should snap the object's center of origin to the position of the marker. This can make it much easier to get exact positions for [device_machines][device_machine] and [scenery][].
 
