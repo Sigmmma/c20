@@ -663,7 +663,7 @@ The source and related materials have been provided as a reference to aid in the
 
 
 ```.alert success
-Once the user has successfully completed the tutorials in _Level creation_ they can proceed to the [next section][level-creation-exporting].
+Once the user has successfully completed the tutorials in _Level creation_ they can proceed to the [next section][exporting].
 
 Please note that the section _Level exporting_ and the subsequent sections will assume that the end user has completed all of the examples and tutorials up to and including those in _Level creation_. The remaining sections in _Multiplayer level design_ will use the completed "tutorial.blend" file from these sections.
 ```

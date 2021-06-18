@@ -1,7 +1,3 @@
-```.alert
-This guide assumes you have already [prepared Blender][blender-prep].
-```
-
 # File list
 | File Link                                                                                       | Description
 |------------------------------------------------------------------------------------------------ | -----------------------------------
@@ -13,7 +9,7 @@ We will start by going over how Halo requires your folders to be structured for 
 # Creation of a level directory
 For the sake of organizing your asset files you should consider keeping all your source files in the same level directory used to create the level (.blend, .tif, .psd, .jms, etc..).
 
-Tool.exe will search for subdirectories in the level directory that contain the raw asset data for compilation and eventually package the resulting assets from the raw data into a map cache file that can run in Halo CE. Any assets that you compile will end up in the tags directory plus the local path to the raw assets in the data folder. For example the file below:
+[Tool][] will search for subdirectories in the level directory that contain the raw asset data for compilation and eventually package the resulting assets from the raw data into a map cache file that can run in Halo CE. Any assets that you compile will end up in the tags directory plus the local path to the raw assets in the data folder. For example the file below:
 
 `(HEK Install Path)\data\levels\test\dreamer\models\test.JMS`
 
@@ -61,5 +57,5 @@ As stated before compiled assets will end up in a path that mirrors the path of 
 # End of file directory info
 
 ```.alert success
-Now that you fully understand the data directory setup we can begin to work on our level geometry in the [next section][level-creation-beginner]. If you already understand Halo level creation in Blender or wish to attempt importing something first then go ahead and skip over to the [export section.][level-creation-exporting] You can also take the end result file linked in the [file list][level-creation-file-directories#file-list] section to get used to the data directory setup.
+Now that you fully understand the data directory setup we can begin to work on our level geometry in the [next section][level-creation-beginner]. If you already understand Halo level creation in Blender or wish to attempt importing something first then go ahead and skip over to the [export section.][exporting] You can also take the end result file linked in the [file list][file-directories#file-list] section to get used to the data directory setup.
 ```
