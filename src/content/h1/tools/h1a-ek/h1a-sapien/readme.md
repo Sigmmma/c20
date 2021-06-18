@@ -74,7 +74,6 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * Hold <kbd>Tab</kbd>: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.
 * In the hierarchy view, pressing a key will cycle through all folders that start with that character. For example, pressing <kbd>A</kbd> while having the "Missions" folder expanded will immediately take you to the "AI" folder.
 * <kbd>N</kbd>: This hotkey will snap a selected object to the normal of the ground below it.
-* Open the console, then close it to lock the mouse allowing you to use the game view without needing to hold <kbd>Middle mouse</kbd> down. Press <kbd>Middle mouse</kbd> to unlock it.
 
 ## Encounters and AI
 * <kbd>Middle mouse + F1</kbd>: Selects the spawned actor in the center of the game view.

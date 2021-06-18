@@ -27,7 +27,7 @@ type_defs:
     fields:
       - name: marker_name
         type: TagString
-  EffectCreateIn1:
+  EffectCreateIn:
     class: enum
     size: 2
     options:
@@ -35,7 +35,7 @@ type_defs:
       - name: air_only
       - name: water_only
       - name: space_only
-  EffectCreateIn2:
+  ViolenceMode:
     class: enum
     size: 2
     options:
@@ -67,10 +67,10 @@ type_defs:
     class: struct
     assert_size: 104
     fields:
-      - name: create_in_1
-        type: EffectCreateIn1
-      - name: create_in_2
-        type: EffectCreateIn2
+      - name: create_in
+        type: EffectCreateIn
+      - name: violence_mode
+        type: ViolenceMode
       - name: location
         type: Index
         meta:
@@ -168,10 +168,10 @@ type_defs:
     meta:
       post_compile: true
     fields:
-      - name: create_in_1
-        type: EffectCreateIn1
-      - name: create_in_2
-        type: EffectCreateIn2
+      - name: create_in
+        type: EffectCreateIn
+      - name: violence_mode
+        type: ViolenceMode
       - name: create
         type: EffectCreate
       - type: pad

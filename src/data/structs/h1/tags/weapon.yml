@@ -530,7 +530,8 @@ type_defs:
 
             The object will spawn facing the same direction as the first person
             camera (along with any error angle applied, if necessary) with the
-            velocity of the shooter.
+            velocity of the shooter. This reference should not be NULL to prevent
+            crashes in H1CE.
       - name: ejection_port_recovery_time
         type: float
       - name: illumination_recovery_time

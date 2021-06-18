@@ -21,24 +21,38 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * The original source [HSC scripts][scripting] are included for all campaign missions.
 
 ## General
-* Negative [fog][] opaque distance and depth no longer causes a crash.
-* Negative power values for [skies][sky] no longer causes a radiosity crash.
+* Stability improvements:
+  * Negative [fog][] opaque distance and depth no longer causes a crash.
+  * Negative power values for [skies][sky] no longer causes a radiosity crash.
+  * Fixed [bitmap group sequence blocks][bitmap#tag-field-bitmap-group-sequence] crashing when crosshair overlay sequence index was out of bounds.
+  * Fixed exception when AI try to fire weapons without [projectile references][weapon#tag-field-triggers-projectile-object].
+  * Various buffer overflow fixes.
 * The tools are in general faster and more responsive (in part due to manual optimizations, in part due to [*play* builds][build-types#optimization-options] built with a modern optimizing compiler being used instead of *test* builds).
-* The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
 * Asserts can be disabled using the `-noassert` command line flag.
 * The tags, data, and maps directories can now be set when running all tools. See [custom content paths][using-custom-content-paths] for more info. This makes it easier to work with different tag sets.
 * All tools are still 32-bit but they are now large address aware (LAA). This allows them to use up to 4 GiB of virtual memory instead of 2, which prevents Sapien from running out of memory when editing scenarios with many large assets.
 
 ## Visual
-* The renderer uses DX11 instead of DX9 now.
+* The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
 * First person models now use the highest [LOD][gbxmodel#level-of-detail] available instead of the lowest.
-* Many [Gearbox visual bugs][renderer#gearbox-regressions] were fixed. For example, the restoration of [shader_transparent_generic][] and environment bump mapping.
+* Many [Gearbox visual bugs][renderer#gearbox-regressions] were fixed. Some examples are:
+  * Restoration of [shader_transparent_generic][] and [shader_transparent_plasma][]
+  * [fog][] screen layers
+  * Fog planes draw over sky
+  * Environment bump mapping
+  * Interpolation on screen shake, antennas, flags, and some UI fading
+  * Water mipmap order
+  * Camo tint
+  * Glass with bumped reflections
+  * Flashlight distance
+  * Widget alignment in mirror reflections
 
 ## Tool
-* Lots of new verbs have been added. See the [Tool][h1a-tool] page for more details.
+* Lots of new verbs have been added. See the [Tool][h1a-tool] page for details.
 * A `-verbose` flag can be added to see additional logging.
 * Lightmapping code has been optimized and is even faster with the `-noassert` command line flag. Lightmapping now takes roughly a quarter of the time of legacy Tool and is even faster than [LM tool][hek/tool/lm_tool]. Additionally this code now only uses 32-bit integers instead of an unsafe mix with 16-bit ones, and 16 MiB stack reserve. This increases the crash stability of radiosity.
 * Most logs (like `debug.txt`) are now saved to a `reports` subfolder (similarly to Halo 2+).
+* ogg/vorbis upgraded to to 1.3.5/1.3.7 which should improve [sound][] compilation stability.
 * Bitmaps compilation
   * Bitmap DXT1-3 (BC1-3) encoding now uses [DirectXTex](https://github.com/Microsoft/DirectXTex) instead of some S3TC code. This should result in higher quality similar to the original XDK.
   * The `bitmaps` verb now accepts both `.tiff` and `.tif` extensions like `bitmap` does.
@@ -75,17 +89,20 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * Multiple Sapien instances can now be launched at once using the `-multipleinstance` [command line][command-line] flag.
 * User interface improvements:
   * Sapien now features a modern Windows file open dialog which includes locations like quick access. This is also true for the _Edit Types_ menu when finding new tags to add to a palette.
+  * Invalid block indices are now shown as `BAD: #` rather than being set to `-1`.
   * UI has been cleaned up a bit with unsupported elements removed (e.g. _File > New_) and others renamed.
   * Added "Clear" button to tag reference dialog.
   * The _View_ menu now includes ways to reopen the _Output window_ and _Tool window_ if they are closed.
   * Widened layouts for strings, references, block indices, etc.
   * When placing [netgame flags][scenario#tag-field-netgame-flags], the _Properties palette_ now includes explanations for how to set up each [game mode][game-modes].
+  * When placing [netgame equipment][scenario#tag-field-netgame-equipment] the team index field also has a helpful reminder that 0=red and 1=blue.
 * Stability improvement:
   * [Detail object][detail_object_collection] painting is possibly more stable now. More testing is needed to confirm.
   * Sapien no longer crashes if a BSP fog plane has a fog region set to NONE.
   * Recording and model view modes no longer cause a crash on closing Sapien.
   * Closing the _Output window_ now properly sets its handle to NULL.
   * The _New instance_ and _Delete_ buttons in the hierarchy view are now properly disabled when not applicable.
+  * Fixed a crash related to selecting custom [device_control][] names.
   * Fixed issues with invalid platoon indices.
 
 ## Guerilla
@@ -137,6 +154,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * [gbxmodel][] node limit was increased from 48 to 63 to match Custom Edition 1.10.
 * [model_collision_geometry pathfinding sphere][model_collision_geometry#pathfinding-spheres] limit increased from 32 to 256.
 * [scenery][] received a new [flags field][scenery#tag-field-flags] which is unused in current versions of MCC.
+* [effect][] parts and particles each previously had two fields called _create in_. The second in each case has been corrected to [_violence mode_][effect#tag-field-events-parts-violence-mode].
 * [weapon][]:
   * Trigger [distribution angle][weapon#tag-field-triggers-distribution-angle] is now typed as an "angle" instead of a plain float so it can be edited in degrees (radians internally).
   * Trigger flags has a [new option][weapon#tag-field-triggers-flags-use-unit-adjust-projectile-ray-from-halo1] to force legacy (buggy) aiming behaviour seen in the Spirit dropship's turret.
