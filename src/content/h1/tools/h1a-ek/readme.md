@@ -32,7 +32,6 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 ## Visual
 * The renderer uses DX11 instead of DX9 now.
 * First person models now use the highest [LOD][gbxmodel#level-of-detail] available instead of the lowest.
-* `MAXIMUM_RENDERED_OBJECTS` increased from 256 to 512.
 * Many [Gearbox visual bugs][renderer#gearbox-regressions] were fixed. For example, the restoration of [shader_transparent_generic][] and environment bump mapping.
 
 ## Tool
@@ -175,5 +174,6 @@ Due to changes in the game state structure, savegames from before season 7 are i
 
 * Some AI-related [game state][game-state] was space-optimized (roughly 90 KiB savings) to make room for growing other datum arrays.
 * Bump [antennas][antenna] limit from 12 to 24.
+* `MAXIMUM_RENDERED_OBJECTS` increased from 256 to 512.
 
 [steam]: https://store.steampowered.com/
