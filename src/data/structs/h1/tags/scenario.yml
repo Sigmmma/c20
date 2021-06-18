@@ -60,6 +60,12 @@ type_defs:
     bits:
       - name: cortana_hack
       - name: use_demo_ui
+      - name: disable_color_correction
+        meta:
+          h1a_only: true
+          unused: true
+        comments:
+          en: Unused at this time.
   ScenarioChildScenario:
     class: struct
     assert_size: 32

@@ -165,6 +165,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
     * Player start location [BSP index field][scenario#tag-field-player-starting-locations-bsp-index].
     * Netgame flags [weapon group][scenario#tag-field-netgame-flags-weapon-group].
   * The previously hidden cutscene title fields [_text style_][scenario#tag-field-cutscene-titles-text-style] and [_text flags_][scenario#tag-field-cutscene-titles-text-flags] are now exposed.
+  * There is a new scenario flag [_disable color correction_][scenario#tag-field-flags-disable-color-correction] although it is unused at this time.
   * [Script source text][scenario#tag-field-source-files-source] is now visible in Guerilla and Sapien.
   * Netgame flags _team index_ was renamed to [_usage id_][scenario#tag-field-netgame-flags-usage-id] and explanations were added in the tag for how to set this ID depending on the flag type.
   * [BSP switch trigger volumes][scenario#tag-field-bsp-switch-trigger-volumes] source and destination BSPs are now typed as proper block indices rather than integers, which causes Guerilla to display them as drop-downs. This block is also hidden unless in expert mode since it is populated during postprocessing.
