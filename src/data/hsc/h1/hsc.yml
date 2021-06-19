@@ -1962,12 +1962,15 @@ Functions:
           ```
           Gives the player active camouflage
     - slug: cheat_all_powerups
+      tags:
+        - globals
       info:
         en: |-
           ```hsc
           (<void> cheat_all_powerups)
           ```
-          Drops all powerups near player
+          Drops all powerups near player. The set of powerups is controlled by
+          the [globals tag][globals#tag-field-cheat-powerups].
     - slug: cheat_all_vehicles
       info:
         en: |-

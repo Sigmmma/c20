@@ -61,7 +61,7 @@ Tool supports TIFF files with a [colour depth][wiki-color] of at least 8 bits pe
 A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb. Simply provide your scenario's tag path and choose classic or remastered mode (the last two arguments are optional):
 
 ```sh
-# build-cache-file <scenario-name> <classic|remastered> [write-resource-maps] [log-tag-loads]
+#  build-cache-file <scenario-name> <classic|remastered> [resource-map-usage<none|read|read_write>] [log-tag-loads]
 tool build-cache-file "levels\test\tutorial\tutorial" classic 0 # classic graphics with update resource disabled
 tool build-cache-file "levels\test\tutorial\tutorial" remastered
 ```
@@ -69,16 +69,22 @@ tool build-cache-file "levels\test\tutorial\tutorial" remastered
 The resulting map file can be found in the editing kit's `maps` directory. This verb also generates reports under `reports\<mapname>` including a compilation-specific `debug.txt` and a `tag_dump.txt`.
 
 ```.alert
-H1A Tool recompiles scripts during cache compilation using **source files** from the data directory when available. Legacy Tool _only_ used sources stored (and only in certain situations) [within the scenario tag][scenario#tag-field-source-files] which was sometimes a source of confusion.
+H1A Tool recompiles scripts during cache compilation using **source files** from the data directory when available. Legacy Tool _only_ used sources stored [within the scenario tag][scenario#tag-field-source-files] which was sometimes a source of confusion.
 ```
 
 ## Classic and remastered mode
 
 * "classic" is intended for custom maps that don't support remastered graphics.
-* "remastered" is intended for building maps compatible with S3D-based remastered graphics and sounds. Some HUD bitmaps will be read from S3D data files not tags.
+* "remastered" is intended for building maps compatible with S3D-based remastered graphics and sounds. Some HUD bitmaps will be read from S3D data files instead of tags.
 
 ## Updating resource maps
-By default `build-cache-file` will update the `bitmaps.map` and `sounds.map` resource maps, this can be disabled to match the behavior of legacy Tool. Tool will neither update nor read `loc.map` because it is unused in H1A aside from H1CE compatibility.
+There are 3 ways to use [resource maps][map#resource-maps] when building a cache file:
+
+* `none`: Tool will build self-contained maps. This is the default and also the behaviour of the resource maps are missing from their expected location.
+* `read`: Tool will allow your map to rely on tags within `bitmaps.map` and `sounds.map`.
+* `read_write`: Tool will add bitmaps and sounds from the map being compiled into the respective resource maps. [Lightmaps][] bitmaps are still kept in the map's own cache file rather than added to `bitmaps.map`.
+
+Note: H1A Tool will never update nor read `loc.map` because it is unused in H1A aside from H1CE compatibility.
 
 ## Log tag loads
 Tag loads during cache compilation can be logged to `tool_tags_loaded.txt`, this helps build a list of tags needed for a scenario if you are releasing a tag set.

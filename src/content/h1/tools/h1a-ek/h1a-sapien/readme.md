@@ -11,7 +11,7 @@ It is roughly analagous to Forge found in later Halo titles, although the user c
 # Getting legacy debug_objects
 If you prefer legacy Sapien's `debug_objects 1` default appearance, simply set the following globals:
 
-```
+```console-h1a
 debug_objects_collision_models 1
 debug_objects_bounding_spheres 1
 debug_objects_root_node 0
@@ -156,10 +156,6 @@ Sapien requires DX11 support, it is currently unknown if it can be run under WIN
       <td>Can't change the open scenario</td>
       <td>This is a known issue, simply close Sapien and open it again; this will allow you to open the scenario.</td>
     </tr>
-    <tr>
-      <td>Mouse is locked to game view</td>
-      <td>This is a new feature that might be confusing to some users of the legacy HEK, simply press the middle mouse button to unlock it.</td>
-    </tr>
   </tbody>
 </table>
 
@@ -199,6 +195,10 @@ Sapien has encountered an unrecognized tag class, such as an [OpenSauce][OpenSau
     <tr>
       <td>EXCEPTION halt in e:\jenkins\workspace\mcch1codebuild\mcc\main\h1\code\h1a2\sources\sound\sound_dsound_pc.c,#2083: play_cursor_position >= 0 && play_cursor_position < GetAvgBytesPerSecond(sound_samples_per_second(channel_type_sample_rate(channel->type_flags)), channel_get_num_channels(channel_index))</td>
       <td>A sound device was lost while Sapien was running. Make sure you don't unplug anything.</td>
+    </tr>
+    <tr>
+      <td>EXCEPTION halt in \halopc\haloce\source\sound\sound_dsound_pc.c,#2151: length <= channel->buffer_size</td>
+      <td>A sound device was disabled while Sapien was using it.</td>
     </tr>
   </tbody>
 </table>

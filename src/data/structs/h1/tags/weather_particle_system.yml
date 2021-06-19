@@ -218,6 +218,9 @@ type_defs:
     class: struct
     meta:
       tag_id: rain
+    comments:
+      en: >-
+        Defines the appearance and behaviour of weather particles like rain and snow.
     assert_size: 48
     fields:
       - name: flags

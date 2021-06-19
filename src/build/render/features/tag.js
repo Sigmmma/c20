@@ -1,5 +1,5 @@
 const R = require("ramda");
-const {renderMarkdownInline, heading, structDisplay, detailsList, defAnchor, html, localizer, tagAnchor, alert, slugify} = require("../components");
+const {renderMarkdownInline, heading, structDisplay, detailsList, defAnchor, html, localizer, tagAnchor, alert, slugify, icon} = require("../components");
 const {walkTypeDefs} = require("../../../data/structs");
 
 const localizations = localizer({
@@ -140,7 +140,7 @@ module.exports = async function(ctx) {
     ],
     metaSections,
     searchText: structRender.searchTerms.join(" "),
-    metaTitle: `Tag: ${tagName} (${groupId})`,
+    metaTitle: `${icon("sliders", "Tag")} ${tagName} (${groupId})`,
     metaClass: "content-tag",
     thanks: localizeThanks(ctx, ctx.data.tagThanks[game])
   };

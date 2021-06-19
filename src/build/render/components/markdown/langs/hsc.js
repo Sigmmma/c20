@@ -126,11 +126,19 @@ function build(consoleMode) {
     LIST.contains = [hljs.COMMENT('comment', ''), PLACEHOLDER, PLACEHOLDER_OPTIONAL, GLOBAL, NAME, OPERATOR, BODY];
     BODY.contains = DEFAULT_CONTAINS;
 
+    const SCRIPTS = [LIST, PLACEHOLDER, PLACEHOLDER_OPTIONAL, STRING, COMMENT, NUMBER, LITERAL, PREPROCESSOR];
+    var CONSOLE_LINE = {
+      className: 'console-line',
+      begin: "^",
+      end: "$",
+      contains: SCRIPTS
+    };
+
     return {
       name: 'HaloScript',
       aliases: ['hsc'],
       illegal: /\S/,
-      contains: [LIST, PLACEHOLDER, PLACEHOLDER_OPTIONAL, STRING, COMMENT, NUMBER, LITERAL, PREPROCESSOR]
+      contains: consoleMode ? [CONSOLE_LINE] : SCRIPTS
     };
   };
 };

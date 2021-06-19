@@ -1024,6 +1024,10 @@ type_defs:
     meta:
       tag_id: matg
       pre_compile: true
+    comments:
+      en: >-
+        Contains global configuration related to singleplayer, multiplayer,
+        rasterizer data, the HUD, and more.
     assert_size: 428
     fields:
       - type: pad
@@ -1092,6 +1096,10 @@ type_defs:
         type: Block
         type_args:
           T: GlobalsCheatPowerup
+        comments:
+          en: >-
+            Defines the set of powerups dropped when the function
+            [cheat_all_powerups][scripting#functions-cheat-all-powerups] is used.
       - name: multiplayer_information
         type: Block
         type_args:

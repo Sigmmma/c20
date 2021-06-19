@@ -1,5 +1,5 @@
 const R = require("ramda");
-const {localizer, anchor, detailsList, ul} = require("../components");
+const {localizer, anchor, detailsList, ul, icon} = require("../components");
 
 const localizations = localizer({
   authors: {
@@ -13,6 +13,10 @@ const localizations = localizer({
   tool: {
     en: "Tool",
     es: "Herramienta"
+  },
+  resource: {
+    en: "Resource",
+    es: "Recurso"
   },
   workflows: {
     en: "Workflows",
@@ -190,7 +194,9 @@ module.exports = async function(ctx) {
 
   return {
     metaSections,
-    metaTitle: page.toolName ? `${localize("tool")}: ${page.toolName}` : defaultMetaTitle,
+    metaTitle: page.toolName ?
+      `${icon("tool", localize("tool"))} ${page.toolName}` :
+      `${icon("file", localizer("resource"))} ${defaultMetaTitle}`,
     metaClass: page.toolName ? "content-tool" : undefined,
   };
 };

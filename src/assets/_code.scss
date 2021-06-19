@@ -8,13 +8,13 @@ pre, code {
 code {
   padding: 0.1em 0.2em;
 
-  &.language-console > .hljs-name:before {
+  &.language-console > .hljs-console-line > .hljs-name:first-child:before {
     content: "halo( ";
     transition: opacity $transition-time;
     color: fuchsia;
   }
 
-  &.language-console-h1a > .hljs-name:before {
+  &.language-console-h1a > .hljs-console-line > .hljs-name:first-child:before {
     content: "h1( ";
     transition: opacity $transition-time;
     color: fuchsia;
@@ -38,11 +38,11 @@ pre:hover code.language-hsc:before {
   opacity: 0.5;
 }
 
-pre:hover code.language-console > .hljs-name:before {
+pre:hover code.language-console > .hljs-console-line > .hljs-name:first-child:before {
   opacity: 0.5;
 }
 
-pre:hover code.language-console-h1a > .hljs-name:before {
+pre:hover code.language-console-h1a > .hljs-console-line > .hljs-name:first-child:before {
   opacity: 0.5;
 }
 

@@ -5,6 +5,10 @@ table {
   margin-bottom: var(--padding-sm);
   width: 100%;
 
+  &.no-clear {
+    width: auto;
+  }
+
   td, th {
     padding: var(--padding-sm);
     border: 1px solid var(--border-color);;

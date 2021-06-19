@@ -1893,6 +1893,8 @@ DebugFunctions:
           ```
           Displays a green physics pill where a co-op player would spawn if safe.
     - slug: debug_point_physics
+      tags:
+        - point_physics
       info:
         en: |-
           ```hsc
@@ -1901,7 +1903,8 @@ DebugFunctions:
           Renders green or red markers wherever [point_physics][] are being
           simulated, except for the [weather_particle_system][]. This includes
           [flags][flag], [antenna][], [contrails][contrail], [particles][particle],
-          and [particle_systems][particle_system].
+          and [particle_systems][particle_system]. It can help to enable `framerate_throttle`
+          for these markers to render consistently.
     - slug: debug_pvs
       info:
         en: |-

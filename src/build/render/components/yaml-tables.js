@@ -125,7 +125,7 @@ function renderTableYaml(ctx, optsYaml) {
         </nav>
       </p>
     `}
-    <table>
+    <table class="${opts.noClear ? "no-clear" : ""}">
       <thead>
         <tr>
           ${data.columns.map((col, i) => html`

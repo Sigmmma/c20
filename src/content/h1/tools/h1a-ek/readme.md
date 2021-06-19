@@ -26,7 +26,8 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * Negative power values for [skies][sky] no longer causes a radiosity crash.
   * Fixed [bitmap group sequence blocks][bitmap#tag-field-bitmap-group-sequence] crashing when crosshair overlay sequence index was out of bounds.
   * Fixed exception when AI try to fire weapons without [projectile references][weapon#tag-field-triggers-projectile-object].
-  * Various buffer overflow fixes.
+  * Fixed a crash resulting from ejection from flipped vehicles not resetting unit animation state.
+  * Buffer overflow fixes.
 * The tools are in general faster and more responsive (in part due to manual optimizations, in part due to [*play* builds][build-types#optimization-options] built with a modern optimizing compiler being used instead of *test* builds).
 * Asserts can be disabled using the `-noassert` command line flag.
 * The tags, data, and maps directories can now be set when running all tools. See [custom content paths][using-custom-content-paths] for more info. This makes it easier to work with different tag sets.

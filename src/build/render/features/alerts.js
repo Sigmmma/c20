@@ -1,11 +1,11 @@
 const R = require("ramda");
-const {localizer, alert, html, REPO_URL, renderMarkdown} = require("../components");
+const {localizer, alert, html, REPO_URL, renderMarkdown, icon} = require("../components");
 
 const localizations = localizer({
   stubNotice: {
     en: (ctx) => html`
-      <p>🚧 This incomplete article needs help! Please submit tips and info by
-      <a href="${REPO_URL}">pull requests or issues</a> or contacting a <a href="${ctx.resolveUrl("thanks")}">maintainer</a>.</p>
+      <p>${icon("help-circle")} This page needs help! Please submit any missing information via
+      <a href="${REPO_URL}">GitHub issues or pull requests</a>.</p>
     `,
     es: (ctx) => html`
       <p>🚧 ¡Este artículo incompleto necesita ayuda! Envíe sugerencias e información mediante

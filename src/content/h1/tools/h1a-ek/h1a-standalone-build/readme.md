@@ -1,9 +1,21 @@
 The [H1A-EK][] includes a **standalone build** of that game (**halo_tag_test.exe**). This build doesn't include network functionality and it intended for testing single-player maps. It includes AI debugging code not included in other published builds of the engine.
 [Using custom content paths][using-custom-content-paths] is supported.
 
-The UI works to a limited degree but loading maps is best done through [`map_name`][scripting#functions-map-name]. *Note: you need to use the full scenario tag path e.g. `levels\a30\a30` not a short name like `a10` as this is a [tag build][build-types#tag].*
+```.alert danger
+The standalone build is still somewhat experimental and bugs should be expected. Again, only single-player maps are officially supported at this time. Maps should always receive final testing as [cache files][map] loaded by MCC itself.
+```
 
-This build supports some of the same [arguments][arguments#arguments-list] that H1CE does, such as `-vidmode 2560,1440,120` to set resolution.
+# Usage
+The UI works to a limited degree but loading maps is best done using the [`map_name`][scripting#functions-map-name] command in the [console][developer-console]. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
+
+```console
+; load tags\levels\a30\a30.scenario:
+map_name levels\a30\a30
+; load tags\levels\test\bloodgulch\bloodgulch.scenario:
+map_name levels\test\bloodgulch\bloodgulch
+```
+
+This build supports some of the same [arguments][arguments#arguments-list] that H1CE does, such as `-vidmode 2560,1440,120` to set resolution and `-windowed` mode.
 
 # Use cases
 This build offers a number of benefits for testing over compiling cache files for H1A:
@@ -15,5 +27,6 @@ This build offers a number of benefits for testing over compiling cache files fo
 # Known issues
 
 * Sound cuts out - ensure `framerate_throttle` is enabled, i.e. run `framerate_throttle 1` in the console.
-* Low mouse sensitivity in vehicles - no known fix
-* Some AI may behave differently than in a cache build. For example, the sentinels during d40's Warthog run are inactive. Maps should always be finalized by testing in MCC itself.
+* Low mouse sensitivity in vehicles and when zoomed in
+* Some AI may behave differently than in a [cache build][build-types#cache]. For example, the sentinels during d40's Warthog run are inactive.
+* Player cannot be controlled while in debug camera mode.
