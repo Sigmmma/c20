@@ -122,15 +122,6 @@ This commands takes a JMA file directly and converts it to a camera_track for th
 tool camera-track cameras\ohno.jma
 ```
 
-# Check lights
-
-```sh
-# check-lights <root-directory>
-tool check-lights levels\test\my_broke_level
-```
-
-Checks all the [light][] tags in a tag path (including sub-directories). Errors will be printed to console.
-
 # Check map
 
 ```sh
@@ -148,16 +139,6 @@ tool check-shaders levels\test\my_broke_level
 ```
 
 Checks all the [shader][] tags in a tag path (including sub-directories). Errors will be printed to console.
-
-# Check tags
-
-```sh
-# check-tags <root-directory>
-tool check-tags levels\test\my_broke_level
-```
-
-Equivalent to consecutively running `check-shaders` and `check-lights` for the same path.
-
 
 # Collision geometry compilation
 A [JMS][] file containing a collision model can be compiled into a [model_collision_geometry][] using the `collision-geometry` verb:
@@ -359,8 +340,9 @@ This command can merge the scenery tag blocks of the source scenario to the dest
 A [JMS][] file containing model geometry can be compiled into a [gbxmodel][] using the `model` verb:
 
 ```sh
-# model <source-directory>
+# model <source-directory> [use-halo2-permutation-lod-selection-logic?]
 tool model "scenery\rock"
+tool model "weapons\mygun" 1
 ```
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenery\rock\models\rock.JMS`. Assuming no errors, it would be compiled into `tags\scenery\rock\rock.gbxmodel`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
@@ -385,6 +367,11 @@ Use multiple JMS files to generate multiple permutations in a model.
 ```.alert danger
 Tool only uses [markers][gbxmodel#markers] from the `superhigh` LOD when making a model tag. If you don't have a superhigh LOD (i.e. you have something explicity set as superlow/low/medium/high but not superhigh), no markers will be generated.
 ```
+
+## Halo 2 LOD selection logic
+The optional boolean argument `[use-halo2-permutation-lod-selection-logic?]` causes Tool to use [H2 Tool][h2tool] logic for choosing LODs. The 'base' permutation's LODs are chosen the same way as the non-base; all permutations propagate using any existing LOD in that permutation when LODs are missing. Any missing LODs for a permutation will use the last non-NONE LOD within that permutation.
+
+This is the more intuitive behaviour and probably what you want to use. The prior lack of this is what causes the Banshee's destroyed permutation to appear intact at the lowest LODs because it re-uses the base permutation's LOD.
 
 # Physics compilation
 A [JMS][] file containing collision spheres can be compiled into a [physics][] using the `physics` verb:

@@ -4,7 +4,7 @@ Some capabilities available to objects (though not used by every subtype) are:
 
 * Be rendered with a [model][gbxmodel]
 * Have [physics][] and be [collideable][model_collision_geometry]
-* Cast shadows using [lightmap data][scenario_structure_bsp]
+* Cast shadows using [lightmap data][lightmaps]
 * Have attachments like [particles][particle_system], [sounds][sound_looping], and [lights][light]
 * Be attached to each other (e.g. pelicans carrying warthogs)
 

@@ -194,11 +194,11 @@ Sapien has encountered an unrecognized tag class, such as an [OpenSauce][OpenSau
     </tr>
     <tr>
       <td>EXCEPTION halt in e:\jenkins\workspace\mcch1codebuild\mcc\main\h1\code\h1a2\sources\sound\sound_dsound_pc.c,#2083: play_cursor_position >= 0 && play_cursor_position < GetAvgBytesPerSecond(sound_samples_per_second(channel_type_sample_rate(channel->type_flags)), channel_get_num_channels(channel_index))</td>
-      <td>A sound device was lost while Sapien was running. Make sure you don't unplug anything.</td>
+      <td>A sound device was lost while Sapien was running. Make sure you don't unplug anything and considering using the -nosound argument.</td>
     </tr>
     <tr>
       <td>EXCEPTION halt in \halopc\haloce\source\sound\sound_dsound_pc.c,#2151: length <= channel->buffer_size</td>
-      <td>A sound device was disabled while Sapien was using it.</td>
+      <td>A sound device was disabled while Sapien was using it. Considering using the -nosound argument</td>
     </tr>
   </tbody>
 </table>

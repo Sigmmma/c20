@@ -67,6 +67,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * The functionality used by [phantom_tool][hek/tool/phantom_tool] to remove [collision artifacts][scenario_structure_bsp#collision-artifacts] is now exposed as an argument for compiling [BSPs][scenario_structure_bsp] (`structure` verb) and [model_collision_geometry][] (`collision-geometry`).
   * [WRL][] files are saved alongside the [JMS][] file being compiled rather than the HEK root. The user is now told that this file was generated.
   * When compiling a structure BSP and shaders do not yet exist, the chosen types of shaders will now be generated in the level's `shaders` directory instead of the tags root.
+  * Model compilation can now optionally use [Halo 2's logic for LOD selection][h1a-tool#halo-2-lod-selection-logic], which is more intuitive.
 * Usage and feedback clarity:
   * Argument parsing is now less primitive. Verbs can include optional arguments and flags and any unrecognized options are presented to the user.
   * The usage printout when Tool is run without arguments is now sorted. The names and argument descriptions of some existing verbs have been updated for clarity and consistency.
@@ -98,6 +99,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * When placing [netgame flags][scenario#tag-field-netgame-flags], the _Properties palette_ now includes explanations for how to set up each [game mode][game-modes].
   * When placing [netgame equipment][scenario#tag-field-netgame-equipment] the team index field also has a helpful reminder that 0=red and 1=blue.
 * Stability improvement:
+  * The snap to normal hotkey, <kbd>N</kbd>, no longer puts the editor into a bad state.
   * [Detail object][detail_object_collection] painting is possibly more stable now. More testing is needed to confirm.
   * Sapien no longer crashes if a BSP fog plane has a fog region set to NONE.
   * Recording and model view modes no longer cause a crash on closing Sapien.
@@ -147,6 +149,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 ## Debug globals
 * `debug_structure` shows invisible collision surfaces in semi-transparent red and includes a BSP bounding box now (Halo 2 Sapien backport).
 * `debug_objects` behavior has been changed. It no longer shows bounding spheres and collision geometry by default but these can still be toggled on their own.
+* `cheat_jetpack` now works like it was intended to. Hold crouch to float and jump to fly.
 
 ## Tag classes
 * [unit][unit#tag-field-metagame-type] and [actor_variant][actor_variant#tag-field-metagame-type] now each include the _metagame type_ and _metagame class_ fields for MCC's scoring system.

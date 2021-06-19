@@ -969,7 +969,8 @@ DebugFunctions:
           (cheat_jetpack [boolean])
           ```
           If enabled, players take no fall damage. In MCC, holding crouch while
-          mid-air will also cause the player to hover.
+          mid-air will also cause the player to hover and holding jump will cause
+          you to fly.
     - slug: cheat_medusa
       info:
         en: |-
@@ -1474,7 +1475,7 @@ DebugFunctions:
           - BSP leaf and cluster indices
           - Ground point coordinates and BSP surface index (point directly below the camera on the ground)
           - Facing direction (yaw angle)
-          - Tag path of the shader pointed at by the camera
+          - Tag path of the shader pointed at by the camera. The surface must be collideable and this feature cannot be configured with collision debug flags.
     - slug: debug_collision_skip_objects
       info:
         en: |-
