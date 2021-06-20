@@ -156,6 +156,10 @@ Sapien requires DX11 support, it is currently unknown if it can be run under WIN
       <td>Can't change the open scenario</td>
       <td>This is a known issue, simply close Sapien and open it again; this will allow you to open the scenario.</td>
     </tr>
+    <tr>
+      <td>Mouse is locked to game view</td>
+      <td>Issue/feature with some keyboard layouts, press the middle mouse button to unlock it.</td>
+    </tr>
   </tbody>
 </table>
 
