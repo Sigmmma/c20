@@ -42,7 +42,7 @@ Movement of the camera is done in the same way as the in-game debug camera; **ho
 * Decrease camera speed by scrolling up
 * Temporarily boost camera speed by holding <kbd>Ctrl</kbd> (new in H1A Sapien)
 
-Camera rotation with the <kbd>G</kbd> key is only supported in-game and not in Sapien. If you have accidentally opened the singleplayer pause menu, it can be closed agian with <kbd>Middle mouse + Escape</kbd>.
+Camera rotation with the <kbd>G</kbd> key is only supported in-game and not in Sapien. If you have accidentally opened the singleplayer pause menu, it can be closed again with <kbd>Middle mouse + Escape</kbd>.
 
 ## Hierarchy view
 The Hierarchy view displays all the objects currently placed in the game and organizes them by type. The left pane of the window shows the Hierarchy tree and currently selected type, and the right pane shows the objects of this selected group or type that are currently placed in the level.
