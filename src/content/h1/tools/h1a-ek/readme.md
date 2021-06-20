@@ -27,11 +27,15 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * Fixed [bitmap group sequence blocks][bitmap#tag-field-bitmap-group-sequence] crashing when crosshair overlay sequence index was out of bounds.
   * Fixed exception when AI try to fire weapons without [projectile references][weapon#tag-field-triggers-projectile-object].
   * Fixed a crash resulting from ejection from flipped vehicles not resetting unit animation state.
-  * Buffer overflow fixes.
+  * Removed an incorrect assertion related to drawing HUD numbers and bitmap sequences.
+  * AI debug code now safely checks for an actor's secondary look direction prop index being NONE.
+  * Various buffer overflow and stale pointer fixes.
+* The engine will now check and log when an invalid [particle_system][] using [rotational complex render mode][particle_system#tag-field-particle-types-complex-sprite-render-modes-rotational] has a particle state where the sprites bitmap does not include another "sideways" sequence after the given "forward" _sequence index_.
 * The tools are in general faster and more responsive (in part due to manual optimizations, in part due to [*play* builds][build-types#optimization-options] built with a modern optimizing compiler being used instead of *test* builds).
 * Asserts can be disabled using the `-noassert` command line flag.
 * The tags, data, and maps directories can now be set when running all tools. See [custom content paths][using-custom-content-paths] for more info. This makes it easier to work with different tag sets.
 * All tools are still 32-bit but they are now large address aware (LAA). This allows them to use up to 4 GiB of virtual memory instead of 2, which prevents Sapien from running out of memory when editing scenarios with many large assets.
+* Various cases of unnecessary/confusing logging in the tools have been removed, such as "Couldn't read map file toolbeta.map" and "Sound card doesn't meet minimum hardware requirements".
 
 ## Visual
 * The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
@@ -115,6 +119,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * UI elements have been upgraded to look more modern, with wider inputs.
   * *Expert mode*, *Show tag block sizes*, and *Copy tag name* options.
   * A zoom level feature has been added to the bitmap viewer. The alpha channel drop-down label has also been corrected.
+* Fields which reference a block element by index, shown as a drop-down, now update their appearance in real time as the referenced block is edited. For example, when a referenced element is deleted the field will immediately show "BAD INDEX: #". When the name of a referenced block element is changed, the label in the drop-down is updated in real time too.
 * Some unused UI options have been removed.
 * When tags are loaded for editing, tag references with an unknown [group ID][tags#group-ids] are now clamped to NONE. This fixes cases like the leftover [weapon_collection][tags#unused-tags] reference in the Bloodgulch scenario from causing downstream problems.
 * _Save as_ now makes copies of read-only tags editable without having to reopen the tag.

@@ -279,16 +279,16 @@ type_defs:
           en: >
             Index of the "head" model node used to create the biped's
             [autoaim pill](#physics-and-autoaim-pills). The pill also
-            uses the "pelvis" node.
+            uses the "bip01 pelvis" node.
       - name: pelvis_model_node_index
         type: Index
         meta:
           cache_only: true
         comments:
           en: >
-            Index of the "pelvis" model node used to create the biped's
+            Index of the "bip01 pelvis" model node used to create the biped's
             [autoaim pill](#physics-and-autoaim-pills). The pill also
-            uses the "head" node.
+            uses the "bip01 head" node.
         endianness: little
       - name: contact_point
         type: Block
