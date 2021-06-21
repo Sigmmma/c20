@@ -248,6 +248,14 @@ Sapien has encountered an unrecognized tag class, such as an [OpenSauce][OpenSau
 You clicked "New instance" when the button is meant to be disabled. Fixed in H1A.
       </td>
     </tr>
+    <tr>
+      <td>EXCEPTION halt in \halopc\haloce\source\tag_files\tag_groups.c,#3157: #0 is not a valid shader_transparent_chicago_map_block index in [#0,#0)</td>
+      <td>Your map uses a transparent shader with no maps defined. Add at least 1.</td>
+    </tr>
+    <tr>
+      <td>EXCEPTION halt in objects.c,#2419: got an object type we didn't expect (expected one of 0x00000001 but got #1).</td>
+      <td>Attempted to take over a unit in recording mode while no unit was selected. Make sure to select a unit first.</td>
+    </tr>
   </tbody>
 </table>
 

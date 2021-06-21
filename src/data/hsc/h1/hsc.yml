@@ -534,7 +534,9 @@ OperatorsAndKeywords:
         ```hsc
         (and <boolean_1> <boolean_2> [... <boolean_n>])
         ```
-        Returns true if all specified expressions are true.
+        Returns true if all specified expressions are true. This function is
+        _short circuiting_, meaning it will not evaluate subsequent expressions
+        if a a prior one evaluates to `false`.
       ex: |
         ```hsc
         (and (player_action_test_action) true)
@@ -679,7 +681,9 @@ OperatorsAndKeywords:
         ```hsc
         (or <boolean_1> <boolean_2> [... <boolean_n>])
         ```
-        Returns true if any specified expressions are true.
+        Returns true if any specified expressions are true. This function is
+        _short circuiting_, meaning it will not evaluate subsequent expressions
+        if a a prior one evaluates to `true`.
       ex: |
         ```hsc
         (or (player_action_test_action) true)

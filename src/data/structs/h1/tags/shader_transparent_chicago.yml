@@ -178,6 +178,10 @@ type_defs:
         meta:
           hek_max_count: 4
           max: 4
+        comments:
+          en: >
+            Warning: [Legacy Sapien][hek/sapien] will crash if this block is
+            empty. The shader is not rendered in H1A Sapien or in-game in this case.
       - name: extra_flags
         type: ShaderTransparentChicagoExtraFlags
       - type: pad

@@ -10,3 +10,6 @@ Using _File > Save/Load Workspace_, you can save and reload a file which contain
 # Using a custom tags path
 
 See [using custom content paths][using-custom-content-paths], you only need to set a tags directory as Geurilla doesn't use the data folder. It should work without any major issues.
+
+# Known issues
+The "Show HUD" window for [unit_hud_interface][] tags does not work as intended.

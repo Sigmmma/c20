@@ -74,7 +74,7 @@ Known renderer limits with the _unmodified_ game are:
 * [Particle_system][] particles: 256
 * Non-particle system [particles][particle]: 512
 * [Objects][object]: 256 (raised to 512 in H1A)
-* [BSP triangles][scenario_structure_bsp]: 16k -- a BSP can have more triangles than this, but the rendered amount should be managed with portals.
+* [BSP triangles][scenario_structure_bsp]: 16k (raised to 32k in H1A) -- a BSP can have more triangles than this, but the rendered amount should be managed with portals.
 
 There are also [game state limits][game-state#limits] which can appear like renderer limitations (eg. maximum simulated antennas).
 

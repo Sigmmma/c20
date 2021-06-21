@@ -29,7 +29,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * Fixed a crash resulting from ejection from flipped vehicles not resetting unit animation state.
   * Removed an incorrect assertion related to drawing HUD numbers and bitmap sequences.
   * AI debug code now safely checks for an actor's secondary look direction prop index being NONE.
-  * Various buffer overflow and stale pointer fixes.
+  * Various buffer overflow, index out of range, and stale pointer fixes.
 * The engine will now check and log when an invalid [particle_system][] using [rotational complex render mode][particle_system#tag-field-particle-types-complex-sprite-render-modes-rotational] has a particle state where the sprites bitmap does not include another "sideways" sequence after the given "forward" _sequence index_.
 * The tools are in general faster and more responsive (in part due to manual optimizations, in part due to [*play* builds][build-types#optimization-options] built with a modern optimizing compiler being used instead of *test* builds).
 * Asserts can be disabled using the `-noassert` command line flag.
@@ -40,6 +40,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 ## Visual
 * The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
 * First person models now use the highest [LOD][gbxmodel#level-of-detail] available instead of the lowest.
+* Increased `MAXIMUM_RENDERED_ENVIRONMENT_SURFACES` from 16k to 32k. This means [BSPs][scenario_structure_bsp] can now have more visible triangles without culling happening. It is still important to use portals to manage visible clusters.
 * Many [Gearbox visual bugs][renderer#gearbox-regressions] were fixed. Some examples are:
   * Restoration of [shader_transparent_generic][] and [shader_transparent_plasma][]
   * [fog][] screen layers
@@ -103,6 +104,8 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * When placing [netgame flags][scenario#tag-field-netgame-flags], the _Properties palette_ now includes explanations for how to set up each [game mode][game-modes].
   * When placing [netgame equipment][scenario#tag-field-netgame-equipment] the team index field also has a helpful reminder that 0=red and 1=blue.
 * Stability improvement:
+  * Transparent shaders with no _maps_ no longer cause Sapien to crash. The shader is simply not rendered.
+  * Objects with _transparent self occlusion_ enabled while also referencing a transparent shader with _extra layers_ will no longer cause a crash.
   * The snap to normal hotkey, <kbd>N</kbd>, no longer puts the editor into a bad state.
   * [Detail object][detail_object_collection] painting is possibly more stable now. More testing is needed to confirm.
   * Sapien no longer crashes if a BSP fog plane has a fog region set to NONE.
@@ -121,6 +124,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * A zoom level feature has been added to the bitmap viewer. The alpha channel drop-down label has also been corrected.
 * Fields which reference a block element by index, shown as a drop-down, now update their appearance in real time as the referenced block is edited. For example, when a referenced element is deleted the field will immediately show "BAD INDEX: #". When the name of a referenced block element is changed, the label in the drop-down is updated in real time too.
 * Some unused UI options have been removed.
+* Guerilla now enforces [sound][] tag gain modifiers are within a valid `0.0` to  `1.0` range.
 * When tags are loaded for editing, tag references with an unknown [group ID][tags#group-ids] are now clamped to NONE. This fixes cases like the leftover [weapon_collection][tags#unused-tags] reference in the Bloodgulch scenario from causing downstream problems.
 * _Save as_ now makes copies of read-only tags editable without having to reopen the tag.
 * Hover-over tooltips for flags after unused sections are no longer off-by-one, e.g. multiplayer spawn flags for vehicles.
@@ -149,7 +153,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * `debug_camera_save` and `debug_camera_load` now save and load `camera_<mapname>.txt` instead of `camera.txt`. A console message is now logged when the camera file isn't found.
   * `player_effect_set_max_rumble` is no longer a hard-coded alias for `player_effect_set_max_vibrate`. Map scripts (like a10 and d40) were updated.
 * H1A's versions of map scripts no longer use a repurposed `core_save_name` to signal mission segments. The function again behaves like legacy and a new `mcc_mission_segment` function was added instead.
-* Globals and functions are no longer locked to specific contexts like server.
+* Globals and functions are no longer locked to specific contexts like server or multiplayer. For example, you can use `cheat_spawn_warthog` in SP maps now when using [H1A Standalone][h1a-standalone-build].
 
 ## Debug globals
 * `debug_structure` shows invisible collision surfaces in semi-transparent red and includes a BSP bounding box now (Halo 2 Sapien backport).
@@ -201,7 +205,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 Due to changes in the game state structure, savegames from before season 7 are invalidated.
 
 * Some AI-related [game state][game-state] was space-optimized (roughly 90 KiB savings) to make room for growing other datum arrays.
-* Bump [antennas][antenna] limit from 12 to 24.
+* Increased [antennas][antenna] limit from 12 to 24.
 * `MAXIMUM_RENDERED_OBJECTS` increased from 256 to 512.
 
 [steam]: https://store.steampowered.com/

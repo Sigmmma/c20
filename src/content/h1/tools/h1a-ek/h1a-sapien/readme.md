@@ -204,5 +204,9 @@ Sapien has encountered an unrecognized tag class, such as an [OpenSauce][OpenSau
       <td>EXCEPTION halt in \halopc\haloce\source\sound\sound_dsound_pc.c,#2151: length <= channel->buffer_size</td>
       <td>A sound device was disabled while Sapien was using it. Considering using the -nosound argument</td>
     </tr>
+    <tr>
+      <td>EXCEPTION halt in objects.c,#2419: got an object type we didn't expect (expected one of 0x00000001 but got #1).</td>
+      <td>Attempted to take over a unit in recording mode while no unit was selected. Make sure to select a unit first.</td>
+    </tr>
   </tbody>
 </table>

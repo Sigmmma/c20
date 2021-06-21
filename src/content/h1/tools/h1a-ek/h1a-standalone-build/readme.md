@@ -26,7 +26,9 @@ This build offers a number of benefits for testing over compiling cache files fo
 
 # Known issues
 
-* Sound cuts out - ensure `framerate_throttle` is enabled, i.e. run `framerate_throttle 1` in the console.
-* Low mouse sensitivity in vehicles and when zoomed in
+* Sound cuts out - ensure `framerate_throttle 1` is set.
+* Menus are rendered at their native size of 640x480 in the top left corner of the screen rather than stretched to the entire game resolution.
+* Low mouse sensitivity in vehicles and when zoomed in.
 * Some AI may behave differently than in a [cache build][build-types#cache]. For example, the sentinels during d40's Warthog run are inactive.
 * Player cannot be controlled while in debug camera mode.
+* Some transparent geometry like lights and decals may be visible even when they are behind an obstruction.
