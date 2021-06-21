@@ -2059,19 +2059,19 @@ type_defs:
         type: uint32
         meta:
           cache_only: true
-          drop_on_extract_hidden: true
+          drop_on_extract_h1a_expert_mode: true
         endianness: little
       - name: bsp_size
         type: uint32
         meta:
           cache_only: true
-          drop_on_extract_hidden: true
+          drop_on_extract_h1a_expert_mode: true
         endianness: little
       - name: bsp_address
         type: uint32
         meta:
           cache_only: true
-          drop_on_extract_hidden: true
+          drop_on_extract_h1a_expert_mode: true
         endianness: little
       - type: pad
         size: 4
@@ -2415,6 +2415,7 @@ type_defs:
         meta:
           hek_max_count: 256
           cache_only: true
+          h1a_expert_mode: true
       - name: decals
         type: Block
         type_args:
@@ -2496,6 +2497,7 @@ type_defs:
           hek_max_count: 512
           h1a_ek_max_count: 1024
           read_only: true
+          h1a_expert_mode: true
       - name: globals
         type: Block
         type_args:
@@ -2504,6 +2506,7 @@ type_defs:
           hek_max_count: 128
           h1a_ek_max_count: 512
           read_only: true
+          h1a_expert_mode: true
       - name: references
         type: Block
         type_args:
@@ -2512,6 +2515,7 @@ type_defs:
           hek_max_count: 256
           h1a_ek_max_count: 512
           read_only: true
+          h1a_expert_mode: true
       - name: source_files
         type: Block
         type_args:

@@ -58,7 +58,6 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * A `-verbose` flag can be added to see additional logging.
 * Lightmapping code has been optimized and is even faster with the `-noassert` command line flag. Lightmapping now takes roughly a quarter of the time of legacy Tool and is even faster than [LM tool][hek/tool/lm_tool]. Additionally this code now only uses 32-bit integers instead of an unsafe mix with 16-bit ones, and 16 MiB stack reserve. This increases the crash stability of radiosity.
 * Most logs (like `debug.txt`) are now saved to a `reports` subfolder (similarly to Halo 2+).
-* ogg/vorbis upgraded to to 1.3.5/1.3.7 which should improve [sound][] compilation stability.
 * Bitmaps compilation
   * Bitmap DXT1-3 (BC1-3) encoding now uses [DirectXTex](https://github.com/Microsoft/DirectXTex) instead of some S3TC code. This should result in higher quality similar to the original XDK.
   * The `bitmaps` verb now accepts both `.tiff` and `.tif` extensions like `bitmap` does.
@@ -81,6 +80,9 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * Verbs which accept a tag path as an argument will now automatically strip `data\` and `tags\` prefixes, allowing you to use tab completion on the command line (Halo 3 backport).
   * Tool will no longer exception (but will log errors) when compiling a [gbxmodel][] where the [JMS][] has invalid node weights (two nodes where one has weight `1.0`).
 * Tool supports a `-pause` flag which keeps the process running after completion until the user presses <kbd>Enter</kbd>. This was meant for community-made launchers like [Osoyoos][].
+* Stability improvements:
+  * ogg/vorbis upgraded to to 1.3.5/1.3.7 which should improve [sound][] compilation stability.
+  * Fixes for various unsafe code: uninitialized variables, bad `printf` args, etc.
 
 ## Sapien
 ![.figure Pictured: kornman00 eliminating editing kit bugs, circa June 2021](kornman.jpg)
@@ -134,8 +136,11 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * The [developer console][developer-console] now supports the <kbd>Home</kbd> and <kbd>End</kbd> keys to move the cursor to the start and end of the input line.
 * Console history size has been increased from 8 to 16 entries.
 * Many defunct globals and functions have been removed because they are not functioning or applicable to H1A (e.g. for troubleshooting Gearbox netcode).
-* The `script_doc` HSC function now includes external globals in the output file in addition to functions. Many instances of profanity in function descriptions have been cleaned up.
-* Script docs and `help` output now show return value types for functions.
+* Built-in script docs:
+  * The `script_doc` HSC function now includes external globals in the output file in addition to functions.
+  * Script docs and `help` output now show return value types for functions.
+  * Many instances of profanity in function descriptions have been cleaned up.
+  * The player is now referred to in a gender-neutral way.
 * Custom Edition-specific functions like `sv_say` and `multiplayer_draw_teammates_names` were stubbed out for compatibility with CE maps (avoids crashes).
 * Unrecognized script functions and globals will now cause script data to be dropped rather than crashing the game.
 * Numerous new [functions][scripting#functions] were added:
@@ -181,7 +186,8 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * There is a new scenario flag [_disable color correction_][scenario#tag-field-flags-disable-color-correction] although it is unused at this time.
   * [Script source text][scenario#tag-field-source-files-source] is now visible in Guerilla and Sapien.
   * Netgame flags _team index_ was renamed to [_usage id_][scenario#tag-field-netgame-flags-usage-id] and explanations were added in the tag for how to set this ID depending on the flag type.
-  * [BSP switch trigger volumes][scenario#tag-field-bsp-switch-trigger-volumes] source and destination BSPs are now typed as proper block indices rather than integers, which causes Guerilla to display them as drop-downs. This block is also hidden unless in expert mode since it is populated during postprocessing.
+  * [BSP switch trigger volumes][scenario#tag-field-bsp-switch-trigger-volumes] source and destination BSPs are now typed as proper block indices rather than integers, which causes Guerilla to display them as drop-downs.
+  * The following blocks are now hidden by default unless _Expert mode_ is enabled in the menu: _BSP switch trigger volumes_, _scripts_, _globals_, and _references_.
   * Increased limits:
     * `MAXIMUM_SCENARIO_OBJECT_PALETTE_ENTRIES_PER_BLOCK` from 100 to 256.
     * `MAXIMUM_VEHICLE_DATUMS_PER_SCENARIO` from 80 to 256.
@@ -193,6 +199,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
     * `MAXIMUM_HS_STRING_DATA_PER_SCENARIO` from 256kb to 800kb.
     * `MAXIMUM_HS_SOURCE_DATA_PER_FILE` from 256kb to 1MB.
     * `MAXIMUM_HS_SYNTAX_NODES_PER_SCENARIO` from 19001 to 65535.
+* The unused [spheroid][] tag has been removed.
 
 ## Maps and map loading
 * The [map file size limit][map#map-file-size-limit] was increased to 2 GiB.

@@ -77,6 +77,9 @@ module.exports = localizer({
   meta_shifted_by_one: {
     en: "Shifted by one"
   },
+  meta_h1a_expert_mode: {
+    en: "Expert mode only"
+  },
   meta_hek_maximum: {
     en: "HEK max"
   },
