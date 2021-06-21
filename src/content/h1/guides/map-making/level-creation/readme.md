@@ -1,1 +1,1 @@
-What up
+This page will serve as the hub for level creation guides. While some of these guides are intended for Blender users, some pages may still be useful to the end user regardless of the 3D software being used.
