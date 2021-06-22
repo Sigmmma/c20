@@ -311,7 +311,7 @@ tool lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.01
 
 After a short time, you should observe a number counting down towards 0. The radiosity process will stop once this number reaches your "stop" argument. If the number counts _up_ instead, it indicates an issue with your level geometry and you should cancel radiosity to address it (check for [WRL][] warnings).
 
-Consider using the `-noassert` command line flag to increase speed at the expense of skipping error checking.
+Consider using the `-noassert` command line flag to increase speed at the expense of skipping error checking. This should only be used once you know your structure won't cause assertions without the flag and you want to skip doing these checks again during high quality lightmaps.
 
 ```sh
 tool lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.0001 -noassert

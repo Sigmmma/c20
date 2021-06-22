@@ -3696,28 +3696,35 @@ Functions:
           ```
           Pauses or unpauses the hud timer
     - slug: physics_constants_reset
+      tags:
+        - physics-engine
       info:
         en: |-
           ```hsc
           (<void> physics_constants_reset)
           ```
-          resets all physics constants to earthly values
+          Resets all physics constants to earthly values.
       context: H1A only
     - slug: physics_get_gravity
+      tags:
+        - physics-engine
       info:
         en: |-
           ```hsc
           (<real> physics_get_gravity)
           ```
-          get the current global gravity acceleration relative to halo standard gravity
+          Get the current global gravity acceleration relative to Halo standard gravity.
       context: H1A only
     - slug: physics_set_gravity
+      tags:
+        - physics-engine
       info:
         en: |-
           ```hsc
           (<void> physics_set_gravity <real>)
           ```
-          set global gravity acceleration relative to halo standard gravity
+          Set global gravity acceleration relative to Halo standard gravity. The
+          change in gravity is NOT network synchronized.
       context: H1A only
     - slug: play_update_history
       info:

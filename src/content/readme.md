@@ -5,8 +5,7 @@ Welcome to **The Reclaimers Library** (**c20**), a project which aims to documen
 _Modding_ is the modification of a game by its fans in order to change existing content, add new content, or implement unofficial bug fixes and game features. Halo 1 has a strong tradition of modding starting from Xbox, moving to PC with Custom Edition, and continuing today with H1A for MCC.
 
 ```.alert
-This website is always growing!
-If you would like to contribute, see our [Github project](https://github.com/Sigmmma/c20#contributing).
+**This website is always a work in progress!** If you would like to contribute, see our [GitHub project](https://github.com/Sigmmma/c20#contributing).
 ```
 
 # Why mod Halo?
@@ -19,8 +18,8 @@ Perhaps the best part is connecting with other creative, passionate fans. Knowle
 # Getting started
 We cover [engine details][engine], the legacy 2003 [Halo Editing Kit][hek] and its 2021 re-release the [H1A Editing Kit][h1a-ek], community tools, and [guides][] for custom content creation.
 
-<div class="card" style="background-image: url(/h1/guides/level-creation-advanced/1X.jpg)">
+<div class="card" style="background-image: url(/h1/guides/level-creation/blender-level-creation-advanced/1X.jpg)">
 
-**Featured guide:** [Creating a custom map][blender-prep].
+**Featured guide: [Creating a custom map][blender-prep]**
 
 </div>

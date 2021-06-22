@@ -33,6 +33,7 @@ type_defs:
         meta:
           max: 22
           read_only: true
+          unused: true
       - name: local_node_indices
         type: uint8
         count: 22
@@ -109,26 +110,31 @@ type_defs:
         meta:
           cache_only: true
           unit: nodes
+          unused: true
       - name: low_detail_node_count
         type: uint16
         meta:
           cache_only: true
           unit: nodes
+          unused: true
       - name: medium_detail_node_count
         type: uint16
         meta:
           cache_only: true
           unit: nodes
+          unused: true
       - name: high_detail_node_count
         type: uint16
         meta:
           cache_only: true
           unit: nodes
+          unused: true
       - name: super_high_detail_node_count
         type: uint16
         meta:
           cache_only: true
           unit: nodes
+          unused: true
       - type: pad
         size: 2
       - type: pad

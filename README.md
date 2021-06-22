@@ -7,7 +7,7 @@
 This repo contains the source content and build scripts for the Reclaimers Library (https://c20.reclaimers.net). It aims to document the immense tribal knowledge of the Halo 1 modding community and covers game engine details, the Halo Editing Kit, community tools, and guides for map-making.
 
 ## Contributing
-This library is being built as a curated resource of high quality documentation assembled from a variety of sources:
+The library is not directly editable by its readers. This allows the editing team to test and vet information for accuracy and consistency and we instead curate content from a variety of sources:
 
 * Direct submissions and tips from community members
 * Q&A with the community's experts
@@ -15,15 +15,14 @@ This library is being built as a curated resource of high quality documentation 
 * Incorporation of previously documented information
 * Mining of forums and Discord help channels
 
-Because we want to ensure information is accurate, c20 is maintained by a small team of editors and cannot be directly modified by users. However, you have a few options to share information:
+However, we want and need the community's help filling in gaps. Some ways you can help are:
 
-* Submit info as a GitHub issue
-* Create a pull requests if you're more technically inclined
-* Directly message con#4702 on Discord
+* Submit tips or request more documentation in a GitHub issue
+* Create a pull request if you're more technically inclined
 
 Don't worry if writing isn't your strong suit. We'll ensure your tips are properly incorporated into the Wiki and you're credited for them. Our focus will be on Halo 1 modding, so content for later games (e.g. H2V and H3) is welcomed but will not be prioritized.
 
-Editors or those issuing pull requests can refer to [EDITORS.md](EDITORS.md) for writing style and other rules.
+Editors or those issuing pull requests can refer to [EDITORS.md](EDITORS.md) for writing style and other content rules.
 
 ## Development
 [Gulp](https://gulpjs.com/) is used as the main task runner for the build. It is triggered by the command `npm run build`, defined in `package.json`. Within the `gulpfile.js` there are several tasks defined to process stylesheets, build markdown pages, create diagrams, and copy other assets.

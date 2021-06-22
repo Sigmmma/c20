@@ -6,12 +6,14 @@ The **H1A Editing Kit** (**H1A-EK**) is the set of official modding tools used t
 
 This editing kit will be familiar to users of the [legacy HEK][hek] for [Halo: Custom Edition][h1#custom-edition-pc] released by Gearbox in 2003. However, this rerelease has received [significant updates and fixes](#what-39-s-new) including a complete source [tag set][tags] for the game's stock maps. Some features from [Halo 2 tools][h2ek] and later have even been backported. The tools can also receive further updates over time owing to their distribution via [Steam][].
 
-These tools are based on the internal tools originally created by Bungie during the game's development but have been updated and sometimes trimmed down for public use.
+These tools are based on the original internal tools created by Bungie during the game's development. They have been updated over the years as Halo changed hands, and are now available again in a trimmed-down state for public use.
 
 Using the H1A-EK to author content for H1CE rather than H1A is not officially supported due to the amount of changes in the engine. **Use at your own risk.**
 
 # What's new?
-If you're coming from the legacy [HEK][hek] for Custom Edition you may be wondering what's new and great about the updated H1A tools and engine. Don't worry, we've got you covered! Features which have been brought to Custom Edition parity from earlier versions of H1A may be mentioned below.
+If you're coming from the legacy [HEK][hek] for Custom Edition or earlier versions of MCC you may be wondering what's new and great about the updated H1A tools and engine. Don't worry, we've got you covered!
+
+The season 7 MCC update is a significant milestone for the Halo 1 engine. It represents the recombination of code and tags from Anniversary, Custom Edition, OG Xbox, and even Halo 2, plus countless bug fixes, quality of life improvements, and new features in the tools and game.
 
 ## Exporters
 * [Blitzkrieg][hek/blitzkrieg] was not rereleased. Use [Jointed Model Blender Toolset][tools/jointed-model-blender-toolset] or the new Tool commands for converting [Autodesk FBX](https://en.wikipedia.org/wiki/FBX) to JMS and JMA files.
@@ -72,6 +74,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
   * [WRL][] files are saved alongside the [JMS][] file being compiled rather than the HEK root. The user is now told that this file was generated.
   * When compiling a structure BSP and shaders do not yet exist, the chosen types of shaders will now be generated in the level's `shaders` directory instead of the tags root.
   * Model compilation can now optionally use [Halo 2's logic for LOD selection][h1a-tool#halo-2-lod-selection-logic], which is more intuitive.
+  * Model and collision importing have more verbose output. Use `-verbose` for the most troubleshooting information.
 * Usage and feedback clarity:
   * Argument parsing is now less primitive. Verbs can include optional arguments and flags and any unrecognized options are presented to the user.
   * The usage printout when Tool is run without arguments is now sorted. The names and argument descriptions of some existing verbs have been updated for clarity and consistency.
@@ -89,6 +92,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 
 * When [Sapien][h1a-sapien] crashes it will attempt to autosave the scenario to a new file.
 * The [lightmap][lightmaps] painting feature was fixed. The user can perform touchups to fix light leaks or add missing lights and save changes to the lightmap.
+* Garbage collection now takes into account Sapien's 5x higher objects per map and object memory pool limits so Sapien no longer spams "garbage collection critical" errors after loading the c10 scenario.
 * Game window improvements:
   * Weather and particle effects like smoke and fire will now render.
   * When the camera is outside the [BSP][scenario_structure_bsp], you will now see structure debug lines by default (`debug_structure_automatic`) (like [H2 Sapien][h2ek/h2sapien]). This helps you find the BSP if you get lost or the camera begins outside it, as with b40.
@@ -108,12 +112,13 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * Stability improvement:
   * Transparent shaders with no _maps_ no longer cause Sapien to crash. The shader is simply not rendered.
   * Objects with _transparent self occlusion_ enabled while also referencing a transparent shader with _extra layers_ will no longer cause a crash.
+  * Sapien no longer crashes if a BSP fog plane has a fog region set to NONE.
   * The snap to normal hotkey, <kbd>N</kbd>, no longer puts the editor into a bad state.
   * [Detail object][detail_object_collection] painting is possibly more stable now. More testing is needed to confirm.
-  * Sapien no longer crashes if a BSP fog plane has a fog region set to NONE.
+  * Sapien now supports `-nosound` and `-nojoystick` [arguments][] as a mitigation for any device-related problems which need to be worked around.
+  * The _New instance_ and _Delete_ buttons in the hierarchy view are now properly disabled when not applicable.
   * Recording and model view modes no longer cause a crash on closing Sapien.
   * Closing the _Output window_ now properly sets its handle to NULL.
-  * The _New instance_ and _Delete_ buttons in the hierarchy view are now properly disabled when not applicable.
   * Fixed a crash related to selecting custom [device_control][] names.
   * Fixed issues with invalid platoon indices.
 
@@ -168,8 +173,11 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 ## Tag classes
 * [unit][unit#tag-field-metagame-type] and [actor_variant][actor_variant#tag-field-metagame-type] now each include the _metagame type_ and _metagame class_ fields for MCC's scoring system.
 * [shader_model][] received a [new flag][shader_model#tag-field-shader-model-flags-multipurpose-map-uses-og-xbox-channel-order] to use "OG Xbox" channel order for the multipurpose map. Guerilla's explanation of channel usage is now updated to explain both H1X and Gearbox+ channel orders.
-* Some runtime tag fields have been made invisible, such as [object][], [weapon][], and [scenario_structure_bsp][] predicted resources, some other BSP fields, and [gbxmodel][] markers (processed from permutations).
-* [gbxmodel][] node limit was increased from 48 to 63 to match Custom Edition 1.10.
+* Some runtime tag fields have been made invisible, such as [object][], [weapon][], and [scenario_structure_bsp][] predicted resources, some other BSP fields.
+* [gbxmodel][]:
+  * Node limit was increased from 48 to 63 to match Custom Edition 1.10.
+  * The _node count_ fields are now marked deprecated and are invisible in Guerilla. They are written to during postprocessing but never actually used by the game.
+  * The markers block is hidden in Guerilla since it is processed from permutation markers and not intended for editing.
 * [model_collision_geometry pathfinding sphere][model_collision_geometry#pathfinding-spheres] limit increased from 32 to 256.
 * [scenery][] received a new [flags field][scenery#tag-field-flags] which is unused in current versions of MCC.
 * [effect][] parts and particles each previously had two fields called _create in_. The second in each case has been corrected to [_violence mode_][effect#tag-field-events-parts-violence-mode].
@@ -207,6 +215,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition you may be wonder
 * A new [flags field][map#map-header-h1a-flags] was added to the cache header for controlling H1A features.
 * Tags, BSP verts (16 MiB), and game state are now stored in separate dedicated allocations rather than one giant one.
 * [Protected maps][map#protected-maps] will be detected and force a crash because they are unsupported.
+* H1CE's resource maps are now included in MCC and are used when playing a CE map.
 
 ## Game state
 Due to changes in the game state structure, savegames from before season 7 are invalidated.
