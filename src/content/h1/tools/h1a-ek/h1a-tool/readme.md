@@ -418,6 +418,14 @@ tool plate "scenery\rock\bitmaps" 2 0.5 2
 
 *Desired Sequence Count*: Number of images you want to include, it's recommended to set this to exactly the number of images in the folder.
 
+# Dump tag to standard output as XML
+
+```sh
+# print-tag-to-xml <tag file>
+tool print-tag-to-xml ui\english.virtual_keyboard
+```
+
+More or less the same thing as `export-tag-to-xml` but prints the tag to standard output instead.
 
 # Process sounds
 This command searches for sounds in a tag directory and sets the values in the [sound][] tag.
