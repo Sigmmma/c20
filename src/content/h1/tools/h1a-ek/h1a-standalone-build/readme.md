@@ -32,3 +32,4 @@ This build offers a number of benefits for testing over compiling cache files fo
 * Some AI may behave differently than in a [cache build][build-types#cache]. For example, the sentinels during d40's Warthog run are inactive.
 * Player cannot be controlled while in debug camera mode.
 * Some transparent geometry like lights and decals may be visible even when they are behind an obstruction.
+* Crashes that [happen in H1A Sapien][h1a-sapien#crashes] may also occur.
