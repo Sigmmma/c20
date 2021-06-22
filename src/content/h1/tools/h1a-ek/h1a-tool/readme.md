@@ -203,16 +203,21 @@ Builds a `sounds_adpcm.fsb` and `sounds_adpcm.lst.bin` using `data\sounds\tags.l
 Make sure you have plenty of free disk space as it will cache the sound data in `.fsbcache`. This directory can be deleted once you are done building the SoundBank.
 
 
-# Export tag to xml
+# Export tag to XML
 
 ```sh
 # export-tag-to-xml <tag file> <output file>
-tool export-tag-to-xml D:\SteamLibrary\steamapps\common\H1A-EK\tags\ui\english.virtual_keyboard english.virtual_keyboard.xml
+tool export-tag-to-xml tags\ui\english.virtual_keyboard english.virtual_keyboard.xml
+tool export-tag-to-xml ui\english.virtual_keyboard english.virtual_keyboard.xml
 ```
 
 Exports a tag to an XML file, some data isn't include this can only be used to compare tags not as an alternative storage format.
 
-**NB: The path to the tag file needs to be fully qualified, a relative path won't work**
+# Export multiple tags to XML
+
+```sh
+# export-tags-to-xml <params listing file> [ignore-structure-bsps?]
+```
 
 # Creating a JMA file from an FBX file
 
