@@ -217,7 +217,18 @@ Exports a tag to an XML file, some data isn't include this can only be used to c
 
 ```sh
 # export-tags-to-xml <params listing file> [ignore-structure-bsps?]
+tool export-tags-to-xml tags.txt 1
 ```
+
+Exports multiple tags to multiple XML files.
+
+Sample params listing file:
+```
+ui\gamespy.font,gamespy.font.xml
+ui\interstate.font,interstate.font.xml
+
+```
+Make sure to include a new line after each entry (including the last), otherwise the export file name will be corrupted.
 
 # Creating a JMA file from an FBX file
 
