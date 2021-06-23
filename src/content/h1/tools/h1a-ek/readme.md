@@ -10,9 +10,18 @@ This editing kit will be familiar to users of the [legacy HEK][hek] for [Halo: C
 * A complete source [tag set][tags] for the game's stock campaign and multiplayer maps, plus source [scripts][scripting] for the campaign. This means that, unlike the original HEK, singleplayer maps are officially supported and you won't need to extract the stock tags anymore.
 * A brand new tool, the [H1A standalone build][h1a-standalone-build], which loads [tags][] instead of [maps][map] (like Sapien) and supports _all_ console commands unrestricted. It is intended for fast iteration and troubleshooting custom singleplayer maps and AI.
 
-These tools are based on the original internal tools created by Bungie during the game's development. They have been updated over the years as Halo changed hands, and are now available again in a trimmed-down state for public use. You do NOT need to own MCC to install the H1A-EK.
+These tools are based on the original internal tools created by Bungie during the game's development. They have been updated over the years as Halo changed hands, and are now available again in a trimmed-down state for public use. You do *NOT* need to own MCC to install the H1A-EK.
 
 Using the H1A-EK to create content for H1CE rather than H1A is not officially supported. For example, H1CE uses a different [map version][map#map-header-cache-version] and won't load maps compiled for H1A. Taking advantage of many of the fixes and extended limits below will also result in your tags not being backwards compatible. **Use at your own risk.**
+
+# Getting started
+
+1. [Download the tools using Steam](steam://run/1532190), you might need to [install Steam](https://store.steampowered.com/about/) first.
+2. Follow the on screen prompts to download the tools.
+3. ![.figure Pictured: Location of the mod tools in the steam library.](steam_tools.jpg) Once the tools are done downloading you can find them in your library in the tools section. 
+4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
+5. Read `README_MODDING.txt` and follow any further instructions contained within it.
+6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
 
 # What's new?
 If you're coming from the legacy [HEK][hek] for Custom Edition or earlier versions of MCC you may be wondering what's new and great about the updated H1A tools and engine. Don't worry, we've got you covered!
