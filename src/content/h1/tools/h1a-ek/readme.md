@@ -17,7 +17,7 @@ Using the H1A-EK to create content for H1CE rather than H1A is not officially su
 # What's new?
 If you're coming from the legacy [HEK][hek] for Custom Edition or earlier versions of MCC you may be wondering what's new and great about the updated H1A tools and engine. Don't worry, we've got you covered!
 
-The season 7 MCC update is a significant milestone for the Halo 1 engine. It represents the [recombination of code](/h1/games.svg) and tags from Anniversary, Custom Edition, OG Xbox. Many aspects of [Halo 2's tools][h2ek] or limits from later games have even been backported. Mod support is likely to continue beyond season 7 in a phased approach. The tools can receive updates over time owing to their distribution via [Steam][].
+The season 7 MCC update ([patch notes](https://support.halowaypoint.com/hc/en-us/articles/4402601893268-Halo-The-Master-Chief-Collection-MCC-Patch-Notes-June-2021)) is a significant milestone for the Halo 1 engine. It represents the [recombination of code](/h1/games.svg) and tags from Anniversary, Custom Edition, OG Xbox. Many aspects of [Halo 2's tools][h2ek] or limits from later games have even been backported. Mod support is likely to continue beyond season 7 in a phased approach. The tools can receive updates over time owing to their distribution via [Steam][].
 
 ## Exporters
 * [Blitzkrieg][hek/blitzkrieg] was not rereleased. Use [Jointed Model Blender Toolset][tools/jointed-model-blender-toolset] or the new Tool commands for converting [Autodesk FBX](https://en.wikipedia.org/wiki/FBX) to JMS and JMA files.
