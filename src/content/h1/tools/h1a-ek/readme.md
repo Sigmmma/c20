@@ -36,6 +36,7 @@ The season 7 MCC update is a significant milestone for the Halo 1 engine. It rep
   * Removed an incorrect assertion related to drawing HUD numbers and bitmap sequences.
   * AI debug code now safely checks for an actor's secondary look direction prop index being NONE.
   * Various buffer overflow, index out of range, and stale pointer fixes.
+  * Increase `MAXIMUM_NUMBER_OF_BUILD_SPRITE_BITMAPS` from 8 to 16 (renderer stability).
 * The engine will now check and log when an invalid [particle_system][] using [rotational complex render mode][particle_system#tag-field-particle-types-complex-sprite-render-modes-rotational] has a particle state where the sprites bitmap does not include another "sideways" sequence after the given "forward" _sequence index_.
 * The tools are in general faster and more responsive (in part due to manual optimizations, in part due to [*play* builds][build-types#optimization-options] built with a modern optimizing compiler being used instead of *test* builds).
 * Asserts can be disabled using the `-noassert` command line flag.
