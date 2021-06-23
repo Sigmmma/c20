@@ -152,7 +152,7 @@ parentheses, function names, variable names... anything that has syntactic
 meaning for the script system.
 
 The maximum number of syntax nodes that the game can allocate when
-compiling scripts is **19001** in legacy and **65535** (SHORT_MAX) in H1A.
+compiling scripts is **19001** in legacy and **32767** (SHORT_MAX) in H1A.
 
 If you exceed this limit, scripts will not compile. This
 limit is cumulative across both individual scenarios and child scenarios.
