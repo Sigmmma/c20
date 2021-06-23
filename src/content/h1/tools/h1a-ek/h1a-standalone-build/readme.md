@@ -2,13 +2,13 @@ The [H1A-EK][] includes a **standalone build** of that game (**halo_tag_test.exe
 [Using custom content paths][using-custom-content-paths] is supported.
 
 ```.alert danger
-The standalone build is still somewhat experimental and bugs should be expected. Again, only single-player maps are officially supported at this time. Maps should always receive final testing as [cache files][map] loaded by MCC itself.
+The standalone build is still somewhat experimental and bugs should be expected. Again, only single-player maps are officially supported at this time. Maps should always receive final testing as [map cache files][map] loaded by MCC itself.
 ```
 
 # Usage
 The UI works to a limited degree but loading maps is best done using the [`map_name`][scripting#functions-map-name] command in the [console][developer-console]. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
 
-```console
+```console-h1a
 ; load tags\levels\a30\a30.scenario:
 map_name levels\a30\a30
 ; load tags\levels\test\bloodgulch\bloodgulch.scenario:
@@ -23,6 +23,30 @@ This build offers a number of benefits for testing over compiling cache files fo
 * Since it loads tags, you can edit tags then simply reload the map with `map_name` to see changes. Pair this with `game_save` to return to the same place. This is not quite real-time tag editing, but it's close.
 * [Script stack space][scripting#stack-space-is-limited] is validated unlike release builds.
 * You have access to **all** console functions and globals in a much more interactive environment than Sapien to help you troubleshoot your content.
+
+# Debug camera controls
+To enter into the debug camera, open the [console][developer-console] and enter `debug_camera_save` followed by `debug_camera_load`. Movement of the camera is a little different than in Sapien or H1CE. You do _not_ need to hold the middle mouse button and the camera moves in the direction it's pointed rather than its vertical movement being controlled exclusively with buttons.
+
+* Use the mouse to aim
+* Move with <kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, and <kbd>D</kbd>
+* Go up with <kbd>R</kbd> and down with <kbd>F</kbd> (camera relative, not world relative)
+* Increase/decrease camera speed by scrolling down/up
+* Temporarily boost camera speed by holding <kbd>Ctrl</kbd>
+* Rotate clockwise with <kbd>G</kbd>
+
+You can also use a gamepad to control the camera:
+
+* <kbd>Right bumper (hold)</kbd>: Switch between first person, third person, and flying camera modes.
+* <kbd>Right stick click</kbd>: toggle gamepad control of the debug camera
+* <kbd>Right stick</kbd>: aiming
+* <kbd>Left stick</kbd>: horizontal movement
+* <kbd>Right trigger</kbd>: move up
+* <kbd>Left trigger</kbd>: move down
+* <kbd>Left stick click</kbd>: speed boost
+* <kbd>D-pad up/down</kbd>: speed increase/decrease (make sure to enable `framerate_throttle 1` first)
+* <kbd>D-pad left/right</kbd>: roll
+
+Analog control of the camera with the gamepad makes a great filming tool for your custom map trailers.
 
 # Known issues
 

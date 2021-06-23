@@ -44,6 +44,18 @@ Movement of the camera is done in the same way as the in-game debug camera; **ho
 
 Camera rotation with the <kbd>G</kbd> key is only supported in-game and not in Sapien. If you have accidentally opened the singleplayer pause menu, it can be closed again with <kbd>Middle mouse + Escape</kbd>.
 
+New in H1A Sapien, you can also use a gamepad to control the camera:
+
+* <kbd>Right stick click</kbd>: toggle gamepad control
+* <kbd>Right stick</kbd>: aiming
+* <kbd>Left stick</kbd>: horizontal movement
+* <kbd>Right trigger</kbd>: move up
+* <kbd>Left trigger</kbd>: move down
+* <kbd>Left stick click</kbd>: speed boost
+* <kbd>D-pad up/down</kbd>: speed increase/decrease (make sure to enable `framerate_throttle 1` first)
+
+Known issues with gamepad camera control include low aiming sensitivity, lack of stick deadzones, slowness of vertical movement, and speed control framerate dependence.
+
 ## Hierarchy view
 The Hierarchy view displays all the objects currently placed in the game and organizes them by type. The left pane of the window shows the Hierarchy tree and currently selected type, and the right pane shows the objects of this selected group or type that are currently placed in the level.
 

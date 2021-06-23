@@ -2,18 +2,22 @@
 After downloading the H1A-EK, please read `README_MODDING.txt`.
 ```
 
-The **H1A Editing Kit** (**H1A-EK**) is the set of official modding tools used to create custom multiplayer and singleplayer maps targeting the PC MCC version of [Halo: Combat Evolved Anniversary][h1/h1a]. It was first released by 343 Industries during Season 7 of MCC in 2021.
+The **H1A Editing Kit** (**H1A-EK**), also called **Halo: CE Mod Tools**, is the set of official modding tools used to create custom multiplayer and singleplayer maps targeting the PC MCC version of [Halo: Combat Evolved Anniversary][h1/h1a]. It was first released by 343 Industries during Season 7 of MCC in 2021.
 
-This editing kit will be familiar to users of the [legacy HEK][hek] for [Halo: Custom Edition][h1#custom-edition-pc] released by Gearbox in 2003. However, this rerelease has received [significant updates and fixes](#what-39-s-new) including a complete source [tag set][tags] for the game's stock maps. Some features from [Halo 2 tools][h2ek] and later have even been backported. The tools can also receive further updates over time owing to their distribution via [Steam][].
+This editing kit will be familiar to users of the [legacy HEK][hek] for [Halo: Custom Edition][h1#custom-edition-pc] (H1CE) released by Gearbox in 2003. However, some of the key changes are:
 
-These tools are based on the original internal tools created by Bungie during the game's development. They have been updated over the years as Halo changed hands, and are now available again in a trimmed-down state for public use.
+* [Significant updates](#what-39-s-new) to the game engine and original tools, including bug fixes, quality of life improvements, extended limits, and new features.
+* A complete source [tag set][tags] for the game's stock campaign and multiplayer maps, plus source [scripts][scripting] for the campaign. This means that, unlike the original HEK, singleplayer maps are officially supported and you won't need to extract the stock tags anymore.
+* A brand new tool, the [H1A standalone build][h1a-standalone-build], which loads [tags][] instead of [maps][map] (like Sapien) and supports _all_ console commands unrestricted. It is intended for fast iteration and troubleshooting custom singleplayer maps and AI.
 
-Using the H1A-EK to author content for H1CE rather than H1A is not officially supported due to the amount of changes in the engine. **Use at your own risk.**
+These tools are based on the original internal tools created by Bungie during the game's development. They have been updated over the years as Halo changed hands, and are now available again in a trimmed-down state for public use. You do NOT need to own MCC to install the H1A-EK.
+
+Using the H1A-EK to create content for H1CE rather than H1A is not officially supported. For example, H1CE uses a different [map version][map#map-header-cache-version] and won't load maps compiled for H1A. Taking advantage of many of the fixes and extended limits below will also result in your tags not being backwards compatible. **Use at your own risk.**
 
 # What's new?
 If you're coming from the legacy [HEK][hek] for Custom Edition or earlier versions of MCC you may be wondering what's new and great about the updated H1A tools and engine. Don't worry, we've got you covered!
 
-The season 7 MCC update is a significant milestone for the Halo 1 engine. It represents the recombination of code and tags from Anniversary, Custom Edition, OG Xbox, and even Halo 2, plus countless bug fixes, quality of life improvements, and new features in the tools and game.
+The season 7 MCC update is a significant milestone for the Halo 1 engine. It represents the [recombination of code](/h1/games.svg) and tags from Anniversary, Custom Edition, OG Xbox. Many aspects of [Halo 2's tools][h2ek] or limits from later games have even been backported. Mod support is likely to continue beyond season 7 in a phased approach. The tools can receive updates over time owing to their distribution via [Steam][].
 
 ## Exporters
 * [Blitzkrieg][hek/blitzkrieg] was not rereleased. Use [Jointed Model Blender Toolset][tools/jointed-model-blender-toolset] or the new Tool commands for converting [Autodesk FBX](https://en.wikipedia.org/wiki/FBX) to JMS and JMA files.
@@ -93,13 +97,14 @@ The season 7 MCC update is a significant milestone for the Halo 1 engine. It rep
 * When [Sapien][h1a-sapien] crashes it will attempt to autosave the scenario to a new file.
 * The [lightmap][lightmaps] painting feature was fixed. The user can perform touchups to fix light leaks or add missing lights and save changes to the lightmap.
 * Garbage collection now takes into account Sapien's 5x higher objects per map and object memory pool limits so Sapien no longer spams "garbage collection critical" errors after loading the c10 scenario.
+* Multiple Sapien instances can now be launched at once using the `-multipleinstance` [command line][command-line] flag.
 * Game window improvements:
   * Weather and particle effects like smoke and fire will now render.
   * When the camera is outside the [BSP][scenario_structure_bsp], you will now see structure debug lines by default (`debug_structure_automatic`) (like [H2 Sapien][h2ek/h2sapien]). This helps you find the BSP if you get lost or the camera begins outside it, as with b40.
   * Interpolation code from H1A is included and `framerate_throttle` is disabled by default, allowing for smooth animation and movement.
   * The camera speed can be temporarily boosted by holding <kbd>Control</kbd>.
   * The _Game window_ resolution has been increased from 800x600 to 1280x720 (widescreen).
-  * Multiple Sapien instances can now be launched at once using the `-multipleinstance` [command line][command-line] flag.
+  * A gamepad can be used to [control the camera][h1a-sapien#game-window], though this feature is experimental.
 * User interface improvements:
   * Sapien now features a modern Windows file open dialog which includes locations like quick access. This is also true for the _Edit Types_ menu when finding new tags to add to a palette.
   * Invalid block indices are now shown as `BAD: #` rather than being set to `-1`.
@@ -210,12 +215,13 @@ The season 7 MCC update is a significant milestone for the Halo 1 engine. It rep
 * The unused [spheroid][] tag has been removed.
 
 ## Maps and map loading
+* Custom maps compiled with H1A Tool are identified by having [cache version][map#map-header-cache-version-h1a-mcc] `13` in their header (H1CE is `609`).
 * The [map file size limit][map#map-file-size-limit] was increased to 2 GiB.
 * [Tag space][map#tag-space] is increased from 23 MiB to 64 MiB.
 * A new [flags field][map#map-header-h1a-flags] was added to the cache header for controlling H1A features.
 * Tags, BSP verts (16 MiB), and game state are now stored in separate dedicated allocations rather than one giant one.
 * [Protected maps][map#protected-maps] will be detected and force a crash because they are unsupported.
-* H1CE's resource maps are now included in MCC and are used when playing a CE map.
+* H1CE's resource maps are now included in MCC and are used when playing a H1CE map.
 
 ## Game state
 Due to changes in the game state structure, savegames from before season 7 are invalidated.
