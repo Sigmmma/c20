@@ -25,8 +25,9 @@ This build offers a number of benefits for testing over compiling cache files fo
 * You have access to **all** console functions and globals in a much more interactive environment than Sapien to help you troubleshoot your content.
 
 # Debug camera controls
-To enter into the debug camera, open the [console][developer-console] and enter `debug_camera_save` followed by `debug_camera_load`. Movement of the camera is a little different than in Sapien or H1CE. You do _not_ need to hold the middle mouse button and the camera moves in the direction it's pointed rather than its vertical movement being controlled exclusively with buttons.
+To enter into the debug camera, open the [console][developer-console] and enter `debug_camera_save` followed by `debug_camera_load` or press <kbd>Backspace</kbd> until you are in flying camera mode. Movement of the camera is a little different than in Sapien or H1CE. You do _not_ need to hold the middle mouse button and the camera moves in the direction it's pointed rather than its vertical movement being controlled exclusively with buttons.
 
+* <kbd>Backspace</kbd>: Cycle camera modes (1st person, 3rd person, flying)
 * Use the mouse to aim
 * Move with <kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, and <kbd>D</kbd>
 * Go up with <kbd>R</kbd> and down with <kbd>F</kbd> (camera relative, not world relative)
@@ -36,7 +37,7 @@ To enter into the debug camera, open the [console][developer-console] and enter 
 
 You can also use a gamepad to control the camera:
 
-* <kbd>Right bumper (hold)</kbd>: Switch between first person, third person, and flying camera modes.
+* <kbd>Right bumper (hold)</kbd>: Cycle camera modes (1st person, 3rd person, flying)
 * <kbd>Right stick click</kbd>: toggle gamepad control of the debug camera
 * <kbd>Right stick</kbd>: aiming
 * <kbd>Left stick</kbd>: horizontal movement
@@ -47,6 +48,14 @@ You can also use a gamepad to control the camera:
 * <kbd>D-pad left/right</kbd>: roll
 
 Analog control of the camera with the gamepad makes a great filming tool for your custom map trailers.
+
+# Object spawning
+You can quickly spawn a variety of objects for testing:
+
+* Spawn all [bipeds][biped] by pressing <kbd>Ctrl + F7</kbd>.
+* Spawn all [vehicles][vehicle] by pressing <kbd>Shift + F7</kbd> or entering `cheat_all_vehicles` into the console.
+* Spawn all [weapons][weapon] by pressing <kbd>F7</kbd> or entering `cheat_all_weapons` into the console.
+* Spawn just a Warthog by entering `cheat_spawn_warthog` into the console.
 
 # Known issues
 

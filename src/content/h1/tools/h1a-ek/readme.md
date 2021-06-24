@@ -4,7 +4,7 @@ After downloading the H1A-EK, please read `README_MODDING.txt`.
 
 The **H1A Editing Kit** (**H1A-EK**), also called **Halo: CE Mod Tools**, is the set of official modding tools used to create custom multiplayer and singleplayer maps targeting the PC MCC version of [Halo: Combat Evolved Anniversary][h1/h1a]. It was first released by 343 Industries during Season 7 of MCC in 2021.
 
-This editing kit will be familiar to users of the [legacy HEK][hek] for [Halo: Custom Edition][h1#custom-edition-pc] (H1CE) released by Gearbox in 2003. However, some of the key changes are:
+This editing kit will be familiar to users of the [legacy HEK][hek] for [Halo: Custom Edition][h1#custom-edition-pc] (H1CE) released by Gearbox in 2004. However, some of the key changes are:
 
 * [Significant updates](#what-39-s-new) to the game engine and original tools, including bug fixes, quality of life improvements, extended limits, and new features.
 * A complete source [tag set][tags] for the game's stock campaign and multiplayer maps, plus source [scripts][scripting] for the campaign. This means that, unlike the original HEK, singleplayer maps are officially supported and you won't need to extract the stock tags anymore.

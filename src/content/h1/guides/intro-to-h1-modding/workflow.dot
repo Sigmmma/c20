@@ -1,0 +1,13 @@
+digraph G {
+  graph [truecolor=true bgcolor="#00000000"]
+  rankdir = LR;
+
+  node [style="filled,solid", fillcolor="#ffffff80"];
+  data [label="Data files"];
+  tags [label="Tags"];
+  map [label="Maps"];
+
+  data -> tags [label="Tool"];
+  tags -> tags [label="Guerilla, Sapien, Tool"];
+  tags -> map [label="Tool"];
+}

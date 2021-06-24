@@ -18,6 +18,8 @@ Perhaps the best part is connecting with other creative, passionate fans. Knowle
 # Getting started
 We cover [engine details][engine], the legacy 2003 [Halo Editing Kit][hek] and its 2021 re-release the [H1A Editing Kit][h1a-ek], community tools, and [guides][] for custom content creation.
 
+New to modding? Check out our [introduction guide][intro-to-h1-modding].
+
 <div class="card" style="background-image: url(/h1/guides/level-creation/blender-level-creation-advanced/1X.jpg)">
 
 **Featured guide: [Creating a custom map][blender-prep]**

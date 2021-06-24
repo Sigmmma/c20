@@ -147,6 +147,12 @@ html[data-theme="light"] {
   }
 }
 
+html[data-theme="dark"] {
+  img[src$=svg] {
+    filter: invert(100%);
+  }
+}
+
 h1 {
   border-bottom: 1px solid var(--border-color);;
   padding-bottom: 10px;
