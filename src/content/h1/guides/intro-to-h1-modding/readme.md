@@ -6,8 +6,8 @@ Playable levels in Halo are represented as [map][] files. The ultimate goal in m
 ![](workflow.svg)
 
 ## The resources
-* **Data files** are your raw source assets like textures (.tif files), level [scripts][scripting] (.hsc), models ([JMS][]), and [animations][animation-data]. They can be found within the `data` folder of your mod tools installation. The game itself does not use these files. You create these files using external software, for example [Blender][] for 3D assets.
-* **[Tags][]** are files which represent each type of object and asset in the game world. There are many [types][tags#tags-list] of tags and most modding is the creation and editing of tags. Depending on the type, tags reference other tags as dependencies. The editing kit/mod tools come with a base _tag set_ but you can modify them or create your own. Halo does not use these files _directly_.
+* **[Data files][source-data]** are your raw source assets like textures (.tif files), level [scripts][scripting] (.hsc), models ([JMS][]), and [animations][animation-data]. They can be found within the `data` folder of your mod tools installation. The game itself does not use these files. You create these files using external software, for example [Blender][] for 3D assets.
+* **[Tags][]** are files which represent each type of object and asset in the game world. You will find these files in your editing kit's `tags` folder. There are many [types][tags#tags-list] of tags and most modding is the creation and editing of tags. Depending on the type, tags reference other tags as dependencies. The editing kit/mod tools come with a base _tag set_ but you can modify them or create your own. Halo does not use these files _directly_.
 * **[Map][map]** files are like archives of all the tags needed for a playable level. Maps are loaded by the game and the tags within them are copied into memory to drive the game systems.
 
 ## The tools

@@ -33,6 +33,10 @@ workflowItems:
     page: chimp
     authors:
       - Jason Zimmer
+  Source data files:
+    page: source-data
+    authors:
+      - You!
   Maya:
     page: maya
     authors:
@@ -795,6 +799,11 @@ workflows:
       - invader-build
     from: scenario
     to: map
+  - using:
+      - Tool
+      - Invader
+    from: Source data files
+    to: tags
   - using:
       - Refinery
       - invader-extract

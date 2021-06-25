@@ -9,11 +9,14 @@ const thanksList = require("./thanksList");
 
 const TOC_MIN_HEADERS = 2;
 const COLLAPSE_CHILD_PAGES = 20;
+const COLLAPSE_RELATED_PAGES = 4;
 const PREVIEW_LENGTH_CHARS = 100;
 
 const mainTopics = [
+  ["/h1"],
   ["/h1/tags"],
-  ["/h1"]
+  ["/h1/guides"],
+  ["/h1/tools/h1a-ek"],
 ];
 
 const localizations = localizer({
@@ -131,7 +134,7 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
                   detailsList(html`<h2>${localize("children")}</h2>`, page.children.map(pageAnchor(lang)), COLLAPSE_CHILD_PAGES, 0)
                 }
                 ${page.related && page.related.length > 0 &&
-                  detailsList(html`<h2>${localize("related")}</h2>`, page.related.map(pageAnchor(lang)))
+                  detailsList(html`<h2>${localize("related")}</h2>`, page.related.map(pageAnchor(lang)), COLLAPSE_RELATED_PAGES, 0)
                 }
                 ${detailsList(html`<h2>${localize("main")}</h2>`, mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId])))}
 

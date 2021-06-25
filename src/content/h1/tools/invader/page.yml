@@ -21,8 +21,3 @@ keywords:
     - mcc
     - cli
 toolName: Invader
-alerts:
-  - md:
-      en: >-
-        Familiarity with the [command-line][] is a prerequisite for most of
-        Invader's tools.
