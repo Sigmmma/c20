@@ -48,6 +48,19 @@ Example:
 (global boolean kornman_is_leet true)
 ```
 
+You can include comments in your script files:
+
+```hsc
+; this is a comment
+(global boolean completed_objective_a false)
+
+;*
+this is a block comment
+with multiple lines
+*;
+(global boolean completed_objective_b false)
+```
+
 ## Script types
 ```.table
 tableDataModule: hsc/h1/hsc

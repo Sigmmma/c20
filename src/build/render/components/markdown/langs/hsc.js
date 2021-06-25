@@ -52,6 +52,13 @@ function build(consoleMode) {
       relevance: 0
     };
     var STRING = hljs.inherit(hljs.QUOTE_STRING_MODE, {illegal: null});
+    var BLOCKCOMMENT = hljs.COMMENT(
+      ';\\*',
+      '\\*;',
+      {
+        relevance: 1
+      }
+    );
     var COMMENT = hljs.COMMENT(
       ';',
       '$',
@@ -105,7 +112,7 @@ function build(consoleMode) {
       excludeEnd: true,
       starts: BODY,
     };
-    var DEFAULT_CONTAINS = [COMMENT, PLACEHOLDER, PLACEHOLDER_OPTIONAL, LIST, STRING, NUMBER, LITERAL, SYMBOL];
+    var DEFAULT_CONTAINS = [BLOCKCOMMENT, COMMENT, PLACEHOLDER, PLACEHOLDER_OPTIONAL, LIST, STRING, NUMBER, LITERAL, SYMBOL];
 
     var GLOBAL = {
       beginKeywords: globals,
@@ -126,7 +133,7 @@ function build(consoleMode) {
     LIST.contains = [hljs.COMMENT('comment', ''), PLACEHOLDER, PLACEHOLDER_OPTIONAL, GLOBAL, NAME, OPERATOR, BODY];
     BODY.contains = DEFAULT_CONTAINS;
 
-    const SCRIPTS = [LIST, PLACEHOLDER, PLACEHOLDER_OPTIONAL, STRING, COMMENT, NUMBER, LITERAL, PREPROCESSOR];
+    const SCRIPTS = [LIST, PLACEHOLDER, PLACEHOLDER_OPTIONAL, STRING, BLOCKCOMMENT, COMMENT, NUMBER, LITERAL, PREPROCESSOR];
     var CONSOLE_LINE = {
       className: 'console-line',
       begin: "^",

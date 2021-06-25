@@ -23,9 +23,20 @@ Tutorials:
       format: text
   rows:
     - name:
+        en: "Halo CE MCC: Mod Tools Tutorials #1 - Starting With The Basics"
+      description:
+        en: A guide to setting up and getting started with the [H1A-EK][].
+      authors: RXK1NG
+      updated: "2021"
+      tags:
+        - beginner
+        - h1a
+      links:
+        en: "[YouTube](https://www.youtube.com/watch?v=68C5Y9WEPUE)"
+    - name:
         en: Mo's Halo tutorials
       description:
-        en: A set of tutorials on how to do things for CE, the modern way.
+        en: A set of tutorials on how to mod with the legacy [Halo Editing Kit][hek] for H1CE and the [MEK][].
       authors: MosesOfEgypt
       updated: "2019"
       tags:
