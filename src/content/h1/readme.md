@@ -23,12 +23,13 @@ Halo 1 uses Bungie's proprietary [Blam!][engine] engine, which also formed the b
 </figure>
 
 ## Xbox (Bungie, 2001)
-Sometimes called **h1x** or **OG Xbox**, this is the classic first release of Halo 1 for the original Xbox. It supports LAN multiplayer and spawned a competitive community which is still active. While original Xbox consoles are hard to come by, [emulation][xemu] is an emerging alternative. Low resolution aside, the Xbox edition offers a superior graphical experience compared to its ported cousins. Though it is a more involved process, custom maps created with the [HEK][] can be ported back to Xbox.
+Sometimes called **h1x** or **OG Xbox**, this is the classic first release of Halo 1 for the original Xbox. It supports LAN multiplayer and spawned a competitive community which is still active. While original Xbox consoles are hard to come by, [emulation][xemu] is an emerging alternative. Though it is a more involved process, custom maps created with the [HEK][] can be ported back to Xbox.
 
 Xbox has a rich history of modding, notably:
 
 * **Halo 1.5**, which adds [new competitive maps][h15]. [Custom edition ports][h15-maps-ce] of these maps are also available
-* [**Halo 1 Final**][h1final] (and its **Neutral Host Edition**) is a newer competitive mod with modified sounds, time callouts, and a selection of stock and H1.5 2v2-oriented maps
+* [**Halo 1 Final**][h1final], and its **Neutral Host Edition** (NHE), is a newer competitive mod with modified sounds, time callouts, and a selection of stock and H1.5 2v2-oriented maps
+* **Patch Edition** (PE) is a modified version of NHE with map adjustments by Patch and hirsute.
 
 ## Halo PC (Gearbox Software, 2003)
 Often called **retail** or **PC**, this edition is the classic port of Halo 1 to Windows PC by developer [Gearbox Software][gearbox] and publisher [Microsoft Game Studios][microsoft]. Compared to the Xbox version, the PC port included a number of changes (for better and worse):

@@ -8,6 +8,14 @@ digraph G {
     h1x_pal_retail [label="H1X PAL retail release\nBuild: 01.01.14.2342\nCache version: 5"]
   }
 
+  #mods
+  node [style=filled color="#afafaf"];
+  h15 [label="Halo 1.5 (mod)"];
+  h1final [label="Halo 1 Final (mod)"];
+  nhe [label="Neutral Host Edition (mod)"];
+  pe [label="Patch Edition (mod)"];
+  halomd [label="HaloMD (mod)"];
+
   subgraph h1pc {
     node [style=filled color="#c8cc86"];
     pc_beta1 [label="H1PC beta\nBuild: 01.05.22.0268"];
@@ -25,6 +33,14 @@ digraph G {
     pc_demo [label="H1PC demo\nBuild: 01.00.00.0576\nCache version: 6"];
   }
 
+  subgraph mac {
+    node [style=filled color="#cca286"];
+    mac_retail [label="PowerPC Mac retail release\nCache version: 7"];
+    mac_universal [label="Mac universal binary"];
+    mac_204 [label="Mac update 2.0.4"];
+    mac_demo [label="PowerPC Mac Demo\nCache version: 6"];
+  }
+
   subgraph h1ce {
     node [style=filled color="#8686cc"];
     h1ce_100 [label="H1CE\nBuild: 01.00.00.0609\nCache version: 609"];
@@ -32,14 +48,6 @@ digraph G {
     h1ce_108 [label="H1CE 1.08"];
     h1ce_109 [label="H1CE 1.09"];
     h1ce_110 [label="H1CE 1.10\nBuild: 01.00.10.0621"];
-  }
-
-  subgraph mac {
-    node [style=filled color="#cca286"];
-    mac_retail [label="PowerPC Mac retail release\nCache version: 7"];
-    mac_universal [label="Mac universal binary"];
-    mac_204 [label="Mac update 2.0.4"];
-    mac_demo [label="PowerPC Mac Demo\nCache version: 6"];
   }
 
   subgraph h1a {
@@ -53,13 +61,7 @@ digraph G {
     h1a_xbone_live [label="", fixedsize="false", width=0, height=0, shape=none];
   }
 
-  #mods
-  node [style=filled color="#afafaf"];
-  h15 [label="Halo 1.5 (mod)"];
-  h1final [label="Halo 1 Final (mod)"];
-  nhe [label="Neutral Host Edition (mod)"];
-  #pe [label="Patch Edition (mod)"];
-  halomd [label="HaloMD (mod)"];
+
 
   #other games
   node [style=filled color="#88afaf"];
@@ -114,7 +116,7 @@ digraph G {
   h1x_ntsc_retail -> h15;
   h15 -> h1final;
   h1final -> nhe;
-  #nhe -> pe;
+  nhe -> pe;
   mac_204 -> halomd;
 
   # h1a and mcc
