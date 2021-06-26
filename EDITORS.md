@@ -25,6 +25,10 @@ title:
 # numbers, with no punctuation except for dashes (-) to separate words.
 slug:
   es: herramientas-generales
+# If provided, the build will fail if this page's logical path does not match
+# this value. This can be used for any important pages that the community has
+# incoming links to or may have bookmarked.
+assertPath: /h1/tools/h1a-ek
 # Although page titles, slugs, and body content are indexed for search, you may
 # want to boost the page in search results by adding extra keywords. If you find
 # that a page isn't showing up at the top of search results when you expect it

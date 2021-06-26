@@ -58,6 +58,7 @@ digraph G {
   h15 [label="Halo 1.5 (mod)"];
   h1final [label="Halo 1 Final (mod)"];
   nhe [label="Neutral Host Edition (mod)"];
+  #pe [label="Patch Edition (mod)"];
   halomd [label="HaloMD (mod)"];
 
   #other games
@@ -113,6 +114,7 @@ digraph G {
   h1x_ntsc_retail -> h15;
   h15 -> h1final;
   h1final -> nhe;
+  #nhe -> pe;
   mac_204 -> halomd;
 
   # h1a and mcc

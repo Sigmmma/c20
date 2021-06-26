@@ -37,6 +37,10 @@ async function loadPageMetadata(contentDir) {
     const pageId = joinAbsolutePath(logicalPath);
     const logicalPathTail = logicalPath[logicalPath.length - 1];
 
+    if (pageMeta.assertPath && pageMeta.assertPath != pageId) {
+      throw new Error(`Expected page '${pageId}' to be at path '${pageMeta.assertPath}'`);
+    }
+
     pages[pageId] = {
       ...pageMeta,
       langs,
