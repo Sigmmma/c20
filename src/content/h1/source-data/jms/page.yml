@@ -2,3 +2,6 @@ title:
   en: JMS
 stub: true
 workflowName: jms
+img: rigged-cyborg.jpg
+imgCaption:
+  en: JMS files contain model geometry, material assignments, and skeleton data.
