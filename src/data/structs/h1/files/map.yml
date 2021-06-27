@@ -38,15 +38,18 @@ type_defs:
     class: bitfield
     size: 4
     bits:
-      - name: use_bitmaps_map
-        comments:
-          en: Use the bitmaps.map resource map rather than Saber's resource system.
       - name: use_sounds_map
         comments:
           en: Use the sounds.map resource map rather than Saber's resource system.
+      - name: use_bitmaps_map
+        comments:
+          en: Has no effect at this time.
+        meta:
+          unused: true
       - name: no_remastered_sync
         comments:
-          en: Has the effect of disabling the remastered graphics mode.
+          en: >
+            Has the effect of disabling the remastered graphics mode.
   CacheFileHeader:
     class: struct
     assert_size: 2048
@@ -126,9 +129,8 @@ type_defs:
         comments:
           en: >-
             A bitfield which customizes how the cache file is treated by H1A in MCC.
-            These are set by [Tool][h1a-tool#classic-and-remastered-mode] when
-            building a cache file depending on the choice between `classic` and
-            `remastered`.
+            These are set by set by the `classic/remastered` option of
+            [H1A Tool build-cache-file][h1a-tool#classic-and-remastered-mode].
       - type: pad
         size: 0x790
       - name: foot_magic

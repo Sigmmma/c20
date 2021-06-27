@@ -1,5 +1,5 @@
 ```.alert
-After downloading the H1A-EK, please read `README_MODDING.txt`.
+After downloading the H1A-EK, please read `README_MODDING.txt`. You **must** extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
 ```
 
 The **H1A Editing Kit** (**H1A-EK**), also called **Halo: CE Mod Tools**, is the set of official modding tools used to create custom multiplayer and singleplayer maps targeting the PC MCC version of [Halo: Combat Evolved Anniversary][h1/h1a]. It was first released by 343 Industries during Season 7 of MCC in 2021.
@@ -21,7 +21,7 @@ Using the H1A-EK to create content for H1CE rather than H1A is not officially su
 2. Follow the on screen prompts to download the tools.
 3. Once the tools are done downloading you can find them in your library in the tools section.
 4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
-5. Read `README_MODDING.txt` and follow any further instructions contained within it.
+5. Read `README_MODDING.txt` and follow any further instructions contained within it. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
 6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
 
 # What's new?

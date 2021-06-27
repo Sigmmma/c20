@@ -183,6 +183,7 @@ kbd {
   font-weight: bold;
   border: 1px solid var(--border-color);
   box-shadow: 0 2px 0 -1px var(--bg-overlay), 0 2px 0 var(--border-color);;
+  white-space: nowrap;
 }
 
 //need to generalize this later
