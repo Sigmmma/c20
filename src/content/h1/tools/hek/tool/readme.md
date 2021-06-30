@@ -88,7 +88,7 @@ Compile a single TIFF image into a [bitmap][] using the `bitmap` verb:
 
 ```sh
 # bitmap <source-file>
-tool.exe bitmaps "characters\cyborg\bitmaps\cyborg"
+tool.exe bitmap "characters\cyborg\bitmaps\cyborg"
 ```
 
 For the example above, Tool would expect to find a _.tif or .tiff_ file at `data\characters\cyborg\bitmaps\cyborg.tif`. Assuming no errors, the image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\cyborg.bitmap`. The bitmap filename will come from the image filename.
