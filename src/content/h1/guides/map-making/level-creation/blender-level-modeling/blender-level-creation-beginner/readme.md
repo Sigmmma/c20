@@ -71,10 +71,10 @@ Additional information on the Reference Frame and Sealed World Rules and other t
 7. [Flip all the normals](https://youtu.be/zog43sqj0Qc) for the box inwards, the interior of the box will be the playable area of the level.
 	* There are two ways you can confirm the direction of the normals on the model. They are as follows:
 	* Backface culling: This option will render the geometry transparent when viewed from the opposite side of the face normal.
-		* ![Find backface culling in the viewport shading options menu](A.jpg)
+		* ![](A.jpg "Find backface culling in the viewport shading options menu")
 		* [Backface culling docs](https://youtu.be/FAiMN1Zohps)
 	* Normal overlay: This option will render lines coming out the center of the face to indicate the direction it is pointing. This option will only be available to you if you are in edit mode for the object you wish to examine.
-		* ![Find normals in the viewport overlay options menu](B.jpg)
+		* ![](B.jpg "Find normals in the viewport overlay options menu")
 		* [Normal overlay docs](https://youtu.be/zog43sqj0Qc)
 8. [Set context](https://youtu.be/SVLAYHJSXYA) back to object mode if you haven't already.
 9. With both your level and frame object selected, [set the parent](https://youtu.be/FsMnUhG1CWo) of the box (level) to the Reference Frame (frame) with frame being the active object.
@@ -123,7 +123,7 @@ Be sure to keep your material names lowercase as all tags paths in Halo should n
 We will now be going over how to apply your newly created materials to faces in your scene.
 
 1. Select the box (level) object.
-	* ![](E.png "Match the numbers in the image to the numbers in the list below.")
+	* ![](E.jpg "Match the numbers in the image to the numbers in the list below.")
 2. [Change context mode](https://youtu.be/SVLAYHJSXYA) from object mode to edit mode.
 3. Make sure you are in [face selection](https://youtu.be/C_X7muZP3XA) so that you can properly select the object faces.
 4. [Select all](https://youtu.be/p27vyrHvpkk) faces of the cube except for the bottom area.
@@ -148,13 +148,13 @@ Follow the instructions below to begin.
 
 Now that you set up your scene there is one more detail you should be aware of. You may notice that if your viewport shading settings are set to this.
 
-![](F.png "Settings that will render textures assigned to materials in solid shading.")
+![](F.jpg "Settings that will render textures assigned to materials in solid shading.")
 
 You will not have to switch to rendered viewport shading to see your textures but you have to deal with image alpha. If you do not want to see the alpha you can disable it in the newly created UV window. Move your cursor over your UV editing window and bring up the [UV properties window.](https://youtu.be/dR_TCHUTEw0)
 
 This will let you set some specific settings for your materials. Make sure to have a surface that has the `example_tutorial_ground` material selected in the viewport on the left so that we set the settings for the proper material.
 
-![](G.png "Disable alpha so that the material isn't see through.")
+![](G.jpg "Disable alpha so that the material isn't see through.")
 
 Change the setting labeled `Alpha` from `Straight` to `None`.
 
@@ -166,16 +166,16 @@ Using the info you learned from [the UV editing video](https://youtu.be/dR_TCHUT
 
 The result from that should be something that looks like this.
 
-![](H.png "You can use smart UV project to quickly unwrap on object but you will eventually need to use unwraps and UV seams to manually fix certain objects. More on this in future sections.")
+![](H.jpg "You can use smart UV project to quickly unwrap on object but you will eventually need to use unwraps and UV seams to manually fix certain objects. More on this in future sections.")
 
 # Assigning sharp edges
 A key difference between work in Blender VS 3DS Max is that Blender does not have a smoothing groups feature. For our modeling work in Blender we must instead make use of sharp/smooth edges with an edge split modifier to properly set up our normals. Please be aware that options like auto smooth or shade smooth/flat will not have any effect on the resulting JMS.
 
 The purpose of assigning sharp edges is to make our polygon count seem higher than it actually is or just design more aesthetically pleasing geometry. Geometry with properly set edges can have drastic effects on a piece of geometry. See the following examples.
 
-![](I.png "These two meshes have the same number of faces yet look pretty different. More on this in future sections.")
+![](I.jpg "These two meshes have the same number of faces yet look pretty different. More on this in future sections.")
 
-![](J.png "Assigning sharp edges and setting up a proper edge split modifier can help you get the look you need.")
+![](J.jpg "Assigning sharp edges and setting up a proper edge split modifier can help you get the look you need.")
 
 As you can see we have two cylinder objects that have the same number of faces but two different looks. The object on the left could be considered a pipe or a paint can while the object on the right could be a hex nut. Making proper use of sharp edges can get you the look you need for your objects.
 
@@ -183,7 +183,7 @@ Normals if it isn't clear is the direction the face or vertex is pointing in and
 
 Firstly lets set shading to smooth so that we can see the effects of our sharp edges properly.
 
-![](K.png "Lets set our shading to smooth.")
+![](K.jpg "Lets set our shading to smooth.")
 
 1. Make sure you have the box (level) object selected.
 2. [Change context mode](https://youtu.be/SVLAYHJSXYA) from object mode to edit mode.
@@ -192,7 +192,7 @@ Firstly lets set shading to smooth so that we can see the effects of our sharp e
 
 The result should look something like this.
 
-![](L.png "A blank canvas.")
+![](L.jpg "A blank canvas.")
 
 Now that we finished our work we can begin to mark the edges as sharp.
 
