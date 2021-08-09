@@ -1,11 +1,20 @@
 version: 0.2
 
+env:
+  git-credential-helper: yes
 phases:
   install:
     runtime-versions:
       nodejs: 14.x
+    commands:
+      - cd /tmp/
+      - curl -OJL https://github.com/git-lfs/git-lfs/releases/download/v2.13.3/git-lfs-linux-amd64-v2.13.3.tar.gz
+      - tar xzf git-lfs-linux-amd64-v2.13.3.tar.gz
+      - ./install.sh
+      - cd $CODEBUILD_SRC_DIR
   pre_build:
     commands:
+      - git lfs pull
       - npm ci
   build:
     commands:
