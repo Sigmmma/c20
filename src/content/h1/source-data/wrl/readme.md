@@ -1,4 +1,4 @@
-**WRL files** are created by [Tool][h1a-tool] when it encounters fatal or warning-level geometry issues during model compilation and lightmapping (e.g. open edges, nearly coplanar faces). These files can be reimported back into the user's 3D software to visualize where problematic edges or faces are present and correct them before reattempting model compilation.
+**WRL files** are created by [Tool][h1a-tool] when it encounters fatal or warning-level [geometry issues][bsp-troubleshooting] during model compilation and lightmapping (e.g. open edges, nearly coplanar faces). These files can be reimported back into the user's 3D software to visualize where problematic edges or faces are present and correct them before reattempting model compilation.
 
 When compiling a [BSP][scenario_structure_bsp], the file will be named after the [JMS][] file being compiled (e.g. `yourmap.wrl` in H1CE or `yourmap_errors.wrl` in H1A). When geometry errors are found during [radiosity][lightmaps], Tool will instead output a `debug.wrl`.
 

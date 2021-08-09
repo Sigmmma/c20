@@ -1,3 +1,4 @@
 src/**/*.md -linguist-documentation
 src/**/*.md linguist-detectable
 src/**/*.yml linguist-detectable
+*.mp4 filter=lfs diff=lfs merge=lfs -text

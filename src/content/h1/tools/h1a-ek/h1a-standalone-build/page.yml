@@ -1,16 +1,16 @@
 title:
-  en: H1A standlone build (343i)
+  en: H1A standalone build (343i)
 keywords:
   en:
     - test
     - cache
     - h1a
-toolName: H1A-standlone
+toolName: H1A-standalone
 img: halo_tag_test.jpg
 imgCaption:
   en: Using some `ai_render_*` and `ai_debug_*` globals
 thanks:
   num0005:
-    en: Documenting H1A standlone build
+    en: Documenting H1A standalone build
   Zeddikins:
     en: Finding the spawning hotkeys

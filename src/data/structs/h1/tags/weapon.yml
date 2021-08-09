@@ -417,6 +417,8 @@ type_defs:
         type: Bounds
         type_args:
           T: float
+        meta:
+          unused: true
         comments:
           en: >
             The function of this field is unknown. It is **unused by the game**.
