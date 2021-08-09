@@ -52,6 +52,7 @@ A CE-specific box that will let us set the filename for our `JMS` from the menu 
 
 * Permutation - String: Type in a name for the model permutation here. This string will default to `unnamed` if LOD is used but permutation is not filled in. See the [GBXmodel permutations section][gbxmodel#permutations] for details on permutations' purpose in Halo.
 * LOD - Dropdown: Select a [level of detail][gbxmodel#level-of-detail] to use for the file here. If the LOD is set to none but permutation is filled in then LOD will default to `Super High`.
+* Generate Checksum - bool: Whether or not we generate a checksum based on the order of the JMS skeleton. Checksum will be written as zero if disabled.
 
 ![](E.png "Automation! The joy and gloom of people everywhere.")
 
