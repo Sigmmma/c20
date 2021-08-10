@@ -4,7 +4,7 @@ const marked = require("marked");
 const hljs = require("highlight.js");
 const {consoleLang, hscLang} = require("./langs/hsc");
 const vrmlLang = require("./langs/vrml");
-const {heading, alert, figure} = require("../bits");
+const {heading, alert, figure, video} = require("../bits");
 const {structDisplay} = require("../structs");
 const {renderTableYaml} = require("../yaml-tables");
 const autoAbbreviations = require("./abbreviations");
@@ -50,10 +50,16 @@ module.exports = function(ctx) {
   };
 
   renderer.image = (href, title, text) => {
+    if (href.endsWith(".mp4")) {
+      const poster = href.replace(".mp4", ".thumb_1.jpg");
+      return video(href, poster);
+    }
+
     if (text.startsWith(".figure ")) {
       text = text.substring(".figure ".length);
       return figure(href, renderMarkdown(ctx, text));
     }
+
     const altAttr = `alt="${text || ""}"`;
     const titleAttr = title ? ` title="${title}"` : "";
     return `<a target="_blank" href="${href}"><img ${altAttr}${titleAttr} src="${href}"/></a>`;

@@ -1,9 +1,11 @@
 const path = require("path");
 const fs = require("fs").promises;
 const Viz = require("viz.js");
+const ffmpeg = require("ffmpeg");
 const vizRenderOpts = require("viz.js/full.render.js");
 
 const COPY_FILES_PATTERN = /\.(jpg|jpeg|png|gif|ms|mp4)/;
+const VIDEO_FILES_PATTERN = /\.(mp4)/;
 const VIZ_RENDER_PATTERN = /\.(dot|neato|fdp|sfdp|twopi|circo)/;
 
 //todo: this does extra work then the URL is not localized but there are multiple languages
@@ -38,7 +40,8 @@ async function buildResources(pageIndex, buildOpts) {
           const destPath = path.join(buildOpts.outputDir, page.localizedPaths[lang], base);
           await fs.copyFile(srcPath, destPath);
         }));
-      } else if (ext.match(VIZ_RENDER_PATTERN)) {
+      }
+      if (ext.match(VIZ_RENDER_PATTERN)) {
         //build content graphviz diagrams into SVG (https://graphviz.org)
         const vizSrc = await fs.readFile(srcPath, "utf8");
         const viz = new Viz(vizRenderOpts);
@@ -46,6 +49,25 @@ async function buildResources(pageIndex, buildOpts) {
         await Promise.all(destLangs.map(async (lang) => {
           const destPath = path.join(buildOpts.outputDir, page.localizedPaths[lang], `${name}.svg`);
           await fs.writeFile(destPath, svg, "utf8");
+        }));
+      }
+      if (ext.match(VIDEO_FILES_PATTERN)) {
+        const video = await new ffmpeg(srcPath);
+        await Promise.all(destLangs.map(async (lang) => {
+          const destPath = path.join(buildOpts.outputDir, page.localizedPaths[lang]);
+          await new Promise((resolve, reject) => {
+            video.fnExtractFrameToJPG(destPath, {
+              keep_pixel_aspect_ratio: true,
+              keep_aspect_ratio: true,
+              size: "?x480",
+              padding_color: "black",
+              number: 1,
+              file_name: `${name}.thumb.jpg`
+            }, (err, files) => {
+              if (err) reject(err);
+              else resolve(files);
+            });
+          });
         }));
       }
       //other file types are ignored and fall through

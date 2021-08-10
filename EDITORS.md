@@ -193,6 +193,7 @@ Beyond the [basic markdown features][mdbasic], c20 adds a few special extensions
   ```md
       ![.figure Figure caption markdown](figure.jpg)
   ```
+* A markdown image which ends with `.mp4`, e.g. `![](video.mp4)`, will generate `<video>` tags with the correct source and poster image. The wiki's build automatically generates poster images from the first video frame.
 * Standard markdown images are automatically enclosed in an anchor tag which opens the image in another tab.
 * Generate data structure documentation tables from a YAML description like so:
   ```md

@@ -17,11 +17,9 @@ An _open edge_ is one where the surface ends abruptly, like the edge of a sheet 
 
 The exceptions to this rule are render-only surfaces like lights and water, and other special 2D surfaces like ladders, glass, and fog planes that are typically modeled as simple floating quads (a rectangle made of two triangles). If you are attempting to model one of these special surfaces, make sure you are including the [necessary material symbol(s)][materials].
 
-Closing open edges usually involves merging vertices by selecting multiple. (or Max's _Target Weld_) options to stitch vertices together and close open edges. Consider using Blender's [_Auto Merge_](auto_merge.jpg) while modeling to ensure that vertices are merged when you move them to the same location as another vertex (enable snap for this).
+Closing open edges usually involves merging vertices. In Blender you can select multiple and press <kbd>M</kbd>, or use [_Auto Merge_][blender-tool-settings]   with snap to ensure vertices are merged when you move them to the same location as another vertex. Max users can use _Target Weld_.
 
-<video controls>
-  <source src="open_edge.mp4" type="video/mp4">
-</video>
+![](open_edge.mp4)
 
 ## Error: Couldn't update edge (red)
 This error indicates that an edge is shared by _more_ than 2 adjacent faces. This is usually seen where 3 faces meet and share a common edge. Like with open edges, render-only (`!`) and double-sided (`%`) faces don't count.
@@ -30,13 +28,8 @@ This is usually fixed by deleting any accidental leftover faces present after st
 
 Another common cause for this error is incorrect level [scale][scale]; Tool merges together vertices which are very close together (within 0.1 JMS units) and may interpret many faces as sharing a common edge when in Blender they don't. Remember that with default JMS export settings, 1 Blender meter = 1 JMS unit and the Chief is 70 JMS units tall. Make sure you are modeling the level at the correct scale
 
-<video controls>
-  <source src="couldnt_update_edge.mp4" type="video/mp4">
-</video>
-
-<video controls>
-  <source src="couldnt_update_edge_2.mp4" type="video/mp4">
-</video>
+![](couldnt_update_edge.mp4)
+![](couldnt_update_edge_2.mp4)
 
 ## Warning: Nearly coplanar faces (red and green)
 To understand this warning, we should first understand coplanarity. If two adjacent faces are "coplanar" it means they are _on the same plane_. Think about how two sheets of paper (faces) are coplanar when they lie on the same table, no matter which way the papers are turned and even if you lift one end of the table. _Nearly coplanar_ faces means they are at a slight angle to each other; imagine the tabletop is slightly curved or warped so the sheets are facing slightly different directions.
@@ -54,18 +47,14 @@ In some cases having nearly coplanar faces is unavoidable. When faces are axis-a
 
 You should also avoid using the [Blender Toolset's][jointed-model-blender-toolset] custom or world unit export scales when working with collision models/BSPs. Stick to JMS scale to avoid amplifying floating point precision inherent to the editor and causing the same issue as JMS precision loss.
 
-<video controls>
-  <source src="nearly_coplanar.mp4" type="video/mp4">
-</video>
+![](nearly_coplanar.mp4)
 
 ## Error: Z-buffered triangles (red)
 _Z-buffered triangles_ are when two triangles intersect each other rather than being connected by edges and vertices. This rule applies only to collideable geometry and not render-only geometry. The [WRL][] error file represents this error as an edge along the intersection.
 
 Modders who are used to working with other engines where this is allowed will probably find this restriction annoying, but it's a requirement for how Halo creates collision models. Avoid poking parts of your model through other parts without attaching them to form a continuous mesh.
 
-<video controls>
-  <source src="z_buffered.mp4" type="video/mp4">
-</video>
+![](z_buffered.mp4)
 
 ## Warning: Degenerate triangles (red)
 A _degenerate triangle_ is one that has zero (or near-zero) surface area. In other words, it's not functioning as a proper triangle because all 3 of its vertices are in a line (colinear) or at a single point. The warning applies to both collideable and render-only geometry. When edges are below 0.1 JMS units in length, they will also collapse into a single point when compiled by Tool and cause this warning.
@@ -77,9 +66,7 @@ You can avoid this warning by avoiding:
 
 Like with [_Couldn't update edge_](#error-couldn-39-t-update-edge-red), this warning can also be caused by improper level scale and may not actually be due to actual degenerate triangles.
 
-<video controls>
-  <source src="degenerate_face.mp4" type="video/mp4">
-</video>
+![](degenerate_face.mp4)
 
 ## Warning: A surface clipped to no leaves (cyan)
 This warning occurs when a collideable or render-only surface is _outside_ the BSP. It is usually a sign of an improper triangulation or modeling mistake and should be corrected, since the rationale is that if the player can't leave the level then they probably won't see or interact with such a surface anyway.
@@ -89,16 +76,12 @@ However, you might have legitimate reasons for putting render-only faces outside
 * The faces are visible through `+sky` and you do not want to expand the BSP to encompass them, e.g. to reduce [lightmap][lightmaps] size.
 * The faces are part of a larger render-only object which is only partially outside the BSP and removing the faces outside the BSP would be tedious or limit your ability to adjust the model later. Examples might be foliage or wires/cables.
 
-<video controls>
-  <source src="surface_clipped_to_no_leaves.mp4" type="video/mp4">
-</video>
+![](surface_clipped_to_no_leaves.mp4)
 
 ## Error: Couldn't build BSP because of overlapping surfaces (orange)
 This error indicates that two collideable surfaces are overlapping ([Z-fighting](https://en.wikipedia.org/wiki/Z-fighting)). They are on the same plane and are intersecting each other. This is not an issue for render-only geometry. It can happen for similar reasons to the [z-buffered triangle example](#error-z-buffered-triangles-red) or when special floating surfaces like ladders and glass are coplanar with walls. The solution is usually to move one of the overlapping surfaces slightly:
 
-<video controls>
-  <source src="overlapping_faces.mp4" type="video/mp4">
-</video>
+![](overlapping_faces.mp4)
 
 ## Warning: Found possible T-junction (pink)
 This is likely a side-effect of other issues with your geometry. Correct them first and this should go away. On a more technical level, this warning happens when a leaf surface is colinear with a BSP2D plane. Such surfaces would have to be very narrow. If you are seeing a T-junction warning in isolation you should look for extremely thin or small faces and resolve them the same way as [degenerate faces](#warning-degenerate-triangles-red).
@@ -111,21 +94,14 @@ The collision BSP's role is to allow efficient lookups of collideable surfaces (
 
 You can attempt to pass the limit using H1A Tool's `-noassert` option, but will probably encounter the error _"Couldn't build leaf map"_ next. The best solution is to simplify your geometry and reduce polygon count. From the outset of modeling you should also avoid sculpting tools which generate geometry or heavy subdividing.
 
-<video controls>
-  <source src="max_bsp_depth.mp4" type="video/mp4">
-</video>
+![](max_bsp_depth.mp4)
 
 # Portal problems
 ## Warning: Unearthed edge (magenta)
 An _unearthed edge_ is where a portal's open edge is exposed within the BSP. It is similar to the [open edges error](#error-edge-is-open-red), but for portals. Portal edges should either extend through the BSP or be connected with another portal. If connecting the portal to another portal you must ensure that they are attached at vertices rather than simply touching.
 
-<video controls>
-  <source src="unearthed_edge.mp4" type="video/mp4">
-</video>
-
-<video controls>
-  <source src="unearthed_edge_2.mp4" type="video/mp4">
-</video>
+![](unearthed_edge.mp4)
+![](unearthed_edge_2.mp4)
 
 ## Error: Portal does not define two closed spaces (yellow)
 This error is encountered when there are _more_ than two closed spaces ([clusters][scenario_structure_bsp#clusters-and-cluster-data]) created by the portal. Portals must create only [two clusters][scenario_structure_bsp#tag-field-cluster-portals-front-cluster]. Some scenarios to avoid are:
@@ -133,20 +109,13 @@ This error is encountered when there are _more_ than two closed spaces ([cluster
 * If two portals intersect without being attached at vertices then there are 2 clusters for each side of a portal, which is invalid. Portals should be connected to each other as if they were [exact portals][materials#special-materials] connecting to map geometry.
 * If a single portal passes through the BSP multiple times it could create more than two sealed spaces. Simply split up the portal into multiple portals.
 
-<video controls>
-  <source src="portal_two_closed_spaces.mp4" type="video/mp4">
-</video>
-
-<video controls>
-  <source src="portal_two_closed_spaces_2.mp4" type="video/mp4">
-</video>
+![](portal_two_closed_spaces.mp4)
+![](portal_two_closed_spaces_2.mp4)
 
 ## Warning: Portal outside the BSP (magenta)
 This warning is pretty much what it sounds like -- a portal is completely outside the BSP and therefore serves no purpose. You can delete it or move it into the BSP:
 
-<video controls>
-  <source src="portal_outside_bsp.mp4" type="video/mp4">
-</video>
+![](portal_outside_bsp.mp4)
 
 ## Warning: Portal doesn't divide any space (green)
 If you are seeing this warning you likely have other issues with your portals that need addressing first, such as portals outside the BSP or unearthed edges. This warning could not be reproduced in isolation even when placing portal planes outside the BSP, or coincident with its boundary or seamsealer.
@@ -157,30 +126,17 @@ This error indicates that you have two fog planes in the same sealed space (clus
 
 Note that a fog plane which is not completely flat (not planar) will be counted as multiple fog planes because each triangle becomes its own fog plane.
 
-<video controls>
-  <source src="fog_planes_intersected.mp4" type="video/mp4">
-</video>
-
-<video controls>
-  <source src="fog_planes_intersected_2.mp4" type="video/mp4">
-</video>
+![](fog_planes_intersected.mp4)
+![](fog_planes_intersected_2.mp4)
 
 ## Warning: two fog planes visible from a cluster
 Although you can add portals to ensure two fog planes are not in the same localized cluster and avoid ["two fog planes intersected in a cluster"](#two-fog-planes-intersected-in-a-cluster-black), Tool will still warn you when two fog planes are potentially visible to each other. In this case Sapien will only allow the assignment of a fog palette to a single fog plane and only one will render in-game.
 
 Consider combining together your fog planes into a singular plane. If this is not desirable because you want different fog palette assignments or fog planes at different heights then you will need to ensure the clusters which contain them are completely isolated from each other either by separating the BSP into two volumes (e.g. connected by a teleporter) or ensuring there is an indoor cluster between them by creating a series of long hallways that block visibility.
 
-<video controls>
-  <source src="two_fog_planes.mp4" type="video/mp4">
-</video>
-
-<video controls>
-  <source src="two_fog_planes_2.mp4" type="video/mp4">
-</video>
-
-<video controls>
-  <source src="multiple_cluster_data.mp4" type="video/mp4">
-</video>
+![](two_fog_planes.mp4)
+![](two_fog_planes_2.mp4)
+![](multiple_cluster_data.mp4)
 
 ## Warning: Cluster can see multiple skies
 According to the [material naming conventions][materials], you can reference multiple skies in a BSP by including a sky index in the sky material name, e.g. `+sky0`, `+sky1`, `+sky2`, etc. Similar to how a cluster cannot see multiple fog planes, a cluster cannot see multiple skies either. This warning will happen when you have a cluster with a mix of e.g. `+sky0` and `+sky1` faces or a cluster where both are potentially visible.
@@ -195,9 +151,7 @@ If you are finding that a weather polyhedron you created isn't working at all (w
 1. The polyhedron isn't convex. A hypothetical ant standing on any side of the polyhedron should not be able to see any other side or face than the one it's standing on; the surface should always be curving away behind the "horizon" from the ant's point of view. Halo requires these weather-masking volumes to be convex so they can be represented as an efficient [series of planes][scenario_structure_bsp#tag-field-weather-polyhedra-planes]. Modify your polyhedron to be convex or split it into multiple which are.
 2. You have more than 8 weather polyhedra _visible_ at the same time (you can have more than 8 total). Combine some together if possible or alter your level to not require so many.
 
-<video controls>
-  <source src="weatherpoly_convex.mp4" type="video/mp4">
-</video>
+![](weatherpoly_convex.mp4)
 
 ## Error: Couldn't allocate polyhedron plane
 This error does not show up in [WRL files][wrl], but it is usually easy to find. It means one of your [weather polyhedra][scenario_structure_bsp#weather-polyhedra] has more than 16 sides. To be clear, this is _not_ a triangle limit for the polyhedron. One side of the shape might be comprised of multiple triangles, but as long as they are coplanar they will be treated as a single side. To resolve this error you can:
@@ -206,9 +160,7 @@ This error does not show up in [WRL files][wrl], but it is usually easy to find.
 2. Split the polyhedron into multiple more simple shapes. It is OK for the volumes to intersect, just stay within the 8 visible polyhedra limit.
 3. Delete any sides of the polyhedra which are not necessary because they are outside the level and wouldn't usefully "contain" the masking volume. Polyhedra don't actually need to be sealed, in fact a single plane is valid.
 
-<video controls>
-  <source src="weatherpoly_sides.mp4" type="video/mp4">
-</video>
+![](weatherpoly_sides.mp4)
 
 # Radiosity problems
 ## Degenerate triangle or triangle with bad UVs (blue)
@@ -216,9 +168,7 @@ A _degenerate triangle_ error encountered during [radiosity][h1a-tool#lightmaps]
 
 It is common for modeling operations like extruding and merging to produce degenerate/stretched UVs. You can use Blender's ["Correct Face Attributes"][blender-tool-settings] tool option to help avoid stretched UVs while modifying your model, or use a simple cube projection to unwrap faces during map development.
 
-<video controls>
-  <source src="degenerate_uvs.mp4" type="video/mp4">
-</video>
+![](degenerate_uvs.mp4)
 
 ## Warning: Clusters have no background sound or sound environment
 During radiosity you may see this warning logged:

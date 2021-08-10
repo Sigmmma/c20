@@ -126,6 +126,12 @@ const figure = (href, caption) => html`
   </figure>
 `;
 
+const video = (href, poster) => html`
+  <video controls preload="${poster ? "none" : "auto"}" ${poster ? `poster="${poster}"` : null}>
+    <source src="open_edge.mp4" type="video/mp4">
+  </video>
+`;
+
 module.exports = {
   html,
   escapeHtml,
@@ -137,6 +143,7 @@ module.exports = {
   defAnchor,
   heading,
   figure,
+  video,
   jump,
   ul,
   ol,
