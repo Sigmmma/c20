@@ -8,7 +8,7 @@ phases:
       nodejs: 14.x
     commands:
       - apt update
-      - apt install ffmpeg
+      - apt install -y ffmpeg
       - cd /tmp/
       - curl -OJL https://github.com/git-lfs/git-lfs/releases/download/v2.13.3/git-lfs-linux-amd64-v2.13.3.tar.gz
       - tar xzf git-lfs-linux-amd64-v2.13.3.tar.gz
