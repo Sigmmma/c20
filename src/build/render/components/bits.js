@@ -128,7 +128,7 @@ const figure = (href, caption) => html`
 
 const video = (href, poster) => html`
   <video controls preload="${poster ? "none" : "auto"}" ${poster ? `poster="${poster}"` : null}>
-    <source src="open_edge.mp4" type="video/mp4">
+    <source src="${href}" type="video/mp4">
   </video>
 `;
 
