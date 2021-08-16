@@ -1,7 +1,7 @@
 const path = require("path");
 const fs = require("fs").promises;
 const Viz = require("viz.js");
-const ffmpeg = require("ffmpeg");
+const {exec} = require("child_process");
 const vizRenderOpts = require("viz.js/full.render.js");
 
 const COPY_FILES_PATTERN = /\.(jpg|jpeg|png|gif|ms|mp4)/;
@@ -52,18 +52,10 @@ async function buildResources(pageIndex, buildOpts) {
         }));
       }
       if (ext.match(VIDEO_FILES_PATTERN)) {
-        const video = await new ffmpeg(srcPath);
         await Promise.all(destLangs.map(async (lang) => {
-          const destPath = path.join(buildOpts.outputDir, page.localizedPaths[lang]);
+          const destPath = path.join(buildOpts.outputDir, page.localizedPaths[lang], `${name}.thumb_%d.jpg`);
           await new Promise((resolve, reject) => {
-            video.fnExtractFrameToJPG(destPath, {
-              keep_pixel_aspect_ratio: true,
-              keep_aspect_ratio: true,
-              size: "?x480",
-              padding_color: "black",
-              number: 1,
-              file_name: `${name}.thumb.jpg`
-            }, (err, files) => {
+            exec(`ffmpeg -i "${srcPath}" -vframes 1 "${destPath}"`, (err) => {
               if (err) reject(err);
               else resolve(files);
             });

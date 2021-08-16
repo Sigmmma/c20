@@ -49,7 +49,11 @@ An explicit choice was made to avoid typical managed or self-hosted Wiki platfor
 * [Marked.js](https://github.com/markedjs/marked) for Markdown rendering. This library is extremely customizable; we customize header rendering to support anchor links and have a plaintext renderer to support search and opengraph previews.
 
 ### Building and testing
-In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite, this project requires [installing Node.js v14+](https://nodejs.org/en/), [FFmpeg](https://ffmpeg.org/), and [Git LFS](https://git-lfs.github.com/). Once those are installed, clone the project and run the following shell commands to build and locally serve the website:
+In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite, this project requires [installing Node.js v14+](https://nodejs.org/en/), [FFmpeg](https://ffmpeg.org/), and [Git LFS](https://git-lfs.github.com/).
+
+If you have installed Git LFS _after_ checking out the project already, you'll need to run `git lfs install` and `git lfs pull` to download the objects. If you forget to do this the build will fail because `ffmpeg` will be unable to read video files as videos ("Invalid data found when processing input").
+
+Once those are installed, clone the project and run the following shell commands to build and locally serve the website:
 
 ```sh
 # install dependencies
