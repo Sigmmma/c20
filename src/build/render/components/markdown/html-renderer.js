@@ -1,6 +1,7 @@
 const R = require("ramda");
 const yaml = require("js-yaml");
 const marked = require("marked");
+const htmlparser2 = require("htmlparser2");
 const hljs = require("highlight.js");
 const {consoleLang, hscLang} = require("./langs/hsc");
 const vrmlLang = require("./langs/vrml");
@@ -45,8 +46,20 @@ module.exports = function(ctx) {
   renderer.paragraph = R.pipe(processAbbreviations, renderer.paragraph);
 
   renderer.heading = function(text, level) {
+    /* text is already rendered to HTML at this point, including HTML
+     * entities in place of characters like ' and <. We don't want those
+     * slugified so we extract the text from the heading. This also means no
+     * formatting/links in headings is supported but it's not really our
+     * style anyway.
+     */
+    let parsedText = "";
+    const parser = new htmlparser2.Parser({
+      ontext: part => parsedText += part
+    });
+    parser.write(text);
+    parser.end();
     const hN = "h" + level;
-    return heading(hN, text);
+    return heading(hN, parsedText);
   };
 
   renderer.image = (href, title, text) => {
