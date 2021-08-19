@@ -96,6 +96,9 @@ You can attempt to pass the limit using H1A Tool's `-noassert` option, but will 
 
 ![](max_bsp_depth.mp4)
 
+## Couldn't allocate subcluster
+This error means you have too many triangles in a cluster (>16k). Simplify your level geometry or add portals to divide triangles among more clusters.
+
 # Portal problems
 ## Warning: Unearthed edge (magenta)
 An _unearthed edge_ is where a portal's open edge is exposed within the BSP. It is similar to the [open edges error](#error-edge-is-open-red), but for portals. Portal edges should either extend through the BSP or be connected with another portal. If connecting the portal to another portal you must ensure that they are attached at vertices rather than simply touching.

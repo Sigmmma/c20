@@ -178,47 +178,7 @@ Sapien requires DX11 support, it is currently unknown if it can be run under WIN
 ## Crashes
 When Sapien crashes, check `debug.txt` for hints.
 
-<table>
-  <thead>
-    <tr>
-      <th style="width:50%">Error</th>
-      <th style="width:50%">Solution</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>
-EXCEPTION halt in \...\sound\sound_dsound_pc.c,#1966: properties->gain>=0.f && properties->gain<=1.f
-      </td>
-      <td>Restart your PC and the issue should go away.</td>
-    </tr>
-    <tr>
-      <td>
-EXCEPTION halt in \\...\rasterizer\dx9\rasterizer_dx9.c,#1461: global_window_parameters.fog.planar_maximum_depth>0.0f
-      </td>
-      <td>
-
-Try moving or resizing your [fog plane(s)][scenario_structure_bsp#fog-planes].
-      </td>
-    </tr>
-    <tr>
-      <td>EXCEPTION halt in \\...\tag_files\tag_groups.c,#3395: group_tag==NONE || tag_group_get(group_tag)</td>
-      <td>
-
-Sapien has encountered an unrecognized tag class, such as an [OpenSauce][OpenSauce#new-tag-types] tag or [vestigial tag][tags#unused-tags]. Remove references to this tag class.
-      </td>
-    </tr>
-    <tr>
-      <td>EXCEPTION halt in \\...\sound\sound_dsound_pc.c,#2083: play_cursor_position >= 0 && play_cursor_position < GetAvgBytesPerSecond(sound_samples_per_second(channel_type_sample_rate(channel->type_flags)), channel_get_num_channels(channel_index))</td>
-      <td>A sound device was lost or disabled while Sapien was running. Make sure you don't unplug anything and considering using the -nosound argument.</td>
-    </tr>
-    <tr>
-      <td>EXCEPTION halt in \\...\sound\sound_dsound_pc.c,#2151: length <= channel->buffer_size</td>
-      <td>Same as above</td>
-    </tr>
-    <tr>
-      <td>EXCEPTION halt in objects.c,#2419: got an object type we didn't expect (expected one of 0x00000001 but got #1).</td>
-      <td>Attempted to take over a unit in recording mode while no unit was selected. Make sure to select a unit first.</td>
-    </tr>
-  </tbody>
-</table>
+```.table
+tableDefs: crashes.yml
+tableName: crashes
+```
