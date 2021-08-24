@@ -87,11 +87,9 @@ module.exports = function(ctx) {
         return alert(extensionArgs, renderMarkdown(ctx, code));
       } else if (extensionType == "struct") {
         const opts = yaml.load(code);
-        //todo: use search terms and headings
         return structDisplay(ctx, opts).html;
       } else if (extensionType == "table") {
-        //todo: add support for search terms
-        return renderTableYaml(ctx, code);
+        return renderTableYaml(ctx, code).html;
       }
       throw new Error(`Unrecognized markdown extension: ${extensionType}`);
     }

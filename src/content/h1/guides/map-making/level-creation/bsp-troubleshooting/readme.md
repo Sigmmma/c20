@@ -89,6 +89,13 @@ This is likely a side-effect of other issues with your geometry. Correct them fi
 ## Error: Vertex has a bad point
 A vertex is too far away from the origin (0, 0, 0 coordinate). All points must be within -1500 and +1500 [world units][scale] (-150000 and +150000 JMS units) in each axis. If you have encountered this error it means your BSP is too large and must be scaled down.
 
+## Exception: bsp3d_plane_test_point(plane, point0, NULL)==_bsp3d_plane_test_on
+In full, this rare exception appears as:
+```
+EXCEPTION halt in e:\jenkins\workspace\mcch1codebuild\mcc\main\h1\code\h1a2\sources\tool\import_collision_bsp\build_collision_geometry.c,#979: bsp3d_plane_test_point(plane, point0, NULL)==_bsp3d_plane_test_on
+```
+The likely culprit is that your BSP is **too large**. Scale it down to a reasonable playable size.
+
 ## Exception: global_plane_count < MAXIMUM_BSP3D_DEPTH
 The collision BSP's role is to allow efficient lookups of collideable surfaces (e.g. where a projectile will impact) without the game having to test every single surface in the level. It does this by recursively organizing all surfaces under a tree of dividing planes, where at each branch the game checks only the surfaces in front or behind the plane. The more collision surfaces (triangles) your level has, the more planes are needed to organize them. Due to the way planes are chosen, certain shapes like spheres can also exacerbate the issue. This assertion failure happens when you reach the limit of dividing planes because your model is too complex.
 

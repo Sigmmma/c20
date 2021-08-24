@@ -8,6 +8,7 @@ const AUTO_INDEX_THRESHOLD = 100;
 
 function renderTableYaml(ctx, optsYaml) {
   const {renderMarkdown, renderMarkdownInline} = require("./markdown"); //todo: untangle circular dep
+  const searchTerms = [];
 
   const opts = yaml.load(optsYaml);
 
@@ -66,10 +67,13 @@ function renderTableYaml(ctx, optsYaml) {
       content[ctx.lang] || content['en'] : content;
 
     if (format === "text") {
+      searchTerms.push(renderMarkdown(ctx, translated, true));
       return renderMarkdown(ctx, translated);
     } else if (format === "code") {
+      searchTerms.push(renderMarkdownInline(ctx, translated, true));
       return renderMarkdownInline(ctx, "`" + translated + "`");
     } else if (format.startsWith("codeblock")) {
+      searchTerms.push(translated);
       const syntax = format.split("-")[1]; // Could be undef. That's ok.
       return renderMarkdown(ctx, "\n```" + syntax + "\n" + translated + "\n```");
     } // Could implement others here
@@ -117,7 +121,7 @@ function renderTableYaml(ctx, optsYaml) {
   // Construct the table.
   // If rowLinks is enabled but no column is marked as href, an additional
   // column will be inserted for a link to each row.
-  return html`
+  const htmlResult = html`
     ${rowsIndex.length > 0 && html`
       <p>
         <nav>
@@ -157,6 +161,8 @@ function renderTableYaml(ctx, optsYaml) {
       </tbody>
     </table>
   `;
+
+  return {searchTerms, html: htmlResult};
 }
 
 module.exports = {renderTableYaml};
