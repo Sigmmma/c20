@@ -1,8 +1,8 @@
 title:
-  en: shader_transparent_generic (Xbox)
-img: comparison.jpg
+  en: shader_transparent_generic
+img: generic.jpg
 imgCaption:
-  en: MCC appearance (left) vs classic appearance (right)
+  en: The energy field of the Spirit dropship uses this shader type.
 keywords:
   en:
     - shader_transparent_chicago

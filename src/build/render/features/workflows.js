@@ -196,7 +196,7 @@ module.exports = async function(ctx) {
     metaSections,
     metaTitle: page.toolName ?
       `${icon("tool", localize("tool"))} ${page.toolName}` :
-      `${icon("file", localizer("resource"))} ${defaultMetaTitle}`,
+      `${icon("file", localize("resource"))} ${defaultMetaTitle}`,
     metaClass: page.toolName ? "content-tool" : undefined,
   };
 };
