@@ -8,3 +8,4 @@ nohup.out
 oxipng.exe
 hs_doc*.txt
 *.code-workspace
+/ffmpeg.exe
