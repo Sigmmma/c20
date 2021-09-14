@@ -550,9 +550,9 @@ workflowItems:
   H2C-Sapien:
     inherit: H2C-EK
     page: h2c-sapien
-  H2A-Standalone:
+  H2C-Standalone:
     inherit: H2C-EK
-    page: h2a-standalone
+    page: h2c-standalone
   wrl 2.0:
     page: wrl-2.0
   ass:

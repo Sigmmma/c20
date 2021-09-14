@@ -1,5 +1,5 @@
 ```.alert
-This is an article about the H2A Tool for use with MCC. For the legacy Tool for [Halo 2][h2] see [H2Tool][H2V-Tool]. You may also be interested in a [summary of changes][h2a-ek#tool] from legacy Tool.
+This is an article about the H2A Tool for use with MCC. For the legacy Tool for [Halo 2][h2] see [h2tool][]. You may also be interested in a [summary of changes][h2a-ek#tool] from legacy Tool.
 ```
 
 **H2C-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo 2 Anniversary Editing Kit][H2A-EK] by 343 Industries in 2021.
@@ -46,15 +46,19 @@ A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb.
 
 ```sh
 #  build-cache-file <scenario> [platform] [flags]
-tool build-cache-file "scenarios\multi\example\example" dx11_64 01010
-tool build-cache-file "scenarios\multi\example\example" dx11_64 01010
+tool build-cache-file "scenarios\multi\example\example" dx11_64 compress|resource_sharing
+tool build-cache-file "scenarios\multi\example\example" dx11_64 compress|resource_sharing
 ```
 
 * scenario - A local tag path to your scenario without the file extension
 * platform - Sets the platform the cache file is intended for. The default platform used and the only valid platform for MCC is as follows:
 	* dx11_64
-* flags - A bitfield that can be used to toggle certain settings during cache complication. The options are as follows and in order.
-	* placeholder - placeholder
+* flags - A set of flags that can be used to toggle certain settings during cache complication. The options are as follows.
+	* compress - If this string is present then the cache file will be compressed?
+	* resource_sharing - If this string is present then raw tag data such as bitmap palate data  use shared maps for their data?
+	* mp_tag_sharing - If this string is present then whole tags will use shared maps for their data?
+	* multilingual_sounds  - If this string is present then the cache file will support and include multiple languages for sounds?
+	* remastered_support  - If this string is present then the cache file will support Saber3D
 
 The resulting map file can be found in the editing kit's `h2_maps_win64_dx11` directory. This verb also generates reports under `reports\<mapname>` including a compilation-specific `debug.txt`.
 
@@ -124,3 +128,8 @@ tool build-trace-map
 #  bulk-collision <jmi-file>
 tool bulk-collision
 ```
+
+[wiki-tiff]: https://en.wikipedia.org/wiki/TIFF
+[wiki-color]: https://en.wikipedia.org/wiki/Color_depth
+[wiki-real]: https://en.wikipedia.org/wiki/Real_number
+[wiki-wav]: https://en.wikipedia.org/wiki/WAV

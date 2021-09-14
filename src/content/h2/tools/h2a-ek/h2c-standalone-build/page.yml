@@ -5,7 +5,7 @@ keywords:
     - test
     - cache
     - h2a
-toolName: H2C-standalone
+toolName: H2C-Standalone
 img: halo_2_tag_test.jpg
 imgCaption:
   en: Using some debug_object commands
