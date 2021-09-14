@@ -54,10 +54,10 @@ tool build-cache-file "scenarios\multi\example\example" dx11_64 compress|resourc
 * platform - Sets the platform the cache file is intended for. The default platform used and the only valid platform for MCC is as follows:
 	* dx11_64
 * flags - A set of flags that can be used to toggle certain settings during cache complication. The options are as follows.
-	* compress - If this string is present then the cache file will be compressed?
-	* resource_sharing - If this string is present then raw tag data such as bitmap palate data  use shared maps for their data?
-	* mp_tag_sharing - If this string is present then whole tags will use shared maps for their data?
-	* multilingual_sounds  - If this string is present then the cache file will support and include multiple languages for sounds?
+	* compress - If this string is present then the cache file will be compressed
+	* resource_sharing - If this string is present then raw tag data, such as bitmap plate data, use shared maps for their data
+	* mp_tag_sharing - If this string is present then tags will use shared maps for their data
+	* multilingual_sounds  - If this string is present then the cache file will support and include multiple languages for sounds
 	* remastered_support  - If this string is present then the cache file will support Saber3D
 
 The resulting map file can be found in the editing kit's `h2_maps_win64_dx11` directory. This verb also generates reports under `reports\<mapname>` including a compilation-specific `debug.txt`.
