@@ -1,4 +1,4 @@
-**H2Tool** (**h2tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [H2EK][].
+**H2Tool** (**h2tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [H2V-EK][].
 
 # ASS compilation
 An [ASS][] file containing model geometry can be compiled into a [scenario_structure_bsp][] using the `structure-new-from-ass` verb:

@@ -13,7 +13,7 @@ If there are any images that you find difficult to read then try opening the ima
 # Creation of a level directory
 For the sake of organizing your asset files you should consider keeping all your source files in the same level directory used to create the level (.blend, .tif, .psd, .ass, etc..).
 
-[H2Tool.exe][h2tool] will search for subdirectories in the level directory that contain the raw asset data for compilation and eventually package the resulting assets from the raw data into a map cache file that can run in Halo 2. Any assets that you compile will end up in the tags directory plus the local path to the raw assets in the data folder. For example the file below...
+H2Tool.exe will search for subdirectories in the level directory that contain the raw asset data for compilation and eventually package the resulting assets from the raw data into a map cache file that can run in Halo 2. Any assets that you compile will end up in the tags directory plus the local path to the raw assets in the data folder. For example the file below...
 
 `(H2EK Install Path)\data\scenarios\multi\dreamer\structure\dreamer.ASS`
 

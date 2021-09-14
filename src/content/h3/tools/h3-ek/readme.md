@@ -1,0 +1,2 @@
+The **Halo 2 Editing Kit** or **H2EK** is the official suite of modding tools released by Hired Gun alongside [Halo 2 Vista][h2] in 2007. The kit consists of modified versions of Bungie's own internal development tools and includes a tutorial and commonly used _data_ and [tags][] for map development.
+As the tools released were cut down and missing many features many community mods were created as workarounds for instance [H2Codez](https://github.com/Project-Cartographer/H2Codez).

@@ -520,21 +520,39 @@ workflowItems:
     page: wind
 
   # H2
-  H2EK:
-    page: h2ek
+  H2V-EK:
+    page: h2v-ek
     authors:
       - Bungie
       - Hired Gun
       - Pi Studios
-  H2Tool:
-    inherit: H2EK
+  H2V-Tool:
+    inherit: H2V-EK
     page: h2tool
-  H2Guerilla:
-    inherit: H2EK
+  H2V-Guerilla:
+    inherit: H2V-EK
     page: h2guerilla
-  H2Sapien:
-    inherit: H2EK
+  H2V-Sapien:
+    inherit: H2V-EK
     page: h2sapien
+  H2C-EK:
+    page: h2c-ek
+    authors:
+      - 343 Industries
+      - Bungie
+      - Saber Interactive
+  H2C-Tool:
+    inherit: H2C-EK
+    page: h2c-tool
+  H2C-Guerilla:
+    inherit: H2C-EK
+    page: h2c-guerilla
+  H2C-Sapien:
+    inherit: H2C-EK
+    page: h2c-sapien
+  H2A-Standalone:
+    inherit: H2C-EK
+    page: h2a-standalone
   wrl 2.0:
     page: wrl-2.0
   ass:
@@ -547,6 +565,15 @@ workflowItems:
   h2/scenario_structure_bsp:
     inherit: h2_tags
     page: h2/tags/scenario_structure_bsp
+    
+# H2
+  H3-EK:
+    page: h3-ek
+    authors:
+      - 343 Industries
+      - Bungie
+      - Saber Interactive
+
 
 # These are groups of tools which perform similar functions. When an item
 # opts in to workflows, these may appear in the metabox to show similar or
@@ -761,7 +788,7 @@ workflows:
     from: bitmap
     to: tga
   # model compilation
-  - using: H2Tool
+  - using: H2V-Tool
     from: ass
     to: h2/scenario_structure_bsp
   - using:

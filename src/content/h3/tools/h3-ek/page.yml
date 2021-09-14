@@ -3,13 +3,13 @@ title:
 img: h2ek.jpg
 imgCaption:
   en: >-
-    [H2Sapien][], [H2Guerilla][], and [H2Tool][] can still be run on modern Windows systems
+    can still be run on modern Windows systems
 info:
   en: >
     * Release date: 2007
 
 stub: true
-toolName: H2EK
+toolName: H2V-EK
 alerts:
   - type: danger
     md:
