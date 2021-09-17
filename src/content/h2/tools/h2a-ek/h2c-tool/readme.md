@@ -122,12 +122,277 @@ tool build-trace-map
 ```
 
 # Bulk collision
-???
+Multiple directories can have their collision files compiled in a single run using this command.
 
 ```sh
 #  bulk-collision <jmi-file>
-tool bulk-collision
+tool bulk-collision "objects\multi\jmi_Test.JMI"
 ```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk import crates 
+Compile multiple source directories in a single run to generate a crate tag and all the relevant tags involved.
+
+```sh
+#  bulk-import-crates <jmi-file>
+tool bulk-import-crates "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk import crates folder
+Generates a crate tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go!
+
+```sh
+#  bulk-import-crates-folder <source-directory>
+tool bulk-import-crates-folder "objects\multi\world_node_a"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+
+# Bulk import model folder
+Generates a model tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go!
+
+```sh
+#  bulk-import-model-folder <source-directory>
+tool bulk-import-model-folder "objects\multi\world_node_a"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+
+# Bulk import models
+Compile multiple source directories in a single run to generate a model tag and all the relevant tags involved.
+
+```sh
+#  bulk-import-models <jmi-file>
+tool bulk-import-models "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk import scenery
+Compile multiple source directories in a single run to generate a scenery tag and all the relevant tags involved.
+
+```sh
+#  bulk-import-scenery <jmi-file>
+tool bulk-import-scenery "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk import scenery folder
+Generates a scenery tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go!
+
+```sh
+#  bulk-import-scenery-folder <source-directory>
+tool bulk-import-scenery-folder "objects\multi\world_node_a"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+
+# Bulk physics
+Multiple directories can have their physics files compiled in a single run using this command.
+
+```sh
+#  bulk-physics <jmi-file>
+tool bulk-physics "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk render
+Multiple directories can have their render files compiled in a single run using this command.
+
+```sh
+#  bulk-render <jmi-file>
+tool bulk-render "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Camera track
+This commands takes a JMA file directly and converts it to a camera_track for the game. The length of the animation should be at most 16 as that is the max number of control points a camera track tag can contain. The JMA should contain a skeleton made up of a single bone that will change its position each frame. The orientation of the bone will determine the position and rotation of the control point for that index. The name of the JMA file will be the name of the tag.
+
+```sh
+# camera-track <source-file>
+tool camera-track cameras\ohno.jma
+```
+
+* source-file - A local data path to where the JMA file is located.
+
+# Collision
+A [JMS][] file containing a collision model can be compiled into a collision model tag
+
+```sh
+# collision <source-directory>
+tool collision "objects\characters\masterchief"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+
+# Convert pixel shaders
+???
+
+```sh
+# convert-pixel-shaders
+tool convert-pixel-shaders
+```
+
+# Convert tiled tiff
+???
+
+```sh
+# convert-tiled-tiff <input-tiff-file> <output-tiff-file>
+tool convert-tiled-tiff "(ABSOLUTE-PATH-TO-H2AEK)\data\objects\characters\masterchief\bitmaps\masterchief.tiff" "(ABSOLUTE-PATH-TO-H2AEK)\data\objects\characters\masterchief\bitmaps\masterchief_output.tiff"
+```
+
+* input-tiff-file - An absolute path to a tiff file.
+* output-tiff-file - An absolute path to a path with filename and extension to generate the output file in.
+
+# Count all class sounds
+Goes through all of the sound tags in a directory and prints how many sounds belong to a specific class
+
+```sh
+# count-all-class-sounds <root-path>
+tool count-all-class-sounds "sound\ambience"
+```
+* root-path - A local tag path to the root of a directory containing sound tags or child folders with sound tags.
+
+# Count class sounds
+Goes through all of the sound tags in the tags directory and prints the paths for sounds that use a specific sound class
+
+```sh
+# count-class-sounds <sound-class>
+tool count-class-sounds projectile_impact
+```
+* sound-class - The sound class you want to specify. The list is as follows.
+	* Placeholder
+	
+# Count class sounds
+Prints all existing sound tags in a directory.
+
+```sh
+# count-sound-tags <root-path>
+tool count-sound-tags "sound\ambience"
+```
+* root-path - A local tag path to the root of a directory containing sound tags or child folders with sound tags.
+
+# Dialogue globals import
+Compiles a CSV file to generate a new AI dialogue tag. The file path for the CSV file is `data\ai\ai_dialogue_globals.csv`
+
+```sh
+# dialogue-globals-import
+tool dialogue-globals-import
+```
+
+# Dialogue import
+Collects all sound tag paths and adds them to a generated dialogue tag.
+
+```sh
+# dialogue-import <root-directory>
+tool dialogue-import "sound\dialog\combat\brute_bloodthirsty"
+```
+
+* root-directory - A local tag path to the root of a directory containing sound tags.
+
+# Dump tag table
+???
+
+```sh
+# dump-tag-table <tag-type>
+tool dump-tag-table
+```
+
+* tag-type - Only accepts particle_old for some reason?
+
+# Dump tiff to header
+???
+
+```sh
+# dump-tiff-to-header <quantization-factor> <tiff-file> <constant-prefix-string> <output-file>
+tool dump-tiff-to-header
+```
+
+* tag-type - Only accepts particle_old for some reason?
+
+# Dump uncompressed sounds
+Prints the paths of sound tags that use `none (little endian)` as their compression format.
+
+```sh
+# dump-uncompressed-sounds <root-path>
+tool dump-uncompressed-sounds "sound_remastered"
+```
+
+* root-path - A local tag path to the root of a directory containing sound tags.
+
+# Export tag to XML
+Dumps the tag values set in the tag to an XML format to easily compare in text editors.
+
+```sh
+# export-tag-to-xml <tag-file> <output-file>
+tool export-tag-to-xml "(ABSOLUTE-PATH-TO-H2AEK)\tags\objects\characters\masterchief\masterchief.render_model" "(ABSOLUTE-PATH-TO-H2AEK)\tags\objects\characters\masterchief\masterchief.xml"
+```
+
+* tag-file - An absolute tag path with extension.
+* output-file - A absolute path with file name and XML extension to set where to write the XML to.
+
+# Export tags to XML
+Exports multiple tags to multiple XML files in a single run to easily compare in text editors. Files will get dumped to the root of your H2AEK root unless you give an absolute path
+
+```sh
+# export-tags-to-xml <export-tag-to-xml-params-listing>
+tool export-tags-to-xml "F:\tag_list.txt"
+```
+
+* export-tag-to-xml-params-listing - An absolute file path to a text file containing a list of tags to export. Sample file below.
+
+## Format
+```
+<tag-file>,<output-file>
+<tag-file>,<output-file>
+<newline-here-is-not-optional>
+```
+
+## Sample
+```
+ui\hud\banshee.new_hud_definition,banshee.new_hud_definition.xml
+ui\hud\battle_rifle.new_hud_definition,battle_rifle.new_hud_definition.xml
+ 
+```
+
+# Export windows font
+???
+
+```sh
+# export-windows-font <output-directory> <font-file-(optional)> <typeface-name> <point-size>
+tool export-windows-font
+```
+
+# Extract collision data
+Extracts import info from a collision tag to retrieve the original JMS used to create the tag. Import info is stripped after package so don't expect this command to do anything if it's missing.
+
+```sh
+# extract-collision-data <collision_model>
+tool extract-collision-data "objects\characters\masterchief\masterchief"
+```
+
+* collision_model - A local tag path to a collision tag without file extension.
+
+# Extract collision data
+Extracts import info from a collision tag to retrieve the original JMS used to create the tag. Import info is stripped after package so don't expect this command to do anything if it's missing.
+
+```sh
+# extract-hs-scripts <name_substring>
+tool extract-collision-data "objects\characters\masterchief\masterchief"
+```
+
+* collision_model - A local tag path to a collision tag without file extension.
+
+
+
 
 [wiki-tiff]: https://en.wikipedia.org/wiki/TIFF
 [wiki-color]: https://en.wikipedia.org/wiki/Color_depth
