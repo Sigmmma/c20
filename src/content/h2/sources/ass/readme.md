@@ -1,1 +1,1 @@
-The **Amalgam Scene Specification** (ASS) file format is used as an intermediate geometry format when exporting from 3D editors like [Blender][] and [3ds Max][3dsmax]. Using [H2Tool][], a ASS file can be compiled into Halo 2's [scenario_structure_bsp][] tag.
+The **Amalgam Scene Specification** (ASS) file format is used as an intermediate geometry format when exporting from 3D editors like [Blender][] and [3ds Max][3dsmax]. Using tool, a ASS file can be compiled into Halo 2's [scenario_structure_bsp][] tag.
