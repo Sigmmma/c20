@@ -70,6 +70,12 @@ The resulting map file can be found in the editing kit's `h2_maps_win64_dx11` di
 tool build-convolution-map
 ```
 
+* tiff-file - ???
+* passes - ???
+* blur-subpasses - ???
+* e - ???
+* scale - ???
+
 # Build gradient map
 ???
 
@@ -77,6 +83,12 @@ tool build-convolution-map
 #  build-gradient-map <tiff-file> <width> <height> <exponent> <options>
 tool build-gradient-map
 ```
+
+* tiff-file - ???
+* width - ???
+* height - ???
+* exponent - ???
+* options - ???
 
 # Build noise map
 This command generates random noise like you would see in an image editor. The result can then be converted into a bitmap tag or taken to your image editing software to tweak further.
@@ -105,6 +117,10 @@ The resulting can be found in the `data` folder with the path you set in tiff-fi
 tool build-plasma-control-map
 ```
 
+* tiff-file - ???
+* k - ???
+* e - ???
+
 # Build quadratic map
 ???
 
@@ -113,6 +129,8 @@ tool build-plasma-control-map
 tool build-quadratic-map
 ```
 
+* tiff-file - ???
+
 # Build trace map
 ???
 
@@ -120,6 +138,13 @@ tool build-quadratic-map
 #  build-trace-map <tiff-file> <options> <time-bias> <time-scale> <min-delta-time> <max-delta-time>
 tool build-trace-map
 ```
+
+* tiff-file - ???
+* options - ???
+* time-bias - ???
+* time-scale - ???
+* min-delta-time - ???
+* max-delta-time - ???
 
 # Bulk collision
 Multiple directories can have their collision files compiled in a single run using this command.
@@ -131,7 +156,7 @@ tool bulk-collision "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk import crates 
+# Bulk import crates
 Compile multiple source directories in a single run to generate a crate tag and all the relevant tags involved.
 
 ```sh
@@ -216,7 +241,7 @@ This commands takes a JMA file directly and converts it to a camera_track for th
 
 ```sh
 # camera-track <source-file>
-tool camera-track cameras\ohno.jma
+tool camera-track cameras\ohno.JMA
 ```
 
 * source-file - A local data path to where the JMA file is located.
@@ -246,7 +271,7 @@ tool convert-pixel-shaders
 
 ```sh
 # convert-tiled-tiff <input-tiff-file> <output-tiff-file>
-tool convert-tiled-tiff "(ABSOLUTE-PATH-TO-H2AEK)\data\objects\characters\masterchief\bitmaps\masterchief.tiff" "(ABSOLUTE-PATH-TO-H2AEK)\data\objects\characters\masterchief\bitmaps\masterchief_output.tiff"
+tool convert-tiled-tiff "(F:\masterchief.tiff" "F:\masterchief_output.tiff"
 ```
 
 * input-tiff-file - An absolute path to a tiff file.
@@ -270,7 +295,7 @@ tool count-class-sounds projectile_impact
 ```
 * sound-class - The sound class you want to specify. The list is as follows.
 	* Placeholder
-	
+
 # Count class sounds
 Prints all existing sound tags in a directory.
 
@@ -316,7 +341,10 @@ tool dump-tag-table
 tool dump-tiff-to-header
 ```
 
-* tag-type - Only accepts particle_old for some reason?
+* quantization-factor - ???
+* tiff-file - ???
+* constant-prefix-string - ???
+* output-file - ???
 
 # Dump uncompressed sounds
 Prints the paths of sound tags that use `none (little endian)` as their compression format.
@@ -371,8 +399,13 @@ ui\hud\battle_rifle.new_hud_definition,battle_rifle.new_hud_definition.xml
 tool export-windows-font
 ```
 
+* output-directory - ???
+* font-file-(optional) - ???
+* typeface-name - ???
+* point-size - ???
+
 # Extract collision data
-Extracts import info from a collision tag to retrieve the original JMS used to create the tag. Import info is stripped after package so don't expect this command to do anything if it's missing.
+Extracts import info from a collision_model tag to retrieve the original JMS used to create the tag. Don't expect this command to do anything if there is no import info.
 
 ```sh
 # extract-collision-data <collision_model>
@@ -381,17 +414,431 @@ tool extract-collision-data "objects\characters\masterchief\masterchief"
 
 * collision_model - A local tag path to a collision tag without file extension.
 
-# Extract collision data
-Extracts import info from a collision tag to retrieve the original JMS used to create the tag. Import info is stripped after package so don't expect this command to do anything if it's missing.
+# Extract HS scripts
+Finds all scenario_hs_source_file tags in a directoty and dumps the contents to an .hsc file in data.
 
 ```sh
 # extract-hs-scripts <name_substring>
-tool extract-collision-data "objects\characters\masterchief\masterchief"
+tool extract-hs-scripts "scenarios\solo\01b_spacestation\scripts"
 ```
 
-* collision_model - A local tag path to a collision tag without file extension.
+* name_substring - A local tag path to a directory containing scenario_hs_source_file tag files.
 
+# Extract LPC data
+???
+Dumps a file called test.aif in the root of H2AEK
 
+```sh
+# extract-lpc-data <sound-file>
+tool extract-lpc-data "sound_test\aiff\soundtest.aiff"
+```
+
+* sound-file - A local data path to an AIF/AIFF file.
+
+# Extract physics data
+Extracts import info from a physics_model tag to retrieve the original JMS used to create the tag. Don't expect this command to do anything if there is no import info.
+
+```sh
+# extract-physics-data <physics_model>
+tool extract-physics-data "objects\vehicles\scorpion\scorpion"
+```
+
+* physics_model - A local tag path to a physics_model tag without extension.
+
+# Extract render data
+Extracts import info from a render_model tag to retrieve the original JMS used to create the tag. Don't expect this command to do anything if there is no import info.
+
+```sh
+# extract-render-data <render_model>
+tool extract-render-data "objects\vehicles\scorpion\scorpion"
+```
+
+* render_model - A local tag path to a render_model tag without extension.
+
+# Extract structure data
+Extracts import info from a scenario_structure_bsp tag to retrieve the original ASS/JMS used to create the tag. Don't expect this command to do anything if there is no import info.
+
+```sh
+# extract-structure-data <scenario_structure_bsp>
+tool extract-structure-data "scenarios\solo\01b_spacestation\01_bsp_2"
+```
+
+* scenario_structure_bsp - A local tag path to a scenario_structure_bsp tag without extension.
+
+# Extract unicode strings
+Extract strings from multilingual_unicode_string_list and dumps the results back to a text file in data. Results may not match original source exactly so give the files a read to make sure tool won't have any issues.
+
+```sh
+# extract-unicode-strings <multilingual_unicode_string_list>
+tool extract-unicode-strings "ui\hud\hud_messages"
+```
+
+* multilingual_unicode_string_list - A local tag path to a multilingual_unicode_string_list tag without extension.
+
+# FBX to ASS
+This command takes an FBX and converts it to an ASS file for Halo 2 level importing. Use this if you don't have access to an export script.
+
+```sh
+# fbx-to-ass <fbx> <ass>
+tool fbx-to-ass "F:\dreamer.fbx" "F:\dreamer.ASS"
+```
+
+* fbx - An absolute filepath to a valid FBX file.
+* ass - An absolute filepath that includes name and extension to write the output to.
+
+For some details on how to setup the FBX file see [FBX for H1A][using-fbx-in-h1a].
+
+# FBX to JMA
+This command takes an FBX and converts it to an animation source file for Halo 2 importing. Use this if you don't have access to an export script. Be aware that the extension can be any of the avaliable extensions for animation importing. It does not specifically needs to be JMA. You can type JMO as the extension and the output is still valid.
+
+```sh
+# fbx-to-jma <fbx> <jma> [Start-frame] [Last-frame]
+tool fbx-to-jma "E:\my_fbx_files\cyborg_dab.fbx" F:\cyborg_my_custom_anim.JMA
+tool fbx-to-jma "E:\my_fbx_files\cyborg_dab.fbx" F:\cyborg_my_custom_anim.JMA 5 10
+```
+
+* fbx - An absolute filepath to a valid FBX file.
+* jma - An absolute filepath that includes name and extension to write the output to.
+* Start-frame - Sets the first frame index that the converter will start from. Use this if you want only a specific section of an animation from your FBX. This arg is optional so you can leave this and Last-frame out if you want the animation as is.
+* Last-frame - Sets the last frame index that the converter will end on. Use this if you want only a specific section of an animation from your FBX. This arg is optional so you can leave this and Last-frame out if you want the animation as is.
+
+For some details on how to setup the FBX file see [FBX for H1A][using-fbx-in-h1a].
+
+# FBX to JMS
+
+```sh
+# fbx-to-jms <render-or-collision-or-physics> <fbx> <jms>
+tool fbx-to-jms render "F:\dreamer.fbx" "F:\dreamer.JMS"
+```
+
+* render-or-collision-or-physics - Sets the type of geo this FBX is for. Use either render, collision, or physics only. The geo class set will determine what geometry gets exported from the JMS
+* fbx - An absolute filepath to a valid FBX file.
+* jms - An absolute filepath that includes name and extension to write the output to.
+
+For some details on how to setup the FBX file see [FBX for H1A][using-fbx-in-h1a].
+
+# Fix model materials
+Sets global material names for model tags in a directory if the name is invalid.
+
+```sh
+# fix-model-materials <root-directory> <material-name>
+tool fix-model-materials "incompetent" hey
+```
+
+* root-directory - A local tag path to a directory containing model tags.
+* material-name - What to set the global material name to.
+
+# Fix tags
+Various command to fix up tags. Almost all of them are meant for porting Xbox to PC.
+
+```sh
+# fix-tags <action>
+tool fix-tags count-scripts
+```
+
+* action - What action to take. Type something invalid like "a" to see a full list of options.
+
+# FP model animations
+Import animation source files as a first person animation. Use this if you're making FP weapon animations.
+
+```sh
+# fp-model-animations <source-directory> <character-directory> <weapon-directory> [flags]
+tool fp-model-animations "objects\characters\masterchief\fp\weapons\rifle\fp_smg" "objects\characters\masterchief\fp" "objects\weapons\rifle\smg\fp_smg"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+* character-directory - A local data path to the root of the first person character model source directory the weapon is using.
+* weapon-directory - A local data path to the root of the first person weapon model source directory the character is using.
+* flags - ??? This is an optional arg.
+
+# Import damage table
+Imports `data\globals\armor_vs_damage.csv` to generate a tag.
+
+```sh
+# import-damage-table
+tool import-damage-table
+```
+
+# Import decorator set
+Imports a JMI set to generate a decorator_set tag.
+
+```sh
+# import-decorator-set <jmi-file>
+tool import-decorator-set "objects\characters\brute\garbage\brute_helmet.JMI"
+```
+
+* jmi-file - A local data path to a JMI file.
+
+# Import particle set
+Imports a JMI set to generate a particle tag.
+
+```sh
+# import-particle-model <jmi-file>
+tool import-particle-model "objects\characters\brute\garbage\brute_helmet.JMI"
+```
+
+* jmi-file - A local data path to a JMI file.
+
+# Lightmap farm
+Run a lightmap farm. Probably gonna be removed due to it needing a server.
+
+```sh
+# lightmap-farm <scenario> <bsp-name> <quality-setting> <priority> <branch>
+tool lightmap-farm "scenarios\multi\halo\coagulation\coagulation" "coagulation" direct_only 5 branch
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
+* quality-setting - Standard Halo 2 light quality string. The list of options is as follows.
+	* checkerboard
+	* cuban
+	* draft_low
+	* draft_medium
+	* draft_high
+	* draft_super
+	* direct_only
+	* low
+	* medium
+	* high
+	* super
+* priority - A value from 0-10 to determine priority with 0 being most important and 10 being least important.
+* branch - ???
+
+# Lightmap farm update SQL
+???
+
+```sh
+# lightmap-farm-update-sql <scenario-directory> <bsp-name> <sql_record_id>
+tool lightmap-farm "scenarios\multi\halo\coagulation\coagulation" "coagulation" 0
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
+* sql_record_id - ???
+
+# Lightmap merge
+Merge the results from `lightmap-slave` to form the final lightmap bitmap tag.
+
+```sh
+# lightmap-merge <scenario> <bsp-name> <slave-count>
+tool lightmap-merge "scenarios\multi\halo\coagulation\coagulation" "coagulation" 2
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
+* slave-count - The number of lightmap-slaves that were used.
+
+# Lightmap render model
+Generates section leaves in a render_model tag. Probably meant to test PRT related things.
+
+```sh
+# lightmap-rendermodel <render-model>
+tool lightmap-rendermodel "scenarios\objects\covenant\military\scarab\scarab"
+```
+
+* scenario - A local tag path to a render_model tag without extension.
+
+# Lightmap slave
+Run a lightmap-slave instance to cut down on time spent lighting. Make sure to run `lightmap-merge` afterwards to complete the process.
+
+```sh
+# lightmap-slave <scenario> <bsp-name> <quality-setting> <slave-index> <slave-count>
+tool lightmap-slave "scenarios\multi\halo\coagulation\coagulation" "coagulation" direct_only 0 3
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
+* quality-setting - Standard Halo 2 light quality string. The list of options is as follows.
+	* checkerboard
+	* cuban
+	* draft_low
+	* draft_medium
+	* draft_high
+	* draft_super
+	* direct_only
+	* low
+	* medium
+	* high
+	* super
+* slave-index - The instance ID starting from 0. The range for this depends on the number set for slave-count.
+* slave-count - The number of instances that will be launched.
+
+# Lightmaps
+Run a lightmap instance. No fuss no muss.
+
+```sh
+# lightmaps <scenario> <bsp-name> <quality-setting>
+tool lightmaps "scenarios\multi\halo\coagulation\coagulation" "coagulation" direct_only
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
+* quality-setting - Standard Halo 2 light quality string. The list of options is as follows.
+	* checkerboard
+	* cuban
+	* draft_low
+	* draft_medium
+	* draft_high
+	* draft_super
+	* direct_only
+	* low
+	* medium
+	* high
+	* super
+
+# Lightmaps debug
+A command to debug lightmaps. Debug them how you ask? That's an excellent question! Lets move on to the next command.
+
+```sh
+# lightmaps-debug <scenario> <bsp-name> <quality-setting> <begin-light-index> <end-light-index>
+tool lightmaps-debug "scenarios\multi\halo\coagulation\coagulation" "coagulation" direct_only 0 1
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
+* quality-setting - Standard Halo 2 light quality string. The list of options is as follows.
+	* checkerboard
+	* cuban
+	* draft_low
+	* draft_medium
+	* draft_high
+	* draft_super
+	* direct_only
+	* low
+	* medium
+	* high
+	* super
+* begin-light-index - ???
+* end-light-index - ???
+
+# Lightprobes
+???
+
+```sh
+# lightprobes <scenario> <bsp-name> <quality-setting>
+tool lightprobes "scenarios\multi\halo\coagulation\coagulation" "coagulation" direct_only
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
+* quality-setting - Standard Halo 2 light quality string. The list of options is as follows.
+	* checkerboard
+	* cuban
+	* draft_low
+	* draft_medium
+	* draft_high
+	* draft_super
+	* direct_only
+	* low
+	* medium
+	* high
+	* super
+
+# Mission dialogue import
+Gathers all sound tags in a directory to generate an ai_mission_dialogue tag
+
+```sh
+# mission-dialogue-import <root-directory>
+tool mission-dialogue-import "sound\dialog\levels\08_controlroom"
+```
+
+* root-directory - A local tag path to a directory containing a cinematic and mission folder that contain sound files.
+
+# Model animation count
+Goes to all the animations in a directory and child directories. Once it's done it prints debug info.
+
+```sh
+# model-animation-count <source-directory>
+tool model-animation-count "objects\characters\masterchief"
+```
+
+* source-directory - A local tag path to a directory containing model_animation_graph tags or child folders with model_animation_graph tags.
+
+# Model animation reset compression
+???
+
+```sh
+# model-animation-reset-compression <model-animation-graph>
+tool model-animation-reset-compression "objects\characters\masterchief\masterchief"
+```
+
+* model-animation-reset-compression - A local tag path to a model_animation_graph tag without file extensions.
+
+# Model animation status
+Goes to all the animations in a directory and child directories. Once it's done it prints debug info.
+
+```sh
+# model-animation-status <source-directory>
+tool model-animation-status "objects\characters\masterchief"
+```
+
+* source-directory - A local tag path to a directory containing model_animation_graph tags or child folders with model_animation_graph tags.
+
+# Model animation status
+Goes to all the animations in a directory and child directories. Once it's done it prints debug info.
+
+```sh
+# model-animations <source-directory> [flags]
+tool model-animations "objects\characters\masterchief"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+* flags - ???
+
+# Monitor bitmaps
+Keeps watch of the data directory for any file changes. If any tiff places are modified or placed in the data directory then tool will immediately attempt to import the image file as bitmap tags.
+
+```sh
+# monitor-bitmaps
+tool monitor-bitmaps
+```
+
+# Monitor models
+Keeps watch of the data directory for any file changes. If any model related intermediate files are modified or moved to the data directory then tool will immediately attempt to import the source files as render_model, coliision_model, or physics_model tags.
+
+```sh
+# monitor-models
+tool monitor-models
+```
+
+# Monitor structures
+Keeps watch of the data directory for any file changes. If any level related intermediate files are modified or moved to the data directory then tool will immediately attempt to import the source files as levels.
+
+```sh
+# monitor-structures
+tool monitor-structures
+```
+
+# New strings
+Converts all text files in a directory to multilingual_unicode_string_list tags. Text files should be saved as UTF-16
+
+```sh
+# new-strings <source-directory>
+tool new-strings "ui\hud"
+```
+
+* source-directory - A local data path to a directory containing text files.
+
+# Old physics
+???
+
+```sh
+# old-physics <source-directory>
+tool old-physics "objects\multi\test_physics"
+```
+
+* source-directory - A local data path to a directory.
+
+# Pack unicode strings
+???
+
+```sh
+# pack-unicode-strings <language> <tag-list-file>
+tool pack-unicode-strings <language> <tag-list-file>
+```
+
+* language - ???
+* tag-list-file - ???
 
 
 [wiki-tiff]: https://en.wikipedia.org/wiki/TIFF
