@@ -567,8 +567,8 @@ workflowItems:
     page: h2/tags/scenario_structure_bsp
     
 # H2
-  H3-EK:
-    page: h3-ek
+  H3EK:
+    page: h3ek
     authors:
       - 343 Industries
       - Bungie

@@ -1,18 +1,12 @@
 title:
-  en: Halo 2 Editing Kit (H2EK)
-img: h2ek.jpg
+  en: Halo 3 Editing Kit (H3EK)
+img: h3ek.png
 imgCaption:
   en: >-
-    can still be run on modern Windows systems
+    caption goes here todo(numoo5)
 info:
   en: >
-    * Release date: 2007
+    * Release date: 2021
 
 stub: true
-toolName: H2V-EK
-alerts:
-  - type: danger
-    md:
-      en: >-
-        After installing the H2EK, Windows users must [prevent the Virtual Store
-        from interfering with it][tips#windows-virtual-store].
+toolName: H3EK
