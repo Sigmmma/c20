@@ -25,7 +25,7 @@ def FileHasAlpha(file_name) -> bool:
     if pic.shape[2] == 3:
         return False # has no alpha channel
     if pic.shape[2] == 4: # has alpha channe;
-        return numpy.allclose(pic[:, :, 3], 1) # check if Alpha is 1 everywhere (not used)
+        return not numpy.allclose(pic[:, :, 3], 1) # check if Alpha is 1 everywhere (not used)
     print(f"{file_name} has an unexpcted shape pic:{pic}")
     return True # shouldn't touch what we dont't understand
     
