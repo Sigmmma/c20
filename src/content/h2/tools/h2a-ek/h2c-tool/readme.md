@@ -13,7 +13,7 @@ This new version of Tool has many differences from the 2007 Pi Studios Tool. Mos
 - parentheses appended to the `arg` name are used to encode valid argument values.
 - `arg(option1, option2)` - Either `option1` or `option2` can be passed as `arg`.
 - `arg(optionClass)` - Any value of `optionClass` can be used.
-- `Tool` or `tool.exe` - refers to the subject of this article, the H2A Tool, if the legacy Tool is being referred to that will be made explicit.
+- `Tool` or `tool.exe` - refers to the subject of this article, the H2C Tool, if the legacy Tool is being referred to that will be made explicit.
 
 # Command line flags
 - `-data_dir` and `-tags_dir` can be used to change the data and tag directories respectively. This might not work with all verbs as it's experimental. See [using custom content paths][using-custom-content-paths].
@@ -324,7 +324,7 @@ tool dialogue-import "sound\dialog\combat\brute_bloodthirsty"
 * root-directory - A local tag path to the root of a directory containing sound tags.
 
 # Dump tag table
-???
+Obsolete/broken. Doesn't do anything.
 
 ```sh
 # dump-tag-table <tag-type>
@@ -580,32 +580,16 @@ tool import-particle-model "objects\characters\brute\garbage\brute_helmet.JMI"
 * jmi-file - A local data path to a JMI file.
 
 # Lightmap farm
-Run a lightmap farm. Probably gonna be removed due to it needing a server.
+Obsolete. Doesn't do anything.
 
 ```sh
 # lightmap-farm <scenario> <bsp-name> <quality-setting> <priority> <branch>
 tool lightmap-farm "scenarios\multi\halo\coagulation\coagulation" "coagulation" direct_only 5 branch
 ```
 
-* scenario - A local tag path to a scenario tag without extension.
-* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
-* quality-setting - Standard Halo 2 light quality string. The list of options is as follows.
-	* checkerboard
-	* cuban
-	* draft_low
-	* draft_medium
-	* draft_high
-	* draft_super
-	* direct_only
-	* low
-	* medium
-	* high
-	* super
-* priority - A value from 0-10 to determine priority with 0 being most important and 10 being least important.
-* branch - ???
 
 # Lightmap farm update SQL
-???
+Obsolete. Doesn't do anything.
 
 ```sh
 # lightmap-farm-update-sql <scenario-directory> <bsp-name> <sql_record_id>
@@ -820,7 +804,7 @@ tool new-strings "ui\hud"
 * source-directory - A local data path to a directory containing text files.
 
 # Old physics
-???
+Doesn't do anything
 
 ```sh
 # old-physics <source-directory>

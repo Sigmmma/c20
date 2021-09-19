@@ -28,7 +28,7 @@ The Properties palette window displays the properties for the currently selected
 You'll be able to highlight clusters by using your cursor in the game window and **left clicking** to set it as your active cluster.
 
 ## Output window
-???
+Still unknown, maybe we will know one day.
 
 # Keyboard shortcuts/hotkeys
 Some of these shortcuts are only used in certain windows or editor modes.
@@ -63,5 +63,3 @@ debug_objects 1
 ;a comment
 ```
 
-# Compatibility
-Windows users have experienced saving issues related to the Virtual Store. Ensure you have the [right permissions][tips#windows-virtual-store] before editing tags.

@@ -37,7 +37,7 @@ In 2014, Halo 2 Anniversary was released for Xbox One as part of the Halo: The M
 ### Modding
 There are several tools and mods for the base game or external programs that users can grab to enhance their experience. Examples include:
 
-* [Halo 2 Anniversary Editing Kit][h2a-ek] - The official editing suite released for Halo 2 Anniversary.
+* [Halo 2 Classic Editing Kit][h2a-ek] - The official editing suite released for Halo 2 Anniversary.
 * [Assembly][assembly] - A cache editing tool for various titles in the Halo series. Users can use this tool to make permanent edits to cache files and poke changes in real time. While not traditional workflow for map creation, it is a powerful tool that can be used to create interesting experiences. 
 * [Jointed Model Blender Toolset][jointed-model-blender-toolset] - A collection of tools for Blender that can be used to export the intermediate files used by the Halo 2 Editing Kit. 
 
