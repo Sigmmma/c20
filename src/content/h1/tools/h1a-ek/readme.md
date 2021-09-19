@@ -24,7 +24,34 @@ Using the H1A-EK to create content for H1CE rather than H1A is not officially su
 5. Read `README_MODDING.txt` and follow any further instructions contained within it. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
 6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
 
-# What's new?
+# What's new in season 8?
+
+## General
+
+Many games to the base game will also apply to the tools. Reading the official update is recommended.
+Some functions for handling tag names and Unicode string list were changed to more gracefully handle missing data.
+
+## Content
+Tags were updated to season 8 content. Updating your tag set is highly recommended.
+
+## FBX
+
+* FBX converter performance was improved.
+* Fixed marker radius not being handled correctly.
+
+## Guerilla
+
+Some tag field names were changed to better reflect their usage, used fields were hidden and some tooltips were updated.
+
+## Sapien
+Some of these also apply to standalone or MCC itself.
+
+* A rare vertex explosion issue that occurred when the framerate was not capped was fixed.
+* Real time mirror rendering was fixed.
+* A crash that could occur when rotating objects was fixed.
+* Framebuffer blend function `double multiply` was changed to better match Custom Edition, enabled for H1CE maps and tags that set "custom edition blending".
+
+# What's new for HEK users?
 If you're coming from the legacy [HEK][hek] for Custom Edition or earlier versions of MCC you may be wondering what's new and great about the updated H1A tools and engine. Don't worry, we've got you covered!
 
 The season 7 MCC update ([patch notes](https://support.halowaypoint.com/hc/en-us/articles/4402601893268-Halo-The-Master-Chief-Collection-MCC-Patch-Notes-June-2021)) is a significant milestone for the Halo 1 engine. It represents the [recombination of code](/h1/games.svg) and tags from Anniversary, Custom Edition, OG Xbox. Many aspects of [Halo 2's tools][H2V-EK] or limits from later games have even been backported. Mod support is likely to continue beyond season 7 in a phased approach. The tools can receive updates over time owing to their distribution via [Steam][].
