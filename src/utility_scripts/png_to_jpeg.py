@@ -36,8 +36,8 @@ for subdir, dirs, files in os.walk(os.path.join("..", "content")):
         ext = os.path.splitext(file)[-1].lower()
         if ext == ".png":
             file_path = os.path.join(subdir, file)
-            if os.path.getsize(file_path) < 100 * 1024:
-                print(F"{file_path} < 200 KiB, skipping compression")
+            if os.path.getsize(file_path) < 50 * 1024:
+                print(F"{file_path} < 50 KiB, skipping compression")
                 continue
             
             jpeg_name = os.path.splitext(file)[0] + ".jpg"
