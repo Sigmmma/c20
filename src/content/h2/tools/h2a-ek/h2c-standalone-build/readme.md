@@ -15,6 +15,9 @@ map_name scenarios\solo\01b_spacestation\01b_spacestation
 map_name scenarios\multi\halo\coagulation\coagulation
 ```
 
+ If you modify tags for the currently loaded map it will be automatically reloaded. You do not need to do anything to enable this behaviour, just edit and let it reload!
+ Major changes might result in the map restarting, minor changes should be seamless apart from a loading screen.
+
 # Use cases
 This build offers a number of benefits for testing over compiling cache files for H2A:
 
