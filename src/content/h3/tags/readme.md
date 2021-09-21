@@ -1,4 +1,4 @@
-Halo 2's tags are similar to [Halo 1's][h1/tags], but there are many more types.
+Halo 3's tags are similar to [Halo 2's][h2/tags], but there are many more types.
 
 # Tag list
 

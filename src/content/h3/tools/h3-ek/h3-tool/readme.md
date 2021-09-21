@@ -1,10 +1,4 @@
-```.alert
-This is an article about the H2A Tool for use with MCC. For the legacy Tool for [Halo 2][h2] see [h2tool][]. You may also be interested in a [summary of changes][h2a-ek#tool] from legacy Tool.
-```
-
-**H2C-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo 2 Anniversary Editing Kit][H2A-EK] by 343 Industries in 2021.
-
-This new version of Tool has many differences from the 2007 Pi Studios Tool. Most notably, it includes far more verbs and new options for existing ones. A major addition is the FBX to JMS/JMA toolchain to compile models regardless of what 3D modeling software you use.
+**H3-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo 3 Editing Kit][h3-ek] by 343 Industries in 2021.
 
 # Conventions used in this article
 

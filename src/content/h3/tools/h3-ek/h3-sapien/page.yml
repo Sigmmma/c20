@@ -2,9 +2,9 @@ title:
   en: H3 Sapien
 img: h3-sapien.jpg
 imgCaption:
-  en: Sapien being used to place scenery in `coagulation.scenario`
+  en: Sapien being used to edit spawn points in `guardian.scenario`
 stub: true
 keywords:
   en:
     - scenario
-toolName: H2C-Sapien
+toolName: H3-Sapien
