@@ -62,7 +62,8 @@ async function loadPageMetadata(contentDir) {
       const parent = pages[parentId];
       if (parent) {
         page.parent = parent;
-        parent.children = R.append(page, parent.children);
+        if (!page.noList) // if the child listing isn't disabled add the page to it
+          parent.children = R.append(page, parent.children);
         break;
       }
     }

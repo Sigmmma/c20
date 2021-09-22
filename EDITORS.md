@@ -124,6 +124,9 @@ tagIndex:
 # pages which are unlikely to be searched for specifically so they don't
 # clutter the results of more typical searches.
 noSearch: true
+# If true causes the pages to be excluded from the child page listing
+# use this for disambiguation/preserving old links
+noList: true
 # Only used for the 2020 survey results page. Causes survey results to be
 # rendered as a section of the page. Survey results are in English only.
 surveyResults: true
