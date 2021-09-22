@@ -27,7 +27,7 @@ This new version of Tool has many differences from the 2007 Pi Studios Tool. Mos
 tool bitmaps "scenarios\bitmaps\solo\spacestation"
 ```
 
-* source-directory - A local tag path to a folder containing a set of images for processing.
+* source-directory - A local data path to a folder containing a set of images for processing.
 * type - sets the type of bitmap the image will be converted to. This will change how the source image is expected to be setup. The list of valid options is as follows:
 	* 2d
 	* 3d
@@ -1076,7 +1076,7 @@ Imports sound files in a directory with the import type set to multi-layer. All 
 tool sound-multi-layer "sound_test" projectile_impact adpcm
 ```
 
-* source-directory - A local data path to a directory or child directories containing sound files.
+* source-directory - A local data path to a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM, WMA, and AIFF.
 * type - Set the sound class
 * compression - Set the compression. The list of valid options is as follows.
 	* uncompressed
@@ -1091,7 +1091,7 @@ Imports a single sound file
 tool sound-multi-layer "sound_test\aiff" projectile_impact adpcm
 ```
 
-* source-file - A local data path to the root of a directory containing sound files.
+* source-file - A local data path to the root of a directory containing sound files. Supported extensions are WAV saved as 16 bit PCM, WMA, and AIFF.
 * type - Set the sound class
 * compression - Set the compression. The list of valid options is as follows.
 	* uncompressed
@@ -1106,7 +1106,7 @@ Generates an empty sound looping tag from the folders in data. Probably an error
 tool sounds-music "sound_test" projectile_impact adpcm
 ```
 
-* source-file - A local data path to the root of a directory or child directories containing sound files.
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM, WMA, and AIFF.
 * type - Set the sound class
 * compression - Set the compression. The list of valid options is as follows.
 	* uncompressed
@@ -1121,7 +1121,7 @@ Imports sound files in a directory with the import type set to single-shot. Each
 tool sounds-one-shot "sound_test" projectile_impact adpcm
 ```
 
-* source-file - A local data path to the root of a directory or child directories containing sound files.
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM, WMA, and AIFF.
 * type - Set the sound class
 * compression - Set the compression. The list of valid options is as follows.
 	* uncompressed
@@ -1136,7 +1136,7 @@ Imports sound files in a directory with the import type set to single-layer. Eac
 tool sounds-single-layer "sound_test" projectile_impact adpcm
 ```
 
-* source-file - A local data path to the root of a directory or child directories containing sound files.
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM, WMA, and AIFF.
 * type - Set the sound class
 * compression - Set the compression. The list of valid options is as follows.
 	* uncompressed
@@ -1151,7 +1151,7 @@ Imports sound files in a directory with the import type set to single-layer. Eac
 tool sounds-single-mixed "sound_test" projectile_impact adpcm
 ```
 
-* source-file - A local data path to the root of a directory or child directories containing sound files.
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM, WMA, and AIFF.
 * type - Set the sound class
 * compression - Set the compression. The list of valid options is as follows.
 	* uncompressed
