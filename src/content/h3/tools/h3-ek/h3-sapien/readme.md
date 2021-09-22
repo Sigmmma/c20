@@ -13,6 +13,7 @@ Movement of the camera is done in the same way as the in-game debug camera; **ho
 * Move with <kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, and <kbd>D</kbd>
 * Go up with <kbd>R</kbd> and down with <kbd>F</kbd>
 * Change camera speed by pressing <kbd>Shift</kbd>
+* Switch to player mode with <kbd>Tab</kbd> and by using <kbd>Backspace</kbd> you can toggle between third person, freecam, and first person.
 
 ## Hierarchy view
 The Hierarchy view displays all the objects currently placed in the game and organizes them by type. The left pane of the window shows the Hierarchy tree and currently selected type, and the right pane shows the objects of this selected group or type that are currently placed in the level.
