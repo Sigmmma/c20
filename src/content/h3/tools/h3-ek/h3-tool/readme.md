@@ -30,12 +30,13 @@ tool faux_data_sync "levels\multi\riverworld\riverworld" "riverworld"
 
 If you use the [Osoyoos launcher][osoyoos] or the Python script supplied this step will be done automatically.
 
-## Lightmapping using the script
-You need to install [Python][] if you haven't already, then run the `calc_lm_farm_local.py` script in the toolkit root directory.
+## Lightmapping using the Python script
+You need to install [Python][] if you haven't already see the [official documentation on how to do that for your platform][https://docs.python.org/3/using/index.html], if at some point you are asked if you wish to add python to PATH it is suggested you do that as it will make your life easier.
+Once Python is installed and working run the `calc_lm_farm_local.py` script in the toolkit root directory.
 
 ```sh
 #python calc_lm_farm_local.py <scenario> <bsp name> <light group> <quality(high, medium, low, direct_only)> 
-calc_lm_farm_local.py "levels\multi\riverworld\riverworld" riverworld all medium
+python calc_lm_farm_local.py "levels\multi\riverworld\riverworld" riverworld all medium
 ```
 
 If you aren't sure what to use for light group/region just use the catch all value of `all`, this will ensure all regions are lit correctly.
