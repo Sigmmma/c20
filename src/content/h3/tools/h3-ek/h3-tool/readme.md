@@ -31,7 +31,7 @@ tool faux_data_sync "levels\multi\riverworld\riverworld" "riverworld"
 If you use the [Osoyoos launcher][osoyoos] or the Python script supplied this step will be done automatically.
 
 ## Lightmapping using the Python script
-You need to install [Python][] if you haven't already see the [official documentation on how to do that for your platform](https://docs.python.org/3/using/index.html), if at some point you are asked if you wish to add python to PATH it is suggested you do that as it will make your life easier.
+You need to install [Python][] if you haven't already see the [official documentation on how to do that for your platform](https://docs.python.org/3/using/index.html), if at some point you are asked if you wish to add python to `PATH` it is suggested you do that as it will make your life easier.
 Once Python is installed and working run the `calc_lm_farm_local.py` script in the toolkit root directory.
 
 ```sh
@@ -49,6 +49,10 @@ Lightmapping using the launcher should be more or less the same as lightmapping 
 ## Manually lightmapping using the command line
 
 The `faux_lightmap` and `faux_checkerboard` commands are meant to handle local single instance lightmaps but they are sadly currently broken. In principle you can invoke the same commands the launcher and the script invoke manually but this isn't recommended. In the interest of brevity it will not be discussed here - read the Python script if you are interested in how it works, it should be easy to understand as it's quite short.
+
+## Disk usage
+
+The multi-instance faux process dumps a fair bit of intermediate data to disk which might not be desirable on a slow medium (e.g. external HDD or network drive) or an SSD if you are running a lot of lightmaps and don't want to needlessly wear it out. This data will be saved to the `faux` folder in the toolkit root directory. You can create a link (junction point or symbolic) from this folder to somewhere that is more convenient for you. If you have enough free main memory a RAM Disk might be a good solution - 2 gigabytes of dynamically allocated space should be enough (empirical result for a 16 logical processor system - your mileage will vary).
 
 [wiki-tiff]: https://en.wikipedia.org/wiki/TIFF
 [wiki-color]: https://en.wikipedia.org/wiki/Color_depth
