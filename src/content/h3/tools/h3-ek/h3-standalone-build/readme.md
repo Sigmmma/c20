@@ -14,14 +14,15 @@ map_name levels\solo\020_base\020_base
 ; load tags\levels\solo\040_voi\040_voi.scenario:
 map_name levels\solo\040_voi\040_voi
 ```
-Once you are in-game you can change the map using the [console][developer-console]. If you modify tags for the currently loaded map it will be automatically reloaded.You do not need to do anything to enable this behaviour, just edit and let it reload!
+Once you are in-game you can change the map using the [console][developer-console]. If you modify tags for the currently loaded map it will be automatically reloaded. You do not need to do anything to enable this behaviour, just edit and let it reload!
 Major changes might result in the map restarting, minor changes should be seamless apart from a loading screen.
 
 # Use cases
-This build offers a number of benefits for testing over compiling cache files for H3:
+This build offers a number of benefits for testing over compiling cache files or using player simulation:
 
-* Since it loads tags, you can edit tags then simply reload the map with `map_name` to see changes. Pair this with `game_save` to return to the same place. Combine this with real time tag editing and you got yourself a great set of tools to develop with.
-* You have access to **all** console functions and globals in a much more interactive environment than Sapien to help you troubleshoot your content.
+* As mentioned above tag reloading is enabled for standalone and Sapien.
+* You have access to a HaloScript console which lets you toggle globals and call functions at will.
+* It will be closer to the experience of playing through level in the cache build than player simulation.
 
 # Debug camera controls
 To enter into the debug camera, open the [console][developer-console] and enter `debug_camera_save` followed by `debug_camera_load` or press <kbd>Backspace</kbd> until you are in flying camera mode. Movement of the camera is a little different than in Sapien. You do _not_ need to hold the middle mouse button and the camera moves in the direction it's pointed rather than its vertical movement being controlled exclusively with buttons.
@@ -53,3 +54,8 @@ You can quickly spawn a variety of objects for testing:
 
 * Spawn by entering `cheat_all_vehicles` into the console.
 * Spawn by entering `cheat_all_weapons` into the console.
+
+# Known issues
+* Sound doesn't work.
+* No main menu is included so if you attempt to launch it without an `init.txt` it will crash.
+* Particles and the like look different from the cache build.
