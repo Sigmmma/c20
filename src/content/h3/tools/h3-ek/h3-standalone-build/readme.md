@@ -24,8 +24,8 @@ This build offers a number of benefits for testing over compiling cache files or
 * You have access to a HaloScript console which lets you toggle globals and call functions at will.
 * It will be closer to the experience of playing through level in the cache build than player simulation.
 
-# Debug camera controls
-To enter into the debug camera, open the [console][developer-console] and enter `debug_camera_save` followed by `debug_camera_load` or press <kbd>Backspace</kbd> until you are in flying camera mode. Movement of the camera is a little different than in Sapien. You do _not_ need to hold the middle mouse button and the camera moves in the direction it's pointed rather than its vertical movement being controlled exclusively with buttons.
+# Debug director flying controls
+To use the debug freecam press <kbd>Backspace</kbd> until you are in flying camera mode. Movement of the camera is a little different than in Sapien. You do _not_ hold the middle mouse button and the camera moves in the direction it's pointed rather than its vertical movement being controlled exclusively with buttons.
 
 * <kbd>Backspace</kbd>: Cycle camera modes (1st person, 3rd person, flying)
 * Use the mouse to aim
@@ -33,7 +33,7 @@ To enter into the debug camera, open the [console][developer-console] and enter 
 * Go up with <kbd>R</kbd> and down with <kbd>F</kbd> (camera relative, not world relative)
 * Increase/decrease camera speed by scrolling down/up
 * Temporarily boost camera speed by holding <kbd>Ctrl</kbd>
-* Rotate clockwise with <kbd>G</kbd>
+* Toggle biped control without switching the camera back to first person by pressing the **middle mouse button**.
 
 You can also use a gamepad to control the camera:
 
