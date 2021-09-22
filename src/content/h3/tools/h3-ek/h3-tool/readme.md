@@ -7,11 +7,7 @@
 - parentheses appended to the `arg` name are used to encode valid argument values.
 - `arg(option1, option2)` - Either `option1` or `option2` can be passed as `arg`.
 - `arg(optionClass)` - Any value of `optionClass` can be used.
-- `Tool` or `tool.exe` - refers to the subject of this article, the H2C Tool, if the legacy Tool is being referred to that will be made explicit.
-
-# Command line flags
-- `-data_dir` and `-tags_dir` can be used to change the data and tag directories respectively. This might not work with all verbs as it's experimental. See [using custom content paths][using-custom-content-paths].
-- `-pause` wait for user input before exiting, useful for custom launchers.
+- `Tool` or `tool.exe` - refers to the subject of this article, the H3 Tool, if the legacy Tool is being referred to that will be made explicit.
 
 # Baking lightmaps (Faux)
 
