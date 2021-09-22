@@ -25,8 +25,8 @@ const localizations = localizer({
     es: "es_ES"
   },
   siteName: {
-    en: "The Reclaimers Library",
-    es: "La Biblioteca de Reclaimers"
+    en: "Reclaimers Library BETA",
+    es: "La Biblioteca de Reclaimers BETA"
   },
   toc: {
     en: "Page contents",
@@ -114,7 +114,7 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
             <div class="sidebar-inner">
               <header class="sidebar-header">
                 <a class="c20-logo" href="${ctx.resolveUrl("/")}">
-                  <span class="c20-name-short">c20</span>
+                  <span class="c20-name-short">c10</span>
                   <span class="c20-name-long">${localize("siteName")}</span>
                 </a>
                 <button class="nobg" id="toggle-theme">
