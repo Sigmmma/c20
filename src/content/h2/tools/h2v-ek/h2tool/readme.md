@@ -1,3 +1,7 @@
+```.alert
+This is an article about the legacy H2V Tool for use with [Halo 2 Vista][h2], for the H2C Tool for MCC see [H2C Tool][h2c-tool]
+```
+
 **H2Tool** (**h2tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [H2V-EK][].
 
 # ASS compilation

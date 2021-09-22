@@ -1,3 +1,7 @@
+```.alert
+This is an article about the H2C Guerilla for use with MCC. For the legacy H2V Guerilla for [Halo 2 Vista][h2] see [H2V Guerilla][h2guerilla].
+```
+
 **H2C Guerilla** (`guerilla.exe`)  part of the [Halo 2 Anniversary Editing Kit][H2A-EK], is a visual [tag][tags] editor. Although it can visualize [bitmaps][bitmap] and play sounds, it is primarily focused on editing and viewing the structured fields which comprise tags. It does not offer ingame previews or interactive placement of [objects][object], which is [Sapien's][H2C-Sapien] role.
 
 # Saved workspaces

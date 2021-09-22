@@ -1,3 +1,7 @@
+```.alert
+This is an article about the H2C Sapien for use with MCC. For the legacy H2V Sapien for [Halo 2 Vista][h2] see [H2V Sapien][h2sapien].
+```
+
 **H2C-Sapien**, part of the [Halo 2 Anniversary Editing Kit][H2A-EK], is a visual [scenario][] and [BSP][scenario_structure_bsp] editor used to populate levels with objects, configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile scripts, and more. Sapien shares some systems with Halo 2 itself, including its AI system to support interactive AI scripting and debugging.
 
 It is roughly analogous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which has support for debug commands.
