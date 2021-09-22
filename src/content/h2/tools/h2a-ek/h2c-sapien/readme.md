@@ -36,7 +36,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 ## General
 * <kbd>~</kbd>: Opens the command console.
 * <kbd>Pause/Break</kbd>: Pauses your Sapien instance. Press "OK" in the opened window to resume Sapien.
-* <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>: Creates the file `baggage.txt`. This file shows the memory usage of tags in the editor. This will crash H2C-Sapien so do not use this.
+* <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>: Creates the file `baggage.txt`. This file shows the memory usage of tags in the editor.
 * <kbd>Shift</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. You can also use it to select the first and last object in the hierarchy list to select everything in-between at once. Useful for deleting multiple objects or moving them all at once.
 * <kbd>Control</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
 * Hold <kbd>Tab</kbd>: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.

@@ -44,7 +44,7 @@ You can also use a gamepad to control the camera:
 * <kbd>Right trigger</kbd>: move up
 * <kbd>Left trigger</kbd>: move down
 * <kbd>Left stick click</kbd>: speed boost
-* <kbd>D-pad up/down</kbd>: speed increase/decrease (make sure to enable `framerate_throttle 1` first)
+* <kbd>D-pad up/down</kbd>: speed increase/decrease
 * <kbd>D-pad left/right</kbd>: roll
 
 Analog control of the camera with the gamepad makes a great filming tool for your custom map trailers.

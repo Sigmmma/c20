@@ -1,11 +1,11 @@
 title:
   en: H3 Tool
-img: h2tool.jpg
+img: h3-tool.jpg
 imgCaption:
-  en: 'Using H2C-Tool in CMD to view the command list'
+  en: 'Using H3-Tool in CMD to view the command list'
 stub: true
 keywords:
   en:
     - lightmap
     - cli
-toolName: H2C-Tool
+toolName: H3-Tool
