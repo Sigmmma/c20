@@ -52,7 +52,7 @@ tool build-cache-file "scenarios\multi\example\example" dx11_64 compress|resourc
 
 * scenario - A local tag path to your scenario without the file extension
 * platform - Sets the platform the cache file is intended for. The default platform used and the only valid platform for MCC is as follows:
-	* dx11_64
+	* win64_dx11
 * flags - A set of flags that can be used to toggle certain settings during cache complication. The options are as follows.
 	* compress - If this string is present then the cache file will be compressed
 	* resource_sharing - If this string is present then raw tag data, such as bitmap plate data, use shared maps for their data
@@ -323,16 +323,6 @@ tool dialogue-import "sound\dialog\combat\brute_bloodthirsty"
 
 * root-directory - A local tag path to the root of a directory containing sound tags.
 
-# Dump tag table
-Obsolete/broken. Doesn't do anything.
-
-```sh
-# dump-tag-table <tag-type>
-tool dump-tag-table
-```
-
-* tag-type - Only accepts particle_old for some reason?
-
 # Dump tiff to header
 ???
 
@@ -536,7 +526,11 @@ Various command to fix up tags. Almost all of them are meant for porting Xbox to
 tool fix-tags count-scripts
 ```
 
-* action - What action to take. Type something invalid like "a" to see a full list of options.
+
+* action - What action to take. Type something invalid like "help" to see a full list of options.
+
+Most commands will not do anything but a few might be useful if you have a very specific issue.
+
 
 # FP model animations
 Import animation source files as a first person animation. Use this if you're making FP weapon animations.
@@ -579,20 +573,6 @@ tool import-particle-model "objects\characters\brute\garbage\brute_helmet.JMI"
 
 * jmi-file - A local data path to a JMI file.
 
-# Lightmap farm
-Obsolete. Doesn't do anything.
-
-```sh
-# lightmap-farm <scenario> <bsp-name> <quality-setting> <priority> <branch>
-```
-
-
-# Lightmap farm update SQL
-Obsolete. Doesn't do anything.
-
-```sh
-# lightmap-farm-update-sql <scenario-directory> <bsp-name> <sql_record_id>
-```
 
 # Lightmap merge
 
@@ -809,15 +789,6 @@ tool new-strings "ui\hud"
 
 * source-directory - A local data path to a directory containing text files.
 
-# Old physics
-Doesn't do anything
-
-```sh
-# old-physics <source-directory>
-tool old-physics "objects\multi\test_physics"
-```
-
-* source-directory - A local data path to a directory.
 
 # Pack unicode strings
 This command generates the STR files found in the font folder. These files contain the string data the game reads to display text ingame.
@@ -1437,6 +1408,15 @@ tool windows-font
 
 * font-file - ???
 * ea:n - ???
+
+
+# Obsolete commands
+A few commands in tool don't do anything of note:
+* `old-physics <source-directory>`
+* `lightmap-farm <scenario> <bsp-name> <quality-setting> <priority> <branch>`
+* `lightmap-farm-update-sql <scenario-directory> <bsp-name> <sql_record_id>`
+* `dump-tag-table <tag-type>`
+* Most `fix-tags` subcommands.
 
 [wiki-tiff]: https://en.wikipedia.org/wiki/TIFF
 [wiki-color]: https://en.wikipedia.org/wiki/Color_depth
