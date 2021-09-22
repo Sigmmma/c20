@@ -9,4 +9,4 @@ keywords:
     - lightmap
     - radiosity
     - bake
-workflowName: Lightmaps
+workflowName: h1/lightmaps

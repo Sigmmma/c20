@@ -3,6 +3,7 @@ const {loadYamlTree} = require("../../utils");
 const {walkTypeDefs} = require("../structs");
 
 function findDirectTagRefs(structName, structModule, structModules, tagName) {
+  if (!structName) return [];
   const walkOpts = {noRootExtend: true};
   const results = {};
   walkTypeDefs(structName, structModule, structModules, walkOpts, (typeDef) => {
@@ -22,8 +23,12 @@ async function loadTags(structModules) {
   //first pass to augment tag info
   Object.entries(allTags).forEach(([game, gameTags]) => {
     Object.entries(gameTags).forEach(([tagName, tagInfo]) => {
+      if (!tagInfo) {
+        tagInfo = {};
+        gameTags[tagName] = tagInfo;
+      }
       tagInfo.name = tagName;
-      tagInfo.struct = R.path([...tagInfo.structModule.split("/"), "type_defs", tagInfo.structName], structModules);
+      tagInfo.struct = tagInfo.structName ? R.path([...tagInfo.structModule.split("/"), "type_defs", tagInfo.structName], structModules) : null;
       tagInfo.parent = gameTags[tagInfo.parentName];
       tagInfo.references = findDirectTagRefs(tagInfo.structName, tagInfo.structModule, structModules, tagName)
         .filter(r => r != "*")

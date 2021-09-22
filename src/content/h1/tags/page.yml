@@ -1,7 +1,10 @@
 title:
-  en: Tags
-tagIndex: "h1"
-workflowName: tags
+  en: H1 tags
+tagIndex:
+  game: "h1"
+  groupId: true
+  parent: true
+workflowName: h1/tags
 img: control-panels.jpg
 imgCaption:
   en: Tags offer a lot of control, but there's also a lot to learn. Try to focus on one area at a time if you're new.

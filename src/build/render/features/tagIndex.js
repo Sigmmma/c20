@@ -36,7 +36,7 @@ const localizations = localizer({
   }
 });
 
-const tagsTable = (ctx, tags) => {
+const tagsTable = (ctx, tags, groupId, parent) => {
   const localize = localizations(ctx.lang);
   const tagsSorted = [...tags];
   tagsSorted.sort((a, b) => a.name.localeCompare(b.name));
@@ -45,8 +45,12 @@ const tagsTable = (ctx, tags) => {
       <thead>
         <tr>
           <th>${localize("tagName")}</th>
-          <th><a href="${ctx.resolveUrl("tags", "group-ids")}">${localize("groupId")}</a></th>
-          <th>${localize("parent")}</th>
+          ${groupId && html`
+            <th><a href="${ctx.resolveUrl("tags", "group-ids")}">${localize("groupId")}</a></th>
+          `}
+          ${parent && html`
+            <th>${localize("parent")}</th>
+          `}
           <th>${localize("purpose")}</th>
         </tr>
       </thead>
@@ -56,8 +60,12 @@ const tagsTable = (ctx, tags) => {
           return html`
             <tr>
               <td>${tag.vestigial ? tag.name : tagAnchor(ctx, tag.name)}</td>
-              <td><code>${tag.id}</code></td>
-              <td>${tag.parent && tagAnchor(ctx, tag.parent.name)}</td>
+              ${groupId && html`
+                <td><code>${tag.id}</td>
+              `}
+              ${parent && html`
+                <td>${tag.parent && tagAnchor(ctx, tag.parent.name)}</td>
+              `}
               <td>
                 ${tagComments &&
                   renderMarkdown(ctx, tagComments)
@@ -73,12 +81,13 @@ const tagsTable = (ctx, tags) => {
 
 module.exports = async function(ctx) {
   const {page, lang, data} = ctx;
-  const gameVersion = page.tagIndex;
-  const localize = localizations(lang);
 
-  if (!gameVersion) {
+  if (!page.tagIndex) {
     return {};
   }
+
+  const {game: gameVersion, groupId, parent} = page.tagIndex;
+  const localize = localizations(lang);
 
   const usedTags = Object.values(data.tags[gameVersion]).filter(t => !t.unused);
   const unusedTags = Object.values(data.tags[gameVersion]).filter(t => t.unused);
@@ -89,7 +98,7 @@ module.exports = async function(ctx) {
 
   let htmlResult = html`
     ${heading("h1", tagsListHeading)}
-    ${tagsTable(ctx, usedTags)}
+    ${tagsTable(ctx, usedTags, groupId, parent)}
   `;
 
   if (unusedTags.length > 0) {
@@ -97,7 +106,7 @@ module.exports = async function(ctx) {
     htmlResult += html`
       ${heading("h2", unusedTagsHeading)}
       <p>${localize("unusedTagsIntro")}</p>
-      ${tagsTable(ctx, unusedTags)}
+      ${tagsTable(ctx, unusedTags, groupId, parent)}
     `;
     headings.push({title: unusedTagsHeading, id: slugify(unusedTagsHeading), level: 2});
   }

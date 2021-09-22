@@ -1,4 +1,4 @@
-**Reclaimer** is a [Python 3][python] library for modifying and creating Halo data formats like [h1/tags][], [JMS][], [maps][map], and more. It can be used to write Python scripts to inspect, edit, or generate tags programmatically where it might otherwise take hours of manual effort using a tag editor like [Guerilla][]. It is the foundation of the [Mozzarilla][] editor.
+**Reclaimer** is a [Python 3][python] library for modifying and creating Halo data formats like [tags][h1/tags], [JMS][], [maps][h1/map], and more. It can be used to write Python scripts to inspect, edit, or generate tags programmatically where it might otherwise take hours of manual effort using a tag editor like [Guerilla][]. It is the foundation of the [Mozzarilla][] editor.
 
 While mainly focused on Halo 1 and [OpenSauce][] formats, it also has limited support for [Halo 2][h2], Halo 3, Stubbs, and the Shadowrun prototype.
 
@@ -76,7 +76,7 @@ scenario_tag.serialize(backup=False, temp=False)
 ```
 
 ## Example: scanning tags
-This script prints the _type_ field of every [bitmap][] tag in the tags directory.
+This script prints the _type_ field of every [bitmap][h1/tags/bitmap] tag in the tags directory.
 
 ```python
 from pathlib import Path

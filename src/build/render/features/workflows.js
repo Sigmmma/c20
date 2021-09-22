@@ -159,9 +159,14 @@ module.exports = async function(ctx) {
   const {page} = ctx;
 
   const localize = localizations(ctx.lang);
-  const workflowItemName = page.workflowName || page.toolName || page.tagName;
+  let workflowItemName = page.workflowName || page.toolName || page.tagName;
   if (!workflowItemName) {
     return {};
+  }
+
+  if (page.tagName && !page.tagName.includes("/")) {
+    console.warn(`Assuming h1 for tagName ${page.tagName} (${page.pageId}/page.yml)`);
+    workflowItemName = `h1/${page.tagName}`; //temporary hack!
   }
 
   const defaultMetaTitle = page.tryLocalizedTitle(ctx.lang);

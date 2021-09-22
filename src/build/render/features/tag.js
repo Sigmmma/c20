@@ -56,10 +56,10 @@ module.exports = async function(ctx) {
   const game = tagNameArg.length > 1 ? tagNameArg[0] : "h1";
   const tagName = tagNameArg.length > 1 ? tagNameArg[1] : tagNameArg[0];
   const tag = data.tags[game][tagName];
-  const groupId = `<code>${tag.id}</code>${defAnchor(ctx.resolveUrl("h1/tags", "group-ids"))}`;
+  const groupId = tag.id ? `<code>${tag.id}</code>${defAnchor(ctx.resolveUrl("h1/tags", "group-ids"))}` : null;
   const metaSections = [];
   const searchTerms = [];
-  const headingText = localize("tagStructureHeading");
+  const structureHeadingText = localize("tagStructureHeading");
 
   if (tag.parent) {
     metaSections.push({
@@ -68,7 +68,7 @@ module.exports = async function(ctx) {
     });
   }
 
-  if (tag.children.length > 0) {
+  if (tag.children && tag.children.length > 0) {
     metaSections.push({
       cssClass: "content-tag-minor",
       body: detailsList(
@@ -99,7 +99,7 @@ module.exports = async function(ctx) {
     });
   }
 
-  if (tag.referencedBy) {
+  if (tag.referencedBy && tag.referencedBy.length > 0) {
     metaSections.push({
       cssClass: "content-tag-minor",
       body: detailsList(
@@ -110,7 +110,7 @@ module.exports = async function(ctx) {
     });
   }
 
-  const structRender = structDisplay(ctx, {
+  const structRender = tag.structName ? structDisplay(ctx, {
     showOffsets: false,
     skipPadding: !tag.unused, //show padding for leftover tags; it might be of interest
     simpleTypes: true,
@@ -121,26 +121,26 @@ module.exports = async function(ctx) {
     imports: {
       [tag.structModule]: tag.structName
     }
-  });
+  }) : null;
 
-  const bodyHtml = html`
-    ${heading("h1", headingText, "clear")}
+  const bodyHtml = structRender ? html`
+    ${heading("h1", structureHeadingText, "clear")}
     ${tag.parent && alert("info", html`
       <p>${localize("inheritInfo")(tag.name, tagAnchor(ctx, tag.parent.name))}</p>
     `)}
     ${structRender.html}
-  `;
+  ` : null;
 
   return {
     keywords: [tag.id],
     html: bodyHtml,
-    headings: [
-      {title: headingText, id: slugify(headingText), level: 1},
+    headings: structRender ? [
+      {title: structureHeadingText, id: slugify(structureHeadingText), level: 1},
       ...structRender.headings
-    ],
+    ] : [],
     metaSections,
-    searchText: structRender.searchTerms.join(" "),
-    metaTitle: `${icon("sliders", "Tag")} ${tagName} (${groupId})`,
+    searchText: structRender ? structRender.searchTerms.join(" ") : "",
+    metaTitle: `${icon("sliders", "Tag")} ${tagName}${groupId ? ` (${groupId})` : ""}`,
     metaClass: "content-tag",
     thanks: localizeThanks(ctx, ctx.data.tagThanks[game])
   };

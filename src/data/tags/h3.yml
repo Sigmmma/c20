@@ -1,0 +1,286 @@
+# ids have not been checked, so ignore for now
+ai_dialogue_globals:
+  #id: adlg
+ai_mission_dialogue:
+  #id: mdlg
+antenna:
+  #id: ant_
+area_screen_effect:
+beam_system:
+bink:
+biped:
+  #id: bipd
+  parentName: unit
+bitmap:
+  #id: bitm
+breakable_surface:
+  #id: bsdt
+cache_file_resource_gestalt:
+cache_file_resource_layout_table:
+cache_file_sound:
+  #id: shit
+camera_fx_settings:
+camera_track:
+  #id: trak
+cellular_automata:
+  #id: devo
+cellular_automata2d:
+  #id: whip
+character:
+  #id: char_
+chocolate_mountain_new:
+  #id: gldf
+chud_animation_definition:
+chud_definition:
+chud_globals_definition:
+cinematic:
+cinematic_scene:
+cloth:
+  #id: clwd
+collision_damage:
+collision_model:
+  #id: coll
+color_table:
+  #id: colo
+compute_shader:
+contrail_system:
+cortana_effect_definition:
+crate:
+  #id: bloc
+  parentName: obje
+creature:
+  #id: crea
+damage_effect:
+  #id: jpt_
+damage_response_definition:
+decal_system:
+decorator_set:
+  #id: DECR
+detail_object_collection:
+  #id: dobc
+device_control:
+  #id: ctrl
+  parentName: devi
+device_machine:
+  #id: mach
+  parentName: devi
+device_terminal:
+device:
+  #id: devi
+  parentName: obje
+dialogue:
+  #id: udlg
+effect:
+  #id: effe
+effect_globals:
+effect_scenery:
+equipment:
+  #id: eqip
+  parentName: item
+flock:
+fluid_dynamics:
+fragment:
+game_engine_settings_definition:
+giant:
+global_pixel_shader:
+global_vertex_shader:
+globals:
+  #id: matg
+gui_bitmap_widget_definition:
+gui_button_key_definition:
+gui_datasource_definition:
+gui_group_widget_definition:
+gui_list_widget_definition:
+gui_model_widget_definition:
+gui_screen_widget_definition:
+gui_skin_definition:
+gui_text_widget_definition:
+gui_widget_animation_collection_definition:
+gui_widget_animation_definition:
+gui_widget_color_animation_definition:
+gui_widget_font_animation_definition:
+gui_widget_position_animation_definition:
+gui_widget_rotation_animation_definition:
+gui_widget_scale_animation_definition:
+gui_widget_sprite_animation_definition:
+gui_widget_texture_coordinate_animation_definition:
+hlsl_include:
+item_collection:
+  #id: itmc
+item:
+  #id: item
+  parentName: obje
+leaf_system:
+lens_flare:
+  #id: lens
+light:
+  #id: ligh
+light_volume_system:
+material_effects:
+  #id: foot
+meter:
+  #id: metr
+model:
+  #id: hlmt
+model_animation_graph:
+mouse_cursor_definition:
+  #id: mcsr
+muffin:
+multilingual_unicode_string_list:
+  #id: unic
+multiplayer_globals:
+  #id: mulg
+multiplayer_scenario_description:
+  #id: mply
+multiplayer_variant_settings_interface_definition:
+  #id: goof
+new_cinematic_lighting:
+object:
+  #id: obje
+particle:
+  #id: prt3
+particle_model:
+  #id: PRTM
+particle_physics:
+  #id: pmov
+patchy_fog:
+  #id: fpch
+performance_throttles:
+physics_model:
+  #id: phmo
+physics:
+  #id: phys
+pixel_shader:
+  #id: pixl
+planar_fog:
+  #id: fog
+point_physics:
+  #id: pphy
+projectile:
+  #id: proj
+  parentName: obje
+rasterizer_cache_file_globals:
+rasterizer_globals:
+render_method_definition:
+render_method_option:
+render_method_template:
+render_model:
+  #id: mode
+render_skins_object_globals:
+render_water_ripple:
+sandbox_text_value_pair_definition:
+scenario:
+  #id: scnr
+scenario_ai_resource:
+  #id: srai
+scenario_bipeds_resource:
+  #id: srbipd
+scenario_cinematics_resource:
+  #id: srcine
+scenario_cluster_data_resource:
+  #id: srclut
+scenario_comments_resource:
+  #id: srcmmt
+scenario_creature_resource:
+  #id: srcrea
+scenario_cubemap_resource:
+scenario_decals_resource:
+  #id: srdeca
+scenario_decorators_resource:
+  #id: srdcrs
+scenario_devices_resource:
+  #id: srdgrp
+scenario_effect_scenery_resource:
+scenario_equipment_resource:
+  #id: sreqip
+scenario_faux_data:
+scenario_hs_source_file:
+  #id: srhscf
+scenario_lightmap:
+scenario_lightmap_bsp_data:
+scenario_lights_resource:
+  #id: srligh
+scenario_required_resource:
+scenario_scenery_resource:
+  #id: srscen
+scenario_sky_references_resource:
+scenario_sound_scenery_resource:
+  #id: srssce
+scenario_structure_bsp:
+  #id: sbsp
+scenario_structure_lighting_info:
+scenario_structure_lighting_resource:
+  #id: srsslt
+scenario_structure_lightmap:
+  #id: ltmp
+scenario_trigger_volumes_resource:
+  #id: srtrgr
+scenario_vehicles_resource:
+  #id: srvehi
+scenario_weapons_resource:
+  #id: srweap
+scenery:
+  #id: scen
+  parentName: obje
+shader:
+  #id: shad
+shader_cortana:
+shader_custom:
+shader_decal:
+shader_foliage:
+shader_halogram:
+shader_skin:
+shader_terrain:
+shader_water:
+shared_cache_file_layout:
+shield_impact:
+sky_atm_parameters:
+sound:
+  #id: snd_
+sound_cache_file_gestalt:
+  #id: ugh_
+sound_classes:
+  #id: sncl
+sound_dialogue_constants:
+  #id: spk_
+sound_effect_collection:
+  #id: sfx_
+sound_effect_template:
+  #id: _fx_
+sound_environment:
+  #id: snde
+sound_global_propagation:
+sound_looping:
+  #id: lsnd
+sound_mix:
+  #id: snmx
+sound_scenery:
+  #id: ssce
+stereo_system:
+  #id: BooM
+structure_design:
+structure_seams:
+style:
+  #id: styl
+text_value_pair_definition:
+  #id: sily
+unit:
+  #id: unit
+  parentName: obje
+user_interface_globals_definition:
+  #id: wgtz
+user_interface_shared_globals_definition:
+  #id: wigl
+user_interface_sounds_definition:
+vehicle:
+  #id: vehi
+  parentName: unit
+vehicle_collection:
+  #id: vehc
+vertex_shader:
+  #id: vrtx
+weapon:
+  #id: weap
+  parentName: item
+wind:
+  #id: wind

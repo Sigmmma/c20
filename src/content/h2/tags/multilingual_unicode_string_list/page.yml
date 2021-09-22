@@ -4,4 +4,4 @@ stub: true
 keywords:
   en:
     - string
-workflowName: multilingual_unicode_string_list
+workflowName: h2/multilingual_unicode_string_list

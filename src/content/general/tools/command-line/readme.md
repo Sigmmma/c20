@@ -2,7 +2,7 @@ Basic knowledge of **command-line interfaces** (CLI) is a required skill in Halo
 
 On Windows, [Command Prompt][cmd], [PowerShell][], and the newer [Windows Terminal][wterm] are used as shells. On Linux, terminal emulators vary by distribution but [Bash][] is typically used as the shell.
 
-CLIs are an alternative to _Graphical User Interfaces_ (GUIs). While they have a learning curve, the main advantage of CLIs are that the interaction is reified as plain text which is easily shared, scripted, and repeated. For example, the often-repeated workflow of [BSP compilation][tool#structure-compilation], [radiosity][tool#lightmaps], then [map][] compilation can be scripted as a single command to save time during map development.
+CLIs are an alternative to _Graphical User Interfaces_ (GUIs). While they have a learning curve, the main advantage of CLIs are that the interaction is reified as plain text which is easily shared, scripted, and repeated. For example, the often-repeated workflow of [BSP compilation][tool#structure-compilation], [radiosity][tool#lightmaps], then [map][h1/map] compilation can be scripted as a single command to save time during map development.
 
 # Basic concepts
 Across all shells, commands are entered in the format: `command <arguments>`. This should be familiar to users of Halo's developer console. The type and number of arguments varies by the command/program used, but the command name and each argument are always separated by spaces.

@@ -1,6 +1,8 @@
 title:
-  en: Tags
+  en: H3 tags
 stub: true
-thanks:
-  kornman00:
-    en: OpenSauce sources containing tag groups
+workflowName: h3/tags
+tagIndex:
+  game: "h3"
+  groupId: false
+  parent: true

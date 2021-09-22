@@ -114,9 +114,12 @@ tagName: scenario
 # page.
 thanksIndex: true
 # If provided, adds sections on the page listing all tag types for a particular
-# engine version. We only have data for h1. The "purpose" column of the
-# generated table comes from the tag YAML files containing structural comments.
-tagIndex: "h1"
+# engine version. The "purpose" column of the generated table comes from the
+# tag YAML files containing structural comments...for now.
+tagIndex:
+  game: "h1"
+  groupId: true
+  parent: false
 # If true, causes the page to be excluded from the search index. Use this for
 # pages which are unlikely to be searched for specifically so they don't
 # clutter the results of more typical searches.

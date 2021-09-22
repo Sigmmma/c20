@@ -1,0 +1,256 @@
+ai_dialogue_globals:
+  id: adlg
+ai_mission_dialogue:
+  id: mdlg
+antenna:
+  id: ant_
+biped:
+  id: bipd
+  parentName: unit
+bitmap:
+  id: bitm
+breakable_surface:
+  id: bsdt
+cache_file_sound:
+  id: shit
+camera_track:
+  id: trak
+cellular_automata:
+  id: devo
+cellular_automata2d:
+  id: whip
+character:
+  id: char_
+chocolate_mountain:
+  id: gldf
+cloth:
+  id: clwd
+collision_model:
+  id: coll
+colony:
+  id: coln
+color_table:
+  id: colo
+contrail:
+  id: cont
+crate:
+  id: bloc
+  parentName: obje
+creature:
+  id: crea
+damage_effect:
+  id: jpt_
+decal:
+  id: deca
+decorator_set:
+  id: DECR
+decorators:
+  id: DECP
+detail_object_collection:
+  id: dobc
+device_control:
+  id: ctrl
+  parentName: devi
+device_light_fixture:
+  id: lifi
+  parentName: devi
+device_machine:
+  id: mach
+  parentName: devi
+device:
+  id: devi
+  parentName: obje
+dialogue:
+  id: udlg
+effect:
+  id: effe
+equipment:
+  id: eqip
+  parentName: item
+garbage:
+  id: garb
+  parentName: item
+globals:
+  id: matg
+grenade_hud_interface:
+  id: grhi
+hud_globals:
+  id: hudg
+hud_message_text:
+  id: hmt_
+hud_number:
+  id: hud_
+item_collection:
+  id: itmc
+item:
+  id: item
+  parentName: obje
+lens_flare:
+  id: lens
+light_volume:
+  id: MGS2
+light:
+  id: ligh
+liquid:
+  id: tdtl
+material_effects:
+  id: foot
+material_physics:
+  id: mpdt
+meter:
+  id: metr
+model_animation_graph:
+  id: jmad
+model:
+  id: hlmt
+mouse_cursor_definition:
+  id: mcsr
+multilingual_unicode_string_list:
+  id: unic
+multiplayer_globals:
+  id: mulg
+multiplayer_scenario_description:
+  id: mply
+multiplayer_variant_settings_interface_definition:
+  id: goof
+new_hud_definition:
+  id: nhdt
+object:
+  id: obje
+particle_model:
+  id: PRTM
+particle_physics:
+  id: pmov
+particle:
+  id: prt3
+patchy_fog:
+  id: fpch
+physics_model:
+  id: phmo
+physics:
+  id: phys
+pixel_shader:
+  id: pixl
+planar_fog:
+  id: fog
+point_physics:
+  id: pphy
+projectile:
+  id: proj
+  parentName: obje
+render_model:
+  id: mode
+scenario_ai_resource:
+  id: srai
+scenario_bipeds_resource:
+  id: srbipd
+scenario_cinematics_resource:
+  id: srcine
+scenario_cluster_data_resource:
+  id: srclut
+scenario_comments_resource:
+  id: srcmmt
+scenario_creature_resource:
+  id: srcrea
+scenario_decals_resource:
+  id: srdeca
+scenario_decorators_resource:
+  id: srdcrs
+scenario_devices_resource:
+  id: srdgrp
+scenario_equipment_resource:
+  id: sreqip
+scenario_hs_source_file:
+  id: srhscf
+scenario_lights_resource:
+  id: srligh
+scenario_scenery_resource:
+  id: srscen
+scenario_sound_scenery_resource:
+  id: srssce
+scenario_structure_bsp:
+  id: sbsp
+scenario_structure_lighting_resource:
+  id: srsslt
+scenario_structure_lightmap:
+  id: ltmp
+scenario_trigger_volumes_resource:
+  id: srtrgr
+scenario_vehicles_resource:
+  id: srvehi
+scenario_weapons_resource:
+  id: srweap
+scenario:
+  id: scnr
+scenery:
+  id: scen
+  parentName: obje
+screen_effect:
+  id: egor
+shader_light_response:
+  id: slit
+shader_pass:
+  id: spas
+shader_template:
+  id: stem
+shader:
+  id: shad
+sky:
+  id: sky_
+sound_cache_file_gestalt:
+  id: ugh_
+sound_classes:
+  id: sncl
+sound_dialogue_constants:
+  id: spk_
+sound_effect_collection:
+  id: sfx_
+sound_effect_template:
+  id: _fx_
+sound_environment:
+  id: snde
+sound_looping:
+  id: lsnd
+sound_mix:
+  id: snmx
+sound_scenery:
+  id: ssce
+sound:
+  id: snd_
+stereo_system:
+  id: BooM
+style:
+  id: styl
+tag_database:
+  id: tag_
+text_value_pair_definition:
+  id: sily
+unit_hud_interface:
+  id: unhi
+unit:
+  id: unit
+  parentName: obje
+user_interface_globals_definition:
+  id: wgtz
+user_interface_list_skin_definition:
+  id: skin
+user_interface_screen_widget_definition:
+  id: wgit
+user_interface_shared_globals_definition:
+  id: wigl
+vehicle_collection:
+  id: vehc
+vehicle:
+  id: vehi
+  parentName: unit
+vertex_shader:
+  id: vrtx
+weapon_hud_interface:
+  id: wphi
+weapon:
+  id: weap
+  parentName: item
+weather_system:
+  id: weat
+wind:
+  id: wind
