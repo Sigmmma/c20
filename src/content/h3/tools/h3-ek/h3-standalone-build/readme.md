@@ -57,5 +57,5 @@ You can quickly spawn a variety of objects for testing:
 
 # Known issues
 * Sound doesn't work.
-* No main menu is included so if you attempt to launch it without an `init.txt` it will crash.
+* No main menu is included so if you launch standalone, you will be spawned in a black void. To get out, refer to [#Usage][h3-standalone-build#usage]
 * Particles and the like look different from the cache build.
