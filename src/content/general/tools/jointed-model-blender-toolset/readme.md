@@ -1,4 +1,4 @@
-The **Jointed Model Blender Toolset** is a set of add-ons for [Blender][] which allows the import and export of [JMS][] and [animation data][animation-data] (e.g. JMA) for both [Halo 1][h1] and [Halo 2][h2].
+The **Jointed Model Blender Toolset** is a set of add-ons for [Blender][] which allows the import and export of [JMS][] and [animation data][animation-data] (e.g. JMA) for both [Halo 1][h1], [Halo 2][h2], [Halo 3][h3] and Halo 3: ODST.
 
 # Installation
 To download the add-on from GitHub, press the _tags_ link next to the branch name on the top left. Switch to the release tab and download the latest release. The zip you want will be in the panel labeled _Assets_ and will start with the name _halo-asset-blender-toolset_. There are two ways to install this Plugin:
