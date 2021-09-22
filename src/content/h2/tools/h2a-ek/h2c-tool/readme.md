@@ -584,7 +584,6 @@ Obsolete. Doesn't do anything.
 
 ```sh
 # lightmap-farm <scenario> <bsp-name> <quality-setting> <priority> <branch>
-tool lightmap-farm "scenarios\multi\halo\coagulation\coagulation" "coagulation" direct_only 5 branch
 ```
 
 
@@ -593,14 +592,14 @@ Obsolete. Doesn't do anything.
 
 ```sh
 # lightmap-farm-update-sql <scenario-directory> <bsp-name> <sql_record_id>
-tool lightmap-farm "scenarios\multi\halo\coagulation\coagulation" "coagulation" 0
 ```
 
-* scenario - A local tag path to a scenario tag without extension.
-* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
-* sql_record_id - ???
-
 # Lightmap merge
+
+```.alert danger
+Multi-instance/worker lightmaps currently don't work. Use [single instance lightmaps][h2c-tool#Lightmaps] for now.
+```
+
 Merge the results from `lightmap-slave` to form the final lightmap bitmap tag.
 
 ```sh
@@ -623,6 +622,11 @@ tool lightmap-rendermodel "scenarios\objects\covenant\military\scarab\scarab"
 * scenario - A local tag path to a render_model tag without extension.
 
 # Lightmap slave
+
+```.alert danger
+Multi-instance/worker lightmaps currently don't work. Use [single instance lightmaps][h2c-tool#Lightmaps] for now.
+```
+
 Run a lightmap-slave instance to cut down on time spent lighting. Make sure to run `lightmap-merge` afterwards to complete the process.
 
 ```sh
@@ -897,6 +901,11 @@ tool process-sounds
 * value - ???
 
 # PRT simulation
+
+```.alert danger
+A utility required to run the PRT simulation was not shipped with the initial release of the tools. The commands are currently non-functional.
+```
+
 Run a PRT simulation on an already existing render_model tag.
 
 ```sh
@@ -975,6 +984,12 @@ tool reimport-sounds-to-opus-single "sound\dialog\combat\brute_bloodthirsty\01_a
 * source-directory - A local tag path to a directory or child directory containing sound tags.
 
 # Render
+
+```.alert danger
+A utility required to run the PRT simulation was not shipped with the initial release of the tools. The commands are currently non-functional.
+Attempting to import a render model that uses it will not work for now.
+```
+
 A [JMS][] file containing render geometry can be compiled into a render_model tag
 
 ```sh
