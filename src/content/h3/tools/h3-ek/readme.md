@@ -19,4 +19,4 @@ Naturally there is multitude of changes compared to H2 as the engine underwent a
 
 * Single threaded lightmapping is not supported, you need to use the multi-process solution. This can be run with only a single client if only using one core is desired.
 * Sound doesn't work in the tools. Load your map in MCC if you need to test sound.
-* A main menu is not included so you will need to use `init.txt` to load scenarios in the standalone build. If you don't the game will crash with an error message telling you it can't load the menu.
+* A main menu is not included so you will need to use `init.txt` or the developer console to load scenarios in the standalone build
