@@ -7,4 +7,5 @@ stub: true
 keywords:
   en:
     - scenario
+    - h2sapien
 toolName: H2-Sapien
