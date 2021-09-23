@@ -351,14 +351,14 @@ Dumps the tag values set in the tag to an XML format to easily compare in text e
 
 ```sh
 # export-tag-to-xml <tag-file> <output-file>
-tool export-tag-to-xml "(ABSOLUTE-PATH-TO-H2AEK)\tags\objects\characters\masterchief\masterchief.render_model" "(ABSOLUTE-PATH-TO-H2AEK)\tags\objects\characters\masterchief\masterchief.xml"
+tool export-tag-to-xml "(ABSOLUTE-PATH-TO-H2-EK)\tags\objects\characters\masterchief\masterchief.render_model" "(ABSOLUTE-PATH-TO-H2-EK)\tags\objects\characters\masterchief\masterchief.xml"
 ```
 
 * tag-file - An absolute tag path with extension.
 * output-file - A absolute path with file name and XML extension to set where to write the XML to.
 
 # Export tags to XML
-Exports multiple tags to multiple XML files in a single run to easily compare in text editors. Files will get dumped to the root of your H2AEK root unless you give an absolute path
+Exports multiple tags to multiple XML files in a single run to easily compare in text editors. Files will get dumped to the root of your H2-EK root unless you give an absolute path
 
 ```sh
 # export-tags-to-xml <export-tag-to-xml-params-listing>
