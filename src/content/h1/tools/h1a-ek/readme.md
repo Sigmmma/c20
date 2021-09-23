@@ -138,7 +138,7 @@ The season 7 MCC update ([patch notes](https://support.halowaypoint.com/hc/en-us
 * Multiple Sapien instances can now be launched at once using the `-multipleinstance` [command line][command-line] flag.
 * Game window improvements:
   * Weather and particle effects like smoke and fire will now render.
-  * When the camera is outside the [BSP][scenario_structure_bsp], you will now see structure debug lines by default (`debug_structure_automatic`) (like [H2 Sapien][H2V-EK/H2Sapien]). This helps you find the BSP if you get lost or the camera begins outside it, as with b40.
+  * When the camera is outside the [BSP][scenario_structure_bsp], you will now see structure debug lines by default (`debug_structure_automatic`) (like [H2 Sapien][h2-sapien]). This helps you find the BSP if you get lost or the camera begins outside it, as with b40.
   * Interpolation code from H1A is included and `framerate_throttle` is disabled by default, allowing for smooth animation and movement.
   * The camera speed can be temporarily boosted by holding <kbd>Control</kbd>.
   * The _Game window_ resolution has been increased from 800x600 to 1280x720 (widescreen).

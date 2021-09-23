@@ -1,8 +1,8 @@
 ```.alert
-This is an article about the H2C Tool for use with MCC. For the legacy H2V Tool for [Halo 2 Vista][h2] see [H2V Tool][h2tool].
+This is an article about the H2 Tool for use with MCC. For the legacy H2V Tool for [Halo 2 Vista][h2] see [H2V Tool][h2v-tool].
 ```
 
-**H2C-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo 2 Classic Editing Kit][H2A-EK] by 343 Industries in 2021.
+**H2-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo 2 Editing Kit][H2-EK] by 343 Industries in 2021.
 
 This new version of Tool has many differences from the 2007 Pi Studios Tool. Most notably, it includes far more verbs and new options for existing ones. A major addition is the FBX to JMS/JMA toolchain to compile models regardless of what 3D modeling software you use.
 
@@ -13,7 +13,7 @@ This new version of Tool has many differences from the 2007 Pi Studios Tool. Mos
 - parentheses appended to the `arg` name are used to encode valid argument values.
 - `arg(option1, option2)` - Either `option1` or `option2` can be passed as `arg`.
 - `arg(optionClass)` - Any value of `optionClass` can be used.
-- `Tool` or `tool.exe` - refers to the subject of this article, the H2C Tool, if the legacy Tool is being referred to that will be made explicit.
+- `Tool` or `tool.exe` - refers to the subject of this article, the H2 Tool, if the legacy Tool is being referred to that will be made explicit.
 
 # Command line flags
 - `-data_dir` and `-tags_dir` can be used to change the data and tag directories respectively. This might not work with all verbs as it's experimental. See [using custom content paths][using-custom-content-paths].
@@ -378,7 +378,7 @@ tool export-tags-to-xml "F:\tag_list.txt"
 ```
 ui\hud\banshee.new_hud_definition,banshee.new_hud_definition.xml
 ui\hud\battle_rifle.new_hud_definition,battle_rifle.new_hud_definition.xml
- 
+
 ```
 
 # Export windows font
@@ -577,7 +577,7 @@ tool import-particle-model "objects\characters\brute\garbage\brute_helmet.JMI"
 # Lightmap merge
 
 ```.alert danger
-Multi-instance/worker lightmaps currently don't work. Use [single instance lightmaps][h2c-tool#Lightmaps] for now.
+Multi-instance/worker lightmaps currently don't work. Use [single instance lightmaps][h2-tool#Lightmaps] for now.
 ```
 
 Merge the results from `lightmap-slave` to form the final lightmap bitmap tag.
@@ -604,7 +604,7 @@ tool lightmap-rendermodel "scenarios\objects\covenant\military\scarab\scarab"
 # Lightmap slave
 
 ```.alert danger
-Multi-instance/worker lightmaps currently don't work. Use [single instance lightmaps][h2c-tool#Lightmaps] for now.
+Multi-instance/worker lightmaps currently don't work. Use [single instance lightmaps][h2-tool#Lightmaps] for now.
 ```
 
 Run a lightmap-slave instance to cut down on time spent lighting. Make sure to run `lightmap-merge` afterwards to complete the process.
@@ -810,7 +810,7 @@ tool pack-unicode-strings en "F:\Program Files (x86)\Steam\steamapps\common\Halo
 	* kor
 	* pt_br
 	* sp
-* tag-list-file - An absolute file path to a text file containing a list of multilingual_unicode_string_list tags to include in the packaged STR file. 
+* tag-list-file - An absolute file path to a text file containing a list of multilingual_unicode_string_list tags to include in the packaged STR file.
 
 ## Format
 ```
@@ -840,7 +840,7 @@ For the example above, Tool would expect to find a corresponding JMS file at `da
 
 ```sh
 # pixel-shaders <platform>
-tool pixel-shaders 
+tool pixel-shaders
 ```
 
 * platform - ???
@@ -857,7 +857,7 @@ tool plate "F:\bitmap_test" true
 * raw - An optional arg to enable RAW file importing when building a plate. The files must be named in the following format.
 	* filename_WxH.RAW
 	* Replace W and H with the width and height of the image respectively.
-	
+
 # Process sounds
 ???
 
@@ -974,12 +974,12 @@ tool render "objects\characters\masterchief" false false
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\render\L5_masterchief.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.render_model`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
 
-# Replace font char 
+# Replace font char
 ???
 
 ```sh
 #  replace-font-char <font-file> <tiff-file> <utf16-code>
-tool replace-font-char 
+tool replace-font-char
 ```
 
 * font-file - ???
@@ -1020,7 +1020,7 @@ tool set-sound-class sound_test ??? projectile_impact
 
 ```sh
 #  sound-looping <source-directory> <type> <compression>
-tool sound-looping 
+tool sound-looping
 ```
 
 * source-directory - ???
@@ -1068,9 +1068,9 @@ tool sound-multi-layer "sound_test\aiff" projectile_impact adpcm
 	* uncompressed
 	* adpcm
 	* opus
-	
+
 # Sounds music
-Generates an empty sound looping tag from the folders in data. Probably an error? 
+Generates an empty sound looping tag from the folders in data. Probably an error?
 
 ```sh
 #  sounds-music <source-directory> <type> <compression>
@@ -1083,7 +1083,7 @@ tool sounds-music "sound_test" projectile_impact adpcm
 	* uncompressed
 	* adpcm
 	* opus
-	
+
 # Sounds one shot
 Imports sound files in a directory with the import type set to single-shot. Each sound file will get its own sound tag.
 
@@ -1098,7 +1098,7 @@ tool sounds-one-shot "sound_test" projectile_impact adpcm
 	* uncompressed
 	* adpcm
 	* opus
-	
+
 # Sounds single layer
 Imports sound files in a directory with the import type set to single-layer. Each directory will get its own sound tag.
 
@@ -1113,7 +1113,7 @@ tool sounds-single-layer "sound_test" projectile_impact adpcm
 	* uncompressed
 	* adpcm
 	* opus
-	
+
 # Sounds single mixed
 Imports sound files in a directory with the import type set to single-layer. Each directory will get its own sound tag.
 
@@ -1128,7 +1128,7 @@ tool sounds-single-mixed "sound_test" projectile_impact adpcm
 	* uncompressed
 	* adpcm
 	* opus
-	
+
 # strip-single-tag-file
 Imports sound files in a directory with the import type set to single-layer. Each directory will get its own sound tag.
 
@@ -1140,7 +1140,7 @@ tool strip-single-tag-file "objects\characters\masterchief\masterchief.render_mo
 * tag - A local tag path to a tag file with extension.
 
 # Structure
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated. 
+A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated.
 
 ```sh
 # structure <scenario-directory> <bsp-name>
@@ -1167,7 +1167,7 @@ tool structure-analyze "scenarios\multi\halo\coagulation\coagulation"
 * scenario_structure_bsp - A local tag path to a scenario_structure_bsp tag without extension.
 
 # Structure compatible
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated. 
+A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated.
 
 ```sh
 # structure-compatible <scenario-directory> <bsp-name>
@@ -1184,7 +1184,7 @@ Structure compilation converts the raw polygon and materials data from the JMS i
 Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure compatible from JMS
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated. 
+A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated.
 
 ```sh
 # structure-compatible-from-jms <jms-file>
@@ -1200,7 +1200,7 @@ Structure compilation converts the raw polygon and materials data from the JMS i
 Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure from JMS
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated. 
+A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated.
 
 ```sh
 # structure-from-jms <jms-file>
@@ -1216,7 +1216,7 @@ Structure compilation converts the raw polygon and materials data from the JMS i
 Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure new
-A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated. 
+A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated.
 
 ```sh
 # structure-new <scenario-directory> <bsp-name>
@@ -1232,7 +1232,7 @@ Structure compilation converts the raw polygon and materials data from the JMS i
 
 Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
-# Structure new from ass 
+# Structure new from ass
 A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag.
 
 ```sh
@@ -1362,7 +1362,7 @@ tool verify-sound-folder "sound\characters"
 
 ```sh
 # verify-tag-load <tag-file>
-tool verify-tag-load 
+tool verify-tag-load
 ```
 
 * tag-file - ???
@@ -1380,7 +1380,7 @@ tool version
 
 ```sh
 # vertex-shader <platform> <src-platform> <shader>
-tool vertex-shader 
+tool vertex-shader
 ```
 
 * platform - ???

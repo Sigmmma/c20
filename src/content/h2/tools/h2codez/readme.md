@@ -1,11 +1,11 @@
-**H2Codez** is a mod for the [Halo 2 Vista Editing Kit][h2v-ek] (H2EK) that aims to restore some of the missing or damaged functionality.
+**H2Codez** is a mod for the [Halo 2 Vista Editing Kit][h2v-ek] (H2V-EK) that aims to restore some of the missing or damaged functionality.
 
 ## Changelog ##
 * Restore tool commands used by bungie to distribute lightmapping over multiple machines.
 * Real-time tag editing.
 * Increased FPS in Sapien (hardware TCL/vertex processing).
 * Unit playtest mode. Spawns a player letting you test how something would work with one/seeing the map from an in-game point of view. (no movement).
-* Some H2tool commands restored. (model-collision, model-physics).
+* Some H2 Tool commands restored. (model-collision, model-physics).
 * Basic render model import method (BSP conversion).
 * Shared tag removal made optional.
 * Restored JMS import function. Can import both CE JMS and JMSv2.

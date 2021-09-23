@@ -1,5 +1,5 @@
 ```.alert
-This is an article about the H1A Tool for use with MCC. For the legacy Tool for [Halo: Custom Edition][h1] see [Tool (Gearbox)][tool]. You may also be interested in a [summary of changes][h1a-ek#tool] from legacy Tool.
+This is an article about the H1A Tool for use with MCC. For the legacy Tool for [Halo: Custom Edition][h1] see [Tool (2004)][tool]. You may also be interested in a [summary of changes][h1a-ek#tool] from legacy Tool.
 ```
 
 **H1A Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [H1A-EK][] by 343 Industries in 2021.
@@ -387,7 +387,7 @@ Tool only uses [markers][gbxmodel#markers] from the `superhigh` LOD when making 
 ```
 
 ## Halo 2 LOD selection logic
-The optional boolean argument `[use-halo2-permutation-lod-selection-logic?]` causes Tool to use [H2 Tool][h2tool] logic for choosing LODs. The 'base' permutation's LODs are chosen the same way as the non-base; all permutations propagate using any existing LOD in that permutation when LODs are missing. Any missing LODs for a permutation will use the last non-NONE LOD within that permutation.
+The optional boolean argument `[use-halo2-permutation-lod-selection-logic?]` causes Tool to use [H2 Tool][h2-tool] logic for choosing LODs. The 'base' permutation's LODs are chosen the same way as the non-base; all permutations propagate using any existing LOD in that permutation when LODs are missing. Any missing LODs for a permutation will use the last non-NONE LOD within that permutation.
 
 This is the more intuitive behaviour and probably what you want to use. The prior lack of this is what causes the Banshee's destroyed permutation to appear intact at the lowest LODs because it re-uses the base permutation's LOD.
 

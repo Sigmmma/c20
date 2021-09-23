@@ -1,5 +1,5 @@
 ```.alert
-This is an article about the H1A Sapien for use with MCC, for the legacy Sapien for [Halo: Custom Edition][h1] see [Sapien (Gearbox)][hek/sapien]. You may also be interested in a [summary of changes][h1a-ek#sapien] from legacy Sapien.
+This is an article about the H1A Sapien for use with MCC, for the legacy Sapien for [Halo: Custom Edition][h1] see [Sapien (2004)][hek/sapien]. You may also be interested in a [summary of changes][h1a-ek#sapien] from legacy Sapien.
 ```
 
 **H1A Sapien**, part of the [H1A-EK][], is a visual [scenario][] and

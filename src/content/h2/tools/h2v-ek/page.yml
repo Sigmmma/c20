@@ -1,18 +1,17 @@
 title:
-  en: Halo 2 Editing Kit (H2EK)
+  en: Halo 2 Vista Editing Kit (2007)
 img: h2ek.jpg
 imgCaption:
   en: >-
-    [H2Sapien][], [H2Guerilla][], and [H2Tool][] can still be run on modern Windows systems
+    [Sapien][h2v-sapien], [Guerilla][h2v-guerilla], and [Tool][h2v-tool] running on modern Windows systems
 info:
   en: >
     * Release date: 2007
-
 stub: true
 toolName: H2V-EK
 alerts:
   - type: danger
     md:
       en: >-
-        After installing the H2EK, Windows users must [prevent the Virtual Store
+        After installing the H2V-EK, Windows users must [prevent the Virtual Store
         from interfering with it][tips#windows-virtual-store].

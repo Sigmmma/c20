@@ -532,36 +532,36 @@ workflowItems:
       - Pi Studios
   H2V-Tool:
     inherit: H2V-EK
-    page: h2tool
+    page: h2v-tool
   H2V-Guerilla:
     inherit: H2V-EK
-    page: h2guerilla
+    page: h2v-guerilla
   H2V-Sapien:
     inherit: H2V-EK
-    page: h2sapien
+    page: h2v-sapien
   H2Codez:
     page: H2Codez
     authors:
       - Himanshu-01
       - num0005
-  H2C-EK:
-    page: h2c-ek
+  H2-EK:
+    page: h2-ek
     authors:
       - 343 Industries
       - Bungie
       - Saber Interactive
-  H2C-Tool:
-    inherit: H2C-EK
-    page: h2c-tool
-  H2C-Guerilla:
-    inherit: H2C-EK
-    page: h2c-guerilla
-  H2C-Sapien:
-    inherit: H2C-EK
-    page: h2c-sapien
-  H2C-Standalone:
-    inherit: H2C-EK
-    page: h2c-standalone
+  H2-Tool:
+    inherit: H2-EK
+    page: h2-tool
+  H2-Guerilla:
+    inherit: H2-EK
+    page: h2-guerilla
+  H2-Sapien:
+    inherit: H2-EK
+    page: h2-sapien
+  H2-Standalone:
+    inherit: H2-EK
+    page: h2-standalone
   wrl 2.0:
     page: wrl-2.0
   ass:
@@ -934,23 +934,23 @@ workflowItems:
     inherit: h2/tags
     page: h2/tags/wind
   # H3
-  H3EK:
+  H3-EK:
     page: h3-ek
     authors:
       - 343 Industries
       - Bungie
       - Saber Interactive
   H3-Tool:
-    inherit: H3EK
+    inherit: H3-EK
     page: h3-tool
   H3-Guerilla:
-    inherit: H3EK
+    inherit: H3-EK
     page: h3-guerilla
   H3-Sapien:
-    inherit: H3EK
+    inherit: H3-EK
     page: h3-sapien
   H3-Standalone:
-    inherit: H3EK
+    inherit: H3-EK
     page: h3-standalone
   h3/ai_dialogue_globals:
     inherit: h3/tags

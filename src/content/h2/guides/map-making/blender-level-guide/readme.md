@@ -46,8 +46,8 @@ As stated before compiled assets will end up in a path that mirrors the path of 
 While the level pipeline for Halo 2 hasn't changed much from CE, there are some important differences in workflow that we should bring up:
 
 1. While the CE export script would only export geometry if it was the child of an object with a node prefix, the Halo 2 export script will instead export every object in the scene whether or not it is the child of an object that starts with a node prefix. If you do not wish for an object to be exported then you can hide the object with the H key.
-2. Instead of .JMS, Halo 2 makes use of a new level format known as .ASS. This format has support for multiple separate objects as well as instance geometry. While H2Tool has some support for importing geometry stored in the JMS format, ASS is the new and proper format to be using.
-3. H2Tool will search for a matching shader folder prefix from a list in the shader_collections file. H2Tool will only search the tags directory for matching shaders like CE if the shader_collections file does not exist.
+2. Instead of .JMS, Halo 2 makes use of a new level format known as .ASS. This format has support for multiple separate objects as well as instance geometry. While H2 Tool has some support for importing geometry stored in the JMS format, ASS is the new and proper format to be using.
+3. H2 Tool will search for a matching shader folder prefix from a list in the shader_collections file. H2 Tool will only search the tags directory for matching shaders like CE if the shader_collections file does not exist.
 4. Xref objects can be used to place scenery or device machine objects in 3D modeling software.
 5. The way assets are placed has changed a bit from what you may be familiar with in CE.
 

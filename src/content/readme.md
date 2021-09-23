@@ -18,7 +18,7 @@ Perhaps the best part is connecting with other creative, passionate fans. Knowle
 # Getting started
 We cover [engine details][engine], the legacy 2003 [Halo Editing Kit][hek] and its 2021 re-release the [H1A Editing Kit][h1a-ek], community tools, and [guides][] for custom content creation.
 
-Less in-depth but we hope still useful information is included for the legacy 2007 [Halo 2 Vista Editing Kit][h2v-ek], its 2021 MCC re-release the [H2 Classic Editing Kit][h2a-ek] as well as the [Halo 3 editing kit][h3-ek] that was first publicly released in 2021.
+Less in-depth but we hope still useful information is included for the legacy 2007 [Halo 2 Vista Editing Kit][h2v-ek], its 2021 MCC re-release the [H2 Classic Editing Kit][h2-ek] as well as the [Halo 3 editing kit][h3-ek] that was first publicly released in 2021.
 
 New to modding? Check out our [introduction guide][intro-to-h1-modding].
 

@@ -1,11 +1,11 @@
 ```.alert
-This is an article about the legacy H2V Sapien for use with [Halo 2 Vista][h2], for the H2C Sapien for MCC see [H2C Sapien][h2c-sapien]
+This is an article about the legacy H2V Sapien for use with [Halo 2 Vista][h2], for the H2 Sapien for MCC see [H2 Sapien][h2-sapien]
 ```
 
 
-**H2Sapien**, part of the [H2V-EK][], is a visual [scenario][] and [BSP][scenario_structure_bsp] editor used to populate levels with objects, configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile scripts, and more. H2Sapien shares some systems with Halo 2 itself, including its AI system to support interactive AI scripting and debugging.
+**H2V Sapien**, part of the [H2V-EK][], is a visual [scenario][] and [BSP][scenario_structure_bsp] editor used to populate levels with objects, configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile scripts, and more. H2V Sapien shares some systems with Halo 2 itself, including its AI system to support interactive AI scripting and debugging.
 
-It is roughly analogous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with H2Sapien's windows and menus, but the _Game Window_ also includes a scripting console which has support for debug commands.
+It is roughly analogous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with H2V Sapien's windows and menus, but the _Game Window_ also includes a scripting console which has support for debug commands.
 
 # Windows
 ## Game window
@@ -38,7 +38,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 ## General
 * <kbd>~</kbd>: Opens the command console.
 * <kbd>Pause/Break</kbd>: Pauses your Sapien instance. Press "OK" in the opened window to resume Sapien.
-* <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>: Creates the file `baggage.txt`. This file shows the memory usage of tags in the editor. This will crash H2Sapien so do not use this.
+* <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>: Creates the file `baggage.txt`. This file shows the memory usage of tags in the editor. This will crash H2V Sapien so do not use this.
 * <kbd>Shift</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. You can also use it to select the first and last object in the hierarchy list to select everything in-between at once. Useful for deleting multiple objects or moving them all at once.
 * <kbd>Control</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
 * Hold <kbd>Tab</kbd>: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.
@@ -57,7 +57,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
 
 # editor_init.txt
-At startup, H2Sapien will load `editor_init.txt` if present in the same folder. This file can contain console commands, one per line, which are executed automatically for you. For example:
+At startup, H2V Sapien will load `editor_init.txt` if present in the same folder. This file can contain console commands, one per line, which are executed automatically for you. For example:
 
 ```inittxt
 error_geometry_hide_all

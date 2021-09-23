@@ -1,8 +1,8 @@
 ```.alert
-This is an article about the legacy H2V Tool for use with [Halo 2 Vista][h2], for the H2C Tool for MCC see [H2C Tool][h2c-tool]
+This is an article about the legacy H2V Tool for use with [Halo 2 Vista][h2], for the H2 Tool for MCC see [H2 Tool][h2-tool]
 ```
 
-**H2Tool** (**h2tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [H2V-EK][].
+**H2V Tool** (**h2tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [H2V-EK][].
 
 # ASS compilation
 An [ASS][] file containing model geometry can be compiled into a [scenario_structure_bsp][] using the `structure-new-from-ass` verb:
@@ -53,7 +53,7 @@ For example:
 h2tool.exe lightmaps "scenarios\multi\example\example" "example" checkerboard
 ```
 
-Once you run the command rasterizing should begin. Wait until it finishes and you will be able to see the results in H2Sapien.
+Once you run the command rasterizing should begin. Wait until it finishes and you will be able to see the results in H2V Sapien.
 
 # Lightprobes
 ???

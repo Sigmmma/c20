@@ -1,11 +1,11 @@
 title:
-  en: H2C standalone build
+  en: H2 standalone build (2021)
 keywords:
   en:
     - test
     - cache
     - h2a
-toolName: H2C-Standalone
+toolName: H2-Standalone
 img: halo_2_tag_test.jpg
 imgCaption:
   en: Using some debug_object commands

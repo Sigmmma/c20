@@ -1,8 +1,8 @@
 ```.alert
-This is an article about the H2C Sapien for use with MCC. For the legacy H2V Sapien for [Halo 2 Vista][h2] see [H2V Sapien][h2sapien].
+This is an article about the H2 Sapien for use with MCC. For the legacy H2V Sapien for [Halo 2 Vista][h2] see [H2V Sapien][h2v-sapien].
 ```
 
-**H2C-Sapien**, part of the [Halo 2 Anniversary Editing Kit][H2A-EK], is a visual [scenario][] and [BSP][scenario_structure_bsp] editor used to populate levels with objects, configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile scripts, and more. Sapien shares some systems with Halo 2 itself, including its AI system to support interactive AI scripting and debugging.
+**H2-Sapien**, part of the [Halo 2 Anniversary Editing Kit][H2-EK], is a visual [scenario][] and [BSP][scenario_structure_bsp] editor used to populate levels with objects, configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile scripts, and more. Sapien shares some systems with Halo 2 itself, including its AI system to support interactive AI scripting and debugging.
 
 It is roughly analogous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which has support for debug commands.
 
@@ -59,11 +59,10 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
 
 # editor_init.txt
-At startup, H2C-Sapien will load `editor_init.txt` if present in the same folder. This file can contain console commands, one per line, which are executed automatically for you. For example:
+At startup, H2-Sapien will load `editor_init.txt` if present in the same folder. This file can contain console commands, one per line, which are executed automatically for you. For example:
 
 ```inittxt
 error_geometry_hide_all
 debug_objects 1
 ;a comment
 ```
-

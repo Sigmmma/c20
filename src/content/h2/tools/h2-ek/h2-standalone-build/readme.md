@@ -1,4 +1,4 @@
-The [Halo 2 Anniversary Editing Kit][H2A-EK] includes a **standalone build** of that game (**halo_2_tag_test.exe**). This build doesn't include network functionality and it intended for testing single-player maps. It includes AI debugging code not included in other published builds of the engine.
+The [Halo 2 Anniversary Editing Kit][H2-EK] includes a **standalone build** of that game (**halo2_tag_test.exe**). This build doesn't include network functionality and it intended for testing single-player maps. It includes AI debugging code not included in other published builds of the engine.
 [Using custom content paths][using-custom-content-paths] is supported.
 
 ```.alert danger

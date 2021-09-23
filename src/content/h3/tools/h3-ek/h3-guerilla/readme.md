@@ -4,4 +4,4 @@
 Using _File > Save/Load Workspace_, you can save and reload a file which contains the current state of open tags and their window positions.
 
 # Explorer bar
-A file hierarchy of your tag directory. It does not update in real time so refresh it with F5 if you need to. First seen in [Halo 2 Vista's Guerilla][h2guerilla] and [Halo 2 MCC's Guerilla][H2C-Guerilla]
+A file hierarchy of your tag directory. It does not update in real time so refresh it with F5 if you need to. First seen in [Halo 2 Vista's Guerilla][h2v-guerilla] and [Halo 2 MCC's Guerilla][H2-Guerilla]
