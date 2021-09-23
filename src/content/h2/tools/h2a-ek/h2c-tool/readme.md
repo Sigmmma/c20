@@ -1,5 +1,5 @@
 ```.alert
-This is an article about the H2C Sapien for use with MCC. For the legacy H2V Tool for [Halo 2 Vista][h2] see [H2V Tool][h2tool].
+This is an article about the H2C Tool for use with MCC. For the legacy H2V Tool for [Halo 2 Vista][h2] see [H2V Tool][h2tool].
 ```
 
 **H2C-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo 2 Classic Editing Kit][H2A-EK] by 343 Industries in 2021.

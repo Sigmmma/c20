@@ -1,5 +1,4 @@
-The [Halo 3 Editing Kit][H3-EK] includes a **standalone build** of that game (**halo_3_tag_test.exe**). This build doesn't include network functionality and it intended for testing single-player maps. It includes AI debugging code not included in other published builds of the engine.
-[Using custom content paths][using-custom-content-paths] is supported.
+The [Halo 3 Editing Kit][H3-EK] includes a **standalone build** of that game (**halo3_tag_test.exe**). This build doesn't include network functionality and it intended for testing single-player maps. It includes AI debugging code not included in other published builds of the engine.
 
 ```.alert danger
 The standalone build is still somewhat experimental and bugs should be expected. Again, only single-player maps are officially supported at this time. Maps should always receive final testing as [map cache files][map] loaded by MCC itself.
