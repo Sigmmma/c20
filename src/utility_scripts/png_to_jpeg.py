@@ -83,6 +83,6 @@ for subdir, dirs, files in os.walk(os.path.join("..", "content")):
             os.remove(file_path)
 
 
-print(f"=== {files_compressed} files compressed! ===")
+print(f"=== {files_compressed} files converted to jpeg! ===")
 print(f"=== {total_reduction / 1024} kilobytes saved! ===")
 print("Have a great day!")
