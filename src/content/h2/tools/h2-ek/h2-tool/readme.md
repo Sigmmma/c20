@@ -29,11 +29,11 @@ tool bitmaps "scenarios\bitmaps\solo\spacestation"
 
 * source-directory - A local data path to a folder containing a set of images for processing.
 * type - sets the type of bitmap the image will be converted to. This will change how the source image is expected to be setup. The list of valid options is as follows:
-	* 2d
-	* 3d
-	* cubemaps
-	* sprites
-	* interface
+	* *2d*
+	* *3d*
+	* *cubemaps*
+	* *sprites*
+	* *interface*
 * debug-plate - Set this with a true or false. Dumps the processed image back to your data folder so that you may examine it in your preferred image editor. The path for these will be something like this.
 	* data\bitmap-debug\
 
@@ -415,8 +415,8 @@ tool extract-hs-scripts "scenarios\solo\01b_spacestation\scripts"
 * name_substring - A local tag path to a directory containing scenario_hs_source_file tag files.
 
 # Extract LPC data
-???
-Dumps a file called test.aif in the root of H2AEK
+Dumps a file called test.aif in the root of H2-EK
+This is likely to be [linear predictive coding](https://en.wikipedia.org/wiki/Linear_predictive_coding) data for the sound file but this hasn't be verified.
 
 ```sh
 # extract-lpc-data <sound-file>
@@ -1157,7 +1157,7 @@ Structure compilation converts the raw polygon and materials data from the JMS i
 Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure analyze
-???
+A dev command for running misc tasks on a scenario, unlikely to be useful.
 
 ```sh
 # structure-analyze <scenario_structure_bsp>
