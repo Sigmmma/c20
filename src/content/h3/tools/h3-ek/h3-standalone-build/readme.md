@@ -23,6 +23,28 @@ This build offers a number of benefits for testing over compiling cache files or
 * You have access to a HaloScript console which lets you toggle globals and call functions at will.
 * It will be closer to the experience of playing through level in the cache build than player simulation.
 
+# Keyboard shortcuts/hotkeys 
+
+Some of these shortcuts are only used in certain windows or editor modes.
+
+* <kbd>Ctrl</kbd>+<kbd>R</kbd>: Toggles render model vertex
+* <kbd>Ctrl</kbd>+<kbd>F</kbd>: Toggles display_framerate
+* <kbd>Ctrl</kbd>+<kbd>J</kbd>: Runs debug_camera_save
+* <kbd>Ctrl</kbd>+<kbd>L</kbd>: Runs cheat_teleport_to_camera
+* <kbd>Ctrl</kbd>+<kbd>C</kbd>: Toggles cheat_deathless_player
+* <kbd>Ctrl</kbd>+<kbd>6</kbd>: Toggles texture cache usage
+* <kbd>Ctrl</kbd>+<kbd>7</kbd>: Toggles texture cache status
+* <kbd>Ctrl</kbd>+<kbd>8</kbd>: Toggles geometry cache status
+* <kbd>Ctrl</kbd>+<kbd>i</kbd>: Enables controller debug stats
+* <kbd>Ctrl</kbd>+<kbd>W</kbd>: Enables weapon debug stats
+* <kbd>Alt</kbd>+<kbd>-</kbd>: Decreases simulation speed
+* <kbd>Alt</kbd>+<kbd>+</kbd>: Increases simulation speed
+* <kbd>Shift</kbd>+<kbd>6</kbd>: Toggles texture cache debug mip
+* <kbd>Shift</kbd>+<kbd>7</kbd>: Toggles texture cache graph 
+* <kbd>Shift</kbd>+<kbd>8</kbd>: Toggles geometry cache graph
+* <kbd>Shift</kbd>+<kbd>Enter</kbd>: Toggles pause menu
+* <kbd>Backspace</kbd> Toggles debug_camera mode
+
 # Debug director flying controls
 To use the debug freecam press <kbd>Backspace</kbd> until you are in flying camera mode. Movement of the camera is a little different than in Sapien. You do _not_ hold the middle mouse button and the camera moves in the direction it's pointed rather than its vertical movement being controlled exclusively with buttons.
 
