@@ -20,6 +20,18 @@ code {
     color: fuchsia;
   }
 
+  &.language-console-h2a > .hljs-console-line > .hljs-name:first-child:before {
+    content: "halo( ";
+    transition: opacity $transition-time;
+    color: fuchsia;
+  }
+
+  &.language-console-h3 > .hljs-console-line > .hljs-name:first-child:before {
+    content: "halo( ";
+    transition: opacity $transition-time;
+    color: fuchsia;
+  }
+
   &.language-hsc:before {
     transition: opacity $transition-time;
     content: ".hsc";
@@ -46,6 +58,13 @@ pre:hover code.language-console-h1a > .hljs-console-line > .hljs-name:first-chil
   opacity: 0.5;
 }
 
+pre:hover code.language-console-h2a > .hljs-console-line > .hljs-name:first-child:before {
+  opacity: 0.5;
+}
+
+pre:hover code.language-console-h3 > .hljs-console-line > .hljs-name:first-child:before {
+  opacity: 0.5;
+}
 
 pre {
   display: flow-root;

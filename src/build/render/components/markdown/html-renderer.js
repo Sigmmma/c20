@@ -14,6 +14,8 @@ hljs.registerLanguage("vrml", vrmlLang);
 hljs.registerLanguage("hsc", hscLang);
 hljs.registerLanguage("console", consoleLang);
 hljs.registerLanguage("console-h1a", consoleLang);
+hljs.registerLanguage("console-h2a", consoleLang);
+hljs.registerLanguage("console-h3", consoleLang);
 hljs.registerLanguage("inittxt", consoleLang);
 
 function highlight(code, language) {
