@@ -83,6 +83,10 @@ workflowItems:
     page: halo-physics-importer
     authors:
       - rec0
+  Reclaimer:
+    page: reclaimer
+    authors:
+      - Gravemind2401
   Assembly:
     page: assembly
     authors:
@@ -186,8 +190,8 @@ workflowItems:
   Refinery:
     inherit: MEK
     page: refinery
-  Reclaimer:
-    page: reclaimer
+  reclaimer-python:
+    page: reclaimer-python
     authors:
       - MosesOfEgypt
       - gbMichelle
@@ -1807,7 +1811,7 @@ workflows:
       - Mozzarilla
       - invader-edit-qt
       - OS_Guerilla
-      - Reclaimer
+      - reclaimer-python
     edit: h1/tags
   - using:
       - Guerilla

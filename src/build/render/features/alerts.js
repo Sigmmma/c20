@@ -4,7 +4,7 @@ const {localizer, alert, html, REPO_URL, renderMarkdown, icon} = require("../com
 const localizations = localizer({
   stubNotice: {
     en: (ctx) => html`
-      <p>${icon("help-circle")} This page needs help! Please submit any missing information via
+      <p>${icon("help-circle")} This page is incomplete! You can contribute information using
       <a href="${REPO_URL}">GitHub issues or pull requests</a>.</p>
     `,
     es: (ctx) => html`
@@ -20,7 +20,7 @@ module.exports = async function(ctx) {
 
   return {
     html: html`
-      ${page.stub && alert("danger", localize("stubNotice")(ctx))}
+      ${page.stub && alert("info", localize("stubNotice")(ctx))}
       ${R.pipe(
         R.pathOr([], ["alerts"]),
         R.filter(R.path(["md", lang])),

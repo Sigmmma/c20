@@ -6,7 +6,7 @@ Ghostbuster should only be used as a last resort if you do not have access to th
 
 Specifically, it searches for BSP nodes with dividing planes where [Tool][] has incorrectly assumed that one side is "outside" the map and reuses the same child node for both sides of the failed node.
 
-Ghostbuster is built on the [Reclaimer][] library.
+Ghostbuster is built on the [Reclaimer python library][reclaimer-python].
 
 # Installation
 You will need [Python 3][get-python] to use this tool. Clone the repository from GitHub, or download `ghostbuster.py` and `requirements.txt` somewhere convenient. Install dependencies with `pip install --user -r requirements.txt`.
