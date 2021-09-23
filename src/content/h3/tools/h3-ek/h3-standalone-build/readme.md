@@ -73,8 +73,8 @@ Analog control of the camera with the gamepad makes a great filming tool for you
 # Object spawning
 You can quickly spawn a variety of objects for testing:
 
-* Spawn by entering `cheat_all_vehicles` into the console.
-* Spawn by entering `cheat_all_weapons` into the console.
+* Spawn all vehicles by entering `cheat_all_vehicles` into the console.
+* Spawn all weapons by by entering `cheat_all_weapons` into the console.
 
 # Known issues
 * Sound doesn't work.

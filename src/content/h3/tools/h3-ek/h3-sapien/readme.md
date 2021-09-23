@@ -1,6 +1,6 @@
 **H3-Sapien**, part of the [Halo 3 Editing Kit][H3-EK], is a visual [scenario][] and BSP editor used to populate levels with objects, configure BSP cluster data like wind and sound environments, compile scripts, and more. Sapien shares some systems with Halo 3 itself, including its AI system to support interactive AI scripting and debugging.
 
-It is roughly analogous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which has support for debug commands.
+It is roughly analogous to Forge found in later Halo titles, Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which has support for debug commands, and by using <kbd>Tab</kbd> you can switch to player mode to interact with the simulation in real time.
 
 # Windows
 ## Game window
