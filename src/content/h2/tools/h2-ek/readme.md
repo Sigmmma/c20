@@ -17,3 +17,9 @@ The tools include many improvements over an [H2Codez][] H2V-EK, most notably:
 * Tools are not stripped down, you can create models, animations, different types of textures, sounds and more!
 * Tools have been upgraded to DX11 from the now obsolete DX9.
 * You can create and edit all tag types in [Guerilla][h2-guerilla].
+
+# Known issues
+
+* Multi-process lightmapping is currently broken - use the single process alternative.
+* Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
+* PRT simulation tool is not included - avoid tool commands that require it, they will not function properly.
