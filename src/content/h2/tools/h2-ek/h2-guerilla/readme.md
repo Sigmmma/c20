@@ -62,3 +62,4 @@ If you need to use certain advanced features you can enable _File > Expert Mode_
 - _Edit > Remote command view_ - doesn't do anything
 - _Edit > Drop object_ - doesn't do anything
 - _File > Mixing board_ - not sure what this does
+- _File_ > Print - The print menu items don't do anything.
