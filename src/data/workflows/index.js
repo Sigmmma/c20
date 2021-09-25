@@ -58,7 +58,7 @@ async function loadWorkflows() {
     }
 
     if (!result.url && !result.page) {
-      throw new Error(`The workflow item '${originalItemName}' does not define a page or URL`);
+      throw new Error(`The workflow item '${originalItemName}' does not exist or is missing page/url attribute`);
     }
 
     result.similarTo = [...new Set(result.similarTo)]; //unique only

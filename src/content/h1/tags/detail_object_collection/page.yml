@@ -4,4 +4,4 @@ img: grasses.jpg
 imgCaption:
   en: 'Sprite grass is created using detail object collections in [Sapien][].'
 stub: true
-tagName: detail_object_collection
+tagName: h1/detail_object_collection

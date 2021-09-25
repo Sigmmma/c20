@@ -7,7 +7,7 @@ keywords:
   en:
     - shader_transparent_chicago
     - shader_transparent_chicago_extended
-tagName: shader_transparent_generic
+tagName: h1/shader_transparent_generic
 thanks:
   MosesOfEgypt:
     en: Replication techniques

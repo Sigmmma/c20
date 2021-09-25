@@ -7,4 +7,4 @@ stub: true
 keywords:
   en:
     - device
-tagName: device_light_fixture
+tagName: h1/device_light_fixture

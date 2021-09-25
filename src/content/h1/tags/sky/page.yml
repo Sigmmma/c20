@@ -9,4 +9,4 @@ imgCaption:
     The skybox is a fully 3D object at a much larger scale than the
     [BSP][scenario_structure_bsp] itself
 stub: true
-tagName: sky
+tagName: h1/sky

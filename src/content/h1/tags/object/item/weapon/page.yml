@@ -4,7 +4,7 @@ img: weapons.jpg
 imgCaption:
   en: Weapons spawned using the command `cheat_all_weapons`
 stub: true
-tagName: weapon
+tagName: h1/weapon
 thanks:
   Jakey:
     en: Explaining weapon error fields

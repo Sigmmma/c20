@@ -10,7 +10,7 @@ keywords:
   en:
     - model
     - gbxmodel
-tagName: shader_model
+tagName: h1/shader_model
 thanks:
   t3h lag:
     en: Explaining multipurpose map channels

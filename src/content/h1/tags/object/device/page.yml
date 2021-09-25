@@ -4,4 +4,4 @@ img: device_machine/c20-elevator.jpg
 imgCaption:
   en: Elevators and controls are common devices in Halo.
 stub: true
-tagName: device
+tagName: h1/device

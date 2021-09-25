@@ -7,14 +7,8 @@ imgCaption:
 info:
   en: >
     * [Github](https://github.com/XboxChaos/Assembly)
-    
+
     * [Appveyor](https://ci.appveyor.com/project/ThunderWaffle/assembly/build/artifacts)
 
 stub: true
 toolName: Assembly
-alerts:
-  - type: danger
-    md:
-      en: >-
-        Certain maps may need to be decompressed before they can be edited.
-        Use the decompressor in the tools dropdown if needed.

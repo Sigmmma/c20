@@ -164,11 +164,6 @@ module.exports = async function(ctx) {
     return {};
   }
 
-  if (page.tagName && !page.tagName.includes("/")) {
-    console.warn(`Assuming h1 for tagName ${page.tagName} (${page.pageId}/page.yml)`);
-    workflowItemName = `h1/${page.tagName}`; //temporary hack!
-  }
-
   const defaultMetaTitle = page.tryLocalizedTitle(ctx.lang);
   const metaSections = [];
   const itemInfo = ctx.data.workflows.getWorkflowItem(workflowItemName);

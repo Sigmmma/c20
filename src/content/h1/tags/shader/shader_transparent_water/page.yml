@@ -4,7 +4,7 @@ img: water.jpg
 imgCaption:
   en: A water shader used in _Death Island_
 stub: true
-tagName: shader_transparent_water
+tagName: h1/shader_transparent_water
 thanks:
   gbMichelle:
     en: Discovering that base maps do not tile

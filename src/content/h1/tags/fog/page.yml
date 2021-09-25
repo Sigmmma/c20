@@ -6,7 +6,7 @@ imgCaption:
 keywords:
   en:
     - plane
-tagName: fog
+tagName: h1/fog
 thanks:
   Jakey:
     en: Known fog issues in S7 MCC

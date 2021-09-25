@@ -4,4 +4,4 @@ img: vehicles.jpg
 imgCaption:
   en: Vehicles spawned using the command `cheat_all_vehicles`
 stub: true
-tagName: vehicle
+tagName: h1/vehicle

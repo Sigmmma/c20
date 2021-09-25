@@ -5,7 +5,7 @@ imgCaption:
   en: >-
     Sound scenery is used along Timberland's river, made visible in Sapien using
     `debug_sound 1`
-tagName: sound_scenery
+tagName: h1/sound_scenery
 thanks:
   Neo:
     en: Discovering the music bug

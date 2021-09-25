@@ -3,7 +3,7 @@ title:
 img: objects.jpg
 imgCaption:
   en: 'Various examples of objects, including projectiles, weapons, and units.'
-tagName: object
+tagName: h1/object
 thanks:
   Jakey:
     en: Explaining modifier shaders.

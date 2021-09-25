@@ -4,4 +4,4 @@ img: equipment.jpg
 imgCaption:
   en: Some examples of equipment in c10
 stub: true
-tagName: equipment
+tagName: h1/equipment

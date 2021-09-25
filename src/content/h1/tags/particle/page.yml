@@ -4,4 +4,4 @@ img: particle.jpg
 imgCaption:
   en: Bullet impact sparks are an example of particles.
 stub: true
-tagName: particle
+tagName: h1/particle

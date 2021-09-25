@@ -4,4 +4,4 @@ stub: true
 img: glass.jpg
 imgCaption:
   en: The Warthog's windscreen uses a glass shader.
-tagName: shader_transparent_glass
+tagName: h1/shader_transparent_glass
