@@ -2,34 +2,56 @@ decal:
   structName: Decal
   structModule: h1/tags/decal
   id: deca
+  description:
+    en: 'Used for bullet holes, blood, burns, signs, and other 2D surface effects.'
 shader_transparent_chicago_extended:
   structName: ShaderTransparentChicagoExtended
   structModule: h1/tags/shader_transparent_chicago_extended
   parentName: shader
   id: scex
+  description:
+    en: >
+      A version of [shader_transparent_chicago][] which contains an additional 2-stage
+      block for supporting older graphics hardware.
 bitmap:
   structName: Bitmap
   structModule: h1/tags/bitmap
   id: bitm
+  description:
+    en: >
+      Stores texture data like sprite sheets, environment maps, normal maps, and more.
+      Commonly (but not exclusively) referenced by [shaders][shader].
 light_volume:
   structName: LightVolume
   structModule: h1/tags/light_volume
   id: mgs2
+  description:
+    en: 'Describes a dense line of glow particles, commonly used for projectile tails.'
 vehicle:
   structName: Vehicle
   structModule: h1/tags/vehicle
   parentName: unit
   id: vehi
+  description:
+    en: >-
+      Driveable or occupiable units with dynamic physics, such as the Warthog and cryo
+      pod.
 device_light_fixture:
   structName: DeviceLightFixture
   structModule: h1/tags/device_light_fixture
   parentName: device
   id: lifi
+  description:
+    en: Used for dynamically toggled light sources or decorate lighting objects.
 biped:
   structName: Biped
   structModule: h1/tags/biped
   parentName: unit
   id: bipd
+  description:
+    en: >-
+      Represents the physical characteristics and appearance of characters like Elites,
+      Marines, Cortana, and the player.
 multiplayer_scenario_description:
   structName: MultiplayerScenarioDescription
   structModule: h1/tags/multiplayer_scenario_description
@@ -39,10 +61,18 @@ device_control:
   structModule: h1/tags/device_control
   parentName: device
   id: ctrl
+  description:
+    en: >-
+      Used for interactive switches and buttons to operate
+      [device_machines][device_machine] like doors and elevators.
 lens_flare:
   structName: LensFlare
   structModule: h1/tags/lens_flare
   id: lens
+  description:
+    en: >
+      A 2D sprite which can fade by distance and angle. Can be part of a [light][] or
+      attached to [the BSP][scenario_structure_bsp#lens-flare-markers].
 sound_environment:
   structName: SoundEnvironment
   structModule: h1/tags/sound_environment
@@ -60,16 +90,28 @@ hud_message_text:
   structName: HUDMessageText
   structModule: h1/tags/hud_message_text
   id: 'hmt '
+  description:
+    en: >-
+      Contains the text for messages that appear on the HUD like objectives and
+      interactions.
 shader_transparent_meter:
   structName: ShaderTransparentMeter
   structModule: h1/tags/shader_transparent_meter
   parentName: shader
   id: smet
+  description:
+    en: >
+      Used for transparent materials with an incrementally scaled area, such as first
+      person (not HUD) heat meters for plasma weapons and the Warthog's speedometer.
 scenery:
   structName: Scenery
   structModule: h1/tags/scenery
   parentName: object
   id: scen
+  description:
+    en: >
+      Fixed decoration objects like boulders, plants, and crates. Placed in the level
+      using [Sapien][].
 font:
   structName: Font
   structModule: h1/tags/font
@@ -82,15 +124,23 @@ light:
   structName: Light
   structModule: h1/tags/light
   id: ligh
+  description:
+    en: 'A dynamic light source which can be attached to objects and [effects][effect].'
 detail_object_collection:
   structName: DetailObjectCollection
   structModule: h1/tags/detail_object_collection
   id: dobc
+  description:
+    en: >
+      Determines the mix and appearance of small 2D detail objects like grass, which are
+      painted onto a [BSP][scenario_structure_bsp] in [Sapien][].
 weapon:
   structName: Weapon
   structModule: h1/tags/weapon
   parentName: item
   id: weap
+  description:
+    en: 'Used for both weildable weapons and those attached to [vehicles][vehicle].'
 unicode_string_list:
   structName: UnicodeStringList
   structModule: h1/tags/unicode_string_list
@@ -100,10 +150,16 @@ placeholder:
   structModule: h1/tags/placeholder
   parentName: object
   id: plac
+  description:
+    en: 'Used only by [Sapien][] to represent interactive handles/markers.'
 actor:
   structName: Actor
   structModule: h1/tags/actor
   id: actr
+  description:
+    en: >-
+      Defines basic AI behaviour. Can be futher customized using the [actor_variant][]
+      tag.
 garbage:
   structName: Garbage
   structModule: h1/tags/garbage
@@ -117,11 +173,19 @@ material_effects:
   structName: MaterialEffects
   structModule: h1/tags/material_effects
   id: foot
+  description:
+    en: >
+      Spawns effects when moving objects interact with surfaces, like tread marks,
+      splashing footsteps, and scattering rocks.
 device_machine:
   structName: DeviceMachine
   structModule: h1/tags/device_machine
   parentName: device
   id: mach
+  description:
+    en: >-
+      An object which can animate between open and closed states, like doors and
+      elevators.
 item_collection:
   structName: ItemCollection
   structModule: h1/tags/item_collection
@@ -134,14 +198,18 @@ weather_particle_system:
   structName: WeatherParticleSystem
   structModule: h1/tags/weather_particle_system
   id: rain
+  description:
+    en: Defines the appearance and behaviour of weather particles like rain and snow.
 ui_widget_collection:
   structName: UIWidgetCollection
   structModule: h1/tags/ui_widget_collection
-  id: 'Soul'
+  id: Soul
 sky:
   structName: Sky
   structModule: h1/tags/sky
   id: 'sky '
+  description:
+    en: 'Defines a skybox with light sources for [lightmaps][] and atmospheric fog.'
 dialogue:
   structName: Dialogue
   structModule: h1/tags/dialogue
@@ -151,6 +219,8 @@ projectile:
   structModule: h1/tags/projectile
   parentName: object
   id: proj
+  description:
+    en: Short-lived objects used for weapon projectiles and thrown grenades.
 unit_hud_interface:
   structName: UnitHUDInterface
   structModule: h1/tags/unit_hud_interface
@@ -158,16 +228,27 @@ unit_hud_interface:
 continuous_damage_effect:
   structName: ContinuousDamageEffect
   structModule: h1/tags/continuous_damage_effect
-  id: 'cdmg'
+  id: cdmg
+  description:
+    en: >-
+      Creates a continuous screen shake and controller vibration within a radius of a
+      [sound_looping][] source. This tag class is not used in any stock maps and the
+      effect only applies while certain [damage_effect][] are also applying to the player.
 shader_transparent_plasma:
   structName: ShaderTransparentPlasma
   structModule: h1/tags/shader_transparent_plasma
   parentName: shader
   id: spla
+  description:
+    en: 'Used for energy shields like those on [bipeds][biped].'
 globals:
   structName: Globals
   structModule: h1/tags/globals
   id: matg
+  description:
+    en: >-
+      Contains global configuration related to singleplayer, multiplayer, rasterizer data,
+      the HUD, and more.
 particle_system:
   structName: ParticleSystem
   structModule: h1/tags/particle_system
@@ -177,10 +258,17 @@ shader_model:
   structModule: h1/tags/shader_model
   parentName: shader
   id: soso
+  description:
+    en: 'General-purpose opaque shader used for [object][object] materials.'
 contrail:
   structName: Contrail
   structModule: h1/tags/contrail
   id: cont
+  description:
+    en: >
+      Contrails are trail-like repeating [bitmap][] effects which can be attached to any
+      [object][], optionally to one of their [markers][gbxmodel#markers]. Commonly used
+      for projectiles, but also for the Banshee's wingtips.
 hud_number:
   structName: HUDNumber
   structModule: h1/tags/hud_number
@@ -190,6 +278,10 @@ item:
   structModule: h1/tags/item
   parentName: object
   id: item
+  description:
+    en: >
+      Parent tag of [weapon][], [garbage][], and [equipment][]. Represents a small
+      moveable object with point-like physics.
 object:
   structName: Object
   structModule: h1/tags/object
@@ -199,6 +291,8 @@ device:
   structModule: h1/tags/device
   parentName: object
   id: devi
+  description:
+    en: 'Parent tag for devices, controlled objects which have powered on/off states.'
 shader_transparent_glass:
   structName: ShaderTransparentGlass
   structModule: h1/tags/shader_transparent_glass
@@ -212,6 +306,10 @@ effect:
   structName: Effect
   structModule: h1/tags/effect
   id: effe
+  description:
+    en: >
+      A multi-purpose tag used for responses to various events like material impacts,
+      sound effects, and detonations.
 string_list:
   structName: StringList
   structModule: h1/tags/string_list
@@ -220,19 +318,37 @@ sound:
   structName: Sound
   structModule: h1/tags/sound
   id: snd!
+  description:
+    en: |-
+      Contains sound data such as sound effects and music and parameters affecting
+      how sounds are played by the [sound system][sound-system].
 spheroid:
   structName: Spheroid
   structModule: h1/tags/spheroid
-  id: 'boom'
+  id: boom
   unused: true
+  description:
+    en: >-
+      Spheroid is an unused leftover tag class from earlier in Halo's development.
+      Although references to it can be seen in the H1CE HEK, it no longer exists in the
+      [H1A-EK][].
 model_collision_geometry:
   structName: ModelCollisionGeometry
   structModule: h1/tags/model_collision_geometry
   id: coll
+  description:
+    en: >-
+      Contains the collision mesh (also referred to as hitbox) for [objects][object] as
+      well as information about health and shields.
 wind:
   structName: Wind
   structModule: h1/tags/wind
   id: wind
+  description:
+    en: >
+      Describes the speed and variation of wind in a [BSP
+      cluster][scenario_structure_bsp#clusters-and-cluster-data], affecting local
+      [point_physics][] like [flags][flag] and [weather][weather_particle_system].
 tag_collection:
   structName: TagCollection
   structModule: h1/tags/tag_collection
@@ -241,10 +357,16 @@ glow:
   structName: Glow
   structModule: h1/tags/glow
   id: glw!
+  description:
+    en: Used to create glowing effects like the Elite's energy sword.
 model:
   structName: Model
   structModule: h1/tags/model
   id: mode
+  description:
+    en: >-
+      Stores the render model of [objects][object] in the original Xbox version of the
+      game.
 hud_globals:
   structName: HUDGlobals
   structModule: h1/tags/hud_globals
@@ -254,19 +376,33 @@ shader_environment:
   structModule: h1/tags/shader_environment
   parentName: shader
   id: senv
+  description:
+    en: >-
+      General-purpose opaque and alpha-tested shader used for [scenario_structure_bsp][]
+      materials.
 physics:
   structName: Physics
   structModule: h1/tags/physics
   id: phys
+  description:
+    en: 'Models the dynamic physics and propulsion of [vehicles][vehicle].'
 unit:
   structName: Unit
   structModule: h1/tags/unit
   parentName: object
   id: unit
+  description:
+    en: >-
+      Parent tag of [bipeds][biped] and [vehicles][vehicle], containing fields common to
+      these AI-driven or controllable objects.
 scenario:
   structName: Scenario
   structModule: h1/tags/scenario
   id: scnr
+  description:
+    en: >
+      The main "root" tag for a multiplayer, singeplayer, or UI map. Contains data about
+      spawn locations, objects, BSPs, skies, scripts, and more.
 lightning:
   structName: Lightning
   structModule: h1/tags/lightning
@@ -279,11 +415,15 @@ point_physics:
   structName: PointPhysics
   structModule: h1/tags/point_physics
   id: pphy
+  description:
+    en: Controls how simulated points points physically interact with the environment.
 equipment:
   structName: Equipment
   structModule: h1/tags/equipment
   parentName: item
   id: eqip
+  description:
+    en: 'Used for powerups, health packs, non-live grenades, and ammo pickups.'
 virtual_keyboard:
   structName: VirtualKeyboard
   structModule: h1/tags/virtual_keyboard
@@ -292,11 +432,15 @@ fog:
   structName: Fog
   structModule: h1/tags/fog
   id: 'fog '
+  description:
+    en: Describes the appearance of fog planes.
 shader_transparent_generic:
   structName: ShaderTransparentGeneric
   structModule: h1/tags/shader_transparent_generic
   parentName: shader
   id: sotr
+  description:
+    en: A transparent shader type supported by H1X and H1A only.
 input_device_defaults:
   structName: InputDeviceDefaults
   structModule: h1/tags/input_device_defaults
@@ -305,6 +449,8 @@ meter:
   structName: Meter
   structModule: h1/tags/meter
   id: metr
+  description:
+    en: Used for the global health and shield HUD meters.
 shader_transparent_water:
   structName: ShaderTransparentWater
   structModule: h1/tags/shader_transparent_water
@@ -314,14 +460,27 @@ damage_effect:
   structName: DamageEffect
   structModule: h1/tags/damage_effect
   id: jpt!
+  description:
+    en: >
+      Properties for the application of damage including material modifiers, screen
+      effects, acceleration, and area of effect.
 actor_variant:
   structName: ActorVariant
   structModule: h1/tags/actor_variant
   id: actv
+  description:
+    en: >
+      Specializes an [actor][] by defining their use of weapons, grenades, their health,
+      their color, and what equipment they drop.
 camera_track:
   structName: CameraTrack
   structModule: h1/tags/camera_track
   id: trak
+  description:
+    en: >
+      Defines rotational constraints for the game's camera when controlling
+      [bipeds][biped] or occupying [vehicles][vehicle] (e.g. prevents looking all the way
+      up or down).
 grenade_hud_interface:
   structName: GrenadeHUDInterface
   structModule: h1/tags/grenade_hud_interface
@@ -330,6 +489,8 @@ flag:
   structName: Flag
   structModule: h1/tags/flag
   id: flag
+  description:
+    en: Properties for a simulated cloth-like material which can be attached to objects.
 ui_widget_definition:
   structName: UIWidgetDefinition
   structModule: h1/tags/ui_widget_definition
@@ -339,6 +500,10 @@ sound_scenery:
   structModule: h1/tags/sound_scenery
   parentName: object
   id: ssce
+  description:
+    en: >
+      Identical to [scenery][] but with collision rules like [device_light_fixture][].
+      Used for invisible emitters of localized sound like rivers and waterfalls.
 weapon_hud_interface:
   structName: WeaponHUDInterface
   structModule: h1/tags/weapon_hud_interface
@@ -349,15 +514,35 @@ weapon_collection:
   structModule: h1/tags/weapon_collection
   vestigial: true
   unused: true
+  description:
+    en: |-
+      This tag class can still be found in leftover references in some stock
+      scenario tags, but no longer exists. It was replaced by [item_collection][].
+      Scenarios which are exported to text format and re-imported using H1CE [Guerilla][]
+      may cause [Sapien][] to crash due to this unrecognized tag class. The [H1A-EK][] is
+      immune to this issue.
 antenna:
   structName: Antenna
   structModule: h1/tags/antenna
   id: ant!
+  description:
+    en: >-
+      A springy antenna _widget_ which can be attached to [model
+      markers][gbxmodel#markers], as seen on the Warthog and Scorpion. Widgets can be
+      added to any [object][].
 gbxmodel:
   structName: GBXModel
   structModule: h1/tags/gbxmodel
   id: mod2
+  description:
+    en: >-
+      Stores the render model of [objects][object] in the Gearbox port of the game (and
+      its derivatives).
 scenario_structure_bsp:
   structName: ScenarioStructureBSP
   structModule: h1/tags/scenario_structure_bsp
   id: sbsp
+  description:
+    en: >
+      Contains geometric, lighting, weather, and other data for the playable spaces in
+      which all objects are placed. Singleplayer maps often use multiple BSPs.

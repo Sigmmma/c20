@@ -56,7 +56,7 @@ const tagsTable = (ctx, tags, groupId, parent) => {
       </thead>
       <tbody>
         ${tagsSorted.map(tag => {
-          const tagComments = R.path(["struct", "comments", ctx.lang], tag);
+          const tagComments = R.path(["description", ctx.lang], tag);
           return html`
             <tr>
               <td>${tag.vestigial ? tag.name : tagAnchor(ctx, tag.name)}</td>

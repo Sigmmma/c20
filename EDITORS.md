@@ -114,8 +114,7 @@ tagName: scenario
 # page.
 thanksIndex: true
 # If provided, adds sections on the page listing all tag types for a particular
-# engine version. The "purpose" column of the generated table comes from the
-# tag YAML files containing structural comments...for now.
+# engine version. See `src/data/tags/h1.yml` for an example of source data.
 tagIndex:
   game: "h1"
   groupId: true

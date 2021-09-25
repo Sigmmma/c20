@@ -126,6 +126,10 @@ model_animation_graph:
 mouse_cursor_definition:
   #id: mcsr
 muffin:
+  description:
+    en: >
+      Describes the animated growths that appear on a biped's body as it
+      transitions into a flood form.
 multilingual_unicode_string_list:
   #id: unic
 multiplayer_globals:
