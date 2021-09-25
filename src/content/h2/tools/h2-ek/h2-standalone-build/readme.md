@@ -2,11 +2,11 @@ The [Halo 2 Anniversary Editing Kit][H2-EK] includes a **standalone build** of t
 [Using custom content paths][using-custom-content-paths] is supported.
 
 ```.alert danger
-The standalone build is still somewhat experimental and bugs should be expected. Again, only single-player maps are officially supported at this time. Maps should always receive final testing as [map cache files][map] loaded by MCC itself.
+The standalone build is still somewhat experimental and bugs should be expected. Maps should always receive final testing as [map cache files][map] loaded by MCC itself.
 ```
 
 # Usage
-The UI works to a limited degree but loading maps is best done using the [`map_name`][scripting#functions-map-name] command in the [console][developer-console]. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
+The UI works is largely functional so you can load built in maps using it or add your own maps to the UI but loading maps is easier to do using the [`map_name`][scripting#functions-map-name] command in the [console][developer-console]. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
 
 ```console-h2a
 ; load tags\scenarios\solo\01b_spacestation\01b_spacestation.scenario:
@@ -23,7 +23,7 @@ This build offers a number of benefits for testing over compiling cache files or
 
 * As mentioned above tag reloading is enabled for standalone and Sapien.
 * You have access to a HaloScript console which lets you toggle globals and call functions at will.
-* It will be closer to the experience of playing through level in the cache build than player simulation.
+* It will be closer to the experience of playing through level in the cache build than using player simulation.
 
 # Keyboard shortcuts/hotkeys 
 
