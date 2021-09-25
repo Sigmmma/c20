@@ -4,6 +4,8 @@ After downloading the Halo 2 Editing Kit, please read `README_MODDING.txt`. You 
 
 The **Halo 2 Editing Kit (H2-EK)** or **Halo 2 Mod Tools** is the official suite of modding tools for Halo 2 MCC released by 343i. The tools are based off the internal tools used by Bungie and then 343i with some usability and stability improvements ported over from the [H2V-EK][], although not nearly as cut down as that suite.
 
+Unlike the [H1A-EK][] you ***do*** need to own [Halo 2: Anniversary on Steam][steam_purchase] to gain access to the toolkit.
+
 # What's changed?
 ## General changes from stock H2V tools
 * Tools are not stripped down, you can create models, animations, different types of textures, sounds and more!
@@ -56,3 +58,4 @@ The tools include many improvements over an [H2Codez][] enhanced H2V-EK, most no
 [csv]: https://en.wikipedia.org/wiki/Comma-separated_values
 [xls]: https://en.wikipedia.org/wiki/Microsoft_Excel_file_format
 [msdn_d3dcreate]: https://docs.microsoft.com/en-us/windows/win32/direct3d9/d3dcreate
+[steam_purchase]: https://store.steampowered.com/app/1064270

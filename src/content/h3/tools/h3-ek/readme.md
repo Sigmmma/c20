@@ -1,6 +1,8 @@
 The **Halo 3 Editing Kit** (**H3EK**) is the official set of tools for creating custom content for the MCC version of Halo 3. It was first released by 343 Industries alongside MCC Season 8.
 Similarly to the mod tools for Halo 1 and 2 it is ultimately based on the old internal tools used by Bungie during the development of Halo 3, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
 
+Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase] to gain access to the toolkit.
+
 # Major changes from H2
 Naturally there is multitude of changes compared to H2 as the engine underwent a major revision, this document endeavours to list the major ones.
 
@@ -21,3 +23,5 @@ Naturally there is multitude of changes compared to H2 as the engine underwent a
 * Sound doesn't work in the tools. Load your map in MCC if you need to test sound.
 * A main menu is not included so you will need to use `init.txt` or the developer console to load scenarios in the standalone build.
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
+
+[steam_purchase]: https://store.steampowered.com/app/1064271
