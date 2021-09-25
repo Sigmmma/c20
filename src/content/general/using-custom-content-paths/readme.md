@@ -1,4 +1,8 @@
-The [H1A-EK][] tools support **using custom content paths** with some caveats.
+```.alert danger
+H3-EK currently ***doesn't*** support custom content paths and neither do legacy editing kits. This is an MCC-only feature.
+```
+
+The [H1A-EK][] and [H2-Ek][] tools support **using custom content paths** with some caveats.
 
 * The data directory can be set using the `-data_dir <path>` flag.
 * The tags directory can similarly be set using the `-tags_dir <path>` flag.
@@ -20,15 +24,18 @@ guerilla -tags_dir "E:\Program Files (x86)\Microsoft Games\Halo Custom Edition\t
 
 # Test your custom tagset in the standalone build
 halo_tag_test -tags_dir "E:\my_custom_tagset\tags" -windowed
+
+# also works for h2
+halo2_tag_test -tags_dir "F:\custom_h2mcc\tags"
 ```
 
 # Known issues
 
-## Guerilla
+## H1 Guerilla
 
 - "you need to set your working directory" message(s) on startup - these can be ignored, it happens when Guerilla attempts to re-open tags not included in the current tag set.
 
-## Sapien
+## H1 and H2 Sapien
 
 No major issues but file selection dialog default to the last path used - make sure you select tags inside the current tags folder.
 
