@@ -1,0 +1,23 @@
+{
+    "IndexDocument": {
+        "Suffix": "index.html"
+    },
+    "RoutingRules": [
+        {
+            "Condition": {
+                "KeyPrefixEquals": "tools"
+            },
+            "Redirect": {
+                "ReplaceKeyPrefixWith": "general/tools"
+            }
+        },
+        {
+            "Condition": {
+                "KeyPrefixEquals": "h1/tools/h1a-ek/using-custom-content-paths"
+            },
+            "Redirect": {
+                "ReplaceKeyPrefixWith": "general/using-custom-content-paths"
+            }
+        }
+    ]
+}
