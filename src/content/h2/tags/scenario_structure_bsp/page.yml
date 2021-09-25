@@ -1,7 +1,8 @@
 title:
-  en: scenario_structure_bsp (h2)
+  en: scenario_structure_bsp
 stub: true
+workflowName: h2/scenario_structure_bsp
 keywords:
   en:
     - string
-workflowName: h2/scenario_structure_bsp
+    - bsp

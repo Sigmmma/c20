@@ -1,5 +1,7 @@
-  title:
-    en: scenario_structure_bsp
-  stub: true
-  tagName: h3/scenario_structure_bsp
-  
+title:
+  en: scenario_structure_bsp
+stub: true
+tagName: h3/scenario_structure_bsp
+keywords:
+  en:
+    - bsp

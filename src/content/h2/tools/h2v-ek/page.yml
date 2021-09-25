@@ -15,3 +15,6 @@ alerts:
       en: >-
         After installing the H2V-EK, Windows users must [prevent the Virtual Store
         from interfering with it][tips#windows-virtual-store].
+keywords:
+  en:
+    - h2ek

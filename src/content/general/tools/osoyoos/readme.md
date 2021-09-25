@@ -6,7 +6,7 @@ The **Osoyoos launcher** is an application that can be used to easily interact w
 - HEK with [opensauce][] (partial support)
 - [H1A-EK][]
 - [H2V-EK][]
-- H2EK with H2Codez
+- H2V-EK with H2Codez
 - [H2-EK][]
 - [H3-EK][]
 

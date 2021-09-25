@@ -7,7 +7,7 @@ The standalone build is still somewhat experimental and bugs should be expected.
 # Usage
 The UI works to a limited degree but no main menu is included. Map load should be done by adding the required [`map_name`][scripting#functions-map-name] command to `init.txt`. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
 
-```
+```console
 ; load tags\levels\solo\020_base\020_base.scenario:
 map_name levels\solo\020_base\020_base
 ; load tags\levels\solo\040_voi\040_voi.scenario:
@@ -23,7 +23,7 @@ This build offers a number of benefits for testing over compiling cache files or
 * You have access to a HaloScript console which lets you toggle globals and call functions at will.
 * It will be closer to the experience of playing through level in the cache build than player simulation.
 
-# Keyboard shortcuts/hotkeys 
+# Keyboard shortcuts/hotkeys
 
 Some of these shortcuts are only used in certain windows or editor modes.
 
@@ -40,7 +40,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Alt</kbd>+<kbd>-</kbd>: Decreases simulation speed
 * <kbd>Alt</kbd>+<kbd>+</kbd>: Increases simulation speed
 * <kbd>Shift</kbd>+<kbd>6</kbd>: Toggles texture cache debug mip
-* <kbd>Shift</kbd>+<kbd>7</kbd>: Toggles texture cache graph 
+* <kbd>Shift</kbd>+<kbd>7</kbd>: Toggles texture cache graph
 * <kbd>Shift</kbd>+<kbd>8</kbd>: Toggles geometry cache graph
 * <kbd>Shift</kbd>+<kbd>Enter</kbd>: Toggles pause menu
 * <kbd>Backspace</kbd> Toggles debug_camera mode

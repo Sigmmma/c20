@@ -282,13 +282,42 @@ body {
   .title-line {
     display: flex;
     align-content: space-between;
-    align-items: baseline;
+    align-items: center;
 
     h1 {
-      margin-top: 0;
+      margin: 0;
+      padding: 0;
       font-size: 2.2em;
       border-bottom: none;
       flex-grow: 1;
+    }
+
+    .title-extra {
+      display: flex;
+      align-content: space-between;
+      align-items: center;
+      color: var(--fg-faded);
+
+      a {
+        color: var(--fg-faded);
+        text-decoration: underline;
+      }
+
+      & > * {
+        padding-left: var(--padding-md);
+      }
+    }
+
+    .space-image {
+      display: inline-block;
+      height: var(--padding-xl);
+      border: 1px solid var(--border-color);
+      opacity: 0.5;
+      transition: opacity $transition-time;
+
+      &:hover {
+        opacity: 1.0;
+      }
     }
   }
 
@@ -366,6 +395,7 @@ body {
 
   a {
     color: var(--fg-faded);
+    text-decoration: underline;
   }
 }
 

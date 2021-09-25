@@ -19,6 +19,12 @@ const mainTopics = [
   ["/h1/tools/h1a-ek"],
 ];
 
+const spaces = [
+  {root: "/h1", img: "/h1/box-art.jpg"},
+  {root: "/h2", img: "/h2/h2cover.jpg"},
+  {root: "/h3", img: "/h3/Halo_3_final_boxshot.jpg"},
+];
+
 const localizations = localizer({
   locale: {
     en: "en_US",
@@ -79,6 +85,8 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
   if (thanksResult.headings) {
     headings = [...headings, ...thanksResult.headings];
   }
+
+  const space = spaces.find(s => page.pageId.startsWith(s.root));
 
   return html`
     <!DOCTYPE html>
@@ -152,11 +160,14 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
                 </nav>
                 <div class="title-line">
                   <h1 class="page-title">${escapeHtml(page.tryLocalizedTitle(lang))}</h1>
-                  <div class="edit-buttons">
+                  <div class="title-extra">
                     ${otherLangs.map(otherLang => html`
                       <a href="${page.localizedPaths[otherLang]}">${langNames[otherLang]}</a> /
                     `)}
                     <a href="${editPageUrl}">${localize("edit")}</a>
+                    ${space && html`
+                      <a href="${pageIndex.pages[space.root].tryLocalizedPath(lang)}"><img class="space-image" src="${space.img}" alt="${pageIndex.pages[space.root].tryLocalizedTitle(lang)}"/></a>
+                    `}
                   </div>
                 </div>
               </div>
