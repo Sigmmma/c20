@@ -15,4 +15,6 @@ related:
   - /h2/tools/h2v-ek/h2v-guerilla
 toolName: H2Codez
 info:
-  -en: Link to official repo https://github.com/Project-Cartographer/H2Codez
+  en: >
+    * [Link to official repo](https://github.com/Project-Cartographer/H2Codez)
+    * [Patcher/installer for H2V-EK](https://github.com/Project-Cartographer/H2Codez-Installer)
