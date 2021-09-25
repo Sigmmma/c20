@@ -4,6 +4,8 @@ img: h3-sapien.jpg
 imgCaption:
   en: Sapien being used to edit spawn points in `guardian.scenario`
 stub: true
+related:
+  - /h1/tools/h1a-ek/h1a-sapien
 keywords:
   en:
     - scenario

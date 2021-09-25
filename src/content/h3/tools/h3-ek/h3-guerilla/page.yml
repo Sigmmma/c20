@@ -5,6 +5,8 @@ imgCaption:
   en: >-
     A screenshot of Guerilla
 stub: true
+related:
+  - /h1/tools/h1a-ek/h1a-guerilla
 keywords:
   en:
     - tag-editor
