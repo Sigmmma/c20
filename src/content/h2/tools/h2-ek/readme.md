@@ -48,6 +48,23 @@ The tools include many improvements over an [H2Codez][] enhanced H2V-EK, most no
 * Fully functional player simulation.
 * Better overall stability.
 
+# Transferring tags from H2V
+If you have existing H2V tags they should larger work in MCC. Some tags will not work due to graphical changes and the like.
+Steps for transferring:
+1. Ensure MCC stock tags are extracted to the target path for the new MCC tagset.
+![.figure Pictured: How to skip existing files when copying using File Explorer](skip-existing.png)
+2. Copy over your old H2V tags to the target path, ensure that you skip any files that already exist (don't overwrite MCC tags).
+3. Most scenarios should just work at this point but you might want to remove any invalid tags that might cause issues down the line, open up [Guerilla][h2-guerilla] select any tag in the explorer bar and click "find referent tags", it should start trying to build a *tag dependency database* which forces it to load all tags one-by-one. If at any point this crashes check `debug.txt` to see which tag is causing issues, delete that tag and repeat the process till it stops crashing.
+
+```.alert
+![.figure Pictured: An "assertion failed" fatal error message](guerilla-assertion_failure.png)
+If the UI stops responding that doesn't mean it has crashed, this is just an issue with the dialog, let it run in the background, it should either close, show an error message or complete successfully evenetually.
+
+Remember it needs to load all your tags which can take quite some time.
+```
+
+H2 MCC tags can't be downgraded to work in H2V so consider this a one way upgrade. Follow best practices and keep a backup of your old files.
+
 # Known issues
 
 * Multi-process lightmapping is currently broken - use the single process alternative.
