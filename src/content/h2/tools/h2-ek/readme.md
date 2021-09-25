@@ -4,6 +4,19 @@ After downloading the Halo 2 Editing Kit, please read `README_MODDING.txt`. You 
 
 The **Halo 2 Editing Kit (H2-EK)** or **Halo 2 Mod Tools** is the official suite of modding tools for Halo 2 MCC released by 343i. The tools are based off the internal tools used by Bungie and then 343i with some usability and stability improvements ported over from the [H2V-EK][], although not nearly as cut down as that suite.
 
+Unlike the [H1A-EK][] you ***do*** need to own [Halo 2: Anniversary on Steam][steam_purchase] to gain access to the toolkit.
+
+# Getting started
+![.figure Pictured: Location of the mod tools in the steam library.](steam_tools.jpg)
+
+0. Ensure you own [Halo 2: Anniversary on Steam][steam_purchase], tools are only accessible if you own the Steam version.
+1. [Download the tools using Steam](steam://run/1613450), you might need to [install Steam](https://store.steampowered.com/about/) first.
+2. Follow the on screen prompts to download the tools.
+3. Once the tools are done downloading you can find them in your library in the tools section.
+4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
+5. Read `README_MODDING.txt` and follow any further instructions contained within it. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
+6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
+
 # What's changed?
 ## General changes from stock H2V tools
 * Tools are not stripped down, you can create models, animations, different types of textures, sounds and more!
@@ -46,6 +59,23 @@ The tools include many improvements over an [H2Codez][] enhanced H2V-EK, most no
 * Fully functional player simulation.
 * Better overall stability.
 
+# Transferring tags from H2V
+If you have existing H2V tags they should larger work in MCC. Some tags will not work due to graphical changes and the like.
+Steps for transferring:
+1. Ensure MCC stock tags are extracted to the target path for the new MCC tagset.
+![.figure Pictured: How to skip existing files when copying using File Explorer](skip-existing.png)
+2. Copy over your old H2V tags to the target path, ensure that you skip any files that already exist (don't overwrite MCC tags).
+3. Most scenarios should just work at this point but you might want to remove any invalid tags that might cause issues down the line, open up [Guerilla][h2-guerilla] select any tag in the explorer bar and click "find referent tags", it should start trying to build a *tag dependency database* which forces it to load all tags one-by-one. If at any point this crashes check `debug.txt` to see which tag is causing issues, delete that tag and repeat the process till it stops crashing.
+
+```.alert
+![.figure Pictured: An "assertion failed" fatal error message](guerilla-assertion_failure.png)
+If the UI stops responding that doesn't mean it has crashed, this is just an issue with the dialog, let it run in the background, it should either close, show an error message or complete successfully evenetually.
+
+Remember it needs to load all your tags which can take quite some time.
+```
+
+H2 MCC tags can't be downgraded to work in H2V so consider this a one way upgrade. Follow best practices and keep a backup of your old files.
+
 # Known issues
 
 * Multi-process lightmapping is currently broken - use the single process alternative.
@@ -56,3 +86,4 @@ The tools include many improvements over an [H2Codez][] enhanced H2V-EK, most no
 [csv]: https://en.wikipedia.org/wiki/Comma-separated_values
 [xls]: https://en.wikipedia.org/wiki/Microsoft_Excel_file_format
 [msdn_d3dcreate]: https://docs.microsoft.com/en-us/windows/win32/direct3d9/d3dcreate
+[steam_purchase]: https://store.steampowered.com/app/1064270

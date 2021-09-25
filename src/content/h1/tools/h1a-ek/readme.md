@@ -6,7 +6,7 @@ The **H1A Editing Kit** (**H1A-EK**), also called **Halo: CE Mod Tools**, is the
 
 This editing kit will be familiar to users of the [legacy HEK][hek] for [Halo: Custom Edition][h1#custom-edition-pc] (H1CE) released by Gearbox in 2004. However, some of the key changes are:
 
-* [Significant updates](#what-39-s-new) to the game engine and original tools, including bug fixes, quality of life improvements, extended limits, and new features.
+* [Significant updates](#whats-new-for-hek-users) to the game engine and original tools, including bug fixes, quality of life improvements, extended limits, and new features.
 * A complete source [tag set][tags] for the game's stock campaign and multiplayer maps, plus source [scripts][scripting] for the campaign. This means that, unlike the original HEK, singleplayer maps are officially supported and you won't need to extract the stock tags anymore.
 * A brand new tool, the [H1A standalone build][h1a-standalone-build], which loads [tags][] instead of [maps][map] (like Sapien) and supports _all_ console commands unrestricted. It is intended for fast iteration and troubleshooting custom singleplayer maps and AI.
 

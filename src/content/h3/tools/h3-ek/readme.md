@@ -1,6 +1,19 @@
 The **Halo 3 Editing Kit** (**H3EK**) is the official set of tools for creating custom content for the MCC version of Halo 3. It was first released by 343 Industries alongside MCC Season 8.
 Similarly to the mod tools for Halo 1 and 2 it is ultimately based on the old internal tools used by Bungie during the development of Halo 3, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
 
+Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase] to gain access to the toolkit.
+
+# Getting started
+![.figure Pictured: Location of the mod tools in the steam library.](steam_tools.jpg)
+
+0. Ensure you own [Halo 3 on Steam][steam_purchase], tools are only accessible if you own the Steam version.
+1. [Download the tools using Steam](steam://run/1695791), you might need to [install Steam](https://store.steampowered.com/about/) first.
+2. Follow the on screen prompts to download the tools.
+3. Once the tools are done downloading you can find them in your library in the tools section.
+4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
+5. Read `README_MODDING.txt` and follow any further instructions contained within it. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
+6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
+
 # Major changes from H2
 Naturally there is multitude of changes compared to H2 as the engine underwent a major revision, this document endeavours to list the major ones.
 
@@ -21,3 +34,5 @@ Naturally there is multitude of changes compared to H2 as the engine underwent a
 * Sound doesn't work in the tools. Load your map in MCC if you need to test sound.
 * A main menu is not included so you will need to use `init.txt` or the developer console to load scenarios in the standalone build.
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
+
+[steam_purchase]: https://store.steampowered.com/app/1064271

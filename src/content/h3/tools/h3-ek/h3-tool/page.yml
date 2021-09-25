@@ -4,6 +4,8 @@ img: h3-tool.jpg
 imgCaption:
   en: 'Using H3-Tool in CMD to view the command list'
 stub: true
+related:
+  - /h1/tools/h1a-ek/h1a-tool
 keywords:
   en:
     - lightmap

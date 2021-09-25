@@ -8,6 +8,10 @@ imgCaption:
 info:
   en: >
     * Release date: 2021
+related:
+  - /h1/tools/h1a-ek
+  - /h2/tools/h2v-ek
+  - /h3/tools/h3-ek
 keywords:
   en:
     - h2ek
