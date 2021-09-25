@@ -3,6 +3,17 @@ Similarly to the mod tools for Halo 1 and 2 it is ultimately based on the old in
 
 Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase] to gain access to the toolkit.
 
+# Getting started
+![.figure Pictured: Location of the mod tools in the steam library.](steam_tools.jpg)
+
+0. Ensure you own [Halo 3 on Steam][steam_purchase], tools are only accessible if you own the Steam version.
+1. [Download the tools using Steam](steam://run/1695791), you might need to [install Steam](https://store.steampowered.com/about/) first.
+2. Follow the on screen prompts to download the tools.
+3. Once the tools are done downloading you can find them in your library in the tools section.
+4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
+5. Read `README_MODDING.txt` and follow any further instructions contained within it. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
+6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
+
 # Major changes from H2
 Naturally there is multitude of changes compared to H2 as the engine underwent a major revision, this document endeavours to list the major ones.
 
