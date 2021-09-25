@@ -4,11 +4,14 @@ After downloading the Halo 2 Editing Kit, please read `README_MODDING.txt`. You 
 
 The **Halo 2 Editing Kit (H2-EK)** or **Halo 2 Mod Tools** is the official suite of modding tools for Halo 2 MCC released by 343i. The tools are based off the internal tools used by Bungie and then 343i with some usability and stability improvements ported over from the [H2V-EK][], although not nearly as cut down as that suite.
 
-# Changelog
+# What's changed?
 ## General changes from stock H2V tools
 * Tools are not stripped down, you can create models, animations, different types of textures, sounds and more!
+* FBX support was ported over from [H1A tools][h1a-ek], the legacy export tools were not included.
 * The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
 * A standalone build similar in function to H1A standalone.
+* All tools are still 32-bit but they are now large address aware (LAA). This allows them to use up to 4 GiB of virtual memory (exact limit depends on your system) instead of 2, this along fixed memory leaks should help avoid out of memory issues. 
+* The tags, data, and maps directories can now be set when running all tools. See [custom content paths][using-custom-content-paths] for more info. This makes it easier to work with different tag sets.
 * Better overall stability.
 * Pathfinding can now be generated.
 
