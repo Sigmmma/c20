@@ -23,3 +23,4 @@ The tools include many improvements over an [H2Codez][] H2V-EK, most notably:
 * Multi-process lightmapping is currently broken - use the single process alternative.
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
 * PRT simulation tool is not included - avoid tool commands that require it, they will not function properly.
+* Tag moving in Guerilla has some dependencies on old source control code because of this you need to manually move the tag after it fixes the references.
