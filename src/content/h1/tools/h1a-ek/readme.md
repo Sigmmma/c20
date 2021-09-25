@@ -28,11 +28,12 @@ Using the H1A-EK to create content for H1CE rather than H1A is not officially su
 
 ## General
 
-Many games to the base game will also apply to the tools. Reading the official update is recommended.
-Some functions for handling tag names and Unicode string list were changed to more gracefully handle missing data.
+- Many changes to the base game will also apply to the tools. Reading the official update is recommended.
+- Some functions for handling tag names and Unicode string list were changed to more gracefully handle missing data.
 
 ## Content
-Tags were updated to season 8 content. Updating your tag set is highly recommended.
+- Tags were updated to season 8 content. Updating your tag set is highly recommended.
+- Shader source code is now included. 
 
 ## FBX
 
@@ -50,6 +51,7 @@ Some of these also apply to standalone or MCC itself.
 * Real time mirror rendering was fixed.
 * A crash that could occur when rotating objects was fixed.
 * Framebuffer blend function `double multiply` was changed to better match Custom Edition, enabled for H1CE maps and tags that set "custom edition blending".
+* Windows can now be automatically re-arranged using the *Window* menu (works similarly to Guerilla)
 
 # What's new for HEK users?
 If you're coming from the legacy [HEK][hek] for Custom Edition or earlier versions of MCC you may be wondering what's new and great about the updated H1A tools and engine. Don't worry, we've got you covered!
