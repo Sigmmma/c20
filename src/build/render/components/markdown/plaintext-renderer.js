@@ -1,11 +1,18 @@
+const R = require("ramda");
 const marked = require("marked");
 const yaml = require("js-yaml");
 const {structDisplay} = require("../structs");
 const {renderTableYaml} = require("../yaml-tables");
+const {renderDisambiguationList} = require("../disambiguation-list");
 
 module.exports = function(ctx) {
   const renderer = new marked.Renderer();
   const {renderMarkdown} = require("./index");
+
+  const processPageName = (text) => {
+    text.replace(".c20:pageName", ctx.page.title[ctx.lang])
+  }
+  renderer.text = R.pipe(processPageName, renderer.text);
 
   //inline:
   renderer.strong = (text) => text;
@@ -29,6 +36,9 @@ module.exports = function(ctx) {
         return structDisplay(ctx, opts).searchTerms.join(" ");
       } else if (extensionType == "table") {
         return renderTableYaml(ctx, code).searchTerms.join(" ");
+      } else if (extensionType == "c20") {
+        if (extensionArgs == "disambiguation-list")
+          return renderDisambiguationList(ctx).searchTerms.join(" ");
       }
     }
     return `\n${code}\n`;

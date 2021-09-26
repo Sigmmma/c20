@@ -9,6 +9,7 @@ const {heading, alert, figure, video} = require("../bits");
 const {structDisplay} = require("../structs");
 const {renderTableYaml} = require("../yaml-tables");
 const autoAbbreviations = require("./abbreviations");
+const {renderDisambiguationList} = require("../disambiguation-list");
 
 hljs.registerLanguage("vrml", vrmlLang);
 hljs.registerLanguage("hsc", hscLang);
@@ -28,6 +29,10 @@ module.exports = function(ctx) {
   const renderer = new marked.Renderer();
   const {renderMarkdown} = require("./index");
 
+  const processPageName = (text) => {
+    return text.replace(".c20:pageName", ctx.page.title[ctx.lang])
+  }
+
   const processAbbreviations = (text) => {
     //take all the keywords to replace and make a regex pattern out of them so we can rely on regex precedence
     const replacementPattern = new RegExp(
@@ -44,7 +49,7 @@ module.exports = function(ctx) {
     });
   };
 
-  renderer.text = R.pipe(processAbbreviations, renderer.text);
+  renderer.text = R.pipe(processPageName, processAbbreviations, renderer.text);
   renderer.paragraph = R.pipe(processAbbreviations, renderer.paragraph);
 
   renderer.heading = function(text, level) {
@@ -92,6 +97,10 @@ module.exports = function(ctx) {
         return structDisplay(ctx, opts).html;
       } else if (extensionType == "table") {
         return renderTableYaml(ctx, code).html;
+      } else if (extensionType == "c20") {
+        if (extensionArgs == "disambiguation-list")
+          return renderDisambiguationList(ctx).html;
+          throw new Error(`Unrecognized c20 utility extension: ${extensionArgs}`);
       }
       throw new Error(`Unrecognized markdown extension: ${extensionType}`);
     }

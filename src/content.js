@@ -15,6 +15,76 @@ function joinAbsolutePath(logicalPath) {
   return "/" + logicalPath.join("/");
 }
 
+function generateTagPageInfo(pages, suffix, logicalPathSuffix) {
+  const genericTagsPath = ["general", "tags"]
+
+  let name = logicalPathSuffix[logicalPathSuffix.length - 1];
+  const title = {
+    en: name + " (disambiguation)",
+    es: name + " (desambiguación)" // should be checked by a Spanish speaker
+  };
+
+  logicalPath = genericTagsPath.concat(logicalPathSuffix)
+  const pageId = joinAbsolutePath(logicalPath);
+
+  const tagPathNames = [" (Halo 1)", " (Halo 2)", " (Halo 3)"];
+  const tagPaths = ["/h1/tags/", "/h2/tags/", "/h3/tags/"];
+
+  let otherLocations = []
+  for (let i = 0; i < tagPathNames.length; i++) {
+    const path = (tagPaths[i] + suffix);
+    if (path in pages) {
+      otherLocations.push({name: suffix + tagPathNames[i], target: path});
+    }
+  }
+  
+  return {
+    title: title,
+    stub: true,
+    langs: ["en", "es"],
+    pageId,
+    logicalPath,
+    dirPath: "src/content/utility/tag_disambig",
+    disambiguationList: otherLocations,
+    tryLocalizedSlug: () => {
+      return name;
+    }
+  }
+}
+
+// returns a set of the suffixes of pages with a given prefix 
+function getSuffixSetWithPrefix(pages, prefix) {
+  const suffixSet = new Set();
+  for (let pageID of Object.keys(pages)) {
+    if (pageID.startsWith(prefix))
+      suffixSet.add(pageID.substr(prefix.length));
+  }
+  return suffixSet;
+}
+
+// returns an array of all tags shared between game versions 
+function getSharedTags(pages) {
+  const allTags = [
+    getSuffixSetWithPrefix(pages, "/h1/tags/"),
+    getSuffixSetWithPrefix(pages, "/h2/tags/"),
+    getSuffixSetWithPrefix(pages, "/h3/tags/")
+  ];
+
+  let sharedSet = new Set();
+  // loop over all combinations of allTags
+  for (let i = 0; i < allTags.length; i++) {
+    for (let j = i + 1; j < allTags.length; j++) {
+      for (let suffix of allTags[i]) {
+        if (allTags[j].has(suffix)) {
+          sharedSet.add(suffix);
+        }
+      }
+    }
+  }
+
+  return [...sharedSet];
+}
+
 //return an array of the metadata objects representing each content page
 async function loadPageMetadata(contentDir) {
   //we're going to build a map of page ids => page metadata
@@ -52,6 +122,13 @@ async function loadPageMetadata(contentDir) {
       }
     };
   }));
+
+  const sharedTags = getSharedTags(pages);
+  
+  sharedTags.forEach(tag => {
+    const disambigMeta = generateTagPageInfo(pages, tag, tag.split("/"));
+    pages[disambigMeta.pageId] = disambigMeta;
+  });
 
   //do a second pass to build inter-page relationships
   Object.values(pages).forEach(page => {
