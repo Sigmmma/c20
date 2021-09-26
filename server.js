@@ -6,6 +6,13 @@ module.exports = function() {
 
   const app = express();
   app.use("/", serveStatic("./dist"));
+  
+  // fall through to 404 handler
+  app.use(function(req, res, next) {
+	  res.status(404);
+	  res.type('html');
+	  res.sendFile('./dist/404/index.html', {root: '.'});
+  });
 
   app.listen(port);
   console.log(`Serving at http://localhost:${port}/`);

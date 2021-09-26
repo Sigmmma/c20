@@ -60,6 +60,8 @@ const localize = (key) => ({
   }
 }[key][lang]);
 
+const is404Page = Boolean(document.head.querySelector('[itemprop = Is404]').content);
+
 class UnitConverter extends Component {
   constructor() {
     super();
@@ -313,10 +315,12 @@ class Search extends Component {
             <h2>${localize("searchResults")}</h2>
             <button class="clear-button" onClick=${clearInput}>${localize("close")} <span class="desktop-only">[Esc]</span></button>
           </div>
-          <div class="results-toggle-child-pages">
+          ${ !is404Page &&
+          html`<div class="results-toggle-child-pages">
             <input type="checkbox" id="filter-results" onClick=${handleFilter} checked=${this.state.filterChildPaths}/>
             <label for="filter-results">${localize("limitToChildPaths")}</label>
-          </div>
+          </div>`
+          }
           ${this.state.searchResults.length > 0 ? html`
             <ul class="link-list">
               ${this.state.searchResults.map((result, i) => {

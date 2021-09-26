@@ -88,11 +88,38 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
 
   const space = spaces.find(s => page.pageId.startsWith(s.root));
 
+  const mainContent = html`
+    <article class="content-article">
+      <div class="page-title">
+        <nav class="breadcrumbs">
+          ${breadcrumbs(ctx)}
+        </nav>
+        <div class="title-line">
+          <h1 class="page-title">${escapeHtml(page.tryLocalizedTitle(lang))}</h1>
+          <div class="title-extra">
+            ${otherLangs.map(otherLang => html`
+              <a href="${page.localizedPaths[otherLang]}">${langNames[otherLang]}</a> /
+            `)}
+            <a href="${editPageUrl}">${localize("edit")}</a>
+            ${space && html`
+              <a href="${pageIndex.pages[space.root].tryLocalizedPath(lang)}"><img class="space-image" src="${space.img}" alt="${pageIndex.pages[space.root].tryLocalizedTitle(lang)}"/></a>
+            `}
+          </div>
+        </div>
+      </div>
+      ${metabox(ctx, metaboxProps)}
+      ${body}
+      ${thanksResult.html}
+    </article>
+  `;
+
+
   return html`
     <!DOCTYPE html>
     <html lang="${lang}">
       <head>
         <meta charset="utf-8"/>
+        <meta itemprop="Is404" content=${page.Page404 ? 'true' : 'false'}>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="robots" content="index, follow">
@@ -117,7 +144,7 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
         <script>document.documentElement.dataset.theme = window.localStorage.getItem("theme") || "dark";</script>
       </head>
       <body>
-        <div class="page-layout">
+        <div ${page.Page404 ? "" : 'class="page-layout"'}>
           <div class="page-sidebar">
             <div class="sidebar-inner">
               <header class="sidebar-header">
@@ -130,6 +157,11 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
                   <span class="light">${icon("sun", "Light mode")}</span>
                 </button>
               </header>
+              ${page.Page404  && html`
+              <main role="main" class="sidebar-header">
+                ${mainContent}
+              </main>
+              `}
               <nav class="sidebar-nav">
                 <div id="c20-search-mountpoint"></div>
                 ${headings.length > TOC_MIN_HEADERS && html`
@@ -153,28 +185,7 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
             </div>
           </div>
           <main role="main" class="page-content-main">
-            <article class="content-article">
-              <div class="page-title">
-                <nav class="breadcrumbs">
-                  ${breadcrumbs(ctx)}
-                </nav>
-                <div class="title-line">
-                  <h1 class="page-title">${escapeHtml(page.tryLocalizedTitle(lang))}</h1>
-                  <div class="title-extra">
-                    ${otherLangs.map(otherLang => html`
-                      <a href="${page.localizedPaths[otherLang]}">${langNames[otherLang]}</a> /
-                    `)}
-                    <a href="${editPageUrl}">${localize("edit")}</a>
-                    ${space && html`
-                      <a href="${pageIndex.pages[space.root].tryLocalizedPath(lang)}"><img class="space-image" src="${space.img}" alt="${pageIndex.pages[space.root].tryLocalizedTitle(lang)}"/></a>
-                    `}
-                  </div>
-                </div>
-              </div>
-    ${metabox(ctx, metaboxProps)}
-    ${body}
-    ${thanksResult.html}
-            </article>
+                 ${!page.Page404  && mainContent}
           </main>
           ${footer(ctx)}
         </div>
