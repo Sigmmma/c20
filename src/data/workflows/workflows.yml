@@ -557,15 +557,24 @@ workflowItems:
   H2-Tool:
     inherit: H2-EK
     page: h2-tool
+    buildTypes:
+      - tag_test
+      - tag_release
   H2-Guerilla:
     inherit: H2-EK
     page: h2-guerilla
+    buildTypes:
+      - tag_test
   H2-Sapien:
     inherit: H2-EK
     page: h2-sapien
+    buildTypes:
+      - tag_test
   H2-Standalone:
     inherit: H2-EK
     page: h2-standalone
+    buildTypes:
+      - tag_test
   wrl 2.0:
     page: wrl-2.0
   ass:
@@ -947,15 +956,24 @@ workflowItems:
   H3-Tool:
     inherit: H3-EK
     page: h3-tool
+    buildTypes:
+      - tag_test
+      - tag_play
   H3-Guerilla:
     inherit: H3-EK
     page: h3-guerilla
+    buildTypes:
+      - tag_test
   H3-Sapien:
     inherit: H3-EK
     page: h3-sapien
+    buildTypes:
+      - tag_test
   H3-Standalone:
     inherit: H3-EK
     page: h3-standalone
+    buildTypes:
+      - tag_test
   h3/ai_dialogue_globals:
     inherit: h3/tags
     page: h3/tags/ai_dialogue_globals
