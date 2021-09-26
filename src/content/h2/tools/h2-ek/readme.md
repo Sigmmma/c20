@@ -50,6 +50,11 @@ All [tags][] used in H2C are included meaning tag extraction is no longer requir
 - `Do not use` fields were hidden from view as they should not be used.
 - File selection dialogues were upgraded to use Vista+ dialogues (Like H1A Guerilla and H2Codez enhanced H2V Guerilla)
 
+## Tool
+- All the commands are now included along with a few new commands for FBX support.
+- A *`tag_release`* build (`tool_fast.exe`) was included alongside the typical *`tag_test`* builds.
+- Optional argument support was ported from [H1A tool][h1a-tool].
+
 ## Changes from H2Codez enhanced H2V-EK
 The tools include many improvements over an [H2Codez][] enhanced H2V-EK, most notably:
 
