@@ -25,4 +25,4 @@ phases:
     commands:
       - bash -c "if [ /"$CODEBUILD_BUILD_SUCCEEDING/" == /"0/" ]; then exit 1; fi"
       - aws s3 sync --delete ./dist s3://c10-next
-      # - aws s3api put-bucket-website --bucket c10-next --website-configuration file://src/data/aws/s3/bucket-website.json
+      - aws s3api put-bucket-website --bucket c10-next --website-configuration file://src/data/aws/s3/bucket-website.json
