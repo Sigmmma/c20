@@ -21,6 +21,14 @@
             "Redirect": {
                 "ReplaceKeyPrefixWith": "general/using-custom-content-paths"
             }
+        },
+        {
+            "Condition": {
+                "KeyPrefixEquals": "h1/engine/build-types"
+            },
+            "Redirect": {
+                "ReplaceKeyPrefixWith": "general/engine/build-types"
+            }
         }
     ]
 }

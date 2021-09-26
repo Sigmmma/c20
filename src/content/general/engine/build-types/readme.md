@@ -3,7 +3,7 @@ This isn't something that can be done by the end user but it's worth knowing wha
 
 # Cache and tag builds
 
-The [Halo resource system][tags] is [quite flexible](http://nikon.bungie.org/misc/gdc2005_mnoguchi/) as it's capable of introspection and abstracted away from the code that uses the data, allowing for the dynamically generated UIs used in [Guerilla][h1a-guerilla] and a lot of other neat features.
+The Halo resource system is [quite flexible](http://nikon.bungie.org/misc/gdc2005_mnoguchi/) as it's capable of introspection and abstracted away from the code that uses the data, allowing for the dynamically generated UIs used in [Guerilla][h1a-guerilla] and a lot of other neat features.
 
 Two modes were implemented in H1.
 
@@ -18,7 +18,7 @@ Resources are loaded from cache files (sometimes referred to as "maps" because o
 
 # Optimization options
 
-H1A supports multiple levels of optimization depending on what features are needed, in decreasing order of optimization:
+Halo games in MCC support multiple levels of optimization depending on what features are needed, in decreasing order of optimization:
 
 1. **release**: Used for the MCC itself and has minimal checks, no error logging and maximum optimizations. Invalid data will either be ignored or crash the engine.
 2. **profile**: More or less the same as `release` but with some extra debug code.
