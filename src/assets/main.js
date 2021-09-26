@@ -174,7 +174,8 @@ class Search extends Component {
     this.state = {
       disabled: true,
       filterChildPaths: false,
-      query: "",
+      firstSearchDone: false,
+      query: is404Page ? window.location.pathname.split("/").reverse().join(" ") : '',
       searchResults: [],
       selectedResultIndex: 0
     };
@@ -243,7 +244,8 @@ class Search extends Component {
         query,
         searchResults,
         filterChildPaths,
-        selectedResultIndex: 0
+        selectedResultIndex: 0,
+		firstSearchDone: true
       });
     }
   }
@@ -266,6 +268,7 @@ class Search extends Component {
           }
         });
         this.setState({disabled: false});
+        console.log("Search index loaded!");
       });
 
     window.addEventListener("keydown", (e) => {
@@ -297,6 +300,9 @@ class Search extends Component {
     const isNonEmptyQuery = this.state.query && this.state.query != "";
     //save a reference to the DOM element which gets rendered, so we can focus it later
     const saveInputRef = (el) => this.inputRef = el;
+    
+    if (!this.state.firstSearchDone && is404Page)
+      this.handleChange(this.state.query, this.state.filterChildPaths);
 
     return html`
       <input
@@ -344,6 +350,10 @@ class Search extends Component {
       `}
     `;
   }
+}
+
+if (is404Page) {
+  document.querySelector('[id=missing-page]').innerText = "(" + window.location.pathname + ")";
 }
 
 render(html`<${Search}/>`, document.getElementById("c20-search-mountpoint"));
