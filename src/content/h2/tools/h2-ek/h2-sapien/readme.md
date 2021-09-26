@@ -58,6 +58,13 @@ Some of these shortcuts are only used in certain windows or editor modes.
   * None
 * <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
 
+## Camera Perspective 
+* <kbd>Backslash</kbd>: While controlling a unit, press this key to switch to another existing unit.
+* <kbd>Right Parenthesis</kbd> While controlling a unit, press this key to any existing unit.
+
+## Movement
+* <kbd>Left Parenthesis</kbd> Teleports the player to location they are looking at. Only seems to work if it's further above the player?
+
 # editor_init.txt
 At startup, H2-Sapien will load `editor_init.txt` if present in the same folder. This file can contain console commands, one per line, which are executed automatically for you. For example:
 

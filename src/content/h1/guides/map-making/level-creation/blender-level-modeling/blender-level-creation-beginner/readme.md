@@ -31,7 +31,7 @@ Having a reference frame but no valid geometry will also return:
 
 `No objects in scene`
 
-In order to create a reference frame we must first add an object to our scene. The object can be anything that contains location and rotation data. In our example we will use a simple box mesh to represent the origin of our level. The origin of the mesh object will be what is used here so make sure it's center to your geometry.
+In order to create a reference frame we must first add an object to our scene. The object can be anything that contains location and rotation data. In our example we will use a simple box mesh to represent the origin of our level. The location of our mesh object will be the origin point for all objects in our level once ingame. Try to keep your reference frame at the origin of your Blender scene if possible.
 
 consider placing the frame outside of the level you are creating as to not interfere with object selection or obscure geometry but this is up to your own preference.
 

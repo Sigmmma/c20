@@ -204,6 +204,503 @@ tool build-cache-file-cache-campaign-second pc
 ```
 
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+* target-language - ??? This is an optional arg
+* minor-version-number - ??? This is an optional arg
+* optimizable - ??? This is an optional arg
+* dedicated-server - ??? This is an optional arg
+* use-fmod-data - ??? This is an optional arg
+
+# Build cache file cache custom
+Builds cache files needed for tag sharing.
+
+```sh
+# build-cache-file-cache-custom <shared-manifest-list> <campaign-manifest-list> <platform>
+tool build-cache-file-cache-custom
+```
+
+* shared-manifest-list - ???
+* campaign-manifest-list - ???
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+
+# Build cache file cache language version
+Builds the resource maps and associated cache files needed for tag sharing.
+
+```sh
+# build-cache-file-cache-language-version <target-language> <minor-version-number> <platform>
+tool build-cache-file-cache-language-version english "" pc
+```
+
+* target-language - ???
+* minor-version-number - ???
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+
+# Build cache file cache shared first
+Builds the resource maps and associated cache files needed for tag sharing.
+
+```sh
+# build-cache-file-cache-shared-first <platform> <target-language> <minor-version-number> <sound-config> <optimizable> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-cache-shared-first pc
+```
+
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+* target-language - ??? This is an optional arg
+* minor-version-number - ??? This is an optional arg
+* sound-config - ??? This is an optional arg
+* optimizable - ??? This is an optional arg
+* dedicated-server - ??? This is an optional arg
+* use-fmod-data - ??? This is an optional arg
+
+# Build cache file cache sounds
+Builds the resource maps and associated cache files needed for tag sharing. Requires `build-cache-file-cache-sounds-index` to be done first.
+
+```sh
+# build-cache-file-cache-sounds <platform> <target-language> <minor-version-number> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-cache-sounds pc
+```
+
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+* target-language - ??? This is an optional arg
+* minor-version-number - ??? This is an optional arg
+* dedicated-server - ??? This is an optional arg
+* use-fmod-data - ??? This is an optional arg
+
+# Build cache file cache sounds index
+???
+
+```sh
+# build-cache-file-cache-sounds-index <scenario> <append> <sound-configuration> <platform>
+tool build-cache-file-cache-sounds-index
+```
+
+* scenario - ??? This is an optional arg
+* append - ??? This is an optional arg
+* sound-configuration - ??? This is an optional arg
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+
+# Build cache file cache version
+???
+
+```sh
+# build-cache-file-cache-version <minor-version-number> <platform>
+tool build-cache-file-cache-version "" pc
+```
+
+* minor-version-number - ??? This is an optional arg
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+
+# Build cache file for cubemaps
+Builds the provided scenario along with the associated cache files needed for tag sharing cubemap data.
+
+```sh
+# build-cache-file-for-cubemaps <scenario> <platform>
+tool build-cache-file-for-cubemaps "levels\multi\chill\chill" pc
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+
+# Build cache file generate DLC layout
+Crashes
+
+```sh
+# build-cache-file-generate-dlc-layout <map-name> <platform> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-generate-dlc-layout "" pc
+```
+
+* map-name - ???
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+* dedicated-server - ??? This is an optional arg.
+* use-fmod-data - ??? This is an optional arg.
+
+# Build cache file generate main menu layout
+Crashes
+
+```sh
+# build-cache-file-generate-main-menu-layout <map-name> <platform> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-generate-main-menu-layout "" pc
+```
+
+* map-name - ???
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+* dedicated-server - ??? This is an optional arg.
+* use-fmod-data - ??? This is an optional arg.
+
+# Build cache file generate new layout
+Crashes
+
+```sh
+# build-cache-file-generate-new-layout <map-name> <platform> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-generate-new-layout "" pc
+```
+
+* map-name - ???
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+* dedicated-server - ??? This is an optional arg.
+* use-fmod-data - ??? This is an optional arg.
+
+# Build cache file language
+A [scenario][] can be compiled into a [map][] using the `build-cache-file-language` verb. Simply provide your scenario's tag path.
+
+```sh
+# build-cache-file-language <target-language> <scenario> <platform>
+tool build-cache-file-language english "levels\multi\chill\chill" pc
+```
+
+* target-language - ???
+* scenario - A local tag path to a scenario tag without extension.
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+
+# Build cache file language version
+A [scenario][] can be compiled into a [map][] using the `build-cache-file-language-version` verb. Simply provide your scenario's tag path.
+
+```sh
+# build-cache-file-language-version <target-language> <minor-version-number> <scenario> <platform>
+tool build-cache-file-language-version english "" "levels\multi\chill\chill" pc
+```
+
+* target-language - ???
+* minor-version-number - ???
+* scenario - A local tag path to a scenario tag without extension.
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+
+# Build cache file language version optimizable use sharing
+Crashes
+
+```sh
+# build-cache-file-language-version-optimizable-use-sharing <target-language> <minor-version-number> <scenario> <platform> <sound-config> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-language-version-optimizable-use-sharing english "" "levels\multi\chill\chill" pc
+```
+
+* target-language - ???
+* minor-version-number - ???
+* scenario - A local tag path to a scenario tag without extension.
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+* sound-config - ???
+* dedicated-server - ???
+* use-fmod-data - ???
+
+# Build cache file language version sharing main menu
+Crashes
+
+```sh
+# build-cache-file-language-version-sharing-main-menu <target-language> <minor-version-number> <scenario> <platform>
+tool build-cache-file-language-version-sharing-main-menu english "" "levels\multi\chill\chill" pc
+```
+
+* target-language - ???
+* minor-version-number - ???
+* scenario - A local tag path to a scenario tag without extension.
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+
+# Build cache file link
+???
+
+```sh
+# build-cache-file-link <scenario> <platform> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-link "levels\multi\chill\chill" pc
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+* dedicated-server - ???  This is an optional arg
+* use-fmod-data - ???  This is an optional arg
+
+# Build cache file optimize
+???
+
+```sh
+# build-cache-file-optimize <map-name> <platform>
+tool build-cache-file-optimize "chill" pc
+```
+
+* map-name - The filename of a map file located in your maps folder without extension
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+
+# Build cache file optimize post link
+Crashes
+
+```sh
+# build-cache-file-optimize-post-link <map-name> <platform>
+tool build-cache-file-optimize-post-link "chill" pc
+```
+
+* map-name - The filename of a map file located in your maps folder without extension
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+
+# Build cache file pilot
+Crashes
+
+```sh
+# build-cache-file-pilot <scenario> <platform>
+tool build-cache-file-pilot "levels\multi\chill\chill" pc
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+
+# Build cache file profile
+???
+
+```sh
+# build-cache-file-profile <scenario>
+tool build-cache-file-profile "levels\multi\chill\chill"
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+
+# Build cache file use sharing
+crashes
+
+```sh
+# build-cache-file-use-sharing <scenario> <platform> <target-language> <minor-version-number> <sound-config> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-use-sharing "levels\multi\chill\chill" pc
+```
+
+* scenario - A local tag path to your scenario without the file extension
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
+* target-language - ??? This is an optional arg
+* minor-version-number - ??? This is an optional arg
+* sound-config - ??? This is an optional arg
+* dedicated-server - ??? This is an optional arg
+* use-fmod-data - ??? This is an optional arg
+
+# Build cache file verify DVD layouts
+???
+
+```sh
+# build-cache-file-verify-dvd-layouts <first-sharing-layout> <second-sharing-layout>
+tool build-cache-file-verify-dvd-layouts
+```
+
+* first-sharing-layout - ???
+* second-sharing-layout - ???
+
+# Bulk collision
+Multiple directories can have their collision files compiled in a single run using this command.
+
+```sh
+#  bulk-collision <jmi-file>
+tool bulk-collision "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk import crates
+Compile multiple source directories in a single run to generate a crate tag and all the relevant tags involved. Render tags will use PRT
+
+```sh
+#  bulk-import-crates <jmi-file>
+tool bulk-import-crates "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk import crates draft
+Compile multiple source directories in a single run to generate a crate tag and all the relevant tags involved. Render tags will not use PRT
+
+```sh
+#  bulk-import-crates-draft <jmi-file>
+tool bulk-import-crates-draft "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk import model folder
+Generates a model tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will use PRT
+
+```sh
+#  bulk-import-model-folder <source-directory> <skip-coarse-optimization|-s(optional)>
+tool bulk-import-model-folder "objects\multi\world_node_a"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+* skip-coarse-optimization - ???
+
+# Bulk import model folder draft
+Generates a model tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will not use PRT
+
+```sh
+#  bulk-import-model-folder-draft <source-directory>
+tool bulk-import-model-folder-draft "objects\multi\world_node_a"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+
+# Bulk import models
+Compile multiple source directories in a single run to generate a model tag and all the relevant tags involved. Render tags will use PRT
+
+```sh
+#  bulk-import-models <jmi-file>
+tool bulk-import-models "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk import models draft
+Compile multiple source directories in a single run to generate a model tag and all the relevant tags involved. Render tags will not use PRT
+
+```sh
+#  bulk-import-models-draft <jmi-file>
+tool bulk-import-models-draft "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk import scenery
+Compile multiple source directories in a single run to generate a scenery tag and all the relevant tags involved. Render tags will use PRT
+
+```sh
+#  bulk-import-scenery <jmi-file>
+tool bulk-import-scenery "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk import scenery draft
+Compile multiple source directories in a single run to generate a scenery tag and all the relevant tags involved. Render tags will not use PRT
+
+```sh
+#  bulk-import-scenery-draft <jmi-file>
+tool bulk-import-scenery-draft "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk import scenery folder
+Generates a scenery tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will use PRT
+
+```sh
+#  bulk-import-scenery-folder <source-directory>
+tool bulk-import-scenery-folder "objects\multi\world_node_a"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+
+# Bulk import scenery folder draft
+Generates a scenery tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will not use PRT
+
+```sh
+#  bulk-import-scenery-folder-draft <source-directory>
+tool bulk-import-scenery-folder-draft "objects\multi\world_node_a"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+
+# Bulk physics
+Multiple directories can have their physics files compiled in a single run using this command.
+
+```sh
+#  bulk-physics <jmi-file>
+tool bulk-physics "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk render
+Multiple directories can have their render files compiled in a single run using this command. Render tags will not use PRT
+
+```sh
+#  bulk-render <jmi-file>
+tool bulk-render "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Bulk render final
+Multiple directories can have their render files compiled in a single run using this command. Render tags will use PRT
+
+```sh
+#  bulk-render-final <jmi-file>
+tool bulk-render-final "objects\multi\jmi_Test.JMI"
+```
+
+* jmi-file - A local data path to where the JMI file is located.
+
+# Cache asset depot thumbnails
+???
+
+```sh
+#  cache-asset-depot-thumbnails <tag-file>
+tool cache-asset-depot-thumbnails 
+```
+
+* tag-file - ???
+
+# Cache asset depot thumbnails from directory
+???
+
+```sh
+#  cache-asset-depot-thumbnails-from-directory <tag-directory>
+tool cache-asset-depot-thumbnails-from-directory 
+```
+
+* tag-directory - ???
+
+# Cache asset depot thumbnails list
+???
+
+```sh
+#  cache-asset-depot-thumbnails-list <tag-list>
+tool cache-asset-depot-thumbnails-list
+```
+
+* tag-list - ???
+
+# Camera track
+This commands takes a JMA file directly and converts it to a camera_track for the game. The length of the animation should be at most 16 as that is the max number of control points a camera track tag can contain. The JMA should contain a skeleton made up of a single bone that will change its position each frame. The orientation of the bone will determine the position and rotation of the control point for that index. The name of the JMA file will be the name of the tag. Keep in mind that the extension check for this command is case sensitive. Keep the JMA portion lower case.
+
+```sh
+# camera-track <source-file>
+tool camera-track camera\vehicle_longsword.jma
+```
+
+* source-file - A local data path to where the JMA file is located.
+
+# Check all tags
+???
+
+```sh
+# check-all-tags
+tool check-all-tags
+```
+
+# Collision
+A [JMS][] file containing a collision model can be compiled into a collision model tag
+
+```sh
+# collision <source-directory>
+tool collision "objects\characters\masterchief"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+
+# Compile shader
+Crashed
+
+```sh
+# compile-shader <render-method>
+tool compile-shader 
+```
+
+* render-method - ???
+
+# Convert PC bitmaps
+???
+
+```sh
+# convert-pc-bitmaps
+tool convert-pc-bitmaps
+```
+
+# Convert tag files explicit pilot
+???
+
+```sh
+# convert-tag-files-explicit-pilot <source-backend> <dest-backend> <optional:-tag-list>
+tool convert-tag-files-explicit-pilot
+```
 
 # Baking lightmaps (Faux)
 
