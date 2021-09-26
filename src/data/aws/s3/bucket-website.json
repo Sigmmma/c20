@@ -29,6 +29,14 @@
             "Redirect": {
                 "ReplaceKeyPrefixWith": "general/engine/build-types"
             }
+        },
+        {
+            "Condition": {
+                "KeyPrefixEquals": "h1/source-data/animation-data"
+            },
+            "Redirect": {
+                "ReplaceKeyPrefixWith": "general/source-data/animation-data"
+            }
         }
     ]
 }

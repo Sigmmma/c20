@@ -1,7 +1,7 @@
 The [HEK][] uses several file types as intermediate representations of animation data. These files provide a common target for exporters like [Bluestreak][] and [Jointed Model Blender Toolset][jointed-model-blender-toolset], and can then be converted to [model_animations][] tags by [Tool][] for use in Halo.
 
 # JMA (Base)
-This is what a lot of animations will end up as. It is a default animation type that stores data necessary for movement, such as a [biped][] walking animation.
+This is what a lot of animations will end up as. It is a default animation type that stores data necessary for movement, such as a [h1/tags/object/unit/biped][] walking animation.
 
 # JMM (Base)
 ...
