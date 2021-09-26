@@ -9,6 +9,7 @@ module.exports = function() {
   
   // fall through to 404 handler
   app.use(function(req, res, next) {
+    console.log(`Unable to find ${req.url}, returning 404!`);
 	  res.status(404);
 	  res.type('html');
 	  res.sendFile('./dist/404/index.html', {root: '.'});
