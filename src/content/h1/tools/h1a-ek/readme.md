@@ -15,7 +15,7 @@ These tools are based on the original internal tools created by Bungie during th
 Using the H1A-EK to create content for H1CE rather than H1A is not officially supported. For example, H1CE uses a different [map version][map#map-header-cache-version] and won't load maps compiled for H1A. Taking advantage of many of the fixes and extended limits below will also result in your tags not being backwards compatible. **Use at your own risk.**
 
 # Getting started
-![.figure Pictured: Location of the mod tools in the steam library.](steam_tools.jpg)
+![.figure Pictured: Location of the mod tools in the steam library.](/general/tools/steam_tools.jpg)
 
 1. [Download the tools using Steam](steam://run/1532190), you might need to [install Steam](https://store.steampowered.com/about/) first.
 2. Follow the on screen prompts to download the tools.
@@ -33,7 +33,7 @@ Using the H1A-EK to create content for H1CE rather than H1A is not officially su
 
 ## Content
 - Tags were updated to season 8 content. Updating your tag set is highly recommended.
-- Shader source code is now included. 
+- Shader source code is now included.
 
 ## FBX
 
