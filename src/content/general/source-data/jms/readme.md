@@ -4,5 +4,5 @@ It is the target format when exporting from 3D editors like [Blender][] and [3ds
 
 * [gbxmodel][] using `tool model`
 * [model_collision_geometry][] using `tool collision-geometry`
-* [physics][] using `tool physics`
-* [scenario_structure_bsp][] using `tool structure`
+* [h1/tags/physics][] using `tool physics`
+* [h1/tags/scenario_structure_bsp][] using `tool structure`
