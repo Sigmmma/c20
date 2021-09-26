@@ -60,7 +60,7 @@ const localize = (key) => ({
   }
 }[key][lang]);
 
-const is404Page = Boolean(document.head.querySelector('[itemprop = Is404]').content);
+const is404Page = document.head.querySelector('[itemprop = Is404]').content === 'true'
 
 class UnitConverter extends Component {
   constructor() {
