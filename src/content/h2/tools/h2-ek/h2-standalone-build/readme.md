@@ -25,29 +25,64 @@ This build offers a number of benefits for testing over compiling cache files or
 * You have access to a HaloScript console which lets you toggle globals and call functions at will.
 * It will be closer to the experience of playing through level in the cache build than using player simulation.
 
-# Keyboard shortcuts/hotkeys 
-
+# Keyboard shortcuts/hotkeys
 Some of these shortcuts are only used in certain windows or editor modes.
 
+## General
+* <kbd>~</kbd>: Opens the command console.
+* <kbd>Esc</kbd>: Opens the pause menu.
+* <kbd>Pause/Break</kbd>: Opens the pause menu.
+* <kbd>Shift</kbd>+<kbd>Esc</kbd>: Exit Standalone
+* <kbd>Ctrl</kbd>+<kbd>M</kbd>: Disables mouse look and enables the cursor
+* <kbd>Shift</kbd>+<kbd>Return</kbd>: Clears console output
+
+## Encounters and AI
+* <kbd>Middle mouse</kbd>+<kbd>F1</kbd>: Selects the spawned actor in the center of the game view.
+* <kbd>Middle mouse</kbd>+<kbd>F2</kbd> Select next encounter. You can also use the console command `ai_select <encounter>`.
+* <kbd>Middle mouse</kbd>+<kbd>F3</kbd>: Select previous encounter.
+* <kbd>Middle mouse</kbd>+<kbd>F4</kbd>: When an encounter is selected, selects the next actor.
+* <kbd>Middle mouse</kbd>+<kbd>Shift</kbd>+<kbd>F4</kbd>: Selects the previous actor.
+* <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
+
+## Player Cheats
+* <kbd>Shift</kbd>+<kbd>Return</kbd>: Clears console output
+* <kbd>Left Parenthesis</kbd> Teleports the player to location they are looking at. Only seems to work if it's further above the player?
+* <kbd>Ctrl</kbd>+<kbd>C</kbd>: Toggles deathless players
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>C</kbd>: Toggles infinite ammo
+
+## Debug Toggles
+* <kbd>Ctrl</kbd>+<kbd>F</kbd>: Toggles display framerate
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>F</kbd>: Toggles infinite framerate
 * <kbd>Ctrl</kbd>+<kbd>R</kbd>: Toggles render model vertex
-* <kbd>Ctrl</kbd>+ <kbd> Shift </kbd> + <kbd>R</kbd>: Toggles render model name
-* <kbd>Ctrl</kbd>+<kbd>F</kbd>: Toggles display_framerate
-* <kbd>Ctrl</kbd>+<kbd>J</kbd>: Runs debug_camera_save
-* <kbd>Ctrl</kbd>+<kbd>K</kbd>: Runs debug_camera_load
-* <kbd>Ctrl</kbd>+<kbd>L</kbd>: Runs cheat_teleport_to_camera
-* <kbd>Ctrl</kbd>+<kbd>C</kbd>: Toggles cheat_deathless_player
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>R</kbd>: Toggles render models names
+* <kbd>Ctrl</kbd>+<kbd>J</kbd>: Saves current camera position
+* <kbd>Ctrl</kbd>+<kbd>K</kbd>: Loads last camera position
+* <kbd>Ctrl</kbd>+<kbd>L</kbd>: Teleports player to camera position
+* <kbd>Ctrl</kbd>+<kbd>O</kbd>: Loads last xsync camera position
 * <kbd>Ctrl</kbd>+<kbd>4</kbd>: Toggles sound cache status
+* <kbd>Shift</kbd>+<kbd>4</kbd>: Toggles sound cache graph
 * <kbd>Ctrl</kbd>+<kbd>5</kbd>: Toggles animation size
 * <kbd>Ctrl</kbd>+<kbd>6</kbd>: Toggles texture cache usage
-* <kbd>Ctrl</kbd>+<kbd>7</kbd>: Toggles texture cache status
-* <kbd>Ctrl</kbd>+<kbd>8</kbd>: Toggles geometry cache status
-* <kbd>Ctrl</kbd>+<kbd>0</kbd>: Toggles memory summery
-* <kbd>Alt</kbd>+<kbd>3</kbd>: Toggles switch sound 3d
-* <kbd>Alt</kbd>+<kbd>4</kbd>: Toggles switch sound hd
 * <kbd>Shift</kbd>+<kbd>6</kbd>: Toggles texture cache debug mip
-* <kbd>Shift</kbd>+<kbd>7</kbd>: Toggles texture cache graph 
+* <kbd>Ctrl</kbd>+<kbd>7</kbd>: Toggles texture cache status
+* <kbd>Shift</kbd>+<kbd>7</kbd>: Toggles texture cache graph
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>7</kbd>: Toggles texture cache list
+* <kbd>Ctrl</kbd>+<kbd>8</kbd>: Toggles geometry cache status
 * <kbd>Shift</kbd>+<kbd>8</kbd>: Toggles geometry cache graph
-* <kbd>Backspace</kbd> Toggles debug_camera mode
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>8</kbd>: Toggles geometry cache list
+* <kbd>Ctrl</kbd>+<kbd>Right</kbd>: Increase game speed by 0.10 units
+* <kbd>Ctrl</kbd>+<kbd>Left</kbd>: Decrease game speed by 0.10 units
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Right</kbd>: Increase game speed by 1.00 units
+* <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>Left</kbd>: Decrease game speed by 1.00 units
+* <kbd>Ctrl</kbd>+<kbd>0</kbd>: Toggles memory summery
+* <kbd>3</kbd>: Toggles 3D sound
+
+## Remastered Toggle
+* <kbd>4</kbd>: Toggles remastered sound
+
+## Camera Perspective
+* <kbd>Backslash</kbd>: While controlling a unit, press this key to switch to another existing unit.
+* <kbd>Right Parenthesis</kbd> While controlling a unit, press this key to any existing unit.
 
 # Debug camera controls
 To enter into the debug camera, open the [console][developer-console] and enter `debug_camera_save` followed by `debug_camera_load` or press <kbd>Backspace</kbd> until you are in flying camera mode. Movement of the camera is a little different than in Sapien. You do _not_ need to hold the middle mouse button and the camera moves in the direction it's pointed rather than its vertical movement being controlled exclusively with buttons.

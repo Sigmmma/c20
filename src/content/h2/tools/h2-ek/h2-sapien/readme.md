@@ -45,6 +45,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Control</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
 * Hold <kbd>Tab</kbd>: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.
 * In the hierarchy view, pressing a key will cycle through all folders that start with that character. For example, pressing <kbd>A</kbd> while having the "Missions" folder expanded will immediately take you to the "AI" folder.
+* <kbd>Shift</kbd>+<kbd>Esc</kbd>: Exit Sapien
 
 ## Encounters and AI
 * <kbd>Middle mouse</kbd>+<kbd>F1</kbd>: Selects the spawned actor in the center of the game view.
@@ -58,12 +59,12 @@ Some of these shortcuts are only used in certain windows or editor modes.
   * None
 * <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
 
+## Player Cheats
+* <kbd>Left Parenthesis</kbd> Teleports the player to location they are looking at. Only seems to work if it's further above the player?
+
 ## Camera Perspective 
 * <kbd>Backslash</kbd>: While controlling a unit, press this key to switch to another existing unit.
 * <kbd>Right Parenthesis</kbd> While controlling a unit, press this key to any existing unit.
-
-## Movement
-* <kbd>Left Parenthesis</kbd> Teleports the player to location they are looking at. Only seems to work if it's further above the player?
 
 # editor_init.txt
 At startup, H2-Sapien will load `editor_init.txt` if present in the same folder. This file can contain console commands, one per line, which are executed automatically for you. For example:
