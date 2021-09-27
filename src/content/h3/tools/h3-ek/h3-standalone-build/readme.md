@@ -5,13 +5,13 @@ The standalone build is still somewhat experimental and bugs should be expected.
 ```
 
 # Usage
-The UI works to a limited degree but no main menu is included. Map load should be done by adding the required [`map_name`][scripting#functions-map-name] command to `init.txt`. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
+The UI works to a limited degree but no main menu is included. Map load should be done by adding the required [`game_start`][scripting#functions-map-name] command to `init.txt`. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
 
 ```console
 ; load tags\levels\solo\020_base\020_base.scenario:
-map_name levels\solo\020_base\020_base
+game_start levels\solo\020_base\020_base
 ; load tags\levels\solo\040_voi\040_voi.scenario:
-map_name levels\solo\040_voi\040_voi
+game_start levels\solo\040_voi\040_voi
 ```
 Once you are in-game you can change the map using the [console][developer-console]. If you modify tags for the currently loaded map it will be automatically reloaded. You do not need to do anything to enable this behaviour, just edit and let it reload!
 Major changes might result in the map restarting, minor changes should be seamless apart from a loading screen.

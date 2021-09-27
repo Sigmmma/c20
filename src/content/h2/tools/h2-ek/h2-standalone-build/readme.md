@@ -6,13 +6,13 @@ The standalone build is still somewhat experimental and bugs should be expected.
 ```
 
 # Usage
-The UI works is largely functional so you can load built in maps using it or add your own maps to the UI but loading maps is easier to do using the [`map_name`][scripting#functions-map-name] command in the [console][developer-console]. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
+The UI works is largely functional so you can load built in maps using it or add your own maps to the UI but loading maps is easier to do using the [`game_start`][scripting#functions-map-name] command in the [console][developer-console]. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
 
 ```console-h2a
 ; load tags\scenarios\solo\01b_spacestation\01b_spacestation.scenario:
-map_name scenarios\solo\01b_spacestation\01b_spacestation
+game_start scenarios\solo\01b_spacestation\01b_spacestation
 ; load tags\scenarios\multi\halo\coagulation\coagulation.scenario:
-map_name scenarios\multi\halo\coagulation\coagulation
+game_start scenarios\multi\halo\coagulation\coagulation
 ```
 
  If you modify tags for the currently loaded map it will be automatically reloaded. You do not need to do anything to enable this behaviour, just edit and let it reload!
