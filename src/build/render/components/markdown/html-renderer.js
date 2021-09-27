@@ -10,6 +10,7 @@ const {structDisplay} = require("../structs");
 const {renderTableYaml} = require("../yaml-tables");
 const autoAbbreviations = require("./abbreviations");
 const {renderDisambiguationList} = require("../disambiguation-list");
+const {renderChildList} = require("../child-list");
 
 hljs.registerLanguage("vrml", vrmlLang);
 hljs.registerLanguage("hsc", hscLang);
@@ -99,9 +100,12 @@ module.exports = function(ctx) {
       } else if (extensionType == "table") {
         return renderTableYaml(ctx, code).html;
       } else if (extensionType == "c20") {
-        if (extensionArgs == "disambiguation-list")
+        if (extensionArgs == "disambiguation-list") {
           return renderDisambiguationList(ctx).html;
-          throw new Error(`Unrecognized c20 utility extension: ${extensionArgs}`);
+        } else if (extensionArgs == "child-list") {
+          return renderChildList(ctx).html;
+        }
+        throw new Error(`Unrecognized c20 utility extension: ${extensionArgs}`);
       }
       throw new Error(`Unrecognized markdown extension: ${extensionType}`);
     }

@@ -4,6 +4,7 @@ const yaml = require("js-yaml");
 const {structDisplay} = require("../structs");
 const {renderTableYaml} = require("../yaml-tables");
 const {renderDisambiguationList} = require("../disambiguation-list");
+const {renderChildList} = require("../child-list");
 
 module.exports = function(ctx) {
   const renderer = new marked.Renderer();
