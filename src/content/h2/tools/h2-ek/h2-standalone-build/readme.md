@@ -37,12 +37,12 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Shift</kbd>+<kbd>Return</kbd>: Clears console output
 
 ## Encounters and AI
-* <kbd>Middle mouse</kbd>+<kbd>F1</kbd>: Selects the spawned actor in the center of the game view.
-* <kbd>Middle mouse</kbd>+<kbd>F2</kbd> Select next encounter. You can also use the console command `ai_select <encounter>`.
-* <kbd>Middle mouse</kbd>+<kbd>F3</kbd>: Select previous encounter.
-* <kbd>Middle mouse</kbd>+<kbd>F4</kbd>: When an encounter is selected, selects the next actor.
-* <kbd>Middle mouse</kbd>+<kbd>Shift</kbd>+<kbd>F4</kbd>: Selects the previous actor.
-* <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
+* <kbd>F1</kbd>: Selects the spawned actor in the center of the game view.
+* <kbd>F2</kbd> Select next encounter. You can also use the console command `ai_select <encounter>`.
+* <kbd>F3</kbd>: Select previous encounter.
+* <kbd>F4</kbd>: When an encounter is selected, selects the next actor.
+* <kbd>Shift</kbd>+<kbd>F4</kbd>: Selects the previous actor.
+* <kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
 
 ## Player Cheats
 * <kbd>Shift</kbd>+<kbd>Return</kbd>: Clears console output
@@ -81,8 +81,8 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>4</kbd>: Toggles remastered sound
 
 ## Camera Perspective
-* <kbd>Backslash</kbd>: While controlling a unit, press this key to switch to another existing unit.
-* <kbd>Right Parenthesis</kbd> While controlling a unit, press this key to any existing unit.
+* <kbd>Backslash</kbd>: While controlling a unit, press this key to posses the closest unit.
+* <kbd>Right Parenthesis</kbd> While controlling a unit, press this key to switch to through any existing units.
 
 # Debug camera controls
 To enter into the debug camera, open the [console][developer-console] and enter `debug_camera_save` followed by `debug_camera_load` or press <kbd>Backspace</kbd> until you are in flying camera mode. Movement of the camera is a little different than in Sapien. You do _not_ need to hold the middle mouse button and the camera moves in the direction it's pointed rather than its vertical movement being controlled exclusively with buttons.

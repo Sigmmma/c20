@@ -48,23 +48,23 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Shift</kbd>+<kbd>Esc</kbd>: Exit Sapien
 
 ## Encounters and AI
-* <kbd>Middle mouse</kbd>+<kbd>F1</kbd>: Selects the spawned actor in the center of the game view.
-* <kbd>Middle mouse</kbd>+<kbd>F2</kbd> Select next encounter. You can also use the console command `ai_select <encounter>`.
-* <kbd>Middle mouse</kbd>+<kbd>F3</kbd>: Select previous encounter.
-* <kbd>Middle mouse</kbd>+<kbd>F4</kbd>: When an encounter is selected, selects the next actor.
-* <kbd>Middle mouse</kbd>+<kbd>Shift</kbd>+<kbd>F4</kbd>: Selects the previous actor.
-* <kbd>Middle mouse</kbd>+<kbd>F5</kbd>: Cycles through render modes for actor sprays:
+* <kbd>F1</kbd>: Selects the spawned actor in the center of the game view.
+* <kbd>F2</kbd> Select next encounter. You can also use the console command `ai_select <encounter>`.
+* <kbd>F3</kbd>: Select previous encounter.
+* <kbd>F4</kbd>: When an encounter is selected, selects the next actor.
+* <kbd>Shift</kbd>+<kbd>F4</kbd>: Selects the previous actor.
+* <kbd>F5</kbd>: Cycles through render modes for actor sprays:
   * Actions
   * Activation status
   * None
-* <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
+* <kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
 
 ## Player Cheats
 * <kbd>Left Parenthesis</kbd> Teleports the player to location they are looking at. Only seems to work if it's further above the player?
 
 ## Camera Perspective 
-* <kbd>Backslash</kbd>: While controlling a unit, press this key to switch to another existing unit.
-* <kbd>Right Parenthesis</kbd> While controlling a unit, press this key to any existing unit.
+* <kbd>Backslash</kbd>: While controlling a unit, press this key to posses the closest unit.
+* <kbd>Right Parenthesis</kbd> While controlling a unit, press this key to switch to through any existing units.
 
 # editor_init.txt
 At startup, H2-Sapien will load `editor_init.txt` if present in the same folder. This file can contain console commands, one per line, which are executed automatically for you. For example:

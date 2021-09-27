@@ -24,26 +24,64 @@ This build offers a number of benefits for testing over compiling cache files or
 * It will be closer to the experience of playing through level in the cache build than player simulation.
 
 # Keyboard shortcuts/hotkeys
-
 Some of these shortcuts are only used in certain windows or editor modes.
 
+## General
+* <kbd>~</kbd>: Opens the command console.
+* <kbd>Shift</kbd>+<kbd>Esc</kbd>: Exit Standalone
+* <kbd>Ctrl</kbd>+<kbd>M</kbd>: Disables mouse look and enables the cursor
+* <kbd>Shift</kbd>+<kbd>Return</kbd>: Clears console output
+
+## Encounters and AI
+* <kbd>F1</kbd>: Selects the spawned actor in the center of the game view.
+* <kbd>F2</kbd> Select next encounter. You can also use the console command `ai_select <encounter>`.
+* <kbd>F3</kbd>: Select previous encounter.
+* <kbd>F4</kbd>: When an encounter is selected, selects the next actor.
+* <kbd>Shift</kbd>+<kbd>F4</kbd>: Selects the previous actor.
+* <kbd>F5</kbd>: Cycles through render modes for actor sprays:
+  * Actions
+  * Activation status
+  * None
+* <kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
+
+## Player Cheats
+* <kbd>Left Parenthesis</kbd> Teleports the player to location they are looking at. Only seems to work if it's further above the player?
+* <kbd>Ctrl</kbd>+<kbd>C</kbd>: Toggles deathless players
+
+## Debug Toggles
+* <kbd>F10</kbd>: Toggles profile summary. Pressing it multiple times will switch between the following modes:
+  * All
+  * Objects
+  * Graphics
+  * Occlusion
+  * Effects
+  * AI
+  * Game-state
+  * Environment Artist
+  * Disabled
+* <kbd>Ctrl</kbd>+<kbd>F10</kbd>: Disables profile summary output
+* <kbd>Ctrl</kbd>+<kbd>I</kbd>: Toggles input debug
+* <kbd>Shift</kbd>+<kbd>W</kbd>: Toggles weapon debug
+* <kbd>Ctrl</kbd>+<kbd>F11</kbd>: Toggles 4x3 view in widescreen
+* <kbd>Ctrl</kbd>+<kbd>F</kbd>: Toggles display framerate
 * <kbd>Ctrl</kbd>+<kbd>R</kbd>: Toggles render model vertex
-* <kbd>Ctrl</kbd>+<kbd>F</kbd>: Toggles display_framerate
-* <kbd>Ctrl</kbd>+<kbd>J</kbd>: Runs debug_camera_save
-* <kbd>Ctrl</kbd>+<kbd>L</kbd>: Runs cheat_teleport_to_camera
-* <kbd>Ctrl</kbd>+<kbd>C</kbd>: Toggles cheat_deathless_player
+* <kbd>Ctrl</kbd>+<kbd>J</kbd>: Saves current camera position
+* <kbd>Ctrl</kbd>+<kbd>K</kbd>: Loads last camera position
+* <kbd>Ctrl</kbd>+<kbd>L</kbd>: Teleports player to camera position
 * <kbd>Ctrl</kbd>+<kbd>6</kbd>: Toggles texture cache usage
-* <kbd>Ctrl</kbd>+<kbd>7</kbd>: Toggles texture cache status
-* <kbd>Ctrl</kbd>+<kbd>8</kbd>: Toggles geometry cache status
-* <kbd>Ctrl</kbd>+<kbd>i</kbd>: Enables controller debug stats
-* <kbd>Ctrl</kbd>+<kbd>W</kbd>: Enables weapon debug stats
-* <kbd>Alt</kbd>+<kbd>-</kbd>: Decreases simulation speed
-* <kbd>Alt</kbd>+<kbd>+</kbd>: Increases simulation speed
 * <kbd>Shift</kbd>+<kbd>6</kbd>: Toggles texture cache debug mip
+* <kbd>Ctrl</kbd>+<kbd>7</kbd>: Toggles texture cache status
 * <kbd>Shift</kbd>+<kbd>7</kbd>: Toggles texture cache graph
+* <kbd>Ctrl</kbd>+<kbd>8</kbd>: Toggles geometry cache status
 * <kbd>Shift</kbd>+<kbd>8</kbd>: Toggles geometry cache graph
-* <kbd>Shift</kbd>+<kbd>Enter</kbd>: Toggles pause menu
-* <kbd>Backspace</kbd> Toggles debug_camera mode
+* <kbd>=</kbd>: Increase game speed by 0.10 units
+* <kbd>-</kbd>: Decrease game speed by 0.10 units
+* <kbd>Shift</kbd>+<kbd>=</kbd>: Increase game speed by 1.00 units
+* <kbd>Shift</kbd>+<kbd>-</kbd>: Decrease game speed by 0.50 units
+
+## Camera Perspective
+* <kbd>Backslash</kbd>: While controlling a unit, press this key to posses the closest unit.
+* <kbd>Right Parenthesis</kbd> While controlling a unit, press this key to switch to through any existing units.
 
 # Debug director flying controls
 To use the debug freecam press <kbd>Backspace</kbd> until you are in flying camera mode. Movement of the camera is a little different than in Sapien. You do _not_ hold the middle mouse button and the camera moves in the direction it's pointed rather than its vertical movement being controlled exclusively with buttons.

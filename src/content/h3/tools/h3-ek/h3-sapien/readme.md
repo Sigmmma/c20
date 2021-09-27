@@ -38,6 +38,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Shift</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. You can also use it to select the first and last object in the hierarchy list to select everything in-between at once. Useful for deleting multiple objects or moving them all at once.
 * <kbd>Control</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
 * Hold <kbd>Tab</kbd>: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.
+* <kbd>Shift</kbd>+<kbd>Esc</kbd>: Exit Sapien
 
 ## Encounters and AI
 * <kbd>F1</kbd>: Selects the spawned actor in the center of the game view.
@@ -50,6 +51,29 @@ Some of these shortcuts are only used in certain windows or editor modes.
   * Activation status
   * None
 * <kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
+
+## Player Cheats
+* <kbd>Left Parenthesis</kbd> Teleports the player to location they are looking at. Only seems to work if it's further above the player?
+
+## Debug Toggles
+* <kbd>F10</kbd>: Toggles profile summary. Pressing it multiple times will switch between the following modes:
+  * All
+  * Objects
+  * Graphics
+  * Occlusion
+  * Effects
+  * AI
+  * Game-state
+  * Environment Artist
+  * Disabled
+* <kbd>Ctrl</kbd>+<kbd>F10</kbd>: Disables profile summary output
+* <kbd>Shift</kbd>+<kbd>W</kbd>: Toggles weapon debug
+* <kbd>Ctrl</kbd>+<kbd>I</kbd>: Toggles input debug
+* <kbd>Ctrl</kbd>+<kbd>F11</kbd>: Toggles 4x3 view in widescreen
+
+## Camera Perspective 
+* <kbd>Backslash</kbd>: While controlling a unit, press this key to posses the closest unit.
+* <kbd>Right Parenthesis</kbd> While controlling a unit, press this key to switch to through any existing units.
 
 # editor_init.txt
 At startup, Sapien will load `editor_init.txt` if present in the same folder. This file can contain console commands, one per line, which are executed automatically for you. For example:
