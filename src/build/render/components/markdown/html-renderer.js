@@ -30,7 +30,8 @@ module.exports = function(ctx) {
   const {renderMarkdown} = require("./index");
 
   const processPageName = (text) => {
-    return text.replace(".c20:pageName", ctx.page.title[ctx.lang])
+    text = text.replace(".c20:pageName", ctx.page.title[ctx.lang]);
+    return text.replace(".c20:pathTail",  ctx.page.logicalPath[ctx.page.logicalPath.length - 1]);
   }
 
   const processAbbreviations = (text) => {

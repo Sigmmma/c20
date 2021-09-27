@@ -10,7 +10,8 @@ module.exports = function(ctx) {
   const {renderMarkdown} = require("./index");
 
   const processPageName = (text) => {
-    text.replace(".c20:pageName", ctx.page.title[ctx.lang])
+    text = text.replace(".c20:pageName", ctx.page.title[ctx.lang]);
+    return text.replace(".c20:pathTail",  ctx.logicalPath[ctx.logicalPath.length - 1]);
   }
   renderer.text = R.pipe(processPageName, renderer.text);
 

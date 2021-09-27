@@ -14,7 +14,7 @@ function renderDisambiguationList(ctx) {
     <ul>
         ${list.map((value) => html`
             <li>
-                <a href="${value.target}">${value.name}</a>
+                <a href="${ctx.resolveUrl(value.target)}">${value.name}</a>
             </li>
         `)}
     </ul>

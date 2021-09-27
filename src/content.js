@@ -15,6 +15,7 @@ function joinAbsolutePath(logicalPath) {
   return "/" + logicalPath.join("/");
 }
 
+// Generate a tag disambiguation page
 function generateTagPageInfo(pages, suffix, logicalPathSuffix) {
   const genericTagsPath = ["general", "tags"]
 
@@ -127,7 +128,9 @@ async function loadPageMetadata(contentDir) {
   
   sharedTags.forEach(tag => {
     const disambigMeta = generateTagPageInfo(pages, tag, tag.split("/"));
-    pages[disambigMeta.pageId] = disambigMeta;
+    if (!(disambigMeta.pageId in pages)) { // don't override custom pages
+      pages[disambigMeta.pageId] = disambigMeta;
+    }
   });
 
   //do a second pass to build inter-page relationships
