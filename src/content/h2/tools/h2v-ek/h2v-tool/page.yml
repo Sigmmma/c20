@@ -6,6 +6,7 @@ imgCaption:
 stub: true
 keywords:
   en:
+    - tool
     - lightmap
     - cli
 toolName: H2V-Tool

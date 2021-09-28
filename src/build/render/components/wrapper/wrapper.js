@@ -119,7 +119,9 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
     <html lang="${lang}">
       <head>
         <meta charset="utf-8"/>
-        <meta itemprop="Is404" content=${page.Page404 ? 'true' : 'false'}>
+        ${page.Page404 &&
+          html`<meta itemprop="Is404" content='true'>`
+        }
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <meta name="robots" content="index, follow">

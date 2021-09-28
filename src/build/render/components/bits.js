@@ -20,6 +20,7 @@ const escapeHtml = (s) => commonTags.safeHtml`${s}`;
 const html = commonTags.stripIndent(commonTags.html);
 
 const classes = (classArr) => classArr && classArr.length > 0 ? `class="${classArr.join(" ")}"` : "";
+const p = (body) => html`<p>${body}</p>`;
 
 const localizer = R.curry((bundle, lang) => {
   return (key, safe) => {
@@ -73,7 +74,7 @@ const detailsList = (summary, items, maxOpen, allowInline) => {
     return null;
   } else if (items.length <= maxOpen) {
     if (items.length == 1 && allowInline) {
-      return html`<p>${summary}: ${items[0]}</p>`;
+      return html`<span>${summary}: ${items[0]}</span>`;
     } else {
       return html`
         <details open>
@@ -138,6 +139,7 @@ module.exports = {
   classes,
   localizer,
   anchor,
+  p,
   pageAnchor,
   tagAnchor,
   defAnchor,

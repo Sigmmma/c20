@@ -1,0 +1,9 @@
+Assembly:
+  page: assembly
+  authors:
+    - Assembly Contributors
+    - XboxChaos
+  workflows:
+    - edit:
+        - h2/map
+        - h3/map

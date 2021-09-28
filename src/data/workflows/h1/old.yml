@@ -1,0 +1,33 @@
+tool_pro:
+  inherit:
+    - h1_tool_workflows_base
+  deprecated: true
+  page: tool_pro
+  similarTo:
+    - Tool
+HEKPlus:
+  page: hek-plus
+  deprecated: true
+  authors:
+    - SteelIXB
+  inherit:
+    - h1_tag_extractor_base
+SparkEdit:
+  page: sparkedit
+  authors:
+    - Grenadiac
+  deprecated: true
+  similarTo:
+    - Halo Map Tools
+    - Assembly
+    - Sapien
+  workflows:
+    - edit: h1/map
+Halo Map Tools:
+  page: halo-map-tools
+  authors:
+    - Monoxide
+    - tjc
+  deprecated: true
+  workflows:
+    - edit: h1/map

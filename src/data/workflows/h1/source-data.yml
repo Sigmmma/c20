@@ -1,0 +1,15 @@
+wrl:
+  page: wrl
+hmt:
+  page: hmt
+Strings text:
+  page: strings-txt
+Animation data:
+  page: animation-data
+# FBX files setup for import into H1A
+fbx-h1a:
+  page: using-fbx-in-h1a
+Source data files:
+  page: source-data
+  authors:
+    - You!

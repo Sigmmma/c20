@@ -1,0 +1,48 @@
+H1A-EK:
+  page: h1a-ek
+  similarTo:
+    - HEK
+  authors:
+    - 343 Industries
+    - Bungie
+    - Saber Interactive
+    - Gearbox
+
+H1A-Tool:
+  inherit:
+    - H1A-EK
+    - h1_tool_workflows_base
+  page: h1a-tool
+  similarTo:
+    - Tool
+  buildTypes:
+    - tag_play
+  workflows:
+    - from: fbx-h1a
+      to: JMS
+    - from: fbx-h1a
+      to: Animation data
+H1A-Guerilla:
+  inherit:
+    - H1A-EK
+    - h1_tag_editor_non_deprecated_base
+  page: h1a-guerilla
+  similarTo:
+    - Guerilla
+  buildTypes:
+    - tag_play
+H1A-Sapien:
+  inherit:
+    - H1A-EK
+    - h1_sapien_workflows_base
+  page: h1a-sapien
+  similarTo:
+    - Sapien
+  buildTypes:
+    - tag_play
+H1A-standalone:
+  inherit:
+    - H1A-EK
+  page: h1a-standalone-build
+  buildTypes:
+    - tag_test

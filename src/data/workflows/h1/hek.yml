@@ -1,0 +1,90 @@
+HEK:
+  page: hek
+  authors:
+    - Bungie
+    - Gearbox
+Blitzkrieg:
+  inherit: HEK
+  page: blitzkrieg
+  workflows:
+    - from: 3ds Max
+      to: JMS
+    - from: 3ds Max
+      to: Animation data
+Tool:
+  inherit:
+    - HEK
+    - h1_tool_workflows_base
+    - h1_tag_compiler_base
+  page: tool
+  buildTypes:
+    - tag_test
+Guerilla:
+  inherit:
+    - HEK
+    - h1_tag_editor_base
+  page: guerilla
+  buildTypes:
+    - tag_test
+Sapien:
+  inherit:
+    - HEK
+    - h1_sapien_workflows_base
+  page: sapien
+  buildTypes:
+    - tag_test
+
+# hek mods
+phantom_tool:
+  page: phantom_tool
+  deprecated: true
+  authors:
+    - Conscars
+  similarTo:
+    - Tool
+  workflows:
+    - from: JMS
+      to: h1/scenario_structure_bsp
+LM_Tool:
+  inherit:
+    - h1_lightmapper_base
+  page: lm_tool
+  authors:
+    - gbMichelle
+  similarTo:
+    - Tool
+
+h1_tool_workflows_base:
+  abstract: true
+  inherit:
+    - h1_lightmapper_base
+  workflows:
+    - from: JMS
+      to:
+        - h1/model_collision_geometry
+        - h1/gbxmodel
+        - h1/scenario_structure_bsp
+        - h1/physics
+    - from: wav
+      to: h1/sound
+    - from: Animation data
+      to: h1/model_animations
+    - from: hmt
+      to: h1/hud_message_text
+    - from: Strings text
+      to: h1/string_list
+    - from: Strings text
+      to: h1/unicode_string_list
+    - from: tif
+      to: h1/bitmap
+    - from: h1/scenario
+      to: h1/map
+
+h1_sapien_workflows_base:
+  abstract: true
+  inherit:
+    - h1_lightmapper_base
+  workflows:
+    - edit:
+        - h1/scenario_structure_bsp
+        - h1/scenario

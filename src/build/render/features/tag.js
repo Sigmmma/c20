@@ -1,5 +1,5 @@
 const R = require("ramda");
-const {renderMarkdownInline, heading, structDisplay, detailsList, defAnchor, html, localizer, tagAnchor, alert, slugify, icon} = require("../components");
+const {renderMarkdownInline, p, heading, structDisplay, detailsList, defAnchor, html, localizer, tagAnchor, alert, slugify, icon} = require("../components");
 const {walkTypeDefs} = require("../../../data/structs");
 
 const localizations = localizer({
@@ -71,10 +71,10 @@ module.exports = async function(ctx) {
   if (tag.children && tag.children.length > 0) {
     metaSections.push({
       cssClass: "content-tag-minor",
-      body: detailsList(
+      body: p(detailsList(
         localize("childTags"),
         tag.children.map(childTag => tagAnchor(ctx, childTag.name))
-      )
+      ))
     });
   }
 
@@ -95,18 +95,18 @@ module.exports = async function(ctx) {
   if (referencesHtml != "") {
     metaSections.push({
       cssClass: "content-tag-minor",
-      body: referencesHtml
+      body: p(referencesHtml)
     });
   }
 
   if (tag.referencedBy && tag.referencedBy.length > 0) {
     metaSections.push({
       cssClass: "content-tag-minor",
-      body: detailsList(
+      body: p(detailsList(
         localize("referencedBy"),
         tag.referencedBy.map(otherTag => tagAnchor(ctx, otherTag.name)),
         1
-      )
+      ))
     });
   }
 

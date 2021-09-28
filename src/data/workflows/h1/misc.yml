@@ -1,0 +1,19 @@
+WRL to OBJ converter:
+  page: wrl-to-obj-converter
+  authors:
+    - Conscars
+  workflows:
+    - from: wrl
+      to: obj
+Ghostbuster:
+  page: ghostbuster
+  authors:
+    - Conscars
+  similarTo:
+    - phantom_tool
+  workflows:
+    - edit: h1/scenario_structure_bsp
+SeT:
+  page: set
+  authors:
+    - Zatarita

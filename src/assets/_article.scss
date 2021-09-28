@@ -61,19 +61,31 @@ a[href^="mailto:"]:after {
   font-size: 50%;
 }
 
-a:not([href^="http"]) {
-  &[href*="/tags/"]:after {
-    content: "🏷️";
-    vertical-align: super;
-    font-size: 50%;
+.content-article {
+  a:not([href^="http"]) {
+    &[href*="/tags/"]:after {
+      content: "🏷️";
+      vertical-align: super;
+      font-size: 50%;
+    }
+    &[href*="/tools/"]:after {
+      content: "🔧";
+      vertical-align: super;
+      font-size: 50%;
+    }
   }
-  &[href*="/tools/"]:after {
-    content: "🔧";
-    vertical-align: super;
-    font-size: 50%;
+
+  .metabox {
+    a:not([href^="http"]) {
+      &[href*="/tags/"]:after {
+        content: none;
+      }
+      &[href*="/tools/"]:after {
+        content: none;
+      }
+    }
   }
 }
-
 
 small {
   color: var(--fg-faded);
@@ -96,10 +108,6 @@ summary h5,
 summary h6 {
   display: inline-block;
   margin: 0;
-}
-
-details {
-  margin: var(--padding-sm) 0;
 }
 
 a.header-anchor {

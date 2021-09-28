@@ -5,6 +5,8 @@ imgCaption:
   en: '`tool structure` being used to compile a JMS'
 keywords:
   en:
+    - tool
+    - "h1"
     - lightmap
     - radiosity
     - cli
