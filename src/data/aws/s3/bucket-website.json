@@ -37,6 +37,22 @@
             "Redirect": {
                 "ReplaceKeyPrefixWith": "general/source-data/animation-data"
             }
+        },
+        {
+            "Condition": {
+                "KeyPrefixEquals": "h2/sources"
+            },
+            "Redirect": {
+                "ReplaceKeyPrefixWith": "general/source-data"
+            }
+        },
+        {
+            "Condition": {
+                "KeyPrefixEquals": "h1/tools/h1a-ek/using-fbx-in-h1a"
+            },
+            "Redirect": {
+                "ReplaceKeyPrefixWith": "general/source-data/fbx"
+            }
         }
     ]
 }
