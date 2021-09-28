@@ -274,8 +274,8 @@ workflowItems:
     page: h2/map
   h3/map:
     page: h3/map
-  fbx-h1a: # FBX files setup for import into H1A
-    page: using-fbx-in-h1a
+  fbx-mcc: # FBX files setup for import into Halo
+    page: fbx
   h1/tags:
     page: h1/tags
   h1/actor:
@@ -1662,10 +1662,22 @@ workflows:
     from: h1/physics
     to: 3ds Max
   - using: H1A-Tool
-    from: fbx-h1a
+    from: fbx-mcc
     to:
       - jms
       - Animation data
+  - using: H2-Tool
+    from: fbx-mcc
+    to:
+      - jms
+      - Animation data
+      - ass
+  - using: H3-Tool
+    from: fbx-mcc
+    to:
+      - jms
+      - Animation data
+      - ass
   # text
   - using:
       - Tool

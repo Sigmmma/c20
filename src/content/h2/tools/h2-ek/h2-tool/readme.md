@@ -4,7 +4,7 @@ This is an article about the H2 Tool for use with MCC. For the legacy H2V Tool f
 
 **H2-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo 2 Editing Kit][H2-EK] by 343 Industries in 2021.
 
-This new version of Tool has many differences from the 2007 Pi Studios Tool. Most notably, it includes far more verbs and new options for existing ones. A major addition is the FBX to JMS/JMA toolchain to compile models regardless of what 3D modeling software you use.
+This new version of Tool has many differences from the 2007 Pi Studios Tool. Most notably, it includes far more verbs and new options for existing ones. A major addition is the FBX to ASS/JMS/JMA toolchain to compile models regardless of what 3D modeling software you use.
 
 # Conventions used in this article
 
@@ -476,7 +476,7 @@ tool fbx-to-ass "F:\dreamer.fbx" "F:\dreamer.ASS"
 * fbx - An absolute filepath to a valid FBX file.
 * ass - An absolute filepath that includes name and extension to write the output to.
 
-For some details on how to setup the FBX file see [FBX for H1A][using-fbx-in-h1a].
+For some details on how to setup the FBX file see [FBX for H2][fbx].
 
 # FBX to JMA
 This command takes an FBX and converts it to an animation source file for Halo 2 importing. Use this if you don't have access to an export script. Be aware that the extension can be any of the avaliable extensions for animation importing. It does not specifically needs to be JMA. You can type JMO as the extension and the output is still valid.
@@ -492,7 +492,7 @@ tool fbx-to-jma "E:\my_fbx_files\cyborg_dab.fbx" F:\cyborg_my_custom_anim.JMA 5 
 * Start-frame - Sets the first frame index that the converter will start from. Use this if you want only a specific section of an animation from your FBX. This arg is optional so you can leave this and Last-frame out if you want the animation as is.
 * Last-frame - Sets the last frame index that the converter will end on. Use this if you want only a specific section of an animation from your FBX. This arg is optional so you can leave this and Last-frame out if you want the animation as is.
 
-For some details on how to setup the FBX file see [FBX for H1A][using-fbx-in-h1a].
+For some details on how to setup the FBX file see [FBX for H2][fbx].
 
 # FBX to JMS
 
@@ -505,7 +505,7 @@ tool fbx-to-jms render "F:\dreamer.fbx" "F:\dreamer.JMS"
 * fbx - An absolute filepath to a valid FBX file.
 * jms - An absolute filepath that includes name and extension to write the output to.
 
-For some details on how to setup the FBX file see [FBX for H1A][using-fbx-in-h1a].
+For some details on how to setup the FBX file see [FBX for H2][fbx].
 
 # Fix model materials
 Sets global material names for model tags in a directory if the name is invalid.

@@ -243,7 +243,7 @@ tool fbx-to-jms E:\my_fbx_files\cyborg_dab.fbx data\characters\cyborg\animations
 
 **<i>You need to use a standard file path not a path relative to the `data` folder</i>**
 
-For some details on how to setup the FBX file see [FBX for H1A][using-fbx-in-h1a].
+For some details on how to setup the FBX file see [FBX for H1A][fbx].
 
 The start and end keyframes are optional and will default to including the full animation provided.
 
@@ -258,7 +258,7 @@ tool fbx-to-jms E:\my_fbx_files\better_cyborg.fbx data\characters\cyborg\models\
 
 **<i>You need to use a standard file path not a path relative to the `data` folder</i>**
 
-For some details on how to setup the FBX file see [FBX for H1A][using-fbx-in-h1a].
+For some details on how to setup the FBX file see [FBX for H1A][fbx].
 
 # Find and add sounds to a dialogue tag
 
