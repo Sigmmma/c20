@@ -24,6 +24,12 @@ New to modding? Check out our [H1 introduction guide][intro-to-h1-modding].
 
 <div class="card" style="background-image: url(/h1/guides/level-creation/blender-level-creation-advanced/1X.jpg)">
 
-**Featured guide: [Creating a custom map][blender-prep]**
+**Featured guide: [Creating a custom Halo 1 map][h1/guides/map-making/level-creation/file-directories]**
+
+</div>
+
+<div class="card" style="background-image: url(/h1/guides/level-creation/blender-level-creation-advanced/1X.jpg)">
+
+**Featured guide: [Creating a custom Halo 2 map][h2/guides/map-making/level-creation/file-directories]**
 
 </div>
