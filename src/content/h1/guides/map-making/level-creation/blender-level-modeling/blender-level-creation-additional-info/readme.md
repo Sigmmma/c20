@@ -1,7 +1,7 @@
 # File List
 | File Link                                                                                                         | Description
 |------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------
-[Multiple Skies Example Blend](https://drive.google.com/file/d/1k55u_cATxIHayTQeFGjXz58tlTpUuCV2/view?usp=sharing)  | The Blender application that we will be using to create our assets.
+[Multiple Skies Example Blend](https://drive.google.com/file/d/1k55u_cATxIHayTQeFGjXz58tlTpUuCV2/view?usp=sharing)  | A blend file showcasing how to use multiple skies in a level.
 [Weather Portals Example Blend](https://drive.google.com/file/d/1Nfjg2E7CP_rxpt9UIshCljRT3pCMkfXD/view?usp=sharing) | A blend file showcasing how to use the special +weatherpoly material in a level.
 
 # Multiple skies
@@ -9,7 +9,11 @@ It's possible to use multiple skies in your level by adding a digit to the end o
 
 ```
 +sky0
+```
+```
 +sky1
+```
+```
 +sky2
 ```
 
@@ -28,19 +32,11 @@ You can compare the videos below to see the difference.
 
 Here's what the hallway looks like without a weatherpoly volume.
 
-<a href="A.mp4" target="_blank">
-	<video controls>
-		<source src="A.mp4" type="video/mp4">
-	</video>
-</a>
+![](A.mp4)
 
 Here's what the hallway looks like with a weatherpoly volume.
 
-<a href="B.mp4" target="_blank">
-	<video controls>
-		<source src="B.mp4" type="video/mp4">
-	</video>
-</a>
+![](B.mp4)
 
 The weather poly geometry is included in the [BSP tag][scenario_structure_bsp#weather-polyhedra] when you compile your [JMS][]. There can be a max of 8 on screen at any given time. Any weather polys that go over this limit will have no effect. [Sapien][] will print a message in the console if you hit this limit.
 

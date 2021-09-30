@@ -449,8 +449,8 @@ Start by creating the listed materials in your base object along with assigning 
 
 `(HEK Install Path)\data\levels\test\tutorial\bitmaps`
 
-| Name                          | Diffuse Map (.tif file)          |
-| ----------------------------- | -------------------------------- |
+| Name                          | Diffuse Map (.tif file)          | Notes         
+| ----------------------------- | -------------------------------- | -------------------------------- 
 | example_tutorial_metal        | example_tutorial_metal.tif       |
 | example_tutorial_panels       | example_tutorial_panels.tif      |
 | example_tutorial_metal_floor  | example_tutorial_metal_floor.tif |
@@ -458,7 +458,7 @@ Start by creating the listed materials in your base object along with assigning 
 | example_tutorial_ladder%^     | example_tutorial_ladder.tif      |
 | example_tutorial_lights_blue! | example_tutorial_lights_blue.tif |
 | example_tutorial_lights_red!  | example_tutorial_lights_red.tif  |
-| example_tutorial_teleporter!  | example_tutorial_shield.tif      |
+| example_tutorial_teleporter!  | example_tutorial_shield.tif      | Not included with HEK. Extract the image with community tools.
 
 Note that the Shader Symbols have been included. The material example_tutorial_ladder%^ demonstrates that materials can have multiple Shader Symbols applied. In this case the ladder material has been made viewable from both sides or two-sided using the % symbol and has been made a ladder or climbable by the player using the ^ symbol.
 

@@ -24,7 +24,7 @@ All units given in this guide are given with the expectation that your Blender i
 ## Scene options
 An option added by the exporter to keep settings you don't need to care about hidden. Be sure to set game version to Halo CE as seen below:
 
-![](C.png "This should help you stay focused on what matters to you.")
+![](C.jpg "This should help you stay focused on what matters to you.")
 
 ## Workspace
 Since we are modeling lets be sure to pick the correct workspace for our work. Choose the `Modeling` workspace found in the top left by default. You don't need to see things like the timeline if you're just making a level so this should help simplify the experience.
