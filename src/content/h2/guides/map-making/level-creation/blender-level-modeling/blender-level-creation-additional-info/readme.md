@@ -1,8 +1,8 @@
 # File List
 | File Link                                                                                                         | Description
 |------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------
-[Multiple Skies Example Blend](https://drive.google.com/file/d/1RCv7sZo4p2b2W_e6nVZHxV1r796OwAbI/view?usp=sharing)  | A Blend file showcasing how to use multiple skies in a scene.
-[Weather Portals Example Blend](https://drive.google.com/file/d/1Nfjg2E7CP_rxpt9UIshCljRT3pCMkfXD/view?usp=sharing) | A blend file showcasing how to use the special +weatherpoly material in a level.
+[Multiple Skies Example Blend](https://drive.google.com/file/d/1RCv7sZo4p2b2W_e6nVZHxV1r796OwAbI/view?usp=sharing)  | A blend file showcasing how to use multiple skies in a scene.
+[Weather Portals Example Blend](https://drive.google.com/file/d/1fDqz9fkACYO3bP4wPHDpxw0M5HXTcq67/view?usp=sharing) | A blend file showcasing how to use the special +weatherpoly material in a level.
 
 # Multiple skies
 It's possible to use multiple skies in your level by adding a digit to the end of your `+sky` material. If we wanted three skies in our level for example we would have the following:
@@ -32,6 +32,11 @@ You can compare the videos below to see the difference.
 
 Here's what the hallway looks like without a weatherpoly volume.
 
+![](A.mp4)
+
+Here's what the hallway looks like with a weatherpoly volume.
+
+![](B.mp4)
 
 The weather poly geometry is included in the BSP tag when you compile your [][ASS]. There can be a max of 8 on screen at any given time. Any weather polys that go over this limit will have no effect. Sapien will print a message in the console if you hit this limit.
 
