@@ -29,7 +29,7 @@ See the following [link][run programs group] for more details
 
 This group lets you run various commands for your selected profile directly from the UI. You can find this at the middle of the UI window.
 
-See the following link for more details
+See the following [link][tasks group] for more details
 
 ## Settings Group
 
