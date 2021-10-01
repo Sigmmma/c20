@@ -1,11 +1,11 @@
 title:
-  en: Osoyoos Launcher
-img: Osoyoos.png
+  en: Osoyoos Launcher - Run Programs
+img: run_programs.jpg
 imgCaption:
-  en: Osoyoos with H1A-EK binaries and HEK tags
+  en: The run programs section of the Osoyoos launcher.
 info:
   en: >
     * [Source code and
     download](https://github.com/num0005/Osoyoos-Launcher)
-stub: false
+stub: falses
 toolName: Osoyoos launcher
