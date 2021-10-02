@@ -12,16 +12,16 @@
  * - imgCaption: caption for metabox
  * - thanks: added to the credits section at end of page, {name: [forText, ...], ...}
  *
- * The order of features determines order on the page.
+ * The order of features determines order on the page and precedence of metaTitle, etc.
  */
 module.exports = [
   require("./alerts"),
   require("./metaboxBase"),
-  require("./workflows"),
   require("./markdownFile"),
   require("./survey/results"),
   require("./tagIndex"),
   require("./tag"),
+  require("./workflows"),
   require("./thanks"),
   require("./keywords"),
   require("./thanksIndex"),

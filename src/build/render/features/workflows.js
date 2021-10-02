@@ -186,11 +186,17 @@ module.exports = async function(ctx) {
     });
   }
 
+  let metaTitle = undefined;
+  if (page.toolName) {
+    metaTitle = `${icon("tool", localize("tool"))} ${page.toolName}`;
+  } else if (!page.tagName) {
+    //we don't give tags a meta title because the tag feature does that itself
+    metaTitle = `${icon("file", localize("resource"))} ${defaultMetaTitle}`;
+  }
+
   return {
     metaSections,
-    metaTitle: page.toolName ?
-      `${icon("tool", localize("tool"))} ${page.toolName}` :
-      `${icon("file", localize("resource"))} ${defaultMetaTitle}`,
+    metaTitle,
     metaClass: page.toolName ? "content-tool" : undefined,
   };
 };

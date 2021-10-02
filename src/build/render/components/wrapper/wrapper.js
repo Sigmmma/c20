@@ -107,9 +107,9 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
           </div>
         </div>
       </div>
-      ${metabox(ctx, metaboxProps)}
-      ${body}
-      ${thanksResult.html}
+    ${metabox(ctx, metaboxProps)}
+    ${body}
+    ${thanksResult.html}
     </article>
   `;
 
@@ -187,7 +187,7 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
             </div>
           </div>
           <main role="main" class="page-content-main">
-                 ${!page.Page404  && mainContent}
+    ${!page.Page404 && mainContent}
           </main>
           ${footer(ctx)}
         </div>
