@@ -1,0 +1,72 @@
+invader_base:
+  abstract: true
+  page: invader
+  authors:
+    - Kavawuvi
+    - Vaporeon
+
+Invader:
+  inherit:
+    - h1_tag_compiler_base
+    - invader_base
+invader-string:
+  inherit: invader_base
+  heading: invader-string
+  workflows:
+    - from: Strings text
+      to: h1/string_list
+    - from: Strings text
+      to: h1/unicode_string_list
+invader-extract:
+  inherit:
+    - invader_base
+    - h1_tag_extractor_base
+  heading: invader-extract
+  similarTo:
+    - Refinery
+    - HEKPlus
+invader-edit:
+  inherit:
+    - invader_base
+    - h1_tag_editor_base
+  heading: invader-edit
+  similarTo:
+    - reclaimer-python
+invader-edit-qt:
+  inherit:
+    - invader_base
+    - h1_tag_editor_base
+  heading: invader-edit-qt
+  similarTo:
+    - Guerilla
+    - H1A-Guerilla
+    - Mozzarilla
+invader-bitmap:
+  inherit: invader_base
+  heading: invader-bitmap
+  workflows:
+    - from:
+        - tif
+        - png
+        - tga
+        - bmp
+      to: h1/bitmap
+invader-build:
+  inherit: invader_base
+  heading: invader-build
+  similarTo:
+    - Tool
+  workflows:
+    - from: h1/scenario
+      to: h1/map
+invader-sound:
+  inherit: invader_base
+  heading: invader-sound
+  workflows:
+    - from:
+        - flac
+        - wav
+      to: h1/sound
+invader-resource:
+  inherit: invader_base
+  heading: invader-resource

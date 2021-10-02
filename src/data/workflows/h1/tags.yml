@@ -1,0 +1,288 @@
+h1/tags:
+  page: h1/tags
+h1/actor:
+  page: h1/tags/actor
+h1/actor_variant:
+  page: h1/tags/actor_variant
+h1/antenna:
+  page: h1/tags/antenna
+h1/biped:
+  page: h1/tags/object/unit/biped
+h1/bitmap:
+  page: h1/tags/bitmap
+h1/camera_track:
+  page: h1/tags/camera_track
+h1/color_table:
+  page: h1/tags/color_table
+h1/continuous_damage_effect:
+  page: h1/tags/continuous_damage_effect
+h1/contrail:
+  page: h1/tags/contrail
+h1/damage_effect:
+  page: h1/tags/damage_effect
+h1/decal:
+  page: h1/tags/decal
+h1/detail_object_collection:
+  page: h1/tags/detail_object_collection
+h1/device:
+  page: h1/tags/object/device
+h1/device_control:
+  page: h1/tags/object/device/device_control
+h1/device_light_fixture:
+  page: h1/tags/object/device/device_light_fixture
+h1/device_machine:
+  page: h1/tags/object/device/device_machine
+h1/dialogue:
+  page: h1/tags/dialogue
+h1/effect:
+  page: h1/tags/effect
+h1/equipment:
+  page: h1/tags/object/item/equipment
+h1/flag:
+  page: h1/tags/flag
+h1/fog:
+  page: h1/tags/fog
+h1/font:
+  page: h1/tags/font
+h1/garbage:
+  page: h1/tags/object/item/garbage
+h1/gbxmodel:
+  page: h1/tags/gbxmodel
+  similarTo:
+    - h1/model
+h1/globals:
+  page: h1/tags/globals
+h1/glow:
+  page: h1/tags/glow
+h1/grenade_hud_interface:
+  page: h1/tags/grenade_hud_interface
+h1/hud_globals:
+  page: h1/tags/hud_globals
+h1/hud_message_text:
+  page: h1/tags/hud_message_text
+h1/hud_number:
+  page: h1/tags/hud_number
+h1/input_device_defaults:
+  page: h1/tags/input_device_defaults
+h1/item:
+  page: h1/tags/object/item
+h1/item_collection:
+  page: h1/tags/item_collection
+h1/lens_flare:
+  page: h1/tags/lens_flare
+h1/light:
+  page: h1/tags/light
+h1/light_volume:
+  page: h1/tags/light_volume
+h1/lightning:
+  page: h1/tags/lightning
+h1/material_effects:
+  page: h1/tags/material_effects
+h1/meter:
+  page: h1/tags/meter
+h1/model:
+  page: h1/tags/model
+h1/model_animations:
+  page: h1/tags/model_animations
+h1/model_collision_geometry:
+  page: h1/tags/model_collision_geometry
+h1/multiplayer_scenario_description:
+  page: h1/tags/multiplayer_scenario_description
+h1/object:
+  page: h1/tags/object
+h1/particle:
+  page: h1/tags/particle
+h1/particle_system:
+  page: h1/tags/particle_system
+h1/physics:
+  page: h1/tags/physics
+h1/placeholder:
+  page: h1/tags/placeholder
+h1/point_physics:
+  page: h1/tags/point_physics
+h1/preferences_network_game:
+  page: h1/tags/preferences_network_game
+h1/projectile:
+  page: h1/tags/object/projectile
+h1/scenario:
+  page: h1/tags/scenario
+h1/scenario_structure_bsp:
+  page: h1/tags/scenario_structure_bsp
+h1/scenery:
+  page: h1/tags/object/scenery
+h1/shader:
+  page: h1/tags/shader
+h1/shader_environment:
+  page: h1/tags/shader/shader_environment
+h1/shader_model:
+  page: h1/tags/shader/shader_model
+h1/shader_transparent_chicago:
+  page: h1/tags/shader/shader_transparent_chicago
+h1/shader_transparent_chicago_extended:
+  page: h1/tags/shader/shader_transparent_chicago_extended
+h1/shader_transparent_generic:
+  page: h1/tags/shader/shader_transparent_generic
+h1/shader_transparent_glass:
+  page: h1/tags/shader/shader_transparent_glass
+h1/shader_transparent_meter:
+  page: h1/tags/shader/shader_transparent_meter
+h1/shader_transparent_plasma:
+  page: h1/tags/shader/shader_transparent_plasma
+h1/shader_transparent_water:
+  page: h1/tags/shader/shader_transparent_water
+h1/sky:
+  page: h1/tags/sky
+h1/sound:
+  page: h1/tags/sound
+h1/sound_environment:
+  page: h1/tags/sound_environment
+h1/sound_looping:
+  page: h1/tags/sound_looping
+h1/sound_scenery:
+  page: h1/tags/sound_scenery
+h1/spheroid:
+  page: h1/tags/spheroid
+h1/string_list:
+  page: h1/tags/string_list
+h1/tag_collection:
+  page: h1/tags/tag_collection
+h1/ui_widget_collection:
+  page: h1/tags/ui_widget_collection
+h1/ui_widget_definition:
+  page: h1/tags/ui_widget_definition
+h1/unicode_string_list:
+  page: h1/tags/unicode_string_list
+  similarTo:
+    - h1/string_list
+h1/unit:
+  page: h1/tags/object/unit
+h1/unit_hud_interface:
+  page: h1/tags/unit_hud_interface
+h1/vehicle:
+  page: h1/tags/object/unit/vehicle
+h1/virtual_keyboard:
+  page: h1/tags/virtual_keyboard
+h1/weapon:
+  page: h1/tags/object/item/weapon
+h1/weapon_hud_interface:
+  page: h1/tags/weapon_hud_interface
+h1/weather_particle_system:
+  page: h1/tags/weather_particle_system
+h1/wind:
+  page: h1/tags/wind
+# related to tags but not a tag itself
+h1/lightmaps:
+  page: h1/tags/scenario_structure_bsp/lightmaps
+
+h1_tag_editor_base:
+  abstract: true
+  inherit:
+    - h1_tag_editor_non_deprecated_base
+  workflows:
+    - edit: h1/spheroid
+
+h1_lightmapper_base:
+  abstract: true
+  workflows:
+    - edit: h1/lightmaps
+
+h1_tag_extractor_base:
+  abstract: true
+  workflows:
+    - from: h1/map
+      to: h1/tags
+
+h1_tag_compiler_base:
+  abstract: true
+  workflows:
+    - from: Source data files
+      to: h1/tags
+
+# no spheroid!
+h1_tag_editor_non_deprecated_base:
+  abstract: true
+  workflows:
+    - edit:
+        - h1/tags
+        - h1/actor
+        - h1/actor_variant
+        - h1/antenna
+        - h1/biped
+        - h1/bitmap
+        - h1/camera_track
+        - h1/color_table
+        - h1/continuous_damage_effect
+        - h1/contrail
+        - h1/damage_effect
+        - h1/decal
+        - h1/detail_object_collection
+        - h1/device
+        - h1/device_control
+        - h1/device_light_fixture
+        - h1/device_machine
+        - h1/dialogue
+        - h1/effect
+        - h1/equipment
+        - h1/flag
+        - h1/fog
+        - h1/font
+        - h1/garbage
+        - h1/gbxmodel
+        - h1/globals
+        - h1/glow
+        - h1/grenade_hud_interface
+        - h1/hud_globals
+        - h1/hud_message_text
+        - h1/hud_number
+        - h1/input_device_defaults
+        - h1/item
+        - h1/item_collection
+        - h1/lens_flare
+        - h1/light
+        - h1/light_volume
+        - h1/lightning
+        - h1/material_effects
+        - h1/meter
+        - h1/model
+        - h1/model_animations
+        - h1/model_collision_geometry
+        - h1/multiplayer_scenario_description
+        - h1/object
+        - h1/particle
+        - h1/particle_system
+        - h1/physics
+        - h1/placeholder
+        - h1/point_physics
+        - h1/preferences_network_game
+        - h1/projectile
+        - h1/scenario
+        - h1/scenario_structure_bsp
+        - h1/scenery
+        - h1/shader
+        - h1/shader_environment
+        - h1/shader_model
+        - h1/shader_transparent_chicago
+        - h1/shader_transparent_chicago_extended
+        - h1/shader_transparent_generic
+        - h1/shader_transparent_glass
+        - h1/shader_transparent_meter
+        - h1/shader_transparent_plasma
+        - h1/shader_transparent_water
+        - h1/sky
+        - h1/sound
+        - h1/sound_environment
+        - h1/sound_looping
+        - h1/sound_scenery
+        - h1/string_list
+        - h1/tag_collection
+        - h1/ui_widget_collection
+        - h1/ui_widget_definition
+        - h1/unicode_string_list
+        - h1/unit
+        - h1/unit_hud_interface
+        - h1/vehicle
+        - h1/virtual_keyboard
+        - h1/weapon
+        - h1/weapon_hud_interface
+        - h1/weather_particle_system
+        - h1/wind

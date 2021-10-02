@@ -1,0 +1,54 @@
+MEK:
+  page: mek
+  authors:
+    - MosesOfEgypt
+    - gbMichelle
+Mozzarilla:
+  inherit:
+    - MEK
+    - h1_tag_editor_base
+  page: mozzarilla
+  similarTo:
+    - Guerilla
+  workflows:
+    - from: JMS
+      to:
+        - h1/gbxmodel
+        - h1/physics
+    - between:
+        - h1/gbxmodel
+        - h1/model
+    - from:
+        - h1/scenario_structure_bsp
+        - h1/model_collision_geometry
+      to: h1/gbxmodel
+    - from:
+        - tga
+        - dds
+      to: h1/bitmap
+    - from: h1/bitmap
+      to: tga
+    - from: hmt
+      to: h1/hud_message_text
+    - from: wav
+      to: h1/sound
+    - from: h1/shader_transparent_chicago_extended
+      to: h1/shader_transparent_chicago
+    - from: h1/model_animations
+      to: Animation data
+    - from: Animation data
+      to: h1/model_animations
+    - from: Strings text
+      to: h1/string_list
+    - from: Strings text
+      to: h1/unicode_string_list
+Refinery:
+  inherit:
+    - MEK
+    - h1_tag_extractor_base
+  page: refinery
+reclaimer-python:
+  inherit:
+    - MEK
+    - h1_tag_editor_base
+  page: reclaimer-python

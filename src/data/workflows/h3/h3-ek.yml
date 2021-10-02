@@ -1,0 +1,18 @@
+H3-EK:
+  page: h3-ek
+  authors:
+    - 343 Industries
+    - Bungie
+    - Saber Interactive
+H3-Tool:
+  inherit: H3-EK
+  page: h3-tool
+H3-Guerilla:
+  inherit: H3-EK
+  page: h3-guerilla
+H3-Sapien:
+  inherit: H3-EK
+  page: h3-sapien
+H3-Standalone:
+  inherit: H3-EK
+  page: h3-standalone

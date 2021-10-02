@@ -1,0 +1,23 @@
+Aether:
+  page: aether
+  authors:
+    - TheFieryScythe
+  inherit:
+    - h1_lightmapper_base
+  workflows:
+    - from:
+        - tif
+        - png
+        - bmp
+        - jpg
+      to: h1/lightmaps
+    - from: h1/lightmaps
+      to: bmp
+    - from: h1/scenario_structure_bsp
+      to:
+        - 3ds Max
+        - Maya
+    - from: h1/scenario
+      to:
+        - 3ds Max
+        - Maya

@@ -4,16 +4,20 @@ const glob = require("glob");
 const yaml = require("js-yaml");
 const fs = require("fs").promises;
 
-async function loadYamlTree(baseDir) {
-  let modules = {};
-  const moduleFiles = await findPaths(path.join(baseDir, "**/*.yml"));
-  for (let moduleFilePath of moduleFiles) {
-    const {dir, name: moduleName} = path.parse(moduleFilePath);
-    const modulePath = [...path.relative(baseDir, dir).split(path.sep), moduleName].filter(part => part != "");
-    const moduleInfo = await loadYamlFile(moduleFilePath);
-    modules = R.assocPath(modulePath, moduleInfo, modules);
+async function loadYamlTree(baseDir, flat) {
+  let result = {};
+  const files = await findPaths(path.join(baseDir, "**/*.yml"));
+  for (let filePath of files) {
+    const fileData = await loadYamlFile(filePath);
+    if (flat) {
+      result = R.mergeRight(result, fileData);
+    } else {
+      const {dir, name: moduleName} = path.parse(filePath);
+      const objectPath = [...path.relative(baseDir, dir).split(path.sep), moduleName].filter(part => part != "");
+      result = R.assocPath(objectPath, fileData, result);
+    }
   }
-  return modules;
+  return result;
 }
 
 async function loadYamlFile(filePath) {

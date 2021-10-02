@@ -1,0 +1,12 @@
+HAC2:
+  page: hac2
+Chimera:
+  page: chimera
+  similarTo:
+    - HAC2
+    - OpenSauce
+  authors:
+    - Kavawuvi
+    - Vaporeon
+    - JerryBrick
+    - surrealwaffle

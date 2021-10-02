@@ -60,7 +60,7 @@ const localize = (key) => ({
   }
 }[key][lang]);
 
-const is404Page = document.head.querySelector('[itemprop = Is404]').content === 'true'
+const is404Page = !!document.head.querySelector('[itemprop = Is404]');
 
 class UnitConverter extends Component {
   constructor() {
@@ -263,7 +263,7 @@ class Search extends Component {
               //customize tokenizer to allow underscores in token
               return string.split(/[\s\-\."'!?,;:\[\]\(\)\|\\><]+/);
             },
-            boost: {title: 3, keywords: 2},
+            boost: {title: 2, keywords: 3},
             fuzzy: 0.2
           }
         });
@@ -300,7 +300,7 @@ class Search extends Component {
     const isNonEmptyQuery = this.state.query && this.state.query != "";
     //save a reference to the DOM element which gets rendered, so we can focus it later
     const saveInputRef = (el) => this.inputRef = el;
-    
+
     if (!this.state.firstSearchDone && is404Page)
       this.handleChange(this.state.query, this.state.filterChildPaths);
 

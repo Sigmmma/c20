@@ -1,0 +1,56 @@
+Chimp:
+  page: chimp
+  authors:
+    - Jason Zimmer
+  workflows:
+    - from: wrl
+      to: Gmax
+    - from: wrl
+      to: 3ds Max
+    - from: Gmax
+      to: JMS
+    - from: 3ds Max
+      to: JMS
+Blendkrieg:
+  page: blendkrieg
+  authors:
+    - gbMichelle
+  similarTo:
+    - Blitzkrieg
+CAD animation exporter:
+  page: cad-animation-exporter
+  authors:
+    - CtrlAltDestroy
+  workflows:
+    - from: 3ds Max
+      to: Animation data
+Blender .gbxmodel Importer:
+  page: blender-gbxmodel-importer
+  authors:
+    - Fulsy
+    - TheGhost
+  similarTo:
+    - Blitzkrieg
+    - Bluestreak
+    - Chimp
+    - CAD animation exporter
+  workflows:
+    - from: h1/gbxmodel
+      to: Blender
+Halo Physics Importer:
+  page: halo-physics-importer
+  authors:
+    - rec0
+  workflows:
+    - from: h1/physics
+      to: 3ds Max
+# todo: cover all Bluestreak use cases
+Bluestreak:
+  page: bluestreak
+  authors:
+    - TheGhost
+  workflows:
+    - from: Gmax
+      to: JMS
+    - from: 3ds Max
+      to: JMS

@@ -1,5 +1,5 @@
 const R = require("ramda");
-const {localizer, anchor, detailsList, ul, icon} = require("../components");
+const {localizer, anchor, detailsList, ul, icon, p} = require("../components");
 
 const localizations = localizer({
   authors: {
@@ -35,8 +35,8 @@ const localizations = localizer({
     es: "Editar con"
   },
   buildTypes: {
-	  en: "Published build type(s)",
-	  es: "Tipo(s) de compilación publicados"
+    en: "Published build type(s)",
+    es: "Tipo(s) de compilación publicados"
   },
   bidiUsingThis: {
     en: (item) => `${item} to/from`,
@@ -61,98 +61,92 @@ const localizations = localizer({
 });
 
 const workflowItemAnchor = (ctx, itemName) => {
-  const itemInfo = ctx.data.workflows.getWorkflowItem(itemName);
-  const itemUrl = itemInfo.url || ctx.resolveUrl(itemInfo.page, itemInfo.heading);
+  const item = ctx.data.workflows.getWorkflowItem(itemName);
+  const itemUrl = item.url || ctx.resolveUrl(item.page, item.heading);
   return anchor(itemUrl, itemName);
 };
 
-const flowsEqual = (flowA, flowB) => {
-  return flowA.edit == flowB.edit &&
-    flowA.from == flowB.from &&
-    flowA.to == flowB.to &&
-    flowA.using == flowB.using;
-};
+function workflowType(flow) {
+  if (flow.edit) {
+    return "edit";
+  } else if (flow.editWith) {
+    return "editWith";
+  } else if (flow.bidi && flow.via) {
+    return "bidiToFrom";
+  } else if (flow.bidi && flow.from && flow.to) {
+    return "bidiVia";
+  } else if (flow.from && flow.to) {
+    return "convertVia";
+  } else if (flow.from && flow.via) {
+    return "convertDst";
+  } else if (flow.to && flow.via) {
+    return "convertSrc"
+  }
+  throw new Error(`Could not categorize workflow: ${JSON.stringify(flow)}`);
+}
 
-const isReverse = (flowA, flowB) => {
-  return flowA.from && flowB.from && flowA.to && flowB.to &&
-    flowA.using == flowB.using &&
-    flowA.from == flowB.to &&
-    flowA.to == flowB.from;
-};
-
-const workflowsList = (ctx, thisItem, itemInfo) => {
+const workflowsList = (ctx, item) => {
   const itemAnchor = (itemName) => workflowItemAnchor(ctx, itemName);
-  const {workflows, deprecated} = itemInfo;
+  const {workflows, deprecated} = item;
   const localize = localizations(ctx.lang);
 
-  const labeledFlows = {};
-  const pushLabeledFlow = (baseKey, base, itemKey, item) => {
-    if (!labeledFlows[baseKey]) {
-      labeledFlows[baseKey] = {base, items: {}};
-    }
-    labeledFlows[baseKey].items[itemKey] = item;
+  const flowTypeRenderers = {
+    edit: (flows) => {
+      return [detailsList(localize("edit"), flows.map(f => itemAnchor(f.edit)))];
+    },
+    editWith: (flows) => {
+      return [detailsList(localize("editWith"), flows.map(f => itemAnchor(f.editWith)))];
+    },
+    bidiToFrom: R.pipe(
+      R.groupBy(flow => flow.to || flow.from),
+      R.map(flows => {
+        const other = itemAnchor(flows[0].to || flows[0].from);
+        return detailsList(localize("bidiOfThis")(other), flows.map(f => itemAnchor(f.via)));
+      }),
+      R.values
+    ),
+    bidiVia: R.pipe(
+      R.groupBy(R.prop("from")),
+      R.map(flows => {
+        const other = itemAnchor(flows[0].from);
+        return detailsList(localize("bidiUsingThis")(other), flows.map(f => itemAnchor(f.to)));
+      }),
+      R.values
+    ),
+    convertVia: R.pipe(
+      R.groupBy(R.prop("from")),
+      R.map(flows => {
+        const other = itemAnchor(flows[0].from);
+        return detailsList(localize("flowUsing")(other), flows.map(f => itemAnchor(f.to)));
+      }),
+      R.values
+    ),
+    convertDst: R.pipe(
+      R.groupBy(R.prop("from")),
+      R.map(flows => {
+        const other = itemAnchor(flows[0].from);
+        return detailsList(localize("flowFrom")(other), flows.map(f => itemAnchor(f.via)));
+      }),
+      R.values
+    ),
+    convertSrc: R.pipe(
+      R.groupBy(R.prop("to")),
+      R.map(flows => {
+        const other = itemAnchor(flows[0].to);
+        return detailsList(localize("flowTo")(other), flows.map(f => itemAnchor(f.via)));
+      }),
+      R.values
+    ),
   };
 
-  for (let flow of workflows) {
-    //at this time we don't need to show cyclic flows or deprecated ones
-    if (isReverse(flow, flow)) {
-      continue;
-    }
+  const renderedFlows = R.pipe(
+    R.groupBy(workflowType),
+    R.evolve(flowTypeRenderers),
+    R.values(),
+    R.flatten(),
+  )(workflows);
 
-    if (flow.edit && flow.using) {
-      const flowHasDeprecatedItems =
-        ctx.data.workflows.getWorkflowItem(flow.edit).deprecated ||
-        ctx.data.workflows.getWorkflowItem(flow.using).deprecated;
-      if (flowHasDeprecatedItems && !ctx.data.workflows.getWorkflowItem(thisItem).deprecated) {
-        continue;
-      }
-      if (flow.using == thisItem) {
-        pushLabeledFlow("edit", localize("edit"), flow.edit, itemAnchor(flow.edit));
-      } else {
-        pushLabeledFlow("edit-with", localize("editWith"), flow.using, itemAnchor(flow.using));
-      }
-    } else if (flow.from && flow.to && flow.using) {
-      const flowHasDeprecatedItems =
-        ctx.data.workflows.getWorkflowItem(flow.using).deprecated ||
-        ctx.data.workflows.getWorkflowItem(flow.from).deprecated ||
-        ctx.data.workflows.getWorkflowItem(flow.to).deprecated;
-      if (flowHasDeprecatedItems && !ctx.data.workflows.getWorkflowItem(thisItem).deprecated) {
-        continue;
-      }
-      //we only want one list item for bi-directional flow pairs
-      const hasReverse = workflows.find(other => !flowsEqual(flow, other) && isReverse(other, flow));
-      if (hasReverse) {
-        if (thisItem == flow.using) {
-          const bidiItems = [flow.from, flow.to];
-          bidiItems.sort();
-          pushLabeledFlow(`bidi-${bidiItems[0]}`, localize("bidiUsingThis")(itemAnchor(bidiItems[0])), bidiItems[1], itemAnchor(bidiItems[1]));
-        } else {
-          const otherItem = flow.to == thisItem ? flow.from : flow.to;
-          pushLabeledFlow(`bidi-${otherItem}`, localize("bidiOfThis")(itemAnchor(otherItem)), flow.using, itemAnchor(flow.using));
-        }
-      } else if (thisItem == flow.from) {
-        //use &nbsp; to join words for better appearance on narrow windows
-        pushLabeledFlow(`to-${flow.to}`, localize("flowTo")(itemAnchor(flow.to)), flow.using, itemAnchor(flow.using));
-      } else if (thisItem == flow.to) {
-        pushLabeledFlow(`from-${flow.from}`, localize("flowFrom")(itemAnchor(flow.from)), flow.using, itemAnchor(flow.using));
-      } else if (thisItem == flow.using) {
-        pushLabeledFlow(`${flow.from}-to`, localize("flowUsing")(itemAnchor(flow.from)), flow.to, itemAnchor(flow.to));
-      }
-    } else {
-      throw new Error(`Cannot render unhandled workflow for item '${thisItem}': ${JSON.stringify(flow)}`);
-    }
-  }
-
-  return detailsList(
-    localize(deprecated ? "deprecatedWorkflows" : "workflows"),
-    Object.values(labeledFlows).map(({base, items}) => {
-      items = Object.values(items);
-      if (items.length == 1) {
-        return `${base}&nbsp;${items[0]}`;
-      }
-      return `${base}:${ul(items)}`;
-    })
-  );
+  return p(detailsList(localize(deprecated ? "deprecatedWorkflows" : "workflows"), renderedFlows));
 };
 
 module.exports = async function(ctx) {
@@ -166,37 +160,43 @@ module.exports = async function(ctx) {
 
   const defaultMetaTitle = page.tryLocalizedTitle(ctx.lang);
   const metaSections = [];
-  const itemInfo = ctx.data.workflows.getWorkflowItem(workflowItemName);
+  const item = ctx.data.workflows.getWorkflowItem(workflowItemName);
 
-  if (itemInfo.authors && itemInfo.authors.length > 0) {
+  if (item.authors && item.authors.length > 0) {
     metaSections.push({
-      body: detailsList(localize("authors"), itemInfo.authors)
+      body: p(detailsList(localize("authors"), item.authors))
     });
   }
-  if (itemInfo.buildTypes && itemInfo.buildTypes.length > 0) {
+  if (item.buildTypes && item.buildTypes.length > 0) {
     metaSections.push({
-      body: detailsList(anchor(ctx.resolveUrl("build-types", "conventions"), localize("buildTypes")), itemInfo.buildTypes)
+      body: p(detailsList(anchor(ctx.resolveUrl("build-types", "conventions"), localize("buildTypes")), item.buildTypes))
     });
   }
-  if (itemInfo.similarTo && itemInfo.similarTo.length > 0) {
+  if (item.similarTo && item.similarTo.length > 0) {
     metaSections.push({
-      body: detailsList(localize("similar"), itemInfo.similarTo.map(itemName => {
+      body: p(detailsList(localize("similar"), item.similarTo.map(itemName => {
         return workflowItemAnchor(ctx, itemName);
-      }))
+      })))
     });
   }
-  if (itemInfo.workflows && itemInfo.workflows.length > 0) {
+  if (item.workflows && item.workflows.length > 0) {
     metaSections.push({
       cssClass: "content-tool-minor",
-      body: workflowsList(ctx, workflowItemName, itemInfo)
+      body: workflowsList(ctx, item)
     });
+  }
+
+  let metaTitle = undefined;
+  if (page.toolName) {
+    metaTitle = `${icon("tool", localize("tool"))} ${page.toolName}`;
+  } else if (!page.tagName) {
+    //we don't give tags a meta title because the tag feature does that itself
+    metaTitle = `${icon("file", localize("resource"))} ${defaultMetaTitle}`;
   }
 
   return {
     metaSections,
-    metaTitle: page.toolName ?
-      `${icon("tool", localize("tool"))} ${page.toolName}` :
-      `${icon("file", localize("resource"))} ${defaultMetaTitle}`,
+    metaTitle,
     metaClass: page.toolName ? "content-tool" : undefined,
   };
 };

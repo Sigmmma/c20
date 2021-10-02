@@ -1,0 +1,72 @@
+# 3d tools
+Blender:
+  page: blender
+  authors:
+    - Blender Foundation
+  similarTo:
+    - Gmax
+    - 3ds Max
+    - Maya
+  workflows:
+    - edit:
+        - obj
+        - collada
+        - wrl 2.0
+Gmax:
+  page: gmax
+  authors:
+    - Discreet (Autodesk)
+3ds Max:
+  page: 3dsmax
+  authors:
+    - Autodesk
+  workflows:
+    - edit:
+        - obj
+        - collada
+        - wrl
+        - wrl 2.0
+Maya:
+  page: maya
+  authors:
+    - Autodesk
+    - Alias
+  workflows:
+    - edit: obj
+    - edit: collada
+
+# common 3d formats
+obj:
+  url: https://en.wikipedia.org/wiki/Wavefront_.obj_file
+  workflows:
+    - between:
+      - 3ds Max
+      - Gmax
+collada:
+  url: https://en.wikipedia.org/wiki/COLLADA
+  workflows:
+    - between:
+      - 3ds Max
+      - Blender
+      - Maya
+
+# addons
+Jointed Model Blender Toolset:
+  page: jointed-model-blender-toolset
+  authors:
+    - General_101
+  workflows:
+    - from: wrl
+      to: Blender
+    - from: Blender
+      to: Animation data
+    - from: Animation data
+      to: Blender
+    - from: Blender
+      to: JMS
+    - from: JMS
+      to: Blender
+    - from: Blender
+      to: ASS
+    - from: ASS
+      to: Blender

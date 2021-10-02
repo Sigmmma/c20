@@ -1,0 +1,10 @@
+wrl 2.0:
+  page: wrl-2.0
+  similarTo:
+    - wrl
+ASS:
+  page: ass
+  similarTo:
+    - JMS
+JMS:
+  page: jms

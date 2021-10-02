@@ -1,0 +1,44 @@
+# 2d tools
+2d_base:
+  abstract: true
+  workflows:
+    - edit:
+        - tif
+        - bmp
+        - png
+        - tga
+Photoshop:
+  inherit:
+    - 2d_base
+  page: photoshop
+  authors:
+    - Adobe
+  similarTo:
+    - Krita
+    - GIMP
+Krita:
+  inherit:
+    - 2d_base
+  page: krita
+  authors:
+    - KDE community
+GIMP:
+  inherit:
+    - 2d_base
+  page: gimp
+  authors:
+    - The GIMP Development Team
+
+# common 2d formats
+tif:
+  url: https://en.wikipedia.org/wiki/TIFF
+bmp:
+  url: https://en.wikipedia.org/wiki/BMP_file_format
+png:
+  url: https://en.wikipedia.org/wiki/Portable_Network_Graphics
+tga:
+  url: https://en.wikipedia.org/wiki/Truevision_TGA
+dds:
+  url: https://en.wikipedia.org/wiki/DirectDraw_Surface
+jpg:
+  url: https://en.wikipedia.org/wiki/JPEG
