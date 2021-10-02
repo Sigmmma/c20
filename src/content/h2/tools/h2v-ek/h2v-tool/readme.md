@@ -45,6 +45,7 @@ Tool can be used to generate [lightmaps][]. Using Tool, you will need the follow
 | medium       | 10,000,000   | 5            | 2.0             | 2                    | Yes              |
 | high         | 15,000,000   | 8            | 4.0             | 2                    | Yes              |        
 | super        | 20,000,000   | 8            | 4.0             | 4                    | Yes              |
+| custom *(h2codez-only)*      | User defined | User defined | User defined    | User defined         | User Defined     |
 
 For example:
 
