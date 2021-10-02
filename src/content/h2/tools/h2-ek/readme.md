@@ -79,11 +79,10 @@ If the UI stops responding that doesn't mean it has crashed, this is just an iss
 Remember it needs to load all your tags which can take quite some time.
 ```
 
-H2 MCC tags can't be downgraded to work in H2V so consider this a one way upgrade. Follow best practices and keep a backup of your old files.
+H2 MCC tags can't currently be downgraded to work in H2V so consider this a one way upgrade. Follow best practices and keep a backup of your old files.
 
 # Known issues
 
-* Multi-process lightmapping is currently broken - use the single process alternative.
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
 * PRT simulation tool is not included - avoid tool commands that require it, they will not function properly.
 * Tag moving in Guerilla has some dependencies on old source control code because of this you need to manually move the tag after it fixes the references.

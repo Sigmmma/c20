@@ -29,7 +29,7 @@ Shows some basic information about the tag, seems designed to integrate with sou
 - _File > Find referent tags_ - Find tags that refer to the current tag.
 
 ## Tag plaintext format
-- _File > Import/Export_ - Import or export the current tag to a plaintext format. Not very useful as it will break any tag that uses a `data` field and XML is a nicer format for inspecting tag content. In short if trying to import results in a broken that is by design.
+- _File > Import/Export_ - Import or export the current tag to a plaintext format. Not very useful as it will break any tag that uses a `data` field and XML is a nicer format for inspecting tag content. In short if trying to import results in a broken tag that is by design.
 
 ## Run tool from Guerilla
 Guerilla can run [Tool][h3-tool] commands using the *File > Run tool* menu item, the UI makes it easy to select the command you wish to run and arguments.

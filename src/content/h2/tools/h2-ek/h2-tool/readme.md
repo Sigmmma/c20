@@ -576,10 +576,6 @@ tool import-particle-model "objects\characters\brute\garbage\brute_helmet.JMI"
 
 # Lightmap merge
 
-```.alert danger
-Multi-instance/worker lightmaps currently don't work. Use [single instance lightmaps][h2-tool#Lightmaps] for now.
-```
-
 Merge the results from `lightmap-slave` to form the final lightmap bitmap tag.
 
 ```sh
@@ -604,7 +600,7 @@ tool lightmap-rendermodel "scenarios\objects\covenant\military\scarab\scarab"
 # Lightmap slave
 
 ```.alert danger
-Multi-instance/worker lightmaps currently don't work. Use [single instance lightmaps][h2-tool#Lightmaps] for now.
+Launch slave with the index `0` last (and perferably ~30-60 seconds after the other ones) or the other slaves will overwrite certain data needed for functional lightmaps
 ```
 
 Run a lightmap-slave instance to cut down on time spent lighting. Make sure to run `lightmap-merge` afterwards to complete the process.
