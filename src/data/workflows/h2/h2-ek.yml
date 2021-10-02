@@ -7,12 +7,27 @@ H2-EK:
 H2-Tool:
   inherit: H2-EK
   page: h2-tool
+  buildTypes:
+    - tag_test
+    - tag_release
+  workflows:
+    - from: fbx-mcc
+      to:
+        - JMS
+        - Animation data
+        - ASS
 H2-Guerilla:
   inherit: H2-EK
   page: h2-guerilla
+  buildTypes:
+    - tag_test
 H2-Sapien:
   inherit: H2-EK
   page: h2-sapien
+  buildTypes:
+    - tag_test
 H2-Standalone:
   inherit: H2-EK
   page: h2-standalone
+  buildTypes:
+    - tag_test
