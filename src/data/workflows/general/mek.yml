@@ -11,9 +11,13 @@ Mozzarilla:
   similarTo:
     - Guerilla
   workflows:
-    - from: JMS
-      to:
+    - between:
+        - JMS
         - h1/gbxmodel
+    - from: h1/scenario
+      to: h1/hsc
+    - between:
+        - JMS
         - h1/physics
     - between:
         - h1/gbxmodel
@@ -28,20 +32,24 @@ Mozzarilla:
       to: h1/bitmap
     - from: h1/bitmap
       to: tga
-    - from: hmt
-      to: h1/hud_message_text
+    - between:
+        - hmt
+        - h1/hud_message_text
     - from: wav
       to: h1/sound
+    - from: h1/sound
+      to: ogg
     - from: h1/shader_transparent_chicago_extended
       to: h1/shader_transparent_chicago
-    - from: h1/model_animations
-      to: Animation data
-    - from: Animation data
-      to: h1/model_animations
-    - from: Strings text
-      to: h1/string_list
-    - from: Strings text
-      to: h1/unicode_string_list
+    - between:
+        - h1/model_animations
+        - Animation data
+    - between:
+        - Strings text
+        - h1/string_list
+    - between:
+        - Strings text
+        - h1/unicode_string_list
 Refinery:
   inherit:
     - MEK

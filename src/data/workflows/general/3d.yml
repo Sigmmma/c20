@@ -49,6 +49,8 @@ collada:
       - 3ds Max
       - Blender
       - Maya
+AMF:
+  url: https://en.wikipedia.org/wiki/Additive_manufacturing_file_format
 
 # addons
 Jointed Model Blender Toolset:

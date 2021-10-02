@@ -117,8 +117,12 @@ thanksIndex: true
 # engine version. See `src/data/tags/h1.yml` for an example of source data.
 tagIndex:
   game: "h1"
+  # Show group IDs column (e.g. "sbsp")
   groupId: true
+  # Show parent tag column
   parent: false
+  # Disable search links to tag pages (e.g. if they don't exist yet)
+  noLink: false
 # If true, causes the page to be excluded from the search index. Use this for
 # pages which are unlikely to be searched for specifically so they don't
 # clutter the results of more typical searches.

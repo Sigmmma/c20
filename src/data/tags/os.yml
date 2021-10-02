@@ -1,0 +1,36 @@
+actor_variant_transform_in:
+  id: avti
+actor_variant_transform_out:
+  id: avto
+actor_variant_transform_collection:
+  id: avtc
+effect_postprocess:
+  id: efpp
+effect_postprocess_collection:
+  id: efpc
+effect_postprocess_generic:
+  id: efpg
+equipment_hud_interface:
+  id: eqhi
+model_animations_yelo:
+  id: magy
+multilingual_unicode_string_list:
+  id: unic
+project_yellow:
+  id: yelo
+project_yellow_globals:
+  id: gelo
+project_yellow_globals_cv:
+  id: gelc
+shader_postprocess:
+  id: shpp
+shader_postprocess_generic:
+  id: shpg
+shader_postprocess_globals:
+  id: sppg
+string_id_yelo:
+  id: sidy
+tag_database:
+  id: tag+
+text_value_pair_definition:
+  id: sily

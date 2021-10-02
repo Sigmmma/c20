@@ -13,3 +13,7 @@ keywords:
     - sapien
     - guerilla
 toolName: OpenSauce
+tagIndex:
+  game: os
+  groupId: true
+  noLink: true

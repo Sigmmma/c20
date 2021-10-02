@@ -16,7 +16,14 @@ Blendkrieg:
   authors:
     - gbMichelle
   similarTo:
-    - Blitzkrieg
+    - Blender .gbxmodel Importer
+  workflows:
+    - from: h1/gbxmodel
+      to: Blender
+    - from: h1/model
+      to: Blender
+    - from: JMS
+      to: Blender
 CAD animation exporter:
   page: cad-animation-exporter
   authors:
@@ -26,14 +33,12 @@ CAD animation exporter:
       to: Animation data
 Blender .gbxmodel Importer:
   page: blender-gbxmodel-importer
+  deprecated: true
   authors:
     - Fulsy
     - TheGhost
   similarTo:
-    - Blitzkrieg
-    - Bluestreak
-    - Chimp
-    - CAD animation exporter
+    - Blendkrieg
   workflows:
     - from: h1/gbxmodel
       to: Blender

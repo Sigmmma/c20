@@ -4,3 +4,5 @@ wav:
     - flac
 flac:
   url: https://en.wikipedia.org/wiki/FLAC
+ogg:
+  url: https://en.wikipedia.org/wiki/Ogg

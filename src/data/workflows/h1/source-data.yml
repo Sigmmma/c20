@@ -13,3 +13,5 @@ Source data files:
   page: source-data
   authors:
     - You!
+h1/hsc:
+  page: scripting
