@@ -573,61 +573,11 @@ tool import-particle-model "objects\characters\brute\garbage\brute_helmet.JMI"
 
 * jmi-file - A local data path to a JMI file.
 
+# Baking lightmaps
 
-# Lightmap merge
-
-Merge the results from `lightmap-slave` to form the final lightmap bitmap tag.
-
-```sh
-# lightmap-merge <scenario> <bsp-name> <slave-count>
-tool lightmap-merge "scenarios\multi\halo\coagulation\coagulation" "coagulation" 2
-```
-
-* scenario - A local tag path to a scenario tag without extension.
-* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
-* slave-count - The number of lightmap-slaves that were used.
-
-# Lightmap render model
-Generates section leaves in a render_model tag. Probably meant to test PRT related things.
-
-```sh
-# lightmap-rendermodel <render-model>
-tool lightmap-rendermodel "scenarios\objects\covenant\military\scarab\scarab"
-```
-
-* scenario - A local tag path to a render_model tag without extension.
-
-# Lightmap slave
-
-```.alert danger
-Launch slave with the index `0` last (and perferably ~30-60 seconds after the other ones) or the other slaves will overwrite certain data needed for functional lightmaps
-```
-
-Run a lightmap-slave instance to cut down on time spent lighting. Make sure to run `lightmap-merge` afterwards to complete the process.
-
-```sh
-# lightmap-slave <scenario> <bsp-name> <quality-setting> <slave-index> <slave-count>
-tool lightmap-slave "scenarios\multi\halo\coagulation\coagulation" "coagulation" direct_only 0 3
-```
-
-* scenario - A local tag path to a scenario tag without extension.
-* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
-* quality-setting - Standard Halo 2 light quality string. The list of options is as follows.
-	* checkerboard
-	* cuban
-	* draft_low
-	* draft_medium
-	* draft_high
-	* draft_super
-	* direct_only
-	* low
-	* medium
-	* high
-	* super
-* slave-index - The instance ID starting from 0. The range for this depends on the number set for slave-count.
-* slave-count - The number of instances that will be launched.
-
-# Lightmaps
+H2 lightmaps are generally nicer than H1 lightmaps but can take longer to render if you are only using a single process. To mitigate this issue and allow more rapid iteration Halo 2 featured a primitive version of the lightmap farm that later games utilised. This allowed the most time consuming part of lightmapping to be farmed out to multiple servers. In Halo 2 only one step is shared so running `n` instances doesn't quite divide the time taken by `n`.
+ 
+## Single instance Lightmaps
 Run a lightmap instance. No fuss no muss.
 
 ```sh
@@ -650,7 +600,7 @@ tool lightmaps "scenarios\multi\halo\coagulation\coagulation" "coagulation" dire
 	* high
 	* super
 
-# Lightmaps debug
+### Lightmaps debug
 A command to debug lightmaps. Debug them how you ask? That's an excellent question! Lets move on to the next command.
 
 ```sh
@@ -674,6 +624,65 @@ tool lightmaps-debug "scenarios\multi\halo\coagulation\coagulation" "coagulation
 	* super
 * begin-light-index - ???
 * end-light-index - ???
+
+## Multi-instance lightmaps
+
+Multi instance lightmaps were intended to run on the lightmap farm, some changes were made during the development of the H2-EK to fix issues related to that but this didn't fix all of them. Overall they are a good alternative to single instance lightmaps as long as you are careful.
+If you are using a launcher such as [Osoyoos][] this should be handled for you automatically.
+
+### Lightmap worker
+
+```.alert danger
+Launch worker with the index `0` last (and perferably ~30-60 seconds after the other ones) or the other workers will overwrite certain data needed for functional lightmaps.
+If this data gets overwritten scenery objects will not get lit correctly and will be pitch black.
+```
+
+Run a lightmap-worker instance to cut down on time spent lighting. Make sure to run [`lightmap-merge`][h2-tool#lightmap-merge] afterwards to complete the process.
+
+```sh
+# lightmap-worker <scenario> <bsp-name> <quality-setting> <worker-index> <worker-count>
+tool lightmap-worker "scenarios\multi\halo\coagulation\coagulation" "coagulation" direct_only 0 3
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
+* quality-setting - Standard Halo 2 light quality string. The list of options is as follows.
+	* checkerboard
+	* cuban
+	* draft_low
+	* draft_medium
+	* draft_high
+	* draft_super
+	* direct_only
+	* low
+	* medium
+	* high
+	* super
+* worker-index - The instance ID starting from 0. The range for this depends on the number set for worker-count.
+* worker-count - The number of instances that will be launched.
+
+### Lightmap merge
+
+Merge the results from [`lightmap-worker`][h2-tool#lightmap-worker] to form the final lightmap bitmap tag.
+
+```sh
+# lightmap-merge <scenario> <bsp-name> <worker-count>
+tool lightmap-merge "scenarios\multi\halo\coagulation\coagulation" "coagulation" 2
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
+* worker-count - The number of `lightmap-worker` instances that were used.
+
+# Lightmap render model
+Generates section leaves in a render_model tag. Probably meant to test PRT related things.
+
+```sh
+# lightmap-rendermodel <render-model>
+tool lightmap-rendermodel "scenarios\objects\covenant\military\scarab\scarab"
+```
+
+* scenario - A local tag path to a render_model tag without extension.
 
 # Lightprobes
 ???
