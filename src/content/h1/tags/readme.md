@@ -5,7 +5,7 @@ A playable level is represented by a [scenario][] tag and all of its dependencie
 The name "tag" was inspired by [XML tags][about-xml], which also have types and a structure with fields. However, unlike XML, Halo's tags are a binary format rather than plain text. To create and edit tags, you need to use purpose-built tools like [the HEK][hek], [MEK][], or [Invader][].
 
 # Differences between editions
-Each edition of the game has a slightly different tag set in its maps. Be aware of this when extracting tags with [Refinery][] or [invader-extract][invader#invader-extract] or mixing tags.
+Each edition of the game has a slightly different tag set in its maps. Be aware of this when extracting tags with [Refinery][] or [invader-extract][] or mixing tags.
 
 * Some tag classes have fields which only apply in certain editions, for example H1A's [actor metagame type][actor_variant#tag-field-metagame-type].
 * PC retail and Custom Edition are based on a slightly older version of Xbox tags, with the most famous difference being Keyes' uniform.

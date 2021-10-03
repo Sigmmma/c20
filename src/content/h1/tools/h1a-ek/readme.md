@@ -62,7 +62,7 @@ The season 7 MCC update ([patch notes](https://support.halowaypoint.com/hc/en-us
 * [Blitzkrieg][hek/blitzkrieg] was not rereleased. Use [Jointed Model Blender Toolset][tools/jointed-model-blender-toolset] or the new Tool commands for converting [Autodesk FBX](https://en.wikipedia.org/wiki/FBX) to JMS and JMA files.
 
 ## Content
-* All the [tags][] used in retail MCC plus the ones used for the old HEK tutorial are included alongside the tools, meaning tag extraction with [Refinery][] or [invader-extract][invader#invader-extract] or prebuilt tag sets are no longer required if someone wants to mod the stock maps. Note that these tags are partially incompatible with H1CE due to their use [new flags][weapon#tag-field-triggers-flags-use-unit-adjust-projectile-ray-from-halo1], [shader_transparent_generic][], etc. The tags are intended for targeting H1A.
+* All the [tags][] used in retail MCC plus the ones used for the old HEK tutorial are included alongside the tools, meaning tag extraction with [Refinery][] or [invader-extract][] or prebuilt tag sets are no longer required if someone wants to mod the stock maps. Note that these tags are partially incompatible with H1CE due to their use [new flags][weapon#tag-field-triggers-flags-use-unit-adjust-projectile-ray-from-halo1], [shader_transparent_generic][], etc. The tags are intended for targeting H1A.
 * The original source [HSC scripts][scripting] are included for all campaign missions.
 
 ## General

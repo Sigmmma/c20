@@ -5,7 +5,7 @@ When tags are compiled into a map, their data is prepared for how it will be use
 Maps are found in Halo's `maps` directory and have the ".map" extension. Maps in subdirectories are not loaded by the game. H1CE mods like [Chimera][] and [HAC2][] store [downloaded](map-sharing#halonet) maps in a separate location and force the game to load them regardless.
 
 # Editing and porting maps
-The recommended approach to porting or modifying maps is to obtain their source [tags][] and recompile the map using [Tool][] or [invader-build][invader#invader-build]. This ensures the greatest flexibility and tags will be processed correctly when the new map is built.
+The recommended approach to porting or modifying maps is to obtain their source [tags][] and recompile the map using [Tool][] or [invader-build][]. This ensures the greatest flexibility and tags will be processed correctly when the new map is built.
 
 Although maps work mainly the same way in each release of H1, there are a number of differences listed on this page which prevent maps from being reused across them as-is. For example, an H1CE map file cannot be used in H1PC Demo without recompiling it from tags.
 
@@ -28,7 +28,7 @@ Custom UI maps which intend to add a campaign menu to H1CE must include a dummy 
 ## Resource maps
 Resource maps provide a way for certain tags to be stored _external_ to a playable map rather than its tags being totally self-contained. These maps themselves are not playable and have a different [header structure](#resource-map-header), but instead contain shared tags referenced by normal map files. This feature was introduced with H1PC with `bitmaps.map` and `sounds.map` to store [bitmap][] and [sound][] tags respectively, and `loc.map` was added in H1CE to store [font][] and [unicode_string_list][]. MCC H1A no longer uses `loc.map` except for backwards compatibility with maps compiled for Custom Edition. H1X does not use resource maps.
 
-When playable maps are compiled using [Tool][], any needed tags for the map which are already present in a resource map (determined by [tag path][map#resource-header-paths-offset]) will be excluded and referenced by pointer to the loaded resource map instead. The resource maps were created once using an internal version of Tool and were not originally intended to be modified, though [invader-resource][invader#invader-resource] and [OpenSauce][] are capable of compiling new ones. Using incompatible resource maps will result in glitched textures, sounds, and text.
+When playable maps are compiled using [Tool][], any needed tags for the map which are already present in a resource map (determined by [tag path][map#resource-header-paths-offset]) will be excluded and referenced by pointer to the loaded resource map instead. The resource maps were created once using an internal version of Tool and were not originally intended to be modified, though [invader-resource][] and [OpenSauce][] are capable of compiling new ones. Using incompatible resource maps will result in glitched textures, sounds, and text.
 
 Storing bitmaps and sounds in common files had the benefit of reducing the disk space needed for H1PC's maps because multiple maps are able to reference the same data rather than duplicating it. The other benefit is that the resource map can be swapped out with another to alter tag content without affecting the dependent maps. In the case of `loc.map`, the file itself contains common UI messages and prompts but varies by language of the H1CE installation. This means a custom map can be compiled once but still have localized messages when used in another language of the game, as opposed to compiling a version of the map for each language.
 
@@ -37,7 +37,7 @@ To create self-contained maps when using [Tool][], temporarily removing resource
 # Compressed maps
 H1X maps use [zlib compression][zlib] for all data following their header. Maps are decompressed into one of multiple disk caches depending on the [header's scenario type](#map-header-scenario-type).
 
-This compression scheme is not supported natively in other releases of the game, but it is supported by the H1CE mod [Chimera][]. Maps downloaded from [HaloNet][map-sharing#halonet] by this mod may be compressed this way. Although Chimera does not download maps to Halo's main `maps` directory, take care not to mix these maps with stock ones since they are not compatible with the base game and are unsupported by other mods at this time. Compressed maps can be identified using [invader-info][invader#invader-info].
+This compression scheme is not supported natively in other releases of the game, but it is supported by the H1CE mod [Chimera][]. Maps downloaded from [HaloNet][map-sharing#halonet] by this mod may be compressed this way. Although Chimera does not download maps to Halo's main `maps` directory, take care not to mix these maps with stock ones since they are not compatible with the base game and are unsupported by other mods at this time. Compressed maps can be identified using [invader-info][].
 
 # Engine differences
 Each game supports a slightly different set of [tag classes][tags#tags-list]. For example, [gbxmodel][] did not yet exist in H1X and H1CE cannot render [shader_transparent_generic][] (support returned in H1A). Additionally, some [script functions][scripting] used by modders are only supported in H1CE or H1A.
@@ -64,7 +64,7 @@ The maximum allowable file sizes for playable maps varies by version. Halo will 
 * H1CE: 384 MiB ([Tool][] enforces 128 MiB for MP maps)
 * H1A: 2 GiB
 
-[invader-build][invader#invader-build] can be used to build cache files which exceeds the stock limits, but this may require the user to use a mod to play the map.
+[invader-build][] can be used to build cache files which exceeds the stock limits, but this may require the user to use a mod to play the map.
 
 # Tag space
 The game's buffer for tag data is limited:

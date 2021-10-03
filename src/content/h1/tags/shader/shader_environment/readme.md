@@ -1,7 +1,7 @@
 **shader_environment** is intended for opaque and alpha-tested surfaces in [BSPs][scenario_structure_bsp]. A key feature of this shader is its ability to blend between two detail maps, making it ideal for outdoor ground shaders. It also supports cubemaps, bump maps, and masked specularity which can be used for metallic surfaces like Forerunner structures.
 
 # Bump maps
-_Bump maps_ are textures that add additional local surface shape information for reflections and lighting. They are represented as standard [normal maps][normals] once converted from source by [Tool][h1a-tool] or [invader-bitmap][invader#invader-bitmap] into a [bitmap tag][bitmap]. They are _not_ height maps and Halo doesn't support tessellation or parallax occlusion.
+_Bump maps_ are textures that add additional local surface shape information for reflections and lighting. They are represented as standard [normal maps][normals] once converted from source by [Tool][h1a-tool] or [invader-bitmap][] into a [bitmap tag][bitmap]. They are _not_ height maps and Halo doesn't support tessellation or parallax occlusion.
 
 Use bump maps in your environment shaders to give the surface a bumpy appearance when dynamic light sources light explosions or flashlights are nearby, and when illuminated by [lightmaps][]. Unfortunately bump maps are not visible by lightmaps alone in H1PC and H1CE. Support for environmental bump mapping like Xbox had was added back in H1A.
 

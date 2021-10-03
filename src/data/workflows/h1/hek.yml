@@ -59,6 +59,8 @@ h1_tool_workflows_base:
   inherit:
     - h1_lightmapper_base
   workflows:
+    - from: otf/ttf
+      to: h1/font
     - from: JMS
       to:
         - h1/model_collision_geometry

@@ -33,6 +33,7 @@ function preprocessPass(items) {
           R.chain(R.pipe(
             R.evolve({
               edit: strAsList,
+              diff: strAsList,
               from: strAsList,
               to: strAsList,
               between: strAsList,
@@ -56,6 +57,10 @@ function preprocessPass(items) {
                     from: a,
                     to: b,
                   }));
+              } else if (flow.diff) {
+                return flow.diff.map(item => ({
+                  diff: item,
+                }));
               } else {
                 throw new Error(`Unrecognized workflow type: ${JSON.stringify(flow)}`);
               }
@@ -104,6 +109,8 @@ function relationshipsPass(items) {
       item.workflows.forEach(flow => {
         if (flow.edit) {
           items = R.over(R.lensPath([flow.edit, "workflows"]), R.append({editWith: itemName}), items);
+        } else if (flow.diff) {
+          items = R.over(R.lensPath([flow.diff, "workflows"]), R.append({diffWith: itemName}), items);
         } else if (flow.from && flow.to) {
           items = R.over(R.lensPath([flow.from, "workflows"]), R.append({to: flow.to, via: itemName}), items);
           items = R.over(R.lensPath([flow.to, "workflows"]), R.append({from: flow.from, via: itemName}), items);
@@ -185,13 +192,11 @@ async function loadWorkflows() {
     noDeprecatedPass,
   )(await loadYamlTree(__dirname, true));
 
-  // console.dir(items["Guerilla"], {depth: 5});
-
   return {
-    getWorkflowItem: (itemName) => {
+    getWorkflowItem: (itemName, ctx) => {
       let result = items[itemName];
       if (!result) {
-        throw new Error(`Could not find workflow item with name ${itemName}`);
+        throw new Error(`Could not find workflow item with name ${itemName} (from ${ctx ? ctx.page.pageId : "unknown"})`);
       }
       if (!result.url && !result.page) {
         throw new Error(`The workflow item ${itemName} does not exist or is missing page/url attribute`);

@@ -14,6 +14,7 @@ Blender:
         - wrl 2.0
 Gmax:
   page: gmax
+  deprecated: true
   authors:
     - Discreet (Autodesk)
 3ds Max:

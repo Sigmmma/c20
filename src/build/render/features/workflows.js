@@ -34,6 +34,12 @@ const localizations = localizer({
     en: "Edit with",
     es: "Editar con"
   },
+  diff: {
+    en: "Compare",
+  },
+  diffWith: {
+    en: "Compare with",
+  },
   buildTypes: {
     en: "Published build type(s)",
     es: "Tipo(s) de compilación publicados"
@@ -61,7 +67,7 @@ const localizations = localizer({
 });
 
 const workflowItemAnchor = (ctx, itemName) => {
-  const item = ctx.data.workflows.getWorkflowItem(itemName);
+  const item = ctx.data.workflows.getWorkflowItem(itemName, ctx);
   const itemUrl = item.url || ctx.resolveUrl(item.page, item.heading);
   return anchor(itemUrl, itemName);
 };
@@ -71,6 +77,10 @@ function workflowType(flow) {
     return "edit";
   } else if (flow.editWith) {
     return "editWith";
+  } else if (flow.diff) {
+    return "diff";
+  } else if (flow.diffWith) {
+    return "diffWith";
   } else if (flow.bidi && flow.via) {
     return "bidiToFrom";
   } else if (flow.bidi && flow.from && flow.to) {
@@ -96,6 +106,12 @@ const workflowsList = (ctx, item) => {
     },
     editWith: (flows) => {
       return [detailsList(localize("editWith"), flows.map(f => itemAnchor(f.editWith)))];
+    },
+    diff: (flows) => {
+      return [detailsList(localize("diff"), flows.map(f => itemAnchor(f.diff)))];
+    },
+    diffWith: (flows) => {
+      return [detailsList(localize("diffWith"), flows.map(f => itemAnchor(f.diffWith)))];
     },
     bidiToFrom: R.pipe(
       R.groupBy(flow => flow.to || flow.from),

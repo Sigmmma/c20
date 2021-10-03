@@ -3,7 +3,7 @@
 ```.alert danger
 **HEK+ should not be used!** It introduces a number of issues to the tags it extracts.
 
-It has been completely replaced by [Refinery][] and [invader-extract][invader#invader-extract].
+It has been completely replaced by [Refinery][] and [invader-extract][].
 ```
 
 # Map protection

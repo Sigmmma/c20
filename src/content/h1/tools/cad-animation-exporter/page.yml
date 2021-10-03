@@ -2,9 +2,10 @@ title:
   en: CAD animation exporter
 img: anim-exporter.jpg
 imgCaption:
-  en: 'Released in 2008, the exporter supports all animation types.'
+  en: The exporter supports all animation types.
 info:
   en: |
+    * Release date: 2008
     * [Download (mse)](http://hce.halomaps.org/index.cfm?fid=3627)
     * [Download (ms)](cad_animationExporter_compact_-_Modified.ms)
 keywords:

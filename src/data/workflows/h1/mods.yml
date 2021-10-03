@@ -1,5 +1,9 @@
 HAC2:
   page: hac2
+  authors:
+    - Chaosvex (Btcc22)
+    - msalerno1965
+
 Chimera:
   page: chimera
   similarTo:

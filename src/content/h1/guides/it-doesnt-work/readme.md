@@ -16,7 +16,7 @@ Your modding setup, like your CE installation and tools, needs to be a reliable 
 
 * [Prevent the Windows virtual store from interfering][tips#windows-virtual-store] when modding H1CE.
 * Use the latest versions of any tools you're relying on.
-* Use officially released tags, and if you must use extracted ones then use modern extractors like [invader-extract][invader#invader-extract] and [Refinery][] rather than [HEK+][hek-plus].
+* Use officially released tags, and if you must use extracted ones then use modern extractors like [invader-extract][] and [Refinery][] rather than [HEK+][hek-plus].
 * Mark any tags you do not intend on modifying as read-only. Guerilla will grey out fields for these tags as a reminder for you to make edited copies of them.
 
 ## Reading documentation
@@ -28,7 +28,7 @@ If you do have an unidentified problem, try applying the following general metho
 ## Look for a working example
 Don't know why some tag changes aren't having the effect you want, for example? Try looking for other tags which accomplish what you want and comparing them side-by-side in [Guerilla][]. You can look at stock campaign tags or those made by a community member. Think about what other tags might be related and how they interact, e.g. through matching animation labels or object functions.
 
-Extracting tags with [Refinery][mek] or [invader-extract][invader#invader-extract] is a great way to understand existing solutions which may not be documented in tutorial format, but are nonetheless available to study.
+Extracting tags with [Refinery][mek] or [invader-extract][] is a great way to understand existing solutions which may not be documented in tutorial format, but are nonetheless available to study.
 
 ## Last good state
 Have you kept any backups of your game files or tags that you can restore to a working state? Consider what has changed between then and now to narrow down the cause.

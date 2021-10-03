@@ -28,8 +28,11 @@ CAD animation exporter:
   page: cad-animation-exporter
   authors:
     - CtrlAltDestroy
+  similarTo: Bluestreak
   workflows:
-    - from: 3ds Max
+    - from:
+        - 3ds Max
+        - Gmax
       to: Animation data
 Blender .gbxmodel Importer:
   page: blender-gbxmodel-importer
@@ -55,7 +58,17 @@ Bluestreak:
   authors:
     - TheGhost
   workflows:
-    - from: Gmax
+    - from:
+        - Gmax
+        - 3ds Max
       to: JMS
-    - from: 3ds Max
-      to: JMS
+    - from: h1/gbxmodel
+      to:
+        - 3ds Max
+        - Gmax
+    - between:
+        - Animation data
+        - 3ds Max
+    - between:
+        - Animation data
+        - Gmax

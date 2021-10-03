@@ -6,3 +6,7 @@ Text editors:
     - edit: Strings text
 txt:
   url: https://en.wikipedia.org/wiki/Plain_text
+tar.xz:
+  url: https://en.wikipedia.org/wiki/Tar_(computing)#Suffixes_for_compressed_files
+otf/ttf:
+  url: https://en.wikipedia.org/wiki/OpenType

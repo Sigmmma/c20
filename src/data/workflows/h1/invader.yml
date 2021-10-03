@@ -1,49 +1,22 @@
 invader_base:
   abstract: true
-  page: invader
   authors:
     - Kavawuvi
     - Vaporeon
-
 Invader:
+  page: invader
   inherit:
     - h1_tag_compiler_base
     - invader_base
-invader-string:
+invader-archive:
   inherit: invader_base
-  heading: invader-string
+  page: invader-archive
   workflows:
-    - from: Strings text
-      to: h1/string_list
-    - from: Strings text
-      to: h1/unicode_string_list
-invader-extract:
-  inherit:
-    - invader_base
-    - h1_tag_extractor_base
-  heading: invader-extract
-  similarTo:
-    - Refinery
-    - HEKPlus
-invader-edit:
-  inherit:
-    - invader_base
-    - h1_tag_editor_base
-  heading: invader-edit
-  similarTo:
-    - reclaimer-python
-invader-edit-qt:
-  inherit:
-    - invader_base
-    - h1_tag_editor_base
-  heading: invader-edit-qt
-  similarTo:
-    - Guerilla
-    - H1A-Guerilla
-    - Mozzarilla
+    - from: h1/tags
+      to: tar.xz
 invader-bitmap:
   inherit: invader_base
-  heading: invader-bitmap
+  page: invader-bitmap
   workflows:
     - from:
         - tif
@@ -51,22 +24,137 @@ invader-bitmap:
         - tga
         - bmp
       to: h1/bitmap
+invader-bludgeon:
+  inherit: invader_base
+  page: invader-bludgeon
+  workflows:
+    - edit: h1/tags
 invader-build:
   inherit: invader_base
-  heading: invader-build
+  page: invader-build
   similarTo:
     - Tool
+    - H1A-Tool
   workflows:
     - from: h1/scenario
       to: h1/map
+invader-compare:
+  inherit: invader_base
+  page: invader-compare
+  workflows:
+    - diff: h1/map
+    - diff: h1/tags
+invader-convert:
+  inherit: invader_base
+  page: invader-convert
+  similarTo: Mozzarilla
+  workflows:
+    - between:
+        - h1/model
+        - h1/gbxmodel
+    - from: h1/shader_transparent_chicago_extended
+      to: h1/shader_transparent_chicago
+invader-dependency:
+  inherit: invader_base
+  page: invader-dependency
+invader-edit:
+  page: invader-edit
+  inherit:
+    - invader_base
+    - h1_tag_editor_base
+  similarTo:
+    - invader-edit-qt
+    - reclaimer-python
+invader-edit-qt:
+  page: invader-edit-qt
+  inherit:
+    - invader_base
+    - h1_tag_editor_base
+  similarTo:
+    - Guerilla
+    - H1A-Guerilla
+    - Mozzarilla
+invader-extract:
+  page: invader-extract
+  inherit:
+    - invader_base
+    - h1_tag_extractor_base
+  similarTo:
+    - Refinery
+    - HEKPlus
+invader-font:
+  inherit: invader_base
+  page: invader-font
+  workflows:
+    - from: otf/ttf
+      to: h1/font
+invader-index:
+  inherit: invader_base
+  page: invader-index
+  workflows:
+    - from: h1/map
+      to: tag index
+tag index:
+  page: invader-build
+  heading: usage
+invader-info:
+  inherit: invader_base
+  page: invader-info
+invader-model:
+  inherit: invader_base
+  page: invader-model
+  workflows:
+    - from: JMS
+      to:
+        - h1/model
+        - h1/gbxmodel
+invader-recover:
+  inherit: invader_base
+  page: invader-recover
+  workflows:
+    - from: h1/bitmap
+      to: tif
+    - from:
+        - h1/gbxmodel
+        - h1/model
+      to: JMS
+    - from:
+        - h1/string_list
+        - h1/unicode_string_list
+      to: Strings text
+    - from: h1/scenario
+      to: h1/hsc
+    - from: h1/tag_collection
+      to: txt
+invader-refactor:
+  inherit: invader_base
+  page: invader-refactor
+  workflows:
+    - edit: h1/tags
+invader-resource:
+  inherit: invader_base
+  page: invader-resource
+  workflows:
+    - from: h1/tags
+      to: h1/map
 invader-sound:
   inherit: invader_base
-  heading: invader-sound
+  page: invader-sound
   workflows:
     - from:
         - flac
         - wav
       to: h1/sound
-invader-resource:
+invader-string:
   inherit: invader_base
-  heading: invader-resource
+  page: invader-string
+  workflows:
+    - from: Strings text
+      to: h1/string_list
+    - from: Strings text
+      to: h1/unicode_string_list
+invader-strip:
+  inherit: invader_base
+  page: invader-strip
+  workflows:
+    - edit: h1/tags

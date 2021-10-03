@@ -3,7 +3,9 @@ title:
 img: blender.jpg
 imgCaption:
   en: 'Blender being used to model a [BSP][h1/tags/scenario_structure_bsp]'
-stub: true
+info:
+  en: |
+    * [Download](https://www.blender.org/download/)
 keywords:
   en:
     - 3d
