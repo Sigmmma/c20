@@ -15,7 +15,7 @@ Support for any future editing kits is planned.
 # Feature overview
 The launcher features a variety of menus to help you quickly and efficiently generate your Halo assets. Lets go over some of them now.
 
-## Run Programs Group
+## Run programs group
 
 ![](run_programs.jpg "Programs for the program god.")
 
@@ -23,7 +23,7 @@ This group lets you run various programs and commands directly from the UI. You 
 
 See the following [link][run programs group] for more details
 
-## Tasks Group
+## Tasks group
 
 ![](mainwindow_tasks.jpg "Programs for the program god.")
 
@@ -31,7 +31,7 @@ This group lets you run various commands for your selected profile directly from
 
 See the following [link][tasks group] for more details
 
-## Settings Group
+## Settings group
 
 ![](mainwindow_settings.jpg "Press all the buttons")
 

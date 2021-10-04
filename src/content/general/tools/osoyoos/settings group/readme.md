@@ -7,12 +7,12 @@ This group lets you configure aspects of the launcher such as the current profil
 | Toolkit Profiles | Create and configure profiles from the menu this button opens. See the **Profile Window** section for more details.
 | About            | See the credits and update the launcher version from the menu this button opens.
 
-# Profile Window
+# Profile window
 Lets go over the settings in the profile window. Profile changes are stashed whenever you edit a setting. They are then saved to your PC once **Save** is pressed. If cancel is used instead then your changes will be thrown out.
 
 ![](profile_settings.jpg "Make 10, 20, 30, or 40 profiles to surprise your friends and colleagues! They'll still be typing into command prompt by the time you've launched a lightmap farm in Halo 3 and compiled several sounds in Halo 1.")
 
-## HEK Paths
+## HEK paths
 The launcher and the tools expect all tools defined here to be in the same location.
 
 | Setting       | Description
@@ -23,7 +23,7 @@ The launcher and the tools expect all tools defined here to be in the same locat
 | Guerilla Path | A path to our Guerilla executable. Select browse and navigate to your guerilla.exe file.
 | Game Path     | A path to our game executable. Select browse and navigate to your game executable. In MCC this would be the halo_tag_test.exe(AKA: Standalone)
 
-## Asset Paths
+## Asset paths
 This section deals with setting directories for reading Halo assets. These options are only for MCC toolsets and may only apply to certain toolsets in MCC.
 
 | Setting          | Description                                                                                                                                    | Notes
@@ -32,7 +32,15 @@ This section deals with setting directories for reading Halo assets. These optio
 | Tag Folder Path  | A path to a folder where we will read our imported tag files from. Select the browse button and select a folder.                               | This option does not apply to the Halo 3 toolset at the time of writing.
 | Game Folder Path | A path to a folder where we will export game ready files such as compiled shaders and map files. Select the browse button and select a folder. | This option only applies to Halo 1 at the time of writing.
 
-## Game Gen
+## H2Codez update
+This section will allow the user to update their H2Codez DLL from the launcher directly.
+
+| Setting | Description                                                   | Notes
+|-------- | ------------------------------------------------------------- | ------------------------------------------------------------------------
+| Update! | Exactly what it says. Press this button to check for updates. | This option only applies to Halo 2 Vista profiles using community extensions.
+
+
+## Game gen
 This dropdown sets the generation our game belongs to.
 
 | Setting       | Description
@@ -45,7 +53,7 @@ This dropdown sets the generation our game belongs to.
 | Gen 2             | This option means the profile is a Halo 2 profile.
 | Gen 3             | This option means the profile is a Halo 3 profile.
 
-## Build Type
+## Build type
 This section sets some specifics for the toolset along with some flags if they are applicable
 
 | Setting             | Description                                                                        | Notes
@@ -54,13 +62,14 @@ This section sets some specifics for the toolset along with some flags if they a
 | Community Tools     | Set a flag for mentioning whether or not the profile supports community tools.     | This option only applies to standalone builds and only enables H2Codez support for Halo 2.
 | Verbose Tool Output | Set a flag to enable verbose output from tool commands.                            | This option only applies to MCC builds and Halo 1 or Halo 2.
 | Expert Mode         | Set a flag to disable safety checks for certain tool commands.                     | This option only applies to MCC builds and Halo 2.
+| Batch               | Set a flag to disable some output during lightmapping and build-cache-file.        | This option only applies to MCC builds and Halo 2.
 
 | Build Type Settings | Description
 |-------------------- | ----------------------------------------------------------------------------------------------
 | MCC                 | This option means the profile is an MCC release.
 | Standalone          | This option means the profile is not an MCC release. I.E. Halo Custom Edition or Halo 2 Vista.
 
-## Profile Tools
+## Profile tools
 Lets go over the tools in the profile window.
 
 ![](profile_tools.jpg "Extra options to configure your profile list.")
@@ -75,7 +84,7 @@ Lets go over the tools in the profile window.
 | Down             | Moves the profile down in the list by one
 | Profile Wizard   | Opens a menu to configure the currently viewed profile automatically based on a template. See **Profile Wizard** section for details.
 
-### Profile Wizard
+### Profile wizard
 This window will help you automatically set profile settings based on a directory and a chosen template.
 
 ![](profile_wizard.jpg "For the absolutely clueless among you.")
