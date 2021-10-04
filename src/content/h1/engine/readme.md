@@ -33,13 +33,14 @@ Note that on Xbox, the engine makes some in-memory [tag edits][tool#hardcoded-ta
   </figcaption>
 </figure>
 
-The Halo engine was not just used for the Halo series. Bungie co-founder [Alex Seropian][alex] went on to found [Wideload Games][wideload] and used the engine for [Stubbs the Zombie in Rebel Without a Pulse][stubbs]. In fact, it is possible to extract [tags][] from Stubbs using [Refinery][mek] and recompile levels for Halo.
+The Halo engine was not just used for the Halo series. Bungie co-founder [Alex Seropian][alex] went on to found [Wideload Games][wideload] and used the engine for [Stubbs the Zombie in Rebel Without a Pulse][stubbs] as well as a prototype of [Hail to the Chimp][chimp-proto]. In fact, it is possible to extract [tags][] from Stubbs using [Refinery][mek] and recompile levels for Halo.
 
-Another lesser-known use was in [prototyping Shadowrun gameplay][shadowrun-prototype] while its own engine was under development.
+Another lesser-known use was in the [Shadowrun prototype][shadowrun-prototype].
 
 [stubbs]: https://en.wikipedia.org/wiki/Stubbs_the_Zombie_in_Rebel_Without_a_Pulse
 [wideload]: https://en.wikipedia.org/wiki/Wideload_Games
 [alex]: https://en.wikipedia.org/wiki/Alex_Seropian
+[chimp-proto]: https://hiddenpalace.org/Hail_to_the_Chimp_(Nov_15,_2006_prototype)
 [shadowrun-prototype]: https://www.youtube.com/watch?v=I-uJLTLqYpA
 [jones-interview]: https://web.archive.org/web/20000815110240/http://www.insidemacgames.com/features/99/jones/jones.shtml
 [myth]: https://en.wikipedia.org/wiki/Myth_(series)

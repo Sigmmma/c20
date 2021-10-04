@@ -237,7 +237,7 @@ tool bulk-render "objects\multi\jmi_Test.JMI"
 * jmi-file - A local data path to where the JMI file is located.
 
 # Camera track
-This commands takes a JMA file directly and converts it to a camera_track for the game. The length of the animation should be at most 16 as that is the max number of control points a camera track tag can contain. The JMA should contain a skeleton made up of a single bone that will change its position each frame. The orientation of the bone will determine the position and rotation of the control point for that index. The name of the JMA file will be the name of the tag.
+This commands takes a JMA file directly and converts it to a [camera_track][] for the game. The length of the animation should be at most 16 as that is the max number of control points a camera track tag can contain. The JMA should contain a skeleton made up of a single bone that will change its position each frame. The orientation of the bone will determine the position and rotation of the control point for that index. The name of the JMA file will be the name of the tag.
 
 ```sh
 # camera-track <source-file>
@@ -306,7 +306,7 @@ tool count-sound-tags "sound\ambience"
 * root-path - A local tag path to the root of a directory containing sound tags or child folders with sound tags.
 
 # Dialogue globals import
-Compiles a CSV file to generate a new AI dialogue tag. The file path for the CSV file is `data\ai\ai_dialogue_globals.csv`
+Compiles a CSV file to generate a new [ai_dialogue_globals][] tag. The file path for the CSV file is `data\ai\ai_dialogue_globals.csv` and `tags\ai\ai_dialogue_globals.ai_dialogue_globals` is generated.
 
 ```sh
 # dialogue-globals-import
@@ -314,14 +314,14 @@ tool dialogue-globals-import
 ```
 
 # Dialogue import
-Collects all sound tag paths and adds them to a generated dialogue tag.
+Collects all [sound][] tag paths and adds them to a generated [dialogue][] tag.
 
 ```sh
 # dialogue-import <root-directory>
 tool dialogue-import "sound\dialog\combat\brute_bloodthirsty"
 ```
 
-* root-directory - A local tag path to the root of a directory containing sound tags.
+* root-directory - A local tag path to a root directory containing sound tags. A dialogue tag is generated adjacent to this root directory with the same name, e.g. `sound\dialog\combat\brute_bloodthirsty.dialogue`.
 
 # Dump tiff to header
 ???
@@ -436,7 +436,7 @@ tool extract-physics-data "objects\vehicles\scorpion\scorpion"
 * physics_model - A local tag path to a physics_model tag without extension.
 
 # Extract render data
-Extracts import info from a render_model tag to retrieve the original JMS used to create the tag. Don't expect this command to do anything if there is no import info.
+Extracts import info from a [render_model][] tag to retrieve the original JMS used to create the tag. Don't expect this command to do anything if there is no import info.
 
 ```sh
 # extract-render-data <render_model>
@@ -576,7 +576,7 @@ tool import-particle-model "objects\characters\brute\garbage\brute_helmet.JMI"
 # Baking lightmaps
 
 H2 lightmaps are generally nicer than H1 lightmaps but can take longer to render if you are only using a single process. To mitigate this issue and allow more rapid iteration Halo 2 featured a primitive version of the lightmap farm that later games utilised. This allowed the most time consuming part of lightmapping to be farmed out to multiple servers. In Halo 2 only one step is shared so running `n` instances doesn't quite divide the time taken by `n`.
- 
+
 ## Single instance Lightmaps
 Run a lightmap instance. No fuss no muss.
 
@@ -696,7 +696,7 @@ The "cuban" quality setting is likely named after the nickname of one of the eng
 | super        | 20,000,000   | 8            | 4.0             | 4                    | Yes              |
 
 # Lightmap render model
-Generates section leaves in a render_model tag. Probably meant to test PRT related things.
+Generates section leaves in a [render_model][] tag. Probably meant to test PRT related things.
 
 ```sh
 # lightmap-rendermodel <render-model>
@@ -790,7 +790,7 @@ tool monitor-bitmaps
 ```
 
 # Monitor models
-Keeps watch of the data directory for any file changes. If any model related intermediate files are modified or moved to the data directory then tool will immediately attempt to import the source files as render_model, coliision_model, or physics_model tags.
+Keeps watch of the data directory for any file changes. If any model related intermediate files are modified or moved to the data directory then tool will immediately attempt to import the source files as [render_model][], [collision_model][], or [physics_model][] tags.
 
 ```sh
 # monitor-models

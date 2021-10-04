@@ -16,9 +16,30 @@ H2-Tool:
         - JMS
         - Animation data
         - ASS
+    - from: tif
+      to: h2/bitmap
+    - from: h2/scenario
+      to: h2/map
+    # for the various build bitmap commands
+    - edit: tif
+    - from: JMS
+      to:
+        - h2/collision_model
+        - h2/render_model
+        - h2/physics_model
+    - from: Animation data
+      to: h2/camera_track
+    - from: csv
+      to: h2/ai_dialogue_globals
+    - from: h2/sound
+      to: h2/dialogue
+    - from: h2/tags
+      to: xml
 H2-Guerilla:
-  inherit: H2-EK
   page: h2-guerilla
+  inherit:
+    - H2-EK
+    - h2_tag_editor_base
   buildTypes:
     - tag_test
 H2-Sapien:

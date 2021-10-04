@@ -10,3 +10,7 @@ tar.xz:
   url: https://en.wikipedia.org/wiki/Tar_(computing)#Suffixes_for_compressed_files
 otf/ttf:
   url: https://en.wikipedia.org/wiki/OpenType
+csv:
+  url: https://en.wikipedia.org/wiki/Comma-separated_values
+xml:
+  url: https://en.wikipedia.org/wiki/XML

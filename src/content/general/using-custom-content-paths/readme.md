@@ -2,7 +2,7 @@
 H3-EK currently ***doesn't*** support custom content paths and neither do legacy editing kits. This is an MCC-only feature.
 ```
 
-The [H1A-EK][] and [H2-Ek][] tools support **using custom content paths** with some caveats.
+The [H1A-EK][] and [H2-EK][] tools support **using custom content paths** with some caveats.
 
 * The data directory can be set using the `-data_dir <path>` flag.
 * The tags directory can similarly be set using the `-tags_dir <path>` flag.
