@@ -73,6 +73,27 @@ H2-Sapien:
   page: h2-sapien
   buildTypes:
     - tag_test
+  workflows:
+    - edit:
+        - h2/scenario
+        - h2/scenario_structure_bsp
+        - h2/scenario_ai_resource
+        - h2/scenario_bipeds_resource
+        - h2/scenario_cinematics_resource
+        - h2/scenario_cluster_data_resource
+        - h2/scenario_comments_resource
+        - h2/scenario_creature_resource
+        - h2/scenario_decals_resource
+        - h2/scenario_decorators_resource
+        - h2/scenario_devices_resource
+        - h2/scenario_equipment_resource
+        - h2/scenario_lights_resource
+        - h2/scenario_scenery_resource
+        - h2/scenario_sound_scenery_resource
+        - h2/scenario_structure_lighting_resource
+        - h2/scenario_trigger_volumes_resource
+        - h2/scenario_vehicles_resource
+        - h2/scenario_weapons_resource
 H2-Standalone:
   inherit: H2-EK
   page: h2-standalone
