@@ -256,7 +256,7 @@ tool collision "objects\characters\masterchief"
 
 * source-directory - A local data path to the root of a model source directory.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 # Convert pixel shaders
 ???
@@ -378,24 +378,24 @@ tool export-tags-to-xml "F:\tag_list.txt"
 ```
 ui\hud\banshee.new_hud_definition,banshee.new_hud_definition.xml
 ui\hud\battle_rifle.new_hud_definition,battle_rifle.new_hud_definition.xml
-
 ```
 
 # Export windows font
-???
+Given a system font, this verb generates `.tif` files for each of its glyphs within a subdirectory of `data`.
 
 ```sh
 # export-windows-font <output-directory> <font-file-(optional)> <typeface-name> <point-size>
 tool export-windows-font
+tool export-windows-font example dummy "Arial Bold" 12
 ```
 
-* output-directory - ???
-* font-file-(optional) - ???
-* typeface-name - ???
-* point-size - ???
+* output-directory - The name of the directory within `data` where tif files will be generated to. Tool expects that this directory and a subdirectory. called `exported` alread exist. For an argument of `example`, Tool would expect to find the directory `data\example\exported`.
+* font-file-(optional) - While this argument is marked optional, it appears to be required to make the command work but is possibly unused. Use any string.
+* typeface-name - The name of the system font to be exported, e.g. "Arial Bold".
+* point-size - The font size to generate glyphs at.
 
 # Extract collision data
-Extracts import info from a collision_model tag to retrieve the original JMS used to create the tag. Don't expect this command to do anything if there is no import info.
+Extracts import info from a [collision_model][] tag to retrieve the original JMS used to create the tag. Don't expect this command to do anything if there is no import info.
 
 ```sh
 # extract-collision-data <collision_model>
@@ -405,7 +405,7 @@ tool extract-collision-data "objects\characters\masterchief\masterchief"
 * collision_model - A local tag path to a collision tag without file extension.
 
 # Extract HS scripts
-Finds all scenario_hs_source_file tags in a directoty and dumps the contents to an .hsc file in data.
+Finds all [scenario_hs_source_file][] tags in a directory and dumps the contents to an .hsc file in data.
 
 ```sh
 # extract-hs-scripts <name_substring>
@@ -415,8 +415,7 @@ tool extract-hs-scripts "scenarios\solo\01b_spacestation\scripts"
 * name_substring - A local tag path to a directory containing scenario_hs_source_file tag files.
 
 # Extract LPC data
-Dumps a file called test.aif in the root of H2-EK
-This is likely to be [linear predictive coding](https://en.wikipedia.org/wiki/Linear_predictive_coding) data for the sound file but this hasn't be verified.
+Dumps a file called `test.aif` in the root of H2-EK. This is likely to be [linear predictive coding](https://en.wikipedia.org/wiki/Linear_predictive_coding) data for the sound file but this hasn't be verified.
 
 ```sh
 # extract-lpc-data <sound-file>
@@ -426,7 +425,7 @@ tool extract-lpc-data "sound_test\aiff\soundtest.aiff"
 * sound-file - A local data path to an AIF/AIFF file.
 
 # Extract physics data
-Extracts import info from a physics_model tag to retrieve the original JMS used to create the tag. Don't expect this command to do anything if there is no import info.
+Extracts import info from a [physics_model][] tag to retrieve the original [JMS][] used to create the tag. Don't expect this command to do anything if there is no import info.
 
 ```sh
 # extract-physics-data <physics_model>
@@ -436,7 +435,7 @@ tool extract-physics-data "objects\vehicles\scorpion\scorpion"
 * physics_model - A local tag path to a physics_model tag without extension.
 
 # Extract render data
-Extracts import info from a [render_model][] tag to retrieve the original JMS used to create the tag. Don't expect this command to do anything if there is no import info.
+Extracts import info from a [render_model][] tag to retrieve the original [JMS][] used to create the tag. Don't expect this command to do anything if there is no import info.
 
 ```sh
 # extract-render-data <render_model>
@@ -446,7 +445,7 @@ tool extract-render-data "objects\vehicles\scorpion\scorpion"
 * render_model - A local tag path to a render_model tag without extension.
 
 # Extract structure data
-Extracts import info from a scenario_structure_bsp tag to retrieve the original ASS/JMS used to create the tag. Don't expect this command to do anything if there is no import info.
+Extracts import info from a [scenario_structure_bsp][] tag to retrieve the original [ASS][] or [JMS][] used to create the tag. Don't expect this command to do anything if there is no import info stored in the BSP tag.
 
 ```sh
 # extract-structure-data <scenario_structure_bsp>
@@ -456,7 +455,7 @@ tool extract-structure-data "scenarios\solo\01b_spacestation\01_bsp_2"
 * scenario_structure_bsp - A local tag path to a scenario_structure_bsp tag without extension.
 
 # Extract unicode strings
-Extract strings from multilingual_unicode_string_list and dumps the results back to a text file in data. Results may not match original source exactly so give the files a read to make sure tool won't have any issues.
+Extract strings from [multilingual_unicode_string_list][] and dumps the results back to a text file in data. Results may not match original source exactly so give the files a read to make sure tool won't have any issues.
 
 ```sh
 # extract-unicode-strings <multilingual_unicode_string_list>
@@ -466,7 +465,7 @@ tool extract-unicode-strings "ui\hud\hud_messages"
 * multilingual_unicode_string_list - A local tag path to a multilingual_unicode_string_list tag without extension.
 
 # FBX to ASS
-This command takes an FBX and converts it to an ASS file for Halo 2 level importing. Use this if you don't have access to an export script.
+This command takes an FBX and converts it to an [ASS][] file for Halo 2 level importing. Use this if you don't have access to an export script.
 
 ```sh
 # fbx-to-ass <fbx> <ass>
@@ -546,7 +545,7 @@ tool fp-model-animations "objects\characters\masterchief\fp\weapons\rifle\fp_smg
 * flags - ??? This is an optional arg.
 
 # Import damage table
-Imports `data\globals\armor_vs_damage.csv` to generate a tag.
+Imports `data\globals\armor_vs_damage.csv` to update the damage table block in [globals][]. The CSV (which can be exported from any spreadsheet software like Excel) uses Damage Groups as the columns, and Armor Modifiers as the rows, with each cell being the applicable Damage Multiplier.
 
 ```sh
 # import-damage-table
@@ -746,7 +745,7 @@ Goes to all the animations in a directory and child directories. Once it's done 
 tool model-animation-count "objects\characters\masterchief"
 ```
 
-* source-directory - A local tag path to a directory containing model_animation_graph tags or child folders with model_animation_graph tags.
+* source-directory - A local tag path to a directory containing [model_animation_graph][] tags or child folders with model_animation_graph tags.
 
 # Model animation reset compression
 ???
@@ -756,7 +755,7 @@ tool model-animation-count "objects\characters\masterchief"
 tool model-animation-reset-compression "objects\characters\masterchief\masterchief"
 ```
 
-* model-animation-reset-compression - A local tag path to a model_animation_graph tag without file extensions.
+* model-animation-reset-compression - A local tag path to a [model_animation_graph][] tag without file extensions.
 
 # Model animation status
 Goes to all the animations in a directory and child directories. Once it's done it prints debug info.
@@ -766,10 +765,10 @@ Goes to all the animations in a directory and child directories. Once it's done 
 tool model-animation-status "objects\characters\masterchief"
 ```
 
-* source-directory - A local tag path to a directory containing model_animation_graph tags or child folders with model_animation_graph tags.
+* source-directory - A local tag path to a directory containing [model_animation_graph][] tags or child folders with model_animation_graph tags.
 
 # Model animations
-A set of animation source files can be compiled into a model_animation_graph tag
+A set of [animation source files][animation-data] can be compiled into a [model_animation_graph][] tag.
 
 ```sh
 # model-animations <source-directory> [flags]
@@ -806,7 +805,7 @@ tool monitor-structures
 ```
 
 # New strings
-Converts all text files in a directory to multilingual_unicode_string_list tags. Text files should be saved as UTF-16
+Converts all text files in a directory to [multilingual_unicode_string_list][] tags. Text files should be saved as UTF-16
 
 ```sh
 # new-strings <source-directory>
@@ -850,7 +849,7 @@ ui\screens\game_shell\settings_screen\variant_settings\editing_format_screens\qu
 ```
 
 # Physics
-A [JMS][] file containing physic meshes can be compiled into a physics_model tag
+A [JMS][] file containing physic meshes can be compiled into a [physics_model][] tag
 
 ```sh
 # physics <source-directory>
@@ -859,7 +858,7 @@ tool physics "objects\characters\masterchief"
 
 * source-directory - A local data path to the root of a model source directory.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\physics\masterchief_ragdoll.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.physics_model`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\physics\masterchief_ragdoll.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.physics_model`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 # Pixel shaders
 ???
@@ -903,7 +902,7 @@ tool process-sounds
 A utility required to run the PRT simulation was not shipped with the initial release of the tools. The commands are currently non-functional.
 ```
 
-Run a PRT simulation on an already existing render_model tag.
+Run a PRT (precomputed radiance transfer) simulation on an already existing [render_model][] tag.
 
 ```sh
 # prt-simulation <render-model>
@@ -913,7 +912,7 @@ tool prt-simulation "scenarios\objects\covenant\military\scarab\scarab"
 * render-model - A local tag path to a render_model tag without extension.
 
 # Rebuild scenario scripts
-Recompiles HSC script files from data using the scenario_hs_source_file tags referenced in the scenario tag.
+Recompiles HSC script files from data using the [scenario_hs_source_file][] tags referenced in the scenario tag.
 
 ```sh
 # rebuild-scenario-scripts <scenario>
@@ -930,7 +929,7 @@ tool rebuild-scenario-scripts "scenarios\solo\01b_spacestation\01b_spacestation"
 tool rebuild-structure-audibility "scenarios\solo\01b_spacestation\01_bsp_2"
 ```
 
-* structure - A local tag path to a scenario_structure_bsp tag without extension.
+* structure - A local tag path to a [scenario_structure_bsp][] tag without extension.
 
 # Reimport model animations
 ???
@@ -998,7 +997,7 @@ tool render "objects\characters\masterchief" false false
 * accurate - ???
 * run-prt - Run a PRT simulation on the import data. Skinned meshes are not supported.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\render\L5_masterchief.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.render_model`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\render\L5_masterchief.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.render_model`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 # Replace font char
 ???
@@ -1166,7 +1165,7 @@ tool strip-single-tag-file "objects\characters\masterchief\masterchief.render_mo
 * tag - A local tag path to a tag file with extension.
 
 # Structure
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated.
+A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
 # structure <scenario-directory> <bsp-name>
@@ -1176,7 +1175,7 @@ tool structure "scenarios\multi\example" "example"
 * scenario-directory - A local data path to root directory of a level.
 * bsp-name - The JMS filename without extension.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
@@ -1193,7 +1192,7 @@ tool structure-analyze "scenarios\multi\halo\coagulation\coagulation"
 * scenario_structure_bsp - A local tag path to a scenario_structure_bsp tag without extension.
 
 # Structure compatible
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated.
+A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
 # structure-compatible <scenario-directory> <bsp-name>
@@ -1203,14 +1202,14 @@ tool structure-compatible "scenarios\multi\example" "example"
 * scenario-directory - A local data path to root directory of a level.
 * bsp-name - The JMS filename without extension.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
 Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure compatible from JMS
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated.
+A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
 # structure-compatible-from-jms <jms-file>
@@ -1219,14 +1218,14 @@ tool structure-compatible-from-jms "scenarios\multi\example\structure\example.JM
 
 * jms-file - A local data path to a JMS file with extension.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
 Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure from JMS
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated.
+A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
 # structure-from-jms <jms-file>
@@ -1235,14 +1234,14 @@ tool structure-from-jms "scenarios\multi\example\structure\example.JMS"
 
 * jms-file - A local data path to a JMS file with extension.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
 Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure new
-A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated.
+A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
 # structure-new <scenario-directory> <bsp-name>
@@ -1252,13 +1251,13 @@ tool structure-new "scenarios\multi\example" "example"
 * scenario-directory - A local data path to root directory of a level.
 * bsp-name - The ASS filename without extension.
 
-For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
 Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
-# Structure new from ass
+# Structure new from ASS
 A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag.
 
 ```sh
@@ -1268,13 +1267,13 @@ tool structure-new-from-ass "scenarios\multi\example\structure\example.ASS"
 
 * ass-file - A local data path to a ASS file with extension.
 
-For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
 Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
-# Structure new verbose from ass
+# Structure new verbose from ASS
 A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. This version of the structure command gives verbose output.
 
 ```sh
@@ -1284,7 +1283,7 @@ tool structure-new-verbose-from-ass "scenarios\multi\example\structure\example.A
 
 * ass-file - A local data path to a ASS file with extension.
 
-For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
@@ -1314,7 +1313,7 @@ tool structure-plane-debug-generate "scenarios\multi\example" "example"
 * bsp-name - The ASS filename without extension.
 
 # Structure verbose
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated. This version of the structure command gives verbose output.
+A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)). This version of the structure command gives verbose output.
 
 ```sh
 # structure-verbose <scenario-directory> <bsp-name>
@@ -1324,14 +1323,14 @@ tool structure-verbose "scenarios\multi\example" "example"
 * scenario-directory - A local data path to root directory of a level.
 * bsp-name - The JMS filename without extension.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
 Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure verbose from JMS
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated. This version of the structure command gives verbose output.
+A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)). This version of the structure command gives verbose output.
 
 ```sh
 # structure-verbose-from-jms <jms-file>
@@ -1340,7 +1339,7 @@ tool structure-verbose-from-jms "scenarios\multi\example\structure\example.JMS"
 
 * jms-file - A local data path to a JMS file with extension.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
@@ -1357,7 +1356,7 @@ tool structure-verbose-new "scenarios\multi\example\structure\example.ASS"
 * scenario-directory - A local data path to root directory of a level.
 * bsp-name - The ASS filename without extension.
 
-For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
 Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 

@@ -10,6 +10,7 @@ H2-Tool:
   buildTypes:
     - tag_test
     - tag_release
+  # todo: JMI stuff, lightprobes, model-animation-reset-compression, pack-unicode-strings
   workflows:
     - from: fbx-mcc
       to:
@@ -27,14 +28,39 @@ H2-Tool:
         - h2/collision_model
         - h2/render_model
         - h2/physics_model
+    - from:
+        - h2/collision_model
+        - h2/render_model
+        - h2/physics_model
+      to: JMS
     - from: Animation data
       to: h2/camera_track
+    - from: Animation data
+      to: h2/model_animation_graph
     - from: csv
       to: h2/ai_dialogue_globals
     - from: h2/sound
       to: h2/dialogue
     - from: h2/tags
       to: xml
+    - from: otf/ttf
+      to: tif
+    - from: h2/scenario_hs_source_file
+      to: h2/hsc
+    - between:
+        - ASS
+        - h2/scenario_structure_bsp
+    - between:
+        - JMS
+        - h2/scenario_structure_bsp
+    - between:
+        - txt
+        - h2/multilingual_unicode_string_list
+    - from: csv
+      to: h2/globals
+    - edit: h2/scenario_structure_lightmap
+    - edit: h2/render_model
+    - edit: h2/scenario_structure_bsp
 H2-Guerilla:
   page: h2-guerilla
   inherit:
