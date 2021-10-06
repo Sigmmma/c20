@@ -94,20 +94,6 @@ To use the debug freecam press <kbd>Backspace</kbd> until you are in flying came
 * Temporarily boost camera speed by holding <kbd>Ctrl</kbd>
 * Toggle biped control without switching the camera back to first person by pressing the **middle mouse button**.
 
-You can also use a gamepad to control the camera:
-
-* <kbd>Right bumper (hold)</kbd>: Cycle camera modes (1st person, 3rd person, flying)
-* <kbd>Right stick click</kbd>: toggle gamepad control of the debug camera
-* <kbd>Right stick</kbd>: aiming
-* <kbd>Left stick</kbd>: horizontal movement
-* <kbd>Right trigger</kbd>: move up
-* <kbd>Left trigger</kbd>: move down
-* <kbd>Left stick click</kbd>: speed boost
-* <kbd>D-pad up/down</kbd>: speed increase/decrease (make sure to enable `framerate_throttle 1` first)
-* <kbd>D-pad left/right</kbd>: roll
-
-Analog control of the camera with the gamepad makes a great filming tool for your custom map trailers.
-
 # Object spawning
 You can quickly spawn a variety of objects for testing:
 
@@ -118,3 +104,4 @@ You can quickly spawn a variety of objects for testing:
 * Sound doesn't work.
 * No main menu is included so if you launch standalone, you will be spawned in a black void. To get out, refer to [#Usage][h3-standalone-build#usage]
 * Particles and the like look different from the cache build.
+* Singleplayer level "Cortana" does not function due to issues with soft ceiling post processing.

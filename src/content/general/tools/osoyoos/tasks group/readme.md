@@ -235,3 +235,20 @@ This tab is disabled in a standalone Halo 2 Vista profile and an MCC Halo 3 prof
 | Single Shot  | Each individual sound file is compiled into its own sound tag.                                                          
 | Single Layer | Each directory containing sound files is compiled into a sound tag.
 | Multi Layer  | All directories are merged into one sound file.                                                                 
+
+# Packaging
+This section will cover the various settings found in the **Packaging** tab. 
+
+![](packaging.jpg "An standalone Halo 1 profile on the left, an MCC Halo 1 profile in the middle, and an MCC Halo 2 profile on the right")
+
+| Settings            | Description                                                                                                                                                                                                                                                                                   | Notes
+|-------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------
+| Browse              | Pressing this button will ask the user to select a scenario tag they wish to compile a map for.
+| Log Loaded Tags     | Generates a .txt file with the tag paths that were loaded during packaging                                                                                                                                                                                                                                | This option only applies to a Halo 1 profile.
+| Graphics Usage      | Sets whether or not Saber3D is supported.                                                                                                                                                                                                                                                | This option only applies to a Halo 1 profile.
+| Resource Map Usage  | Sets how to use resource maps during packaging.                                                                                                                                                                                                                                                     | This option only applies to an MCC Halo 2 or Halo 3 profile.   
+| Compress            | This will set the compress arg during packaging. The file size should go down slightly. | This option only applies to an MCC Halo 2 or Halo 3 profile. See the **Halo 1 Sound Extensions** and **Halo 2 Sound Extensions** table for more details.
+| Resource Sharing    | This will set the resource_sharing arg during packaging. This will determine if the map file is reading raw tag data from resource maps.              
+| Multilingual Sounds | This will set the multilingual_sounds arg during packaging. This will allow for more than one language in the map file.                                                                                                                                                                                                   | This option only applies to an MCC Halo 2 or Halo 3 profile. See the **Halo 1 Sound Extensions** and **Halo 2 Sound Extensions** table for more details.
+| Remastered Support  | This will set the remastered_support arg during packaging. This will enable Saber3D support.     
+| MP Tag Support      | This will set the mp_tag_sharing arg during packaging. This will determine if the map file is using entire tags from resource maps.                                                                                                                                                                                                                                       | This option only applies to an MCC Halo 2 profile.   

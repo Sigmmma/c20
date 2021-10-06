@@ -95,13 +95,13 @@ If a face does not have a material assigned then it will use a default shader on
 1. Select the box object (level) and navigate to the materials tab.
 	* ![](C.jpg "Match the numbers in the image to the numbers in the list below.")
 2. [Add a material](https://youtu.be/2yOOzN0zJfQ) named `+sky` to your box (level) object.
-3. [Add a material](https://youtu.be/2yOOzN0zJfQ) named `f_im flat_light_scratchy` to your box (level) object.
-4. This is where we will assign a texture to our `f_im flat_light_scratchy` material. Your material will need to have `Use Nodes` enabled in order to make use of textures.
+3. [Add a material](https://youtu.be/2yOOzN0zJfQ) named `cit panel_wall_vert` to your box (level) object.
+4. This is where we will assign a texture to our `cit panel_wall_vert` material. Your material will need to have `Use Nodes` enabled in order to make use of textures.
 5. [Assign an image texture node](https://youtu.be/2yOOzN0zJfQ) to your material.
 6. Once the image texture node has been assigned you should now see file directory options instead of a diffuse color option. We will be clicking on the button labeled `Open` and browsing to our H2EK install directory.
 7. Navigate to the following directory `(H2EK Install Path)\data\scenarios\bitmaps\forerunner\industrial\metals`
 	* ![](D.jpg "Match the numbers in the image to the numbers in the list below.")
-8. Select an image texture to use for your material. In this instance we shall use `flat_dark_scratchy.tif`.
+8. Select an image texture to use for your material. In this instance we shall use `panel_wall_vert.tif`.
 9. Go ahead and click the button labeled `Open Image` to set the selected image to be used by your material. This completes the texture assigning process.
 
 ```.alert info
@@ -124,14 +124,14 @@ We will now be going over how to apply your newly created materials to faces in 
 5. [Select the material](https://youtu.be/2yOOzN0zJfQ) named `+sky` from the materials list in the object.
 6. Click the assign button.
 7. Select the bottom face of the cube that we didn't assign +sky to.
-8. [Assign the material](https://youtu.be/2yOOzN0zJfQ) named `f_im flat_light_scratchy`.
+8. [Assign the material](https://youtu.be/2yOOzN0zJfQ) named `cit panel_wall_vert`.
 
 You've completed this section. There are two ways you can see what materials you have applied to your object surfaces. Read the section [here](https://docs.blender.org/manual/en/latest/editors/3dview/display/shading.html) to see your options.
 
  Materials that have `Use Nodes` enabled and either define a texture or use base color for a diffuse will be displayed in the `render preview shading`. Materials that have "Use Nodes" disabled can use `solid shading` and set the diffuse colors to differentiate materials but keep in mind that you will not be able to assign textures. You can switch between both to assign a diffuse and assign a texture when switching between solid and render. Most images in this guide will be using solid shading for rendering.
 
 # UV mapping
-Now that we have assigned our textures we can begin to modify the UV coordinates for our mesh to properly display our textures. Since we only have one material that makes use of the texture in the scene at the moment we will only need to modify the UV mapping coordinates for the surfaces that have `f_im flat_light_scratchy` assigned to them.
+Now that we have assigned our textures we can begin to modify the UV coordinates for our mesh to properly display our textures. Since we only have one material that makes use of the texture in the scene at the moment we will only need to modify the UV mapping coordinates for the surfaces that have `cit panel_wall_vert` assigned to them.
 
 Follow the instructions below to begin.
 
@@ -146,7 +146,7 @@ Now that you set up your scene there is one more detail you should be aware of. 
 
 You will not have to switch to rendered viewport shading to see your textures but you have to deal with image alpha. If you do not want to see the alpha you can disable it in the newly created UV window. Move your cursor over your UV editing window and bring up the [UV properties window.](https://youtu.be/dR_TCHUTEw0)
 
-This will let you set some specific settings for your materials. Make sure to have a surface that has the `f_im flat_light_scratchy` material selected in the viewport on the left so that we set the settings for the proper material.
+This will let you set some specific settings for your materials. Make sure to have a surface that has the `cit panel_wall_vert` material selected in the viewport on the left so that we set the settings for the proper material.
 
 ![](G.jpg "Disable alpha so that the material isn't see through.")
 
@@ -154,7 +154,7 @@ Change the setting labeled `Alpha` from `Straight` to `None`.
 
 ## Editing UVs
 
-Now that we can properly view our textures lets set up our UVs for the level. Have only the surfaces with the `f_im flat_light_scratchy` material selected and do a quick unwrap.
+Now that we can properly view our textures lets set up our UVs for the level. Have only the surfaces with the `cit panel_wall_vert` material selected and do a quick unwrap.
 
 Using the info you learned from [the UV editing video](https://youtu.be/dR_TCHUTEw0), run a smart UV unwrap. Just use the default settings for the menu that pops up like you see in the example.
 

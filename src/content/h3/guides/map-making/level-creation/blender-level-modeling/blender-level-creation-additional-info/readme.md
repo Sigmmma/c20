@@ -1,8 +1,7 @@
 # File List
 | File Link                                                                                                         | Description
 |------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------
-[Multiple Skies Example Blend](https://drive.google.com/file/d/16PSvns4hL9r-0OnfVftCcsnpEx1JoQri/view?usp=sharing)  | A blend file showcasing how to use multiple skies in a scene.
-[Weather Portals Example Blend](https://drive.google.com/file/d/11-VGOtq8kRcBkyDmyEpYC-EyvbuQY1zL/view?usp=sharing) | A blend file showcasing how to use the special +weatherpoly material in a level.
+[Multiple Skies Example Blend](https://drive.google.com/file/d/1GxyTNx5mcGwroXOfMEx6wANg5gxpYG4w/view?usp=sharing)  | A blend file showcasing how to use multiple skies in a scene.
 
 # Multiple skies
 It's possible to use multiple skies in your level by adding a digit to the end of your `+sky` material. If we wanted three skies in our level for example we would have the following:
@@ -20,21 +19,7 @@ If you were not aware, a cluster is a section of a level divided by a portal. In
 Avoid using trailing digits on non-sky material names, or you'll get tool warnings about duplicate shaders, and avoid numbers in shader tag names. Use letters instead if you need to make variants.
 
 # Weather polyhedra
-Let's say you wanted to have weather on your map. You may notice that either your weather effects go through the walls of your structure or that it instantly disappears the moment you enter the hallway. This can be quite jarring, so naturally there is a solution for this that mappers can implement.
-
-The special `+weatherpoly` material can be assigned to [convex polyhedron][wiki-polyhedron] geometry to create a volume that hides any weather effects within the volume. You can see an example of this in blend file provided above.
-
-You can compare the videos below to see the difference.
-
-Here's what the hallway looks like without a weatherpoly volume.
-
-![](A.mp4)
-
-Here's what the hallway looks like with a weatherpoly volume.
-
-![](B.mp4)
-
-The weather poly geometry is included in the BSP tag when you compile your [][ASS]. There can be a max of 8 on screen at any given time. Any weather polys that go over this limit will have no effect. Sapien will print a message in the console if you hit this limit.
+You may be aware of weather polyhedra from previous games. This was a feature that allowed map designers to prevent weather effects from appearing in a certain section of level. I regret to inform you that this is not a feature in Halo 3. It seems to be have been deprecated during the switch from weather tags to atmosphere parameters.
 
 # Multiple BSPs
 It is common for singleplayer maps to have multiple BSPs. This helps manage game resources and avoid BSP limits for long missions. To accomplish this, place multiple `ASS` files in the same `structure` folder for the level. Each ASS will be compiled into it's own unique BSP tag for your scenario to use. Do not attempt to use multiple BSPs in an MP scenario.

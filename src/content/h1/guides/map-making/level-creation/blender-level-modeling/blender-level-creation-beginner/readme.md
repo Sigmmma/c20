@@ -5,9 +5,7 @@ This guide assumes you have already [prepared Blender][blender-prep].
 # File list
 | File Link                                                                                          | Description
 |--------------------------------------------------------------------------------------------------- | -----------------------------------
-|[End Result](https://drive.google.com/file/d/1YWeG2lSZpZRF4FDwCcH-qIu7B62h5JT5/view?usp=sharing)    | The end product of this tutorial for you to examine and compare.
-|[Spartan Model](https://drive.google.com/file/d/1fbm6QT1tSGNw4cY_pxE1vZJCm2sw3-LF/view?usp=sharing) | Spartan model that should be to scale with the ingame player.
-|[Warthog Model](https://drive.google.com/file/d/1rdBXdWcl2LOQpkD_-le4kpblXIJ9wNCm/view?usp=sharing) | Warthog model that should be to scale with the ingame player.
+|[End Result](https://drive.google.com/file/d/1MDxZGkpi90ETwVZDXpl2zrDAHU3SDQhu/view?usp=sharing)    | The end product of this tutorial for you to examine and compare.
 
 # Introduction
 Everything starts with an idea. Sometimes, however, we realize that we've made a terrible mistake just like this page I'm currently writing. Hello you, and welcome to the Halo CE level modeling guide. In this guide we will be showing you how to go about with creating your very own level geometry for Halo CE in the 3D modeling software app known as Blender. This guide will include a completed version of our work as an example for you to contrast and compare but be sure to follow along.
