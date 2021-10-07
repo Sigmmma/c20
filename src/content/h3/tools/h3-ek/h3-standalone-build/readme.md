@@ -5,7 +5,7 @@ The standalone build is still somewhat experimental and bugs should be expected.
 ```
 
 # Usage
-The UI works to a limited degree but no main menu is included. Map load should be done by adding the required [`game_start`][scripting#functions-map-name] command to `init.txt`. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
+The UI works to a limited degree but not all maps can be loaded using it. Map load should be done by adding the required [`game_start`][scripting#functions-map-name] command to `init.txt`. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
 
 ```console
 ; load tags\levels\solo\020_base\020_base.scenario:
@@ -14,7 +14,7 @@ game_start levels\solo\020_base\020_base
 game_start levels\solo\040_voi\040_voi
 ```
 Once you are in-game you can change the map using the [console][developer-console]. If you modify tags for the currently loaded map it will be automatically reloaded. You do not need to do anything to enable this behaviour, just edit and let it reload!
-Major changes might result in the map restarting, minor changes should be seamless apart from a loading screen.
+Major changes might result in the map/game reset, minor changes should be seamless apart from a loading screen.
 
 # Use cases
 This build offers a number of benefits for testing over compiling cache files or using player simulation:
@@ -102,6 +102,6 @@ You can quickly spawn a variety of objects for testing:
 
 # Known issues
 * Sound doesn't work.
-* No main menu is included so if you launch standalone, you will be spawned in a black void. To get out, refer to [#Usage][h3-standalone-build#usage]
+* Not all maps can be loaded using the UI, see [#Usage][h3-standalone-build#usage] for a workaround.
 * Particles and the like look different from the cache build.
 * Singleplayer level "Cortana" does not function due to issues with soft ceiling post processing.

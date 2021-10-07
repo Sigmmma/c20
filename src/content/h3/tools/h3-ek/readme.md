@@ -32,7 +32,7 @@ Naturally there is multitude of changes compared to H2 as the engine underwent a
 
 * Single threaded lightmapping is not supported, you need to use the multi-process solution. This can be run with only a single client if only using one core is desired.
 * Sound doesn't work in the tools. Load your map in MCC if you need to test sound.
-* A main menu is not included so you will need to use `init.txt` or the developer console to load scenarios in the standalone build.
+* A main menu can't load all maps so you will need to use `init.txt` or the developer console to load scenarios in the standalone build.
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
 
 [steam_purchase]: https://store.steampowered.com/app/1064271
