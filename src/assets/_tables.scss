@@ -9,6 +9,10 @@ table {
     width: auto;
   }
 
+  &.wrap-pre td pre {
+    word-break: break-word;
+  }
+
   td, th {
     padding: var(--padding-sm);
     border: 1px solid var(--border-color);;

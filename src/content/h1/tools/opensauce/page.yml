@@ -1,10 +1,8 @@
 title:
   en: OpenSauce
 info:
-  en: >
-    *
-    [Source](https://github.com/yumiris/OpenSauce/wiki)
-
+  en: |
+    * [Source](https://github.com/yumiris/OpenSauce/wiki)
     * [Download](https://haloce3.com/downloads/applications/open-sauce-4-0/)
 stub: true
 keywords:
@@ -13,7 +11,3 @@ keywords:
     - sapien
     - guerilla
 toolName: OpenSauce
-tagIndex:
-  game: os
-  groupId: true
-  noLink: true

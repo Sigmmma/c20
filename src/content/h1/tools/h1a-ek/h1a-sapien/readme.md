@@ -11,7 +11,7 @@ It is roughly analagous to Forge found in later Halo titles, although the user c
 # Getting legacy debug_objects
 If you prefer legacy Sapien's `debug_objects 1` default appearance, simply set the following globals:
 
-```console-h1a
+```consoleh1a
 debug_objects_collision_models 1
 debug_objects_bounding_spheres 1
 debug_objects_root_node 0
@@ -120,11 +120,12 @@ See main page: [recorded-animations][]
 ## Detail objects painting
 * <kbd>Shift + Right Click</kbd>: Erases all detail objects in a highlighted cell.
 * <kbd>Shift + Control + Right Click</kbd>: As above, but also deleted the cell itself.
+* <kbd>Shift + Control + L</kbd>: Relight detail objects (useful after updating [lightmaps][]).
 
 # Radiosity
 Both Tool and Sapien can be used to generate [lightmaps][]. Using H1A Tool is suggested for all but the simplest lightmaps or debugging as it doesn't require as many resources or for the window to be in-focus.  To use Sapien, enter the following console commands:
 
-```console-h1a
+```consoleh1a
 ;0 for low quality, 1 for high, or a value like 0.8
 radiosity_quality 1
 ;begins radiosity. numbers will start to count down
@@ -179,6 +180,15 @@ Sapien requires DX11 support, it is currently unknown if it can be run under WIN
 When Sapien crashes, check `debug.txt` for hints.
 
 ```.table
-tableDefs: crashes.yml
-tableName: crashes
+dataSource: crashes.yml
+dataPath: crashes
+wrapPre: true
+columns:
+  - key: error
+    name: Error
+    format: codeblock
+  - key: solution
+    name: Solution
+    style: "width:50%"
+    format: text
 ```

@@ -17,14 +17,22 @@ All [objects][object] receive their lighting from the environment using data in 
 
 Only moving objects like [units][unit] cast real-time shadows; [scenery][] cast shadows in the baked lightmap using the object's [collision model][model_collision_geometry] rather than its [render model][gbxmodel], likely because the collision model is stored using a BSP structure which is more efficient to perform lighting calculations with.
 
-# Related commands
-These commands are entered into the [developer console][developer-console].
+# Related script functions and globals
+The following are related [functions][scripting#functions] that you can use in your scenario scripts and/or [debug globals][developer-console#debug-globals] that you can enter into the developer console for troubleshooting.
 
 ```.table
-tableDataModule: hsc/h1/debug
-tableName: DebugFunctions
+id: functions-globals
+dataPath:
+  - hsc/h1/functions/functions
+  - hsc/h1/globals/external_globals
+linkCol: true
+linkSlugKey: slug
 rowSortKey: slug
 rowTagFilter: lightmaps
+columns:
+  - key: info/en
+    name: Function/global
+    format: text
 ```
 
 [radiosity]: https://en.wikipedia.org/wiki/Radiosity_(computer_graphics)

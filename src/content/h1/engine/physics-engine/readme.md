@@ -7,12 +7,20 @@ Different object interactions are simulated in different ways. For example, vehi
 # Limits
 Vehicles cannot exist below approximately -4,950 world units in the Z (vertical) axis. Vehicles spawned at this extreme distance will sit on an invisible floor and return to the floor if moved below. This is not far from the -5,000 world unit [limit][renderer#limits] for the game camera. Vehicles can freely move beyond 5,000 units in a horizontal axis.
 
-# Related commands
-These commands are entered into the [developer console][developer-console].
+# Related script functions and globals
+The following are related [functions][scripting#functions] that you can use in your scenario scripts and/or [debug globals][developer-console#debug-globals] that you can enter into the developer console for troubleshooting.
 
 ```.table
-tableDataModule: hsc/h1/hsc
-tableName: Functions
+id: functions-globals
+dataPath:
+  - hsc/h1/functions/functions
+  - hsc/h1/globals/external_globals
+linkCol: true
+linkSlugKey: slug
 rowSortKey: slug
 rowTagFilter: physics-engine
+columns:
+  - key: info/en
+    name: Function/global
+    format: text
 ```

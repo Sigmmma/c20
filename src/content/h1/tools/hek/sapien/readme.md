@@ -86,6 +86,7 @@ See main page: [recorded-animations][]
 ## Detail objects painting
 * <kbd>Shift + Right Click</kbd>: Erases all detail objects in a highlighted cell.
 * <kbd>Shift + Control + Right Click</kbd>: As above, but also deleted the cell itself.
+* <kbd>Shift + Control + L</kbd>: Relight detail objects (useful after updating [lightmaps][]).
 
 # Radiosity
 Both Tool and Sapien can be used to generate [lightmaps][]. To use Sapien, enter the following console commands:
@@ -169,8 +170,19 @@ Sapien, like Halo, does not support [MSAA][msaa]. Add Sapien as a program in you
 When Sapien crashes, check `debug.txt` for hints. You can ignore `Couldn't read map file './sapienbeta.map'`.
 
 ```.table
-tableDefs: crashes.yml
-tableName: crashes
+dataSource: crashes.yml
+dataPath: crashes
+wrapPre: true
+columns:
+  - key: error
+    name: Error
+    style: "width:50%"
+    format: codeblock
+  - key: solution
+    name: Solution
+    style: "width:50%"
+    format: text
 ```
+
 
 [msaa]: https://en.wikipedia.org/wiki/Multisample_anti-aliasing

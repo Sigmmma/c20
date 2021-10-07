@@ -14,19 +14,19 @@ code {
     color: fuchsia;
   }
 
-  &.language-console-h1a > .hljs-console-line > .hljs-name:first-child:before {
+  &.language-consoleh1a > .hljs-console-line > .hljs-name:first-child:before {
     content: "h1( ";
     transition: opacity $transition-time;
     color: fuchsia;
   }
 
-  &.language-console-h2a > .hljs-console-line > .hljs-name:first-child:before {
+  &.language-consoleh2a > .hljs-console-line > .hljs-name:first-child:before {
     content: "halo( ";
     transition: opacity $transition-time;
     color: fuchsia;
   }
 
-  &.language-console-h3 > .hljs-console-line > .hljs-name:first-child:before {
+  &.language-consoleh3 > .hljs-console-line > .hljs-name:first-child:before {
     content: "halo( ";
     transition: opacity $transition-time;
     color: fuchsia;
@@ -54,15 +54,15 @@ pre:hover code.language-console > .hljs-console-line > .hljs-name:first-child:be
   opacity: 0.5;
 }
 
-pre:hover code.language-console-h1a > .hljs-console-line > .hljs-name:first-child:before {
+pre:hover code.language-consoleh1a > .hljs-console-line > .hljs-name:first-child:before {
   opacity: 0.5;
 }
 
-pre:hover code.language-console-h2a > .hljs-console-line > .hljs-name:first-child:before {
+pre:hover code.language-consoleh2a > .hljs-console-line > .hljs-name:first-child:before {
   opacity: 0.5;
 }
 
-pre:hover code.language-console-h3 > .hljs-console-line > .hljs-name:first-child:before {
+pre:hover code.language-consoleh3 > .hljs-console-line > .hljs-name:first-child:before {
   opacity: 0.5;
 }
 

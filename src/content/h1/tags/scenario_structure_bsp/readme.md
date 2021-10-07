@@ -110,14 +110,22 @@ The BSP contains data on traversable surfaces which aid AI in pathfinding (walki
 
 _See more about the [pathfinding system][ai#pathfinding]._
 
-# Related commands
-These commands are entered into the [developer console][developer-console].
+# Related script functions and globals
+The following are related [functions][scripting#functions] that you can use in your scenario scripts and/or [debug globals][developer-console#debug-globals] that you can enter into the developer console for troubleshooting.
 
 ```.table
-tableDataModule: hsc/h1/debug
-tableName: DebugFunctions
+id: functions-globals
+dataPath:
+  - hsc/h1/functions/functions
+  - hsc/h1/globals/external_globals
+linkCol: true
+linkSlugKey: slug
 rowSortKey: slug
 rowTagFilter: scenario_structure_bsp
+columns:
+  - key: info/en
+    name: Function/global
+    format: text
 ```
 
 [about-bsp]: https://en.wikipedia.org/wiki/Binary_space_partitioning

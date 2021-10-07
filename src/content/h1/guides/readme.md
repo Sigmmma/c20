@@ -9,78 +9,206 @@ Please report any dead links encountered.
 
 ## Beginner
 ```.table
-tableDefs: tutorials.yml
-tableName: Tutorials
+dataSource: tutorials.yml
+dataPath: tutorials
 rowTagFilter: beginner
 rowSortKey: updated
 rowSortReverse: true
+columns:
+  - key: name/en
+    name: Name
+    format: text
+  - key: description/en
+    name: Description
+    format: text
+  - key: authors
+    name: Author(s)
+    format: text
+  - key: updated
+    name: Last updated
+    format: text
+  - key: links/en
+    name: Links
+    format: text
 ```
 
 ## Level creation
 See also the [Blender level guide][blender-prep] here on c20.
 
 ```.table
-tableDefs: tutorials.yml
-tableName: Tutorials
+dataSource: tutorials.yml
+dataPath: tutorials
 rowTagFilter: level
 rowSortKey: updated
 rowSortReverse: true
+columns:
+  - key: name/en
+    name: Name
+    format: text
+  - key: description/en
+    name: Description
+    format: text
+  - key: authors
+    name: Author(s)
+    format: text
+  - key: updated
+    name: Last updated
+    format: text
+  - key: links/en
+    name: Links
+    format: text
 ```
 
 ## AI and scripting
 See also the [scripting information][scripting] here on c20.
 
 ```.table
-tableDefs: tutorials.yml
-tableName: Tutorials
+dataSource: tutorials.yml
+dataPath: tutorials
 rowTagFilter: ai-scripting
 rowSortKey: updated
 rowSortReverse: true
+columns:
+  - key: name/en
+    name: Name
+    format: text
+  - key: description/en
+    name: Description
+    format: text
+  - key: authors
+    name: Author(s)
+    format: text
+  - key: updated
+    name: Last updated
+    format: text
+  - key: links/en
+    name: Links
+    format: text
 ```
 
 ## UI and HUD
 ```.table
-tableDefs: tutorials.yml
-tableName: Tutorials
+dataSource: tutorials.yml
+dataPath: tutorials
 rowTagFilter: hud
 rowSortKey: updated
 rowSortReverse: true
+columns:
+  - key: name/en
+    name: Name
+    format: text
+  - key: description/en
+    name: Description
+    format: text
+  - key: authors
+    name: Author(s)
+    format: text
+  - key: updated
+    name: Last updated
+    format: text
+  - key: links/en
+    name: Links
+    format: text
 ```
 
 ## Objects (bipeds, vehicles, scenery, weapons, etc)
 ```.table
-tableDefs: tutorials.yml
-tableName: Tutorials
+dataSource: tutorials.yml
+dataPath: tutorials
 rowTagFilter: objects
 rowSortKey: updated
 rowSortReverse: true
+columns:
+  - key: name/en
+    name: Name
+    format: text
+  - key: description/en
+    name: Description
+    format: text
+  - key: authors
+    name: Author(s)
+    format: text
+  - key: updated
+    name: Last updated
+    format: text
+  - key: links/en
+    name: Links
+    format: text
 ```
 
 ## Animation
 ```.table
-tableDefs: tutorials.yml
-tableName: Tutorials
+dataSource: tutorials.yml
+dataPath: tutorials
 rowTagFilter: animation
 rowSortKey: updated
 rowSortReverse: true
+columns:
+  - key: name/en
+    name: Name
+    format: text
+  - key: description/en
+    name: Description
+    format: text
+  - key: authors
+    name: Author(s)
+    format: text
+  - key: updated
+    name: Last updated
+    format: text
+  - key: links/en
+    name: Links
+    format: text
 ```
 
 ## Effects
 ```.table
-tableDefs: tutorials.yml
-tableName: Tutorials
+dataSource: tutorials.yml
+dataPath: tutorials
 rowTagFilter: effects
 rowSortKey: updated
 rowSortReverse: true
+columns:
+  - key: name/en
+    name: Name
+    format: text
+  - key: description/en
+    name: Description
+    format: text
+  - key: authors
+    name: Author(s)
+    format: text
+  - key: updated
+    name: Last updated
+    format: text
+  - key: links/en
+    name: Links
+    format: text
 ```
 
 ## Other
 ```.table
-tableDefs: tutorials.yml
-tableName: Tutorials
+dataSource: tutorials.yml
+dataPath: tutorials
 rowTagFilter: other
 rowSortKey: updated
 rowSortReverse: true
+columns:
+  - key: name/en
+    name: Name
+    format: text
+  - key: description/en
+    name: Description
+    format: text
+  - key: authors
+    name: Author(s)
+    format: text
+  - key: updated
+    name: Last updated
+    format: text
+  - key: links/en
+    name: Links
+    format: text
 ```
 
 [hek]: http://hce.halomaps.org/hek/
