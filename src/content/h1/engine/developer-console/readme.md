@@ -26,11 +26,15 @@ Helpful commands:
 * `cls` for clearing output from the screen.
 
 
-# Commands reference
+# Debug globals
 
 ```.table
-tableDataModule: hsc/h1/debug
-tableName: DebugFunctions
-rowLinks: true
+dataPath: hsc/h1/globals/external_globals
+linkCol: true
+linkSlugKey: slug
 rowSortKey: slug
+columns:
+  - key: info/en
+    name: Global
+    format: text
 ```

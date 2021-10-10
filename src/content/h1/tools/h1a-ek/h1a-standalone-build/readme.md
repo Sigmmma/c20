@@ -8,7 +8,7 @@ The standalone build is still somewhat experimental and bugs should be expected.
 # Usage
 The UI works to a limited degree but loading maps is best done using the [`map_name`][scripting#functions-map-name] command in the [console][developer-console]. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
 
-```console-h1a
+```consoleh1a
 ; load tags\levels\a30\a30.scenario:
 map_name levels\a30\a30
 ; load tags\levels\test\bloodgulch\bloodgulch.scenario:

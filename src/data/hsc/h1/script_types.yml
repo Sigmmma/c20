@@ -1,0 +1,66 @@
+script_types:
+  - type: continuous
+    info:
+      en: Runs every tick (simulation frame of the engine), at 30 ticks per second.
+      es:
+    ex: >-
+      (script continuous kill_players_in_zone
+        (if (volume_test_object kill_volume (list_get (players) 0))
+          (unit_kill (unit (list_get (players) 0)))
+        )
+        (if (volume_test_object kill_volume (list_get (players) 1))
+          (unit_kill (unit (list_get (players) 1)))
+        )
+      )
+
+  - type: dormant
+    info:
+      en: >
+        Sleeps until started with `wake`, runs until there are no instructions
+        left, then stops. Calling `wake` a second time will not restart the
+        script.
+      es:
+    ex: >-
+      (script dormant save_valley_canyon
+        (sleep_until (= 0 (ai_living_count valley_canyon)) 10)
+        (game_save_no_timeout)
+      )
+
+  - type: startup
+    info:
+      en: Performed only on map startup.
+      es:
+    ex: >-
+      (script startup mission_a30
+        (hud_show_motion_sensor false)
+        (fade_out 0 0 0 0)
+        (print "mission script is running")
+        (ai_allegiance player human)
+        ;...
+      )
+
+  - type: static
+    info:
+      en: Performed when called from another script.
+      es:
+    ex: >-
+      (script static "unit" player0
+        (unit (list_get (players) 0))
+      )
+
+  - type: stub
+    info:
+      en: >
+        A `stub` script by itself does nothing. It allows you to pre-declare a
+        `static` script without providing a script body.
+        This allows other scripts to invoke a `static` script without the full
+        function body being declared yet.
+        <br/><br/>
+        The script you override a `stub` with must have the same "signature" (
+        i.e. name, parameters, and return type). A stub cannot be declared more
+        than once. The full implementation of a `stub` *may* be placed in
+        another script file.
+        <br/><br/>
+        If you're familiar with C function prototypes, this is very similar.
+      es:
+    ex: (script stub object player0)

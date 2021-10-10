@@ -10,10 +10,21 @@ OpenSauce is incompatible with [Chimera][]. Attempting to use both at the same t
 
 # OS_Sapien
 
-# New tag types
-These extended tag types are specific to OpenSauce .yelo maps and are only supported by the OpenSauce mod:
-
 # Game features
 Note that OpenSauce uses the filename `initc.txt` for [init scripts][arguments#init-txt] instead.
 
 Crash reports can be found in `<DRIVE>:\Users<USER>\Documents\My Games\Halo CE\OpenSauce\Reports`.
+
+# New tag types
+These extended tag types are specific to OpenSauce .yelo maps and are only supported by the OpenSauce mod:
+
+```.table
+dataPath: tags/os
+rowSortKey: key
+columns:
+  - name: Tag name
+    key: key
+  - name: Group ID
+    key: value/id
+    format: code
+```

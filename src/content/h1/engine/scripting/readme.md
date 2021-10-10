@@ -63,16 +63,35 @@ with multiple lines
 
 ## Script types
 ```.table
-tableDataModule: hsc/h1/hsc
-tableName: ScriptTypes
-rowLinks: true
+dataPath: hsc/h1/script_types/script_types
+linkCol: 0
+columns:
+  - key: type
+    name: Type
+    format: code
+  - key: info/en
+    name: Comments
+    format: text
+  - key: ex
+    style: "width:50%"
+    name: Example
+    format: codeblock-hsc
 ```
 
 ## Value types
 ```.table
-tableDataModule: hsc/h1/hsc
-tableName: ValueTypes
-rowLinks: true
+dataPath: hsc/h1/value_types/value_types
+linkCol: 0
+columns:
+  - key: type
+    name: Type
+    format: code
+  - key: info/en
+    name: Details
+    format: text
+  - key: ex
+    name: Example
+    format: text
 ```
 
 ### Value type casting
@@ -95,18 +114,29 @@ The rules for object name types are equivalent to the matching object types. Obj
 
 ## Operators and keywords
 ```.table
-tableDataModule: hsc/h1/hsc
-tableName: OperatorsAndKeywords
-rowLinks: true
+dataPath: hsc/h1/ops_keywords/operators_and_keywords
+linkCol: true
+linkSlugKey: slug
+columns:
+  - key: type
+    name: Expression
+    format: text
+  - key: ex
+    name: Example
+    format: text
 ```
 
 
 ## Functions
 ```.table
-tableDataModule: hsc/h1/hsc
-tableName: Functions
-rowLinks: true
+dataPath: hsc/h1/functions/functions
+linkCol: true
+linkSlugKey: slug
 rowSortKey: slug
+columns:
+  - key: info/en
+    name: Function
+    format: text
 ```
 
 

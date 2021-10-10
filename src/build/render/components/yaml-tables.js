@@ -3,124 +3,105 @@ const fs = require("fs");
 const path = require("path");
 const {html, jump, slugify, anchor} = require("./bits");
 const R = require("ramda");
+const {loadYamlTreeSync} = require("../../../utils");
 
 const AUTO_INDEX_THRESHOLD = 100;
 
-function renderTableYaml(ctx, optsYaml) {
+function id(opts, row) {
+  if (opts.linkCol === undefined) {
+    return undefined;
+  } else if (opts.linkCol === true) {
+    return slugify(`${opts.id}-${R.path(opts.linkSlugKey.split("/"), row)}`);
+  }
+  const linkSlugKey = opts.linkSlugKey || opts.columns[opts.linkCol].key;
+  return slugify(`${opts.id}-${R.path(linkSlugKey.split("/"), row)}`);
+}
+
+function renderCell(ctx, format, content, searchTerms) {
   const {renderMarkdown, renderMarkdownInline} = require("./markdown"); //todo: untangle circular dep
+
+  format = format || "text";
+
+  if (!content) {
+    // Generates an empty table cell if content is omitted
+    return "";
+  } else if (format === "text") {
+    searchTerms.push(renderMarkdown(ctx, content, true));
+    return renderMarkdown(ctx, content);
+  } else if (format === "code") {
+    searchTerms.push(renderMarkdownInline(ctx, content, true));
+    return renderMarkdownInline(ctx, "`" + content + "`");
+  } else if (format === "anchor") {
+    const url = ctx.resolveUrl(content);
+    return anchor(url, content);
+  } else if (format.startsWith("codeblock")) {
+    searchTerms.push(content);
+    const syntax = format.split("-")[1]; // Could be undef. That's ok.
+    return renderMarkdown(ctx, "\n```" + syntax + "\n" + content + "\n```");
+  } else {
+    throw new Error(`unsupported column format: ${format}`);
+  }
+}
+
+function renderTableYaml(ctx, optsYaml) {
   const searchTerms = [];
 
   const opts = yaml.load(optsYaml);
 
-  if (!opts.tableDefs && !opts.tableDataModule)
-    throw new Error("Missing table value: tableDefs or tableDataModule");
-
-  if (!opts.tableName)
-    throw new Error("Missing table value: tableName");
-
-  let data = null;
-  if (opts.tableDataModule) {
-    data = R.path([...opts.tableDataModule.split("/"), opts.tableName], ctx.data);
-  } else {
-    data = yaml.load(
-      fs.readFileSync(path.join(ctx.page.dirPath, opts.tableDefs), "utf8")
-    )[opts.tableName];
+  if (!opts.dataPath) {
+    console.warn(`Missing table value: dataPath (from ${ctx.page.pageId})`);
+    return {htmlResult: null, searchTerms};
   }
 
-  // De-duplicate common YAML error message stuff
-  function YamlError(reason) {
-    return new Error(`Malformed table YAML. Table ${opts.tableName} ${reason}`);
+  if (!Array.isArray(opts.dataPath)) {
+    opts.dataPath = [opts.dataPath];
   }
+  opts.id = opts.id || opts.dataPath.map(dataPath => R.last(dataPath.split("/"))).join("-");
 
-  if (!data)
-    throw YamlError('table data not found');
+  const dataSource = opts.dataSource ?
+    yaml.load(fs.readFileSync(path.join(ctx.page.dirPath, opts.dataSource), "utf8")) :
+    ctx.data;
 
-  if (!data.columns)
-    throw YamlError('missing entry: columns');
+  const rows = R.pipe(
+    R.map(dataPathStr => R.pathOr([], dataPathStr.split("/"), dataSource)),
+    R.map(rows => Array.isArray(rows) ?
+      rows :
+      Object.entries(rows).map(([key, value]) => ({key, value}))
+    ),
+    R.flatten,
+    opts.rowSortKey ?
+      R.sortBy(row => {
+        const sortKey = R.path(opts.rowSortKey.split("/"), row);
+        return sortKey ? sortKey.toUpperCase() : false;
+      }) :
+      R.identity,
+    opts.rowSortReverse ?
+      R.reverse :
+      R.identity,
+    opts.rowTagFilter ?
+      R.filter(row => row.tags && row.tags.includes(opts.rowTagFilter)) :
+      R.identity
+  )(opts.dataPath);
 
-  if (!data.rows)
-    throw YamlError('missing entry: rows');
-
-  data.columns.reduce((seenKeys, col) => {
-    if (seenKeys[col.key])
-      throw YamlError(`duplicate key: ${col.key}`);
-
-    seenKeys[col.key] = true;
-    return seenKeys;
-  }, {});
-
-  // Converts the given content to HTML. content can be a string, or an object
-  // containing both english and spanish strings. format can be used to add
-  // additional markdown formatting without actually needing to have it in the
-  // content itself.
-  function markdownToHtml(format, content) {
-    if (typeof format !== "string")
-      throw YamlError(
-        `invalid column format datatype: ${typeof format}. Must be string`);
-
-    // Generates an empty table cell if content is omitted
-    if (!content)
-      return '';
-
-    // Select a translation if we have one, or default to english
-    const translated = typeof content === "object" ?
-      content[ctx.lang] || content['en'] : content;
-
-    if (format === "text") {
-      searchTerms.push(renderMarkdown(ctx, translated, true));
-      return renderMarkdown(ctx, translated);
-    } else if (format === "code") {
-      searchTerms.push(renderMarkdownInline(ctx, translated, true));
-      return renderMarkdownInline(ctx, "`" + translated + "`");
-    } else if (format.startsWith("codeblock")) {
-      searchTerms.push(translated);
-      const syntax = format.split("-")[1]; // Could be undef. That's ok.
-      return renderMarkdown(ctx, "\n```" + syntax + "\n" + translated + "\n```");
-    } // Could implement others here
-    else {
-      throw YamlError(`unsupported column format: ${format}`);
-    }
-  }
-
-  // Create a link slug, prioritizing row slug override, then table column key
-  // setting, then falling back to index if no others are provided.
-  function id(row, index) {
-    return slugify(`${opts.tableName}-${row.slug || row[data.slugKey] || index}`);
-  }
-
-  // A column's content can optionally be used as a row link.
-  const hrefCol = data.columns.find(col => col.href);
-
-  let rowsSorted = data.rows;
   const rowsIndex = [];
-  if (opts.rowSortKey) {
-    rowsSorted = R.sortBy(
-      R.compose(R.toUpper, R.prop(opts.rowSortKey)),
-      data.rows
-    );
-    if (opts.rowSortReverse) {
-      rowsSorted = R.reverse(rowsSorted);
-    }
-    if (opts.rowLinks && rowsSorted.length >= AUTO_INDEX_THRESHOLD) {
-      rowsSorted.forEach((row, index) => {
-        const indexKey = row[opts.rowSortKey][0].toUpperCase();
-        if (rowsIndex.length == 0 || rowsIndex[rowsIndex.length - 1].indexKey != indexKey) {
-          rowsIndex.push({indexKey, id: id(row, index)});
-        }
-      });
-    }
+  if (opts.rowSortKey && opts.linkCol && rows.length >= AUTO_INDEX_THRESHOLD) {
+    rows.forEach((row, index) => {
+      const sortKey = R.path(opts.rowSortKey.split("/"), row);
+      const indexKey = sortKey[0].toUpperCase();
+      if (rowsIndex.length == 0 || rowsIndex[rowsIndex.length - 1].indexKey != indexKey) {
+        rowsIndex.push({indexKey, id: id(opts, row)});
+      }
+    });
   }
 
-  if (opts.rowTagFilter) {
-    rowsSorted = rowsSorted.filter(row => row.tags && row.tags.includes(opts.rowTagFilter));
-    if (rowsSorted.length == 0) {
-      throw YamlError(`Table filtered to 0 rows: ${opts.tableName}, ${opts.rowTagFilter}`);
-    }
+  const classes = [];
+  if (opts.noClear) {
+    classes.push("no-clear");
+  }
+  if (opts.wrapPre) {
+    classes.push("wrap-pre");
   }
 
-  // Construct the table.
-  // If rowLinks is enabled but no column is marked as href, an additional
-  // column will be inserted for a link to each row.
   const htmlResult = html`
     ${rowsIndex.length > 0 && html`
       <p>
@@ -129,35 +110,38 @@ function renderTableYaml(ctx, optsYaml) {
         </nav>
       </p>
     `}
-    <table class="${opts.noClear ? "no-clear" : ""}">
+    <table class="${classes.join(" ")}">
       <thead>
         <tr>
-          ${data.columns.map((col, i) => html`
-            <th style="${col.style}" colspan="${opts.rowLinks && !hrefCol && i == 0 ? 2: 1}">
-              ${markdownToHtml('text', col.name)}
+          ${opts.columns.map((col, i) => html`
+            <th style="${col.style}" colspan="${(opts.linkCol === true && i == 0) ? 2 : 1}">
+              ${renderCell(ctx, "text", col.name, searchTerms)}
             </th>
           `)}
         </tr>
       </thead>
       <tbody>
-        ${rowsSorted.map((row, index) => html`
-          <tr id="${opts.rowLinks && id(row, index)}">
-            ${opts.rowLinks && !hrefCol && html`
-              <td>${jump(id(row, index))}</td>
-            `}
-            ${data.columns.map(col => html`
-              <td style="${col.style}">
-    ${opts.rowLinks && col === hrefCol ?
-      jump(
-        id(row, index),
-        markdownToHtml(col.format, row[col.key]),
-      ) :
-      markdownToHtml(col.format, row[col.key])
-    }
-              </td>
-            `)}
-          </tr>
-        `)}
+        ${rows.map(row => {
+          const slugId = id(opts, row);
+          return html`
+            <tr id="${slugId}">
+              ${opts.linkCol === true && html`
+                <td>${jump(slugId)}</td>
+              `}
+              ${opts.columns.map((col, i) => {
+                const rowContent = R.path(col.key.split("/"), row);
+                return html`
+                  <td style="${col.style}">
+        ${opts.linkCol === i ?
+          jump(slugId, renderCell(ctx, col.format, rowContent, searchTerms)) :
+          renderCell(ctx, col.format, rowContent, searchTerms)
+        }
+                  </td>
+                `;
+              })}
+            </tr>
+          `;
+        })}
       </tbody>
     </table>
   `;

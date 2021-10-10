@@ -8,7 +8,7 @@ The standalone build is still somewhat experimental and bugs should be expected.
 # Usage
 The UI works is largely functional so you can load built in maps using it or add your own maps to the UI but loading maps is easier to do using the [`game_start`][scripting#functions-map-name] command in the [console][developer-console]. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
 
-```console-h2a
+```consoleh2a
 ; load tags\scenarios\solo\01b_spacestation\01b_spacestation.scenario:
 game_start scenarios\solo\01b_spacestation\01b_spacestation
 ; load tags\scenarios\multi\halo\coagulation\coagulation.scenario:

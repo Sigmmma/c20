@@ -12,12 +12,13 @@ const autoAbbreviations = require("./abbreviations");
 const {renderDisambiguationList} = require("../disambiguation-list");
 const {renderChildList} = require("../child-list");
 
+//these language names should have no punctuation or dashes or it breaks markdown highlighting
 hljs.registerLanguage("vrml", vrmlLang);
 hljs.registerLanguage("hsc", hscLang);
 hljs.registerLanguage("console", consoleLang);
-hljs.registerLanguage("console-h1a", consoleLang);
-hljs.registerLanguage("console-h2a", consoleLang);
-hljs.registerLanguage("console-h3", consoleLang);
+hljs.registerLanguage("consoleh1a", consoleLang);
+hljs.registerLanguage("consoleh2a", consoleLang);
+hljs.registerLanguage("consoleh3", consoleLang);
 hljs.registerLanguage("inittxt", consoleLang);
 
 function highlight(code, language) {

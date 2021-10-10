@@ -46,12 +46,20 @@ collision_debug_phantom_bsp 1
 
 To fix them, use similar tricks as fixing level phantom BSP: fixing cases of nearly co-planar faces reported in your [WRL file][wrl] and/or slightly altering the collision model around the problematic location. If changes to the source geometry do not resolve the phantom BSP, you can use [H1A Tool][h1a-tool] with the `fix-phantom-bsp` option enabled or [phantom_tool][] to compile the collision.
 
-# Related commands
-These commands are entered into the [developer console][developer-console].
+# Related script functions and globals
+The following are related [functions][scripting#functions] that you can use in your scenario scripts and/or [debug globals][developer-console#debug-globals] that you can enter into the developer console for troubleshooting.
 
 ```.table
-tableDataModule: hsc/h1/debug
-tableName: DebugFunctions
+id: functions-globals
+dataPath:
+  - hsc/h1/functions/functions
+  - hsc/h1/globals/external_globals
+linkCol: true
+linkSlugKey: slug
 rowSortKey: slug
 rowTagFilter: model_collision_geometry
+columns:
+  - key: info/en
+    name: Function/global
+    format: text
 ```

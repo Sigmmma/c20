@@ -1,0 +1,360 @@
+operators_and_keywords:
+  - slug: plus
+    type: |
+      ```hsc
+      (+ <number_1> <number_2> [... <number_n>])
+      ```
+      Returns the sum of all specified expressions.
+    ex: |
+      ```hsc
+      (+ 5 6 7 8 9)
+      ; returns: 35
+      ```
+
+  - slug: minus
+    type: |
+      ```hsc
+      (- <number_1> <number_2>)
+      ```
+      Returns the difference of two expressions.
+    ex: |
+      ```hsc
+      (- 10 5)
+      ; returns: 5
+      ```
+
+  - slug: mult
+    type: |
+      ```hsc
+      (* <number_1> <number_2> [... <number_n>])
+      ```
+      Returns the product of all specified expressions.
+    ex: |
+      ```hsc
+      (* 5 5)
+      ; returns: 25
+      (* 5.5 6)
+      ; returns: 33
+      ```
+
+  - slug: div
+    type: |
+      ```hsc
+      (/ <number_1> <number_2>)
+      ```
+      Returns the quotient of two expressions.
+    ex: |
+      ```hsc
+      (/ 10 5)
+      ; returns: 2
+      (/ 2.5 2)
+      ; returns: 1.25
+
+  - slug: eq
+    type: |
+      ```hsc
+      (= <expression_1> <expression_2>)
+      ```
+      Returns true if two expressions are equal.
+    ex: |
+      ```hsc
+      (= (hud_get_timer_ticks) 0)
+      ```
+
+  - slug: ne
+    type: |
+      ```hsc
+      (!= <expression_1> <expression_2>)
+      ```
+      Returns true if two expressions are not equal.
+    ex: |
+      ```hsc
+      (!= (hud_get_timer_ticks) 0)
+      ```
+
+  - slug: gt
+    type: |
+      ```hsc
+      (> <number_1> <number_2>)
+      ```
+      Returns true if `number_1` is larger than `number_2`.
+    ex: |
+      ```hsc
+      (> 10 5)
+      ; returns: true
+      (> 5 10)
+      ; returns: false
+      ```
+
+  - slug: lt
+    type: |
+      ```hsc
+      (< <number_1> <number_2>)
+      ```
+      Returns true if `number_1` is smaller than `number_2`.
+    ex: |
+      ```hsc
+      (> 4 8)
+      ; returns: true
+      (> 8 4)
+      ; returns: false
+      ```
+
+  - slug: ge
+    type: |
+      ```hsc
+      (>= <number_1> <number_2>)
+      ```
+      Returns true if `number_1` is larger than or equal `number_2`.
+    ex: |
+      ```hsc
+      (>= 10 10)
+      ; returns: true
+      (>= 5 10)
+      ; returns: false
+      ```
+
+  - slug: le
+    type: |
+      ```hsc
+      (<= <number_1> <number_2>)
+      ```
+      Returns true if `number_1` is smaller than or equal `number_2`.
+    ex: |
+      ```hsc
+      (>= 4 4)
+      ; returns: true
+      (>= 8 4)
+      ; returns: false
+      ```
+
+  - slug: and
+    type: |
+      ```hsc
+      (and <boolean_1> <boolean_2> [... <boolean_n>])
+      ```
+      Returns true if all specified expressions are true. This function is
+      _short circuiting_, meaning it will not evaluate subsequent expressions
+      if a a prior one evaluates to `false`.
+    ex: |
+      ```hsc
+      (and (player_action_test_action) true)
+      ```
+
+  - slug: begin
+    type: |
+      ```hsc
+      (begin
+        <expression_1>
+        <expression_2>
+        [... <expression_n>]
+      )
+      ```
+      Returns the last expression in a sequence after evaluating the
+      sequence in order
+    ex: |
+      ```hsc
+      (begin
+        something
+        something_else
+        20
+      )
+      ; returns: 20
+      ```
+
+  - slug: begin_random
+    type: |
+      ```hsc
+      (begin_random
+        <expression_1>
+        <expression_2>
+        [... <expression_n>]
+      )
+      ```
+      Evaluates the sequence of expressions in random order and returns the
+      last value evaluated. This function can contain up to 32 expressions.
+    ex: |
+      ```hsc
+      (begin_random
+        something
+        something_else
+        20
+      )
+      ```
+
+  - slug: cond
+    type: |
+      ```hsc
+      (cond
+        (<boolean_1> <result_1>)
+        [(<boolean_2> <result_2>) [...]]
+      )
+      ```
+      Returns the value associated with the first true condition. Has no default value.
+    ex: |
+      ```hsc
+      (cond
+        (false_val 10)
+        (true_val 20)
+      )
+      ; returns: 20
+      ```
+
+  - slug: global
+    type: |
+      ```hsc
+      (global <type> <name> <inital value>)
+      ```
+      Makes a new global script variable.
+    ex: |
+      ```hsc
+      (global boolean bsl_sucks true)
+      ```
+
+  - slug: if
+    type: |
+      ```hsc
+      (if <boolean>
+        <expression>
+        [<else>]
+      )
+      ```
+      Returns one of two values based on the value of a condition.
+    ex: |
+      ```hsc
+      (if (bsl_sucks)
+        (print "Stop whining.")
+      )
+      ```
+
+  - slug: inspect
+    type: |
+      ```hsc
+      (inspect <expression>)
+      ```
+      Prints the value of an expression to the screen for debugging purposes.
+    ex: |
+      ```hsc
+      (inspect (+ 3 4))
+      ; outputs: 7
+      ```
+
+  - slug: min
+    type: |
+      ```hsc
+      (min <number_1> <number_2> [... <number_n>])
+      ```
+      Returns the minimum of all specified expressions.
+    ex: |
+      ```hsc
+      (min 60 5 10)
+      ; returns: 5
+      ```
+
+  - slug: max
+    type: |
+      ```hsc
+      (max <number_1> <number_2> [... <number_n>])
+      ```
+      Returns the maximum of all specified expressions.
+    ex: |
+      ```hsc
+      (max 60 5 10)
+      ; returns: 60
+      ```
+
+  - slug: not
+    type: |
+      ```hsc
+      (not <boolean>)
+      ```
+      Returns the opposite of the expression.
+    ex: |
+      ```hsc
+      (not bsl_sucks)
+      ; returns: false
+      ```
+
+  - slug: or
+    type: |
+      ```hsc
+      (or <boolean_1> <boolean_2> [... <boolean_n>])
+      ```
+      Returns true if any specified expressions are true. This function is
+      _short circuiting_, meaning it will not evaluate subsequent expressions
+      if a a prior one evaluates to `true`.
+    ex: |
+      ```hsc
+      (or (player_action_test_action) true)
+      ; returns: true
+      ```
+
+  - slug: script
+    type: |
+      ```hsc
+      (script <script type> [<return type>] <name>)
+      ```
+      Defines a new script.
+    ex: '[See above example][scripting#basics]'
+
+  - slug: set
+    type: |
+      ```hsc
+      (set <variable name> <value>)
+      ```
+      Sets the value of a defined global variable.
+    ex: |
+      ```hsc
+      (set bsl_sucks true)
+      ```
+
+  - slug: sleep
+    type: |
+      ```hsc
+      (sleep <short> [<script>])
+      ```
+      Pauses execution of this script (or, optionally, another script) for
+      the specified number of ticks (1 tick = 1/30 second)
+    ex: |
+      ```hsc
+      (sleep 30 more_weapons)
+      ```
+
+  - slug: sleep_until
+    type: |
+      ```hsc
+      (sleep_until <condition> [short_1] [short_2])
+      ```
+      Pauses execution of this script until `condition` is true.
+      By default, this checks once per second. If `short_1` is specified, it
+      checks every `short_1` ticks instead. By default, this will await the
+      condition indefinitely. `short_2` can be used to timeout after a
+      certain number of ticks, instead. After the timeout, the script will
+      continue on as if `condition` became true.
+    ex: |
+      ```hsc
+      (sleep_until false 5 600)
+      ```
+
+  - slug: wake
+    type: |
+      ```hsc
+      (wake <script name>)
+      ```
+      Wakes a sleeping or dormant script in the next update.
+    ex: |
+      ```hsc
+      (wake more_weapons)
+      ```
+
+  - slug: thread_sleep
+    type: |
+      ```hsc
+      (thread_sleep <long>)
+      ```
+      Sleeps the calling thread for the specified number of ms.
+    ex: |
+      ```hsc
+      (thread_sleep 20)
+      ; returns: sleeps for 20ms
+      ```
