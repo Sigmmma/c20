@@ -135,7 +135,7 @@ noList: true
 surveyResults: true
 ```
 
-### Markdown files
+## Markdown files
 In addition to having a `page.yml`, each supported language of a page (again, based on presence of localized titles) must have an accompanying [Markdown][] file for body content. The name of the file depends on the language:
 
 * English: `readme.md`
@@ -143,135 +143,195 @@ In addition to having a `page.yml`, each supported language of a page (again, ba
 
 The markdown files contain the main body content of the article and are where most content will be written. Follow the _writing practices_ when writing these files.
 
-Beyond the [basic markdown features][mdbasic], c20 adds a few special extensions:
+Beyond the [basic markdown features][mdbasic], c20 adds a few special extensions and sets configurations:
 
-* Inline HTML is supported for anything not covered through markdown or c20's features. Be careful not to accidentally write text which would be interpreted as HTML tags (e.g. when writing command line or HSC usage docs).
-* [Tables][tables], although for larger tables you will want to switch to raw inline HTML or our YAML table extension.
-* YAML tables allow you to display YAML data sets as a table. They have a number of options for applying styles and formatting to the table.
-  YAML tables can be added to a page like so:
-  ```.table
-  tableDefs: data-file.yml
-  tableName: MyTable
-  rowLinks: true
-  ```
-  The YAML content follows this format:
-  ```yaml
-  data-file.yml
-  ---
-  MyTable:
+### Code syntax highlighting
+Here's an example of adding syntax highlighting for [code fences][fences]:
+
+```md
+    ```python
+    scenario_tag = scnr_def.build(filepath=scenario_path)
+    ```
+```
+
+Beyond styling any of the languages [highlight.js](https://highlightjs.org/) supports, we also implement:
+
+* `hsc` for HaloScript as it would be written for scenarios
+* `inittxt` for Halo console commands embedded in an `init.txt`
+* `console`, `consoleh1a`, `consoleh2a`, `consoleh3` for Halo console commands entered into the in-game console
+* `vrml` for highlighting VRML 1.0 as used in Tool's WRL files
+
+### Tables
+We support [Markdown tables][tables], although for larger tables you will want to switch to our custom YAML table extension:
+
+```md
+    ```.table
+    dataSource: example.yml
+    dataPath: example/path
     columns:
-      - key: col1  # Key used to associate a row's cell with a column
-        href: true  # Use this entire column's content as the link text when rowLinks is true
-                    # If no columns are marked href, a dedicated href column will be automatically inserted for you.
-        name: # Plain text column name that gets displayed in the table header
-          en: Column 1 English Name
-          es: Column 1 Spanish Name
-        format: text  # Applies formatting to the columns.
-                      # Acceptable formats are: text, code, codeblock-x (where x is a syntax, like 'hsc')
-      - key: col2
-        name:
-          en: My cool column name in English
-          es: My cool column name in Spanish
-        format: text
-        style: 'width:20%;color:red;'  # Inline style-tag CSS applied to the whole column
-    slugKey: col1  # Use a column's content as a link slug when rowLinks is true
-    rows:
-      - col1: stuff
-        col2:
-          en: First row column 1's content in English
-          es: First row column 1's content in Spanish
-      - col1: '`thing` that needs quotes because it starts with a YAML special character'
-        col2:
+      - name: Column 1
+        key: subpath
+    ```
+```
+
+To use the YAML tables extension, create a code fence with the keyword language tag `.table`. Within the code fence you can provide YAML options to specify how the table data is loaded and displayed:
+
+```yaml
+# The `dataSource` is optional. If this file is provided, it will be loaded
+# and must contain all referenced data to build the table. If it is not
+# provided, the table will assume all data comes from the YAML tree under
+# `src/data/**/*.yml`.
+dataSource: example.yml
+# This option can be a single string or a list of strings, each called a "path".
+# A path describes how to descend into the data source to reach the iterable
+# row data. If multiple are provided, they will be merged into one row set.
+# If a path references an array it will be mapped as-is, but if it references an
+# object/map then each row will be mapped with a {key, value} structure.
+dataPath: hsc/h1/globals/external_globals
+# If `id` is provided, it will be used as the prefix for hash-linkable rows.
+# It defaults to the last element of the `dataPath`.
+id: external_globals
+# This option can either be `true` or an integer index. If provided, it enables
+# rows to have a clickable hash link so links can be shared that scroll to that
+# particular row. If `true`, a special column is added purely for this purpose.
+# Otherwise, this specifies a column index which will receive the hash link.
+linkCol: 0
+# If provided, this overrides the row key used to form the hash link
+# (together with the `id` option). It defaults to the key used by the indexed
+# column. This key can also contain "/" to descend into an object.
+linkSlugKey: slug
+# Optional. Adds a CSS class to the table that allows it to exist beside the
+# metabox, figures, or other right-floating page content rather than only below.
+noClear: true
+# Optional. Adds a CSS class that forces table cells with pre-formatted content
+# like code to wrap rather than stretching.
+wrapPre: true
+# If provided, the table rows will be sorted according to the value at this key.
+rowSortKey: info/en
+# Optional. Reverses the sort direction.
+rowSortReverse: true
+# If provided, the rows are filtered to just those containing {tags: [example]}.
+rowTagFilter: example
+# Describes the columns of the table and how to get their data from rows
+columns:
+    # The text shown in the column's head cell. This can be markdown too.
+  - name: Description
+    # The path within the iterable row for this column's value.
+    key: info/en
+    # Supported cell formats are: text, code, anchor, and codeblock. Defaults
+    # to text if not provided.
+    format: text
+    # Optional. Allows you to provide inline CSS for the <th>.
+    style: "width: 50%"
+  # and more columns...
+```
+
+### Alert boxes
+An alert box is a highlighted container which draws attention to some content, usually text. It can be added with the following syntax:
+
+```md
+    ```.alert info
+    Alert body here, in **markdown**.
+    ```
+```
+
+The possible alert types are `info`, `danger`, and `success`.
+
+### Data structure tables
+You can generate data structure documentation tables from a YAML description like so:
+
+```md
+    ```.struct
+    entry_type: Savegame
+    showOffsets: true
+    id: savegame
+    imports:
+      h1/files/savegame.bin:
+        - Savegame
+    ```
+```
+
+The type definitions can be provided inline or imported from `src/data/structs/*`. The YAML content within the code fence follows this format:
+```yaml
+# determines the "main" structure
+entry_type: Savegame
+# if provided, shows offsets in table
+showOffsets: true
+# root for HTML ID generation
+id: savegame
+# you can specify modules to load from `data/structs/...` which contain types
+imports:
+  <module>:
+    - <Type>
+# definitions for type names, optional
+typeDefs:
+  DifficultyOpts:
+    # type classes can be enum, bitfield, or struct
+    class: enum
+    # enum size in bytes, also used for bitfield
+    size: 1
+    # for enums specifically, each value's name
+    options:
+      - name: easy
+      - name: normal
+      - name: hard
+      - name: legendary
+
+  Savegame:
+    class: struct
+    # both struct and bitfield classes have fields
+    fields:
+      # an intrinsic resizable padding type
+      - type: pad
+        size: 0x1E2
+      # referencing the enum above
+      - name: last difficulty
+        type: DifficultyOpts
+      - type: pad
+        size: 5
+      # undefined types assumed intrinsic
+      - name: last played scenario
+        type: char
+        count: 32
+        # multi-language markdown comment support
+        comments:
           en: >
-            Super duper long string explaining stuff
-            that we need to break over multiple lines
-            and can contain `special chars`.
-          es: That but in Spanish
-        slug: thing  # Overrides table's slugKey for this row
-  ```
-* All headings automatically get anchor links/IDs for linking directory to that heading. When someone loads a page with that heading ID in the URL (e.g. `#my-heading`) the page will automatically scroll to that content. Do not make headings which are also links (like `# [Heading text](www.example.com)`), as it's unsupported.
-* You can use the `console`, `inittxt` and `hsc` language tags for [code fences][fences] to get syntax highlighting for various cases of Halo Script. We also support `vrml` (WRL files).
-* Alert boxes can be added with the following syntax:
-  ```md
-      ```.alert info
-      Alert body here, in **markdown**.
-      ```
-  ```
-  The possible alert types are `info`, `danger`, and `success`.
+            An ASCII-encoded [scenario][] tag path, null-terminated and 32
+            characters max. An example value is `levels\b30\b30` for The Silent
+            Cartographer.
+```
+
+### Figures and videos
 * Right-aligned figures are added using a special `.figure` tag in markdown images:
   ```md
       ![.figure Figure caption markdown](figure.jpg)
   ```
-* A markdown image which ends with `.mp4`, e.g. `![](video.mp4)`, will generate `<video>` tags with the correct source and poster image. The wiki's build automatically generates poster images from the first video frame.
+* A markdown image which ends with `.mp4`, e.g. `![](video.mp4)`, will generate `<video>` tags with the correct source and poster image. The wiki's build automatically generates poster images from the first video frame (requires `ffmpeg`).
 * Standard markdown images are automatically enclosed in an anchor tag which opens the image in another tab.
-* Generate data structure documentation tables from a YAML description like so:
-  ```md
-      ```.struct
-      <YAML CONTENT HERE>
-      ```
-  ```
 
-  The YAML content follows this format:
-  ```yml
-  # determines the "main" structure
-  entry_type: Savegame
-  # if provided, shows offsets in table
-  showOffsets: true
-  # root for HTML ID generation
-  id: savegame
-  # definitions for type names
-  typeDefs:
-    DifficultyOpts:
-      # type classes can be enum, bitfield, or struct
-      class: enum
-      # enum size in bytes, also used for bitfield
-      size: 1
-      # for enums specifically, each value's name
-      options:
-        - name: easy
-        - name: normal
-        - name: hard
-        - name: legendary
+### Smart links
+Smart links are perhaps the most important feature of c20's markdown. Since most of the links you'll be creating will be to other wiki pages, it would be both cumbersome and fragile to specify the full path of that page every time. We extend [standard reference-style links][reflink] with an automatic lookup mechanism when a reference is not defined.
 
-    Savegame:
-      class: struct
-      # both struct and bitfield classes have fields
-      fields:
-        # an intrinsic resizable padding type
-        - type: pad
-          size: 0x1E2
-        # referencing the enum above
-        - name: last difficulty
-          type: DifficultyOpts
-        - type: pad
-          size: 5
-        # undefined types assumed intrinsic
-        - name: last played scenario
-          type: char
-          count: 32
-          # multi-language markdown comment support
-          comments:
-            en: >
-              An ASCII-encoded [scenario][] tag path, null-terminated and 32
-              characters max. An example value is `levels\b30\b30` for The Silent
-              Cartographer.
-  ```
-* **Smart links** are perhaps the most important feature of c20's markdown. Since most of the links you'll be creating will be to other wiki pages, it would be both cumbersome and fragile to specify the full path of that page every time. We extend [standard reference-style links][reflink] with an automatic lookup mechanism when a reference is not defined.
+For example, if you just write a link like `[the scenario tag][scenario]`, c20 will automatically resolve the target URL as `/h1/tags/scenario` without you having to define it. You can also include a heading ID like `scenario#tag-field-bipeds`. The lookup is based on the page's _logical path_ (the name of its directories under `src/content/` rather than its localized URL). When multiple target pages match, c20 will choose the one _most related_ to the origin page in the content tree. When this is not possible, the ambiguity must be clarified by specifying more of the logical path in the link: `[Halo 2 tags][h2/tags]` or `[Halo 1 tags][h1/tags]`.
 
-  For example, if you just write a link like `[the scenario tag][scenario]`, c20 will automatically resolve the target URL as `/h1/tags/scenario` without you having to define it. You can also include a heading ID like `scenario#tag-field-bipeds`. The lookup is based on the page's _logical path_ (the name of its directories under `src/content/` rather than its localized URL). When multiple target pages match, c20 will choose the one _most related_ to the origin page in the content tree. When this is not possible, the ambiguity must be clarified by specifying more of the logical path in the link: `[Halo 2 tags][h2/tags]` or `[Halo 1 tags][h1/tags]`.
+### Other Markdown features
+* Inline HTML is supported for anything not covered through markdown or c20's features. Be careful not to accidentally write text which would be interpreted as HTML tags (e.g. when writing command line or HSC usage docs).
+* All headings automatically get anchor links/IDs for linking directory to that heading. When someone loads a page with that heading ID in the URL (e.g. `#my-heading`) the page will automatically scroll to that content. Do not make headings which are also links (like `# [Heading text](www.example.com)`), as it's unsupported.
 
-### Resources
+## Resources
 The directory for a page can include other files related to that topic, like images. Simply place images in the page's directory and they will be copied for each localized output URL. If an image is only applicable to a certain language because it contains text in that language, you can add a suffix like `screenshot_es.jpg` or `screenshot_en.jpg` and it will only be copied to certain language outputs. **Do not** place images in a subdirectory for organization; subdirectories should be used for child pages only.
 
 If you include `.dot` files, they will be automatically rendered to diagrams using [Graphviz](https://graphviz.org/).
 
 Any `src/content/../todo.md` file or `src/content/../todo` directory is git-ignored and can be used to mock out page structures and keep notes for later writing.
 
-### Data files
-Some wiki content is automatically generated based on YAML data files. These can be found in `src/data/` and include:
+## Data files
+Some wiki content is better described as structured data rather than markdown. These files can be found under `src/data/...` and are used by the various wiki features above to automatically generate content or serve as table data.
 
-* `workflows.yml`: support tool workflows seen in metaboxes
-* `h1/tags/*.yml`: tag structure and field descriptions; supports localization
+* `hsc`: contains definitions for script functions and globals by game
+* `structs`: contains type definitions for data structure tables
+* `tags`: lists tags and their purpose for each game
+* `workflows`: describes modding tools and resources and how they interact
 
 ## Writing practices
 ### Content organization
@@ -305,6 +365,7 @@ To maintain consistency across pages, try to use some of these heading names if 
 
 * Known issues
 * Limits
+* Related script functions and globals
 * Compatibility
 * Troubleshooting
 * Installation
