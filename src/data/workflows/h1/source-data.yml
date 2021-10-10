@@ -14,4 +14,4 @@ Source data files:
   authors:
     - You!
 h1/hsc:
-  page: scripting
+  page: h1/engine/scripting

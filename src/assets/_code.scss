@@ -3,6 +3,7 @@ pre, code {
   font-size: $font-size-code;
   background: var(--bg-inset);
   border-radius: $border-radius;
+  font-variant-ligatures: none; //stops Fira Code from turning != etc into ligatures
 }
 
 code {

@@ -6,7 +6,7 @@ The standalone build is still somewhat experimental and bugs should be expected.
 ```
 
 # Usage
-The UI works is largely functional so you can load built in maps using it or add your own maps to the UI but loading maps is easier to do using the [`game_start`][scripting#functions-map-name] command in the [console][developer-console]. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
+The UI works is largely functional so you can load built in maps using it or add your own maps to the UI but loading maps is easier to do using the [`game_start`][h1/engine/scripting#functions-map-name] command in the [console][developer-console]. Note: you need to use the **full scenario tag path** as this is a [tag build][build-types#tag]. For example:
 
 ```consoleh2a
 ; load tags\scenarios\solo\01b_spacestation\01b_spacestation.scenario:
