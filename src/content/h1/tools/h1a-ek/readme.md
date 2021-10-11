@@ -59,7 +59,7 @@ If you're coming from the legacy [HEK][hek] for Custom Edition or earlier versio
 The season 7 MCC update ([patch notes](https://support.halowaypoint.com/hc/en-us/articles/4402601893268-Halo-The-Master-Chief-Collection-MCC-Patch-Notes-June-2021)) is a significant milestone for the Halo 1 engine. It represents the [recombination of code](/h1/games.svg) and tags from Anniversary, Custom Edition, OG Xbox. Many aspects of [Halo 2's tools][H2V-EK] or limits from later games have even been backported. Mod support is likely to continue beyond season 7 in a phased approach. The tools can receive updates over time owing to their distribution via [Steam][].
 
 ## Exporters
-* [Blitzkrieg][hek/blitzkrieg] was not rereleased. Use [Jointed Model Blender Toolset][tools/jointed-model-blender-toolset] or the new Tool commands for converting [Autodesk FBX](https://en.wikipedia.org/wiki/FBX) to JMS and JMA files.
+* [Blitzkrieg][hek/blitzkrieg] was not rereleased. Use [Halo Asset Blender Development Toolset][halo-asset-blender-development-toolset] or the new Tool commands for converting [Autodesk FBX](https://en.wikipedia.org/wiki/FBX) to JMS and JMA files.
 
 ## Content
 * All the [tags][] used in retail MCC plus the ones used for the old HEK tutorial are included alongside the tools, meaning tag extraction with [Refinery][] or [invader-extract][] or prebuilt tag sets are no longer required if someone wants to mod the stock maps. Note that these tags are partially incompatible with H1CE due to their use [new flags][weapon#tag-field-triggers-flags-use-unit-adjust-projectile-ray-from-halo1], [shader_transparent_generic][], etc. The tags are intended for targeting H1A.

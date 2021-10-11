@@ -45,7 +45,7 @@ This is one of the most common warnings modders will encounter. To avoid this is
 
 In some cases having nearly coplanar faces is unavoidable. When faces are axis-aligned it is easy to make them coplanar, but when they are meant to be at an 45-degree or other angle you may encounter the nearly coplanar warning due to a loss of precision in the [JMS][] format, which is only capable of storing up to 6 digits to the right of the decimal points (e.g. `123.123456`). This will result in vertices on angled surfaces going slightly out of alignment. In this case check for phantom BSP around the area identified in the WRL file. If any is found, you may be able to clear it up with simple triangulation changes or other minor alterations in the vicinity.
 
-You should also avoid using the [Blender Toolset's][jointed-model-blender-toolset] custom or world unit export scales when working with collision models/BSPs. Stick to JMS scale to avoid amplifying floating point precision inherent to the editor and causing the same issue as JMS precision loss.
+You should also avoid using the [Halo Asset Blender Development Toolset.][halo-asset-blender-development-toolset] custom or world unit export scales when working with collision models/BSPs. Stick to JMS scale to avoid amplifying floating point precision inherent to the editor and causing the same issue as JMS precision loss.
 
 ![](nearly_coplanar.mp4)
 

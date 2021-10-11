@@ -24,7 +24,7 @@ The next section will add details to our previously created mesh in the [Level c
 ## Level creation - Exporting
 [Level creation - Exporting][exporting]
 
-This next section will cover how to export a properly made mesh from Blender using the [Blender JMS addon.][jointed-model-blender-toolset] Be sure to review the material in the [Level creation - Beginner][blender-level-creation-beginner] and [Level creation - Advanced][blender-level-creation-advanced] sections or have the example level file provided in [Blender preparation][blender-prep] at the ready.
+This next section will cover how to export a properly made mesh from Blender using the [Halo Asset Blender Development Toolset.][halo-asset-blender-development-toolset] Be sure to review the material in the [Level creation - Beginner][blender-level-creation-beginner] and [Level creation - Advanced][blender-level-creation-advanced] sections or have the example level file provided in [Blender preparation][blender-prep] at the ready.
 
 ## Level creation - Additional Info
 [Level creation - Additional Info][blender-level-creation-additional-info]

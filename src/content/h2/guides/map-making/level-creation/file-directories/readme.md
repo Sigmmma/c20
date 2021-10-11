@@ -20,7 +20,7 @@ has the compiled assets outputted to:
 When creating a level the scenario tag will take the name of the folder containing the sub directories and raw assets while the structure BSP tag will take the name of the ASS file itself. Compiled scenario tags can then reference other tags for use in the level.
 
 ```.alert danger
-The name of the level folder containing our sub directories MUST BE UNIQUE from any other level folder in the data/tags directory as will be explained later during the packaging section.
+The name of the level folder containing our sub directories MUST BE UNIQUE from any other level folder in the data/tags directory. Level folders of the same name will overwrite each other in the maps folder when packaging your level.
 ```
 
 Let's first start by creating our very own level directory in the data folder. We'll call this level tutorial for simplicities sake but you can call it whatever you would like:

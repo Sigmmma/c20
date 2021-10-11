@@ -4,7 +4,7 @@
 |[Blender 3D Software](https://www.blender.org/)    | The Blender application that we will be using to create our assets.
 
 # Setting up Blender
-[Installing the Blender addon][jointed-model-blender-toolset]
+[Installing the Blender addon][halo-asset-blender-development-toolset]
 
 See the above link for setting up the Blender addon for exporting Halo assets if you haven't installed the addon already. Beyond that there may be a few other settings you may want to adjust with before starting with any modeling.
 
@@ -39,7 +39,7 @@ A x100 range of `1 m` to `100 000 m` works well for large outdoor maps:
 ![](E.png "Clipping distances are set in the view settings pane.")
 
 ```.alert danger
-Do not try to avoid configuring clip distances by using _world units_ export scale in the [Blender JMS Toolset][jointed-model-blender-toolset]. The multiplication of vertex coordinates during export can amplify [floating point imprecisions](https://en.wikipedia.org/wiki/Floating-point_arithmetic#Accuracy_problems) and cause "nearly coplanar face" warnings from [Tool] and potentially [phantom BSP][scenario_structure_bsp#phantom-bsp] which cannot be resolved despite attempts to flatten surfaces in Blender.
+Do not try to avoid configuring clip distances by using _world units_ export scale in the [Halo Asset Blender Development Toolset][halo-asset-blender-development-toolset]. The multiplication of vertex coordinates during export can amplify [floating point imprecisions](https://en.wikipedia.org/wiki/Floating-point_arithmetic#Accuracy_problems) and cause "nearly coplanar face" warnings from [Tool] and potentially [phantom BSP][scenario_structure_bsp#phantom-bsp] which cannot be resolved despite attempts to flatten surfaces in Blender.
 ```
 
 ## Key configuration

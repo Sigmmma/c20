@@ -66,6 +66,13 @@ The FBX converter will not take your armature unless it uses the Halo node prefi
 
 ![](skeleton.jpg "A proper Blender Armature for FBX conversion.")
 
+# JMI
+
+This section will cover how to prepare an FBX file for JMI conversion in tool.
+
+## World Nodes
+You only have two requirements for instance geometry to work properly. You must link the object data and the object name should start with a `%` symbol.
+
 # JMA
 This section will cover how to prepare an FBX file for JMA conversion in tool.
 
@@ -79,13 +86,7 @@ The FBX converter will not take your armature unless it uses the Halo node prefi
 This section will cover how to prepare an FBX file for ASS conversion in tool.
 
 ## Instance support
-```sh
-# (OBJECT_SYMBOL)(OBJECT_NAME)_atr_inst_(OBJECT_TYPE)
-$box_atr_ptype_box
-$soccer_ball_atr_ptype_sphere
-$canister_atr_ptype_capsule
-$teapot_atr_ptype_mesh
-```
+You only have two requirements for instance geometry to work properly. You must link the object data and the object name should start with a `%` symbol.
 
 # Blender FBX export options
 If you're exporting an FBX from Blender then there are a few options you should set before exporting to ensure you're getting what you're expecting. The options to set are as follows:

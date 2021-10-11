@@ -1,5 +1,5 @@
 ```.alert
-This guide assumes you are already familiar with the [basics of Blender map-making][blender-level-creation-beginner]. You may also need the provided files from that guide, such as the Spartan model.
+This guide assumes you are already familiar with the [basics of Blender map-making][blender-level-creation-beginner]. You may also need the provided files from that guide.
 ```
 
 # Modifying the level
@@ -75,7 +75,7 @@ From here we will change a few settings. You can choose to ignore these suggesti
 2. Set the axis that your sculpt goes in. You can lock all changes you make to a particular axis. In this case we will go with Z since we are making some hills.
 ![](1P.jpg)
 3. You can set the direction of your sculpt to be positive or negative. In terms of directions this would mean either up or down respectively if you were doing changes locked to the Z axis.
-![](1Q.jpg)
+![](1Q.png)
 4. Change the radius of your brush so that you affect a larger area. The default is 50 units so we will change it to around 100 units.
 ![](1R.png)
 
@@ -228,31 +228,19 @@ Once that's done you should create a new material named "example_tutorial_stream
 This section of the guide will be covering how to create a simple structure from a mesh. This object will eventually be mirrored to have a base on the opposite end. We will cover this in future sections along with application of materials and UV editing for our structure.
 
 ## Adding a reference model
-When creating a level, particularly indoor environments and\or buildings or structures, it is always helpful to have a scale reference. The dimensions of various game elements of Halo, including the player dimensions, are available for reference in the Halo Player Statistics.
-
-Another technique is to use a reference model. The file list in this guide has links to a reference model for the player (the Master Chief) and a vehicle (the Warthog) for use in Blender. The following procedures will demonstrate how to add a reference model to our scene for use as scale reference for the creation of the base structure geometry. Here's how to do this.
+When creating a level, particularly indoor environments and\or buildings or structures, it is always helpful to have a scale reference. The Blender toolset has a UI that generates models for scale reference when used. Here's how to do this.
 
 ![](2P.jpg)
 
-1. Find the "File" dropdown in the top left.
-2. Click on the option labeled "Append"
-3. A file browser dialog window should pop up. Navigate to some blend files that contain assets you would like to add to the scene.
+1. Bring up the [sidebar](https://youtu.be/H64e1RDZKuA) with <kbd>N</kbd> and set it to the Halo tools tab.
+2. Find the box named `Scale Model Helper` You can select what game to generate a model from along with whether the model is a character or a vehicle. 
+3. From there just select the model and click `Generate Scale Model`
 
-Once you've found it then go ahead and click on the asset you've chosen. This will reveal the contents of the file to you.
-
-1. Click on "Object"
-![](2Q.png)
-2. Select the object you want from the blend file's object list. In our case will we be picking the Cyborg.
-![](2R.png)
-3. With the object highlighted you can now press the button labeled "Append" to add it to your scene.
-
-The Master Chief reference model will now appear in the level and can be moved and rotated as necessary. For this tutorial, the reference model will be moved to the southern dirt patch of the level where the base structure will be constructed.
+Your selected reference model will now appear in the level and can be moved and rotated as necessary. For this tutorial, the generated reference model will be cyborg and will be moved to the southern dirt patch of the level where the base structure will be constructed.
 
 Note that the model may appear below the terrain but will be selected, move the model up to make it visible.
 
 The reference model will NEVER be linked to the reference frame and only exists as a reference tool. Since the model is not linked to the frame, it will never be part of the level and will never be exported. Therefore, the model can be kept in the .blend file and does not have to be deleted each time the level is exported to a .JMS.
-
-The second image further explains the above procedures.
 
 ## Creation of the base structure geometry
 
@@ -564,7 +552,7 @@ Now that the blue base structure has been completed, it can be copied and used t
 1. Start by selecting your blue base structure object and adding a mirror modifier to the object.
 2. Set the mirror modifier to these settings. This will create a mirror of the structure of the Y axis. Once it's set, apply the modifier to make it a permanent addition.
 
-![](4S.jpg)
+![](4S.png)
 
 Select all of the faces of the newly created structure. You can quickly do this by hovering your mouse over sections of the structure and pressing the <kbd>L</kbd> hotkey to select linked geometry. Once that is done hit the <kbd>P</kbd> key and then select "Selection" or press <kbd>S</kbd>. Once you've finished separating it you can rename the object to "red base".
 
