@@ -103,5 +103,4 @@ You can quickly spawn a variety of objects for testing:
 # Known issues
 * Sound doesn't work.
 * Not all maps can be loaded using the UI, see [#Usage][h3-standalone-build#usage] for a workaround.
-* Particles and the like look different from the cache build.
-* Singleplayer level "Cortana" does not function due to issues with soft ceiling post processing.
+* Levels that make use of the script function `soft_ceiling_enable` will cause scripts to fail to compile due to post processing not done by standalone. You can fix this by setting the script function `scenario_load_all_tags` to true. The only level known to be affected by this is `110_hc` otherwise known as the singleplayer level named `Cortana` 

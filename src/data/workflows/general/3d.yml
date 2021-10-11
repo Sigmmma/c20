@@ -54,8 +54,8 @@ AMF:
   url: https://en.wikipedia.org/wiki/Additive_manufacturing_file_format
 
 # addons
-Jointed Model Blender Toolset:
-  page: jointed-model-blender-toolset
+Halo Asset Blender Development Toolset:
+  page: halo-asset-blender-development-toolset
   authors:
     - General_101
   workflows:

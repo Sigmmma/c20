@@ -31,7 +31,7 @@ In 2014, Halo 3 was re-released for Xbox One as part of the Halo: The Master Chi
 There are several tools and mods for the base game or external programs that users can grab to enhance their experience. Examples include:
 
 * [Halo 3 Editing Kit][h3-ek] - The official editing suite released for the MCC version of Halo 3 largely based on internal tools developed by Bungie and later used by 343 Industries and [Saber Interactive][saber]. Some changes were made to make the tools more user friendly and stable, as well as to support importing content from modern 3D modeling software.
-* [Jointed Model Blender Toolset][jointed-model-blender-toolset] - A collection of tools for Blender that can be used to export the intermediate files used by the Halo 3 Editing Kit. 
+* [Halo Asset Blender Development Toolset][halo-asset-blender-development-toolset] - A collection of tools for Blender that can be used to export the intermediate files used by the Halo 3 Editing Kit. 
 * [Assembly][assembly] - A cache editing tool for various titles in the Halo series. Users can use this tool to make permanent edits to cache files and poke changes in real time. While not traditional workflow for map creation, it is a powerful tool that can be used to create interesting experiences. 
 * TagTool - A cache editing tool designed to allow *port* tag data between different versions and builds of the Blam engine, as well as importing brand new content.
 

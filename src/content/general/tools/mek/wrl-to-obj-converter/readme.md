@@ -1,7 +1,7 @@
 The **WRL to OBJ converter** is a [command-line][] Python script in the [MEK][] used to convert [WRL][] debug geometry, which use the very old VRML 1.0 format, into the [obj][] format widely supported in 3D software.
 
 ```.alert
-It is no longer necessary to use this script to import error geometry into [Blender][]. The code has been integrated into the [Blender JMS Toolset][jointed-model-blender-toolset] as an easy import option.
+It is no longer necessary to use this script to import error geometry into [Blender][]. The code has been integrated into the [Halo Asset Blender Development Toolset][halo-asset-blender-development-toolset] as an easy import option.
 ```
 
 As a caveat, this script does not retain the WRL's colour coding (e.g. red for open edges).

@@ -8,7 +8,7 @@ The location of the generated WRL file depends on the Tool version:
 * [H1A Tool][h1a-tool] saves the file adjacent to the source JMS file, e.g. `data\levels\example\models\example_errors.wrl`
 
 # Compatibility
-Some versions of [3ds Max][3dsmax] (at least 2010) require the 32-bit version in order to import WRL files. [Blender][] is not able to import Halo's WRL files natively since it supports VRML _2.0_, not _1.0_, but the [Blender JMS Toolset][jointed-model-blender-toolset] addon does.
+Some versions of [3ds Max][3dsmax] (at least 2010) require the 32-bit version in order to import WRL files. [Blender][] is not able to import Halo's WRL files natively since it supports VRML _2.0_, not _1.0_, but the [Halo Asset Blender Development Toolset][halo-asset-blender-development-toolset] addon does.
 
 # File format description
 The WRL ("world") file format is not Halo-specific, but rather a 1994 industry standard called [VRML 1.0][vrml]. They consist of a list of `Separator` nodes, one for each error found by Tool. The file always begins with the comment `#VRML 1.0 ascii`, but the formatting below has been changed for readability. Any program which desires to parse this file format should consider whitespace to be flexible.

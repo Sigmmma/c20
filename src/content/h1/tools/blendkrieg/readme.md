@@ -3,7 +3,7 @@
 ```.alert danger
 Blendkrieg is an incomplete project and should not be expected to produce export-ready models or correctly import all gbxmodel data. If you are experiencing issues setting it up or with imported models you can instead try:
 
-* Ripping JMS from maps using [Reclaimer][], then importing the JMS using [Jointed Model Blender Toolset][jointed-model-blender-toolset].
+* Ripping JMS from maps using [Reclaimer][], then importing the JMS using [Halo Asset Blender Development Toolset][halo-asset-blender-development-toolset].
 * Using [Mozzarilla][] to convert a gbxmodel tag to JMS, then importing with the above toolset.
 ```
 
