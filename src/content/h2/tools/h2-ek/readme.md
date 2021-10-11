@@ -23,7 +23,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 2: Anniversary on Steam][st
 * FBX support was ported over from [H1A tools][h1a-ek], the legacy export tools were not included.
 * The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
 * A standalone build similar in function to H1A standalone.
-* All tools are still 32-bit but they are now large address aware (LAA). This allows them to use up to 4 GiB of virtual memory (exact limit depends on your system) instead of 2, this along fixed memory leaks should help avoid out of memory issues.
+* All tools are still 32-bit but they are now large address aware (LAA). This allows them to use up to 4 GiB of virtual memory (exact limit depends on your system) instead of 2, this along with fixed memory leaks should help avoid out of memory issues.
 * The tags, data, and maps directories can now be set when running all tools. See [custom content paths][using-custom-content-paths] for more info. This makes it easier to work with different tag sets.
 * Better overall stability.
 * Pathfinding can now be generated.
