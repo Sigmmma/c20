@@ -8,14 +8,6 @@
     "RoutingRules": [
         {
             "Condition": {
-                "KeyPrefixEquals": "tools/jointed-model-blender-toolset"
-            },
-            "Redirect" : {
-                "ReplaceKeyPrefixWith": "general/tools/halo-asset-blender-development-toolset"
-            }
-        },
-        {
-            "Condition": {
                 "KeyPrefixEquals": "tools"
             },
             "Redirect": {
@@ -60,6 +52,14 @@
             },
             "Redirect": {
                 "ReplaceKeyPrefixWith": "general/source-data/fbx"
+            }
+        },
+        {
+            "Condition": {
+                "KeyPrefixEquals": "general/tools/jointed-model-blender-toolset"
+            },
+            "Redirect" : {
+                "ReplaceKeyPrefixWith": "general/tools/halo-asset-blender-development-toolset"
             }
         }
     ]
