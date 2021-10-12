@@ -37,6 +37,12 @@ a abbr:hover {
   a:hover img, a:hover video {
     filter: brightness(110%);
   }
+
+  .inline-figure {
+    display: inline-block;
+    float: none;
+    width: 60%;
+  }
 }
 
 a {

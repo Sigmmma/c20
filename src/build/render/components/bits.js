@@ -118,8 +118,8 @@ const alert = (type, body) => html`
 
 const renderHex = (num) => html`<code title="${num}">0x${num.toString(16).toUpperCase()}</code>`;
 
-const figure = (href, caption) => html`
-  <figure>
+const figure = (href, caption, inline) => html`
+  <figure ${inline && "class=\"inline-figure\""}>
     <a href="${href}">
       <img src="${href}" alt=""/>
     </a>

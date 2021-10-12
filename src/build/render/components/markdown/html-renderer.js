@@ -81,6 +81,9 @@ module.exports = function(ctx) {
     if (text.startsWith(".figure ")) {
       text = text.substring(".figure ".length);
       return figure(href, renderMarkdown(ctx, text));
+    } else if (text.startsWith(".inline-figure ")) {
+      text = text.substring(".inline-figure ".length);
+      return figure(href, renderMarkdown(ctx, text), true);
     }
 
     const altAttr = `alt="${text || ""}"`;
