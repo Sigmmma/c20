@@ -24,18 +24,6 @@ New to modding? Check out our [H1 introduction guide][intro-to-h1-modding].
 
 <div class="card" style="background-image: url(/h1/guides/level-creation/blender-level-creation-advanced/1X.jpg)">
 
-**Featured guide: [Creating a custom Halo 1 map][h1/guides/map-making/level-creation]**
-
-</div>
-
-<div class="card" style="background-image: url(/h1/guides/level-creation/blender-level-creation-advanced/1X.jpg)">
-
-**Featured guide: [Creating a custom Halo 2 map][h2/guides/map-making/level-creation]**
-
-</div>
-
-<div class="card" style="background-image: url(/h1/guides/level-creation/blender-level-creation-advanced/1X.jpg)">
-
-**Featured guide: [Creating a custom Halo 3 map][h3/guides/map-making/level-creation]**
+**Featured guides: [Creating a custom Halo 1 map][h1/guides/map-making/level-creation], [Creating a custom Halo 2 map][h2/guides/map-making/level-creation], and [Creating a custom Halo 3 map][h3/guides/map-making/level-creation]**
 
 </div>
