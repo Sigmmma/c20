@@ -41,6 +41,32 @@ Automatically generated hints can be viewed using `ai_render_hints 1`.
 
 Used by some crates use hints. These aren't configured through the scenario/BSP like the other hints are work somewhat differently. They are defined by the object. Like other hints they help the AI navigate the environment by allowing them to climb onto the crate, etc. You can render the "active" object hints using `ai_render_object_hints 1`. If you want to see all the hints the engine can use then use `ai_render_object_hints_all 1`.
 
+Here is a listing of the types of hints AI can use..
+
+```
+hint_bunker
+hint_corner_left
+hint_corner_right
+hint_vault_crouch
+hint_mount_crouch
+hint_hoist_crouch
+hint_hoist_stand
+```
+
+* Bunker - Hides behind object for cover and shoots over.
+* Corner - Hides at a corner of the object for cover.
+* Vault - Jumps over the object.When debugging hints these will be marked with the letter V colored green.
+* Mount - Jumps on top of the object. When debugging hints these will be marked with the letter M colored orange.
+* Hoist - Climbs on object. When debugging hints these will be marked with the letter H colored in blue.
+
+Each hint will also have an assigned height for the action. Bunker and corner hints are excluded from this:
+
+* Crouch - Use crouch animations for a medium sized object. Applies to vault, mount, and hoist.
+* Stand - Use standing animations for a large sized object. Applies to hoist only.
+
+You can find the set world units for crouch and stand in the `AI Globals` tag block in the `globals` tag
+
+
 # Debugging Tips
 Pathfinding edges can be rendered using `ai_render_sectors 1`, this should give you an idea of how complex the pathfinding mesh is but doesn't actually tell you that much. You can render more information about which sector is where using `ai_render_sector_bsps 1`.
 
