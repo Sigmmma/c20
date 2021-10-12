@@ -53,6 +53,14 @@
             "Redirect": {
                 "ReplaceKeyPrefixWith": "general/source-data/fbx"
             }
+        },
+        {
+            "Condition": {
+                "KeyPrefixEquals": "tools/jointed-model-blender-toolset"
+            },
+            "Redirect" : {
+                "ReplaceKeyPrefixWith": "general/tools/halo-asset-blender-development-toolset"
+            }
         }
     ]
 }
