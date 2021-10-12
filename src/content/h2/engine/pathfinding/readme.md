@@ -42,7 +42,7 @@ Automatically generated hints can be viewed using `ai_render_hints 1`.
 Used by some crates use hints. These aren't configured through the scenario/BSP like the other hints are work somewhat differently. They are defined by the object. Like other hints they help the AI navigate the environment by allowing them to climb onto the crate, etc. You can render the "active" object hints using `ai_render_object_hints 1`. If you want to see all the hints the engine can use then use `ai_render_object_hints_all 1`.
 
 # Debugging Tips
-Pathfinding edges can be rendered using `ai_render_sectors 1`, you are meant to be able to render sectors and some information about then using `ai_render_sector_bsps 1` but this is currently crashes with an assertion failure if you point your camera at a surface that doesn't have a sector (e.g. a vertical wall) - someone forgot to check a surface has a pathing sector before trying to get some sector info. If you know how to bypass the assertion it should work fine.
+Pathfinding edges can be rendered using `ai_render_sectors 1`, this should give you an idea of how complex the pathfinding mesh is but doesn't actually tell you that much. You can render more information about which sector is where using `ai_render_sector_bsps 1`.
 
 ![.inline-figure Figure 7. `ai_render_sectors 1` and `ai_render_sector_bsps 1` used on `05b_deltatowers`. The coloured dots represent the sector (colour is generated from the sector ID) and the colour ball in the centre represent the section with is getting it's information printed in the top left. if the surface the ball is on has no sector it will be red, otherwise it will be green for device machines and a random colour based on the sector ID for all other sectors. ](ai_sectors.jpg)
 
