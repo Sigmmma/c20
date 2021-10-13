@@ -87,6 +87,8 @@ h1_sapien_workflows_base:
   inherit:
     - h1_lightmapper_base
   workflows:
+    - to: h1/scenario
+      from: h1/hsc
     - edit:
         - h1/scenario_structure_bsp
         - h1/scenario
