@@ -1,13 +1,6 @@
-**Halo Script** (HSC), also known as **Blam Scripting Language** (BSL), is a
-scripting language that map designers can use to have greater control over how
-their map works. It is primarily used in controlling the mission structure of
-single player maps, but can also be used to achieve certain effects in
-multiplayer, such as synchronizing destructable vehicles.
+**Halo Script** is a scripting language that H1 map designers can use to have greater control over how their map works. It is primarily used in controlling the mission structure of single player maps, but can also be used to achieve certain effects in multiplayer, such as [synchronizing workarounds][sync-workarounds].
 
-Halo Script is based on [Lisp][].
 Scripts are compiled into the [scenario][] of a [map][] using [Sapien][].
-Scripts can be extracted from a scenario using [Refinery][].
-
 
 # Compiling a script into a scenario
 Sapien searches for scripts in the data version of your scenario's path. For
@@ -20,164 +13,6 @@ If there are any compilation errors, Sapien will display them in the Game View
 screen.
 
 
-# HSC reference
-[Additional important script engine info below][scripting#gotchas-and-limits]
-
-## Basics
-Scripts have the following structure:
-```hsc
-(script <script type> <return type (static scripts only)> <script name>
-  <code>
-)
-```
-
-Example:
-```hsc
-(script startup say_this_map_r0x
-  (sv_say "This map r0xx0rz!")
-)
-```
-
-Global variables are defined with the following syntax:
-```hsc
-(global <global type> <global name> <value(s)>)
-```
-
-Example:
-```hsc
-(global boolean kornman_is_leet true)
-```
-
-You can include comments in your script files:
-
-```hsc
-; this is a comment
-(global boolean completed_objective_a false)
-
-;*
-this is a block comment
-with multiple lines
-*;
-(global boolean completed_objective_b false)
-```
-
-## Script types
-```.table
-dataPath: hsc/h1/script_types/script_types
-linkCol: 0
-columns:
-  - key: type
-    name: Type
-    format: code
-  - key: info/en
-    name: Comments
-    format: text
-  - key: ex
-    style: "width:50%"
-    name: Example
-    format: codeblock-hsc
-```
-
-## Value types
-```.table
-dataPath: hsc/h1/value_types/value_types
-linkCol: 0
-columns:
-  - key: type
-    name: Type
-    format: code
-  - key: info/en
-    name: Details
-    format: text
-  - key: ex
-    name: Example
-    format: text
-```
-
-### Value type casting
-
-HaloScript supports converting data from one type to another, this is called [type casting][cast] or just casting. Type casting in HaloScript is done automatically when needed but it's good to keep it in mind as not all types can be converted. Passthrough can be converted to any type and void can be converted to from any type. They are however not the inverse of each other as void destroys the data during conversion.
-
-The rules for object name types are equivalent to the matching object types. Object names can be converted to the equivalent object.
-
-| Target Type     | Source type(s)            |
-| --------------- | ----------------          |
-| boolean         | real, long, short, string |
-| real            | any enum, short, long     |
-| long            | short, real               |
-| short           | long, real                |
-| object_list     | any object or object_name |
-| void            | any type                  |
-| any type        | passthrough               |
-| object          | an other object type      |
-| unit            | vehicle                   |
-
-## Operators and keywords
-```.table
-dataPath: hsc/h1/ops_keywords/operators_and_keywords
-linkCol: true
-linkSlugKey: slug
-columns:
-  - key: type
-    name: Expression
-    format: text
-  - key: ex
-    name: Example
-    format: text
-```
-
-
-## Functions
-```.table
-dataPath: hsc/h1/functions/functions
-linkCol: true
-linkSlugKey: slug
-rowSortKey: slug
-columns:
-  - key: info/en
-    name: Function
-    format: text
-```
-
-
-## Mechanics
-
-### Script threads
-HSC has the notion of threads, i.e. multiple scripts running at the same time
-(as opposed to waiting until the previous script is done to run). This is not
-*actual* multithreading (the game still runs on a single CPU core). Continuous,
-dormant, and startup scripts all run in their own threads. Static scripts do not
-run in their own thread, by virtue of being called by other scripts. For
-example, a `sleep` within a static script will put the thread of the calling
-script to sleep. Multiple threads can call the same static script at the same
-time with no issue. Every thread has its own [stack][stack].
-
-### Implicit returns
-Several control structures implicitly return the value of their final expression
-to the caller. This applies to `if`, `else`, `begin`, `begin_random`, and `cond`
-blocks, as well as `static` scripts.
-
-```hsc
-; The second condition is true, so 6 will be returned from
-; the cond block, since it is the final expression.
-(cond
-  (
-    (= 0 1)
-    (print "I will never run")
-    5
-  )
-  (
-    (= 1 1)
-    (print "I will always run!")
-    6
-  )
-  (
-    (= 2 2)
-    (print "I would run if the code above me hadn't.")
-    7
-  )
-)
-```
 
 # Gotchas and limits
 ## Using begin_random in startup scripts
@@ -243,13 +78,7 @@ excluded files.
 
 ## Stack space is limited
 If you've never heard of a stack in the context of computer programming before,
-[skim through this][stack].
-
-Halo allocates a certain amount of memory for each [scripting
-thread][scripting#script-threads] in a scenario, called the "stack". Stack
-memory is used to hold results of invoking functions, parameters for script
-functions, and so on. Notably, nesting function calls will consume additional
-stack memory.
+[skim through this][stack]. Halo allocates a certain amount of memory for each [scripting thread][scripting#script-threads] in a scenario, called the "stack". Stack memory is used to hold results of invoking functions, parameters for script functions, and so on. Notably, nesting function calls will consume additional stack memory.
 
 ```hsc
 ; Nested statements are statements like these, where many
@@ -267,52 +96,27 @@ stack memory.
 )
 ```
 
-It is very, very easy to exceed the limits of this memory if you have enough
-nested statements. The maximum number of nested statements is somewhere between
-10 and 16 levels deep, depending on if you're invoking static scripts, if you're
-invoking methods with parameters, and other things.
+It is very, very easy to exceed the limits of this memory if you have enough nested statements. The maximum number of nested statements is somewhere between 10 and 16 levels deep, depending on if you're invoking static scripts, if you're invoking methods with parameters, and other things.
 
 ```.alert danger
-**WARNING: The game *DOES NOT* guard against exceeding stack memory in release builds!!**
-
-If you exceed a script's stack memory, it will
-[overflow](http://en.wikipedia.org/wiki/Buffer_overflow) into other scripts'
-stack memory!
+**WARNING: The game *DOES NOT* guard against exceeding stack memory in release builds!!** If you exceed a script's stack memory, it will [overflow](http://en.wikipedia.org/wiki/Buffer_overflow) into other scripts' stack memory!
 ```
 
-This means that one script can ***COMPLETELY*** break another script if it
-nests too deeply. If another script's memory is clobbered, it can end up doing
-arbitrary things. It might wake up when it's supposed to be asleep. It might
-switch to a new BSP for no reason. It might crash the game. It might make
-objects flicker randomly.
+This means that one script can ***COMPLETELY*** break another script if it nests too deeply. If another script's memory is clobbered, it can end up doing arbitrary things. It might wake up when it's supposed to be asleep. It might switch to a new BSP for no reason. It might crash the game. It might make objects flicker randomly.
 
-```.alert danger
-There is not currently a reliable way to exactly tell when stack memory has been
-exceeded in [release][build-types] builds. `play` and lower optimization levels will crash with `a problem occurred while executing the script <script name>: corrupted stack. (valid_thread(thread))`.
-You can use the [H1A standalone build][h1a-standalone-build] or Sapien to detect overflows.
-```
+There is not currently a reliable way to exactly tell when stack memory has been exceeded in [release][build-types] builds, but `play` and lower optimization levels will crash with `a problem occurred while executing the script <script name>: corrupted stack. (valid_thread(thread))`. You can use the [H1A standalone build][h1a-standalone-build] or Sapien to detect overflows.
 
 ## Console scripts
-Things manually entered into the console ingame also share script space with the
-scenario's baked in scripts. In rare circumstances (e.g. you're just on the cusp
-of using too much memory), a console script's memory can overflow into a
-scenario script's memory, causing the above mentioned issues.
+Things manually entered into the console ingame also share script space with the scenario's baked in scripts. In rare circumstances (e.g. you're just on the cusp of using too much memory), a console script's memory can overflow into a scenario script's memory, causing the above mentioned issues.
 
 ## When to use short vs long
-There are two integer variable types: `short` and `long`. Both hold whole
-numbers, but `long` variables can hold much larger numbers than `short`
-variables. It's worth noting both use the same amount of memory,
-so you should decide the type you use based on what range of values makes sense or the values the functions you call accept (avoids a [cast][scripting#value-type-casting]).
+There are two integer variable types: `short` and `long`. Both hold whole numbers, but `long` variables can hold much larger numbers than `short` variables. It's worth noting both use the same amount of memory, so you should decide the type you use based on what range of values makes sense or the values the functions you call accept (avoids a [cast][scripting#value-type-casting]).
 
 If you need to optimize memory usage you can use the bitwise functions to implement a [bitfield][].
 
 
 # Extensions
-The [Halo Script Preprocessor][hsc-pre] is effectively a super-set of Halo
-Script that adds support for C-like `#define` pre-processor macros. The program
-takes a file with macros in it, then spits out a standard HSC file. This means
-this program is *purely* for making writing HSC easier. Scripts using the Halo
-Script Preprocessor are still subject to all of the above limits.
+The [Halo Script Preprocessor][hsc-pre] is effectively a super-set of Halo Script that adds support for C-like `#define` pre-processor macros. The program takes a file with macros in it, then spits out a standard HSC file. This means this program is *purely* for making writing HSC easier. Scripts using the Halo Script Preprocessor are still subject to all of the above limits.
 
 For example, the following block:
 ```hsc
@@ -327,6 +131,81 @@ For example, the following block:
 (if (= 6 (ai_command_list_status my_unit))
   (sleep 30)
 )
+```
+
+# HSC reference
+To learn more about HSC's general syntax and execution model, see our [cross-game scripting page][general/engine/scripting]. There is also [additional important script engine info below][scripting#gotchas-and-limits].
+
+## Script types
+```.table
+dataPath: hsc/h1/script_types/script_types
+linkCol: 0
+columns:
+  - key: type
+    name: Type
+    format: code
+  - key: info/en
+    name: Comments
+    format: text
+  - key: ex
+    style: "width:50%"
+    name: Example
+    format: codeblock-hsc
+```
+
+## Value types
+```.table
+dataPath: hsc/h1/value_types/value_types
+linkCol: 0
+columns:
+  - key: type
+    name: Type
+    format: code
+  - key: info/en
+    name: Details
+    format: text
+  - key: ex
+    name: Example
+    format: text
+```
+
+## Operators and keywords
+```.table
+dataPath: hsc/h1/ops_keywords/operators_and_keywords
+linkCol: true
+linkSlugKey: slug
+columns:
+  - key: type
+    name: Expression
+    format: text
+  - key: ex
+    name: Example
+    format: text
+```
+
+## Functions
+```.table
+dataPath: hsc/h1/functions/functions
+linkCol: true
+linkSlugKey: slug
+rowSortKey: slug
+columns:
+  - key: info/en
+    name: Function
+    format: text
+```
+
+## External globals
+
+```.table
+dataPath: hsc/h1/globals/external_globals
+linkCol: true
+linkSlugKey: slug
+rowSortKey: slug
+columns:
+  - key: info/en
+    name: Global
+    format: text
 ```
 
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)
