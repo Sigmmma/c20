@@ -11,15 +11,15 @@
 
 Halo 2 uses Bungie's proprietary [Blam!][engine] engine, which also formed the basis of later games in the series.
 
-## Xbox (Bungie, 2004)
+# Xbox (Bungie, 2004)
 Sometimes called **h2x**, this is the classic first release of Halo 2 for the original Xbox. Multiplayer had support for LAN multiplayer along with online play through Xbox Live.
 
-## Halo 2 Vista (Hired Gun, 2007)
+# Halo 2 Vista (Hired Gun, 2007)
 This edition is the classic port of Halo 2 to Windows PC by developer [Hired Gun][hired-gun] and publisher [Microsoft Game Studios][microsoft]. While there still are some port discrepancies when compared to the original source, it is no where near as bad as the Halo 1 PC port. Official servers for the game went down in July 2015. Any users looking to play Halo 2 Vista online will require community solutions.
 
 The game received a total of three patches for the base game, the dedicated server binary, and the editing kit. The latest version is `1.00.00.11122`
 
-### Modding
+## Modding
 There are several tools and mods for the base game or external programs that users can grab to enhance their experience. Examples include:
 
 * [Halo 2 Vista Editing Kit][h2v-ek] - The official editing suite released for Halo 2 Vista. Largely worked on by [Pi Studios][pi-studios]. This editing kit only officially supports creating a few tag types.
@@ -29,12 +29,12 @@ There are several tools and mods for the base game or external programs that use
 
 Like Halo 1, Halo 2's [tags][] play a large role in modding.
 
-## MCC (PC and Xbox One, 343 Industries, 2014-2021)
+# MCC (PC and Xbox One, 343 Industries, 2014-2021)
 Halo: The Master Chief collection (MCC) is actively maintained by [343 Industries][343i] for both PC and Xbox One. It brings the Halo series under a single [Game as a Service][gaas], including unified matchmaking and progression experiences. The PC port uses [Unreal Engine][unreal] as a menu and input layer over the respective engines of each included Halo game.
 
 In 2014, Halo 2 Anniversary was released for Xbox One as part of the Halo: The Master Chief Collection. Often called **H2A** by the community. It was developed by [343 Industries][343i] and [Saber Interactive][saber] as a remaster of the original Halo 2, and is derived from the Halo 2 Vista port. This edition contains the secondary _Saber3D_ engine for its remastered graphics mode.
 
-### Modding
+## Modding
 There are several tools and mods for the base game or external programs that users can grab to enhance their experience. Examples include:
 
 * [Halo 2 Editing Kit][h2-ek] - The official editing suite released for Halo 2 Anniversary/MCC.
@@ -43,7 +43,7 @@ There are several tools and mods for the base game or external programs that use
 
 Like Halo 1, Halo 2's [tags][] play a large role in modding.
 
-### Hardcoded tag patches
+## Hardcoded tag patches
 There are a number of gameplay-balancing tag patches made at runtime for [multiplayer scenarios][scenario]. These patches only happen if the game executable uses cache files to load assets. Programs like [Sapien][H2-Sapien] and [Standalone][h2-standalone-build] will not display any of the mentioned changes.
 
 | Tag type          | Tag path                                                                                       | Changes

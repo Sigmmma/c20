@@ -28,7 +28,11 @@ script_types:
 
   - type: startup
     info:
-      en: Performed only on map startup.
+      en: >
+        Begins executing when the level initially loads and would be used for
+        setting up AI alliances, running intro cinematics, and orchestrating the
+        overall mission structure. You can have multiple startup scripts in the
+        scenario.
       es:
     ex: >-
       (script startup mission_a30
