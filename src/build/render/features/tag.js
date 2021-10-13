@@ -115,7 +115,7 @@ module.exports = async function(ctx) {
     skipPadding: !tag.unused, //show padding for leftover tags; it might be of interest
     simpleTypes: true,
     entry_type: tag.structName,
-    noEmbed: ["TagDependency"],
+    noEmbed: ["TagDependency", "ColorRGB", "TagString"],
     id: "tag-field",
     noRootExtend: true,
     imports: {

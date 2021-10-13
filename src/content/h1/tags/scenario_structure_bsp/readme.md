@@ -1,6 +1,6 @@
-Commonly referred to as the **BSP**, this tag contains level geometry, weather data, material assignments, AI pathfinding information, [lightmaps][], and other data structures. The name "BSP" is commonly used to refer to non-[object][] level geometry in general. Aside from sounds and [bitmaps][bitmap], the BSP tends to be one of the largest tags in a map.
+The **scenario structure BSP** tag, commonly just called the **BSP**, contains level geometry, weather data, material assignments, AI pathfinding information, [lightmaps][], and other data structures. You can think of the BSP as the "stage" where the game takes place [objects][object] are placed within it. Aside from sounds and [bitmaps][bitmap], the BSP tends to be one of the largest tags in a map. Singleplayer [scenarios][scenario] often use multiple BSPs which are switched between at loading zones.
 
-BSP stands for [Binary Space Partitioning][about-bsp], a technique where space within a sealed static mesh is recursively subdivided by planes into [convex][] _leaf nodes_. The resulting _BSP tree_ can be used to efficiently answer geometric queries, such as which surfaces should be collision-tested for physics objects.
+The term "BSP" stands for [Binary Space Partitioning][about-bsp], a technique where space within a sealed static mesh is recursively subdivided by planes into [convex][] _leaf nodes_. The resulting _BSP tree_ can be used to efficiently answer geometric queries, such as which surfaces should be collision-tested for physics objects.
 
 # Compilation
 After level geometry is exported to [JMS][] format, it can be compiled into a BSP tag using [Tool's structure verb][tool#structure-compilation].
@@ -22,12 +22,24 @@ Transparent shaders can also be used, for example:
 The [shader_model][] type will not be rendered by the game since it is intended for use with [object models][gbxmodel].
 
 # Clusters and cluster data
-Clusters are sealed volumes of a BSP separated by portal planes. They are used both as a rendering optimization and artistically; map authors can assign [weather_particle_system][], [wind][], [sound_environment][], and [sound_looping][] tags to define local atmospheric and ambience qualities for each section of the map. Different clusters can also reference [different skies][blender-level-creation-additional-info#multiple-skies].
+Clusters are sealed volumes of a BSP separated by portal planes. They are used both as a rendering optimization and artistically; map authors can assign [weather_particle_system][], [wind][], [sound_environment][], and [sound_looping][] tags to define local atmospheric and ambience qualities for each section of the map. Different clusters can even reference [different skies][blender-level-creation-additional-info#multiple-skies]. The level will contain a single large cluster if no portals were created.
 
 Note that it may still be desirable to reference weather for indoor clusters if there are outdoor areas visible from them, otherwise snow and rain particles will abruptly disappear. To mask weather in such clusters, use [weather polyhedra](#weather-polyhedra).
 
+## Indoor vs. outdoor clusters
+Clusters are either _outdoor/exterior_ or _indoor/interior_. When a cluster contains [+sky faces][h1-materials] it is an outdoor cluster and has a [sky index](#tag-field-clusters-sky) of `0` or greater. Furthermore, any cluster from which an outdoor cluster is [potentially visible](#potentially-visible-set) will also be an outdoor cluster.
+
+An indoor cluster is one where none of its potentially visible clusters are outdoor. These clusters have a sky index of `-1` instead and use the indoor parameters of sky index `0` (the first sky), which always has the special role of doubling as the "indoor sky". For example, indoor clusters will use use its [_indoor fog color_][sky#tag-field-indoor-fog-color] rather than its [_outdoor fog color_][sky#tag-field-outdoor-fog-color].
+
+When the game transitions between indoor and outdoor clusters the fog colour fades based on cumulative camera movement, not time. This effect can be seen easily in Danger Canyon: load it in [Sapien][h1a-sapien] and fly the camera through the hallways while `debug_pvs 1` and `rasterizer_wireframe 1` are enabled.
+
+# Potentially visible set
+The _potentially visible set_ data (PVS) is precomputed when a BSP is compiled and helps the engine determine which [clusters](#clusters-and-cluster-data) are visible from each other. A cluster can "see" any other cluster behind portals visible from itself plus one level of clusters further. Any clusters beyond that will not be rendered.
+
+Tool also takes into account the indoor sky's [_indoor fog opaque distance_][sky#tag-field-outdoor-fog-opaque-distance] and [_indoor fog maximum density_][sky#tag-field-indoor-fog-maximum-density] when computing the PVS. If the density is `1.0` (fully opaque) then Tool knows that indoor clusters cannot see beyond the opaque distance even if there are clusters within a line of sight. Tool logs the indoor maximum world units when the BSP is compiled (if there a sky referenced).
+
 # Fog planes
-Areas of a map which need a fog layer can be marked using _fog planes_. These are 2D surfaces which reference [fog tags][fog], not to be confused with atmospheric fog which is part of the [sky tag][sky].
+Areas of a map which need a fog layer can be marked using _fog planes_. These are 2D surfaces which reference [fog tags][fog], not to be confused with atmospheric fog which is part of the [sky tag][sky]. It is invalid for a cluster to be able to see multiple fog planes ([see more][bsp-troubleshooting#warning-two-fog-planes-visible-from-a-cluster]).
 
 # Weather polyhedra
 

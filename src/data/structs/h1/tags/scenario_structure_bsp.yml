@@ -347,14 +347,15 @@ type_defs:
             of certain [sky][] tag fields.
 
 
-            It is unknown how exactly [Tool][] determines which clusters are
-            indoor when compiling a BSP, but it does validate that all sky faces
-            in a cluster are of the same sky. For example, a cluster cannot
-            contain both `+sky0` and `+sky1` materials.
+            [Tool][] appears to mark clusters as indoor when there are no
+            outdoor clusters visible from it according to the
+            [PVS][h1/tags/scenario_structure_bsp#potentially-visible-set]. Tool
+            validates that all sky faces in a cluster are for the same sky. For
+            example, a cluster cannot contain both `+sky0` and `+sky1` materials.
 
-
-            When a player moves between clusters with different skies, there is
-            no transition. The sky will abruptly change.
+            When a player moves between clusters with different skies, fog
+            colour will smoothly transition by cumulative camera movement over
+            approximately 20 world units.
       - name: fog
         type: Index
       - name: background_sound

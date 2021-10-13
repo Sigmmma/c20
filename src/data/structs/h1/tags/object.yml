@@ -40,6 +40,11 @@ type_defs:
       - name: does_not_cast_shadow
       - name: transparent_self_occlusion
       - name: brighter_than_it_should_be
+        comments:
+          en: >
+            Causes the object to have extra ambient lighting so it's easier to
+            see in dark spaces. This is used for items which are important to
+            gameplay like weapons and powerups.
       - name: not_a_pathfinding_obstacle
   ObjectFunctionIn:
     class: enum

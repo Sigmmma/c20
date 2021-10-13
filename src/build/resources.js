@@ -4,7 +4,7 @@ const Viz = require("viz.js");
 const {exec} = require("child_process");
 const vizRenderOpts = require("viz.js/full.render.js");
 
-const COPY_FILES_PATTERN = /\.(jpg|jpeg|png|gif|ms|mp4)/;
+const COPY_FILES_PATTERN = /\.(jpg|jpeg|png|gif|ms|mp4|blend|zip)/;
 const VIDEO_FILES_PATTERN = /\.(mp4)/;
 const VIZ_RENDER_PATTERN = /\.(dot|neato|fdp|sfdp|twopi|circo)/;
 const noThumbs = process.env.C20_NO_THUMBNAILS == "true";

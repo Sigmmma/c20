@@ -2657,6 +2657,8 @@ external_globals:
         ```
         Toggles environmental [sky fog][sky#tag-field-outdoor-fog-color] and
         [fog plane][fog] colors. Does not affect _fog screen_.
+    tags:
+      - sky
   - slug: rasterizer_environment_fog_screen
     info:
       en: |-
@@ -2946,6 +2948,8 @@ external_globals:
         (rasterizer_ray_of_buddha [boolean])
         ```
         Toggles the [sky's][sky] sun effect.
+    tags:
+      - sky
   - slug: rasterizer_refresh_rate
     info:
       en: |-

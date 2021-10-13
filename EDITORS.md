@@ -350,7 +350,7 @@ Some wiki content is better described as structured data rather than markdown. T
 * When stating raw data values and offsets, use `code` tags.
 * Blocks of Halo script should use the `hsc` language. Blocks of console commands should use `console`. This ensures proper syntax highlighting.
 * Use **strong** tags when naming a page's topic for the first time in the introduction paragraph. The exception is pages which are not about a specific "thing" or concept.
-* Buttons presses should be documented like `<kbd>Ctrl + A</kbd>`.
+* Buttons presses should be documented like `<kbd>Ctrl</kbd> + <kbd>A</kbd>`.
 * There is no strong preference at this time for UK/Canada vs. US spelling of words like colour, unless you are referring to a tag's field name which should match exactly.
 * Don't assume the reader knows anything about modding Halo. You don't have to detail literally every step, but include links to prerequisite information and other pages to fill out concepts. Use examples that the reader might be familiar with to help get your points across.
 * Avoid using words like "below" or "above" to refer to other content on the page unless it is fairly certain the content will stay together. We may wish to reorder sections and paragraphs in the future. Consider using an anchor link to point users to relevant sections if they aren't immediately obvious.

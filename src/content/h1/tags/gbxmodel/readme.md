@@ -1,6 +1,6 @@
 The Gearbox model tag contains the marker points and render models for [objects][object] such as [vehicles][vehicle], [scenery][], and [weapons][weapon] among others. It is not collideable nor animated on its own, and objects may reference additional [model_collision_geometry][] and [model_animations][] tags. This tag supports LODs and permutations, and includes [shader_model][] references.
 
-Don't confuse this tag with the Xbox-only [model][], which Gearbox modified for the PC port. It is therefore used in all [derivatives][h1] of that port, like Mac, Demo, and MCC. Unlike the Xbox version, the Gearbox model uses uncompressed vertices.
+Don't confuse this tag with the Xbox-only [model][]. Gearbox Software created this tag class for the PC port, and it is therefore used in all [derivatives][h1] of that port, like Mac, Demo, and MCC. Unlike [model][], this tag uses uncompressed vertices.
 
 # Shaders
 Each [part](#tag-field-geometries-parts) of a model can reference a different [shader][], like the Warthog's windscreen using a [shader_transparent_glass][] while its body uses a [shader_model][]. While a model can _technically_ reference any kind of shader, referencing a [shader_environment][] is **not recommended** when targeting H1CE because it [renders incorrectly][renderer#gearbox-regressions] in atmospheric fog.
@@ -36,7 +36,7 @@ Regions are named sections of the model which can have multiple [permutations](#
 
 * `head`: Sets headshot areas for [damage_effect][].
 
-Regions render in the order they are stored in the tag. When naming regions, consider that they will be sorted by name when compiled into the `.gbxmodel`. This can be important for [skyboxes][sky] and objects with multiple layers of alpha-blended transparent shaders which aren't [z-culled][z-buf] and need a correct sorting order to be explicitly defined, assuming the object is viewed mostly from one direction.
+Regions render in the order they are stored in the tag. When naming regions, consider that they will be sorted by name when compiled into the `.gbxmodel`. This can be important for [skyboxes][skyboxes#regions] and objects with multiple layers of alpha-blended transparent shaders which aren't [z-culled][z-buf] and need a correct sorting order to be explicitly defined, assuming the object is viewed mostly from one direction.
 
 # Permutations
 A permutation is a randomly selected variation of a [region](#regions). They are often used to give [bipeds][biped] visual variety. Some permutations have special behaviour in-engine:
@@ -55,9 +55,9 @@ Permutations are not [network synchronized][netcode].
   </figcaption>
 </figure>
 
-Models can contain multiple levels of detail (LODs), ranging from simplified meshes with reduced shader count to high detail meshes with numerous complex shaders. The game will select a LOD based on the on-screen diameter of the object's [bounding sphere][object#tag-field-bounding-radius] in pixels. Objects which are very distant or small don't need a lot of geometric detail, so they can be rendered using low quality LODs to keep the framerate high in busy scenes.
+Models can contain multiple levels of detail (LODs), ranging from simplified meshes with reduced shader count to high detail meshes with numerous complex shaders. The game will select a LOD based on the on-screen diameter of the object's [bounding sphere][object#tag-field-bounding-radius] in pixels and this tag's [LOD cutoffs](#tag-field-super-high-detail-cutoff). Objects which are very distant or small don't need a lot of geometric detail, so they can be rendered using low quality LODs to keep the framerate high in busy scenes.
 
-Halo CE supports 5 LODs whose [pixel cutoffs](#tag-field-super-high-detail-cutoff) can be configured in this tag. From best to worst quality:
+Halo CE supports 5 LODs. From best to worst quality:
 
 * super high
 * high

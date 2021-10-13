@@ -106,6 +106,13 @@ You can attempt to pass the limit using H1A Tool's `-noassert` option, but will 
 ## Couldn't allocate subcluster
 This error means you have too many triangles in a cluster (>16k). Simplify your level geometry or add portals to divide triangles among more clusters.
 
+## Exception: dividing_edge->vertex_indices\[1]==NONE
+In full, this exception appears as:
+```
+EXCEPTION halt in .\import_collision_bsp\build_collision_bsp.c,#1529: dividing_edge->vertex_indices[1]==NONE
+```
+The exact cause of this is unknown, but it _may_ be related to improper level scale or improper portal placement. Please contact a c20 maintainer if you encounter this.
+
 # Portal problems
 ## Warning: Unearthed edge (magenta)
 An _unearthed edge_ is where a portal's open edge is exposed within the BSP. It is similar to the [open edges error](#error-edge-is-open-red), but for portals. Portal edges should either extend through the BSP or be connected with another portal. If connecting the portal to another portal you must ensure that they are attached at vertices rather than simply touching.
@@ -171,6 +178,13 @@ This error does not show up in [WRL files][wrl], but it is usually easy to find.
 3. Delete any sides of the polyhedra which are not necessary because they are outside the level and wouldn't usefully "contain" the masking volume. Polyhedra don't actually need to be sealed, in fact a single plane is valid.
 
 ![](weatherpoly_sides.mp4)
+
+# JMS problems
+## Error: reached end of file during parse
+This means the JMS file was incomplete or improperly formatted. Tool expected it to have more data but the file ended. You should never see this error unless the JMS exporter addon/script you are using has a bug, in which case you should upgrade it to the latest version or use a different JMS exporter. This error has been known to occur with some 3ds Max scripts.
+
+## Error: model file has wrong version number
+Your JMS file was exported for the wrong game version (e.g. Halo 2). If using the [Halo Asset Blender Development Toolset][halo-asset-blender-development-toolset], pay attention to the export settings and choose Halo CE.
 
 # Radiosity problems
 ## Degenerate triangle or triangle with bad UVs (blue)
