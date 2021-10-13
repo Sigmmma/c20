@@ -5,19 +5,19 @@ This guide assumes you have already [prepared Blender][blender-prep].
 # File list
 | File Link                                                                                          | Description
 |--------------------------------------------------------------------------------------------------- | -----------------------------------
-|[End Result](https://drive.google.com/file/d/1lTTyGQvv8rnnRS8Z__vBRNXTufsNTFYB/view?usp=sharing)    | The end product of this tutorial for you to examine and compare.
+|[End Result](https://drive.google.com/file/d/1BZnqoOTQqkad1vhbF_LawKX5meDf7wrP/view?usp=sharing)    | The end product of this tutorial for you to examine and compare.
 
 # Introduction
-Welcome to the Halo 2 level creation guide. If you have any experience with modeling levels in CE then you should feel mostly at home for better or worse. In this guide we will be showing you how to go about with creating your very own level geometry for Halo 2 in the 3D modeling software app known as Blender. This guide will include a completed version of our work as an example for you to contrast and compare but be sure to follow along.
+Welcome to the Halo 3 level creation guide. If you have any experience with modeling levels in Halo 1 or Halo 2 then you should feel mostly at home for better or worse. In this guide we will be showing you how to go about with creating your very own level geometry for Halo 3 in the 3D modeling software app known as Blender. This guide will include a completed version of our work as an example for you to contrast and compare but be sure to follow along.
 
 If there are any images that you find difficult to read then try opening the image in a new tab to view it in full resolution.
 
 # Key differences from CE
-While the level pipeline for Halo 2 hasn't changed much from CE, there are some important differences in workflow that we should bring up:
+While the level pipeline for Halo 3 hasn't changed much from Halo 2 and Halo CE, there are some important differences in workflow that we should bring up:
 
 1. Blitzkrieg would only export geometry if it was the child of a valid Halo node. The ASS exporter does not require a reference frame and will just export the entire scene. If a reference frame does exist in an ASS file then Tool will exclude all objects not connected to it on import.
-2. Instead of .JMS, Halo 2 makes use of a new level format known as .ASS. This format has support for multiple separate objects as well as instance geometry. While H2 Tool has some support for importing geometry stored in the JMS format, ASS is the new and proper format to be using.
-3. A prefix can be added to material names while naming them in your 3D software. On import tool will check `shader_collections.shader_collections` for a matching prefix and use the defined directory to find a matching shader. Searching through the entire tags folder for a matching shader will only happen if `shader_collections.shader_collections` does not exist.
+2. Instead of .JMS, Halo 3 makes use of a new level format known as .ASS previously introduced in Halo 2. This format has support for multiple separate objects as well as instance geometry. There is no support for structures generated from JMS files.
+3. A prefix can be added to material names while naming them in your 3D software. On import tool will check `shader_collections.txt` for a matching prefix and use the defined directory to find a matching shader. Searching through the entire tags folder for a matching shader will only happen if `shader_collections.txt` does not exist.
 4. Xref objects can be used to place scenery or device machine objects in 3D modeling software.
 
 # Creation of a reference frame
@@ -100,11 +100,7 @@ If a face does not have a material assigned then it will use a default shader on
 3. [Add a material](https://youtu.be/2yOOzN0zJfQ) named `cit panel_wall_vert` to your box (level) object.
 4. This is where we will assign a texture to our `cit panel_wall_vert` material. Your material will need to have `Use Nodes` enabled in order to make use of textures.
 5. [Assign an image texture node](https://youtu.be/2yOOzN0zJfQ) to your material.
-6. Once the image texture node has been assigned you should now see file directory options instead of a diffuse color option. We will be clicking on the button labeled `Open` and browsing to our H2EK install directory.
-7. Navigate to the following directory `(H2EK Install Path)\data\scenarios\bitmaps\forerunner\industrial\metals`
-	* ![](D.jpg "Match the numbers in the image to the numbers in the list below.")
-8. Select an image texture to use for your material. In this instance we shall use `panel_wall_vert.tif`.
-9. Go ahead and click the button labeled `Open Image` to set the selected image to be used by your material. This completes the texture assigning process.
+6. Since there is no included data for the game bitmaps you can use the included panel_wall_vert.tiff file from the example blend file in the file list table above.
 
 ```.alert info
 Material names in Blender must be unique. Blender does not allow for any duplicate material names in your scene. If you have an existing material named `test` and create a new material in another object named `test` then that material will be renamed to `test.001`. If you need the same material name then reselect it from the material dropdown.
@@ -158,7 +154,7 @@ Change the setting labeled `Alpha` from `Straight` to `None`.
 
 Now that we can properly view our textures lets set up our UVs for the level. Have only the surfaces with the `cit panel_wall_vert` material selected and do a quick unwrap.
 
-Using the info you learned from [the UV editing video](https://youtu.be/dR_TCHUTEw0), run a smart UV unwrap. Just use the default settings for the menu that pops up like you see in the example.
+Using the info you learned from [the UV editing video](https://youtu.be/dR_TCHUTEw0), run an unwrap and scale it by about 5 units so that the texture doesn't look stretched.
 
 The result from that should be something that looks like this.
 
@@ -223,7 +219,7 @@ It's probably a good idea to make frequent backups as you make progress just in 
 
 1. Go to File dropdown in the top left and click it.
 2. Click on the menu item labeled `Save As`.
-3. A window named "Blender File Dialog" should come up. Navigate to `(H2EK Install Path)\data\scenarios\multi\(Level Name)\structure` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory][file-directories] section
+3. A window named "Blender File Dialog" should come up. Navigate to `(H3EK Install Path)\data\levels\multi\(Level Name)\structure` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory][file-directories] section
 4. Click on the button labeled `Save As`.
 
 You've now saved your level. The file as is will be used for future sections in this tutorial.
