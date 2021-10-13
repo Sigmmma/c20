@@ -4,7 +4,7 @@ This is an article about the H2 Tool for use with MCC. For the legacy H2V Tool f
 
 **H2-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo 2 Editing Kit][H2-EK] by 343 Industries in 2021.
 
-This new version of Tool has many differences from the 2007 Pi Studios Tool. Most notably, it includes far more verbs and new options for existing ones. A major addition is the FBX to ASS/JMS/JMA toolchain to compile models regardless of what 3D modeling software you use.
+This new version of Tool has many differences from the 2007 Pi Studios Tool. Most notably, it includes far more verbs and new options for existing ones. A major addition is the FBX to ASS/JMS/JMA/JMI toolchain to compile models regardless of what 3D modeling software you use.
 
 # Conventions used in this article
 
@@ -271,7 +271,7 @@ tool convert-pixel-shaders
 
 ```sh
 # convert-tiled-tiff <input-tiff-file> <output-tiff-file>
-tool convert-tiled-tiff "(F:\masterchief.tiff" "F:\masterchief_output.tiff"
+tool convert-tiled-tiff "F:\masterchief.tiff" "F:\masterchief_output.tiff"
 ```
 
 * input-tiff-file - An absolute path to a tiff file.
@@ -478,7 +478,7 @@ tool fbx-to-ass "F:\dreamer.fbx" "F:\dreamer.ASS"
 For some details on how to setup the FBX file see [FBX for H2][fbx].
 
 # FBX to JMA
-This command takes an FBX and converts it to an animation source file for Halo 2 importing. Use this if you don't have access to an export script. Be aware that the extension can be any of the avaliable extensions for animation importing. It does not specifically needs to be JMA. You can type JMO as the extension and the output is still valid.
+This command takes an FBX and converts it to an animation source file for Halo 2 importing. Use this if you don't have access to an export script. Be aware that the extension can be any of the available extensions for animation importing. It does not specifically needs to be JMA. You can type JMO as the extension and the output is still valid.
 
 ```sh
 # fbx-to-jma <fbx> <jma> [Start-frame] [Last-frame]
@@ -493,14 +493,27 @@ tool fbx-to-jma "E:\my_fbx_files\cyborg_dab.fbx" F:\cyborg_my_custom_anim.JMA 5 
 
 For some details on how to setup the FBX file see [FBX for H2][fbx].
 
+# FBX to JMI
+This command takes an FBX and converts it to a JMI source file for Halo 2 importing. Use this if you don't have access to an export script.
+
+```sh
+# fbx-to-jmi <fbx> <jmi>
+tool fbx-to-jmi "E:\my_fbx_files\scenery_set.fbx" F:\scenery_set.JMI
+```
+
+* fbx - An absolute filepath to a valid FBX file.
+* jmi - An absolute filepath that includes name and extension to write the output to.
+
+For some details on how to setup the FBX file see [FBX for H2][fbx].
+
 # FBX to JMS
 
 ```sh
-# fbx-to-jms <render-or-collision-or-physics> <fbx> <jms>
+# fbx-to-jms <render,collision,physics-or-all> <fbx> <jms>
 tool fbx-to-jms render "F:\dreamer.fbx" "F:\dreamer.JMS"
 ```
 
-* render-or-collision-or-physics - Sets the type of geo this FBX is for. Use either render, collision, or physics only. The geo class set will determine what geometry gets exported from the JMS
+* render,collision,physics-or-all - Sets the type of geo this FBX is for. Use either render, collision, physics, or all only. The geo class set will determine what geometry gets exported from the JMS
 * fbx - An absolute filepath to a valid FBX file.
 * jms - An absolute filepath that includes name and extension to write the output to.
 
@@ -632,7 +645,7 @@ If you are using a launcher such as [Osoyoos][] this should be handled for you a
 ### Lightmap worker
 
 ```.alert danger
-Launch worker with the index `0` last (and perferably ~30-60 seconds after the other ones) or the other workers will overwrite certain data needed for functional lightmaps.
+Launch worker with the index `0` last (and preferably ~30-60 seconds after the other ones) or the other workers will overwrite certain data needed for functional lightmaps.
 If this data gets overwritten scenery objects will not get lit correctly and will be pitch black.
 ```
 
@@ -786,6 +799,14 @@ Keeps watch of the data directory for any file changes. If any tiff places are m
 ```sh
 # monitor-bitmaps
 tool monitor-bitmaps
+```
+
+# Monitor data and tags bitmaps
+Keeps watch of the data and tags directory for any file changes. If any tiff or tags are modified or placed in the data or tags directory then tool will immediately attempt to import the image file as bitmap tags.
+
+```sh
+# monitor-data-and-tags-bitmaps
+tool monitor-data-and-tags-bitmaps
 ```
 
 # Monitor models
@@ -1027,6 +1048,16 @@ tool scenario-analyze "scenarios\multi\halo\coagulation\coagulation" "count tags
 	* count edges
 	* check effects
 	* dump scenery
+	
+# Script doc
+Prints the script_doc or any command that contains the given string.
+
+```sh
+#  script-doc [function-or-global-name]
+tool script-doc "debug_objects"
+```
+
+* function-or-global-name - A string that will be used to find any script commands that contain the same text.
 
 # Set sound class
 Grabs all the sound tags in a directory and changes the class to whatever was specified by the user.
@@ -1044,7 +1075,7 @@ tool set-sound-class sound_test ??? projectile_impact
 ???
 
 ```sh
-#  sound-looping <source-directory> <type> <compression>
+#  sound-looping <source-directory> <type> [compression]
 tool sound-looping
 ```
 
@@ -1056,7 +1087,7 @@ tool sound-looping
 ???
 
 ```sh
-#  sound-looping-scenery <source-directory> <type> <compression>
+#  sound-looping-scenery <source-directory> <type> [compression]
 tool sound-looping-scenery
 ```
 
@@ -1068,11 +1099,11 @@ tool sound-looping-scenery
 Imports sound files in a directory with the import type set to multi-layer. All sound files the source directory and child directories will be combined into one sound file.
 
 ```sh
-#  sound-multi-layer <source-directory> <type> <compression>
+#  sound-multi-layer <source-directory> <type> [compression]
 tool sound-multi-layer "sound_test" projectile_impact adpcm
 ```
 
-* source-directory - A local data path to a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM, WMA, and AIFF.
+* source-directory - A local data path to a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
 * type - Set the sound class
 * compression - Set the compression. The list of valid options is as follows.
 	* uncompressed
@@ -1083,11 +1114,11 @@ tool sound-multi-layer "sound_test" projectile_impact adpcm
 Imports a single sound file
 
 ```sh
-#  sound-single <source-file> <type> <compression>
+#  sound-single <source-file> <type> [compression]
 tool sound-multi-layer "sound_test\aiff" projectile_impact adpcm
 ```
 
-* source-file - A local data path to the root of a directory containing sound files. Supported extensions are WAV saved as 16 bit PCM, WMA, and AIFF.
+* source-file - A local data path to the root of a directory containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
 * type - Set the sound class
 * compression - Set the compression. The list of valid options is as follows.
 	* uncompressed
@@ -1098,11 +1129,11 @@ tool sound-multi-layer "sound_test\aiff" projectile_impact adpcm
 Generates an empty sound looping tag from the folders in data. Probably an error?
 
 ```sh
-#  sounds-music <source-directory> <type> <compression>
+#  sounds-music <source-directory> <type> [compression]
 tool sounds-music "sound_test" projectile_impact adpcm
 ```
 
-* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM, WMA, and AIFF.
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
 * type - Set the sound class
 * compression - Set the compression. The list of valid options is as follows.
 	* uncompressed
@@ -1113,11 +1144,11 @@ tool sounds-music "sound_test" projectile_impact adpcm
 Imports sound files in a directory with the import type set to single-shot. Each sound file will get its own sound tag.
 
 ```sh
-#  sounds-one-shot <source-directory> <type> <compression>
+#  sounds-one-shot <source-directory> <type> [compression]
 tool sounds-one-shot "sound_test" projectile_impact adpcm
 ```
 
-* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM, WMA, and AIFF.
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
 * type - Set the sound class
 * compression - Set the compression. The list of valid options is as follows.
 	* uncompressed
@@ -1128,11 +1159,11 @@ tool sounds-one-shot "sound_test" projectile_impact adpcm
 Imports sound files in a directory with the import type set to single-layer. Each directory will get its own sound tag.
 
 ```sh
-#  sounds-single-layer <source-directory> <type> <compression>
+#  sounds-single-layer <source-directory> <type> [compression]
 tool sounds-single-layer "sound_test" projectile_impact adpcm
 ```
 
-* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM, WMA, and AIFF.
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
 * type - Set the sound class
 * compression - Set the compression. The list of valid options is as follows.
 	* uncompressed
@@ -1143,11 +1174,11 @@ tool sounds-single-layer "sound_test" projectile_impact adpcm
 Imports sound files in a directory with the import type set to single-layer. Each directory will get its own sound tag.
 
 ```sh
-#  sounds-single-mixed <source-directory> <type> <compression>
+#  sounds-single-mixed <source-directory> <type> [compression]
 tool sounds-single-mixed "sound_test" projectile_impact adpcm
 ```
 
-* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM, WMA, and AIFF.
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
 * type - Set the sound class
 * compression - Set the compression. The list of valid options is as follows.
 	* uncompressed
@@ -1168,12 +1199,13 @@ tool strip-single-tag-file "objects\characters\masterchief\masterchief.render_mo
 A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
-# structure <scenario-directory> <bsp-name>
+# structure <scenario-directory> <bsp-name> [verbose?]
 tool structure "scenarios\multi\example" "example"
 ```
 
 * scenario-directory - A local data path to root directory of a level.
 * bsp-name - The JMS filename without extension.
+* verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
@@ -1228,11 +1260,12 @@ Multiple JMS files can be placed in a level's `structure` directory for multiple
 A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
-# structure-from-jms <jms-file>
+# structure-from-jms <jms-file> [verbose?]
 tool structure-from-jms "scenarios\multi\example\structure\example.JMS"
 ```
 
 * jms-file - A local data path to a JMS file with extension.
+* verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
@@ -1244,16 +1277,17 @@ Multiple JMS files can be placed in a level's `structure` directory for multiple
 A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
-# structure-new <scenario-directory> <bsp-name>
+# structure-new <scenario-directory> <bsp-name> [verbose?]
 tool structure-new "scenarios\multi\example" "example"
 ```
 
 * scenario-directory - A local data path to root directory of a level.
 * bsp-name - The ASS filename without extension.
+* verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
 For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
+Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
 Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
@@ -1261,15 +1295,16 @@ Multiple ASS files can be placed in a level's `structure` directory for multiple
 A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag.
 
 ```sh
-# structure-new-from-ass <ass-file>
+# structure-new-from-ass <ass-file> [verbose?]
 tool structure-new-from-ass "scenarios\multi\example\structure\example.ASS"
 ```
 
 * ass-file - A local data path to a ASS file with extension.
+* verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
 For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
+Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
 Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
@@ -1285,7 +1320,7 @@ tool structure-new-verbose-from-ass "scenarios\multi\example\structure\example.A
 
 For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
+Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
 
 Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
@@ -1311,56 +1346,6 @@ tool structure-plane-debug-generate "scenarios\multi\example" "example"
 
 * scenario-directory - A local data path to root directory of a level.
 * bsp-name - The ASS filename without extension.
-
-# Structure verbose
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)). This version of the structure command gives verbose output.
-
-```sh
-# structure-verbose <scenario-directory> <bsp-name>
-tool structure-verbose "scenarios\multi\example" "example"
-```
-
-* scenario-directory - A local data path to root directory of a level.
-* bsp-name - The JMS filename without extension.
-
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
-
-Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
-
-Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
-
-# Structure verbose from JMS
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)). This version of the structure command gives verbose output.
-
-```sh
-# structure-verbose-from-jms <jms-file>
-tool structure-verbose-from-jms "scenarios\multi\example\structure\example.JMS"
-```
-
-* jms-file - A local data path to a JMS file with extension.
-
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
-
-Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
-
-Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
-
-# Structure verbose new
-A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. This version of the structure command gives verbose output.
-
-```sh
-# structure-verbose-new <scenario-directory> <bsp-name>
-tool structure-verbose-new "scenarios\multi\example\structure\example.ASS"
-```
-
-* scenario-directory - A local data path to root directory of a level.
-* bsp-name - The ASS filename without extension.
-
-For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
-
-Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
-
-Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Tag file report
 ???
