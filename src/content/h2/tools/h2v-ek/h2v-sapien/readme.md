@@ -9,7 +9,7 @@ It is roughly analogous to Forge found in later Halo titles, although the user c
 
 # Windows
 ## Game window
-The game window is the main interface when interacting with objects in the level. It is also where you can run commands by pressing the <kbd>~</kbd> (tilde) key. The resolution and aspect ratio cannot be adjusted.
+The game window is the main interface when interacting with objects in the level. It is also where you can run commands by pressing the <kbd>~</kbd> (tilde) key.
 
 Movement of the camera is done in the same way as the in-game debug camera; **hold the middle mouse button** plus:
 
@@ -43,18 +43,6 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Control</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
 * Hold <kbd>Tab</kbd>: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.
 * In the hierarchy view, pressing a key will cycle through all folders that start with that character. For example, pressing <kbd>A</kbd> while having the "Missions" folder expanded will immediately take you to the "AI" folder.
-
-## Encounters and AI
-* <kbd>Middle mouse</kbd>+<kbd>F1</kbd>: Selects the spawned actor in the center of the game view.
-* <kbd>Middle mouse</kbd>+<kbd>F2</kbd> Select next encounter. You can also use the console command `ai_select <encounter>`.
-* <kbd>Middle mouse</kbd>+<kbd>F3</kbd>: Select previous encounter.
-* <kbd>Middle mouse</kbd>+<kbd>F4</kbd>: When an encounter is selected, selects the next actor.
-* <kbd>Middle mouse</kbd>+<kbd>Shift</kbd>+<kbd>F4</kbd>: Selects the previous actor.
-* <kbd>Middle mouse</kbd>+<kbd>F5</kbd>: Cycles through render modes for actor sprays:
-  * Actions
-  * Activation status
-  * None
-* <kbd>Middle mouse</kbd>+<kbd>F6</kbd>: Erase all _spawned_ actors, e.g. those created with `ai_place`.
 
 # editor_init.txt
 At startup, H2V Sapien will load `editor_init.txt` if present in the same folder. This file can contain console commands, one per line, which are executed automatically for you. For example:
