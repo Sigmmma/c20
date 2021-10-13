@@ -172,7 +172,7 @@ A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb.
 
 ```sh
 # build-cache-file <scenario> <platform> <audio-configuration> <target-language> <dedicated-server-(optional)> <compress_more|compress_most-(optional)> <use-fmod-data-(optional)>
-tool build-cache-file "levels\multi\chill\chill" pc 
+tool build-cache-file "levels\multi\chill\chill" pc
 ```
 
 * scenario - A local tag path to your scenario without the file extension
@@ -195,7 +195,7 @@ tool build-cache-file-cache pc
 
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file cache campaign second 
+# Build cache file cache campaign second
 Builds resources files and cache files for campaign maps. Requires `build-cache-file-cache-shared-first` to be done first.
 
 ```sh
@@ -641,7 +641,7 @@ tool bulk-render-final "objects\multi\jmi_Test.JMI"
 
 ```sh
 #  cache-asset-depot-thumbnails <tag-file>
-tool cache-asset-depot-thumbnails 
+tool cache-asset-depot-thumbnails
 ```
 
 * tag-file - ???
@@ -651,7 +651,7 @@ tool cache-asset-depot-thumbnails
 
 ```sh
 #  cache-asset-depot-thumbnails-from-directory <tag-directory>
-tool cache-asset-depot-thumbnails-from-directory 
+tool cache-asset-depot-thumbnails-from-directory
 ```
 
 * tag-directory - ???
@@ -701,7 +701,7 @@ Crashed
 
 ```sh
 # compile-shader <render-method>
-tool compile-shader 
+tool compile-shader
 ```
 
 * render-method - ???
@@ -889,7 +889,7 @@ The multi-instance faux process dumps a fair bit of intermediate data to disk wh
 A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag.
 
 ```sh
-# structure <ass-file> 
+# structure <ass-file>
 tool structure "levels\multi\example\structure\example.ASS"
 ```
 
@@ -897,9 +897,9 @@ tool structure "levels\multi\example\structure\example.ASS"
 
 For the example above, Tool would expect to find a corresponding ASS file at `data\levels\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\levels\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
+Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. This step does not produce [lightmaps][scenario_structure_lightmap] -- see [baking lightmaps](#baking-lightmaps-faux).
 
-Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
+Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario.
 
 [wiki-tiff]: https://en.wikipedia.org/wiki/TIFF
 [wiki-color]: https://en.wikipedia.org/wiki/Color_depth

@@ -1048,7 +1048,7 @@ tool scenario-analyze "scenarios\multi\halo\coagulation\coagulation" "count tags
 	* count edges
 	* check effects
 	* dump scenery
-	
+
 # Script doc
 Prints the script_doc or any command that contains the given string.
 
@@ -1209,10 +1209,6 @@ tool structure "scenarios\multi\example" "example"
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
-
-Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
-
 # Structure analyze
 A dev command for running misc tasks on a scenario, unlikely to be useful.
 
@@ -1236,10 +1232,6 @@ tool structure-compatible "scenarios\multi\example" "example"
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
-
-Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
-
 # Structure compatible from JMS
 A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
@@ -1251,10 +1243,6 @@ tool structure-compatible-from-jms "scenarios\multi\example\structure\example.JM
 * jms-file - A local data path to a JMS file with extension.
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
-
-Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
-
-Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure from JMS
 A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
@@ -1268,10 +1256,6 @@ tool structure-from-jms "scenarios\multi\example\structure\example.JMS"
 * verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
-
-Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
-
-Multiple JMS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure new
 A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
@@ -1287,10 +1271,6 @@ tool structure-new "scenarios\multi\example" "example"
 
 For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
-
-Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
-
 # Structure new from ASS
 A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag.
 
@@ -1304,7 +1284,7 @@ tool structure-new-from-ass "scenarios\multi\example\structure\example.ASS"
 
 For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
+Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][scenario_structure_lightmap] are **not** produced during this step, but rather with the [lightmaps verb](#baking-lightmaps).
 
 Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
@@ -1319,10 +1299,6 @@ tool structure-new-verbose-from-ass "scenarios\multi\example\structure\example.A
 * ass-file - A local data path to a ASS file with extension.
 
 For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
-
-Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
-
-Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure plane debug
 ???
