@@ -66,7 +66,7 @@ Material symbols are added to the **end** of the material name and give the surf
 | `)` | **Precise**. Points and triangles are precise and will not be fiddled with in the BSP pass.
 | `>` | **Conveyor**. Geometry which will have a surface coordinate system and velocity.
 | `<` | **Portal (One-Way)**. Portal can only be seen through in a single direction.
-| `|` | **Portal (Door)**. Portal visibility is attached to a device machine state.
+| `\|`| **Portal (Door)**. Portal visibility is attached to a device machine state.
 | `~` | **Portal (Vis Blocker)**. Portal visibility is completely blocked by this portal.
 | `(` | **Dislikes Photons**. Photons from sky/sun quads will ignore these materials.
 | `{` | **Ignored by Lightmapper**. Lightmapper will not add this geometry to it's raytracing scene representation.
