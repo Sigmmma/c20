@@ -42,6 +42,7 @@ function generateTagPageInfo(pages, suffix, logicalPathSuffix) {
   return {
     title: title,
     stub: true,
+    noSearch: true,
     langs: ["en", "es"],
     pageId,
     logicalPath,
