@@ -505,6 +505,26 @@ tool bulk-import-crates-draft "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
+# Bulk import crates folder
+Generates a crate tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will use PRT
+
+```sh
+#  bulk-import-crates-folder <source-directory>
+tool bulk-import-crates-folder "objects\multi\world_node_a"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+
+# Bulk import crates folder draft
+Generates a crate tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will not use PRT
+
+```sh
+#  bulk-import-crates-folder-draft <source-directory>
+tool bulk-import-crates-folder-draft "objects\multi\world_node_a"
+```
+
+* source-directory - A local data path to the root of a model source directory.
+
 # Bulk import model folder
 Generates a model tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will use PRT
 
@@ -702,6 +722,128 @@ tool convert-pc-bitmaps
 tool convert-tag-files-explicit-pilot
 ```
 
+# Convert tiled tiff
+???
+
+```sh
+# convert-tiled-tiff <input-tiff-file> <output-tiff-file>
+tool convert-tiled-tiff "F:\masterchief.tiff" "F:\masterchief_output.tiff"
+```
+
+* input-tiff-file - An absolute path to a tiff file.
+* output-tiff-file - An absolute path to a path with filename and extension to generate the output file in.
+
+# Count all class sounds
+Goes through all of the sound tags in a directory and prints how many sounds belong to a specific class
+
+```sh
+# count-all-class-sounds <root-path>
+tool count-all-class-sounds "sound\ambience"
+```
+* root-path - A local tag path to the root of a directory containing sound tags or child folders with sound tags.
+
+# Count class sounds
+Goes through all of the sound tags in the tags directory and prints the paths for sounds that use a specific sound class
+
+```sh
+# count-class-sounds <sound-class>
+tool count-class-sounds projectile_impact
+```
+* sound-class - The sound class you want to specify. The list is as follows.
+	* Placeholder
+
+# Count class sounds
+Prints all existing sound tags in a directory.
+
+```sh
+# count-sound-tags <root-path>
+tool count-sound-tags "sound\ambience"
+```
+* root-path - A local tag path to the root of a directory containing sound tags or child folders with sound tags.
+
+# Dialogue globals import
+Compiles a CSV file to generate a new [ai_dialogue_globals][] tag. The file path for the CSV file is `data\ai\ai_dialogue_globals.csv` and `tags\ai\ai_dialogue_globals.ai_dialogue_globals` is generated.
+
+```sh
+# dialogue-globals-import
+tool dialogue-globals-import
+```
+
+# Dialogue import
+Collects all [sound][] tag paths and adds them to a generated [dialogue][] tag.
+
+```sh
+# dialogue-import <root-directory>
+tool dialogue-import "sound\dialog\combat\brute_bloodthirsty"
+```
+
+* root-directory - A local tag path to a root directory containing sound tags. A dialogue tag is generated adjacent to this root directory with the same name, e.g. `sound\dialog\combat\brute_bloodthirsty.dialogue`.
+
+# Extract LPC data
+Dumps a file called `test.aif` in the root of H2-EK. This is likely to be [linear predictive coding](https://en.wikipedia.org/wiki/Linear_predictive_coding) data for the sound file but this hasn't be verified.
+
+```sh
+# extract-lpc-data <sound-file>
+tool extract-lpc-data "sound_test\aiff\soundtest.aiff"
+```
+
+* sound-file - A local data path to an AIF/AIFF file.
+
+# FBX to ASS
+This command takes an FBX and converts it to an [ASS][] file for Halo 3 level importing. Use this if you don't have access to an export script.
+
+```sh
+# fbx-to-ass <fbx> <ass>
+tool fbx-to-ass "F:\dreamer.fbx" "F:\dreamer.ASS"
+```
+
+* fbx - An absolute filepath to a valid FBX file.
+* ass - An absolute filepath that includes name and extension to write the output to.
+
+For some details on how to setup the FBX file see [FBX for H3][fbx].
+
+# FBX to JMA
+This command takes an FBX and converts it to an animation source file for Halo 3 importing. Use this if you don't have access to an export script. Be aware that the extension can be any of the available extensions for animation importing. It does not specifically needs to be JMA. You can type JMO as the extension and the output is still valid.
+
+```sh
+# fbx-to-jma <fbx> <jma> [Start-frame] [Last-frame]
+tool fbx-to-jma "E:\my_fbx_files\cyborg_dab.fbx" F:\cyborg_my_custom_anim.JMA
+tool fbx-to-jma "E:\my_fbx_files\cyborg_dab.fbx" F:\cyborg_my_custom_anim.JMA 5 10
+```
+
+* fbx - An absolute filepath to a valid FBX file.
+* jma - An absolute filepath that includes name and extension to write the output to.
+* Start-frame - Sets the first frame index that the converter will start from. Use this if you want only a specific section of an animation from your FBX. This arg is optional so you can leave this and Last-frame out if you want the animation as is.
+* Last-frame - Sets the last frame index that the converter will end on. Use this if you want only a specific section of an animation from your FBX. This arg is optional so you can leave this and Last-frame out if you want the animation as is.
+
+For some details on how to setup the FBX file see [FBX for H3][fbx].
+
+# FBX to JMI
+This command takes an FBX and converts it to a JMI source file for Halo 3 importing. Use this if you don't have access to an export script.
+
+```sh
+# fbx-to-jmi <fbx> <jmi>
+tool fbx-to-jmi "E:\my_fbx_files\scenery_set.fbx" F:\scenery_set.JMI
+```
+
+* fbx - An absolute filepath to a valid FBX file.
+* jmi - An absolute filepath that includes name and extension to write the output to.
+
+For some details on how to setup the FBX file see [FBX for H3][fbx].
+
+# FBX to JMS
+
+```sh
+# fbx-to-jms <render,collision,physics-or-all> <fbx> <jms>
+tool fbx-to-jms render "F:\dreamer.fbx" "F:\dreamer.JMS"
+```
+
+* render,collision,physics-or-all - Sets the type of geo this FBX is for. Use either render, collision, physics, or all only. The geo class set will determine what geometry gets exported from the JMS
+* fbx - An absolute filepath to a valid FBX file.
+* jms - An absolute filepath that includes name and extension to write the output to.
+
+For some details on how to setup the FBX file see [FBX for H3][fbx].
+
 # Baking lightmaps (Faux)
 
 Halo 3 uses a fairly sophisticated lightmapping pipeline compared to the earlier games, for more information see the *Lighting and material of Halo 3* [GDC talk][gdc-lighting] or the [research paper of the same name][doi-lighting].
@@ -742,6 +884,22 @@ The `faux_lightmap` and `faux_checkerboard` commands are meant to handle local s
 ## Disk usage
 
 The multi-instance faux process dumps a fair bit of intermediate data to disk which might not be desirable on a slow medium (e.g. external HDD or network drive) or an SSD if you are running a lot of lightmaps and don't want to needlessly wear it out. This data will be saved to the `faux` folder in the toolkit root directory. You can create a link (junction point or symbolic) from this folder to somewhere that is more convenient for you. If you have enough free main memory a RAM Disk might be a good solution - 2 gigabytes of dynamically allocated space should be enough (empirical result for a 16 logical processor system - your mileage will vary).
+
+# Structure
+A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag.
+
+```sh
+# structure <ass-file> 
+tool structure "levels\multi\example\structure\example.ASS"
+```
+
+* ass-file - A local data path to a ASS file with extension.
+
+For the example above, Tool would expect to find a corresponding ASS file at `data\levels\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\levels\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
+
+Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
+
+Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 [wiki-tiff]: https://en.wikipedia.org/wiki/TIFF
 [wiki-color]: https://en.wikipedia.org/wiki/Color_depth
