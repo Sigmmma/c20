@@ -26,11 +26,12 @@ FBX supports converting to JMS, JMA, ASS, and JMI and covers most of the feature
 	* Constraints - This includes ragdolls, hinges, car wheels, point to point, prismatic. These items were used to set how physics models interacted with the game world.
 	* Bounding Sphere - Set the bounding radius for bulk objects automatically.
 * ASS
-	* Material Effect String - Unused string item in ASS file. 
+	* Material Effect String - Unused string item in ASS files. 
 	* Instance XREF - A feature that allowed designers to link other files to the 3DS Max scene and then leave a file path in the JMS file. Tool would then read this path and compile the file along with placing it at the location it was in your 3DS scene.
 	* Primitive shapes - Only supported mesh type is "MESH". This shouldn't be an issue as primitives go unused in ASS and are basically treated like an empty object.
 	* Light Objects - Not all features used by light objects are supported. They should still be written though.
 	* UVW - The W coordinate is not supported. This may have been used for water.
+	* Material Strings - A set of parameters to set behaviors for materials such as two sided or lightmap settings. Standard material symbols should still work but some features may not be available.
 * JMA
 	* Biped Controller - A way to set the transform of the biped skeleton itself instead of the nodes in the skeleton. 
 * QUA
