@@ -32,7 +32,7 @@ Object symbols are characters that go at the start of the object name.
 | Symbol | Description
 |------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | `#`    | Marker object prefix. Used to tell the JMS exporter that this object is to be treated as a marker.
-| `1`    | World node object prefix. Used to tell the JMI exporter that this object is to be treated as a world node.
+| `!`    | World node object prefix. Used to tell the JMI exporter that this object is to be treated as a world node.
 | `%`    | Instanced object prefix. Used to tell the ASS exporter that this object is to be treated as instance geo.
 | `@`    | Collision object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only collision geometry.
 | `$`    | Physics object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only physics geometry.
