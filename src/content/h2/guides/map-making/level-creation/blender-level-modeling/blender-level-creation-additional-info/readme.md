@@ -47,7 +47,7 @@ Object symbols are characters that go at the start of the object name.
 | Symbol | Description
 |------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | `#`    | Marker object prefix. Used to tell the JMS exporter that this object is to be treated as a marker.
-| `%`    | Instanced object prefix. Used to tel the ASS exporter that this object is to be treated as instance geo.
+| `%`    | Instanced object prefix. Used to tell the ASS exporter that this object is to be treated as instance geo.
 | `@`    | Collision object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only collision geometry.
 | `$`    | Physics object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only physics geometry.
 | `+`    | Static pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol it will generate pathfinding for the mesh.
@@ -62,7 +62,7 @@ Portals are plane objects that cut through geometry to divide it into sections c
 ![](portals.jpg "Portals! Not to be confused with the ingame portals.")
 
 # Instance Geometry
-Instance geometry is geometry that is linked and duplicated to cut down on used memory. It's also a decent way to avoid having to stich in geometry into your BSP. Think of it like scenery objects with lightmaps. The ASS exporter checks if an object is an instance be seeing if it has linked mesh data. They should also have the `%` symbol at the start of their object names. The only unique property that instance can have is uniform scale. All instances will otherwise look the same. See the `Instance Geometry Example Blend` for an example on how to use this.
+Instance geometry is geometry that is linked and duplicated to cut down on used memory. It's also a decent way to avoid having to stich in geometry into your BSP. Think of it like scenery objects with lightmaps. The ASS exporter checks if an object is an instance by seeing if it has linked mesh data. They should also have the `%` symbol at the start of their object names. The only unique property that instance can have is uniform scale. All instances will otherwise look the same. See the `Instance Geometry Example Blend` for an example on how to use this.
 
 Object data in Blender can be linked with the <kbd>Ctrl</kbd> + <kbd>L</kbd> hotkeys.
 

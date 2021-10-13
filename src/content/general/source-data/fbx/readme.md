@@ -12,6 +12,7 @@ FBX supports converting to JMS, JMA, ASS, and JMI and covers most of the feature
 	* Instance XREF - A feature that allowed designers to link other files to the 3DS Max scene and then leave a file path in the JMS file. Tool would then read this path and compile the file along with placing it at the location it was in your 3DS scene.
 	* Constraints - This includes ragdolls, hinges, car wheels, point to point, prismatic. These items were used to set how physics models interacted with the game world.
 	* Bounding Sphere - Set the bounding radius for bulk objects automatically.
+	* Marker Groups - More of a limitation with Blender but since it does not allow for duplicate object names this means that marker groups are unsupported for now.
 * ASS
 	* Material Effect String - Unused string item in ASS file. 
 	* Instance XREF - A feature that allowed designers to link other files to the 3DS Max scene and then leave a file path in the JMS file. Tool would then read this path and compile the file along with placing it at the location it was in your 3DS scene.
@@ -25,6 +26,7 @@ FBX supports converting to JMS, JMA, ASS, and JMI and covers most of the feature
 	* Instance XREF - A feature that allowed designers to link other files to the 3DS Max scene and then leave a file path in the JMS file. Tool would then read this path and compile the file along with placing it at the location it was in your 3DS scene.
 	* Constraints - This includes ragdolls, hinges, car wheels, point to point, prismatic. These items were used to set how physics models interacted with the game world.
 	* Bounding Sphere - Set the bounding radius for bulk objects automatically.
+	* Marker Groups - More of a limitation with Blender but since it does not allow for duplicate object names this means that marker groups are unsupported for now.
 * ASS
 	* Material Effect String - Unused string item in ASS files. 
 	* Instance XREF - A feature that allowed designers to link other files to the 3DS Max scene and then leave a file path in the JMS file. Tool would then read this path and compile the file along with placing it at the location it was in your 3DS scene.
