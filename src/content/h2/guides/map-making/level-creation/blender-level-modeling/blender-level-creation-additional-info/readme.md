@@ -46,15 +46,15 @@ Object symbols are characters that go at the start of the object name.
 
 | Symbol | Description
 |------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-[ #      | Marker object prefix. Used to tell the JMS exporter that this object is to be treated as a marker.
-[ %      | Instanced object prefix. Used to tel the ASS exporter that this object is to be treated as instance geo.
-[ @      | Collision object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only collision geometry.
-[ $      | Physics object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only physics geometry.
-[ +      | Static pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol it will generate pathfinding for the mesh.
-[ -      | Not pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol ignore the object while generating the pathfinding mesh.
-[ ?      | Light object per vertex. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will set the geo to use per vertex for lightmap policy.
-[ !      | Light object per pixel. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will set the geo to use per pixel for lightmap policy.
-[ ^      | Excluded from lightprobe. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will ignore this object while running lightprobes.
+| #      | Marker object prefix. Used to tell the JMS exporter that this object is to be treated as a marker.
+| %      | Instanced object prefix. Used to tel the ASS exporter that this object is to be treated as instance geo.
+| @      | Collision object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only collision geometry.
+| $      | Physics object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only physics geometry.
+| +      | Static pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol it will generate pathfinding for the mesh.
+| -      | Not pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol ignore the object while generating the pathfinding mesh.
+| ?      | Light object per vertex. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will set the geo to use per vertex for lightmap policy.
+| !      | Light object per pixel. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will set the geo to use per pixel for lightmap policy.
+| ^      | Excluded from lightprobe. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will ignore this object while running lightprobes.
 
 # Portals
 Portals are plane objects that cut through geometry to divide it into sections called clusters. This is either usually to enhance performance or section off a part of a level in order to set specific environment sounds or effects in that area. Portals are defined by the special material name `+portal`. Portals can also intersect without needing to be connected unlike CE. This makes it extremely simple to just generate a set of grid portals to quickly test high poly geometry before making better portals. See the `Portals Example Blend` and [Materials Overview][materials] for examples.
