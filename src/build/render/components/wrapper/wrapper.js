@@ -10,6 +10,7 @@ const thanksList = require("./thanksList");
 const TOC_MIN_HEADERS = 2;
 const COLLAPSE_CHILD_PAGES = 20;
 const COLLAPSE_RELATED_PAGES = 4;
+const COLLAPSE_MAIN_TOPIC_PAGES = 20;
 const PREVIEW_LENGTH_CHARS = 100;
 
 const mainTopics = [
@@ -190,7 +191,7 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
                 ${page.related && page.related.length > 0 &&
                   detailsList(html`<h2>${localize("related")}</h2>`, page.related.map(pageAnchor(lang)), COLLAPSE_RELATED_PAGES, 0)
                 }
-                ${detailsList(html`<h2>${localize("main")}</h2>`, mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId])))}
+                ${detailsList(html`<h2>${localize("main")}</h2>`, mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId])), COLLAPSE_MAIN_TOPIC_PAGES, 0)}
 
                 <p>
                   <a href="${DISCORD_URL}">${icon("message-square", "Chat")} Discord</a>
