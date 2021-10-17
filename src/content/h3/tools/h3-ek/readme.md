@@ -4,7 +4,7 @@ Similarly to the mod tools for Halo 1 and 2 it is ultimately based on the old in
 Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase] to gain access to the toolkit.
 
 # Getting started
-![.figure Pictured: Location of the mod tools in the steam library.](steam_tools.jpg)
+![.figure Pictured: Location of the mod tools in the steam library.](/general/tools/steam_tools.jpg)
 
 0. Ensure you own [Halo 3 on Steam][steam_purchase], tools are only accessible if you own the Steam version.
 1. [Download the tools using Steam](steam://run/1695791), you might need to [install Steam](https://store.steampowered.com/about/) first.
@@ -31,7 +31,8 @@ Naturally there is multitude of changes compared to H2 as the engine underwent a
 # Known issues
 
 * Single threaded lightmapping is not supported, you need to use the multi-process solution. This can be run with only a single client if only using one core is desired.
-* Sound doesn't work in the tools. Load your map in MCC if you need to test sound.
+* Sound playback doesn't work in the tools. Load your map in MCC if you need to test sound.
+* Sound importing doesn't work in the current build so you are limited to the sounds that Halo 3 MCC ships with.
 * A main menu can't load all maps so you will need to use `init.txt` or the developer console to load scenarios in the standalone build.
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
 
