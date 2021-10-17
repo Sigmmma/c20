@@ -1,7 +1,7 @@
 The [Halo 3 Editing Kit][H3-EK] includes a **standalone build** of that game (**halo3_tag_test.exe**). This build doesn't include network functionality and it intended for testing single-player maps. It includes AI debugging code not included in other published builds of the engine.
 
 ```.alert danger
-The standalone build is still somewhat experimental and bugs should be expected. Again, only single-player maps are officially supported at this time. Maps should always receive final testing as [map cache files][map] loaded by MCC itself.
+The standalone build is configuered differently from the retail build of Halo 3 that's part of MCC - bugs or features found in one might not be found in the other. For that reason maps should always receive final testing as [map cache files][map] loaded by MCC itself.
 ```
 
 # Usage
@@ -13,6 +13,9 @@ game_start levels\solo\020_base\020_base
 ; load tags\levels\solo\040_voi\040_voi.scenario:
 game_start levels\solo\040_voi\040_voi
 ```
+
+If you want to load an stock scenario it might be easier to use the debug menu.
+
 Once you are in-game you can change the map using the [console][developer-console]. If you modify tags for the currently loaded map it will be automatically reloaded. You do not need to do anything to enable this behaviour, just edit and let it reload!
 Major changes might result in the map/game reset, minor changes should be seamless apart from a loading screen.
 
@@ -31,6 +34,8 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Shift</kbd>+<kbd>Esc</kbd>: Exit Standalone
 * <kbd>Ctrl</kbd>+<kbd>M</kbd>: Disables mouse look and enables the cursor
 * <kbd>Shift</kbd>+<kbd>Return</kbd>: Clears console output
+* <kbd>Home</kbd> Opens the debug menu. Use the arrow keys and <kdb>enter</kdb> to select an item. The menu or a submenu is closed using <kdb>End</kdb>. Entering the number or letter on the left of an has the same effect as selecting it using the arrow keys and pressing <kdb>Enter</kdb>
+  * If you want to add items to the menu create a `bin\debug_menu_user_init.txt` file using the same syntax as `bin\\debug_menu_init.txt`. The two menus will be merged together. Don't edit the stock menu as updates will overwrite it.
 
 ## Encounters and AI
 * <kbd>F1</kbd>: Selects the spawned actor in the center of the game view.

@@ -35,6 +35,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Shift</kbd>+<kbd>Esc</kbd>: Exit Standalone
 * <kbd>Ctrl</kbd>+<kbd>M</kbd>: Disables mouse look and enables the cursor
 * <kbd>Shift</kbd>+<kbd>Return</kbd>: Clears console output
+* <kbd>Home</kbd> Opens the debug menu. Use the arrow keys and <kdb>enter</kdb> to select an item The menu or a submenu is closed using <kdb>End</kdb>.
 
 ## Encounters and AI
 * <kbd>F1</kbd>: Selects the spawned actor in the center of the game view.
