@@ -13,6 +13,8 @@ const COLLAPSE_RELATED_PAGES = 4;
 const PREVIEW_LENGTH_CHARS = 100;
 
 const mainTopics = [
+  ["/general"],
+
   ["/h1"],
   ["/h1/tags"],
   ["/h1/guides"],
