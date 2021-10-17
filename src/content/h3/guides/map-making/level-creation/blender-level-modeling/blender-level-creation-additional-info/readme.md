@@ -4,6 +4,9 @@
 [Multiple Skies Example Blend](https://drive.google.com/file/d/1GxyTNx5mcGwroXOfMEx6wANg5gxpYG4w/view?usp=sharing)    | A blend file showcasing how to use multiple skies in a scene.
 [Portals Example Blend](https://drive.google.com/file/d/1VD9kqK4koJ0jWxTND8ccJely4kFRQwGO/view?usp=sharing)           | A blend file showcasing how to use the special +portal material in a level.
 [Instance Geometry Example Blend](https://drive.google.com/file/d/1F60i-UsvlfZUuAcB4Trdyww7_9svLyw-/view?usp=sharing) | A blend file showcasing how to use the instance geometry in a level.
+[Water Visual Example Blend](https://drive.google.com/file/d/1HH8NMal_PLlXNqpvi0WtGuEHS6iToTy6/view?usp=sharing)      | A blend file showcasing how to create water in a level.
+[Water Physical Example Blend](https://drive.google.com/file/d/195Soo5_U3NRjyUhUa07TcERIPFxCCE2D/view?usp=sharing)    | A blend file showcasing how to create water in a structure-design file.
+[Design Surfaces Example Blend](https://drive.google.com/file/d/1kLZjYTlr6qEZEWkGWQJh-XoEbsAZEuQp/view?usp=sharing)   | A blend file showcasing how to create barriers in a structure-design file.
 
 # Multiple skies
 It's possible to use multiple skies in your level by adding a digit to the end of your `+sky` material. If we wanted three skies in our level for example we would have the following:
@@ -31,7 +34,7 @@ Object symbols are characters that go at the start of the object name.
 
 | Symbol | Description
 |------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| `#`    | Marker object prefix. Used to tell the JMS exporter that this object is to be treated as a marker.
+| `#`    | Marker object prefix. Used to tell the JMS exporter that this object is to be treated as a marker. If used in an ASS file then tool will use the object for direction in structure-design files.
 | `!`    | World node object prefix. Used to tell the JMI exporter that this object is to be treated as a world node.
 | `%`    | Instanced object prefix. Used to tell the ASS exporter that this object is to be treated as instance geo.
 | `@`    | Collision object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only collision geometry.
@@ -40,6 +43,7 @@ Object symbols are characters that go at the start of the object name.
 | `-`    | Not pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol ignore the object while generating the pathfinding mesh.
 | `?`    | Light object per vertex. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will set the geo to use per vertex for lightmap policy.
 | `!`    | Light object per pixel. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will set the geo to use per pixel for lightmap policy.
+| `~`    | Water group object prefix. If used in an ASS file then tool will use the object to generate water in a structure-design file.
 
 
 # Portals
@@ -58,6 +62,100 @@ Object data in Blender can be linked with the <kbd>Ctrl</kbd> + <kbd>L</kbd> hot
 You may be aware of infinite water planes from Halo 2. This was a feature that allowed map designers to set an infinite water plane at a certain height in the level. I regret to inform you that this is not a feature in Halo 3. It seems to be have been deprecated.
 
 # XREFs
+
+# Water
+We will be using the end result of the level guide for this example but you can look at the completed files in the file list for the items listed here.
+
+Water in Halo 3 is handled by two different files. The ASS file located in the level's `structure` sub directory will handle the visual aspects of our water plane while out of water. The ASS file located in the level's `structure-design` sub directory will handle things related to how our water region interacts with objects in the world. This includes actions such as objects floating on the surface and screen effects while the game camera is inside a water region. Lets go over setting up the visual aspect in the `structure` ASS file first.
+
+## Visual
+Starting with the visual aspects of our water, we will create a simple plane in our example level to represent the water in our game world. Do not worry about following the sealed world rules for now. We will be naming our new plane object `water_plane` and give it a Z height of -400 units. The plane should have a scale of `1000` units on the XYZ axis. We will also be giving it the following material name.
+
+`river riverworld_water_rough'`
+
+There are three aspects to this material name
+
+* river - This is the shader_collection prefix that will be used to find the material name that follows after the space. In the case of the river prefix that will tell tool to search for shaders in `levels\multi\riverworld` as set by the shader_collections.txt file in the `tags\levels` directory.
+* riverworld_water_rough - The material name that will be used for the water on our level.
+* ' - This is a material symbol that lets tool know we are intending for this surface to be used as a water surface. This will help satisfy the sealed world rules for this mesh.
+
+This ends everything we need to create in our `structure` ASS file. We can export our current scene and move on the the `structure-design` ASS file in the physical section.
+
+## Physical
+Now lets handle our water regions properly. We will start by creating another plane in our example level to represent the water in our game world. Give it a Z height of -400 units and set the scale to `1000` units on the XYZ axis. Go into edit mode and extrude the object down around `-100` units so that it will reach the bottom of our example level. Make sure that the normals are facing outside/away from the center of our object. We will also be giving it the following object name.
+
+`~water_physics00`
+
+There are two aspects to this material name
+
+* ~ - This symbol tells tool to treat the mesh as a water group
+* water_physics00 - Just the name for our object. Call it whatever you would like. We will be using water_physics00 in this example.
+
+Now that we've created a water region lets add another object to define the direction objects will flow in. You can skip this step if you do not want there to be direction in a body of water you make. Add an `Arrows` object found under the `Empty` list in the `Add` menu. Set the scale on this object to 600.0 units on the XYZ axis. We will also be giving it the following object name.
+
+`#water_direction00`
+
+* # - This symbol tells tool to use the object rotation for direction.
+* water_direction00 - Just the name for our object. Call it whatever you would like. We will be using water_direction00 in this example.
+
+We will be using Ctrl + P with both `#water_direction00` and `~water_physics00` selected with `~water_physics00` being the active object in our scene. This will set `#water_direction00` to use `~water_physics00` as it's parent object. Now we can rotate our `#water_direction00` to define the direction that objects will flow in with the X axis being forward in this cause. Lets rotate it 90 degrees.
+
+Now we can export these assets to an ASS file. The ass file we create from the meshes we created must go in a different subdirectory from the assets created in the `Visuals` section. The `structure-design` command will also be used instead of the standard `structure` command to compile our ASS file.
+
+# Design surfaces
+Design surfaces are special surfaces that can be used to keep players in a set play space. These barriers do not affect AI and do not need to follow the sealed world rules. They can also be enabled or disabled with the script function `soft_ceiling_enable`.
+
+There are three different types of surfaces.
+
+```
++soft_ceiling
++soft_kill
++slip_surface
+```
+
+The following HS commands can be used to debug these.
+
+```
+debug_structure_soft_ceilings 1
+debug_structure_soft_kill 1
+debug_structure_slip_surfaces 1
+```
+
+## Soft ceilings
+Objects that are set as soft ceilings will produce invisible barriers that prevent users from walking past the facing normal. If a user somehow ends up on the other side of one then walking near one will allow the user back into the play space. The format for these are as follows:
+
+`+soft_ceiling:main_barrier`
+
+There are four aspects to this name so lets break this down.
+
+* + - Material symbol that lets tool know this is a special material.
+* soft_ceiling - The type of barrier we wish to use for surfaces that have this material assigned.
+* : - The separator between the barrier type and the name.
+* main_barrier - The name for our barrier. This is what the user will give to the `soft_ceiling_enable` script function to disable it.
+
+## Soft kill
+Objects that are set as soft kill will produce invisible regions that kill the user once they enter it for longer than a second. The format for these are as follows:
+
+`+soft_kill:death_barrier`
+
+There are four aspects to this name so lets break this down.
+
+* + - Material symbol that lets tool know this is a special material.
+* soft_kill - The type of barrier we wish to use for surfaces that have this material assigned.
+* : - The separator between the barrier type and the name.
+* death_barrier - The name for our barrier. This is what the user will give to the `soft_ceiling_enable` script function to disable it.
+
+## Slip surface
+Objects that are set as slip surface will produce surfaces that cause players to slide back. This will prevent users from walking past the map boundary without making it too obvious that there is an invisible wall. The facing angle for faces marked as slip surfaces should be greater than 35 degrees. Tool will throw out an error otherwise and the surface will be disabled. The format for these are as follows:
+
+`+slip_surface:slip_and_slide`
+
+There are four aspects to this name so lets break this down.
+
+* + - Material symbol that lets tool know this is a special material.
+* slip_surface - The type of barrier we wish to use for surfaces that have this material assigned.
+* : - The separator between the barrier type and the name.
+* death_barrier - The name for our barrier. This is what the user will give to the `soft_ceiling_enable` script function to disable it.
 
 [wiki-polyhedron]: https://en.wikipedia.org/wiki/Convex_polytope
 

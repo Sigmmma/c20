@@ -40,9 +40,9 @@ These material names are hard-coded into the [tools][h1a-ek] and have special me
 | `+media` | Reserved special material that has many uses and can be used in conjunction with the special shader symbols to define its use and behavior. For example, it can be used with the `$` fog plane shader symbol to make `+media$`, which can be applied to faces to construct a fog plane used to define a volumetric [fog][] region (assigned using [Sapien][h2-sapien]).
 | `+unused` | Reserved special material that has many uses and can be used in conjunction with the special shader symbols to define its use and behavior. For example, it can be used with the `$` fog plane shader symbol to make `+unused$`, which can be applied to faces to construct a fog plane used to define a volumetric [fog][] region (assigned using [Sapien][h1a-sapien]).
 | `+seam` | ???
-| `+soft_ceiling` | ???
-| `+soft_kill` | ???
-| `+slip_surface` | ???
+| `+soft_ceiling` | Objects that use this material will be used as soft ceilings. Used in design tags
+| `+soft_kill` | Objects that use this material will be used as soft kill barriers. Used in design tags
+| `+slip_surface` | Objects that use this material will be used as slip surfaces. Used in design tags
 
 # Material symbols
 Material symbols are added to the **end** of the material name and give the surface certain attributes or behaviours in-engine.
@@ -112,7 +112,7 @@ Material symbols are added to the **end** of the material name and give the surf
 | `{` | **Ignored by Lightmapper**. Lightmapper will not add this geometry to it's raytracing scene representation.
 | `}` | **Portal (Sound Blocker)**. Portal that does not propagate any sound.
 | `[` | **Decal Offset**. Offsets the faces that this material is applied to as it would normally for a decal.
-| `\` | **Water Surface**. Sets the surface to be a water surface.
+| `'` | **Water Surface**. Sets the surface to be a water surface.
 | `0` | **Slip Surface**. Units (bipeds and vehicles) will slip off this surface.
 | `]` | **Group Transparents by Plane**. Group transparent geometry by fitted planes.
 

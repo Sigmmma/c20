@@ -42,10 +42,14 @@ If you have any images or custom models then the folders you will need are as fo
 	* Like you probably already guessed this is where you will place your .tif/.tiff files to compile bitmaps tags from. Keep in mind that when we talk about bitmaps in Halo we are not talking about images with a .BMP extension. We are talking about a tag type called bitmaps that stores image data for use in Halo specifically.
 2. structure
 		* `(H3EK Install Path)\data\levels\multi\(My Level Name)\structure`
-	* This `structure` folder name is something Tool.exe specifically looks for when compiling object meshes. Be sure that the folder is named exactly this. As you have probably already guessed this is where you will compile your example level from.
+	* This `structure` folder name is something Tool.exe specifically looks for when compiling object meshes. Be sure that the folder is named exactly this. As you have probably already guessed this is where you will compile your example level from. The contents of this folder will only be read if the user runs the `structure` command.
 3. scenery
 		* `(H3EK Install Path)\data\objects\levels\multi\(My Level Name)`
 	* As you have probably guessed this is where the raw assets for any level specific objects can be placed. This folder should probably contain multiple folders with their own sub directories for model and bitmap assets.
+4. structure_design
+		* `(H3EK Install Path)\data\levels\multi\(My Level Name)\structure_design`
+	* This `structure_design` folder name is something Tool.exe specifically looks for when compiling structure design related assets. Be sure that the folder is named exactly this. The contents of this folder will only be read if the user runs the `structure-design` command.
+
 
 ```.alert info
 As stated before compiled assets will end up in a path that mirrors the path of the raw asset but replacing the data directory with the tags directory. A packaged map file will take the name of the scenario tag and placed in your toolset's map folder.
