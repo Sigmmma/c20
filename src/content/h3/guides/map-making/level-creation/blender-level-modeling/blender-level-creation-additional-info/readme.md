@@ -75,9 +75,9 @@ Starting with the visual aspects of our water, we will create a simple plane in 
 
 There are three aspects to this material name
 
-* river - This is the shader_collection prefix that will be used to find the material name that follows after the space. In the case of the river prefix that will tell tool to search for shaders in `levels\multi\riverworld` as set by the shader_collections.txt file in the `tags\levels` directory.
+* river - This is the shader_collection prefix that will be used to find the material name that follows after the space. In the case of the river prefix, that will tell tool to search for shaders in `levels\multi\riverworld` as set by the shader_collections.txt file in the `tags\levels` directory.
 * riverworld_water_rough - The material name that will be used for the water on our level.
-* ' - This is a material symbol that lets tool know we are intending for this surface to be used as a water surface. This will help satisfy the sealed world rules for this mesh.
+* `'` - This is a material symbol that lets tool know we are intending for this surface to be used as a water surface. This will help satisfy the sealed world rules for this mesh.
 
 This ends everything we need to create in our `structure` ASS file. We can export our current scene and move on the the `structure-design` ASS file in the physical section.
 
@@ -88,17 +88,17 @@ Now lets handle our water regions properly. We will start by creating another pl
 
 There are two aspects to this material name
 
-* ~ - This symbol tells tool to treat the mesh as a water group
+* `~` - This symbol tells tool to treat the mesh as a water group
 * water_physics00 - Just the name for our object. Call it whatever you would like. We will be using water_physics00 in this example.
 
 Now that we've created a water region lets add another object to define the direction objects will flow in. You can skip this step if you do not want there to be direction in a body of water you make. Add an `Arrows` object found under the `Empty` list in the `Add` menu. Set the scale on this object to 600.0 units on the XYZ axis. We will also be giving it the following object name.
 
 `#water_direction00`
 
-* # - This symbol tells tool to use the object rotation for direction.
+* `#` - This symbol tells tool to use the object rotation for direction.
 * water_direction00 - Just the name for our object. Call it whatever you would like. We will be using water_direction00 in this example.
 
-We will be using Ctrl + P with both `#water_direction00` and `~water_physics00` selected with `~water_physics00` being the active object in our scene. This will set `#water_direction00` to use `~water_physics00` as it's parent object. Now we can rotate our `#water_direction00` to define the direction that objects will flow in with the X axis being forward in this cause. Lets rotate it 90 degrees.
+We will be using <kbd>Ctrl</kbd> + <kbd>P</kbd> with both `#water_direction00` and `~water_physics00` selected with `~water_physics00` being the active object in our scene. This will set `#water_direction00` to use `~water_physics00` as it's parent object. Now we can rotate our `#water_direction00` to define the direction that objects will flow in with the X axis being forward in this case. Lets rotate it 90 degrees.
 
 Now we can export these assets to an ASS file. The ass file we create from the meshes we created must go in a different subdirectory from the assets created in the `Visuals` section. The `structure-design` command will also be used instead of the standard `structure` command to compile our ASS file.
 
@@ -128,9 +128,9 @@ Objects that are set as soft ceilings will produce invisible barriers that preve
 
 There are four aspects to this name so lets break this down.
 
-* + - Material symbol that lets tool know this is a special material.
+* `+` - Material symbol that lets tool know this is a special material.
 * soft_ceiling - The type of barrier we wish to use for surfaces that have this material assigned.
-* : - The separator between the barrier type and the name.
+* `:` - The separator between the barrier type and the name.
 * main_barrier - The name for our barrier. This is what the user will give to the `soft_ceiling_enable` script function to disable it.
 
 ## Soft kill
@@ -140,9 +140,9 @@ Objects that are set as soft kill will produce invisible regions that kill the u
 
 There are four aspects to this name so lets break this down.
 
-* + - Material symbol that lets tool know this is a special material.
+* `+` - Material symbol that lets tool know this is a special material.
 * soft_kill - The type of barrier we wish to use for surfaces that have this material assigned.
-* : - The separator between the barrier type and the name.
+* `:` - The separator between the barrier type and the name.
 * death_barrier - The name for our barrier. This is what the user will give to the `soft_ceiling_enable` script function to disable it.
 
 ## Slip surface
@@ -152,9 +152,9 @@ Objects that are set as slip surface will produce surfaces that cause players to
 
 There are four aspects to this name so lets break this down.
 
-* + - Material symbol that lets tool know this is a special material.
+* `+` - Material symbol that lets tool know this is a special material.
 * slip_surface - The type of barrier we wish to use for surfaces that have this material assigned.
-* : - The separator between the barrier type and the name.
+* `:` - The separator between the barrier type and the name.
 * death_barrier - The name for our barrier. This is what the user will give to the `soft_ceiling_enable` script function to disable it.
 
 [wiki-polyhedron]: https://en.wikipedia.org/wiki/Convex_polytope

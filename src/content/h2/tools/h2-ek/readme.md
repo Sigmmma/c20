@@ -83,6 +83,7 @@ H2 MCC tags can't currently be downgraded to work in H2V so consider this a one 
 
 # Known issues
 
+* Resource sharing is currently not supported.
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
 * PRT simulation tool is not included - avoid tool commands that require it, they will not function properly.
 * Tag moving in Guerilla has some dependencies on old source control code because of this you need to manually move the tag after it fixes the references.

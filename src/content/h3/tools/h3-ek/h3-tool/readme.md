@@ -1,5 +1,8 @@
 **H3-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo 3 Editing Kit][h3-ek] by 343 Industries in 2021.
 
+# Tips
+* If an invalid command is typed into tool then tool will print a list of commands that have the same starting character as what was typed in. This means that if we type `tool s` into command prompt then tool will only output commands that start with the letter s.
+
 # Conventions used in this article
 
 - `<arg>` - refers to an argument.
@@ -740,6 +743,7 @@ Goes through all of the sound tags in a directory and prints how many sounds bel
 # count-all-class-sounds <root-path>
 tool count-all-class-sounds "sound\ambience"
 ```
+
 * root-path - A local tag path to the root of a directory containing sound tags or child folders with sound tags.
 
 # Count class sounds
@@ -749,6 +753,7 @@ Goes through all of the sound tags in the tags directory and prints the paths fo
 # count-class-sounds <sound-class>
 tool count-class-sounds projectile_impact
 ```
+
 * sound-class - The sound class you want to specify. The list is as follows.
 	* Placeholder
 
@@ -759,7 +764,94 @@ Prints all existing sound tags in a directory.
 # count-sound-tags <root-path>
 tool count-sound-tags "sound\ambience"
 ```
+
 * root-path - A local tag path to the root of a directory containing sound tags or child folders with sound tags.
+
+# Crash
+A command to test HEK errors.
+
+```sh
+# crash <crash-type>
+tool crash assert
+```
+
+* crash-type - A name for the type of crash we want to test. Should be one of the following
+	* test_fatal_error
+	* assert
+	* now
+	* halt
+	
+# Create custom network hopper and variant files
+???
+
+```sh
+# create-custom-network-hopper-and-variant-files <hopper-file>
+tool create-custom-network-hopper-and-variant-files
+```
+
+* hopper-file - ???
+
+# Create custom network hopper file
+???
+
+```sh
+# create-custom-network-hopper-file <hopper-file>
+tool create-custom-network-hopper-file
+```
+
+* hopper-file - ???
+
+# Create custom network variant file
+???
+
+```sh
+# create-custom-network-variant-file <variant-file> <output-directory>
+tool create-custom-network-variant-file
+```
+
+* variant-file - ???
+* output-directory - ???
+
+# Create network hopper file
+???
+
+```sh
+# create-network-hopper-file
+tool create-network-hopper-file
+```
+
+# Cubemap farm new
+This command does not work. Was intended to run a farm setup for generating cubemaps to be used by dynamic cubemap enabled shaders.
+
+```sh
+# cubemap-farm-new <scenario> <branch>
+tool cubemap-farm-new "levels\multi\example\example" main
+```
+
+* scenario - A local tag path to a scenario file without extension.
+* branch - Should always be main
+
+# Cubemaps
+Generates cubemaps to be used by dynamic cubemap enabled shaders.
+
+```sh
+# cubemaps <scenario> <input-folder>
+tool cubemaps "levels\multi\guardian\guardian" ""
+```
+
+* scenario - A local tag path to a scenario file without extension.
+* input-folder - ???
+
+# Decorator set link render model
+Sets the render_model tag reference in a decorator-set tag.
+
+```sh
+# decorator-set-link-render-model <decorator-set> <render-model>
+tool decorator-set-link-render-model "levels\shared\decorators\barnacles\barnacles" "levels\shared\decorators\barnacles\barnacles"
+```
+
+* decorator-set - A local tag path to a decorator_set tag file without extension.
+* render-model - A local tag path to a render_model tag file without extension.
 
 # Dialogue globals import
 Compiles a CSV file to generate a new [ai_dialogue_globals][] tag. The file path for the CSV file is `data\ai\ai_dialogue_globals.csv` and `tags\ai\ai_dialogue_globals.ai_dialogue_globals` is generated.
@@ -779,6 +871,291 @@ tool dialogue-import "sound\dialog\combat\brute_bloodthirsty"
 
 * root-directory - A local tag path to a root directory containing sound tags. A dialogue tag is generated adjacent to this root directory with the same name, e.g. `sound\dialog\combat\brute_bloodthirsty.dialogue`.
 
+# Dump binary
+Dumps binary files to a C style array. Meant for developers
+
+```sh
+# dump-binary <binary-file> <output-file>
+tool dump-binary "C:\processed_pixel_data.bin" "C:\processed_pixel_data_output.txt"
+```
+
+* binary-file - An absolute file path to a binary file with extension.
+* output-file - An absolute file path to an output location with filename and extension
+
+# Dump cache resource gestalt
+???
+
+```sh
+# dump-cache-resource-gestalt <cache-resource-gestalt>
+tool dump-cache-resource-gestalt
+```
+
+* cache-resource-gestalt - ???
+
+# Dump cache resource gestalt file locations
+???
+
+```sh
+# dump-cache-resource-gestalt-file-locations <cache-resource-gestalt>
+tool dump-cache-resource-gestalt-file-locations
+```
+
+* cache-resource-gestalt - ???
+
+# Dump gestalt links
+???
+
+```sh
+# dump-gestalt-links <cache-resource-gestalt> <tag/resource-substring> <tag-type>
+tool dump-gestalt-links
+```
+
+* cache-resource-gestalt - ???
+* tag/resource-substring - ???
+* tag-type - ???
+
+# Dump gestalt links from file
+???
+
+```sh
+# dump-gestalt-links-from-file <cache-resource-gestalt> <file-of-tag/resource-substrings-(one-per-line)> <tag-type>
+tool dump-gestalt-links
+```
+
+* cache-resource-gestalt - ???
+* file-of-tag/resource-substrings - ???
+* tag-type - ???
+
+# Dump render method options
+Scans the tag directory for an existing shader tags and outputs their path in command prompt. Once it's done it will dump a file named `beam_dat.txt` to the shaders folder.
+
+```sh
+# dump-render-method-options
+tool dump-render-method-options
+```
+
+# Dump tag file index
+???
+
+```sh
+# dump-tag-file-index <index-file>
+tool dump-tag-file-index 
+```
+
+* index-file - ???
+
+# Dump tag table
+This command does not work. Do not use it.
+
+```sh
+# dump-tag-table <tag-type>
+tool dump-tag-table
+```
+
+* tag-type - ???
+
+# Dump tiff to header
+???
+
+```sh
+# dump-tiff-to-header <quantization-factor> <tiff-file> <constant-prefix-string> <output-file>
+tool dump-tiff-to-header
+```
+
+* quantization-factor - ???
+* tiff-file - ???
+* constant-prefix-string - ???
+* output-file - ???
+
+# Estimate overdraw threshold
+???
+Seems to assert due to missing templates.
+
+```sh
+# estimate-overdraw-threshold <effect>
+tool estimate-overdraw-threshold "objects\weapons\turret\flamethrower\fx\projectile"
+```
+
+* effect - A local tag path to an effect tag without extension.
+
+# Export bitmap DDS
+Takes the processed pixel data from a bitmap tag and dumps it to a DDS image. 
+
+```sh
+# export-bitmap-dds <bitmap-tag> <output-path-prefix>
+tool export-bitmap-dds "objects\characters\brute\bitmaps\brute" "C:\pixel_data_"
+```
+
+* bitmap-tag - A local tag path to a bitmap tag without extension.
+* output-path-prefix - An absolute file path to a directory to output the DDS file to along with a prefix to append to the start of the DDS filename. If only a prefix is given then the file will be dumped at the root of your H3EK directory.
+
+# Export bitmap PFM
+Takes the processed pixel data from a bitmap tag and dumps it to a PFM image. 
+
+```sh
+# export-bitmap-pfm <bitmap-tag> <output-path-prefix>
+tool export-bitmap-pfm "objects\characters\brute\bitmaps\brute" "F:\pixel_data_"
+```
+
+* bitmap-tag - A local tag path to a bitmap tag without extension.
+* output-path-prefix - An absolute file path to a directory to output the PFM file to along with a prefix to append to the start of the PFM filename. If only a prefix is given then the file will be dumped at the root of your H3EK directory.
+
+# Export bitmap TGA
+Takes the processed pixel data from a bitmap tag and dumps it to a TGA image. 
+
+```sh
+# export-bitmap-tga <bitmap-tag> <output-path-prefix>
+tool export-bitmap-tga "objects\characters\brute\bitmaps\brute" "F:\pixel_data_"
+```
+
+* bitmap-tag - A local tag path to a bitmap tag without extension.
+* output-path-prefix - An absolute file path to a directory to output the TGA file to along with a prefix to append to the start of the TGA filename. If only a prefix is given then the file will be dumped at the root of your H3EK directory.
+
+# Export DXT5 array from bitmap array
+???
+
+```sh
+# export-dxt5-array-from-bitmap-array <bitmap-tag> <output-path-prefix>
+tool export-dxt5-array-from-bitmap-array 
+```
+
+* bitmap-tag - A local tag path to a bitmap tag without extension.
+* output-path-prefix - An absolute file path to a directory to output the file to along with a prefix to append to the start of the filename. If only a prefix is given then the file will be dumped at the root of your H3EK directory.
+
+# Export DXT5 array from bitmap array
+???
+
+```sh
+# export-dxt5-array-from-bitmap-array <bitmap-tag> <output-path-prefix>
+tool export-dxt5-array-from-bitmap-array 
+```
+
+* bitmap-tag - A local tag path to a bitmap tag without extension.
+* output-path-prefix - An absolute file path to a directory to output the file to along with a prefix to append to the start of the filename. If only a prefix is given then the file will be dumped at the root of your H3EK directory.
+
+# Export FMOD banks
+???
+
+```sh
+# export-fmod-banks <csv-file.> <platform> <bank-type> <update-info-file-only>
+tool export-fmod-banks
+```
+
+* csv-file - ???
+* platform - ???
+* bank-type - ???
+* update-info-file-only - ???
+
+# Export game variant settings
+Takes a `multiplayer_variant_settings_interface_definition` tag and outputs some debug info in command prompt. 
+
+```sh
+# export-game-variant-settings <tag-file>
+tool export-game-variant-settings "multiplayer\game_variant_settings\slayer\slayer.multiplayer_variant_settings_interface_definition"
+```
+
+* tag-file - A local tag path to a `multiplayer_variant_settings_interface_definition tag with extension.
+
+# Export game variants info
+???
+
+```sh
+# export-game-variants-info <directory> <UUI-localized>
+tool export-game-variant-settings
+```
+
+* directory - ???
+* UUI-localized - ???
+
+# Export render model mesh
+This command has not been updated for DX11. Avoid this command.
+
+```sh
+# export-render-model-mesh <render-model> <output-mesh-file>
+tool export-render-model-mesh
+```
+
+* render-model - ???
+* output-mesh-file - ???
+
+# Export shipping game variants
+Writes gametype bin files to your H3EK root.
+
+```sh
+# export-shipping-game-variants
+tool export-shipping-game-variants
+```
+
+# Export structure mesh
+This command has not been updated for DX11. Avoid this command.
+
+```sh
+# export-structure-mesh <structure-bsp> <output-mesh-file> <hierarchical-or-flat>
+tool export-structure-mesh
+```
+
+* structure-bsp - ???
+* output-mesh-file - ???
+* hierarchical-or-flat - ???
+
+# Export structure mesh OBJ
+Takes a scenario tag and finds the `structure_bsp` referenced. The mesh is then outputted in an OBJ file format in tool output.
+
+```sh
+# export-structure-mesh-obj <scenario>
+tool export-structure-mesh-obj "levels\multi\snowbound\snowbound"
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+
+# Export tag to XML
+Takes a tag and dumps the contents to an XML format. Use this for easy comparisons.
+
+```sh
+# export-tag-to-xml <tag-file> <output-file>
+tool export-tag-to-xml "F:\H3EK\tags\objects\characters\masterchief\masterchief.render_model" "F:\masterchief.xml"
+```
+
+* tag-file - An absolute tag path to a tag with extension.
+* output-file - An absolute file path to an output directory with file name and extension.
+
+# Export windows font
+???
+
+```sh
+# export-windows-font <output-directory> <font-file-(optional)> <typeface-name> <point-size>
+tool export-windows-font
+```
+
+* output-directory - ???
+* font-file - ???
+* typeface-name - ???
+* point-size - ???
+
+# Export xenon bitmap PFM
+???
+
+```sh
+# export-xenon-bitmap-pfm <bitmap-tag> <output-path-prefix>
+tool export-xenon-bitmap-pfm
+```
+
+* bitmap-tag - ???
+* output-path-prefix - ???
+
+# Extract import info
+Dumps the stored import-info data used to originally import the tag file. Only tags that contain valid import-info can use this. This means only `render_model`, `collision_model, physics_model, and structure_bsp`.
+
+```sh
+# extract-import-info <tag-file>
+tool extract-import-info "F:\H3EK\tags\objects\characters\masterchief\masterchief.render_model"
+tool extract-import-info "F:\H3EK\tags\objects\characters\masterchief\masterchief.collision_model"
+tool extract-import-info "F:\H3EK\tags\objects\characters\masterchief\masterchief.physics_model"
+tool extract-import-info "F:\H3EK\tags\levels\multi\zanzibar\zanzibar.scenario_structure_bsp"
+```
+
+* tag-file - An absolute file path to a tag containing valid import info.
+
 # Extract LPC data
 Dumps a file called `test.aif` in the root of H2-EK. This is likely to be [linear predictive coding](https://en.wikipedia.org/wiki/Linear_predictive_coding) data for the sound file but this hasn't be verified.
 
@@ -788,6 +1165,16 @@ tool extract-lpc-data "sound_test\aiff\soundtest.aiff"
 ```
 
 * sound-file - A local data path to an AIF/AIFF file.
+
+# Extract render data
+Dumps the stored import-info data used to originally import the render_model file. Only render_model tags that contain valid import-info can use this.
+
+```sh
+# extract-render-data <render-model>
+tool extract-render-data "objects\characters\masterchief\masterchief"
+```
+
+* render-model - A local tag path to a render_model tag without extension.
 
 # FBX to ASS
 This command takes an FBX and converts it to an [ASS][] file for Halo 3 level importing. Use this if you don't have access to an export script.
@@ -866,8 +1253,8 @@ You need to install [Python][] if you haven't already see the [official document
 Once Python is installed and working run the `calc_lm_farm_local.py` script in the toolkit root directory.
 
 ```sh
-#python calc_lm_farm_local.py <scenario> <bsp name> <light group> <quality(high, medium, low, direct_only)>
-python calc_lm_farm_local.py "levels\multi\riverworld\riverworld" riverworld all medium
+#python calc_lm_farm_local.py <scenario> <bsp name> <quality(high, medium, low, direct_only)> <light group>
+python calc_lm_farm_local.py "levels\multi\riverworld\riverworld" riverworld medium all
 ```
 
 If you aren't sure what to use for light group/region just use the catch all value of `all`, this will ensure all regions are lit correctly.
