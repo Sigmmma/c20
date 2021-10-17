@@ -23,12 +23,12 @@ const mainTopics = [
   ["/h2"],
   ["/h2/tags"],
   //["/h2/guides"],
-  ["/h2/tools/h2-ek/"],
+  ["/h2/tools/h2-ek"],
 
   ["/h3"],
   ["/h3/tags"],
   //["/h3/guides"],
-  ["/h3/tools/h3-ek/"],
+  ["/h3/tools/h3-ek"],
 ];
 
 const spaces = [
