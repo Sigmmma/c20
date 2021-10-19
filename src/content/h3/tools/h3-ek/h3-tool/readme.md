@@ -780,7 +780,7 @@ tool crash assert
 	* assert
 	* now
 	* halt
-	
+
 # Create custom network hopper and variant files
 ???
 
@@ -939,7 +939,7 @@ tool dump-render-method-options
 
 ```sh
 # dump-tag-file-index <index-file>
-tool dump-tag-file-index 
+tool dump-tag-file-index
 ```
 
 * index-file - ???
@@ -979,7 +979,7 @@ tool estimate-overdraw-threshold "objects\weapons\turret\flamethrower\fx\project
 * effect - A local tag path to an effect tag without extension.
 
 # Export bitmap DDS
-Takes the processed pixel data from a bitmap tag and dumps it to a DDS image. 
+Takes the processed pixel data from a bitmap tag and dumps it to a DDS image.
 
 ```sh
 # export-bitmap-dds <bitmap-tag> <output-path-prefix>
@@ -990,7 +990,7 @@ tool export-bitmap-dds "objects\characters\brute\bitmaps\brute" "C:\pixel_data_"
 * output-path-prefix - An absolute file path to a directory to output the DDS file to along with a prefix to append to the start of the DDS filename. If only a prefix is given then the file will be dumped at the root of your H3EK directory.
 
 # Export bitmap PFM
-Takes the processed pixel data from a bitmap tag and dumps it to a PFM image. 
+Takes the processed pixel data from a bitmap tag and dumps it to a PFM image.
 
 ```sh
 # export-bitmap-pfm <bitmap-tag> <output-path-prefix>
@@ -1001,7 +1001,7 @@ tool export-bitmap-pfm "objects\characters\brute\bitmaps\brute" "F:\pixel_data_"
 * output-path-prefix - An absolute file path to a directory to output the PFM file to along with a prefix to append to the start of the PFM filename. If only a prefix is given then the file will be dumped at the root of your H3EK directory.
 
 # Export bitmap TGA
-Takes the processed pixel data from a bitmap tag and dumps it to a TGA image. 
+Takes the processed pixel data from a bitmap tag and dumps it to a TGA image.
 
 ```sh
 # export-bitmap-tga <bitmap-tag> <output-path-prefix>
@@ -1016,7 +1016,7 @@ tool export-bitmap-tga "objects\characters\brute\bitmaps\brute" "F:\pixel_data_"
 
 ```sh
 # export-dxt5-array-from-bitmap-array <bitmap-tag> <output-path-prefix>
-tool export-dxt5-array-from-bitmap-array 
+tool export-dxt5-array-from-bitmap-array
 ```
 
 * bitmap-tag - A local tag path to a bitmap tag without extension.
@@ -1027,7 +1027,7 @@ tool export-dxt5-array-from-bitmap-array
 
 ```sh
 # export-dxt5-array-from-bitmap-array <bitmap-tag> <output-path-prefix>
-tool export-dxt5-array-from-bitmap-array 
+tool export-dxt5-array-from-bitmap-array
 ```
 
 * bitmap-tag - A local tag path to a bitmap tag without extension.
@@ -1047,7 +1047,7 @@ tool export-fmod-banks
 * update-info-file-only - ???
 
 # Export game variant settings
-Takes a `multiplayer_variant_settings_interface_definition` tag and outputs some debug info in command prompt. 
+Takes a `multiplayer_variant_settings_interface_definition` tag and outputs some debug info in command prompt.
 
 ```sh
 # export-game-variant-settings <tag-file>
@@ -1144,7 +1144,7 @@ tool export-xenon-bitmap-pfm
 * output-path-prefix - ???
 
 # Extract import info
-Dumps the stored import-info data used to originally import the tag file. Only tags that contain valid import-info can use this. This means only `render_model`, `collision_model, physics_model, and structure_bsp`.
+Dumps the stored import-info data used to originally import the tag file. Only tags that contain valid import-info can use this. This means only [render_model][], [collision_model][], [physics_model][], and [scenario_structure_bsp][].
 
 ```sh
 # extract-import-info <tag-file>

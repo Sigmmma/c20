@@ -98,7 +98,7 @@ Now that we've created a water region lets add another object to define the dire
 * `#` - This symbol tells tool to use the object rotation for direction.
 * water_direction00 - Just the name for our object. Call it whatever you would like. We will be using water_direction00 in this example.
 
-We will be using <kbd>Ctrl</kbd> + <kbd>P</kbd> with both `#water_direction00` and `~water_physics00` selected with `~water_physics00` being the active object in our scene. This will set `#water_direction00` to use `~water_physics00` as it's parent object. Now we can rotate our `#water_direction00` to define the direction that objects will flow in with the X axis being forward in this case. Lets rotate it 90 degrees.
+We will be using <kbd>Ctrl + P</kbd> with both `#water_direction00` and `~water_physics00` selected with `~water_physics00` being the active object in our scene. This will set `#water_direction00` to use `~water_physics00` as it's parent object. Now we can rotate our `#water_direction00` to define the direction that objects will flow in with the X axis being forward in this case. Lets rotate it 90 degrees.
 
 Now we can export these assets to an ASS file. The ass file we create from the meshes we created must go in a different subdirectory from the assets created in the `Visuals` section. The `structure-design` command will also be used instead of the standard `structure` command to compile our ASS file.
 
@@ -158,5 +158,3 @@ There are four aspects to this name so lets break this down.
 * death_barrier - The name for our barrier. This is what the user will give to the `soft_ceiling_enable` script function to disable it.
 
 [wiki-polyhedron]: https://en.wikipedia.org/wiki/Convex_polytope
-
-
