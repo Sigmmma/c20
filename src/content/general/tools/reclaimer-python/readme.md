@@ -1,3 +1,8 @@
+```.alert info
+Some basic [command-line][] and Python knowledge is required to use Reclaimer.
+Get started learning Python [here](https://www.python.org/about/gettingstarted/).
+```
+
 **Reclaimer** is a [Python 3][python] library for modifying and creating Halo data formats like [tags][h1/tags], [JMS][], [maps][h1/map], and more. It can be used to write Python scripts to inspect, edit, or generate tags programmatically where it might otherwise take hours of manual effort using a tag editor like [Guerilla][]. It is the foundation of the [Mozzarilla][] editor.
 
 While mainly focused on Halo 1 and [OpenSauce][] formats, it also has limited support for [Halo 2][h2], Halo 3, Stubbs, and the Shadowrun prototype.

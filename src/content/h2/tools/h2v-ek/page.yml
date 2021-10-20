@@ -9,12 +9,6 @@ info:
     * Release date: 2007
 stub: true
 toolName: H2V-EK
-alerts:
-  - type: danger
-    md:
-      en: >-
-        After installing the H2V-EK, Windows users must [prevent the Virtual Store
-        from interfering with it][tips#windows-virtual-store].
 keywords:
   en:
     - h2ek

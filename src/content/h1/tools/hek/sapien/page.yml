@@ -7,11 +7,6 @@ keywords:
   en:
     - scenario
 toolName: Sapien
-alerts:
-  - type: info
-  - md:
-      en: >-
-       This is an article about the legacy Sapien for use with [Halo: Custom Edition][h1], for the H1A Sapien for MCC see [H1A Sapien][h1a-sapien]
 thanks:
   General_101:
     en: Additional Sapien hotkey documentation

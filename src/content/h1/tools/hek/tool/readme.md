@@ -1,3 +1,6 @@
+```.alert info
+This is an article about the legacy Tool for use with [Halo: Custom Edition][h1], for the H1A Tool for MCC see [H1A Tool][h1a-Tool]
+```
 **Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [HEK][].
 
 # Model compilation

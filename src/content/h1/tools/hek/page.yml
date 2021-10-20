@@ -14,9 +14,3 @@ info:
     2](http://vaporeon.io/hosted/halo/original_files/HEKSetup_1.00.exe)
 stub: true
 toolName: HEK
-alerts:
-  - type: danger
-    md:
-      en: >-
-        After installing the HEK, Windows users must [prevent the Virtual Store
-        from interfering with it][tips#windows-virtual-store].
