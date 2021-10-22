@@ -14,10 +14,10 @@ phases:
       - tar xzf git-lfs-linux-amd64-v2.13.3.tar.gz
       - ./install.sh
       - mkdir /root/lfs
-      - git config lfs.storage /root/lfs
       - cd $CODEBUILD_SRC_DIR
   pre_build:
     commands:
+      - git config lfs.storage /root/lfs
       - git lfs pull
       - npm ci
   build:
