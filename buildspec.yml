@@ -13,6 +13,8 @@ phases:
       - curl -OJL https://github.com/git-lfs/git-lfs/releases/download/v2.13.3/git-lfs-linux-amd64-v2.13.3.tar.gz
       - tar xzf git-lfs-linux-amd64-v2.13.3.tar.gz
       - ./install.sh
+      - mkdir /root/lfs
+      - git config lfs.storage /root/lfs
       - cd $CODEBUILD_SRC_DIR
   pre_build:
     commands:
@@ -28,4 +30,6 @@ phases:
       - aws s3api put-bucket-website --bucket reclaimers-wiki-files --website-configuration file://src/data/aws/s3/bucket-website.json
 cache:
   paths:
+    # paths which will be cached between builds
+    - '/root/lfs/**/*'
     - '/root/.npm/**/*'
