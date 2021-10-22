@@ -18,23 +18,13 @@ module.exports = async function(ctx) {
   const {page, lang} = ctx;
   const localize = localizations(lang);
 
+  if (page.alerts) {
+    throw new Error(`Page ${page.pageId} is using the deprecated YAML alerts feature. Use inline markdown alerts instead.`);
+  }
+
   return {
     html: html`
       ${page.stub && alert("info", localize("stubNotice")(ctx))}
-      ${R.pipe(
-        R.pathOr([], ["alerts"]),
-        R.filter(R.path(["md", lang])),
-        R.map(({type, md}) => alert(type, renderMarkdown(ctx, md[lang])))
-      )(page)}
-    `,
-    searchText: R.pipe(
-      R.pathOr([], ["alerts"]),
-      R.filter(R.path(["md", lang])),
-      R.map(({md}) => {
-        console.warn(`Page ${page.pageId} is using the deprecated YAML alerts feature. Use inline markdown alerts instead.`);
-        return renderMarkdown(ctx, md[lang], true)
-      }),
-      R.join(" ")
-    )(page)
+    `
   };
 };
