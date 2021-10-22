@@ -26,6 +26,6 @@ phases:
       - bash -c "if [ /"$CODEBUILD_BUILD_SUCCEEDING/" == /"0/" ]; then exit 1; fi"
       - aws s3 sync --delete ./dist s3://reclaimers-wiki-files
       - aws s3api put-bucket-website --bucket reclaimers-wiki-files --website-configuration file://src/data/aws/s3/bucket-website.json
-  cache:
-    paths:
-      - '/root/.npm/**/*'
+cache:
+  paths:
+    - '/root/.npm/**/*'
