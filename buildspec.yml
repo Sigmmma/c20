@@ -13,7 +13,7 @@ phases:
       - curl -OJL https://github.com/git-lfs/git-lfs/releases/download/v2.13.3/git-lfs-linux-amd64-v2.13.3.tar.gz
       - tar xzf git-lfs-linux-amd64-v2.13.3.tar.gz
       - ./install.sh
-      - mkdir /root/lfs
+      - mkdir -p /root/lfs
       - cd $CODEBUILD_SRC_DIR
   pre_build:
     commands:
