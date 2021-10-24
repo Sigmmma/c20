@@ -23,7 +23,7 @@ module.exports = function(ctx) {
   renderer.br = () => "\n";
   renderer.del = (text) => text;
   renderer.link = (href, title, text) => text;
-  renderer.image = (href, title, text) => `(${title})`;
+  renderer.image = (href, title, text) => title ? `(${title})` : "";
   renderer.text = (text) => text;
   //blocks:
   renderer.code = (code, infostring, escaped) => {

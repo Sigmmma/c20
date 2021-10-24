@@ -7,6 +7,7 @@ const vizRenderOpts = require("viz.js/full.render.js");
 const COPY_FILES_PATTERN = /\.(jpg|jpeg|png|gif|ms|mp4)/;
 const VIDEO_FILES_PATTERN = /\.(mp4)/;
 const VIZ_RENDER_PATTERN = /\.(dot|neato|fdp|sfdp|twopi|circo)/;
+const noThumbs = process.env.C20_NO_THUMBNAILS == "true";
 
 //todo: this does extra work then the URL is not localized but there are multiple languages
 async function buildResources(pageIndex, buildOpts) {
@@ -51,13 +52,13 @@ async function buildResources(pageIndex, buildOpts) {
           await fs.writeFile(destPath, svg, "utf8");
         }));
       }
-      if (ext.match(VIDEO_FILES_PATTERN)) {
+      if (ext.match(VIDEO_FILES_PATTERN) && !noThumbs) {
         await Promise.all(destLangs.map(async (lang) => {
           const destPath = path.join(buildOpts.outputDir, page.localizedPaths[lang], `${name}.thumb_%d.jpg`);
           await new Promise((resolve, reject) => {
             exec(`ffmpeg -i "${srcPath}" -vframes 1 "${destPath}"`, (err) => {
               if (err) reject(err);
-              else resolve(files);
+              else resolve();
             });
           });
         }));
