@@ -4,6 +4,7 @@ const R = require("ramda");
 const DISCORD_URL = "https://discord.reclaimers.net";
 const REPO_URL = "https://github.com/Sigmmma/c20";
 const DEFAULT_OPEN_THRESHOLD = 8;
+const noThumbs = process.env.C20_NO_THUMBNAILS == "true";
 
 const breakTagName = (tagName) => tagName.split("_").join("_<wbr>");
 
@@ -128,7 +129,7 @@ const figure = (href, caption, inline) => html`
 `;
 
 const video = (href, poster) => html`
-  <video controls preload="${poster ? "none" : "auto"}" ${poster ? `poster="${poster}"` : null}>
+  <video controls preload="${poster && !noThumbs ? "none" : "auto"}" ${poster && !noThumbs ? `poster="${poster}"` : null}>
     <source src="${href}" type="video/mp4">
   </video>
 `;

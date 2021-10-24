@@ -49,7 +49,9 @@ An explicit choice was made to avoid typical managed or self-hosted Wiki platfor
 * [Marked.js](https://github.com/markedjs/marked) for Markdown rendering. This library is extremely customizable; we customize header rendering to support anchor links and have a plaintext renderer to support search and opengraph previews.
 
 ### Building and testing
-In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite, this project requires [installing Node.js v14+](https://nodejs.org/en/), [FFmpeg](https://ffmpeg.org/), and [Git LFS](https://git-lfs.github.com/).
+In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite, this project requires installing at least [Node.js v14+](https://nodejs.org/en/) and [Git LFS](https://git-lfs.github.com/)
+
+[FFmpeg](https://ffmpeg.org/) is an optional dependency used to generate video thumbnails. It needs to be available on your system `PATH`, or Windows users can simply download `ffmpeg.exe` and place it in the project root. If you don't want to set up FFmpeg for development you can set the environment variable `C20_NO_THUMBNAILS=true` and it won't be used.
 
 If you have installed Git LFS _after_ checking out the project already, you'll need to run `git lfs install` and `git lfs pull` to download the objects. If you forget to do this the build will fail because `ffmpeg` will be unable to read video files as videos ("Invalid data found when processing input").
 
@@ -61,6 +63,9 @@ npm ci
 
 # build content into `./dist`
 npm run dev
+
+# if you don't want to rely on ffmpeg
+C20_NO_THUMBNAILS=true npm run dev
 ```
 
 You should be able to visit http://localhost:8080/ in a browser and see the built website. The website will be automatically rebuilt if you make changes to source content. Refresh your browser to see changes.
