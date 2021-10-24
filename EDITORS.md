@@ -70,8 +70,6 @@ info:
 # progress and also prevents the page from being added to the sitemap (used by
 # search bots). Once a page has reached a useful state, remove this flag.
 stub: true
-# The alerts option is deprecated. Use inline markdown alerts instead.
-alerts: []
 # It's important to credit those who discovered something about the engine,
 # researched a topic, helped answer questions, or otherwise contributed towards
 # a page. Thanked individuals are listed at the bottom of a page, and appear

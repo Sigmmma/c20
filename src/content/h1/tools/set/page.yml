@@ -4,9 +4,3 @@ info:
   en: |
     * [Source code](https://github.com/Zatarita/SeT)
 toolName: SeT
-alerts:
-  - type: danger
-    md:
-      en: >-
-        ⚠ SeT is still under development! It may change with updates and
-        documentation may become outdated.

@@ -1,11 +1,6 @@
 title:
   en: Reclaimer (Python library)
 toolName: reclaimer-python
-alerts:
-  - md:
-      en: >
-        Some basic [command-line][] and Python knowledge is required to use Reclaimer.
-        Get started learning Python [here](https://www.python.org/about/gettingstarted/).
 info:
   en: |
     * [GitHub](https://github.com/Sigmmma/reclaimer)

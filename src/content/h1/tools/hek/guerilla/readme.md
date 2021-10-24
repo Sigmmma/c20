@@ -1,3 +1,6 @@
+```.alert info
+This is an article about the legacy Guerilla for use with [Halo: Custom Edition][h1], for the H1A Guerilla for MCC see [H1A Guerilla][h1a-guerilla]
+```
 **Guerilla** is a visual [tag][tags] editor. Although it can visualize [bitmaps][bitmap] and play sounds, it is primarily focused on editing and viewing the structured fields which comprise tags. It does not offer in-game previews or interactive placement of [objects][object], which is [Sapien's][sapien] role.
 
 # Saved workspaces

@@ -1,3 +1,6 @@
+```.alert danger
+This feature does not function in the Gearbox HEK release.
+```
 # Introduction
 Recorded animations are a simple way for designers to animate a scene using ingame tools without any need for animating a scene in 3D modeling software. This feature allows you to record your inputs and save them for playback. They can then be invoked through a script to have a [unit][] play out the prerecorded inputs. We will go over how recorded animations in the toolset works.
 

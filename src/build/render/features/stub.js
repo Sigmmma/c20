@@ -1,5 +1,4 @@
-const R = require("ramda");
-const {localizer, alert, html, REPO_URL, renderMarkdown, icon} = require("../components");
+const {localizer, alert, html, REPO_URL, icon} = require("../components");
 
 const localizations = localizer({
   stubNotice: {
@@ -16,25 +15,14 @@ const localizations = localizer({
 
 module.exports = async function(ctx) {
   const {page, lang} = ctx;
+  
+  if (!page.stub) return {};
+
   const localize = localizations(lang);
 
   return {
     html: html`
       ${page.stub && alert("info", localize("stubNotice")(ctx))}
-      ${R.pipe(
-        R.pathOr([], ["alerts"]),
-        R.filter(R.path(["md", lang])),
-        R.map(({type, md}) => alert(type, renderMarkdown(ctx, md[lang])))
-      )(page)}
-    `,
-    searchText: R.pipe(
-      R.pathOr([], ["alerts"]),
-      R.filter(R.path(["md", lang])),
-      R.map(({md}) => {
-        console.warn(`Page ${page.pageId} is using the deprecated YAML alerts feature. Use inline markdown alerts instead.`);
-        return renderMarkdown(ctx, md[lang], true)
-      }),
-      R.join(" ")
-    )(page)
+    `
   };
 };

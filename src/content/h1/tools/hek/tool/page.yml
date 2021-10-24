@@ -11,11 +11,6 @@ keywords:
     - radiosity
     - cli
 toolName: Tool
-alerts:
-  - type: info
-  - md:
-      en: >-
-       This is an article about the legacy Tool for use with [Halo: Custom Edition][h1], for the H1A Tool for MCC see [H1A Tool][h1a-Tool]
 thanks:
   gbMichelle:
     en: Hardcoded tag patch reversing

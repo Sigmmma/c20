@@ -1,3 +1,6 @@
+```.alert info
+This is an article about the legacy Sapien for use with [Halo: Custom Edition][h1], for the H1A Sapien for MCC see [H1A Sapien][h1a-sapien]
+```
 **Sapien**, part of the [HEK][], is a visual [scenario][] and
 [BSP][scenario_structure_bsp] editor used to populate levels with objects,
 configure BSP [cluster data][scenario_structure_bsp#clusters-and-cluster-data] like wind and sound environments, compile [scripts][scripting], and more. Sapien shares some systems with Halo itself, including its AI system to support interactive AI scripting and debugging. Other systems, such as weather rendering, are not represented.
