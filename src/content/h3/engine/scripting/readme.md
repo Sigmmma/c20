@@ -1,4 +1,4 @@
-Like earlier games, Halo 2 supports **scripting** with [HaloScript][general/engine/scripting].
+Like earlier games, Halo 3 supports **scripting** with [HaloScript][general/engine/scripting].
 
 # Operators and keywords
 ```.table
@@ -12,7 +12,7 @@ columns:
 ```
 
 # Functions
-Since H2 documentation will be an ongoing work-in-progress, please refer to the more complete [H1 scripting page][h1/engine/scripting] for info on common functions.
+Since H3 documentation will be an ongoing work-in-progress, please refer to the more complete [H1 scripting page][h1/engine/scripting] for info on common functions.
 
 ```.table
 dataPath: hsc/h3/functions/functions
