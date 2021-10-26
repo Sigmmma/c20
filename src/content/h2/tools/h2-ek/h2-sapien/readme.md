@@ -40,7 +40,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 ## General
 * <kbd>~</kbd>: Opens the command console.
 * <kbd>Pause/Break</kbd>: Pauses your Sapien instance. Press "OK" in the opened window to resume Sapien.
-* <kbd>Control + B</kbd>: Open the BSP switch dialog window.
+* <kbd>Control</kbd>+<kbd>B</kbd>: Open the BSP switch dialog window.
 * <kbd>Control</kbd>+<kbd>Shift</kbd>+<kbd>B</kbd>: Creates the file `baggage.txt`. This file shows the memory usage of tags in the editor.
 * <kbd>Shift</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. You can also use it to select the first and last object in the hierarchy list to select everything in-between at once. Useful for deleting multiple objects or moving them all at once.
 * <kbd>Control</kbd>+<kbd>Click</kbd>: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
@@ -64,8 +64,12 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * <kbd>Left Parenthesis</kbd> Teleports the player to location they are looking at. Only seems to work if it's further above the player?
 
 ## Camera Perspective 
+* <kbd>Tab</kbd>: Press this key while near a unit to possess it.
 * <kbd>Backslash</kbd>: While controlling a unit, press this key to posses the closest unit.
 * <kbd>Right Parenthesis</kbd> While controlling a unit, press this key to switch to through any existing units.
+
+## Debug menu
+* <kbd>Home</kbd>+ Middle Mouse Button: This key combo will open the debug menu that can be used to easily launch saved commands. New command can be added by editing the `debug_menu_init.txt` file found at the root of your H2EK directory
 
 # editor_init.txt
 At startup, H2-Sapien will load `editor_init.txt` if present in the same folder. This file can contain console commands, one per line, which are executed automatically for you. For example:
