@@ -15,7 +15,7 @@
  * The order of features determines order on the page and precedence of metaTitle, etc.
  */
 module.exports = [
-  require("./decrypted"),
+  require("./deprecated"),
   require("./stub"),
   require("./metaboxBase"),
   require("./markdownFile"),

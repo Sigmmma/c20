@@ -9,7 +9,9 @@
 - `<option1|option2>` - Either `option1` or `option2` can be passed as `arg`.
 - `Tool` or `tool.exe` - refers to the subject of this article, the H3 Tool, if the legacy Tool is being referred to that will be made explicit.
 
-# Analyze cache file sharing
+# Analysis commands
+Tool includes a few commands to analyze (memory usage, read time, GPU usage, etc) files and caches but these aren't very useful for modders.
+## Analyze cache file sharing
 ???
 
 ```sh
@@ -20,7 +22,7 @@ tool analyze-cache-file-sharing
 * starting-cache-file - ???
 * ending-cache-file - ???
 
-# Analyze dvd cache files
+## Analyze dvd cache files
 ???
 
 ```sh
@@ -30,7 +32,7 @@ tool analyze-dvd-cache-files
 
 * tag-list - ???
 
-# Analyze font
+## Analyze font
 ???
 
 ```sh
@@ -40,7 +42,7 @@ tool analyze-font
 
 * font-file - ???
 
-# Analyze font table
+## Analyze font table
 ???
 
 ```sh
@@ -50,7 +52,7 @@ tool analyze-font-table
 
 * font-table-to-analyze - ???
 
-# Analyze fonts
+## Analyze fonts
 Crashes
 
 ```sh
@@ -58,7 +60,7 @@ Crashes
 tool analyze-fonts
 ```
 
-# Analyze implicit sharing
+## Analyze implicit sharing
 ???
 
 ```sh
@@ -68,17 +70,18 @@ tool analyze-implicit-sharing
 
 * tag-list - ???
 
-# Analyze shader
-???
+## Analyze shader
+Is meant to analyse shader performance but it doesn't work since it was designed for Xenon.
 
 ```sh
 #  analyze-shader <tag-containing-render-method>
 tool analyze-shader
+tool analyze-shader "levels\solo\050_floodvoi\shaders"
 ```
 
 * tag-containing-render-method - ???
 
-# Analyze shaders
+## Analyze shaders
 Crashes
 
 ```sh
@@ -138,29 +141,6 @@ tool bitmaps-with-type "levels\multi\chill\bitmaps" 2d
 	* sprites
 	* interface
 
-# Build and deploy network files
-???
-
-```sh
-# build-and-deploy-network-files
-tool build-and-deploy-network-files
-```
-
-# Build and deploy retail network files
-???
-
-```sh
-# build-and-deploy-retail-network-files
-tool build-and-deploy-retail-network-files
-```
-
-# Build and deploy tracked network files
-???
-
-```sh
-# build-and-deploy-tracked-network-files
-tool build-and-deploy-tracked-network-files
-```
 
 # Build animation database
 ???
@@ -169,8 +149,10 @@ tool build-and-deploy-tracked-network-files
 # build-animation-database
 tool build-animation-database
 ```
+# Building cache files
+Cache files can be built using multiple tool verbs, but you will likely only use `build-cache-file` 
 
-# Build cache file
+## Build cache file
 A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb. Simply provide your scenario's tag path.
 
 ```sh
@@ -188,7 +170,7 @@ tool build-cache-file "levels\multi\chill\chill" pc
 
 The resulting map file can be found in the editing kit's `maps` directory. This verb also generates reports under `reports\<mapname>` including a compilation-specific `debug.txt`.
 
-# Build cache file cache
+## Build cache file cache
 Builds the resource maps and associated cache files needed for tag sharing.
 
 ```sh
@@ -198,7 +180,7 @@ tool build-cache-file-cache pc
 
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file cache campaign second
+## Build cache file cache campaign second
 Builds resources files and cache files for campaign maps. Requires `build-cache-file-cache-shared-first` to be done first.
 
 ```sh
@@ -213,7 +195,7 @@ tool build-cache-file-cache-campaign-second pc
 * dedicated-server - ??? This is an optional arg
 * use-fmod-data - ??? This is an optional arg
 
-# Build cache file cache custom
+## Build cache file cache custom
 Builds cache files needed for tag sharing.
 
 ```sh
@@ -225,7 +207,7 @@ tool build-cache-file-cache-custom
 * campaign-manifest-list - ???
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file cache language version
+## Build cache file cache language version
 Builds the resource maps and associated cache files needed for tag sharing.
 
 ```sh
@@ -233,11 +215,11 @@ Builds the resource maps and associated cache files needed for tag sharing.
 tool build-cache-file-cache-language-version english "" pc
 ```
 
-* target-language - ???
+* target-language - self explanatory
 * minor-version-number - ???
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file cache shared first
+## Build cache file cache shared first
 Builds the resource maps and associated cache files needed for tag sharing.
 
 ```sh
@@ -253,7 +235,7 @@ tool build-cache-file-cache-shared-first pc
 * dedicated-server - ??? This is an optional arg
 * use-fmod-data - ??? This is an optional arg
 
-# Build cache file cache sounds
+## Build cache file cache sounds
 Builds the resource maps and associated cache files needed for tag sharing. Requires `build-cache-file-cache-sounds-index` to be done first.
 
 ```sh
@@ -267,7 +249,7 @@ tool build-cache-file-cache-sounds pc
 * dedicated-server - ??? This is an optional arg
 * use-fmod-data - ??? This is an optional arg
 
-# Build cache file cache sounds index
+## Build cache file cache sounds index
 ???
 
 ```sh
@@ -280,8 +262,8 @@ tool build-cache-file-cache-sounds-index
 * sound-configuration - ??? This is an optional arg
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file cache version
-???
+## Build cache file cache version
+Build a cache files with a specific version
 
 ```sh
 # build-cache-file-cache-version <minor-version-number> <platform>
@@ -291,7 +273,7 @@ tool build-cache-file-cache-version "" pc
 * minor-version-number - ??? This is an optional arg
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file for cubemaps
+## Build cache file for cubemaps
 Builds the provided scenario along with the associated cache files needed for tag sharing cubemap data.
 
 ```sh
@@ -302,7 +284,7 @@ tool build-cache-file-for-cubemaps "levels\multi\chill\chill" pc
 * scenario - A local tag path to a scenario tag without extension.
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file generate DLC layout
+## Build cache file generate DLC layout
 Crashes
 
 ```sh
@@ -315,7 +297,7 @@ tool build-cache-file-generate-dlc-layout "" pc
 * dedicated-server - ??? This is an optional arg.
 * use-fmod-data - ??? This is an optional arg.
 
-# Build cache file generate main menu layout
+## Build cache file generate main menu layout
 Crashes
 
 ```sh
@@ -328,7 +310,7 @@ tool build-cache-file-generate-main-menu-layout "" pc
 * dedicated-server - ??? This is an optional arg.
 * use-fmod-data - ??? This is an optional arg.
 
-# Build cache file generate new layout
+## Build cache file generate new layout
 Crashes
 
 ```sh
@@ -341,7 +323,7 @@ tool build-cache-file-generate-new-layout "" pc
 * dedicated-server - ??? This is an optional arg.
 * use-fmod-data - ??? This is an optional arg.
 
-# Build cache file language
+## Build cache file language
 A [scenario][] can be compiled into a [map][] using the `build-cache-file-language` verb. Simply provide your scenario's tag path.
 
 ```sh
@@ -353,7 +335,7 @@ tool build-cache-file-language english "levels\multi\chill\chill" pc
 * scenario - A local tag path to a scenario tag without extension.
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file language version
+## Build cache file language version
 A [scenario][] can be compiled into a [map][] using the `build-cache-file-language-version` verb. Simply provide your scenario's tag path.
 
 ```sh
@@ -366,7 +348,7 @@ tool build-cache-file-language-version english "" "levels\multi\chill\chill" pc
 * scenario - A local tag path to a scenario tag without extension.
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file language version optimizable use sharing
+## Build cache file language version optimizable use sharing
 Crashes
 
 ```sh
@@ -382,7 +364,7 @@ tool build-cache-file-language-version-optimizable-use-sharing english "" "level
 * dedicated-server - ???
 * use-fmod-data - ???
 
-# Build cache file language version sharing main menu
+## Build cache file language version sharing main menu
 Crashes
 
 ```sh
@@ -395,7 +377,7 @@ tool build-cache-file-language-version-sharing-main-menu english "" "levels\mult
 * scenario - A local tag path to a scenario tag without extension.
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file link
+## Build cache file link
 ???
 
 ```sh
@@ -408,7 +390,7 @@ tool build-cache-file-link "levels\multi\chill\chill" pc
 * dedicated-server - ???  This is an optional arg
 * use-fmod-data - ???  This is an optional arg
 
-# Build cache file optimize
+## Build cache file optimize
 ???
 
 ```sh
@@ -419,7 +401,7 @@ tool build-cache-file-optimize "chill" pc
 * map-name - The filename of a map file located in your maps folder without extension
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file optimize post link
+## Build cache file optimize post link
 Crashes
 
 ```sh
@@ -430,7 +412,7 @@ tool build-cache-file-optimize-post-link "chill" pc
 * map-name - The filename of a map file located in your maps folder without extension
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file pilot
+## Build cache file pilot
 Crashes
 
 ```sh
@@ -441,7 +423,7 @@ tool build-cache-file-pilot "levels\multi\chill\chill" pc
 * scenario - A local tag path to a scenario tag without extension.
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional arg
 
-# Build cache file profile
+## Build cache file profile
 ???
 
 ```sh
@@ -451,7 +433,7 @@ tool build-cache-file-profile "levels\multi\chill\chill"
 
 * scenario - A local tag path to a scenario tag without extension.
 
-# Build cache file use sharing
+## Build cache file use sharing
 crashes
 
 ```sh
@@ -467,7 +449,7 @@ tool build-cache-file-use-sharing "levels\multi\chill\chill" pc
 * dedicated-server - ??? This is an optional arg
 * use-fmod-data - ??? This is an optional arg
 
-# Build cache file verify DVD layouts
+## Build cache file verify DVD layouts
 ???
 
 ```sh
@@ -478,7 +460,10 @@ tool build-cache-file-verify-dvd-layouts
 * first-sharing-layout - ???
 * second-sharing-layout - ???
 
-# Bulk collision
+# Bulk imports
+Bulk import commands allow you to import many files at once using a JMI file. Other than that they work similarly to individual imports.
+
+## Bulk collision
 Multiple directories can have their collision files compiled in a single run using this command.
 
 ```sh
@@ -488,7 +473,7 @@ tool bulk-collision "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk import crates
+## Bulk import crates
 Compile multiple source directories in a single run to generate a crate tag and all the relevant tags involved. Render tags will use PRT
 
 ```sh
@@ -498,7 +483,7 @@ tool bulk-import-crates "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk import crates draft
+## Bulk import crates draft
 Compile multiple source directories in a single run to generate a crate tag and all the relevant tags involved. Render tags will not use PRT
 
 ```sh
@@ -508,7 +493,7 @@ tool bulk-import-crates-draft "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk import crates folder
+## Bulk import crates folder
 Generates a crate tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will use PRT
 
 ```sh
@@ -518,7 +503,7 @@ tool bulk-import-crates-folder "objects\multi\world_node_a"
 
 * source-directory - A local data path to the root of a model source directory.
 
-# Bulk import crates folder draft
+## Bulk import crates folder draft
 Generates a crate tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will not use PRT
 
 ```sh
@@ -528,7 +513,7 @@ tool bulk-import-crates-folder-draft "objects\multi\world_node_a"
 
 * source-directory - A local data path to the root of a model source directory.
 
-# Bulk import model folder
+## Bulk import model folder
 Generates a model tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will use PRT
 
 ```sh
@@ -539,7 +524,7 @@ tool bulk-import-model-folder "objects\multi\world_node_a"
 * source-directory - A local data path to the root of a model source directory.
 * skip-coarse-optimization - ???
 
-# Bulk import model folder draft
+## Bulk import model folder draft
 Generates a model tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will not use PRT
 
 ```sh
@@ -549,7 +534,7 @@ tool bulk-import-model-folder-draft "objects\multi\world_node_a"
 
 * source-directory - A local data path to the root of a model source directory.
 
-# Bulk import models
+## Bulk import models
 Compile multiple source directories in a single run to generate a model tag and all the relevant tags involved. Render tags will use PRT
 
 ```sh
@@ -559,7 +544,7 @@ tool bulk-import-models "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk import models draft
+## Bulk import models draft
 Compile multiple source directories in a single run to generate a model tag and all the relevant tags involved. Render tags will not use PRT
 
 ```sh
@@ -569,7 +554,7 @@ tool bulk-import-models-draft "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk import scenery
+## Bulk import scenery
 Compile multiple source directories in a single run to generate a scenery tag and all the relevant tags involved. Render tags will use PRT
 
 ```sh
@@ -579,7 +564,7 @@ tool bulk-import-scenery "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk import scenery draft
+## Bulk import scenery draft
 Compile multiple source directories in a single run to generate a scenery tag and all the relevant tags involved. Render tags will not use PRT
 
 ```sh
@@ -589,7 +574,7 @@ tool bulk-import-scenery-draft "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk import scenery folder
+## Bulk import scenery folder
 Generates a scenery tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will use PRT
 
 ```sh
@@ -599,7 +584,7 @@ tool bulk-import-scenery-folder "objects\multi\world_node_a"
 
 * source-directory - A local data path to the root of a model source directory.
 
-# Bulk import scenery folder draft
+## Bulk import scenery folder draft
 Generates a scenery tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go! Render tags will not use PRT
 
 ```sh
@@ -609,7 +594,7 @@ tool bulk-import-scenery-folder-draft "objects\multi\world_node_a"
 
 * source-directory - A local data path to the root of a model source directory.
 
-# Bulk physics
+## Bulk physics
 Multiple directories can have their physics files compiled in a single run using this command.
 
 ```sh
@@ -619,7 +604,7 @@ tool bulk-physics "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk render
+## Bulk render
 Multiple directories can have their render files compiled in a single run using this command. Render tags will not use PRT
 
 ```sh
@@ -629,7 +614,7 @@ tool bulk-render "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk render final
+## Bulk render final
 Multiple directories can have their render files compiled in a single run using this command. Render tags will use PRT
 
 ```sh
@@ -718,11 +703,12 @@ tool convert-pc-bitmaps
 ```
 
 # Convert tag files explicit pilot
-???
+Converts tags from one backend to another. E.g. loose tag files to the monolithic backend.
+Seems to crash, maybe will be fixed in the future.
 
 ```sh
 # convert-tag-files-explicit-pilot <source-backend> <dest-backend> <optional:-tag-list>
-tool convert-tag-files-explicit-pilot
+tool convert-tag-files-explicit-pilot default monolithic_new ""
 ```
 
 # Convert tiled tiff
@@ -767,19 +753,6 @@ tool count-sound-tags "sound\ambience"
 
 * root-path - A local tag path to the root of a directory containing sound tags or child folders with sound tags.
 
-# Crash
-A command to test HEK errors.
-
-```sh
-# crash <crash-type>
-tool crash assert
-```
-
-* crash-type - A name for the type of crash we want to test. Should be one of the following
-	* test_fatal_error
-	* assert
-	* now
-	* halt
 
 # Create custom network hopper and variant files
 ???
@@ -819,17 +792,6 @@ tool create-custom-network-variant-file
 # create-network-hopper-file
 tool create-network-hopper-file
 ```
-
-# Cubemap farm new
-This command does not work. Was intended to run a farm setup for generating cubemaps to be used by dynamic cubemap enabled shaders.
-
-```sh
-# cubemap-farm-new <scenario> <branch>
-tool cubemap-farm-new "levels\multi\example\example" main
-```
-
-* scenario - A local tag path to a scenario file without extension.
-* branch - Should always be main
 
 # Cubemaps
 Generates cubemaps to be used by dynamic cubemap enabled shaders. There are two things you will need to do first before running this command. Open the level you want to generate cubemaps for in Sapien and place down some cubemap points. You can find cubemap points in the hierarchy view under the folder path `Structure Data > Cubemaps`.These points will be used by the command `cubemap_dynamic_generate` to generate the cubemaps we will need. Once that's done open up your level in Standalone and run the command `cubemap_dynamic_generate`. The results of this command will be written to a folder in the root of your H3EK named `cubemaps`. Once you've done that you can run the cubemaps command from tool.
@@ -943,16 +905,6 @@ tool dump-tag-file-index
 ```
 
 * index-file - ???
-
-# Dump tag table
-This command does not work. Do not use it.
-
-```sh
-# dump-tag-table <tag-type>
-tool dump-tag-table
-```
-
-* tag-type - ???
 
 # Dump tiff to header
 ???
@@ -1242,13 +1194,6 @@ tool faux-farm-compression-merge "levels\multi\example\example" "example"
 * scenario - A local tag path to a scenario without extension
 * bsp-name - The name of a BSP tag referenced by the scenario tag
 
-# Faux unit tests
-???
-
-```sh
-# faux-unit-tests
-tool faux-unit-tests
-```
 
 # Faux checkerboard
 ???
@@ -1376,6 +1321,45 @@ Structure compilation converts the raw polygon and materials data from the ASS i
 
 Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario.
 
+# Broken and development commands
+Not all commands work or are of any use to anyone anymore. They are listed here for completeness but shouldn't be used.
+
+- `faux-unit-tests` - [Unit tests](unit-testing) for the lightmapping process. Currently these fail for an unknown reason but even if they succeeded they wouldn't be useful for end users.
+- `dump-tag-table` - Broken/doesn't do anything. Intended use is unknown.
+- `cubemap-farm-new` - This command does not work. Was intended to run a farm setup for generating cubemaps to be used by dynamic cubemap enabled shaders.
+- `crash` - Intentionally induces a crash to test the crash reporting subsystem. Crash types: `test_fatal_error`, `assert`, `now` and `halt`
+- `progress-quest` - Doesn't do anything other than display a progress bar.
+- `old-physics` - Doesn't do anything at all.
+- `convert-tag-files-pilot` - Doesn't work anymore as it tries to use a removed backend.
+
+
+# Xbox live config commands?
+These seem to be meant to configure Xbox live, likely not useful?
+
+## Build and deploy network files
+???
+
+```sh
+# build-and-deploy-network-files
+tool build-and-deploy-network-files
+```
+
+## Build and deploy retail network files
+???
+
+```sh
+# build-and-deploy-retail-network-files
+tool build-and-deploy-retail-network-files
+```
+
+## Build and deploy tracked network files
+???
+
+```sh
+# build-and-deploy-tracked-network-files
+tool build-and-deploy-tracked-network-files
+```
+
 [wiki-tiff]: https://en.wikipedia.org/wiki/TIFF
 [wiki-color]: https://en.wikipedia.org/wiki/Color_depth
 [wiki-real]: https://en.wikipedia.org/wiki/Real_number
@@ -1383,3 +1367,4 @@ Multiple ASS files can be placed in a level's `structure` directory for multiple
 [gdc-lighting]: https://www.gdcvault.com/play/253/Lighting-and-Material-of-HALO
 [doi-lighting]: https://doi.org/10.1145/1404435.1404437
 [python]: https://www.python.org/
+[unit-testing]: https://en.wikipedia.org/wiki/Unit_testing
