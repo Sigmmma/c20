@@ -94,7 +94,7 @@ Images assigned to materials can be used to examine generated UVs from your scen
 If a face does not have a material assigned then it will use a default shader on import.
 
 ## Creating new materials
-If you do not have the textures referenced in this section then grab them from the [file list][blender-level-creation-beginner#file-list]
+If you do not have the textures referenced in this section then grab them from the [file list.][#file-list]
 
 1. Select the box object (level) and navigate to the materials tab.
 	* ![](C.jpg "Match the numbers in the image to the numbers in the list below.")

@@ -832,7 +832,7 @@ tool cubemap-farm-new "levels\multi\example\example" main
 * branch - Should always be main
 
 # Cubemaps
-Generates cubemaps to be used by dynamic cubemap enabled shaders. There are two things you will need to do first before running this command. Open the level you want to generate cubemaps for in Sapien and place down some cubemap points. These points will be used by the command `cubemap_dynamic_generate` to generate the cubemaps we will need. Once that's done open up your level in Standalone and run the command `cubemap_dynamic_generate`. The results of this command will be written to a folder in the root of your H3EK named cubemaps. Once you've done that you can run the cubemaps command from tool.
+Generates cubemaps to be used by dynamic cubemap enabled shaders. There are two things you will need to do first before running this command. Open the level you want to generate cubemaps for in Sapien and place down some cubemap points. You can find cubemap points in the hierarchy view under the folder path `Structure Data > Cubemaps`.These points will be used by the command `cubemap_dynamic_generate` to generate the cubemaps we will need. Once that's done open up your level in Standalone and run the command `cubemap_dynamic_generate`. The results of this command will be written to a folder in the root of your H3EK named `cubemaps`. Once you've done that you can run the cubemaps command from tool.
 
 ```sh
 # cubemaps <scenario> <input-folder>

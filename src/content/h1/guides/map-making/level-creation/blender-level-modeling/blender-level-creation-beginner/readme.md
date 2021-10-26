@@ -91,7 +91,7 @@ Images assigned to materials can be used to examine generated UVs from your scen
 Every face for the game level must have a material assigned to it (except for the Reference Frame as previously mentioned).
 
 ## Creating new materials
-If you do not have the textures referenced in this section then grab them from the [file list][blender-level-creation-beginner#file-list]
+If you do not have the textures referenced in this section then grab them from the [file list.][#file-list]
 
 1. Select the box object (level) and navigate to the materials tab.
 	* ![](C.png "Match the numbers in the image to the numbers in the list below.")
