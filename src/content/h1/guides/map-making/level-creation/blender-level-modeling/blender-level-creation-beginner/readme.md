@@ -3,9 +3,10 @@ This guide assumes you have already [prepared Blender][blender-prep].
 ```
 
 # File list
-| File Link                                                                                          | Description
-|--------------------------------------------------------------------------------------------------- | -----------------------------------
-|[End Result](https://drive.google.com/file/d/1MDxZGkpi90ETwVZDXpl2zrDAHU3SDQhu/view?usp=sharing)    | The end product of this tutorial for you to examine and compare.
+| File Link                                                                                              | Description
+|------------------------------------------------------------------------------------------------------- | -----------------------------------
+|[End Result](https://drive.google.com/file/d/1MDxZGkpi90ETwVZDXpl2zrDAHU3SDQhu/view?usp=sharing)        | The end product of this tutorial for you to examine and compare.
+|[Tutorial Textures](https://drive.google.com/file/d/1Z9ehd94ByHRRs68rbtuDIZ3lpm1463Lf/view?usp=sharing) | The textures we will be using in this guide. Make sure to have this ready.
 
 # Introduction
 Everything starts with an idea. Sometimes, however, we realize that we've made a terrible mistake just like this page I'm currently writing. Hello you, and welcome to the Halo CE level modeling guide. In this guide we will be showing you how to go about with creating your very own level geometry for Halo CE in the 3D modeling software app known as Blender. This guide will include a completed version of our work as an example for you to contrast and compare but be sure to follow along.
@@ -90,6 +91,7 @@ Images assigned to materials can be used to examine generated UVs from your scen
 Every face for the game level must have a material assigned to it (except for the Reference Frame as previously mentioned).
 
 ## Creating new materials
+If you do not have the textures referenced in this section then grab them from the [file list][blender-level-creation-beginner#file-list]
 
 1. Select the box object (level) and navigate to the materials tab.
 	* ![](C.png "Match the numbers in the image to the numbers in the list below.")

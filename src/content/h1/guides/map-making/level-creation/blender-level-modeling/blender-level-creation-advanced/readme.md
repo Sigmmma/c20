@@ -2,6 +2,11 @@
 This guide assumes you are already familiar with the [basics of Blender map-making][blender-level-creation-beginner]. You may also need the provided files from that guide.
 ```
 
+# File list
+| File Link                                                                                              | Description
+|------------------------------------------------------------------------------------------------------- | -----------------------------------
+|[Tutorial Textures](https://drive.google.com/file/d/1Z9ehd94ByHRRs68rbtuDIZ3lpm1463Lf/view?usp=sharing) | The textures we will be using in this guide. Make sure to have this ready.
+
 # Modifying the level
 Let's paint some hills and gullies in our level to get out of this plane hell.
 
@@ -437,16 +442,16 @@ Start by creating the listed materials in your base object along with assigning 
 
 `(HEK Install Path)\data\levels\test\tutorial\bitmaps`
 
-| Name                          | Diffuse Map (.tif file)          | Notes         
-| ----------------------------- | -------------------------------- | -------------------------------- 
-| example_tutorial_metal        | example_tutorial_metal.tif       |
-| example_tutorial_panels       | example_tutorial_panels.tif      |
-| example_tutorial_metal_floor  | example_tutorial_metal_floor.tif |
-| example_tutorial_plate_floor  | example_tutorial_plate_floor.tif |
-| example_tutorial_ladder%^     | example_tutorial_ladder.tif      |
-| example_tutorial_lights_blue! | example_tutorial_lights_blue.tif |
-| example_tutorial_lights_red!  | example_tutorial_lights_red.tif  |
-| example_tutorial_teleporter!  | example_tutorial_shield.tif      | Not included with HEK. Extract the image with community tools.
+| Name                          | Diffuse Map (.tif file)                 
+| ----------------------------- | -------------------------------- 
+| example_tutorial_metal        | example_tutorial_metal.tif       
+| example_tutorial_panels       | example_tutorial_panels.tif      
+| example_tutorial_metal_floor  | example_tutorial_metal_floor.tif 
+| example_tutorial_plate_floor  | example_tutorial_plate_floor.tif 
+| example_tutorial_ladder%^     | example_tutorial_ladder.tif      
+| example_tutorial_lights_blue! | example_tutorial_lights_blue.tif 
+| example_tutorial_lights_red!  | example_tutorial_lights_red.tif  
+| example_tutorial_teleporter!  | example_teleporter_shield_mask.tif      
 
 Note that the Shader Symbols have been included. The material example_tutorial_ladder%^ demonstrates that materials can have multiple Shader Symbols applied. In this case the ladder material has been made viewable from both sides or two-sided using the % symbol and has been made a ladder or climbable by the player using the ^ symbol.
 

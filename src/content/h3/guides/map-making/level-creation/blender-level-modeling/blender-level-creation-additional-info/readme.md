@@ -79,6 +79,13 @@ There are three aspects to this material name
 * riverworld_water_rough - The material name that will be used for the water on our level.
 * `'` - This is a material symbol that lets tool know we are intending for this surface to be used as a water surface. This will help satisfy the sealed world rules for this mesh.
 
+Once that is done go ahead and give the water plane four UV channels. The purpose of each UV channel are as follows.
+
+* UV_0 - Used by the visual part of our mesh for displaying the texture.
+* UV_1 - Used to mask the color of our water. Move your UV coordinates in the positive Y direction to make the water color more pronounced.
+* UV_2 - ???
+* UV_3 - ???
+
 This ends everything we need to create in our `structure` ASS file. We can export our current scene and move on the the `structure-design` ASS file in the physical section.
 
 ## Physical
