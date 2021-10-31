@@ -1,0 +1,8 @@
+title:
+  en: Halo 1 Material Overview
+img: materials.jpg
+imgCaption:
+  en: An example of some material names used for a level [BSP][h1/tags/scenario_structure_bsp] in [Blender][].
+thanks:
+  "Halo PC End User Editing Kit Development Team":
+    en: Writing the original [HEK tutorial](https://www.haloce.org/HEK_Tutorial/main/credits.html) which documents many of these conventions

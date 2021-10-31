@@ -1098,7 +1098,7 @@ tool extract-import-info "F:\H3EK\tags\levels\multi\zanzibar\zanzibar.scenario_s
 * tag-file - An absolute file path to a tag containing valid import info.
 
 # Extract LPC data
-Dumps a file called `test.aif` in the root of H2-EK. This is likely to be [linear predictive coding](https://en.wikipedia.org/wiki/Linear_predictive_coding) data for the sound file but this hasn't be verified.
+Dumps a file called `test.aif` in the root of H3EK. This is likely to be [linear predictive coding](https://en.wikipedia.org/wiki/Linear_predictive_coding) data for the sound file but this hasn't be verified.
 
 ```sh
 # extract-lpc-data <sound-file>
