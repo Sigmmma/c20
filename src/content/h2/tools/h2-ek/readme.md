@@ -17,6 +17,15 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 2: Anniversary on Steam][st
 5. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
 6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
 
+# What's new in the season 8 hotfix v1
+
+- Tools should not longer trigger IN_RANGE when editing level data in Sapien.
+- Backwash source files should no longer trigger an assert. 
+- Sapien now renders geometry error info such as degenerate triangles and overlapping faces.
+- FBX-to-JMS now writes all regions used in the FBX file properly.
+- Some speedups for BSP Havok representation. Loading times should be a bit faster.
+- Set minimum height and minimum width for game view window in Sapien to avoid bad values being saved to registry. Solves render_cameras assert on startup. Users who are currently experiencing this issue should delete their registry keys and update to latest.
+
 # What's changed?
 ## General changes from stock H2V tools
 * Tools are not stripped down, you can create models, animations, different types of textures, sounds and more!
