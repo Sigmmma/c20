@@ -69,12 +69,17 @@ _Most_ of these issues have now been corrected in DX11 renderer in [H1A][h1a] MC
   * The "normal" _type_ may<sup>(unconfirmed)</sup> incorrectly mask primary and secondary detail maps when an alpha is present in the base map, visible in b40 exterior tech wall.
 
 # Limits
+![.figure Dynamic lights cause parts of the BSP to be rendered in another pass, but only 4096 triangles per light. High-poly spaces may reach this limit.](max-light-surfaces.jpg)
+
 Known renderer limits with the _unmodified_ game are:
 
 * [Particle_system][] particles: 256
 * Non-particle system [particles][particle]: 512
 * [Objects][object]: 256 (raised to 512 in H1A)
 * [BSP triangles][scenario_structure_bsp]: 16k (raised to 32k in H1A) -- a BSP can have more triangles than this, but the rendered amount should be managed with portals.
+* [Lights][light]: 128
+* Surfaces per point light: 4096 -- limits how many triangles can be illuminated by a dynamic light (see figure)
+* Maximum dynamic triangles: 32k -- unknown exactly what this entails
 
 There are also [game state limits][game-state#limits] which can appear like renderer limitations (eg. maximum simulated antennas).
 
