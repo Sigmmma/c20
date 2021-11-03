@@ -14,6 +14,17 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 5. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
 6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
 
+# What's new in the season 8 hotfix v1
+
+- Export-bitmap-DDS should now export bitmap pixel data with proper gamma values.
+- Export-bitmap-TGA should now export an actual TGA file.
+- Standalone/Tag Test should no longer assert when loading the singleplayer mission "The Ark"
+- Fixed the AI objectives window rapidly flickering if the user opened and closed instances one after another.
+- Disable "Lock window aspect ratio" while Sapien is loading to prevent an assert.
+- Sapien now renders geometry error info such as degenerate triangles and overlapping faces.
+- FBX-to-JMS now writes all regions used in the FBX file properly.
+- Disable bitmap previewing for bitmap arrays to avoid a crash.
+
 # Major changes from H2
 Naturally there is multitude of changes compared to H2 as the engine underwent a major revision, this document endeavours to list the major ones.
 

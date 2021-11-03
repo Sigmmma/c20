@@ -2,14 +2,8 @@ This page will serve as a hub for the symbols and properties users can assign to
 
 This naming convention applies to both [Blender][] and [3ds Max][3dsmax] usage.
 
-# Halo 1
-This section will cover how material names and shader tags are linked and the properties available to you and what they can accomplish.
-Click the following [link][h1-materials] to proceed.
+The convention used differs by game so select the link relevant for your current work.
 
-# Halo 2
-This section will cover how material names and shader tags are linked and the properties available to you and what they can accomplish.
-Click the following [link][h2-materials] to proceed.
-
-# Halo 3
-This section will cover how material names and shader tags are linked and the properties available to you and what they can accomplish.
-Click the following [link][h3-materials] to proceed.
+* [Halo 1 materials][h1-materials]
+* [Halo 2 materials][h2-materials]
+* [Halo 3 materials][h3-materials]

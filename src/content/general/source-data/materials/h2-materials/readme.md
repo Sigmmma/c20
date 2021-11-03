@@ -1,3 +1,5 @@
+**Halo 2** saw some much needed improvements to material processing. The user can now define a directory to search for a shader in a directory. The amount of flags was expanded and some new properties were added to help with lightmap settings. 
+
 # Material naming and shaders
 Intermediate files such as [JMS][] or [ASS][] files you export from your 3D software contain the material names you used. How **Tool** finds the shader from there varies depending on whether or not a `shader_collection.shader_collection` file exists and whether or not the material name includes a shader collection prefix. We will go over how this works in the shader_collection section. Be sure to always use lower-case names and do not exceed 32 characters.
 

@@ -1,3 +1,5 @@
+**Halo 1** is very primitive compared to later games in the series. Not having any way to specifically define a path to a shader and a small number of flags.
+
 # Material naming and shaders
 The [JMS][] files you export from your 3D software contain the material names you used. **Tool** will then search for a matching shader tag within your tags directory when compiling the JMS into a model tag and will automatically assign the shader references. For example, a level BSP which has the material name `vines^` might have a corresponding shader at `tags\levels\my_level\shaders\vines.shader_environment` but it could also match with `tags\levels\some_other_level\shaders\vines.shader_environment`. For this reason it is important to name your materials and shaders uniquely. Always use lower-case names and do not exceed 32 characters.
 
