@@ -24,6 +24,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 2: Anniversary on Steam][st
 - Sapien now renders geometry error info such as degenerate triangles and overlapping faces.
 - FBX-to-JMS now writes all regions used in the FBX file properly.
 - Some speedups for BSP Havok representation. Loading times should be a bit faster.
+- Set minimum height and minimum width for game view window in Sapien to avoid bad values being saved to registry. Solves render_cameras assert on startup. Users who are currently experiencing this issue should delete their registry keys and update to latest.
 
 # What's changed?
 ## General changes from stock H2V tools
