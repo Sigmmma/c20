@@ -20,7 +20,7 @@ The engine has the following channel limits:
 * 4 44k stereo channels
 
 # Related script functions and globals
-The following are related [functions][scripting#functions] that you can use in your scenario scripts and/or [debug globals][developer-console#debug-globals] that you can enter into the developer console for troubleshooting.
+The following are related [functions][scripting#functions] that you can use in your scenario scripts and/or [debug globals][scripting#external-globals] that you can enter into the developer console for troubleshooting.
 
 ```.table
 id: functions-globals

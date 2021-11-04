@@ -1,5 +1,6 @@
-  title:
-    en: camera_fx_settings
-  stub: true
-  tagName: h3/camera_fx_settings
-  
+title:
+  en: camera_fx_settings
+stub: true
+tagName: h3/camera_fx_settings
+related:
+  - /h3/tags/area_screen_effect

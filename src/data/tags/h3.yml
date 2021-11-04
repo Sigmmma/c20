@@ -20,6 +20,10 @@ cache_file_resource_layout_table:
 cache_file_sound:
   #id: shit
 camera_fx_settings:
+  description:
+    en: >
+      Post-processing screen effects like bloom and exposure that can be
+      assigned to a [BSP cluster][scenario_structure_bsp#clusters].
 camera_track:
   #id: trak
 cellular_automata:
@@ -264,6 +268,9 @@ stereo_system:
   #id: BooM
 structure_design:
 structure_seams:
+  description:
+    en: >
+      Defines the geometry between seam-connected [BSPs][scenario_structure_bsp].
 style:
   #id: styl
 text_value_pair_definition:

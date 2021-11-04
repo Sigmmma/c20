@@ -3,10 +3,12 @@
 # Material naming and shaders
 The [JMS][] files you export from your 3D software contain the material names you used. **Tool** will then search for a matching shader tag within your tags directory when compiling the JMS into a model tag and will automatically assign the shader references. For example, a level BSP which has the material name `vines^` might have a corresponding shader at `tags\levels\my_level\shaders\vines.shader_environment` but it could also match with `tags\levels\some_other_level\shaders\vines.shader_environment`. For this reason it is important to name your materials and shaders uniquely. Always use lower-case names and do not exceed 32 characters.
 
-When no shader tag can be found, Tool will ask you to generate one by choosing a shader type. [H1CE Tool][tool] will create these in the root of the tags directory, whereas [H1A Tool][h1a-tool] will create them in a `shaders` directory next to the model tag.
+When no shader tag can be found, Tool will ask you to generate an empty one by choosing a shader type. [H1CE Tool][tool] will create these in the root of the tags directory, whereas [H1A Tool][h1a-tool] will create them in a `shaders` directory next to the model tag. In the case if H1CE Tool, you will probably want to move these files into your level's shaders directory after just to keep things tidy. Once Tool has generated the empty shader tags, you must compile the model from JMS again for those shaders to be referenced.
+
+Sapien and/or Halo may crash if you do not set up any [bitmap][] references in these new shaders so do that before proceeding; empty shaders are invalid.
 
 # Special materials
-These material names are hard-coded into the **tool** and have special meaning. They do not need shader tags.
+These material names are hard-coded into Tool and have special meaning. They do not need shader tags.
 
 | Name | Usage
 |------|------
