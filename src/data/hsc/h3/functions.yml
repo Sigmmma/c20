@@ -228,6 +228,8 @@ functions:
         returns list of objects in volume or (max 128).
     net_safe_raw: 'yes'
   - slug: zone_set_trigger_volume_enable
+    tags:
+      - zone_set
     info:
       en: >-
         ```hsc
@@ -6859,6 +6861,8 @@ functions:
         switches to a different zone set
     net_safe_raw: 'unknown, assumed unsafe'
   - slug: switch_zone_set
+    tags:
+      - zone_set
     info:
       en: |-
         ```hsc
@@ -6867,6 +6871,8 @@ functions:
         switches to a different zone set
     net_safe_raw: 'unknown, assumed unsafe'
   - slug: current_zone_set
+    tags:
+      - zone_set
     info:
       en: |-
         ```hsc
@@ -6875,6 +6881,8 @@ functions:
         returns the current zone set
     net_safe_raw: 'unknown, assumed unsafe'
   - slug: current_zone_set_fully_active
+    tags:
+      - zone_set
     info:
       en: |-
         ```hsc
@@ -6883,6 +6891,8 @@ functions:
         returns the current zone set
     net_safe_raw: 'unknown, assumed unsafe'
   - slug: switch_map_and_zone_set
+    tags:
+      - zone_set
     info:
       en: |-
         ```hsc
@@ -7089,6 +7099,8 @@ functions:
     net_safe_raw: 'no, for init.txt only'
     forInitTxt: true
   - slug: game_initial_zone_set
+    tags:
+      - zone_set
     info:
       en: |-
         ```hsc
@@ -12712,6 +12724,8 @@ functions:
         ends any custom first person animation running on the unit
     net_safe_raw: 'unknown, assumed unsafe'
   - slug: prepare_to_switch_to_zone_set
+    tags:
+      - zone_set
     info:
       en: |-
         ```hsc
