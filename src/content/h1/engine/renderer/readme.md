@@ -79,7 +79,7 @@ Known renderer limits with the _unmodified_ game are:
 * Maximum dynamic [BSP triangles][scenario_structure_bsp]: 16k (raised to 32k in H1A) -- a BSP can have more triangles than this, but the rendered amount should be managed with portals.
 * [Lights][light]: 128
 * Surfaces per point light: 4096 -- limits how many triangles can be illuminated by a dynamic light (see figure)
-* Surfaces per dynamic [Objects][object] shadow: 4096 -- limits how many triangles can be shaded by dynamic object shadows (Highly unlikely scenario)
+* Surfaces per dynamic [object][object] shadow: 4096 -- limits how many triangles can be shaded by dynamic object shadows (Highly unlikely scenario)
 
 There are also [game state limits][game-state#limits] which can appear like renderer limitations (eg. maximum simulated antennas).
 
