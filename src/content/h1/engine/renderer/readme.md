@@ -21,7 +21,7 @@ The [predicted resources][scenario#tag-field-predicted-resources] block seen in 
 # Lighting
 Halo's lighting engine benefits from the fact that there is no dynamic time of day. Most dynamic [lights][light] are small. Similar to other games of the time, Halo uses "baked" global illumination in the form of [lightmaps][]. This lighting information is used on the environment ([BSP][scenario_structure_bsp]) and encodes localized light directions and tinting to shade [objects][object].
 
-Shadows for moving objects like [units][unit] and [items][item] are rendered with 128x128 [shadow maps][shadow-mapping] at run-time. An object's _bounding radius_ field, not its _render bounding radius_, is used to calculate the physical width of the shadow canvas. If the bounding radius is too small, the shadow will be cut off.
+Dynamic shadows for moving objects like [units][unit] and [items][item] are rendered with 128x128 [shadow maps][shadow-mapping] at run-time. An object's _bounding radius_ field, not its _render bounding radius_, is used to calculate the physical width of the shadow canvas. If the bounding radius is too small, the shadow will be cut off.
 
 # Gearbox regressions
 
@@ -76,10 +76,10 @@ Known renderer limits with the _unmodified_ game are:
 * [Particle_system][] particles: 256
 * Non-particle system [particles][particle]: 512
 * [Objects][object]: 256 (raised to 512 in H1A)
-* [BSP triangles][scenario_structure_bsp]: 16k (raised to 32k in H1A) -- a BSP can have more triangles than this, but the rendered amount should be managed with portals.
+* Maximum dynamic [BSP triangles][scenario_structure_bsp]: 16k (raised to 32k in H1A) -- a BSP can have more triangles than this, but the rendered amount should be managed with portals.
 * [Lights][light]: 128
 * Surfaces per point light: 4096 -- limits how many triangles can be illuminated by a dynamic light (see figure)
-* Maximum dynamic triangles: 32k -- unknown exactly what this entails
+* Surfaces per dynamic [object][object] shadow: 4096 -- limits how many triangles can be shaded by dynamic object shadows (Highly unlikely scenario)
 
 There are also [game state limits][game-state#limits] which can appear like renderer limitations (eg. maximum simulated antennas).
 
