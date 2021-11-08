@@ -6,6 +6,8 @@ scripting language interpreted by the [Halo engine][engine]. It is used in two m
 
 Script sources are denoted by the `.hsc` file extension.
 
+If you are writing Halo Script using [Visual Studio Code][vscode], the [Atlas][] extension provides syntax highlighting and completion suggestions (supports H1-H3).
+
 # Syntax
 As a language, HSC is [Lisp-like][Lisp] and is comprised of [S-expressions][sexp], though it lacks some constructs like looping. This limitation also ensures that scripts never enter into endless loops that block the game's simulation from advancing.
 
@@ -180,3 +182,5 @@ Several control structures implicitly return the value of their final expression
 [stack]: http://en.wikipedia.org/wiki/Call_stack
 [sexp]: https://en.wikipedia.org/wiki/S-expression
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)
+[atlas]: https://marketplace.visualstudio.com/items?itemName=Crisp.atlas
+[vscode]: https://code.visualstudio.com/

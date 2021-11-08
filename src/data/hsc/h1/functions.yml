@@ -2892,7 +2892,7 @@ functions:
         ```hsc
         (<real> objects_distance_to_object <object_list> <object>)
         ```
-        returns minimum distance from any of the specified objects to the specified destination object. (returns -1 if there are no objects to check)
+        returns minimum distance from any of the specified objects to the specified destination object. (returns -1 if either of the objects does not exist)
     context: H1A only
   - slug: objects_dump_memory
     info:
