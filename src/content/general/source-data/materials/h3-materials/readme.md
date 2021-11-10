@@ -44,7 +44,8 @@ These material names are hard-coded into the [tools][h3-tool] and have special m
 |------|------
 | `+sky`, `+sky0`, `+sky1`, ... | Applied to surfaces to render the skybox. You can add the index of the sky in the [scenario skies block][h3/tags/scenario#tag-field-skies] if your scenario has multiple skies. Since each [cluster][h3/tags/scenario_structure_bsp#clusters-and-cluster-data] can only reference [one sky][h3/tags/scenario_structure_bsp#tag-field-clusters-sky], you must ensure that all sky faces within a cluster use the same index.
 | `+portal` | Applied to faces that are used to define general portals used in the visibility solution or rendering occlusion for the level. Because they split the level into [clusters][h3/tags/scenario_structure_bsp#clusters-and-cluster-data], they are also used to define areas of different sound environments or weather.
-| `+weatherpoly` | Used on the faces of simply [convex shapes](https://en.wikipedia.org/wiki/Polyhedron#Convex_polyhedra) to generate [weather polyhedra][h3/tags/scenario_structure_bsp#weather-polyhedra]. Seems to have been deprecated in Halo 3.
+| `+weatherpoly` | Used on the faces of simply [convex shapes](https://en.wikipedia.org/wiki/Polyhedron#Convex_polyhedra) to generate [weather polyhedra][h3/tags/scenario_structure_bsp#weather-polyhedra]. This has been deprecated and no longer functions.
+| `<` | **Portal (One-Way)**. Portal can only be seen through in a single direction.
 | `+seamsealer` | Applied to temporary geometry to "seal" the level. Most commonly used to seal holes or other open edged areas of the level during construction and testing. These faces functionally behave the same as `+sky` -- they must still form sealed connections with the open edges that they close and the sky renders through them. Seamsealer is collideable and deletes projectiles just like `+sky`.
 | `+media` | Reserved special material. Seems to have been deprecated in Halo 3.
 | `+unused` | Reserved special material that has many uses and can be used in conjunction with the special shader symbols to define its use and behavior.
@@ -72,7 +73,7 @@ Material symbols are added to the **start** or **end** of the material name and 
 | `.` | **Shadow Only**. Casts real time shadows but is not visible.
 | `;` | **Lightmap Only**. Emits light in the light mapper but is otherwise non-existent. (non-collidable and non-rendered)
 | `)` | **Precise**. Points and triangles are precise and will not be fiddled with in the BSP pass.
-| `>` | **Conveyor**. Geometry which will have a surface coordinate system and velocity.
+| `>` | **Conveyor**. Geometry which will have a surface coordinate system and velocity. This has been deprecated and no longer functions.
 | `<` | **Portal (One-Way)**. Portal can only be seen through in a single direction.
 | `\|`| **Portal (Door)**. Portal visibility is attached to a device machine state.
 | `~` | **Portal (Vis Blocker)**. Portal visibility is completely blocked by this portal.
