@@ -292,6 +292,12 @@ type_defs:
         meta:
           tag_classes:
             - actor_variant
+        comments:
+          en: >-
+            Used to place a mounted weapon unit at this seat, which aims and
+            fires independently of this unit. An example is the bottom-mounted
+            turret on the covenant dropship. The game can only simulate [up to
+            8][game-state] of these mounted units at a time.
       - type: pad
         size: 20
   Unit:

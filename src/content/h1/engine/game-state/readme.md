@@ -51,3 +51,4 @@ Since the game world is dynamic, the datum count can rise up to a limit. The fol
 |hs globals (includes "external globals", not just those in the level script)|1024|-|
 |recorded animations|64|-|
 |[AI knowledge][ai#knowledge-model]|768|-|
+|[mounted weapon units][unit#tag-field-seats-built-in-gunner]|8|-|
