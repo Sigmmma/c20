@@ -5,6 +5,7 @@
 [Weather Portals Example Blend](https://drive.google.com/file/d/11-VGOtq8kRcBkyDmyEpYC-EyvbuQY1zL/view?usp=sharing)   | A blend file showcasing how to use the special +weatherpoly material in a level.
 [Portals Example Blend](https://drive.google.com/file/d/1KGPuGmdbt3budcQdPrvzC9sV1kykmk2A/view?usp=sharing)           | A blend file showcasing how to use the special +portal material in a level.
 [Instance Geometry Example Blend](https://drive.google.com/file/d/1RLMMFdWyLkal6tJkQ6vrrOcNy5rEi8yZ/view?usp=sharing) | A blend file showcasing how to use the instance geometry in a level.
+[Conveyor Example Blend](https://drive.google.com/file/d/1rRYMv94HHwoXikbmeOXk1GtfzggcGdyA/view?usp=sharing)          | A blend file showcasing how to use the conveyors in a level.
 
 # Multiple skies
 It's possible to use multiple skies in your level by adding a digit to the end of your `+sky` material. If we wanted three skies in our level for example we would have the following:
@@ -68,7 +69,42 @@ Object data in Blender can be linked with the <kbd>Ctrl</kbd> + <kbd>L</kbd> hot
 
 ![](instancegeo.jpg "Copy pasta your geo for fun.")
 
-# Infinite Water Plane
+# Conveyors
+Conveyors are surfaces that have a set speed and direction. Any physics enabled objects will move in the same direction and speed as well. Add the `>` symbol to a material name in order to mark a surface as a conveyor. Tool will then generate the needed data for the conveyor on level import. Direction and speed come from the shader assigned to the surface at import. Speed is set by how fast the texture scrolls in the shader while direction is how fast it scrolls on the X or Y axis. See the `Conveyors Example Blend` as an example.
+
+![](conveyor.jpg "A neat way to move objects from one point to another.")
+
+# Water definitions
+Map designers can set a fixed height to be used to create a plane that stretches infinitely into the horizon. This allows you to easily and quickly create an ocean without much hassle. The downsides for this method is you can't have any level geo that descends below your set height unless you switch to a new BSP or actually want to see water there. Some examples of levels that use this include Zanzibar and Uplift. Lets get started by adding an ocean to our example level file.
+
+Start by opening the `scenario_structure_bsp` in Guerilla and scrolling to the bottom of the tag. You should see a tag block named `Water Definitions`. Click add to add a single element to this tag block. You should get a bunch of new options to mess with. They are as follows:
+
+* shader - tag reference that wants a shader tag. We will be using `tags\scenarios\shaders\multi\needle\water_static.shader` as our value here.
+* section - Where the post processed plane geo goes after the level is packaged. Leave this alone.
+* resources - Where the post processed plane geo goes after the level is packaged. Leave this alone.
+* sun spot color - The color used for the reflected sun in the water. Set it to whatever you want. We will be using a whitish yellowish color
+* reflection tint - Does not seem to do anything.
+* refraction tint - Does not seem to do anything.
+* horizon color - The color used for the water as it fades into the horizon. Set it to whatever you want. We will be using a dark blue color.
+* sun specular power - Does not seem to do anything. Set it to `32` anyways
+* reflection bump scale - How clear the reflected sky is in the water. We will be using a value of `0.4`
+* refraction bump scale - How clear the reflected sky is in the water. We will be using a value of `0.1`
+* fresnel scale - The scale of the fresnel map in the assigned shader. We will be using a value of `0.4`
+* sun dir heading - How the sun spot is stretched across the plane. We will be using a value of `0.3`
+* sun dir pitch - How the sun spot is stretched across the plane. We will be using a value of `1.1`
+* FOV - Set this value to `1.1`. This is important as the water won't render if it's `0`
+* aspect - Set this value to `1.33333`. This is important as the water won't render if it's `0`
+* height - The fixed height our water will exist in our game world. You can create a plane in Blender and take the Z height of the object divided by `100`. That should get you something that works in Guerilla.
+* farz - No idea what this does. Set it to `512`
+* rotate offset - Does not seem to do anything. Leave at `0`
+* center - Does not seem to do anything. Leave at `0`
+* extents - Does not seem to do anything. Leave at `0`
+* fog near - Does not seem to do anything. Leave at `0`
+* fog far - Does not seem to do anything. Leave at `0`
+* dynamic height bias - Makes geometry render over the plane. Leave at `0`
+
+![](water.jpg "Doesn't it look like you could jump right in?")
+Should end up with a result that looks something like this. Play around with the settings until you get something you like. Look at other levels for examples on what to use.
 
 # XREFs
 
