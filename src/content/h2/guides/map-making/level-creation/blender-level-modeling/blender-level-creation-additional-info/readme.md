@@ -74,7 +74,7 @@ Conveyors are surfaces that have a set speed and direction. Any physics enabled 
 
 ![](conveyor.jpg "A neat way to move objects from one point to another.")
 
-# Water Definitions
+# Water definitions
 Map designers can set a fixed height to be used to create a plane that stretches infinitely into the horizon. This allows you to easily and quickly create an ocean without much hassle. The downsides for this method is you can't have any level geo that descends below your set height unless you switch to a new BSP or actually want to see water there. Some examples of levels that use this include Zanzibar and Uplift. Lets get started by adding an ocean to our example level file.
 
 Start by opening the `scenario_structure_bsp` in Guerilla and scrolling to the bottom of the tag. You should see a tag block named `Water Definitions`. Click add to add a single element to this tag block. You should get a bunch of new options to mess with. They are as follows:
