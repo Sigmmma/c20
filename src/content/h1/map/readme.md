@@ -159,7 +159,7 @@ The tag index/tag data header is the start of where tag data and definitions are
 ```.struct
 entry_type: TagDataHeaderPC
 showOffsets: true
-id: resource-header
+id: tag-header
 imports:
   h1/files/map:
     - TagDataHeaderPC
@@ -171,7 +171,7 @@ The H1X tag index header is slightly different since model data is also in the t
 ```.struct
 entry_type: TagDataHeaderXbox
 showOffsets: true
-id: resource-header
+id: xbox-tag-header
 imports:
   h1/files/map:
     - TagDataHeaderXbox
@@ -183,7 +183,7 @@ Each 32-byte element in the tag array contains information about a tag in the ma
 ```.struct
 entry_type: TagArrayEntry
 showOffsets: true
-id: resource-header
+id: tag-entry
 imports:
   h1/files/map:
     - TagArrayEntry

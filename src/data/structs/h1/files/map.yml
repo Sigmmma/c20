@@ -236,12 +236,15 @@ type_defs:
     size: 4
     options:
       - name: bitmaps
+        value: 1
         comments:
           en: The file contains [bitmap][] tags.
       - name: sounds
+        value: 2
         comments:
           en: The file contains [sound][] tags.
       - name: loc
+        value: 3
         comments:
           en: The file contains [font][] and [unicode_string_list][] tags.
   ResourceMapResource:
