@@ -6,6 +6,7 @@ nohup.out
 /src/content/**/todo
 *.swp
 oxipng.exe
+.DS_Store
 hs_doc*.txt
 *.code-workspace
 /ffmpeg.exe
