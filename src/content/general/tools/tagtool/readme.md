@@ -5,10 +5,6 @@
 * Map and tag formats may change over time as the game receives updates, meaning TagTool must be updated regularly.
 * Mod tools and source tags are now available for most MCC titles, meaning it is easier than ever to port tags.
 
-
-
-
-
 ```.alert danger
 Certain maps may crash during the porting process, Campaign Porting is not Supported at this time.
 Support for certain features depends on the Halo game being modified. 
