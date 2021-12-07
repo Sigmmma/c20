@@ -1,0 +1,12 @@
+title:
+  en: TagTool
+img: TagTool.jpg
+imgCaption:
+  en: >-
+    A look at the UI on startup
+info:
+  en: >
+    * [Github](https://github.com/TheGuardians/TagTool)
+    * [Appveyor](https://ci.appveyor.com/project/Beatthezombie/tagtool/branch/master)
+stub: true
+toolName: TagTool

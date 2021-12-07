@@ -18,7 +18,7 @@ This is the classic first release of Halo 3 for the Xbox 360.
 There are several tools and mods for the base game or external programs that users can grab to enhance their experience. Examples include:
 
 * [Assembly][assembly] - A cache editing tool for various titles in the Halo series. Users can use this tool to make permanent edits to cache files and poke changes in real time. While not traditional workflow for map creation, it is a powerful tool that can be used to create interesting experiences. 
-* TagTool - A cache editing tool designed to allow *port* tag data between different versions and builds of the Blam engine, as well as importing brand new content.
+* [TagTool][tagtool] - A cache editing tool designed to allow *porting* of tag data between different versions and builds of the Blam engine, as well as importing brand new content.
 
 Like all Halo games [tags][] play a large role in modding.
 
@@ -33,7 +33,7 @@ There are several tools and mods for the base game or external programs that use
 * [Halo 3 Editing Kit][h3-ek] - The official editing suite released for the MCC version of Halo 3 largely based on internal tools developed by Bungie and later used by 343 Industries and [Saber Interactive][saber]. Some changes were made to make the tools more user friendly and stable, as well as to support importing content from modern 3D modeling software.
 * [Halo Asset Blender Development Toolset][halo-asset-blender-development-toolset] - A collection of tools for Blender that can be used to export the intermediate files used by the Halo 3 Editing Kit. 
 * [Assembly][assembly] - A cache editing tool for various titles in the Halo series. Users can use this tool to make permanent edits to cache files and poke changes in real time. While not traditional workflow for map creation, it is a powerful tool that can be used to create interesting experiences. 
-* TagTool - A cache editing tool designed to allow *port* tag data between different versions and builds of the Blam engine, as well as importing brand new content.
+* [TagTool][tagtool] - A cache editing tool designed to allow *porting* of tag data between different versions and builds of the Blam engine, as well as importing brand new content.
 
 
 [bungie]: https://en.wikipedia.org/wiki/Bungie
