@@ -2,9 +2,7 @@ Welcome to the guides hub! Here you'll find links to various guides ranging from
 
 # External tutorials list
 ```.alert
-The content of these external tutorials has not been vetted and they may contain outdated information. Always use the latest available versions of any tools used to get the benefits of bug fixes since the tutorial was made.
-
-Please report any dead links encountered.
+The content of these external tutorials has not been vetted and they may contain outdated information. Always use the latest available versions of any tools used to get the benefits of bug fixes since the tutorial was made. Please report any dead links encountered.
 ```
 
 ## Beginner

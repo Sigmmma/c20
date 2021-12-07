@@ -39,8 +39,8 @@ const localize = (key) => ({
     es: "Longitud del campo de fútbol americano",
   },
   searchPlaceholder: {
-    en: "Search c20... [S]",
-    es: "Buscar c20... [S]"
+    en: "Search all of c20... [S]",
+    es: "Buscar todo en c20... [S]"
   },
   searchResults: {
     en: "Search results",
@@ -56,7 +56,7 @@ const localize = (key) => ({
   },
   limitToChildPaths: {
     en: "Child pages only",
-    es: "$limitToChildPaths"
+    es: "Solo páginas secundarias"
   }
 }[key][lang]);
 

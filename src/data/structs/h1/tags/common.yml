@@ -322,18 +322,31 @@ type_defs:
     fields:
       - name: red
         type: float
+        comments:
+          en: >
+            Red channel value in the range `0.0` to `1.0`.
       - name: green
         type: float
+        comments:
+          en: >
+            Green channel value in the range `0.0` to `1.0`.
       - name: blue
         type: float
+        comments:
+          en: >
+            Blue channel value in the range `0.0` to `1.0`.
   Euler2D:
     class: struct
     assert_size: 8
     fields:
       - name: yaw
         type: Angle
+        comments:
+          en: Rotation to the left or right around the Z (vertical) axis.
       - name: pitch
         type: Angle
+        comments:
+          en: Rotation up or down.
   Euler3D:
     class: struct
     assert_size: 12

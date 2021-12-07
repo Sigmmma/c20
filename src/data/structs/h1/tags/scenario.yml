@@ -34,9 +34,7 @@ type_defs:
           tag_classes:
             - sky
         comments:
-          en: >-
-            A reference to a [sky][] tag which can be used by a BSP in this
-            scenario.
+          en: A reference to a [sky][] tag.
   ScenarioType:
     class: enum
     size: 2
@@ -2124,6 +2122,12 @@ type_defs:
           T: ScenarioSky
         meta:
           hek_max_count: 8
+        comments:
+          en: >
+            A list of skies available to clusters in this scenario's BSP(s).
+            Level artists can select which sky is used using the [special
+            material names][h1-materials] `+sky0`, `+sky1`, etc. See also:
+            [multiple skies][h1/tags/sky#multiple-skies].
       - name: type
         type: ScenarioType
         comments:

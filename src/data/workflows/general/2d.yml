@@ -26,6 +26,8 @@ GIMP:
   inherit:
     - 2d_base
   page: gimp
+  similarTo:
+    - Krita
   authors:
     - The GIMP Development Team
 
