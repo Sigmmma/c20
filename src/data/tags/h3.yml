@@ -154,6 +154,11 @@ particle_physics:
 patchy_fog:
   #id: fpch
 performance_throttles:
+  #id: perf
+  description:
+    en: >
+      Handles the throttling of performance for things such as Lighting and Shadows,
+      Used Mostly for Splitscreen on Consoles.
 physics_model:
   #id: phmo
 physics:
@@ -172,6 +177,7 @@ rasterizer_globals:
 render_method_definition:
 render_method_option:
 render_method_template:
+  #id: rmt2
 render_model:
   #id: mode
 render_skins_object_globals:
