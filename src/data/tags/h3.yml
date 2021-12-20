@@ -7,7 +7,9 @@ antenna:
   #id: ant_
 area_screen_effect:
 beam_system:
+  #id: beam
 bink:
+  #id: bink
 biped:
   #id: bipd
   parentName: unit
@@ -20,6 +22,7 @@ cache_file_resource_layout_table:
 cache_file_sound:
   #id: shit
 camera_fx_settings:
+  #id: cfxs
   description:
     en: >
       Post-processing screen effects like bloom and exposure that can be
@@ -38,7 +41,9 @@ chud_animation_definition:
 chud_definition:
 chud_globals_definition:
 cinematic:
+  #id: cine
 cinematic_scene:
+  #id: cisc
 cloth:
   #id: clwd
 collision_damage:
@@ -48,6 +53,10 @@ color_table:
   #id: colo
 compute_shader:
 contrail_system:
+  #id: cntl
+  description:
+    en: >
+      Handles Contrails such as Projectiles, Explosions, Ect.
 cortana_effect_definition:
 crate:
   #id: bloc
@@ -82,6 +91,10 @@ equipment:
   #id: eqip
   parentName: item
 flock:
+  #id: flck
+  description:
+    en: >
+      Handles simple Enviromental AI such as Rats, Seagulls, Hornets and Banshees.
 fluid_dynamics:
 fragment:
 game_engine_settings_definition:
@@ -143,6 +156,7 @@ multiplayer_scenario_description:
 multiplayer_variant_settings_interface_definition:
   #id: goof
 new_cinematic_lighting:
+  #id nclt
 object:
   #id: obje
 particle:
@@ -240,14 +254,24 @@ shader:
   #id: shad
 shader_cortana:
 shader_custom:
+  #id: rmc
 shader_decal:
 shader_foliage:
+  #id: rmfl
 shader_halogram:
+  #id: rmhg
 shader_skin:
+  #id: rmss
 shader_terrain:
+  #id: rmtr
 shader_water:
+  #id: rmw
 shared_cache_file_layout:
 shield_impact:
+  #id: shit 
+  description:
+    en: >
+      The Shield Impact Tag Handles Shield Coloring and Intensity in response to Damage (Yes .shit is the Actual tag Name.)
 sky_atm_parameters:
 sound:
   #id: snd_
