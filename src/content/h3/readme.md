@@ -35,6 +35,9 @@ There are several tools and mods for the base game or external programs that use
 * [Assembly][assembly] - A cache editing tool for various titles in the Halo series. Users can use this tool to make permanent edits to cache files and poke changes in real time. While not traditional workflow for map creation, it is a powerful tool that can be used to create interesting experiences. 
 * [TagTool][tagtool] - A cache editing tool designed to allow *porting* of tag data between different versions and builds of the Blam engine, as well as importing brand new content.
 
+# ODST
+
+Halo 3: ODST is a 2009 first person shooter that uses a lightly modified Halo 3 engine. The content creation pipeline is largely the same as H3 and most H3 tags will work in ODST. Support for ODST tags in H3 is less stable but thanks to engine upgrades made to backport Halo Online levels there is some level of support.
 
 [bungie]: https://en.wikipedia.org/wiki/Bungie
 [microsoft]: https://en.wikipedia.org/wiki/Xbox_Game_Studios
