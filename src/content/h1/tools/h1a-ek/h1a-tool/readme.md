@@ -29,6 +29,8 @@ This new version of Tool has many differences from the 2003 Gearbox Tool. Most n
 tool animations "characters\cyborg"
 ```
 
+* source-directory - A local data path to the root of a model source directory.
+
 For the example above, Tool would expect to find corresponding animation data files at `data\characters\cyborg\animations\`. Assuming no errors, it would be compiled into `tags\characters\cyborg\cyborg.model_animations`.
 
 See the [animation data][animation-data] page for more info on the various extensions used during animation importing and their purpose.
@@ -40,6 +42,10 @@ Compile a single TIFF image into a [bitmap][] using the `bitmap` verb:
 # bitmap <source-file> [debug-plate?]
 tool bitmap "characters\cyborg\bitmaps\cyborg"
 ```
+
+* source-file - A local data path to a tiff without extension.
+* debug-plate - Set this with a true or false. Dumps the processed image back to your data folder so that you may examine it in your preferred image editor. The path for these will be something like this.
+	* data\bitmap-debug\
 
 For the example above, Tool would expect to find a _.tif or .tiff_ file at `data\characters\cyborg\bitmaps\cyborg.tif`. Assuming no errors, the image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\cyborg.bitmap`. The bitmap filename will come from the image filename.
 
@@ -53,6 +59,16 @@ As with the `bitmaps` verb, TIFF files must have at least 8-bit colour depth and
 tool bitmaps "characters\cyborg\bitmaps"
 ```
 
+* source-directory - A local data path to a folder containing a set of images for processing.
+* type - sets the type of bitmap the image will be converted to. This will change how the source image is expected to be setup. The list of valid options is as follows:
+	* *2d*
+	* *3d*
+	* *cubemaps*
+	* *sprites*
+	* *interface*
+* debug-plate - Set this with a true or false. Dumps the processed image back to your data folder so that you may examine it in your preferred image editor. The path for these will be something like this.
+	* data\bitmap-debug\
+
 For the example above, Tool would expect to find .tif/.tiff files at `data\characters\cyborg\bitmaps\`. Assuming no errors, each image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\`. Each image file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the image filename.
 
 Tool supports TIFF files with a [colour depth][wiki-color] of at least 8 bits per pixel, 32-bit color (8 bits per channel) being typical.
@@ -65,6 +81,16 @@ A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb.
 tool build-cache-file "levels\test\tutorial\tutorial" classic 0 # classic graphics with update resource disabled
 tool build-cache-file "levels\test\tutorial\tutorial" remastered
 ```
+
+* scenario-name - A local tag path to your scenario without the file extension.
+* classic|remastered - Whether or not S3D is disabled. There is no way to edit S3D files currently so only use remastered if you know what you're doing:
+	* classic - Disables the S3D graphics engine. Users will not be able to toggle to the remastered graphics or sounds.
+	* remastered - Enables the S3D graphics engine. Users will be able to toggle to the remastered graphics and sounds.
+* resource-map-usage - How Tool uses resource maps such a bitmaps.map and sounds.map during map packaging.
+	* none - Resource maps will not be used during packaging. All assets will be internalized.
+	* read - Use resource maps during packaging. Any assets that don't exist will instead be internalized.
+	* read_write - Use resource maps during packaging. Any assets that don't exist will instead be added to existing resource maps.
+* log-tag-loads - A true or false arg that writes the tags loading during packaging to the H1AEK root.
 
 The resulting map file can be found in the editing kit's `maps` directory. This verb also generates reports under `reports\<mapname>` including a compilation-specific `debug.txt` and a `tag_dump.txt`.
 
@@ -112,6 +138,8 @@ tool build-resource-list a10
 tool build-resource-list bloodgulch
 ```
 
+* scenario-name - The name of a scenario file without extension.
+
 The command will create the resource list in the `...\preload\lsa` folder relative to the current working directory.
 It is your responsibility to ensure this path exists, it will fail silently if it doesn't.
 
@@ -124,12 +152,16 @@ This commands takes a JMA file directly and converts it to a camera_track for th
 tool camera-track cameras\ohno.jma
 ```
 
+* source-file - A local data path to where the JMA file is located.
+
 # Check map
 
 ```sh
 # check-map <scenario-name>
 tool check-map levels\test\my_broke_level\my_broke_level
 ```
+
+* scenario-name - A local tag path to your scenario without the file extension.
 
 Checks the scenario tag and tags it references for issues. Errors will be printed to console.
 
@@ -139,6 +171,8 @@ Checks the scenario tag and tags it references for issues. Errors will be printe
 # check-shaders <root-directory>
 tool check-shaders levels\test\my_broke_level
 ```
+
+* root-directory - A local tag path to a directory containing shader tags.
 
 Checks all the [shader][] tags in a tag path (including sub-directories). Errors will be printed to console.
 
@@ -150,6 +184,9 @@ A [JMS][] file containing a collision model can be compiled into a [model_collis
 tool collision-geometry "scenery\rock"
 tool collision-geometry "scenery\rock" true
 ```
+
+* source-directory - A local data path to the root of a model source directory.
+* fix-phantom-bsp - Set true or false in order to enable the phantom fixup code. If you notice collision where there shouldn't be any then enable this.
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenery\rock\physics\rock.JMS`. Assuming no errors, it would be compiled into `tags\scenery\rock\rock.model_collision_geometry`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
 
@@ -169,6 +206,17 @@ The optional argument fixes [model collision artifacts][model_collision_geometry
 tool compile-shaders dx11 all
 ```
 
+* xbox1|xbox1_debug|dx11|dx11_debug - What platform to compile shaders for:
+	* xbox1 - Compile shaders for the Xbox One platform
+	* xbox1_debug - Compile debug shaders for the Xbox One platform
+	* dx11 - Compile shaders for the PC platform
+	* dx11_debug - Compile debug shaders for the PC platform
+* fx|psh|vsh|all - What files to compile.
+	* fx
+	* psh
+	* vsh
+	* all
+
 Compiles the [shader files](https://en.wikipedia.org/wiki/Shader) in the `shaders` subdirectory into `fx.bin`, `psh.bin` and `vsh.bin`. These are not the same as the [shader][] tags and unless you have a working understanding of 3D graphics programming you don't need to touch this command.
 The `xbox1` and `xbox1_debug` commands won't work without a copy of the XDK; [which is not publicly available](https://docs.microsoft.com/en-us/gaming/xbox-live/get-started/setup-ide/managed-partners/vstudio-xbox/live-where-to-get-xdk).
 
@@ -179,6 +227,9 @@ This command takes two scenarios and copies detail objects from the source to th
 # copy-detail-objects <source scenario> <destination scenario>
 tool copy-detail-objects levels\test\deathisland\deathisland levels\test\my_deathisland_test\my_deathisland_test
 ```
+
+* source scenario - A local tag path to your scenario without the file extension.
+* destination scenario - A local tag path to your scenario without the file extension.
 
 As there is no error checking you will have to check if the detail object got copied correctly yourself.
 
@@ -200,10 +251,22 @@ H1A uses FMOD as it's sound middleware, this command builds a FMOD SoundBank fil
 tool export-sounds-to-fsb sound\sfx
 ```
 
+* sound\sfx path - ???
+
 Builds a `sounds_adpcm.fsb` and `sounds_adpcm.lst.bin` using `data\sounds\tags.lst` to decide which sounds it needs to include, you can find a copy of this file in your MCC install at: `<MCC root>\halo1\sound\pc\lst\tags.lst`
 
 Make sure you have plenty of free disk space as it will cache the sound data in `.fsbcache`. This directory can be deleted once you are done building the SoundBank.
 
+# Export structure mesh OBJ
+
+???
+
+```sh
+# export-structure-mesh-obj [tag]
+tool export-structure-mesh-obj
+```
+
+* tag - ???
 
 # Export tag to XML
 
@@ -353,6 +416,11 @@ The radiosity process internally subdivides/tessellates the mesh into an interme
 
 # Merge scenery
 This command can merge the scenery tag blocks of the source scenario to the destination scenario. This was probably used to automate work on [child scenarios][scenario#child-scenarios] in Halo's development.
+
+```sh
+# merge-scenery <source scenario> <destination scenario>
+tool merge-scenery
+```
 
 # Model compilation
 A [JMS][] file containing model geometry can be compiled into a [gbxmodel][] using the `model` verb:
