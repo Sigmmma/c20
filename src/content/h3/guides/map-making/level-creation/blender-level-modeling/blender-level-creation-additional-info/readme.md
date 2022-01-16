@@ -108,6 +108,8 @@ We will be using <kbd>Ctrl</kbd> + <kbd>P</kbd> with both `#water_direction00` a
 
 Now we can export these assets to an ASS file. The ass file we create from the meshes we created must go in a different subdirectory from the assets created in the `Visuals` section. The `structure-design` command will also be used instead of the standard `structure` command to compile our ASS file.
 
+Once the ASS file is compiled, the water_physics00 can be referenced in the map's `sky_atm_parameters` tag under the `Underwater Settings` block to change the `Murkiness` and `Fog Color`. This is the color the player sees beneath the surface of the water. Additionally, the `sky_atm_parameters` tag is referenced in the `scenario` tag under the `Screen Effect References` block in the `atmospheric` slot.
+
 # Design surfaces
 Design surfaces are special surfaces that can be used to keep players in a set play space. These barriers do not affect AI and do not need to follow the sealed world rules. They can also be enabled or disabled with the script function `soft_ceiling_enable`.
 
