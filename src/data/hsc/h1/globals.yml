@@ -459,6 +459,10 @@ external_globals:
         ```hsc
         (ai_render_dialogue_variants)
         ```
+        Shows pink text overlays over each unit with [dialogue][h1/tags/dialogue]
+        showing which variant they use, like if marines are a "mendoza" or a "bisenti".
+    tags:
+      - dialogue
   - slug: ai_render_emotions
     info:
       en: |-

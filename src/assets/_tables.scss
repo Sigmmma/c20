@@ -5,7 +5,7 @@ table {
   margin-bottom: var(--padding-sm);
   width: 100%;
 
-  &.no-clear {
+  &.no-clear, .no-clear & {
     width: auto;
   }
 

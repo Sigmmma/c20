@@ -224,6 +224,8 @@ columns:
   # and more columns...
 ```
 
+Inline markdown tables can be given automatic width like `noClear` by surrounding them with `<div class="no-clear">...</div>` tags.
+
 ### Alert boxes
 An alert box is a highlighted container which draws attention to some content, usually text. It can be added with the following syntax:
 

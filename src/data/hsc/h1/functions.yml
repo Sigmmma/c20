@@ -365,7 +365,11 @@ functions:
         (ai_dialogue_triggers true)
         (ai_dialogue_triggers false)
         ```
-        Turns impromptu dialogue on or off
+        Turns impromptu [dialogue][h1/tags/dialogue] on or off. When off,
+        units will still play some sounds (like when they take damage) but will
+        not speak when exiting vehicles, seeing friends die, etc.
+    tags:
+      - dialogue
   - slug: ai_disregard
     info:
       en: >-
