@@ -214,6 +214,8 @@ dialogue:
   structName: Dialogue
   structModule: h1/tags/dialogue
   id: udlg
+  description:
+    en: Gives units situational sounds, such as when taking damage or fleeing.
 projectile:
   structName: Projectile
   structModule: h1/tags/projectile
