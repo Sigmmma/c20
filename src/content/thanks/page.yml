@@ -1,6 +1,7 @@
 title:
   en: Acknowledgements
   es: Agradecimientos
+  fr: Remerciements
 slug:
   es: agradecimientos
 noSearch: true
@@ -14,3 +15,6 @@ keywords:
     - gracias
     - autoras
     - autores
+  fr:
+    - crédits
+    - auteurs
