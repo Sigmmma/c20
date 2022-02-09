@@ -27,6 +27,12 @@ camera_fx_settings:
     en: >
       Post-processing screen effects like bloom and exposure that can be
       assigned to a [BSP cluster][scenario_structure_bsp#clusters].
+    fr: >
+      Effets de post-traitement de l'écran comme le bloom et l'exposition qui
+      peuvent être assignés à un [cluster BSP][scenario_structure_bsp#clusters].
+    ru: >
+      Пост-обработка экрана типа цветового блюра и экспозиции, которые могут
+      быть назначены на [BSP кластер][scenario_structure_bsp#clusters].
 camera_track:
   #id: trak
 cellular_automata:
@@ -58,6 +64,10 @@ contrail_system:
   description:
     en: >
       Handles Contrails such as Projectiles, Explosions, Ect.
+    fr: >
+      Gère les contreforts tels que les projectiles, les explosions, etc.
+    ru: >
+      Управляет контрайерами, такими как пули, взрывы и т.п.
 cortana_effect_definition:
 crate:
   #id: bloc
@@ -97,6 +107,10 @@ flock:
   description:
     en: >
       Handles simple Enviromental AI such as Rats, Seagulls, Hornets and Banshees.
+    fr: >
+      Poignées environnementales simples AI tels que les rats, les mouettes, les Hornets et les banshees.
+    ru: >
+      Работает с простыми экологическими ИИ, такими как крысы, чайки, шершни и банши.
 fluid_dynamics:
 fragment:
 game_engine_settings_definition:
@@ -151,6 +165,12 @@ muffin:
     en: >
       Describes the animated growths that appear on a biped's body as it
       transitions into a flood form.
+    fr: >
+      Décrit les excroissances animées qui apparaissent sur un biped's corps tel quil
+      transitions vers un flood form.
+    ru: >
+      Описывает анимированные наросты, которые появляются на теле двуногого.
+      переходы в Наводнение Форма.
 multilingual_unicode_string_list:
   #id: unic
 multiplayer_globals:
@@ -177,6 +197,13 @@ performance_throttles:
     en: >
       Handles the throttling of performance for things such as Lighting and Shadows,
       Used Mostly for Splitscreen on Consoles.
+    fr: >
+      Gère le throttling des performances pour les choses telles que les
+      lumières et les ombres, utilisé principalement pour les splitscreen sur les
+      consoles.
+    ru: >
+      Управляет регулированием производительности для таких вещей, как освещение и тени,
+      Используется в основном для splitscreen на консолях.
 physics_model:
   #id: phmo
 physics:
@@ -275,7 +302,11 @@ shield_impact:
   #id: shit 
   description:
     en: >
-      The Shield Impact Tag Handles Shield Coloring and Intensity in response to Damage (Yes .shit is the Actual tag Name.)
+      The Shield Impact Tag Handles Shield Coloring and Intensity in response to Damage
+    fr: >
+      Létiquette dimpact du bouclier gère la coloration et lintensité du bouclier en réponse aux dommages
+    ru: >
+      Shield Impact обрабатывает цвет и яркость щита в ответ на повреждение
 sky_atm_parameters:
 sound:
   #id: snd_
@@ -305,6 +336,10 @@ structure_seams:
   description:
     en: >
       Defines the geometry between seam-connected [BSPs][scenario_structure_bsp].
+    fr: >
+      Définit la géométrie entre les seam-connected [BSPs][scenario_structure_bsp].
+    ru: >
+      Определяет геометрию между связанными [BSPs][scenario_structure_bsp].
 style:
   #id: styl
 text_value_pair_definition:
