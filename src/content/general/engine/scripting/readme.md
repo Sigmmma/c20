@@ -197,7 +197,7 @@ These values can be added together to effect multiple object types at once. For 
 (<void> add_offscreen_recycling_volume_by_type <trigger_volume> <long> <long> <type_mask>) ; Halo 4 onwards
 ```
 Below is a full listing of object type mask combinations: 
-# this can be stripped if it's a bit too long.
+<!--- this can be stripped if it's a bit too long. --->
 
 | Type Mask <long>| Object Type                             |
 | ----------------| ---------------                         |
