@@ -196,10 +196,11 @@ These values can be added together to effect multiple object types at once. For 
 (<void> add_recycling_volume_by_type <trigger_volume> <long> <long> <type_mask>) ; Halo Reach onwards
 (<void> add_offscreen_recycling_volume_by_type <trigger_volume> <long> <long> <type_mask>) ; Halo 4 onwards
 ```
-Below is a full listing of object type mask combinations: # this can be stripped if it's a bit too long.
+Below is a full listing of object type mask combinations: 
+# this can be stripped if it's a bit too long.
 
-| Type Mask <long>| Object Type     |
-| ----------------| --------------- |
+| Type Mask <long>| Object Type                             |
+| ----------------| ---------------                         |
 | 0               | biped, vehicle, weapon, equipment, crate|
 | 1               | biped                                   |
 | 2               | vehicle                                 |
