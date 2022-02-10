@@ -188,7 +188,7 @@ Several functions from Halo 2 onwards allow the user to perform actions on all o
 | 8               | equipment       |
 | 1024            | crate           |
 
-These values can be added together to effect multiple object types at once. For example, using the function ```hsc(object_destroy_type_mask 5)``` would destroy all bipeds and weapons loaded on the map. Both 0 and 1039 will destroy all objects of the above listed types. The functions which support this are:
+These values can be added together to effect multiple object types at once. For example, using the function ```(object_destroy_type_mask 5)``` would destroy all bipeds and weapons loaded on the map. Both 0 and 1039 will destroy all objects of the above listed types. The functions which support this are:
 
 ```hsc
 (<object_list> volume_return_objects_by_type <trigger_volume> <type_mask>) ; Halo 2 onwards
