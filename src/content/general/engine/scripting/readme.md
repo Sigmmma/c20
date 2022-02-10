@@ -177,6 +177,62 @@ Several control structures implicitly return the value of their final expression
 )
 ```
 
+## Object Type Masks
+Several functions from Halo 2 onwards allow the user to perform actions on all objects of a certain type (e.g. bipeds, vehicles etc) that are currently loaded in a scenario. These functions use long values to determine which object types should be referenced.
+
+| Type Mask <long>| Object Type     |
+| ----------------| --------------- |
+| 1               | biped           |
+| 2               | vehicle         |
+| 4               | weapon          |
+| 8               | equipment       |
+| 1024            | crate           |
+
+These values can be added together to effect multiple object types at once. For example, using the function (object_destroy_type_mask 5) would destroy all bipeds and weapons loaded on the map. Both 0 and 1039 will destroy all objects of the above listed types. The functions which support this are:
+
+```hsc
+(<object_list> volume_return_objects_by_type <trigger_volume> <type_mask>) ; Halo 2 onwards
+(<void> object_destroy_type_mask <type_mask>) ; Halo 2 onwards
+(<void> add_recycling_volume_by_type <trigger_volume> <long> <long> <type_mask>) ; Halo Reach onwards
+(<void> add_offscreen_recycling_volume_by_type <trigger_volume> <long> <long> <type_mask>) ; Halo 4 onwards
+```
+Below is a full listing of object type mask combinations: # this can be stripped if it's a bit too long.
+
+| Type Mask <long>| Object Type     |
+| ----------------| --------------- |
+| 0               | biped, vehicle, weapon, equipment, crate|
+| 1               | biped                                   |
+| 2               | vehicle                                 |
+| 3               | biped, vehicle                          |
+| 4               | weapon                                  |
+| 5               | biped, weapon                           |
+| 6               | vehicle, weapon                         |
+| 7               | biped, vehicle, weapon                  |
+| 8               | equipment                               |
+| 9               | biped, equipment                        |
+| 10              | vehicle, equipment                      |
+| 11              | biped, vehicle, equipment               |
+| 12              | weapon, equipment                       |
+| 13              | biped, weapon, equipment                |
+| 14              | vehicle, weapon, equipment              |
+| 15              | biped, vehicle, weapon, equipment       |
+| 1024            | crate                                   |
+| 1025            | biped, crate                            |
+| 1026            | vehicle, crate                          |
+| 1027            | biped, vehicle, crate                   |
+| 1028            | weapon, crate                           |
+| 1029            | biped, weapon, crate                    |
+| 1030            | vehicle, weapon, crate                  |
+| 1031            | biped, vehicle, weapon, crate           |
+| 1032            | equipment, crate                        |
+| 1033            | biped, equipment, crate                 |
+| 1034            | vehicle, equipment, crate               |
+| 1035            | biped, vehicle, equipment, crate        |
+| 1036            | weapon, equipment, crate                |
+| 1037            | biped, weapon, equipment, crate         |
+| 1038            | vehicle, weapon, equipment, crate       |
+| 1039            | biped, vehicle, weapon, equipment, crate|
+ 
 [local]: https://en.wikipedia.org/wiki/Local_variable
 [cast]: https://en.wikipedia.org/wiki/Type_conversion
 [stack]: http://en.wikipedia.org/wiki/Call_stack
