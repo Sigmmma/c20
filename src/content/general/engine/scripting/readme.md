@@ -228,7 +228,7 @@ These values can be added together to affect multiple object types at once. For 
 ```
 Below is a full listing of object type mask combinations: 
 
-| Type Mask <long>| Object Type                             |
+| Type Mask       | Object Type                             |
 | ----------------| ---------------                         |
 | 0               | biped, vehicle, weapon, equipment, crate|
 | 1               | biped                                   |
