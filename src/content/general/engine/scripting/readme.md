@@ -130,7 +130,7 @@ Script types vary by engine, but the common ones are:
 * `command_script`: Runs when executed by an ai. Allows the use of special external globals like `ai_current_actor` and `ai_current_squad` which return information about the ai executing the script. This is the only script type which allows the use of cs_ functions (e.g. `cs_go_to`, `cs_play_line`).
 * `static`: Can be called by another script and return a value. Useful for re-usable code -- similar to _methods/functions_ from other programming languages.
 
-Halo 3 introduced script parameters to Halo Script. Parameters can only be defined on script types that accept return types (i.e. statics and stubs). 
+Halo 3 introduced script parameters to Halo Script. Parameters can only be defined on script types that accept return types (i.e. statics and stubs).
 
 These have the following structure:
 
@@ -226,7 +226,7 @@ These values can be added together to affect multiple object types at once. For 
 (<void> add_recycling_volume_by_type <trigger_volume> <long> <long> <type_mask>) ; Halo Reach onwards
 (<void> add_offscreen_recycling_volume_by_type <trigger_volume> <long> <long> <type_mask>) ; Halo 4 onwards
 ```
-Below is a full listing of object type mask combinations: 
+Below is a full listing of object type mask combinations:
 
 | Type Mask       | Object Type                             |
 | ----------------| ---------------                         |
@@ -262,7 +262,7 @@ Below is a full listing of object type mask combinations:
 | 1037            | biped, weapon, equipment, crate         |
 | 1038            | vehicle, weapon, equipment, crate       |
 | 1039            | biped, vehicle, weapon, equipment, crate|
- 
+
 [local]: https://en.wikipedia.org/wiki/Local_variable
 [cast]: https://en.wikipedia.org/wiki/Type_conversion
 [stack]: http://en.wikipedia.org/wiki/Call_stack
