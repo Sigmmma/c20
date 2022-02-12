@@ -20,7 +20,7 @@ Your modding setup, like your CE installation and tools, needs to be a reliable 
 * Mark any tags you do not intend on modifying as read-only. Guerilla will grey out fields for these tags as a reminder for you to make edited copies of them.
 
 ## Reading documentation
-Before you jump in to making changes, make sure you understand the process and what you're doing. There are [tutorials][guides] and [documentation][/] available to help you. If using unfamiliar tools or mods, make sure to read any "README" files that come with them.
+Before you jump in to making changes, make sure you understand the process and what you're doing. There are [tutorials][h1/guides] and [documentation][/] available to help you. If using unfamiliar tools or mods, make sure to read any "README" files that come with them.
 
 # Troubleshooting issues
 If you do have an unidentified problem, try applying the following general methods:
