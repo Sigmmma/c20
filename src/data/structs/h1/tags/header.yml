@@ -1,0 +1,27 @@
+entry_type: header
+imports:
+  h1/tags/common:
+    - TagEngineId
+type_defs:
+  Header:
+    class: struct
+    assert_size: 64
+    fields:
+      - type: pad
+        size: 36
+      - name: tag_group
+        type: TagEngineId
+      - name: checksum
+        type: uint32
+      - name: header_size
+        type: u4
+      - name: flags
+        type: uint64
+      - name: version
+        type: uint16
+      - name: integrity0
+        type: uint8
+      - name: integrity1
+        type: uint8
+      - name: engine_id
+        type: uint32

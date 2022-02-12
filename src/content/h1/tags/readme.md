@@ -48,4 +48,20 @@ Invalid tags can often be corrected by resetting fields and re-saving the tag us
 ## Padding
 Fields are not always densely packed within a tag; sometimes there exists unused space between them without any known purpose. These spaces are often referred to as _padding_. Generally, any sort of data could be stored in these spaces without affecting the tags, and some community tools use this space to retain extra metadata.
 
+## Headers
+
+All tags have a common header. This header makes up the first 64 bytes of data, and contains the following fields:
+
+| Field       | Type     | Comments |
+|-------------|----------|----------|
+| padding     | pad      | 36 bytes |
+| tag group   | `uint32` | 4 character tag group ID encoded as an int |
+| checksum    | `uint32` |          |
+| header size | `uint32` | Default: 64 |
+| flags       | `uint64` | A 64 bit bitfield |
+| version     | `uint16` | Default: 1 |
+| integrity0  | `uint8`  |          |
+| integrity1  | `uint8`  | Compliment of "integrity0" |
+| engine_id   | `uint32` | 4 character engine ID encoded as an int |
+
 [about-xml]: https://en.wikipedia.org/wiki/XML#Key_terminology
