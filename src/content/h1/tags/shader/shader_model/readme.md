@@ -1,6 +1,5 @@
 ---
 title: shader_model
-stub: true
 about: 'tag:h1/shader_model'
 img: mc.jpg
 caption: >-

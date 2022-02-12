@@ -1,0 +1,75 @@
+entry_type: header
+imports:
+  h1/tags/common:
+    - TagEngineId
+type_defs:
+  MozzFlags:
+    class: bitfield
+    size: 8
+    bits:
+      - name: edited_with_mozz
+        comments:
+          en: Indicates that this tag was edited with Mozzarilla.
+  Header:
+    endianness: big
+    class: struct
+    assert_size: 64
+    fields:
+      - name: tag_id
+        type: uint32
+        meta:
+          unused: true
+        comments:
+          en: |
+            Some kind of tag ID, seen in some official tag files. This is no
+            longer used.
+      - name: tag_name
+        type: TagString
+        meta:
+          unused: true
+        comments:
+          en: |
+            A tag name, seen in some official tag files. This is no
+            longer used.
+      - name: tag_group
+        type: TagEngineId
+        comments:
+          en: |
+            A 4-character tag group ID encoded as an int. For example,
+            `0x61637472` for [actor](~).
+      - name: checksum
+        type: uint32
+        comments:
+          en: |
+            Possibly unused CRC32 checksum.
+      - name: header_size
+        type: uint32
+        comments:
+          en: |
+            Meant to be the size of this header, but always equals `64` in practice.
+            Official tools assume this size too.
+      - name: unofficial_flags
+        type: MozzFlags
+        meta:
+          non_standard: true
+        comments:
+          en: |
+            8 bytes of padding are found here -- though [Mozzarilla](~) uses this
+            space as an unofficial bitfield.
+      - name: version
+        type: uint16
+        comments:
+          en: |
+            Definition version, always equals `1`.
+      - name: integrity0
+        type: uint8
+      - name: integrity1
+        type: uint8
+        comments:
+          en: Compliment of _integrity0_.
+      - name: engine_id
+        type: uint32
+        comments:
+          en: |
+            A 4-character engine ID encoded as an int. Must equal `0x626C616D`
+            ("blam") for Halo. Stubbs also uses "blam" and the Shadowrun prototype used "sr_x".

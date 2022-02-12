@@ -83,7 +83,7 @@ table.type-def {
     word-wrap: anywhere;
   }
 
-  tr.field-type-pad, tr.field-meta-cache_only, tr.field-meta-unused, tr.field-meta-hidden {
+  tr.field-type-pad, tr.field-meta-cache_only, tr.field-meta-unused, tr.field-meta-hidden, tr.field-meta-non_standard {
     color: var(--fg-faded);
     .field-meta {
       border-color: var(--fg-faded);
