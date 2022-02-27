@@ -1,0 +1,8 @@
+title:
+  en: hf2p tags
+stub: true
+workflowName: hf2p/tags
+tagIndex:
+  game: "hf2p"
+  groupId: false
+  parent: true

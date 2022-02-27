@@ -3,7 +3,7 @@
     <img src="HaloOnline_ConceptArt.jpg" alt="""/>
   </a>
   <figcaption>
-    <p>Halo Onlines's Concept Art</p>
+    <p>Halo Online's Concept Art</p>
   </figcaption>
 </figure>
 
