@@ -9,7 +9,7 @@
 
 **Halo Online** is a canceled installment of the Halo game series and runs on a modified [Halo 3][h3] Engine. It was created by [Saber Interactive][saber] and initially released as part of a closed beta in Russia on the PC in 2015-16.
 
-Like other games in the series Halo Online uses Bungie's proprietary [Blam!][engine] and is powered by a highly modified version of the Halo 3 engine, optimized for smooth performance on lower-end PCs.
+Like other games in the series Halo Online uses 343 Industries proprietary [Blam!][engine] and is powered by a highly modified version of the Halo 3 engine, optimized for smooth performance on lower-end PCs.
 
 ## Eldewrito to MCC: A Legacy (PC, 343 Industries, 2016-Current day)
 During the Halo Online closed testing, a group of modders were able to mod the game and began to work on "ElDewrito", a fan-attempt to bring the classic Halo experience to the PC platform by modding the game to play like the original release of Halo 3.
@@ -25,9 +25,8 @@ This is the first release of Halo Online for PC.
 ### Modding
 There are several tools and mods for the base game or external programs that users can grab to enhance their experience. Examples include:
 
-* [Halo 3 Editing Kit][h3-ek] - The official editing suite released for the MCC version of Halo 3 largely based on internal tools developed by Bungie and later used by 343 Industries and [Saber Interactive][saber]. Some changes were made to make the tools more user friendly and stable, as well as to support importing content from modern 3D modeling software.
-* [Halo Asset Blender Development Toolset][halo-asset-blender-development-toolset] - A collection of tools for Blender that can be used to export the intermediate files used by the Halo 3 Editing Kit. 
 * [Assembly][assembly] - A cache editing tool for various titles in the Halo series. Users can use this tool to make permanent edits to cache files and poke changes in real time. While not traditional workflow for map creation, it is a powerful tool that can be used to create interesting experiences. 
+
 * [TagTool][tagtool] - A cache editing tool designed to allow *porting* of tag data between different versions and builds of the Blam engine, as well as importing brand new content.
 
 Like all Halo games [tags][] play a large role in modding.
