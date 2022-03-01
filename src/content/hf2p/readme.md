@@ -7,7 +7,7 @@
   </figcaption>
 </figure>
 
-**Halo Online** is a canceled instalment of the Halo game series and runs on a modified [Halo 3][h3] Engine. It was created by [Saber Interactive][saber] and initially released as part of a closed beta in Russia on the PC in 2015-16 by [343 Industries][343i]. In 2016 the game was canceled as a part of *Halo: The Master Chief Collection* on PC was being ported to Microsoft Windows alongside other halo titles in the collection.
+**Halo Online** is a canceled installment of the Halo game series and runs on a modified [Halo 3][h3] Engine. It was created by [Saber Interactive][saber] and initially released as part of a closed beta in Russia on the PC in 2015-16.
 
 Like other games in the series Halo Online uses Bungie's proprietary [Blam!][engine] and is powered by a highly modified version of the Halo 3 engine, optimized for smooth performance on lower-end PCs.
 
