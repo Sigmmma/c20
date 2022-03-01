@@ -15,6 +15,7 @@ Like other games in the series Halo Online uses 343 Industries proprietary [Blam
 During the Halo Online closed testing, a group of modders were able to mod the game and began to work on "ElDewrito", a fan-attempt to bring the classic Halo experience to the PC platform by modding the game to play like the original release of Halo 3.
 
 In April 2018, version 0.6 of the mod released to widespread community acclaim, reaching 12,000 concurrent players. Four days following the release of ElDewrito 0.6, the members of the team were contacted by 343 Industries including Frank O'Connor, whereupon they were asked to pause development of the mod  - however the modding team was not given an official cease and desist or DMCA takedown.
+
 An official statement was given by 343 Industries the same day, explaining that the mod was taken down due to legal requirements to protect Microsoft intellectual property.
 
 On December 15, 2020, it was revealed MCC Season 5: Anvil would include twelve armor permutations that originally came from Halo Online, such as Demo, Suture, and Compass Mjolnir armors.
