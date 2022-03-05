@@ -1,6 +1,6 @@
 Halo 3 has a flexible shader system based on automatically generated templates. Usually as a map maker you can ignore the technical details of this.
 
-***However due to a bug in the current version of the H3EK you might need to install a patch to fix template generation.*** See [shader compiler fix][compiling-shaders#shader-compiler-fix] for instructions.
+***However due to a bug in the current version of the H3EK you will need to install a patch to fix template generation.*** See [shader compiler fix][compiling-shaders#shader-compiler-fix] for instructions.
 
 # What are templates?
 In [Halo 2][h2] there was a limited number of templates with each one being handwritten by a graphics programmer, Halo 3 moved away from this and now has a more flexible shader system based on render method definitions. Each definition contains **categories** and each category contains one or more **options**. The option selected for each category uniquely identifies a **shader template**. A template will only be generated if its combination of options is used in a shader - generating all templates including ones that will never be used would waste disk space and time.
