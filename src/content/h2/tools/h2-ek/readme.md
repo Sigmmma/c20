@@ -15,7 +15,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 2: Anniversary on Steam][st
 3. Once the tools are done downloading you can find them in your library in the tools section.
 4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
 5. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
-6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
+6. (Optional) Check out the [guides hub][h1/guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
 
 # What's new in the season 8 hotfix v1
 
