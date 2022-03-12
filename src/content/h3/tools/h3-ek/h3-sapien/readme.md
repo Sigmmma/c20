@@ -89,3 +89,7 @@ error_geometry_hide_all
 debug_objects 1
 ;a comment
 ```
+
+# Known issues & Fixes
+## Sound doesn't play
+Copy over the `fmod` folder from your install of H3 or ODST depending on which game you are working on.
