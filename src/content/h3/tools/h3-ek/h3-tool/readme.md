@@ -9,58 +9,6 @@
 - `<option1|option2>` - Either `option1` or `option2` can be passed as `argument`.
 - `Tool` or `tool.exe` - refers to the subject of this article, the H3 Tool, if the legacy Tool is being referred to that will be made explicit.
 
-# Analysis commands
-Tool includes a few commands to analyze (memory usage, read time, GPU usage, etc) files and caches but these aren't very useful for modders.
-## Analyze cache file sharing
-???
-
-```sh
-#  analyze-cache-file-sharing <starting-cache-file> <ending-cache-file>
-tool analyze-cache-file-sharing
-```
-
-* starting-cache-file - ???
-* ending-cache-file - ???
-
-## Analyze font
-???
-
-```sh
-#  analyze-font <font-file>
-tool analyze-font
-```
-
-* font-file - ???
-
-## Analyze font table
-???
-
-```sh
-#  analyze-font-table <font-table-to-analyze>
-tool analyze-font-table
-```
-
-* font-table-to-analyze - ???
-
-## Analyze fonts
-Crashes
-
-```sh
-#  analyze-fonts
-tool analyze-fonts
-```
-
-## Analyze implicit sharing
-???
-
-```sh
-#  analyze-implicit-sharing <tag-list>
-tool analyze-implicit-sharing
-```
-
-* tag-list - ???
-
-
 # Bitmap single
 Imports a single image file and converts it to a bitmap.
 
@@ -214,30 +162,6 @@ tool build-cache-file-cache-sounds pc
 * dedicated-server - ??? This is an optional argument
 * use-fmod-data - ??? This is an optional argument
 
-## Build cache file cache sounds index
-???
-
-```sh
-# build-cache-file-cache-sounds-index <scenario> <append> <sound-configuration> <platform>
-tool build-cache-file-cache-sounds-index
-```
-
-* scenario - ??? This is an optional argument
-* append - ??? This is an optional argument
-* sound-configuration - ??? This is an optional argument
-* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-
-## Build cache file cache version
-Build a cache files with a specific version
-
-```sh
-# build-cache-file-cache-version <minor-version-number> <platform>
-tool build-cache-file-cache-version "" pc
-```
-
-* minor-version-number - ??? This is an optional argument
-* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-
 ## Build cache file for cubemaps
 Builds the provided scenario along with the associated cache files needed for tag sharing cubemap data.
 
@@ -248,45 +172,6 @@ tool build-cache-file-for-cubemaps "levels\multi\chill\chill" pc
 
 * scenario - A local tag path to a scenario tag without extension.
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-
-## Build cache file generate DLC layout
-Crashes
-
-```sh
-# build-cache-file-generate-dlc-layout <map-name> <platform> <dedicated-server-(optional)> <use-fmod-data-(optional)>
-tool build-cache-file-generate-dlc-layout "" pc
-```
-
-* map-name - ???
-* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-* dedicated-server - ??? This is an optional argument.
-* use-fmod-data - ??? This is an optional argument.
-
-## Build cache file generate main menu layout
-Crashes
-
-```sh
-# build-cache-file-generate-main-menu-layout <map-name> <platform> <dedicated-server-(optional)> <use-fmod-data-(optional)>
-tool build-cache-file-generate-main-menu-layout "" pc
-```
-
-* map-name - ???
-* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-* dedicated-server - ??? This is an optional argument.
-* use-fmod-data - ??? This is an optional argument.
-
-## Build cache file generate new layout
-Crashes
-
-```sh
-# build-cache-file-generate-new-layout <map-name> <platform> <dedicated-server-(optional)> <use-fmod-data-(optional)>
-tool build-cache-file-generate-new-layout "" pc
-```
-
-* map-name - ???
-* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-* dedicated-server - ??? This is an optional argument.
-* use-fmod-data - ??? This is an optional argument.
 
 ## Build cache file language
 A [scenario][] can be compiled into a [map][] using the `build-cache-file-language` verb. Simply provide your scenario's tag path.
@@ -312,107 +197,6 @@ tool build-cache-file-language-version english "" "levels\multi\chill\chill" pc
 * minor-version-number - ???
 * scenario - A local tag path to a scenario tag without extension.
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-
-## Build cache file language version optimizable use sharing
-Crashes
-
-```sh
-# build-cache-file-language-version-optimizable-use-sharing <target-language> <minor-version-number> <scenario> <platform> <sound-config> <dedicated-server-(optional)> <use-fmod-data-(optional)>
-tool build-cache-file-language-version-optimizable-use-sharing english "" "levels\multi\chill\chill" pc
-```
-
-* target-language - ???
-* minor-version-number - ???
-* scenario - A local tag path to a scenario tag without extension.
-* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-* sound-config - ???
-* dedicated-server - ???
-* use-fmod-data - ???
-
-## Build cache file language version sharing main menu
-Crashes
-
-```sh
-# build-cache-file-language-version-sharing-main-menu <target-language> <minor-version-number> <scenario> <platform>
-tool build-cache-file-language-version-sharing-main-menu english "" "levels\multi\chill\chill" pc
-```
-
-* target-language - ???
-* minor-version-number - ???
-* scenario - A local tag path to a scenario tag without extension.
-* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-
-## Build cache file link
-???
-
-```sh
-# build-cache-file-link <scenario> <platform> <dedicated-server-(optional)> <use-fmod-data-(optional)>
-tool build-cache-file-link "levels\multi\chill\chill" pc
-```
-
-* scenario - A local tag path to a scenario tag without extension.
-* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-* dedicated-server - ???  This is an optional argument
-* use-fmod-data - ???  This is an optional argument
-
-## Build cache file optimize
-???
-
-```sh
-# build-cache-file-optimize <map-name> <platform>
-tool build-cache-file-optimize "chill" pc
-```
-
-* map-name - The filename of a map file located in your maps folder without extension
-* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-
-## Build cache file optimize post link
-Crashes
-
-```sh
-# build-cache-file-optimize-post-link <map-name> <platform>
-tool build-cache-file-optimize-post-link "chill" pc
-```
-
-* map-name - The filename of a map file located in your maps folder without extension
-* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-
-## Build cache file pilot
-Crashes
-
-```sh
-# build-cache-file-pilot <scenario> <platform>
-tool build-cache-file-pilot "levels\multi\chill\chill" pc
-```
-
-* scenario - A local tag path to a scenario tag without extension.
-* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-
-## Build cache file profile
-???
-
-```sh
-# build-cache-file-profile <scenario>
-tool build-cache-file-profile "levels\multi\chill\chill"
-```
-
-* scenario - A local tag path to a scenario tag without extension.
-
-## Build cache file use sharing
-crashes
-
-```sh
-# build-cache-file-use-sharing <scenario> <platform> <target-language> <minor-version-number> <sound-config> <dedicated-server-(optional)> <use-fmod-data-(optional)>
-tool build-cache-file-use-sharing "levels\multi\chill\chill" pc
-```
-
-* scenario - A local tag path to your scenario without the file extension
-* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-* target-language - ??? This is an optional argument
-* minor-version-number - ??? This is an optional argument
-* sound-config - ??? This is an optional argument
-* dedicated-server - ??? This is an optional argument
-* use-fmod-data - ??? This is an optional argument
 
 # Bulk imports
 Bulk import commands allow you to import many files at once using a JMI file. Other than that they work similarly to individual imports.
@@ -610,24 +394,23 @@ tool collision "objects\characters\masterchief"
 For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
 
 # Compile shader
-Crashed
+Compile the template needed for a specific shader.
 
 ```sh
 # compile-shader <render-method>
-tool compile-shader
+tool compile-shader "objects\block\shaders\discard" "win"
 ```
 
-* render-method - ???
+* render-method - Shader to compile
+* platform - set this to `win`
 
-# Convert tag files explicit pilot
-Converts tags from one backend to another. E.g. loose tag files to the monolithic backend.
-Seems to crash, maybe will be fixed in the future.
+# Shaders
+Compiles non-template shaders, only useful if you are writing custom shaders.
 
 ```sh
-# convert-tag-files-explicit-pilot <source-backend> <dest-backend> <optional:-tag-list>
-tool convert-tag-files-explicit-pilot default monolithic_new ""
+# shaders <-debug-(optional)> <-pdb-path-(optional)> <platform>
+tool shaders win
 ```
-
 
 # Count all class sounds
 Goes through all of the sound tags in a directory and prints how many sounds belong to a specific class
@@ -949,6 +732,15 @@ Not all commands work or are of any use to anyone anymore. They are listed here 
 - `dump-tag-file-index` - creates a copy of the tag_database_index.dat, seems like a dev command but maybe could be used to index tags without using Guerilla?
 - `convert-pc-bitmaps` - Likely used when porting.
 
+## Convert tag files explicit pilot
+Converts tags from one backend to another. E.g. loose tag files to the monolithic backend.
+Seems to crash, maybe will be fixed in the future. Likely not useful for non-devs.
+
+```sh
+# convert-tag-files-explicit-pilot <source-backend> <dest-backend> <optional:-tag-list>
+tool convert-tag-files-explicit-pilot default monolithic_new ""
+```
+
 ## Dump binary
 Dumps binary files to a C style array. Meant for developers.
 
@@ -969,6 +761,7 @@ tool estimate-overdraw-threshold "objects\weapons\turret\flamethrower\fx\project
 ```
 
 * effect - A local tag path to an effect tag without extension.
+
 
 ## Export game variant settings
 Takes a `multiplayer_variant_settings_interface_definition` tag and outputs some debug info in command prompt.
@@ -1019,6 +812,58 @@ tool build-and-deploy-tracked-network-files
 # Commands with unknown usage
 Not much is know about these commands, if you know something let us know!
 
+## Analysis commands
+Tool includes a few commands to analyze (memory usage, read time, GPU usage, etc) files and caches but these aren't very useful for modders.
+### Analyze cache file sharing
+???
+
+```sh
+#  analyze-cache-file-sharing <starting-cache-file> <ending-cache-file>
+tool analyze-cache-file-sharing
+```
+
+* starting-cache-file - ???
+* ending-cache-file - ???
+
+### Analyze font
+???
+
+```sh
+#  analyze-font <font-file>
+tool analyze-font
+```
+
+* font-file - ???
+
+### Analyze font table
+???
+
+```sh
+#  analyze-font-table <font-table-to-analyze>
+tool analyze-font-table
+```
+
+* font-table-to-analyze - ???
+
+### Analyze fonts
+Crashes
+
+```sh
+#  analyze-fonts
+tool analyze-fonts
+```
+
+### Analyze implicit sharing
+???
+
+```sh
+#  analyze-implicit-sharing <tag-list>
+tool analyze-implicit-sharing
+```
+
+* tag-list - ???
+
+
 ## Build animation database
 ???
 
@@ -1026,6 +871,171 @@ Not much is know about these commands, if you know something let us know!
 # build-animation-database
 tool build-animation-database
 ```
+
+## Build cache file generate DLC layout
+Crashes
+
+```sh
+# build-cache-file-generate-dlc-layout <map-name> <platform> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-generate-dlc-layout "" pc
+```
+
+* map-name - ???
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
+* dedicated-server - ??? This is an optional argument.
+* use-fmod-data - ??? This is an optional argument.
+
+## Build cache file generate main menu layout
+Crashes
+
+```sh
+# build-cache-file-generate-main-menu-layout <map-name> <platform> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-generate-main-menu-layout "" pc
+```
+
+* map-name - ???
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
+* dedicated-server - ??? This is an optional argument.
+* use-fmod-data - ??? This is an optional argument.
+
+## Build cache file generate new layout
+Crashes
+
+```sh
+# build-cache-file-generate-new-layout <map-name> <platform> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-generate-new-layout "" pc
+```
+
+* map-name - ???
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
+* dedicated-server - ??? This is an optional argument.
+* use-fmod-data - ??? This is an optional argument.
+
+## Build cache file language version optimizable use sharing
+Crashes
+
+```sh
+# build-cache-file-language-version-optimizable-use-sharing <target-language> <minor-version-number> <scenario> <platform> <sound-config> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-language-version-optimizable-use-sharing english "" "levels\multi\chill\chill" pc
+```
+
+* target-language - ???
+* minor-version-number - ???
+* scenario - A local tag path to a scenario tag without extension.
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
+* sound-config - ???
+* dedicated-server - ???
+* use-fmod-data - ???
+
+## Build cache file language version sharing main menu
+Crashes
+
+```sh
+# build-cache-file-language-version-sharing-main-menu <target-language> <minor-version-number> <scenario> <platform>
+tool build-cache-file-language-version-sharing-main-menu english "" "levels\multi\chill\chill" pc
+```
+
+* target-language - ???
+* minor-version-number - ???
+* scenario - A local tag path to a scenario tag without extension.
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
+
+## Build cache file link
+???
+
+```sh
+# build-cache-file-link <scenario> <platform> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-link "levels\multi\chill\chill" pc
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
+* dedicated-server - ???  This is an optional argument
+* use-fmod-data - ???  This is an optional argument
+
+## Build cache file optimize
+???
+
+```sh
+# build-cache-file-optimize <map-name> <platform>
+tool build-cache-file-optimize "chill" pc
+```
+
+* map-name - The filename of a map file located in your maps folder without extension
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
+
+## Build cache file optimize post link
+Crashes
+
+```sh
+# build-cache-file-optimize-post-link <map-name> <platform>
+tool build-cache-file-optimize-post-link "chill" pc
+```
+
+* map-name - The filename of a map file located in your maps folder without extension
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
+
+## Build cache file pilot
+Crashes
+
+```sh
+# build-cache-file-pilot <scenario> <platform>
+tool build-cache-file-pilot "levels\multi\chill\chill" pc
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
+
+## Build cache file profile
+???
+
+```sh
+# build-cache-file-profile <scenario>
+tool build-cache-file-profile "levels\multi\chill\chill"
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+
+## Build cache file use sharing
+crashes
+
+```sh
+# build-cache-file-use-sharing <scenario> <platform> <target-language> <minor-version-number> <sound-config> <dedicated-server-(optional)> <use-fmod-data-(optional)>
+tool build-cache-file-use-sharing "levels\multi\chill\chill" pc
+```
+
+* scenario - A local tag path to your scenario without the file extension
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
+* target-language - ??? This is an optional argument
+* minor-version-number - ??? This is an optional argument
+* sound-config - ??? This is an optional argument
+* dedicated-server - ??? This is an optional argument
+* use-fmod-data - ??? This is an optional argument
+
+## Build cache file cache sounds index
+???
+
+```sh
+# build-cache-file-cache-sounds-index <scenario> <append> <sound-configuration> <platform>
+tool build-cache-file-cache-sounds-index
+```
+
+* scenario - ??? This is an optional argument
+* append - ??? This is an optional argument
+* sound-configuration - ??? This is an optional argument
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
+
+## Build cache file cache version
+Build a cache files with a specific version
+
+```sh
+# build-cache-file-cache-version <minor-version-number> <platform>
+tool build-cache-file-cache-version "" pc
+```
+
+* minor-version-number - ??? This is an optional argument
+* platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
+
 
 ## Cache asset depot thumbnails
 ???
@@ -1223,7 +1233,7 @@ tool faux-farm-compression-merge "levels\multi\example\example" "example"
 * bsp-name - The name of a BSP tag referenced by the scenario tag
 
 
-# Faux farm begin
+## Faux farm begin
 ???
 
 ```sh
