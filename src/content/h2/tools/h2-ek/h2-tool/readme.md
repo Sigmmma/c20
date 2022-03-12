@@ -62,33 +62,6 @@ tool build-cache-file "scenarios\multi\example\example" dx11_64 compress|resourc
 
 The resulting map file can be found in the editing kit's `h2_maps_win64_dx11` directory. This verb also generates reports under `reports\<mapname>` including a compilation-specific `debug.txt`.
 
-# Build convolution map
-???
-
-```sh
-#  build-convolution-map <tiff-file> <passes> <blur-subpasses> <e> <scale>
-tool build-convolution-map
-```
-
-* tiff-file - ???
-* passes - ???
-* blur-subpasses - ???
-* e - ???
-* scale - ???
-
-# Build gradient map
-???
-
-```sh
-#  build-gradient-map <tiff-file> <width> <height> <exponent> <options>
-tool build-gradient-map
-```
-
-* tiff-file - ???
-* width - ???
-* height - ???
-* exponent - ???
-* options - ???
 
 # Build noise map
 This command generates random noise like you would see in an image editor. The result can then be converted into a bitmap tag or taken to your image editing software to tweak further.
@@ -109,44 +82,10 @@ tool build-noise-map bitmap_test\256x256_20001_noise.tif 256 256 2 0 0 0 1
 
 The resulting can be found in the `data` folder with the path you set in tiff-file.
 
-# Build plasma control map
-???
+# Bulk imports
+Bulk import commands allow you to import many files at once using a JMI file. Other than that they work similarly to individual imports.
 
-```sh
-#  build-plasma-control-map <tiff-file> <k> <e>
-tool build-plasma-control-map
-```
-
-* tiff-file - ???
-* k - ???
-* e - ???
-
-# Build quadratic map
-???
-
-```sh
-#  build-quadratic-map <tiff-file>
-tool build-quadratic-map
-```
-
-* tiff-file - ???
-
-# Build trace map
-???
-
-```sh
-#  build-trace-map <tiff-file> <options> <time-bias> <time-scale> <min-delta-time> <max-delta-time>
-tool build-trace-map
-```
-
-* tiff-file - ???
-* options - ???
-* time-bias - ???
-* time-scale - ???
-* min-delta-time - ???
-* max-delta-time - ???
-
-# Bulk collision
+## Bulk collision
 Multiple directories can have their collision files compiled in a single run using this command.
 
 ```sh
@@ -156,7 +95,7 @@ tool bulk-collision "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk import crates
+## Bulk import crates
 Compile multiple source directories in a single run to generate a crate tag and all the relevant tags involved.
 
 ```sh
@@ -166,7 +105,7 @@ tool bulk-import-crates "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk import crates folder
+## Bulk import crates folder
 Generates a crate tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go!
 
 ```sh
@@ -176,7 +115,7 @@ tool bulk-import-crates-folder "objects\multi\world_node_a"
 
 * source-directory - A local data path to the root of a model source directory.
 
-# Bulk import model folder
+## Bulk import model folder
 Generates a model tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go!
 
 ```sh
@@ -186,7 +125,7 @@ tool bulk-import-model-folder "objects\multi\world_node_a"
 
 * source-directory - A local data path to the root of a model source directory.
 
-# Bulk import models
+## Bulk import models
 Compile multiple source directories in a single run to generate a model tag and all the relevant tags involved.
 
 ```sh
@@ -196,7 +135,7 @@ tool bulk-import-models "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk import scenery
+## Bulk import scenery
 Compile multiple source directories in a single run to generate a scenery tag and all the relevant tags involved.
 
 ```sh
@@ -206,7 +145,7 @@ tool bulk-import-scenery "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk import scenery folder
+## Bulk import scenery folder
 Generates a scenery tag and compiles the render, collision, and physics directory of a model in a single run. Just point it at the root of your model folder and go!
 
 ```sh
@@ -216,7 +155,7 @@ tool bulk-import-scenery-folder "objects\multi\world_node_a"
 
 * source-directory - A local data path to the root of a model source directory.
 
-# Bulk physics
+## Bulk physics
 Multiple directories can have their physics files compiled in a single run using this command.
 
 ```sh
@@ -226,7 +165,7 @@ tool bulk-physics "objects\multi\jmi_Test.JMI"
 
 * jmi-file - A local data path to where the JMI file is located.
 
-# Bulk render
+## Bulk render
 Multiple directories can have their render files compiled in a single run using this command.
 
 ```sh
@@ -258,24 +197,6 @@ tool collision "objects\characters\masterchief"
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-# Convert pixel shaders
-???
-
-```sh
-# convert-pixel-shaders
-tool convert-pixel-shaders
-```
-
-# Convert tiled tiff
-???
-
-```sh
-# convert-tiled-tiff <input-tiff-file> <output-tiff-file>
-tool convert-tiled-tiff "F:\masterchief.tiff" "F:\masterchief_output.tiff"
-```
-
-* input-tiff-file - An absolute path to a tiff file.
-* output-tiff-file - An absolute path to a path with filename and extension to generate the output file in.
 
 # Count all class sounds
 Goes through all of the sound tags in a directory and prints how many sounds belong to a specific class
@@ -323,18 +244,6 @@ tool dialogue-import "sound\dialog\combat\brute_bloodthirsty"
 
 * root-directory - A local tag path to a root directory containing sound tags. A dialogue tag is generated adjacent to this root directory with the same name, e.g. `sound\dialog\combat\brute_bloodthirsty.dialogue`.
 
-# Dump tiff to header
-???
-
-```sh
-# dump-tiff-to-header <quantization-factor> <tiff-file> <constant-prefix-string> <output-file>
-tool dump-tiff-to-header
-```
-
-* quantization-factor - ???
-* tiff-file - ???
-* constant-prefix-string - ???
-* output-file - ???
 
 # Dump uncompressed sounds
 Prints the paths of sound tags that use `none (little endian)` as their compression format.
@@ -707,38 +616,6 @@ The "cuban" quality setting is likely named after the nickname of one of the eng
 | high         | 15,000,000   | 8            | 4.0             | 2                    | Yes              |        
 | super        | 20,000,000   | 8            | 4.0             | 4                    | Yes              |
 
-# Lightmap render model
-Generates section leaves in a [render_model][] tag. Probably meant to test PRT related things.
-
-```sh
-# lightmap-rendermodel <render-model>
-tool lightmap-rendermodel "scenarios\objects\covenant\military\scarab\scarab"
-```
-
-* scenario - A local tag path to a render_model tag without extension.
-
-# Lightprobes
-???
-
-```sh
-# lightprobes <scenario> <bsp-name> <quality-setting>
-tool lightprobes "scenarios\multi\halo\coagulation\coagulation" "coagulation" direct_only
-```
-
-* scenario - A local tag path to a scenario tag without extension.
-* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
-* quality-setting - Standard Halo 2 light quality string. The list of options is as follows.
-	* checkerboard
-	* cuban
-	* draft_low
-	* draft_medium
-	* draft_high
-	* draft_super
-	* direct_only
-	* low
-	* medium
-	* high
-	* super
 
 # Mission dialogue import
 Gathers all sound tags in a directory to generate an ai_mission_dialogue tag
@@ -760,15 +637,6 @@ tool model-animation-count "objects\characters\masterchief"
 
 * source-directory - A local tag path to a directory containing [model_animation_graph][] tags or child folders with model_animation_graph tags.
 
-# Model animation reset compression
-???
-
-```sh
-# model-animation-reset-compression <model-animation-graph>
-tool model-animation-reset-compression "objects\characters\masterchief\masterchief"
-```
-
-* model-animation-reset-compression - A local tag path to a [model_animation_graph][] tag without file extensions.
 
 # Model animation status
 Goes to all the animations in a directory and child directories. Once it's done it prints debug info.
@@ -793,7 +661,10 @@ tool model-animations "objects\characters\masterchief"
 
 For the example above, Tool would expect to find a set of corresponding animation source files at `data\objects\characters\masterchief\animations`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.model_animation_graph`.
 
-# Monitor bitmaps
+# Monitor changes
+These command monitor the data folder for changes and automatically reimport any data changed.
+
+## Monitor bitmaps
 Keeps watch of the data directory for any file changes. If any tiff places are modified or placed in the data directory then tool will immediately attempt to import the image file as bitmap tags.
 
 ```sh
@@ -801,7 +672,7 @@ Keeps watch of the data directory for any file changes. If any tiff places are m
 tool monitor-bitmaps
 ```
 
-# Monitor data and tags bitmaps
+## Monitor data and tags bitmaps
 Keeps watch of the data and tags directory for any file changes. If any tiff or tags are modified or placed in the data or tags directory then tool will immediately attempt to import the image file as bitmap tags.
 
 ```sh
@@ -809,7 +680,7 @@ Keeps watch of the data and tags directory for any file changes. If any tiff or 
 tool monitor-data-and-tags-bitmaps
 ```
 
-# Monitor models
+## Monitor models
 Keeps watch of the data directory for any file changes. If any model related intermediate files are modified or moved to the data directory then tool will immediately attempt to import the source files as [render_model][], [collision_model][], or [physics_model][] tags.
 
 ```sh
@@ -817,7 +688,7 @@ Keeps watch of the data directory for any file changes. If any model related int
 tool monitor-models
 ```
 
-# Monitor structures
+## Monitor structures
 Keeps watch of the data directory for any file changes. If any level related intermediate files are modified or moved to the data directory then tool will immediately attempt to import the source files as levels.
 
 ```sh
@@ -881,15 +752,6 @@ tool physics "objects\characters\masterchief"
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\physics\masterchief_ragdoll.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.physics_model`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-# Pixel shaders
-???
-
-```sh
-# pixel-shaders <platform>
-tool pixel-shaders
-```
-
-* platform - ???
 
 # Plate
 Gather images in a directory and set up a plate with all the images placed properly. Useful for creating animated textures from multiple images easily.
@@ -903,19 +765,6 @@ tool plate "F:\bitmap_test" true
 * raw - An optional arg to enable RAW file importing when building a plate. The files must be named in the following format.
 	* filename_WxH.RAW
 	* Replace W and H with the width and height of the image respectively.
-
-# Process sounds
-???
-
-```sh
-# process-sounds <source-directory> <path-spec> <command> <value>
-tool process-sounds
-```
-
-* source-directory - ???
-* path-spec - ???
-* command - ???
-* value - ???
 
 # PRT simulation
 
@@ -942,63 +791,6 @@ tool rebuild-scenario-scripts "scenarios\solo\01b_spacestation\01b_spacestation"
 
 * scenario - A local tag path to a scenario tag without extension.
 
-# Rebuild structure audibility
-???
-
-```sh
-# rebuild-structure-audibility <structure>
-tool rebuild-structure-audibility "scenarios\solo\01b_spacestation\01_bsp_2"
-```
-
-* structure - A local tag path to a [scenario_structure_bsp][] tag without extension.
-
-# Reimport model animations
-???
-
-```sh
-# reimport-model-animations
-tool reimport-model-animations
-```
-
-# Reimport sounds
-Goes through all sound tags in a directory or child directories. Any sound tags that are found will have their sound files from data reimported.
-
-```sh
-# reimport-sounds <source-directory>
-tool reimport-sounds "sound\dialog\combat"
-```
-
-* source-directory - A local tag path to a directory or child directory containing sound tags.
-
-# Reimport sounds single
-Reimports the specified sound if sound data was found in the data folder.
-
-```sh
-# reimport-sounds-single <source-file>
-tool reimport-sounds-single "sound\dialog\combat\brute_bloodthirsty\01_alert\coming"
-```
-
-* source-file - A local tag path to a sound tag without extension.
-
-# Reimport sounds to opus
-Goes through all sound tags in a directory or child directories. Any sound tags that are found will have their sound files from data reimported. Sounds reimported using this command will use Opus for their compression setting.
-
-```sh
-# reimport-sounds-to-opus <source-directory>
-tool reimport-sounds-to-opus "sound\dialog\combat"
-```
-
-* source-directory - A local tag path to a directory or child directory containing sound tags.
-
-# Reimport sounds to opus single
-Reimports the specified sound if sound data was found in the data folder. Sounds reimported using this command will use Opus for their compression setting.
-
-```sh
-# reimport-sounds-to-opus-single <source-directory>
-tool reimport-sounds-to-opus-single "sound\dialog\combat\brute_bloodthirsty\01_alert\coming"
-```
-
-* source-directory - A local tag path to a directory or child directory containing sound tags.
 
 # Render
 
@@ -1020,34 +812,7 @@ tool render "objects\characters\masterchief" false false
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\render\L5_masterchief.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.render_model`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-# Replace font char
-???
 
-```sh
-#  replace-font-char <font-file> <tiff-file> <utf16-code>
-tool replace-font-char
-```
-
-* font-file - ???
-* tiff-file - ???
-* utf16-code - ???
-
-# Scenario analyze
-Run an action on a scenario for debug purposes.
-
-```sh
-#  scenario-analyze <scenario> <inspection-type>
-tool scenario-analyze "scenarios\multi\halo\coagulation\coagulation" "count tags"
-```
-
-* scenario - A local tag path to a scenario tag without extension.
-* inspection-type - The action to run on the referenced scenario. Make sure to surround it in quotes since someone at Bungie thought it would be funny.
-	* count tags
-	* dump tags
-	* find material references
-	* count edges
-	* check effects
-	* dump scenery
 
 # Script doc
 Prints the script_doc or any command that contains the given string.
@@ -1059,7 +824,49 @@ tool script-doc "debug_objects"
 
 * function-or-global-name - A string that will be used to find any script commands that contain the same text.
 
-# Set sound class
+# Sounds
+## Reimport sounds
+Goes through all sound tags in a directory or child directories. Any sound tags that are found will have their sound files from data reimported.
+
+```sh
+# reimport-sounds <source-directory>
+tool reimport-sounds "sound\dialog\combat"
+```
+
+* source-directory - A local tag path to a directory or child directory containing sound tags.
+
+## Reimport sounds single
+Reimports the specified sound if sound data was found in the data folder.
+
+```sh
+# reimport-sounds-single <source-file>
+tool reimport-sounds-single "sound\dialog\combat\brute_bloodthirsty\01_alert\coming"
+```
+
+* source-file - A local tag path to a sound tag without extension.
+
+## Reimport sounds to opus
+Goes through all sound tags in a directory or child directories. Any sound tags that are found will have their sound files from data reimported. Sounds reimported using this command will use Opus for their compression setting.
+
+```sh
+# reimport-sounds-to-opus <source-directory>
+tool reimport-sounds-to-opus "sound\dialog\combat"
+```
+
+* source-directory - A local tag path to a directory or child directory containing sound tags.
+
+## Reimport sounds to opus single
+Reimports the specified sound if sound data was found in the data folder. Sounds reimported using this command will use Opus for their compression setting.
+
+```sh
+# reimport-sounds-to-opus-single <source-directory>
+tool reimport-sounds-to-opus-single "sound\dialog\combat\brute_bloodthirsty\01_alert\coming"
+```
+
+* source-directory - A local tag path to a directory or child directory containing sound tags.
+
+
+## Set sound class
 Grabs all the sound tags in a directory and changes the class to whatever was specified by the user.
 
 ```sh
@@ -1071,7 +878,7 @@ tool set-sound-class sound_test ??? projectile_impact
 * path-spec - ???
 * new-sound-class - A sound class string.
 
-# Sound looping
+## Sound looping
 ???
 
 ```sh
@@ -1083,7 +890,7 @@ tool sound-looping
 * type - ???
 * compression - ???
 
-# Sound looping scenery
+## Sound looping scenery
 ???
 
 ```sh
@@ -1095,7 +902,7 @@ tool sound-looping-scenery
 * type - ???
 * compression - ???
 
-# Sound multi layer
+## Sound multi layer
 Imports sound files in a directory with the import type set to multi-layer. All sound files the source directory and child directories will be combined into one sound file.
 
 ```sh
@@ -1110,7 +917,7 @@ tool sound-multi-layer "sound_test" projectile_impact adpcm
 	* adpcm
 	* opus
 
-# Sound single
+## Sound single
 Imports a single sound file
 
 ```sh
@@ -1125,7 +932,7 @@ tool sound-multi-layer "sound_test\aiff" projectile_impact adpcm
 	* adpcm
 	* opus
 
-# Sounds music
+## Sounds music
 Generates an empty sound looping tag from the folders in data. Probably an error?
 
 ```sh
@@ -1140,7 +947,7 @@ tool sounds-music "sound_test" projectile_impact adpcm
 	* adpcm
 	* opus
 
-# Sounds one shot
+## Sounds one shot
 Imports sound files in a directory with the import type set to single-shot. Each sound file will get its own sound tag.
 
 ```sh
@@ -1155,7 +962,7 @@ tool sounds-one-shot "sound_test" projectile_impact adpcm
 	* adpcm
 	* opus
 
-# Sounds single layer
+## Sounds single layer
 Imports sound files in a directory with the import type set to single-layer. Each directory will get its own sound tag.
 
 ```sh
@@ -1170,7 +977,7 @@ tool sounds-single-layer "sound_test" projectile_impact adpcm
 	* adpcm
 	* opus
 
-# Sounds single mixed
+## Sounds single mixed
 Imports sound files in a directory with the import type set to single-layer. Each directory will get its own sound tag.
 
 ```sh
@@ -1209,15 +1016,7 @@ tool structure "scenarios\multi\example" "example"
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-# Structure analyze
-A dev command for running misc tasks on a scenario, unlikely to be useful.
 
-```sh
-# structure-analyze <scenario_structure_bsp>
-tool structure-analyze "scenarios\multi\halo\coagulation\coagulation"
-```
-
-* scenario_structure_bsp - A local tag path to a scenario_structure_bsp tag without extension.
 
 # Structure compatible
 A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
@@ -1300,28 +1099,7 @@ tool structure-new-verbose-from-ass "scenarios\multi\example\structure\example.A
 
 For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
 
-# Structure plane debug
-???
-Something about a plane_debug_geometry.txt
 
-```sh
-# structure-plane-debug <scenario-directory> <bsp-name>
-tool structure-plane-debug "scenarios\multi\example" "example"
-```
-
-* scenario-directory - A local data path to root directory of a level.
-* bsp-name - The ASS filename without extension.
-
-# Structure plane debug generate
-???
-
-```sh
-# structure-plane-debug-generate <scenario-directory> <bsp-name>
-tool structure-plane-debug-generate "scenarios\multi\example" "example"
-```
-
-* scenario-directory - A local data path to root directory of a level.
-* bsp-name - The ASS filename without extension.
 
 # Tag file report
 ???
@@ -1344,7 +1122,7 @@ tool verify-sound-folder "sound\characters"
 * root-path - A local tag path to a directory or child directories containing sound tags.
 
 # Verify tag load
-???
+Checks if a tag is valid
 
 ```sh
 # verify-tag-load <tag-file>
@@ -1361,7 +1139,258 @@ Outputs the build version for tool.exe
 tool version
 ```
 
-# Vertex shader
+
+# Obsolete commands & Developer commands
+A few commands in tool don't do anything of note:
+* `old-physics <source-directory>`
+* `lightmap-farm <scenario> <bsp-name> <quality-setting> <priority> <branch>`
+* `lightmap-farm-update-sql <scenario-directory> <bsp-name> <sql_record_id>`
+* `dump-tag-table <tag-type>`
+* `lightmap-rendermodel` - Generates section leaves in a [render_model][] tag. Probably meant to test PRT related things.
+* Most `fix-tags` subcommands.
+
+## Scenario analyze
+Run an action on a scenario for debug purposes.
+
+```sh
+#  scenario-analyze <scenario> <inspection-type>
+tool scenario-analyze "scenarios\multi\halo\coagulation\coagulation" "count tags"
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* inspection-type - The action to run on the referenced scenario. Make sure to surround it in quotes since someone at Bungie thought it would be funny.
+	* count tags
+	* dump tags
+	* find material references
+	* count edges
+	* check effects
+	* dump scenery
+
+## Structure analyze
+A dev command for running misc tasks on a scenario, unlikely to be useful.
+
+```sh
+# structure-analyze <scenario_structure_bsp>
+tool structure-analyze "scenarios\multi\halo\coagulation\coagulation"
+```
+
+* scenario_structure_bsp - A local tag path to a scenario_structure_bsp tag without extension.
+
+# Commands with unknown usage
+Not much is know about these commands, if you know something let us know!
+
+## Build convolution map
+???
+
+```sh
+#  build-convolution-map <tiff-file> <passes> <blur-subpasses> <e> <scale>
+tool build-convolution-map
+```
+
+* tiff-file - ???
+* passes - ???
+* blur-subpasses - ???
+* e - ???
+* scale - ???
+
+## Build gradient map
+???
+
+```sh
+#  build-gradient-map <tiff-file> <width> <height> <exponent> <options>
+tool build-gradient-map
+```
+
+* tiff-file - ???
+* width - ???
+* height - ???
+* exponent - ???
+* options - ???
+
+## Build plasma control map
+???
+
+```sh
+#  build-plasma-control-map <tiff-file> <k> <e>
+tool build-plasma-control-map
+```
+
+* tiff-file - ???
+* k - ???
+* e - ???
+
+## Build quadratic map
+???
+
+```sh
+#  build-quadratic-map <tiff-file>
+tool build-quadratic-map
+```
+
+* tiff-file - ???
+
+## Build trace map
+???
+
+```sh
+#  build-trace-map <tiff-file> <options> <time-bias> <time-scale> <min-delta-time> <max-delta-time>
+tool build-trace-map
+```
+
+## Convert pixel shaders
+???
+
+```sh
+# convert-pixel-shaders
+tool convert-pixel-shaders
+```
+
+## Convert tiled tiff
+???
+
+```sh
+# convert-tiled-tiff <input-tiff-file> <output-tiff-file>
+tool convert-tiled-tiff "F:\masterchief.tiff" "F:\masterchief_output.tiff"
+```
+
+* input-tiff-file - An absolute path to a tiff file.
+* output-tiff-file - An absolute path to a path with filename and extension to generate the output file in.
+
+* tiff-file - ???
+* options - ???
+* time-bias - ???
+* time-scale - ???
+* min-delta-time - ???
+* max-delta-time - ???
+
+
+
+
+
+## Dump tiff to header
+???
+
+```sh
+# dump-tiff-to-header <quantization-factor> <tiff-file> <constant-prefix-string> <output-file>
+tool dump-tiff-to-header
+```
+
+* quantization-factor - ???
+* tiff-file - ???
+* constant-prefix-string - ???
+* output-file - ???
+* scenario - A local tag path to a render_model tag without extension.
+
+## Lightprobes
+???
+
+```sh
+# lightprobes <scenario> <bsp-name> <quality-setting>
+tool lightprobes "scenarios\multi\halo\coagulation\coagulation" "coagulation" direct_only
+```
+
+* scenario - A local tag path to a scenario tag without extension.
+* bsp-name - The name of a scenario_structure_bsp tag without extension and belongs to the referenced scenario.
+* quality-setting - Standard Halo 2 light quality string. The list of options is as follows.
+	* checkerboard
+	* cuban
+	* draft_low
+	* draft_medium
+	* draft_high
+	* draft_super
+	* direct_only
+	* low
+	* medium
+	* high
+	* super
+
+
+
+## Model animation reset compression
+???
+
+```sh
+# model-animation-reset-compression <model-animation-graph>
+tool model-animation-reset-compression "objects\characters\masterchief\masterchief"
+```
+
+* model-animation-reset-compression - A local tag path to a [model_animation_graph][] tag without file extensions.
+# Pixel shaders
+???
+
+```sh
+# pixel-shaders <platform>
+tool pixel-shaders
+```
+
+* platform - ???
+
+## Process sounds
+???
+
+```sh
+# process-sounds <source-directory> <path-spec> <command> <value>
+tool process-sounds
+```
+
+* source-directory - ???
+* path-spec - ???
+* command - ???
+* value - ???
+
+## Rebuild structure audibility
+???
+
+```sh
+# rebuild-structure-audibility <structure>
+tool rebuild-structure-audibility "scenarios\solo\01b_spacestation\01_bsp_2"
+```
+
+* structure - A local tag path to a [scenario_structure_bsp][] tag without extension.
+
+## Reimport model animations
+???
+
+```sh
+# reimport-model-animations
+tool reimport-model-animations
+```
+
+## Replace font char
+???
+
+```sh
+#  replace-font-char <font-file> <tiff-file> <utf16-code>
+tool replace-font-char
+```
+
+* font-file - ???
+* tiff-file - ???
+* utf16-code - ???
+## Structure plane debug
+???
+Something about a plane_debug_geometry.txt
+
+```sh
+# structure-plane-debug <scenario-directory> <bsp-name>
+tool structure-plane-debug "scenarios\multi\example" "example"
+```
+
+* scenario-directory - A local data path to root directory of a level.
+* bsp-name - The ASS filename without extension.
+
+## Structure plane debug generate
+???
+
+```sh
+# structure-plane-debug-generate <scenario-directory> <bsp-name>
+tool structure-plane-debug-generate "scenarios\multi\example" "example"
+```
+
+* scenario-directory - A local data path to root directory of a level.
+* bsp-name - The ASS filename without extension.
+
+## Vertex shader
 ???
 
 ```sh
@@ -1373,7 +1402,7 @@ tool vertex-shader
 * src-platform - ???
 * shader - ???
 
-# Vertex shaders
+## Vertex shaders
 ???
 
 ```sh
@@ -1384,7 +1413,7 @@ tool vertex-shaders
 * platform - ???
 * src-platform - ???
 
-# Windows font
+## Windows font
 ???
 
 ```sh
@@ -1394,15 +1423,6 @@ tool windows-font
 
 * font-file - ???
 * ea:n - ???
-
-
-# Obsolete commands
-A few commands in tool don't do anything of note:
-* `old-physics <source-directory>`
-* `lightmap-farm <scenario> <bsp-name> <quality-setting> <priority> <branch>`
-* `lightmap-farm-update-sql <scenario-directory> <bsp-name> <sql_record_id>`
-* `dump-tag-table <tag-type>`
-* Most `fix-tags` subcommands.
 
 [wiki-tiff]: https://en.wikipedia.org/wiki/TIFF
 [wiki-color]: https://en.wikipedia.org/wiki/Color_depth
