@@ -1,6 +1,6 @@
 {
     "ErrorDocument": {
-        "Key" : "404/index.html"
+        "Key": "404/index.html"
     },
     "IndexDocument": {
         "Suffix": "index.html"
@@ -11,7 +11,7 @@
                 "KeyPrefixEquals": "tools"
             },
             "Redirect": {
-                "HostName": "c20.reclaimers.net",
+                "HostName": "reclaimer-5lrsrlnhrphg52pmx71.s3-website-eu-west-1.amazonaws.com",
                 "ReplaceKeyPrefixWith": "general/tools"
             }
         },
@@ -20,7 +20,7 @@
                 "KeyPrefixEquals": "h1/tools/h1a-ek/using-custom-content-paths"
             },
             "Redirect": {
-                "HostName": "c20.reclaimers.net",
+                "HostName": "reclaimer-5lrsrlnhrphg52pmx71.s3-website-eu-west-1.amazonaws.com",
                 "ReplaceKeyPrefixWith": "general/using-custom-content-paths"
             }
         },
@@ -29,7 +29,7 @@
                 "KeyPrefixEquals": "h1/engine/build-types"
             },
             "Redirect": {
-                "HostName": "c20.reclaimers.net",
+                "HostName": "reclaimer-5lrsrlnhrphg52pmx71.s3-website-eu-west-1.amazonaws.com",
                 "ReplaceKeyPrefixWith": "general/engine/build-types"
             }
         },
@@ -38,7 +38,7 @@
                 "KeyPrefixEquals": "h1/source-data/animation-data"
             },
             "Redirect": {
-                "HostName": "c20.reclaimers.net",
+                "HostName": "reclaimer-5lrsrlnhrphg52pmx71.s3-website-eu-west-1.amazonaws.com",
                 "ReplaceKeyPrefixWith": "general/source-data/animation-data"
             }
         },
@@ -47,7 +47,7 @@
                 "KeyPrefixEquals": "h2/sources"
             },
             "Redirect": {
-                "HostName": "c20.reclaimers.net",
+                "HostName": "reclaimer-5lrsrlnhrphg52pmx71.s3-website-eu-west-1.amazonaws.com",
                 "ReplaceKeyPrefixWith": "general/source-data"
             }
         },
@@ -56,7 +56,7 @@
                 "KeyPrefixEquals": "h1/tools/h1a-ek/using-fbx-in-h1a"
             },
             "Redirect": {
-                "HostName": "c20.reclaimers.net",
+                "HostName": "reclaimer-5lrsrlnhrphg52pmx71.s3-website-eu-west-1.amazonaws.com",
                 "ReplaceKeyPrefixWith": "general/source-data/fbx"
             }
         },
@@ -64,9 +64,18 @@
             "Condition": {
                 "KeyPrefixEquals": "general/tools/jointed-model-blender-toolset"
             },
-            "Redirect" : {
-                "HostName": "c20.reclaimers.net",
+            "Redirect": {
+                "HostName": "reclaimer-5lrsrlnhrphg52pmx71.s3-website-eu-west-1.amazonaws.com",
                 "ReplaceKeyPrefixWith": "general/tools/halo-asset-blender-development-toolset"
+            }
+        },
+        {
+            "Condition": {
+                "KeyPrefixEquals": "h3/tools/h3-ek"
+            },
+            "Redirect": {
+                "HostName": "reclaimer-5lrsrlnhrphg52pmx71.s3-website-eu-west-1.amazonaws.com",
+                "ReplaceKeyPrefixWith": "h3/h3-ek"
             }
         }
     ]

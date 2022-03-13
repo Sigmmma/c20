@@ -19,4 +19,4 @@ if __name__ == '__main__':
     if len(sys.argv) < 1:
         print(__doc__)
     else:
-        change_bucket_website_hostname('data/aws/s3/bucket-website.json', sys.argv[1])
+        change_bucket_website_hostname('src/data/aws/s3/bucket-website.json', sys.argv[1])
