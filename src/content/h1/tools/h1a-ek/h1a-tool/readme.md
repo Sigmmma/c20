@@ -248,25 +248,16 @@ H1A uses FMOD as it's sound middleware, this command builds a FMOD SoundBank fil
 
 ```sh
 # export-sounds-to-fsb <sound\sfx path>
-tool export-sounds-to-fsb sound\sfx
+tool export-sounds-to-fsb "sound\sfx" # export all sounds in sounds/sfx
+tool export-sounds-to-fsb "" # export all sounds that exist
 ```
 
-* sound\sfx path - ???
+* sound\sfx path - tag path from which sounds will be exported
 
 Builds a `sounds_adpcm.fsb` and `sounds_adpcm.lst.bin` using `data\sounds\tags.lst` to decide which sounds it needs to include, you can find a copy of this file in your MCC install at: `<MCC root>\halo1\sound\pc\lst\tags.lst`
 
 Make sure you have plenty of free disk space as it will cache the sound data in `.fsbcache`. This directory can be deleted once you are done building the SoundBank.
 
-# Export structure mesh OBJ
-
-???
-
-```sh
-# export-structure-mesh-obj [tag]
-tool export-structure-mesh-obj
-```
-
-* tag - ???
 
 # Export tag to XML
 
@@ -636,3 +627,18 @@ This will open a window to preview font packaged installed on your machine. From
 [wiki-color]: https://en.wikipedia.org/wiki/Color_depth
 [wiki-real]: https://en.wikipedia.org/wiki/Real_number
 [wiki-wav]: https://en.wikipedia.org/wiki/WAV
+
+
+# Commands with unknown usage
+Not much is know about these commands, if you know something let us know!
+
+## Export structure mesh OBJ
+
+???
+
+```sh
+# export-structure-mesh-obj [tag]
+tool export-structure-mesh-obj
+```
+
+* tag - ???
