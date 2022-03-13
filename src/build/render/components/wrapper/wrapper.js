@@ -29,7 +29,7 @@ const mainTopics = [
   ["/h3"],
   ["/h3/tags"],
   //["/h3/guides"],
-  ["/h3/tools/h3-ek"],
+  ["/h3/h3-ek"],
 ];
 
 const spaces = [
