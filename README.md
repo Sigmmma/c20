@@ -4,7 +4,7 @@
 
 ![](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoidlNBbmZ4ODFvZytxTit3VHRZcmxkQzNOV3lvejVWcEd3VVVKdEFvUWZXL3cyNlpqbHplaU5OL0lVUkJkdDR5L1o4N28yMStKUE43c1Q4bkgwTjEya3d3PSIsIml2UGFyYW1ldGVyU3BlYyI6IllacFUvMWJnZlVsdnhUcjYiLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=master)
 
-This repo contains the source content and build scripts for the Reclaimers Library (https://c20.reclaimers.net). It aims to document the immense tribal knowledge of the Halo 1 modding community and covers game engine details, the Halo Editing Kit, community tools, and guides for map-making.
+This repo contains the source content and build scripts for the Reclaimers Library (https://c20.reclaimers.net). It aims to document the immense tribal knowledge of the Halo modding community and covers game engine details, the Halo Editing Kit, community tools, and guides for map-making.
 
 ## Contributing
 The library is not directly editable by its readers. This allows the editing team to test and vet information for accuracy and consistency and we instead curate content from a variety of sources:
@@ -20,7 +20,7 @@ However, we want and need the community's help filling in gaps. Some ways you ca
 * Submit tips or request more documentation in a GitHub issue
 * Create a pull request if you're more technically inclined
 
-Don't worry if writing isn't your strong suit. We'll ensure your tips are properly incorporated into the Wiki and you're credited for them. Our focus will be on Halo 1 modding, so content for later games (e.g. H2V and H3) is welcomed but will not be prioritized.
+Don't worry if writing isn't your strong suit. We'll ensure your tips are properly incorporated into the Wiki and you're credited for them. The current focus will be on all Halo 1 modding as well as modding the later games in MCC using the official mod tools. Other content (e.g. a tutorial for how to mod Halo Reach using Assembly) is welcomed but will not be prioritized.
 
 Editors or those issuing pull requests can refer to [EDITORS.md](EDITORS.md) for writing style and other content rules.
 
