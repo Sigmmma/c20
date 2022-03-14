@@ -1,29 +1,18 @@
-The **Halo 3 Editing Kit** (**H3EK**) is the official set of tools for creating custom content for the MCC version of Halo 3. It was first released by 343 Industries alongside MCC Season 8.
-Similarly to the mod tools for Halo 1 and 2 it is ultimately based on the old internal tools used by Bungie during the development of Halo 3, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
+The **Halo 3 ODST Editing Kit** (**H3ODSTEK**) is the official set of tools for creating custom content for the MCC version of Halo 3 ODST. It was first released by 343 Industries alongside the latest update as of March 2022.
+Similarly to the mod tools for Halo 1, 2, and 3 it is ultimately based on the old internal tools used by Bungie during the development of Halo 3, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
 
-Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase] to gain access to the toolkit.
+Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purchase] to gain access to the toolkit.
 
 # Getting started
 ![.figure Pictured: Location of the mod tools in the steam library.](/general/tools/steam_tools.jpg)
 
-0. Ensure you own [Halo 3 on Steam][steam_purchase], tools are only accessible if you own the Steam version.
-1. [Download the tools using Steam](steam://run/1695791), you might need to [install Steam](https://store.steampowered.com/about/) first.
+0. Ensure you own [Halo 3 ODST on Steam][steam_purchase], tools are only accessible if you own the Steam version.
+1. [Download the tools using Steam](steam://run/1695794), you might need to [install Steam](https://store.steampowered.com/about/) first.
 2. Follow the on screen prompts to download the tools.
 3. Once the tools are done downloading you can find them in your library in the tools section.
 4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
 5. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
 6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
-
-# What's new in the season 8 hotfix v1
-
-- Export-bitmap-DDS should now export bitmap pixel data with proper gamma values.
-- Export-bitmap-TGA should now export an actual TGA file.
-- Standalone/Tag Test should no longer assert when loading the singleplayer mission "The Ark"
-- Fixed the AI objectives window rapidly flickering if the user opened and closed instances one after another.
-- Disable "Lock window aspect ratio" while Sapien is loading to prevent an assert.
-- Sapien now renders geometry error info such as degenerate triangles and overlapping faces.
-- FBX-to-JMS now writes all regions used in the FBX file properly.
-- Disable bitmap previewing for bitmap arrays to avoid a crash.
 
 # Major changes from H2
 Naturally there is multitude of changes compared to H2 as the engine underwent a major revision, this document endeavours to list the major ones.
@@ -42,11 +31,11 @@ Naturally there is multitude of changes compared to H2 as the engine underwent a
 # Known issues
 
 * Resource sharing is currently not supported.
-* Halo 3 custom maps require that EAC is turned off to load
-* Halo 3 custom maps requires that the map info matches the map it is replacing to load. This means having the same campaign and map ID. These values can be found at the top of the scenario tag.
+* Halo 3 ODST custom maps require that EAC is turned off to load
+* Halo 3 ODST custom maps requires that the map info matches the map it is replacing to load. This means having the same campaign and map ID. These values can be found at the top of the scenario tag.
 * Single threaded lightmapping is not supported, you need to use the multi-process solution. This can be run with only a single client if only using one core is desired.
 * Sound playback and sound importing require the FSB files that come with MCC in order to function. Copy the FSB files from your Halo 3 ODST MCC install.
 * The mainmenu requires the mapinfo files that come with MCC in order to load levels. Otherwise you will need to use `init.txt` or the developer console to load scenarios in the standalone build.
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
 
-[steam_purchase]: https://store.steampowered.com/app/1064271
+[steam_purchase]: https://store.steampowered.com/app/1064272

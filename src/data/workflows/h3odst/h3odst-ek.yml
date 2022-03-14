@@ -1,0 +1,33 @@
+H3ODST-EK:
+  page: h3odst-ek
+  authors:
+    - 343 Industries
+    - Bungie
+    - Saber Interactive
+H3ODST-Tool:
+  inherit: H3ODST-EK
+  page: h3odst-tool
+  buildTypes:
+    - tag_test
+    - tag_release
+  workflows:
+    - from: fbx-mcc
+      to:
+        - JMS
+        - Animation data
+        - ASS
+H3ODST-Guerilla:
+  inherit: H3ODST-EK
+  page: h3odst-guerilla
+  buildTypes:
+    - tag_test
+H3ODST-Sapien:
+  inherit: H3ODST-EK
+  page: h3odst-sapien
+  buildTypes:
+    - tag_test
+H3ODST-Standalone:
+  inherit: H3ODST-EK
+  page: h3odst-standalone
+  buildTypes:
+    - tag_test
