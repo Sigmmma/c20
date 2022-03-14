@@ -24,23 +24,52 @@ Using the H1A-EK to create content for H1CE rather than H1A is not officially su
 5. Read `README_MODDING.txt` and follow any further instructions contained within it. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
 6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
 
+# What's new in the March update
+
+## General
+
+* Add script function `game_time_authoritative`
+
+## Content
+* Fixed mirrors on AOTCR showing clipping near the player boots. This is a tag change so make sure to update your files for this to take effect.
+* Various changes to tags and data zips. Updating your tag set is highly recommended.
+
+## Guerilla
+
+* Fix flags displaying weirdly unless the window was refreshed.
+
+## Sapien
+
+* Now has a debug menu similar to the one seen in H2+. Commands can be defined in the debug_menu_init.txt found in the root folder.
+* Fixed mouse sensitivity in vehicle and zoom.
+
+## Standalone
+* Now supports loading MP scenarios for testing.
+* Now has a debug menu similar to the one seen in H2+. Commands can be defined in the debug_menu_init.txt found in the root folder.
+* Fixed mouse sensitivity in vehicle and zoom.
+
 # What's new in the season 8 hotfix v1
 
-- Autocomplete in console should display columns a little more evenly.
-- The Sapien game view window now uses an aspect ratio that fits the size the user sets. 
-- Fix toggling "Draw transparent geometry" causing a crash.
-- UI tooltips in Sapien and Guerilla should flicker less. 
+## Sapien
+* Autocomplete in console should display columns a little more evenly.
+* Game view window now uses an aspect ratio that fits the size the user sets. 
+* Fix toggling "Draw transparent geometry" causing a crash.
+* UI tooltips should flicker less. 
+
+## Guerilla
+* UI tooltips should flicker less. 
+
 
 # What's new in season 8?
 
 ## General
 
-- Many changes to the base game will also apply to the tools. Reading the official update is recommended.
-- Some functions for handling tag names and Unicode string list were changed to more gracefully handle missing data.
+* Many changes to the base game will also apply to the tools. Reading the official update is recommended.
+* Some functions for handling tag names and Unicode string list were changed to more gracefully handle missing data.
 
 ## Content
-- Tags were updated to season 8 content. Updating your tag set is highly recommended.
-- Shader source code is now included.
+* Tags were updated to season 8 content. Updating your tag set is highly recommended.
+* Shader source code is now included.
 
 ## FBX
 

@@ -14,6 +14,34 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 5. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
 6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
 
+# What's new in the March update
+
+## Content
+* Tags.zip now includes scenario_structure_lighting_info for all included scenarios. Relighting should just work now.
+* Various changes to tags and data zips. Updating your tag set is highly recommended. WARNING: YOU WILL NOT BE ABLE TO LOAD FILES USING SHADER TEMPLATES FROM THE PREVIOUS RELEASE.
+
+## FBX
+* Fixed `FBX-to-JMS` command including geometry from render and physics in physics output.
+
+## Tool
+
+* Make some changes to tackle `verify_same_triangle_indices` asserts. Users should keep a look out and report models that continue to display this issue.
+* Add a proper error for importing a DDS instead of asserting.
+* Now capable of compiling shaders. You no longer need community fixes for this to work.
+
+## Guerilla
+
+* Fix flags displaying weirdly unless the window was refreshed.
+
+## Sapien
+
+* Can now load the FMOD files provided in MCC to play sound in the editor. Sound importing should also function. Make sure to copy the fmod folder from your Halo 3 MCC install over to your H3EK editor for playback and importing to work properly.
+
+## Standalone
+
+* Can now load the FMOD files provided in MCC to play sound in the editor. Sound importing should also function. Make sure to copy the fmod folder from your Halo 3 MCC install over to your H3EK editor for playback and importing to work properly.
+* Fixed a bug that didn't allow users to load campaign maps from the legacy mainmenu. Should now be able to use the mainmenu for loading maps if you provide the mapinfo files from your MCC install.
+
 # What's new in the season 8 hotfix v1
 
 - Export-bitmap-DDS should now export bitmap pixel data with proper gamma values.
