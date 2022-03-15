@@ -695,6 +695,163 @@ tool fbx-to-jms render "F:\dreamer.fbx" "F:\dreamer.JMS"
 
 For some details on how to setup the FBX file see [FBX for H3][fbx].
 
+# Sounds
+## Reimport sounds
+Goes through all sound tags in a directory or child directories. Any sound tags that are found will have their sound files from data reimported.
+
+```sh
+# reimport-sounds <source-directory> <compressor> <downmix> <-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)>
+tool reimport-sounds "sound\dialog\combat" default downmix unit_dialog english
+```
+
+* source-directory - A local tag path to a directory or child directory containing sound tags.
+* compressor - Specify the compressor (default, pcm, xma, xma2)
+* downmix - Down mix the adpcm sample (downmix). This is an optional argument
+* bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
+
+## Reimport sounds for senario
+Reimports the sounds for a scenario if the sound data is found in the data folder.
+
+```sh
+# reimport-sounds-for-senario <scenario> <compressor> <downmix> <type> <-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)>
+tool reimport-sounds-for-senario "levels\multi\riverworld\riverworld" default downmix music sfx
+```
+
+* scenario - A local tag path to a scenario without extension.
+* compressor - Specify the compressor (default, pcm, xma, xma2)
+* downmix - Down mix the adpcm sample (downmix). This is an optional argument
+* type - Only reimport the sample if it matches the specified type criteria.
+* bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
+
+## Reimport sounds single
+Reimports the specified sound if sound data was found in the data folder.
+
+```sh
+# reimport-sounds-single <source-file> <compressor> <downmix> <-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)>
+tool reimport-sounds "sound\dialog\combat" default downmix unit_dialog english
+```
+
+* source-file - A local tag path to a sound tag without extension.
+* compressor - Specify the compressor (default, pcm, xma, xma2)
+* downmix - Down mix the adpcm sample (downmix). This is an optional argument
+* bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
+
+## Set sound class
+Grabs all the sound tags in a directory and changes the class to whatever was specified by the user.
+
+```sh
+#  set-sound-class <source-directory> <path-spec> <new-sound-class>
+tool set-sound-class sound_test ??? projectile_impact
+```
+
+* source-directory - A local tag path to the root of a directory containing sound tags or child folders with sound tags.
+* path-spec - ???
+* new-sound-class - A sound class string.
+
+## Sound looping
+???
+
+```sh
+#  sound-looping <source-directory> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
+tool sound-looping
+```
+
+* source-directory - ???
+* type - ???
+* bank - ???
+
+## Sound looping scenery
+???
+
+```sh
+#  sound-looping-scenery <source-directory> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
+tool sound-looping-scenery
+```
+
+* source-directory - ???
+* type - ???
+* bank - ???
+
+## Sound multi layer
+Imports sound files in a directory with the import type set to multi-layer. All sound files the source directory and child directories will be combined into one sound file.
+
+```sh
+#  sound-multi-layer <source-directory> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
+tool sound-multi-layer "sound_test" projectile_impact sfx
+```
+
+* source-directory - A local data path to a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
+* type - Set the sound class
+* bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
+
+## Sound single
+Imports a single sound file
+
+```sh
+#  sound-single <source-file> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
+tool sound-multi-layer "sound_test\aiff" projectile_impact sfx
+```
+
+* source-file - A local data path to the root of a directory containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
+* type - Set the sound class
+* bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
+
+## Sounds music
+Generates an empty sound looping tag from the folders in data. Probably an error?
+
+```sh
+#  sounds-music <source-directory> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
+tool sounds-music "sound_test" projectile_impact sfx
+```
+
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
+* type - Set the sound class
+* bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
+
+## Sounds one shot
+Imports sound files in a directory with the import type set to single-shot. Each sound file will get its own sound tag.
+
+```sh
+#  sounds-one-shot <source-directory> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
+tool sounds-one-shot "sound_test" projectile_impact sfx
+```
+
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
+* type - Set the sound class
+* bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
+
+## Sounds single layer
+Imports sound files in a directory with the import type set to single-layer. Each directory will get its own sound tag.
+
+```sh
+#  sounds-single-layer <source-directory> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
+tool sounds-single-layer "sound_test" projectile_impact sfx
+```
+
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
+* type - Set the sound class
+* bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
+
+## Sounds single mixed
+Imports sound files in a directory with the import type set to single-layer. Each directory will get its own sound tag.
+
+```sh
+#  sounds-single-mixed <source-directory> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
+tool sounds-single-mixed "sound_test" projectile_impact sfx
+```
+
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
+* type - Set the sound class
+* bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
+
+# strip-single-tag-file
+Imports sound files in a directory with the import type set to single-layer. Each directory will get its own sound tag.
+
+```sh
+#  strip-single-tag-file <tag>
+tool strip-single-tag-file "objects\characters\masterchief\masterchief.render_model"
+```
+
 # Structure
 A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag.
 
