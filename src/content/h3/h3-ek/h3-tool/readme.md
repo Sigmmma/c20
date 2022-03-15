@@ -844,14 +844,6 @@ tool sounds-single-mixed "sound_test" projectile_impact sfx
 * type - Set the sound class
 * bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
 
-# strip-single-tag-file
-Imports sound files in a directory with the import type set to single-layer. Each directory will get its own sound tag.
-
-```sh
-#  strip-single-tag-file <tag>
-tool strip-single-tag-file "objects\characters\masterchief\masterchief.render_model"
-```
-
 # Structure
 A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag.
 
