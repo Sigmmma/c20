@@ -120,6 +120,7 @@ H2 MCC tags can't currently be downgraded to work in H2V so consider this a one 
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
 * PRT simulation tool is not included - avoid tool commands that require it, they will not function properly.
 * Tag moving in Guerilla has some dependencies on old source control code because of this you need to manually move the tag after it fixes the references.
+* Lipsync won't be generated when importing sounds that use a multilingual sound class such as unit_dialog as third party tools are required.
 
 [csv]: https://en.wikipedia.org/wiki/Comma-separated_values
 [xls]: https://en.wikipedia.org/wiki/Microsoft_Excel_file_format
