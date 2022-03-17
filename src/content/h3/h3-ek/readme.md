@@ -14,6 +14,11 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 5. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
 6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
 
+# Installing the March update
+1. Delete the shader templates from the previous update as they are not compatible, delete `tags\shaders\beam_templates`, `tags\shaders\black_templates`, `tags\shaders\contrail_templates`, `tags\shaders\cortana_templates`, `tags\shaders\custom_templates`, `tags\shaders\decal_templates`, `tags\shaders\foliage_templates`, `tags\shaders\halogram_templates`,`tags\shaders\light_volume_templates`, `tags\shaders\particle_templates`, `tags\shaders\screen_templates`, `tags\shaders\shader_templates`, `tags\shaders\terrain_templates` and `tags\shaders\water_templates`.
+2a. (recommended) Extract the new `tags.zip` and `data.zip`.
+2b. (alternative) If you don't want to update all your tags it's highly recommended you at least replace the deleted templates.
+
 # What's new in the March update
 
 ## Content
@@ -32,6 +37,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 ## Guerilla
 
 * Fix flags displaying weirdly unless the window was refreshed.
+* Skin shader tags no-longer crash.
 
 ## Sapien
 

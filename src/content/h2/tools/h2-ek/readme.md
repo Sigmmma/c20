@@ -19,8 +19,12 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 2: Anniversary on Steam][st
 
 # What's new in the March update
 
+```.alert danger
+After downloading the update you need to clear your shader cache by deleting the `shader_cache` folder. You also need to update your shader template files.
+```
+
 ## Content
-* Various changes to tags and data zips. Updating your tag set is highly recommended. WARNING: YOU WILL NOT BE ABLE TO LOAD FILES USING SHADER TEMPLATES FROM THE PREVIOUS RELEASE. YOU WILL ALSO NEED TO DELETE ANY PREVIOUSLY EXISTING SHADER CACHES.
+* Various changes to tags and data zips. Updating your tag set is highly recommended.
 
 ## FBX
 * Fixed FBX-to-JMS command including geometry from render and physics in physics output.
@@ -43,12 +47,13 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 2: Anniversary on Steam][st
 
 * Backwash source files should no longer trigger an assert. 
 
-## Sapien
+## Sapien & Standalone
 
 * Fixed IN_RANGE assert when editing level data.
 * Now renders geometry error info such as degenerate triangles and overlapping faces.
 * Some speedups for BSP Havok representation. Loading times should be a bit faster.
 * Set minimum height and minimum width for game view window to avoid bad values being saved to registry. Solves render_cameras assert on startup. Users who are currently experiencing this issue should delete their registry keys and update to latest.
+* Shaders are now cached in `shader_cache`.
 
 # What's changed?
 ## General changes from stock H2V tools
