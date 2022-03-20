@@ -26,7 +26,7 @@ You will need to set up several squads for the scenario to use for spawning wave
 * 4 Squads maximum for Phantoms
 * 1 Squad for the bonus wave Phantom
 
-Once you've created your waves squads, each will need to be given a Spawn Formation - this is where the squad will spawn. The location you place the formation in must be within map bounds so that if players turn off dropship spawning in their gametype settings they can still complete each wave. You don't need to do this for the remaining enemies and bonus wave squads - these exist so other squads can be migrated to them. How you set up the other squads is up to you.
+Once you've created your wave squads, each will need to be given a Spawn Formation - this is where the squad will spawn. The location you place the formation in must be within map bounds so that if players turn off dropship spawning in their gametype settings they can still complete each wave. You don't need to do this for the remaining enemies and bonus wave squads - these exist so other squads can be migrated to them. How you set up the other squads is up to you.
 
 You can prevent different types of waves from using a squad by ticking the **excluded placement flags** in the squad's Properties palette. This allows you to specify that, for example, you do not want a flying vehicle to be spawned in a confined spawn.
 
