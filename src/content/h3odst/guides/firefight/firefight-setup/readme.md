@@ -46,6 +46,21 @@ Weapons are usually spawned through scenery objects such as weapon_box and armor
 
 Boons are only created when the gametype setting for them is enabled.
 
+## Player starting points
+
+Firefight uses different starting points to a regular campaign scenario. In order for players to be able to spawn, you need at at least one starting position for each player with the flag **survival mode** ticked. In addition, you will need to set the **insertion point index** to the one that your scenario or the one it is replacing uses. A list of insertion points used by existing Firefight maps is below:
+
+* Alpha Site - 5
+* Chasm Ten - 6
+* Crater - 4
+* Crater (Night) - 7
+* Last Exit - 7
+* Lost Platoon - 4
+* Rally Point - 5
+* Rally (Night) - 8
+* Security Zone - 4
+* Windward - 5
+
 # Scripting
 
 In order for Firefight scripts to run on your level, you'll need to first add a mission script to your scenario to setup certain global variables, as well as add the global_survival script. You can add your mission script source in Sapien, as well as global_survival.hsc which is located in the globals folder by clicking on Scenarios and Add Mission Script.
@@ -79,12 +94,17 @@ You may wish to use the `survival_scenario_weapon_drop` script to respawn any it
 When you've done setting everything up in your scripts and scenario file, you can try it out in tag test by placing the following commands inside init.txt which you should create inside your **H3ODSTEK** folder if it does not exist already.
 
 ```
+;Difficulty
 game_difficulty heroic
+;Game variant
 game_set_variant #variant_name_survival#
+;Insertion point - set this to the one used by your starting points
+game_insertion_point_set 4
+;Path to your scenario file
 game_start "path\to\your\scenario"
 ```
 
-Your scenario will load your map using the default survival variant from the `game_engine_settings_definition` tag and if everything is in place, Firefight will begin after a moment.
+Your scenario will load your map using the variant from the `game_engine_settings_definition` tag and if everything is in place, Firefight will begin after a short countdown.
 
 # Extra Information
 
@@ -94,6 +114,6 @@ Your scenario will load your map using the default survival variant from the `ga
 
 # Known issuses
 
-* The HUD for Firefight does not display in tagtest due to a bug.
+* The HUD for Firefight does not display in tag_test due to a bug.
 
 [template]: https://drive.google.com/file/d/1MikNcpdYAZJCALWZ7RoAG9GQHHTmI8_Y/view?usp=sharing
