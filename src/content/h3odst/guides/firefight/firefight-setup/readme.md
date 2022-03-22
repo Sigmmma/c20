@@ -7,12 +7,12 @@ Thanks to Halo 3 ODST's new Firefight additions, it's far easier than it was pre
 Firefight makes use of squad groups for spawning waves. Only one is required, but you should consider all of the following:
 
 * A squad group for waves (**Required**)
-* A squad group for remaining enemies
+* A squad group for remaining enemies (**Required**)
 * A squad group for Phantoms
-* A squad group for extra spawns in your scenario
+* A squad group for extra spawns in your scenario (**Required**)
 * A squad group for bonus wave enemies
 * A squad group for friendly characters
-* A squad group for all survival units that your other squads are parented to
+* A squad group for all survival units that your other squads are parented to (**Required**)
 
 You can name each squad with whatever name you want, but it should be something memorable so you can later reference it in your scenario's scripts.
 
@@ -60,6 +60,10 @@ Firefight uses different starting points to a regular campaign scenario. In orde
 * Rally (Night) - 8
 * Security Zone - 4
 * Windward - 5
+
+## Garbage Recycling
+
+So that Firefight can periodly remove garbage objects such as destroyed vehicles and discarded weapons, you should have a **trigger volume** that covers the play area of your scenario. It's important that you give this the name `tv_sur_garbage_all` so that it can be accessed by the global survival script.
 
 # Scripting
 
