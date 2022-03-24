@@ -14,8 +14,12 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 2: Anniversary on Steam][st
 2. Follow the on screen prompts to download the tools.
 3. Once the tools are done downloading you can find them in your library in the tools section.
 4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
-5. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
+5. Run the `Extract H2EK.bat` file - this will extract all the files required.
 6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
+
+# Installing updates
+1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
+2. Re-run `Extract H2EK.bat` and replace all files.
 
 # What's new in the March update
 
@@ -24,7 +28,8 @@ After downloading the update you need to clear your shader cache by deleting the
 ```
 
 ## Content
-* Various changes to tags and data zips. Updating your tag set is highly recommended.
+* Various changes to tags and data files. Updating your tag set is highly recommended.
+* Content is now stored in a single [7z](https://en.wikipedia.org/wiki/7z) file. A script is included to automatically extract these files.
 
 ## FBX
 * Fixed FBX-to-JMS command including geometry from render and physics in physics output.
@@ -54,6 +59,7 @@ After downloading the update you need to clear your shader cache by deleting the
 * Some speedups for BSP Havok representation. Loading times should be a bit faster.
 * Set minimum height and minimum width for game view window to avoid bad values being saved to registry. Solves render_cameras assert on startup. Users who are currently experiencing this issue should delete their registry keys and update to latest.
 * Shaders are now cached in `shader_cache`.
+* Brand new loading screen more in-line with the Halo 3+ one.
 
 # What's changed?
 ## General changes from stock H2V tools
