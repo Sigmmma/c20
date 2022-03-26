@@ -11,8 +11,9 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purc
 2. Follow the on screen prompts to download the tools.
 3. Once the tools are done downloading you can find them in your library in the tools section.
 4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
-5. Extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.
-6. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
+5. Run the `H3ODSTEK (Extract).bat` file - this will extract all the files required.
+6. If your operating system supports it you should enable file system compression for the `tags\sounds` folder. This is a workaround for high disk space usage caused by sound tags including zeroed out sound data.
+7. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
 
 # Major changes from H2
 Naturally there is multitude of changes compared to H2 as the engine underwent a major revision, this document endeavours to list the major ones.

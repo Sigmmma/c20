@@ -9,6 +9,7 @@ The **Osoyoos launcher** is an application that can be used to easily interact w
 - H2V-EK with [H2Codez][]
 - [H2-EK][]
 - [H3-EK][]
+- ODST
 
 Support for any future editing kits is planned.
 
