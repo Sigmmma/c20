@@ -88,5 +88,6 @@ Naturally there is multitude of changes compared to H2 as the engine underwent a
 * The mainmenu requires the mapinfo files that come with MCC in order to load levels. Otherwise you will need to use `init.txt` or the developer console to load scenarios in the standalone build.
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
 * Lipsync won't be generated when importing sounds that use a multilingual sound class such as unit_dialog as third party tools are required.
+* Forging objects while using the Standalone client will cause a crash. A workaround is to use the main menu to launch Forge from the lobby.
 
 [steam_purchase]: https://store.steampowered.com/app/1064271

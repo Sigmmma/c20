@@ -65,6 +65,14 @@ Firefight uses different starting points to a regular campaign scenario. In orde
 
 So that Firefight can periodly remove garbage objects such as destroyed vehicles and discarded weapons, you should have a **trigger volume** that covers the play area of your scenario. It's important that you give this the name `tv_sur_garbage_all` so that it can be accessed by the global survival script.
 
+# Guerilla
+
+A required step for survival maps to function is to have a zone set with the prefix `set_survival`. From the moment you place down a **Player starting point** with the survival flag ticked, you will need the survival zone set in order to load the map in the standalone client, even if you intend to play it as a campaign map.
+
+To create a zone set, open your scenario file in Guerilla and navigate down to the zone sets block and add a new entry. Inside, name it `set_survival` and tick each **bsp zone flag** for each **structure bsp** that you intend to have loaded.
+
+For maps with multiple survival areas, you can add suffixes to the set name such as `set_survival_a`.
+
 # Scripting
 
 In order for Firefight scripts to run on your level, you'll need to first add a mission script to your scenario to setup certain global variables, as well as add the global_survival script. You can add your mission script source in Sapien, as well as global_survival.hsc which is located in the globals folder by clicking on Scenarios and Add Mission Script.
