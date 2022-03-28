@@ -7,7 +7,7 @@
 [Water Visual Example Blend](https://drive.google.com/file/d/1HH8NMal_PLlXNqpvi0WtGuEHS6iToTy6/view?usp=sharing)      | A blend file showcasing how to create water in a level.
 [Water Physical Example Blend](https://drive.google.com/file/d/195Soo5_U3NRjyUhUa07TcERIPFxCCE2D/view?usp=sharing)    | A blend file showcasing how to create water in a structure-design file.
 [Design Surfaces Example Blend](https://drive.google.com/file/d/1kLZjYTlr6qEZEWkGWQJh-XoEbsAZEuQp/view?usp=sharing)   | A blend file showcasing how to create barriers in a structure-design file.
-[Seams Example Blend](https://drive.google.com/file/d/1-6hDed119giXGNBPEFknJZ6xwc98mPUI/view?usp=sharing)   | A blend file showcasing how to create seams to connect bsps in a structure-seams file.
+[Seams Example Blend](https://drive.google.com/file/d/1PH0-JH7yQaTPDEMQ-U8jCfagD_Rfb--b/view?usp=sharing)   | A compilation of blend files showcasing how to create seams to connect bsps.
 
 # Multiple skies
 It's possible to use multiple skies in your level by adding a digit to the end of your `+sky` material. If we wanted three skies in our level for example we would have the following:
@@ -174,12 +174,12 @@ Seams connect BSPs together. Surfaces that are set as a seam surface will connec
 
 ![9Ud6igp](https://user-images.githubusercontent.com/45549722/160335249-47e8fca7-d5f8-49b2-b889-8bcbfc928230.png)
 
-A seam can be made by creating a material called `+seam:1`
+A seam can be made by creating a material called `+seam:example_seams_1`
 
 * `+` - Material symbol that lets tool know this is a special material.
 * seam - Tells Tool that this is a seam surface with this material assigned.
 * `:` - The separator between the seam and the name.
-* 1 - The name for our seam. This is what Tool will use to identify the seams in a bsp.
+* example_seams_1 - The name for our seam. This is what Tool will use to identify the seams in a bsp.
 
 Once we have multiple bsps that seamed together properly, you can use Tool's `structure` command to import the individual .ASS files for each bsp.
 
@@ -200,3 +200,5 @@ Create a zone set called `all` and check all the `bsp zone flags`. Save your sce
 ![OH9PImo](https://user-images.githubusercontent.com/45549722/160336939-912aac17-0d2d-4afe-9da5-8c8ba92bb45a.png)
 
 In Sapien, zone sets can be switched by going pressing `Ctrl+B` or going to `Edit > Switch Zone Set...`
+
+![jylAlAT](https://user-images.githubusercontent.com/45549722/160367332-3b4f8293-f28d-4e11-925a-40c513402a4b.png)
