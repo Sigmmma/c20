@@ -68,7 +68,7 @@ with multiple lines
 ```
 
 ## Global variables
-A _global variable_ is a value of a fixed [type](#value-types) that can be set and used by any [script thread](#script-threads) at any time. These variables are given a place in memory so they can be used by scripts over the course of gameplay and are saved in checkpoints. HaloScript does **not** have the notion of [local variables][local].
+A _global variable_ is a value of a fixed [type](#value-types) that can be set and used by any [script thread](#script-threads) at any time. These variables are given a place in memory so they can be used by scripts over the course of gameplay and are saved in checkpoints. HaloScript did **not** have the notion of [local variables][local] until their introduction in Halo 4's iteration of Halo Script.
 
 You can only declare globals within scenario scripts. Global variables cannot be declared in the developer console, though you can use or update any that were already initialized by the loaded scenario.
 
@@ -127,7 +127,40 @@ Script types vary by engine, but the common ones are:
 * `continuous`: Runs every tick (simulation frame of the engine).
 * `dormant`: Initially asleep until started with `(wake <script_name>)`, runs until there are no instructions left, then stops. Waking a second time will not restart the script.
 * `startup`: Begins running at the start of the level and only runs once.
+* `command_script`: Runs when executed by an ai. Allows the use of special external globals like `ai_current_actor` and `ai_current_squad` which return information about the ai executing the script. This is the only script type which allows the use of cs_ functions (e.g. `cs_go_to`, `cs_play_line`).
 * `static`: Can be called by another script and return a value. Useful for re-usable code -- similar to _methods/functions_ from other programming languages.
+
+Halo 3 introduced script parameters to Halo Script. Parameters can only be defined on script types that accept return types (i.e. statics and stubs).
+
+These have the following structure:
+
+```hsc
+(script <script type> <return type> (<script name> [(<value type> <parameter name>)])
+  <code>
+)
+```
+
+Scripts can have multiple parameters, and each parameter should be enclosed in a set of parethesis.
+
+Parameters are declared when calling the script.
+
+```hsc
+(script static void (player_scaler (object a_player) (real scale) (string str))
+    (object_set_scale a_player scale 1)
+    (unit_set_maximum_vitality (unit a_player) (* 35 scale) (* 75 scale))
+    (unit_set_current_vitality (unit a_player) (* 35 scale) (* 75 scale))
+    (print str)
+)
+
+(script startup start
+    (player_scaler (list_get (players) 0) 3 "player 0 scaled")
+    (player_scaler (list_get (players) 1) 2.5 "player 1 scaled")
+    (player_scaler (list_get (players) 2) 2 "player 2 scaled")
+    (player_scaler (list_get (players) 3) 1.5 "player 3 scaled")
+)
+```
+
+Note that a parameter name can be anything the user declares so long as it is not already a global / script name or already used by the engine (e.g. value types or function names). Parameters are local to the static script they are named in, so multiple scripts can utilise the same parameter names without affecting one another.
 
 See game-specific pages for further reference, e.g. [H1 Scripting][h1/engine/scripting#script-types].
 
@@ -161,21 +194,74 @@ Several control structures implicitly return the value of their final expression
 (cond
   (
     (= 0 1)
-    (print "I will never run")
-    5
+    (begin (print "I will never run") 5)
   )
   (
     (= 1 1)
-    (print "I will always run!")
-    6
+    (begin (print "I will always run!") 6)
   )
   (
     (= 2 2)
-    (print "I would run if the code above me hadn't.")
-    7
+    (begin (print "I would run if the code above me hadn't.") 7)
   )
 )
 ```
+
+## Object type masks
+Several functions from Halo 2 onwards allow the user to perform actions on all objects of a certain type (e.g. bipeds, vehicles etc) that are currently loaded in a scenario. These functions use long values to determine which object types should be referenced.
+
+| Type Mask       | Object Type     |
+| ----------------| --------------- |
+| 1               | biped           |
+| 2               | vehicle         |
+| 4               | weapon          |
+| 8               | equipment       |
+| 1024            | crate           |
+
+These values can be added together to affect multiple object types at once. For example, using the function `(object_destroy_type_mask 5)` would destroy all bipeds and weapons loaded on a map. Both 0 and 1039 will destroy all objects of the above listed types. The functions which support this are:
+
+```hsc
+(<object_list> volume_return_objects_by_type <trigger_volume> <type_mask>) ; Halo 2 onwards
+(<void> object_destroy_type_mask <type_mask>) ; Halo 2 onwards
+(<void> add_recycling_volume_by_type <trigger_volume> <long> <long> <type_mask>) ; Halo Reach onwards
+(<void> add_offscreen_recycling_volume_by_type <trigger_volume> <long> <long> <type_mask>) ; Halo 4 onwards
+```
+Below is a full listing of object type mask combinations:
+
+| Type Mask       | Object Type                             |
+| ----------------| ---------------                         |
+| 0               | biped, vehicle, weapon, equipment, crate|
+| 1               | biped                                   |
+| 2               | vehicle                                 |
+| 3               | biped, vehicle                          |
+| 4               | weapon                                  |
+| 5               | biped, weapon                           |
+| 6               | vehicle, weapon                         |
+| 7               | biped, vehicle, weapon                  |
+| 8               | equipment                               |
+| 9               | biped, equipment                        |
+| 10              | vehicle, equipment                      |
+| 11              | biped, vehicle, equipment               |
+| 12              | weapon, equipment                       |
+| 13              | biped, weapon, equipment                |
+| 14              | vehicle, weapon, equipment              |
+| 15              | biped, vehicle, weapon, equipment       |
+| 1024            | crate                                   |
+| 1025            | biped, crate                            |
+| 1026            | vehicle, crate                          |
+| 1027            | biped, vehicle, crate                   |
+| 1028            | weapon, crate                           |
+| 1029            | biped, weapon, crate                    |
+| 1030            | vehicle, weapon, crate                  |
+| 1031            | biped, vehicle, weapon, crate           |
+| 1032            | equipment, crate                        |
+| 1033            | biped, equipment, crate                 |
+| 1034            | vehicle, equipment, crate               |
+| 1035            | biped, vehicle, equipment, crate        |
+| 1036            | weapon, equipment, crate                |
+| 1037            | biped, weapon, equipment, crate         |
+| 1038            | vehicle, weapon, equipment, crate       |
+| 1039            | biped, vehicle, weapon, equipment, crate|
 
 [local]: https://en.wikipedia.org/wiki/Local_variable
 [cast]: https://en.wikipedia.org/wiki/Type_conversion
