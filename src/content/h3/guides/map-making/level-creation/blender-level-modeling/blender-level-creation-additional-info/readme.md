@@ -199,6 +199,6 @@ Create a zone set called `all` and check all the `bsp zone flags`. Save your sce
 
 ![OH9PImo](https://user-images.githubusercontent.com/45549722/160336939-912aac17-0d2d-4afe-9da5-8c8ba92bb45a.png)
 
-In Sapien, zone sets can be switched by going pressing `Ctrl+B` or going to `Edit > Switch Zone Set...`
+In Sapien, zone sets can be switched by pressing `Ctrl+B` or going to `Edit > Switch Zone Set...`
 
 ![jylAlAT](https://user-images.githubusercontent.com/45549722/160367332-3b4f8293-f28d-4e11-925a-40c513402a4b.png)
