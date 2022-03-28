@@ -7,6 +7,7 @@
 [Water Visual Example Blend](https://drive.google.com/file/d/1HH8NMal_PLlXNqpvi0WtGuEHS6iToTy6/view?usp=sharing)      | A blend file showcasing how to create water in a level.
 [Water Physical Example Blend](https://drive.google.com/file/d/195Soo5_U3NRjyUhUa07TcERIPFxCCE2D/view?usp=sharing)    | A blend file showcasing how to create water in a structure-design file.
 [Design Surfaces Example Blend](https://drive.google.com/file/d/1kLZjYTlr6qEZEWkGWQJh-XoEbsAZEuQp/view?usp=sharing)   | A blend file showcasing how to create barriers in a structure-design file.
+[Seams Example Blend](https://drive.google.com/file/d/1-6hDed119giXGNBPEFknJZ6xwc98mPUI/view?usp=sharing)   | A blend file showcasing how to create seams to connect bsps in a structure-seams file.
 
 # Multiple skies
 It's possible to use multiple skies in your level by adding a digit to the end of your `+sky` material. If we wanted three skies in our level for example we would have the following:
@@ -166,3 +167,36 @@ There are four aspects to this name so lets break this down.
 * death_barrier - The name for our barrier. This is what the user will give to the `soft_ceiling_enable` script function to disable it.
 
 [wiki-polyhedron]: https://en.wikipedia.org/wiki/Convex_polytope
+
+## Seams
+
+Seams connect BSPs together. Surfaces that are set as a seam surface will connect to another seam surface if the two surfaces are identical (including triangulation) and occupy the same space. The easiest way to do this in Blender is to use the magnetic snapping tool set to edge mode and sliding the surfaces together on an axis. A bsp with seams can only be seamed to a maximum of two other bsps.
+
+![9Ud6igp](https://user-images.githubusercontent.com/45549722/160335249-47e8fca7-d5f8-49b2-b889-8bcbfc928230.png)
+
+A seam can be made by creating a material called `+seam:1`
+
+* `+` - Material symbol that lets tool know this is a special material.
+* seam - Tells Tool that this is a seam surface with this material assigned.
+* `:` - The separator between the seam and the name.
+* 1 - The name for our seam. This is what Tool will use to identify the seams in a bsp.
+
+Once we have multiple bsps that seamed together properly, you can use Tool's `structure` command to import the individual .ASS files for each bsp.
+
+Once all the .ASS files are imported, you can run `structure-seams levels\multi\example_seams` to create the `example_seams.structure_seams` file that will later be referenced in the `scenario` tag.
+
+After the `example_seams.structure_seams` file is created, you might be asked to reimport the .ASS files. This varies depending on what bsps have seams. Reimport those bsps and continue.
+
+Now the `example_seams.structure_seams` file can be referenced in the scenario under the `Structure Bsps` block. 
+
+![ff34mFB](https://user-images.githubusercontent.com/45549722/160336613-d38ef109-3d6d-45c2-8e19-2adae781bed8.png)
+
+### Zone Sets
+
+Now that seams have been added to the scenario, you must create `zone sets`. Zone sets specify which bsps will be loaded as a player progresses and can be triggered through scripting. For example, if the player starts in `zone_set_a` that has `bsp_j` and `bsp_k` loaded, and the player progresses to `zone_set_b` that has `bsp_k` and `bsp_l` loaded, `zone_set_a` will switch to `zone_set_b`. There are also zone sets that have all bsps marked to be loaded at once for debugging purposes.
+
+Create a zone set called `all` and check all the `bsp zone flags`. Save your scenario and open it up in Sapien.
+
+![OH9PImo](https://user-images.githubusercontent.com/45549722/160336939-912aac17-0d2d-4afe-9da5-8c8ba92bb45a.png)
+
+In Sapien, zone sets can be switched by going pressing `Ctrl+B` or going to `Edit > Switch Zone Set...`
