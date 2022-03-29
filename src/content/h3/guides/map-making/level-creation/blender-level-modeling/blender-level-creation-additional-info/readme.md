@@ -179,7 +179,7 @@ A seam can be made by creating a material called `+seam:example_seams_1`
 * `+` - Material symbol that lets tool know this is a special material.
 * seam - Tells Tool that this is a seam surface with this material assigned.
 * `:` - The separator between the seam and the name.
-* example_seams_1 - The name for our seam. This is what Tool will use to identify the seams in a bsp.
+* example_seams_1 - The name for our seam. This is what Tool will use to identify the seams in a bsp. It is usually the name of the bsp.
 
 Once we have multiple bsps that seamed together properly, you can use Tool's `structure` command to import the individual .ASS files for each bsp.
 
@@ -189,16 +189,16 @@ After the `example_seams.structure_seams` file is created, you might be asked to
 
 Now the `example_seams.structure_seams` file can be referenced in the scenario under the `Structure Bsps` block. 
 
-![ff34mFB](https://user-images.githubusercontent.com/45549722/160336613-d38ef109-3d6d-45c2-8e19-2adae781bed8.png)
+![](example_seams_scenario.jpeg "Your structure seams should be in your scenario")
 
 ### Zone Sets
 
-Now that seams have been added to the scenario, you must create `zone sets`. Zone sets specify which bsps will be loaded as a player progresses and can be triggered through scripting. For example, if the player starts in `zone_set_a` that has `bsp_j` and `bsp_k` loaded, and the player progresses to `zone_set_b` that has `bsp_k` and `bsp_l` loaded, `zone_set_a` will switch to `zone_set_b`. There are also zone sets that have all bsps marked to be loaded at once for debugging purposes.
+Now that seams have been added to the scenario, you must create `zone sets`. Zone sets specify which bsps will be loaded as a player progresses and can be triggered through scripting and trigger volumes. For example, if the player starts in `zone_set_a` that has `bsp_j` and `bsp_k` loaded, and the player progresses to `zone_set_b` that has `bsp_k` and `bsp_l` loaded, `zone_set_a` will switch to `zone_set_b`. There are also zone sets that have all bsps marked to be loaded at once for debugging purposes.
 
 Create a zone set called `all` and check all the `bsp zone flags`. Save your scenario and open it up in Sapien.
 
-![OH9PImo](https://user-images.githubusercontent.com/45549722/160336939-912aac17-0d2d-4afe-9da5-8c8ba92bb45a.png)
+![](example_seams_zonesets.jpeg "This is how your zone sets should look")
 
 In Sapien, zone sets can be switched by pressing `Ctrl+B` or going to `Edit > Switch Zone Set...`
 
-![jylAlAT](https://user-images.githubusercontent.com/45549722/160367332-3b4f8293-f28d-4e11-925a-40c513402a4b.png)
+![](example_seams_sapien "This is the end result in Sapien")
