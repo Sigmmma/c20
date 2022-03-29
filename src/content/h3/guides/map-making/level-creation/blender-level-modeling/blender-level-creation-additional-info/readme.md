@@ -189,7 +189,7 @@ After the `example_seams.structure_seams` file is created, you might be asked to
 
 Now the `example_seams.structure_seams` file can be referenced in the scenario under the `Structure Bsps` block. 
 
-![](example_seams_scenario.jpeg "Your structure seams should be in your scenario")
+![](example_seams_scenario.png "Your structure seams should be in your scenario")
 
 ### Zone Sets
 
@@ -197,8 +197,8 @@ Now that seams have been added to the scenario, you must create `zone sets`. Zon
 
 Create a zone set called `all` and check all the `bsp zone flags`. Save your scenario and open it up in Sapien.
 
-![](example_seams_zonesets.jpeg "This is how your zone sets should look")
+![](example_seams_zonesets.png "This is how your zone sets should look")
 
 In Sapien, zone sets can be switched by pressing `Ctrl+B` or going to `Edit > Switch Zone Set...`
 
-![](example_seams_sapien.jpeg "This is the end result in Sapien")
+![](example_seams_sapien.png "This is the end result in Sapien")
