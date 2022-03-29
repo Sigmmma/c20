@@ -172,7 +172,7 @@ There are four aspects to this name so lets break this down.
 
 Seams connect BSPs together. Surfaces that are set as a seam surface will connect to another seam surface if the two surfaces are identical (including triangulation) and occupy the same space. The easiest way to do this in Blender is to use the magnetic snapping tool set to edge mode and sliding the surfaces together on an axis. A bsp with seams can only be seamed to a maximum of two other bsps.
 
-![9Ud6igp](https://user-images.githubusercontent.com/45549722/160335249-47e8fca7-d5f8-49b2-b889-8bcbfc928230.png)
+![](example_seams_blender.png "You can use the magnet tool to easily align seams")
 
 A seam can be made by creating a material called `+seam:example_seams_1`
 
