@@ -201,4 +201,4 @@ Create a zone set called `all` and check all the `bsp zone flags`. Save your sce
 
 In Sapien, zone sets can be switched by pressing `Ctrl+B` or going to `Edit > Switch Zone Set...`
 
-![](example_seams_sapien "This is the end result in Sapien")
+![](example_seams_sapien.jpeg "This is the end result in Sapien")
