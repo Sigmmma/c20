@@ -32,6 +32,8 @@ You can prevent different types of waves from using a squad by ticking the **exc
 
 Every wave squad as well as the bonus squad and remaining squads should also be given an **Objective** to at bare minimum assign them a **Zone**, **Area** and **Firing Positions** so they can move around the map. This objective will be reset by the global_survival script each time a new wave is spawned.
 
+Note that even if you don't plan to use Phantoms in your scenario, you should still add one to your vehicle palette so that later the `global_survival` script will compile.
+
 ## Folders
 
 For weapons, equipment, vehicles, scenery and crates, Firefight will attempt to respawn any objects within a number of folders which even if you don't plan on using you should set up in your scenario to allow scripts to compile. Unlike squads and squad groups, you should name these accordingly:
@@ -40,6 +42,7 @@ For weapons, equipment, vehicles, scenery and crates, Firefight will attempt to 
 * Weapons - wp_survival
 * Vehicles - v_survival
 * Scenery - sc_survival
+* Crates - cr_survival
 * Boon Scenery - sc_survival_boons
 
 Weapons are usually spawned through scenery objects such as weapon_box and armory_shelf scenery objects instead of hand placed weapons - see the stubs section for more information.
