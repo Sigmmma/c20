@@ -11,3 +11,4 @@ hs_doc*.txt
 *.code-workspace
 /ffmpeg.exe
 /src/utility_scripts/jpegtran-static.exe
+/src/utility_scripts/jpegtran-static_old.exe
