@@ -14,7 +14,7 @@ def check_png(path: str):
     with open(path, 'rb') as f:
         header = [int(c) for c in f.read(8)]
         if header != [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]:
-            print(f"Invalid header {header}")
+            print(f"Invalid header {header} in file {path}")
             found = True
             
 def check_jpeg(path: str):
