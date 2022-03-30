@@ -1,5 +1,7 @@
 Thanks to Halo 3 ODST's new Firefight additions, it's far easier than it was previously to setup a new scenario to work with Firefight. There are just a handful of steps you need to take in order for things to work.
 
+![.figure "A lone ODST faces an endless onslaught of Flood on this custom Firefight map."](firefightexample.jpg)
+
 # Sapien
 
 ## Squad groups
@@ -28,6 +30,8 @@ You will need to set up several squads for the scenario to use for spawning wave
 
 Once you've created your wave squads, each will need to be given a Spawn Formation - this is where the squad will spawn. The location you place the formation in must be within map bounds so that if players turn off dropship spawning in their gametype settings they can still complete each wave. You don't need to do this for the remaining enemies and bonus wave squads - these exist so other squads can be migrated to them. How you set up the other squads is up to you.
 
+!["Example of a spawn formation."](spawnformations.jpg)
+
 You can prevent different types of waves from using a squad by ticking the **excluded placement flags** in the squad's Properties palette. This allows you to specify that, for example, you do not want a flying vehicle to be spawned in a confined spawn.
 
 Every wave squad as well as the bonus squad and remaining squads should also be given an **Objective** to at bare minimum assign them a **Zone**, **Area** and **Firing Positions** so they can move around the map. This objective will be reset by the global_survival script each time a new wave is spawned.
@@ -44,6 +48,10 @@ For weapons, equipment, vehicles, scenery and crates, Firefight will attempt to 
 * Scenery - sc_survival
 * Crates - cr_survival
 * Boon Scenery - sc_survival_boons
+
+!["Each of the folders having been created."](folders.jpg)
+
+It's recommended that you add at least one object to each folder, as empty folders are culled when Sapien loads a new scenario.
 
 Weapons are usually spawned through scenery objects such as weapon_box and armory_shelf scenery objects instead of hand placed weapons - see the stubs section for more information.
 
@@ -74,13 +82,15 @@ A required step for survival maps to function is to have a zone set with the pre
 
 To create a zone set, open your scenario file in Guerilla and navigate down to the zone sets block and add a new entry. Inside, name it `set_survival` and tick each **bsp zone flag** for each **structure bsp** that you intend to have loaded.
 
+!["A zone set that will allow survival to be loaded."](zonesets.jpg)
+
 For maps with multiple survival areas, you can add suffixes to the set name such as `set_survival_a`.
 
 # Scripting
 
 In order for Firefight scripts to run on your level, you'll need to first add a mission script to your scenario to setup certain global variables, as well as add the global_survival script. You can add your mission script source in Sapien, as well as global_survival.hsc which is located in the globals folder by clicking on Scenarios and Add Mission Script.
 
-Now inside of your mission's source file, you'll need to setup several globals for global_survival to use. For ease of use, here is [a template][template] you can use and copy containing comments to help you set up each variable. For each global being set in the mission_survival script, you should change the value to what you have set in your own scenario. 
+Now inside of your mission's source file, you'll need to setup several globals for global_survival to use. For ease of use, [here is a template][template] you can use and copy containing comments to help you set up each variable. For each global being set in the mission_survival script, you should change the value to what you have set in your own scenario. 
 
 Phantom load parameters determine how each phantom unloads its troops, which is useful if you only want Phantoms to drop off troops in a certain way. The values you can use are "**chute**", "**dual**", "**left**", "**right**" or "**null**" for if you don't intend to use phantoms. 
 
