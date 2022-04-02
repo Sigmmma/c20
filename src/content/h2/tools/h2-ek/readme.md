@@ -50,7 +50,8 @@ After downloading the update you need to clear your shader cache by deleting the
 
 ## Tool
 
-* Backwash source files should no longer trigger an assert. 
+* Backwash source files should no longer trigger an assert.
+* Earthcity_1 will no longer trigger an assert when importing.
 
 ## Sapien & Standalone
 

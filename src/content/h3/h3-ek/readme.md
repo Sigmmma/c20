@@ -38,6 +38,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 * Make some changes to tackle `verify_same_triangle_indices` asserts. Users should keep a look out and report models that continue to display this issue.
 * Add a proper error for importing a DDS instead of asserting.
 * Now capable of compiling shaders. You no longer need community fixes for this to work.
+* String id storage has been increased which decreases the likelihood of users exceeding the string id limit when building cache files.
 
 ## Guerilla
 
@@ -52,6 +53,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 
 * Can now load the FMOD files provided in MCC to play sound in the editor. Sound importing should also function. Make sure to copy the fmod folder from your Halo 3 MCC install over to your H3EK editor for playback and importing to work properly.
 * Fixed a bug that didn't allow users to load campaign maps from the legacy mainmenu. Should now be able to use the mainmenu for loading maps if you provide the mapinfo files from your MCC install.
+* Parts of the main menu such as the matchmaking lobby will no longer cause a crash.
 
 # What's new in the season 8 hotfix v1
 
