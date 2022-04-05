@@ -78,6 +78,8 @@ So that Firefight can periodly remove garbage objects such as destroyed vehicles
 
 # Guerilla
 
+## Zone Sets
+
 A required step for survival maps to function is to have a zone set with the prefix `set_survival`. From the moment you place down a **Player starting point** with the survival flag ticked, you will need the survival zone set in order to load the map in the standalone client, even if you intend to play it as a campaign map.
 
 To create a zone set, open your scenario file in Guerilla and navigate down to the zone sets block and add a new entry. Inside, name it `set_survival` and tick each **bsp zone flag** for each **structure bsp** that you intend to have loaded.
@@ -85,6 +87,18 @@ To create a zone set, open your scenario file in Guerilla and navigate down to t
 !["A zone set that will allow survival to be loaded."](zonesets.jpg)
 
 For maps with multiple survival areas, you can add suffixes to the set name such as `set_survival_a`.
+
+## Designer Zones
+
+In addition to Zone Sets, you can optionally include **Designer Zones** into your map. These can be made in Sapien within the **Caching/Zones/Resources** folder, but you are required to use Guerilla to assign them to a zone set like the one created above. Their main purpose is to separate which resources are loaded within a map at any given time - for example, in a campaign scenario you may only have a scarab within one zone set and not feature in any others, so there would be little point in loading it outside of that area.
+
+!["A Designer zone in Sapien."](designerzone.jpg)
+
+One key usage of Designer Zones that is specific to Firefight is that once you include a vehicle that is also referenced by the **Multiplayer Globals** and add that Designer Zone to your `set_survival`, your map will also be able to use all other vehicles within Multiplayer Globals when using the Vehicle Set option in the Firefight Options menu within MCC.
+
+Without any Designer Zones, your map will only be able to use vehicles that have been added to the palette, though this behaviour will not neccesarily be reflected when playtesting in the standalone client.
+
+Additionally, you may notice that after you build your scenario into a cache file that it will include a Designer Zone named `dz_mp_globals`; this will contain any weapons, characters and optionally vehicles that are required by Firefight and it will automatically be added to your `set_survival` Zone Set(s).
 
 # Scripting
 
