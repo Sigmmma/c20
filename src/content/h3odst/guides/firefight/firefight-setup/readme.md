@@ -151,8 +151,4 @@ Your scenario will load your map using the variant from the `game_engine_setting
 * Through the use of insertion points, you can create multiple different survival areas for your scenario. You can look at the scripts for h100 and sc130 for insight on how to implement this.
 * It's recommended that you setup command scripts for your Phantoms so they can drop off troops and objectives for your wave squads so that they do not simply randomly patrol and instead advance towards the players position.
 
-# Known issuses
-
-* The HUD for Firefight does not display in tag_test due to a bug.
-
 [template]: https://drive.google.com/file/d/1MikNcpdYAZJCALWZ7RoAG9GQHHTmI8_Y/view?usp=sharing
