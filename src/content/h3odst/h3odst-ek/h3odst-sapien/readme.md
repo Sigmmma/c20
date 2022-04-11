@@ -2,7 +2,14 @@
 
 It is roughly analogous to Forge found in later Halo titles, Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which has support for debug commands, and by using <kbd>Tab</kbd> you can switch to player mode to interact with the simulation in real time.
 
-It's pretty much identical to Halo 3 Sapien so please refer to that page for further info on hotkeys and features
+It's pretty much identical to [Halo 3 Sapien][H3-Sapien] so please refer to that page for further info on hotkeys and features.
 
-[Halo 3 Sapien][H3-Sapien]
+# Changes from Halo 3 Sapien
+
+* Scenarios can be given PDA definitions which allow the use of custom VISR minimaps.
+* The VISR vision mode screen effects can be overriden by scenarios.
+* AI Squads no longer have Fire teams and instead have Cells which have additional functinality for Firefight. There is also the option of Spawn Formations in the place of Spawn Points, these can be used to spawn multiple AI from a cell in an area.
+* AI Zones and Areas now have a new properties window which enables the automatic generation of firing positions.
+* Resources can now be split or merged per bsp using the Scenarios menu.
+* Trigger Volumes are able to change between being bounding boxes or sectors which allow more complex shapes.
 
