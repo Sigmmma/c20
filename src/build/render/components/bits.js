@@ -25,12 +25,20 @@ const html = commonTags.stripIndent(commonTags.html);
 const classes = (classArr) => classArr && classArr.length > 0 ? `class="${classArr.join(" ")}"` : "";
 const p = (body) => html`<p>${body}</p>`;
 
+const reportedMissingKeys = new Set()
+
 const localizer = R.curry((bundle, lang) => {
   return (key, safe) => {
     if (!bundle[key] && !safe) {
       throw new Error(`Missing localizations for key ${key}`);
+    } else if (!bundle[key]) {
+      if (!reportedMissingKeys.has(key))
+        console.warn(`Missing localisation key "${key}"`);
+      reportedMissingKeys.add(key)
+      return null
     }
-    return bundle[key] ? bundle[key][lang] : null;
+
+    return bundle[key][lang]  ? bundle[key][lang] : bundle[key]["en"];
   };
 });
 
