@@ -77,6 +77,12 @@ const localizations = localizer({
   },
   issue: {
     en: "Please describe the issue with the wiki page in as much detail as you can and make sure to update the title."
+  },
+  reportWiki: {
+    en: "Report a wiki issue"
+  },
+  reportToolkit: {
+    en: "Report a toolkit issue"
   }
 });
 
@@ -209,12 +215,12 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
                   <a href="${DISCORD_URL}">${icon("message-square", "Chat")} Discord</a>
                 </p>
                 <p>
-                  <a href=${REPO_URL}/issues/new?title=${encodeURIComponent("[" + page.title["en"] + "] - <Your issue here>")}&body=${encodeURIComponent("<!---" + localize("issue") + "-->")}>${icon("flag", "Report")} Report a wiki issue.</a>
+                  <a href=${REPO_URL}/issues/new?title=${encodeURIComponent("[" + page.title["en"] + "] - <Your issue here>")}&body=${encodeURIComponent("<!---" + localize("issue") + "-->")}>${icon("flag", "Report")} ${localize("reportWiki")}.</a>
                 </p>
                 ${isToolkitPage && 
                   html`
                   <p>
-                    <a href=${JIF_ISSUE_URL}>${icon("flag", "Report")} Report a toolkit issue.</a>
+                    <a href=${JIF_ISSUE_URL}>${icon("flag", "Report")} ${localize("reportToolkit")}.</a>
                   </p>`
                   }
               </nav>
