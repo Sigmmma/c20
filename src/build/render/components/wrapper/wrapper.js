@@ -32,10 +32,12 @@ const mainTopics = [
   ["/h3/h3-ek"],
 ];
 
+// keep this sorted with longer root/prefixes listed first as the code looks for the first match.
 const spaces = [
-  {root: "/h1", img: "/h1/box-art.jpg"},
-  {root: "/h2", img: "/h2/h2cover.jpg"},
+  {root: "/h3odst", img: "/h3odst/Halo_3_odst_final_boxshot.jpg"},
   {root: "/h3", img: "/h3/Halo_3_final_boxshot.jpg"},
+  {root: "/h2", img: "/h2/h2cover.jpg"},
+  {root: "/h1", img: "/h1/box-art.jpg"},
 ];
 
 const localizations = localizer({
