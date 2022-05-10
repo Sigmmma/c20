@@ -6,6 +6,8 @@ const REPO_URL = "https://github.com/Sigmmma/c20";
 const DEFAULT_OPEN_THRESHOLD = 8;
 const noThumbs = process.env.C20_NO_THUMBNAILS == "true";
 
+const JIF_ISSUE_URL = "https://github.com/Joint-Issue-Tracker/Joint-Issue-Tracker/issues/new?template=MCCHEK-ISSUE-FORM.yml"
+
 const breakTagName = (tagName) => tagName.split("_").join("_<wbr>");
 
 //converts a title into a URL- or ID-friendly slug
@@ -156,5 +158,6 @@ module.exports = {
   icon,
   slugify,
   REPO_URL,
-  DISCORD_URL
+  DISCORD_URL,
+  JIF_ISSUE_URL
 };
