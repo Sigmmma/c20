@@ -52,11 +52,7 @@ For the purposes of this tutorial, the model we will be creating shall be extrem
 ## Matching Halo scale
 The scale of Halo objects in Blender is actually very large, and so we will need to both scale the Cube to be much larger, as well as adjusting our camera clipping in Blender to make sure we can always see what we are doing.
 
-To adjust the camera clipping:
-1. Locate the sidebar to the right of your 3D viewport. If you cannot see it, press <kbd>N</kbd> to open it.
-2. Make sure to select the "View" tab.
-* ![](D.png "The sidebar, with the View tab selected")
-3. Near the top, change the "Clip Start" value to `1`, and the "End" value to a large value >10,000, such as `100000`
+If you have not done so already, follow the section called `Clip start and end` [on the blender prep page.][blender-prep]
 
 To determine how big objects need to be in Blender, the addon you installed earlier comes with handy scale helper models that can be added to your scene, which accurately depict the size of different Halo objects in Blender, such as characters and vehicles. We want a platform that is big enough for at least a couple of Spartans to stand on, so we will use the Master Chief model as a reference for how big to make the cube:
 
@@ -114,7 +110,52 @@ You may be wondering what to do about the scale model we still have in our scene
 5. Whilst not strictly necessary as we have no collision or physics data in the scene, it is good practice to uncheck the `Export Collision Geometry` and `Export Physics Geometry` boxes.
 6. Check `Fix Rotations` to ensure that nothing goes wrong with your bone rotations.
 7. Hit Export JMS! If you see `Export Completed Succesfully` along the bottom in Blender, everything is good.
+See the process in realtime [here.](https://youtu.be/Tu436ifYA3A)
+
+# Importing your Render JMS with Tool
+If you aren't already familiar, Tool (tool.exe) is a commandline program used within the Halo Editing Kits mostly to provide import and export functionality. As such, we will need to use it now to turn our newly exported .JMS file into a `.render_model` tag. You can read more about tool [here.][h3-tool]
+
+1. Open a command prompt within your H3EK directory. You can do this by typing `cmd` into the address bar whilst in the H3EK folder, and pressing <kbd>Enter</kbd>.
+* ![](J.gif "Opening command prompt")
+2. Take note of the filepath of your custom object. If you've been following along exactly, that would be `H3EK\data\objects\scenery\custom_platform`. The tool command we are about to run only requires the relative path, and for H3EK this means you can exclude everything up to and including `data` from the filepath. Therefore, we just need `objects\scenery\custom_platform`
+3. The command also takes one last option, `draft` or `final`. This is to do with PRT shadow creation, which is out of the scope of this tutorial. For now, we will simply use `draft`.
+4. Type the command `tool render objects\scenery\custom_platform draft` into CMD, and hit enter. If you used a different filepath, be sure to use that instead - if your path contains spaces in folder names, you will need to wrap the filepath in quotes when inputting this command.
+5. Do not be alarmed if you don't understand most of what is printed to the screen - if you see `writing out render model` somewhere, then it has succeeded. Refer to the following image to check that your output matches:
+* ![](K.png "Tool.exe output when successfully running the render command")
+
+That's about all there is to the .JMS importing process. Tool has taken our .JMS file, processed it, and produced a .render_model tag in the *mirror* filepath inside of the `H3EK\tags` directory. For example, our .JMS filepath of `H3EK\data\objects\scenery\custom_platform` means that the .render_model has been saved to `H3EK\tags\objects\scenery\custom_platform`. Try to find it in explorer!
+
+# Creating the Model and Scenery tags
+Now, render model tags themselves cannot be directly displayed in the Halo 3 engine - they need to be added to a `.model` tag, and the that model tag needs to be added to a high-level tag, such as `.vehicle`, `.scenery`, `.biped` etc, depending on the type of object you want. Scenery is a typically static object that can have collision, but otherwise floats where you place. This is what we want right now, and heres how to get there:
+
+1. Open [Guerilla.exe][h3-guerilla]
+2. Create a new tag, either with `File -> New` or <kbd>Ctrl+N</kbd>
+3. You can manually look for `model` in the drop-down, or you can start typing the word model and it should come up. Click OK
+4. We only need to do one thing in this tag, which is to add a reference to our newly generated `.render_model` tag - Click the `...` next to the `render model` box near the top of the tag. This will open a file browser. Navigate to `H3EK\tags\objects\scenery\custom_platform`, and double-click the `custom_platform.render_model` tag.
+5. Now that it is in the model, we can save this tag with <kbd>Ctrl+S</kbd>. Save it to `H3EK\tags\objects\scenery\custom_platform`, where the render model tag is also stored. We generally give all the tags the same name, and rely only on the file extension, so in this case save the tag with the name `custom_platform`. Once this is done, you can close the tag with the X in the top right.
+6. Create another new tag, this time making it a `Scenery` tag.
+7. For `bounding radius`, give it a value of 3 (this is a rough approximation of the size of the object).
+8. Find the `model` box a little way down from the top, click the `...` and select the `custom_platform.model` tag you just saved.
+9. Once this is done, you can save the tag. Once again, preferable just as `custom_platform.scenery` in `H3EK\tags\objects\scenery\custom_platform`.
+
+If you need, [there is a video](https://youtu.be/HH_Zcs1wxEE) which follows this exact process.
+
+Done! Our custom object is now ready to be placed and used in [Sapien][h3-sapien] just like any other scenery object.
+
+## Checking out the object in Sapien
+Now that we have a functional `.scenery` tag with the custom render model in it, we can add it to any map with sapien and use it! Although currently, it will be using the default missing texture, and wont be collideable (yet!).
+
+1. Open [Sapien][h3-sapien] and lauch any `.scenario` of your choosing
+2. Once it has loaded, in the Hierarchy View, click on `Scenario -> Objects -> Scenery`, and the click the `Edit Types` button.
+3. Click `Add`, and navigate to our new `custom_platform.scenery` tag in `H3EK\tags\objects\scenery\custom_platform`.
+4. Double click it, then click `Done`, then `OK`.
+5. The object has now been added to the scenario! With `Scenery` still selected in the Hierarchy View, right-click on the ground anywhere in the 3D Viewport to place a new scenery object.
+6. In the Properties Palette window, change the `type` drop-down to our new `custom_platform` scenery piece
+7. You should see the platform, although you may need to use the grab handles to position it better for you to see.
+
+Check the video [here](https://youtu.be/DgsMVhR1FN8) to see this process in action.
+
 
 ```.alert success
-Once you've gotten to this point your level is ready to export. Proceed to the [next section][exporting]
+Once you've gotten to this point, you are ready to look at adding a custom material! Proceed to the [next section][exporting]
 ```
