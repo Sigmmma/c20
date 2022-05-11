@@ -1,0 +1,19 @@
+title:
+  en: H3 Object Importing Guide - File Directories
+keywords:
+  en:
+    - modeling
+    - exporter
+    - importing
+    - render model
+    - render_model
+    - physics model
+    - physics_model
+    - collision model
+    - collision_model
+    - animations
+thanks:
+  General_101:
+    en: Writing the level file directories guide
+  PepperMan:
+    en: Writing this guide by converting General_101's level file directories guide
