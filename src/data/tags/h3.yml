@@ -156,6 +156,11 @@ patchy_fog:
 performance_throttles:
 physics_model:
   #id: phmo
+  description:
+    en: >
+      Strictly-convex mesh that determines how an object
+      collides with players and the environment. Typically
+      a simplified, blocked-out version of the render mesh.
 physics:
   #id: phys
 pixel_shader:
