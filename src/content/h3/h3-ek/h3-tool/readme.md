@@ -695,6 +695,25 @@ tool fbx-to-jms render "F:\dreamer.fbx" "F:\dreamer.JMS"
 
 For some details on how to setup the FBX file see [FBX for H3][fbx].
 
+# Import Bitmap Folder as Single Tag
+This command compiles multiple .tif files from a folder into a single .bitmap tag.
+
+```sh
+# import-bitmap-folder-as-single-tag <source_directory>
+tool import-bitmap-folder-as-single-tag "objects\scenery\example\bitmaps\combined-images"
+```
+
+* source-directory - A local data path to a folder containing the set of images to be combined
+
+For the example above, Tool would expect to find .tif/.tiff files at `data\objects\scenery\example\bitmaps\combined-images`. Assuming no errors, the images will be compiled into a single .bitmap tag at `tags\objects\scenery\example\bitmaps`, using the name of the containing folder for the .bitmap name, e.g. `combined-images.bitmap`.
+
+By default, the images will be imported as the `Interface Bitmap` type, this can be changed by re-saving the .bitmap tag with different settings, and running the command again.
+
+The individual images will be imported as separate "sequences", or layers, inside the bitmap.
+
+For images to be combined this way, Bungie naming convention is to name all of the images the same as the containing folder, with a numbered extension in square brackets for each. For example:
+`flares_generic[0], flares_generic[1], flares_generic[2]....`. However, this is optional, and in some cases it may be better to give the images distinct names so that they can be more easily recognized within the bitmap.
+
 # Sounds
 ## Reimport sounds
 Goes through all sound tags in a directory or child directories. Any sound tags that are found will have their sound files from data reimported.

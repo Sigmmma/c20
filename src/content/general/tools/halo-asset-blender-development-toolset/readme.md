@@ -10,6 +10,10 @@ To download the add-on from GitHub, press the _tags_ link next to the branch nam
 4. Finally, ensure that the new add-on is **checked** in the add-ons list.
 
 ## Manual installation
-Firstly, you will need to find Blender's `addons` directory. On Windows, this can be found at `%appdata%\Blender Foundation\Blender\<Blender Version>\scripts\addons`. Linux users will find it at `~/.config/blender/<blender version>/scripts/addons`.
+Firstly, you will need to find Blender's `addons` directory.
+
+* On Windows (Standalone Version), this can be found at `%appdata%\Blender Foundation\Blender\<Blender Version>\scripts\addons`.  
+* On Windows (Steam Version), this can be found by right clicking Blender in Steam -> Manage -> Browse Local Files -> `<Blender Version>\scripts\addons`.  
+* Linux users will find it at `~/.config/blender/<blender version>/scripts/addons`.
 
 Simply extract the downloaded `.zip` to this location so that the `io_scene_halo` directory is contained in `addons`.
