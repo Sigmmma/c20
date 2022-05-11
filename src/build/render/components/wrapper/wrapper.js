@@ -1,6 +1,5 @@
 const R = require("ramda");
-const {html, escapeHtml, REPO_URL, pageAnchor, localizer, detailsList, DISCORD_URL, icon} = require("../bits");
-const {renderMarkdown} = require("../markdown");
+const {html, escapeHtml, REPO_URL, pageAnchor, localizer, detailsList, DISCORD_URL, JIF_ISSUE_URL, icon} = require("../bits");
 const footer = require("./footer");
 const breadcrumbs = require("./breadcrumbs");
 const metabox = require("./metabox");
@@ -32,11 +31,20 @@ const mainTopics = [
   ["/h3/h3-ek"],
 ];
 
+// keep this sorted with longer root/prefixes listed first as the code looks for the first match.
 const spaces = [
-  {root: "/h1", img: "/h1/box-art.jpg"},
-  {root: "/h2", img: "/h2/h2cover.jpg"},
+  {root: "/h3odst", img: "/h3odst/Halo_3_odst_final_boxshot.jpg"},
   {root: "/h3", img: "/h3/Halo_3_final_boxshot.jpg"},
+  {root: "/h2", img: "/h2/h2cover.jpg"},
+  {root: "/h1", img: "/h1/box-art.jpg"},
 ];
+
+const mccToolkitPages = [
+  "/h1/tools/h1a-ek",
+  "/h2/tools/h2-ek",
+  "/h3/h3-ek",
+  "/h3odst/h3odst-ek"
+]
 
 const localizations = localizer({
   locale: {
@@ -66,6 +74,15 @@ const localizations = localizer({
   edit: {
     en: "Edit",
     es: "Editar"
+  },
+  issue: {
+    en: "Please describe the issue with the wiki page in as much detail as you can and make sure to update the title."
+  },
+  reportWiki: {
+    en: "Report a wiki issue"
+  },
+  reportToolkit: {
+    en: "Report a toolkit issue"
   }
 });
 
@@ -100,6 +117,7 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
   }
 
   const space = spaces.find(s => page.pageId.startsWith(s.root));
+  const isToolkitPage = mccToolkitPages.some(prefix => page.pageId.startsWith(prefix))
 
   const mainContent = html`
     <article class="content-article">
@@ -196,6 +214,15 @@ const wrapper = (ctx, headings, thanks, metaboxProps, body, bodyPlaintext) => {
                 <p>
                   <a href="${DISCORD_URL}">${icon("message-square", "Chat")} Discord</a>
                 </p>
+                <p>
+                  <a href=${REPO_URL}/issues/new?title=${encodeURIComponent("[" + page.title["en"] + "] - <Your issue here>")}&body=${encodeURIComponent("<!---" + localize("issue") + "-->")}>${icon("flag", "Report")} ${localize("reportWiki")}.</a>
+                </p>
+                ${isToolkitPage && 
+                  html`
+                  <p>
+                    <a href=${JIF_ISSUE_URL}>${icon("flag", "Report")} ${localize("reportToolkit")}.</a>
+                  </p>`
+                  }
               </nav>
             </div>
           </div>
