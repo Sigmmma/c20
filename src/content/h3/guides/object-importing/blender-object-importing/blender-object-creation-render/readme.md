@@ -8,7 +8,7 @@ This guide assumes you have already [prepared Blender][blender-prep].
 |[End Result](https://drive.google.com/file/d/1mteG515evA6pH74s-XFSnwx96Xe6MsOY/view?usp=sharing)    | The end product of this tutorial for you to examine and compare.
 
 # Introduction
-Welcome to the Halo 3 custom object importing guide. If you have any experience with importing objects in previous then you should feel mostly at home for better or worse. In this guide we will be showing you how to go about with creating your very own custom scenery object for Halo 3 in the 3D modeling software app known as Blender. This guide will include a completed version of our work as an example for you to contrast and compare but be sure to follow along.
+Welcome to the Halo 3 custom object importing guide. If you have any experience with importing objects in previous games then you should feel mostly at home for better or worse. In this guide we will be showing you how to go about with creating your very own custom scenery object for Halo 3 in the 3D modeling software app known as Blender. This guide will include a completed version of our work as an example for you to contrast and compare but be sure to follow along.
 
 If there are any images that you find difficult to read then try opening the image in a new tab to view it in full resolution.
 
