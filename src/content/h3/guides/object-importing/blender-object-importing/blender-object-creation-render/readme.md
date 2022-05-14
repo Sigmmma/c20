@@ -156,5 +156,5 @@ Check the video [here](https://youtu.be/DgsMVhR1FN8) to see this process in acti
 
 
 ```.alert success
-Once you've gotten to this point, you are ready to look at adding a custom material! Proceed to the [next section][exporting]
+Once you've gotten to this point, you are ready to look at adding a custom material! Proceed to the [next section][blender-object-creation-materials]
 ```
