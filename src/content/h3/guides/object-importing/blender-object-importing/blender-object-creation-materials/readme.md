@@ -83,7 +83,7 @@ This is the end of the UV mapping section, and hopefully your object's textures 
 1. Now that we have successfully added two materials to our custom platform and fixed up the UVs, we need to re-export from Blender to `.JMS` so that we can bring our updated model into Halo 3. If you have forgotten how to do this, read through the steps again in the [previous tutorial][blender-object-creation-render#exporting-from-blender]. As this is the second time we are exporting, you won't need to create a `render` folder again. Simply overwrite the existing `custom_platform.JMS` file.
 2. Once this is done, we need to run the `tool render` command again, to re-import the `.JMS` file. When this happens, `tool` automatically updates/overwrites the old `.render_model` tag, and the model will automatically reload itself if you happen to have `Sapien` open at the same time, which is very useful. If you have forgotten how to open the command prompt in the H3EK directory so that you can enter tool commands, revisit [this section from last time][blender-object-creation-render#importing-your-render-jms-with-tool]. The command we need is the exact same as last time: `tool render objects\scenery\custom_platform draft`
 
-Your object's render model has now been updated. However, it still won't have any texturing in Halo 3, so it can be difficult to tell if it worked. However, if you happened to keep an eye on the model in `Sapien` before and after re-importing it, you will notice that the invalid/DaVinci texture it has will have moved slightly, due to the new UV mapping.
+Your object's render model has now been updated. However, it still won't have any texturing in Halo 3, so it can be difficult to tell if it worked. However, if you happened to keep an eye on the model in `Sapien` before and after re-importing it, you will notice that the placeholder texture it has will have moved slightly, due to the new UV mapping.
 
 # Importing Image Textures into Halo 3
 ```.alert
@@ -97,7 +97,12 @@ Similarly to `.JMS` files, `tool.exe` will only import texture files from inside
 4. Enter the tool command `tool bitmaps objects\scenery\custom_platform\bitmaps`. If successful, you should see the following output:
 * ![](L.png "Tool Bitmaps output")
 
-Your textures have now been imported. Halo stores images in a tag type called `.bitmap`. *Do not confuse the proprietary Halo .bitmap tag format with the .BMP bitmap image file type*, these are not the same thing. Think of a `.bitmap` tag as a container for one or more images. Your newly generated bitmaps, like with the render model, will have been saved the *mirrored* file location in the `tags` folder. For example, in this tutorial, the bitmaps get saved to `H3EK\tags\objects\scenery\custom_platform\bitmaps`.
+Your textures have now been imported. Halo stores images in a tag type called `.bitmap`. Think of a `.bitmap` tag as a container for one or more images. Your newly generated bitmaps, like with the render model, will have been saved the *mirrored* file location in the `tags` folder. For example, in this tutorial, the bitmaps get saved to `H3EK\tags\objects\scenery\custom_platform\bitmaps`.
+
+
+ ```.alert danger
+ *Careful! Do not confuse the proprietary Halo .bitmap tag format with the .BMP bitmap image file type*, these are not the same thing.
+```
 
 # Creating and Applying Shaders
 ## Shader Information
