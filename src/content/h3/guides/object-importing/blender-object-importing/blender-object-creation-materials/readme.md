@@ -18,7 +18,7 @@ You will need the custom textures from the [file list][blender-object-creation-m
 When renaming the materials, make sure to use lowercase letters only, as Halo tag paths should not contain any uppercase letters.
 ```
 ```.alert danger
-IMPORTANT NOTE: TEXTURING/SHADING IN BLENDER HAS NO EFFECT ON IN-GAME MODELS FOR HALO. The only data exported to the .JMS is the name of our material. The name of the material will be the filename tool.exe searches for when looking for a shader tag to assign to a surface. All texturing and shading for Halo objects is done via the shader tags. We will only be using the textures in Blender so that we can preview how the texture will look on the surface, and this is helpful for UV mapping.
+NB: ***Texturing/shading in blender has no effect on in-game models for Halo.*** The only data exported to the .JMS is the name of our material. The name of the material will be the filename tool.exe searches for when looking for a shader tag to assign to a surface. All texturing and shading for Halo objects is done via the shader tags. We will only be using the textures in Blender so that we can preview how the texture will look on the surface, and as this is helpful for UV mapping.
 ```
 ## Adding Textures
 1. Select the Cube object in the Outliner, and navigate to the materials tab. If you have been following along, you should already have a material named `material` applied to the object:
@@ -44,7 +44,7 @@ After taking a look around the model, you will notice that all sides are using t
 4. [Select all](https://youtu.be/p27vyrHvpkk) faces of the Cube except for the top face.
 5. [Select the material](https://youtu.be/2yOOzN0zJfQ) named `concrete` from the materials list in the object.
 6. Click the assign button.
-7. To make sure you have the `wood` material applied to the top face, [select the material](https://youtu.be/2yOOzN0zJfQ) named `wood` and[assign the material](https://youtu.be/2yOOzN0zJfQ) only to the topside face of the object.
+7. To make sure you have the `wood` material applied to the top face, [select the material](https://youtu.be/2yOOzN0zJfQ) named `wood` and [assign the material](https://youtu.be/2yOOzN0zJfQ) only to the topside face of the object.
 
 You should now have a Cube object with a wood texture on top, and a concrete texture on the rest of the sides:
 * ![](D.gif "Correct application of materials to faces.")
@@ -57,7 +57,7 @@ UV Mapping is the process of projecting a 2D image onto a 3D model's surface. Th
 2. Hover your mouse over the 3D viewport on the right side, press <kbd>Z</kbd> and select `Material Preview` so that you can see the textures again.
 3. Make sure that the [context mode](https://www.youtube.com/watch?v=SVLAYHJSXYA) of the 3D viewport is set to Edit Mode, and that you are in [face select mode](https://www.youtube.com/watch?v=C_X7muZP3XA)
 
-This is the default UV Editing workspace. The left window is the UV Editor, and the right window is the 3D viewport that you are used to from the normal Layout workspace, however it is possible to customize the window positioning to whatever you would like. It is extremely difficult to do such a complex topic as UV editing justice via a text tutorial, so please watch this short [UV editing basics tutorial](https://www.youtube.com/watch?v=dR_TCHUTEw0) for a visual demonstration on how manipulation UV mapping affects how textures are displayed on a 3D object.
+This is the default UV Editing workspace. The left window is the UV Editor, and the right window is the 3D viewport that you are used to from the normal Layout workspace, however it is possible to customize the window positioning to whatever you would like. It is difficult to do such a complex topic as UV editing justice via a text tutorial, so please watch this short [UV editing basics tutorial](https://www.youtube.com/watch?v=dR_TCHUTEw0) for a visual demonstration on how manipulation UV mapping affects how textures are displayed on a 3D object.
 
 Using the information shown in the video, follow these steps:
 1. In the 3D Viewport, select only the top (wood) face of the object. You should see the texture appear in the UV window, along with a small square representing the area of the texture that the face is sampling the pixels of. We want to increase the size of this square so that the face covers a much larger texture area.

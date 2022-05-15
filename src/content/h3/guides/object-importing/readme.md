@@ -1,4 +1,4 @@
-This page will serve as the hub for custom object importing guides. As of right now, these guides have been written for Blender users, although those with knowledge in other 3D modeling programs such as Max may be able to follow along, and export to FBX.
+This page will serve as the hub for custom object importing guides. As of right now, these guides have been written for Blender users, although those with knowledge in other 3D modeling programs such as Max may be able to follow along, and export to [FBX][].
 
 ```.alert
 The guides below show you how to create and import a simple cube shape into Halo. However, should you wish, you can follow along using whatever 3D model you would like.
