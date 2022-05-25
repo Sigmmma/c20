@@ -37,10 +37,12 @@ You will need two textures for creating a Diffuse map:
 
 Conversion steps
 
-1. Open up your Albedo map in your photo editing program. PICTURE GOES HERE
+1. Open up your Albedo map in your photo editing program.
+  * ![](D.png "Albedo map")
 2. Create a new layer over your Albedo map.
 3. Copy and paste your Ambient Occulsion map into the new empty layer.
-4. Set the blend mode of the Ambient Occulsion to **Multiply**. PICTURE GOES HERE
+4. Set the blend mode of the Ambient Occulsion to **Multiply**.
+  * ![](E.png "Multiplied Ambient Occulsion map")
 5. Save your new Diffuse map as .TIF in your asset's bitmaps folder.
 
 You now have a converted Diffuse map. Make sure to save a editable copy of the Diffuse map in case you wish to make changes later.
@@ -60,14 +62,16 @@ You will need three textures for creating a Halo 3 Specular map:
 Conversion steps
 
 1. Open up your Metallic map in your photo editing program.
-PICTURE GOES HERE
+  * ![](F.png "Metallic map layer")
 2. Create a new layer over your Metallic map. 
 3. Copy and paste your Roughness map into the new empty layer.
 4. Press <kbd>Ctrl + I</kbd> to invert the Roughness map.
-5. Set the blend mode of the Roughness map to **Lighten** PICTURE GOES HERE
+5. Set the blend mode of the Roughness map to **Lighten**
+  * ![](G.png "Inverted Roughness Map")
 6. Create a new layer over your inverted Roughness map.
 7. Copy and paste your Ambient Occulsion map into the new empty layer.
-8. Set the blend mode of the Ambient Occulsion to **Multiply** and the opacity to **75%**. PICTURE GOES HERE
+8. Set the blend mode of the Ambient Occulsion to **Multiply** and the opacity to **75%**.
+  * ![](H.png "Multiplied Ambient Occulsion map")
 9. Save your new Specular map as .TIF in your asset's bitmaps folder.    
 
 And there you go, you should now have a working Specular map. Make sure to save a editable copy of the Specular map in case you wish to make changes later.
@@ -81,13 +85,17 @@ Setup steps
 1. Merge all the layers of your Specular map.
 2. Copy your Specular map.
 3. Create a new image with the exact same pixel resolution of the Specular map.
-4. Open the color channels of the new image and paste the Specular map in the red channel. PICTURE GOES HERE 
+4. Open the color channels of the new image and paste the Specular map in the red channel.
+  * ![](I.png "Specular map in the red channel")
    1. **NOTE**: *If you do not have a Metallic map, make the red channel solid black.*
 5. Copy your unaltered Roughness map and paste it into the green channel.
-6. Make the blue channel solid white. PICTURE GOES HERE
+6. Make the blue channel solid white.
+  * ![](J.png "Roughness map in the green channel")
 7. Save your new Control map as .TIF in your asset's bitmaps folder.    
 
 The final Control map should resemble a pink and blue texture, with the pink colors representing the reflective surfaces and the blue colors the dull surfaces. If you have a material that has no metal, the Control map should only have blue colors. 
+
+* ![](K.png "Final Control map")
 
 # Step 4: Converting a Normal Map
 
@@ -98,7 +106,8 @@ However, you have an OpenGL normal map, you will need to do the following:
 Conversion Steps
 1. Open up your OpenGL Normal map in your photo editing program.
 2. Go to the color channels of the Normal map.
-3. Select ONLY the green channel and press <kbd>Ctrl + I</kbd> to invert the green channel. PICTURE GOES HERE
+3. Select ONLY the green channel and press <kbd>Ctrl + I</kbd> to invert the green channel.
+* ![](L.png "Normal map converted to DirectX format")
 4. Re-enable all the color channels and save your converted Normal map as .TIF in your asset's bitmaps folder.
 
 # Step 4: Bitmap Settings
@@ -107,29 +116,29 @@ Once everything has been exported as .TIFs and imported into Guerilla, the textu
 
 Diffuse Bitmap:
 
-PICTURE GOES HERE
+* ![](M.png)
 
 Control Bitmap:
 
-PICTURE GOES HERE
+* ![](N.png)
 
 Normal Bitmap:
 
-PICTURE GOES HERE
+* ![](O.png)
 
 *Emission Bitmap:*
 
-PICTURE GOES HERE
+* ![](Q.png)
 
 *Parallax Bitmap*
 
-PICTURE GOES HERE
+* ![](P.png)
 
 # Step 5: Shader Settings
 
-The final step in this process is configuring the shader settings. Below is a picture showcasing what your shader should look like. The highlighted sections are very important to set:
+The final step in this process is configuring the shader settings. Below is a picture showcasing what your shader values and settings need to be set to:
 
-PICTURE GOES HERE
+* ![](R.png "Shader settings to use")
 
 - The base_map field is where your Diffuse map goes.
 - The bump_map field is where your Normal map goes.
@@ -141,7 +150,7 @@ PICTURE GOES HERE
 
 *Here is an example of the default settings for emission and parallax:*
 
-PICTURE GOES HERE
+* ![](S.png "Emission and parallax settings to use")
 
 
 The only settings that you should really play with while using the PBR shader is:
@@ -149,6 +158,9 @@ The only settings that you should really play with while using the PBR shader is
 - <kbd>analytical_specular_contribution</kbd>
 - <kbd>environment_map_specular_contribution</kbd>
 
+With everything combined and set, you should now have your asset rendering with the PBR shader.
+
+* ![](T.png "Final PBR shader setup for the asset")
 # Acknowledgements
 
 Thanks to the following individuals for their research or contributions to this topic:
