@@ -78,7 +78,7 @@ And there you go, you should now have a working Specular map. Make sure to save 
 
 # Step 3: Creating a Control Map
 
-Halo 3's PBR shader needs one more texture map to complete the shader. This Control map hold two texture maps in the RGB color channels. In the red channel is the Specular map and in the green channel is the Roughness map. The blue channel is just a solid white. This is the most important step. Without the correct Control map setup, your asset will not look correct in-engine.
+Halo 3's PBR shader needs one more texture map to complete the shader. This Control map holds two texture maps in the RGB color channels. In the red channel is the Specular map and in the green channel is the Roughness map. The blue channel is just a solid white. This is the most important step. Without the correct Control map setup, your asset will not look correct in-engine.
 
 Setup steps
 
@@ -99,9 +99,9 @@ The final Control map should resemble a pink and blue texture, with the pink col
 
 # Step 4: Converting a Normal Map
 
-Make sure to identify what type of Normal map you have. Halo 3 uses DirectX normals and does not need to be converted to work with the engine. Simply save the normal as a .TIF in your asset's bitmaps folder and you will be good to go.
+Make sure to identify what type of Normal map you have. Halo 3 uses DirectX normals and those do not need to be converted to work with the engine. Simply save the normal as a .TIF in your asset's bitmaps folder and you will be good to go.
 
-However, you have an OpenGL normal map, you will need to do the following:
+However, if you have an OpenGL normal map, you will need to do the following:
 
 Conversion Steps
 1. Open up your OpenGL Normal map in your photo editing program.
@@ -161,10 +161,5 @@ The only settings that you should really play with while using the PBR shader is
 With everything combined and set, you should now have your asset rendering with the PBR shader.
 
 * ![](T.png "Final PBR shader setup for the asset")
-# Acknowledgements
-
-Thanks to the following individuals for their research or contributions to this topic:
-
-- TheChunkierBean (Writing this page.)
 
 
