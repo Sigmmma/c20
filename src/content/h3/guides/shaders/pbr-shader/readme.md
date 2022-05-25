@@ -146,7 +146,7 @@ The final step in this process is configuring the shader settings. Below is a pi
 
 **NOTE:** *To enable the emission and parallax fields, make sure to enable them in the Categories section.*
 - *Set self_illumination to **Simple**.*
-- *Set parallax to **simple** or if you want the best quality **interpolated**.*
+- *Set parallax to **Simple** or if you want the best quality **Interpolated**.*
 
 *Here is an example of the default settings for emission and parallax:*
 
