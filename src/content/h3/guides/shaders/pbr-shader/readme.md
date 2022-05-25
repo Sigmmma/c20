@@ -112,7 +112,7 @@ Conversion Steps
 
 # Step 4: Bitmap Settings
 
-Once everything has been exported as .TIFs and imported into Guerilla, the textures (known as bitmaps in Halo 3) need to be configured to render correctly. Below is the bitmap settings you need to use for your PBR asset.
+Once everything has been exported as .TIFs and imported into Guerilla, the textures (known as bitmaps in Halo 3) need to be configured to render correctly. Below is the bitmap settings you need to use for your PBR asset:
 
 Diffuse Bitmap:
 
