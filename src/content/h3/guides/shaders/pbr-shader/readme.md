@@ -126,11 +126,11 @@ Normal Bitmap:
 
 * ![](O.png)
 
-*Emission Bitmap:*
+Emission Bitmap:
 
 * ![](Q.png)
 
-*Parallax Bitmap*
+Parallax Bitmap:
 
 * ![](P.png)
 
