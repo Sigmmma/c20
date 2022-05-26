@@ -15,6 +15,9 @@ Physically based rendering (PBR) is a way of rendering images that mimics how li
 
 With the release of the weapon and vehicle skins update to Halo 3 MCC, 343 Industries implemented a new material_model called **cook_torrance_pbr_maps**. This allowed for the menu skins that were authored in PBR to be replicated in-engine when enabled. While not 100% true PBR, this shader allows artists to now have a more modern rendering technique in Halo 3.
 
+
+**NOTE:** *There is no definitive way to utilize this shader at this time, as even 343 Industries uses inconsistent shader settings with this shader. This guide however is a good baseline setup to start with.*
+
 The PBR shader needs three types of textures to work with:
 - Diffuse Map
 - Control Map
@@ -27,7 +30,7 @@ The PBR shader needs three types of textures to work with:
 
 # Step 1: Creating a Diffuse map
 
-Halo 3 does not use Albedo maps. Instead it uses Diffuse maps, which is a combo of the Albedo map and Ambient Occulsion map. This way you can have baked shadows in your shader.
+Halo 3's  **cook_torrance** material models do not use Albedo maps. Instead it uses Diffuse maps, which is a combo of the Albedo map and Ambient Occulsion map. This way you can have baked shadows in your shader.
 
 You will need two textures for creating a Diffuse map:
 
@@ -52,7 +55,9 @@ You now have a converted Diffuse map. Make sure to save a editable copy of the D
 
 **NOTE**: *If you have a texture set that does not include a **Metallic map**, you do not need to make a Specular map. You can skip this step.*
 
-You will need three textures for creating a Halo 3 Specular map:
+In Halo 3, the shininess/highlights of a surface is defined using Specular maps. Halo 3 uses more stylized Specular maps compared to other industry Specular maps, so you will need to create your own. Below is an *experimental* method in creating Halo 3 styled Specular maps. 
+
+You will need three textures:
 
   - Metallic
   - Roughness
@@ -87,7 +92,9 @@ Setup steps
 3. Create a new image with the exact same pixel resolution of the Specular map.
 4. Open the color channels of the new image and paste the Specular map in the red channel.
   * ![](I.png "Specular map in the red channel")
-   1. **NOTE**: *If you do not have a Metallic map, make the red channel solid black.*
+
+  **NOTE**: *If you do not have a Metallic map, make the red channel solid black.*
+
 5. Copy your unaltered Roughness map and paste it into the green channel.
 6. Make the blue channel solid white.
   * ![](J.png "Roughness map in the green channel")
@@ -109,6 +116,8 @@ Conversion Steps
 3. Select ONLY the green channel and press <kbd>Ctrl + I</kbd> to invert the green channel.
 * ![](L.png "Normal map converted to DirectX format")
 4. Re-enable all the color channels and save your converted Normal map as .TIF in your asset's bitmaps folder.
+
+To make the texture importing more streamlined, end your texture file name with the <kbd>_zbump</kbd> flag to have the normal map import in the correct format.
 
 # Step 4: Bitmap Settings
 
@@ -148,7 +157,7 @@ The final step in this process is configuring the shader settings. Below is a pi
 - *Set self_illumination to **Simple**.*
 - *Set parallax to **Simple** or if you want the best quality **Interpolated**.*
 
-*Here is an example of the default settings for emission and parallax:*
+*Here is an example of some settings for emission and parallax:*
 
 * ![](S.png "Emission and parallax settings to use")
 
@@ -158,7 +167,8 @@ The only settings that you should really play with while using the PBR shader is
 - <kbd>analytical_specular_contribution</kbd>
 - <kbd>environment_map_specular_contribution</kbd>
 
-With everything combined and set, you should now have your asset rendering with the PBR shader.
+With everything combined and set, you should now have your asset rendering with the PBR shader. 
+
 
 * ![](T.png "Final PBR shader setup for the asset")
 
