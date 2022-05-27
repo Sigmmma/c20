@@ -7,7 +7,9 @@ Halo 3 includes a PBR-like shader that allows artists to convert their premade P
 
 * ![](B.png "An example of PBR")
 
-Physically based rendering (PBR) is a way of rendering images that mimics how light works in the real world. Most modern game engines have a form of this method in there shading systems. 
+[Physically based rendering](https://en.wikipedia.org/wiki/Physically_based_rendering) (PBR) is a way of rendering images that mimics how light works in the real world. Most modern game engines have a form of this method in there shading systems.
+
+
 
 # Halo 3's "PBR"
 
@@ -15,8 +17,9 @@ Physically based rendering (PBR) is a way of rendering images that mimics how li
 
 With the release of the weapon and vehicle skins update to Halo 3 MCC, 343 Industries implemented a new material_model called **cook_torrance_pbr_maps**. This allowed for the menu skins that were authored in PBR to be replicated in-engine when enabled. While not 100% true PBR, this shader allows artists to now have a more modern rendering technique in Halo 3.
 
-
-**NOTE:** *There is no definitive way to utilize this shader at this time, as even 343 Industries uses inconsistent shader settings with this shader. This guide however is a good baseline setup to start with.*
+```.alert info
+NB: There is no definitive way to utilize this shader at this time, as even 343 Industries uses inconsistent shader settings with this shader. This guide however is a good baseline setup to start with.
+```
 
 The PBR shader needs three types of textures to work with:
 - Diffuse Map
@@ -53,8 +56,9 @@ You now have a converted Diffuse map. Make sure to save a editable copy of the D
 
 # Step 2: Creating a Specular map
 
-**NOTE**: *If you have a texture set that does not include a **Metallic map**, you do not need to make a Specular map. You can skip this step.*
-
+```.alert danger
+NB: If you have a texture set that does not include a **Metallic map**, you do ***not*** need to make a Specular map. You can skip this step.
+```
 In Halo 3, the shininess/highlights of a surface is defined using Specular maps. Halo 3 uses more stylized Specular maps compared to other industry Specular maps, so you will need to create your own. Below is an *experimental* method in creating Halo 3 styled Specular maps. 
 
 You will need three textures:
@@ -106,7 +110,7 @@ The final Control map should resemble a pink and blue texture, with the pink col
 
 # Step 4: Converting a Normal Map
 
-Make sure to identify what type of Normal map you have. Halo 3 uses DirectX normals and those do not need to be converted to work with the engine. Simply save the normal as a .TIF in your asset's bitmaps folder and you will be good to go.
+Make sure to identify what type of Normal map you have ([click here to learn more](https://www.texturecan.com/post/3/DirectX-vs-OpenGL-Normal-Map/)). Halo 3 uses DirectX normals and those do not need to be converted to work with the engine. Simply save the normal as a .TIF in your asset's bitmaps folder and you will be good to go.
 
 However, if you have an OpenGL normal map, you will need to do the following:
 
