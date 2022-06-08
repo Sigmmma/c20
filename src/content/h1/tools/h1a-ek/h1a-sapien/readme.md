@@ -112,7 +112,7 @@ These hotkeys apply in scripted camera mode.
   * First person
   * Third person
   * Flycam
-* <kbd>Caps lock</kbd>: Start/stop animation recording. Unfortunately it is not possible to control the posessed unit while recording.
+* <kbd>Caps lock</kbd>: Start/stop animation recording. This requires an Xinput controller (e.g. An Xbox controller) to be connected to your device.
 * <kbd>Shift + Q</kbd>: Exits a posessed unit while in scripted camera mode.
 
 See main page: [recorded-animations][]
