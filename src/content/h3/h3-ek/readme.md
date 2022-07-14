@@ -19,6 +19,52 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
 2. Re-run `Extract (H3EK).bat` and replace all files.
 
+# What's new in the July update
+
+## Installing the July update
+1. Delete the shader templates from the previous update as they are not compatible, delete `tags\shaders\beam_templates`, `tags\shaders\black_templates`, `tags\shaders\contrail_templates`, `tags\shaders\cortana_templates`, `tags\shaders\custom_templates`, `tags\shaders\decal_templates`, `tags\shaders\foliage_templates`, `tags\shaders\halogram_templates`,`tags\shaders\light_volume_templates`, `tags\shaders\particle_templates`, `tags\shaders\screen_templates`, `tags\shaders\shader_templates`, `tags\shaders\terrain_templates` and `tags\shaders\water_templates`.
+2a. (recommended) Extract the new `H3EK.7z`.
+2b. (alternative) If you don't want to update all your tags it's highly recommended you at least update the `tags\shaders` folder.
+
+## Content
+
+* Various changes to tags and data files. Updating your tag set is highly recommended.
+
+## General
+
+* Maximum string storage for cache files increased.
+* New flag for equipment to prevent AI from dropping them on death.
+* Script doc has new formatting and will now contain globals.
+* Reports are now contained within the reports folder.
+* HUD sounds in `chud_globals_definition` tags are no longer capped at eight elements.
+* Health related flags in HUD sounds will now work.
+
+## Tool
+
+* Export bitmap commands now have support for cubemaps.
+* New commands `extract_unicode_strings` and `print_tag_to_XML` added.
+* Using the command `faux_farm_dillum` with the checkerboard setting will no longer trigger an assert.
+* Various improvements to the `export-tag-to-xml` command output.
+
+## Guerilla
+
+* String list editor improvements.
+* The List button for stringids that can be found in ODST has been added where appropriate.
+* Reserved chud text stringids are now listed.
+
+## Sapien
+
+* Additional FMOD banks will no longer stop working after a map reset.
+* Using the command `render_debug_structure_all_cluster_errors` will no longer trigger a crash.
+* The keybinding for dual wield has been moved to the C key.
+* The keybindings for switching Forge categories are now functional.
+
+## Standalone
+
+* Additional FMOD banks will no longer stop working after a map reset.
+* The keybinding for dual wield has been moved to the C key.
+* The keybindings for switching Forge categories are now functional.
+
 # What's new in the March update
 
 ## Installing the March update

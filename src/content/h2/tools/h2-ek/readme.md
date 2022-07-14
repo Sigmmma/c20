@@ -21,6 +21,45 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 2: Anniversary on Steam][st
 1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
 2. Re-run `Extract H2EK.bat` and replace all files.
 
+# What's new in the July update
+
+```.alert danger
+After downloading the update you need to clear your shader cache by deleting the `shader_cache` folder. You also need to update your shader template files.
+```
+
+## General
+
+* First person permutations will match the third person permutations when object render models match.
+* Data mine files will no longer be generated when using the editing kit.
+
+## Content
+
+* Various changes to tags and data files. Updating your tag set is highly recommended.
+
+## Guerilla
+
+* String list editor improvements.
+
+## Standalone
+
+* The debug menu now has the option for `debug_menu_rebuild`
+
+## Sapien
+
+* Orders will no longer trigger an assert when clicking into the game window.
+* The Map Warnings window should now provide more accurate information.
+* Using the Undo action while editing AI Squads should no longer trigger an assert.
+* Using `map_reset` while hilighting a numerical input field will no longer trigger an assert.
+* The debug menu now has the option for `debug_menu_rebuild`
+
+## Tool
+
+* The `extract_unicode_strings` command will now output text files that are valid for reimporting.
+* New commands `extract-bitmap-dds` and `export-bitmap-tga` added.
+* Reimporting an existing bitmap with the interface type should no longer trigger an assert.
+* Importing an interface bitmap that has mip maps will now show a clearer error message.
+* XREFs in structure files will now generate valid tags.
+
 # What's new in the March update
 
 ```.alert danger

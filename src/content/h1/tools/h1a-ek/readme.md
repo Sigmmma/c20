@@ -28,6 +28,34 @@ Using the H1A-EK to create content for H1CE rather than H1A is not officially su
 1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
 2. Re-run `Extract (HCEEK).bat` and replace all files.
 
+# What's new in the July update
+
+## General
+
+* New script functions `sleep_forever`, `debug_script_thread`, `debug_scripting`, `breakpoint`, `kill_active_scripts`, `get_executing_running_thread`, `kill_thread`, `script_started` and `script_finished`
+* New script globals `hs_verbose` and `breakpoints_enabled`
+* Support for script parameters similar to the ones seen in H3+.
+* First person permutations will match the third person permutations when object render models match.
+
+## Content
+
+* Various changes to tags and data files. Updating your tag set is highly recommended.
+
+## Guerilla
+
+* Mouseover text for the inconsequential flag is no longer cut off.
+* Added support for 3rd and 4th grenade slots.
+* Added flag to toggle runtime tag patches to the scenario tag.
+
+## Standalone
+
+* The command `core_load_name` now loads instead of saving.
+* The debug menu now has the option for `debug_menu_rebuild`
+
+## Tool
+
+* Zoom in hud messages will no longer be treated as crouch when importing strings.
+
 # What's new in the March update
 
 ## General
