@@ -51,6 +51,7 @@ Using the H1A-EK to create content for H1CE rather than H1A is not officially su
 
 * The command `core_load_name` now loads instead of saving.
 * The debug menu now has the option for `debug_menu_rebuild`
+* The command `player_spawn_count` will no longer cause an assertion when used without multiple controllers.
 
 ## Tool
 

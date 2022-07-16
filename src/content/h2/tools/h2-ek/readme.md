@@ -31,6 +31,7 @@ After downloading the update you need to clear your shader cache by deleting the
 
 * First person permutations will match the third person permutations when object render models match.
 * Data mine files will no longer be generated when using the editing kit.
+* Antenna widgets will now render on objects.
 
 ## Content
 
@@ -90,7 +91,6 @@ After downloading the update you need to clear your shader cache by deleting the
 ## Tool
 
 * Backwash source files should no longer trigger an assert.
-* Earthcity_1 will no longer trigger an assert when importing.
 
 ## Sapien & Standalone
 

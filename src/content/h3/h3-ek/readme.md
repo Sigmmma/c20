@@ -29,6 +29,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 ## Content
 
 * Various changes to tags and data files. Updating your tag set is highly recommended.
+* Added test, audio and lighting reference scenarios `levels\test\box`, `levels\reference\audio`, `levels\reference\lighting_reference`
 
 ## General
 
@@ -58,6 +59,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 * Using the command `render_debug_structure_all_cluster_errors` will no longer trigger a crash.
 * The keybinding for dual wield has been moved to the C key.
 * The keybindings for switching Forge categories are now functional.
+* Reloading tags should no longer cause an FMOD related assertion.
 
 ## Standalone
 

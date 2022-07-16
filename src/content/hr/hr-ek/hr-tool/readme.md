@@ -1,4 +1,4 @@
-**HR-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo Reach Editing Kit][hr-ek] by 343 Industries in 2021.
+**HR-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo Reach Editing Kit][hr-ek] by 343 Industries in 2021. Users can also run Tool commands in [Bonobo][hr-bonobo] where commands can be filtered and favorited.
 
 # Tips
 * If an invalid command is typed into tool then tool will print a list of commands that have the same starting character as what was typed in. This means that if we type `tool s` into command prompt then tool will only output commands that start with the letter s.
@@ -50,7 +50,7 @@ This command compiles images like the `bitmaps` command but allows the user to s
 
 ```sh
 # bitmaps-with-type <source-directory> <type>
-tool bitmaps-with-type "levels\multi\chill\bitmaps" 2d
+tool bitmaps-with-type "levels\multi\30_settlement\bitmaps" 2d
 ```
 
 * source-directory - A local data path to a folder containing a set of images for processing.
@@ -70,7 +70,7 @@ A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb.
 
 ```sh
 # build-cache-file <scenario> <platform> <audio-configuration> <target-language> <dedicated-server-(optional)> <compress_more|compress_most-(optional)> <use-fmod-data-(optional)>
-tool build-cache-file "levels\multi\chill\chill" pc
+tool build-cache-file "levels\multi\30_settlement\30_settlement" pc
 ```
 
 * scenario - A local tag path to your scenario without the file extension
@@ -167,7 +167,7 @@ Builds the provided scenario along with the associated cache files needed for ta
 
 ```sh
 # build-cache-file-for-cubemaps <scenario> <platform>
-tool build-cache-file-for-cubemaps "levels\multi\chill\chill" pc
+tool build-cache-file-for-cubemaps "levels\multi\30_settlement\30_settlement" pc
 ```
 
 * scenario - A local tag path to a scenario tag without extension.
@@ -178,7 +178,7 @@ A [scenario][] can be compiled into a [map][] using the `build-cache-file-langua
 
 ```sh
 # build-cache-file-language <target-language> <scenario> <platform>
-tool build-cache-file-language english "levels\multi\chill\chill" pc
+tool build-cache-file-language english "levels\multi\30_settlement\30_settlement" pc
 ```
 
 * target-language - ???
@@ -190,7 +190,7 @@ A [scenario][] can be compiled into a [map][] using the `build-cache-file-langua
 
 ```sh
 # build-cache-file-language-version <target-language> <minor-version-number> <scenario> <platform>
-tool build-cache-file-language-version english "" "levels\multi\chill\chill" pc
+tool build-cache-file-language-version english "" "levels\multi\30_settlement\30_settlement" pc
 ```
 
 * target-language - ???
@@ -556,7 +556,7 @@ Takes a tag and dumps the contents to an XML format. Use this for easy compariso
 
 ```sh
 # export-tag-to-xml <tag-file> <output-file>
-tool export-tag-to-xml "F:\HREK\tags\objects\characters\masterchief\masterchief.render_model" "F:\masterchief.xml"
+tool export-tag-to-xml "F:\HREK\tags\objects\characters\spartans\spartans.render_model" "F:\spartans.xml"
 ```
 
 * tag-file - An absolute tag path to a tag with extension.
@@ -565,16 +565,16 @@ tool export-tag-to-xml "F:\HREK\tags\objects\characters\masterchief\masterchief.
 # Extract import info
 Dumps the stored import-info data used to originally import the tag file. Only tags that contain valid import-info can use this. This means only [render_model][], [collision_model][], [physics_model][], and [scenario_structure_bsp][].
 
+```.alert
+The stock tags that come with the HREK do not contain any import info, so this command will not work on them.
+```
+
 ```sh
 # extract-import-info <tag-file>
 tool extract-import-info "F:\HREK\tags\objects\characters\spartans\spartans.render_model"
 tool extract-import-info "F:\HREK\tags\objects\characters\spartans\spartans.collision_model"
 tool extract-import-info "F:\HREK\tags\objects\characters\spartans\spartans.physics_model"
-tool extract-import-info "F:\HREK\tags\levels\multi\30_powerhouse\30_powerhouse.scenario_structure_bsp"
-```
-
-```.alert
-The stock tags that come with the HREK do not contain any import info, so this command will not work on them.
+tool extract-import-info "F:\HREK\tags\levels\multi\30_settlement\30_settlement.scenario_structure_bsp"
 ```
 
 * tag-file - An absolute file path to a tag containing valid import info.
@@ -645,11 +645,11 @@ The multi-instance faux process dumps a fair bit of intermediate data to disk wh
 
 
 # FBX to GR2
-This command takes an FBX and converts it to a GR2 file for Halo Reach level importing. Use this if you don't have access to an export script.
+This command takes an FBX and converts it to a GR2 file for Halo Reach importing. It is a required step in the process of creating a file that can be used by the import command.
 
 ```sh
-# fbx-to-ass <fbx> <ass>
-tool fbx-to-ass "F:\dreamer.fbx" "F:\dreamer.ASS"
+# fbx-to-gr2 <fbx> <gr2>
+tool fbx-to-gr2 "F:\dreamer.fbx" "F:\dreamer.gr2"
 ```
 
 * fbx - An absolute filepath to a valid FBX file.
@@ -657,47 +657,33 @@ tool fbx-to-ass "F:\dreamer.fbx" "F:\dreamer.ASS"
 
 For some details on how to setup the FBX file see [FBX for HR][fbx].
 
-# FBX to JMA
-This command takes an FBX and converts it to an animation source file for Halo Reach importing. Use this if you don't have access to an export script. Be aware that the extension can be any of the available extensions for animation importing. It does not specifically needs to be JMA. You can type JMO as the extension and the output is still valid.
+# Import
+
+The import command is a multi-purpose command used for importing animations, collision, physics and render geometry. It is also the only command that can be used to import structures, superceding the `structure` command used in prior editing kits.
 
 ```sh
-# fbx-to-jma <fbx> <jma> [Start-frame] [Last-frame]
-tool fbx-to-jma "E:\my_fbx_files\cyborg_dab.fbx" F:\cyborg_my_custom_anim.JMA
-tool fbx-to-jma "E:\my_fbx_files\cyborg_dab.fbx" F:\cyborg_my_custom_anim.JMA 5 10
+# import <sidecar-file> <check|force|verbose|repro|draft|seam_debug|skip_instances|local|farm_seams|farm_bsp|decompose_instances|suppress_errors_to_vrml <string-array>
+tool import "objects\weapons\rifle\dmr\dmr.sidecar.xml" force local
 ```
+* sidecar-file - A file containing a list of objects and properties within a directory for importing.
+* force - Forces all files to import even if they haven't changed
+* draft - Skip generating PRT data, allowing for faster speed at a lower quality (models only).
+* seam_debug - Provides extra seam debugging information (structures only).
+* local - Build is orphaned from the depot (structures only).
+* decompose_instances - Run convex decomposition for poop physics, very slow (structures only).
+* suppress_errors_to_vrml - Do not write errors to vrml files.
 
-* fbx - An absolute filepath to a valid FBX file.
-* jma - An absolute filepath that includes name and extension to write the output to.
-* Start-frame - Sets the first frame index that the converter will start from. Use this if you want only a specific section of an animation from your FBX. This argument is optional so you can leave this and Last-frame out if you want the animation as is.
-* Last-frame - Sets the last frame index that the converter will end on. Use this if you want only a specific section of an animation from your FBX. This argument is optional so you can leave this and Last-frame out if you want the animation as is.
-
-For some details on how to setup the FBX file see [FBX for HR][fbx].
-
-# FBX to JMI
-This command takes an FBX and converts it to a JMI source file for Halo Reach importing. Use this if you don't have access to an export script.
+## Megalo convert variant files
+Converts mglo files built with MegaloEdit and converts them to bin files that can be used in MCC.
 
 ```sh
-# fbx-to-jmi <fbx> <jmi>
-tool fbx-to-jmi "E:\my_fbx_files\scenery_set.fbx" F:\scenery_set.JMI
+# megalo-convert-variant-files <source-directory> <destination-directory>
+tool megalo-convert-variant-files "maps\megalo" "maps\game_variants"
 ```
 
-* fbx - An absolute filepath to a valid FBX file.
-* jmi - An absolute filepath that includes name and extension to write the output to.
+* source-directory - A directory containing mglo files.
+* destination-directory - The output directory to store the converted bin files.
 
-For some details on how to setup the FBX file see [FBX for HR][fbx].
-
-# FBX to JMS
-
-```sh
-# fbx-to-jms <render,collision,physics-or-all> <fbx> <jms>
-tool fbx-to-jms render "F:\dreamer.fbx" "F:\dreamer.JMS"
-```
-
-* render,collision,physics-or-all - Sets the type of geo this FBX is for. Use either render, collision, physics, or all only. The geo class set will determine what geometry gets exported from the JMS
-* fbx - An absolute filepath to a valid FBX file.
-* jms - An absolute filepath that includes name and extension to write the output to.
-
-For some details on how to setup the FBX file see [FBX for HR][fbx].
 
 # Sounds
 ## Reimport sounds
@@ -848,22 +834,6 @@ tool sounds-single-mixed "sound_test" projectile_impact sfx
 * type - Set the sound class
 * bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
 
-# Structure
-A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag.
-
-```sh
-# structure <ass-file>
-tool structure "levels\multi\example\structure\example.ASS"
-```
-
-* ass-file - A local data path to a ASS file with extension.
-
-For the example above, Tool would expect to find a corresponding ASS file at `data\levels\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\levels\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
-
-Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. This step does not produce [lightmaps][scenario_lightmap] -- see [baking lightmaps](#baking-lightmaps-faux).
-
-Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario.
-
 # Broken and development commands
 Not all commands work or are of any use to anyone anymore. They are listed here for completeness but shouldn't be used.
 
@@ -925,42 +895,6 @@ tool export-game-variant-settings "multiplayer\game_variant_settings\slayer\slay
 ```
 
 * tag-file - A local tag path to a `multiplayer_variant_settings_interface_definition tag with extension.
-
-## Export shipping game variants
-Writes gametype bin files to your HREK root. Currently broken.
-
-```sh
-# export-shipping-game-variants
-tool export-shipping-game-variants
-```
-
-
-## Xbox live config commands?
-These seem to be meant to configure Xbox live, likely not useful?
-
-### Build and deploy network files
-???
-
-```sh
-# build-and-deploy-network-files
-tool build-and-deploy-network-files
-```
-
-### Build and deploy retail network files
-???
-
-```sh
-# build-and-deploy-retail-network-files
-tool build-and-deploy-retail-network-files
-```
-
-### Build and deploy tracked network files
-???
-
-```sh
-# build-and-deploy-tracked-network-files
-tool build-and-deploy-tracked-network-files
-```
 
 # Commands with unknown usage
 Not much is know about these commands, if you know something let us know!

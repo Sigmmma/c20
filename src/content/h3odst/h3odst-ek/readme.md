@@ -25,6 +25,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purc
 ## Content
 
 * Various changes to tags and data files. Updating your tag set is highly recommended.
+* Added test, audio and lighting reference scenarios `levels\test\box`, `levels\reference\audio`, `levels\reference\lighting_reference`
 
 ## General
 
