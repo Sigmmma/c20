@@ -59,7 +59,8 @@ After downloading the update you need to clear your shader cache by deleting the
 * New commands `extract-bitmap-dds` and `export-bitmap-tga` added.
 * Reimporting an existing bitmap with the interface type should no longer trigger an assert.
 * Importing an interface bitmap that has mip maps will now show a clearer error message.
-* XREFs in structure files will now generate valid tags.
+* XREFs paths in structure files no longer contain a bad character, allowing XREFs to be imported correctly.
+* XREFs will no longer fail when the `data_dir` argument is set.
 
 # What's new in the March update
 
