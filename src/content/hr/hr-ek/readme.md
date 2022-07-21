@@ -7,7 +7,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo Reach on Steam][steam_purch
 ![.figure Pictured: Location of the mod tools in the steam library.](/general/tools/steam_tools.jpg)
 
 0. Ensure you own [Halo Reach on Steam][steam_purchase], tools are only accessible if you own the Steam version.
-1. [Download the tools using Steam](steam://run/1695791), you might need to [install Steam](https://store.steampowered.com/about/) first.
+1. [Download the tools using Steam](steam://run/1695793), you might need to [install Steam](https://store.steampowered.com/about/) first.
 2. Follow the on screen prompts to download the tools.
 3. Once the tools are done downloading you can find them in your library in the tools section.
 4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
@@ -34,4 +34,4 @@ Naturally there is multitude of changes compared to H3 as the engine underwent a
 * Sound playback and sound importing require the FSB files that come with MCC in order to function. Copy the FSB files from your Halo Reach MCC install.
 * The mainmenu requires the mapinfo files that come with MCC in order to load levels. Otherwise you will need to use `init.txt` or the developer console to load scenarios in the standalone build.
 
-[steam_purchase]: https://store.steampowered.com/app/1064271
+[steam_purchase]: https://store.steampowered.com/app/1064220

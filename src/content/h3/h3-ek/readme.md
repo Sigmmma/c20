@@ -19,9 +19,9 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
 2. Re-run `Extract (H3EK).bat` and replace all files.
 
-# What's new in the July update
+# What's new in the August update
 
-## Installing the July update
+## Installing the August update
 1. Delete the shader templates from the previous update as they are not compatible, delete `tags\shaders\beam_templates`, `tags\shaders\black_templates`, `tags\shaders\contrail_templates`, `tags\shaders\cortana_templates`, `tags\shaders\custom_templates`, `tags\shaders\decal_templates`, `tags\shaders\foliage_templates`, `tags\shaders\halogram_templates`,`tags\shaders\light_volume_templates`, `tags\shaders\particle_templates`, `tags\shaders\screen_templates`, `tags\shaders\shader_templates`, `tags\shaders\terrain_templates` and `tags\shaders\water_templates`.
 2a. (recommended) Extract the new `H3EK.7z`.
 2b. (alternative) If you don't want to update all your tags it's highly recommended you at least update the `tags\shaders` folder.

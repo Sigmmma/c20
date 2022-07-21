@@ -28,7 +28,7 @@ Using the H1A-EK to create content for H1CE rather than H1A is not officially su
 1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
 2. Re-run `Extract (HCEEK).bat` and replace all files.
 
-# What's new in the July update
+# What's new in the August update
 
 ## General
 
@@ -36,6 +36,8 @@ Using the H1A-EK to create content for H1CE rather than H1A is not officially su
 * New script globals `hs_verbose` and `breakpoints_enabled`
 * Support for script parameters similar to the ones seen in H3+.
 * First person permutations will match the third person permutations when object render models match.
+* The Movement Penalized field in weapon tags is now functional.
+* HUD prompts for actions such as entering vehicles will now display correctly.
 
 ## Content
 
@@ -52,6 +54,7 @@ Using the H1A-EK to create content for H1CE rather than H1A is not officially su
 * The command `core_load_name` now loads instead of saving.
 * The debug menu now has the option for `debug_menu_rebuild`
 * The command `player_spawn_count` will no longer cause an assertion when used without multiple controllers.
+* Decals will no longer appear in front of geometry when viewed from a certain distance.
 
 ## Tool
 
