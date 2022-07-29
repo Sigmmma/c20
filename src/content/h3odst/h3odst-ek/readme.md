@@ -38,6 +38,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purc
 
 * New commands `extract_unicode_strings` and `print_tag_to_XML` added.
 * Various improvements to the `export-tag-to-xml` command output.
+* Export bitmap commands now have support for cubemaps.
 
 ## Guerilla
 
@@ -45,12 +46,13 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purc
 
 ## Sapien
 
-* Additional FMOD banks will no longer stop working after a map reset.
+* Additional FMOD banks no longer stops working after a map reset.
 
 ## Standalone
 
-* Additional FMOD banks will no longer stop working after a map reset.
+* Additional FMOD banks no longer stops working after a map reset.
 * Firefight maps can now be successfully launched from the main menu.
+* The mission The Storm is no longer soft locked after the first area.
 
 # Major changes from H2
 Naturally there is multitude of changes compared to H2 as the engine underwent a major revision, this document endeavours to list the major ones.

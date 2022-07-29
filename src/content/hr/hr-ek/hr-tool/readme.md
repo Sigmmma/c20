@@ -1,4 +1,4 @@
-**HR-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo Reach Editing Kit][hr-ek] by 343 Industries in 2021. Users can also run Tool commands in [Bonobo][hr-bonobo] where commands can be filtered and favorited.
+**HR-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo Reach Editing Kit][hr-ek] by 343 Industries in 2021. Users can also run Tool commands in [Foundation][hr-foundation] where commands can be filtered and favorited.
 
 # Tips
 * If an invalid command is typed into tool then tool will print a list of commands that have the same starting character as what was typed in. This means that if we type `tool s` into command prompt then tool will only output commands that start with the letter s.
@@ -69,17 +69,17 @@ Cache files can be built using multiple tool verbs, but you will likely only use
 A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb. Simply provide your scenario's tag path.
 
 ```sh
-# build-cache-file <scenario> <platform> <audio-configuration> <target-language> <dedicated-server-(optional)> <compress_more|compress_most-(optional)> <use-fmod-data-(optional)>
+# build-cache-file <scenario> <platform> <target-language> <dedicated-server-(optional)> <compress_more|compress_most-(optional)> <use-fmod-data-(optional)> <audio-configuration>
 tool build-cache-file "levels\multi\30_settlement\30_settlement" pc
 ```
 
 * scenario - A local tag path to your scenario without the file extension
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
-* audio-configuration - ??? This is an optional argument
 * target-language - ??? This is an optional argument
 * dedicated-server - ??? This is an optional argument
 * compress_more|compress_most - ??? This is an optional argument
 * use-fmod-data - ??? This is an optional argument
+* audio-configuration - ??? This is an optional argument
 
 The resulting map file can be found in the editing kit's `maps` directory. This verb also generates reports under `reports\<mapname>` including a compilation-specific `debug.txt`.
 

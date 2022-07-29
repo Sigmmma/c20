@@ -16,9 +16,9 @@ HR-Tool:
         - JMS
         - Animation data
         - ASS
-HR-Bonobo:
+HR-Foundation:
   inherit: HR-EK
-  page: hr-bonobo
+  page: hr-foundation
   buildTypes:
     - tag_test
 HR-Sapien:

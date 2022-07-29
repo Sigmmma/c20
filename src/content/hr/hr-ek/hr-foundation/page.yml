@@ -1,13 +1,13 @@
 title:
-  en: HR Bonobo
-img: hr-bonobo.jpg
+  en: HR Foundation
+img: hr-foundation.jpg
 imgCaption:
   en: >-
-    A screenshot of Bonobo
+    A screenshot of Foundation
 stub: true
 related:
   - /h1/tools/h1a-ek/h1a-guerilla
 keywords:
   en:
     - tag-editor
-toolName: HR-Bonobo
+toolName: HR-Foundation
