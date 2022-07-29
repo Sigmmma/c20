@@ -1,4 +1,4 @@
-**HR Bonobo** (`Bonobo.exe`) is part of the [Halo Reach Editing Kit][hr-ek], is a visual [tag][tags] editor. Although it can visualize [bitmaps][bitmap], [models][model] and [interfaces][chud_definition] it is primarily focused on editing and viewing the structured fields which comprise tags. It does not offer true ingame previews or interactive placement of [objects][general/tags/object], which is [Sapien's][HR-Sapien] role.
+**HR Foundation** (`Foundation.exe`) is part of the [Halo Reach Editing Kit][hr-ek], is a visual [tag][tags] editor. Although it can visualize [bitmaps][bitmap], [models][model] and [interfaces][chud_definition] it is primarily focused on editing and viewing the structured fields which comprise tags. It does not offer true ingame previews or interactive placement of [objects][general/tags/object], which is [Sapien's][HR-Sapien] role.
 
 It takes over the role of Guerilla, the program that is used in prior games for editing and viewing tags, offering many new features and advantages such as being able to open multiple tags in tabs much like modern internet browsers.
 
@@ -31,7 +31,7 @@ TagWatcher "C:\Program Files (x86)\Steam\steamapps\common\HREK"
 The Librarian can be found using the *Tools > Librarian* menu item and is used for browsing and managing assets. The Create option can be used for setting up new data directories and sidecar files for importing while the Edit option can then be used to edit sidecar files. The filter and search menu functions much like the explorer bar in the main window however it can also be used for data files as well as tags.
 
 ## Launch Scenario
-Allows you to launch scenarios from Bonobo using preset settings as well as custom init commands. Does not currently work with the Standalone client, only Sapien.
+Allows you to launch scenarios from Foundation using preset settings as well as custom init commands. Does not currently work with the Standalone client, only Sapien.
 
 ## Content Explorer
 Seems to be designed to browse tags, doesn't seem to work well right now.
@@ -39,8 +39,8 @@ Seems to be designed to browse tags, doesn't seem to work well right now.
 ## Asset Browser
 Several different types of asset browser are available, however the bitmap browser currently causes TagService to crash when used. Appears to be designed similarly to the Content Explorer to browse data files instead of tags.
 
-## Run tool from Bonobo
-Bonobo can run [Tool][hr-tool] commands using the *File > Run tool* menu item, the UI makes it easy to select the command you wish to run and arguments.
+## Run tool from Foundation
+Foundation can run [Tool][hr-tool] commands using the *File > Run tool* menu item, the UI makes it easy to select the command you wish to run and arguments.
 
 ## Tag editing
 Changes to tag fields can be undone by <kbd>Control</kbd> + <kbd>z</kbd>. If you need more than just the most recent change you can use _Edit > Hold_ and _File > Fetch_. *Hold* will save the current state of the tag and *fetch* will restore that saved state.
