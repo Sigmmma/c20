@@ -21,7 +21,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 2: Anniversary on Steam][st
 1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
 2. Re-run `Extract H2EK.bat` and replace all files.
 
-# What's new in the August update
+# What's new in the September update
 
 ```.alert danger
 After downloading the update you need to clear your shader cache by deleting the `shader_cache` folder. You also need to update your shader template files.
@@ -62,6 +62,7 @@ After downloading the update you need to clear your shader cache by deleting the
 * XREFs will no longer fail when the `data_dir` argument is set.
 * The command `fbx-to-jms` will no longer fail when a custom data directory is specified.
 * Meshes created using triangle strips instead of triangle lists will now render properly when using the `rasterizer_wireframe` command.
+* Bitmaps with the monochrome format now correctly import as monochrome.
 
 # What's new in the March update
 

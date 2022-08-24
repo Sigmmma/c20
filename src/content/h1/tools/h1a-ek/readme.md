@@ -28,7 +28,7 @@ Using the H1A-EK to create content for H1CE rather than H1A is not officially su
 1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
 2. Re-run `Extract (HCEEK).bat` and replace all files.
 
-# What's new in the August update
+# What's new in the September update
 
 ## General
 

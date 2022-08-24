@@ -15,9 +15,9 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purc
 6. If your operating system supports it you should enable file system compression for the `tags\sounds` folder. This is a workaround for high disk space usage caused by sound tags including zeroed out sound data.
 7. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
 
-# What's new in the August update
+# What's new in the September update
 
-## Installing the August update
+## Installing the September update
 1. Delete the shader templates from the previous update as they are not compatible, delete `tags\shaders\beam_templates`, `tags\shaders\black_templates`, `tags\shaders\contrail_templates`, `tags\shaders\custom_templates`, `tags\shaders\decal_templates`, `tags\shaders\foliage_templates`, `tags\shaders\halogram_templates`,`tags\shaders\light_volume_templates`, `tags\shaders\particle_templates`, `tags\shaders\screen_templates`, `tags\shaders\shader_templates`, `tags\shaders\terrain_templates` and `tags\shaders\water_templates`.
 2a. (recommended) Extract the new `H3ODSTEK.7z`.
 2b. (alternative) If you don't want to update all your tags it's highly recommended you at least update the `tags\shaders` folder.
@@ -33,6 +33,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purc
 * New flag for equipment to prevent AI from dropping them on death.
 * Script doc has new formatting and will now contain globals.
 * Reports are now contained within the reports folder.
+* Giants will now synchronize in co-operative Firefight games.
 
 ## Tool
 
