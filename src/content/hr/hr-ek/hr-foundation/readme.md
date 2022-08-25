@@ -1,4 +1,4 @@
-**HR Foundation** (`Foundation.exe`) is part of the [Halo Reach Editing Kit][hr-ek], is a visual [tag][tags] editor. Although it can visualize [bitmaps][bitmap], [models][model] and [interfaces][chud_definition] it is primarily focused on editing and viewing the structured fields which comprise tags. It does not offer true ingame previews or interactive placement of [objects][general/tags/object], which is [Sapien's][HR-Sapien] role.
+**HR Foundation** (`Foundation.exe`) is part of the [Halo Reach Editing Kit][hr-ek], is a visual [tag][tags] editor. Although it can visualize [bitmaps][bitmap], [models][model] and [interfaces][chud_definition] it is primarily focused on editing and viewing the structured fields which comprise tags. It does not offer interactive placement of [objects][general/tags/object], which is [Sapien's][HR-Sapien] role.
 
 It takes over the role of Guerilla, the program that is used in prior games for editing and viewing tags, offering many new features and advantages such as being able to open multiple tags in tabs much like modern internet browsers.
 
@@ -9,7 +9,7 @@ Right clicking a tag will bring up a menu that lets move or copy the tag to a di
 You can also copy the tag name to clipboard or open the path in File Explorer. The *X-sync* menu items do nothing.
 
 # Tag Watcher
-The Search panel of the explorer bar will not work without first running TagWatcher. To run the program, follow these steps:
+The Search panel of the explorer bar will not return any results without first running TagWatcher. To run the program, follow these steps:
 * Navigate to the `bin\tools\bonobo` directory from your HREK install location using Explorer.
 * In the Navigation Bar, type in `cmd` and press enter to open a command prompt window.
 * In the command prompt window type in `TagWatcher` followed by the root directory of your HREK folder, surrounded by quotes.
@@ -26,6 +26,14 @@ TagWatcher "C:\Program Files (x86)\Steam\steamapps\common\HREK"
 - _File > Import Tag_ - Opens a dialog for importing a new asset using a sidecar file.
 - _File > Export Tag To XML_ - Exports the active tag as an XML or text file.
 - _File > Generate Tag Report - Runs the Tool command `tag-file-report` on the active tag.
+
+## Run Tool Command
+
+Foundation has the ability to run Tool commands through its interface which can be found under *Tools > Run Tool Command* or by using the keys <kbd>Control</kbd> + <kbd>Shift</kbd> + <kbd>t</kbd>. 
+![.figure Pictured: The Run Tool Command window.](run-tool-command.png)
+It contains a list of all commands that can be run using Tool as well as a list of common commands and a Favorites category. Commands can be filtered to search through the list and the tick box next to each command can be used to place or remove an item from the Favourites category. Any output from Tool will be shown in the box below which can be searched as well as filtered by error level.
+
+
 
 ## Librarian
 The Librarian can be found using the *Tools > Librarian* menu item and is used for browsing and managing assets. The Create option can be used for setting up new data directories and sidecar files for importing while the Edit option can then be used to edit sidecar files. The filter and search menu functions much like the explorer bar in the main window however it can also be used for data files as well as tags.
@@ -44,7 +52,10 @@ Foundation can run [Tool][hr-tool] commands using the *File > Run tool* menu ite
 
 ## Tag editing
 Changes to tag fields can be undone by <kbd>Control</kbd> + <kbd>z</kbd>. If you need more than just the most recent change you can use _Edit > Hold_ and _File > Fetch_. *Hold* will save the current state of the tag and *fetch* will restore that saved state.
-If you need to use certain advanced features you can enable _Edit > Expert Mode_, this will let you edit certain fields and blocks. Don't enable this unless you know what you are doing or need it for something specific as it makes it easier to accidentally corrupt your data.
+
+User Views can be used to hide fields and blocks, this can be particularly useful for large tags such as scenarios, for example you could create a custom user view to only show the object palettes.
+
+If you need to use certain advanced features you can enable _Edit > Expert Mode_, this will let you edit certain fields and blocks. Don't enable this unless you know what you are doing or need it for something specific as it makes it easier to accidentally corrupt your data and it will also disable user views.
 
 ## Misc
 - *Window* - Lets you automatically arrange tag windows.
