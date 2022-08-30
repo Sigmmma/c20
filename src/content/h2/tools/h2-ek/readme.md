@@ -58,7 +58,7 @@ After downloading the update you need to clear your shader cache by deleting the
 * The `extract_unicode_strings` command will now output text files that are valid for reimporting.
 * Reimporting an existing bitmap with the interface type should no longer trigger an assert.
 * Importing an interface bitmap that has mip maps will now show a clearer error message.
-* XREFs paths in structure files no longer contain a bad character, allowing XREFs to be imported correctly.
+* XREFs paths in structure files are no longer given a bad character on import.
 * XREFs will no longer fail when the `data_dir` argument is set.
 * The command `fbx-to-jms` will no longer fail when a custom data directory is specified.
 * Meshes created using triangle strips instead of triangle lists will now render properly when using the `rasterizer_wireframe` command.

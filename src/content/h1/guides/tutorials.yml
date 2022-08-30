@@ -185,7 +185,8 @@ tutorials:
     updated: "2016"
     tags:
       - ai-scripting
-    links: "[YouTube](https://www.youtube.com/watch?v=6hTJ_6sWSeU)"
+    links: 
+      en: "[YouTube](https://www.youtube.com/watch?v=6hTJ_6sWSeU)"
   - name:
       en: AI that follow the player
     description:
@@ -197,7 +198,8 @@ tutorials:
     updated: "2014"
     tags:
       - ai-scripting
-    links: "[YouTube](https://www.youtube.com/watch?v=uWtwOHCB23Q)"
+    links: 
+      en: "[YouTube](https://www.youtube.com/watch?v=uWtwOHCB23Q)"
   - name:
       en: Setting up a singleplayer map and scripts
     description:
@@ -206,7 +208,8 @@ tutorials:
     updated: "2013"
     tags:
       - ai-scripting
-    links: "[YouTube](https://www.youtube.com/watch?v=UXa_ZPRehas)"
+    links: 
+      en: "[YouTube](https://www.youtube.com/watch?v=UXa_ZPRehas)"
   - name:
       en: OpenSauce scripting interfaces
     description:
@@ -215,7 +218,9 @@ tutorials:
     updated: "2015"
     tags:
       - ai-scripting
-    links: "[OpenSauce Bitbucket Wiki](http://web.archive.org/web/20200701041643/https://bitbucket.org/KornnerStudios/opensauce-release/wiki/Halo1/Doc_Halo1_NewScriptInterfaces)"
+    links:
+      en: |-
+        [OpenSauce Bitbucket Wiki](http://web.archive.org/web/20200701041643/https://bitbucket.org/KornnerStudios/opensauce-release/wiki/Halo1/Doc_Halo1_NewScriptInterfaces)
   - name:
       en: A few scripting tutorials
     description:
@@ -224,7 +229,8 @@ tutorials:
     updated: "2012"
     tags:
       - ai-scripting
-    links: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/kirby_scripting/scripting_tuts.html)"
+    links: 
+      en: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/kirby_scripting/scripting_tuts.html)"
   - name:
       en: The Halo CE campaign scripts
     description:
@@ -233,9 +239,10 @@ tutorials:
     updated: N/A
     tags:
       - ai-scripting
-    links: >-
-      [GitHub](https://github.com/Dwood15/HaloScripts/),
-      [halonet.net](http://reclaimed.halonet.net/content/campaign_and_ui_scripts/Zteam-Campaign_and_UI_Scripts.zip)
+    links: 
+      en: >-
+        [GitHub](https://github.com/Dwood15/HaloScripts/),
+        [halonet.net](http://reclaimed.halonet.net/content/campaign_and_ui_scripts/Zteam-Campaign_and_UI_Scripts.zip)
   - name:
       en: Using TSC:E and SPV3 scripting features in your own map
     description:
@@ -244,7 +251,8 @@ tutorials:
     updated: "2015"
     tags:
       - ai-scripting
-    links: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/tsce_scripting/tsce_scripting_tuts.html)"
+    links: 
+      en: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/tsce_scripting/tsce_scripting_tuts.html)"
   - name:
       en: Making Marine AI more agressive and useful
     description:
@@ -253,9 +261,10 @@ tutorials:
     updated: "2014"
     tags:
       - ai-scripting
-    links: >-
-      [Imgur](https://i.imgur.com/repWwv7.png),
-      [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jUjNMUkFObzNhdGc/view)
+    links: 
+      en: >-
+        [Imgur](https://i.imgur.com/repWwv7.png),
+        [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jUjNMUkFObzNhdGc/view)
   - name:
       en: Scripting tutorial
     description:
@@ -264,9 +273,10 @@ tutorials:
     updated: "2017"
     tags:
       - ai-scripting
-    links: >-
-      [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jMkZDWk1HZS1jQUE/view),
-      [Mega.nz](https://mega.nz/#!xMFX1LwT!vkWp5m-w-lRaf3kEPo2f4zAQ4FNfOFyj-MKuk5jATv8)
+    links: 
+      en: >-
+        [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jMkZDWk1HZS1jQUE/view),
+        [Mega.nz](https://mega.nz/#!xMFX1LwT!vkWp5m-w-lRaf3kEPo2f4zAQ4FNfOFyj-MKuk5jATv8)
   - name:
       en: HUD tutorial
     description:
