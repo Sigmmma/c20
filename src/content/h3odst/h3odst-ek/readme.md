@@ -53,7 +53,6 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purc
 
 * Additional FMOD banks no longer stops working after a map reset.
 * Firefight maps can now be successfully launched from the main menu.
-* The mission The Storm is no longer soft locked after the first area.
 
 # Major changes from H2
 Naturally there is multitude of changes compared to H2 as the engine underwent a major revision, this document endeavours to list the major ones.
