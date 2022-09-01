@@ -46,6 +46,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 * New commands `extract_unicode_strings` and `print_tag_to_XML` added.
 * Using the command `faux_farm_dillum` with the checkerboard setting will no longer trigger an assert.
 * Various improvements to the `export-tag-to-xml` command output.
+* The `build-cache-file` command now uses the flag use-fmod-data by default which should result in smaller cache files.
 
 ## Guerilla
 

@@ -40,6 +40,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purc
 * New commands `extract_unicode_strings` and `print_tag_to_XML` added.
 * Various improvements to the `export-tag-to-xml` command output.
 * Export bitmap commands now have support for cubemaps.
+* The `build-cache-file` command now uses the flag use-fmod-data by default which should result in smaller cache files.
 
 ## Guerilla
 
