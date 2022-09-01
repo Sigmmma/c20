@@ -1,6 +1,6 @@
 **HR-Sapien**, part of the [Halo Reach Editing Kit][HR-EK], is a visual [scenario][] and BSP editor used to populate levels with objects, configure BSP cluster data like wind and sound environments, compile scripts, and more. Sapien shares some systems with Halo Reach itself, including its AI system to support interactive AI scripting and debugging.
 
-It is roughly analogous to Forge found in later Halo titles, Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which has support for debug commands, and by using <kbd>Tab</kbd> you can switch to player mode to interact with the simulation in real time.
+It is roughly analogous to Forge mode, users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a scripting console which has support for debug commands, and by using <kbd>Tab</kbd> you can switch to player mode to interact with the simulation in real time.
 
 # Windows
 ## Game window
