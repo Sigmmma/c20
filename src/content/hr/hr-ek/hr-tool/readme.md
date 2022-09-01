@@ -1,5 +1,7 @@
 **HR-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo Reach Editing Kit][hr-ek] by 343 Industries in 2021. Users can also run Tool commands in [Foundation][hr-foundation] where commands can be filtered and favorited.
 
+Users should note that whilst HR Tool includes several legacy commands for creating render, collision and physics models, the expected workflow is to use the Import command which uses the granny format.
+
 # Tips
 * If an invalid command is typed into tool then tool will print a list of commands that have the same starting character as what was typed in. This means that if we type `tool s` into command prompt then tool will only output commands that start with the letter s.
 
@@ -8,6 +10,18 @@
 - `<argument>` - refers to an argument.
 - `<option1|option2>` - Either `option1` or `option2` can be passed as `argument`.
 - `Tool` or `tool.exe` - refers to the subject of this article, the HR Tool, if the legacy Tool is being referred to that will be made explicit.
+
+# FBX to GR2
+This command takes an FBX and converts it to a GR2 file for Halo Reach importing. It is a required step in the process of creating a file that can be used by the import command.
+
+```sh
+# fbx-to-gr2 <fbx> <json> <gr2>
+tool fbx-to-gr2 "F:\dreamer.fbx" "F:\dreamer.json" "F:\dreamer.gr2"
+```
+
+* fbx - An absolute filepath to a valid FBX file.
+* json - An absolute filepath to a JSON file. Will be generated if one does not already exist.
+* gr2 - An absolute filepath that includes name and extension to write the output to.
 
 # Bitmap single
 Imports a single image file and converts it to a bitmap.
@@ -34,16 +48,6 @@ For the example above, Tool would expect to find .tif/.tiff files at `data\level
 Tool supports TIFF files with a [colour depth][wiki-color] of at least 8 bits per pixel, 32-bit color (8 bits per channel) being typical.
 
 Any bitmaps that end in `_bump` will automatically be converted to a bitmap set as a bump map.
-
-# Bitmaps debug
-This command compiles images like the `bitmaps` command but was intended to debug the generated plate data. Obsolete as of H3.
-
-```sh
-# bitmaps-debug <source-directory>
-tool bitmaps-debug "levels\multi\chill\bitmaps"
-```
-
-* source-directory - A local data path to a folder containing a set of images for processing.
 
 # Bitmaps with type
 This command compiles images like the `bitmaps` command but allows the user to set the type of bitmap to generate.
@@ -644,19 +648,6 @@ The `faux_lightmap` and `faux_checkerboard` commands are meant to handle local s
 The multi-instance faux process dumps a fair bit of intermediate data to disk which might not be desirable on a slow medium (e.g. external HDD or network drive) or an SSD if you are running a lot of lightmaps and don't want to needlessly wear it out. This data will be saved to the `faux` folder in the toolkit root directory. You can create a link (junction point or symbolic) from this folder to somewhere that is more convenient for you. If you have enough free main memory a RAM Disk might be a good solution - 30 gigabytes of dynamically allocated space should be enough (empirical result for a 16 logical processor system lighting Edge at the highest quality - your mileage will vary).
 
 
-# FBX to GR2
-This command takes an FBX and converts it to a GR2 file for Halo Reach importing. It is a required step in the process of creating a file that can be used by the import command.
-
-```sh
-# fbx-to-gr2 <fbx> <gr2>
-tool fbx-to-gr2 "F:\dreamer.fbx" "F:\dreamer.gr2"
-```
-
-* fbx - An absolute filepath to a valid FBX file.
-* ass - An absolute filepath that includes name and extension to write the output to.
-
-For some details on how to setup the FBX file see [FBX for HR][fbx].
-
 # Import
 
 The import command is a multi-purpose command used for importing animations, collision, physics and render geometry. It is also the only command that can be used to import structures, superceding the `structure` command used in prior editing kits.
@@ -673,7 +664,7 @@ tool import "objects\weapons\rifle\dmr\dmr.sidecar.xml" force local
 * decompose_instances - Run convex decomposition for poop physics, very slow (structures only).
 * suppress_errors_to_vrml - Do not write errors to vrml files.
 
-## Megalo convert variant files
+# Megalo convert variant files
 Converts mglo files built with MegaloEdit and converts them to bin files that can be used in MCC.
 
 ```sh
@@ -738,30 +729,6 @@ tool set-sound-class sound_test ??? projectile_impact
 * path-spec - ???
 * new-sound-class - A sound class string.
 
-## Sound looping
-???
-
-```sh
-#  sound-looping <source-directory> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
-tool sound-looping
-```
-
-* source-directory - ???
-* type - ???
-* bank - ???
-
-## Sound looping scenery
-???
-
-```sh
-#  sound-looping-scenery <source-directory> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
-tool sound-looping-scenery
-```
-
-* source-directory - ???
-* type - ???
-* bank - ???
-
 ## Sound multi layer
 Imports sound files in a directory with the import type set to multi-layer. All sound files the source directory and child directories will be combined into one sound file.
 
@@ -783,18 +750,6 @@ tool sound-multi-layer "sound_test\aiff" projectile_impact sfx
 ```
 
 * source-file - A local data path to the root of a directory containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
-* type - Set the sound class
-* bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
-
-## Sounds music
-Generates an empty sound looping tag from the folders in data. Probably an error?
-
-```sh
-#  sounds-music <source-directory> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
-tool sounds-music "sound_test" projectile_impact sfx
-```
-
-* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
 * type - Set the sound class
 * bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
 
@@ -828,6 +783,18 @@ Imports sound files in a directory with the import type set to single-layer. Eac
 ```sh
 #  sounds-single-mixed <source-directory> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
 tool sounds-single-mixed "sound_test" projectile_impact sfx
+```
+
+* source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
+* type - Set the sound class
+* bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
+
+## Sounds music
+Generates an empty sound looping tag from the folders in data. Probably an error?
+
+```sh
+#  sounds-music <source-directory> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
+tool sounds-music "sound_test" projectile_impact sfx
 ```
 
 * source-file - A local data path to the root of a directory or child directories containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
