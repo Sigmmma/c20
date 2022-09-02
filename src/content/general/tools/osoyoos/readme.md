@@ -22,7 +22,7 @@ The launcher features a variety of menus to help you quickly and efficiently gen
 
 This group lets you run various programs and commands directly from the UI. You can find this at the top of the UI window.
 
-See the following [link][run programs group] for more details
+See the following [link][run-programs-group] for more details
 
 ## Tasks group
 
@@ -30,7 +30,7 @@ See the following [link][run programs group] for more details
 
 This group lets you run various commands for your selected profile directly from the UI. You can find this at the middle of the UI window.
 
-See the following [link][tasks group] for more details
+See the following [link][tasks-group] for more details
 
 ## Settings group
 
@@ -38,6 +38,6 @@ See the following [link][tasks group] for more details
 
 This group lets you configure aspects of the launcher such as the current profile being used or themes. You can find it at the bottom of the launcher window.
 
-See the following [link][settings group] for more details
+See the following [link][settings-group] for more details
 
 

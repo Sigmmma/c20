@@ -38,7 +38,7 @@ The import Sidecars task is designed to handle all the tedious parts of importin
 
 4. Hit the import button. If successful, a pop up will appear to confirm a sidecar.xml was created. Navigate to the asset in file browser. Find box.sidecar.xml. In this folder you should see the following folders: render, collision, physics, animations, markers, skelton. If not, rerun the above steps and ensure you have check Create Asset Sub-Directories.
 
-5. Open up blender or your 3d program of choice and place a cube. Scale this up to roughly half the size of Masterchief (scale models come with the [Halo Blender Toolkit]). Ensure you apply the scale after scaling. Do this in blender by selecting the object and pressing ctrl+A and then clicking Apply Scale.
+5. Open up blender or your 3d program of choice and place a cube. Scale this up to roughly half the size of Masterchief (scale models come with the [Halo Blender Toolkit][halo-asset-blender-development-toolset]). Ensure you apply the scale after scaling. Do this in blender by selecting the object and pressing ctrl+A and then clicking Apply Scale.
 
 6. Duplicate the cube twice. Add the prefix @ to one of the names, and $ to the other. You should now have three cubes which will handle the render model, collision model, and physics model of our box.
 
