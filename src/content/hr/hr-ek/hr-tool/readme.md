@@ -645,7 +645,7 @@ The `faux_lightmap` and `faux_checkerboard` commands are meant to handle local s
 
 ## Disk usage
 
-The multi-instance faux process dumps a fair bit of intermediate data to disk which might not be desirable on a slow medium (e.g. external HDD or network drive) or an SSD if you are running a lot of lightmaps and don't want to needlessly wear it out. This data will be saved to the `faux` folder in the toolkit root directory. You can create a link (junction point or symbolic) from this folder to somewhere that is more convenient for you. If you have enough free main memory a RAM Disk might be a good solution - 30 gigabytes of dynamically allocated space should be enough (empirical result for a 16 logical processor system lighting Edge at the highest quality - your mileage will vary).
+The multi-instance faux process dumps a fair bit of intermediate data to disk which might not be desirable on a slow medium (e.g. external HDD or network drive) or an SSD if you are running a lot of lightmaps and don't want to needlessly wear it out. This data will be saved to the `faux` folder in the toolkit root directory. You can create a link (junction point or symbolic) from this folder to somewhere that is more convenient for you. If you have enough free main memory a RAM Disk might be a good solution - 30 gigabytes of dynamically allocated space should be enough (empirical result for a 16 logical processor system lighting Halo 3's Edge map at the highest quality - results may differ in Reach).
 
 
 # Import
