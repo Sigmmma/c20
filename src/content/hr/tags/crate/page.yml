@@ -2,3 +2,4 @@
     en: crate
   stub: true
   tagName: hr/crate
+  noSearch: true

@@ -2,3 +2,4 @@
     en: scenario_structure_bsp
   stub: true
   tagName: hr/scenario_structure_bsp
+  noSearch: true

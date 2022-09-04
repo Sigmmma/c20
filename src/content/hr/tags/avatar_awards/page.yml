@@ -2,3 +2,4 @@
     en: avatar_awards
   stub: true
   tagName: hr/avatar_awards
+  noSearch: true

@@ -2,4 +2,4 @@
     en: scenario_bipeds_resource
   stub: true
   tagName: h2/scenario_bipeds_resource
-  
+  noSearch: true

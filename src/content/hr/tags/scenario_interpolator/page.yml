@@ -2,3 +2,4 @@
     en: scenario_interpolator
   stub: true
   tagName: hr/scenario_interpolator
+  noSearch: true

@@ -2,3 +2,4 @@
     en: scenario
   stub: true
   tagName: hr/scenario
+  noSearch: true

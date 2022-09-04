@@ -2,3 +2,4 @@
     en: cui_static_data
   stub: true
   tagName: hr/cui_static_data
+  noSearch: true

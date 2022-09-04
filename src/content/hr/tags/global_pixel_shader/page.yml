@@ -2,3 +2,4 @@
     en: global_pixel_shader
   stub: true
   tagName: hr/global_pixel_shader
+  noSearch: true

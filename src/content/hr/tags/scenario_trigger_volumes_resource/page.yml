@@ -2,3 +2,4 @@
     en: scenario_trigger_volumes_resource
   stub: true
   tagName: hr/scenario_trigger_volumes_resource
+  noSearch: true

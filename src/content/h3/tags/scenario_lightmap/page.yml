@@ -2,4 +2,4 @@
     en: scenario_lightmap
   stub: true
   tagName: h3/scenario_lightmap
-  
+  noSearch: true

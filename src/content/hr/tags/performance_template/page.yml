@@ -2,3 +2,4 @@
     en: performance_template
   stub: true
   tagName: hr/performance_template
+  noSearch: true

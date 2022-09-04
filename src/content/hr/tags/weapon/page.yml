@@ -2,3 +2,4 @@
     en: weapon
   stub: true
   tagName: hr/weapon
+  noSearch: true

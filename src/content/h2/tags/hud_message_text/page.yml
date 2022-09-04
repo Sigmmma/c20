@@ -2,4 +2,4 @@
     en: hud_message_text
   stub: true
   tagName: h2/hud_message_text
-  
+  noSearch: true

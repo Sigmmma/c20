@@ -2,3 +2,4 @@
     en: scenario_decals_resource
   stub: true
   tagName: hr/scenario_decals_resource
+  noSearch: true

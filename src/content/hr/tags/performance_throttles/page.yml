@@ -2,3 +2,4 @@
     en: performance_throttles
   stub: true
   tagName: hr/performance_throttles
+  noSearch: true

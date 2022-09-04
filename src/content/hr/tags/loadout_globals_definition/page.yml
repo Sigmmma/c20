@@ -2,3 +2,4 @@
     en: loadout_globals_definition
   stub: true
   tagName: hr/loadout_globals_definition
+  noSearch: true

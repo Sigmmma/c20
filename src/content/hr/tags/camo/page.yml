@@ -2,3 +2,4 @@
     en: camo
   stub: true
   tagName: hr/camo
+  noSearch: true

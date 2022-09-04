@@ -2,3 +2,4 @@
     en: collision_damage
   stub: true
   tagName: hr/collision_damage
+  noSearch: true

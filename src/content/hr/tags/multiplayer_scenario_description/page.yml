@@ -2,3 +2,4 @@
     en: multiplayer_scenario_description
   stub: true
   tagName: hr/multiplayer_scenario_description
+  noSearch: true

@@ -2,3 +2,4 @@
     en: scenario_dumplings_resource
   stub: true
   tagName: hr/scenario_dumplings_resource
+  noSearch: true

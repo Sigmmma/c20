@@ -2,3 +2,4 @@
     en: meter
   stub: true
   tagName: hr/meter
+  noSearch: true

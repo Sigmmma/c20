@@ -2,3 +2,4 @@
     en: scenario_faux_data
   stub: true
   tagName: hr/scenario_faux_data
+  noSearch: true

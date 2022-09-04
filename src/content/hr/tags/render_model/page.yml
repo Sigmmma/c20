@@ -3,3 +3,4 @@
   stub: true
   tagName: hr/render_model
   
+  noSearch: true

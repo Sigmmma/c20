@@ -2,3 +2,4 @@
     en: fx_test
   stub: true
   tagName: hr/fx_test
+  noSearch: true

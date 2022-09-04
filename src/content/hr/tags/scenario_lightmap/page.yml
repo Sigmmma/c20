@@ -2,3 +2,4 @@
     en: scenario_lightmap
   stub: true
   tagName: hr/scenario_lightmap
+  noSearch: true

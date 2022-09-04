@@ -2,3 +2,4 @@
     en: shader_mux
   stub: true
   tagName: hr/shader_mux
+  noSearch: true

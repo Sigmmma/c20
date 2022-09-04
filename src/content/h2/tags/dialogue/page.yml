@@ -2,4 +2,4 @@
     en: dialogue
   stub: true
   tagName: h2/dialogue
-  
+  noSearch: true

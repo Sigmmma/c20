@@ -2,4 +2,4 @@
     en: item_collection
   stub: true
   tagName: h3/item_collection
-  
+  noSearch: true

@@ -2,3 +2,4 @@
     en: death_program_selector
   stub: true
   tagName: hr/death_program_selector
+  noSearch: true

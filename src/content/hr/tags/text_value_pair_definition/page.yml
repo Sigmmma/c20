@@ -2,3 +2,4 @@
     en: text_value_pair_definition
   stub: true
   tagName: hr/text_value_pair_definition
+  noSearch: true

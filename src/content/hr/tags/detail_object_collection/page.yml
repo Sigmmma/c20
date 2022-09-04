@@ -2,3 +2,4 @@
     en: detail_object_collection
   stub: true
   tagName: hr/detail_object_collection
+  noSearch: true

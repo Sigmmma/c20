@@ -2,3 +2,4 @@
     en: device_control
   stub: true
   tagName: hr/device_control
+  noSearch: true

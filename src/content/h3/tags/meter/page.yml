@@ -2,4 +2,4 @@
     en: meter
   stub: true
   tagName: h3/meter
-  
+  noSearch: true

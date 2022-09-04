@@ -2,4 +2,4 @@
     en: item
   stub: true
   tagName: h3/item
-  
+  noSearch: true

@@ -2,4 +2,4 @@
     en: scenario_creature_resource
   stub: true
   tagName: h3/scenario_creature_resource
-  
+  noSearch: true

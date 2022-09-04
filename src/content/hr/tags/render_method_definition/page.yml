@@ -2,3 +2,4 @@
     en: render_method_definition
   stub: true
   tagName: hr/render_method_definition
+  noSearch: true

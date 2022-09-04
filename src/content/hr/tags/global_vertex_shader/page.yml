@@ -2,3 +2,4 @@
     en: global_vertex_shader
   stub: true
   tagName: hr/global_vertex_shader
+  noSearch: true

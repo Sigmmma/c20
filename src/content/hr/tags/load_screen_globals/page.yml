@@ -2,3 +2,4 @@
     en: load_screen_globals
   stub: true
   tagName: hr/load_screen_globals
+  noSearch: true

@@ -2,3 +2,4 @@
     en: incident_global_properties_definition
   stub: true
   tagName: hr/incident_global_properties_definition
+  noSearch: true

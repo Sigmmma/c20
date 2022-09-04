@@ -2,3 +2,4 @@
     en: character
   stub: true
   tagName: hr/character
+  noSearch: true

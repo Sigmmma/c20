@@ -2,3 +2,4 @@
     en: creature
   stub: true
   tagName: hr/creature
+  noSearch: true

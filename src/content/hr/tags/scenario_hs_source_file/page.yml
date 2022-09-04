@@ -2,3 +2,4 @@
     en: scenario_hs_source_file
   stub: true
   tagName: hr/scenario_hs_source_file
+  noSearch: true

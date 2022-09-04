@@ -2,4 +2,4 @@
     en: globals
   stub: true
   tagName: h2/globals
-  
+  noSearch: true

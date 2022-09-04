@@ -2,3 +2,4 @@
     en: scenario_scenery_resource
   stub: true
   tagName: hr/scenario_scenery_resource
+  noSearch: true

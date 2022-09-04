@@ -2,3 +2,4 @@
     en: squad_template
   stub: true
   tagName: hr/squad_template
+  noSearch: true
