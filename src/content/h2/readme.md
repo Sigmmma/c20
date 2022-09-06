@@ -60,7 +60,7 @@ There are a number of gameplay-balancing tag patches made at runtime for [multip
 | [weapon][]        | `objects\weapons\rifle\plasma_rifle\plasma_rifle.weapon`                                       | Dual wield damage scale is set to `0.7`.
 | [damage_effect][] | `objects\weapons\rifle\smg\damage_effects\smg_bullet.damage_effect`                            | Damage upper bound min and max are set to `4.625` and `4.625`.
 | [damage_effect][] | `objects\weapons\support_low\brute_shot\damage_effects\shot_grenade_explosion.damage_effect`   | Damage lower bound is set to `30.5`.<br />Damage upper bound min and max are set to `60` and `60`.
-| [vehicle][]       | `objects\vehicles\h_turret_ap\h_turret_ap.vehicle`                                             | Bounding radius is set to `0.5`.<br />Error angles min and max are set to `0.1` and `0.1`.
+| [vehicle][]       | `objects\vehicles\h_turret_ap\h_turret_ap.vehicle`                                             | Bounding radius is set to `0.5`.
 
 [bungie]: https://en.wikipedia.org/wiki/Bungie
 [microsoft]: https://en.wikipedia.org/wiki/Xbox_Game_Studios

@@ -87,7 +87,6 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 * Make some changes to tackle `verify_same_triangle_indices` asserts. Users should keep a look out and report models that continue to display this issue.
 * Add a proper error for importing a DDS instead of asserting.
 * Now capable of compiling shaders. You no longer need community fixes for this to work.
-* String id storage has been increased which decreases the likelihood of users exceeding the string id limit when building cache files.
 
 ## Guerilla
 

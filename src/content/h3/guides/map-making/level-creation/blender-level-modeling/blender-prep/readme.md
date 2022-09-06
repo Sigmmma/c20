@@ -1,7 +1,8 @@
 # File list
-| File Link                                         | Description
-|-------------------------------------------------- | -------------------------------------------------------------------
-|[Blender 3D Software](https://www.blender.org/)    | The Blender application that we will be using to create our assets.
+| File Link                                                      | Description
+|--------------------------------------------------------------- | -------------------------------------------------------------------
+|[Blender 3D Software - Standalone](https://www.blender.org/)    | The Blender application that we will be using to create our assets (Standalone Software).
+|[Blender 3D Software - Steam](https://store.steampowered.com/app/365670/Blender/)    | The Blender application that we will be using to create our assets (Available on Steam).
 
 # Setting up Blender
 [Installing the Blender addon][halo-asset-blender-development-toolset]
@@ -45,6 +46,9 @@ All hotkeys given in this guide are given with the expectation that you are usin
 
 ```.alert success
 Ready to start modeling a level? Continue to the [next guide][blender-level-creation-beginner].
+```
+```.alert success
+Ready to start creating a custom object? Continue to the [next guide][blender-object-creation-render].
 ```
 
 [wiki-clipping]: https://en.wikipedia.org/wiki/Clipping_(computer_graphics)#Clipping_in_3D_graphics

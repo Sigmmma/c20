@@ -6,6 +6,8 @@ const REPO_URL = "https://github.com/Sigmmma/c20";
 const DEFAULT_OPEN_THRESHOLD = 8;
 const noThumbs = process.env.C20_NO_THUMBNAILS == "true";
 
+const JIF_ISSUE_URL = "https://github.com/Joint-Issue-Tracker/Joint-Issue-Tracker/issues/new?template=MCCHEK-ISSUE-FORM.yml"
+
 const breakTagName = (tagName) => tagName.split("_").join("_<wbr>");
 
 //converts a title into a URL- or ID-friendly slug
@@ -23,12 +25,20 @@ const html = commonTags.stripIndent(commonTags.html);
 const classes = (classArr) => classArr && classArr.length > 0 ? `class="${classArr.join(" ")}"` : "";
 const p = (body) => html`<p>${body}</p>`;
 
+const reportedMissingKeys = new Set()
+
 const localizer = R.curry((bundle, lang) => {
   return (key, safe) => {
     if (!bundle[key] && !safe) {
       throw new Error(`Missing localizations for key ${key}`);
+    } else if (!bundle[key]) {
+      if (!reportedMissingKeys.has(key))
+        console.warn(`Missing localisation key "${key}"`);
+      reportedMissingKeys.add(key)
+      return null
     }
-    return bundle[key] ? bundle[key][lang] : null;
+
+    return bundle[key][lang]  ? bundle[key][lang] : bundle[key]["en"];
   };
 });
 
@@ -156,5 +166,6 @@ module.exports = {
   icon,
   slugify,
   REPO_URL,
-  DISCORD_URL
+  DISCORD_URL,
+  JIF_ISSUE_URL
 };

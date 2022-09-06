@@ -37,18 +37,6 @@ tutorials:
     links:
       en: "[YouTube](https://www.youtube.com/watch?v=u2AQny-3mTs)"
   - name:
-      en: Black Art of Halo Mods
-    description:
-      en: |-
-        A PDF version of the famous book that some hardcore Halo modding fans used
-        to have. Is likely a bit outdated by now.
-    authors: Stephen Cawood & Patrick Chin
-    updated: "2006"
-    tags:
-      - other
-    links:
-      en: "[Google Drive](https://drive.google.com/file/d/0B1LjERLq599jUG1YVUt0T1Ywa0U/view)"
-  - name:
       en: Halo Editing Kit official tutorial
     description:
       en: The official tutorial that comes with your HEK install.
@@ -103,16 +91,6 @@ tutorials:
     links:
       en: "[YouTube](https://www.youtube.com/watch?v=Qg6Xj67tU6E), [YouTube](https://www.youtube.com/watch?v=S4fHSwJdEHo)"
   - name:
-      en: Making a waterfall
-    description:
-      en: A simple tutorial that explains how to make a Halo 1 style waterfall.
-    authors: TheGhost
-    updated: "2005"
-    tags:
-      - level
-    links:
-      en: "[Google Drive](https://drive.google.com/file/d/0B1LjERLq599jR1VPaW5IdXIxbm8/view)"
-  - name:
       en: BSP errors explanation
     description:
       en: An image illustrating common geometry errors encountered during [structure compilation][tool#structure-compilation].
@@ -121,7 +99,7 @@ tutorials:
     tags:
       - level
     links:
-      en: "[Imgur](https://i.imgur.com/rdoKsDn.jpg), [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jUnZOS2tGWkxLaHM/view)"
+      en: "[Imgur](https://i.imgur.com/rdoKsDn.jpg)"
   - name:
       en: Detail objects tutorial
     description:
@@ -508,16 +486,6 @@ tutorials:
     links:
       en: "[YouTube](https://www.youtube.com/watch?v=FQuXch9Ecm8)"
   - name:
-      en: Proper LOD cutoffs
-    description:
-      en: How to set the right LOD transition values to avoid it being too visible.
-    authors: MosesofEgypt
-    updated: "2014"
-    tags:
-      - objects
-    links:
-      en: "[Google Drive](https://drive.google.com/file/d/0B1LjERLq599jRExac2lVNmc1Wlk/view)"
-  - name:
       en: Halo CE bitmap compression
     description:
       en: Statistics and tips for people who want to get the most out of their [bitmaps][bitmap].
@@ -548,16 +516,6 @@ tutorials:
     links:
       en: "[Imgur](https://i.imgur.com/MxYJRNM.png)"
   - name:
-      en: Extracting models from Halo Online
-    description:
-      en: No talking, just someone showing you how to do it.
-    authors: "?"
-    updated: "?"
-    tags:
-      - other
-    links:
-      en: "[Google Drive](https://drive.google.com/file/d/0B1LjERLq599jYldMU1pFeFNzWWc/view)"
-  - name:
       en: World units explanation
     description:
       en: An explanation of the size of [world units][scale] and their equivalents.
@@ -567,8 +525,7 @@ tutorials:
       - other
     links:
       en: >-
-        [Imgur](https://i.imgur.com/t38bFOy.png),
-        [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jQjgxVVhZcW1rN1U/view)
+        [Imgur](https://i.imgur.com/t38bFOy.png)
   - name:
       en: Aim assist explanation
     description:
@@ -579,18 +536,7 @@ tutorials:
       - other
     links:
       en: >-
-        [Imgur](https://i.imgur.com/SGlHXQT.png),
-        [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jUlAxOVYyY2M4czA/view)
-  - name:
-      en: "[OpenSauce][] shader model tutorial and discussion"
-    description:
-      en: An interesting read if you want to get a better understanding on the OpenSauce shader model tag.
-    authors: Waffles
-    updated: "2012"
-    tags:
-      - other
-    links:
-      en: "[Google Drive](https://drive.google.com/file/d/0B1LjERLq599jQWZ4b2M5RXphWWs/view)"
+        [Imgur](https://i.imgur.com/SGlHXQT.png)
   - name:
       en: Colorchange mask explanation GIF
     description:
@@ -601,7 +547,6 @@ tutorials:
       - other
     links:
       en: >-
-        [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jdmE0ZmJXNDY4eEU/view),
         [Imgur](https://i.imgur.com/NaDSnKP.gifv)
   - name:
       en: Shader transparent rundown
