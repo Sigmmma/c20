@@ -26,8 +26,8 @@ phases:
   post_build:
     commands:
       - bash -c "if [ /"$CODEBUILD_BUILD_SUCCEEDING/" == /"0/" ]; then exit 1; fi"
-      - aws s3 sync --delete ./dist s3://reclaimer-5lrsrlnhrphg52pmx71
-      - aws s3api put-bucket-website --bucket reclaimer-5lrsrlnhrphg52pmx71 --website-configuration file://src/data/aws/s3/bucket-website.json
+      - aws s3 sync --delete ./dist s3://reclaimers-wiki-files
+      - aws s3api put-bucket-website --bucket reclaimers-wiki-files --website-configuration file://src/data/aws/s3/bucket-website.json
 cache:
   paths:
     # paths which will be cached between builds
