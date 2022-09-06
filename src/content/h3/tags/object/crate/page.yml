@@ -2,4 +2,4 @@
     en: crate
   stub: true
   tagName: h3/crate
-  
+  noSearch: true

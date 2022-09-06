@@ -1,0 +1,7843 @@
+external_globals:
+  - slug: debug_no_drawing
+    info:
+      en: |-
+        ```hsc
+        (debug_no_drawing [boolean])
+        ```
+  - slug: debug_force_all_player_views_to_default_player
+    info:
+      en: |-
+        ```hsc
+        (debug_force_all_player_views_to_default_player [boolean])
+        ```
+  - slug: debug_render_freeze
+    info:
+      en: |-
+        ```hsc
+        (debug_render_freeze [boolean])
+        ```
+  - slug: debug_render_horizontal_splitscreen
+    info:
+      en: |-
+        ```hsc
+        (debug_render_horizontal_splitscreen [boolean])
+        ```
+  - slug: debug_load_panic_to_main_menu
+    info:
+      en: |-
+        ```hsc
+        (debug_load_panic_to_main_menu [boolean])
+        ```
+  - slug: display_framerate
+    info:
+      en: |-
+        ```hsc
+        (display_framerate [boolean])
+        ```
+  - slug: display_pulse_rates
+    info:
+      en: |-
+        ```hsc
+        (display_pulse_rates [boolean])
+        ```
+  - slug: display_throttle_rates
+    info:
+      en: |-
+        ```hsc
+        (display_throttle_rates [boolean])
+        ```
+  - slug: display_lag_times
+    info:
+      en: |-
+        ```hsc
+        (display_lag_times [boolean])
+        ```
+  - slug: display_frame_deltas
+    info:
+      en: |-
+        ```hsc
+        (display_frame_deltas [boolean])
+        ```
+  - slug: console_status_string_render
+    info:
+      en: |-
+        ```hsc
+        (console_status_string_render [boolean])
+        ```
+  - slug: console_pauses_game
+    info:
+      en: |-
+        ```hsc
+        (console_pauses_game [boolean])
+        ```
+  - slug: framerate_infinite
+    info:
+      en: |-
+        ```hsc
+        (framerate_infinite [boolean])
+        ```
+  - slug: framerate_debug
+    info:
+      en: |-
+        ```hsc
+        (framerate_debug [boolean])
+        ```
+  - slug: framerate_use_system_time
+    info:
+      en: |-
+        ```hsc
+        (framerate_use_system_time [boolean])
+        ```
+  - slug: framerate_stabilization
+    info:
+      en: |-
+        ```hsc
+        (framerate_stabilization [boolean])
+        ```
+  - slug: debug_controller_latency
+    info:
+      en: |-
+        ```hsc
+        (debug_controller_latency [boolean])
+        ```
+  - slug: terminal_render
+    info:
+      en: |-
+        ```hsc
+        (terminal_render [boolean])
+        ```
+  - slug: events_debug_spam_render
+    info:
+      en: |-
+        ```hsc
+        (events_debug_spam_render [boolean])
+        ```
+  - slug: console_dump_to_debug_display
+    info:
+      en: |-
+        ```hsc
+        (console_dump_to_debug_display [boolean])
+        ```
+  - slug: camera_fov_scale
+    info:
+      en: |-
+        ```hsc
+        (camera_fov_scale [real])
+        ```
+  - slug: camera_yaw_scale
+    info:
+      en: |-
+        ```hsc
+        (camera_yaw_scale [real])
+        ```
+  - slug: camera_pitch_scale
+    info:
+      en: |-
+        ```hsc
+        (camera_pitch_scale [real])
+        ```
+  - slug: camera_forward_scale
+    info:
+      en: |-
+        ```hsc
+        (camera_forward_scale [real])
+        ```
+  - slug: camera_side_scale
+    info:
+      en: |-
+        ```hsc
+        (camera_side_scale [real])
+        ```
+  - slug: camera_up_scale
+    info:
+      en: |-
+        ```hsc
+        (camera_up_scale [real])
+        ```
+  - slug: flying_camera_maximum_boost_speed
+    info:
+      en: |-
+        ```hsc
+        (flying_camera_maximum_boost_speed [real])
+        ```
+  - slug: flying_camera_movement_delay
+    info:
+      en: |-
+        ```hsc
+        (flying_camera_movement_delay [real])
+        ```
+  - slug: flying_camera_has_collision
+    info:
+      en: |-
+        ```hsc
+        (flying_camera_has_collision [boolean])
+        ```
+  - slug: flying_camera_use_old_controls
+    info:
+      en: |-
+        ```hsc
+        (flying_camera_use_old_controls [boolean])
+        ```
+  - slug: editor_director_mouse_wheel_speed_enabled
+    info:
+      en: |-
+        ```hsc
+        (editor_director_mouse_wheel_speed_enabled [boolean])
+        ```
+  - slug: async_display_statistics
+    info:
+      en: |-
+        ```hsc
+        (async_display_statistics [boolean])
+        ```
+  - slug: async_record_statistics
+    info:
+      en: |-
+        ```hsc
+        (async_record_statistics [boolean])
+        ```
+  - slug: suppress_upload_debug
+    info:
+      en: |-
+        ```hsc
+        (suppress_upload_debug [boolean])
+        ```
+  - slug: lightmap_pointsample
+    info:
+      en: |-
+        ```hsc
+        (lightmap_pointsample [boolean])
+        ```
+  - slug: debug_no_frustum_clip
+    info:
+      en: |-
+        ```hsc
+        (debug_no_frustum_clip [boolean])
+        ```
+  - slug: debug_camera_projection
+    info:
+      en: |-
+        ```hsc
+        (debug_camera_projection [boolean])
+        ```
+  - slug: debug_bink
+    info:
+      en: |-
+        ```hsc
+        (debug_bink [boolean])
+        ```
+  - slug: game_paused
+    info:
+      en: |-
+        ```hsc
+        (game_paused [boolean])
+        ```
+  - slug: game_speed
+    info:
+      en: |-
+        ```hsc
+        (game_speed [real])
+        ```
+  - slug: game_time_lock
+    info:
+      en: |-
+        ```hsc
+        (game_time_lock [boolean])
+        ```
+  - slug: game_time_statistics
+    info:
+      en: |-
+        ```hsc
+        (game_time_statistics [boolean])
+        ```
+  - slug: debug_game_save
+    info:
+      en: |-
+        ```hsc
+        (debug_game_save [boolean])
+        ```
+  - slug: recover_saved_games_hack
+    info:
+      en: |-
+        ```hsc
+        (recover_saved_games_hack [boolean])
+        ```
+  - slug: game_state_verify_on_write
+    info:
+      en: |-
+        ```hsc
+        (game_state_verify_on_write [boolean])
+        ```
+  - slug: game_state_verify_on_read
+    info:
+      en: |-
+        ```hsc
+        (game_state_verify_on_read [boolean])
+        ```
+  - slug: prune_global_use_empty
+    info:
+      en: |-
+        ```hsc
+        (prune_global_use_empty [boolean])
+        ```
+  - slug: prune_scenario_material_effects
+    info:
+      en: |-
+        ```hsc
+        (prune_scenario_material_effects [boolean])
+        ```
+  - slug: prune_scenario_lightmaps
+    info:
+      en: |-
+        ```hsc
+        (prune_scenario_lightmaps [boolean])
+        ```
+  - slug: prune_global_dialog_sounds
+    info:
+      en: |-
+        ```hsc
+        (prune_global_dialog_sounds [boolean])
+        ```
+  - slug: prune_global
+    info:
+      en: |-
+        ```hsc
+        (prune_global [boolean])
+        ```
+  - slug: prune_global_keep_playable
+    info:
+      en: |-
+        ```hsc
+        (prune_global_keep_playable [boolean])
+        ```
+  - slug: prune_error_geometry
+    info:
+      en: |-
+        ```hsc
+        (prune_error_geometry [boolean])
+        ```
+  - slug: debug_structure_sampling
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_sampling [boolean])
+        ```
+  - slug: display_precache_progress
+    info:
+      en: |-
+        ```hsc
+        (display_precache_progress [boolean])
+        ```
+  - slug: log_precache_progress
+    info:
+      en: |-
+        ```hsc
+        (log_precache_progress [boolean])
+        ```
+  - slug: fake_precache_percentage
+    info:
+      en: |-
+        ```hsc
+        (fake_precache_percentage [long])
+        ```
+  - slug: force_aligned_utility_drive
+    info:
+      en: |-
+        ```hsc
+        (force_aligned_utility_drive [boolean])
+        ```
+  - slug: debug_object_garbage_collection
+    info:
+      en: |-
+        ```hsc
+        (debug_object_garbage_collection [boolean])
+        ```
+  - slug: debug_object_dump_log
+    info:
+      en: |-
+        ```hsc
+        (debug_object_dump_log [boolean])
+        ```
+  - slug: allow_all_sounds_on_player
+    info:
+      en: |-
+        ```hsc
+        (allow_all_sounds_on_player [boolean])
+        ```
+  - slug: disable_player_rotation
+    info:
+      en: |-
+        ```hsc
+        (disable_player_rotation [boolean])
+        ```
+  - slug: player_rotation_scale
+    info:
+      en: |-
+        ```hsc
+        (player_rotation_scale [real])
+        ```
+  - slug: debug_player_respawn
+    info:
+      en: |-
+        ```hsc
+        (debug_player_respawn [boolean])
+        ```
+  - slug: g_synchronous_client_maximum_catchup_chunk_size
+    info:
+      en: |-
+        ```hsc
+        (g_synchronous_client_maximum_catchup_chunk_size [long])
+        ```
+  - slug: g_editor_maximum_edited_object_speed
+    info:
+      en: |-
+        ```hsc
+        (g_editor_maximum_edited_object_speed [real])
+        ```
+  - slug: g_editor_edited_object_spring_constant
+    info:
+      en: |-
+        ```hsc
+        (g_editor_edited_object_spring_constant [real])
+        ```
+  - slug: g_editor_maximum_rotation_speed
+    info:
+      en: |-
+        ```hsc
+        (g_editor_maximum_rotation_speed [real])
+        ```
+  - slug: chud_enabled
+    info:
+      en: |-
+        ```hsc
+        (chud_enabled [boolean])
+        ```
+  - slug: chud_debug_grid
+    info:
+      en: |-
+        ```hsc
+        (chud_debug_grid [boolean])
+        ```
+  - slug: chud_debug_messages
+    info:
+      en: |-
+        ```hsc
+        (chud_debug_messages [boolean])
+        ```
+  - slug: chud_cortana_debug
+    info:
+      en: |-
+        ```hsc
+        (chud_cortana_debug [boolean])
+        ```
+  - slug: chud_debug_crosshair
+    info:
+      en: |-
+        ```hsc
+        (chud_debug_crosshair [boolean])
+        ```
+  - slug: chud_debug_metagame
+    info:
+      en: |-
+        ```hsc
+        (chud_debug_metagame [boolean])
+        ```
+  - slug: debug_unit_all_animations
+    info:
+      en: |-
+        ```hsc
+        (debug_unit_all_animations [boolean])
+        ```
+  - slug: debug_unit_animations
+    info:
+      en: |-
+        ```hsc
+        (debug_unit_animations [boolean])
+        ```
+  - slug: debug_unit_illumination
+    info:
+      en: |-
+        ```hsc
+        (debug_unit_illumination [boolean])
+        ```
+  - slug: debug_unit_active_camo_frequency_modulator
+    info:
+      en: |-
+        ```hsc
+        (debug_unit_active_camo_frequency_modulator [real])
+        ```
+  - slug: debug_unit_active_camo_frequency_modulator_bias
+    info:
+      en: |-
+        ```hsc
+        (debug_unit_active_camo_frequency_modulator_bias [real])
+        ```
+  - slug: debug_player_melee_attack
+    info:
+      en: |-
+        ```hsc
+        (debug_player_melee_attack [boolean])
+        ```
+  - slug: debug_boarding_force_enemy
+    info:
+      en: |-
+        ```hsc
+        (debug_boarding_force_enemy [boolean])
+        ```
+  - slug: enable_animation_influenced_flight
+    info:
+      en: |-
+        ```hsc
+        (enable_animation_influenced_flight [boolean])
+        ```
+  - slug: enable_flight_noise
+    info:
+      en: |-
+        ```hsc
+        (enable_flight_noise [boolean])
+        ```
+  - slug: enable_player_transitions
+    info:
+      en: |-
+        ```hsc
+        (enable_player_transitions [boolean])
+        ```
+  - slug: disable_node_interpolation
+    info:
+      en: |-
+        ```hsc
+        (disable_node_interpolation [boolean])
+        ```
+  - slug: disable_analog_movement
+    info:
+      en: |-
+        ```hsc
+        (disable_analog_movement [boolean])
+        ```
+  - slug: disable_transition_animations
+    info:
+      en: |-
+        ```hsc
+        (disable_transition_animations [boolean])
+        ```
+  - slug: cheat_deathless_player
+    info:
+      en: |-
+        ```hsc
+        (cheat_deathless_player [boolean])
+        ```
+  - slug: cheat_valhalla
+    info:
+      en: |-
+        ```hsc
+        (cheat_valhalla [boolean])
+        ```
+  - slug: cheat_jetpack
+    info:
+      en: |-
+        ```hsc
+        (cheat_jetpack [boolean])
+        ```
+  - slug: cheat_infinite_ammo
+    info:
+      en: |-
+        ```hsc
+        (cheat_infinite_ammo [boolean])
+        ```
+  - slug: cheat_bottomless_clip
+    info:
+      en: |-
+        ```hsc
+        (cheat_bottomless_clip [boolean])
+        ```
+  - slug: cheat_bump_possession
+    info:
+      en: |-
+        ```hsc
+        (cheat_bump_possession [boolean])
+        ```
+  - slug: cheat_super_jump
+    info:
+      en: |-
+        ```hsc
+        (cheat_super_jump [boolean])
+        ```
+  - slug: cheat_reflexive_damage_effects
+    info:
+      en: |-
+        ```hsc
+        (cheat_reflexive_damage_effects [boolean])
+        ```
+  - slug: cheat_medusa
+    info:
+      en: |-
+        ```hsc
+        (cheat_medusa [boolean])
+        ```
+  - slug: cheat_omnipotent
+    info:
+      en: |-
+        ```hsc
+        (cheat_omnipotent [boolean])
+        ```
+  - slug: cheat_controller
+    info:
+      en: |-
+        ```hsc
+        (cheat_controller [boolean])
+        ```
+  - slug: cheat_chevy
+    info:
+      en: |-
+        ```hsc
+        (cheat_chevy [boolean])
+        ```
+  - slug: effects_corpse_nonviolent
+    info:
+      en: |-
+        ```hsc
+        (effects_corpse_nonviolent [boolean])
+        ```
+  - slug: debug_effects_nonviolent
+    info:
+      en: |-
+        ```hsc
+        (debug_effects_nonviolent [boolean])
+        ```
+  - slug: debug_effects_locations
+    info:
+      en: |-
+        ```hsc
+        (debug_effects_locations [boolean])
+        ```
+  - slug: effects_enable
+    info:
+      en: |-
+        ```hsc
+        (effects_enable [boolean])
+        ```
+  - slug: debug_effects_allocation
+    info:
+      en: |-
+        ```hsc
+        (debug_effects_allocation [boolean])
+        ```
+  - slug: debug_effects_play_distances
+    info:
+      en: |-
+        ```hsc
+        (debug_effects_play_distances [boolean])
+        ```
+  - slug: debug_effects_lightprobe_sampling
+    info:
+      en: |-
+        ```hsc
+        (debug_effects_lightprobe_sampling [boolean])
+        ```
+  - slug: player_effects_enabled
+    info:
+      en: |-
+        ```hsc
+        (player_effects_enabled [boolean])
+        ```
+  - slug: sound_global_room_gain
+    info:
+      en: |-
+        ```hsc
+        (sound_global_room_gain [real])
+        ```
+  - slug: sound_direct_path_gain
+    info:
+      en: |-
+        ```hsc
+        (sound_direct_path_gain [real])
+        ```
+  - slug: enable_pc_sound
+    info:
+      en: |-
+        ```hsc
+        (enable_pc_sound [boolean])
+        ```
+  - slug: debug_sound_cache
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_cache [boolean])
+        ```
+  - slug: debug_sound_cache_status
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_cache_status [boolean])
+        ```
+  - slug: debug_sound_manager_channels
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_manager_channels [boolean])
+        ```
+  - slug: debug_sound_manager_channels_status
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_manager_channels_status [boolean])
+        ```
+  - slug: debug_sound
+    info:
+      en: |-
+        ```hsc
+        (debug_sound [boolean])
+        ```
+  - slug: debug_looping_sound
+    info:
+      en: |-
+        ```hsc
+        (debug_looping_sound [boolean])
+        ```
+  - slug: debug_sound_channels
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_channels [boolean])
+        ```
+  - slug: debug_sound_reverb
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_reverb [boolean])
+        ```
+  - slug: sound_cache_graph
+    info:
+      en: |-
+        ```hsc
+        (sound_cache_graph [boolean])
+        ```
+  - slug: debug_speaker_output_peak
+    info:
+      en: |-
+        ```hsc
+        (debug_speaker_output_peak [boolean])
+        ```
+  - slug: debug_speaker_output_rms
+    info:
+      en: |-
+        ```hsc
+        (debug_speaker_output_rms [boolean])
+        ```
+  - slug: debug_display_levels_data
+    info:
+      en: |-
+        ```hsc
+        (debug_display_levels_data [boolean])
+        ```
+  - slug: debug_display_preformance_data
+    info:
+      en: |-
+        ```hsc
+        (debug_display_preformance_data [boolean])
+        ```
+  - slug: debug_display_sources_data_state
+    info:
+      en: |-
+        ```hsc
+        (debug_display_sources_data_state [boolean])
+        ```
+  - slug: debug_display_sources_data
+    info:
+      en: |-
+        ```hsc
+        (debug_display_sources_data [boolean])
+        ```
+  - slug: debug_display_mix_data
+    info:
+      en: |-
+        ```hsc
+        (debug_display_mix_data [boolean])
+        ```
+  - slug: debug_sound_mute_effect_final_mix
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_effect_final_mix [boolean])
+        ```
+  - slug: debug_sound_mute_effect_sub_mix
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_effect_sub_mix [boolean])
+        ```
+  - slug: debug_sound_mute_effect_occlusion
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_effect_occlusion [boolean])
+        ```
+  - slug: debug_sound_mute_effect_obstruction
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_effect_obstruction [boolean])
+        ```
+  - slug: debug_sound_mute_effect_radio
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_effect_radio [boolean])
+        ```
+  - slug: debug_sound_mute_effect_reverb_first
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_effect_reverb_first [boolean])
+        ```
+  - slug: debug_sound_mute_effect_reverb_second
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_effect_reverb_second [boolean])
+        ```
+  - slug: debug_sound_mute_music
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_music [boolean])
+        ```
+  - slug: debug_sound_mute_dialog
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_dialog [boolean])
+        ```
+  - slug: debug_sound_mute_ambient
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_ambient [boolean])
+        ```
+  - slug: debug_sound_mute_vehicles
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_vehicles [boolean])
+        ```
+  - slug: debug_sound_mute_weapons
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_weapons [boolean])
+        ```
+  - slug: debug_sound_mute_mix_dry
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_mix_dry [boolean])
+        ```
+  - slug: debug_sound_mute_mix_dry_obstruction
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_mix_dry_obstruction [boolean])
+        ```
+  - slug: debug_sound_mute_mix_wet
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_mix_wet [boolean])
+        ```
+  - slug: debug_sound_mute_mix_wet_occlusion
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_mix_wet_occlusion [boolean])
+        ```
+  - slug: debug_sound_mute_mix_radio
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_mute_mix_radio [boolean])
+        ```
+  - slug: debug_sound_timing
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_timing [boolean])
+        ```
+  - slug: debug_duckers
+    info:
+      en: |-
+        ```hsc
+        (debug_duckers [boolean])
+        ```
+  - slug: debug_sound_listeners
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_listeners [boolean])
+        ```
+  - slug: debug_sound_force_first_person_listener
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_force_first_person_listener [boolean])
+        ```
+  - slug: debug_disable_music_channel
+    info:
+      en: |-
+        ```hsc
+        (debug_disable_music_channel [boolean])
+        ```
+  - slug: debug_disable_dialog_channel
+    info:
+      en: |-
+        ```hsc
+        (debug_disable_dialog_channel [boolean])
+        ```
+  - slug: debug_disable_cinematic_channel
+    info:
+      en: |-
+        ```hsc
+        (debug_disable_cinematic_channel [boolean])
+        ```
+  - slug: debug_disable_ambiant_channel
+    info:
+      en: |-
+        ```hsc
+        (debug_disable_ambiant_channel [boolean])
+        ```
+  - slug: debug_disable_vehicle_channel
+    info:
+      en: |-
+        ```hsc
+        (debug_disable_vehicle_channel [boolean])
+        ```
+  - slug: debug_disable_weapon_channel
+    info:
+      en: |-
+        ```hsc
+        (debug_disable_weapon_channel [boolean])
+        ```
+  - slug: debug_disable_other_channel
+    info:
+      en: |-
+        ```hsc
+        (debug_disable_other_channel [boolean])
+        ```
+  - slug: debug_sound_reference_counts
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_reference_counts [boolean])
+        ```
+  - slug: background_sound_meter_display
+    info:
+      en: |-
+        ```hsc
+        (background_sound_meter_display [boolean])
+        ```
+  - slug: debug_sound_environment_parameters
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_environment_parameters [boolean])
+        ```
+  - slug: debug_sound_channel_overflow
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_channel_overflow [boolean])
+        ```
+  - slug: debug_sound_impulse_time
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_impulse_time [boolean])
+        ```
+  - slug: debug_sound_impulse_spam
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_impulse_spam [boolean])
+        ```
+  - slug: use_dynamic_object_obstruction
+    info:
+      en: |-
+        ```hsc
+        (use_dynamic_object_obstruction [boolean])
+        ```
+  - slug: debug_sound_stabbed
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_stabbed [boolean])
+        ```
+  - slug: debug_sound_environment
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_environment [boolean])
+        ```
+  - slug: light_local_basis
+    info:
+      en: |-
+        ```hsc
+        (light_local_basis [boolean])
+        ```
+  - slug: collision_log_render
+    info:
+      en: |-
+        ```hsc
+        (collision_log_render [boolean])
+        ```
+  - slug: collision_log_detailed
+    info:
+      en: |-
+        ```hsc
+        (collision_log_detailed [boolean])
+        ```
+  - slug: collision_log_extended
+    info:
+      en: |-
+        ```hsc
+        (collision_log_extended [boolean])
+        ```
+  - slug: collision_log_totals_only
+    info:
+      en: |-
+        ```hsc
+        (collision_log_totals_only [boolean])
+        ```
+  - slug: collision_log_time
+    info:
+      en: |-
+        ```hsc
+        (collision_log_time [boolean])
+        ```
+  - slug: havok_collision_tolerance
+    info:
+      en: |-
+        ```hsc
+        (havok_collision_tolerance [real])
+        ```
+  - slug: havok_debug_mode
+    info:
+      en: |-
+        ```hsc
+        (havok_debug_mode [long])
+        ```
+  - slug: havok_thread_count
+    info:
+      en: |-
+        ```hsc
+        (havok_thread_count [long])
+        ```
+  - slug: havok_environment_type
+    info:
+      en: |-
+        ```hsc
+        (havok_environment_type [long])
+        ```
+  - slug: havok_shape_radius
+    info:
+      en: |-
+        ```hsc
+        (havok_shape_radius [real])
+        ```
+  - slug: havok_jumping_beans
+    info:
+      en: |-
+        ```hsc
+        (havok_jumping_beans [boolean])
+        ```
+  - slug: havok_disable_deactivation
+    info:
+      en: |-
+        ```hsc
+        (havok_disable_deactivation [boolean])
+        ```
+  - slug: havok_weld_environment
+    info:
+      en: |-
+        ```hsc
+        (havok_weld_environment [boolean])
+        ```
+  - slug: havok_batch_add_entities_disabled
+    info:
+      en: |-
+        ```hsc
+        (havok_batch_add_entities_disabled [boolean])
+        ```
+  - slug: havok_shape_cache
+    info:
+      en: |-
+        ```hsc
+        (havok_shape_cache [boolean])
+        ```
+  - slug: havok_shape_cache_debug
+    info:
+      en: |-
+        ```hsc
+        (havok_shape_cache_debug [boolean])
+        ```
+  - slug: havok_enable_back_stepping
+    info:
+      en: |-
+        ```hsc
+        (havok_enable_back_stepping [boolean])
+        ```
+  - slug: havok_enable_sweep_shapes
+    info:
+      en: |-
+        ```hsc
+        (havok_enable_sweep_shapes [boolean])
+        ```
+  - slug: havok_display_stats
+    info:
+      en: |-
+        ```hsc
+        (havok_display_stats [boolean])
+        ```
+  - slug: havok_initialize_profiling
+    info:
+      en: |-
+        ```hsc
+        (havok_initialize_profiling [boolean])
+        ```
+  - slug: impacts_debug
+    info:
+      en: |-
+        ```hsc
+        (impacts_debug [boolean])
+        ```
+  - slug: proxies_debug
+    info:
+      en: |-
+        ```hsc
+        (proxies_debug [boolean])
+        ```
+  - slug: collision_damage_debug
+    info:
+      en: |-
+        ```hsc
+        (collision_damage_debug [boolean])
+        ```
+  - slug: havok_play_impact_effects
+    info:
+      en: |-
+        ```hsc
+        (havok_play_impact_effects [boolean])
+        ```
+  - slug: havok_play_biped_impact_effects
+    info:
+      en: |-
+        ```hsc
+        (havok_play_biped_impact_effects [boolean])
+        ```
+  - slug: physics_debug
+    info:
+      en: |-
+        ```hsc
+        (physics_debug [boolean])
+        ```
+  - slug: havok_cleanup_inactive_agents
+    info:
+      en: |-
+        ```hsc
+        (havok_cleanup_inactive_agents [boolean])
+        ```
+  - slug: havok_memory_always_system
+    info:
+      en: |-
+        ```hsc
+        (havok_memory_always_system [boolean])
+        ```
+  - slug: disable_expensive_physics_rebuilding
+    info:
+      en: |-
+        ```hsc
+        (disable_expensive_physics_rebuilding [boolean])
+        ```
+  - slug: minimum_havok_object_acceleration
+    info:
+      en: |-
+        ```hsc
+        (minimum_havok_object_acceleration [real])
+        ```
+  - slug: minimum_havok_biped_object_acceleration
+    info:
+      en: |-
+        ```hsc
+        (minimum_havok_biped_object_acceleration [real])
+        ```
+  - slug: debug_object_scheduler
+    info:
+      en: |-
+        ```hsc
+        (debug_object_scheduler [boolean])
+        ```
+  - slug: render_debug_cache_state
+    info:
+      en: |-
+        ```hsc
+        (render_debug_cache_state [boolean])
+        ```
+  - slug: render_environment
+    info:
+      en: |-
+        ```hsc
+        (render_environment [boolean])
+        ```
+  - slug: render_objects
+    info:
+      en: |-
+        ```hsc
+        (render_objects [boolean])
+        ```
+  - slug: visibility_debug_use_old_sphere_test
+    info:
+      en: |-
+        ```hsc
+        (visibility_debug_use_old_sphere_test [boolean])
+        ```
+  - slug: render_lightmap_shadows
+    info:
+      en: |-
+        ```hsc
+        (render_lightmap_shadows [boolean])
+        ```
+  - slug: render_lightmap_shadows_apply
+    info:
+      en: |-
+        ```hsc
+        (render_lightmap_shadows_apply [boolean])
+        ```
+  - slug: render_lights
+    info:
+      en: |-
+        ```hsc
+        (render_lights [boolean])
+        ```
+  - slug: render_water_tessellated
+    info:
+      en: |-
+        ```hsc
+        (render_water_tessellated [boolean])
+        ```
+  - slug: render_water_wireframe
+    info:
+      en: |-
+        ```hsc
+        (render_water_wireframe [boolean])
+        ```
+  - slug: render_water_interaction
+    info:
+      en: |-
+        ```hsc
+        (render_water_interaction [boolean])
+        ```
+  - slug: render_water
+    info:
+      en: |-
+        ```hsc
+        (render_water [boolean])
+        ```
+  - slug: render_first_person
+    info:
+      en: |-
+        ```hsc
+        (render_first_person [boolean])
+        ```
+  - slug: render_debug_mode
+    info:
+      en: |-
+        ```hsc
+        (render_debug_mode [short])
+        ```
+  - slug: render_debug_safe_frame_bounds
+    info:
+      en: |-
+        ```hsc
+        (render_debug_safe_frame_bounds [boolean])
+        ```
+  - slug: render_debug_colorbars
+    info:
+      en: |-
+        ```hsc
+        (render_debug_colorbars [short])
+        ```
+  - slug: render_debug_aspect_ratio_scale
+    info:
+      en: |-
+        ```hsc
+        (render_debug_aspect_ratio_scale [real])
+        ```
+  - slug: render_debug_force_4x3_aspect_ratio
+    info:
+      en: |-
+        ```hsc
+        (render_debug_force_4x3_aspect_ratio [boolean])
+        ```
+  - slug: render_debug_transparents
+    info:
+      en: |-
+        ```hsc
+        (render_debug_transparents [boolean])
+        ```
+  - slug: render_debug_slow_transparents
+    info:
+      en: |-
+        ```hsc
+        (render_debug_slow_transparents [boolean])
+        ```
+  - slug: render_transparents
+    info:
+      en: |-
+        ```hsc
+        (render_transparents [boolean])
+        ```
+  - slug: render_debug_transparent_cull
+    info:
+      en: |-
+        ```hsc
+        (render_debug_transparent_cull [boolean])
+        ```
+  - slug: render_debug_transparent_cull_flip
+    info:
+      en: |-
+        ```hsc
+        (render_debug_transparent_cull_flip [boolean])
+        ```
+  - slug: render_debug_transparent_sort_method
+    info:
+      en: |-
+        ```hsc
+        (render_debug_transparent_sort_method [short])
+        ```
+  - slug: render_debug_lens_flares
+    info:
+      en: |-
+        ```hsc
+        (render_debug_lens_flares [boolean])
+        ```
+  - slug: render_instanced_geometry
+    info:
+      en: |-
+        ```hsc
+        (render_instanced_geometry [boolean])
+        ```
+  - slug: render_sky
+    info:
+      en: |-
+        ```hsc
+        (render_sky [boolean])
+        ```
+  - slug: render_lens_flares
+    info:
+      en: |-
+        ```hsc
+        (render_lens_flares [boolean])
+        ```
+  - slug: render_decorators
+    info:
+      en: |-
+        ```hsc
+        (render_decorators [boolean])
+        ```
+  - slug: light_decorators
+    info:
+      en: |-
+        ```hsc
+        (light_decorators [boolean])
+        ```
+  - slug: render_decorator_bounds
+    info:
+      en: |-
+        ```hsc
+        (render_decorator_bounds [boolean])
+        ```
+  - slug: render_decorator_spheres
+    info:
+      en: |-
+        ```hsc
+        (render_decorator_spheres [boolean])
+        ```
+  - slug: render_muffins
+    info:
+      en: |-
+        ```hsc
+        (render_muffins [boolean])
+        ```
+  - slug: render_debug_muffins
+    info:
+      en: |-
+        ```hsc
+        (render_debug_muffins [boolean])
+        ```
+  - slug: render_debug_force_cinematic_lights
+    info:
+      en: |-
+        ```hsc
+        (render_debug_force_cinematic_lights [boolean])
+        ```
+  - slug: render_debug_pix_events
+    info:
+      en: |-
+        ```hsc
+        (render_debug_pix_events [boolean])
+        ```
+  - slug: render_atmosphere_cluster_blend_data
+    info:
+      en: |-
+        ```hsc
+        (render_atmosphere_cluster_blend_data [boolean])
+        ```
+  - slug: render_pc_specular
+    info:
+      en: |-
+        ```hsc
+        (render_pc_specular [boolean])
+        ```
+  - slug: render_pc_albedo_lighting
+    info:
+      en: |-
+        ```hsc
+        (render_pc_albedo_lighting [boolean])
+        ```
+  - slug: render_debug_save_surface
+    info:
+      en: |-
+        ```hsc
+        (render_debug_save_surface [long])
+        ```
+  - slug: render_disable_screen_effects_not_first_person
+    info:
+      en: |-
+        ```hsc
+        (render_disable_screen_effects_not_first_person [boolean])
+        ```
+  - slug: render_screen_flashes
+    info:
+      en: |-
+        ```hsc
+        (render_screen_flashes [boolean])
+        ```
+  - slug: texture_camera_near_plane
+    info:
+      en: |-
+        ```hsc
+        (texture_camera_near_plane [real])
+        ```
+  - slug: texture_camera_exposure
+    info:
+      en: |-
+        ```hsc
+        (texture_camera_exposure [real])
+        ```
+  - slug: texture_camera_illum_scale
+    info:
+      en: |-
+        ```hsc
+        (texture_camera_illum_scale [real])
+        ```
+  - slug: render_near_clip_distance
+    info:
+      en: |-
+        ```hsc
+        (render_near_clip_distance [real])
+        ```
+  - slug: render_far_clip_distance
+    info:
+      en: |-
+        ```hsc
+        (render_far_clip_distance [real])
+        ```
+  - slug: render_exposure_stops
+    info:
+      en: |-
+        ```hsc
+        (render_exposure_stops [real])
+        ```
+  - slug: display_exposure
+    info:
+      en: |-
+        ```hsc
+        (display_exposure [boolean])
+        ```
+  - slug: render_HDR_target_stops
+    info:
+      en: |-
+        ```hsc
+        (render_HDR_target_stops [real])
+        ```
+  - slug: render_surface_LDR_mode
+    info:
+      en: |-
+        ```hsc
+        (render_surface_LDR_mode [long])
+        ```
+  - slug: render_surface_HDR_mode
+    info:
+      en: |-
+        ```hsc
+        (render_surface_HDR_mode [long])
+        ```
+  - slug: render_first_person_fov_scale
+    info:
+      en: |-
+        ```hsc
+        (render_first_person_fov_scale [real])
+        ```
+  - slug: rasterizer_triliner_threshold
+    info:
+      en: |-
+        ```hsc
+        (rasterizer_triliner_threshold [long])
+        ```
+  - slug: rasterizer_present_immediate_threshold
+    info:
+      en: |-
+        ```hsc
+        (rasterizer_present_immediate_threshold [long])
+        ```
+  - slug: tiling
+    info:
+      en: |-
+        ```hsc
+        (tiling [long])
+        ```
+  - slug: render_screen_res
+    info:
+      en: |-
+        ```hsc
+        (render_screen_res [long])
+        ```
+  - slug: render_force_tiling
+    info:
+      en: |-
+        ```hsc
+        (render_force_tiling [boolean])
+        ```
+  - slug: render_tiling_resolve_fragment_index
+    info:
+      en: |-
+        ```hsc
+        (render_tiling_resolve_fragment_index [long])
+        ```
+  - slug: render_tiling_viewport_offset_x
+    info:
+      en: |-
+        ```hsc
+        (render_tiling_viewport_offset_x [real])
+        ```
+  - slug: render_tiling_viewport_offset_y
+    info:
+      en: |-
+        ```hsc
+        (render_tiling_viewport_offset_y [real])
+        ```
+  - slug: render_true_gamma
+    info:
+      en: |-
+        ```hsc
+        (render_true_gamma [boolean])
+        ```
+  - slug: render_shadow_bounds
+    info:
+      en: |-
+        ```hsc
+        (render_shadow_bounds [boolean])
+        ```
+  - slug: render_shadow_bounds_solid
+    info:
+      en: |-
+        ```hsc
+        (render_shadow_bounds_solid [boolean])
+        ```
+  - slug: render_shadow_opaque
+    info:
+      en: |-
+        ```hsc
+        (render_shadow_opaque [boolean])
+        ```
+  - slug: render_shadow_screenspace
+    info:
+      en: |-
+        ```hsc
+        (render_shadow_screenspace [boolean])
+        ```
+  - slug: render_shadow_histencil
+    info:
+      en: |-
+        ```hsc
+        (render_shadow_histencil [boolean])
+        ```
+  - slug: render_shadow_hires
+    info:
+      en: |-
+        ```hsc
+        (render_shadow_hires [boolean])
+        ```
+  - slug: render_shadow_objectspace_stencil_clip
+    info:
+      en: |-
+        ```hsc
+        (render_shadow_objectspace_stencil_clip [boolean])
+        ```
+  - slug: render_shadow_force_fancy
+    info:
+      en: |-
+        ```hsc
+        (render_shadow_force_fancy [boolean])
+        ```
+  - slug: render_shadow_force_old
+    info:
+      en: |-
+        ```hsc
+        (render_shadow_force_old [boolean])
+        ```
+  - slug: render_postprocess
+    info:
+      en: |-
+        ```hsc
+        (render_postprocess [boolean])
+        ```
+  - slug: render_accum
+    info:
+      en: |-
+        ```hsc
+        (render_accum [long])
+        ```
+  - slug: render_bloom_source
+    info:
+      en: |-
+        ```hsc
+        (render_bloom_source [long])
+        ```
+  - slug: render_persist
+    info:
+      en: |-
+        ```hsc
+        (render_persist [boolean])
+        ```
+  - slug: render_bloom
+    info:
+      en: |-
+        ```hsc
+        (render_bloom [long])
+        ```
+  - slug: render_bling
+    info:
+      en: |-
+        ```hsc
+        (render_bling [long])
+        ```
+  - slug: render_downsample
+    info:
+      en: |-
+        ```hsc
+        (render_downsample [long])
+        ```
+  - slug: render_show_alpha
+    info:
+      en: |-
+        ```hsc
+        (render_show_alpha [long])
+        ```
+  - slug: render_postprocess_exposure
+    info:
+      en: |-
+        ```hsc
+        (render_postprocess_exposure [real])
+        ```
+  - slug: render_accum_filter
+    info:
+      en: |-
+        ```hsc
+        (render_accum_filter [long])
+        ```
+  - slug: render_tone_curve
+    info:
+      en: |-
+        ```hsc
+        (render_tone_curve [boolean])
+        ```
+  - slug: render_tone_curve_white
+    info:
+      en: |-
+        ```hsc
+        (render_tone_curve_white [real])
+        ```
+  - slug: render_exposure_lock
+    info:
+      en: |-
+        ```hsc
+        (render_exposure_lock [boolean])
+        ```
+  - slug: render_postprocess_hue
+    info:
+      en: |-
+        ```hsc
+        (render_postprocess_hue [real])
+        ```
+  - slug: render_postprocess_saturation
+    info:
+      en: |-
+        ```hsc
+        (render_postprocess_saturation [real])
+        ```
+  - slug: render_postprocess_red_filter
+    info:
+      en: |-
+        ```hsc
+        (render_postprocess_red_filter [real])
+        ```
+  - slug: render_postprocess_green_filter
+    info:
+      en: |-
+        ```hsc
+        (render_postprocess_green_filter [real])
+        ```
+  - slug: render_postprocess_blue_filter
+    info:
+      en: |-
+        ```hsc
+        (render_postprocess_blue_filter [real])
+        ```
+  - slug: render_screenspace_center
+    info:
+      en: |-
+        ```hsc
+        (render_screenspace_center [real])
+        ```
+  - slug: render_bounce_light_intensity
+    info:
+      en: |-
+        ```hsc
+        (render_bounce_light_intensity [real])
+        ```
+  - slug: render_bounce_light_only
+    info:
+      en: |-
+        ```hsc
+        (render_bounce_light_only [boolean])
+        ```
+  - slug: render_disable_prt
+    info:
+      en: |-
+        ```hsc
+        (render_disable_prt [boolean])
+        ```
+  - slug: screenshot_anisotropic_level
+    info:
+      en: |-
+        ```hsc
+        (screenshot_anisotropic_level [long])
+        ```
+  - slug: screenshot_gamma
+    info:
+      en: |-
+        ```hsc
+        (screenshot_gamma [real])
+        ```
+  - slug: render_light_intensity
+    info:
+      en: |-
+        ```hsc
+        (render_light_intensity [real])
+        ```
+  - slug: render_light_clip_planes
+    info:
+      en: |-
+        ```hsc
+        (render_light_clip_planes [long])
+        ```
+  - slug: render_light_opaque
+    info:
+      en: |-
+        ```hsc
+        (render_light_opaque [boolean])
+        ```
+  - slug: cubemap_debug
+    info:
+      en: |-
+        ```hsc
+        (cubemap_debug [boolean])
+        ```
+  - slug: render_debug_cloth
+    info:
+      en: |-
+        ```hsc
+        (render_debug_cloth [boolean])
+        ```
+  - slug: render_debug_antennas
+    info:
+      en: |-
+        ```hsc
+        (render_debug_antennas [boolean])
+        ```
+  - slug: render_debug_leaf_systems
+    info:
+      en: |-
+        ```hsc
+        (render_debug_leaf_systems [boolean])
+        ```
+  - slug: render_debug_object_lighting
+    info:
+      en: |-
+        ```hsc
+        (render_debug_object_lighting [boolean])
+        ```
+  - slug: render_debug_object_lighting_refresh
+    info:
+      en: |-
+        ```hsc
+        (render_debug_object_lighting_refresh [boolean])
+        ```
+  - slug: render_debug_use_cholocate_mountain
+    info:
+      en: |-
+        ```hsc
+        (render_debug_use_cholocate_mountain [boolean])
+        ```
+  - slug: render_debug_object_lighting_use_scenery_probe
+    info:
+      en: |-
+        ```hsc
+        (render_debug_object_lighting_use_scenery_probe [boolean])
+        ```
+  - slug: render_debug_object_lighting_use_device_probe
+    info:
+      en: |-
+        ```hsc
+        (render_debug_object_lighting_use_device_probe [boolean])
+        ```
+  - slug: render_debug_object_lighting_use_air_probe
+    info:
+      en: |-
+        ```hsc
+        (render_debug_object_lighting_use_air_probe [boolean])
+        ```
+  - slug: render_debug_show_air_probes
+    info:
+      en: |-
+        ```hsc
+        (render_debug_show_air_probes [boolean])
+        ```
+  - slug: render_debug_infinite_framerate
+    info:
+      en: |-
+        ```hsc
+        (render_debug_infinite_framerate [boolean])
+        ```
+  - slug: render_debug_toggle_default_lightmaps_texaccum
+    info:
+      en: |-
+        ```hsc
+        (render_debug_toggle_default_lightmaps_texaccum [long])
+        ```
+  - slug: render_debug_toggle_default_static_lighting
+    info:
+      en: |-
+        ```hsc
+        (render_debug_toggle_default_static_lighting [boolean])
+        ```
+  - slug: render_debug_toggle_default_dynamic_lighting
+    info:
+      en: |-
+        ```hsc
+        (render_debug_toggle_default_dynamic_lighting [boolean])
+        ```
+  - slug: render_debug_toggle_default_sfx
+    info:
+      en: |-
+        ```hsc
+        (render_debug_toggle_default_sfx [boolean])
+        ```
+  - slug: render_debug_depth_render
+    info:
+      en: |-
+        ```hsc
+        (render_debug_depth_render [long])
+        ```
+  - slug: render_debug_depth_render_scale_r
+    info:
+      en: |-
+        ```hsc
+        (render_debug_depth_render_scale_r [real])
+        ```
+  - slug: render_debug_depth_render_scale_g
+    info:
+      en: |-
+        ```hsc
+        (render_debug_depth_render_scale_g [real])
+        ```
+  - slug: render_debug_depth_render_scale_b
+    info:
+      en: |-
+        ```hsc
+        (render_debug_depth_render_scale_b [real])
+        ```
+  - slug: render_debug_show_4x3_bounds
+    info:
+      en: |-
+        ```hsc
+        (render_debug_show_4x3_bounds [boolean])
+        ```
+  - slug: render_weather_bounds
+    info:
+      en: |-
+        ```hsc
+        (render_weather_bounds [boolean])
+        ```
+  - slug: render_debug_cinematic_clip
+    info:
+      en: |-
+        ```hsc
+        (render_debug_cinematic_clip [boolean])
+        ```
+  - slug: render_buffer_gamma
+    info:
+      en: |-
+        ```hsc
+        (render_buffer_gamma [real])
+        ```
+  - slug: render_screen_gamma
+    info:
+      en: |-
+        ```hsc
+        (render_screen_gamma [real])
+        ```
+  - slug: render_buffer_gamma_curve
+    info:
+      en: |-
+        ```hsc
+        (render_buffer_gamma_curve [long])
+        ```
+  - slug: render_color_balance_red
+    info:
+      en: |-
+        ```hsc
+        (render_color_balance_red [real])
+        ```
+  - slug: render_color_balance_green
+    info:
+      en: |-
+        ```hsc
+        (render_color_balance_green [real])
+        ```
+  - slug: render_color_balance_blue
+    info:
+      en: |-
+        ```hsc
+        (render_color_balance_blue [real])
+        ```
+  - slug: render_black_level_red
+    info:
+      en: |-
+        ```hsc
+        (render_black_level_red [real])
+        ```
+  - slug: render_black_level_green
+    info:
+      en: |-
+        ```hsc
+        (render_black_level_green [real])
+        ```
+  - slug: render_black_level_blue
+    info:
+      en: |-
+        ```hsc
+        (render_black_level_blue [real])
+        ```
+  - slug: debug_volume_samples
+    info:
+      en: |-
+        ```hsc
+        (debug_volume_samples [boolean])
+        ```
+  - slug: decal_create
+    info:
+      en: |-
+        ```hsc
+        (decal_create [boolean])
+        ```
+  - slug: decal_frame_advance
+    info:
+      en: |-
+        ```hsc
+        (decal_frame_advance [boolean])
+        ```
+  - slug: decal_render
+    info:
+      en: |-
+        ```hsc
+        (decal_render [boolean])
+        ```
+  - slug: decal_disable
+    info:
+      en: |-
+        ```hsc
+        (decal_disable [boolean])
+        ```
+  - slug: decal_render_latest_debug
+    info:
+      en: |-
+        ```hsc
+        (decal_render_latest_debug [boolean])
+        ```
+  - slug: decal_cull
+    info:
+      en: |-
+        ```hsc
+        (decal_cull [boolean])
+        ```
+  - slug: decal_fade
+    info:
+      en: |-
+        ```hsc
+        (decal_fade [boolean])
+        ```
+  - slug: decal_dump
+    info:
+      en: |-
+        ```hsc
+        (decal_dump [boolean])
+        ```
+  - slug: decal_z_bias
+    info:
+      en: |-
+        ```hsc
+        (decal_z_bias [real])
+        ```
+  - slug: decal_slope_z_bias
+    info:
+      en: |-
+        ```hsc
+        (decal_slope_z_bias [real])
+        ```
+  - slug: particle_create
+    info:
+      en: |-
+        ```hsc
+        (particle_create [boolean])
+        ```
+  - slug: particle_frame_advance
+    info:
+      en: |-
+        ```hsc
+        (particle_frame_advance [boolean])
+        ```
+  - slug: particle_render
+    info:
+      en: |-
+        ```hsc
+        (particle_render [boolean])
+        ```
+  - slug: particle_render_debug
+    info:
+      en: |-
+        ```hsc
+        (particle_render_debug [boolean])
+        ```
+  - slug: particle_render_debug_spheres
+    info:
+      en: |-
+        ```hsc
+        (particle_render_debug_spheres [boolean])
+        ```
+  - slug: particle_cull
+    info:
+      en: |-
+        ```hsc
+        (particle_cull [boolean])
+        ```
+  - slug: particle_dump
+    info:
+      en: |-
+        ```hsc
+        (particle_dump [boolean])
+        ```
+  - slug: particle_force_cpu
+    info:
+      en: |-
+        ```hsc
+        (particle_force_cpu [boolean])
+        ```
+  - slug: particle_force_gpu
+    info:
+      en: |-
+        ```hsc
+        (particle_force_gpu [boolean])
+        ```
+  - slug: effect_priority_cutoff
+    info:
+      en: |-
+        ```hsc
+        (effect_priority_cutoff [long])
+        ```
+  - slug: weather_occlusion_max_height
+    info:
+      en: |-
+        ```hsc
+        (weather_occlusion_max_height [real])
+        ```
+  - slug: render_method_debug
+    info:
+      en: |-
+        ```hsc
+        (render_method_debug [boolean])
+        ```
+  - slug: render_debug_viewport_resolution_scale_x
+    info:
+      en: |-
+        ```hsc
+        (render_debug_viewport_resolution_scale_x [real])
+        ```
+  - slug: render_debug_viewport_resolution_scale_y
+    info:
+      en: |-
+        ```hsc
+        (render_debug_viewport_resolution_scale_y [real])
+        ```
+  - slug: render_debug_viewport_top_left_shift_x
+    info:
+      en: |-
+        ```hsc
+        (render_debug_viewport_top_left_shift_x [long])
+        ```
+  - slug: render_debug_viewport_top_left_shift_y
+    info:
+      en: |-
+        ```hsc
+        (render_debug_viewport_top_left_shift_y [long])
+        ```
+  - slug: render_debug_light_probes
+    info:
+      en: |-
+        ```hsc
+        (render_debug_light_probes [long])
+        ```
+  - slug: effect_property_culling
+    info:
+      en: |-
+        ```hsc
+        (effect_property_culling [boolean])
+        ```
+  - slug: contrail_create
+    info:
+      en: |-
+        ```hsc
+        (contrail_create [boolean])
+        ```
+  - slug: contrail_pulse
+    info:
+      en: |-
+        ```hsc
+        (contrail_pulse [boolean])
+        ```
+  - slug: contrail_frame_advance
+    info:
+      en: |-
+        ```hsc
+        (contrail_frame_advance [boolean])
+        ```
+  - slug: contrail_submit
+    info:
+      en: |-
+        ```hsc
+        (contrail_submit [boolean])
+        ```
+  - slug: contrail_dump
+    info:
+      en: |-
+        ```hsc
+        (contrail_dump [boolean])
+        ```
+  - slug: light_volume_create
+    info:
+      en: |-
+        ```hsc
+        (light_volume_create [boolean])
+        ```
+  - slug: light_volume_frame_advance
+    info:
+      en: |-
+        ```hsc
+        (light_volume_frame_advance [boolean])
+        ```
+  - slug: light_volume_submit
+    info:
+      en: |-
+        ```hsc
+        (light_volume_submit [boolean])
+        ```
+  - slug: light_volume_dump
+    info:
+      en: |-
+        ```hsc
+        (light_volume_dump [boolean])
+        ```
+  - slug: beam_create
+    info:
+      en: |-
+        ```hsc
+        (beam_create [boolean])
+        ```
+  - slug: beam_frame_advance
+    info:
+      en: |-
+        ```hsc
+        (beam_frame_advance [boolean])
+        ```
+  - slug: beam_submit
+    info:
+      en: |-
+        ```hsc
+        (beam_submit [boolean])
+        ```
+  - slug: beam_dump
+    info:
+      en: |-
+        ```hsc
+        (beam_dump [boolean])
+        ```
+  - slug: debug_inactive_objects
+    info:
+      en: |-
+        ```hsc
+        (debug_inactive_objects [boolean])
+        ```
+  - slug: debug_pvs
+    info:
+      en: |-
+        ```hsc
+        (debug_pvs [boolean])
+        ```
+  - slug: debug_pvs_render_all
+    info:
+      en: |-
+        ```hsc
+        (debug_pvs_render_all [boolean])
+        ```
+  - slug: debug_pvs_activation
+    info:
+      en: |-
+        ```hsc
+        (debug_pvs_activation [boolean])
+        ```
+  - slug: debug_pvs_editor_mode
+    info:
+      en: |-
+        ```hsc
+        (debug_pvs_editor_mode [boolean])
+        ```
+  - slug: render_default_lighting
+    info:
+      en: |-
+        ```hsc
+        (render_default_lighting [boolean])
+        ```
+  - slug: visibility_debug_portals
+    info:
+      en: |-
+        ```hsc
+        (visibility_debug_portals [boolean])
+        ```
+  - slug: visibility_debug_audio_clusters
+    info:
+      en: |-
+        ```hsc
+        (visibility_debug_audio_clusters [boolean])
+        ```
+  - slug: visibility_debug_visible_clusters
+    info:
+      en: |-
+        ```hsc
+        (visibility_debug_visible_clusters [boolean])
+        ```
+  - slug: visibility_debug_portals_structure_bsp_index
+    info:
+      en: |-
+        ```hsc
+        (visibility_debug_portals_structure_bsp_index [long])
+        ```
+  - slug: visibility_debug_portals_cluster_index
+    info:
+      en: |-
+        ```hsc
+        (visibility_debug_portals_cluster_index [long])
+        ```
+  - slug: debug_objects
+    info:
+      en: |-
+        ```hsc
+        (debug_objects [boolean])
+        ```
+  - slug: debug_objects_position_velocity
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_position_velocity [boolean])
+        ```
+  - slug: debug_objects_origin
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_origin [boolean])
+        ```
+  - slug: debug_objects_root_node
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_root_node [boolean])
+        ```
+  - slug: debug_objects_bounding_spheres
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_bounding_spheres [boolean])
+        ```
+  - slug: debug_objects_attached_bounding_spheres
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_attached_bounding_spheres [boolean])
+        ```
+  - slug: debug_objects_dynamic_render_bounding_spheres
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_dynamic_render_bounding_spheres [boolean])
+        ```
+  - slug: debug_objects_render_models
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_render_models [boolean])
+        ```
+  - slug: debug_objects_collision_models
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_collision_models [boolean])
+        ```
+  - slug: debug_objects_early_movers
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_early_movers [boolean])
+        ```
+  - slug: debug_objects_contact_points
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_contact_points [boolean])
+        ```
+  - slug: debug_objects_constraints
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_constraints [boolean])
+        ```
+  - slug: debug_objects_vehicle_physics
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_vehicle_physics [boolean])
+        ```
+  - slug: debug_objects_mass
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_mass [boolean])
+        ```
+  - slug: debug_objects_physics_models
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_physics_models [boolean])
+        ```
+  - slug: debug_objects_expensive_physics
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_expensive_physics [boolean])
+        ```
+  - slug: debug_objects_water_physics
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_water_physics [boolean])
+        ```
+  - slug: water_physics_velocity_minimum
+    info:
+      en: |-
+        ```hsc
+        (water_physics_velocity_minimum [real])
+        ```
+  - slug: water_physics_velocity_maximum
+    info:
+      en: |-
+        ```hsc
+        (water_physics_velocity_maximum [real])
+        ```
+  - slug: debug_objects_names
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_names [boolean])
+        ```
+  - slug: debug_objects_names_full
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_names_full [boolean])
+        ```
+  - slug: debug_objects_indices
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_indices [boolean])
+        ```
+  - slug: debug_objects_functions
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_functions [boolean])
+        ```
+  - slug: debug_objects_functions_all
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_functions_all [boolean])
+        ```
+  - slug: debug_objects_model_targets
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_model_targets [boolean])
+        ```
+  - slug: debug_objects_pathfinding
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_pathfinding [boolean])
+        ```
+  - slug: debug_objects_profile_times
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_profile_times [boolean])
+        ```
+  - slug: debug_objects_node_bounds
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_node_bounds [boolean])
+        ```
+  - slug: debug_objects_unit_vectors
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_unit_vectors [boolean])
+        ```
+  - slug: debug_objects_unit_seats
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_unit_seats [boolean])
+        ```
+  - slug: debug_objects_unit_mouth_apeture
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_unit_mouth_apeture [boolean])
+        ```
+  - slug: debug_objects_unit_firing
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_unit_firing [boolean])
+        ```
+  - slug: debug_objects_unit_lipsync
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_unit_lipsync [boolean])
+        ```
+  - slug: debug_objects_unit_lipsync_verbose
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_unit_lipsync_verbose [boolean])
+        ```
+  - slug: debug_objects_unit_emotion
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_unit_emotion [boolean])
+        ```
+  - slug: debug_objects_unit_acceleration
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_unit_acceleration [boolean])
+        ```
+  - slug: debug_objects_unit_camera
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_unit_camera [boolean])
+        ```
+  - slug: debug_objects_biped_autoaim_pills
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_biped_autoaim_pills [boolean])
+        ```
+  - slug: debug_objects_biped_melee_in_range
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_biped_melee_in_range [boolean])
+        ```
+  - slug: debug_objects_physics_control_node
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_physics_control_node [boolean])
+        ```
+  - slug: debug_objects_ground_plane
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_ground_plane [boolean])
+        ```
+  - slug: debug_objects_movement_mode
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_movement_mode [boolean])
+        ```
+  - slug: debug_objects_unit_pathfinding_surface
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_unit_pathfinding_surface [boolean])
+        ```
+  - slug: debug_objects_devices
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_devices [boolean])
+        ```
+  - slug: debug_objects_machines
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_machines [boolean])
+        ```
+  - slug: debug_objects_garbage
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_garbage [boolean])
+        ```
+  - slug: debug_objects_type_mask
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_type_mask [long])
+        ```
+  - slug: debug_objects_sound_spheres
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_sound_spheres [boolean])
+        ```
+  - slug: debug_objects_active_nodes
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_active_nodes [boolean])
+        ```
+  - slug: debug_objects_animation_times
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_animation_times [boolean])
+        ```
+  - slug: debug_objects_animation
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_animation [boolean])
+        ```
+  - slug: debug_objects_spawn_timers
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_spawn_timers [boolean])
+        ```
+  - slug: debug_objects_freeze_ragdolls
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_freeze_ragdolls [boolean])
+        ```
+  - slug: debug_objects_disable_relaxation
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_disable_relaxation [boolean])
+        ```
+  - slug: debug_objects_sentinel_physics_ignore_lag
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_sentinel_physics_ignore_lag [boolean])
+        ```
+  - slug: debug_objects_ignore_node_masks
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_ignore_node_masks [boolean])
+        ```
+  - slug: debug_objects_force_awake
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_force_awake [boolean])
+        ```
+  - slug: debug_objects_disable_node_animation
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_disable_node_animation [boolean])
+        ```
+  - slug: debug_objects_dump_memory_stats
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_dump_memory_stats [boolean])
+        ```
+  - slug: debug_objects_object
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_object [object])
+        ```
+  - slug: debug_objects_by_index
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_by_index [long])
+        ```
+  - slug: debug_objects_player_only
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_player_only [boolean])
+        ```
+  - slug: debug_objects_vehicle_suspension
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_vehicle_suspension [boolean])
+        ```
+  - slug: debug_objects_skeletons
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_skeletons [boolean])
+        ```
+  - slug: render_model_nodes
+    info:
+      en: |-
+        ```hsc
+        (render_model_nodes [boolean])
+        ```
+  - slug: render_model_point_counts
+    info:
+      en: |-
+        ```hsc
+        (render_model_point_counts [boolean])
+        ```
+  - slug: render_model_vertex_counts
+    info:
+      en: |-
+        ```hsc
+        (render_model_vertex_counts [boolean])
+        ```
+  - slug: render_model_names
+    info:
+      en: |-
+        ```hsc
+        (render_model_names [boolean])
+        ```
+  - slug: render_model_triangle_counts
+    info:
+      en: |-
+        ```hsc
+        (render_model_triangle_counts [boolean])
+        ```
+  - slug: render_model_collision_vertex_counts
+    info:
+      en: |-
+        ```hsc
+        (render_model_collision_vertex_counts [boolean])
+        ```
+  - slug: render_model_collision_surface_counts
+    info:
+      en: |-
+        ```hsc
+        (render_model_collision_surface_counts [boolean])
+        ```
+  - slug: render_model_texture_usage
+    info:
+      en: |-
+        ```hsc
+        (render_model_texture_usage [boolean])
+        ```
+  - slug: render_model_geometry_usage
+    info:
+      en: |-
+        ```hsc
+        (render_model_geometry_usage [boolean])
+        ```
+  - slug: render_model_cost
+    info:
+      en: |-
+        ```hsc
+        (render_model_cost [boolean])
+        ```
+  - slug: render_model_markers
+    info:
+      en: |-
+        ```hsc
+        (render_model_markers [boolean])
+        ```
+  - slug: render_model_no_geometry
+    info:
+      en: |-
+        ```hsc
+        (render_model_no_geometry [boolean])
+        ```
+  - slug: render_model_skinning_disable
+    info:
+      en: |-
+        ```hsc
+        (render_model_skinning_disable [boolean])
+        ```
+  - slug: debug_damage
+    info:
+      en: |-
+        ```hsc
+        (debug_damage [boolean])
+        ```
+  - slug: debug_player_damage
+    info:
+      en: |-
+        ```hsc
+        (debug_player_damage [boolean])
+        ```
+  - slug: debug_damage_verbose
+    info:
+      en: |-
+        ```hsc
+        (debug_damage_verbose [boolean])
+        ```
+  - slug: debug_damage_radius
+    info:
+      en: |-
+        ```hsc
+        (debug_damage_radius [boolean])
+        ```
+  - slug: hs_verbose
+    info:
+      en: |-
+        ```hsc
+        (hs_verbose [boolean])
+        ```
+  - slug: breakpoints_enabled
+    info:
+      en: |-
+        ```hsc
+        (breakpoints_enabled [boolean])
+        ```
+  - slug: debug_trigger_volumes
+    info:
+      en: |-
+        ```hsc
+        (debug_trigger_volumes [boolean])
+        ```
+  - slug: debug_point_physics
+    info:
+      en: |-
+        ```hsc
+        (debug_point_physics [boolean])
+        ```
+  - slug: water_physics_debug
+    info:
+      en: |-
+        ```hsc
+        (water_physics_debug [boolean])
+        ```
+  - slug: collision_debug
+    info:
+      en: |-
+        ```hsc
+        (collision_debug [boolean])
+        ```
+  - slug: collision_debug_water_proxy
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_water_proxy [boolean])
+        ```
+  - slug: collision_debug_spray
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_spray [boolean])
+        ```
+  - slug: collision_debug_features
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_features [boolean])
+        ```
+  - slug: collision_debug_phantom_bsp
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_phantom_bsp [boolean])
+        ```
+  - slug: collision_debug_lightmaps
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_lightmaps [boolean])
+        ```
+  - slug: collision_debug_geometry_sampling
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_geometry_sampling [boolean])
+        ```
+  - slug: collision_debug_flags
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flags [long])
+        ```
+  - slug: collision_debug_flag_structure
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_structure [boolean])
+        ```
+  - slug: collision_debug_flag_water
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_water [boolean])
+        ```
+  - slug: collision_debug_flag_instanced_geometry
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_instanced_geometry [boolean])
+        ```
+  - slug: collision_debug_flag_objects
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects [boolean])
+        ```
+  - slug: collision_debug_flag_objects_bipeds
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_bipeds [boolean])
+        ```
+  - slug: collision_debug_flag_objects_giants
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_giants [boolean])
+        ```
+  - slug: collision_debug_flag_objects_effect_scenery
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_effect_scenery [boolean])
+        ```
+  - slug: collision_debug_flag_objects_vehicles
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_vehicles [boolean])
+        ```
+  - slug: collision_debug_flag_objects_weapons
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_weapons [boolean])
+        ```
+  - slug: collision_debug_flag_objects_equipment
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_equipment [boolean])
+        ```
+  - slug: collision_debug_flag_objects_terminals
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_terminals [boolean])
+        ```
+  - slug: collision_debug_flag_objects_projectiles
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_projectiles [boolean])
+        ```
+  - slug: collision_debug_flag_objects_scenery
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_scenery [boolean])
+        ```
+  - slug: collision_debug_flag_objects_machines
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_machines [boolean])
+        ```
+  - slug: collision_debug_flag_objects_controls
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_controls [boolean])
+        ```
+  - slug: collision_debug_flag_objects_sound_scenery
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_sound_scenery [boolean])
+        ```
+  - slug: collision_debug_flag_objects_crates
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_crates [boolean])
+        ```
+  - slug: collision_debug_flag_objects_creatures
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_objects_creatures [boolean])
+        ```
+  - slug: collision_debug_flag_ignore_child_objects
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_ignore_child_objects [boolean])
+        ```
+  - slug: collision_debug_flag_ignore_nonpathfindable_objects
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_ignore_nonpathfindable_objects [boolean])
+        ```
+  - slug: collision_debug_flag_ignore_cinematic_objects
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_ignore_cinematic_objects [boolean])
+        ```
+  - slug: collision_debug_flag_ignore_dead_bipeds
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_ignore_dead_bipeds [boolean])
+        ```
+  - slug: collision_debug_flag_ignore_passthrough_bipeds
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_ignore_passthrough_bipeds [boolean])
+        ```
+  - slug: collision_debug_flag_front_facing_surfaces
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_front_facing_surfaces [boolean])
+        ```
+  - slug: collision_debug_flag_back_facing_surfaces
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_back_facing_surfaces [boolean])
+        ```
+  - slug: collision_debug_flag_ignore_two_sided_surfaces
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_ignore_two_sided_surfaces [boolean])
+        ```
+  - slug: collision_debug_flag_ignore_invisible_surfaces
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_ignore_invisible_surfaces [boolean])
+        ```
+  - slug: collision_debug_flag_ignore_breakable_surfaces
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_ignore_breakable_surfaces [boolean])
+        ```
+  - slug: collision_debug_flag_allow_early_out
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_allow_early_out [boolean])
+        ```
+  - slug: collision_debug_flag_try_to_keep_location_valid
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_flag_try_to_keep_location_valid [boolean])
+        ```
+  - slug: collision_debug_repeat
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_repeat [boolean])
+        ```
+  - slug: collision_debug_point_x
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_point_x [real])
+        ```
+  - slug: collision_debug_point_y
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_point_y [real])
+        ```
+  - slug: collision_debug_point_z
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_point_z [real])
+        ```
+  - slug: collision_debug_vector_i
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_vector_i [real])
+        ```
+  - slug: collision_debug_vector_j
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_vector_j [real])
+        ```
+  - slug: collision_debug_vector_k
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_vector_k [real])
+        ```
+  - slug: collision_debug_length
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_length [real])
+        ```
+  - slug: collision_debug_width
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_width [real])
+        ```
+  - slug: collision_debug_height
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_height [real])
+        ```
+  - slug: collision_debug_ignore_object_index
+    info:
+      en: |-
+        ```hsc
+        (collision_debug_ignore_object_index [long])
+        ```
+  - slug: debug_obstacle_path
+    info:
+      en: |-
+        ```hsc
+        (debug_obstacle_path [boolean])
+        ```
+  - slug: debug_obstacle_path_on_failure
+    info:
+      en: |-
+        ```hsc
+        (debug_obstacle_path_on_failure [boolean])
+        ```
+  - slug: debug_obstacle_path_start_point_x
+    info:
+      en: |-
+        ```hsc
+        (debug_obstacle_path_start_point_x [real])
+        ```
+  - slug: debug_obstacle_path_start_point_y
+    info:
+      en: |-
+        ```hsc
+        (debug_obstacle_path_start_point_y [real])
+        ```
+  - slug: debug_obstacle_path_goal_point_x
+    info:
+      en: |-
+        ```hsc
+        (debug_obstacle_path_goal_point_x [real])
+        ```
+  - slug: debug_obstacle_path_goal_point_y
+    info:
+      en: |-
+        ```hsc
+        (debug_obstacle_path_goal_point_y [real])
+        ```
+  - slug: suppress_pathfinding_generation
+    info:
+      en: |-
+        ```hsc
+        (suppress_pathfinding_generation [boolean])
+        ```
+  - slug: ai_generate_flood_sector_wrl
+    info:
+      en: |-
+        ```hsc
+        (ai_generate_flood_sector_wrl [boolean])
+        ```
+  - slug: ai_pathfinding_generate_stats
+    info:
+      en: |-
+        ```hsc
+        (ai_pathfinding_generate_stats [boolean])
+        ```
+  - slug: debug_zone_set_critical_portals
+    info:
+      en: |-
+        ```hsc
+        (debug_zone_set_critical_portals [boolean])
+        ```
+  - slug: debug_camera
+    info:
+      en: |-
+        ```hsc
+        (debug_camera [boolean])
+        ```
+  - slug: debug_tangent_space
+    info:
+      en: |-
+        ```hsc
+        (debug_tangent_space [boolean])
+        ```
+  - slug: debug_player
+    info:
+      en: |-
+        ```hsc
+        (debug_player [boolean])
+        ```
+  - slug: debug_player_control_autoaim_always_active
+    info:
+      en: |-
+        ```hsc
+        (debug_player_control_autoaim_always_active [boolean])
+        ```
+  - slug: debug_structure
+    info:
+      en: |-
+        ```hsc
+        (debug_structure [boolean])
+        ```
+  - slug: debug_structure_complexity
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_complexity [boolean])
+        ```
+  - slug: debug_structure_water
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_water [boolean])
+        ```
+  - slug: debug_structure_invisible
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_invisible [boolean])
+        ```
+  - slug: debug_structure_cluster_skies
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_cluster_skies [boolean])
+        ```
+  - slug: debug_structure_slip_surfaces
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_slip_surfaces [boolean])
+        ```
+  - slug: debug_structure_soft_ceilings
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_soft_ceilings [boolean])
+        ```
+  - slug: debug_structure_soft_ceilings_biped
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_soft_ceilings_biped [boolean])
+        ```
+  - slug: debug_structure_soft_ceilings_vehicle
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_soft_ceilings_vehicle [boolean])
+        ```
+  - slug: debug_structure_soft_ceilings_huge_vehicle
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_soft_ceilings_huge_vehicle [boolean])
+        ```
+  - slug: debug_structure_soft_ceilings_camera
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_soft_ceilings_camera [boolean])
+        ```
+  - slug: debug_structure_soft_ceilings_test_observer
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_soft_ceilings_test_observer [boolean])
+        ```
+  - slug: soft_ceilings_disable
+    info:
+      en: |-
+        ```hsc
+        (soft_ceilings_disable [boolean])
+        ```
+  - slug: debug_structure_soft_kill
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_soft_kill [boolean])
+        ```
+  - slug: debug_structure_seam_edges
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_seam_edges [boolean])
+        ```
+  - slug: debug_structure_seams
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_seams [boolean])
+        ```
+  - slug: debug_structure_seam_triangles
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_seam_triangles [boolean])
+        ```
+  - slug: debug_structure_automatic
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_automatic [boolean])
+        ```
+  - slug: debug_structure_unique_colors
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_unique_colors [boolean])
+        ```
+  - slug: debug_instanced_geometry
+    info:
+      en: |-
+        ```hsc
+        (debug_instanced_geometry [boolean])
+        ```
+  - slug: debug_instanced_geometry_bounding_spheres
+    info:
+      en: |-
+        ```hsc
+        (debug_instanced_geometry_bounding_spheres [boolean])
+        ```
+  - slug: debug_instanced_geometry_names
+    info:
+      en: |-
+        ```hsc
+        (debug_instanced_geometry_names [boolean])
+        ```
+  - slug: debug_instanced_geometry_vertex_counts
+    info:
+      en: |-
+        ```hsc
+        (debug_instanced_geometry_vertex_counts [boolean])
+        ```
+  - slug: debug_instanced_geometry_collision_geometry
+    info:
+      en: |-
+        ```hsc
+        (debug_instanced_geometry_collision_geometry [boolean])
+        ```
+  - slug: debug_structure_surface_references
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_surface_references [boolean])
+        ```
+  - slug: debug_structure_markers
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_markers [boolean])
+        ```
+  - slug: debug_bsp
+    info:
+      en: |-
+        ```hsc
+        (debug_bsp [boolean])
+        ```
+  - slug: debug_plane_index
+    info:
+      en: |-
+        ```hsc
+        (debug_plane_index [long])
+        ```
+  - slug: debug_surface_index
+    info:
+      en: |-
+        ```hsc
+        (debug_surface_index [long])
+        ```
+  - slug: debug_input
+    info:
+      en: |-
+        ```hsc
+        (debug_input [boolean])
+        ```
+  - slug: debug_leaf0_index
+    info:
+      en: |-
+        ```hsc
+        (debug_leaf0_index [long])
+        ```
+  - slug: debug_leaf1_index
+    info:
+      en: |-
+        ```hsc
+        (debug_leaf1_index [long])
+        ```
+  - slug: debug_leaf_connection_index
+    info:
+      en: |-
+        ```hsc
+        (debug_leaf_connection_index [long])
+        ```
+  - slug: debug_cluster_index
+    info:
+      en: |-
+        ```hsc
+        (debug_cluster_index [long])
+        ```
+  - slug: debug_first_person_weapons
+    info:
+      en: |-
+        ```hsc
+        (debug_first_person_weapons [boolean])
+        ```
+  - slug: debug_first_person_models
+    info:
+      en: |-
+        ```hsc
+        (debug_first_person_models [boolean])
+        ```
+  - slug: breakable_surfaces
+    info:
+      en: |-
+        ```hsc
+        (breakable_surfaces [boolean])
+        ```
+  - slug: debug_lights
+    info:
+      en: |-
+        ```hsc
+        (debug_lights [boolean])
+        ```
+  - slug: debug_light_passes
+    info:
+      en: |-
+        ```hsc
+        (debug_light_passes [boolean])
+        ```
+  - slug: debug_biped_landing
+    info:
+      en: |-
+        ```hsc
+        (debug_biped_landing [boolean])
+        ```
+  - slug: debug_biped_throttle
+    info:
+      en: |-
+        ```hsc
+        (debug_biped_throttle [boolean])
+        ```
+  - slug: debug_collision_skip_instanced_geometry
+    info:
+      en: |-
+        ```hsc
+        (debug_collision_skip_instanced_geometry [boolean])
+        ```
+  - slug: debug_collision_skip_objects
+    info:
+      en: |-
+        ```hsc
+        (debug_collision_skip_objects [boolean])
+        ```
+  - slug: debug_collision_skip_vectors
+    info:
+      en: |-
+        ```hsc
+        (debug_collision_skip_vectors [boolean])
+        ```
+  - slug: debug_collision_object_payload_collision
+    info:
+      en: |-
+        ```hsc
+        (debug_collision_object_payload_collision [boolean])
+        ```
+  - slug: debug_material_effects
+    info:
+      en: |-
+        ```hsc
+        (debug_material_effects [boolean])
+        ```
+  - slug: debug_material_default_effects
+    info:
+      en: |-
+        ```hsc
+        (debug_material_default_effects [boolean])
+        ```
+  - slug: player_training_debug
+    info:
+      en: |-
+        ```hsc
+        (player_training_debug [boolean])
+        ```
+  - slug: player_training_disable
+    info:
+      en: |-
+        ```hsc
+        (player_training_disable [boolean])
+        ```
+  - slug: game_engine_debug_statborg
+    info:
+      en: |-
+        ```hsc
+        (game_engine_debug_statborg [boolean])
+        ```
+  - slug: jaime_control_hack
+    info:
+      en: |-
+        ```hsc
+        (jaime_control_hack [boolean])
+        ```
+  - slug: bertone_control_hack
+    info:
+      en: |-
+        ```hsc
+        (bertone_control_hack [boolean])
+        ```
+  - slug: motor_system_debug
+    info:
+      en: |-
+        ```hsc
+        (motor_system_debug [boolean])
+        ```
+  - slug: ai_profile_disable
+    info:
+      en: |-
+        ```hsc
+        (ai_profile_disable [boolean])
+        ```
+  - slug: ai_profile_random
+    info:
+      en: |-
+        ```hsc
+        (ai_profile_random [boolean])
+        ```
+  - slug: ai_show
+    info:
+      en: |-
+        ```hsc
+        (ai_show [boolean])
+        ```
+  - slug: ai_show_stats
+    info:
+      en: |-
+        ```hsc
+        (ai_show_stats [boolean])
+        ```
+  - slug: ai_show_actors
+    info:
+      en: |-
+        ```hsc
+        (ai_show_actors [boolean])
+        ```
+  - slug: ai_show_swarms
+    info:
+      en: |-
+        ```hsc
+        (ai_show_swarms [boolean])
+        ```
+  - slug: ai_show_paths
+    info:
+      en: |-
+        ```hsc
+        (ai_show_paths [boolean])
+        ```
+  - slug: ai_show_line_of_sight
+    info:
+      en: |-
+        ```hsc
+        (ai_show_line_of_sight [boolean])
+        ```
+  - slug: ai_show_prop_types
+    info:
+      en: |-
+        ```hsc
+        (ai_show_prop_types [boolean])
+        ```
+  - slug: ai_show_sound_distance
+    info:
+      en: |-
+        ```hsc
+        (ai_show_sound_distance [boolean])
+        ```
+  - slug: ai_render
+    info:
+      en: |-
+        ```hsc
+        (ai_render [boolean])
+        ```
+  - slug: ai_render_all_actors
+    info:
+      en: |-
+        ```hsc
+        (ai_render_all_actors [boolean])
+        ```
+  - slug: ai_render_inactive_actors
+    info:
+      en: |-
+        ```hsc
+        (ai_render_inactive_actors [boolean])
+        ```
+  - slug: ai_render_lineoffire_crouching
+    info:
+      en: |-
+        ```hsc
+        (ai_render_lineoffire_crouching [boolean])
+        ```
+  - slug: ai_render_lineoffire
+    info:
+      en: |-
+        ```hsc
+        (ai_render_lineoffire [boolean])
+        ```
+  - slug: ai_render_lineofsight
+    info:
+      en: |-
+        ```hsc
+        (ai_render_lineofsight [boolean])
+        ```
+  - slug: ai_render_ballistic_lineoffire
+    info:
+      en: |-
+        ```hsc
+        (ai_render_ballistic_lineoffire [boolean])
+        ```
+  - slug: ai_render_vision_cones
+    info:
+      en: |-
+        ```hsc
+        (ai_render_vision_cones [boolean])
+        ```
+  - slug: ai_render_current_state
+    info:
+      en: |-
+        ```hsc
+        (ai_render_current_state [boolean])
+        ```
+  - slug: ai_render_detailed_state
+    info:
+      en: |-
+        ```hsc
+        (ai_render_detailed_state [boolean])
+        ```
+  - slug: ai_render_props
+    info:
+      en: |-
+        ```hsc
+        (ai_render_props [boolean])
+        ```
+  - slug: ai_render_props_web
+    info:
+      en: |-
+        ```hsc
+        (ai_render_props_web [boolean])
+        ```
+  - slug: ai_render_props_no_friends
+    info:
+      en: |-
+        ```hsc
+        (ai_render_props_no_friends [boolean])
+        ```
+  - slug: ai_render_props_unreachable
+    info:
+      en: |-
+        ```hsc
+        (ai_render_props_unreachable [boolean])
+        ```
+  - slug: ai_render_props_unopposable
+    info:
+      en: |-
+        ```hsc
+        (ai_render_props_unopposable [boolean])
+        ```
+  - slug: ai_render_props_stimulus
+    info:
+      en: |-
+        ```hsc
+        (ai_render_props_stimulus [boolean])
+        ```
+  - slug: ai_render_props_dialogue
+    info:
+      en: |-
+        ```hsc
+        (ai_render_props_dialogue [boolean])
+        ```
+  - slug: ai_render_props_salience
+    info:
+      en: |-
+        ```hsc
+        (ai_render_props_salience [boolean])
+        ```
+  - slug: ai_render_props_update
+    info:
+      en: |-
+        ```hsc
+        (ai_render_props_update [boolean])
+        ```
+  - slug: ai_render_idle_look
+    info:
+      en: |-
+        ```hsc
+        (ai_render_idle_look [boolean])
+        ```
+  - slug: ai_render_support_surfaces
+    info:
+      en: |-
+        ```hsc
+        (ai_render_support_surfaces [boolean])
+        ```
+  - slug: ai_render_recent_damage
+    info:
+      en: |-
+        ```hsc
+        (ai_render_recent_damage [boolean])
+        ```
+  - slug: ai_render_current_damage
+    info:
+      en: |-
+        ```hsc
+        (ai_render_current_damage [boolean])
+        ```
+  - slug: ai_render_threats
+    info:
+      en: |-
+        ```hsc
+        (ai_render_threats [boolean])
+        ```
+  - slug: ai_render_emotions
+    info:
+      en: |-
+        ```hsc
+        (ai_render_emotions [boolean])
+        ```
+  - slug: ai_render_audibility
+    info:
+      en: |-
+        ```hsc
+        (ai_render_audibility [boolean])
+        ```
+  - slug: ai_render_aiming_vectors
+    info:
+      en: |-
+        ```hsc
+        (ai_render_aiming_vectors [boolean])
+        ```
+  - slug: ai_render_secondary_looking
+    info:
+      en: |-
+        ```hsc
+        (ai_render_secondary_looking [boolean])
+        ```
+  - slug: ai_render_targets
+    info:
+      en: |-
+        ```hsc
+        (ai_render_targets [boolean])
+        ```
+  - slug: ai_render_targets_all
+    info:
+      en: |-
+        ```hsc
+        (ai_render_targets_all [boolean])
+        ```
+  - slug: ai_render_targets_last_visible
+    info:
+      en: |-
+        ```hsc
+        (ai_render_targets_last_visible [boolean])
+        ```
+  - slug: ai_render_states
+    info:
+      en: |-
+        ```hsc
+        (ai_render_states [boolean])
+        ```
+  - slug: ai_render_vitality
+    info:
+      en: |-
+        ```hsc
+        (ai_render_vitality [boolean])
+        ```
+  - slug: ai_render_evaluations
+    info:
+      en: |-
+        ```hsc
+        (ai_render_evaluations [boolean])
+        ```
+  - slug: ai_render_evaluations_detailed
+    info:
+      en: |-
+        ```hsc
+        (ai_render_evaluations_detailed [boolean])
+        ```
+  - slug: ai_render_evaluations_text
+    info:
+      en: |-
+        ```hsc
+        (ai_render_evaluations_text [boolean])
+        ```
+  - slug: ai_render_evaluations_shading
+    info:
+      en: |-
+        ```hsc
+        (ai_render_evaluations_shading [short])
+        ```
+  - slug: ai_render_evaluations_shading_type
+    info:
+      en: |-
+        ```hsc
+        (ai_render_evaluations_shading_type [short])
+        ```
+  - slug: ai_render_pursuit
+    info:
+      en: |-
+        ```hsc
+        (ai_render_pursuit [boolean])
+        ```
+  - slug: ai_render_shooting
+    info:
+      en: |-
+        ```hsc
+        (ai_render_shooting [boolean])
+        ```
+  - slug: ai_render_trigger
+    info:
+      en: |-
+        ```hsc
+        (ai_render_trigger [boolean])
+        ```
+  - slug: ai_render_projectile_aiming
+    info:
+      en: |-
+        ```hsc
+        (ai_render_projectile_aiming [boolean])
+        ```
+  - slug: ai_render_aiming_validity
+    info:
+      en: |-
+        ```hsc
+        (ai_render_aiming_validity [boolean])
+        ```
+  - slug: ai_render_speech
+    info:
+      en: |-
+        ```hsc
+        (ai_render_speech [boolean])
+        ```
+  - slug: ai_render_leadership
+    info:
+      en: |-
+        ```hsc
+        (ai_render_leadership [boolean])
+        ```
+  - slug: ai_render_status_flags
+    info:
+      en: |-
+        ```hsc
+        (ai_render_status_flags [boolean])
+        ```
+  - slug: ai_render_goal_state
+    info:
+      en: |-
+        ```hsc
+        (ai_render_goal_state [boolean])
+        ```
+  - slug: ai_render_behavior_debug
+    info:
+      en: |-
+        ```hsc
+        (ai_render_behavior_debug [boolean])
+        ```
+  - slug: ai_render_active_camo
+    info:
+      en: |-
+        ```hsc
+        (ai_render_active_camo [boolean])
+        ```
+  - slug: ai_render_vehicle_attachment
+    info:
+      en: |-
+        ```hsc
+        (ai_render_vehicle_attachment [boolean])
+        ```
+  - slug: ai_render_vehicle_reservations
+    info:
+      en: |-
+        ```hsc
+        (ai_render_vehicle_reservations [boolean])
+        ```
+  - slug: ai_render_actor_blinddeaf
+    info:
+      en: |-
+        ```hsc
+        (ai_render_actor_blinddeaf [boolean])
+        ```
+  - slug: ai_render_morphing
+    info:
+      en: |-
+        ```hsc
+        (ai_render_morphing [boolean])
+        ```
+  - slug: ai_render_look_orders
+    info:
+      en: |-
+        ```hsc
+        (ai_render_look_orders [boolean])
+        ```
+  - slug: ai_render_character_names
+    info:
+      en: |-
+        ```hsc
+        (ai_render_character_names [boolean])
+        ```
+  - slug: ai_render_dialogue
+    info:
+      en: |-
+        ```hsc
+        (ai_render_dialogue [boolean])
+        ```
+  - slug: ai_render_dialogue_queue
+    info:
+      en: |-
+        ```hsc
+        (ai_render_dialogue_queue [boolean])
+        ```
+  - slug: ai_render_dialogue_records
+    info:
+      en: |-
+        ```hsc
+        (ai_render_dialogue_records [boolean])
+        ```
+  - slug: ai_render_dialogue_player_weights
+    info:
+      en: |-
+        ```hsc
+        (ai_render_dialogue_player_weights [boolean])
+        ```
+  - slug: ai_dialogue_test_mode
+    info:
+      en: |-
+        ```hsc
+        (ai_dialogue_test_mode [boolean])
+        ```
+  - slug: ai_dialogue_datamine_enable
+    info:
+      en: |-
+        ```hsc
+        (ai_dialogue_datamine_enable [boolean])
+        ```
+  - slug: ai_render_teams
+    info:
+      en: |-
+        ```hsc
+        (ai_render_teams [boolean])
+        ```
+  - slug: ai_render_player_ratings
+    info:
+      en: |-
+        ```hsc
+        (ai_render_player_ratings [boolean])
+        ```
+  - slug: ai_render_spatial_effects
+    info:
+      en: |-
+        ```hsc
+        (ai_render_spatial_effects [boolean])
+        ```
+  - slug: ai_render_firing_positions
+    info:
+      en: |-
+        ```hsc
+        (ai_render_firing_positions [boolean])
+        ```
+  - slug: ai_render_firing_position_statistics
+    info:
+      en: |-
+        ```hsc
+        (ai_render_firing_position_statistics [boolean])
+        ```
+  - slug: ai_render_firing_position_obstacles
+    info:
+      en: |-
+        ```hsc
+        (ai_render_firing_position_obstacles [boolean])
+        ```
+  - slug: ai_render_mission_critical
+    info:
+      en: |-
+        ```hsc
+        (ai_render_mission_critical [boolean])
+        ```
+  - slug: ai_render_gun_positions
+    info:
+      en: |-
+        ```hsc
+        (ai_render_gun_positions [boolean])
+        ```
+  - slug: ai_render_aiming_positions
+    info:
+      en: |-
+        ```hsc
+        (ai_render_aiming_positions [boolean])
+        ```
+  - slug: ai_render_burst_geometry
+    info:
+      en: |-
+        ```hsc
+        (ai_render_burst_geometry [boolean])
+        ```
+  - slug: ai_render_vehicle_avoidance
+    info:
+      en: |-
+        ```hsc
+        (ai_render_vehicle_avoidance [boolean])
+        ```
+  - slug: ai_render_vehicles_enterable
+    info:
+      en: |-
+        ```hsc
+        (ai_render_vehicles_enterable [boolean])
+        ```
+  - slug: ai_render_melee_check
+    info:
+      en: |-
+        ```hsc
+        (ai_render_melee_check [boolean])
+        ```
+  - slug: ai_render_dialogue_variants
+    info:
+      en: |-
+        ```hsc
+        (ai_render_dialogue_variants [boolean])
+        ```
+  - slug: ai_render_grenades
+    info:
+      en: |-
+        ```hsc
+        (ai_render_grenades [boolean])
+        ```
+  - slug: ai_render_danger_zones
+    info:
+      en: |-
+        ```hsc
+        (ai_render_danger_zones [boolean])
+        ```
+  - slug: ai_render_control
+    info:
+      en: |-
+        ```hsc
+        (ai_render_control [boolean])
+        ```
+  - slug: ai_render_activation
+    info:
+      en: |-
+        ```hsc
+        (ai_render_activation [boolean])
+        ```
+  - slug: ai_render_paths
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths [boolean])
+        ```
+  - slug: ai_render_paths_selected_only
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_selected_only [boolean])
+        ```
+  - slug: ai_render_paths_destination
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_destination [boolean])
+        ```
+  - slug: ai_render_paths_raw
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_raw [boolean])
+        ```
+  - slug: ai_render_paths_current
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_current [boolean])
+        ```
+  - slug: ai_render_paths_failed
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_failed [boolean])
+        ```
+  - slug: ai_render_paths_smoothed
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_smoothed [boolean])
+        ```
+  - slug: ai_render_paths_avoided
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_avoided [boolean])
+        ```
+  - slug: ai_render_paths_error_thresholds
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_error_thresholds [boolean])
+        ```
+  - slug: ai_render_paths_avoidance_segment
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_avoidance_segment [short])
+        ```
+  - slug: ai_render_paths_avoidance_obstacles
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_avoidance_obstacles [boolean])
+        ```
+  - slug: ai_render_paths_avoidance_search
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_avoidance_search [boolean])
+        ```
+  - slug: ai_render_paths_nodes
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_nodes [boolean])
+        ```
+  - slug: ai_render_paths_nodes_all
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_nodes_all [boolean])
+        ```
+  - slug: ai_render_paths_nodes_polygons
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_nodes_polygons [boolean])
+        ```
+  - slug: ai_render_paths_nodes_costs
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_nodes_costs [boolean])
+        ```
+  - slug: ai_render_paths_nodes_closest
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_nodes_closest [boolean])
+        ```
+  - slug: ai_render_paths_distance
+    info:
+      en: |-
+        ```hsc
+        (ai_render_paths_distance [boolean])
+        ```
+  - slug: ai_render_player_aiming_blocked
+    info:
+      en: |-
+        ```hsc
+        (ai_render_player_aiming_blocked [boolean])
+        ```
+  - slug: ai_render_deceleration_obstacles
+    info:
+      en: |-
+        ```hsc
+        (ai_render_deceleration_obstacles [boolean])
+        ```
+  - slug: ai_render_recent_obstacles
+    info:
+      en: |-
+        ```hsc
+        (ai_render_recent_obstacles [boolean])
+        ```
+  - slug: ai_render_combat_range
+    info:
+      en: |-
+        ```hsc
+        (ai_render_combat_range [boolean])
+        ```
+  - slug: ai_render_dynamic_firing_positions
+    info:
+      en: |-
+        ```hsc
+        (ai_render_dynamic_firing_positions [boolean])
+        ```
+  - slug: ai_render_clumps
+    info:
+      en: |-
+        ```hsc
+        (ai_render_clumps [boolean])
+        ```
+  - slug: ai_render_clump_props
+    info:
+      en: |-
+        ```hsc
+        (ai_render_clump_props [boolean])
+        ```
+  - slug: ai_render_clump_props_all
+    info:
+      en: |-
+        ```hsc
+        (ai_render_clump_props_all [boolean])
+        ```
+  - slug: ai_render_clump_dialogue
+    info:
+      en: |-
+        ```hsc
+        (ai_render_clump_dialogue [boolean])
+        ```
+  - slug: ai_render_sectors
+    info:
+      en: |-
+        ```hsc
+        (ai_render_sectors [boolean])
+        ```
+  - slug: ai_render_sector_bsps
+    info:
+      en: |-
+        ```hsc
+        (ai_render_sector_bsps [boolean])
+        ```
+  - slug: ai_render_giant_sector_bsps
+    info:
+      en: |-
+        ```hsc
+        (ai_render_giant_sector_bsps [boolean])
+        ```
+  - slug: ai_render_sector_link_errors
+    info:
+      en: |-
+        ```hsc
+        (ai_render_sector_link_errors [boolean])
+        ```
+  - slug: ai_render_intersection_links
+    info:
+      en: |-
+        ```hsc
+        (ai_render_intersection_links [boolean])
+        ```
+  - slug: ai_render_non_walkable_sectors
+    info:
+      en: |-
+        ```hsc
+        (ai_render_non_walkable_sectors [boolean])
+        ```
+  - slug: ai_render_threshold_links
+    info:
+      en: |-
+        ```hsc
+        (ai_render_threshold_links [boolean])
+        ```
+  - slug: ai_render_sector_geometry_errors
+    info:
+      en: |-
+        ```hsc
+        (ai_render_sector_geometry_errors [boolean])
+        ```
+  - slug: ai_pathfinding_generation_verbose
+    info:
+      en: |-
+        ```hsc
+        (ai_pathfinding_generation_verbose [boolean])
+        ```
+  - slug: ai_render_sectors_range_max
+    info:
+      en: |-
+        ```hsc
+        (ai_render_sectors_range_max [long])
+        ```
+  - slug: ai_render_sectors_range_min
+    info:
+      en: |-
+        ```hsc
+        (ai_render_sectors_range_min [long])
+        ```
+  - slug: ai_render_link_specific
+    info:
+      en: |-
+        ```hsc
+        (ai_render_link_specific [long])
+        ```
+  - slug: ai_render_links
+    info:
+      en: |-
+        ```hsc
+        (ai_render_links [boolean])
+        ```
+  - slug: ai_render_user_hints
+    info:
+      en: |-
+        ```hsc
+        (ai_render_user_hints [boolean])
+        ```
+  - slug: ai_render_area_flight_hints
+    info:
+      en: |-
+        ```hsc
+        (ai_render_area_flight_hints [boolean])
+        ```
+  - slug: ai_render_hints
+    info:
+      en: |-
+        ```hsc
+        (ai_render_hints [boolean])
+        ```
+  - slug: ai_render_hints_detailed
+    info:
+      en: |-
+        ```hsc
+        (ai_render_hints_detailed [boolean])
+        ```
+  - slug: ai_render_object_hints
+    info:
+      en: |-
+        ```hsc
+        (ai_render_object_hints [boolean])
+        ```
+  - slug: ai_render_object_hints_all
+    info:
+      en: |-
+        ```hsc
+        (ai_render_object_hints_all [boolean])
+        ```
+  - slug: ai_render_object_properties
+    info:
+      en: |-
+        ```hsc
+        (ai_render_object_properties [boolean])
+        ```
+  - slug: ai_render_hints_movement
+    info:
+      en: |-
+        ```hsc
+        (ai_render_hints_movement [boolean])
+        ```
+  - slug: ai_orders_print_entries
+    info:
+      en: |-
+        ```hsc
+        (ai_orders_print_entries [boolean])
+        ```
+  - slug: ai_orders_print_entries_verbose
+    info:
+      en: |-
+        ```hsc
+        (ai_orders_print_entries_verbose [boolean])
+        ```
+  - slug: ai_render_orders
+    info:
+      en: |-
+        ```hsc
+        (ai_render_orders [boolean])
+        ```
+  - slug: ai_render_suppress_combat
+    info:
+      en: |-
+        ```hsc
+        (ai_render_suppress_combat [boolean])
+        ```
+  - slug: ai_render_objectives
+    info:
+      en: |-
+        ```hsc
+        (ai_render_objectives [boolean])
+        ```
+  - slug: ai_render_strength
+    info:
+      en: |-
+        ```hsc
+        (ai_render_strength [boolean])
+        ```
+  - slug: ai_render_ai_iterator
+    info:
+      en: |-
+        ```hsc
+        (ai_render_ai_iterator [ai])
+        ```
+  - slug: ai_render_child_stack
+    info:
+      en: |-
+        ```hsc
+        (ai_render_child_stack [boolean])
+        ```
+  - slug: ai_render_behavior_stack
+    info:
+      en: |-
+        ```hsc
+        (ai_render_behavior_stack [boolean])
+        ```
+  - slug: ai_render_behavior_stack_all
+    info:
+      en: |-
+        ```hsc
+        (ai_render_behavior_stack_all [boolean])
+        ```
+  - slug: ai_render_stimuli
+    info:
+      en: |-
+        ```hsc
+        (ai_render_stimuli [boolean])
+        ```
+  - slug: ai_render_combat_status
+    info:
+      en: |-
+        ```hsc
+        (ai_render_combat_status [boolean])
+        ```
+  - slug: ai_render_decisions
+    info:
+      en: |-
+        ```hsc
+        (ai_render_decisions [boolean])
+        ```
+  - slug: ai_render_decisions_all
+    info:
+      en: |-
+        ```hsc
+        (ai_render_decisions_all [boolean])
+        ```
+  - slug: ai_render_command_scripts
+    info:
+      en: |-
+        ```hsc
+        (ai_render_command_scripts [boolean])
+        ```
+  - slug: ai_hide_actor_errors
+    info:
+      en: |-
+        ```hsc
+        (ai_hide_actor_errors [boolean])
+        ```
+  - slug: ai_debug_tracking_data
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_tracking_data [boolean])
+        ```
+  - slug: ai_debug_perception_data
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_perception_data [boolean])
+        ```
+  - slug: ai_debug_combat_status
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_combat_status [boolean])
+        ```
+  - slug: ai_render_tracked_props
+    info:
+      en: |-
+        ```hsc
+        (ai_render_tracked_props [boolean])
+        ```
+  - slug: ai_render_tracked_props_all
+    info:
+      en: |-
+        ```hsc
+        (ai_render_tracked_props_all [boolean])
+        ```
+  - slug: ai_debug_vignettes
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_vignettes [boolean])
+        ```
+  - slug: ai_render_joint_behaviors
+    info:
+      en: |-
+        ```hsc
+        (ai_render_joint_behaviors [boolean])
+        ```
+  - slug: ai_render_swarm
+    info:
+      en: |-
+        ```hsc
+        (ai_render_swarm [boolean])
+        ```
+  - slug: ai_render_flocks
+    info:
+      en: |-
+        ```hsc
+        (ai_render_flocks [boolean])
+        ```
+  - slug: ai_render_vehicle_interest
+    info:
+      en: |-
+        ```hsc
+        (ai_render_vehicle_interest [boolean])
+        ```
+  - slug: ai_render_player_battle_vector
+    info:
+      en: |-
+        ```hsc
+        (ai_render_player_battle_vector [boolean])
+        ```
+  - slug: ai_render_player_needs_vehicle
+    info:
+      en: |-
+        ```hsc
+        (ai_render_player_needs_vehicle [boolean])
+        ```
+  - slug: ai_debug_prop_refresh
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_prop_refresh [boolean])
+        ```
+  - slug: ai_debug_all_disposable
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_all_disposable [boolean])
+        ```
+  - slug: ai_current_squad
+    info:
+      en: |-
+        ```hsc
+        (ai_current_squad [ai])
+        ```
+  - slug: ai_current_actor
+    info:
+      en: |-
+        ```hsc
+        (ai_current_actor [ai])
+        ```
+  - slug: ai_render_vehicle_turns
+    info:
+      en: |-
+        ```hsc
+        (ai_render_vehicle_turns [boolean])
+        ```
+  - slug: ai_render_discarded_firing_positions
+    info:
+      en: |-
+        ```hsc
+        (ai_render_discarded_firing_positions [boolean])
+        ```
+  - slug: ai_render_firing_positions_all
+    info:
+      en: |-
+        ```hsc
+        (ai_render_firing_positions_all [boolean])
+        ```
+  - slug: ai_render_firing_position_info
+    info:
+      en: |-
+        ```hsc
+        (ai_render_firing_position_info [boolean])
+        ```
+  - slug: ai_inspect_avoidance_failure
+    info:
+      en: |-
+        ```hsc
+        (ai_inspect_avoidance_failure [boolean])
+        ```
+  - slug: ai_render_action_selection_failure
+    info:
+      en: |-
+        ```hsc
+        (ai_render_action_selection_failure [boolean])
+        ```
+  - slug: ai_combat_status_asleep
+    info:
+      en: |-
+        ```hsc
+        (ai_combat_status_asleep [short])
+        ```
+  - slug: ai_combat_status_idle
+    info:
+      en: |-
+        ```hsc
+        (ai_combat_status_idle [short])
+        ```
+  - slug: ai_combat_status_alert
+    info:
+      en: |-
+        ```hsc
+        (ai_combat_status_alert [short])
+        ```
+  - slug: ai_combat_status_active
+    info:
+      en: |-
+        ```hsc
+        (ai_combat_status_active [short])
+        ```
+  - slug: ai_combat_status_uninspected
+    info:
+      en: |-
+        ```hsc
+        (ai_combat_status_uninspected [short])
+        ```
+  - slug: ai_combat_status_definite
+    info:
+      en: |-
+        ```hsc
+        (ai_combat_status_definite [short])
+        ```
+  - slug: ai_combat_status_certain
+    info:
+      en: |-
+        ```hsc
+        (ai_combat_status_certain [short])
+        ```
+  - slug: ai_combat_status_visible
+    info:
+      en: |-
+        ```hsc
+        (ai_combat_status_visible [short])
+        ```
+  - slug: ai_combat_status_clear_los
+    info:
+      en: |-
+        ```hsc
+        (ai_combat_status_clear_los [short])
+        ```
+  - slug: ai_combat_status_dangerous
+    info:
+      en: |-
+        ```hsc
+        (ai_combat_status_dangerous [short])
+        ```
+  - slug: ai_task_status_never
+    info:
+      en: |-
+        ```hsc
+        (ai_task_status_never [short])
+        ```
+  - slug: ai_task_status_occupied
+    info:
+      en: |-
+        ```hsc
+        (ai_task_status_occupied [short])
+        ```
+  - slug: ai_task_status_empty
+    info:
+      en: |-
+        ```hsc
+        (ai_task_status_empty [short])
+        ```
+  - slug: ai_task_status_inactive
+    info:
+      en: |-
+        ```hsc
+        (ai_task_status_inactive [short])
+        ```
+  - slug: ai_task_status_exhausted
+    info:
+      en: |-
+        ```hsc
+        (ai_task_status_exhausted [short])
+        ```
+  - slug: ai_evaluator_preference
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_preference [short])
+        ```
+  - slug: ai_evaluator_avoidance
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_avoidance [short])
+        ```
+  - slug: ai_evaluator_sum
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_sum [short])
+        ```
+  - slug: ai_evaluator_pathfinding
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_pathfinding [short])
+        ```
+  - slug: ai_evaluator_preferred_group
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_preferred_group [short])
+        ```
+  - slug: ai_evaluator_pursuit_walkdistance
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_pursuit_walkdistance [short])
+        ```
+  - slug: ai_evaluator_pursuit_targetdistance
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_pursuit_targetdistance [short])
+        ```
+  - slug: ai_evaluator_pursuit_targethint
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_pursuit_targethint [short])
+        ```
+  - slug: ai_evaluator_pursuit_visible
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_pursuit_visible [short])
+        ```
+  - slug: ai_evaluator_pursuit_examined_us
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_pursuit_examined_us [short])
+        ```
+  - slug: ai_evaluator_pursuit_examined_total
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_pursuit_examined_total [short])
+        ```
+  - slug: ai_evaluator_pursuit_available
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_pursuit_available [short])
+        ```
+  - slug: ai_evaluator_panic_walkdistance
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_panic_walkdistance [short])
+        ```
+  - slug: ai_evaluator_panic_targetdistance
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_panic_targetdistance [short])
+        ```
+  - slug: ai_evaluator_panic_closetotarget
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_panic_closetotarget [short])
+        ```
+  - slug: ai_evaluator_guard_walkdistance
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_guard_walkdistance [short])
+        ```
+  - slug: ai_evaluator_attack_weaponrange
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_attack_weaponrange [short])
+        ```
+  - slug: ai_evaluator_attack_idealrange
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_attack_idealrange [short])
+        ```
+  - slug: ai_evaluator_attack_visible
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_attack_visible [short])
+        ```
+  - slug: ai_evaluator_attack_dangerousenemy
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_attack_dangerousenemy [short])
+        ```
+  - slug: ai_evaluator_combatmove_walkdistance
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_combatmove_walkdistance [short])
+        ```
+  - slug: ai_evaluator_combatmove_lineoffire
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_combatmove_lineoffire [short])
+        ```
+  - slug: ai_evaluator_hide_cover
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_hide_cover [short])
+        ```
+  - slug: ai_evaluator_hide_exposed
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_hide_exposed [short])
+        ```
+  - slug: ai_evaluator_uncover_pre_evaluate
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_uncover_pre_evaluate [short])
+        ```
+  - slug: ai_evaluator_uncover_visible
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_uncover_visible [short])
+        ```
+  - slug: ai_evaluator_uncover_blocked
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_uncover_blocked [short])
+        ```
+  - slug: ai_evaluator_previously_discarded
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_previously_discarded [short])
+        ```
+  - slug: ai_evaluator_danger_zone
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_danger_zone [short])
+        ```
+  - slug: ai_evaluator_move_into_danger_zone
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_move_into_danger_zone [short])
+        ```
+  - slug: ai_evaluator_3d_path_available
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_3d_path_available [short])
+        ```
+  - slug: ai_evaluator_point_avoidance
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_point_avoidance [short])
+        ```
+  - slug: ai_evaluator_directional_driving
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_directional_driving [short])
+        ```
+  - slug: ai_evaluator_favor_former_firing_position
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_favor_former_firing_position [short])
+        ```
+  - slug: ai_evaluator_hide_pre_evaluation
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_hide_pre_evaluation [short])
+        ```
+  - slug: ai_evaluator_pursuit
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_pursuit [short])
+        ```
+  - slug: ai_evaluator_pursuit_area_discarded
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_pursuit_area_discarded [short])
+        ```
+  - slug: ai_evaluator_flag_preferences
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_flag_preferences [short])
+        ```
+  - slug: ai_evaluator_perch_preferences
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_perch_preferences [short])
+        ```
+  - slug: ai_evaluator_combatmove_lineoffire_occluded
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_combatmove_lineoffire_occluded [short])
+        ```
+  - slug: ai_evaluator_attack_same_frame_of_reference
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_attack_same_frame_of_reference [short])
+        ```
+  - slug: ai_evaluator_wall_leanable
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_wall_leanable [short])
+        ```
+  - slug: ai_evaluator_cover_near_friends
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_cover_near_friends [short])
+        ```
+  - slug: ai_evaluator_combat_move_near_follow_unit
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_combat_move_near_follow_unit [short])
+        ```
+  - slug: ai_evaluator_goal_preferences
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_goal_preferences [short])
+        ```
+  - slug: ai_evaluator_hint_plane
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_hint_plane [short])
+        ```
+  - slug: ai_evaluator_postsearch_prefer_original
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_postsearch_prefer_original [short])
+        ```
+  - slug: ai_evaluator_leadership
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_leadership [short])
+        ```
+  - slug: ai_evaluator_flee_to_leader
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_flee_to_leader [short])
+        ```
+  - slug: ai_evaluator_goal_points_only
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_goal_points_only [short])
+        ```
+  - slug: ai_evaluator_attack_leader_distance
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_attack_leader_distance [short])
+        ```
+  - slug: ai_evaluator_too_far_from_leader
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_too_far_from_leader [short])
+        ```
+  - slug: ai_evaluator_guard_preference
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_guard_preference [short])
+        ```
+  - slug: ai_evaluator_guard_wall_preference
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_guard_wall_preference [short])
+        ```
+  - slug: ai_action_berserk
+    info:
+      en: |-
+        ```hsc
+        (ai_action_berserk [short])
+        ```
+  - slug: ai_action_surprise_front
+    info:
+      en: |-
+        ```hsc
+        (ai_action_surprise_front [short])
+        ```
+  - slug: ai_action_surprise_back
+    info:
+      en: |-
+        ```hsc
+        (ai_action_surprise_back [short])
+        ```
+  - slug: ai_action_evade_left
+    info:
+      en: |-
+        ```hsc
+        (ai_action_evade_left [short])
+        ```
+  - slug: ai_action_evade_right
+    info:
+      en: |-
+        ```hsc
+        (ai_action_evade_right [short])
+        ```
+  - slug: ai_action_dive_forward
+    info:
+      en: |-
+        ```hsc
+        (ai_action_dive_forward [short])
+        ```
+  - slug: ai_action_dive_back
+    info:
+      en: |-
+        ```hsc
+        (ai_action_dive_back [short])
+        ```
+  - slug: ai_action_dive_left
+    info:
+      en: |-
+        ```hsc
+        (ai_action_dive_left [short])
+        ```
+  - slug: ai_action_dive_right
+    info:
+      en: |-
+        ```hsc
+        (ai_action_dive_right [short])
+        ```
+  - slug: ai_action_advance
+    info:
+      en: |-
+        ```hsc
+        (ai_action_advance [short])
+        ```
+  - slug: ai_action_cheer
+    info:
+      en: |-
+        ```hsc
+        (ai_action_cheer [short])
+        ```
+  - slug: ai_action_fallback
+    info:
+      en: |-
+        ```hsc
+        (ai_action_fallback [short])
+        ```
+  - slug: ai_action_hold
+    info:
+      en: |-
+        ```hsc
+        (ai_action_hold [short])
+        ```
+  - slug: ai_action_point
+    info:
+      en: |-
+        ```hsc
+        (ai_action_point [short])
+        ```
+  - slug: ai_action_posing
+    info:
+      en: |-
+        ```hsc
+        (ai_action_posing [short])
+        ```
+  - slug: ai_action_shakefist
+    info:
+      en: |-
+        ```hsc
+        (ai_action_shakefist [short])
+        ```
+  - slug: ai_action_signal_attack
+    info:
+      en: |-
+        ```hsc
+        (ai_action_signal_attack [short])
+        ```
+  - slug: ai_action_signal_move
+    info:
+      en: |-
+        ```hsc
+        (ai_action_signal_move [short])
+        ```
+  - slug: ai_action_taunt
+    info:
+      en: |-
+        ```hsc
+        (ai_action_taunt [short])
+        ```
+  - slug: ai_action_warn
+    info:
+      en: |-
+        ```hsc
+        (ai_action_warn [short])
+        ```
+  - slug: ai_action_wave
+    info:
+      en: |-
+        ```hsc
+        (ai_action_wave [short])
+        ```
+  - slug: ai_activity_none
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_none [short])
+        ```
+  - slug: ai_activity_patrol
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_patrol [short])
+        ```
+  - slug: ai_activity_stand
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_stand [short])
+        ```
+  - slug: ai_activity_crouch
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_crouch [short])
+        ```
+  - slug: ai_activity_stand_drawn
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_stand_drawn [short])
+        ```
+  - slug: ai_activity_crouch_drawn
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_crouch_drawn [short])
+        ```
+  - slug: ai_activity_corner
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_corner [short])
+        ```
+  - slug: ai_activity_corner_open
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_corner_open [short])
+        ```
+  - slug: ai_activity_bunker
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_bunker [short])
+        ```
+  - slug: ai_activity_bunker_open
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_bunker_open [short])
+        ```
+  - slug: ai_activity_combat
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_combat [short])
+        ```
+  - slug: ai_activity_backup
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_backup [short])
+        ```
+  - slug: ai_activity_guard
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_guard [short])
+        ```
+  - slug: ai_activity_guard_crouch
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_guard_crouch [short])
+        ```
+  - slug: ai_activity_guard_wall
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_guard_wall [short])
+        ```
+  - slug: ai_activity_typing
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_typing [short])
+        ```
+  - slug: ai_activity_kneel
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_kneel [short])
+        ```
+  - slug: ai_activity_gaze
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_gaze [short])
+        ```
+  - slug: ai_activity_poke
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_poke [short])
+        ```
+  - slug: ai_activity_sniff
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_sniff [short])
+        ```
+  - slug: ai_activity_track
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_track [short])
+        ```
+  - slug: ai_activity_watch
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_watch [short])
+        ```
+  - slug: ai_activity_examine
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_examine [short])
+        ```
+  - slug: ai_activity_sleep
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_sleep [short])
+        ```
+  - slug: ai_activity_at_ease
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_at_ease [short])
+        ```
+  - slug: ai_activity_cower
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_cower [short])
+        ```
+  - slug: ai_activity_tai_chi
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_tai_chi [short])
+        ```
+  - slug: ai_activity_pee
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_pee [short])
+        ```
+  - slug: ai_activity_doze
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_doze [short])
+        ```
+  - slug: ai_activity_eat
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_eat [short])
+        ```
+  - slug: ai_activity_medic
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_medic [short])
+        ```
+  - slug: ai_activity_work
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_work [short])
+        ```
+  - slug: ai_activity_cheering
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_cheering [short])
+        ```
+  - slug: ai_activity_injured
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_injured [short])
+        ```
+  - slug: ai_activity_captured
+    info:
+      en: |-
+        ```hsc
+        (ai_activity_captured [short])
+        ```
+  - slug: morph_disallowed
+    info:
+      en: |-
+        ```hsc
+        (morph_disallowed [boolean])
+        ```
+  - slug: morph_time_ranged_tank
+    info:
+      en: |-
+        ```hsc
+        (morph_time_ranged_tank [real])
+        ```
+  - slug: morph_time_ranged_stealth
+    info:
+      en: |-
+        ```hsc
+        (morph_time_ranged_stealth [real])
+        ```
+  - slug: morph_time_tank_ranged
+    info:
+      en: |-
+        ```hsc
+        (morph_time_tank_ranged [real])
+        ```
+  - slug: morph_time_tank_stealth
+    info:
+      en: |-
+        ```hsc
+        (morph_time_tank_stealth [real])
+        ```
+  - slug: morph_time_stealth_ranged
+    info:
+      en: |-
+        ```hsc
+        (morph_time_stealth_ranged [real])
+        ```
+  - slug: morph_time_stealth_tank
+    info:
+      en: |-
+        ```hsc
+        (morph_time_stealth_tank [real])
+        ```
+  - slug: morph_form_ranged
+    info:
+      en: |-
+        ```hsc
+        (morph_form_ranged [short])
+        ```
+  - slug: morph_form_tank
+    info:
+      en: |-
+        ```hsc
+        (morph_form_tank [short])
+        ```
+  - slug: morph_form_stealth
+    info:
+      en: |-
+        ```hsc
+        (morph_form_stealth [short])
+        ```
+  - slug: ai_movement_patrol
+    info:
+      en: |-
+        ```hsc
+        (ai_movement_patrol [short])
+        ```
+  - slug: ai_movement_asleep
+    info:
+      en: |-
+        ```hsc
+        (ai_movement_asleep [short])
+        ```
+  - slug: ai_movement_combat
+    info:
+      en: |-
+        ```hsc
+        (ai_movement_combat [short])
+        ```
+  - slug: ai_movement_flee
+    info:
+      en: |-
+        ```hsc
+        (ai_movement_flee [short])
+        ```
+  - slug: ai_movement_flaming
+    info:
+      en: |-
+        ```hsc
+        (ai_movement_flaming [short])
+        ```
+  - slug: ai_movement_stunned
+    info:
+      en: |-
+        ```hsc
+        (ai_movement_stunned [short])
+        ```
+  - slug: ai_movement_berserk
+    info:
+      en: |-
+        ```hsc
+        (ai_movement_berserk [short])
+        ```
+  - slug: ai_print_major_upgrade
+    info:
+      en: |-
+        ```hsc
+        (ai_print_major_upgrade [boolean])
+        ```
+  - slug: ai_print_evaluation_statistics
+    info:
+      en: |-
+        ```hsc
+        (ai_print_evaluation_statistics [boolean])
+        ```
+  - slug: ai_print_communication
+    info:
+      en: |-
+        ```hsc
+        (ai_print_communication [boolean])
+        ```
+  - slug: ai_print_communication_player
+    info:
+      en: |-
+        ```hsc
+        (ai_print_communication_player [boolean])
+        ```
+  - slug: ai_print_vocalizations
+    info:
+      en: |-
+        ```hsc
+        (ai_print_vocalizations [boolean])
+        ```
+  - slug: ai_print_placement
+    info:
+      en: |-
+        ```hsc
+        (ai_print_placement [boolean])
+        ```
+  - slug: ai_print_speech
+    info:
+      en: |-
+        ```hsc
+        (ai_print_speech [boolean])
+        ```
+  - slug: ai_print_allegiance
+    info:
+      en: |-
+        ```hsc
+        (ai_print_allegiance [boolean])
+        ```
+  - slug: ai_print_lost_speech
+    info:
+      en: |-
+        ```hsc
+        (ai_print_lost_speech [boolean])
+        ```
+  - slug: ai_print_migration
+    info:
+      en: |-
+        ```hsc
+        (ai_print_migration [boolean])
+        ```
+  - slug: ai_print_scripting
+    info:
+      en: |-
+        ```hsc
+        (ai_print_scripting [boolean])
+        ```
+  - slug: ai_print_disposal
+    info:
+      en: |-
+        ```hsc
+        (ai_print_disposal [boolean])
+        ```
+  - slug: ai_print_killing_sprees
+    info:
+      en: |-
+        ```hsc
+        (ai_print_killing_sprees [boolean])
+        ```
+  - slug: ai_naimad_spew
+    info:
+      en: |-
+        ```hsc
+        (ai_naimad_spew [boolean])
+        ```
+  - slug: ai_maxd_spew
+    info:
+      en: |-
+        ```hsc
+        (ai_maxd_spew [boolean])
+        ```
+  - slug: ai_debug_fast_los
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_fast_los [boolean])
+        ```
+  - slug: ai_debug_evaluate_all_positions
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_evaluate_all_positions [boolean])
+        ```
+  - slug: ai_debug_path
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path [boolean])
+        ```
+  - slug: ai_debug_path_start_freeze
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_start_freeze [boolean])
+        ```
+  - slug: ai_debug_path_end_freeze
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_end_freeze [boolean])
+        ```
+  - slug: ai_debug_path_flood
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_flood [boolean])
+        ```
+  - slug: ai_debug_path_maximum_radius
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_maximum_radius [real])
+        ```
+  - slug: ai_debug_path_attractor
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_attractor [boolean])
+        ```
+  - slug: ai_debug_path_attractor_radius
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_attractor_radius [real])
+        ```
+  - slug: ai_debug_path_attractor_weight
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_attractor_weight [real])
+        ```
+  - slug: ai_debug_path_accept_radius
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_accept_radius [real])
+        ```
+  - slug: ai_debug_path_radius
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_radius [real])
+        ```
+  - slug: ai_debug_path_destructible
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_destructible [boolean])
+        ```
+  - slug: ai_debug_path_giant
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_giant [boolean])
+        ```
+  - slug: ai_debug_ballistic_lineoffire_freeze
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_ballistic_lineoffire_freeze [boolean])
+        ```
+  - slug: ai_debug_path_naive_estimate
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_naive_estimate [boolean])
+        ```
+  - slug: ai_debug_blind
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_blind [boolean])
+        ```
+  - slug: ai_debug_deaf
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_deaf [boolean])
+        ```
+  - slug: ai_debug_invisible_player
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_invisible_player [boolean])
+        ```
+  - slug: ai_debug_ignore_player
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_ignore_player [boolean])
+        ```
+  - slug: ai_debug_force_all_active
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_force_all_active [boolean])
+        ```
+  - slug: ai_debug_path_disable_smoothing
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_disable_smoothing [boolean])
+        ```
+  - slug: ai_debug_path_disable_obstacle_avoidance
+    info:
+      en: |-
+        ```hsc
+        (ai_debug_path_disable_obstacle_avoidance [boolean])
+        ```
+  - slug: net_bitstream_debug
+    info:
+      en: |-
+        ```hsc
+        (net_bitstream_debug [long])
+        ```
+  - slug: net_bitstream_display_errors
+    info:
+      en: |-
+        ```hsc
+        (net_bitstream_display_errors [boolean])
+        ```
+  - slug: net_bitstream_capture_structure
+    info:
+      en: |-
+        ```hsc
+        (net_bitstream_capture_structure [boolean])
+        ```
+  - slug: net_never_timeout
+    info:
+      en: |-
+        ```hsc
+        (net_never_timeout [boolean])
+        ```
+  - slug: net_use_local_time
+    info:
+      en: |-
+        ```hsc
+        (net_use_local_time [boolean])
+        ```
+  - slug: net_traffic_warnings
+    info:
+      en: |-
+        ```hsc
+        (net_traffic_warnings [boolean])
+        ```
+  - slug: net_traffic_print
+    info:
+      en: |-
+        ```hsc
+        (net_traffic_print [boolean])
+        ```
+  - slug: net_messages_print
+    info:
+      en: |-
+        ```hsc
+        (net_messages_print [boolean])
+        ```
+  - slug: net_replication_requests_print
+    info:
+      en: |-
+        ```hsc
+        (net_replication_requests_print [boolean])
+        ```
+  - slug: net_packet_print_mask
+    info:
+      en: |-
+        ```hsc
+        (net_packet_print_mask [boolean])
+        ```
+  - slug: net_experimental
+    info:
+      en: |-
+        ```hsc
+        (net_experimental [boolean])
+        ```
+  - slug: net_rate_unlimited
+    info:
+      en: |-
+        ```hsc
+        (net_rate_unlimited [boolean])
+        ```
+  - slug: net_rate_server
+    info:
+      en: |-
+        ```hsc
+        (net_rate_server [long])
+        ```
+  - slug: net_rate_client
+    info:
+      en: |-
+        ```hsc
+        (net_rate_client [long])
+        ```
+  - slug: net_window_unlimited
+    info:
+      en: |-
+        ```hsc
+        (net_window_unlimited [boolean])
+        ```
+  - slug: net_window_size
+    info:
+      en: |-
+        ```hsc
+        (net_window_size [long])
+        ```
+  - slug: net_bandwidth_unlimited
+    info:
+      en: |-
+        ```hsc
+        (net_bandwidth_unlimited [boolean])
+        ```
+  - slug: net_bandwidth_per_channel
+    info:
+      en: |-
+        ```hsc
+        (net_bandwidth_per_channel [long])
+        ```
+  - slug: net_skip_countdown
+    info:
+      en: |-
+        ```hsc
+        (net_skip_countdown [boolean])
+        ```
+  - slug: net_host_delegation_disable
+    info:
+      en: |-
+        ```hsc
+        (net_host_delegation_disable [boolean])
+        ```
+  - slug: net_speculative_host_migration_disable
+    info:
+      en: |-
+        ```hsc
+        (net_speculative_host_migration_disable [boolean])
+        ```
+  - slug: net_streams_disable
+    info:
+      en: |-
+        ```hsc
+        (net_streams_disable [boolean])
+        ```
+  - slug: net_disable_flooding
+    info:
+      en: |-
+        ```hsc
+        (net_disable_flooding [boolean])
+        ```
+  - slug: net_ignore_version
+    info:
+      en: |-
+        ```hsc
+        (net_ignore_version [boolean])
+        ```
+  - slug: net_ignore_join_checking
+    info:
+      en: |-
+        ```hsc
+        (net_ignore_join_checking [boolean])
+        ```
+  - slug: net_ignore_migration_checking
+    info:
+      en: |-
+        ```hsc
+        (net_ignore_migration_checking [boolean])
+        ```
+  - slug: net_maximum_machine_count
+    info:
+      en: |-
+        ```hsc
+        (net_maximum_machine_count [long])
+        ```
+  - slug: net_maximum_player_count
+    info:
+      en: |-
+        ```hsc
+        (net_maximum_player_count [long])
+        ```
+  - slug: net_debug_random_seeds
+    info:
+      en: |-
+        ```hsc
+        (net_debug_random_seeds [boolean])
+        ```
+  - slug: net_allow_out_of_sync
+    info:
+      en: |-
+        ```hsc
+        (net_allow_out_of_sync [boolean])
+        ```
+  - slug: net_distributed_always
+    info:
+      en: |-
+        ```hsc
+        (net_distributed_always [boolean])
+        ```
+  - slug: net_distributed_never
+    info:
+      en: |-
+        ```hsc
+        (net_distributed_never [boolean])
+        ```
+  - slug: net_matchmaking_force_gather
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_force_gather [boolean])
+        ```
+  - slug: net_matchmaking_force_search
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_force_search [boolean])
+        ```
+  - slug: net_matchmaking_fail_arbitration
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_fail_arbitration [boolean])
+        ```
+  - slug: net_connectivity_model_enabled
+    info:
+      en: |-
+        ```hsc
+        (net_connectivity_model_enabled [boolean])
+        ```
+  - slug: net_nat_override
+    info:
+      en: |-
+        ```hsc
+        (net_nat_override [long])
+        ```
+  - slug: net_matchmaking_nat_check_enabled
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_nat_check_enabled [boolean])
+        ```
+  - slug: net_matchmaking_hopper_id_adjustment
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_hopper_id_adjustment [long])
+        ```
+  - slug: net_matchmaking_use_last_map_and_game
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_use_last_map_and_game [boolean])
+        ```
+  - slug: net_matchmaking_allow_early_start
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_allow_early_start [boolean])
+        ```
+  - slug: net_matchmaking_skip_host_migration
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_skip_host_migration [boolean])
+        ```
+  - slug: net_matchmaking_force_disband
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_force_disband [boolean])
+        ```
+  - slug: net_enable_host_migration_loop
+    info:
+      en: |-
+        ```hsc
+        (net_enable_host_migration_loop [long])
+        ```
+  - slug: net_matchmaking_fake_progress
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_fake_progress [long])
+        ```
+  - slug: net_matchmaking_force_no_joining
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_force_no_joining [boolean])
+        ```
+  - slug: net_matchmaking_allow_idle_controllers
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_allow_idle_controllers [boolean])
+        ```
+  - slug: net_simulation_set_stream_bandwidth
+    info:
+      en: |-
+        ```hsc
+        (net_simulation_set_stream_bandwidth [long])
+        ```
+  - slug: net_set_channel_disconnect_interval
+    info:
+      en: |-
+        ```hsc
+        (net_set_channel_disconnect_interval [long])
+        ```
+  - slug: net_enable_block_detection
+    info:
+      en: |-
+        ```hsc
+        (net_enable_block_detection [long])
+        ```
+  - slug: net_override_base_xp
+    info:
+      en: |-
+        ```hsc
+        (net_override_base_xp [long])
+        ```
+  - slug: net_override_ranked_games_played
+    info:
+      en: |-
+        ```hsc
+        (net_override_ranked_games_played [long])
+        ```
+  - slug: net_matchmaking_mask_maps
+    info:
+      en: |-
+        ```hsc
+        (net_matchmaking_mask_maps [long])
+        ```
+  - slug: net_disable_detatched_controller_check
+    info:
+      en: |-
+        ```hsc
+        (net_disable_detatched_controller_check [boolean])
+        ```
+  - slug: net_status_memory
+    info:
+      en: |-
+        ```hsc
+        (net_status_memory [boolean])
+        ```
+  - slug: net_status_link
+    info:
+      en: |-
+        ```hsc
+        (net_status_link [boolean])
+        ```
+  - slug: net_status_sim
+    info:
+      en: |-
+        ```hsc
+        (net_status_sim [boolean])
+        ```
+  - slug: net_status_channels
+    info:
+      en: |-
+        ```hsc
+        (net_status_channels [boolean])
+        ```
+  - slug: net_status_connections
+    info:
+      en: |-
+        ```hsc
+        (net_status_connections [boolean])
+        ```
+  - slug: net_status_message_queues
+    info:
+      en: |-
+        ```hsc
+        (net_status_message_queues [boolean])
+        ```
+  - slug: net_status_observer
+    info:
+      en: |-
+        ```hsc
+        (net_status_observer [boolean])
+        ```
+  - slug: net_status_sessions
+    info:
+      en: |-
+        ```hsc
+        (net_status_sessions [boolean])
+        ```
+  - slug: net_status_leaderboard
+    info:
+      en: |-
+        ```hsc
+        (net_status_leaderboard [boolean])
+        ```
+  - slug: net_status_leaderboard_mask
+    info:
+      en: |-
+        ```hsc
+        (net_status_leaderboard_mask [long])
+        ```
+  - slug: net_sim
+    info:
+      en: |-
+        ```hsc
+        (net_sim [boolean])
+        ```
+  - slug: net_sim_latency
+    info:
+      en: |-
+        ```hsc
+        (net_sim_latency [long])
+        ```
+  - slug: net_sim_latency_wander
+    info:
+      en: |-
+        ```hsc
+        (net_sim_latency_wander [long])
+        ```
+  - slug: net_sim_latency_period
+    info:
+      en: |-
+        ```hsc
+        (net_sim_latency_period [long])
+        ```
+  - slug: net_sim_latency_random
+    info:
+      en: |-
+        ```hsc
+        (net_sim_latency_random [long])
+        ```
+  - slug: net_sim_spike_chance
+    info:
+      en: |-
+        ```hsc
+        (net_sim_spike_chance [long])
+        ```
+  - slug: net_sim_spike_amount
+    info:
+      en: |-
+        ```hsc
+        (net_sim_spike_amount [long])
+        ```
+  - slug: net_sim_spike_duration
+    info:
+      en: |-
+        ```hsc
+        (net_sim_spike_duration [long])
+        ```
+  - slug: net_sim_drop
+    info:
+      en: |-
+        ```hsc
+        (net_sim_drop [long])
+        ```
+  - slug: net_sim_dropspike_chance
+    info:
+      en: |-
+        ```hsc
+        (net_sim_dropspike_chance [long])
+        ```
+  - slug: net_sim_dropspike_amount
+    info:
+      en: |-
+        ```hsc
+        (net_sim_dropspike_amount [long])
+        ```
+  - slug: net_sim_dropspike_duration
+    info:
+      en: |-
+        ```hsc
+        (net_sim_dropspike_duration [long])
+        ```
+  - slug: net_sim_bandwidth_down_rate
+    info:
+      en: |-
+        ```hsc
+        (net_sim_bandwidth_down_rate [long])
+        ```
+  - slug: net_sim_bandwidth_up_rate
+    info:
+      en: |-
+        ```hsc
+        (net_sim_bandwidth_up_rate [long])
+        ```
+  - slug: net_sim_bandwidth_down_buffer
+    info:
+      en: |-
+        ```hsc
+        (net_sim_bandwidth_down_buffer [long])
+        ```
+  - slug: net_sim_bandwidth_up_buffer
+    info:
+      en: |-
+        ```hsc
+        (net_sim_bandwidth_up_buffer [long])
+        ```
+  - slug: net_test
+    info:
+      en: |-
+        ```hsc
+        (net_test [boolean])
+        ```
+  - slug: net_test_rate
+    info:
+      en: |-
+        ```hsc
+        (net_test_rate [long])
+        ```
+  - slug: net_test_update_server
+    info:
+      en: |-
+        ```hsc
+        (net_test_update_server [boolean])
+        ```
+  - slug: net_test_update_client
+    info:
+      en: |-
+        ```hsc
+        (net_test_update_client [boolean])
+        ```
+  - slug: net_test_replication_scheduler
+    info:
+      en: |-
+        ```hsc
+        (net_test_replication_scheduler [boolean])
+        ```
+  - slug: net_test_debug_spheres
+    info:
+      en: |-
+        ```hsc
+        (net_test_debug_spheres [boolean])
+        ```
+  - slug: net_test_matchmaking_playlist_index
+    info:
+      en: |-
+        ```hsc
+        (net_test_matchmaking_playlist_index [long])
+        ```
+  - slug: net_voice_diagnostics
+    info:
+      en: |-
+        ```hsc
+        (net_voice_diagnostics [boolean])
+        ```
+  - slug: net_http_failure_ratio
+    info:
+      en: |-
+        ```hsc
+        (net_http_failure_ratio [real])
+        ```
+  - slug: net_show_network_quality
+    info:
+      en: |-
+        ```hsc
+        (net_show_network_quality [boolean])
+        ```
+  - slug: net_fake_network_quality
+    info:
+      en: |-
+        ```hsc
+        (net_fake_network_quality [boolean])
+        ```
+  - slug: sim_status_world
+    info:
+      en: |-
+        ```hsc
+        (sim_status_world [boolean])
+        ```
+  - slug: sim_status_views
+    info:
+      en: |-
+        ```hsc
+        (sim_status_views [boolean])
+        ```
+  - slug: sim_entity_validate
+    info:
+      en: |-
+        ```hsc
+        (sim_entity_validate [boolean])
+        ```
+  - slug: sim_disable_aim_assist
+    info:
+      en: |-
+        ```hsc
+        (sim_disable_aim_assist [boolean])
+        ```
+  - slug: sim_bandwidth_eater
+    info:
+      en: |-
+        ```hsc
+        (sim_bandwidth_eater [long])
+        ```
+  - slug: debug_player_teleport
+    info:
+      en: |-
+        ```hsc
+        (debug_player_teleport [boolean])
+        ```
+  - slug: debug_players
+    info:
+      en: |-
+        ```hsc
+        (debug_players [boolean])
+        ```
+  - slug: debug_player_input
+    info:
+      en: |-
+        ```hsc
+        (debug_player_input [boolean])
+        ```
+  - slug: display_rumble_status_lines
+    info:
+      en: |-
+        ```hsc
+        (display_rumble_status_lines [boolean])
+        ```
+  - slug: enable_pc_joystick
+    info:
+      en: |-
+        ```hsc
+        (enable_pc_joystick [boolean])
+        ```
+  - slug: texture_cache_show_mipmap_bias
+    info:
+      en: |-
+        ```hsc
+        (texture_cache_show_mipmap_bias [boolean])
+        ```
+  - slug: texture_cache_graph
+    info:
+      en: |-
+        ```hsc
+        (texture_cache_graph [boolean])
+        ```
+  - slug: texture_cache_list
+    info:
+      en: |-
+        ```hsc
+        (texture_cache_list [boolean])
+        ```
+  - slug: texture_cache_force_low_detail
+    info:
+      en: |-
+        ```hsc
+        (texture_cache_force_low_detail [boolean])
+        ```
+  - slug: texture_cache_force_medium_detail
+    info:
+      en: |-
+        ```hsc
+        (texture_cache_force_medium_detail [boolean])
+        ```
+  - slug: texture_cache_force_high_detail
+    info:
+      en: |-
+        ```hsc
+        (texture_cache_force_high_detail [boolean])
+        ```
+  - slug: texture_cache_status
+    info:
+      en: |-
+        ```hsc
+        (texture_cache_status [boolean])
+        ```
+  - slug: texture_cache_usage
+    info:
+      en: |-
+        ```hsc
+        (texture_cache_usage [boolean])
+        ```
+  - slug: texture_cache_block_warning
+    info:
+      en: |-
+        ```hsc
+        (texture_cache_block_warning [boolean])
+        ```
+  - slug: texture_cache_lod_bias
+    info:
+      en: |-
+        ```hsc
+        (texture_cache_lod_bias [boolean])
+        ```
+  - slug: texture_cache_dynamic_low_detail_texture
+    info:
+      en: |-
+        ```hsc
+        (texture_cache_dynamic_low_detail_texture [boolean])
+        ```
+  - slug: render_debug_low_res_textures
+    info:
+      en: |-
+        ```hsc
+        (render_debug_low_res_textures [boolean])
+        ```
+  - slug: geometry_cache_graph
+    info:
+      en: |-
+        ```hsc
+        (geometry_cache_graph [boolean])
+        ```
+  - slug: geometry_cache_list
+    info:
+      en: |-
+        ```hsc
+        (geometry_cache_list [boolean])
+        ```
+  - slug: geometry_cache_status
+    info:
+      en: |-
+        ```hsc
+        (geometry_cache_status [boolean])
+        ```
+  - slug: geometry_cache_block_warning
+    info:
+      en: |-
+        ```hsc
+        (geometry_cache_block_warning [boolean])
+        ```
+  - slug: geometry_cache_never_block
+    info:
+      en: |-
+        ```hsc
+        (geometry_cache_never_block [boolean])
+        ```
+  - slug: geometry_cache_debug_display
+    info:
+      en: |-
+        ```hsc
+        (geometry_cache_debug_display [boolean])
+        ```
+  - slug: director_camera_switch_fast
+    info:
+      en: |-
+        ```hsc
+        (director_camera_switch_fast [boolean])
+        ```
+  - slug: director_camera_switch_disable
+    info:
+      en: |-
+        ```hsc
+        (director_camera_switch_disable [boolean])
+        ```
+  - slug: director_camera_speed_scale
+    info:
+      en: |-
+        ```hsc
+        (director_camera_speed_scale [real])
+        ```
+  - slug: director_disable_first_person
+    info:
+      en: |-
+        ```hsc
+        (director_disable_first_person [boolean])
+        ```
+  - slug: director_use_dt
+    info:
+      en: |-
+        ```hsc
+        (director_use_dt [boolean])
+        ```
+  - slug: observer_collision_enabled
+    info:
+      en: |-
+        ```hsc
+        (observer_collision_enabled [boolean])
+        ```
+  - slug: observer_collision_anticipation_enabled
+    info:
+      en: |-
+        ```hsc
+        (observer_collision_anticipation_enabled [boolean])
+        ```
+  - slug: observer_collision_water_flags
+    info:
+      en: |-
+        ```hsc
+        (observer_collision_water_flags [long])
+        ```
+  - slug: g_observer_wave_height
+    info:
+      en: |-
+        ```hsc
+        (g_observer_wave_height [real])
+        ```
+  - slug: debug_recording
+    info:
+      en: |-
+        ```hsc
+        (debug_recording [boolean])
+        ```
+  - slug: debug_recording_newlines
+    info:
+      en: |-
+        ```hsc
+        (debug_recording_newlines [short])
+        ```
+  - slug: cinematic_letterbox_style
+    info:
+      en: |-
+        ```hsc
+        (cinematic_letterbox_style [long])
+        ```
+  - slug: run_game_scripts
+    info:
+      en: |-
+        ```hsc
+        (run_game_scripts [boolean])
+        ```
+  - slug: vehicle_status_display
+    info:
+      en: |-
+        ```hsc
+        (vehicle_status_display [boolean])
+        ```
+  - slug: vehicle_disable_suspension_animations
+    info:
+      en: |-
+        ```hsc
+        (vehicle_disable_suspension_animations [boolean])
+        ```
+  - slug: vehicle_disable_acceleration_screens
+    info:
+      en: |-
+        ```hsc
+        (vehicle_disable_acceleration_screens [boolean])
+        ```
+  - slug: biped_meter_display
+    info:
+      en: |-
+        ```hsc
+        (biped_meter_display [boolean])
+        ```
+  - slug: default_scenario_ai_type
+    info:
+      en: |-
+        ```hsc
+        (default_scenario_ai_type [long])
+        ```
+  - slug: debug_menu_enabled
+    info:
+      en: |-
+        ```hsc
+        (debug_menu_enabled [boolean])
+        ```
+  - slug: catch_exceptions
+    info:
+      en: |-
+        ```hsc
+        (catch_exceptions [boolean])
+        ```
+  - slug: debug_first_person_hide_base
+    info:
+      en: |-
+        ```hsc
+        (debug_first_person_hide_base [boolean])
+        ```
+  - slug: debug_first_person_hide_movement
+    info:
+      en: |-
+        ```hsc
+        (debug_first_person_hide_movement [boolean])
+        ```
+  - slug: debug_first_person_hide_jitter
+    info:
+      en: |-
+        ```hsc
+        (debug_first_person_hide_jitter [boolean])
+        ```
+  - slug: debug_first_person_hide_overlay
+    info:
+      en: |-
+        ```hsc
+        (debug_first_person_hide_overlay [boolean])
+        ```
+  - slug: debug_first_person_hide_pitch_turn
+    info:
+      en: |-
+        ```hsc
+        (debug_first_person_hide_pitch_turn [boolean])
+        ```
+  - slug: debug_first_person_hide_ammo
+    info:
+      en: |-
+        ```hsc
+        (debug_first_person_hide_ammo [boolean])
+        ```
+  - slug: debug_first_person_hide_ik
+    info:
+      en: |-
+        ```hsc
+        (debug_first_person_hide_ik [boolean])
+        ```
+  - slug: global_playtest_mode
+    info:
+      en: |-
+        ```hsc
+        (global_playtest_mode [boolean])
+        ```
+  - slug: ui_time_scale
+    info:
+      en: |-
+        ```hsc
+        (ui_time_scale [real])
+        ```
+  - slug: ui_display_memory
+    info:
+      en: |-
+        ```hsc
+        (ui_display_memory [boolean])
+        ```
+  - slug: ui_memory_verify
+    info:
+      en: |-
+        ```hsc
+        (ui_memory_verify [boolean])
+        ```
+  - slug: xov_display_memory
+    info:
+      en: |-
+        ```hsc
+        (xov_display_memory [boolean])
+        ```
+  - slug: gui_debug_text_bounds_global
+    info:
+      en: |-
+        ```hsc
+        (gui_debug_text_bounds_global [boolean])
+        ```
+  - slug: gui_debug_bitmap_bounds_global
+    info:
+      en: |-
+        ```hsc
+        (gui_debug_bitmap_bounds_global [boolean])
+        ```
+  - slug: gui_debug_model_bounds_global
+    info:
+      en: |-
+        ```hsc
+        (gui_debug_model_bounds_global [boolean])
+        ```
+  - slug: gui_debug_list_item_bounds_global
+    info:
+      en: |-
+        ```hsc
+        (gui_debug_list_item_bounds_global [boolean])
+        ```
+  - slug: gui_debug_list_bounds_global
+    info:
+      en: |-
+        ```hsc
+        (gui_debug_list_bounds_global [boolean])
+        ```
+  - slug: gui_debug_group_bounds_global
+    info:
+      en: |-
+        ```hsc
+        (gui_debug_group_bounds_global [boolean])
+        ```
+  - slug: gui_debug_screen_bounds_global
+    info:
+      en: |-
+        ```hsc
+        (gui_debug_screen_bounds_global [boolean])
+        ```
+  - slug: render_comment_flags
+    info:
+      en: |-
+        ```hsc
+        (render_comment_flags [boolean])
+        ```
+  - slug: render_comment_flags_text
+    info:
+      en: |-
+        ```hsc
+        (render_comment_flags_text [boolean])
+        ```
+  - slug: render_comment_flags_look_at
+    info:
+      en: |-
+        ```hsc
+        (render_comment_flags_look_at [boolean])
+        ```
+  - slug: enable_controller_flag_drop
+    info:
+      en: |-
+        ```hsc
+        (enable_controller_flag_drop [boolean])
+        ```
+  - slug: sapien_keyboard_toggle_for_camera_movement
+    info:
+      en: |-
+        ```hsc
+        (sapien_keyboard_toggle_for_camera_movement [boolean])
+        ```
+  - slug: override_player_character_type
+    info:
+      en: |-
+        ```hsc
+        (override_player_character_type [long])
+        ```
+  - slug: e3
+    info:
+      en: |-
+        ```hsc
+        (e3 [boolean])
+        ```
+  - slug: debug_tag_dependencies
+    info:
+      en: |-
+        ```hsc
+        (debug_tag_dependencies [boolean])
+        ```
+  - slug: disable_network_hopper_download
+    info:
+      en: |-
+        ```hsc
+        (disable_network_hopper_download [boolean])
+        ```
+  - slug: disable_network_configuration_download
+    info:
+      en: |-
+        ```hsc
+        (disable_network_configuration_download [boolean])
+        ```
+  - slug: check_system_heap
+    info:
+      en: |-
+        ```hsc
+        (check_system_heap [boolean])
+        ```
+  - slug: data_mine_player_update_interval
+    info:
+      en: |-
+        ```hsc
+        (data_mine_player_update_interval [long])
+        ```
+  - slug: data_mine_mp_player_update_interval
+    info:
+      en: |-
+        ```hsc
+        (data_mine_mp_player_update_interval [long])
+        ```
+  - slug: data_mine_debug_menu_interval
+    info:
+      en: |-
+        ```hsc
+        (data_mine_debug_menu_interval [long])
+        ```
+  - slug: data_mine_spam_enabled
+    info:
+      en: |-
+        ```hsc
+        (data_mine_spam_enabled [long])
+        ```
+  - slug: webstats_file_zip_writes_per_frame
+    info:
+      en: |-
+        ```hsc
+        (webstats_file_zip_writes_per_frame [long])
+        ```
+  - slug: debug_projectiles
+    info:
+      en: |-
+        ```hsc
+        (debug_projectiles [boolean])
+        ```
+  - slug: debug_damage_effects
+    info:
+      en: |-
+        ```hsc
+        (debug_damage_effects [boolean])
+        ```
+  - slug: debug_damage_effect_obstacles
+    info:
+      en: |-
+        ```hsc
+        (debug_damage_effect_obstacles [boolean])
+        ```
+  - slug: force_player_walking
+    info:
+      en: |-
+        ```hsc
+        (force_player_walking [boolean])
+        ```
+  - slug: force_player_crouching
+    info:
+      en: |-
+        ```hsc
+        (force_player_crouching [boolean])
+        ```
+  - slug: unit_animation_report_missing_animations
+    info:
+      en: |-
+        ```hsc
+        (unit_animation_report_missing_animations [boolean])
+        ```
+  - slug: font_cache_status
+    info:
+      en: |-
+        ```hsc
+        (font_cache_status [boolean])
+        ```
+  - slug: font_cache_debug_texture
+    info:
+      en: |-
+        ```hsc
+        (font_cache_debug_texture [boolean])
+        ```
+  - slug: font_cache_debug_graph
+    info:
+      en: |-
+        ```hsc
+        (font_cache_debug_graph [boolean])
+        ```
+  - slug: font_cache_debug_list
+    info:
+      en: |-
+        ```hsc
+        (font_cache_debug_list [boolean])
+        ```
+  - slug: lruv_lirp_enabled
+    info:
+      en: |-
+        ```hsc
+        (lruv_lirp_enabled [boolean])
+        ```
+  - slug: allow_sound_cache_file_editing
+    info:
+      en: |-
+        ```hsc
+        (allow_sound_cache_file_editing [boolean])
+        ```
+  - slug: halt_on_stack_overflow
+    info:
+      en: |-
+        ```hsc
+        (halt_on_stack_overflow [boolean])
+        ```
+  - slug: disable_progress_screen
+    info:
+      en: |-
+        ```hsc
+        (disable_progress_screen [boolean])
+        ```
+  - slug: render_thread_enable
+    info:
+      en: |-
+        ```hsc
+        (render_thread_enable [boolean])
+        ```
+  - slug: character_force_physics
+    info:
+      en: |-
+        ```hsc
+        (character_force_physics [character_physics])
+        ```
+  - slug: enable_new_ik_method
+    info:
+      en: |-
+        ```hsc
+        (enable_new_ik_method [boolean])
+        ```
+  - slug: animation_throttle_dampening_scale
+    info:
+      en: |-
+        ```hsc
+        (animation_throttle_dampening_scale [real])
+        ```
+  - slug: animation_blend_change_scale
+    info:
+      en: |-
+        ```hsc
+        (animation_blend_change_scale [real])
+        ```
+  - slug: biped_fitting_enable
+    info:
+      en: |-
+        ```hsc
+        (biped_fitting_enable [boolean])
+        ```
+  - slug: biped_fitting_root_offset_enable
+    info:
+      en: |-
+        ```hsc
+        (biped_fitting_root_offset_enable [boolean])
+        ```
+  - slug: biped_pivot_enable
+    info:
+      en: |-
+        ```hsc
+        (biped_pivot_enable [boolean])
+        ```
+  - slug: biped_pivot_allow_player
+    info:
+      en: |-
+        ```hsc
+        (biped_pivot_allow_player [boolean])
+        ```
+  - slug: giant_hunt_player
+    info:
+      en: |-
+        ```hsc
+        (giant_hunt_player [long])
+        ```
+  - slug: giant_hunting_min_radius
+    info:
+      en: |-
+        ```hsc
+        (giant_hunting_min_radius [real])
+        ```
+  - slug: giant_hunting_max_radius
+    info:
+      en: |-
+        ```hsc
+        (giant_hunting_max_radius [real])
+        ```
+  - slug: giant_hunting_throttle_scale
+    info:
+      en: |-
+        ```hsc
+        (giant_hunting_throttle_scale [real])
+        ```
+  - slug: giant_weapon_wait_time
+    info:
+      en: |-
+        ```hsc
+        (giant_weapon_wait_time [long])
+        ```
+  - slug: giant_weapon_trigger_time
+    info:
+      en: |-
+        ```hsc
+        (giant_weapon_trigger_time [long])
+        ```
+  - slug: giant_ik
+    info:
+      en: |-
+        ```hsc
+        (giant_ik [boolean])
+        ```
+  - slug: giant_foot_ik
+    info:
+      en: |-
+        ```hsc
+        (giant_foot_ik [boolean])
+        ```
+  - slug: giant_ankle_ik
+    info:
+      en: |-
+        ```hsc
+        (giant_ankle_ik [boolean])
+        ```
+  - slug: giant_elevation_control
+    info:
+      en: |-
+        ```hsc
+        (giant_elevation_control [boolean])
+        ```
+  - slug: giant_force_buckle
+    info:
+      en: |-
+        ```hsc
+        (giant_force_buckle [boolean])
+        ```
+  - slug: giant_force_crouch
+    info:
+      en: |-
+        ```hsc
+        (giant_force_crouch [boolean])
+        ```
+  - slug: giant_force_death
+    info:
+      en: |-
+        ```hsc
+        (giant_force_death [boolean])
+        ```
+  - slug: giant_buckle_rotation
+    info:
+      en: |-
+        ```hsc
+        (giant_buckle_rotation [boolean])
+        ```
+  - slug: debug_objects_giant_feet
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_giant_feet [boolean])
+        ```
+  - slug: debug_objects_giant_buckle
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_giant_buckle [boolean])
+        ```
+  - slug: enable_xsync_timings
+    info:
+      en: |-
+        ```hsc
+        (enable_xsync_timings [boolean])
+        ```
+  - slug: xsync_restricted_tag_groups
+    info:
+      en: |-
+        ```hsc
+        (xsync_restricted_tag_groups [boolean])
+        ```
+  - slug: enable_cache_build_resources
+    info:
+      en: |-
+        ```hsc
+        (enable_cache_build_resources [boolean])
+        ```
+  - slug: xma_compression_level_default
+    info:
+      en: |-
+        ```hsc
+        (xma_compression_level_default [long])
+        ```
+  - slug: enable_console_window
+    info:
+      en: |-
+        ```hsc
+        (enable_console_window [boolean])
+        ```
+  - slug: display_colors_in_banded_gamma
+    info:
+      en: |-
+        ```hsc
+        (display_colors_in_banded_gamma [boolean])
+        ```
+  - slug: use_tool_command_legacy
+    info:
+      en: |-
+        ```hsc
+        (use_tool_command_legacy [boolean])
+        ```
+  - slug: maximum_tool_command_history
+    info:
+      en: |-
+        ```hsc
+        (maximum_tool_command_history [long])
+        ```
+  - slug: disable_unit_aim_screens
+    info:
+      en: |-
+        ```hsc
+        (disable_unit_aim_screens [boolean])
+        ```
+  - slug: disable_unit_look_screens
+    info:
+      en: |-
+        ```hsc
+        (disable_unit_look_screens [boolean])
+        ```
+  - slug: disable_unit_eye_tracking
+    info:
+      en: |-
+        ```hsc
+        (disable_unit_eye_tracking [boolean])
+        ```
+  - slug: enable_tag_resource_xsync
+    info:
+      en: |-
+        ```hsc
+        (enable_tag_resource_xsync [boolean])
+        ```
+  - slug: dont_recompile_shaders
+    info:
+      en: |-
+        ```hsc
+        (dont_recompile_shaders [boolean])
+        ```
+  - slug: use_temp_directory_for_files
+    info:
+      en: |-
+        ```hsc
+        (use_temp_directory_for_files [boolean])
+        ```
+  - slug: scenario_load_all_tags
+    info:
+      en: |-
+        ```hsc
+        (scenario_load_all_tags [boolean])
+        ```
+  - slug: synchronization_debug
+    info:
+      en: |-
+        ```hsc
+        (synchronization_debug [boolean])
+        ```
+  - slug: debug_objects_scenery
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_scenery [boolean])
+        ```
+  - slug: disable_switch_zone_sets
+    info:
+      en: |-
+        ```hsc
+        (disable_switch_zone_sets [boolean])
+        ```
+  - slug: facial_animation_testing_enabled
+    info:
+      en: |-
+        ```hsc
+        (facial_animation_testing_enabled [boolean])
+        ```
+  - slug: profiler_datamine_uploads_enabled
+    info:
+      en: |-
+        ```hsc
+        (profiler_datamine_uploads_enabled [boolean])
+        ```
+  - slug: debug_object_recycling
+    info:
+      en: |-
+        ```hsc
+        (debug_object_recycling [boolean])
+        ```
+  - slug: enable_sound_over_network
+    info:
+      en: |-
+        ```hsc
+        (enable_sound_over_network [boolean])
+        ```
+  - slug: lsp_allow_lsp_connections
+    info:
+      en: |-
+        ```hsc
+        (lsp_allow_lsp_connections [boolean])
+        ```
+  - slug: lsp_allow_raw_connections
+    info:
+      en: |-
+        ```hsc
+        (lsp_allow_raw_connections [boolean])
+        ```
+  - slug: lsp_service_id_override
+    info:
+      en: |-
+        ```hsc
+        (lsp_service_id_override [long])
+        ```
+  - slug: shared_files_enable
+    info:
+      en: |-
+        ```hsc
+        (shared_files_enable [boolean])
+        ```
+  - slug: sound_manager_debug_suppression
+    info:
+      en: |-
+        ```hsc
+        (sound_manager_debug_suppression [boolean])
+        ```
+  - slug: serialize_update_and_render
+    info:
+      en: |-
+        ```hsc
+        (serialize_update_and_render [boolean])
+        ```
+  - slug: minidump_use_retail_provider
+    info:
+      en: |-
+        ```hsc
+        (minidump_use_retail_provider [boolean])
+        ```
+  - slug: scenario_use_non_bsp_zones
+    info:
+      en: |-
+        ```hsc
+        (scenario_use_non_bsp_zones [boolean])
+        ```
+  - slug: allow_restricted_active_zone_reloads
+    info:
+      en: |-
+        ```hsc
+        (allow_restricted_active_zone_reloads [boolean])
+        ```
+  - slug: debug_cinematic_controls_enable
+    info:
+      en: |-
+        ```hsc
+        (debug_cinematic_controls_enable [boolean])
+        ```
+  - slug: debug_campaign_metagame
+    info:
+      en: |-
+        ```hsc
+        (debug_campaign_metagame [boolean])
+        ```
+  - slug: campaign_metagame_datamine
+    info:
+      en: |-
+        ```hsc
+        (campaign_metagame_datamine [boolean])
+        ```
+  - slug: aiming_interpolation_stop_delta
+    info:
+      en: |-
+        ```hsc
+        (aiming_interpolation_stop_delta [real])
+        ```
+  - slug: aiming_interpolation_start_delta
+    info:
+      en: |-
+        ```hsc
+        (aiming_interpolation_start_delta [real])
+        ```
+  - slug: aiming_interpolation_rate
+    info:
+      en: |-
+        ```hsc
+        (aiming_interpolation_rate [real])
+        ```
+  - slug: airborne_arc_enabled
+    info:
+      en: |-
+        ```hsc
+        (airborne_arc_enabled [boolean])
+        ```
+  - slug: airborne_descent_test_duration
+    info:
+      en: |-
+        ```hsc
+        (airborne_descent_test_duration [real])
+        ```
+  - slug: airborne_descent_test_count
+    info:
+      en: |-
+        ```hsc
+        (airborne_descent_test_count [long])
+        ```
+  - slug: enable_tag_resource_prediction
+    info:
+      en: |-
+        ```hsc
+        (enable_tag_resource_prediction [boolean])
+        ```
+  - slug: enable_entire_pvs_prediction
+    info:
+      en: |-
+        ```hsc
+        (enable_entire_pvs_prediction [boolean])
+        ```
+  - slug: enable_cluster_objects_prediction
+    info:
+      en: |-
+        ```hsc
+        (enable_cluster_objects_prediction [boolean])
+        ```
+  - slug: disable_main_loop_throttle
+    info:
+      en: |-
+        ```hsc
+        (disable_main_loop_throttle [boolean])
+        ```
+  - slug: force_unit_walking
+    info:
+      en: |-
+        ```hsc
+        (force_unit_walking [boolean])
+        ```
+  - slug: leap_force_start_rotation
+    info:
+      en: |-
+        ```hsc
+        (leap_force_start_rotation [boolean])
+        ```
+  - slug: leap_force_end_rotation
+    info:
+      en: |-
+        ```hsc
+        (leap_force_end_rotation [boolean])
+        ```
+  - slug: leap_force_flight_start_rotation
+    info:
+      en: |-
+        ```hsc
+        (leap_force_flight_start_rotation [boolean])
+        ```
+  - slug: leap_force_flight_end_rotation
+    info:
+      en: |-
+        ```hsc
+        (leap_force_flight_end_rotation [boolean])
+        ```
+  - slug: leap_flight_path_scale
+    info:
+      en: |-
+        ```hsc
+        (leap_flight_path_scale [real])
+        ```
+  - slug: leap_departure_power
+    info:
+      en: |-
+        ```hsc
+        (leap_departure_power [real])
+        ```
+  - slug: leap_departure_scale
+    info:
+      en: |-
+        ```hsc
+        (leap_departure_scale [real])
+        ```
+  - slug: leap_arrival_power
+    info:
+      en: |-
+        ```hsc
+        (leap_arrival_power [real])
+        ```
+  - slug: leap_arrival_scale
+    info:
+      en: |-
+        ```hsc
+        (leap_arrival_scale [real])
+        ```
+  - slug: leap_twist_power
+    info:
+      en: |-
+        ```hsc
+        (leap_twist_power [real])
+        ```
+  - slug: leap_cannonball_power
+    info:
+      en: |-
+        ```hsc
+        (leap_cannonball_power [real])
+        ```
+  - slug: leap_cannonball_scale
+    info:
+      en: |-
+        ```hsc
+        (leap_cannonball_scale [real])
+        ```
+  - slug: leap_idle_power
+    info:
+      en: |-
+        ```hsc
+        (leap_idle_power [real])
+        ```
+  - slug: leap_idle_scale
+    info:
+      en: |-
+        ```hsc
+        (leap_idle_scale [real])
+        ```
+  - slug: leap_overlay_power
+    info:
+      en: |-
+        ```hsc
+        (leap_overlay_power [real])
+        ```
+  - slug: leap_overlay_scale
+    info:
+      en: |-
+        ```hsc
+        (leap_overlay_scale [real])
+        ```
+  - slug: leap_interpolation_limit
+    info:
+      en: |-
+        ```hsc
+        (leap_interpolation_limit [real])
+        ```
+  - slug: biped_fake_soft_landing
+    info:
+      en: |-
+        ```hsc
+        (biped_fake_soft_landing [boolean])
+        ```
+  - slug: biped_fake_hard_landing
+    info:
+      en: |-
+        ```hsc
+        (biped_fake_hard_landing [boolean])
+        ```
+  - slug: biped_soft_landing_recovery_scale
+    info:
+      en: |-
+        ```hsc
+        (biped_soft_landing_recovery_scale [real])
+        ```
+  - slug: biped_hard_landing_recovery_scale
+    info:
+      en: |-
+        ```hsc
+        (biped_hard_landing_recovery_scale [real])
+        ```
+  - slug: biped_landing_absorbtion
+    info:
+      en: |-
+        ```hsc
+        (biped_landing_absorbtion [real])
+        ```
+  - slug: debug_player_network_aiming
+    info:
+      en: |-
+        ```hsc
+        (debug_player_network_aiming [boolean])
+        ```
+  - slug: aim_assist_disable_target_lead_vector
+    info:
+      en: |-
+        ```hsc
+        (aim_assist_disable_target_lead_vector [boolean])
+        ```
+  - slug: enable_tag_edit_sync
+    info:
+      en: |-
+        ```hsc
+        (enable_tag_edit_sync [boolean])
+        ```
+  - slug: cache_file_builder_allow_sharing
+    info:
+      en: |-
+        ```hsc
+        (cache_file_builder_allow_sharing [boolean])
+        ```
+  - slug: instance_default_fade_start_pixels
+    info:
+      en: |-
+        ```hsc
+        (instance_default_fade_start_pixels [long])
+        ```
+  - slug: instance_default_fade_end_pixels
+    info:
+      en: |-
+        ```hsc
+        (instance_default_fade_end_pixels [long])
+        ```
+  - slug: render_debug_dont_flash_low_res_textures
+    info:
+      en: |-
+        ```hsc
+        (render_debug_dont_flash_low_res_textures [boolean])
+        ```
+  - slug: debug_objects_pendulum
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_pendulum [boolean])
+        ```
+  - slug: ui_alpha
+    info:
+      en: |-
+        ```hsc
+        (ui_alpha [boolean])
+        ```
+  - slug: ui_alpha_lockdown
+    info:
+      en: |-
+        ```hsc
+        (ui_alpha_lockdown [long])
+        ```
+  - slug: ui_alpha_eula_accepted
+    info:
+      en: |-
+        ```hsc
+        (ui_alpha_eula_accepted [boolean])
+        ```
+  - slug: ui_alpha_custom_games_enabled
+    info:
+      en: |-
+        ```hsc
+        (ui_alpha_custom_games_enabled [long])
+        ```
+  - slug: net_config_client_badness_rating_threshold_override
+    info:
+      en: |-
+        ```hsc
+        (net_config_client_badness_rating_threshold_override [long])
+        ```
+  - slug: net_config_disable_bad_client_anticheating_override
+    info:
+      en: |-
+        ```hsc
+        (net_config_disable_bad_client_anticheating_override [long])
+        ```
+  - slug: net_config_disable_bad_connectivity_anticheating_override
+    info:
+      en: |-
+        ```hsc
+        (net_config_disable_bad_connectivity_anticheating_override [long])
+        ```
+  - slug: net_config_disable_bad_bandwidth_anticheating_override
+    info:
+      en: |-
+        ```hsc
+        (net_config_disable_bad_bandwidth_anticheating_override [long])
+        ```
+  - slug: net_config_maximum_multiplayer_split_screen_override
+    info:
+      en: |-
+        ```hsc
+        (net_config_maximum_multiplayer_split_screen_override [long])
+        ```
+  - slug: net_config_crash_handling_minidump_type_override
+    info:
+      en: |-
+        ```hsc
+        (net_config_crash_handling_minidump_type_override [long])
+        ```
+  - slug: net_config_crash_handling_ui_display_override
+    info:
+      en: |-
+        ```hsc
+        (net_config_crash_handling_ui_display_override [long])
+        ```
+  - slug: online_files_slowdown
+    info:
+      en: |-
+        ```hsc
+        (online_files_slowdown [long])
+        ```
+  - slug: debug_trace_main_events
+    info:
+      en: |-
+        ```hsc
+        (debug_trace_main_events [boolean])
+        ```
+  - slug: force_xsync_memory_buyback
+    info:
+      en: |-
+        ```hsc
+        (force_xsync_memory_buyback [boolean])
+        ```
+  - slug: bitmaps_trim_unused_pixels
+    info:
+      en: |-
+        ```hsc
+        (bitmaps_trim_unused_pixels [boolean])
+        ```
+  - slug: bitmaps_interleave_compressed_bitmaps
+    info:
+      en: |-
+        ```hsc
+        (bitmaps_interleave_compressed_bitmaps [boolean])
+        ```
+  - slug: ignore_predefined_performance_throttles
+    info:
+      en: |-
+        ```hsc
+        (ignore_predefined_performance_throttles [boolean])
+        ```
+  - slug: enable_first_person_prediction
+    info:
+      en: |-
+        ```hsc
+        (enable_first_person_prediction [boolean])
+        ```
+  - slug: enable_structure_prediction
+    info:
+      en: |-
+        ```hsc
+        (enable_structure_prediction [boolean])
+        ```
+  - slug: enable_structure_audibility
+    info:
+      en: |-
+        ```hsc
+        (enable_structure_audibility [boolean])
+        ```
+  - slug: debug_sound_transmission
+    info:
+      en: |-
+        ```hsc
+        (debug_sound_transmission [boolean])
+        ```
+  - slug: cache_file_builder_dump_tag_sections
+    info:
+      en: |-
+        ```hsc
+        (cache_file_builder_dump_tag_sections [boolean])
+        ```
+  - slug: minidump_force_regular_minidump_with_ui
+    info:
+      en: |-
+        ```hsc
+        (minidump_force_regular_minidump_with_ui [boolean])
+        ```
+  - slug: giant_custom_anim_recovery_time
+    info:
+      en: |-
+        ```hsc
+        (giant_custom_anim_recovery_time [real])
+        ```
+  - slug: facial_animation_enable_lipsync
+    info:
+      en: |-
+        ```hsc
+        (facial_animation_enable_lipsync [boolean])
+        ```
+  - slug: facial_animation_enable_gestures
+    info:
+      en: |-
+        ```hsc
+        (facial_animation_enable_gestures [boolean])
+        ```
+  - slug: facial_animation_enable_noise
+    info:
+      en: |-
+        ```hsc
+        (facial_animation_enable_noise [boolean])
+        ```
+  - slug: render_alpha_to_coverage
+    info:
+      en: |-
+        ```hsc
+        (render_alpha_to_coverage [boolean])
+        ```
+  - slug: enable_sound_transmission
+    info:
+      en: |-
+        ```hsc
+        (enable_sound_transmission [boolean])
+        ```
+  - slug: disable_audibility_generation
+    info:
+      en: |-
+        ```hsc
+        (disable_audibility_generation [boolean])
+        ```
+  - slug: motion_blur_taps
+    info:
+      en: |-
+        ```hsc
+        (motion_blur_taps [long])
+        ```
+  - slug: motion_blur_expected_dt
+    info:
+      en: |-
+        ```hsc
+        (motion_blur_expected_dt [real])
+        ```
+  - slug: motion_blur_max_x
+    info:
+      en: |-
+        ```hsc
+        (motion_blur_max_x [real])
+        ```
+  - slug: motion_blur_max_y
+    info:
+      en: |-
+        ```hsc
+        (motion_blur_max_y [real])
+        ```
+  - slug: motion_blur_scale_x
+    info:
+      en: |-
+        ```hsc
+        (motion_blur_scale_x [real])
+        ```
+  - slug: motion_blur_scale_y
+    info:
+      en: |-
+        ```hsc
+        (motion_blur_scale_y [real])
+        ```
+  - slug: motion_blur_center_falloff
+    info:
+      en: |-
+        ```hsc
+        (motion_blur_center_falloff [real])
+        ```
+  - slug: unicode_warn_on_truncation
+    info:
+      en: |-
+        ```hsc
+        (unicode_warn_on_truncation [boolean])
+        ```
+  - slug: debug_determinism_version
+    info:
+      en: |-
+        ```hsc
+        (debug_determinism_version [long])
+        ```
+  - slug: debug_determinism_compatible_version
+    info:
+      en: |-
+        ```hsc
+        (debug_determinism_compatible_version [long])
+        ```
+  - slug: error_geometry_environment_enabled
+    info:
+      en: |-
+        ```hsc
+        (error_geometry_environment_enabled [boolean])
+        ```
+  - slug: error_geometry_lightmap_enabled
+    info:
+      en: |-
+        ```hsc
+        (error_geometry_lightmap_enabled [boolean])
+        ```
+  - slug: error_geometry_seam_enabled
+    info:
+      en: |-
+        ```hsc
+        (error_geometry_seam_enabled [boolean])
+        ```
+  - slug: error_geometry_instance_enabled
+    info:
+      en: |-
+        ```hsc
+        (error_geometry_instance_enabled [boolean])
+        ```
+  - slug: error_geometry_object_enabled
+    info:
+      en: |-
+        ```hsc
+        (error_geometry_object_enabled [boolean])
+        ```
+  - slug: debug_objects_unit_melee
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_unit_melee [boolean])
+        ```
+  - slug: disable_render_state_cache_optimization
+    info:
+      en: |-
+        ```hsc
+        (disable_render_state_cache_optimization [boolean])
+        ```
+  - slug: debug_objects_root_node_print
+    info:
+      en: |-
+        ```hsc
+        (debug_objects_root_node_print [boolean])
+        ```
+  - slug: enable_better_cpu_gpu_sync
+    info:
+      en: |-
+        ```hsc
+        (enable_better_cpu_gpu_sync [boolean])
+        ```
+  - slug: ai_evaluator_point_preference
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_point_preference [short])
+        ```
+  - slug: ai_evaluator_obstacle
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_obstacle [short])
+        ```
+  - slug: ai_evaluator_facing
+    info:
+      en: |-
+        ```hsc
+        (ai_evaluator_facing [short])
+        ```
+  - slug: require_secure_cache_files
+    info:
+      en: |-
+        ```hsc
+        (require_secure_cache_files [boolean])
+        ```
+  - slug: debug_aim_assist_targets_enabled
+    info:
+      en: |-
+        ```hsc
+        (debug_aim_assist_targets_enabled [boolean])
+        ```
+  - slug: motion_blur_max_viewport_count
+    info:
+      en: |-
+        ```hsc
+        (motion_blur_max_viewport_count [long])
+        ```
+  - slug: cinematic_prediction_enable
+    info:
+      en: |-
+        ```hsc
+        (cinematic_prediction_enable [boolean])
+        ```
+  - slug: render_debug_cortana_ticks
+    info:
+      en: |-
+        ```hsc
+        (render_debug_cortana_ticks [boolean])
+        ```
+  - slug: skies_delete_on_zone_set_switch_enable
+    info:
+      en: |-
+        ```hsc
+        (skies_delete_on_zone_set_switch_enable [boolean])
+        ```
+  - slug: reduce_widescreen_fov_during_cinematics
+    info:
+      en: |-
+        ```hsc
+        (reduce_widescreen_fov_during_cinematics [boolean])
+        ```
+  - slug: cinematic_debugging_enable
+    info:
+      en: |-
+        ```hsc
+        (cinematic_debugging_enable [boolean])
+        ```
+  - slug: import_sound_write_diagnostic_files
+    info:
+      en: |-
+        ```hsc
+        (import_sound_write_diagnostic_files [boolean])
+        ```
+  - slug: game_state_allow_insecure
+    info:
+      en: |-
+        ```hsc
+        (game_state_allow_insecure [boolean])
+        ```
+  - slug: dump_cache_builder_determinism_log
+    info:
+      en: |-
+        ```hsc
+        (dump_cache_builder_determinism_log [boolean])
+        ```
+  - slug: dump_cache_builder_determinism_log_full
+    info:
+      en: |-
+        ```hsc
+        (dump_cache_builder_determinism_log_full [boolean])
+        ```
+  - slug: allow_insecure_resources
+    info:
+      en: |-
+        ```hsc
+        (allow_insecure_resources [boolean])
+        ```
+  - slug: show_ddode
+    info:
+      en: |-
+        ```hsc
+        (show_ddode [boolean])
+        ```
+  - slug: use_new_dialogue_stripping
+    info:
+      en: |-
+        ```hsc
+        (use_new_dialogue_stripping [boolean])
+        ```
+  - slug: use_hdr_bloom_scaling
+    info:
+      en: |-
+        ```hsc
+        (use_hdr_bloom_scaling [boolean])
+        ```
+  - slug: hdr_bloom_intensity
+    info:
+      en: |-
+        ```hsc
+        (hdr_bloom_intensity [real])
+        ```
+  - slug: use_memory_mirror_events
+    info:
+      en: |-
+        ```hsc
+        (use_memory_mirror_events [boolean])
+        ```
+  - slug: sleep_for_vblank
+    info:
+      en: |-
+        ```hsc
+        (sleep_for_vblank [boolean])
+        ```
+  - slug: decorator_res_scaled
+    info:
+      en: |-
+        ```hsc
+        (decorator_res_scaled [boolean])
+        ```
+  - slug: page_cache_enable_status_lines
+    info:
+      en: |-
+        ```hsc
+        (page_cache_enable_status_lines [boolean])
+        ```
+  - slug: superforge
+    info:
+      en: |-
+        ```hsc
+        (superforge [boolean])
+        ```
+  - slug: superforge_budget
+    info:
+      en: |-
+        ```hsc
+        (superforge_budget [boolean])
+        ```
+  - slug: debug_aim_assist_targets_names
+    info:
+      en: |-
+        ```hsc
+        (debug_aim_assist_targets_names [boolean])
+        ```
+  - slug: debug_aim_assist_vectors
+    info:
+      en: |-
+        ```hsc
+        (debug_aim_assist_vectors [boolean])
+        ```
+  - slug: debug_weapons
+    info:
+      en: |-
+        ```hsc
+        (debug_weapons [boolean])
+        ```
+  - slug: debug_weapons_triggers
+    info:
+      en: |-
+        ```hsc
+        (debug_weapons_triggers [boolean])
+        ```
+  - slug: debug_weapons_barrels
+    info:
+      en: |-
+        ```hsc
+        (debug_weapons_barrels [boolean])
+        ```
+  - slug: debug_weapons_magazines
+    info:
+      en: |-
+        ```hsc
+        (debug_weapons_magazines [boolean])
+        ```
+  - slug: debug_weapons_primary
+    info:
+      en: |-
+        ```hsc
+        (debug_weapons_primary [boolean])
+        ```
+  - slug: debug_weapons_secondary
+    info:
+      en: |-
+        ```hsc
+        (debug_weapons_secondary [boolean])
+        ```
+  - slug: allow_480p_resolutions
+    info:
+      en: |-
+        ```hsc
+        (allow_480p_resolutions [boolean])
+        ```

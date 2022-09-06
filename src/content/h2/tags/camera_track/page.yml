@@ -2,4 +2,4 @@
     en: camera_track
   stub: true
   tagName: h2/camera_track
-  
+  noSearch: true

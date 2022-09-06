@@ -1,0 +1,33 @@
+HR-EK:
+  page: hr-ek
+  authors:
+    - 343 Industries
+    - Bungie
+    - Saber Interactive
+HR-Tool:
+  inherit: HR-EK
+  page: hr-tool
+  buildTypes:
+    - tag_test
+    - tag_release
+  workflows:
+    - from: fbx-mcc
+      to:
+        - JMS
+        - Animation data
+        - ASS
+HR-Foundation:
+  inherit: HR-EK
+  page: hr-foundation
+  buildTypes:
+    - tag_test
+HR-Sapien:
+  inherit: HR-EK
+  page: hr-sapien
+  buildTypes:
+    - tag_test
+HR-Standalone:
+  inherit: HR-EK
+  page: hr-standalone
+  buildTypes:
+    - tag_test

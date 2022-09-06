@@ -1,4 +1,3 @@
-
 functions:
   - slug: begin
     info:
@@ -1312,6 +1311,12 @@ functions:
         (<short> scenery_get_animation_time <scenery>)
         ```
         returns the number of ticks remaining in a custom animation (or zero, if the animation is over).
+  - slug: render_effects
+    info:
+      en: |-
+        ```hsc
+        (<void> render_effects <boolean>)
+        ```
   - slug: unit_can_blink
     info:
       en: |-
@@ -1647,14 +1652,14 @@ functions:
         ```hsc
         (<real> unit_get_health <unit>)
         ```
-        returns the health \[0,1] of the unit, returns -1 if the unit does not exist
+        returns the health \[0,1\] of the unit, returns -1 if the unit does not exist
   - slug: unit_get_shield
     info:
       en: |-
         ```hsc
         (<real> unit_get_shield <unit>)
         ```
-        returns the shield \[0,1] of the unit, returns -1 if the unit does not exist
+        returns the shield \[0,1\] of the unit, returns -1 if the unit does not exist
   - slug: unit_get_total_grenade_count
     info:
       en: |-
@@ -3566,6 +3571,13 @@ functions:
         (<void> version)
         ```
         prints the build version.
+  - slug: status
+    info:
+      en: |-
+        ```hsc
+        (<void> status)
+        ```
+        prints the value of all global status variables.
   - slug: record_movie
     info:
       en: |-
@@ -3685,6 +3697,19 @@ functions:
         (<void> game_rate <real> <real> <real>)
         ```
         changes game update rate (DANGER: only use if you know what you're doing!)
+  - slug: sound_cache_flush
+    info:
+      en: |-
+        ```hsc
+        (<void> sound_cache_flush)
+        ```
+        i'm a rebel!
+  - slug: font_cache_flush
+    info:
+      en: |-
+        ```hsc
+        (<void> font_cache_flush)
+        ```
   - slug: debug_memory
     info:
       en: |-
@@ -3720,6 +3745,13 @@ functions:
         (<void> tags_verify_all)
         ```
         verifies usage of infidel fields is correct
+  - slug: collision_log_enable
+    info:
+      en: |-
+        ```hsc
+        (<void> collision_log_enable <boolean>)
+        ```
+        enables or disables collision logging.
   - slug: damage_control_get
     info:
       en: |-
@@ -3734,6 +3766,13 @@ functions:
         (<void> damage_control_set <string> <boolean>)
         ```
         sets a damage control setting by string
+  - slug: ai_lines
+    info:
+      en: |-
+        ```hsc
+        (<void> ai_lines)
+        ```
+        cycles through AI line-spray modes
   - slug: ai_debug_sound_point_set
     info:
       en: |-
@@ -4284,20 +4323,6 @@ functions:
         (<boolean> show_hud_messages <boolean>)
         ```
         shows or hides the hud messages
-  - slug: enable_hud_help_flash
-    info:
-      en: |-
-        ```hsc
-        (<void> enable_hud_help_flash <boolean>)
-        ```
-        starts/stops the help text flashing
-  - slug: hud_help_flash_restart
-    info:
-      en: |-
-        ```hsc
-        (<void> hud_help_flash_restart)
-        ```
-        resets the timer for the help text flashing
   - slug: hud_show_training_text
     info:
       en: |-
@@ -4410,6 +4435,41 @@ functions:
         (<void> error_overflow_suppression <boolean>)
         ```
         enables or disables the suppression of error spamming
+  - slug: error_geometry_show
+    info:
+      en: |-
+        ```hsc
+        (<void> error_geometry_show <string>)
+        ```
+        highlights all error geometry with a name that includes the given substring
+  - slug: error_geometry_hide
+    info:
+      en: |-
+        ```hsc
+        (<void> error_geometry_hide <string>)
+        ```
+        hides all error geometry with a name that includes the given substring
+  - slug: error_geometry_show_all
+    info:
+      en: |-
+        ```hsc
+        (<void> error_geometry_show_all)
+        ```
+        highlights all error geometry
+  - slug: error_geometry_hide_all
+    info:
+      en: |-
+        ```hsc
+        (<void> error_geometry_hide_all)
+        ```
+        hides all error geometry
+  - slug: error_geometry_list
+    info:
+      en: |-
+        ```hsc
+        (<void> error_geometry_list)
+        ```
+        prints out a list of all error geometry types and counts
   - slug: player_effect_set_max_translation
     info:
       en: |-
@@ -4445,69 +4505,63 @@ functions:
         (<void> player_effect_stop <real>)
         ```
         <decay>
-  - slug: hud_clear_messages
+  - slug: time_code_show
     info:
       en: |-
         ```hsc
-        (<void> hud_clear_messages)
+        (<void> time_code_show <boolean>)
         ```
-        clears all non-state messages on the hud
-  - slug: hud_set_help_text
+        shows the time code timer
+  - slug: time_code_start
     info:
       en: |-
         ```hsc
-        (<void> hud_set_help_text <hud_message>)
+        (<void> time_code_start <boolean>)
         ```
-        displays <message> as the help text
-  - slug: hud_set_objective_text
+        starts/stops the time code timer
+  - slug: time_code_reset
     info:
       en: |-
         ```hsc
-        (<void> hud_set_objective_text <hud_message>)
+        (<void> time_code_reset)
         ```
-        sets <message> as the current objective
-  - slug: hud_set_timer_time
+        resets the time code timer
+  - slug: rasterizer_profile_include
     info:
       en: |-
         ```hsc
-        (<void> hud_set_timer_time <short> <short>)
+        (<void> rasterizer_profile_include <string>)
         ```
-        sets the time for the timer to <short> minutes and <short> seconds, and starts and displays timer
-  - slug: hud_set_timer_warning_time
+  - slug: rasterizer_profile_include_all
     info:
       en: |-
         ```hsc
-        (<void> hud_set_timer_warning_time <short> <short>)
+        (<void> rasterizer_profile_include_all)
         ```
-        sets the warning time for the timer to <short> minutes and <short> seconds
-  - slug: hud_set_timer_position
+  - slug: rasterizer_profile_include_all_except
     info:
       en: |-
         ```hsc
-        (<void> hud_set_timer_position <short> <short> <hud_corner>)
+        (<void> rasterizer_profile_include_all_except <string>)
         ```
-        sets the timer upper left position to (x, y)=>(<short>, <short>)
-  - slug: show_hud_timer
+  - slug: rasterizer_profile_exclude
     info:
       en: |-
         ```hsc
-        (<void> show_hud_timer <boolean>)
+        (<void> rasterizer_profile_exclude <string>)
         ```
-        displays the hud timer
-  - slug: pause_hud_timer
+  - slug: rasterizer_profile_exclude_all
     info:
       en: |-
         ```hsc
-        (<void> pause_hud_timer <boolean>)
+        (<void> rasterizer_profile_exclude_all)
         ```
-        pauses or unpauses the hud timer
-  - slug: hud_get_timer_ticks
+  - slug: rasterizer_profile_exclude_all_except
     info:
       en: |-
         ```hsc
-        (<short> hud_get_timer_ticks)
+        (<void> rasterizer_profile_exclude_all_except <string>)
         ```
-        returns the ticks left on the hud timer
   - slug: rasterizer_debug_display_bitmap
     info:
       en: |-
@@ -4782,20 +4836,6 @@ functions:
         (<void> player_profile_create_corrupt <string>)
         ```
         create a corrupt player profile, for ui testing
-  - slug: player_has_skills
-    info:
-      en: |-
-        ```hsc
-        (<boolean> player_has_skills)
-        ```
-        Are you the best?
-  - slug: player_has_mad_secret_skills
-    info:
-      en: |-
-        ```hsc
-        (<void> player_has_mad_secret_skills <long>)
-        ```
-        You are the best!
   - slug: controller_invert_look
     info:
       en: |-
@@ -4915,13 +4955,6 @@ functions:
         (<void> ui_set_automation_mode <string>)
         ```
         set ui automation mode
-  - slug: ui_set_automation_hopper_type
-    info:
-      en: |-
-        ```hsc
-        (<void> ui_set_automation_hopper_type <short>)
-        ```
-        set ui / mp automation hopper
   - slug: ui_set_automation_variant_type_and_map
     info:
       en: |-
@@ -5111,27 +5144,6 @@ functions:
         (<void> net_test_fatal_error)
         ```
         creates a fatal simulation error
-  - slug: net_test_matchmaking_hopper_list
-    info:
-      en: |-
-        ```hsc
-        (<void> net_test_matchmaking_hopper_list)
-        ```
-        network test: lists all available hoppers
-  - slug: net_test_matchmaking_hopper_print
-    info:
-      en: |-
-        ```hsc
-        (<void> net_test_matchmaking_hopper_print <long>)
-        ```
-        network test: prints out the maps, games and frequencies for a hopper
-  - slug: net_test_matchmaking_hopper_set_game
-    info:
-      en: |-
-        ```hsc
-        (<void> net_test_matchmaking_hopper_set_game <long> <long>)
-        ```
-        network test: retrieves a specific game within a hopper and sets it into an arranged game
   - slug: net_set_machine_name
     info:
       en: |-
@@ -5160,13 +5172,6 @@ functions:
         (<void> net_event_list_categories <string>)
         ```
         lists all categories that exist under a particular category string
-  - slug: online_task_list
-    info:
-      en: |-
-        ```hsc
-        (<void> online_task_list)
-        ```
-        lists all active online tasks
   - slug: play_bink_movie
     info:
       en: |-
@@ -5349,6 +5354,55 @@ functions:
         (<void> render_layer_enable_all <boolean>)
         ```
         enable/disables all render_layers
+  - slug: rasterizer_overdraw_z
+    info:
+      en: |-
+        ```hsc
+        (<void> rasterizer_overdraw_z)
+        ```
+        toggles overdraw with z compare on
+  - slug: rasterizer_overdraw
+    info:
+      en: |-
+        ```hsc
+        (<void> rasterizer_overdraw)
+        ```
+        toggles overdraw with z compare off
+  - slug: rasterizer_layers_overdraw_z
+    info:
+      en: |-
+        ```hsc
+        (<void> rasterizer_layers_overdraw_z)
+        ```
+        toggles layer overdraw with z compare on
+  - slug: rasterizer_layers_overdraw
+    info:
+      en: |-
+        ```hsc
+        (<void> rasterizer_layers_overdraw)
+        ```
+        toggles layer overdraw with z compare off
+  - slug: test_memory_allocators
+    info:
+      en: |-
+        ```hsc
+        (<void> test_memory_allocators <long> <short> <short> <short> <long>)
+        ```
+        performs tests on different memory allocators
+  - slug: test_memory_allocators
+    info:
+      en: |-
+        ```hsc
+        (<void> test_memory_allocators <long> <short> <short> <short> <long> <string>)
+        ```
+        performs tests on different memory allocators and saves the results
+  - slug: display_video_standard
+    info:
+      en: |-
+        ```hsc
+        (<void> display_video_standard)
+        ```
+        displays the video standard the game is in
   - slug: test_xcr_monkey_enable
     info:
       en: |-
@@ -5545,20 +5599,6 @@ functions:
         (<void> voice_set_voice_repeater_peer_index <long>)
         ```
         sets the repeater peer index
-  - slug: net_leaderboard_clear
-    info:
-      en: |-
-        ```hsc
-        (<void> net_leaderboard_clear <long> <long>)
-        ```
-        <hopper> <user index> clears the stats for the given hopper and user
-  - slug: net_leaderboard_set
-    info:
-      en: |-
-        ```hsc
-        (<void> net_leaderboard_set <long> <long> <long> <long>)
-        ```
-        <hopper index> <user index> <stat index> <value> sets the stat for the given leaderboard and user
   - slug: dump_loaded_tags
     info:
       en: |-
@@ -5738,12 +5778,6 @@ functions:
         (<void> weather_change_intensity <real> <real>)
         ```
         <time> <intensity>
-  - slug: animation_cache_stats_reset
-    info:
-      en: |-
-        ```hsc
-        (<void> animation_cache_stats_reset)
-        ```
   - slug: cinematic_clone_players_weapon
     info:
       en: |-
@@ -5839,6 +5873,13 @@ functions:
         (<void> predict_bitmap <bitmap> <long>)
         ```
         predict a bitmap.
+  - slug: get_prediction_offset
+    info:
+      en: |-
+        ```hsc
+        (<long> get_prediction_offset)
+        ```
+        how many frames to predict ahead.
   - slug: rasterizer_bloom_override
     info:
       en: |-
@@ -5972,132 +6013,6 @@ functions:
         (<void> cinematic_lightmap_shadow_enable)
         ```
         turn on lightmap shadow in cinematics
-  - slug: predict_animation
-    info:
-      en: |-
-        ```hsc
-        (<void> predict_animation <animation_graph> <string_id>)
-        ```
-        begin loading an animation for the graph provided
-  - slug: online_message_send
-    info:
-      en: |-
-        ```hsc
-        (<void> online_message_send <long> <long> <string>)
-        ```
-        send a message from <controller_from> to <controller_to>
-  - slug: test_web_event_local_cheater
-    info:
-      en: |-
-        ```hsc
-        (<void> test_web_event_local_cheater)
-        ```
-        claims that the local box is a cheater
-  - slug: test_web_event_remote_cheater
-    info:
-      en: |-
-        ```hsc
-        (<void> test_web_event_remote_cheater <string>)
-        ```
-        <gamertag> claims that a remote player is a cheater
-  - slug: test_cheating_detect
-    info:
-      en: |-
-        ```hsc
-        (<void> test_cheating_detect)
-        ```
-        tells our servers that the local box is cheating
-  - slug: test_network_storage_simulate
-    info:
-      en: |-
-        ```hsc
-        (<void> test_network_storage_simulate <string> <string>)
-        ```
-        <hopper/ban/motd/network> <none/download/fail>
-  - slug: scenario_dump_scenario_signature_enable
-    info:
-      en: |-
-        ```hsc
-        (<void> scenario_dump_scenario_signature_enable)
-        ```
-        enable signature dumps
-  - slug: scenario_force_signature_failure_enable
-    info:
-      en: |-
-        ```hsc
-        (<void> scenario_force_signature_failure_enable)
-        ```
-        enable forcing signature failure
-  - slug: scenario_force_name_failure_enable
-    info:
-      en: |-
-        ```hsc
-        (<void> scenario_force_name_failure_enable)
-        ```
-        enable forcing name failure
-  - slug: scenario_ignore_failures_enable
-    info:
-      en: |-
-        ```hsc
-        (<void> scenario_ignore_failures_enable)
-        ```
-        enable ignoring failure
-  - slug: scenario_dump_scenario_signature_disable
-    info:
-      en: |-
-        ```hsc
-        (<void> scenario_dump_scenario_signature_disable)
-        ```
-        disable signature dumps
-  - slug: scenario_force_signature_failure_disable
-    info:
-      en: |-
-        ```hsc
-        (<void> scenario_force_signature_failure_disable)
-        ```
-        disable forcing signature failure
-  - slug: scenario_force_name_failure_disable
-    info:
-      en: |-
-        ```hsc
-        (<void> scenario_force_name_failure_disable)
-        ```
-        disable forcing name failure
-  - slug: scenario_ignore_failures_disable
-    info:
-      en: |-
-        ```hsc
-        (<void> scenario_ignore_failures_disable)
-        ```
-        disable ignoring failures
-  - slug: hopper_verify_force_failures_enable
-    info:
-      en: |-
-        ```hsc
-        (<void> hopper_verify_force_failures_enable)
-        ```
-        enable forcing hopper failure
-  - slug: hopper_verify_ignore_failures_enable
-    info:
-      en: |-
-        ```hsc
-        (<void> hopper_verify_ignore_failures_enable)
-        ```
-        enable ignoring hopper failure
-  - slug: hopper_verify_force_failures_disable
-    info:
-      en: |-
-        ```hsc
-        (<void> hopper_verify_force_failures_disable)
-        ```
-        disable forcing hopper failure
-  - slug: hopper_verify_ignore_failures_disable
-    info:
-      en: |-
-        ```hsc
-        (<void> hopper_verify_ignore_failures_disable)
-        ```
-        disable ignoring hopper failure
   - slug: loading_screen_fade_to_white
     info:
       en: |-
@@ -6140,20 +6055,6 @@ functions:
         (<void> cinematic_start_movie <string>)
         ```
         starts cinematic movie
-  - slug: set_decal_override
-    info:
-      en: |-
-        ```hsc
-        (<void> set_decal_override <string>)
-        ```
-        override decal creation with specified tag
-  - slug: set_pjl_effect
-    info:
-      en: |-
-        ```hsc
-        (<void> set_pjl_effect <effect>)
-        ```
-        override projectile effect creation with specified tag
   - slug: drop_variant
     info:
       en: |-
@@ -6210,14 +6111,7 @@ functions:
         (<void> determinism_debug_manager_enable_log_file_comparision_on_oos <boolean>)
         ```
         enables/disables determinism log file comparision on oos
-        net_safe_raw: No
-  - slug: h2a2_effect_new
-    info:
-      en: |-
-        ```hsc
-        (<void> h2a2_effect_new <effect> <long> <string_id>)
-        ```
-        starts the specified effect on the specified object at the specified marker.
+    net_safe_raw: no
   - slug: debug_sound_channels_by_substring
     info:
       en: |-
@@ -6225,13 +6119,6 @@ functions:
         (<void> debug_sound_channels_by_substring <string>)
         ```
         filter display sound channels by substring
-  - slug: rally_point_save_name
-    info:
-      en: |-
-        ```hsc
-        (<void> rally_point_save_name <string>)
-        ```
-        saves game state as rally point to core\<path>
   - slug: flush_ddm
     info:
       en: |-
@@ -6246,7 +6133,7 @@ functions:
         (<long> game_tick_get)
         ```
         returns current game tick
-        net_safe_raw: only if game_time_get is
+    net_safe_raw: only if game_time_get is
   - slug: game_tick_rate
     info:
       en: |-
@@ -6254,7 +6141,7 @@ functions:
         (<long> game_tick_rate)
         ```
         returns current game ticks per second rate
-        net_safe_raw: only if game_time_get is
+    net_safe_raw: only if game_time_get is
   - slug: game_tick_rate_scalar
     info:
       en: |-
@@ -6262,7 +6149,7 @@ functions:
         (<long> game_tick_rate_scalar)
         ```
         returns current game ticks per second rate relative to k_authored_tick_rate (30Hz)
-        net_safe_raw: only if game_time_get is
+    net_safe_raw: only if game_time_get is
   - slug: game_tick_length
     info:
       en: |-
@@ -6270,7 +6157,7 @@ functions:
         (<real> game_tick_length)
         ```
         returns how many seconds are in a current game tick
-        net_safe_raw: only if game_time_get is
+    net_safe_raw: only if game_time_get is
   - slug: TestPrintBool
     info:
       en: |-
@@ -6285,6 +6172,13 @@ functions:
         (<void> TestPrintReal <string> <real>)
         ```
         Prints the specified real with the format '<string> = '<real>' to the Shell.
+  - slug: debug_menu_rebuild
+    info:
+      en: |-
+        ```hsc
+        (<void> debug_menu_rebuild)
+        ```
+        Reparses the debug menu from the text file.
   - slug: debug_camera_load_text
     info:
       en: |-

@@ -15,6 +15,46 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purc
 6. If your operating system supports it you should enable file system compression for the `tags\sounds` folder. This is a workaround for high disk space usage caused by sound tags including zeroed out sound data.
 7. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
 
+# What's new in the September update
+
+## Installing the September update
+1. Delete the shader templates from the previous update as they are not compatible, delete `tags\shaders\beam_templates`, `tags\shaders\black_templates`, `tags\shaders\contrail_templates`, `tags\shaders\custom_templates`, `tags\shaders\decal_templates`, `tags\shaders\foliage_templates`, `tags\shaders\halogram_templates`,`tags\shaders\light_volume_templates`, `tags\shaders\particle_templates`, `tags\shaders\screen_templates`, `tags\shaders\shader_templates`, `tags\shaders\terrain_templates` and `tags\shaders\water_templates`.
+2a. (recommended) Extract the new `H3ODSTEK.7z`.
+2b. (alternative) If you don't want to update all your tags it's highly recommended you at least update the `tags\shaders` folder.
+
+## Content
+
+* Various changes to tags and data files. Updating your tag set is highly recommended.
+* Added test, audio and lighting reference scenarios `levels\test\box`, `levels\reference\audio`, `levels\reference\lighting_reference`
+
+## General
+
+* Maximum string storage for cache files increased.
+* New flag for equipment to prevent AI from dropping them on death.
+* Script doc has new formatting and will now contain globals.
+* Reports are now contained within the reports folder.
+* Giants will now synchronize in co-operative Firefight games.
+
+## Tool
+
+* New commands `extract_unicode_strings` and `print_tag_to_XML` added.
+* Various improvements to the `export-tag-to-xml` command output.
+* Export bitmap commands now have support for cubemaps.
+* The `build-cache-file` command now uses the flag use-fmod-data by default which should result in smaller cache files.
+
+## Guerilla
+
+* Reserved chud text stringids are now listed.
+
+## Sapien
+
+* Additional FMOD banks no longer stops working after a map reset.
+
+## Standalone
+
+* Additional FMOD banks no longer stops working after a map reset.
+* Firefight maps can now be successfully launched from the main menu.
+
 # Major changes from H2
 Naturally there is multitude of changes compared to H2 as the engine underwent a major revision, this document endeavours to list the major ones.
 

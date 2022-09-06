@@ -2,4 +2,4 @@
     en: vehicle
   stub: true
   tagName: h2/vehicle
-  
+  noSearch: true

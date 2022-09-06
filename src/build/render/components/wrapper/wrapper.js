@@ -30,12 +30,18 @@ const mainTopics = [
   ["/h3/tags"],
   //["/h3/guides"],
   ["/h3/h3-ek"],
+  
+  ["/hr"],
+  ["/hr/tags"],
+  //["/hr/guides"],
+  ["/hr/hr-ek"],
 ];
 
 const spaces = [
   {root: "/h1", img: "/h1/box-art.jpg"},
   {root: "/h2", img: "/h2/h2cover.jpg"},
   {root: "/h3", img: "/h3/Halo_3_final_boxshot.jpg"},
+  {root: "/hr", img: "/hr/Halo_reach_final_boxshot.jpg"},
 ];
 
 const localizations = localizer({

@@ -2,4 +2,4 @@
     en: model
   stub: true
   tagName: h2/model
-  
+  noSearch: true

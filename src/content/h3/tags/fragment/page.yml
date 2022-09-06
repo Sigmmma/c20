@@ -2,4 +2,4 @@
     en: fragment
   stub: true
   tagName: h3/fragment
-  
+  noSearch: true

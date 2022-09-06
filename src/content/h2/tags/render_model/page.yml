@@ -2,4 +2,4 @@
     en: render_model
   stub: true
   tagName: h2/render_model
-  
+  noSearch: true

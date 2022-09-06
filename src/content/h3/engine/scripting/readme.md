@@ -26,4 +26,12 @@ columns:
 ```
 
 # External globals
-A list of globals has not yet been generated for H3, since its `script_doc` function does not output them as of season 8. It is likely to share many in common with [H2][h2/engine/scripting#external-globals]
+```.table
+dataPath: hsc/h3/globals/external_globals
+linkCol: true
+linkSlugKey: slug
+columns:
+  - key: info/en
+    name: Global
+    format: text
+```

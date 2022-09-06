@@ -2,4 +2,4 @@
     en: weapon
   stub: true
   tagName: h2/weapon
-  
+  noSearch: true

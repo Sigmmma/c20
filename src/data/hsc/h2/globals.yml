@@ -6245,3 +6245,15 @@ external_globals:
         ```hsc
         (g_sound_global_gain_db [real])
         ```
+  - slug: scenario_load_fast
+    info:
+      en: |-
+        ```hsc
+        (scenario_load_fast [boolean])
+        ```
+  - slug: scenario_load_fast_and_playable
+    info:
+      en: |-
+        ```hsc
+        (scenario_load_fast_and_playable [boolean])
+        ```

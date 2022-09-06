@@ -2,4 +2,4 @@
     en: scenario
   stub: true
   tagName: h2/scenario
-  
+  noSearch: true

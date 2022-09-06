@@ -4,3 +4,4 @@ stub: true
 tagName: h3/camera_fx_settings
 related:
   - /h3/tags/area_screen_effect
+noSearch: true

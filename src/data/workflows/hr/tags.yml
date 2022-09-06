@@ -1,0 +1,460 @@
+hr/tags:
+  page: hr/tags
+hr/achievements:
+  page: hr/tags/achievements
+hr/ai_dialogue_globals:
+  page: hr/tags/ai_dialogue_globals
+hr/ai_globals:
+  page: hr/tags/ai_globals
+hr/ai_mission_dialogue:
+  page: hr/tags/ai_mission_dialogue
+hr/airstrike:
+  page: hr/tags/airstrike
+hr/antenna:
+  page: hr/tags/antenna
+hr/area_screen_effect:
+  page: hr/tags/area_screen_effect
+hr/atmosphere_fog:
+  page: hr/tags/atmosphere_fog
+hr/atmosphere_globals:
+  page: hr/tags/atmosphere_globals
+hr/avatar_awards:
+  page: hr/tags/avatar_awards
+hr/beam_system:
+  page: hr/tags/beam_system
+hr/big_battle_creature:
+  page: hr/tags/big_battle_creature
+hr/bink:
+  page: hr/tags/bink
+hr/biped:
+  page: hr/tags/biped
+hr/bitmap:
+  page: hr/tags/bitmap
+hr/breakable_surface:
+  page: hr/tags/breakable_surface
+hr/cache_file_resource_gestalt:
+  page: hr/tags/cache_file_resource_gestalt
+hr/cache_file_resource_layout_table:
+  page: hr/tags/cache_file_resource_layout_table
+hr/cache_file_sound:
+  page: hr/tags/cache_file_sound
+hr/camera_fx_settings:
+  page: hr/tags/camera_fx_settings
+hr/camera_shake:
+  page: hr/tags/camera_shake
+hr/camera_track:
+  page: hr/tags/camera_track
+hr/camo:
+  page: hr/tags/camo
+hr/cellular_automata:
+  page: hr/tags/cellular_automata
+hr/cellular_automata2d:
+  page: hr/tags/cellular_automata2d
+hr/challenge_globals_definition:
+  page: hr/tags/challenge_globals_definition
+hr/character:
+  page: hr/tags/character
+hr/cheap_light:
+  page: hr/tags/cheap_light
+hr/cheap_particle_emitter:
+  page: hr/tags/cheap_particle_emitter
+hr/cheap_particle_type_library:
+  page: hr/tags/cheap_particle_type_library
+hr/chocolate_mountain_new:
+  page: hr/tags/chocolate_mountain_new
+hr/chud_animation_definition:
+  page: hr/tags/chud_animation_definition
+hr/chud_definition:
+  page: hr/tags/chud_definition
+hr/chud_globals_definition:
+  page: hr/tags/chud_globals_definition
+hr/chud_widget_animation_data_template:
+  page: hr/tags/chud_widget_animation_data_template
+hr/chud_widget_datasource_template:
+  page: hr/tags/chud_widget_datasource_template
+hr/chud_widget_placement_data_template:
+  page: hr/tags/chud_widget_placement_data_template
+hr/chud_widget_render_data_template:
+  page: hr/tags/chud_widget_render_data_template
+hr/chud_widget_state_data_template:
+  page: hr/tags/chud_widget_state_data_template
+hr/cinematic:
+  page: hr/tags/cinematic
+hr/cinematic_scene:
+  page: hr/tags/cinematic_scene
+hr/cinematic_transition:
+  page: hr/tags/cinematic_transition
+hr/cloth:
+  page: hr/tags/cloth
+hr/collision_damage:
+  page: hr/tags/collision_damage
+hr/collision_model:
+  page: hr/tags/collision_model
+hr/color_table:
+  page: hr/tags/color_table
+hr/commendation_globals_definition:
+  page: hr/tags/commendation_globals_definition
+hr/communication_sounds:
+  page: hr/tags/communication_sounds
+hr/compute_shader:
+  page: hr/tags/compute_shader
+hr/contrail_system:
+  page: hr/tags/contrail_system
+hr/cookie_globals_definition:
+  page: hr/tags/cookie_globals_definition
+hr/crate:
+  page: hr/tags/crate
+hr/creature:
+  page: hr/tags/creature
+hr/cui_screen:
+  page: hr/tags/cui_screen
+hr/cui_static_data:
+  page: hr/tags/cui_static_data
+hr/damage_effect:
+  page: hr/tags/damage_effect
+hr/damage_response_definition:
+  page: hr/tags/damage_response_definition
+hr/death_program_selector:
+  page: hr/tags/death_program_selector
+hr/decal_system:
+  page: hr/tags/decal_system
+hr/decorator_set:
+  page: hr/tags/decorator_set
+hr/detail_object_collection:
+  page: hr/tags/detail_object_collection
+hr/device_control:
+  page: hr/tags/device_control
+hr/device_machine:
+  page: hr/tags/device_machine
+hr/device_terminal:
+  page: hr/tags/device_terminal
+hr/dialogue:
+  page: hr/tags/dialogue
+hr/effect:
+  page: hr/tags/effect
+hr/effect_globals:
+  page: hr/tags/effect_globals
+hr/effect_scenery:
+  page: hr/tags/effect_scenery
+hr/emblem_library:
+  page: hr/tags/emblem_library
+hr/equipment:
+  page: hr/tags/equipment
+hr/flock:
+  page: hr/tags/flock
+hr/fluid_dynamics:
+  page: hr/tags/fluid_dynamics
+hr/formation:
+  page: hr/tags/formation
+hr/frame_event_list:
+  page: hr/tags/frame_event_list
+hr/fx_test:
+  page: hr/tags/fx_test
+hr/game_completion_rewards_globals:
+  page: hr/tags/game_completion_rewards_globals
+hr/game_engine_globals:
+  page: hr/tags/game_engine_globals
+hr/game_engine_settings_definition:
+  page: hr/tags/game_engine_settings_definition
+hr/game_medal_globals:
+  page: hr/tags/game_medal_globals
+hr/game_performance_throttle:
+  page: hr/tags/game_performance_throttle
+hr/giant:
+  page: hr/tags/giant
+hr/global_cache_file_pixel_shaders:
+  page: hr/tags/global_cache_file_pixel_shaders
+hr/global_pixel_shader:
+  page: hr/tags/global_pixel_shader
+hr/global_vertex_shader:
+  page: hr/tags/global_vertex_shader
+hr/globals:
+  page: hr/tags/globals
+hr/grounded_friction:
+  page: hr/tags/grounded_friction
+hr/havok_collision_filter:
+  page: hr/tags/havok_collision_filter
+hr/hlsl_include:
+  page: hr/tags/hlsl_include
+hr/imposter_model:
+  page: hr/tags/imposter_model
+hr/incident_global_properties_definition:
+  page: hr/tags/incident_global_properties_definition
+hr/incident_globals_definition:
+  page: hr/tags/incident_globals_definition
+hr/instance_imposter_definition:
+  page: hr/tags/instance_imposter_definition
+hr/leaf_system:
+  page: hr/tags/leaf_system
+hr/lens_flare:
+  page: hr/tags/lens_flare
+hr/light:
+  page: hr/tags/light
+hr/light_volume_system:
+  page: hr/tags/light_volume_system
+hr/lightmapper_globals:
+  page: hr/tags/lightmapper_globals
+hr/lightning_system:
+  page: hr/tags/lightning_system
+hr/load_screen_globals:
+  page: hr/tags/load_screen_globals
+hr/loadout_globals_definition:
+  page: hr/tags/loadout_globals_definition
+hr/location_name_globals_definition:
+  page: hr/tags/location_name_globals_definition
+hr/material_effects:
+  page: hr/tags/material_effects
+hr/megalo_string_id_table:
+  page: hr/tags/megalo_string_id_table
+hr/megalogamengine_sounds:
+  page: hr/tags/megalogamengine_sounds
+hr/meter:
+  page: hr/tags/meter
+hr/model:
+  page: hr/tags/model
+hr/model_animation_graph:
+  page: hr/tags/model_animation_graph
+hr/mouse_cursor_definition:
+  page: hr/tags/mouse_cursor_definition
+hr/muffin:
+  page: hr/tags/muffin
+hr/multilingual_unicode_string_list:
+  page: hr/tags/multilingual_unicode_string_list
+hr/multiplayer_globals:
+  page: hr/tags/multiplayer_globals
+hr/multiplayer_object_type_list:
+  page: hr/tags/multiplayer_object_type_list
+hr/multiplayer_scenario_description:
+  page: hr/tags/multiplayer_scenario_description
+hr/multiplayer_variant_settings_interface_definition:
+  page: hr/tags/multiplayer_variant_settings_interface_definition
+hr/mux_generator:
+  page: hr/tags/mux_generator
+hr/new_cinematic_lighting:
+  page: hr/tags/new_cinematic_lighting
+hr/particle:
+  page: hr/tags/particle
+hr/particle_emitter_boat_hull_shape:
+  page: hr/tags/particle_emitter_boat_hull_shape
+hr/particle_emitter_custom_points:
+  page: hr/tags/particle_emitter_custom_points
+hr/particle_model:
+  page: hr/tags/particle_model
+hr/particle_physics:
+  page: hr/tags/particle_physics
+hr/performance_template:
+  page: hr/tags/performance_template
+hr/performance_throttles:
+  page: hr/tags/performance_throttles
+hr/pgcr_enemy_to_category_mapping_definition:
+  page: hr/tags/pgcr_enemy_to_category_mapping_definition
+hr/physics_model:
+  page: hr/tags/physics_model
+hr/pixel_shader:
+  page: hr/tags/pixel_shader
+hr/planar_fog_parameters:
+  page: hr/tags/planar_fog_parameters
+hr/player_grade_globals_definition:
+  page: hr/tags/player_grade_globals_definition
+hr/player_model_customization_globals:
+  page: hr/tags/player_model_customization_globals
+hr/point_physics:
+  page: hr/tags/point_physics
+hr/projectile:
+  page: hr/tags/projectile
+hr/rain_definition:
+  page: hr/tags/rain_definition
+hr/rasterizer_cache_file_globals:
+  page: hr/tags/rasterizer_cache_file_globals
+hr/rasterizer_globals:
+  page: hr/tags/rasterizer_globals
+hr/render_method_definition:
+  page: hr/tags/render_method_definition
+hr/render_method_option:
+  page: hr/tags/render_method_option
+hr/render_method_template:
+  page: hr/tags/render_method_template
+hr/render_model:
+  page: hr/tags/render_model
+hr/render_water_ripple:
+  page: hr/tags/render_water_ripple
+hr/rumble:
+  page: hr/tags/rumble
+hr/sandbox_text_value_pair_definition:
+  page: hr/tags/sandbox_text_value_pair_definition
+hr/scenario:
+  page: hr/tags/scenario
+hr/scenario_ai_resource:
+  page: hr/tags/scenario_ai_resource
+hr/scenario_bipeds_resource:
+  page: hr/tags/scenario_bipeds_resource
+hr/scenario_cinematics_resource:
+  page: hr/tags/scenario_cinematics_resource
+hr/scenario_cluster_data_resource:
+  page: hr/tags/scenario_cluster_data_resource
+hr/scenario_comments_resource:
+  page: hr/tags/scenario_comments_resource
+hr/scenario_creature_resource:
+  page: hr/tags/scenario_creature_resource
+hr/scenario_cubemap_resource:
+  page: hr/tags/scenario_cubemap_resource
+hr/scenario_decals_resource:
+  page: hr/tags/scenario_decals_resource
+hr/scenario_decorators_resource:
+  page: hr/tags/scenario_decorators_resource
+hr/scenario_devices_resource:
+  page: hr/tags/scenario_devices_resource
+hr/scenario_dumplings_resource:
+  page: hr/tags/scenario_dumplings_resource
+hr/scenario_effect_scenery_resource:
+  page: hr/tags/scenario_effect_scenery_resource
+hr/scenario_equipment_resource:
+  page: hr/tags/scenario_equipment_resource
+hr/scenario_faux_data:
+  page: hr/tags/scenario_faux_data
+hr/scenario_hs_source_file:
+  page: hr/tags/scenario_hs_source_file
+hr/scenario_interpolator:
+  page: hr/tags/scenario_interpolator
+hr/scenario_lightmap:
+  page: hr/tags/scenario_lightmap
+hr/scenario_lightmap_bsp_data:
+  page: hr/tags/scenario_lightmap_bsp_data
+hr/scenario_lights_resource:
+  page: hr/tags/scenario_lights_resource
+hr/scenario_performances_resource:
+  page: hr/tags/scenario_performances_resource
+hr/scenario_required_resource:
+  page: hr/tags/scenario_required_resource
+hr/scenario_scenery_resource:
+  page: hr/tags/scenario_scenery_resource
+hr/scenario_sky_references_resource:
+  page: hr/tags/scenario_sky_references_resource
+hr/scenario_sound_scenery_resource:
+  page: hr/tags/scenario_sound_scenery_resource
+hr/scenario_structure_bsp:
+  page: hr/tags/scenario_structure_bsp
+hr/scenario_structure_lighting_info:
+  page: hr/tags/scenario_structure_lighting_info
+hr/scenario_structure_lighting_resource:
+  page: hr/tags/scenario_structure_lighting_resource
+hr/scenario_trigger_volumes_resource:
+  page: hr/tags/scenario_trigger_volumes_resource
+hr/scenario_vehicles_resource:
+  page: hr/tags/scenario_vehicles_resource
+hr/scenario_weapons_resource:
+  page: hr/tags/scenario_weapons_resource
+hr/scenario_wetness_bsp_data:
+  page: hr/tags/scenario_wetness_bsp_data
+hr/scenery:
+  page: hr/tags/scenery
+hr/shader:
+  page: hr/tags/shader
+hr/shader_custom:
+  page: hr/tags/shader_custom
+hr/shader_decal:
+  page: hr/tags/shader_decal
+hr/shader_foliage:
+  page: hr/tags/shader_foliage
+hr/shader_fur:
+  page: hr/tags/shader_fur
+hr/shader_fur_stencil:
+  page: hr/tags/shader_fur_stencil
+hr/shader_glass:
+  page: hr/tags/shader_glass
+hr/shader_halogram:
+  page: hr/tags/shader_halogram
+hr/shader_mux:
+  page: hr/tags/shader_mux
+hr/shader_screen:
+  page: hr/tags/shader_screen
+hr/shader_terrain:
+  page: hr/tags/shader_terrain
+hr/shader_water:
+  page: hr/tags/shader_water
+hr/shared_cache_file_layout:
+  page: hr/tags/shared_cache_file_layout
+hr/shield_impact:
+  page: hr/tags/shield_impact
+hr/simulated_input:
+  page: hr/tags/simulated_input
+hr/simulation_interpolation:
+  page: hr/tags/simulation_interpolation
+hr/sky_atm_parameters:
+  page: hr/tags/sky_atm_parameters
+hr/sound:
+  page: hr/tags/sound
+hr/sound_cache_file_gestalt:
+  page: hr/tags/sound_cache_file_gestalt
+hr/sound_classes:
+  page: hr/tags/sound_classes
+hr/sound_combiner:
+  page: hr/tags/sound_combiner
+hr/sound_dialogue_constants:
+  page: hr/tags/sound_dialogue_constants
+hr/sound_effect_collection:
+  page: hr/tags/sound_effect_collection
+hr/sound_effect_template:
+  page: hr/tags/sound_effect_template
+hr/sound_environment:
+  page: hr/tags/sound_environment
+hr/sound_global_propagation:
+  page: hr/tags/sound_global_propagation
+hr/sound_looping:
+  page: hr/tags/sound_looping
+hr/sound_mix:
+  page: hr/tags/sound_mix
+hr/sound_mix_mastering:
+  page: hr/tags/sound_mix_mastering
+hr/sound_radio_settings:
+  page: hr/tags/sound_radio_settings
+hr/sound_scenery:
+  page: hr/tags/sound_scenery
+hr/spring_acceleration:
+  page: hr/tags/spring_acceleration
+hr/squad_template:
+  page: hr/tags/squad_template
+hr/ssao_definition:
+  page: hr/tags/ssao_definition
+hr/stereo_system:
+  page: hr/tags/stereo_system
+hr/structure_design:
+  page: hr/tags/structure_design
+hr/structure_seams:
+  page: hr/tags/structure_seams
+hr/style:
+  page: hr/tags/style
+hr/survival_mode_globals:
+  page: hr/tags/survival_mode_globals
+hr/tag_package_manifest:
+  page: hr/tags/tag_package_manifest
+hr/tag_template_unit_test:
+  page: hr/tags/tag_template_unit_test
+hr/test_tag:
+  page: hr/tags/test_tag
+hr/text_value_pair_definition:
+  page: hr/tags/text_value_pair_definition
+hr/user_interface_globals_definition:
+  page: hr/tags/user_interface_globals_definition
+hr/user_interface_shared_globals_definition:
+  page: hr/tags/user_interface_shared_globals_definition
+hr/user_interface_sounds_definition:
+  page: hr/tags/user_interface_sounds_definition
+hr/variant_globals:
+  page: hr/tags/variant_globals
+hr/vehicle:
+  page: hr/tags/vehicle
+hr/vertex_shader:
+  page: hr/tags/vertex_shader
+hr/vision_mode:
+  page: hr/tags/vision_mode
+hr/water_physics_drag_properties:
+  page: hr/tags/water_physics_drag_properties
+hr/wave_template:
+  page: hr/tags/wave_template
+hr/weapon:
+  page: hr/tags/weapon
+hr/weather_globals:
+  page: hr/tags/weather_globals
+hr/wind:
+  page: hr/tags/wind

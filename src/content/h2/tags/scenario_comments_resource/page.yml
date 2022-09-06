@@ -2,4 +2,4 @@
     en: scenario_comments_resource
   stub: true
   tagName: h2/scenario_comments_resource
-  
+  noSearch: true

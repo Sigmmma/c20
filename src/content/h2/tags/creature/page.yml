@@ -2,4 +2,4 @@
     en: creature
   stub: true
   tagName: h2/creature
-  
+  noSearch: true
