@@ -33,5 +33,6 @@ Naturally there is multitude of changes compared to H3 as the engine underwent a
 * Single threaded lightmapping is not supported, you need to use the multi-process solution. This can be run with only a single client if only using one core is desired.
 * Sound playback and sound importing require the FSB files that come with MCC in order to function. Copy the FSB files from your Halo Reach MCC install.
 * The mainmenu requires the mapinfo files that come with MCC in order to load levels. Otherwise you will need to use `init.txt` or the developer console to load scenarios in the standalone build.
+* All the stock tags do not contain import info so you will not be able to extract source assets that way.
 
 [steam_purchase]: https://store.steampowered.com/app/1064220
