@@ -220,7 +220,8 @@ parameters:
   - name: mesh_boundary_surface_type
     type: _enum 
     values: |-
-      _connected_geometry_boundary_surface_type_none;
+      _connected_geometry_boundary_surface_type_none
+      
       _connected_geometry_boundary_surface_type_soft_ceiling
 
       _connected_geometry_boundary_surface_type_soft_kill
