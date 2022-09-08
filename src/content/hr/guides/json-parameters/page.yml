@@ -1,5 +1,5 @@
 title:
-  en: HR JSON Parameters
+  en: JSON Parameters
 keywords:
   en:
     - Reach
@@ -7,4 +7,6 @@ keywords:
     - import
     - importing
     - JSON
-stub: true
+thanks:
+  Crisp:
+    en: Writing this page

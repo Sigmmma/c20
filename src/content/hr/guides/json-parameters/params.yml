@@ -1,0 +1,1848 @@
+parameters:
+  - name: object_type
+    type: _enum
+    values: |-
+      _connected_geometry_object_type_none
+
+      _connected_geometry_object_type_frame
+
+      _connected_geometry_object_type_marker
+
+      _connected_geometry_object_type_mesh
+
+      _connected_geometry_object_type_light
+
+      _connected_geometry_object_type_animation_control
+
+      _connected_geometry_object_type_animation_camera
+
+      _connected_geometry_object_type_animation_event
+
+      _connected_geometry_object_type_debug
+    info: |-
+      The object_type is the general property of an object. It is used both for node objects in the "nodes_properties" section and, separately, for meshes in "meshes_properties".
+
+      Group of properties: object level properties
+
+      Valid for object_type: all
+  - name: object_animates
+    type: _boolean 
+    values: |-
+      true/false (0/1)
+    info: |-
+      The object_animates is the general property of an object. It is used both for node objects in the "nodes_properties" section and, separately, for meshes in "meshes_properties".
+
+      Group of properties: object level properties
+
+      Valid for object_type: all
+  - name: object_ID
+    type: _name
+    values: |-
+      GUID(36)
+    info: |-
+      The object_ID is the general property of an object. It is used both for node objects in the "nodes_properties" section and, separately, for meshes in "meshes_properties".
+
+      Group of properties: object level properties
+
+      Valid for object_type: all
+  - name: frame_ID1
+    type: _integer
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_frame
+  - name: frame_ID2
+    type: _integer
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_frame
+  - name: mesh_type
+    type: _enum
+    values: |-
+      _connected_geometry_mesh_type_none
+
+      _connected_geometry_mesh_type_boundary_surface
+
+      _connected_geometry_mesh_type_collision
+
+      _connected_geometry_mesh_type_default
+
+      _connected_geometry_mesh_type_poop
+
+      _connected_geometry_mesh_type_poop_collision
+
+      _connected_geometry_mesh_type_poop_physics
+
+      _connected_geometry_mesh_type_poop_marker
+
+      _connected_geometry_mesh_type_poop_rain_blocker
+
+      _connected_geometry_mesh_type_poop_vertical_rain_sheet
+
+      _connected_geometry_mesh_type_decorator
+
+      _connected_geometry_mesh_type_object_instance
+
+      _connected_geometry_mesh_type_physics
+
+      _connected_geometry_mesh_type_portal
+
+      _connected_geometry_mesh_type_seam
+
+      _connected_geometry_mesh_type_planar_fog_volume
+
+      _connected_geometry_mesh_type_water_physics_volume
+
+      _connected_geometry_mesh_type_water_surface
+
+      _connected_geometry_mesh_type_lightmap_region
+
+      _connected_geometry_mesh_type_cookie_cutter
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: mesh_global_material
+    type: _string
+    values: |-
+      
+    info: |-
+      Set this value to match the string of the desired global material as set out in your asset sidecar.xml under connected_geometry_global_material_table
+
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: mesh_primitive_type
+    type: _enum
+    values: |-
+      _connected_geometry_primitive_type_none
+
+      _connected_geometry_primitive_type_box;
+
+      _connected_geometry_primitive_type_pill
+
+      _connected_geometry_primitive_type_sphere
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: mesh_tessellation_density
+    type: _enum
+    values: |-
+      _connected_geometry_mesh_tessellation_density_none
+
+      _connected_geometry_mesh_tessellation_density_4x
+
+      _connected_geometry_mesh_tessellation_density_9x
+
+      _connected_geometry_mesh_tessellation_density_36x
+    info: |-
+      Group of properties: object level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: mesh_additional_compression
+    type: _enum
+    values: |-
+      _connected_geometry_mesh_additional_compression_force_on
+
+      _connected_geometry_mesh_additional_compression_force_off
+      
+      _connected_geometry_mesh_additional_compression_default
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: mesh_primitive_box_length
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: PRIMITIVE(box), i.e. mesh_primitive_type = _connected_geometry_primitive_type_box
+  - name: mesh_primitive_box_width
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: PRIMITIVE(box), i.e. mesh_primitive_type = _connected_geometry_primitive_type_box
+  - name: mesh_primitive_box_height
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: PRIMITIVE(box), i.e. mesh_primitive_type = _connected_geometry_primitive_type_box
+  - name: mesh_primitive_pill_radius
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: PRIMITIVE(pill), i.e. mesh_primitive_type = _connected_geometry_primitive_type_pill
+  - name: mesh_primitive_pill_height
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: PRIMITIVE(pill), i.e. mesh_primitive_type = _connected_geometry_primitive_type_pill
+  - name: mesh_primitive_sphere_radius
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: PRIMITIVE(sphere), i.e. mesh_primitive_type = _connected_geometry_primitive_type_sphere
+  - name: mesh_boundary_surface_type
+    type: _enum 
+    values: |-
+      _connected_geometry_boundary_surface_type_none
+      
+      _connected_geometry_boundary_surface_type_soft_ceiling
+
+      _connected_geometry_boundary_surface_type_soft_kill
+
+      _connected_geometry_boundary_surface_type_slip_surface
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(boundary_surface), i.e. mesh_type = _connected_geometry_mesh_type_boundary_surface
+  - name: mesh_boundary_surface_name
+    type: _name
+    values: |-
+      32 characters
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(boundary_surface), i.e. mesh_type = _connected_geometry_mesh_type_boundary_surface
+  - name: mesh_poop_lighting
+    type: _enum
+    values: |-
+      _connected_geometry_poop_lighting_none
+
+      _connected_geometry_poop_lighting_single_probe
+
+      _connected_geometry_poop_lighting_per_pixel
+
+      _connected_geometry_poop_lighting_per_vertex
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_pathfinding
+    type: _enum
+    values: |-
+      _connected_poop_instance_pathfinding_policy_none
+      
+      _connected_poop_instance_pathfinding_policy_cutout
+
+      _connected_poop_instance_pathfinding_policy_static
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_imposter_policy 
+    type: _enum
+    values: |-
+      _connected_poop_instance_imposter_policy_polygon_default
+
+      _connected_poop_instance_imposter_policy_polygon_high
+
+      _connected_poop_instance_imposter_policy_card_default
+
+      _connected_poop_instance_imposter_policy_card_high
+
+      _connected_poop_instance_imposter_policy_none
+
+      _connected_poop_instance_imposter_policy_never
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_imposter_transition_distance
+    type: _number
+    values: |-
+      -1.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_fade_range_start 
+    type: _number
+    values: |-
+      36.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_fade_range_end
+    type: _number
+    values: |-
+      30.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_is_render_only
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_chops_portals
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_does_not_block_aoe
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_excluded_from_lightprobe
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_decal_spacing
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_precise_geometry
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_decomposition_hulls
+    type: _integer
+    values: |-
+      -1
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_poop_poop_predominant_shader_name
+    type: _name
+    values: |-
+      1024 characters
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(poop), i.e. mesh_type = _connected_geometry_mesh_type_poop
+  - name: mesh_portal_type
+    type: _enum
+    values: |-
+      _connected_geometry_portal_type_none
+
+      _connected_geometry_portal_type_no_way
+
+      _connected_geometry_portal_type_one_way
+
+      _connected_geometry_portal_type_two_way
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(portal), i.e. mesh_type = _connected_geometry_mesh_type_portal
+  - name: mesh_portal_ai_deafening
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(portal), i.e. mesh_type = _connected_geometry_mesh_type_portal
+  - name: mesh_portal_blocks_sound
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(portal), i.e. mesh_type = _connected_geometry_mesh_type_portal
+  - name: mesh_portal_is_door
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(portal), i.e. mesh_type = _connected_geometry_mesh_type_portal
+  - name: mesh_decorator_lod
+    type: _integer
+    values: |-
+      1
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: mesh_decorator_name
+    type: _name
+    values: |-
+      32 characters
+    info: |-
+      Group of properties: object level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: mesh_seam_associated_bsp
+    type: _name
+    values: |-
+      32 characters
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(seam), i.e. mesh_type = _connected_geometry_mesh_type_seam
+  - name: mesh_water_volume_depth
+    type: _number
+    values: |-
+      20.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(water_physics_volume), i.e. mesh_type = _connected_geometry_mesh_type_water_physics_volume
+  - name: mesh_water_volume_flow_direction
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(water_physics_volume), i.e. mesh_type = _connected_geometry_mesh_type_water_physics_volume
+  - name: mesh_water_volume_flow_velocity
+    type: _number
+    values: |-
+      20.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(water_physics_volume), i.e. mesh_type = _connected_geometry_mesh_type_water_physics_volume
+  - name: mesh_water_volume_fog_color
+    type: _vector
+    values: |-
+      0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(water_physics_volume), i.e. mesh_type = _connected_geometry_mesh_type_water_physics_volume
+  - name: mesh_water_volume_fog_murkiness
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(water_physics_volume), i.e. mesh_type = _connected_geometry_mesh_type_water_physics_volume
+  - name: mesh_fog_name
+    type: _name
+    values: |-
+      32 characters
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(planar_fog_volume), i.e. mesh_type = _connected_geometry_mesh_type_planar_fog_volume
+  - name: mesh_fog_appearance_tag
+    type: _name
+    values: |-
+      32 characters
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(planar_fog_volume), i.e. mesh_type = _connected_geometry_mesh_type_planar_fog_volume
+  - name: mesh_fog_volume_depth
+    type: _number
+    values: |-
+      20.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: MESH_TYPE(planar_fog_volume), i.e. mesh_type = _connected_geometry_mesh_type_planar_fog_volume
+  - name: marker_type
+    type: _enum
+    values: |-
+      _connected_geometry_marker_type_none
+
+      _connected_geometry_marker_type_game_instance
+
+      _connected_geometry_marker_type_model
+
+      _connected_geometry_marker_type_pathfinding_sphere
+
+      _connected_geometry_marker_type_water_volume_flow
+
+      _connected_geometry_marker_type_physics_hinge_constraint
+
+      _connected_geometry_marker_type_physics_socket_constraint
+
+      _connected_geometry_marker_type_target
+
+      _connected_geometry_marker_type_garbage
+
+      _connected_geometry_marker_type_effects
+
+      _connected_geometry_marker_type_hint
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+  - name: marker_region
+    type: _string
+    values: |-
+      connected_geometry_regions_table
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtype only: mesh_type = _connected_geometry_mesh_type_object_instance
+  - name: marker_all_regions
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtype only: mesh_type = _connected_geometry_mesh_type_object_instance
+  - name: marker_game_instance_tag_name
+    type: _name
+    values: |-
+      64 characters
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtype only: MARKER_TYPE(game_instance), i.e. marker_type = _connected_geometry_marker_type_game_instance
+  - name: marker_game_instance_variant_name
+    type: _name
+    values: |-
+      64 characters
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtype only: MARKER_TYPE(game_instance), i.e. marker_type = _connected_geometry_marker_type_game_instance
+  - name: marker_model_group
+    type: _name
+    values: |-
+      64 characters
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtypes only
+
+      MARKER_TYPE(model), i.e. marker_type = _connected_geometry_marker_type_model
+
+      MARKER_TYPE(hint), i.e. marker_type = _connected_geometry_marker_type_hint
+
+      MARKER_TYPE(target), i.e. marker_type = _connected_geometry_marker_type_target
+  - name: marker_velocity
+    type: _vector
+    values: |-
+      0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtype only: MARKER_TYPE(model), i.e. marker_type = _connected_geometry_marker_type_model
+  - name: marker_pathfinding_sphere_vehicle_only
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtype only: MARKER_TYPE(pathfinding_sphere), i.e. marker_type = _connected_geometry_marker_type_pathfinding_sphere
+  - name: marker_pathfinding_sphere_remains_when_open
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtype only: MARKER_TYPE(pathfinding_sphere), i.e. marker_type = _connected_geometry_marker_type_pathfinding_sphere
+  - name: marker_pathfinding_sphere_with_sectors
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtype only: MARKER_TYPE(pathfinding_sphere), i.e. marker_type = _connected_geometry_marker_type_pathfinding_sphere
+  - name: physics_constraint_parent
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtypes only:
+
+      MARKER_TYPE(physics_hinge_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_hinge_constraint
+
+      MARKER_TYPE(physics_socket_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_socket_constraint
+  - name: physics_constraint_child
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtypes only:
+
+      MARKER_TYPE(physics_hinge_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_hinge_constraint
+
+      MARKER_TYPE(physics_socket_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_socket_constraint
+  - name: physics_constraint_use_limits
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtypes only:
+
+      MARKER_TYPE(physics_hinge_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_hinge_constraint
+
+      MARKER_TYPE(physics_socket_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_socket_constraint
+  - name: physics_constraint_hinge_min
+    type: _number
+    values: |-
+      -180.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtypes only:
+
+      MARKER_TYPE(physics_hinge_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_hinge_constraint
+  - name: physics_constraint_hinge_max
+    type: _number
+    values: |-
+      180.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtypes only:
+
+      MARKER_TYPE(physics_hinge_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_hinge_constraint
+  - name: physics_constraint_cone_angle
+    type: _number
+    values: |-
+      90
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtypes only:
+
+      MARKER_TYPE(physics_hinge_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_socket_constraint
+  - name: physics_constraint_plane_min 
+    type: _number
+    values: |-
+      -90
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtypes only:
+
+      MARKER_TYPE(physics_hinge_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_socket_constraint
+  - name: physics_constraint_plane_max
+    type: _number
+    values: |-
+      90
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtypes only:
+
+      MARKER_TYPE(physics_hinge_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_socket_constraint
+  - name: physics_constraint_twist_start 
+    type: _number
+    values: |-
+      -180.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtypes only:
+
+      MARKER_TYPE(physics_hinge_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_socket_constraint
+  - name: physics_constraint_twist_end 
+    type: _number
+    values: |-
+      180.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_marker
+
+      Valid for particular subtypes only:
+
+      MARKER_TYPE(physics_hinge_constraint), i.e. marker_type = _connected_geometry_marker_type_physics_socket_constraint
+  - name: animation_control_type
+    type: _enum
+    values: |-
+      _connected_geometry_animation_control_type_none
+
+      _connected_geometry_animation_control_type_ik_effector
+
+      _connected_geometry_animation_control_type_aim_yaw
+
+      _connected_geometry_animation_control_type_aim_pitch
+
+      _connected_geometry_animation_control_type_orient_constraint
+
+      _connected_geometry_animation_control_type_target_proxy
+
+      _connected_geometry_animation_control_type_ik_pole_vector
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_control
+  - name: animation_control_id
+    type: _integer
+    values: |-
+      0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_control
+  - name: animation_control_ik_chain
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_control
+  - name: animation_control_ik_effect
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_control
+  - name: animation_control_constraint_effect
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_control
+  - name: animation_control_proxy_target_marker
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_control
+  - name: animation_control_proxy_target_tag
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_control
+  - name: animation_control_proxy_target_usage
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_control
+  - name: animation_event_type
+    type: _enum
+    values: |-
+      _connected_geometry_animation_event_type_none
+
+      _connected_geometry_animation_event_type_custom
+
+      _connected_geometry_animation_event_type_loop
+
+      _connected_geometry_animation_event_type_sound
+
+      _connected_geometry_animation_event_type_effect
+
+      _connected_geometry_animation_event_type_ik_active
+
+      _connected_geometry_animation_event_type_ik_passive
+
+      _connected_geometry_animation_event_type_text
+
+      _connected_geometry_animation_event_type_wrinkle_map
+
+      _connected_geometry_animation_event_type_footstep
+
+      _connected_geometry_animation_event_type_cinematic_effect
+
+      _connected_geometry_animation_event_type_object_function
+
+      _connected_geometry_animation_event_type_frame
+
+      _connected_geometry_animation_event_type_import
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_start
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_end
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_id
+    type: _integer
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_wrinkle_map_face_region
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_wrinkle_map_effect
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_footstep_type 
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_footstep_effect
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_ik_chain
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_eventik_active_tag
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_ik_target_tag
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_ik_target_marker
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_ik_target_usage
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_ik_proxy_target_id
+    type: _integer
+    values: |-
+      0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_ik_pole_vector_id
+    type: _integer
+    values: |-
+      0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_ik_effector_id
+    type: _integer
+    values: |-
+      0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_cinematic_effect_tag
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_cinematic_effect_effect
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_cinematic_effect_marker
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_object_function_name
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_object_function_effect
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_frame_frame
+    type: _integer
+    values: |-
+      0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_frame_name
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_frame_trigger
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_import_frame
+    type: _integer
+    values: |-
+      0
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: animation_event_import_name
+    type: _name
+    values: |-
+      
+    info: |-
+      Group of properties: object level properties
+
+      Valid for object_type: _connected_geometry_object_type_animation_event
+  - name: face_type
+    type: _enum
+    values: |-
+      _connected_geometry_face_type_none
+
+      _connected_geometry_face_type_normal
+
+      _connected_geometry_face_type_seam_sealer
+
+      _connected_geometry_face_type_sky
+
+      _connected_geometry_face_type_weather_polyhedra
+    info: |-
+      Group of properties: face level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: face_type
+    type: _enum
+    values: |-
+      _connected_geometry_face_mode_none
+
+      _connected_geometry_face_mode_normal
+
+      _connected_geometry_face_mode_render_only
+
+      _connected_geometry_face_mode_collision_only
+
+      _connected_geometry_face_mode_sphere_collision_only
+
+      _connected_geometry_face_mode_shadow_only
+
+      _connected_geometry_face_mode_lightmap_only
+
+      _connected_geometry_face_mode_breakable
+    info: |-
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: face_sides
+    type: _enum
+    values: |-
+      _connected_geometry_face_sides_none
+
+      _connected_geometry_face_sides_one_sided
+
+      _connected_geometry_face_sides_one_sided_transparent
+
+      _connected_geometry_face_sides_two_sided
+
+      _connected_geometry_face_sides_two_sided_transparent
+    info: |-
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: face_draw_distance
+    type: _enum
+    values: |-
+      _connected_geometry_face_draw_distance_none
+
+      _connected_geometry_face_draw_distance_normal
+
+      _connected_geometry_face_draw_distance_detail_mid
+
+      _connected_geometry_face_draw_distance_detail_close
+    info: |-
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: face_global_material
+    type: _string
+    values: |-
+      
+    info: |-
+      Set this value to match the string of the desired global material as set out in your asset sidecar.xml under connected_geometry_global_material_table
+      
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: face_region
+    type: _string
+    values: |-
+      
+    info: |-
+      Set this value to match the string of the desired face region as set out in your asset sidecar.xml under connected_geometry_regions_table
+      
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: texcoord_usage
+    type: _enum
+    values: |-
+      _connected_material_texcoord_usage_default
+      
+      _connected_material_texcoord_usage_none
+
+      _connected_material_texcoord_usage_anisotropic
+    info: |-
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: conveyor
+    type: _enum
+    values: |-
+      true/false
+    info: |-
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: ladder
+    type: _enum
+    values: |-
+      true/false
+    info: |-
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: slip_surface
+    type: _enum
+    values: |-
+      true/false
+    info: |-
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: decal_offset
+    type: _enum
+    values: |-
+      true/false
+    info: |-
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: group_transparents_by_plane
+    type: _enum
+    values: |-
+      true/false
+    info: |-
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: no_shadow
+    type: _enum
+    values: |-
+      true/false
+    info: |-
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: precise_position
+    type: _enum
+    values: |-
+      true/false
+    info: |-
+      Group of properties: face level properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: sky_permutation_index
+    type: _integer
+    values: |-
+      0
+    info: |-
+      Group of properties: face level properties
+
+      Valid for object_type: _connected_geometry_object_type_mesh
+
+      Valid for particular subtype only: face_type = _connected_geometry_face_type_sky
+  - name: lightmap_additive_transparency
+    type: _vector
+    values: |-
+      0
+    info: |-
+      Group of properties: lightmap configuration properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lightmap_ignore_default_resolution_scale
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: lightmap configuration properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lightmap_resolution_scale
+    type: _integer
+    values: |-
+      3
+    info: |-
+      Group of properties: lightmap configuration properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lightmap_chart_group
+    type: _integer
+    values: |-
+      3
+    info: |-
+      Group of properties: lightmap configuration properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lightmap_type
+    type: _enum
+    values: |-
+      _connected_material_lightmap_type_per_pixel
+
+      _connected_material_lightmap_type_per_vertex
+    info: |-
+      Group of properties: lightmap configuration properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lightmap_transparency_override
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: lightmap configuration properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lightmap_analytical_bounce_modifier
+    type: _number
+    values: |-
+      9999.0
+    info: |-
+      Group of properties: lightmap configuration properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lightmap_general_bounce_modifier
+    type: _number
+    values: |-
+      9999.0
+    info: |-
+      Group of properties: lightmap configuration properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lightmap_translucency_tint_color
+    type: _vector
+    values: |-
+      0
+    info: |-
+      Group of properties: lightmap configuration properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lightmap_lighting_from_both_sides
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: lightmap configuration properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lighting_attenuation_cutoff
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: material lighting properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lighting_attenuation_falloff
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: material lighting properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lighting_emissive_focus
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: material lighting properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lighting_emissive_color
+    type: _vector
+    values: |-
+      0xFFFFFFFF
+    info: |-
+      Group of properties: material lighting properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lighting_emissive_per_unit
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: material lighting properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lighting_emissive_power
+    type: _number
+    values: |-
+      0.0
+    info: |-
+      Group of properties: material lighting properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lighting_emissive_quality
+    type: _number
+    values: |-
+      1.0
+    info: |-
+      Group of properties: material lighting properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lighting_use_shader_gel
+    type: _boolean
+    values: |-
+      true/false
+    info: |-
+      Group of properties: material lighting properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: lighting_bounce_ratio
+    type: _number
+    values: |-
+      1.0
+    info: |-
+      Group of properties: material lighting properties
+      
+      Valid for object_type: _connected_geometry_object_type_mesh
+  - name: light_type
+    type: _enum
+    values: |-
+      _connected_geometry_light_type_omni
+
+      _connected_geometry_light_type_spot
+
+      _connected_geometry_light_type_directional
+    info: |-
+      Group of properties: lightmap configuration properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_type_version
+    type: _number
+    values: |-
+     0.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_game_type 
+    type: _enum
+    values: |-
+      _connected_geometry_bungie_light_type_default
+
+      _connected_geometry_bungie_light_type_uber
+
+      _connected_geometry_bungie_light_type_inlined
+
+      _connected_geometry_bungie_light_type_screen_space
+
+      _connected_geometry_bungie_light_type_rerender
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_shape
+    type: _enum
+    values: |-
+      _connected_geometry_light_shape_rectangle
+
+      _connected_geometry_light_shape_circle
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_use_near_attenuation
+    type: _boolean
+    values: |-
+     true/false
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_near_attenuation_start 
+    type: _number
+    values: |-
+     0.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_near_attenuation_end
+    type: _number
+    values: |-
+     0.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_use_far_attenuation 
+    type: _boolean
+    values: |-
+     true/false
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_volume_distance
+    type: _number
+    values: |-
+     0.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_volume_intensity_scalar
+    type: _number
+    values: |-
+     1.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_fade_start_distance
+    type: _number
+    values: |-
+     100.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_fade_out_distance
+    type: _number
+    values: |-
+     150.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_ignore_bsp_visibility
+    type: _boolean
+    values: |-
+     true/false
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_far_attenuation_start
+    type: _number
+    values: |-
+     0.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_far_attenuation_end
+    type: _number
+    values: |-
+     0.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_color
+    type: _vector
+    values: |-
+     0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_intensity
+    type: _number
+    values: |-
+     0.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_clipping_size_x_pos
+    type: _number
+    values: |-
+     100.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_clipping_size_y_pos
+    type: _number
+    values: |-
+     100.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_clipping_size_z_pos
+    type: _number
+    values: |-
+     100.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_clipping_size_x_neg
+    type: _number
+    values: |-
+     -100.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_clipping_size_y_neg
+    type: _number
+    values: |-
+     -100.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_clipping_size_z_neg
+    type: _number
+    values: |-
+     -100.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_use_clipping
+    type: _number
+    values: |-
+     0.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_hotspot_size
+    type: _number
+    values: |-
+     30.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_hotspot_falloff
+    type: _number
+    values: |-
+     45.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_falloff_shape
+    type: _number
+    values: |-
+     1.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_aspect
+    type: _number
+    values: |-
+     1.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_frustum_width
+    type: _number
+    values: |-
+     1.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_frustum_height
+    type: _number
+    values: |-
+     1.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_bounce_light_ratio 
+    type: _number
+    values: |-
+     1.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_bounce_light_ratio
+    type: _number
+    values: |-
+     1.0
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_dynamic_light_has_bounce
+    type: _boolean
+    values: |-
+     true/false
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_screenspace_light_has_specular
+    type: _boolean
+    values: |-
+     true/false
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_light_tag_override
+    type: _name
+    values: |-
+     128 characters
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_shader_reference
+    type: _name
+    values: |-
+     128 characters
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_gel_reference
+    type: _name
+    values: |-
+     128 characters
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: light_lens_flare_reference
+    type: _name
+    values: |-
+     128 characters
+    info: |-
+      Group of properties: lightmapper placed lights properties
+      
+      Valid for object_type: _connected_geometry_object_type_light
+  - name: animation_test_property_1
+    type: _number
+    values: |-
+     0.0
+    info: |-
+      Group of properties: per-node animation properties
+
+      Valid for object_type: _connected_geometry_object_type_none
+  - name: is_replacement_correction_node
+    type: _boolean
+    values: |-
+     true/false
+    info: |-
+      Group of properties: per-node animation properties
+
+      Valid for object_type: _connected_geometry_object_type_none
+  - name: is_fik_anchor_node
+    type: _boolean
+    values: |-
+     true/false
+    info: |-
+      Group of properties: per-node animation properties
+
+      Valid for object_type: _connected_geometry_object_type_none
+  - name: is_object_space_offset_node
+    type: _boolean
+    values: |-
+     true/false
+    info: |-
+      Group of properties: per-node animation properties
+
+      Valid for object_type: _connected_geometry_object_type_none
+  - name: shader_type
+    type: _enum
+    values: |-
+      override
+
+      shader
+
+      shader_cortana
+
+      shader_custom
+
+      shader_decal
+
+      shader_foliage
+
+      shader_fur
+
+      shader_fur_stencil
+
+      shader_glass
+
+      shader_halogram
+
+      shader_mux
+
+      shader_mux_material
+
+      shader_screen
+
+      shader_skin
+
+      shader_terrain
+      
+      shader_water
+    info: |-
+      Group of properties: material properties
+
+      Values of the shader_type mostly correspond to the type of the shader tag file that is created in Foundation. For example, shader_water corresponds to the shader tag file with the .shader_water extension.
+      
+      However, along with values corresponding to these types, there is also a special override value. If you specify override as a value of shader_type, you will be able to override properties of the mesh (of its surface covered with this material) directly in the properties of the material by assigning a special value to shader_path. 
+      
+      Particularly, in this case, as a value of shader_path you can pass a mesh property with its new value, in the "<name_of_mesh_property>=<value_of_this_property>" format. For
+      example: 
+      
+      `"bungie_shader_path": "bungie_face_type=_connected_geometry_face_type_sky"`
+  - name: shader_path
+    type: _string
+    values: |-
+    
+    info: |-
+      Group of properties: material properties
+
+      A path to the shader tag file (of the specified shader_type), relative to the tags folder, without file extension, and with double backslashes as path delimiters. For example:
+
+      `objects\\equipment\\health_pack\\shaders\\health_pack_rubber`
+
+      Or, a special value, overriding properties of the mesh (of its surface
+      covered with this material), when shader_type is equal to override (see
+      shader_type above).
+      
+  
