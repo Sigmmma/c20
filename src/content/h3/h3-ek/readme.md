@@ -30,6 +30,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 on Steam][steam_purchase]
 
 * Various changes to tags and data files. Updating your tag set is highly recommended.
 * Added test, audio and lighting reference scenarios `levels\test\box`, `levels\reference\audio`, `levels\reference\lighting_reference`
+* Map info files have been added to the `H3EK.7z` which allows the main menu to load maps.
 
 ## General
 
