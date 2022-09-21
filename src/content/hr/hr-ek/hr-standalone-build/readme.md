@@ -107,5 +107,3 @@ You can quickly spawn a variety of objects for testing:
 
 # Known issues & Fixes
 * Sound doesn't play - Copy over the `fmod` folder from your install of Reach.
-* Maps can't be loaded using the UI - see [#Usage][hr-standalone-build#usage] for a workaround.
-* Levels that make use of the script function `soft_ceiling_enable` will cause scripts to fail to compile due to post processing not done by standalone. You can fix this by setting the script global `scenario_load_all_tags` to true. The only level known to be affected by this is `110_hc` otherwise known as the singleplayer level named `Cortana`.
