@@ -1,4 +1,4 @@
-const {localizer, alert, html, REPO_URL, icon} = require("../components");
+import {localizer, alert, html, REPO_URL, icon} from "../components";
 
 const localizations = localizer({
   stubNotice: {

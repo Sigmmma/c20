@@ -24,7 +24,7 @@ function assetStyles() {
       } else {
         fs.mkdirSync(paths.distAssets, {recursive: true});
         fs.writeFileSync(path.join(paths.distAssets, "style.css"), res.css, "utf8");
-        resolve();
+        resolve(undefined);
       }
     });
   });

@@ -1,8 +1,10 @@
-const path = require("path");
-const fs = require("fs").promises;
-const R = require("ramda");
+import path from "path";
+import fsn from "fs";
+import * as R from "ramda";
+import renderToString from "preact-render-to-string";
+import {PageWrapper} from "./components";
 
-const {wrapper} = require("./components");
+const fs = fsn.promises;
 const features = require("./features");
 
 async function renderPage(ctx) {
@@ -29,13 +31,15 @@ async function renderPage(ctx) {
   };
 
   //represents the full page HTML, ready to write to a file
-  const htmlDoc = wrapper(
-    ctx,
-    combineResults("headings", R.flatten),
-    combineResults("thanks", R.reduce(R.mergeWith(R.concat), {})),
-    metaboxProps,
-    combineResults("html"),
-    combineResults("plaintext", R.join("\n"))
+  const htmlDoc = "<!DOCTYPE html>\n" + renderToString(
+    <PageWrapper
+      ctx={ctx}
+      headings={combineResults("headings", R.flatten)}
+      thanks={combineResults("thanks", R.reduce(R.mergeWith(R.concat), {}))}
+      metaboxProps={metaboxProps}
+      body={combineResults("html")}
+      bodyPlaintext={combineResults("plaintext", R.join("\n"))}
+    />
   );
   //used to add the page to the search index
   const searchDoc = page.noSearch ? null : {
@@ -51,7 +55,7 @@ async function renderPage(ctx) {
 
 async function renderPages(pageIndex, data, buildOpts) {
   //for all pages, and for all of their languages...
-  const searchDocs = await Promise.all(Object.values(pageIndex.pages).flatMap(page =>
+  const searchDocs = await Promise.all(Object.values(pageIndex.pages).flatMap((page: any) =>
     page.langs.map(async (lang) => {
       //we can assume page and language is mantained during a page render
       const renderContext = {
