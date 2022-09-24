@@ -21,28 +21,8 @@ async function loadYamlTree(baseDir, flat) {
   return result;
 }
 
-function loadYamlTreeSync(baseDir, flat) {
-  let result = {};
-  const files = findPathsSync(path.join(baseDir, "**/*.yml"));
-  for (let filePath of files) {
-    const fileData = loadYamlFileSync(filePath);
-    if (flat) {
-      result = R.mergeRight(result, fileData);
-    } else {
-      const {dir, name: moduleName} = path.parse(filePath);
-      const objectPath = [...path.relative(baseDir, dir).split(path.sep), moduleName].filter(part => part != "");
-      result = R.assocPath(objectPath, fileData, result);
-    }
-  }
-  return result;
-}
-
 async function loadYamlFile(filePath) {
   return yaml.load(await fs.readFile(filePath, "utf8"));
-}
-
-function loadYamlFileSync(filePath) {
-  return yaml.load(fsSync.readFileSync(filePath, "utf8"));
 }
 
 //returns length of common prefix of two strings
@@ -68,16 +48,9 @@ async function findPaths(globPattern) {
   });
 }
 
-function findPathsSync(globPattern) {
-  return glob.sync(globPattern);
-}
-
 module.exports = {
   commonLength,
   findPaths,
-  findPathsSync,
   loadYamlFile,
-  loadYamlFileSync,
   loadYamlTree,
-  loadYamlTreeSync,
 };

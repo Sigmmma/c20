@@ -2,7 +2,7 @@ const fs = require("fs").promises;
 const path = require("path");
 const R = require("ramda");
 const yaml = require("js-yaml");
-const {loadYamlTree} = require("../../utils");
+const {loadYamlTree} = require("../../lib/utils");
 
 function strAsList(strOrList) {
   if (!strOrList) return [];

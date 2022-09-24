@@ -2,10 +2,12 @@ import Metabox, {MetaboxProps} from "../Metabox/Metabox";
 import Footer from "./Footer";
 import Icon from "../Icon/Icon";
 import Breadcrumbs from "./Breadcrumbs";
+import Stub from "./Stub";
 import Ctx, {useLocalize} from "../Ctx/Ctx";
 import {rawHelper} from "..";
 import ThanksList, {getThanksHeading} from "./ThanksList";
 import * as R from "ramda";
+import {RenderContext} from "../../render";
 
 const {html, slugify, REPO_URL, pageAnchor, detailsList, DISCORD_URL, JIF_ISSUE_URL} = require("../bits");
 const toc = require("./toc");
@@ -110,7 +112,7 @@ const langNames = {
 };
 
 export type PageWrapperProps = {
-  ctx: any;
+  ctx: RenderContext;
   headings: any;
   thanks: any;
   metaboxProps?: MetaboxProps;
@@ -260,6 +262,7 @@ export default function PageWrapper(props: PageWrapperProps) {
             </div>
             {!page.Page404 &&
               <main role="main" className="page-content-main">
+                {page.stub && <Stub/>}
                 {mainContent}
               </main>
             }

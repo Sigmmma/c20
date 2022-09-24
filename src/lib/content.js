@@ -4,7 +4,7 @@ const path = require("path");
 const R = require("ramda");
 
 import renderPage from "./render";
-const {commonLength, findPaths} = require("../utils");
+const {commonLength, findPaths} = require("./utils");
 const loadStructuredData = require("../data");
 const buildSitemap = require("./sitemap");
 const buildResources = require("./resources");

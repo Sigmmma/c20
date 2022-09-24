@@ -15,7 +15,6 @@
  * The order of features determines order on the page and precedence of metaTitle, etc.
  */
 module.exports = [
-  require("./stub"),
   require("./metaboxBase"),
   require("./markdownFile"),
   require("./tagIndex"),

@@ -127,6 +127,7 @@ const ul = (items) => html`
 `;
 
 //types: info, danger
+/** @deprecated use Alert instead */
 const alert = (type, body) => html`
   <div class="alert type-${type || "info"}">
     ${body}

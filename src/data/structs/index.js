@@ -1,4 +1,4 @@
-const {loadYamlTree} = require("../../utils");
+const {loadYamlTree} = require("../../lib/utils");
 const R = require("ramda");
 const INTRINSIC_TYPE_DEFS = require("./intrinsics");
 

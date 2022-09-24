@@ -1,5 +1,5 @@
 const R = require("ramda");
-const {loadYamlTree} = require("../../utils");
+const {loadYamlTree} = require("../../lib/utils");
 const {walkTypeDefs} = require("../structs");
 
 function findDirectTagRefs(structName, structModule, structModules, tagName) {
