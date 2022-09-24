@@ -8,7 +8,7 @@ const localizations = localizer({
   }
 });
 
-module.exports = async function(ctx) {
+module.exports = function(ctx) {
   const {pageIndex: {pages}, lang, page, data} = ctx;
   if (!page.thanksIndex) return {};
 

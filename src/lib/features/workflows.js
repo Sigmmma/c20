@@ -1,5 +1,5 @@
 const R = require("ramda");
-const {localizer, anchor, detailsList, ul, icon, p} = require("../components");
+const {localizer, anchor, detailsList, icon, p} = require("../components");
 
 const localizations = localizer({
   authors: {
@@ -165,7 +165,7 @@ const workflowsList = (ctx, item) => {
   return p(detailsList(localize(deprecated ? "deprecatedWorkflows" : "workflows"), renderedFlows));
 };
 
-module.exports = async function(ctx) {
+module.exports = function(ctx) {
   const {page} = ctx;
 
   const localize = localizations(ctx.lang);

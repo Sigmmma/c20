@@ -3,7 +3,6 @@ const fs = require("fs");
 const path = require("path");
 const {html, jump, slugify, anchor} = require("./bits");
 const R = require("ramda");
-const {loadYamlTreeSync} = require("../../../utils");
 
 const AUTO_INDEX_THRESHOLD = 100;
 

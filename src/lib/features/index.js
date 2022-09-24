@@ -1,4 +1,4 @@
-/* Exposes an array of async feature functions, which when given a render context
+/* Exposes an array of feature functions, which when given a render context
  * return an object containing render outputs:
  *
  * - keywords: search-boosted array of terms
@@ -15,11 +15,9 @@
  * The order of features determines order on the page and precedence of metaTitle, etc.
  */
 module.exports = [
-  require("./deprecated"),
   require("./stub"),
   require("./metaboxBase"),
   require("./markdownFile"),
-  require("./survey/results"),
   require("./tagIndex"),
   require("./tag"),
   require("./workflows"),

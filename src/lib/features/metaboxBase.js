@@ -1,7 +1,7 @@
 const R = require("ramda");
 const {renderMarkdown} = require("../components");
 
-module.exports = async function(ctx) {
+module.exports = function(ctx) {
   const {lang, page} = ctx;
   const info = R.path(["info", lang], page);
   return {

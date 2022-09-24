@@ -1,6 +1,6 @@
 const R = require("ramda");
 const {renderMarkdownInline, p, heading, structDisplay, detailsList, defAnchor, html, localizer, tagAnchor, alert, slugify, icon} = require("../components");
-const {walkTypeDefs} = require("../../../data/structs");
+const {walkTypeDefs} = require("../../data/structs");
 
 const localizations = localizer({
   tagStructureHeading: {
@@ -44,7 +44,7 @@ function localizeThanks(ctx, thanks) {
   }, thanks);
 }
 
-module.exports = async function(ctx) {
+module.exports = function(ctx) {
   const {lang, page, data} = ctx;
   if (!page.tagName) {
     return {};
@@ -58,7 +58,6 @@ module.exports = async function(ctx) {
   const tag = data.tags[game][tagName];
   const groupId = tag.id ? `<code>${tag.id}</code>${defAnchor(ctx.resolveUrl("h1/tags", "group-ids"))}` : null;
   const metaSections = [];
-  const searchTerms = [];
   const structureHeadingText = localize("tagStructureHeading");
 
   if (tag.parent) {

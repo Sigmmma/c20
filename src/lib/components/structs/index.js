@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 const {html, escapeHtml, slugify, detailsList, tagAnchor, renderHex, jump} = require("../bits");
-const {instantiateType, buildTypeDefs} = require("../../../../data/structs");
+const {instantiateType, buildTypeDefs} = require("../../../data/structs");
 const localizations = require("./localizations");
 
 function processMeta(meta) {

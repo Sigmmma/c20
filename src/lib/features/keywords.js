@@ -1,6 +1,6 @@
 const R = require("ramda");
 
-module.exports = async function({page, lang}) {
+module.exports = function({page, lang}) {
   return {
     keywords: [
       page.tryLocalizedSlug(lang),

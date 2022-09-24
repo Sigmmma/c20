@@ -1,15 +1,14 @@
-const marked = require("marked");
 const yaml = require("js-yaml");
 const fs = require("fs").promises;
 const path = require("path");
 const R = require("ramda");
 
-const {commonLength, findPaths} = require("./utils");
-const loadStructuredData = require("./data");
-const renderPages = require("./build/render");
-const buildSitemap = require("./build/sitemap");
-const buildResources = require("./build/resources");
-const buildSearchIndex = require("./build/search");
+import renderPage from "./render";
+const {commonLength, findPaths} = require("../utils");
+const loadStructuredData = require("../data");
+const buildSitemap = require("./sitemap");
+const buildResources = require("./resources");
+const buildSearchIndex = require("./search");
 
 function joinAbsolutePath(logicalPath) {
   return "/" + logicalPath.join("/");
@@ -25,7 +24,7 @@ function generateTagPageInfo(pages, suffix, logicalPathSuffix) {
     es: name + " (desambiguación)" // should be checked by a Spanish speaker
   };
 
-  logicalPath = genericTagsPath.concat(logicalPathSuffix)
+  const logicalPath = genericTagsPath.concat(logicalPathSuffix)
   const pageId = joinAbsolutePath(logicalPath);
 
   const tagPathNames = [" (Halo 1)", " (Halo 2)", " (Halo 3)"];
@@ -230,6 +229,38 @@ async function loadPageIndex(contentDir) {
   };
 
   return {pages, resolvePage, resolveUrl};
+}
+
+async function renderPages(pageIndex, data, buildOpts) {
+  //for all pages, and for all of their languages...
+  const searchDocs = await Promise.all(Object.values(pageIndex.pages).flatMap((page) =>
+    page.langs.map(async (lang) => {
+      //we can assume page and language is mantained during a page render
+
+      const mdFileName = lang == "en" ? "readme.md" : `readme_${lang}.md`;
+      const md = await fs.readFile(path.join(page.dirPath, mdFileName), "utf8");
+
+      const renderContext = {
+        resolvePage: (idTail) => pageIndex.resolvePage(page.pageId, idTail),
+        resolveUrl: (idTail, headingId) => pageIndex.resolveUrl(page.pageId, lang, idTail, headingId),
+        pageIndex,
+        data,
+        buildOpts,
+        page,
+        lang,
+        md,
+      };
+
+      //render the page to HTML and also gather search index data
+      const {htmlDoc, searchDoc} = renderPage(renderContext);
+      //write the HTML content out to a file
+      await fs.mkdir(path.join(buildOpts.outputDir, page.localizedPaths[lang]), {recursive: true});
+      await fs.writeFile(path.join(buildOpts.outputDir, page.localizedPaths[lang], "index.html"), htmlDoc, "utf8");
+      return searchDoc;
+    })
+  ));
+  //return all search docs so they can be written to a single file (for this lang)
+  return searchDocs.filter(it => it != null);
 }
 
 async function buildContent(buildOpts) {

@@ -8,9 +8,8 @@ function localizeThanks(ctx, thanks) {
   }, thanks);
 }
 
-module.exports = async function(ctx) {
-  const {page, lang} = ctx;
+module.exports = function(ctx) {
   return {
-    thanks: localizeThanks(ctx, R.propOr({}, "thanks", page))
+    thanks: localizeThanks(ctx, R.propOr({}, "thanks", ctx.page))
   };
 };

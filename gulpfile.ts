@@ -3,12 +3,10 @@ const del = require("del");
 const sass = require("sass");
 const fs = require("fs");
 const path = require("path");
-const rename = require("gulp-rename");
-const transform = require("gulp-transform");
-const buildContent = require("./src/content");
+const buildContent = require("./src/lib/content");
 const packageVersion = require("./package.json").version;
 const {paths, baseUrl} = require("./build-config.json");
-const runServer = require("./server");
+import runServer from "./src/server";
 
 //the dist directory may contain outdated content, so start clean
 function clean() {

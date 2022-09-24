@@ -128,9 +128,6 @@ noSearch: true
 # If true causes the pages to be excluded from the child page listing
 # use this for disambiguation/preserving old links
 noList: true
-# Only used for the 2020 survey results page. Causes survey results to be
-# rendered as a section of the page. Survey results are in English only.
-surveyResults: true
 ```
 
 ## Markdown files

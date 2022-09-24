@@ -13,7 +13,7 @@ const localizations = localizer({
   }
 });
 
-module.exports = async function(ctx) {
+module.exports = function(ctx) {
   const {page, lang} = ctx;
   
   if (!page.stub) return {};

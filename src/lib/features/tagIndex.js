@@ -79,7 +79,7 @@ const tagsTable = (ctx, tags, opts) => {
   `;
 };
 
-module.exports = async function(ctx) {
+module.exports = function(ctx) {
   const {page, lang, data} = ctx;
 
   if (!page.tagIndex) {
