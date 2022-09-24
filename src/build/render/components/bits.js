@@ -27,6 +27,9 @@ const p = (body) => html`<p>${body}</p>`;
 
 const reportedMissingKeys = new Set()
 
+/**
+ * @deprecated Use useLocalizer() instead
+ */
 const localizer = R.curry((bundle, lang) => {
   return (key, safe) => {
     if (!bundle[key] && !safe) {
@@ -42,6 +45,9 @@ const localizer = R.curry((bundle, lang) => {
   };
 });
 
+/**
+ * @deprecated Use Icon instead
+ */
 const icon = (name, title) => html`
   <svg class="feather" ${title ? `aria-labelledby="title"` : ""}>
     ${title && html`

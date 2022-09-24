@@ -1,12 +1,13 @@
-import Ctx from "../Ctx/Ctx";
+import {MdSrc, RawHtml, rawHelper} from "..";
+import {useCtx} from "../Ctx/Ctx";
 
 const {renderMarkdownInline} = require("../markdown");
 
 export type MetaboxProps = {
-  metaTitle: string;
+  metaTitle: RawHtml;
   metaClass: string;
   img: string;
-  imgCaption: string;
+  imgCaption: MdSrc;
   metaSections?: {
     body: string;
     cssClass: string;
@@ -19,10 +20,12 @@ export default function Metabox(props: MetaboxProps) {
     return null;
   }
 
+  const ctx = useCtx();
+
   return (
     <aside className="metabox">
       <section className={`header ${metaClass}`}>
-        <p><strong>{metaTitle}</strong></p>
+        <p><strong {...rawHelper(metaTitle)}></strong></p>
       </section>
       {img &&
         <section className="img">
@@ -31,15 +34,11 @@ export default function Metabox(props: MetaboxProps) {
       }
       {imgCaption &&
         <section className="caption">
-          <Ctx.Consumer>
-            {ctx =>
-              <p><em dangerouslySetInnerHTML={{__html: renderMarkdownInline(ctx, imgCaption)}}></em></p>
-            }
-          </Ctx.Consumer>
+          <p><em {...rawHelper(renderMarkdownInline(ctx, imgCaption))}></em></p>
         </section>
       }
       {metaSections?.filter(it => it)?.map(({body, cssClass}) =>
-        <section className={`info ${cssClass}`} dangerouslySetInnerHTML={{__html: body}}>
+        <section className={`info ${cssClass}`} {...rawHelper(body)}>
         </section>
       )}
     </aside>

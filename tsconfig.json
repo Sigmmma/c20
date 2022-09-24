@@ -7,7 +7,8 @@
     "jsxImportSource": "preact",
     "esModuleInterop": true,
     "module": "CommonJS",
-    "target": "ESNext"
+    "target": "ESNext",
+    "resolveJsonModule": true
   },
   "exclude": [
     "node_modules",

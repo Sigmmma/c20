@@ -37,7 +37,7 @@ async function renderPage(ctx) {
       headings={combineResults("headings", R.flatten)}
       thanks={combineResults("thanks", R.reduce(R.mergeWith(R.concat), {}))}
       metaboxProps={metaboxProps}
-      body={combineResults("html")}
+      body={combineResults("html", R.join("\n"))}
       bodyPlaintext={combineResults("plaintext", R.join("\n"))}
     />
   );

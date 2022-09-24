@@ -1,18 +1,22 @@
 import Metabox, {MetaboxProps} from "../Metabox/Metabox";
-import Ctx from "../Ctx/Ctx";
+import Footer from "./Footer";
+import Icon from "../Icon/Icon";
+import Breadcrumbs from "./Breadcrumbs";
+import Ctx, {useLocalize} from "../Ctx/Ctx";
+import {rawHelper} from "..";
+import ThanksList, {getThanksHeading} from "./ThanksList";
+import * as R from "ramda";
 
-const R = require("ramda");
-const {html, escapeHtml, REPO_URL, pageAnchor, localizer, detailsList, DISCORD_URL, JIF_ISSUE_URL, icon} = require("../bits");
-const footer = require("./footer");
-const breadcrumbs = require("./breadcrumbs");
+const {html, slugify, REPO_URL, pageAnchor, detailsList, DISCORD_URL, JIF_ISSUE_URL} = require("../bits");
 const toc = require("./toc");
-const thanksList = require("./thanksList");
 
 const TOC_MIN_HEADERS = 2;
 const COLLAPSE_CHILD_PAGES = 20;
 const COLLAPSE_RELATED_PAGES = 4;
 const COLLAPSE_MAIN_TOPIC_PAGES = 20;
 const PREVIEW_LENGTH_CHARS = 100;
+
+
 
 const mainTopics = [
   ["/general"],
@@ -54,7 +58,7 @@ const mccToolkitPages = [
   "/h3odst/h3odst-ek"
 ]
 
-const localizations = localizer({
+const localizations = {
   locale: {
     en: "en_US",
     es: "es_ES"
@@ -84,15 +88,21 @@ const localizations = localizer({
     es: "Editar"
   },
   issue: {
-    en: "Please describe the issue with the wiki page in as much detail as you can and make sure to update the title."
+    en: "Please describe the issue with the wiki page in as much detail as you can and make sure to update the title.",
   },
   reportWiki: {
-    en: "Report a wiki issue"
+    en: "Report a wiki issue",
   },
   reportToolkit: {
-    en: "Report a toolkit issue"
-  }
-});
+    en: "Report a toolkit issue",
+  },
+  darkMode: {
+    en: "Dark mode",
+  },
+  lightMode: {
+    en: "Light mode",
+  },
+};
 
 const langNames = {
   en: "English",
@@ -111,7 +121,7 @@ export type PageWrapperProps = {
 export default function PageWrapper(props: PageWrapperProps) {
   let {ctx, headings, thanks, metaboxProps, body, bodyPlaintext} = props;
   const {page, pageIndex, lang, buildOpts: {baseUrl}} = ctx;
-  const localize = localizations(lang);
+  const localize = useLocalize(localizations);
   const editPageUrl = `${REPO_URL}/edit/master/src/content${page.pageId}/readme${lang == "en" ? "" : "_" + lang}.md`;
   const imgAbsoluteUrl = page.img ?
     `${baseUrl}${page.localizedPaths[lang]}/${page.img}` :
@@ -128,10 +138,10 @@ export default function PageWrapper(props: PageWrapperProps) {
   }
   const keywords = R.path(["keywords", lang], page);
   const otherLangs = page.langs.filter(it => it != lang);
+  const thanksHeadingText = getThanksHeading();
 
-  const thanksResult = thanksList(ctx, thanks);
-  if (thanksResult.headings) {
-    headings = [...headings, ...thanksResult.headings];
+  if (Object.entries(thanks).length > 0) {
+    headings = [...headings, {level: 1, id: slugify(thanksHeadingText), title: thanksHeadingText}];
   }
 
   const space = spaces.find(s => page.pageId.startsWith(s.root));
@@ -143,7 +153,7 @@ export default function PageWrapper(props: PageWrapperProps) {
     <article className="content-article">
       <div className="page-title">
         <nav className="breadcrumbs">
-          {breadcrumbs(ctx)}
+          <Breadcrumbs/>
         </nav>
         <div className="title-line">
           <h1 className="page-title">{page.tryLocalizedTitle(lang)}</h1>
@@ -163,8 +173,8 @@ export default function PageWrapper(props: PageWrapperProps) {
       {metaboxProps &&
         <Metabox {...metaboxProps}/>
       }
-      {body}
-      {thanksResult.html}
+      <div {...rawHelper(body)}></div>
+      <ThanksList thanks={props.thanks}/>
     </article>
   );
 
@@ -183,20 +193,20 @@ export default function PageWrapper(props: PageWrapperProps) {
         <meta property="og:type" content="website"/>
         <meta property="og:locale" content={localize("locale")}/>
         {otherLangs.map(otherLang =>
-          <meta key={otherLang} property="og:locale:alternate" content={localizations(otherLang, "locale")}/>
+          <meta key={otherLang} property="og:locale:alternate" content={localizations["locale"][otherLang]}/>
         )}
         {keywords && keywords.map(keyword =>
           <meta property="og:article:tag" content={keyword}/>
         )}
         <meta property="og:url" content={`${baseUrl}${page.tryLocalizedPath(lang)}`}/>
-        <meta property="og:description" content={escapeHtml(plaintextPreview)}/>
+        <meta property="og:description" content={plaintextPreview}/>
         <meta property="og:image" content={imgAbsoluteUrl}/>
         <title>{page.tryLocalizedTitle(lang)} - c20</title>
         <link rel="preload" type="application/json" as="fetch" href={`/assets/search-index_${lang}.json`}/>
         <link rel="icon" type="image/png" href="/assets/librarian.png"/>
         <link rel="stylesheet" href="/assets/style.css"/>
         <link id="syntax" rel="stylesheet" href="/assets/night-owl.css"/>
-        <script>document.documentElement.dataset.theme = window.localStorage.getItem("theme") || "dark";</script>
+        <script {...rawHelper('document.documentElement.dataset.theme = window.localStorage.getItem("theme") || "dark";')}></script>
       </head>
       <body>
         <Ctx.Provider value={ctx}>
@@ -209,8 +219,8 @@ export default function PageWrapper(props: PageWrapperProps) {
                     <span className="c20-name-long">{localize("siteName")}</span>
                   </a>
                   <button className="nobg" id="toggle-theme">
-                    <span className="dark">{icon("moon", "Dark mode")}</span>
-                    <span className="light">{icon("sun", "Light mode")}</span>
+                    <span className="dark"><Icon name="moon" title={localize("darkMode")}/></span>
+                    <span className="light"><Icon name="sun" title={localize("lightMode")}/></span>
                   </button>
                 </header>
                 {page.Page404 &&
@@ -222,22 +232,28 @@ export default function PageWrapper(props: PageWrapperProps) {
                   <div id="c20-search-mountpoint"></div>
                   {headings.length > TOC_MIN_HEADERS &&
                     <div className="sidebar-toc">
-                      <h2 id="table-of-contents">{icon("list")} {localize("toc")}</h2>
-                      {toc(headings)}
+                      <h2 id="table-of-contents"><Icon name="list"/> {localize("toc")}</h2>
+                      <div {...rawHelper(toc(headings))}></div>
                     </div>
                   }
                   {page.children && page.children.length > 0 &&
-                    detailsList(html`<h2>${localize("children")}</h2>`, page.children.map(pageAnchor(lang)), COLLAPSE_CHILD_PAGES, 0)
+                    <div {...rawHelper(
+                      detailsList(html`<h2>${localize("children")}</h2>`, page.children.map(pageAnchor(lang)), COLLAPSE_CHILD_PAGES, 0)
+                    )}/>
                   }
                   {page.related && page.related.length > 0 &&
-                    detailsList(html`<h2>${localize("related")}</h2>`, page.related.map(pageAnchor(lang)), COLLAPSE_RELATED_PAGES, 0)
+                    <div {...rawHelper(
+                      detailsList(html`<h2>${localize("related")}</h2>`, page.related.map(pageAnchor(lang)), COLLAPSE_RELATED_PAGES, 0)
+                    )}/>
                   }
-                  {detailsList(html`<h2>${localize("main")}</h2>`, mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId as any])), COLLAPSE_MAIN_TOPIC_PAGES, 0)}
+                  <div {...rawHelper(
+                    detailsList(html`<h2>${localize("main")}</h2>`, mainTopics.map(pageId => pageAnchor(lang, pageIndex.pages[pageId as any])), COLLAPSE_MAIN_TOPIC_PAGES, 0)
+                  )}/>
 
-                  <p><a href={DISCORD_URL}>{icon("message-square", "Chat")} Discord</a></p>
-                  <p><a href={newIssueUrl}>{icon("flag", "Report")} {localize("reportWiki")}.</a></p>
+                  <p><a href={DISCORD_URL}><Icon name="message-square"/> Discord</a></p>
+                  <p><a href={newIssueUrl}><Icon name="flag"/> {localize("reportWiki")}.</a></p>
                   {isToolkitPage && 
-                    <p><a href={JIF_ISSUE_URL}>{icon("flag", "Report")} {localize("reportToolkit")}.</a></p>
+                    <p><a href={JIF_ISSUE_URL}><Icon name="flag"/> {localize("reportToolkit")}.</a></p>
                   }
                 </nav>
               </div>
@@ -247,7 +263,7 @@ export default function PageWrapper(props: PageWrapperProps) {
                 {mainContent}
               </main>
             }
-            {footer(ctx)}
+            <Footer/>
           </div>
         </Ctx.Provider>
         <script src="/assets/minisearch/dist/umd/index.js"></script>
