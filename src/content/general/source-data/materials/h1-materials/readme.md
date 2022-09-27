@@ -5,7 +5,7 @@ The [JMS][] files you export from your 3D software contain the material names yo
 
 When no shader tag can be found, Tool will ask you to generate an empty one by choosing a shader type. [H1CE Tool][tool] will create these in the root of the tags directory, whereas [H1A Tool][h1a-tool] will create them in a `shaders` directory next to the model tag. In the case of H1CE Tool, you will probably want to move these files into your level's shaders directory later just to keep things tidy. Once Tool has generated the empty shader tags, you must compile the model from JMS again for those shaders to be referenced.
 
-Sapien and/or Halo may crash if you do not set up any [bitmap][] references in these new shaders so do that before proceeding; empty shaders are invalid.
+Sapien and/or Halo may crash if you do not set up any [bitmap][h1/tags/bitmap] references in these new shaders so do that before proceeding; empty shaders are invalid.
 
 # Special materials
 These material names are hard-coded into Tool and have special meaning. They do not need shader tags.

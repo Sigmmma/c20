@@ -12,7 +12,8 @@ const noThumbs = process.env.C20_NO_THUMBNAILS == "true";
 //todo: this does extra work then the URL is not localized but there are multiple languages
 async function buildResources(pageIndex, buildOpts) {
   await Promise.all(Object.values(pageIndex.pages).map(async (page) => {
-    const files = await fs.readdir(page.dirPath, {encoding: "utf8"});
+    const dirPath = path.join("./src/content", ...page.logicalPath);
+    const files = await fs.readdir(dirPath, {encoding: "utf8"});
 
     //ensure all localized paths exist before we start copying/generating files
     await Promise.all(page.langs.map(async (lang) => {
@@ -21,7 +22,7 @@ async function buildResources(pageIndex, buildOpts) {
     }));
 
     await Promise.all(files.map(async (filePath) => {
-      const srcPath = path.join(page.dirPath, filePath);
+      const srcPath = path.join(dirPath, filePath);
       const {ext, base, name} = path.parse(srcPath);
       let destLangs = page.langs;
 

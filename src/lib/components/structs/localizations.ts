@@ -1,6 +1,4 @@
-const {localizer} = require("../bits");
-
-module.exports = localizer({
+export default {
   field: {
     en: "Field",
     es: "Campo"
@@ -110,4 +108,4 @@ module.exports = localizer({
   meta_min: {
     en: "Min"
   }
-});
+};

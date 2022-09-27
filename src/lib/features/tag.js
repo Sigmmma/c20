@@ -1,8 +1,9 @@
-const R = require("ramda");
-const {renderMarkdownInline, p, heading, structDisplay, detailsList, defAnchor, html, localizer, tagAnchor, alert, slugify, icon} = require("../components");
-const {walkTypeDefs} = require("../../data/structs");
+import * as R from "ramda";
+const {renderMarkdownInline, p, heading, structDisplay, detailsList, defAnchor, html, tagAnchor, alert, icon} = require("../components");
+import {slugify} from "../utils/strings";
+import {localizer} from "../utils/localization";
 
-const localizations = localizer({
+const localizations = {
   tagStructureHeading: {
     en: "Structure and fields",
     es: "Estructura y campos"
@@ -35,7 +36,7 @@ const localizations = localizer({
        no se muestran aquí. Consulte la página de los padres para obtener más información.
        La siguiente información es exclusiva de la tag <strong>${thisTag}</strong>.`,
   },
-});
+};
 
 function localizeThanks(ctx, thanks) {
   return R.mapObjIndexed((forLangs, to) => {
@@ -44,19 +45,20 @@ function localizeThanks(ctx, thanks) {
   }, thanks);
 }
 
-module.exports = function(ctx) {
-  const {lang, page, data} = ctx;
+module.exports = function(ctx, input) {
+  const {lang, data} = ctx;
+  const {page} = input;
   if (!page.tagName) {
     return {};
   }
 
-  const localize = localizations(lang);
+  const localize = localizer(localizations, lang);
 
   const tagNameArg = page.tagName.split("/");
   const game = tagNameArg.length > 1 ? tagNameArg[0] : "h1";
   const tagName = tagNameArg.length > 1 ? tagNameArg[1] : tagNameArg[0];
   const tag = data.tags[game][tagName];
-  const groupId = tag.id ? `<code>${tag.id}</code>${defAnchor(ctx.resolveUrl("h1/tags", "group-ids"))}` : null;
+  const groupId = tag.id ? `<code>${tag.id}</code>${defAnchor(ctx.resolvePage("h1/tags", "group-ids").url)}` : null;
   const metaSections = [];
   const structureHeadingText = localize("tagStructureHeading");
 

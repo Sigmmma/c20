@@ -14,11 +14,11 @@ function buildTokenizer(ctx) {
       let link = links[linkKey];
       if (!link || !link.href) {
         //next, we can try searching the page index for a matching page
-        const parts = linkKey.split("#");
-        const page = ctx.resolvePage(parts[0]);
+        const [pageId, headingId] = linkKey.split("#");
+        const page = ctx.resolvePage(pageId, headingId);
         link = {
-          href: page.tryLocalizedPath(ctx.lang, parts[1]),
-          title: page.tryLocalizedTitle(ctx.lang)
+          href: page.url,
+          title: page.title
         };
       }
 

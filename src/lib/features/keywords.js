@@ -1,10 +1,7 @@
-const R = require("ramda");
+import * as R from "ramda";
 
-module.exports = function({page, lang}) {
+module.exports = function(ctx, input) {
   return {
-    keywords: [
-      page.tryLocalizedSlug(lang),
-      ...R.pathOr([], ["keywords", lang], page)
-    ]
+    keywords: R.pathOr([], ["keywords", ctx.lang], input.page)
   };
 };

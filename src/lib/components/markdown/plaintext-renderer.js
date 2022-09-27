@@ -1,18 +1,17 @@
-const R = require("ramda");
+import * as R from "ramda";
 const marked = require("marked");
 const yaml = require("js-yaml");
 const {structDisplay} = require("../structs");
 const {renderTableYaml} = require("../yaml-tables");
 const {renderDisambiguationList} = require("../disambiguation-list");
-const {renderChildList} = require("../child-list");
 
 module.exports = function(ctx) {
   const renderer = new marked.Renderer();
   const {renderMarkdown} = require("./index");
 
   const processPageName = (text) => {
-    text = text.replace(".c20:pageName", ctx.page.title[ctx.lang]);
-    return text.replace(".c20:pathTail",  ctx.page.logicalPath[ctx.page.logicalPath.length - 1]);
+    text = text.replace(".c20:pageName", ctx.title);
+    return text.replace(".c20:pathTail",  ctx.logicalPath[ctx.logicalPath.length - 1]);
   }
   renderer.text = R.pipe(processPageName, renderer.text);
 

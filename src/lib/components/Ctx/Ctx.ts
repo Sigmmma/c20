@@ -1,19 +1,29 @@
 import {createContext} from "preact";
 import {useContext} from "preact/hooks";
-import {RenderContext} from "../../render";
-const {localizer} = require("../bits");
+import {Lang, LocalizeFn, Localizations, localizer} from "../../utils/localization";
+import {PageDataLite} from "..";
 
-const Ctx = createContext<RenderContext>({} as any);
+export type RenderContext = {
+  lang: Lang;
+  pageId: string;
+  logicalPath: string[];
+  title: string;
+  children?: PageDataLite[];
 
-export function useCtx(): RenderContext {
+  //todo: should already be resolved by time we render?
+  resolvePage: (idTail: string, headingId?: string) => PageDataLite;
+  data: any; //maybe only via specialize macros; not generic access?
+};
+
+const Ctx = createContext<RenderContext | undefined>(undefined);
+
+export function useCtx(): RenderContext | undefined {
   return useContext(Ctx);
 };
 
-type LocalizeFn<L> = (string: keyof L) => any;
-
-export function useLocalize<L>(localizations: L): LocalizeFn<L> {
-  const lang = useCtx().lang;
-  return localizer(localizations)(lang);
+export function useLocalize<L extends Localizations>(localizations: L): LocalizeFn<L> {
+  const lang = useCtx()?.lang;
+  return localizer(localizations, lang ?? "en");
 };
 
 export default Ctx;

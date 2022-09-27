@@ -1,4 +1,4 @@
-**HR Foundation** (`Foundation.exe`) is part of the [Halo Reach Editing Kit][hr-ek], is a visual [tag][tags] editor. Although it can visualize [bitmaps][bitmap], [models][model] and [interfaces][chud_definition] it is primarily focused on editing and viewing the structured fields which comprise tags. It does not offer interactive placement of [objects][general/tags/object], which is [Sapien's][HR-Sapien] role.
+**HR Foundation** (`Foundation.exe`) is part of the [Halo Reach Editing Kit][hr-ek], is a visual [tag][tags] editor. Although it can visualize [bitmaps][bitmap], [models][model] and [interfaces][chud_definition] it is primarily focused on editing and viewing the structured fields which comprise tags. It does not offer interactive placement of objects, which is [Sapien's][HR-Sapien] role.
 
 It takes over the role of Guerilla, the program that is used in prior games for editing and viewing tags, offering many new features and advantages such as being able to open multiple tags in tabs much like modern internet browsers.
 

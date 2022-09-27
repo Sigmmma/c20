@@ -1,8 +1,9 @@
 const yaml = require("js-yaml");
 const fs = require("fs");
 const path = require("path");
-const {html, jump, slugify, anchor} = require("./bits");
-const R = require("ramda");
+const {html, jump, anchor} = require("./bits");
+import {slugify} from "../utils/strings";
+import * as R from "ramda";
 
 const AUTO_INDEX_THRESHOLD = 100;
 
@@ -31,8 +32,8 @@ function renderCell(ctx, format, content, searchTerms) {
     searchTerms.push(renderMarkdownInline(ctx, content, true));
     return renderMarkdownInline(ctx, "`" + content + "`");
   } else if (format === "anchor") {
-    const url = ctx.resolveUrl(content);
-    return anchor(url, content);
+    const target = ctx.resolvePage(content);
+    return anchor(target.url, target.title);
   } else if (format.startsWith("codeblock")) {
     searchTerms.push(content);
     const syntax = format.split("-")[1]; // Could be undef. That's ok.
@@ -48,7 +49,7 @@ function renderTableYaml(ctx, optsYaml) {
   const opts = yaml.load(optsYaml);
 
   if (!opts.dataPath) {
-    console.warn(`Missing table value: dataPath (from ${ctx.page.pageId})`);
+    console.warn(`Missing table value: dataPath (from ${ctx.pageId})`);
     return {htmlResult: null, searchTerms};
   }
 
@@ -58,7 +59,7 @@ function renderTableYaml(ctx, optsYaml) {
   opts.id = opts.id || opts.dataPath.map(dataPath => R.last(dataPath.split("/"))).join("-");
 
   const dataSource = opts.dataSource ?
-    yaml.load(fs.readFileSync(path.join(ctx.page.dirPath, opts.dataSource), "utf8")) :
+    yaml.load(fs.readFileSync(path.join("./src/content", ...ctx.logicalPath, opts.dataSource), "utf8")) :
     ctx.data;
 
   const rows = R.pipe(

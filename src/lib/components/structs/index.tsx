@@ -1,8 +1,10 @@
-const fs = require("fs");
-const path = require("path");
-const {html, escapeHtml, slugify, detailsList, tagAnchor, renderHex, jump} = require("../bits");
+const {html, escapeHtml, detailsList, tagAnchor, jump} = require("../bits");
+import {slugify} from "../../utils/strings";
 const {instantiateType, buildTypeDefs} = require("../../../data/structs");
-const localizations = require("./localizations");
+import localizations from "./localizations";
+import {preactHelper} from "..";
+import {localizer} from "../../utils/localization";
+import Hex from "../Hex/Hex";
 
 function processMeta(meta) {
   if (!meta || Object.keys(meta).length == 0) {
@@ -22,7 +24,7 @@ function joinPathId(pathId, next) {
 
 function structDisplay(ctx, opts) {
   const {renderMarkdown} = require("../markdown"); //todo: untangle circular dep
-  const localize = localizations(ctx.lang);
+  const localize = localizer(localizations, ctx.lang);
   const {
     type_defs: typeDefsArg,
     entry_type,
@@ -36,8 +38,8 @@ function structDisplay(ctx, opts) {
 
   const noEmbed = opts.noEmbed || [];
   const typeDefs = buildTypeDefs(typeDefsArg, opts.imports, ctx.data.structs);
-  const searchTerms = [];
-  const headings = [];
+  const searchTerms: string[] = [];
+  const headings: any = [];
   const seenTypes = {};
 
   function addSearchTermsForPart(part) {
@@ -152,7 +154,7 @@ function structDisplay(ctx, opts) {
               return null;
             }
 
-            const fieldPathId = joinPathId(pathId, field.name);
+            const fieldPathId = joinPathId(pathId, field.name)!;
             const fieldOffset = offset;
             const instantiatedFieldType = instantiateType(typeDefs, field, instantiatedType.type_args, {});
             const {typeDef: fieldTypeDef, totalSize: fieldSize, typeName: fieldTypeName, type_args: fieldTypeArgs} = instantiatedFieldType;
@@ -164,7 +166,7 @@ function structDisplay(ctx, opts) {
               seenTypes[seenTypeId] = fieldPathId;
             }
 
-            let embeddedType = undefined;
+            let embeddedType: any = undefined;
             if (!noEmbed.includes(fieldTypeName) && !(field.meta && field.meta.unused)) {
               if (fieldTypeArgs && (fieldTypeName == "Block" || fieldTypeName == "ptr32" || fieldTypeName == "ptr64")) {
                 embeddedType = instantiateType(typeDefs, {type: Object.values(fieldTypeArgs)[0]}, instantiatedType.type_args, {});
@@ -189,7 +191,7 @@ function structDisplay(ctx, opts) {
               <tr class="${rowClasses.join(" ")}">
                 <td class="field-name">${renderFieldName(field.name, fieldPathId)}</td>
                 ${showOffsets && html`
-                  <td class="field-offset">${renderHex(fieldOffset)}</td>
+                  <td class="field-offset">${preactHelper(<Hex value={fieldOffset}/>)}</td>
                 `}
                 <td class="field-type">
                   ${renderStructFieldType(field, instantiatedFieldType)}${embeddedType && hasSeenType && html`<sup><a href="#${slugify(hasSeenType.join("-"))}">?</a></sup>`}
@@ -227,7 +229,7 @@ function structDisplay(ctx, opts) {
           ${instantiatedType.typeDef.bits.map((bit, i) => html`
             <tr>
               <td>${renderFieldName(bit.name, joinPathId(pathId, bit.name))}</td>
-              <td>${renderHex(0x1 << i >>> 0)}</td>
+              <td>${preactHelper(<Hex value={0x1 << i >>> 0}/>)}</td>
               <td>${renderComments(bit)}</td>
             </tr>
           `)}
@@ -250,7 +252,7 @@ function structDisplay(ctx, opts) {
           ${instantiatedType.typeDef.options.map((option, i) => html`
             <tr>
               <td>${renderFieldName(option.name, joinPathId(pathId, option.name))}</td>
-              <td>${renderHex(option.value !== undefined ? option.value : i)}</td>
+              <td>${preactHelper(<Hex value={option.value !== undefined ? option.value : i}/>)}</td>
               <td>${renderComments(option)}</td>
             </tr>
           `)}

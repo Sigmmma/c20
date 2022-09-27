@@ -1,49 +1,20 @@
-const commonTags = require("common-tags");
-const R = require("ramda");
+import {PageId} from "../render";
+import {RenderContext} from "./Ctx/Ctx";
+import {slugify} from "../utils/strings";
 
-const DISCORD_URL = "https://discord.reclaimers.net";
-const REPO_URL = "https://github.com/Sigmmma/c20";
+const commonTags = require("common-tags");
+import * as R from "ramda";
+
 const DEFAULT_OPEN_THRESHOLD = 8;
 const noThumbs = process.env.C20_NO_THUMBNAILS == "true";
 
-const JIF_ISSUE_URL = "https://github.com/Joint-Issue-Tracker/Joint-Issue-Tracker/issues/new?template=MCCHEK-ISSUE-FORM.yml"
-
 const breakTagName = (tagName) => tagName.split("_").join("_<wbr>");
-
-//converts a title into a URL- or ID-friendly slug
-const slugify = (title) => title
-  .toLowerCase()
-  .replace(/[']/g, "")
-  .replace(/[^\p{L}0-9]/gu, " ")
-  .split(" ")
-  .filter(part => part.length > 0)
-  .join("-");
 
 const escapeHtml = (s) => commonTags.safeHtml`${s}`;
 const html = commonTags.stripIndent(commonTags.html);
 
 const classes = (classArr) => classArr && classArr.length > 0 ? `class="${classArr.join(" ")}"` : "";
 const p = (body) => html`<p>${body}</p>`;
-
-const reportedMissingKeys = new Set()
-
-/**
- * @deprecated Use useLocalizer() instead
- */
-const localizer = R.curry((bundle, lang) => {
-  return (key, safe) => {
-    if (!bundle[key] && !safe) {
-      throw new Error(`Missing localizations for key ${key}`);
-    } else if (!bundle[key]) {
-      if (!reportedMissingKeys.has(key))
-        console.warn(`Missing localisation key "${key}"`);
-      reportedMissingKeys.add(key)
-      return null
-    }
-
-    return bundle[key][lang]  ? bundle[key][lang] : bundle[key]["en"];
-  };
-});
 
 /**
  * @deprecated Use Icon instead
@@ -67,10 +38,13 @@ const jump = (id, body) => html`
 
 const defAnchor = (href) => html`<sup>${anchor(href, "?")}</sup>`;
 
-const pageAnchor = R.curry((lang, page) => anchor(page.tryLocalizedPath(lang), escapeHtml(page.tryLocalizedTitle(lang))));
+const pageAnchor = R.curry((ctx: RenderContext, pageId: PageId) => {
+  const target = ctx.resolvePage(pageId);
+  return anchor(target.url, escapeHtml(target.title));
+});
 
 const tagAnchor = (ctx, tagName, hash) => {
-  const url = ctx.resolveUrl(tagName, hash);
+  const url = ctx.resolvePage(tagName, hash).url;
   return anchor(url, breakTagName(tagName));
 };
 
@@ -80,6 +54,7 @@ const heading = (hTag, title, cssClass) => html`
   </${hTag}>
 `;
 
+/** @deprecated use DetailsList instead */
 const detailsList = (summary, items, maxOpen, allowInline) => {
   if (maxOpen === undefined) {
     maxOpen = DEFAULT_OPEN_THRESHOLD;
@@ -127,14 +102,12 @@ const ul = (items) => html`
 `;
 
 //types: info, danger
-/** @deprecated use Alert instead */
+/** @deprecated use Alert */
 const alert = (type, body) => html`
   <div class="alert type-${type || "info"}">
     ${body}
   </div>
 `;
-
-const renderHex = (num) => html`<code title="${num}">0x${num.toString(16).toUpperCase()}</code>`;
 
 const figure = (href, caption, inline) => html`
   <figure ${inline && "class=\"inline-figure\""}>
@@ -155,7 +128,6 @@ module.exports = {
   html,
   escapeHtml,
   classes,
-  localizer,
   anchor,
   p,
   pageAnchor,
@@ -169,10 +141,6 @@ module.exports = {
   ol,
   detailsList,
   alert,
-  renderHex,
   icon,
   slugify,
-  REPO_URL,
-  DISCORD_URL,
-  JIF_ISSUE_URL
 };

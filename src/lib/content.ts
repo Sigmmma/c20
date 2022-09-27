@@ -1,57 +1,56 @@
-const yaml = require("js-yaml");
-const fs = require("fs").promises;
-const path = require("path");
-const R = require("ramda");
+import yaml from "js-yaml";
+import fsn from "fs";
+import path from "path";
+import * as R from "ramda";
+import renderPage, {PageData, PageId, PageIndex, RenderInput} from "./render";
 
-import renderPage from "./render";
-const {commonLength, findPaths} = require("./utils");
+import {findPaths} from "./utils/files";
+import {commonLength} from "./utils/strings";
 const loadStructuredData = require("../data");
 const buildSitemap = require("./sitemap");
 const buildResources = require("./resources");
 const buildSearchIndex = require("./search");
+
+const fs = fsn.promises;
 
 function joinAbsolutePath(logicalPath) {
   return "/" + logicalPath.join("/");
 }
 
 // Generate a tag disambiguation page
-function generateTagPageInfo(pages, suffix, logicalPathSuffix) {
-  const genericTagsPath = ["general", "tags"]
+// function generateTagPageInfo(pages, suffix, logicalPathSuffix) {
+//   const genericTagsPath = ["general", "tags"]
 
-  let name = logicalPathSuffix[logicalPathSuffix.length - 1];
-  const title = {
-    en: name + " (disambiguation)",
-    es: name + " (desambiguación)" // should be checked by a Spanish speaker
-  };
+//   let name = logicalPathSuffix[logicalPathSuffix.length - 1];
+//   const title = {
+//     en: name + " (disambiguation)",
+//     es: name + " (desambiguación)" // should be checked by a Spanish speaker
+//   };
 
-  const logicalPath = genericTagsPath.concat(logicalPathSuffix)
-  const pageId = joinAbsolutePath(logicalPath);
+//   const logicalPath = genericTagsPath.concat(logicalPathSuffix)
+//   const pageId = joinAbsolutePath(logicalPath);
 
-  const tagPathNames = [" (Halo 1)", " (Halo 2)", " (Halo 3)"];
-  const tagPaths = ["/h1/tags/", "/h2/tags/", "/h3/tags/"];
+//   const tagPathNames = [" (Halo 1)", " (Halo 2)", " (Halo 3)"];
+//   const tagPaths = ["/h1/tags/", "/h2/tags/", "/h3/tags/"];
 
-  let otherLocations = []
-  for (let i = 0; i < tagPathNames.length; i++) {
-    const path = (tagPaths[i] + suffix);
-    if (path in pages) {
-      otherLocations.push({name: suffix + tagPathNames[i], target: path});
-    }
-  }
+//   let otherLocations: any[] = [];
+//   for (let i = 0; i < tagPathNames.length; i++) {
+//     const path = (tagPaths[i] + suffix);
+//     if (path in pages) {
+//       otherLocations.push({name: suffix + tagPathNames[i], target: path});
+//     }
+//   }
   
-  return {
-    title: title,
-    stub: true,
-    noSearch: true,
-    langs: ["en", "es"],
-    pageId,
-    logicalPath,
-    dirPath: "src/content/utility/tag_disambig",
-    disambiguationList: otherLocations,
-    tryLocalizedSlug: () => {
-      return name;
-    }
-  }
-}
+//   return {
+//     title: title,
+//     stub: true,
+//     noSearch: true,
+//     langs: ["en", "es"],
+//     pageId,
+//     logicalPath,
+//     disambiguationList: otherLocations,
+//   }
+// }
 
 // returns a set of the suffixes of pages with a given prefix 
 function getSuffixSetWithPrefix(pages, prefix) {
@@ -64,7 +63,7 @@ function getSuffixSetWithPrefix(pages, prefix) {
 }
 
 // returns an array of all tags shared between game versions 
-function getSharedTags(pages) {
+function getSharedTags(pages): string[] {
   const allTags = [
     getSuffixSetWithPrefix(pages, "/h1/tags/"),
     getSuffixSetWithPrefix(pages, "/h2/tags/"),
@@ -83,13 +82,13 @@ function getSharedTags(pages) {
     }
   }
 
-  return [...sharedSet];
+  return [...sharedSet] as string[];
 }
 
 //return an array of the metadata objects representing each content page
 async function loadPageMetadata(contentDir) {
   //we're going to build a map of page ids => page metadata
-  const pages = {};
+  const pages: Record<PageId, PageData> = {};
 
   //find all page.yml files under the content root -- each will become a page
   const pageMetaFiles = await findPaths(path.join(contentDir, "**", "page.yml"));
@@ -108,30 +107,23 @@ async function loadPageMetadata(contentDir) {
     const pageId = joinAbsolutePath(logicalPath);
     const logicalPathTail = logicalPath[logicalPath.length - 1];
 
-    if (pageMeta.assertPath && pageMeta.assertPath != pageId) {
-      throw new Error(`Expected page '${pageId}' to be at path '${pageMeta.assertPath}'`);
-    }
-
     pages[pageId] = {
       ...pageMeta,
       langs,
       pageId,
       logicalPath,
-      dirPath,
-      tryLocalizedSlug: (lang) => {
-        return R.pathOr(logicalPathTail, ["slug", lang], pageMeta);
-      }
+      logicalPathTail,
     };
   }));
 
   const sharedTags = getSharedTags(pages);
   
-  sharedTags.forEach(tag => {
-    const disambigMeta = generateTagPageInfo(pages, tag, tag.split("/"));
-    if (!(disambigMeta.pageId in pages)) { // don't override custom pages
-      pages[disambigMeta.pageId] = disambigMeta;
-    }
-  });
+  // sharedTags.forEach(tag => {
+  //   const disambigMeta = generateTagPageInfo(pages, tag, tag.split("/"));
+  //   if (!(disambigMeta.pageId in pages)) { // don't override custom pages
+  //     pages[disambigMeta.pageId] = disambigMeta as any; //generateTagPageInfo doesn't make full contexts
+  //   }
+  // });
 
   //do a second pass to build inter-page relationships
   Object.values(pages).forEach(page => {
@@ -162,21 +154,12 @@ async function loadPageMetadata(contentDir) {
   //final pass for properties reliant on above passes
   Object.values(pages).forEach(page => {
     //localize the URL for each language
-    page.localizedPaths = Object.fromEntries(page.langs.map(lang => {
-      const localizedPath = [];
-      let currPage = pages[page.pageId];
-      while (currPage && currPage.parent) {
-        localizedPath.unshift(currPage.tryLocalizedSlug(lang));
-        currPage = currPage.parent;
-      }
-      if (lang != "en") {
-        localizedPath.unshift(lang);
-      }
-      return [lang, joinAbsolutePath(localizedPath)];
-    }));
+    page.localizedPaths = Object.fromEntries(page.langs.map(lang =>
+      [lang, joinAbsolutePath(lang == "en" ? page.logicalPath : [lang, ...page.logicalPath])]
+    ));
     page.tryLocalizedPath = (lang, headingId) => {
-      const path = page.localizedPaths[lang] || page.localizedPaths["en"];
-      headingId = R.pathOr(headingId, ["headingIds", headingId, lang], page);
+      const path = page.localizedPaths[lang] ?? page.localizedPaths["en"];
+      headingId = R.pathOr(headingId, ["headingRefs", headingId, lang], page);
       return headingId ? `${path}#${headingId}` : path;
     };
     page.tryLocalizedTitle = (lang) => page.title[lang] || page.title["en"];
@@ -193,7 +176,7 @@ async function loadPageMetadata(contentDir) {
 async function loadPageIndex(contentDir) {
   const pages = await loadPageMetadata(contentDir);
 
-  const resolvePage = (fromPageId, idTail) => {
+  const resolvePageGlobal = (fromPageId, idTail) => {
     const fromPage = pages[fromPageId];
     if (!idTail.startsWith("/")) {
       idTail = "/" + idTail;
@@ -222,37 +205,29 @@ async function loadPageIndex(contentDir) {
     return candidatePages[0];
   };
 
-  //looks up the localized URL for a path tail and optionally a heading anchor
-  const resolveUrl = (fromPageId, prefLang, idTail, headingId) => {
-    const page = resolvePage(fromPageId, idTail);
-    return page.tryLocalizedPath(prefLang, headingId);
-  };
-
-  return {pages, resolvePage, resolveUrl};
+  return {pages, resolvePageGlobal};
 }
 
-async function renderPages(pageIndex, data, buildOpts) {
+async function renderPages(pageIndex: PageIndex, data: any, buildOpts) {
   //for all pages, and for all of their languages...
   const searchDocs = await Promise.all(Object.values(pageIndex.pages).flatMap((page) =>
     page.langs.map(async (lang) => {
       //we can assume page and language is mantained during a page render
 
       const mdFileName = lang == "en" ? "readme.md" : `readme_${lang}.md`;
-      const md = await fs.readFile(path.join(page.dirPath, mdFileName), "utf8");
+      const md = await fs.readFile(path.join("./src/content", ...page.logicalPath, mdFileName), "utf8");
 
-      const renderContext = {
-        resolvePage: (idTail) => pageIndex.resolvePage(page.pageId, idTail),
-        resolveUrl: (idTail, headingId) => pageIndex.resolveUrl(page.pageId, lang, idTail, headingId),
+      const renderInput: RenderInput = {
         pageIndex,
         data,
-        buildOpts,
+        baseUrl: buildOpts.baseUrl,
         page,
         lang,
         md,
       };
 
       //render the page to HTML and also gather search index data
-      const {htmlDoc, searchDoc} = renderPage(renderContext);
+      const {htmlDoc, searchDoc} = renderPage(renderInput);
       //write the HTML content out to a file
       await fs.mkdir(path.join(buildOpts.outputDir, page.localizedPaths[lang]), {recursive: true});
       await fs.writeFile(path.join(buildOpts.outputDir, page.localizedPaths[lang], "index.html"), htmlDoc, "utf8");

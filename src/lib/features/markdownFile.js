@@ -1,11 +1,11 @@
 const {renderMarkdown, findHeadings} = require("../components");
 
-module.exports = function(ctx) {
-  const plaintext = renderMarkdown(ctx, ctx.md, true);
+module.exports = function(ctx, input) {
+  const plaintext = renderMarkdown(ctx, input.md, true);
   return {
     searchText: plaintext,
-    html: renderMarkdown(ctx, ctx.md),
-    headings: findHeadings(ctx.md),
+    html: renderMarkdown(ctx, input.md),
+    headings: findHeadings(input.md),
     plaintext
   };
 };

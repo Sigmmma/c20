@@ -1,6 +1,5 @@
 import {MdSrc, RawHtml, rawHelper} from "..";
 import {useCtx} from "../Ctx/Ctx";
-
 const {renderMarkdownInline} = require("../markdown");
 
 export type MetaboxProps = {

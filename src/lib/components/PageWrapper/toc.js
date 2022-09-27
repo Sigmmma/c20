@@ -1,4 +1,4 @@
-const {escapeHtml, html} = require("../bits");
+const {escapeHtml} = require("../bits");
 
 const TOC_LEVELS = 2;
 

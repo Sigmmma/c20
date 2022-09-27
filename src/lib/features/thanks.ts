@@ -1,4 +1,7 @@
-const R = require("ramda");
+import {RenderInput} from "../render";
+
+import * as R from "ramda";
+import { RenderContext } from "../components/Ctx/Ctx";
 const {renderMarkdownInline} = require("../components");
 
 function localizeThanks(ctx, thanks) {
@@ -8,8 +11,8 @@ function localizeThanks(ctx, thanks) {
   }, thanks);
 }
 
-module.exports = function(ctx) {
+module.exports = function(ctx: RenderContext, input: RenderInput) {
   return {
-    thanks: localizeThanks(ctx, R.propOr({}, "thanks", ctx.page))
+    thanks: localizeThanks(ctx, R.propOr({}, "thanks", input.page))
   };
 };

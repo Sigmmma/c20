@@ -13,13 +13,3 @@ thanks:
     en: Information about invalid tags
   Vaporeon:
     en: Information about modified stun values in Custom Edition
-# todo: these heading IDs should be used/updated when translating this page
-headingRefs:
-  group-ids:
-    es: id-de-motor
-  unused-tags-and-fields:
-    es: campos-y-tags-no-utilizados
-  blocks:
-    es: bloques
-  tag-references-and-paths:
-    es: referencias-de-tags-y-rutas

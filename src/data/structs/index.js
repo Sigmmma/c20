@@ -1,5 +1,5 @@
-const {loadYamlTree} = require("../../lib/utils");
-const R = require("ramda");
+import {loadYamlTree} from "../../lib/utils/files";
+import * as R from "ramda";
 const INTRINSIC_TYPE_DEFS = require("./intrinsics");
 
 async function loadStructModules() {

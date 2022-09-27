@@ -1,7 +1,8 @@
-const R = require("ramda");
-const {heading, localizer, slugify, html, renderMarkdown, tagAnchor} = require("../components");
+const {heading, html, renderMarkdown, tagAnchor} = require("../components");
+import {slugify} from "../utils/strings";
+import {localizer} from "../utils/localization";
 
-const localizations = localizer({
+const localizations = {
   tagsListHeading: {
     en: "Tags list",
     es: "Lista de tags"
@@ -34,10 +35,10 @@ const localizations = localizer({
     en: "Purpose",
     es: "Propósito"
   }
-});
+};
 
 const tagsTable = (ctx, tags, opts) => {
-  const localize = localizations(ctx.lang);
+  const localize = localizer(localizations, ctx.lang);
   const tagsSorted = [...tags];
   tagsSorted.sort((a, b) => a.name.localeCompare(b.name));
   return html`
@@ -46,7 +47,7 @@ const tagsTable = (ctx, tags, opts) => {
         <tr>
           <th>${localize("tagName")}</th>
           ${opts.groupId && html`
-            <th><a href="${ctx.resolveUrl("tags", "group-ids")}">${localize("groupId")}</a></th>
+            <th><a href="${ctx.resolvePage("tags", "group-ids").url}">${localize("groupId")}</a></th>
           `}
           ${opts.parent && html`
             <th>${localize("parent")}</th>
@@ -56,7 +57,7 @@ const tagsTable = (ctx, tags, opts) => {
       </thead>
       <tbody>
         ${tagsSorted.map(tag => {
-          const tagComments = R.path(["description", ctx.lang], tag);
+          const tagComments = tag?.description?.[ctx.lang];
           return html`
             <tr>
               <td>${(opts.noLink || tag.vestigial) ? tag.name : tagAnchor(ctx, tag.name)}</td>
@@ -79,18 +80,19 @@ const tagsTable = (ctx, tags, opts) => {
   `;
 };
 
-module.exports = function(ctx) {
-  const {page, lang, data} = ctx;
+module.exports = function(ctx, input) {
+  const {lang, data} = ctx;
+  const {page} = input;
 
   if (!page.tagIndex) {
     return {};
   }
 
   const {game: gameVersion, ...opts} = page.tagIndex;
-  const localize = localizations(lang);
+  const localize = localizer(localizations, lang);
 
-  const usedTags = Object.values(data.tags[gameVersion]).filter(t => !t.unused);
-  const unusedTags = Object.values(data.tags[gameVersion]).filter(t => t.unused);
+  const usedTags = Object.values(data.tags[gameVersion]).filter((t: any) => !t.unused);
+  const unusedTags = Object.values(data.tags[gameVersion]).filter((t: any) => t.unused);
   const tagsListHeading = localize("tagsListHeading");
   const headings = [
     {title: tagsListHeading, id: slugify(tagsListHeading), level: 1}

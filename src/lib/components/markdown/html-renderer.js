@@ -1,4 +1,4 @@
-const R = require("ramda");
+import * as R from "ramda";
 const yaml = require("js-yaml");
 const marked = require("marked");
 const htmlparser2 = require("htmlparser2");
@@ -32,8 +32,8 @@ module.exports = function(ctx) {
   const {renderMarkdown} = require("./index");
 
   const processPageName = (text) => {
-    text = text.replace(".c20:pageName", ctx.page.title[ctx.lang]);
-    return text.replace(".c20:pathTail",  ctx.page.logicalPath[ctx.page.logicalPath.length - 1]);
+    text = text.replace(".c20:pageName", ctx.title);
+    return text.replace(".c20:pathTail",  ctx.logicalPath[ctx.logicalPath.length - 1]);
   }
 
   const processAbbreviations = (text) => {

@@ -6,7 +6,7 @@ This document contains the writing and style guide for wiki content. As this pro
 * Non-trivial information should have multiple eyes on it before merging. This can include the community expert, but pull request reviews by another editor are also helpful.
 
 ## Pages and resources system
-The `src/content` directory is a _logical_ grouping of content and does not reflect the final URLs that content will be available under, since that is dependent upon the language (see the `slug` property below). I encourage you to explore these directories looking at files to see how pages are already written.
+The `src/content` directory contains all pages and the directories within reflect the final URLs that content will be available under. You can explore the files here to see how existing pages are built.
 
 The `page.yml` files within serve as the "skeleton" of the website; each `page.yml` corresponds to a page which gets built. These [YAML][] files contain metadata about the page controlling what features appear on the page, the languages they support, what their localized URL will be, and more. To create a new page, you must create a directory and a corresponding `page.yml` in that directory.
 
@@ -19,16 +19,6 @@ The only required field for a page is its `title`, but I will list all possible 
 title:
   en: General tools
   es: Herramientas generales
-# The "slug" is how this page appears as part of the URL. It defaults to the
-# directory name where the page.yml is found, but can be changed per language.
-# The slug should always be lowercase and should only contain letters and
-# numbers, with no punctuation except for dashes (-) to separate words.
-slug:
-  es: herramientas-generales
-# If provided, the build will fail if this page's logical path does not match
-# this value. This can be used for any important pages that the community has
-# incoming links to or may have bookmarked.
-assertPath: /h1/tools/h1a-ek
 # Although page titles, slugs, and body content are indexed for search, you may
 # want to boost the page in search results by adding extra keywords. If you find
 # that a page isn't showing up at the top of search results when you expect it
@@ -336,6 +326,7 @@ Some wiki content is better described as structured data rather than markdown. T
 * If a topic is only really related to another topic, ensure it is either a child page (a subdirectory) or under heading of that parent topic instead.
 * If a topic is growing too large, consider splitting it up and taking its large sections to a child page (a subdirectory).
 * Child pages expand upon the topic of a parent.
+* Changing page URLs means breaking bookmarks or links to c20 pages from outside. Only do it as a last resort.
 
 ### Markdown tips
 * Ordered and unordered list items should not have empty lines between them, or else it will not be considered a proper list by the parser.

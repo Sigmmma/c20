@@ -1,8 +1,9 @@
-const R = require("ramda");
+import * as R from "ramda";
 const {renderMarkdown} = require("../components");
 
-module.exports = function(ctx) {
-  const {lang, page} = ctx;
+module.exports = function(ctx, input) {
+  const {lang} = ctx;
+  const {page} = input;
   const info = R.path(["info", lang], page);
   return {
     metaTitle: page.tryLocalizedTitle(lang),

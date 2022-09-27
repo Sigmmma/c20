@@ -1,7 +1,7 @@
 import Alert from "../Alert/Alert";
 import {useLocalize} from "../Ctx/Ctx";
 import Icon from "../Icon/Icon";
-const {REPO_URL} = require("../bits");
+import {REPO_URL} from "../../utils/external-urls";
 
 const localizations = {
   stubNotice: {

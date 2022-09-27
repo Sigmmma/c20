@@ -1,8 +1,8 @@
 const {loadStructModules} = require("./structs");
 const loadWorkflows = require("./workflows");
 const loadTags = require("./tags");
-const {loadYamlTree} = require("../lib/utils");
 const path = require("path");
+import {loadYamlTree} from "../lib/utils/files";
 
 async function loadStructuredData() {
   const structs = await loadStructModules();

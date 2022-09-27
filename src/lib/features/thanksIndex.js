@@ -1,18 +1,21 @@
-const R = require("ramda");
-const {heading, slugify, localizer, html, ul} = require("../components");
+import * as R from "ramda";
+const {heading, html, ul} = require("../components");
+import {slugify} from "../utils/strings";
+import {localizer} from "../utils/localization";
 
-const localizations = localizer({
+const localizations = {
   headingText: {
     en: "Thank you!",
     es: "Gracias!"
   }
-});
+};
 
-module.exports = function(ctx) {
-  const {pageIndex: {pages}, lang, page, data} = ctx;
+module.exports = function(ctx, input) {
+  const {pageIndex: {pages}, page} = input;
+  const {lang} = ctx;
   if (!page.thanksIndex) return {};
 
-  const localize = localizations(lang);
+  const localize = localizer(localizations, lang);
   const headingText = localize("headingText");
 
   let allThanks = new Set();

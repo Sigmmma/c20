@@ -4,7 +4,6 @@ const sass = require("sass");
 const fs = require("fs");
 const path = require("path");
 const buildContent = require("./src/lib/content");
-const packageVersion = require("./package.json").version;
 const {paths, baseUrl} = require("./build-config.json");
 import runServer from "./src/server";
 
@@ -44,7 +43,6 @@ function vendorAssets() {
 async function content() {
   await buildContent({
     baseUrl,
-    packageVersion,
     contentDir: paths.srcContentBase,
     outputDir: paths.dist
   });

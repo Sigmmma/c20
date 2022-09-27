@@ -1,7 +1,8 @@
-const R = require("ramda");
-const {localizer, anchor, detailsList, icon, p} = require("../components");
+import * as R from "ramda";
+const {anchor, detailsList, icon, p} = require("../components");
+import {localizer} from "../utils/localization";
 
-const localizations = localizer({
+const localizations = {
   authors: {
     en: "Author(s)",
     es: "Autores/Autoras"
@@ -64,12 +65,15 @@ const localizations = localizer({
     en: (other) => `${other}&nbsp;to`,
     es: (other) => `${other}&nbsp;a`,
   }
-});
+};
 
 const workflowItemAnchor = (ctx, itemName) => {
   const item = ctx.data.workflows.getWorkflowItem(itemName, ctx);
-  const itemUrl = item.url || ctx.resolveUrl(item.page, item.heading);
-  return anchor(itemUrl, itemName);
+  if (item.url) {
+    return anchor(item.url, itemName);
+  }
+  const target = ctx.resolvePage(item.page, item.heading);
+  return anchor(target.url, target.title);
 };
 
 function workflowType(flow) {
@@ -98,7 +102,7 @@ function workflowType(flow) {
 const workflowsList = (ctx, item) => {
   const itemAnchor = (itemName) => workflowItemAnchor(ctx, itemName);
   const {workflows, deprecated} = item;
-  const localize = localizations(ctx.lang);
+  const localize = localizer(localizations, ctx.lang);
 
   const flowTypeRenderers = {
     edit: (flows) => {
@@ -165,10 +169,10 @@ const workflowsList = (ctx, item) => {
   return p(detailsList(localize(deprecated ? "deprecatedWorkflows" : "workflows"), renderedFlows));
 };
 
-module.exports = function(ctx) {
-  const {page} = ctx;
+module.exports = function(ctx, input) {
+  const {page} = input;
 
-  const localize = localizations(ctx.lang);
+  const localize = localizer(localizations, ctx.lang);
   let workflowItemName = page.workflowName || page.toolName || page.tagName;
   if (!workflowItemName) {
     return {};
@@ -185,7 +189,7 @@ module.exports = function(ctx) {
   }
   if (item.buildTypes && item.buildTypes.length > 0) {
     metaSections.push({
-      body: p(detailsList(anchor(ctx.resolveUrl("build-types", "conventions"), localize("buildTypes")), item.buildTypes))
+      body: p(detailsList(anchor(ctx.resolvePage("build-types", "conventions").url, localize("buildTypes")), item.buildTypes))
     });
   }
   if (item.similarTo && item.similarTo.length > 0) {

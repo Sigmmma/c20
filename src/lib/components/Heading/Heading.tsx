@@ -1,5 +1,5 @@
 import preact from "preact";
-const {slugify} = require("../bits");
+import {slugify} from "../../utils/strings";
 
 export type HeadingProps = {
   title: string;

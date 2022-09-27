@@ -1,6 +1,6 @@
 **WRL files** are created by tool when it encounters fatal or warning-level geometry issues during model compilation and lightmapping (e.g. open edges, nearly coplanar faces). These files can be reimported back into the user's 3D software to visualize where problematic edges or faces are present and correct them before reattempting model compilation.
 
-They are placed in the source directory of the level that H2 Tool is working with. When compiling a [BSP][scenario_structure_bsp], the file will be named after the [ASS][] file being compiled (e.g. `yourmap.wrl`).
+They are placed in the source directory of the level that Tool is working with. When compiling a [BSP][h2/tags/scenario_structure_bsp], the file will be named after the [ASS][] file being compiled (e.g. `yourmap.wrl`).
 
 # Compatibility
 Unlike Halo 1 Tool's [WRL 1.0 files][wrl], the WRL files exported by H2 Tool are VRML _2.0_. While Blender has some support for the 2.0 version, you may still require older software to import these files. Luckily they aren't nearly as important as they are in CE since Sapien displays level errors for you.

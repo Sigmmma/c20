@@ -1,6 +1,5 @@
 title:
   en: device_control
-  es: device_control
 tagName: h1/device_control
 stub: true
 keywords:
@@ -8,8 +7,3 @@ keywords:
     - device
     - panel
     - button
-  es:
-    - device
-    - panel
-    - dispositivo
-    - botón
