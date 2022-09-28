@@ -5,6 +5,7 @@ export type IconProps = {
   title?: string;
 };
 
+// See https://feathericons.com/ for available icons
 export default function Icon(props: IconProps) {
   return (
     <svg class="feather" aria-labelledby={props.title}>

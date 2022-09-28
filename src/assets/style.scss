@@ -83,7 +83,7 @@ body {
 @import "_article";
 @import "_forms";
 @import "_tables";
-@import "_alert";
+@import "../lib/components/Alert/Alert.scss";
 
 .feather {
   width: 1em;

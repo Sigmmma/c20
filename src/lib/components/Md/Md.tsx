@@ -1,24 +1,35 @@
-import {createElement, Fragment} from "preact";
-import Markdoc from "@markdoc/markdoc";
-import Alert from "../Alert/Alert";
-import {parseMdDoc} from "../../markdown/markdown";
+import {createElement, Fragment, VNode} from "preact";
+import Markdoc, { RenderableTreeNode } from "@markdoc/markdoc";
+import {parseMdDoc, ValidationError} from "../../markdown/markdown";
+import type {MdSrc} from "..";
+import {useCtx} from "../Ctx/Ctx";
+import {components} from "./components";
 
 //preact works as a ReactShape
 const react = {createElement, Fragment} as any;
-// These are the components needed by tags for rendering
-const components = {
-  Alert,
-};
 
 export type MdProps = {
-  src?: string;
+  src?: MdSrc;
+  content?: RenderableTreeNode;
 };
 
 export default function Md(props: MdProps) {
-  if (!props.src) return null;
-  const {content, frontmatter} = parseMdDoc(props.src);
-  const node = Markdoc.renderers.react(content, react, {
+  if (!props.src && !props.content) return null;
+  const ctx = useCtx();
+  let content = props.content;
+  if (!content) {
+    try {
+      content = parseMdDoc(props.src).content;
+    } catch (e) {
+      if (ctx?.devMode && e instanceof ValidationError) {
+        console.warn(e.errors);
+        return <p style="color:red">The markdown is invalid</p>;
+      } else {
+        throw e;
+      }
+    }
+  }
+  return Markdoc.renderers.react(content, react, {
     components
-  });
-  return node; 
+  }) as VNode;
 };

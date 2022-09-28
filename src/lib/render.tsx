@@ -5,8 +5,11 @@ import Ctx, {RenderContext} from "./components/Ctx/Ctx";
 import Article from "./components/Article/Article";
 import {Lang} from "./utils/localization";
 import HtmlDoc from "./components/HtmlDoc/HtmlDoc";
+import {rawHelper} from "./components";
 import {localizations as thanksLocalizations} from "./components/Article/ThanksList";
 import {slugify} from "./utils/strings";
+import Md from "./components/Md/Md";
+import {parseMdDoc, ValidationError} from "./markdown/markdown";
 const features = require("./features");
 
 const PREVIEW_LENGTH_CHARS = 100;
@@ -69,6 +72,7 @@ export type RenderInput = {
   page: PageData;
   lang: Lang;
   md: MdSrc;
+  devMode?: boolean;
 };
 
 export type RenderOutput = {
@@ -81,6 +85,30 @@ export type RenderOutput = {
     keywords: string;
   };
 };
+
+function getAllThanks(input: RenderInput): string[] {
+  const allThanksSet = new Set<string>();
+
+  for (let page of Object.values(input.pageIndex.pages)) {
+    const recipients = R.pipe(
+      R.propOr({}, "thanks"),
+      R.keys
+    )(page);
+
+    for (let recipient of recipients) {
+      allThanksSet.add(recipient);
+    }
+  }
+
+  // for (let recipient of Object.keys(input.data.h1.tagThanks)) {
+  //   allThanksSet.add(recipient);
+  // }
+
+  //convert Set to an array and sort alphabetically
+  const allThanks = [...allThanksSet];
+  allThanks.sort((a, b) => a.localeCompare(b));
+  return allThanks;
+}
 
 export default function renderPage(input: RenderInput): RenderOutput {
   const title = input.page.tryLocalizedTitle(input.lang);
@@ -110,11 +138,13 @@ export default function renderPage(input: RenderInput): RenderOutput {
   
   const ctx: RenderContext = {
     lang: input.lang,
+    title,
     pageId: input.page.pageId,
     logicalPath: input.page.logicalPath,
     data: input.data,
     children: navChildren,
-    title,
+    devMode: input.devMode,
+    allThanks: getAllThanks(input),
     resolvePage: (idTail, headingId) => {
       const foundPage = input.pageIndex.resolvePageGlobal(input.page.pageId, idTail);
       return {
@@ -166,6 +196,23 @@ export default function renderPage(input: RenderInput): RenderOutput {
     navHeadings = [...navHeadings, {level: 1, id: slugify(thanksHeadingText), title: thanksHeadingText}];
   }
 
+  let body;
+  if (input.md.startsWith("---")) {
+    try {
+      const {content, frontmatter} = parseMdDoc(input.md);
+      body = <Md content={content}/>;
+    } catch (e) {
+      if (input.devMode && e instanceof ValidationError) {
+        console.warn(e.errors);
+        body = <p style="color: red">Markdown source failed validation. See logs</p>;
+      } else {
+        throw e;
+      }
+    }
+  } else {
+    body = <div {...rawHelper(combineResults("html", R.join("\n")))}></div>;
+  }
+
   //represents the full page HTML, ready to write to a file
   const htmlDoc = "<!DOCTYPE html>\n" + renderToString(
     <Ctx.Provider value={ctx}>
@@ -192,7 +239,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
             localizedPaths={input.page.localizedPaths}
             thanks={thanks}
             metabox={metaboxProps}
-            body={combineResults("html", R.join("\n"))}
+            body={body}
           />
         </PageWrapper>
       </HtmlDoc>

@@ -5,7 +5,7 @@
   "main": "gulpfile.js",
   "scripts": {
     "build": "gulp",
-    "dev": "gulp dev",
+    "dev": "C20_DEV_MODE=1 gulp dev",
     "start": "node -e 'require(\"./server.js\")()'",
     "server": "ts-node src/server.ts"
   },

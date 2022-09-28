@@ -2,29 +2,13 @@ import * as R from "ramda";
 const yaml = require("js-yaml");
 const marked = require("marked");
 const htmlparser2 = require("htmlparser2");
-const hljs = require("highlight.js");
-const {consoleLang, hscLang} = require("./langs/hsc");
-const vrmlLang = require("./langs/vrml");
 const {heading, alert, figure, video} = require("../bits");
 const {structDisplay} = require("../structs");
 const {renderTableYaml} = require("../yaml-tables");
 const autoAbbreviations = require("./abbreviations");
 const {renderDisambiguationList} = require("../disambiguation-list");
 const {renderChildList} = require("../child-list");
-
-//these language names should have no punctuation or dashes or it breaks markdown highlighting
-hljs.registerLanguage("vrml", vrmlLang);
-hljs.registerLanguage("hsc", hscLang);
-hljs.registerLanguage("console", consoleLang);
-hljs.registerLanguage("consoleh1a", consoleLang);
-hljs.registerLanguage("consoleh2a", consoleLang);
-hljs.registerLanguage("consoleh3", consoleLang);
-hljs.registerLanguage("inittxt", consoleLang);
-
-function highlight(code, language) {
-  const validLanguage = hljs.getLanguage(language) ? language : "plaintext";
-  return hljs.highlight(validLanguage, code).value;
-};
+import highlight from "../../markdown/highlight/highlight";
 
 module.exports = function(ctx) {
   //https://marked.js.org/#/USING_PRO.md#renderer

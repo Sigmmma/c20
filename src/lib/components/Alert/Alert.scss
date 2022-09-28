@@ -1,10 +1,12 @@
-@import "_constants";
+@import "../../../assets/_constants.scss";
 
 .alert {
-  display: flow-root;
   border-radius: $border-radius;
   padding: 0 var(--padding-md);
   margin-bottom: var(--padding-md);
+  display: flex;
+  align-items: baseline;
+
   &.type-info {
     background: $bg-info;
   }
@@ -13,5 +15,13 @@
   }
   &.type-success {
     background: $bg-success;
+  }
+  
+  & .alert-icon {
+    padding-right: var(--padding-md);
+  }
+
+  &.alert-body {
+    display: flow-root;
   }
 }

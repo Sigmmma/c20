@@ -224,6 +224,7 @@ async function renderPages(pageIndex: PageIndex, data: any, buildOpts) {
         page,
         lang,
         md,
+        devMode: process.env.C20_DEV_MODE != undefined
       };
 
       //render the page to HTML and also gather search index data

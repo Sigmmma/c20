@@ -1,7 +1,7 @@
 import Metabox, {MetaboxProps} from "../Metabox/Metabox";
 import ThanksList from "./ThanksList";
 import Stub from "../Article/Stub";
-import {PageDataLite, rawHelper} from "..";
+import {PageDataLite} from "..";
 import Breadcrumbs from "./Breadcrumbs";
 import {useCtx, useLocalize} from "../Ctx/Ctx";
 import {REPO_URL} from "../../utils/external-urls";
@@ -76,7 +76,7 @@ export default function Article(props: ArticleProps) {
       {props.stub &&
         <Stub/>
       }
-      <div {...rawHelper(props.body)}></div>
+      {props.body}
       {props.thanks &&
         <ThanksList thanks={props.thanks}/>
       }

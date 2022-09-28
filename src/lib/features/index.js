@@ -22,5 +22,4 @@ module.exports = [
   require("./workflows"),
   require("./thanks"),
   require("./keywords"),
-  require("./thanksIndex"),
 ];

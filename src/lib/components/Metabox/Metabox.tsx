@@ -1,6 +1,6 @@
 import {MdSrc, RawHtml, rawHelper} from "..";
 import {useCtx} from "../Ctx/Ctx";
-const {renderMarkdownInline} = require("../markdown");
+import Md from "../Md/Md";
 
 export type MetaboxProps = {
   metaTitle: RawHtml;
@@ -33,7 +33,7 @@ export default function Metabox(props: MetaboxProps) {
       }
       {imgCaption &&
         <section className="caption">
-          <p><em {...rawHelper(renderMarkdownInline(ctx, imgCaption))}></em></p>
+          <p><em><Md src={imgCaption}/></em></p>
         </section>
       }
       {metaSections?.filter(it => it)?.map(({body, cssClass}) =>

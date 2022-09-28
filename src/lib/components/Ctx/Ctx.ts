@@ -8,11 +8,13 @@ export type RenderContext = {
   pageId: string;
   logicalPath: string[];
   title: string;
-  children?: PageDataLite[];
+  devMode?: boolean;
 
-  //todo: should already be resolved by time we render?
+  //todo: these all require non-local information... can we find another way?
+  children?: PageDataLite[];
+  allThanks?: string[];
   resolvePage: (idTail: string, headingId?: string) => PageDataLite;
-  data: any; //maybe only via specialize macros; not generic access?
+  data: any;
 };
 
 const Ctx = createContext<RenderContext | undefined>(undefined);
