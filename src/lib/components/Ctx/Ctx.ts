@@ -7,8 +7,7 @@ export type RenderContext = {
   lang: Lang;
   pageId: string;
   logicalPath: string[];
-  title: string;
-  devMode?: boolean;
+  title?: string;
 
   //todo: these all require non-local information... can we find another way?
   children?: PageDataLite[];

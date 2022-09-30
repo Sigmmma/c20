@@ -1,6 +1,6 @@
-const {heading, html, renderMarkdown, tagAnchor} = require("../components");
-import {slugify} from "../utils/strings";
-import {localizer} from "../utils/localization";
+const {heading, html, renderMarkdown, tagAnchor} = require("../../components");
+import {slugify} from "../../utils/strings";
+import {localizer} from "../../utils/localization";
 
 const localizations = {
   tagsListHeading: {

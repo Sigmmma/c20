@@ -1,7 +1,7 @@
 import * as R from "ramda";
-const {renderMarkdownInline, p, heading, structDisplay, detailsList, defAnchor, html, tagAnchor, alert, icon} = require("../components");
-import {slugify} from "../utils/strings";
-import {localizer} from "../utils/localization";
+const {renderMarkdownInline, p, heading, structDisplay, detailsList, defAnchor, html, tagAnchor, alert, icon} = require("../../components");
+import {slugify} from "../../utils/strings";
+import {localizer} from "../../utils/localization";
 
 const localizations = {
   tagStructureHeading: {

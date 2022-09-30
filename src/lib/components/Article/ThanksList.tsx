@@ -1,5 +1,8 @@
+import {MdSrc} from "../../markdown/markdown";
+import { slugify } from "../../utils/strings";
 import {useLocalize} from "../Ctx/Ctx";
 import Heading from "../Heading/Heading";
+import Md from "../Md/Md";
 
 export const localizations = {
   thanksHeadingText: {
@@ -10,27 +13,30 @@ export const localizations = {
     en: "Thanks to the following individuals for their research or contributions to this topic:",
     es: "Gracias a las siguientes personas por sus investigaciones o contribuciones a este tema:"
   }
+} as const;
+
+export type ThanksListProps = {
+  thanks?: Record<string, MdSrc>;
 };
 
-export default function ThanksList({thanks}) {
-  const thanksEntries = Object.entries(thanks);
+export default function ThanksList(props: ThanksListProps) {
+  const thanksEntries = Object.entries(props.thanks ?? {});
   if (thanksEntries.length == 0) {
     return null;
   }
+  thanksEntries.sort(([aTo], [bTo]) => aTo.localeCompare(bTo));
 
   const localize = useLocalize(localizations);
-  thanksEntries.sort(([aTo], [bTo]) => aTo.localeCompare(bTo));
+  const headingText = localize("thanksHeadingText");
 
   return (
     <>
-      <Heading level={1} title={localize("thanksHeadingText")}/>
+      <Heading id={slugify(headingText)} level={1}>{headingText}</Heading>
       <p>{localize("intro")}</p>
       <ul>
-        {thanksEntries.map(([to, forEntries]: [string, string[]]) => {
+        {thanksEntries.map(([to, forEntry]: [string, MdSrc]) => {
           {to}
-          {forEntries.length > 0 &&
-            <em> ({forEntries.join("; ")})</em>
-          }
+          <em> (<Md src={forEntry}/>)</em>
         })}
       </ul>
     </>

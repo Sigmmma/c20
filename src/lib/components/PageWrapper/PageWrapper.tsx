@@ -5,6 +5,7 @@ import {ComponentChildren} from "preact";
 import {JIF_ISSUE_URL, REPO_URL, DISCORD_URL, LICENSE_URL} from "../../utils/external-urls";
 import DetailsList from "../DetailsList/DetailsList";
 import localizations from "./localizations";
+import TableOfContents, {NavHeading} from "./TableOfContents";
 const toc = require("./toc");
 
 const TOC_MIN_HEADERS = 2;
@@ -44,18 +45,20 @@ const mccToolkitPages = [
 ];
 
 export type PageWrapperProps = {
-  title: string;
+  title?: string;
   navRelated?: PageDataLite[];
   navChildren?: PageDataLite[];
   children?: ComponentChildren;
-  navHeadings?: any; //todo
+  navHeadings?: NavHeading[];
+  /** @deprecated */
+  navHeadingsLegacy?: any;
 }
 
 export default function PageWrapper(props: PageWrapperProps) {
   const ctx = useCtx();
   const localize = useLocalize(localizations);
   const isToolkitPage = ctx ? mccToolkitPages.some(prefix => ctx.pageId.startsWith(prefix)) : undefined;
-  const newIssueUrl = `${REPO_URL}/issues/new?title=${encodeURIComponent("[" + props.title["en"] + "] - <Your issue here>")}&body=${encodeURIComponent("<!---" + localize("issue") + "-->")}`;
+  const newIssueUrl = `${REPO_URL}/issues/new?title=${encodeURIComponent("[" + props.title + "] - <Your issue here>")}&body=${encodeURIComponent("<!---" + localize("issue") + "-->")}`;
 
   return (
     <div className="page-layout">
@@ -73,10 +76,13 @@ export default function PageWrapper(props: PageWrapperProps) {
           </header>
           <nav className="sidebar-nav">
             <div id="c20-search-mountpoint"></div>
-            {props.navHeadings.length > TOC_MIN_HEADERS &&
+            {props.navHeadings && props.navHeadings.length > 0 &&
+              <TableOfContents headings={props.navHeadings}/>
+            }
+            {props.navHeadingsLegacy && props.navHeadingsLegacy.length > TOC_MIN_HEADERS &&
               <div className="sidebar-toc">
                 <h2 id="table-of-contents"><Icon name="list"/> {localize("toc")}</h2>
-                <div {...rawHelper(toc(props.navHeadings))}></div>
+                <div {...rawHelper(toc(props.navHeadingsLegacy))}></div>
               </div>
             }
             {props.navChildren && props.navChildren.length > 0 &&

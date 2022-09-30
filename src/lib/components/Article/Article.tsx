@@ -6,6 +6,8 @@ import Breadcrumbs from "./Breadcrumbs";
 import {useCtx, useLocalize} from "../Ctx/Ctx";
 import {REPO_URL} from "../../utils/external-urls";
 import {Lang} from "../../utils/localization";
+import { ComponentChildren } from "preact";
+import { MdSrc } from "../../markdown/markdown";
 
 // keep this sorted with longer root/prefixes listed first as the code looks for the first match.
 const spaces = [
@@ -18,12 +20,12 @@ const spaces = [
 
 export type ArticleProps = {
   stub?: boolean;
-  title: string;
+  title?: string;
   navParents?: PageDataLite[];
-  thanks?: any;
+  thanks?: Record<string, MdSrc>;
   metabox?: MetaboxProps;
   localizedPaths: Record<Lang, string>;
-  body: any;
+  children?: ComponentChildren;
 };
 
 const langNames = {
@@ -76,10 +78,7 @@ export default function Article(props: ArticleProps) {
       {props.stub &&
         <Stub/>
       }
-      {props.body}
-      {props.thanks &&
-        <ThanksList thanks={props.thanks}/>
-      }
+      {props.children}
     </article>
   );
 };

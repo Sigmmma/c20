@@ -16,7 +16,7 @@ module.exports = function(ctx) {
   const {renderMarkdown} = require("./index");
 
   const processPageName = (text) => {
-    text = text.replace(".c20:pageName", ctx.title);
+    text = text.replace(".c20:pageName", ctx.title || "Untitled");
     return text.replace(".c20:pathTail",  ctx.logicalPath[ctx.logicalPath.length - 1]);
   }
 

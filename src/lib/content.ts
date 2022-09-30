@@ -2,10 +2,12 @@ import yaml from "js-yaml";
 import fsn from "fs";
 import path from "path";
 import * as R from "ramda";
-import renderPage, {PageData, PageId, PageIndex, RenderInput} from "./render";
+import renderPageLegacy from "./render/legacy-render";
+import {PageData, PageId, PageIndex, RenderInput} from "./render/types";
 
 import {findPaths} from "./utils/files";
 import {commonLength} from "./utils/strings";
+import renderPage from "./render/render";
 const loadStructuredData = require("../data");
 const buildSitemap = require("./sitemap");
 const buildResources = require("./resources");
@@ -214,25 +216,39 @@ async function renderPages(pageIndex: PageIndex, data: any, buildOpts) {
     page.langs.map(async (lang) => {
       //we can assume page and language is mantained during a page render
 
-      const mdFileName = lang == "en" ? "readme.md" : `readme_${lang}.md`;
-      const md = await fs.readFile(path.join("./src/content", ...page.logicalPath, mdFileName), "utf8");
-
-      const renderInput: RenderInput = {
-        pageIndex,
-        data,
-        baseUrl: buildOpts.baseUrl,
-        page,
-        lang,
-        md,
-        devMode: process.env.C20_DEV_MODE != undefined
-      };
+      const mdFileName = path.join("./src/content", ...page.logicalPath, lang == "en" ? "readme.md" : `readme_${lang}.md`);
+      const mdSrc = await fs.readFile(mdFileName, "utf8");
 
       //render the page to HTML and also gather search index data
-      const {htmlDoc, searchDoc} = renderPage(renderInput);
+      let renderOutput;
+      if (mdSrc.startsWith("---")) {
+        renderOutput = renderPage({
+          pageId: page.pageId,
+          mdFileName: mdFileName,
+          baseUrl: buildOpts.baseUrl,
+          logicalPath: page.logicalPath,
+          mdSrc,
+          lang,
+          localizedPaths: page.localizedPaths,
+          otherLangs: page.langs.filter(l => l != lang),
+          data: data,
+          pageIndex,
+        });
+      } else {
+        renderOutput = renderPageLegacy({
+          pageIndex,
+          data,
+          baseUrl: buildOpts.baseUrl,
+          page,
+          lang,
+          md: mdSrc,
+        });
+      }
+
       //write the HTML content out to a file
       await fs.mkdir(path.join(buildOpts.outputDir, page.localizedPaths[lang]), {recursive: true});
-      await fs.writeFile(path.join(buildOpts.outputDir, page.localizedPaths[lang], "index.html"), htmlDoc, "utf8");
-      return searchDoc;
+      await fs.writeFile(path.join(buildOpts.outputDir, page.localizedPaths[lang], "index.html"), renderOutput.htmlDoc, "utf8");
+      return renderOutput.searchDoc;
     })
   ));
   //return all search docs so they can be written to a single file (for this lang)

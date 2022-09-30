@@ -1,6 +1,6 @@
 import * as R from "ramda";
-const {anchor, detailsList, icon, p} = require("../components");
-import {localizer} from "../utils/localization";
+const {anchor, detailsList, icon, p} = require("../../components");
+import {localizer} from "../../utils/localization";
 
 const localizations = {
   authors: {

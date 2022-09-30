@@ -3,7 +3,7 @@ import {alertTypes} from "../components/Alert/Alert";
 import {iconNames} from "../components/Icon/names";
 
 // These are the custom markdoc "tags" we suppport, and the components they map to
-export const tags: Record<string, Schema> = {
+const tags: Record<string, Schema> = {
   thanksIndex: {
     render: "ThanksIndex",
     selfClosing: true,

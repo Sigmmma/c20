@@ -1,5 +1,5 @@
 import * as R from "ramda";
-const {renderMarkdown} = require("../components");
+const {renderMarkdown} = require("../../components");
 
 module.exports = function(ctx, input) {
   const {lang} = ctx;

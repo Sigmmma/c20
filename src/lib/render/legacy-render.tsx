@@ -1,114 +1,15 @@
 import * as R from "ramda";
 import renderToString from "preact-render-to-string";
-import {MdSrc, PageDataLite, PageWrapper, RawHtml} from "./components";
-import Ctx, {RenderContext} from "./components/Ctx/Ctx";
-import Article from "./components/Article/Article";
-import {Lang} from "./utils/localization";
-import HtmlDoc from "./components/HtmlDoc/HtmlDoc";
-import {rawHelper} from "./components";
-import {localizations as thanksLocalizations} from "./components/Article/ThanksList";
-import {slugify} from "./utils/strings";
-import Md from "./components/Md/Md";
-import {parseMdDoc, ValidationError} from "./markdown/markdown";
+import {PageDataLite, PageWrapper} from "../components";
+import Ctx, {RenderContext} from "../components/Ctx/Ctx";
+import Article from "../components/Article/Article";
+import HtmlDoc from "../components/HtmlDoc/HtmlDoc";
+import {rawHelper} from "../components";
+import ThanksList, {localizations as thanksLocalizations} from "../components/Article/ThanksList";
+import {slugify} from "../utils/strings";
+import type {RenderInput, RenderOutput} from "./types";
+import {getAllThanks, createPlaintextPreview} from "./render";
 const features = require("./features");
-
-const PREVIEW_LENGTH_CHARS = 100;
-
-export type PageId = string;
-
-//todo: try to reduce this to minimum possible
-export type PageData = {
-  //from meta
-  title: Record<Lang, string>;
-  keywords?: Record<Lang, string[]>;
-  img?: string;
-  imgCaption?: Record<Lang, MdSrc>;
-  info?: Record<Lang, MdSrc>;
-  stub?: boolean;
-  thanks?: Record<string, Record<Lang, string>>;
-  headingRefs?: Record<string, Record<Lang, string>>;
-  workflowName?: string;
-  toolName?: string;
-  tagName?: string;
-  /** @deprecated convert this to a custom tag */
-  thanksIndex?: boolean;
-  /** @deprecated convert this to a table macro or custom tag */
-  tagIndex?: {
-    game: string;
-    groupId?: boolean;
-    parent?: boolean;
-    noLink?: boolean;
-  };
-  noSearch?: boolean;
-  noList?: boolean;
-  Page404?: boolean;
-
-  //calculated
-  langs: Lang[];
-  pageId: PageId;
-  logicalPath: string[];
-  logicalPathTail: string;
-  localizedPaths: Record<Lang, string>;
-  related?: string[] | PageData[]; //overrides IDs in page.yml
-  //todo: do users of these need ALL subfields?
-  parent?: PageData;
-  children?: PageData[];
-
-  //funcs
-  tryLocalizedPath: (lang: Lang, headingId?: string) => string;
-  tryLocalizedTitle: (lang: Lang) => string;
-};
-
-export type PageIndex = {
-  pages: Record<PageId, PageData>;
-  resolvePageGlobal: (fromPageId: PageId, idTail: string) => PageData;
-};
-
-export type RenderInput = {
-  pageIndex: PageIndex;
-  // Freeform structured data from the src/data directory
-  data: any;
-  baseUrl: string;
-  page: PageData;
-  lang: Lang;
-  md: MdSrc;
-  devMode?: boolean;
-};
-
-export type RenderOutput = {
-  htmlDoc: RawHtml;
-  searchDoc: null | {
-    lang: string;
-    path: string;
-    title: string;
-    text: string;
-    keywords: string;
-  };
-};
-
-function getAllThanks(input: RenderInput): string[] {
-  const allThanksSet = new Set<string>();
-
-  for (let page of Object.values(input.pageIndex.pages)) {
-    const recipients = R.pipe(
-      R.propOr({}, "thanks"),
-      R.keys
-    )(page);
-
-    for (let recipient of recipients) {
-      allThanksSet.add(recipient);
-    }
-  }
-
-  // for (let recipient of Object.keys(input.data.h1.tagThanks)) {
-  //   allThanksSet.add(recipient);
-  // }
-
-  //convert Set to an array and sort alphabetically
-  const allThanks = [...allThanksSet];
-  allThanks.sort((a, b) => a.localeCompare(b));
-  return allThanks;
-}
 
 export default function renderPage(input: RenderInput): RenderOutput {
   const title = input.page.tryLocalizedTitle(input.lang);
@@ -143,8 +44,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
     logicalPath: input.page.logicalPath,
     data: input.data,
     children: navChildren,
-    devMode: input.devMode,
-    allThanks: getAllThanks(input),
+    allThanks: getAllThanks(input.pageIndex),
     resolvePage: (idTail, headingId) => {
       const foundPage = input.pageIndex.resolvePageGlobal(input.page.pageId, idTail);
       return {
@@ -169,14 +69,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
 
   //we only want a plaintext preview if the page is nonempty and isn't just a placeholder "..."
   let bodyPlaintext = combineResults("plaintext", R.join("\n"));
-  let ogDescription: string | undefined = undefined;
-  if (bodyPlaintext && !bodyPlaintext.startsWith("...")) {
-    //trim the plaintext preview to a maximum length
-    bodyPlaintext = bodyPlaintext.replace(/\n/g, " ").trim();
-    ogDescription = bodyPlaintext.length > PREVIEW_LENGTH_CHARS ?
-      `${bodyPlaintext.substring(0, PREVIEW_LENGTH_CHARS)}...` :
-      bodyPlaintext
-  }
+  const ogDescription = createPlaintextPreview(bodyPlaintext);
 
   const ogTags = R.path(["keywords", input.lang], input.page);
 
@@ -196,22 +89,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
     navHeadings = [...navHeadings, {level: 1, id: slugify(thanksHeadingText), title: thanksHeadingText}];
   }
 
-  let body;
-  if (input.md.startsWith("---")) {
-    try {
-      const {content, frontmatter} = parseMdDoc(input.md);
-      body = <Md content={content}/>;
-    } catch (e) {
-      if (input.devMode && e instanceof ValidationError) {
-        console.warn(e.errors);
-        body = <p style="color: red">Markdown source failed validation. See logs</p>;
-      } else {
-        throw e;
-      }
-    }
-  } else {
-    body = <div {...rawHelper(combineResults("html", R.join("\n")))}></div>;
-  }
+  const body = <div {...rawHelper(combineResults("html", R.join("\n")))}></div>;
 
   //represents the full page HTML, ready to write to a file
   const htmlDoc = "<!DOCTYPE html>\n" + renderToString(
@@ -230,7 +108,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
           title={title}
           navChildren={navChildren}
           navRelated={navRelated}
-          navHeadings={navHeadings}
+          navHeadingsLegacy={navHeadings}
         >
           <Article
             stub={input.page.stub}
@@ -239,8 +117,12 @@ export default function renderPage(input: RenderInput): RenderOutput {
             localizedPaths={input.page.localizedPaths}
             thanks={thanks}
             metabox={metaboxProps}
-            body={body}
-          />
+          >
+            {body}
+            {thanks &&
+              <ThanksList thanks={thanks}/>
+            }
+          </Article>
         </PageWrapper>
       </HtmlDoc>
     </Ctx.Provider>

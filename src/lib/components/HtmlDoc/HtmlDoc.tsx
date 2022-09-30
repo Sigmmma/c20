@@ -4,7 +4,7 @@ import {Lang} from "../../utils/localization";
 import {useCtx, useLocalize} from "../Ctx/Ctx";
 
 export type HtmlDocProps = {
-  title: string;
+  title?: string;
   noSearch?: boolean;
   baseUrl: string;
   ogDescription?: string;
@@ -49,7 +49,9 @@ export default function HtmlDoc(props: HtmlDocProps) {
         ) : (
           <meta name="robots" content="index, follow"/>
         )}
-        <meta property="og:title" content={props.title}/>
+        {props.title &&
+          <meta property="og:title" content={props.title}/>
+        }
         <meta property="og:site_name" content={localize("siteName")}/>
         <meta property="og:type" content="website"/>
         <meta property="og:locale" content={localize("locale")}/>
@@ -64,7 +66,7 @@ export default function HtmlDoc(props: HtmlDocProps) {
           <meta property="og:description" content={props.ogDescription}/>
         }
         <meta property="og:image" content={ogImgAbsoluteUrl}/>
-        <title>{props.title} - c20</title>
+        <title>{props.title ? `${props.title} - c20` : "c20"}</title>
         <link rel="preload" type="application/json" as="fetch" href={`/assets/search-index_${lang}.json`}/>
         <link rel="icon" type="image/png" href="/assets/librarian.png"/>
         <link rel="stylesheet" href="/assets/style.css"/>

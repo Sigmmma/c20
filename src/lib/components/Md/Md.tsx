@@ -1,7 +1,6 @@
 import {createElement, Fragment, VNode} from "preact";
-import Markdoc, { RenderableTreeNode } from "@markdoc/markdoc";
-import {parseMdDoc, ValidationError} from "../../markdown/markdown";
-import type {MdSrc} from "..";
+import Markdoc, {type RenderableTreeNode} from "@markdoc/markdoc";
+import {parse, transform, type MdSrc} from "../../markdown/markdown";
 import {useCtx} from "../Ctx/Ctx";
 import {components} from "./components";
 
@@ -17,19 +16,11 @@ export default function Md(props: MdProps) {
   if (!props.src && !props.content) return null;
   const ctx = useCtx();
   let content = props.content;
-  if (!content) {
-    try {
-      content = parseMdDoc(props.src).content;
-    } catch (e) {
-      if (ctx?.devMode && e instanceof ValidationError) {
-        console.warn(e.errors);
-        return <p style="color:red">The markdown is invalid</p>;
-      } else {
-        throw e;
-      }
-    }
+  if (!content && props.src) {
+    const {ast, frontmatter} = parse(props.src);
+    content = transform(ast, ctx, frontmatter);
   }
-  return Markdoc.renderers.react(content, react, {
+  return Markdoc.renderers.react(content ?? null, react, {
     components
   }) as VNode;
 };

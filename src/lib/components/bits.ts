@@ -1,4 +1,4 @@
-import {PageId} from "../render";
+import {PageId} from "../render/types";
 import {RenderContext} from "./Ctx/Ctx";
 import {slugify} from "../utils/strings";
 

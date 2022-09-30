@@ -1,8 +1,13 @@
-import Markdoc, { ValidateError } from "@markdoc/markdoc";
+import Markdoc, {type Node, RenderableTreeNode, ValidateError} from "@markdoc/markdoc";
 import yaml from "js-yaml";
 import tagsConfig from "./tags";
+import nodesConfig from "./nodes";
+import { RenderContext } from "../components/Ctx/Ctx";
+export {default as renderPlaintext} from "./plaintext";
 
-export class ValidationError extends Error {
+export type MdSrc = string;
+
+export class InvalidMarkdownError extends Error {
   readonly errors: ValidateError[];
   constructor(errors: ValidateError[]) {
     super();
@@ -10,24 +15,34 @@ export class ValidationError extends Error {
   }
 }
 
-export function parseMdDoc(mdSrc) {
-  const ast = Markdoc.parse(mdSrc);
+export type ParseResult<F> = {
+  ast: Node;
+  frontmatter?: F;
+};
+
+export function parse<F=any>(mdSrc: MdSrc, fileName?: string): ParseResult<F> {
+  const ast = Markdoc.parse(mdSrc, fileName);
   const frontmatter = ast.attributes.frontmatter ?
-    yaml.load(ast.attributes.frontmatter) as Record<string, unknown> :
-    {};
+    yaml.load(ast.attributes.frontmatter) as F :
+    undefined;
+  return {ast, frontmatter};
+}
+
+export function transform<F=any>(ast: Node, ctx: RenderContext | undefined, frontmatter?: F): RenderableTreeNode | undefined {
   const config = {
     variables: {
       ...frontmatter
     },
-    tags: tagsConfig
+    ctx,
+    tags: tagsConfig,
+    nodes: nodesConfig,
   };
   const errors = Markdoc.validate(ast, config);
   if (errors && errors.length > 0) {
-    throw new ValidationError(errors);
+    throw new InvalidMarkdownError(errors);
   }
-
-  const content = Markdoc.transform(ast, config);
-  return {content, frontmatter}
+  const content = Markdoc.transform(ast, config) ?? undefined;
+  return content;
 }
 
 // export function renderMdDoc(mdSrc) {

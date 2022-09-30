@@ -2,6 +2,7 @@
 title: Acknowledgements
 noSearch: true
 keywords:
+  - thanks
   - credits
   - authors
 ---
@@ -11,7 +12,6 @@ Firstly, we would like to thank the developers and maintainers of Halo over the 
 
 Secondly, most of the community's knowledge comes from the hard work of members who have researched, reverse engineered, experimented, and documented over the years. Our current understanding is built on a mountain of documents, forum posts, tutorials, and conversations. While we can't include everyone, we would at least like to thank the following people for researching and documenting specific topics included here on c20:
 
-## Thank you!
 {% thanksIndex /%}
 
 [sigmmma]: https://github.com/Sigmmma

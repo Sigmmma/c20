@@ -7,8 +7,6 @@ export * from "./markdown";
 export * from "./bits";
 export * from "./structs";
 
-export type RawHtml = string;
-export type MdSrc = string;
 export type PageDataLite = {
   title: string;
   url: string;
@@ -19,7 +17,7 @@ export type PageDataLite = {
  * This helps us shim legacy raw HTML components into TSX.
  * @deprecated
  */
-export function rawHelper(rawHtml: RawHtml) {
+export function rawHelper(rawHtml: string) {
   return {
     dangerouslySetInnerHTML: {__html: rawHtml}
   };
