@@ -1,46 +1,51 @@
 import {rawHelper} from "..";
-import {RawHtml} from "../../render/types";
-import {MdSrc} from "../../markdown/markdown";
-import {useCtx} from "../Ctx/Ctx";
+import {MdSrc} from "../Md/markdown";
 import Md from "../Md/Md";
+import Icon, {type IconName} from "../Icon/Icon";
+import {VNode} from "preact";
 
 export type MetaboxProps = {
-  metaTitle: RawHtml;
-  metaClass: string;
-  img: string;
-  imgCaption: MdSrc;
+  metaTitle?: VNode | string;
+  metaIcon?: IconName;
+  metaIconTitle?: string;
+  metaClass?: string;
+  img?: string;
+  imgCaption?: MdSrc;
   metaSections?: {
-    body: string;
-    cssClass: string;
+    body: VNode | string;
+    cssClass?: string;
   }[];
 }
 
 export default function Metabox(props: MetaboxProps) {
-  const {metaTitle, metaClass, img, imgCaption, metaSections} = props;
-  if (!img && !imgCaption && (!metaSections || metaSections.length == 0)) {
+  if (!props.img && !props.imgCaption && (!props.metaSections || props.metaSections.length == 0)) {
     return null;
   }
 
-  const ctx = useCtx();
-
   return (
     <aside className="metabox">
-      <section className={`header ${metaClass}`}>
-        <p><strong {...rawHelper(metaTitle)}></strong></p>
+      <section className={`header ${props.metaClass}`}>
+        <p>
+          {props.metaIcon &&
+            <Icon name={props.metaIcon} title={props.metaIconTitle}/>
+          }
+          <strong>{props.metaTitle}</strong>
+        </p>
       </section>
-      {img &&
+      {props.img &&
         <section className="img">
-          <a href={img}><img src={img} alt=""/></a>
+          <a href={props.img}><img src={props.img} alt=""/></a>
         </section>
       }
-      {imgCaption &&
+      {props.imgCaption &&
         <section className="caption">
-          <p><em><Md src={imgCaption}/></em></p>
+          <p><em><Md src={props.imgCaption}/></em></p>
         </section>
       }
-      {metaSections?.filter(it => it)?.map(({body, cssClass}) =>
-        <section className={`info ${cssClass}`} {...rawHelper(body)}>
-        </section>
+      {props.metaSections?.filter(it => it)?.map(({body, cssClass}) =>
+        typeof(body) === "string" ?
+          <section className={`info ${cssClass}`} {...rawHelper(body)}></section> :
+          <section className={`info ${cssClass}`}>{body}</section>
       )}
     </aside>
   );

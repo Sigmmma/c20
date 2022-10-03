@@ -1,4 +1,4 @@
-const {renderMarkdown, findHeadings} = require("../../components");
+const {renderMarkdown, findHeadings} = require("../../components/Md/legacy");
 
 module.exports = function(ctx, input) {
   const plaintext = renderMarkdown(ctx, input.md, true);

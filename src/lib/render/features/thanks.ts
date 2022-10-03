@@ -1,7 +1,7 @@
 import {RenderInput} from "../types";
 import * as R from "ramda";
 import { RenderContext } from "../../components/Ctx/Ctx";
-const {renderMarkdownInline} = require("../../components");
+const {renderMarkdownInline} = require("../../components/Md/legacy");
 
 function localizeThanks(ctx, thanks) {
   return R.mapObjIndexed((forLangs, to) => {

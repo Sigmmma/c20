@@ -93,6 +93,10 @@ a[href^="mailto:"]:after {
   }
 }
 
+.metabox .header .feather {
+  margin-right: 0.5em;
+}
+
 small {
   color: var(--fg-faded);
 }

@@ -43,6 +43,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
     pageId: input.page.pageId,
     logicalPath: input.page.logicalPath,
     data: input.data,
+    localData: input.localData,
     children: navChildren,
     allThanks: getAllThanks(input.pageIndex),
     resolvePage: (idTail, headingId) => {
@@ -75,6 +76,8 @@ export default function renderPage(input: RenderInput): RenderOutput {
 
   const metaboxProps = {
     metaTitle: combineResults("metaTitle", R.last),
+    metaIcon: combineResults("metaIcon", R.last),
+    metaIconTitle: combineResults("metaIconTitle", R.last),
     img: combineResults("img", R.last),
     imgCaption: combineResults("imgCaption", R.last),
     metaClass: combineResults("metaClass", R.last),

@@ -1,4 +1,5 @@
-import {IconName} from "./names";
+import {type IconName} from "./names";
+export * from "./names";
 
 export type IconProps = {
   name: IconName;

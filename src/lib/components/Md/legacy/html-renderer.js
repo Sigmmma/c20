@@ -2,13 +2,13 @@ import * as R from "ramda";
 const yaml = require("js-yaml");
 const marked = require("marked");
 const htmlparser2 = require("htmlparser2");
-const {heading, alert, figure, video} = require("../bits");
-const {structDisplay} = require("../structs");
-const {renderTableYaml} = require("../yaml-tables");
+const {heading, alert, figure, video} = require("../../bits");
+const {structDisplay} = require("../../structs");
+const {renderTableYaml} = require("../../DataTable/DataTable");
 const autoAbbreviations = require("./abbreviations");
-const {renderDisambiguationList} = require("../disambiguation-list");
-const {renderChildList} = require("../child-list");
-import highlight from "../../markdown/highlight/highlight";
+const {renderDisambiguationList} = require("../../disambiguation-list");
+const {renderChildList} = require("../../child-list");
+import highlight from "../../CodeBlock/highlight";
 
 module.exports = function(ctx) {
   //https://marked.js.org/#/USING_PRO.md#renderer
@@ -86,7 +86,8 @@ module.exports = function(ctx) {
         const opts = yaml.load(code);
         return structDisplay(ctx, opts).html;
       } else if (extensionType == "table") {
-        return renderTableYaml(ctx, code).html;
+        // return renderTableYaml(ctx, code).html;
+        return "";
       } else if (extensionType == "c20") {
         if (extensionArgs == "disambiguation-list") {
           return renderDisambiguationList(ctx).html;

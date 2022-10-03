@@ -1,8 +1,25 @@
 import {type NodeType, type Schema, Tag} from "@markdoc/markdoc";
-import {slugify} from "../utils/strings";
+import {slugify} from "../../utils/strings";
 import renderPlaintext from "./plaintext";
 
 const nodes: Partial<Record<NodeType, Schema>> = {
+  fence: {
+    attributes: {
+      content: {
+        type: String
+      },
+      language: {
+        type: String
+      }
+    },
+    transform(node, config) {
+      const attributes = node.transformAttributes(config);      
+      return new Tag(
+        "CodeBlock",
+        {language: attributes.language, code: attributes.content}
+      );
+    }
+  },
   heading: {
     children: ["inline"],
     attributes: {

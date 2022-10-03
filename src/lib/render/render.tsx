@@ -6,13 +6,14 @@ import Ctx, {RenderContext} from "../components/Ctx/Ctx";
 import Article from "../components/Article/Article";
 import HtmlDoc from "../components/HtmlDoc/HtmlDoc";
 import Md from "../components/Md/Md";
-import {MdSrc, parse, transform, renderPlaintext} from "../markdown/markdown";
+import {MdSrc, parse, transform, renderPlaintext} from "../components/Md/markdown";
 import {Lang, localizer} from "../utils/localization";
 import ThanksList, {localizations as thanksLocalizations} from "../components/Article/ThanksList";
-import findHeadings from "../markdown/headings";
+import findHeadings from "../components/Md/headings";
 import {RenderableTreeNode} from "@markdoc/markdoc";
 import {NavHeading} from "../components/PageWrapper/TableOfContents";
 import { slugify } from "../utils/strings";
+import { MetaboxProps } from "../components/Metabox/Metabox";
 
 export const PREVIEW_LENGTH_CHARS = 100;
 
@@ -27,6 +28,7 @@ export type RenderInputNew = {
   localizedPaths: Record<Lang, string>;
   lang: Lang;
   otherLangs?: Lang[];
+  localData?: any;
   //non-local:
   data: any;
   pageIndex: PageIndex;
@@ -37,8 +39,11 @@ type PageFrontMatter = {
   thanks?: Record<string, MdSrc>;
   noSearch?: boolean;
   img?: string;
+  imgCaption?: MdSrc;
   keywords?: string[];
   stub?: boolean;
+  info?: MdSrc;
+  tagName?: string;
 };
 
 export function getAllThanks(pageIndex: PageIndex): string[] {
@@ -99,6 +104,7 @@ export default function renderPage(input: RenderInputNew): RenderOutput {
     pageId: input.pageId,    
     logicalPath: input.logicalPath,
     title: front?.title,
+    localData: input.localData,
 
     //todo: these all require non-local information... can we find another way?
     children: undefined, //todo
@@ -112,10 +118,25 @@ export default function renderPage(input: RenderInputNew): RenderOutput {
   
   const navHeadings = getNavHeadings(front, ctx, content);
   const bodyPlaintext = renderPlaintext(ctx, content);
-  const ogDescription = createPlaintextPreview(bodyPlaintext);
 
-  //todo
-  const metaboxProps = undefined;
+  const metaboxProps: MetaboxProps = {
+    img: front?.img,
+    imgCaption: front?.imgCaption,
+    metaSections: [],
+  };
+
+  if (front?.info) {
+    metaboxProps.metaSections!.push({body: <Md src={front.info}/>});
+  }
+
+  if (front?.tagName) {
+    const tagName = front.tagName;
+    const groupId = undefined; //todo
+    metaboxProps.metaTitle = `${tagName}${groupId ? ` (${groupId})` : ""}`;
+    metaboxProps.metaIcon = "sliders";
+    metaboxProps.metaIconTitle = "Tag";
+    metaboxProps.metaClass = "content-tag";
+  }
 
   //todo
   const navChildren = undefined;
@@ -128,7 +149,7 @@ export default function renderPage(input: RenderInputNew): RenderOutput {
         title={front?.title}
         baseUrl={input.baseUrl}
         noSearch={front?.noSearch}
-        ogDescription={ogDescription}
+        ogDescription={createPlaintextPreview(bodyPlaintext)}
         ogImg={front?.img}
         ogOtherLangs={input.otherLangs}
         ogTags={front?.keywords}

@@ -1,6 +1,5 @@
 import {type RenderableTreeNode} from "@markdoc/markdoc";
-import {type RenderContext} from "../components/Ctx/Ctx";
-import {slugify} from "../utils/strings";
+import {type RenderContext} from "../Ctx/Ctx";
 
 export type FoundHeading = {
   level: number;

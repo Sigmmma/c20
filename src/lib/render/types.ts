@@ -1,4 +1,4 @@
-import type {MdSrc} from "../markdown/markdown";
+import type {MdSrc} from "../components/Md/markdown";
 import type {Lang} from "../utils/localization";
 
 export type PageId = string;
@@ -56,6 +56,7 @@ export type RenderInput = {
   pageIndex: PageIndex;
   // Freeform structured data from the src/data directory
   data: any;
+  localData?: any;
   baseUrl: string;
   page: PageData;
   lang: Lang;

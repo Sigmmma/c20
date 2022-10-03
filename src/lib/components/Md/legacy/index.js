@@ -1,6 +1,6 @@
 const marked = require("marked");
 const Entities = require('html-entities').AllHtmlEntities;
-import {slugify} from "../../utils/strings";
+import {slugify} from "../../../utils/strings";
 const buildTokenizer = require("./tokenizer");
 const plaintextRender = require("./plaintext-renderer");
 const htmlRenderer = require("./html-renderer");

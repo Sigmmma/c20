@@ -1,13 +1,12 @@
 import Metabox, {MetaboxProps} from "../Metabox/Metabox";
-import ThanksList from "./ThanksList";
 import Stub from "../Article/Stub";
 import {PageDataLite} from "..";
 import Breadcrumbs from "./Breadcrumbs";
 import {useCtx, useLocalize} from "../Ctx/Ctx";
 import {REPO_URL} from "../../utils/external-urls";
 import {Lang} from "../../utils/localization";
-import { ComponentChildren } from "preact";
-import { MdSrc } from "../../markdown/markdown";
+import {ComponentChildren} from "preact";
+import {MdSrc} from "../Md/markdown";
 
 // keep this sorted with longer root/prefixes listed first as the code looks for the first match.
 const spaces = [

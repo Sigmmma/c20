@@ -7,6 +7,10 @@ export type HeadingProps = {
   children?: ComponentChildren;
 };
 
+export function Jump(props: {id: string, children?: ComponentChildren}) {
+  return <a class="header-anchor" href={`#${props.id}`}>{props.children}</a>;
+};
+
 export default function Heading(props: HeadingProps) {
   const tag = `h${props.level}`;
   const id = props.id;
@@ -14,6 +18,6 @@ export default function Heading(props: HeadingProps) {
   return preact.createElement(
     tag,
     {className: props.cssClass, id},
-    id ? <a class="header-anchor" href={`#${id}`}>{props.children}</a> : props.children
+    id ? <Jump id={id}>{props.children}</Jump> : props.children
   );
 };

@@ -1,5 +1,6 @@
 import * as R from "ramda";
-const {renderMarkdownInline, p, heading, structDisplay, detailsList, defAnchor, html, tagAnchor, alert, icon} = require("../../components");
+const {p, heading, structDisplay, detailsList, defAnchor, html, tagAnchor, alert} = require("../../components");
+const {renderMarkdownInline} = require("../../components/Md/legacy");
 import {slugify} from "../../utils/strings";
 import {localizer} from "../../utils/localization";
 
@@ -141,7 +142,9 @@ module.exports = function(ctx, input) {
     ] : [],
     metaSections,
     searchText: structRender ? structRender.searchTerms.join(" ") : "",
-    metaTitle: `${icon("sliders", "Tag")} ${tagName}${groupId ? ` (${groupId})` : ""}`,
+    metaTitle: `${tagName}${groupId ? ` (${groupId})` : ""}`,
+    metaIcon: "sliders",
+    metaIconTitle: "Tag",
     metaClass: "content-tag",
     thanks: localizeThanks(ctx, ctx.data.tagThanks[game])
   };

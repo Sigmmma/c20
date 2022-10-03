@@ -1,5 +1,5 @@
 import {type RenderableTreeNode} from "@markdoc/markdoc";
-import {type RenderContext} from "../components/Ctx/Ctx";
+import {type RenderContext} from "../Ctx/Ctx";
 
 const padded = (children) => `${children}\n\n`; 
 const block = (children) => `${children}\n`;

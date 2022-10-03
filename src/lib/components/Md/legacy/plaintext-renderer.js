@@ -1,9 +1,9 @@
 import * as R from "ramda";
 const marked = require("marked");
 const yaml = require("js-yaml");
-const {structDisplay} = require("../structs");
-const {renderTableYaml} = require("../yaml-tables");
-const {renderDisambiguationList} = require("../disambiguation-list");
+const {structDisplay} = require("../../structs");
+const {renderTableYaml} = require("../../DataTable/DataTable");
+const {renderDisambiguationList} = require("../../disambiguation-list");
 
 module.exports = function(ctx) {
   const renderer = new marked.Renderer();
@@ -36,7 +36,8 @@ module.exports = function(ctx) {
         const opts = yaml.load(code);
         return structDisplay(ctx, opts).searchTerms.join(" ");
       } else if (extensionType == "table") {
-        return renderTableYaml(ctx, code).searchTerms.join(" ");
+        // return renderTableYaml(ctx, code).searchTerms.join(" ");
+        return "";
       } else if (extensionType == "c20") {
         if (extensionArgs == "disambiguation-list")
           return renderDisambiguationList(ctx).searchTerms.join(" ");

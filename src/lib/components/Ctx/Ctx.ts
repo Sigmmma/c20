@@ -8,8 +8,10 @@ export type RenderContext = {
   pageId: string;
   logicalPath: string[];
   title?: string;
+  localData?: any;
 
   //todo: these all require non-local information... can we find another way?
+  //what about doing these at the transform phase, optionally async?
   children?: PageDataLite[];
   allThanks?: string[];
   resolvePage: (idTail: string, headingId?: string) => PageDataLite;

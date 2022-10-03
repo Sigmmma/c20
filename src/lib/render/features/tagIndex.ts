@@ -1,4 +1,5 @@
-const {heading, html, renderMarkdown, tagAnchor} = require("../../components");
+const {heading, html, tagAnchor} = require("../../components");
+const {renderMarkdown} = require("../../components/Md/legacy");
 import {slugify} from "../../utils/strings";
 import {localizer} from "../../utils/localization";
 

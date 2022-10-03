@@ -187,7 +187,7 @@ async function loadWorkflows() {
     relationshipsPass,
     uniquePass,
     noDeprecatedPass,
-  )(await loadYamlTree(__dirname, true));
+  )(await loadYamlTree(__dirname, {flat: true}));
 
   return {
     getWorkflowItem: (itemName, ctx) => {

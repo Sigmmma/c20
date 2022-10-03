@@ -1,4 +1,4 @@
-import {MdSrc} from "../../markdown/markdown";
+import {MdSrc} from "../Md/markdown";
 import { slugify } from "../../utils/strings";
 import {useLocalize} from "../Ctx/Ctx";
 import Heading from "../Heading/Heading";

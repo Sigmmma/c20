@@ -1,6 +1,6 @@
 import {createElement, Fragment, VNode} from "preact";
 import Markdoc, {type RenderableTreeNode} from "@markdoc/markdoc";
-import {parse, transform, type MdSrc} from "../../markdown/markdown";
+import {parse, transform, type MdSrc} from "./markdown";
 import {useCtx} from "../Ctx/Ctx";
 import {components} from "./components";
 

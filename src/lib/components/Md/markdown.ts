@@ -2,7 +2,7 @@ import Markdoc, {type Node, RenderableTreeNode, ValidateError} from "@markdoc/ma
 import yaml from "js-yaml";
 import tagsConfig from "./tags";
 import nodesConfig from "./nodes";
-import { RenderContext } from "../components/Ctx/Ctx";
+import {RenderContext} from "../Ctx/Ctx";
 export {default as renderPlaintext} from "./plaintext";
 
 export type MdSrc = string;
@@ -39,6 +39,7 @@ export function transform<F=any>(ast: Node, ctx: RenderContext | undefined, fron
   };
   const errors = Markdoc.validate(ast, config);
   if (errors && errors.length > 0) {
+    console.warn(errors);
     throw new InvalidMarkdownError(errors);
   }
   const content = Markdoc.transform(ast, config) ?? undefined;

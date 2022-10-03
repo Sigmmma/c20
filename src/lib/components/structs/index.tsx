@@ -23,7 +23,7 @@ function joinPathId(pathId, next) {
 }
 
 function structDisplay(ctx, opts) {
-  const {renderMarkdown} = require("../markdown"); //todo: untangle circular dep
+  const {renderMarkdown} = require("../Md/legacy"); //todo: untangle circular dep
   const localize = localizer(localizations, ctx.lang);
   const {
     type_defs: typeDefsArg,

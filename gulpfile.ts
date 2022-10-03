@@ -3,8 +3,8 @@ const del = require("del");
 const sass = require("sass");
 const fs = require("fs");
 const path = require("path");
-const buildContent = require("./src/lib/content");
 const {paths, baseUrl} = require("./build-config.json");
+import {buildContent} from "./src/lib/content";
 import runServer from "./src/server";
 
 //the dist directory may contain outdated content, so start clean

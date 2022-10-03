@@ -5,7 +5,7 @@ import * as R from "ramda";
 import renderPageLegacy from "./render/legacy-render";
 import {PageData, PageId, PageIndex, RenderInput} from "./render/types";
 
-import {findPaths} from "./utils/files";
+import {findPaths, loadYamlTree} from "./utils/files";
 import {commonLength} from "./utils/strings";
 import renderPage from "./render/render";
 const loadStructuredData = require("../data");
@@ -175,7 +175,7 @@ async function loadPageMetadata(contentDir) {
 }
 
 //build cross-page APIs and helpers used during rendering
-async function loadPageIndex(contentDir) {
+export async function loadPageIndex(contentDir) {
   const pages = await loadPageMetadata(contentDir);
 
   const resolvePageGlobal = (fromPageId, idTail) => {
@@ -216,8 +216,10 @@ async function renderPages(pageIndex: PageIndex, data: any, buildOpts) {
     page.langs.map(async (lang) => {
       //we can assume page and language is mantained during a page render
 
-      const mdFileName = path.join("./src/content", ...page.logicalPath, lang == "en" ? "readme.md" : `readme_${lang}.md`);
+      const baseDir = path.join("./src/content", ...page.logicalPath)
+      const mdFileName = path.join(baseDir, lang == "en" ? "readme.md" : `readme_${lang}.md`);
       const mdSrc = await fs.readFile(mdFileName, "utf8");
+      const localData = await loadYamlTree(baseDir, {nonRecursive: true});
 
       //render the page to HTML and also gather search index data
       let renderOutput;
@@ -232,12 +234,14 @@ async function renderPages(pageIndex: PageIndex, data: any, buildOpts) {
           localizedPaths: page.localizedPaths,
           otherLangs: page.langs.filter(l => l != lang),
           data: data,
+          localData,
           pageIndex,
         });
       } else {
         renderOutput = renderPageLegacy({
           pageIndex,
           data,
+          localData,
           baseUrl: buildOpts.baseUrl,
           page,
           lang,
@@ -255,7 +259,7 @@ async function renderPages(pageIndex: PageIndex, data: any, buildOpts) {
   return searchDocs.filter(it => it != null);
 }
 
-async function buildContent(buildOpts) {
+export async function buildContent(buildOpts) {
   const pageIndex = loadPageIndex(buildOpts.contentDir);
   const data = loadStructuredData();
 
@@ -267,4 +271,3 @@ async function buildContent(buildOpts) {
   ]);
 }
 
-module.exports = buildContent;
