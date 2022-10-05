@@ -3,48 +3,14 @@ const fs = require("fs");
 const path = require("path");
 import {slugify} from "../../utils/strings";
 import * as R from "ramda";
-import {useCtx} from "../Ctx/Ctx";
+import {RenderContext, useCtx} from "../Ctx/Ctx";
 import {Jump} from "../Heading/Heading";
 import Md from "../Md/Md";
 import CodeBlock from "../CodeBlock/CodeBlock";
+import renderMdPlaintext from "../Md/plaintext";
+import { parse, transform } from "../Md/markdown";
 
 const AUTO_INDEX_THRESHOLD = 100;
-
-function rowId(props: DataTableProps, row): string | undefined {
-  if (props.linkCol === undefined) {
-    return undefined;
-  } else if (props.linkCol === true) {
-    if (!props.linkSlugKey) {
-      return undefined;
-    }
-    return slugify(`${props.id}-${R.path(props.linkSlugKey.split("/"), row)}`);
-  }
-  const linkSlugKey = props.linkSlugKey ?? props.columns[props.linkCol as number].key;
-  return slugify(`${props.id}-${R.path(linkSlugKey.split("/"), row)}`);
-}
-
-function renderCell(ctx, format, content, searchTerms) {
-  format = format ?? "text";
-  if (!content) {
-    // Generates an empty table cell if content is omitted
-    return "";
-  } else if (format === "text") {
-    // searchTerms.push(renderMarkdown(ctx, content, true));
-    return <Md src={content}/>;
-  } else if (format === "code") {
-    // searchTerms.push(renderMarkdownInline(ctx, content, true));
-    return <code>{content}</code>;
-  } else if (format === "anchor") {
-    const target = ctx.resolvePage(content);
-    return <a href={target.url}>{target.title}</a>;
-  } else if (format.startsWith("codeblock")) {
-    // searchTerms.push(content);
-    const syntax = format.split("-")[1]; // Could be undef. That's ok.
-    return <CodeBlock language={syntax} code={content}/>;
-  } else {
-    throw new Error(`unsupported column format: ${format}`);
-  }
-}
 
 export type DataTableProps = {
   dataPath: string | string[];
@@ -66,22 +32,74 @@ export type DataTableProps = {
   }[]
 };
 
-//todo: split out so we can use for plaintext case
-function gatherRows() {
-
+function rowId(tableId: string, props: DataTableProps, row: object, index: number): string {
+  if (props.linkCol === undefined) {
+    return `${tableId}-${index + 1}`;
+  } else if (props.linkCol === true) {
+    if (!props.linkSlugKey) {
+      return `${tableId}-${index + 1}`;
+    }
+    return slugify(`${tableId}-${R.path(props.linkSlugKey.split("/"), row)}`)!;
+  }
+  const linkSlugKey = props.linkSlugKey ?? props.columns[props.linkCol as number].key;
+  return slugify(`${tableId}-${R.path(linkSlugKey.split("/"), row)}`)!;
 }
 
-export default function DataTable(props: DataTableProps) {
-  const ctx = useCtx();
-  if (!ctx) return null;
-
-  const searchTerms = [];
-
-  if (!props.dataPath) {
-    console.warn(`Missing table value: dataPath (from ${ctx?.pageId ?? "unknown"})`);
-    return {htmlResult: null, searchTerms};
+function renderCellPlaintext(ctx, format, content): string {
+  format = format ?? "text";
+  if (!content) {
+    return "";
+  } else if (format === "text") {
+    const {ast, frontmatter} = parse(content);
+    const mdContent = transform(ast, ctx, frontmatter);
+    return renderMdPlaintext(ctx, mdContent)?.trim() ?? "";
+  } else if (format === "code") {
+    return content;
+  } else if (format === "anchor") {
+    const target = ctx.resolvePage(content);
+    return target.title;
+  } else if (format.startsWith("codeblock")) {
+    return content + "\n";
+  } else {
+    throw new Error(`unsupported column format: ${format}`);
   }
+}
 
+function renderCell(ctx, format, content) {
+  format = format ?? "text";
+  if (!content) {
+    return "";
+  } else if (format === "text") {
+    return <Md src={content}/>;
+  } else if (format === "code") {
+    return <code>{content}</code>;
+  } else if (format === "anchor") {
+    const target = ctx.resolvePage(content);
+    return <a href={target.url}>{target.title}</a>;
+  } else if (format.startsWith("codeblock")) {
+    const syntax = format.split("-")[1]; // Could be undef. That's ok.
+    return <CodeBlock language={syntax} code={content}/>;
+  } else {
+    throw new Error(`unsupported column format: ${format}`);
+  }
+}
+
+export function renderPlainText(ctx: RenderContext | undefined, props: DataTableProps): string | undefined {
+  if (!ctx) return undefined;
+  const {rows} = gatherRows(ctx, props);
+  const headerRendered = props.columns.map(col => col.name).join(" ");
+  const rowsRendered = rows.map(row =>
+    props.columns.map(col => {
+      const rowContent = R.path(col.key.split("/"), row);
+      const cell = renderCellPlaintext(ctx, col.format, rowContent);
+      return cell;
+    }).join(" ")
+  ).join("\n");
+  return `${headerRendered}\n${rowsRendered}`;
+};
+
+//todo: split out so we can use for plaintext case
+function gatherRows(ctx: RenderContext, props: DataTableProps): {rows: object[], id: string} {
   const dataPaths = (props.dataPath ?
     (Array.isArray(props.dataPath) ?
       props.dataPath :
@@ -116,13 +134,22 @@ export default function DataTable(props: DataTableProps) {
       R.identity
   )(dataPaths);
 
+  return {rows, id};
+}
+
+export default function DataTable(props: DataTableProps) {
+  const ctx = useCtx();
+  if (!ctx) return null;
+
+  const {rows, id} = gatherRows(ctx, props);
+
   const rowsIndex: {indexKey: string, id: string}[] = [];
   if (props.rowSortKey && props.linkCol && rows.length >= AUTO_INDEX_THRESHOLD) {
     rows.forEach((row, index) => {
       const sortKey = R.path(props.rowSortKey!.split("/"), row);
       const indexKey = sortKey[0].toUpperCase();
       if (rowsIndex.length == 0 || rowsIndex[rowsIndex.length - 1].indexKey != indexKey) {
-        rowsIndex.push({indexKey, id: rowId(props, row) ?? String(index)});
+        rowsIndex.push({indexKey, id: rowId(id, props, row, index)});
       }
     });
   }
@@ -152,14 +179,14 @@ export default function DataTable(props: DataTableProps) {
           <tr>
             {props.columns.map((col, i) =>
               <th style={col.style} colSpan={(props.linkCol === true && i == 0) ? 2 : 1}>
-                {renderCell(ctx, "text", col.name, searchTerms)}
+                {renderCell(ctx, "text", col.name)}
               </th>
             )}
           </tr>
         </thead>
         <tbody>
           {rows.map((row, index) => {
-            const slugId = rowId(props, row) ?? String(index);
+            const slugId = rowId(id, props, row, index);
             return (
               <tr id={slugId}>
                 {props.linkCol === true &&
@@ -167,7 +194,7 @@ export default function DataTable(props: DataTableProps) {
                 }
                 {props.columns.map((col, i) => {
                   const rowContent = R.path(col.key.split("/"), row);
-                  const cell = renderCell(ctx, col.format, rowContent, searchTerms);
+                  const cell = renderCell(ctx, col.format, rowContent);
                   return (
                     <td style={col.style}>
                       {props.linkCol === i ? <Jump id={slugId}>{cell}</Jump> : cell}

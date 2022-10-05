@@ -1,10 +1,7 @@
 import {VNode} from "preact";
 import renderToString from "preact-render-to-string";
-
 export {default as PageWrapper} from "./PageWrapper/PageWrapper";
 export {default as Ctx} from "./Ctx/Ctx";
-export * from "./bits";
-export * from "./structs";
 
 export type PageDataLite = {
   title: string;

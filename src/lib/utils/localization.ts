@@ -1,11 +1,11 @@
 export type Lang = string;
 export type Localizations = Record<string, Record<Lang, any>>;
-export type LocalizeFn<L extends Localizations> = (key: keyof L | string, safe?: boolean) => any;
+export type LocalizeFn<K=string> = (key: K, safe?: boolean) => any;
 
 const reportedMissingKeys = new Set();
 
 //todo: key: keyof L | string is messing with autocomplete but needed for dynamic key lookups
-export function localizer<L extends Localizations>(bundle: L, lang: Lang): LocalizeFn<L> {
+export function localizer<L extends Localizations>(bundle: L, lang: Lang): LocalizeFn<keyof L> {
   return (key, safe) => {
     if (!bundle[key] && !safe) {
       throw new Error(`Missing localizations for key ${String(key)}`);

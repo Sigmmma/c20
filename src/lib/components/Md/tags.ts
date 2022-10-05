@@ -4,9 +4,58 @@ import {iconNames} from "../Icon/names";
 
 // These are the custom markdoc "tags" we suppport, and the components they map to
 const tags: Record<string, Schema> = {
+  figure: {
+    render: "Figure",
+    selfClosing: false,
+    children: ['paragraph', 'tag', 'list'],
+    attributes: {
+      src: {
+        type: String,
+        required: true,
+      },
+      inline: {
+        type: Boolean,
+      },
+      alt: {
+        type: String,
+      }
+    }
+  },
   thanksIndex: {
     render: "ThanksIndex",
     selfClosing: true,
+  },
+  structTable: {
+    render: "StructTable",
+    selfClosing: true,
+    attributes: {
+      entryModule: {
+        type: String,
+        required: true,
+      },
+      entryType: {
+        type: String,
+        required: true,
+      },
+      noEmbed: {
+        type: Array,
+      },
+      showOffsets: {
+        type: Boolean,
+      },
+      noRootExtend: {
+        type: Boolean,
+      },
+      skipPadding: {
+        type: Boolean,
+      },
+      simpleTypes: {
+        type: Boolean,
+      },
+      id: {
+        type: String,
+      },
+    }
   },
   dataTable: {
     render: "DataTable",

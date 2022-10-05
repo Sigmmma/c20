@@ -7,7 +7,7 @@
     "build": "gulp",
     "dev": "gulp dev",
     "start": "node -e 'require(\"./server.js\")()'",
-    "server": "ts-node src/server.ts"
+    "server": "C20_RUN_SERVER=true ts-node src/server.ts"
   },
   "files": [
     "dist",

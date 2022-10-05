@@ -1,5 +1,5 @@
 import * as R from "ramda";
-const {p, heading, structDisplay, detailsList, defAnchor, html, tagAnchor, alert} = require("../../components");
+const {p, heading, structDisplay, detailsList, defAnchor, html, tagAnchor, alert} = require("../../components/bits");
 const {renderMarkdownInline} = require("../../components/Md/legacy");
 import {slugify} from "../../utils/strings";
 import {localizer} from "../../utils/localization";
@@ -52,6 +52,8 @@ module.exports = function(ctx, input) {
   if (!page.tagName) {
     return {};
   }
+
+  return {};
 
   const localize = localizer(localizations, lang);
 

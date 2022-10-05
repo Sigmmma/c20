@@ -1,8 +1,5 @@
 import * as R from "ramda";
 const marked = require("marked");
-const yaml = require("js-yaml");
-const {structDisplay} = require("../../structs");
-const {renderTableYaml} = require("../../DataTable/DataTable");
 const {renderDisambiguationList} = require("../../disambiguation-list");
 
 module.exports = function(ctx) {
@@ -33,8 +30,9 @@ module.exports = function(ctx) {
       if (extensionType == "alert") {
         return renderMarkdown(ctx, code, true);
       } else if (extensionType == "struct") {
-        const opts = yaml.load(code);
-        return structDisplay(ctx, opts).searchTerms.join(" ");
+        // const opts = yaml.load(code);
+        // return structDisplay(ctx, opts).searchTerms.join(" ");
+        return "";
       } else if (extensionType == "table") {
         // return renderTableYaml(ctx, code).searchTerms.join(" ");
         return "";

@@ -55,37 +55,37 @@ function joinAbsolutePath(logicalPath) {
 // }
 
 // returns a set of the suffixes of pages with a given prefix 
-function getSuffixSetWithPrefix(pages, prefix) {
-  const suffixSet = new Set();
-  for (let pageID of Object.keys(pages)) {
-    if (pageID.startsWith(prefix))
-      suffixSet.add(pageID.substr(prefix.length));
-  }
-  return suffixSet;
-}
+// function getSuffixSetWithPrefix(pages, prefix) {
+//   const suffixSet = new Set();
+//   for (let pageID of Object.keys(pages)) {
+//     if (pageID.startsWith(prefix))
+//       suffixSet.add(pageID.substr(prefix.length));
+//   }
+//   return suffixSet;
+// }
 
 // returns an array of all tags shared between game versions 
-function getSharedTags(pages): string[] {
-  const allTags = [
-    getSuffixSetWithPrefix(pages, "/h1/tags/"),
-    getSuffixSetWithPrefix(pages, "/h2/tags/"),
-    getSuffixSetWithPrefix(pages, "/h3/tags/")
-  ];
+// function getSharedTags(pages): string[] {
+//   const allTags = [
+//     getSuffixSetWithPrefix(pages, "/h1/tags/"),
+//     getSuffixSetWithPrefix(pages, "/h2/tags/"),
+//     getSuffixSetWithPrefix(pages, "/h3/tags/")
+//   ];
 
-  let sharedSet = new Set();
-  // loop over all combinations of allTags
-  for (let i = 0; i < allTags.length; i++) {
-    for (let j = i + 1; j < allTags.length; j++) {
-      for (let suffix of allTags[i]) {
-        if (allTags[j].has(suffix)) {
-          sharedSet.add(suffix);
-        }
-      }
-    }
-  }
+//   let sharedSet = new Set();
+//   // loop over all combinations of allTags
+//   for (let i = 0; i < allTags.length; i++) {
+//     for (let j = i + 1; j < allTags.length; j++) {
+//       for (let suffix of allTags[i]) {
+//         if (allTags[j].has(suffix)) {
+//           sharedSet.add(suffix);
+//         }
+//       }
+//     }
+//   }
 
-  return [...sharedSet] as string[];
-}
+//   return [...sharedSet] as string[];
+// }
 
 //return an array of the metadata objects representing each content page
 async function loadPageMetadata(contentDir) {
@@ -118,8 +118,7 @@ async function loadPageMetadata(contentDir) {
     };
   }));
 
-  const sharedTags = getSharedTags(pages);
-  
+  // const sharedTags = getSharedTags(pages);
   // sharedTags.forEach(tag => {
   //   const disambigMeta = generateTagPageInfo(pages, tag, tag.split("/"));
   //   if (!(disambigMeta.pageId in pages)) { // don't override custom pages
@@ -175,11 +174,10 @@ async function loadPageMetadata(contentDir) {
 }
 
 //build cross-page APIs and helpers used during rendering
-export async function loadPageIndex(contentDir) {
+export async function loadPageIndex(contentDir): Promise<PageIndex> {
   const pages = await loadPageMetadata(contentDir);
 
   const resolvePageGlobal = (fromPageId, idTail) => {
-    const fromPage = pages[fromPageId];
     if (!idTail.startsWith("/")) {
       idTail = "/" + idTail;
     }
@@ -214,8 +212,6 @@ async function renderPages(pageIndex: PageIndex, data: any, buildOpts) {
   //for all pages, and for all of their languages...
   const searchDocs = await Promise.all(Object.values(pageIndex.pages).flatMap((page) =>
     page.langs.map(async (lang) => {
-      //we can assume page and language is mantained during a page render
-
       const baseDir = path.join("./src/content", ...page.logicalPath)
       const mdFileName = path.join(baseDir, lang == "en" ? "readme.md" : `readme_${lang}.md`);
       const mdSrc = await fs.readFile(mdFileName, "utf8");

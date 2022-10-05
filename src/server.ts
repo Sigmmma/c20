@@ -29,22 +29,21 @@ export default function runServer() {
     const dataPromise = loadStructuredData();
     const localDataPromise = loadYamlTree(baseDir, {nonRecursive: true});
     const pageIndexPromise = loadPageIndex("./src/content");
-  
-    let mdSrc: string;
-    try {
-      mdSrc = await fs.promises.readFile(mdSrcPath, "utf-8");
-    } catch (err) {
-      res.status(404);
-      res.send(`Page source not found: ${mdSrcPath}`);
-      return;
-    }
+    const mdSrcPromise = fs.promises.readFile(mdSrcPath, "utf-8");
+    // try {
+    //   mdSrc = await ;
+    // } catch (err) {
+    //   res.status(404);
+    //   res.send(`Page source not found: ${mdSrcPath}`);
+    //   return;
+    // }
 
     const renderOutput = renderPage({
       pageId,
       mdFileName: mdSrcPath,
       baseUrl: buildOpts.baseUrl,
       logicalPath,
-      mdSrc,
+      mdSrc: await mdSrcPromise,
       lang,
       // localizedPaths: page.localizedPaths,
       localizedPaths: {
@@ -75,3 +74,7 @@ export default function runServer() {
   app.listen(port);
   console.log(`Serving at http://localhost:${port}/`);
 };
+
+if (process.env.C20_RUN_SERVER) {
+  runServer();
+}

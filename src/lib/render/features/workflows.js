@@ -1,5 +1,5 @@
 import * as R from "ramda";
-const {anchor, detailsList, icon, p} = require("../../components");
+const {anchor, detailsList, icon, p} = require("../../components/bits");
 import {localizer} from "../../utils/localization";
 
 const localizations = {

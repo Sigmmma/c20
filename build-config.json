@@ -6,7 +6,9 @@
       "./src/content/**/readme.md",
       "./src/content/**/readme_*.md",
       "./src/content/**/*.yml",
-      "./src/content/**/*.(mp4|jpg|jpeg|png|gif|ms|dot|neato|fdp|sfdp|twopi|circo)",
+      "./src/content/**/*.(mp4|jpg|jpeg|png|gif|ms|dot|neato|fdp|sfdp|twopi|circo)"
+    ],
+    "srcData": [
       "./src/data/**/*.yml"
     ],
     "srcContentBase": "./src/content",

@@ -1,7 +1,7 @@
-const path = require("path");
-const glob = require("glob");
-const yaml = require("js-yaml");
-const fs = require("fs").promises;
+import path from "path";
+import glob from "glob";
+import yaml from "js-yaml";
+import fs from "fs";
 import * as R from "ramda";
 
 export async function findPaths(globPattern: string): Promise<string[]> {
@@ -17,10 +17,11 @@ export async function findPaths(globPattern: string): Promise<string[]> {
 };
 
 export async function loadYamlFile<T=any>(filePath: string): Promise<T> {
-  return yaml.load(await fs.readFile(filePath, "utf8"));
+  return yaml.load(await fs.promises.readFile(filePath, "utf8"));
 };
 
 type LoadTreeOpts = {flat?: boolean, nonRecursive?: boolean};
+
 export async function loadYamlTree<T=object>(baseDir: string, opts?: LoadTreeOpts): Promise<T> {
   let result = {};
   const files = await findPaths(path.join(baseDir, opts?.nonRecursive ? "*.yml" : "**/*.yml"));

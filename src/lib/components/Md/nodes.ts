@@ -1,8 +1,36 @@
 import {type NodeType, type Schema, Tag} from "@markdoc/markdoc";
 import {slugify} from "../../utils/strings";
+import { RenderContext } from "../Ctx/Ctx";
 import renderPlaintext from "./plaintext";
 
 const nodes: Partial<Record<NodeType, Schema>> = {
+  link: {
+    attributes: {
+      href: {
+        type: String
+      },
+      title: {
+        type: String
+      }
+    },
+    transform(node, config) {
+      const ctx = (config as any).ctx as RenderContext;
+      const attributes = node.transformAttributes(config);
+      const children = node.transformChildren(config);
+      let href = attributes.href;
+      let title = attributes.title;
+      if (href == "") href = "~";
+      if (href?.startsWith("~")) {
+        let [idTail, headingId] = href.slice(1).split("#");
+        if (idTail == "") idTail = slugify(children.map(c => renderPlaintext(ctx, c) ?? "").join(""));
+        if (headingId == "") headingId = undefined;
+        const {title: foundTitle, url} = ctx.resolvePage(idTail, headingId);
+        href = url;
+        title = foundTitle;
+      }
+      return new Tag("a", {...attributes, title, href}, children);
+    }
+  },
   fence: {
     attributes: {
       content: {
@@ -13,7 +41,7 @@ const nodes: Partial<Record<NodeType, Schema>> = {
       }
     },
     transform(node, config) {
-      const attributes = node.transformAttributes(config);      
+      const attributes = node.transformAttributes(config);
       return new Tag(
         "CodeBlock",
         {language: attributes.language, code: attributes.content}

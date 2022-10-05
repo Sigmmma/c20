@@ -109,8 +109,14 @@ export default function renderPage(input: RenderInputNew): RenderOutput {
     //todo: these all require non-local information... can we find another way?
     children: undefined, //todo
     allThanks: getAllThanks(input.pageIndex),
-    resolvePage: (idTail: string, headingId?: string) =>
-      ({pageId: "todo", url: "todo", title: "todo"}), //todo
+    resolvePage: (idTail: string, headingId?: string) => {
+      const foundPage = input.pageIndex.resolvePageGlobal(input.pageId, idTail);
+      return {
+        title: foundPage.tryLocalizedTitle(input.lang),
+        url: foundPage.tryLocalizedPath(input.lang, headingId),
+        pageId: foundPage.pageId,
+      };
+    },
     data: input.data,
   };
 
@@ -174,7 +180,7 @@ export default function renderPage(input: RenderInputNew): RenderOutput {
               <ThanksList thanks={front.thanks}/>
             }
 
-            <pre>
+            <pre style={{color: "green"}}>
               {bodyPlaintext}
             </pre>
           </Article>

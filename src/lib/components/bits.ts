@@ -109,6 +109,7 @@ const alert = (type, body) => html`
   </div>
 `;
 
+/** @deprecated use Figure */
 const figure = (href, caption, inline) => html`
   <figure ${inline && "class=\"inline-figure\""}>
     <a href="${href}">

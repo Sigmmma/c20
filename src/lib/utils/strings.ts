@@ -1,5 +1,5 @@
 //converts a title into a URL- or ID-friendly slug
-export function slugify(title?: string) {
+export function slugify(title?: string): string | undefined {
   return title ? title
     .toLowerCase()
     .replace(/[']/g, "")
