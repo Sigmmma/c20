@@ -1,9 +1,23 @@
 import {type NodeType, type Schema, Tag} from "@markdoc/markdoc";
 import {slugify} from "../../utils/strings";
-import { RenderContext } from "../Ctx/Ctx";
+import {type RenderContext} from "../Ctx/Ctx";
 import renderPlaintext from "./plaintext";
 
 const nodes: Partial<Record<NodeType, Schema>> = {
+  image: {
+    attributes: {
+      src: {
+        type: String
+      },
+      alt: {
+        type: String
+      }
+    },
+    transform(node, config) {
+      const attributes = node.transformAttributes(config);
+      return new Tag("Figure", {...attributes, inline: true});
+    }
+  },
   link: {
     attributes: {
       href: {
@@ -22,7 +36,7 @@ const nodes: Partial<Record<NodeType, Schema>> = {
       if (href == "") href = "~";
       if (href?.startsWith("~")) {
         let [idTail, headingId] = href.slice(1).split("#");
-        if (idTail == "") idTail = slugify(children.map(c => renderPlaintext(ctx, c) ?? "").join(""));
+        if (idTail == "") idTail = slugify(children.map(c => renderPlaintext(ctx, c) ?? "").join(""), true);
         if (headingId == "") headingId = undefined;
         const {title: foundTitle, url} = ctx.resolvePage(idTail, headingId);
         href = url;

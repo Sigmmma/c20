@@ -25,7 +25,7 @@ type_defs:
       pre_compile: true
     comments:
       en: >
-        A version of [shader_transparent_chicago][] which contains an additional
+        A version of [shader_transparent_chicago](~) which contains an additional
         2-stage block for supporting older graphics hardware.
     assert_size: 120
     fields:
@@ -60,9 +60,9 @@ type_defs:
           hek_max_count: 4
         comments:
           en: >
-            **Warning**: Using a shader with extra layers on an [object][] with
+            **Warning**: Using a shader with extra layers on an [object](~) with
             _transparent self occlusion_ enabled causes [Sapien to
-            crash][sapien#crashes].
+            crash](~sapien#crashes).
       - name: maps_4_stage
         type: Block
         type_args:

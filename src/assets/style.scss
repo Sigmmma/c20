@@ -124,6 +124,9 @@ body {
 .content-tag-minor.field-unused {
   background: var(--bg);
 }
+.content-guide {
+  background: $bg-guide;
+}
 
 .sidebar-header {
   display: flex;

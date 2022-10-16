@@ -2,7 +2,7 @@ title:
   en: damage_effect
 img: explosion.jpg
 imgCaption:
-  en: 'The grenade detonation [effect][] includes a damage_effect.'
+  en: 'The grenade detonation [effect](~) includes a damage_effect.'
 tagName: h1/damage_effect
 thanks:
   Mortis:

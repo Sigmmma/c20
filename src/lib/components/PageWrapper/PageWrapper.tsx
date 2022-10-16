@@ -1,14 +1,12 @@
 import Icon from "../Icon/Icon";
 import {useCtx, useLocalize} from "../Ctx/Ctx";
-import {PageDataLite, rawHelper} from "..";
+import {type PageLink} from "../../content";
 import {ComponentChildren} from "preact";
 import {JIF_ISSUE_URL, REPO_URL, DISCORD_URL, LICENSE_URL} from "../../utils/external-urls";
 import DetailsList from "../DetailsList/DetailsList";
 import localizations from "./localizations";
 import TableOfContents, {NavHeading} from "./TableOfContents";
-const toc = require("./toc");
 
-const TOC_MIN_HEADERS = 2;
 const COLLAPSE_CHILD_PAGES = 20;
 const COLLAPSE_RELATED_PAGES = 4;
 const COLLAPSE_MAIN_TOPIC_PAGES = 20;
@@ -46,12 +44,10 @@ const mccToolkitPages = [
 
 export type PageWrapperProps = {
   title?: string;
-  navRelated?: PageDataLite[];
-  navChildren?: PageDataLite[];
+  navRelated?: PageLink[];
+  navChildren?: PageLink[];
   children?: ComponentChildren;
   navHeadings?: NavHeading[];
-  /** @deprecated */
-  navHeadingsLegacy?: any;
 }
 
 export default function PageWrapper(props: PageWrapperProps) {
@@ -78,12 +74,6 @@ export default function PageWrapper(props: PageWrapperProps) {
             <div id="c20-search-mountpoint"></div>
             {props.navHeadings && props.navHeadings.length > 0 &&
               <TableOfContents headings={props.navHeadings}/>
-            }
-            {props.navHeadingsLegacy && props.navHeadingsLegacy.length > TOC_MIN_HEADERS &&
-              <div className="sidebar-toc">
-                <h2 id="table-of-contents"><Icon name="list"/> {localize("toc")}</h2>
-                <div {...rawHelper(toc(props.navHeadingsLegacy))}></div>
-              </div>
             }
             {props.navChildren && props.navChildren.length > 0 &&
               <DetailsList

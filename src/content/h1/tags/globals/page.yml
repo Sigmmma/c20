@@ -5,7 +5,7 @@ tagName: h1/globals
 img: globals.jpg
 imgCaption:
   en: >-
-    The precomputed distortion [cube map][bitmap#cube-maps] of active camouflage
+    The precomputed distortion [cube map](~bitmap#cube-maps) of active camouflage
     is one of many things configured in this tag.
 thanks:
   MosesOfEgypt:

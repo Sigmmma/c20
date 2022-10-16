@@ -2,5 +2,5 @@ title:
   en: unit (abstract tag)
 img: unit.jpg
 imgCaption:
-  en: 'A [biped][] unit driving a [vehicle][] unit'
+  en: 'A [biped](~) unit driving a [vehicle](~) unit'
 tagName: h1/unit

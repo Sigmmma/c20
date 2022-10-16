@@ -52,25 +52,25 @@ value_types:
 
   - type: trigger_volume
     info:
-      en: A "Trigger Volumes" value (a block in the [scenario][] tag)
+      en: A "Trigger Volumes" value (a block in the [scenario](~) tag)
       es:
     ex:
 
   - type: cutscene_flag
     info:
-      en: A "Cutscene Flags" value (a block in the [scenario][] tag)
+      en: A "Cutscene Flags" value (a block in the [scenario](~) tag)
       es:
     ex:
 
   - type: cutscene_camera_point
     info:
-      en: A "Cutscene Camera Points" value (a block in the [scenario][] tag)
+      en: A "Cutscene Camera Points" value (a block in the [scenario](~) tag)
       es:
     ex:
 
   - type: cutscene_title
     info:
-      en: A "Cutscene Titles" value (a block in the [scenario][] tag)
+      en: A "Cutscene Titles" value (a block in the [scenario](~) tag)
       es:
     ex:
 
@@ -78,13 +78,13 @@ value_types:
     info:
       en: >
         A "Cutscene Recording" value that isn't in the public HaloCE
-        [scenario][] tag?
+        [scenario](~) tag?
       es:
     ex:
 
   - type: device_group
     info:
-      en: A "Device Groups" value (a block in the [scenario][] tag)
+      en: A "Device Groups" value (a block in the [scenario](~) tag)
       es:
     ex:
 
@@ -96,19 +96,19 @@ value_types:
 
   - type: ai_command_list
     info:
-      en: A "Command Lists" value (a block in the [scenario][] tag)
+      en: A "Command Lists" value (a block in the [scenario](~) tag)
       es:
     ex:
 
   - type: starting_profile
     info:
-      en: A "Player Starting Profile" value (a block in the [scenario][] tag)
+      en: A "Player Starting Profile" value (a block in the [scenario](~) tag)
       es:
     ex:
 
   - type: conversation
     info:
-      en: A "AI Conversations" value (a block in the [scenario][] tag)
+      en: A "AI Conversations" value (a block in the [scenario](~) tag)
       es:
     ex:
 
@@ -120,7 +120,7 @@ value_types:
 
   - type: hud_message
     info:
-      en: '[HUD message text][hud_message_text]'
+      en: '[HUD message text](~hud_message_text)'
       es:
     ex:
 
@@ -132,43 +132,43 @@ value_types:
 
   - type: sound
     info:
-      en: '[Sound][]'
+      en: '[Sound](~)'
       es:
     ex:
 
   - type: effect
     info:
-      en: '[Effect][]'
+      en: '[Effect](~)'
       es:
     ex:
 
   - type: damage
     info:
-      en: '[Damage Effect][damage_effect]'
+      en: '[Damage Effect](~damage_effect)'
       es:
     ex:
 
   - type: looping_sound
     info:
-      en: '[Sound Looping][sound_looping]'
+      en: '[Sound Looping](~sound_looping)'
       es:
     ex:
 
   - type: animation_graph
     info:
-      en: '[Model Animations][model_animations]'
+      en: '[Model Animations](~model_animations)'
       es:
     ex:
 
   - type: actor_variant
     info:
-      en: '[Actor variant][actor_variant]'
+      en: '[Actor variant](~actor_variant)'
       es:
     ex:
 
   - type: damage_effect
     info:
-      en: '[Damage Effect][damage_effect]'
+      en: '[Damage Effect](~damage_effect)'
       es:
     ex:
 
@@ -212,72 +212,72 @@ value_types:
 
   - type: object
     info:
-      en: '[Object][]'
+      en: '[Object](~)'
       es:
     ex:
 
   - type: unit
     info:
-      en: '[Unit][]'
+      en: '[Unit](~)'
       es:
     ex:
 
   - type: vehicle
     info:
-      en: '[Vehicle][]'
+      en: '[Vehicle](~)'
       es:
     ex:
 
   - type: weapon
     info:
-      en: '[Weapon][]'
+      en: '[Weapon](~)'
       es:
     ex:
 
   - type: device
     info:
-      en: '[Device][]'
+      en: '[Device](~)'
       es:
     ex:
 
   - type: scenery
     info:
-      en: '[Scenery][]'
+      en: '[Scenery](~)'
       es:
     ex:
 
   - type: object_name
     info:
-      en: An "Object Names" value (a block in the [scenario][] tag)
+      en: An "Object Names" value (a block in the [scenario](~) tag)
       es:
     ex:
 
   - type: unit_name
     info:
-      en: A "Bipeds" value (a block in the [scenario][] tag)
+      en: A "Bipeds" value (a block in the [scenario](~) tag)
       es:
     ex:
 
   - type: vehicle_name
     info:
-      en: A "Vehicles" value (a block in the [scenario][] tag)
+      en: A "Vehicles" value (a block in the [scenario](~) tag)
       es:
     ex:
 
   - type: weapon_name
     info:
-      en: A "Weapons" value (a block in the [scenario][] tag)
+      en: A "Weapons" value (a block in the [scenario](~) tag)
       es:
     ex:
 
   - type: device_name
     info:
-      en: A "Device" value (a block in the [scenario][] tag)
+      en: A "Device" value (a block in the [scenario](~) tag)
       es:
     ex:
 
   - type: scenery_name
     info:
-      en: A "Scenery" value (a block in the [scenario][] tag)
+      en: A "Scenery" value (a block in the [scenario](~) tag)
       es:
     ex:

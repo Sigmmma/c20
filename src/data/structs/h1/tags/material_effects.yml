@@ -43,7 +43,7 @@ type_defs:
         comments:
           en: >
             This block has positional entries for every hard-coded material
-            type. These are the same material types seen in [damage_effect][]
+            type. These are the same material types seen in [damage_effect](~)
             modifiers.
       - type: pad
         size: 16

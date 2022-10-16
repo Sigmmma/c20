@@ -30,7 +30,7 @@ export default function DetailsList(props: DetailsListProps) {
   } else {
     return (
       <details>
-        <summary>{props.summary} (${items.length})</summary>
+        <summary>{props.summary} ({items.length})</summary>
         <ul>{items.map(item => <li>{item}</li>)}</ul>
       </details>
     );

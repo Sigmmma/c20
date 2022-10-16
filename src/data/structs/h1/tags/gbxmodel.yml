@@ -77,7 +77,7 @@ type_defs:
       read_only: true
     comments:
       en: >-
-        Stores the render model of [objects][object] in the Gearbox port of the
+        Stores the render model of [objects](~object) in the Gearbox port of the
         game (and its derivatives).
     assert_size: 232
     fields:

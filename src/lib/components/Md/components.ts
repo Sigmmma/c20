@@ -5,6 +5,9 @@ import CodeBlock from "../CodeBlock/CodeBlock";
 import DataTable from "../DataTable/DataTable";
 import StructTable from "../StructTable/StructTable";
 import Figure from "../Figure/Figure";
+import Key from "../Key/Key";
+import RelatedHsc from "../DataTable/RelatedHsc";
+import TagStruct from "../StructTable/TagStruct";
 
 // These are the components needed by tags for rendering
 export const components = {
@@ -15,4 +18,7 @@ export const components = {
   DataTable,
   StructTable,
   Figure,
+  Key,
+  RelatedHsc,
+  TagStruct,
 };

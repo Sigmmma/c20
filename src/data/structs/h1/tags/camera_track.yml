@@ -23,7 +23,7 @@ type_defs:
     comments:
       en: >
         Defines rotational constraints for the game's camera when controlling
-        [bipeds][biped] or occupying [vehicles][vehicle] (e.g. prevents looking
+        [bipeds](~biped) or occupying [vehicles](~vehicle) (e.g. prevents looking
         all the way up or down).
     assert_size: 48
     fields:

@@ -34,7 +34,7 @@ type_defs:
           tag_classes:
             - sky
         comments:
-          en: A reference to a [sky][] tag.
+          en: A reference to a [sky](~) tag.
   ScenarioType:
     class: enum
     size: 2
@@ -42,7 +42,7 @@ type_defs:
       - name: singleplayer
         comments:
           en: >-
-            The map is meant to be used for [singleplayer][map#singleplayer] and
+            The map is meant to be used for [singleplayer](~map#singleplayer) and
             loaded with the `map_name` command. Cannot be played in multiplayer.
       - name: multiplayer
         comments:
@@ -50,7 +50,7 @@ type_defs:
       - name: user_interface
         comments:
           en: >-
-            The map is meant to serve as [ui.map][map#ui] for the game's main
+            The map is meant to serve as [ui.map](~map#ui) for the game's main
             menu.
   ScenarioFlags:
     class: bitfield
@@ -701,7 +701,7 @@ type_defs:
           index_of: structure bsps
           unused: true
         comments:
-          en: The game does not read from this field. It is hidden in [H1A Guerilla][h1a-guerilla].
+          en: The game does not read from this field. It is hidden in [H1A Guerilla](~h1a-guerilla).
       - name: type_0
         type: ScenarioSpawnType
       - name: type_1
@@ -786,7 +786,7 @@ type_defs:
             flag using team index `0`, and blue team `1`. The _facing_ value is
             not used to orient the flag pole (the skull faces in the world's +X
             direction). Be careful not to place the CTF flags on the wrong side
-            of the map or it [may prevent players from spawning][game-modes#ctf].
+            of the map or it [may prevent players from spawning](~game-modes#ctf).
       - name: ctf_vehicle
         comments:
           en: _Unused._
@@ -816,7 +816,7 @@ type_defs:
             Used by Halo to spawn vehicles near players at the start of Race
             games, so you should place up to 16 of them near player spawn points
             used for Race. _Team index_ is not used. The [green marker
-            handle][placeholder] should be pointed in the direction the vehicle
+            handle](~placeholder) should be pointed in the direction the vehicle
             will face forward.
       - name: vegas_bank
         comments:
@@ -876,7 +876,7 @@ type_defs:
           tag_classes:
             - item_collection
         comments:
-          en: Unused by the game. Hidden in [H1A tools][h1a-ek].
+          en: Unused by the game. Hidden in [H1A tools](~h1a-ek).
       - type: pad
         size: 112
   ScenarioNetgameEquipmentFlags:
@@ -2024,8 +2024,8 @@ type_defs:
         comments:
           en: >-
             Sets the title text style. This field is hidden in
-            [H1CE Guerilla][hek/guerilla], but visible in
-            [H1A Guerilla][h1a-guerilla].
+            [H1CE Guerilla](~hek/guerilla), but visible in
+            [H1A Guerilla](~h1a-guerilla).
       - name: justification
         type: ScenarioJustification
       - type: pad
@@ -2035,8 +2035,8 @@ type_defs:
         comments:
           en: >-
             Positioning flags for the title. This field is hidden in
-            [H1CE Guerilla][hek/guerilla], but visible in
-            [H1A Guerilla][h1a-guerilla].
+            [H1CE Guerilla](~hek/guerilla), but visible in
+            [H1A Guerilla](~h1a-guerilla).
       - name: text_color
         type: ColorARGBInt
       - name: shadow_color
@@ -2099,7 +2099,7 @@ type_defs:
             - scenario_structure_bsp
           unused: true
         comments:
-          en: Deprecated field, hidden in [H1A Guerilla][h1a-guerilla].
+          en: Deprecated field, hidden in [H1A Guerilla](~h1a-guerilla).
       - name: won't_use
         type: TagDependency
         meta:
@@ -2107,7 +2107,7 @@ type_defs:
             - scenario_structure_bsp
           unused: true
         comments:
-          en: Deprecated field, hidden in [H1A Guerilla][h1a-guerilla].
+          en: Deprecated field, hidden in [H1A Guerilla](~h1a-guerilla).
       - name: can't_use
         type: TagDependency
         meta:
@@ -2115,7 +2115,7 @@ type_defs:
             - sky
           unused: true
         comments:
-          en: Deprecated field, hidden in [H1A Guerilla][h1a-guerilla].
+          en: Deprecated field, hidden in [H1A Guerilla](~h1a-guerilla).
       - name: skies
         type: Block
         type_args:
@@ -2126,15 +2126,18 @@ type_defs:
           en: >
             A list of skies available to clusters in this scenario's BSP(s).
             Level artists can select which sky is used using the [special
-            material names][h1-materials] `+sky0`, `+sky1`, etc. See also:
-            [multiple skies][h1/tags/sky#multiple-skies].
+            material names](~h1-materials) `+sky0`, `+sky1`, etc. See also:
+            [multiple skies](~h1/tags/sky#multiple-skies).
+
+            The first sky in this block also serves as the
+            [indoor sky](~scenario_structure_bsp#indoor-vs-outdoor-clusters).
       - name: type
         type: ScenarioType
         comments:
           en: >-
             Determines the type of map this scenario represents. This also causes
             map compilers like Tool and invader to apply certain
-            [hardcoded tag patches][tool#hardcoded-tag-patches].
+            [hardcoded tag patches](~tool#hardcoded-tag-patches).
       - name: flags
         type: ScenarioFlags
       - name: child_scenarios
@@ -2189,7 +2192,7 @@ type_defs:
           en: >
             Contains the names of all named objects in the scenario. These names
             are referenced by index for each type of placed object if that object is
-            named. The console command [`debug_objects_names`][developer-console#debugfunctions-debug-objects-names]
+            named. The console command [`debug_objects_names`](~developer-console#debugfunctions-debug-objects-names)
             can display these. The maximum number of names was increased to 640 (from Halo 2)
             in H1A.
       - name: scenery
@@ -2218,11 +2221,11 @@ type_defs:
           en: >
             Special-purpose bipeds placed in the map, typically used for
             scripted characters and cutscenes. AI should instead be spawned
-            using [encounters](#tag-field-encounters), since the [actors][actor]
+            using [encounters](#tag-field-encounters), since the [actors](~actor)
             will be properly difficulty-scaled.
 
             Although there is technically a very high limit to this block,
-            unmodified [Sapien][] only supports up to 128 bipeds being placed.
+            unmodified [Sapien](~) only supports up to 128 bipeds being placed.
       - name: biped_palette
         type: Block
         type_args:
@@ -2242,7 +2245,7 @@ type_defs:
         comments:
           en: >
             Vehicle spawn points, which can be used for both singleplayer and
-            multiplayer modes. [Netgame flags][scenario#tag-field-netgame-flags-type-race-vehicle]
+            multiplayer modes. [Netgame flags](~scenario#tag-field-netgame-flags-type-race-vehicle)
             are used in race mode. The limit was raised to 256 in H1A.
       - name: vehicle_palette
         type: Block
@@ -2381,9 +2384,9 @@ type_defs:
           max: 65534
         comments:
           en: >
-            Cuboid volumes which can be used in [scripts][scripting] to test for the
+            Cuboid volumes which can be used in [scripts](~scripting) to test for the
             presence an object: `(volume_test_object "volume_name" <object>)`.
-            An example use case is [kill volumes][kill-volumes].
+            An example use case is [kill volumes](~kill-volumes).
       - name: recorded_animations
         type: Block
         type_args:
@@ -2398,7 +2401,7 @@ type_defs:
           hek_max_count: 200
         comments:
           en: >-
-            [Multiplayer game mode][game-modes] markers like flag locations, oddball spawns,
+            [Multiplayer game mode](~game-modes) markers like flag locations, oddball spawns,
             and teleporters.
       - name: netgame_equipment
         type: Block
@@ -2578,8 +2581,8 @@ type_defs:
           max: 16
         comments:
           en: >-
-            The list of [BSPs][scenario_structure_bsp] belonging to this
-            scenario that can be [switched between][scenario_structure_bsp#bsp-transitions].
+            The list of [BSPs](~scenario_structure_bsp) belonging to this
+            scenario that can be [switched between](~scenario_structure_bsp#bsp-transitions).
             Multiplayer scenarios typically have just one, while
             singleplayer scenarios often have multiple. This block also
-            contains information used during [map loading][map#map-loading].
+            contains information used during [map loading](~map#map-loading).

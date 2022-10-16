@@ -6,7 +6,7 @@ related:
   - /h1/tags/scenario_structure_bsp/lightmaps
 imgCaption:
   en: |
-    Timberland's [BSP][scenario_structure_bsp] and [scenery][] extracted
+    Timberland's [BSP](~scenario_structure_bsp) and [scenery](~) extracted
     for advanced baked lighting
 info:
   en: |

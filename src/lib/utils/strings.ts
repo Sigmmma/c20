@@ -1,9 +1,9 @@
 //converts a title into a URL- or ID-friendly slug
-export function slugify(title?: string): string | undefined {
+export function slugify(title?: string, allowUnderscore?: boolean): string | undefined {
   return title ? title
     .toLowerCase()
     .replace(/[']/g, "")
-    .replace(/[^\p{L}0-9]/gu, " ")
+    .replace(allowUnderscore ? /[^\p{L}0-9_]/gu : /[^\p{L}0-9]/gu, " ")
     .split(" ")
     .filter(part => part.length > 0)
     .join("-") : undefined;

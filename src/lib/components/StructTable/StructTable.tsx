@@ -1,15 +1,16 @@
-const {instantiateType, buildTypeDefs} = require("../../../data/structs");
+const {instantiateType, buildTypeDefs, walkTypeDefs} = require("../../../data/structs");
 import {slugify} from "../../utils/strings";
 import localizations from "./localizations";
 import Hex from "../Hex/Hex";
 import {RenderContext, useCtx, useLocalize} from "../Ctx/Ctx";
-import { LocalizeFn } from "../../utils/localization";
-import { VNode } from "preact";
-import { Jump } from "../Heading/Heading";
+import {type LocalizeFn} from "../../utils/localization";
+import {type VNode} from "preact";
+import {Jump} from "../Heading/Heading";
 import Md from "../Md/Md";
 import DetailsList from "../DetailsList/DetailsList";
 import {renderPlaintextFromSrc} from "../Md/plaintext";
-const {walkTypeDefs} = require("../../../data/structs");
+import Wat from "../Wat/Wat";
+import {type FoundHeading} from "../Md/headings";
 
 type LocalizerKey = keyof typeof localizations;
 type Localizer = LocalizeFn<LocalizerKey>;
@@ -189,7 +190,7 @@ function renderStructAsTable(seenTypes, typeDefs, props: StructTableProps, ctx: 
                 <td class="field-type">
                   {renderStructFieldType(ctx, props, field, instantiatedFieldType, localize)}
                   {embeddedType && hasSeenType &&
-                    <sup><a href={`#${slugify(hasSeenType.join("-"))}`}>?</a></sup>
+                    <Wat href={`#${slugify(hasSeenType.join("-"))}`}/>
                   }
                 </td>
                 <td class="comments">{renderComments(ctx, field, localize)}</td>
@@ -288,10 +289,10 @@ export type StructTableProps = {
 };
 
 //note that this doesnt render fields in a depth-first order, it just needs to work for search
-export function renderPlainText(ctx: RenderContext | undefined, props: StructTableProps): string {
+export function renderPlaintext(ctx: RenderContext | undefined, props: StructTableProps): string {
   if (!ctx) return "";
   const lines: string[] = [];
-  const modules = {...ctx.data.structs, local: ctx.localData};
+  const modules = ctx.data.structs;
   walkTypeDefs(props.entryType, props.entryModule, modules, props, (typeDef) => {
     if (typeDef.comments) {
       lines.push(renderPlaintextFromSrc(ctx, typeDef.comments[ctx.lang]) ?? "")
@@ -315,12 +316,40 @@ export function renderPlainText(ctx: RenderContext | undefined, props: StructTab
   return lines.join("\n");
 };
 
+export function headings(ctx: RenderContext | undefined, props: StructTableProps): FoundHeading[] {
+  if (!ctx) return [];
+  const initialImports = {[props.entryModule]: [props.entryType]};
+  const modules = ctx.data.structs;
+  const typeDefs = buildTypeDefs(initialImports, modules);
+  const instantiatedType = instantiateType(typeDefs, {type: props.entryType}, null, {noRootExtend: props.noRootExtend});
+  let headings: FoundHeading[] = [];
+  
+  if (instantiatedType.typeDef.class == "struct") {
+    instantiatedType.typeDef.fields.forEach(field => {
+      const fieldPathId = [props.id ?? props.entryType, field.name];
+      const instantiatedFieldType = instantiateType(typeDefs, field, instantiatedType.type_args, {});
+      const {typeDef: fieldTypeDef, typeName: fieldTypeName, type_args: fieldTypeArgs} = instantiatedFieldType;
+
+      let embeddedType: any = undefined;
+      if (!props.noEmbed?.includes(fieldTypeName) && !(field.meta && field.meta.unused)) {
+        if (fieldTypeArgs && (fieldTypeName == "Block" || fieldTypeName == "ptr32" || fieldTypeName == "ptr64")) {
+          embeddedType = instantiateType(typeDefs, {type: Object.values(fieldTypeArgs)[0]}, instantiatedType.type_args, {});
+          if (embeddedType.typeDef.class) {
+            headings.push({title: field.name.replace(/_/g, " "), id: slugify(fieldPathId.join("-"))!, level: 2});
+          }
+        }
+      }
+    });
+  }
+  return headings;
+};
+
 export default function StructTable(props: StructTableProps) {
   const ctx = useCtx();
   if (!ctx) return null;
 
   const initialImports = {[props.entryModule]: [props.entryType]};
-  const modules = {...ctx.data.structs, local: ctx.localData};
+  const modules = ctx.data.structs;
   const typeDefs = buildTypeDefs(initialImports, modules);
   const instantiatedType = instantiateType(typeDefs, {type: props.entryType}, null, {noRootExtend: props.noRootExtend});
 

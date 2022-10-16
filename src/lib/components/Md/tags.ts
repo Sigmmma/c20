@@ -1,6 +1,7 @@
-import {Schema} from "@markdoc/markdoc";
+import {Schema, Tag} from "@markdoc/markdoc";
 import {alertTypes} from "../Alert/Alert";
 import {iconNames} from "../Icon/names";
+import {onlyTypes} from "../DataTable/RelatedHsc";
 
 // These are the custom markdoc "tags" we suppport, and the components they map to
 const tags: Record<string, Schema> = {
@@ -21,9 +22,31 @@ const tags: Record<string, Schema> = {
       }
     }
   },
+  key: {
+    render: "Key",
+    selfClosing: true,
+    attributes: {
+      primary: {
+        type: String,
+        required: true,
+        render: "input",
+      }
+    }
+  },
   thanksIndex: {
     render: "ThanksIndex",
     selfClosing: true,
+  },
+  tagStruct: {
+    render: "TagStruct",
+    selfClosing: true,
+    attributes: {
+      primary: {
+        type: String,
+        required: true,
+        render: "tag",
+      }
+    }
   },
   structTable: {
     render: "StructTable",
@@ -57,6 +80,26 @@ const tags: Record<string, Schema> = {
       },
     }
   },
+  relatedHsc: {
+    render: "RelatedHsc",
+    selfClosing: true,
+    attributes: {
+      game: {
+        type: String,
+      },
+      id: {
+        type: String,
+      },
+      tagFilter: {
+        type: String,
+        required: true,
+      },
+      only: {
+        type: String,
+        matches: [...onlyTypes],
+      },
+    },
+  },
   dataTable: {
     render: "DataTable",
     selfClosing: true,
@@ -74,8 +117,14 @@ const tags: Record<string, Schema> = {
       rowSortReverse: {
         type: Boolean,
       },
-      rowTagFilter: {
+      rowFilterKey: {
         type: String,
+      },
+      rowFilterValue: {
+        type: String,
+      },
+      rowFilterNot: {
+        type: Boolean,
       },
       linkCol: {
         type: [Boolean, Number],

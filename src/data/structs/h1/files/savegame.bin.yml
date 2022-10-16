@@ -22,6 +22,6 @@ type_defs:
         count: 32
         comments:
           en: >
-            An ASCII-encoded [scenario][] tag path, null-terminated and 32
+            An ASCII-encoded [scenario](~) tag path, null-terminated and 32
             characters max. An example value is `levels\b30\b30` for The Silent
             Cartographer.

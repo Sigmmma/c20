@@ -4,7 +4,7 @@ img: proj.jpg
 imgCaption:
   en: >-
     Projectiles can be given a render model and a variety of effects and
-    attachments, like [contrails][contrail] and [lights][light].
+    attachments, like [contrails](~contrail) and [lights](~light).
 stub: true
 tagName: h1/projectile
 thanks:

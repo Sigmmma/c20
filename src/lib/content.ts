@@ -1,269 +1,210 @@
-import yaml from "js-yaml";
-import fsn from "fs";
 import path from "path";
+import fs from "fs";
 import * as R from "ramda";
-import renderPageLegacy from "./render/legacy-render";
-import {PageData, PageId, PageIndex, RenderInput} from "./render/types";
+import {parse} from "./components/Md/markdown";
+import {findPaths, parseLangSuffix} from "./utils/files";
+import {commonLength } from "./utils/strings";
+import {type Node} from "@markdoc/markdoc";
+import {type MdSrc} from "./components/Md/markdown";
+import {type Lang} from "./utils/localization";
+import { BuildOpts } from "../build";
 
-import {findPaths, loadYamlTree} from "./utils/files";
-import {commonLength} from "./utils/strings";
-import renderPage from "./render/render";
-const loadStructuredData = require("../data");
-const buildSitemap = require("./sitemap");
-const buildResources = require("./resources");
-const buildSearchIndex = require("./search");
+export type PageId = string;
 
-const fs = fsn.promises;
+export type PageFrontMatter = {
+  title?: string;
+  about?: string;
+  img?: string;
+  caption?: MdSrc;
+  info?: MdSrc;
+  thanks?: Record<string, MdSrc>;
+  headingRefs?: Record<string, string>;
+  noSearch?: boolean;
+  keywords?: string[];
+  stub?: boolean;
+  related?: string[];
+};
 
-function joinAbsolutePath(logicalPath) {
+export type PageLink = {
+  title: string;
+  url: string;
+  pageId: string;
+};
+
+//todo: try to reduce this to minimum possible
+export type PageData = {
+  //from finding the file
+  // pageId: PageId;
+  logicalPath: string[];
+  logicalPathTail: string;
+  //from reading the file
+  front: PageFrontMatter;
+  ast: Node;
+};
+
+export type PageIndex = Record<PageId, Record<Lang, PageData>>;
+
+export function logicalToPageId(logicalPath: string[]): PageId {
   return "/" + logicalPath.join("/");
-}
+};
 
-// Generate a tag disambiguation page
-// function generateTagPageInfo(pages, suffix, logicalPathSuffix) {
-//   const genericTagsPath = ["general", "tags"]
+export function pageIdToLogical(pageId: PageId): string[] {
+  return pageId.split("/").filter(s => s != "");
+};
 
-//   let name = logicalPathSuffix[logicalPathSuffix.length - 1];
-//   const title = {
-//     en: name + " (disambiguation)",
-//     es: name + " (desambiguación)" // should be checked by a Spanish speaker
-//   };
+export function getPageBaseDir(pageId: PageId, buildOpts: BuildOpts): string {
+  return path.join(buildOpts.contentDir, ...pageIdToLogical(pageId));
+};
 
-//   const logicalPath = genericTagsPath.concat(logicalPathSuffix)
-//   const pageId = joinAbsolutePath(logicalPath);
+export function getPageMdSrcPath(baseDir: string, lang: Lang): string {
+  return path.join(baseDir, lang == "en" ? "readme.md" : `readme_${lang}.md`);
+};
 
-//   const tagPathNames = [" (Halo 1)", " (Halo 2)", " (Halo 3)"];
-//   const tagPaths = ["/h1/tags/", "/h2/tags/", "/h3/tags/"];
-
-//   let otherLocations: any[] = [];
-//   for (let i = 0; i < tagPathNames.length; i++) {
-//     const path = (tagPaths[i] + suffix);
-//     if (path in pages) {
-//       otherLocations.push({name: suffix + tagPathNames[i], target: path});
-//     }
-//   }
-  
-//   return {
-//     title: title,
-//     stub: true,
-//     noSearch: true,
-//     langs: ["en", "es"],
-//     pageId,
-//     logicalPath,
-//     disambiguationList: otherLocations,
-//   }
-// }
-
-// returns a set of the suffixes of pages with a given prefix 
-// function getSuffixSetWithPrefix(pages, prefix) {
-//   const suffixSet = new Set();
-//   for (let pageID of Object.keys(pages)) {
-//     if (pageID.startsWith(prefix))
-//       suffixSet.add(pageID.substr(prefix.length));
-//   }
-//   return suffixSet;
-// }
-
-// returns an array of all tags shared between game versions 
-// function getSharedTags(pages): string[] {
-//   const allTags = [
-//     getSuffixSetWithPrefix(pages, "/h1/tags/"),
-//     getSuffixSetWithPrefix(pages, "/h2/tags/"),
-//     getSuffixSetWithPrefix(pages, "/h3/tags/")
-//   ];
-
-//   let sharedSet = new Set();
-//   // loop over all combinations of allTags
-//   for (let i = 0; i < allTags.length; i++) {
-//     for (let j = i + 1; j < allTags.length; j++) {
-//       for (let suffix of allTags[i]) {
-//         if (allTags[j].has(suffix)) {
-//           sharedSet.add(suffix);
-//         }
-//       }
-//     }
-//   }
-
-//   return [...sharedSet] as string[];
-// }
-
-//return an array of the metadata objects representing each content page
-async function loadPageMetadata(contentDir) {
-  //we're going to build a map of page ids => page metadata
-  const pages: Record<PageId, PageData> = {};
-
-  //find all page.yml files under the content root -- each will become a page
-  const pageMetaFiles = await findPaths(path.join(contentDir, "**", "page.yml"));
-
-  //load all page YAML files in a first pass
-  await Promise.all(pageMetaFiles.map(async (yamlFilePath) => {
-    const pageMeta = yaml.safeLoad(await fs.readFile(yamlFilePath, "utf8"));
-    if (!pageMeta.title) {
-      throw new Error(`Page does not define any title(s): ${yamlFilePath}`);
-    }
-
-    const {dir: dirPath} = path.parse(yamlFilePath);
-    const contentDirDepth = path.normalize(contentDir).split(path.sep).length;
-    const logicalPath = path.normalize(dirPath).split(path.sep).slice(contentDirDepth);
-    const langs = Object.keys(pageMeta.title);
-    const pageId = joinAbsolutePath(logicalPath);
-    const logicalPathTail = logicalPath[logicalPath.length - 1];
-
-    pages[pageId] = {
-      ...pageMeta,
-      langs,
-      pageId,
-      logicalPath,
-      logicalPathTail,
-    };
-  }));
-
-  // const sharedTags = getSharedTags(pages);
-  // sharedTags.forEach(tag => {
-  //   const disambigMeta = generateTagPageInfo(pages, tag, tag.split("/"));
-  //   if (!(disambigMeta.pageId in pages)) { // don't override custom pages
-  //     pages[disambigMeta.pageId] = disambigMeta as any; //generateTagPageInfo doesn't make full contexts
-  //   }
-  // });
-
-  //do a second pass to build inter-page relationships
-  Object.values(pages).forEach(page => {
-    //parent-child relationships
-    const parentLogicalPath = page.logicalPath.slice();
-    while (parentLogicalPath.pop()) {
-      const parentId = joinAbsolutePath(parentLogicalPath);
-      const parent = pages[parentId];
-      if (parent) {
-        page.parent = parent;
-        if (!page.noList) // if the child listing isn't disabled add the page to it
-          parent.children = R.append(page, parent.children);
-        break;
-      }
-    }
-    //ensure two-way related pages
-    if (page.related) {
-      page.related.forEach((relatedId) => {
-        const relatedPage = pages[relatedId];
-        if (!relatedPage) {
-          throw new Error(`No related page found: ${relatedId} from ${page.pageId}`);
-        }
-        relatedPage.related = R.union([page.pageId], relatedPage.related);
-      });
-    }
-  });
-
-  //final pass for properties reliant on above passes
-  Object.values(pages).forEach(page => {
-    //localize the URL for each language
-    page.localizedPaths = Object.fromEntries(page.langs.map(lang =>
-      [lang, joinAbsolutePath(lang == "en" ? page.logicalPath : [lang, ...page.logicalPath])]
-    ));
-    page.tryLocalizedPath = (lang, headingId) => {
-      const path = page.localizedPaths[lang] ?? page.localizedPaths["en"];
-      headingId = R.pathOr(headingId, ["headingRefs", headingId, lang], page);
-      return headingId ? `${path}#${headingId}` : path;
-    };
-    page.tryLocalizedTitle = (lang) => page.title[lang] || page.title["en"];
-    //convert the related set from IDs to actual references
-    if (page.related) {
-      page.related = page.related.map(id => pages[id]);
-    }
-  });
-
-  return pages;
+function pageIdToUrl(pageId: PageId, lang: Lang, headingId?: string): string {
+  const path = lang == "en" ? pageId : `${pageId}/${lang}.html`;
+  return headingId ? `${path}#${headingId}` : path;
 }
 
 //build cross-page APIs and helpers used during rendering
 export async function loadPageIndex(contentDir): Promise<PageIndex> {
-  const pages = await loadPageMetadata(contentDir);
+  //we're going to build a map of page ids => page metadata
+  const pages: Record<PageId, Record<Lang, PageData>> = {};
 
-  const resolvePageGlobal = (fromPageId, idTail) => {
-    if (!idTail.startsWith("/")) {
-      idTail = "/" + idTail;
+  //find all page.yml files under the content root -- each will become a page
+  const mdFiles = await findPaths(path.join(contentDir, "**", "readme*.md"));
+
+  //load all page YAML files in a first pass
+  await Promise.all(mdFiles.map(async (mdFilePath) => {
+    const {dir: dirPath, name: fileName} = path.parse(mdFilePath);
+    const contentDirDepth = path.normalize(contentDir).split(path.sep).length;
+    const logicalPath = path.normalize(dirPath).split(path.sep).slice(contentDirDepth);
+    const pageId = logicalToPageId(logicalPath);
+    const logicalPathTail = logicalPath[logicalPath.length - 1];
+    const lang = parseLangSuffix(fileName) ?? "en";
+
+    // const langs = Object.keys(pageMeta.title);
+    const mdSrc = await fs.promises.readFile(mdFilePath, "utf8");
+    if (mdSrc.startsWith("---")) {
+      const {ast, frontmatter: front} = parse<PageFrontMatter>(mdSrc, mdFilePath);
+      if (front) {
+        if (!pages[pageId]) pages[pageId] = {};
+        pages[pageId][lang] = {
+          front,
+          ast,
+          logicalPath,
+          logicalPathTail,
+        };
+      }
     }
+  }));
 
-    const candidatePages = Object.values(pages).filter(otherPage => otherPage.pageId.endsWith(idTail));
-    if (candidatePages.length == 0) {
-      throw new Error(`No page exists with logical path tail '${idTail}' (from logical path '${fromPageId}')`);
-    } else if (candidatePages.length > 1) {
-      //there are multiple matching pages -- try disambiguating by picking best match
-      candidatePages.sort((a, b) => {
-        const commonA = commonLength(a.pageId, fromPageId);
-        const commonB = commonLength(b.pageId, fromPageId);
-        return commonB - commonA;
+  return pages;
+};
+
+export function resolvePageGlobal(pageIndex: PageIndex, lang: Lang, fromPageId: PageId, idTail: string, headingId?: string): PageLink | undefined {
+  if (!idTail.startsWith("/")) {
+    idTail = "/" + idTail;
+  }
+
+  const candidatePageIds = Object.keys(pageIndex).filter(otherPageId => otherPageId.endsWith(idTail));
+  if (candidatePageIds.length == 0) {
+    // console.warn(`No page exists with logical path tail '${idTail}' (from logical path '${fromPageId}')`);
+    return undefined;
+  } else if (candidatePageIds.length > 1) {
+    //there are multiple matching pages -- try disambiguating by picking best match
+    candidatePageIds.sort((a, b) => {
+      const commonA = commonLength(a, fromPageId);
+      const commonB = commonLength(b, fromPageId);
+      return commonB - commonA;
+    });
+    const firstChoice = candidatePageIds[0];
+    const secondChoice = candidatePageIds[1];
+    const commonFirst = commonLength(firstChoice, fromPageId);
+    const commonSecond = commonLength(secondChoice, fromPageId);
+    if (commonFirst > commonSecond) {
+      return createPageLink(pageIndex, firstChoice, lang, headingId);
+    } else {
+      console.warn(`Path tail '${idTail}' is ambiguous from page '${fromPageId}':\n${candidatePageIds.join("\n")}`);
+      return undefined;
+    }
+  }
+  return createPageLink(pageIndex, candidatePageIds[0], lang, headingId);
+};
+
+export function getAllThanks(pageIndex: PageIndex, lang: Lang): string[] {
+  const allThanksSet = new Set<string>();
+  for (let pageDataByLang of Object.values(pageIndex)) {
+    const thanks = pageDataByLang[lang]?.front?.thanks;
+    if (thanks) {
+      Object.keys(thanks).forEach(recipient => {
+        allThanksSet.add(recipient);
       });
-      const firstChoice = candidatePages[0];
-      const secondChoice = candidatePages[1];
-      const commonFirst = commonLength(firstChoice.pageId, fromPageId);
-      const commonSecond = commonLength(secondChoice.pageId, fromPageId);
-      if (commonFirst > commonSecond) {
-        return firstChoice;
-      }
-      const matchedIds = candidatePages.map(otherPage => otherPage.pageId).join("\n");
-      throw new Error(`Logical path tail '${idTail}' was ambiguous (from path '${fromPageId})':\n${matchedIds}`);
     }
-    return candidatePages[0];
+  }
+  //convert Set to an array and sort alphabetically
+  const allThanks = [...allThanksSet];
+  allThanks.sort((a, b) => a.localeCompare(b));
+  return allThanks;
+};
+
+export function tryLocalizedPath(pageIndex: PageIndex, pageId: PageId, lang: Lang, headingId?: string) {
+  const pageDataByLang = pageIndex[pageId];
+  const usedLang = pageDataByLang[lang] ? lang : "en";
+  const pageData = pageDataByLang[usedLang];
+  const localizedHeadingId = R.pathOr(headingId, ["headingRefs", headingId], pageData.front);
+  return pageIdToUrl(pageId, usedLang, localizedHeadingId);
+};
+
+function tryLocalizedTitle(pageIndex: PageIndex, pageId: PageId, lang: Lang): string {
+  const pageDataByLang = pageIndex[pageId];
+  return (pageDataByLang[lang] ?? pageDataByLang["en"])?.front?.title ?? "Untitled";
+}
+
+function createPageLink(pageIndex: PageIndex, pageId: string, lang: Lang, headingId?: string): PageLink | undefined {
+  if (!pageIndex[pageId]) return undefined;
+  return {
+    title: tryLocalizedTitle(pageIndex, pageId, lang),
+    url: tryLocalizedPath(pageIndex, pageId, lang, headingId),
+    pageId,
   };
-
-  return {pages, resolvePageGlobal};
 }
 
-async function renderPages(pageIndex: PageIndex, data: any, buildOpts) {
-  //for all pages, and for all of their languages...
-  const searchDocs = await Promise.all(Object.values(pageIndex.pages).flatMap((page) =>
-    page.langs.map(async (lang) => {
-      const baseDir = path.join("./src/content", ...page.logicalPath)
-      const mdFileName = path.join(baseDir, lang == "en" ? "readme.md" : `readme_${lang}.md`);
-      const mdSrc = await fs.readFile(mdFileName, "utf8");
-      const localData = await loadYamlTree(baseDir, {nonRecursive: true});
+export function getPageOtherLangs(pageIndex: PageIndex, pageId: string, lang: Lang): Record<Lang, PageLink> {
+  const others = {};
+  Object.entries(pageIndex[pageId]).forEach(([otherLang, otherPageData]) => {
+    if (otherLang != lang) {
+      others[otherLang] = createPageLink(pageIndex, pageId, otherLang);
+    }
+  });
+  return others;
+};
 
-      //render the page to HTML and also gather search index data
-      let renderOutput;
-      if (mdSrc.startsWith("---")) {
-        renderOutput = renderPage({
-          pageId: page.pageId,
-          mdFileName: mdFileName,
-          baseUrl: buildOpts.baseUrl,
-          logicalPath: page.logicalPath,
-          mdSrc,
-          lang,
-          localizedPaths: page.localizedPaths,
-          otherLangs: page.langs.filter(l => l != lang),
-          data: data,
-          localData,
-          pageIndex,
-        });
-      } else {
-        renderOutput = renderPageLegacy({
-          pageIndex,
-          data,
-          localData,
-          baseUrl: buildOpts.baseUrl,
-          page,
-          lang,
-          md: mdSrc,
-        });
-      }
+export function getPageChildren(pageIndex: PageIndex, pageId: string, lang: Lang): PageLink[] {
+  const children: PageLink[] = [];
+  Object.entries(pageIndex).forEach(([cPageId, cPageDataByLang]) => {
+    const cLogical = pageIdToLogical(cPageId);
+    if (cLogical.length == 0) return;
+    if (logicalToPageId(cLogical.slice(0, -1)) == pageId) {
+      children.push(createPageLink(pageIndex, cPageId, lang)!);
+    }
+  });
+  return children;
+};
 
-      //write the HTML content out to a file
-      await fs.mkdir(path.join(buildOpts.outputDir, page.localizedPaths[lang]), {recursive: true});
-      await fs.writeFile(path.join(buildOpts.outputDir, page.localizedPaths[lang], "index.html"), renderOutput.htmlDoc, "utf8");
-      return renderOutput.searchDoc;
-    })
-  ));
-  //return all search docs so they can be written to a single file (for this lang)
-  return searchDocs.filter(it => it != null);
-}
+export function getPageParents(pageIndex: PageIndex, pageId: PageId, lang: Lang): PageLink[] {
+  const parents: PageLink[] = [];
+  const parentLogicalPath = pageIdToLogical(pageId);
+  while (parentLogicalPath.pop()) {
+    const parentId = logicalToPageId(parentLogicalPath);
+    const parent = pageIndex[parentId];
+    if (parent) {
+      parents.unshift(createPageLink(pageIndex, parentId, lang)!);
+    }
+  }
+  return parents;
+};
 
-export async function buildContent(buildOpts) {
-  const pageIndex = loadPageIndex(buildOpts.contentDir);
-  const data = loadStructuredData();
-
-  await Promise.all([
-    buildResources(await pageIndex, buildOpts),
-    renderPages(await pageIndex, await data, buildOpts)
-      .then(searchDocs => buildSearchIndex(searchDocs, buildOpts)),
-    buildSitemap(await pageIndex, buildOpts)
-  ]);
-}
-
+export function getPageRelated(pageIndex: PageIndex, pageId: PageId, lang: Lang): PageLink[] {
+  const pageData = pageIndex[pageId][lang] ?? pageIndex[pageId]["en"];
+  return pageData.front.related?.map(other => createPageLink(pageIndex, other, lang)!) ?? [];
+};

@@ -12,7 +12,7 @@ type_defs:
       - name: simple_parameterization
         comments:
           en: >
-            Causes [lightmap][scenario_structure_bsp#lightmaps] UVs for this
+            Causes [lightmap](~scenario_structure_bsp#lightmaps) UVs for this
             material to be based on existing texture UVs rather than generated
             completely anew by Tool/Sapien. This can be used to fix squiggly or
             jagged shadowing artifacts often seen on large complex surfaces
@@ -71,7 +71,7 @@ type_defs:
           en: >
             Determines how detailed lightmaps will be for surfaces using this
             shader. This affects various [radiosity tessellation
-            parameters][tool#radiosity-quality-technical-details].
+            parameters](~tool#radiosity-quality-technical-details).
       - name: power
         type: float
       - name: color_of_emitted_light

@@ -28,7 +28,7 @@ type_defs:
     comments:
       en: >-
         A dynamic light source which can be attached to objects and
-        [effects][effect].
+        [effects](~effect).
     assert_size: 352
     fields:
       - name: flags

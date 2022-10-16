@@ -367,8 +367,8 @@ type_defs:
           en: >
             This bitmap is used as a lookup table of precalculated vector
             normalizations for visual effects like reflections. In H1CE
-            it is also [incorrectly used][renderer#gearbox-regressions] as
-            the reflection cube map when a [shader_transparent_glass][] uses
+            it is also [incorrectly used](~renderer#gearbox-regressions) as
+            the reflection cube map when a [shader_transparent_glass](~) uses
             bump-mapped reflections.
       - name: atmospheric_fog_density
         type: TagDependency
@@ -493,20 +493,20 @@ type_defs:
         comments:
           en: >
             Refaction amount used when [_super active
-            camouflage_][actor_variant#tag-field-flags-super-active-camouflage]
-            is enabled for an [actor_variant][].
+            camouflage_](~actor_variant#tag-field-flags-super-active-camouflage)
+            is enabled for an [actor_variant](~).
       - name: hyper_stealth_distance_falloff
         type: float
         comments:
           en: >
             Falloff distance for [_super active
-            camouflage_][actor_variant#tag-field-flags-super-active-camouflage].
+            camouflage_](~actor_variant#tag-field-flags-super-active-camouflage).
       - name: hyper_stealth_tint_color
         type: ColorRGB
         comments:
           en: >
             Tint color used for [_super active
-            camouflage_][actor_variant#tag-field-flags-super-active-camouflage].
+            camouflage_](~actor_variant#tag-field-flags-super-active-camouflage).
       - name: distance_attenuation_2d
         type: TagDependency
         meta:
@@ -1077,7 +1077,7 @@ type_defs:
           min: 1
         comments:
           en: >
-            Contains global [renderer][] settings and 2D [lookup
+            Contains global [renderer](~) settings and 2D [lookup
             tables](https://en.wikipedia.org/wiki/Lookup_table).
       - name: interface_bitmaps
         type: Block
@@ -1099,14 +1099,14 @@ type_defs:
         comments:
           en: >-
             Defines the set of powerups dropped when the function
-            [cheat_all_powerups][scripting#functions-cheat-all-powerups] is used.
+            [cheat_all_powerups](~scripting#functions-cheat-all-powerups) is used.
       - name: multiplayer_information
         type: Block
         type_args:
           T: GlobalsMultiplayerInformation
         comments:
           en: >-
-            This block is stripped by [Tool][] when compiling singleplayer or UI
+            This block is stripped by [Tool](~) when compiling singleplayer or UI
             maps.
       - name: player_information
         type: Block
@@ -1125,7 +1125,7 @@ type_defs:
         type_args:
           T: GlobalsFallingDamage
         comments:
-          en: 'This block is stripped by [Tool][] when compiling UI maps.'
+          en: 'This block is stripped by [Tool](~) when compiling UI maps.'
       - name: materials
         type: Block
         type_args:

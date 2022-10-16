@@ -1,67 +1,67 @@
-import type {PageIndex, RenderOutput} from "./types";
-import {PageDataLite, PageWrapper} from "../components";
+import PageWrapper from "../components/PageWrapper/PageWrapper";
 import * as R from "ramda";
 import renderToString from "preact-render-to-string";
-import Ctx, {RenderContext} from "../components/Ctx/Ctx";
+import Ctx, {type RenderContext} from "../components/Ctx/Ctx";
 import Article from "../components/Article/Article";
 import HtmlDoc from "../components/HtmlDoc/HtmlDoc";
 import Md from "../components/Md/Md";
-import {MdSrc, parse, transform, renderPlaintext} from "../components/Md/markdown";
-import {Lang, localizer} from "../utils/localization";
+import {transform, renderPlaintext} from "../components/Md/markdown";
+import {type Lang, localizer} from "../utils/localization";
 import ThanksList, {localizations as thanksLocalizations} from "../components/Article/ThanksList";
 import findHeadings from "../components/Md/headings";
-import {RenderableTreeNode} from "@markdoc/markdoc";
+import {type Node, type RenderableTreeNode} from "@markdoc/markdoc";
 import {NavHeading} from "../components/PageWrapper/TableOfContents";
-import { slugify } from "../utils/strings";
-import { MetaboxProps } from "../components/Metabox/Metabox";
+import {slugify} from "../utils/strings";
+import {type MetaboxProps} from "../components/Metabox/Metabox";
+import Wat from "../components/Wat/Wat";
+import {VNode} from "preact";
+import {type PageFrontMatter, type PageIndex, resolvePageGlobal, getPageChildren, getPageParents, getAllThanks, getPageRelated, tryLocalizedPath, getPageOtherLangs, PageLink} from "../content";
+import {type SearchDoc} from "../search";
 
 export const PREVIEW_LENGTH_CHARS = 100;
 
-export type RenderInputNew = {
+const metaboxStyles: Record<string, Partial<MetaboxProps>> = {
+  tool: {
+    icon: "tool",
+    iconTitle: "Tool",
+    class: "content-tool",
+  },
+  resource: {
+    icon: "file",
+    iconTitle: "Resource",
+  },
+  tag: {
+    icon: "share-2",
+    iconTitle: "Tag",
+    class: "content-tag",
+  },
+  guide: {
+    icon: "book-open",
+    iconTitle: "Guide",
+    class: "content-guide",
+  }
+};
+
+export type RenderOutput = {
+  htmlDoc: string;
+  searchDoc: null | SearchDoc;
+};
+
+export type RenderInput = {
   //global
   baseUrl: string;
+  noThumbs?: boolean;
+  debug?: boolean,
   //local
-  mdSrc: MdSrc;
-  mdFileName?: string;
   pageId: string;
-  logicalPath: string[];
-  localizedPaths: Record<Lang, string>;
   lang: Lang;
-  otherLangs?: Lang[];
+  ast: Node;
+  front: PageFrontMatter;
   localData?: any;
   //non-local:
-  data: any;
+  globalData: any;
   pageIndex: PageIndex;
 };
-
-type PageFrontMatter = {
-  title?: string;
-  thanks?: Record<string, MdSrc>;
-  noSearch?: boolean;
-  img?: string;
-  imgCaption?: MdSrc;
-  keywords?: string[];
-  stub?: boolean;
-  info?: MdSrc;
-  tagName?: string;
-};
-
-export function getAllThanks(pageIndex: PageIndex): string[] {
-  const allThanksSet = new Set<string>();
-  for (let page of Object.values(pageIndex.pages)) {
-    const recipients = R.pipe(
-      R.propOr({}, "thanks"),
-      R.keys
-    )(page);
-    for (let recipient of recipients) {
-      allThanksSet.add(recipient);
-    }
-  }
-  //convert Set to an array and sort alphabetically
-  const allThanks = [...allThanksSet];
-  allThanks.sort((a, b) => a.localeCompare(b));
-  return allThanks;
-}
 
 //trim the plaintext preview to a maximum length
 export function createPlaintextPreview(plaintext?: string): string | undefined {
@@ -96,58 +96,82 @@ function getNavHeadings(front: PageFrontMatter | undefined, ctx: RenderContext, 
   return res[0].sub;
 }
 
-export default function renderPage(input: RenderInputNew): RenderOutput {  
-  const {ast, frontmatter: front} = parse<PageFrontMatter>(input.mdSrc, input.mdFileName);
+function getAboutContent(ctx: RenderContext | undefined, front?: PageFrontMatter): {metaboxProps: MetaboxProps, body: VNode[], keywords: string[]} {
+  const [aboutType, aboutArg] = (front?.about?.split(":") ?? []) as [string?, string?];
+  let body: VNode[] = [];
+  let metaboxProps: Partial<MetaboxProps> = {
+    title: front?.title,
+    img: front?.img,
+    caption: front?.caption,
+    info: front?.info,
+    ...(aboutType ? metaboxStyles[aboutType] : undefined),
+  };
+  const keywords: string[] = [];
+  if (aboutType && aboutArg) {
+    if (["tag", "tool", "resource"].includes(aboutType)) {
+      metaboxProps.workflows = aboutArg;
+    }
+    if (aboutType == "tag") {
+      const tagNameArg = aboutArg.split("/");
+      const game = tagNameArg.length > 1 ? tagNameArg[0] : "h1";
+      const tagName = tagNameArg.length > 1 ? tagNameArg[1] : tagNameArg[0];
+      const tag = ctx?.data?.tags?.[game]?.[tagName];
+      if (tag?.id) {
+        metaboxProps.title = <>{metaboxProps.title} (<code>{tag.id}</code><Wat idTail="h1/tags" headingId="group-ids"/>)</>
+        keywords.push(tag.id);
+      }
+      // let hasRows = true; //todo
+      // if (hasRows) {
+      //   body.push(<Heading level={1} id="related-hsc">Related HaloScript</Heading>);
+      //   body.push(<RelatedHsc game={game} rowTagFilter={tagName}/>)
+      // }
+      // if (tag?.structName) {
+      //   body.push(<Heading level={1} id="structure-and-fields">Structure and fields</Heading>);
+      //   body.push(<TagStruct tag={aboutArg}/>);
+      // }
+    }
+  }
+  return {metaboxProps, body, keywords};
+}
+
+export default function renderPage(input: RenderInput): RenderOutput {  
+  const {front} = input;
 
   const ctx: RenderContext = {
+    //global
+    noThumbs: input.noThumbs,
+    //local
     lang: input.lang,
-    pageId: input.pageId,    
-    logicalPath: input.logicalPath,
+    pageId: input.pageId,
     title: front?.title,
-    localData: input.localData,
-
-    //todo: these all require non-local information... can we find another way?
-    children: undefined, //todo
-    allThanks: getAllThanks(input.pageIndex),
-    resolvePage: (idTail: string, headingId?: string) => {
-      const foundPage = input.pageIndex.resolvePageGlobal(input.pageId, idTail);
-      return {
-        title: foundPage.tryLocalizedTitle(input.lang),
-        url: foundPage.tryLocalizedPath(input.lang, headingId),
-        pageId: foundPage.pageId,
+    //non-local
+    allThanks: getAllThanks(input.pageIndex, input.lang),
+    resolvePage: (idTail: string, headingId?: string): PageLink => {
+      const page = resolvePageGlobal(input.pageIndex, input.lang, input.pageId, idTail, headingId);
+      if (!page && !input.debug) {
+        throw new Error(`Failed to resolve page ${idTail} from ${input.pageId} (${input.lang})`);
+      }
+      return page ?? {
+        title: "[Unresolved]",
+        url: "#",
+        pageId: idTail,
       };
     },
-    data: input.data,
+    data: R.mergeDeepRight(input.globalData, input.localData),
   };
 
-  const content = transform(ast, ctx, front);
+  const content = transform(input.ast, ctx, input.front);
   
+  const navParents = getPageParents(input.pageIndex, input.pageId, input.lang);
+  const navChildren = getPageChildren(input.pageIndex, input.pageId, input.lang);
+  const navRelated = getPageRelated(input.pageIndex, input.pageId, input.lang);
+  const navOtherLangs = getPageOtherLangs(input.pageIndex, input.pageId, input.lang);
   const navHeadings = getNavHeadings(front, ctx, content);
   const bodyPlaintext = renderPlaintext(ctx, content);
+  const thisPageLocalizedPath = tryLocalizedPath(input.pageIndex, input.pageId, input.lang);
+  const thisPagePath = input.pageId;
 
-  const metaboxProps: MetaboxProps = {
-    img: front?.img,
-    imgCaption: front?.imgCaption,
-    metaSections: [],
-  };
-
-  if (front?.info) {
-    metaboxProps.metaSections!.push({body: <Md src={front.info}/>});
-  }
-
-  if (front?.tagName) {
-    const tagName = front.tagName;
-    const groupId = undefined; //todo
-    metaboxProps.metaTitle = `${tagName}${groupId ? ` (${groupId})` : ""}`;
-    metaboxProps.metaIcon = "sliders";
-    metaboxProps.metaIconTitle = "Tag";
-    metaboxProps.metaClass = "content-tag";
-  }
-
-  //todo
-  const navChildren = undefined;
-  const navRelated = undefined;
-  const navParents= undefined;
+  const {body: aboutBody, metaboxProps, keywords} = getAboutContent(ctx, front);
   
   const htmlDoc = "<!DOCTYPE html>\n" + renderToString(
     <Ctx.Provider value={ctx}>
@@ -157,9 +181,10 @@ export default function renderPage(input: RenderInputNew): RenderOutput {
         noSearch={front?.noSearch}
         ogDescription={createPlaintextPreview(bodyPlaintext)}
         ogImg={front?.img}
-        ogOtherLangs={input.otherLangs}
+        ogOtherLangs={Object.keys(navOtherLangs)}
         ogTags={front?.keywords}
-        localizedPath={input.localizedPaths[input.lang]}
+        localizedPath={thisPageLocalizedPath}
+        path={thisPagePath}
       >
         <PageWrapper
           title={front?.title}
@@ -171,11 +196,11 @@ export default function renderPage(input: RenderInputNew): RenderOutput {
             stub={front?.stub}
             title={front?.title}
             navParents={navParents}
-            localizedPaths={input.localizedPaths}
-            thanks={front?.thanks}
+            otherLangs={navOtherLangs}
             metabox={metaboxProps}
           >
             <Md content={content}/>
+            {aboutBody}
             {front?.thanks &&
               <ThanksList thanks={front.thanks}/>
             }
@@ -192,9 +217,9 @@ export default function renderPage(input: RenderInputNew): RenderOutput {
   const searchDoc = front?.noSearch ? null : {
     lang: input.lang,
     text: bodyPlaintext ?? "",
-    path: input.localizedPaths[input.lang],
+    path: thisPagePath,
     title: front?.title ?? "",
-    keywords: front?.keywords?.join(" ") ?? "",
+    keywords: [...keywords, ...(front?.keywords ?? [])].join(" "),
   };
 
   return {htmlDoc, searchDoc};

@@ -21,8 +21,8 @@ type_defs:
           en: >
             If enabled, detail maps should be applied _over_ specular
             reflections. This flag does not work as intended in the [Gearbox
-            renderer][renderer#gearbox-regressions] but can be worked around with
-            [Chimera][]. It is fixed in H1A.
+            renderer](~renderer#gearbox-regressions) but can be worked around with
+            [Chimera](~). It is fixed in H1A.
       - name: two_sided
       - name: not_alpha_tested
       - name: alpha_blended_decal
@@ -34,7 +34,7 @@ type_defs:
         comments:
           en: >
             If enabled, the multipurpose map will use
-            [Xbox channel order][shader_model#xbox] instead of Gearbox
+            [Xbox channel order](~shader_model#xbox) instead of Gearbox
             order.
   ShaderModelMoreFlags:
     class: bitfield
@@ -66,7 +66,7 @@ type_defs:
       tag_id: soso
       pre_compile: true
     comments:
-      en: 'General-purpose opaque shader used for [object][object] materials.'
+      en: 'General-purpose opaque shader used for [object](~object) materials.'
     assert_size: 440
     fields:
       - name: shader_model_flags

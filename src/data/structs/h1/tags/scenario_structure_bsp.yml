@@ -341,15 +341,15 @@ type_defs:
         comments:
           en: >-
             Sets which sky is visible when within this cluster. Indexes the
-            [_skies_][scenario#tag-field-skies] block of the [scenario][] tag,
+            [_skies_](~scenario#tag-field-skies) block of the [scenario](~) tag,
             so a value of `0` would mean the first sky, `1` the second, etc. A
             value of `-1` marks this cluster as indoor/interior for the purposes
-            of certain [sky][] tag fields.
+            of certain [sky](~) tag fields.
 
 
-            [Tool][] appears to mark clusters as indoor when there are no
+            [Tool](~) appears to mark clusters as indoor when there are no
             outdoor clusters visible from it according to the
-            [PVS][h1/tags/scenario_structure_bsp#potentially-visible-set]. Tool
+            [PVS](~h1/tags/scenario_structure_bsp#potentially-visible-set). Tool
             validates that all sky faces in a cluster are for the same sky. For
             example, a cluster cannot contain both `+sky0` and `+sky1` materials.
 
@@ -848,7 +848,7 @@ type_defs:
         comments:
           en: >
             The lowest Z-axis height (absolute, not frame relative) that
-            [vehicles][vehicle] can reach while occupied. Does not affect other
+            [vehicles](~vehicle) can reach while occupied. Does not affect other
             object types. An unoccupied vehicle will still drop below this soft
             barrier, but when it becomes occupied again it will quickly shoot
             back up into the play area. An example of a map using a vehicle
@@ -1058,9 +1058,9 @@ type_defs:
         comments:
           en: >
             Named points with orientation within the BSP. They are similar to
-            [gbxmodel markers][gbxmodel#markers] but are not to be confused with
-            [scenario _cutscene flags_][scenario#tag-field-cutscene-flags].
-            These markers become visible in [Sapien][] when enabling _snap to
+            [gbxmodel markers](~gbxmodel#markers) but are not to be confused with
+            [scenario _cutscene flags_](~scenario#tag-field-cutscene-flags).
+            These markers become visible in [Sapien](~) when enabling _snap to
             markers_ in the tool window.
       - name: detail_objects
         type: Block

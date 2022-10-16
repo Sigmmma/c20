@@ -28,16 +28,15 @@ export default function ThanksList(props: ThanksListProps) {
 
   const localize = useLocalize(localizations);
   const headingText = localize("thanksHeadingText");
-
+  
   return (
     <>
       <Heading id={slugify(headingText)} level={1}>{headingText}</Heading>
       <p>{localize("intro")}</p>
       <ul>
-        {thanksEntries.map(([to, forEntry]: [string, MdSrc]) => {
-          {to}
-          <em> (<Md src={forEntry}/>)</em>
-        })}
+        {thanksEntries.map(([to, forEntry]: [string, MdSrc]) =>
+          <li>{to} <em>(<Md inline src={forEntry}/>)</em></li>
+        )}
       </ul>
     </>
   );

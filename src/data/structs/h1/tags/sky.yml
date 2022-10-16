@@ -24,7 +24,7 @@ type_defs:
         type: int16
         comments:
           en: >
-            An index into the [model_animations][h1/tags/model_animations]
+            An index into the [model_animations](~h1/tags/model_animations)
             animations block.
       - type: pad
         size: 2
@@ -44,12 +44,12 @@ type_defs:
         comments:
           en: >
             If enabled, this light will affect
-            [outdoor clusters][h1/tags/scenario_structure_bsp#indoor-vs-outdoor-clusters].
+            [outdoor clusters](~h1/tags/scenario_structure_bsp#indoor-vs-outdoor-clusters).
       - name: affects_interiors
         comments:
           en: >
             If enabled, this light will affect
-            [indoor clusters][h1/tags/scenario_structure_bsp#indoor-vs-outdoor-clusters].
+            [indoor clusters](~h1/tags/scenario_structure_bsp#indoor-vs-outdoor-clusters).
             Remember to set this light's _test distance_ low enough or else this
             flag will seem to have no effect. You will not need to set this flag
             except in special circumstances.
@@ -65,7 +65,7 @@ type_defs:
         comments:
           en: >
             If provided, this light will appear in the sky with a
-            [Ray of Buddha][h1/tags/sky#ray-of-buddha] and a [lens_flare][].
+            [Ray of Buddha](~h1/tags/sky#ray-of-buddha) and a [lens_flare](~).
             Otherwise the light source itself will be invisible (but still casts
             light for lightmaps).
       - name: lens_flare_marker_name
@@ -73,7 +73,7 @@ type_defs:
         comments:
           en: >
             If provided, the lens flare will be rendered in the sky at the location
-            of this [marker][h1/tags/gbxmodel#markers] in the model. If a marker
+            of this [marker](~h1/tags/gbxmodel#markers) in the model. If a marker
             name is provided but no such marker exists in the model then no
             lens flare will be rendered at all. Otherwise, when a marker name is
             not provided the game will render the lens flare according to the
@@ -133,7 +133,7 @@ type_defs:
       tag_id: 'sky '
     comments:
       en: >-
-        Defines a skybox with light sources for [lightmaps][] and atmospheric
+        Defines a skybox with light sources for [lightmaps](~) and atmospheric
         fog.
     assert_size: 208
     fields:
@@ -165,7 +165,7 @@ type_defs:
         comments:
           en: >
             Sets the colour used for ambient light in
-            [indoor clusters][h1/tags/scenario_structure_bsp#indoor-vs-outdoor-clusters].
+            [indoor clusters](~h1/tags/scenario_structure_bsp#indoor-vs-outdoor-clusters).
             This can be used to brighten indoor spaces to a minimum level.
       - name: indoor_ambient_radiosity_power
         type: float
@@ -180,7 +180,7 @@ type_defs:
         comments:
           en: >
             Sets the colour used for ambient light in
-            [outdoor clusters][h1/tags/scenario_structure_bsp#indoor-vs-outdoor-clusters].
+            [outdoor clusters](~h1/tags/scenario_structure_bsp#indoor-vs-outdoor-clusters).
             It is like a fill light that approximates light coming from all
             directions and will be most visible in shadowed areas that would not
             be lit otherwise. This is typically a similar colour to the sky's
@@ -200,7 +200,7 @@ type_defs:
         comments:
           en: >
             The colour of the atmospheric fog which draws over the
-            [BSP][h1/tags/scenario_structure_bsp] by distance while in outdoor
+            [BSP](~h1/tags/scenario_structure_bsp) by distance while in outdoor
             clusters.
       - type: pad
         size: 8
@@ -242,7 +242,7 @@ type_defs:
         comments:
           en: >
             The colour of the atmospheric fog which draws over the
-            [BSP][h1/tags/scenario_structure_bsp] by distance while in indoor
+            [BSP](~h1/tags/scenario_structure_bsp) by distance while in indoor
             clusters.
       - type: pad
         size: 8
@@ -256,7 +256,7 @@ type_defs:
           en: >
             Limits the maximum density of indoor fog. If this value is `1.0` then
             distant clusters beyond _indoor_fog_opaque_distance_ will be culled
-            from the [PVS][h1/tags/scenario_structure_bsp#potentially-visible-set].
+            from the [PVS](~h1/tags/scenario_structure_bsp#potentially-visible-set).
       - name: indoor_fog_start_distance
         type: float
         meta:
@@ -273,10 +273,10 @@ type_defs:
         comments:
           en: >
             The distance where fog reaches its maximum opacity for
-            [indoor clusters][h1/tags/scenario_structure_bsp#indoor-vs-outdoor-clusters].
+            [indoor clusters](~h1/tags/scenario_structure_bsp#indoor-vs-outdoor-clusters).
             When _indoor fog maximum density_ is `1.0`, this distance helps
             cull visible clusters when Tool is generating the
-            [PVS][h1/tags/scenario_structure_bsp#potentially-visible-set].
+            [PVS](~h1/tags/scenario_structure_bsp#potentially-visible-set).
       - name: indoor_fog_screen
         type: TagDependency
         meta:
@@ -286,7 +286,7 @@ type_defs:
         comments:
           en: >
             This field is seemingly unused but was probably intended to allow
-            indoor clusters to have a fog screen effect like planar [fog][h1/tags/fog].
+            indoor clusters to have a fog screen effect like planar [fog](~h1/tags/fog).
             Setting a reference here does not cause anything to render even in H1A
             where fog screen effects were fixed for planar fog.
       - type: pad

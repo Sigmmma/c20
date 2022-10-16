@@ -53,8 +53,6 @@ module.exports = function(ctx, input) {
     return {};
   }
 
-  return {};
-
   const localize = localizer(localizations, lang);
 
   const tagNameArg = page.tagName.split("/");

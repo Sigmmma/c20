@@ -295,7 +295,7 @@ operators_and_keywords:
       (script <script type> [<return type>] <name>)
       ```
       Defines a new script.
-    ex: '[See above example][scripting#basics]'
+    ex: '[See above example](~scripting#basics)'
 
   - slug: set
     type: |

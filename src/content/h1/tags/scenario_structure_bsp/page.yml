@@ -3,7 +3,7 @@ title:
 img: bsp-debug.jpg
 imgCaption:
   en: >-
-    Blood Gulch's BSP surfaces and clusters visualized in [Sapien][] using
+    Blood Gulch's BSP surfaces and clusters visualized in [Sapien](~) using
     `debug_structure 1` and `debug_pvs 1`
 keywords:
   en:

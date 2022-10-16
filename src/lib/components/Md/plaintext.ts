@@ -1,7 +1,9 @@
 import {type RenderableTreeNode} from "@markdoc/markdoc";
 import {type RenderContext} from "../Ctx/Ctx";
-import {type DataTableProps, renderPlainText as renderDataTablePlaintext} from "../DataTable/DataTable";
-import {type StructTableProps, renderPlainText as renderStructTablePlaintext} from "../StructTable/StructTable";
+import {type DataTableProps, renderPlaintext as renderDataTablePlaintext} from "../DataTable/DataTable";
+import {type StructTableProps, renderPlaintext as renderStructTablePlaintext} from "../StructTable/StructTable";
+import {type RelatedHscProps, renderPlaintext as renderRelatedHscPlaintext} from "../DataTable/RelatedHsc";
+import {type TagStructProps, renderPlaintext as renderTagStructPlaintext} from "../StructTable/TagStruct";
 import {parse, transform, type MdSrc} from "./markdown";
 
 const padded = (children) => `${children}\n\n`; 
@@ -22,6 +24,9 @@ const renderers: Record<string, Renderer> = {
   ol: block,
   //custom tags and nodes
   Heading: block,
+  Key: (children, attributes, ctx) => {
+    return attributes.input;
+  },
   ThanksIndex: (children, attributes, ctx) => {
     return ctx ? padded(ctx.allThanks?.join("\n")) : undefined;
   },
@@ -31,8 +36,14 @@ const renderers: Record<string, Renderer> = {
   DataTable: (children, attributes, ctx) => {
     return padded(renderDataTablePlaintext(ctx, attributes as DataTableProps));
   },
+  RelatedHsc: (children, attributes, ctx) => {
+    return padded(renderRelatedHscPlaintext(ctx, attributes as RelatedHscProps));
+  },
   StructTable: (children, attributes, ctx) => {
     return padded(renderStructTablePlaintext(ctx, attributes as StructTableProps));
+  },
+  TagStruct: (children, attributes, ctx) => {
+    return padded(renderTagStructPlaintext(ctx, attributes as TagStructProps));
   },
 };
 

@@ -1,4 +1,4 @@
-import {PageDataLite} from "..";
+import {type PageLink} from "../../content";
 import {useLocalize} from "../Ctx/Ctx";
 
 const localizations = {
@@ -9,7 +9,7 @@ const localizations = {
 };
 
 export type BreadcrumbsProps = {
-  parents: PageDataLite[];
+  parents: PageLink[];
 };
 
 export default function Breadcrumbs(props: BreadcrumbsProps) {
@@ -26,7 +26,7 @@ export default function Breadcrumbs(props: BreadcrumbsProps) {
         const crumbPageTitle = crumbPage.pageId == "/" ?
           localize("homeOverride") :
           crumbPage.title;
-        return <a href={crumbPage.url}>{crumbPageTitle}</a>;
+        return <li><a href={crumbPage.url}>{crumbPageTitle}</a></li>;
       })}
     </ol>
   );

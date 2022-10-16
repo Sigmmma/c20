@@ -1,5 +1,7 @@
 import {type RenderableTreeNode} from "@markdoc/markdoc";
 import {type RenderContext} from "../Ctx/Ctx";
+import {headings as tagStructHeadings, TagStructProps} from "../StructTable/TagStruct";
+import {headings as structTableHeadings, StructTableProps} from "../StructTable/StructTable";
 
 export type FoundHeading = {
   level: number;
@@ -26,6 +28,12 @@ const finders: Record<string, Finder> = {
   h5: heading(5),
   h6: heading(6),
   //custom tags
+  StructTable: (children, attributes, results, ctx) => {
+    results.push(...structTableHeadings(ctx, attributes as StructTableProps));
+  },
+  TagStruct: (children, attributes, results, ctx) => {
+    results.push(...tagStructHeadings(ctx, attributes as TagStructProps));
+  },
   Heading: (children, attributes, results, ctx) => {
     results.push({
       //these attributes were already populated during the transform step

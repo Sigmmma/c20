@@ -1,12 +1,11 @@
 import Metabox, {MetaboxProps} from "../Metabox/Metabox";
 import Stub from "../Article/Stub";
-import {PageDataLite} from "..";
 import Breadcrumbs from "./Breadcrumbs";
 import {useCtx, useLocalize} from "../Ctx/Ctx";
 import {REPO_URL} from "../../utils/external-urls";
 import {Lang} from "../../utils/localization";
 import {ComponentChildren} from "preact";
-import {MdSrc} from "../Md/markdown";
+import { PageLink } from "../../content";
 
 // keep this sorted with longer root/prefixes listed first as the code looks for the first match.
 const spaces = [
@@ -20,10 +19,9 @@ const spaces = [
 export type ArticleProps = {
   stub?: boolean;
   title?: string;
-  navParents?: PageDataLite[];
-  thanks?: Record<string, MdSrc>;
+  navParents?: PageLink[];
   metabox?: MetaboxProps;
-  localizedPaths: Record<Lang, string>;
+  otherLangs: Record<Lang, PageLink>;
   children?: ComponentChildren;
 };
 
@@ -44,7 +42,6 @@ export default function Article(props: ArticleProps) {
   const localize = useLocalize(localizations);
   const editPageUrl = ctx ? `${REPO_URL}/edit/master/src/content${ctx.pageId}/readme${ctx.lang == "en" ? "" : "_" + ctx.lang}.md` : undefined;
   const space = ctx ? spaces.find(s => ctx.pageId.startsWith(s.root)) : undefined;
-  const otherLangs = ctx ? Object.entries(props.localizedPaths).filter(([lang]) => lang != ctx.lang) : undefined;
 
   return (
     <article className="content-article">
@@ -57,8 +54,8 @@ export default function Article(props: ArticleProps) {
         <div className="title-line">
           <h1 className="page-title">{props.title}</h1>
           <div className="title-extra">
-            {otherLangs && otherLangs.length > 0 && otherLangs.map(([otherLang, localizedPath]) =>
-              <a href={localizedPath}>{langNames[otherLang] ?? otherLang} /</a>
+            {props.otherLangs && Object.entries(props.otherLangs).length > 0 && Object.entries(props.otherLangs).map(([otherLang, otherLink]) =>
+              <a href={otherLink.url} title={otherLink.title}>{langNames[otherLang] ?? otherLang} /</a>
             )}
             {editPageUrl &&
               <a href={editPageUrl}>{localize("edit")}</a>
@@ -72,7 +69,7 @@ export default function Article(props: ArticleProps) {
         </div>
       </div>
       {props.metabox &&
-        <Metabox {...props.metabox}/>
+        <Metabox title={props.title} {...props.metabox}/>
       }
       {props.stub &&
         <Stub/>

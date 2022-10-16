@@ -1,5 +1,4 @@
 import {ComponentChildren} from "preact";
-import {rawHelper} from "..";
 import {Lang} from "../../utils/localization";
 import {useCtx, useLocalize} from "../Ctx/Ctx";
 
@@ -11,6 +10,7 @@ export type HtmlDocProps = {
   ogTags?: string[];
   ogOtherLangs?: Lang[];
   ogImg?: string;
+  path: string;
   localizedPath: string;
   children?: ComponentChildren;
 };
@@ -32,7 +32,7 @@ export default function HtmlDoc(props: HtmlDocProps) {
   const lang = ctx?.lang ?? "en";
   
   const ogImgAbsoluteUrl = props.ogImg ?
-    `${props.baseUrl}${props.localizedPath}/${props.ogImg}` :
+    `${props.baseUrl}${props.path}/${props.ogImg}` :
     `${props.baseUrl}/assets/librarian.png`;
 
   return (
@@ -67,11 +67,14 @@ export default function HtmlDoc(props: HtmlDocProps) {
         }
         <meta property="og:image" content={ogImgAbsoluteUrl}/>
         <title>{props.title ? `${props.title} - c20` : "c20"}</title>
+        <base href={props.path.endsWith("/") ? props.path : `${props.path}/`}/>
         <link rel="preload" type="application/json" as="fetch" href={`/assets/search-index_${lang}.json`}/>
         <link rel="icon" type="image/png" href="/assets/librarian.png"/>
         <link rel="stylesheet" href="/assets/style.css"/>
         <link id="syntax" rel="stylesheet" href="/assets/night-owl.css"/>
-        <script {...rawHelper('document.documentElement.dataset.theme = window.localStorage.getItem("theme") || "dark";')}></script>
+        <script dangerouslySetInnerHTML={{
+          __html: 'document.documentElement.dataset.theme = window.localStorage.getItem("theme") || "dark";'
+        }}/>
       </head>
       <body>
         {props.children}

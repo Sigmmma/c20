@@ -3,6 +3,7 @@ import glob from "glob";
 import yaml from "js-yaml";
 import fs from "fs";
 import * as R from "ramda";
+import { Lang } from "./localization";
 
 export async function findPaths(globPattern: string): Promise<string[]> {
   return new Promise((resolve, reject) => {
@@ -37,3 +38,7 @@ export async function loadYamlTree<T=object>(baseDir: string, opts?: LoadTreeOpt
   }
   return result as T;
 };
+
+export function parseLangSuffix(fileName: string): Lang | undefined {
+  return fileName.match(/^.*_(\w{2})$/)?.[1]?.toLowerCase();
+}

@@ -29,10 +29,9 @@ a abbr:hover {
     transition: filter $transition-time / 2;
   }
 
-  figure img, .metabox img {
-    width: 100%;
-    max-height: none;
-  }
+  // .metabox img {
+  //   max-height: 200px;
+  // }
 
   a:hover img, a:hover video {
     filter: brightness(110%);
@@ -41,7 +40,8 @@ a abbr:hover {
   .inline-figure {
     display: inline-block;
     float: none;
-    width: 60%;
+    margin-left: 0;
+    width: 100%;
   }
 }
 
@@ -61,40 +61,18 @@ html[lang="es"] {
   }
 }
 
-a[href^="mailto:"]:after {
-  content: "📧";
-  vertical-align: super;
-  font-size: 50%;
-}
-
-.content-article {
-  a:not([href^="http"]) {
-    &[href*="/tags/"]:after {
-      content: "🏷️";
-      vertical-align: super;
-      font-size: 50%;
-    }
-    &[href*="/tools/"]:after {
-      content: "🔧";
-      vertical-align: super;
-      font-size: 50%;
-    }
+.metabox {
+  section.img {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-
-  .metabox {
-    a:not([href^="http"]) {
-      &[href*="/tags/"]:after {
-        content: none;
-      }
-      &[href*="/tools/"]:after {
-        content: none;
-      }
-    }
+  .caption {
+    font-style: italic;
   }
-}
-
-.metabox .header .feather {
-  margin-right: 0.5em;
+  .header .feather {
+    margin-right: 0.5em;
+  }
 }
 
 small {

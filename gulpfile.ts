@@ -4,7 +4,7 @@ const sass = require("sass");
 const fs = require("fs");
 const path = require("path");
 const {paths, baseUrl} = require("./build-config.json");
-import {buildContent} from "./src/lib/content";
+import buildContent from "./src/build";
 import runServer from "./src/server";
 
 //the dist directory may contain outdated content, so start clean
@@ -44,7 +44,8 @@ async function content() {
   await buildContent({
     baseUrl,
     contentDir: paths.srcContentBase,
-    outputDir: paths.dist
+    outputDir: paths.dist,
+    noThumbs: !!process.env.C20_NO_THUMBNAILS,
   });
 }
 
@@ -57,7 +58,7 @@ function watchSources() {
 //composite tasks
 const assets = gulp.parallel(staticAssets, assetStyles, vendorAssets);
 const buildAll = gulp.series(clean, gulp.parallel(assets, content));
-const dev = gulp.series(buildAll, watchSources);
+const dev = gulp.series(clean, assets, watchSources);
 
 //tasks which can be invoked from CLI with `npx gulp <taskname>`
 module.exports = {

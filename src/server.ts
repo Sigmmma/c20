@@ -1,35 +1,47 @@
 import express from "express";
-import path from "path";
 import renderPage from "./lib/render/render";
-import buildOpts from "../build-config.json";
+import buildConfig from "../build-config.json";
 import fs from "fs";
-import {loadPageIndex} from "./lib/content";
+import {getPageBaseDir, getPageMdSrcPath, loadPageIndex} from "./lib/content";
 import {loadYamlTree} from "./lib/utils/files";
+import {type BuildOpts} from "./build";
+import {parse} from "./lib/components/Md/markdown";
 const loadStructuredData = require("./data");
+
+const buildOpts: BuildOpts = {
+  baseUrl: buildConfig.baseUrl,
+  contentDir: buildConfig.paths.srcContentBase,
+  outputDir: buildConfig.paths.dist,
+  noThumbs: !!process.env.C20_NO_THUMBNAILS,
+};
 
 export default function runServer() {
   const port = process.env.C20_PORT ? Number(process.env.C20_PORT) : 8080;
   const app = express();
 
-  app.get("/:lang(en|es)?/:page([-/_a-zA-Z0-9]+)?", async (req, res, next) => {
-    if (!req.query.live) {
-      next();
-      return;
-    }
-    const lang = req.params.lang?.toLowerCase() ?? "en";
+  // Assume anything that is not a specified route is a file we want to serve
+  app.use(express.static(buildOpts.outputDir, {index: false}));
+  app.use(express.static(buildOpts.contentDir));
+
+  app.get("/:page([-/_a-zA-Z0-9]+)?", async (req, res, next) => {
+    // const lang = req.params.lang?.toLowerCase() ?? "en";
+    const lang = "en";
     const pageId = req.params.page ?
       `/${req.params.page.endsWith("/") ? req.params.page.replace(/\/+$/, "") : req.params.page}` :
       "/";
-    const logicalPath = req.params.page?.split("/") ?? [];
-    const baseDir = path.join("./src/content", path.normalize(pageId));
-    const mdSrcPath = path.join(baseDir, lang == "en" ? "readme.md" : `readme_${lang}.md`);
     
     console.log(`Live-rendering ${pageId}`);
+    const baseDir = getPageBaseDir(pageId, buildOpts);
+    const mdSrcPath = getPageMdSrcPath(baseDir, lang);
 
     const dataPromise = loadStructuredData();
     const localDataPromise = loadYamlTree(baseDir, {nonRecursive: true});
-    const pageIndexPromise = loadPageIndex("./src/content");
+    const pageIndexPromise = loadPageIndex(buildOpts.contentDir);
     const mdSrcPromise = fs.promises.readFile(mdSrcPath, "utf-8");
+    if (!(await mdSrcPromise).startsWith("---")) {
+      next();
+      return;
+    }
     // try {
     //   mdSrc = await ;
     // } catch (err) {
@@ -37,31 +49,25 @@ export default function runServer() {
     //   res.send(`Page source not found: ${mdSrcPath}`);
     //   return;
     // }
+    
+    const {ast, frontmatter} = parse(await mdSrcPromise, mdSrcPath);
 
     const renderOutput = renderPage({
-      pageId,
-      mdFileName: mdSrcPath,
       baseUrl: buildOpts.baseUrl,
-      logicalPath,
-      mdSrc: await mdSrcPromise,
+      noThumbs: !!process.env.C20_NO_THUMBNAILS,
+      debug: !!process.env.C20_DEBUG || req.query.debug,
+      pageId,
       lang,
-      // localizedPaths: page.localizedPaths,
-      localizedPaths: {
-        [lang]: pageId,
-      },
-      // otherLangs: page.langs.filter(l => l != lang),
-      data: await dataPromise,
+      ast,
+      front: frontmatter,
       localData: await localDataPromise,
+      globalData: await dataPromise,
       pageIndex: await pageIndexPromise,
     });
   
     res.header("Content-Type", "text/html; charset=UTF-8");
     res.send(renderOutput.htmlDoc);
   });
-
-  // Assume anything that is not a specified route is a file we want to serve
-  app.use(express.static("./dist"));
-  app.use(express.static("./src/content"));
 
   // Fall through to 404 handler
   app.use(function(req, res) {

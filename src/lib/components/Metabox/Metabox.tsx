@@ -1,35 +1,41 @@
-import {rawHelper} from "..";
+import * as R from "ramda";
 import {MdSrc} from "../Md/markdown";
 import Md from "../Md/Md";
 import Icon, {type IconName} from "../Icon/Icon";
 import {VNode} from "preact";
+import Workflows from "./Workflows";
 
 export type MetaboxProps = {
-  metaTitle?: VNode | string;
-  metaIcon?: IconName;
-  metaIconTitle?: string;
-  metaClass?: string;
+  title?: VNode | string;
+  icon?: IconName;
+  iconTitle?: string;
+  class?: string;
   img?: string;
-  imgCaption?: MdSrc;
-  metaSections?: {
-    body: VNode | string;
-    cssClass?: string;
-  }[];
+  caption?: MdSrc;
+  info?: MdSrc;
+  workflows?: string;
 }
 
+
 export default function Metabox(props: MetaboxProps) {
-  if (!props.img && !props.imgCaption && (!props.metaSections || props.metaSections.length == 0)) {
-    return null;
-  }
+  const empty = R.pipe(
+    R.pick(["img", "caption", "info", "workflows"]),
+    R.values,
+    R.filter(R.identity),
+    R.isEmpty
+  )(props);
+  if (empty) return null;
 
   return (
     <aside className="metabox">
-      <section className={`header ${props.metaClass}`}>
+      <section className={`header ${props.class}`}>
         <p>
-          {props.metaIcon &&
-            <Icon name={props.metaIcon} title={props.metaIconTitle}/>
-          }
-          <strong>{props.metaTitle}</strong>
+          <strong>
+            {props.icon &&
+              <Icon name={props.icon} title={props.iconTitle}/>
+            }
+            {props.title}
+          </strong>
         </p>
       </section>
       {props.img &&
@@ -37,16 +43,19 @@ export default function Metabox(props: MetaboxProps) {
           <a href={props.img}><img src={props.img} alt=""/></a>
         </section>
       }
-      {props.imgCaption &&
+      {props.caption &&
         <section className="caption">
-          <p><em><Md src={props.imgCaption}/></em></p>
+          <Md src={props.caption}/>
         </section>
       }
-      {props.metaSections?.filter(it => it)?.map(({body, cssClass}) =>
-        typeof(body) === "string" ?
-          <section className={`info ${cssClass}`} {...rawHelper(body)}></section> :
-          <section className={`info ${cssClass}`}>{body}</section>
-      )}
+      {props.info &&
+        <section>
+          <Md src={props.info}/>
+        </section>
+      }
+      {props.workflows &&
+        <Workflows itemName={props.workflows}/>
+      }
     </aside>
   );
 };

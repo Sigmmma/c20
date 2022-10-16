@@ -1,6 +1,3 @@
-const yaml = require("js-yaml");
-const fs = require("fs");
-const path = require("path");
 import {slugify} from "../../utils/strings";
 import * as R from "ramda";
 import {RenderContext, useCtx} from "../Ctx/Ctx";
@@ -19,7 +16,9 @@ export type DataTableProps = {
   id?: string;
   rowSortKey?: string;
   rowSortReverse?: boolean;
-  rowTagFilter?: string; //todo: not very general
+  rowFilterKey?: string;
+  rowFilterValue?: string;
+  rowFilterNot?: boolean;
   linkCol?: boolean | number;
   noClear?: boolean;
   wrapPre?: boolean;
@@ -28,7 +27,7 @@ export type DataTableProps = {
     name: string;
     key: string;
     style?: string;
-    format?: string;
+    format?: "text" | "code" | "anchor" | "codeblock";
   }[]
 };
 
@@ -55,9 +54,15 @@ function renderCellPlaintext(ctx, format, content): string {
     return renderMdPlaintext(ctx, mdContent)?.trim() ?? "";
   } else if (format === "code") {
     return content;
-  } else if (format === "anchor") {
-    const target = ctx.resolvePage(content);
-    return target.title;
+  } else if (format === "pageLink") {
+    try {
+      const target = ctx.resolvePage(content);
+      return target.title;
+    } catch (e) {
+      return content;
+    }
+  } else if (format == "pageLinkRaw") {
+    return content;
   } else if (format.startsWith("codeblock")) {
     return content + "\n";
   } else {
@@ -74,8 +79,19 @@ function renderCell(ctx, format, content) {
   } else if (format === "code") {
     return <code>{content}</code>;
   } else if (format === "anchor") {
-    const target = ctx.resolvePage(content);
-    return <a href={target.url}>{target.title}</a>;
+    try {
+      const target = ctx.resolvePage(content);
+      return <a href={target.url}>{target.title}</a>;
+    } catch (e) {
+      return content;
+    }
+  } else if (format == "pageLinkRaw") {
+    try {
+      const target = ctx.resolvePage(content);
+      return <a href={target.url}>{content}</a>;
+    } catch (e) {
+      return content;
+    }
   } else if (format.startsWith("codeblock")) {
     const syntax = format.split("-")[1]; // Could be undef. That's ok.
     return <CodeBlock language={syntax} code={content}/>;
@@ -84,7 +100,7 @@ function renderCell(ctx, format, content) {
   }
 }
 
-export function renderPlainText(ctx: RenderContext | undefined, props: DataTableProps): string | undefined {
+export function renderPlaintext(ctx: RenderContext | undefined, props: DataTableProps): string | undefined {
   if (!ctx) return undefined;
   const {rows} = gatherRows(ctx, props);
   const headerRendered = props.columns.map(col => col.name).join(" ");
@@ -108,13 +124,9 @@ function gatherRows(ctx: RenderContext, props: DataTableProps): {rows: object[],
     []
   ).map(dataPath => dataPath.split("/"));
   const id = props.id ?? dataPaths.map(R.last).join("-");
-
-  const dataSource = props.dataSource ?
-    yaml.load(fs.readFileSync(path.join("./src/content", ...ctx.logicalPath, props.dataSource), "utf8")) :
-    {...ctx.data, ...ctx.localData}; //todo: prefix these to avoid collisions?
-
+  
   const rows = R.pipe(
-    R.map(dataPath => R.pathOr([], dataPath, dataSource)),
+    R.map(dataPath => R.pathOr([], dataPath, ctx.data)),
     R.map(rows => Array.isArray(rows) ?
       rows :
       Object.entries(rows).map(([key, value]) => ({key, value}))
@@ -129,8 +141,19 @@ function gatherRows(ctx: RenderContext, props: DataTableProps): {rows: object[],
     props.rowSortReverse ?
       R.reverse :
       R.identity,
-    props.rowTagFilter ?
-      R.filter(row => row.tags && row.tags.includes(props.rowTagFilter)) :
+    props.rowFilterKey ?
+      R.filter(row => {
+        const predicateValue = (() => {
+          const value = R.path(props.rowFilterKey!.split("/"), row);
+          if (!props.rowFilterValue) {
+            return !!value
+          } else if (Array.isArray(value)) {
+            return value.includes(props.rowFilterValue);
+          }
+          return value == props.rowFilterValue;
+        })();
+        return props.rowFilterNot ? !predicateValue : predicateValue;
+      }) :
       R.identity
   )(dataPaths);
 

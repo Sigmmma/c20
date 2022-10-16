@@ -1,20 +1,20 @@
 import {createContext} from "preact";
 import {useContext} from "preact/hooks";
+import {type PageLink} from "../../content";
 import {Lang, LocalizeFn, Localizations, localizer} from "../../utils/localization";
-import {PageDataLite} from "..";
 
 export type RenderContext = {
+  //local
   lang: Lang;
   pageId: string;
-  logicalPath: string[];
   title?: string;
-  localData?: any;
 
-  //todo: these all require non-local information... can we find another way?
-  //what about doing these at the transform phase, optionally async?
-  children?: PageDataLite[];
+  //global
+  noThumbs?: boolean;
+
+  //non-local
   allThanks?: string[];
-  resolvePage: (idTail: string, headingId?: string) => PageDataLite;
+  resolvePage: (idTail: string, headingId?: string) => PageLink;
   data: any;
 };
 

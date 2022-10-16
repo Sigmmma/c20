@@ -47,8 +47,8 @@ type_defs:
     comments:
       en: >-
         A springy antenna _widget_ which can be attached to [model
-        markers][gbxmodel#markers], as seen on the Warthog and Scorpion. Widgets
-        can be added to any [object][].
+        markers](~gbxmodel#markers), as seen on the Warthog and Scorpion. Widgets
+        can be added to any [object](~).
     assert_size: 208
     fields:
       - name: attachment_marker_name

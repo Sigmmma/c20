@@ -365,7 +365,7 @@ functions:
         (ai_dialogue_triggers true)
         (ai_dialogue_triggers false)
         ```
-        Turns impromptu [dialogue][h1/tags/dialogue] on or off. When off,
+        Turns impromptu [dialogue](~h1/tags/dialogue) on or off. When off,
         units will still play some sounds (like when they take damage) but will
         not speak when exiting vehicles, seeing friends die, etc.
     tags:
@@ -442,7 +442,7 @@ functions:
         (<void> ai_follow_target_players <ai>)
         ```
         Sets the follow target for an encounter to be the closest player. AI
-        follow their target by [moving to firing positions][ai#firing-positions]
+        follow their target by [moving to firing positions](~ai#firing-positions)
         near their target with the same letter label.
   - slug: ai_follow_target_unit
     info:
@@ -450,7 +450,7 @@ functions:
         ```hsc
         (<void> ai_follow_target_unit <ai> <unit>)
         ```
-        Sets the follow target for an encounter to be a specific [unit][].
+        Sets the follow target for an encounter to be a specific [unit](~).
   - slug: ai_force_active
     info:
       en: >-
@@ -1092,7 +1092,7 @@ functions:
         (<void> breakable_surfaces_enable <boolean>)
         (breakable_surfaces_enable false)
         ```
-        Enables or disables breakability of all [breakable surfaces][scenario_structure_bsp#tag-field-breakable-surfaces]
+        Enables or disables breakability of all [breakable surfaces](~scenario_structure_bsp#tag-field-breakable-surfaces)
         in the level
   - slug: breakable_surfaces_reset
     info:
@@ -1206,7 +1206,7 @@ functions:
         (<void> cheat_all_powerups)
         ```
         Drops all powerups near player. The set of powerups is controlled by
-        the [globals tag][globals#tag-field-cheat-powerups].
+        the [globals tag](~globals#tag-field-cheat-powerups).
   - slug: cheat_all_vehicles
     info:
       en: |-
@@ -2505,9 +2505,9 @@ functions:
         (map_name "levels\a10\a10")
         ```
         Loads a singleplayer map by scenario name. If using the
-        [H1A standalone build][h1a-standalone-build], which directly loads
-        tags instead of [cache files][map], use the scenario
-        [tag path][tags#tag-references-and-paths] instead.
+        [H1A standalone build](~h1a-standalone-build), which directly loads
+        tags instead of [cache files](~map), use the scenario
+        [tag path](~tags#tag-references-and-paths) instead.
   - slug: map_reset
     info:
       en: |-
@@ -2623,7 +2623,7 @@ functions:
         (object_beautify chief true)
         (object_beautify chief false)
         ```
-        Makes an object use its highest quality [LOD][gbxmodel#level-of-detail]
+        Makes an object use its highest quality [LOD](~gbxmodel#level-of-detail)
         for the remainder of the levels' cutscenes.
   - slug: object_can_take_damage
     info:
@@ -2917,7 +2917,7 @@ functions:
         ```
 
         Loads textures necessary to draw objects that are about to come on-screen,
-        using the object's [predicted resources][object#tag-field-predicted-resources].
+        using the object's [predicted resources](~object#tag-field-predicted-resources).
   - slug: pause_hud_timer
     info:
       en: |-
@@ -3552,7 +3552,7 @@ functions:
         (<void> script_doc)
         ```
         Saves a file called hs_doc.txt with parameters for all script commands.
-        In the [H1A-EK][] this also includes external globals at the end of the file.
+        In the [H1A-EK](~) this also includes external globals at the end of the file.
   - slug: script_recompile
     info:
       en: |-

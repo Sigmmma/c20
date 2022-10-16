@@ -242,7 +242,7 @@ external_globals:
         ```hsc
         (ai_print_damage_modifiers [boolean])
         ```
-        When an encounter is [selected][sapien#encounters-and-ai], damage modifiers are logged at the bottom of the screen.
+        When an encounter is [selected](~sapien#encounters-and-ai), damage modifiers are logged at the bottom of the screen.
   - slug: ai_print_evaluation_statistics
     info:
       en: |-
@@ -459,7 +459,7 @@ external_globals:
         ```hsc
         (ai_render_dialogue_variants)
         ```
-        Shows pink text overlays over each unit with [dialogue][h1/tags/dialogue]
+        Shows pink text overlays over each unit with [dialogue](~h1/tags/dialogue)
         showing which variant they use, like if marines are a "mendoza" or a "bisenti".
     tags:
       - dialogue
@@ -985,7 +985,7 @@ external_globals:
         ```hsc
         (cheat_omnipotent [boolean])
         ```
-        The player will instantly kill any [unit][] they damage, including destroying
+        The player will instantly kill any [unit](~) they damage, including destroying
         vehicles. Even multiplayer vehicles can be "killed" and rendered inoperable.
   - slug: cheat_reflexive_damage_effects
     tags:
@@ -995,7 +995,7 @@ external_globals:
         ```hsc
         (cheat_reflexive_damage_effects [boolean])
         ```
-        Any [damage_effect][] applied to other characters, even dead ones,
+        Any [damage_effect](~) applied to other characters, even dead ones,
         will appear on the player's screen regardless of who applied the damage.
         For example, if an Elite shoots a flood infection form, the player will
         see their screen flash blue and damage direction indicators appear.
@@ -1054,8 +1054,8 @@ external_globals:
         ```
         If enabled, the center of the view is used to test for collisions. A
         red normal-aligned marker will be shown where the ray from the center of
-        view collides with a surface. The collision surface itself, whether [BSP][scenario_structure_bsp]
-        or [model][model_collision_geometry], will be outline in red. Information
+        view collides with a surface. The collision surface itself, whether [BSP](~scenario_structure_bsp)
+        or [model](~model_collision_geometry), will be outline in red. Information
         about the collision surface will be shown in the top left corner of the screen,
         including plane and surface indices from the BSP structure, material type,
         and how many degrees the surface's normal differs from vertical.
@@ -1133,8 +1133,8 @@ external_globals:
         ```hsc
         (collision_debug_flag_objects [boolean])
         ```
-        Toggles if collision debug rays collide with any class of [object's][object]
-        [collision geometry][model_collision_geometry]. This setting will be
+        Toggles if collision debug rays collide with any class of [object's](~object)
+        [collision geometry](~model_collision_geometry). This setting will be
         ignored if any more specific object flag is enabled, such as
         `collision_debug_flag_objects_equipment`.
   - slug: collision_debug_flag_objects_bipeds
@@ -1143,42 +1143,42 @@ external_globals:
         ```hsc
         (collision_debug_flag_objects_bipeds [boolean])
         ```
-        Toggles if collision debug rays collide with [bipeds][biped].
+        Toggles if collision debug rays collide with [bipeds](~biped).
   - slug: collision_debug_flag_objects_controls
     info:
       en: |-
         ```hsc
         (collision_debug_flag_objects_controls [boolean])
         ```
-        Toggles if collision debug rays collide with [device_control][].
+        Toggles if collision debug rays collide with [device_control](~).
   - slug: collision_debug_flag_objects_equipment
     info:
       en: |-
         ```hsc
         (collision_debug_flag_objects_equipment [boolean])
         ```
-        Toggles if collision debug rays collide with [equipment][].
+        Toggles if collision debug rays collide with [equipment](~).
   - slug: collision_debug_flag_objects_light_fixtures
     info:
       en: |-
         ```hsc
         (collision_debug_flag_objects_light_fixtures [boolean])
         ```
-        Toggles if collision debug rays collide with [device_light_fixture][].
+        Toggles if collision debug rays collide with [device_light_fixture](~).
   - slug: collision_debug_flag_objects_machines
     info:
       en: |-
         ```hsc
         (collision_debug_flag_objects_machines [boolean])
         ```
-        Toggles if collision debug rays collide with [device_machine][].
+        Toggles if collision debug rays collide with [device_machine](~).
   - slug: collision_debug_flag_objects_placeholders
     info:
       en: |-
         ```hsc
         (collision_debug_flag_objects_placeholders [boolean])
         ```
-        Toggles if collision debug rays collide with [placeholders][placeholder].
+        Toggles if collision debug rays collide with [placeholders](~placeholder).
         This would require a custom placeholder to have an effect, since the
         placeholder tags that come with the HEK have no collision model.
   - slug: collision_debug_flag_objects_projectiles
@@ -1187,7 +1187,7 @@ external_globals:
         ```hsc
         (collision_debug_flag_objects_projectiles [boolean])
         ```
-        Toggles if collision debug rays collide with [projectiles][projectile].
+        Toggles if collision debug rays collide with [projectiles](~projectile).
         Note that most projectiles do not have a collision model.
   - slug: collision_debug_flag_objects_scenery
     info:
@@ -1195,21 +1195,21 @@ external_globals:
         ```hsc
         (collision_debug_flag_objects_scenery [boolean])
         ```
-        Toggles if collision debug rays collide with [scenery][].
+        Toggles if collision debug rays collide with [scenery](~).
   - slug: collision_debug_flag_objects_vehicles
     info:
       en: |-
         ```hsc
         (collision_debug_flag_objects_vehicles [boolean])
         ```
-        Toggles if collision debug rays collide with [vehicles][vehicle].
+        Toggles if collision debug rays collide with [vehicles](~vehicle).
   - slug: collision_debug_flag_objects_weapons
     info:
       en: |-
         ```hsc
         (collision_debug_flag_objects_weapons [boolean])
         ```
-        Toggles if collision debug rays collide with [weapons][weapon].
+        Toggles if collision debug rays collide with [weapons](~weapon).
   - slug: collision_debug_flag_skip_passthrough_bipeds
     info:
       en: |-
@@ -1225,7 +1225,7 @@ external_globals:
         ```hsc
         (collision_debug_flag_structure [boolean])
         ```
-        Toggles if collision debug rays collide with the [structure BSP][scenario_structure_bsp].
+        Toggles if collision debug rays collide with the [structure BSP](~scenario_structure_bsp).
         Collisions with [model_collision_geometry] BSPs are unaffected.
   - slug: collision_debug_flag_try_to_keep_location_valid
     info:
@@ -1241,7 +1241,7 @@ external_globals:
         (collision_debug_flag_use_vehicle_physics [boolean])
         ```
         If enabled, collision debug rays will collide with vehicle
-        [physics spheres][physics#mass-points] rather than their [model_collision_geometry][].
+        [physics spheres](~physics#mass-points) rather than their [model_collision_geometry](~).
   - slug: collision_debug_height
     info:
       en: |-
@@ -1271,7 +1271,7 @@ external_globals:
         ```
         Causes a floating pink cube and label "phantom bsp" to appear whenever
         a test ray from the center of the screen intersects with
-        [phantom BSP][scenario_structure_bsp#phantom-bsp]. It can be helpful to
+        [phantom BSP](~scenario_structure_bsp#phantom-bsp). It can be helpful to
         pair this with `collision_debug_spray`.
   - slug: collision_debug_point_x
     info:
@@ -1417,9 +1417,9 @@ external_globals:
         (debug_biped_limp_body_disable [boolean])
         ```
         When set to `true`, pauses the biped limp body system, which is responsible for
-        moving [model nodes][gbxmodel#nodes] towards the ground when an
-        [eligible][biped#tag-field-biped-flags-uses-limp-body-physics] biped has
-        died and has come to rest on the [structure BSP][scenario_structure_bsp].
+        moving [model nodes](~gbxmodel#nodes) towards the ground when an
+        [eligible](~biped#tag-field-biped-flags-uses-limp-body-physics) biped has
+        died and has come to rest on the [structure BSP](~scenario_structure_bsp).
         Bipeds will lay roughly at the right angle, but they will not conform to
         the shape of the surfaces below them. If set to `false`, the limp body system
         will take effect again even for existing dead bipeds.
@@ -1437,7 +1437,7 @@ external_globals:
         ```hsc
         (debug_biped_skip_collision [boolean])
         ```
-        If `true`, disables collision checks for [bipeds][biped]. They will be able
+        If `true`, disables collision checks for [bipeds](~biped). They will be able
         to keep "walking" horizontally, but cannot jump or collide with any objects
         the BSP, and are unaffected by gravity. They will still be forced to stay crouched
         if crouching below or within a collideable surface.
@@ -1456,7 +1456,7 @@ external_globals:
         (debug_bsp [boolean])
         ```
         Toggles the display of
-        [structure BSP node][scenario_structure_bsp#tag-field-collision-bsp-bsp3d-nodes]
+        [structure BSP node](~scenario_structure_bsp#tag-field-collision-bsp-bsp3d-nodes)
         traversal for the camera location. At each level, the node and plane indices
         are shown as well as a `+` or `-` symbol indicating if the camera was on the
         front or back side of the plane.
@@ -1480,11 +1480,11 @@ external_globals:
         ```hsc
         (debug_collision_skip_objects [boolean])
         ```
-        Disables collision tests against [objects][object]. For example,
-        [projectiles][projectile] will pass through scenery and [bipeds][biped]
-        through non-moving [vehicles][vehicle]. Vehicle-to-vehicle collision
-        still happens, as does moving [vehicle][] against [biped][]. Everything
-        still collides with the [BSP][scenario_structure_bsp].
+        Disables collision tests against [objects](~object). For example,
+        [projectiles](~projectile) will pass through scenery and [bipeds](~biped)
+        through non-moving [vehicles](~vehicle). Vehicle-to-vehicle collision
+        still happens, as does moving [vehicle](~) against [biped](~). Everything
+        still collides with the [BSP](~scenario_structure_bsp).
   - slug: debug_collision_skip_vectors
     info:
       en: |-
@@ -1492,13 +1492,13 @@ external_globals:
         (debug_collision_skip_vectors [boolean])
         ```
         Globally disables vector/ray collision tests, with the following observed effects:
-        - [Projectiles][projectile], [particles][particle] and moving [items][item] will pass through everything, even the BSP.
+        - [Projectiles](~projectile), [particles](~particle) and moving [items](~item) will pass through everything, even the BSP.
         - Melees will have no effect.
         - [Vehicle] suspension, such as the Warthog's wheels, will hang.
-        - [Object lighting][renderer#lighting] will be unable to determine if an object
-          exists in direct sunlight from the [sky][], resulting in incorrect lighting
+        - [Object lighting](~renderer#lighting) will be unable to determine if an object
+          exists in direct sunlight from the [sky](~), resulting in incorrect lighting
           and shadow direction when an object moves.
-        - [Sounds][sound] behind obstructions will not be muffled.
+        - [Sounds](~sound) behind obstructions will not be muffled.
   - slug: debug_damage
     tags:
       - damage
@@ -1507,7 +1507,7 @@ external_globals:
         ```hsc
         (debug_damage [boolean])
         ```
-        When enabled, looking at any collideable [object][] and pressing
+        When enabled, looking at any collideable [object](~) and pressing
         <kbd>Space</kbd> will display the object's body and shield vitalities
         on the HUD.
   - slug: debug_damage_taken
@@ -1532,7 +1532,7 @@ external_globals:
         ```hsc
         (debug_detail_objects [boolean])
         ```
-        When enabled, active [detail object][detail_object_collection] cells
+        When enabled, active [detail object](~detail_object_collection) cells
         will be outlined in blue and individual detail objects are highlighted
         with red markers.
   - slug: debug_effects_nonviolent
@@ -1547,7 +1547,7 @@ external_globals:
         ```hsc
         (debug_fog_planes [boolean])
         ```
-        Outlines the edges of [fog][] plane volumes with white lines.
+        Outlines the edges of [fog](~) plane volumes with white lines.
   - slug: debug_framerate
     info:
       en: |-
@@ -1622,7 +1622,7 @@ external_globals:
         ```hsc
         (debug_looping_sound [boolean])
         ```
-        Displays active [sound_looping][] with cyan spheres for their maxmimum
+        Displays active [sound_looping](~) with cyan spheres for their maxmimum
         distance and blue spheres for their minimum.
   - slug: debug_material_effects
     info:
@@ -1682,7 +1682,7 @@ external_globals:
         (debug_objects_biped_autoaim_pills [boolean])
         ```
         When `debug_objects` is enabled, displays
-        [biped autoaim pills][biped#physics-and-autoaim-pills] in red.
+        [biped autoaim pills](~biped#physics-and-autoaim-pills) in red.
   - slug: debug_objects_biped_messages
     info:
       en: |-
@@ -1696,7 +1696,7 @@ external_globals:
         (debug_objects_biped_physics_pills [boolean])
         ```
         When `debug_objects` is enabled, displays
-        [biped physics pills][biped#physics-and-autoaim-pills] in white.
+        [biped physics pills](~biped#physics-and-autoaim-pills) in white.
   - slug: debug_objects_bounding_spheres
     info:
       en: |-
@@ -1704,7 +1704,7 @@ external_globals:
         (debug_objects_bounding_spheres [boolean])
         ```
         When `debug_objects` is enabled, displays yellow spheres for [object
-        bounding radius][object#tag-field-bounding-radius]. The sphere will be
+        bounding radius](~object#tag-field-bounding-radius). The sphere will be
         black when the object is _inactive_. This setting defaults to `true`
         in H1CE Sapien but not H1A Sapien.
   - slug: debug_objects_collision_models
@@ -1716,7 +1716,7 @@ external_globals:
         (debug_objects_collision_models [boolean])
         ```
         When `debug_objects` is enabled, displays green meshes for object
-        [collision models][model_collision_geometry]. This setting defaults
+        [collision models](~model_collision_geometry). This setting defaults
         to `true` in H1CE Sapien but not H1A Sapien.
   - slug: debug_objects_devices
     info:
@@ -1736,7 +1736,7 @@ external_globals:
         ```hsc
         (debug_objects_names [boolean])
         ```
-        Toggles the display of object names, for [named objects][scenario#tag-field-object-names].
+        Toggles the display of object names, for [named objects](~scenario#tag-field-object-names).
         The names are shown in purple.
   - slug: debug_objects_pathfinding_spheres
     tags:
@@ -1746,7 +1746,7 @@ external_globals:
         ```hsc
         (debug_objects_pathfinding_spheres [boolean])
         ```
-        When `debug_objects` is enabled, displays object [pathfinding spheres][model_collision_geometry#pathfinding-spheres]
+        When `debug_objects` is enabled, displays object [pathfinding spheres](~model_collision_geometry#pathfinding-spheres)
         in blue.
   - slug: debug_objects_physics
     info:
@@ -1880,9 +1880,9 @@ external_globals:
         ```hsc
         (debug_player_color [short])
         ```
-        Sets the [player's armour color][hard-coded-data#multiplayer-armor-colors]
+        Sets the [player's armour color](~hard-coded-data#multiplayer-armor-colors)
         in non-team games. The setting will take effect when the player respawns.
-        The default value `-1` causes the player's [profile setting][engine/files#profile-player-details-player-color]
+        The default value `-1` causes the player's [profile setting](~engine/files#profile-player-details-player-color)
         to be used.
   - slug: debug_player_teleport
     info:
@@ -1899,10 +1899,10 @@ external_globals:
         ```hsc
         (debug_point_physics [boolean])
         ```
-        Renders green or red markers wherever [point_physics][] are being
-        simulated, except for the [weather_particle_system][]. This includes
-        [flags][flag], [antenna][], [contrails][contrail], [particles][particle],
-        and [particle_systems][particle_system]. It can help to enable `framerate_throttle`
+        Renders green or red markers wherever [point_physics](~) are being
+        simulated, except for the [weather_particle_system](~). This includes
+        [flags](~flag), [antenna](~), [contrails](~contrail), [particles](~particle),
+        and [particle_systems](~particle_system). It can help to enable `framerate_throttle`
         for these markers to render consistently.
   - slug: debug_pvs
     info:
@@ -1939,7 +1939,7 @@ external_globals:
         (debug_render_freeze [boolean])
         ```
         Freezes the rendering viewport at the current camera location. The camera
-        may still move after frozen, but all portal-based culling, [skybox][sky]
+        may still move after frozen, but all portal-based culling, [skybox](~sky)
         origin, FP models, and some debug overlays will still be based on the
         previously frozen camera location. This command is useful for inspecting
         portal behaviour where the camera cannot directly see.
@@ -1956,7 +1956,7 @@ external_globals:
         ```hsc
         (debug_scripting [boolean])
         ```
-        Displays a table of active [script][scripting] threads, with their name,
+        Displays a table of active [script](~scripting) threads, with their name,
         sleep time, and currently executing function.
   - slug: debug_sound
     tags:
@@ -1967,7 +1967,7 @@ external_globals:
         ```hsc
         (debug_sound [boolean])
         ```
-        [Sound][] sources will be labeled in 3D with their [tag path][tags#tag-path]
+        [Sound](~) sources will be labeled in 3D with their [tag path](~tags#tag-path)
         and a their minimum and maximum distances shown as red and yellow spheres, respectively.
   - slug: debug_sound_cache
     tags:
@@ -1977,7 +1977,7 @@ external_globals:
         ```hsc
         (debug_sound_cache [boolean])
         ```
-        If enabled, [sound cache][sound-system#sound-cache] statistics will be shown
+        If enabled, [sound cache](~sound-system#sound-cache) statistics will be shown
         in the top left corner of the screen, including how full it is.
   - slug: sound_cache_dump_to_file
     tags:
@@ -2007,7 +2007,7 @@ external_globals:
         ```hsc
         (debug_sound_channels [boolean])
         ```
-        Displays the utilization of [sound channel][sound-system#channels] limits in the top left
+        Displays the utilization of [sound channel](~sound-system#channels) limits in the top left
         corner of the screen.
   - slug: debug_sound_channels_detail
     tags:
@@ -2027,8 +2027,8 @@ external_globals:
         ```hsc
         (debug_sound_environment [boolean])
         ```
-        If enabled, shows the tag path of the [cluster's][scenario_structure_bsp#clusters-and-cluster-data]
-        current [sound_environment][].
+        If enabled, shows the tag path of the [cluster's](~scenario_structure_bsp#clusters-and-cluster-data)
+        current [sound_environment](~).
   - slug: debug_sound_hardware
     info:
       en: |-
@@ -2053,7 +2053,7 @@ external_globals:
         ```hsc
         (debug_structure [boolean])
         ```
-        When enbled, all [scenario_structure_bsp][] collision surfaces will be
+        When enbled, all [scenario_structure_bsp](~) collision surfaces will be
         rendered with green outlines.
   - slug: debug_texture_cache
     info:
@@ -2069,7 +2069,7 @@ external_globals:
         ```hsc
         (debug_trigger_volumes [boolean])
         ```
-        Renders all scenario [trigger volumes][scenario#trigger-volumes] and their names.
+        Renders all scenario [trigger volumes](~scenario#trigger-volumes) and their names.
   - slug: debug_unit_all_animations
     info:
       en: |-
@@ -2553,7 +2553,7 @@ external_globals:
         ```hsc
         (rasterizer_debug_model_lod [short])
         ```
-        Forces certain object [LODs][gbxmodel#level-of-detail] to be used.
+        Forces certain object [LODs](~gbxmodel#level-of-detail) to be used.
         A value of `4` is the highest quality, and `0` the worst. The default
         value `-1` returns to automatic behaviour.
   - slug: rasterizer_debug_model_vertices
@@ -2574,7 +2574,7 @@ external_globals:
         ```hsc
         (rasterizer_detail_objects [boolean])
         ```
-        Toggles the rendering of [detail objects][detail_object_collection].
+        Toggles the rendering of [detail objects](~detail_object_collection).
   - slug: rasterizer_detail_objects_offset_multiplier
     info:
       en: |-
@@ -2651,7 +2651,7 @@ external_globals:
         ```hsc
         (rasterizer_environment_diffuse_textures [boolean])
         ```
-        Disables diffuse textures in the [BSP][scenario_structure_bsp],
+        Disables diffuse textures in the [BSP](~scenario_structure_bsp),
         showing just the lightmap shading and specular components.
   - slug: rasterizer_environment_fog
     info:
@@ -2659,8 +2659,8 @@ external_globals:
         ```hsc
         (rasterizer_environment_fog)
         ```
-        Toggles environmental [sky fog][sky#tag-field-outdoor-fog-color] and
-        [fog plane][fog] colors. Does not affect _fog screen_.
+        Toggles environmental [sky fog](~sky#tag-field-outdoor-fog-color) and
+        [fog plane](~fog) colors. Does not affect _fog screen_.
     tags:
       - sky
   - slug: rasterizer_environment_fog_screen
@@ -2669,7 +2669,7 @@ external_globals:
         ```hsc
         (rasterizer_environment_fog_screen [boolean])
         ```
-        Toggles the cloudy [fog screen][fog] effect of fog planes, seen in
+        Toggles the cloudy [fog screen](~fog) effect of fog planes, seen in
         the levels a30, c10, and c40.
   - slug: rasterizer_environment_lightmaps
     tags:
@@ -2679,7 +2679,7 @@ external_globals:
         ```hsc
         (rasterizer_environment_lightmaps [boolean])
         ```
-        Toggles the rendering of structure BSP [lightmaps][]. When disabled,
+        Toggles the rendering of structure BSP [lightmaps](~). When disabled,
         the level will be completely invisible.
   - slug: rasterizer_environment_reflection_lightmap_mask
     info:
@@ -2778,7 +2778,7 @@ external_globals:
         ```hsc
         (rasterizer_fog_plane [boolea])
         ```
-        Toggles the rendering of [fog][].
+        Toggles the rendering of [fog](~).
   - slug: rasterizer_fps
     info:
       en: |-
@@ -2867,7 +2867,7 @@ external_globals:
         (rasterizer_lightmap_mode [short])
         ```
         If the mode is `0`, the default, BSP specular reflections will be multiplied
-        by the [lightmap][lightmaps]. Any other value results in reflections being
+        by the [lightmap](~lightmaps). Any other value results in reflections being
         unaltered.
   - slug: rasterizer_lightmaps_filtering
     tags:
@@ -2951,7 +2951,7 @@ external_globals:
         ```hsc
         (rasterizer_ray_of_buddha [boolean])
         ```
-        Toggles the [sky's][sky] sun effect.
+        Toggles the [sky's](~sky) sun effect.
     tags:
       - sky
   - slug: rasterizer_refresh_rate
@@ -2999,7 +2999,7 @@ external_globals:
         ```
         When enabled, all dynamic object shadow maps will be rendered with a partially-shadowed
         background, making their rectangular boundaries visible. The size of this rectangle
-        depends on the object's [bounding radius][object#tag-field-bounding-radius].
+        depends on the object's [bounding radius](~object#tag-field-bounding-radius).
   - slug: rasterizer_smart
     info:
       en: |-
@@ -3072,7 +3072,7 @@ external_globals:
         ```hsc
         (rasterizer_zoffset [real])
         ```
-        Controls how far away from surfaces new [decals][decal] are generated, e.g. for
+        Controls how far away from surfaces new [decals](~decal) are generated, e.g. for
         projectile impacts. Defaults to `0.003906`. The units are _not_ world units.
   - slug: rasterizer_zsprites
     info:
@@ -3146,7 +3146,7 @@ external_globals:
         ```hsc
         (render_model_markers [boolean])
         ```
-        If enabled, all [model markers][gbxmodel#markers] will be rendered in
+        If enabled, all [model markers](~gbxmodel#markers) will be rendered in
         3D with their name and rotation axis.
   - slug: render_model_no_geometry
     info:
@@ -3245,7 +3245,7 @@ external_globals:
         (sound_obstruction_ratio [real])
         ```
         Controls how "muffled" sounds are when heard behind an obstruction like
-        the [BSP][scenario_structure_bsp] or an object with [collision geometry][model_collision_geometry].
+        the [BSP](~scenario_structure_bsp) or an object with [collision geometry](~model_collision_geometry).
         Defaults to `0.1`. A value of `0` means "not muffled", while a value above about `6`
         effectively mutes them.
   - slug: speed_hack_detection
@@ -3323,7 +3323,7 @@ external_globals:
         ```hsc
         (texture_cache_graph [boolean])
         ```
-        Toggles a live representation of the [texture cache][renderer#texture-cache]
+        Toggles a live representation of the [texture cache](~renderer#texture-cache)
         in the top left corner of the screen, depicting which entries are being
         loaded and evicted. Works in debug builds only.
   - slug: texture_cache_list
@@ -3333,14 +3333,14 @@ external_globals:
         (texture_cache_list [boolean])
         ```
         Shows a live list of all bitmap tag paths currently loaded in the
-        [texture cache][renderer#texture-cache]. Works in debug builds only.
+        [texture cache](~renderer#texture-cache). Works in debug builds only.
   - slug: texture_cache_flush
     info:
       en: |-
         ```hsc
         (texture_cache_flush)
         ```
-        Clears all loaded textures from the [texture cache][renderer#texture-cache].
+        Clears all loaded textures from the [texture cache](~renderer#texture-cache).
         Works in debug builds only.
   - slug: transport_dumping
     info:
@@ -3378,4 +3378,4 @@ external_globals:
         ```hsc
         (weather [boolean])
         ```
-        Toggles the rendering of all [weather_particle_system][]. Defaults to `true`.
+        Toggles the rendering of all [weather_particle_system](~). Defaults to `true`.

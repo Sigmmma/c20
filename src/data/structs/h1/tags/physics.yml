@@ -105,7 +105,7 @@ type_defs:
       post_cache_deformat: true
       postprocess_hek_data: true
     comments:
-      en: 'Models the dynamic physics and propulsion of [vehicles][vehicle].'
+      en: 'Models the dynamic physics and propulsion of [vehicles](~vehicle).'
     assert_size: 128
     fields:
       - name: radius

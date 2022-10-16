@@ -21,7 +21,7 @@ type_defs:
         comments:
           en: >
             Allows the item (e.g. grenade) to be detonated if receiving a
-            [damage_effect][] with a _detonates explosives_ flag enabled.
+            [damage_effect](~) with a _detonates explosives_ flag enabled.
       - name: unaffected_by_gravity
   Item:
     class: struct
@@ -31,7 +31,7 @@ type_defs:
       tag_id: item
     comments:
       en: >
-        Parent tag of [weapon][], [garbage][], and [equipment][]. Represents a
+        Parent tag of [weapon](~), [garbage](~), and [equipment](~). Represents a
         small moveable object with point-like physics.
     assert_size: 776
     fields:

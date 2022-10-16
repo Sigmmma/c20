@@ -11,7 +11,7 @@ type_defs:
         comments:
           en: >-
             The original classic Xbox version of Halo 1. This version also means
-            the data _after_ the cache header is zlib compressed. [_Stubbs_][engine#other-games]
+            the data _after_ the cache header is zlib compressed. [_Stubbs_](~engine#other-games)
             maps also use this version.
       - name: demo
         value: 6
@@ -76,7 +76,7 @@ type_defs:
         comments:
           en: >-
             Length of the map in bytes when uncompressed. Halo checks this to
-            ensure the map is within the [size limit][map#map-file-size-limit].
+            ensure the map is within the [size limit](~map#map-file-size-limit).
       - name: padding_length
         type: uint32
         comments:
@@ -98,7 +98,7 @@ type_defs:
         count: 32
         comments:
           en: >-
-            The name of the [scenario][] tag which this map was compiled from, e.g.
+            The name of the [scenario](~) tag which this map was compiled from, e.g.
             `bloodgulch`. Must match the filename, except in H1A. Null-terminated.
       - name: build_version
         type: char
@@ -115,7 +115,7 @@ type_defs:
             On Xbox, this tells the game which disk cache to decompress the map into.
             The singleplayer is 278 MiB, multiplayer is 47 MiB, and UI is 35 MiB.
             For example, setting this to `0` would always load the map to the singleplayer
-            cache even if it's a multiplayer map by [scenario type][scenario#tag-field-type].
+            cache even if it's a multiplayer map by [scenario type](~scenario#tag-field-type).
       - type: pad
         size: 2
       - name: checksum
@@ -130,7 +130,7 @@ type_defs:
           en: >-
             A bitfield which customizes how the cache file is treated by H1A in MCC.
             These are set by set by the `classic/remastered` option of
-            [H1A Tool build-cache-file][h1a-tool#classic-and-remastered-mode].
+            [H1A Tool build-cache-file](~h1a-tool#classic-and-remastered-mode).
       - type: pad
         size: 0x790
       - name: foot_magic
@@ -157,7 +157,7 @@ type_defs:
             On Xbox, this tells the game which disk cache to decompress the map into.
             The singleplayer is 278 MiB, multiplayer is 47 MiB, and UI is 35 MiB.
             For example, setting this to `0` would always load the map to the singleplayer
-            cache even if it's a multiplayer map by [scenario type][scenario#tag-field-type].
+            cache even if it's a multiplayer map by [scenario type](~scenario#tag-field-type).
       - type: pad
         size: 0x2BC
         comments:
@@ -197,7 +197,7 @@ type_defs:
         count: 32
         comments:
           en: >-
-            The name of the [scenario][] tag which this map was compiled from, e.g.
+            The name of the [scenario](~) tag which this map was compiled from, e.g.
             `bloodgulch`. Must match the filename. Null-terminated.
       - type: pad
         size: 0x4
@@ -218,7 +218,7 @@ type_defs:
       - name: tag_data_offset
         type: uint32
         comments:
-          en: Offset into the file to the [tag][tags] data.
+          en: Offset into the file to the [tag](~tags) data.
       - name: foot_magic
         type: char
         count: 4
@@ -238,15 +238,15 @@ type_defs:
       - name: bitmaps
         value: 1
         comments:
-          en: The file contains [bitmap][] tags.
+          en: The file contains [bitmap](~) tags.
       - name: sounds
         value: 2
         comments:
-          en: The file contains [sound][] tags.
+          en: The file contains [sound](~) tags.
       - name: loc
         value: 3
         comments:
-          en: The file contains [font][] and [unicode_string_list][] tags.
+          en: The file contains [font](~) and [unicode_string_list](~) tags.
   ResourceMapResource:
     class: struct
     assert_size: 0xC
@@ -269,7 +269,7 @@ type_defs:
         type: uint32
         comments:
           en: >-
-            Offset to [tag paths][tags#tag-references-and-paths].
+            Offset to [tag paths](~tags#tag-references-and-paths).
       - name: resources_offset
         type: uint32
         comments:
@@ -292,7 +292,7 @@ type_defs:
       - name: scenario_tag_id
         type: uint32
         comments:
-          en: Unique ID of the [scenario][] tag in the tag array.
+          en: Unique ID of the [scenario](~) tag in the tag array.
       - name: tag_count
         type: uint32
         comments:
@@ -369,14 +369,14 @@ type_defs:
         comments:
           en: >-
             The group ID of the tag's secondary (parent) tag class. For
-            example, this would be [object][] for [device_machine][] tags.
+            example, this would be [object](~) for [device_machine](~) tags.
       - name: tertiary_group_id
         type: char
         count: 4
         comments:
           en: >-
             The group ID of the tag's tertiary (grandparent) tag class. For
-            example, this would be [object][] for [device_machine][] tags.
+            example, this would be [object](~) for [device_machine](~) tags.
       - name: tag_id
         type: uint32
         comments:
@@ -387,19 +387,19 @@ type_defs:
           T: char
         comments:
           en: >-
-            Pointer to the [tag path][tags#tag-references-and-paths] string.
-            This data may unusable in [protected maps][map#protected-maps] and is
-            technically not needed at runtime except for [debugging purposes][developer-console].
+            Pointer to the [tag path](~tags#tag-references-and-paths) string.
+            This data may unusable in [protected maps](~map#protected-maps) and is
+            technically not needed at runtime except for [debugging purposes](~developer-console).
       - name: tag_data_ref
         type: TagDataRef
         comments:
           en: >-
             This field can be interpreted as either a `ptr32` to the tag's data within
             this cache file when loaded by the game, or as a `uint32` _resource index_
-            if the tag data is external (found in a [resource map][map#resource-maps]).
+            if the tag data is external (found in a [resource map](~map#resource-maps)).
             H1X maps will never use a resource index since that feature was not implemented
             yet. Resource indices are replaced by a pointer to a loaded tag at runtime
-            except in the case of [sound][] tags.
+            except in the case of [sound](~) tags.
       - name: is_external
         type: uint32
         comments:
