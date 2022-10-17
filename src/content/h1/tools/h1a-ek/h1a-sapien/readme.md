@@ -22,8 +22,8 @@ You can even place these in your `editor_init.txt` so they are run automatically
 # Command line flags
 Command line flags can be passed to H1A Sapien at launch to change run-time behavior. These features are experimental and might not work as expected.
 
-- `-multipleinstance` command line flag can be used to allow multiple instances of Sapien to be launched at once.
-- `-data_dir` and `-tags_dir` can be used to change the tags and data directories. See [using custom content paths][using-custom-content-paths].
+* `-multipleinstance` command line flag can be used to allow multiple instances of Sapien to be launched at once.
+* `-data_dir` and `-tags_dir` can be used to change the tags and data directories. See [using custom content paths][using-custom-content-paths].
 
 # Menu options
 ## Switch BSP
@@ -151,30 +151,20 @@ Sapien requires DX11 support, it is currently unknown if it can be run under WIN
 
 # Troubleshooting
 ## Interface
-<table>
-  <thead>
-    <tr>
-      <th style="width:50%">Issue</th>
-      <th style="width:50%">Solution</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Child windows are not visible or stuck outside the main window.</td>
-      <td>
-        <p>Open the registry key <code>HKEY_CURRENT_USER\Software\i343\halo1a_sapien</code> using regedit and delete all entries ending with "rect".</p>
-      </td>
-    </tr>
-    <tr>
-      <td>Can't change the open scenario</td>
-      <td>This is a known issue, simply close Sapien and open it again; this will allow you to open the scenario.</td>
-    </tr>
-    <tr>
-      <td>Mouse is locked to game view</td>
-      <td>Issue/feature with some keyboard layouts, press the middle mouse button to unlock it.</td>
-    </tr>
-  </tbody>
-</table>
+
+{% table %}
+* Issue
+* Solution
+---
+* Child windows are not visible or stuck outside the main window.
+* Open the registry key `HKEY_CURRENT_USER\Software\i343\halo1a_sapien` using regedit and delete all entries ending with "rect".
+---
+* Can't change the open scenario
+* This is a known issue, simply close Sapien and open it again; this will allow you to open the scenario.
+---
+* Mouse is locked to game view
+* Issue/feature with some keyboard layouts, press the middle mouse button to unlock it.
+{% /table %}
 
 ## Crashes
 When Sapien crashes, check `debug.txt` for hints.

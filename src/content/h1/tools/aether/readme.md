@@ -22,14 +22,7 @@ Within the 3D software, the artist can place lights and bake lighting to a textu
 
 Open up Aether and you'll see the main window.
 
-<figure>
-  <a href="Aether_Main_Window.jpg">
-    <img src="Aether_Main_Window.jpg" alt="Aether's Main Window"/>
-  </a>
-  <figcaption>
-    <p>Aether's Main Window</p>
-  </figcaption>
-</figure>
+![.figure Aether's Main Window](Aether_Main_Window.jpg)
 
 Go to File>New Project, or press the lightbulb button, and select the scenario file you are making lightmaps for. Then, save the Aether project file somewhere easy to remember. Aether will tick over for a bit depending on your computers speed and then load your project.
 
@@ -37,14 +30,7 @@ Aether copies the information it needs into the project file so no alterations a
 
 Depending on what you have in your map, the objects on the left will list all of your object types. Removing a type from the list will remove all instances of that type from the exported files. This can be handy if you have object types that do not cast a shadow or emit any light, and you don't want them in your exported files.
 
-<figure>
-  <a href="Aether_File_Loaded.jpg">
-    <img src="Aether_File_Loaded.jpg" alt="Aether loaded with a file"/>
-  </a>
-  <figcaption>
-    <p>Aether loaded with a file</p>
-  </figcaption>
-</figure>
+![.figure Aether loaded with a file](Aether_File_Loaded.jpg)
 
 The BSP list selects which BSP you want to perfrom your actions on. With a BSP selected you have the option to Edit that BSPs' lightmap bitmap or export the data you need in 3ds Max.
 
@@ -69,25 +55,11 @@ If importing markers causes the script utility to hang/freeze, try deleting any 
 ![](aemk-fix.jpg)
 ```
 
-<figure>
-  <a href="Fix_Materials.jpg">
-    <img src="Fix_Materials.jpg" alt="Fix materials aftermath"/>
-  </a>
-  <figcaption>
-    <p>Fix materials aftermath</p>
-  </figcaption>
-</figure>
+![.figure Fix materials aftermath](Fix_Materials.jpg)
 
 For beavercreek the object is "mp_pine_tree_small" so go ahead and open that objects gbxmodel using the GBXModel importer and import it into the scene. If you want to, now is a good time to set up the imported objects material. So put the appropriate bitmaps into the diffuse and opacity channels of the objects material(s). Now, to place it into the scene, it's as simple as selecting the object and hitting Create Instances.
 
-<figure>
-  <a href="Light_Link.jpg">
-    <img src="Light_Link.jpg" alt="Lights can be linked to geometry before instancing"/>
-  </a>
-  <figcaption>
-    <p>Lights can be linked to geometry before instancing</p>
-  </figcaption>
-</figure>
+![.figure Lights can be linked to geometry before instancing](Light_Link.jpg)
 
 For scenarios with multiple BSPs' the objects from other BSPs' will also be included in the marker file so you will have to manually remove unnecessary objects from the scene. When multiple objects are selected the script will use the topmost object of your selections hierarchy as the pivot when translating the instances. This tends to be the frame node. When placing objects with multiple permutations you can use the "Random Perm" option to place a randomly selected object in your selection in each postion. However, this has the drawback of only working with single objects, so objects with a hierarchy won't work.
 
@@ -97,39 +69,18 @@ TIP: The script can also use Xref'ed objects so if you already have your object 
 
 Repeat this process with all of the objects used in your map and you should end up with your BSP populated and ready for lighting.
 
-<figure>
-  <a href="Beavercreek.jpg">
-    <img src="Beavercreek.jpg" alt="Beavercreek with all scenery imported"/>
-  </a>
-  <figcaption>
-    <p>Beavercreek with all scenery imported</p>
-  </figcaption>
-</figure>
+![.figure Beavercreek with all scenery imported](Beavercreek.jpg)
 
 ## Lighting
 The first step to creating your lighting solution should be to set up your skys lights. So open up your scenarios sky tag if it has one. When adding lights that are in the sky, use directional lights as these emit parallel light rays, which is why they are most suitable as suns and other big light sources. To get your light in the right orientation, the Y and P angles correspond to Z and Y respectively. The actual position of your lights isn't important as they are emitting parallel rays, however you should make sure that they encompass the entire map.
 
 A consideration that needs to be made is that light will pass through backfaces, which in most cases can be easily resolved by surrounding the level with a blocking mesh. Your blocking mesh should either have no smoothing group applied, or a completely different smoothing group to what it connects to.
 
-<figure>
-  <a href="Blocking_Mesh.jpg">
-    <img src="Blocking_Mesh.jpg" alt="A blocking mesh will prevent unwanted lighting"/>
-  </a>
-  <figcaption>
-    <p>A blocking mesh will prevent unwanted lighting</p>
-  </figcaption>
-</figure>
+![.figure A blocking mesh will prevent unwanted lighting](Blocking_Mesh.jpg)
 
 With your sky's lights now in the correct place you can start putting the rest of your lights in. This bit is largely down to user preference but just putting omni lights where light emitting surfaces are is generally the easiest method. To do this you first get the material ID's of the light emitting surfaces in the BSP. In beavercreek these are 14-16; not including the "greenlight" material, as the teleporter lights were placed earlier with the teleporter shield. Next, go into the BSPs face selection mode and make sure you have no faces selected. Go to the Surface Materials->Material box and turn off Clear Selection. Then put the material ID's into the Select ID box one by one and hit the Select ID button each time. This will select all of your light emitting faces. Invert your selection and hit the Hide button in the selection section.
 
-<figure>
-  <a href="Omni_Lights.jpg">
-    <img src="Omni_Lights.jpg" alt="Omni lights added to light emitting faces"/>
-  </a>
-  <figcaption>
-    <p>Omni lights added to light emitting faces</p>
-  </figcaption>
-</figure>
+![.figure Omni lights added to light emitting faces](Omni_Lights.jpg)
 
 Now only your light emitting faces are visible. Create an omni light and set it up however you want. To place your lights, it is easiest to use 3D snaps, snapping to edge midpoints to get the light in the centre of a quad, but you can move them manually if you want. Once a light is in the right position make sure it is pushed out a little bit from the face so that the face itself is lit.
 
@@ -164,14 +115,7 @@ TIP: If you want a smoother result turn on antialiasing and supersampling, but d
 
 With that done close the renderer options dialog so you are back to the "Projection Options" dialog. Set the method to raytrace, turn off "Use Cage" and set the offset to 1.0 or above. The cage is used when you are having to fit a low poly object around a high poly object but since we are using meshes that are exactly the same we don't need it. If you set the offset below 1.0 it tends to miss out random pixels and is generally bad, whereas making it too high can make it hit the wrong geometry if your mesh is quite complex. Finally set "Resolve Hit" to "Closest". Thats it for "Projection Options" so close it. Back in the Render to Texture dialog, set the Mapping Coordinates to Use Existing Channel so that the lightmap UV's created by Tool are used rather than overriding them with automatic unwrap UVs.
 
-<figure>
-  <a href="Completed_Render_to_Texture.jpg">
-    <img src="Completed_Render_to_Texture.jpg" alt="Completed render to texture dialogue"/>
-  </a>
-  <figcaption>
-    <p>Completed render to texture dialogue</p>
-  </figcaption>
-</figure>
+![.figure Completed render to texture dialogue](Completed_Render_to_Texture.jpg)
 
 The Output area is where you set up what bitmaps you want to create and how big you want them to be. Hit Add and select Lighting Map. You can leave everything default.
 
@@ -196,14 +140,7 @@ When viewing your custom lightmaps you may find that there are areas that aren't
 
 The recommended workflow for creating completely custom lightmap UVs:
 
-<figure>
-  <a href="Poor_UVs_Example.jpg">
-    <img src="Poor_UVs_Example.jpg" alt="Example of poor UVs by Tool"/>
-  </a>
-  <figcaption>
-    <p>Example of poor UVs by Tool</p>
-  </figcaption>
-</figure>
+![.figure Example of poor UVs by Tool](Poor_UVs_Example.jpg)
 
 1. Finalise your BSP.
     It would be unwise to make custom lightmaps for each BSP iteration as it does take time to Re-UV a BSP so you don't want to be doing it over and over again.

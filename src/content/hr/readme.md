@@ -1,11 +1,4 @@
-<figure>
-  <a href="Halo_reach_final_boxshot.jpg">
-    <img src="Halo_reach_final_boxshot.jpg" alt="""/>
-  </a>
-  <figcaption>
-    <p>Halo Reach's box art</p>
-  </figcaption>
-</figure>
+![.figure Halo Reach's box art](Halo_reach_final_boxshot.jpg)
 
 **Halo Reach** is the fourth instalment of the Halo game series and a prequel to [Halo 1][h1]. It was created by [Bungie][bungie] and initially released on the Xbox 360 in 2010 by publisher/owner [Microsoft][]. In 2019 the game was re-released as a part of *Halo: The Master Chief Collection* on the Xbox One and Microsoft Windows.
 

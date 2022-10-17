@@ -1,11 +1,4 @@
-<figure>
-  <a href="wireframe.jpg">
-    <img src="wireframe.jpg" alt=""/>
-  </a>
-  <figcaption>
-    <p>Using <code>rasterizer_wireframe 1</code> demonstrates Halo's portal-based occlusion culling.</p>
-  </figcaption>
-</figure>
+![.figure Using `rasterizer_wireframe 1` demonstrates Halo's portal-based occlusion culling.](wireframe.jpg)
 
 The **renderer** or **rasterizer** is the system of [Halo's engine][engine] responsible for drawing the scene to the screen. Each [ported edition][h1] of Halo has a slightly different renderer in terms of how well it reproduces the classic Xbox appearance.
 
@@ -25,14 +18,7 @@ Dynamic shadows for moving objects like [units][unit] and [items][item] are rend
 
 # Gearbox regressions
 
-<figure>
-  <a href="glass-bug.jpg">
-    <img src="glass-bug.jpg" alt=""/>
-  </a>
-  <figcaption>
-    <p>The glass shader with bump-mapped reflections renders incorrectly in Custom Edition.</p>
-  </figcaption>
-</figure>
+![.figure The glass shader with bump-mapped reflections renders incorrectly in Custom Edition.](glass-bug.jpg)
 
 When Halo was ported to PC by Gearbox in 2003 many visual bugs were introduced. Among the challenges were updating H1X's shaders and rendering code to work with DirectX 9 and unlocked framerates in an engine which previously assumed 30 FPS always. The renderer also needed to be adapted for the range of user hardware for the PC port.
 

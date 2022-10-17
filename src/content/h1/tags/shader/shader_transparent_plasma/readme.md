@@ -3,14 +3,7 @@
 # Known issues
 The original PC ports of Halo (H1PC and H1CE) include a number of [known renderer issues][renderer#gearbox-regressions]. On some PC hardware plasma shaders render incorrectly:
 
-<figure class="inline">
-  <a href="plasma-bad.jpg">
-    <img src="plasma-bad.jpg" alt=""/>
-  </a>
-  <figcaption>
-    <p>Notice how some areas of the plasma are cut off.</p>
-  </figcaption>
-</figure>
+![.figure Notice how some areas of the plasma are cut off.](plasma-bad.jpg)
 
 After the noise maps are sampled and blended, the resuling value is supposed to be mapped to transparent at high and low values and to opaque at midtones. Something about the shader math at this step is platform-dependent and results in half the values mapping to fully transparent instead of a blend.
 

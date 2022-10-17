@@ -4,16 +4,9 @@ cannot be directly changed or controlled.
 
 # Multiplayer armor colors
 
-<figure>
-  <a href="armor_colors.jpg">
-    <img src="armor_colors.jpg" alt="Armor colors in order"/>
-  </a>
-  <figcaption>
-    <p>Spartan armor colors with shaders as they appear ingame.</p>
-    <p>The far-left is the single-player color, which comes from the
-    unit (usually biped) tag and is <strong>not</strong> hard-coded</p>
-  </figcaption>
-</figure>
+{% figure src="armor_colors.jpg" %}
+Spartan armor colors with shaders as they appear ingame. The far left is the single-player color, which comes from the biped tag and is **not** hard-coded.
+{% /figure %}
 
 In multiplayer, the player's armor color value comes from this hard-coded list and is stored in their [profile file][files#blam-sav]. For non-player unit color change, see [actor_variant][actor_variant#change-colors] & [object][].
 
@@ -22,26 +15,26 @@ values are both listed in red-green-blue order. Note that these colors will look
 somewhat different ingame, since cubemaps and specular maps are applied over the
 diffuse color listed here.
 
-| Index | Name   | Color                                       | HEX       | RGB           |
-|-------|--------|---------------------------------------------|-----------|---------------|
-| 0     | White  |<div style="background: #FFFFFF">&nbsp;</div>| `#FFFFFF` | 255, 255, 255 |
-| 1     | Black  |<div style="background: #000000">&nbsp;</div>| `#000000` |   0,   0,   0 |
-| 2     | Red    |<div style="background: #FE0000">&nbsp;</div>| `#FE0000` | 254,   0,   0 |
-| 3     | Blue   |<div style="background: #0201E3">&nbsp;</div>| `#0201E3` |   2,   1, 227 |
-| 4     | Gray   |<div style="background: #707E71">&nbsp;</div>| `#707E71` | 112, 126, 113 |
-| 5     | Yellow |<div style="background: #FFFF01">&nbsp;</div>| `#FFFF01` | 255, 255,   1 |
-| 6     | Green  |<div style="background: #00FF01">&nbsp;</div>| `#00FF01` |   0, 255,   1 |
-| 7     | Pink   |<div style="background: #FF56B9">&nbsp;</div>| `#FF56B9` | 255,  86, 185 |
-| 8     | Purple |<div style="background: #AB10F4">&nbsp;</div>| `#AB10F4` | 171,  16, 244 |
-| 9     | Cyan   |<div style="background: #01FFFF">&nbsp;</div>| `#01FFFF` |   1, 255, 255 |
-| 10    | Cobalt |<div style="background: #6493ED">&nbsp;</div>| `#6493ED` | 100, 147, 237 |
-| 11    | Orange |<div style="background: #FF7F00">&nbsp;</div>| `#FF7F00` | 255, 127,   0 |
-| 12    | Teal   |<div style="background: #1ECC91">&nbsp;</div>| `#1ECC91` |  30, 204, 145 |
-| 13    | Sage   |<div style="background: #006401">&nbsp;</div>| `#006401` |   0, 100,   1 |
-| 14    | Brown  |<div style="background: #603814">&nbsp;</div>| `#603814` |  96,  56,  20 |
-| 15    | Tan    |<div style="background: #C69C6C">&nbsp;</div>| `#C69C6C` | 198, 156, 108 |
-| 16    | Maroon |<div style="background: #9D0B0E">&nbsp;</div>| `#9D0B0E` | 157,  11,  14 |
-| 17    | Salmon |<div style="background: #F5999E">&nbsp;</div>| `#F5999E` | 245, 153, 158 |
+| Index | Name   | Color                  | HEX       | RGB           |
+|-------|--------|------------------------|-----------|---------------|
+| 0     | White  | {% color "#FFFFFF" /%} | `#FFFFFF` | 255, 255, 255 |
+| 1     | Black  | {% color "#000000" /%} | `#000000` |   0,   0,   0 |
+| 2     | Red    | {% color "#FE0000" /%} | `#FE0000` | 254,   0,   0 |
+| 3     | Blue   | {% color "#0201E3" /%} | `#0201E3` |   2,   1, 227 |
+| 4     | Gray   | {% color "#707E71" /%} | `#707E71` | 112, 126, 113 |
+| 5     | Yellow | {% color "#FFFF01" /%} | `#FFFF01` | 255, 255,   1 |
+| 6     | Green  | {% color "#00FF01" /%} | `#00FF01` |   0, 255,   1 |
+| 7     | Pink   | {% color "#FF56B9" /%} | `#FF56B9` | 255,  86, 185 |
+| 8     | Purple | {% color "#AB10F4" /%} | `#AB10F4` | 171,  16, 244 |
+| 9     | Cyan   | {% color "#01FFFF" /%} | `#01FFFF` |   1, 255, 255 |
+| 10    | Cobalt | {% color "#6493ED" /%} | `#6493ED` | 100, 147, 237 |
+| 11    | Orange | {% color "#FF7F00" /%} | `#FF7F00` | 255, 127,   0 |
+| 12    | Teal   | {% color "#1ECC91" /%} | `#1ECC91` |  30, 204, 145 |
+| 13    | Sage   | {% color "#006401" /%} | `#006401` |   0, 100,   1 |
+| 14    | Brown  | {% color "#603814" /%} | `#603814` |  96,  56,  20 |
+| 15    | Tan    | {% color "#C69C6C" /%} | `#C69C6C` | 198, 156, 108 |
+| 16    | Maroon | {% color "#9D0B0E" /%} | `#9D0B0E` | 157,  11,  14 |
+| 17    | Salmon | {% color "#F5999E" /%} | `#F5999E` | 245, 153, 158 |
 
 The developer console command [`debug_player_color [index]`][developer-console#debugfunctions-debug-player-color] can be used to set this during gameplay.
 

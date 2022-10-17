@@ -1,11 +1,4 @@
-<figure>
-  <a href="Halo_3_odst_final_boxshot.jpg">
-    <img src="Halo_3_odst_final_boxshot.jpg" alt="""/>
-  </a>
-  <figcaption>
-    <p>Halo 3 ODST's box art featuring the Rookie</p>
-  </figcaption>
-</figure>
+![.figure Halo 3 ODST's box art featuring the Rookie](Halo_3_odst_final_boxshot.jpg)
 
 **Halo 3 ODST** is the fourth instalment of the Halo game series and is set during the events of [Halo 2][h2]. It is not a direct sequel to [Halo 3][h3]. It was created by [Bungie][bungie] and initially released on the Xbox 360 in 2009 by publisher/owner [Microsoft][]. In 2015 the game was re-released as a part of *Halo: The Master Chief Collection* on the Xbox One and later in 2020 was ported to Microsoft Windows alongside other halo titles in the collection.
 

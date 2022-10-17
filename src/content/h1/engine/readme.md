@@ -24,14 +24,7 @@ Note that on Xbox, the engine makes some in-memory [tag edits][tool#hardcoded-ta
 
 # Other games
 
-<figure>
-  <a href="stubbs.jpg">
-    <img src="stubbs.jpg" alt=""/>
-  </a>
-  <figcaption>
-    <p>A Stubbs map extracted and re-used in CMT's Project Oddball</p>
-  </figcaption>
-</figure>
+![.figure A Stubbs map extracted and re-used in CMT's Project Oddball](stubbs.jpg)
 
 The Halo engine was not just used for the Halo series. Bungie co-founder [Alex Seropian][alex] went on to found [Wideload Games][wideload] and used the engine for [Stubbs the Zombie in Rebel Without a Pulse][stubbs] as well as a prototype of [Hail to the Chimp][chimp-proto]. In fact, it is possible to extract [tags][] from Stubbs using [Refinery][mek] and recompile levels for Halo.
 

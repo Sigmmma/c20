@@ -1,11 +1,4 @@
-<figure>
-  <a href="Halo_3_final_boxshot.jpg">
-    <img src="Halo_3_final_boxshot.jpg" alt="""/>
-  </a>
-  <figcaption>
-    <p>Halo 3's box art featuring the Master Chief</p>
-  </figcaption>
-</figure>
+![.figure Halo 3's box art featuring the Master Chief](Halo_3_final_boxshot.jpg)
 
 **Halo 3** is the third instalment of the Halo game series and sequel to [Halo 2][h2]. It was created by [Bungie][bungie] and initially released on the Xbox 360 in 2007 by publisher/owner [Microsoft][]. In 2014 the game was re-released as a part of *Halo: The Master Chief Collection* on the Xbox One and later in 2020 was ported to Microsoft Windows alongside other halo titles in the collection.
 

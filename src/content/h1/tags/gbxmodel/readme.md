@@ -46,14 +46,7 @@ A permutation is a randomly selected variation of a [region](#regions). They are
 Permutations are not [network synchronized][netcode].
 
 # Level of detail
-<figure>
-  <a href="lod.jpg">
-    <img src="lod.jpg" alt=""/>
-  </a>
-  <figcaption>
-    <p>Low quality LODs shown for the Chief biped and Warthog. Note the reduced geometric detail.</p>
-  </figcaption>
-</figure>
+![.figure Low quality LODs shown for the Chief biped and Warthog. Note the reduced geometric detail.](lod.jpg)
 
 Models can contain multiple levels of detail (LODs), ranging from simplified meshes with reduced shader count to high detail meshes with numerous complex shaders. The game will select a LOD based on the on-screen diameter of the object's [bounding sphere][object#tag-field-bounding-radius] in pixels and this tag's [LOD cutoffs](#tag-field-super-high-detail-cutoff). Objects which are very distant or small don't need a lot of geometric detail, so they can be rendered using low quality LODs to keep the framerate high in busy scenes.
 

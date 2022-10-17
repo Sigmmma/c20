@@ -1,9 +1,9 @@
-const gulp = require("gulp");
-const del = require("del");
-const sass = require("sass");
-const fs = require("fs");
-const path = require("path");
-const {paths, baseUrl} = require("./build-config.json");
+import gulp from "gulp";
+import del from "del";
+import sass from "sass";
+import fs from "fs";
+import path from "path";
+import {paths, baseUrl} from "./build-config.json";
 import buildContent from "./src/build";
 import runServer from "./src/server";
 

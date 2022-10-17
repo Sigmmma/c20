@@ -7,7 +7,8 @@ import {commonLength } from "./utils/strings";
 import {type Node} from "@markdoc/markdoc";
 import {type MdSrc} from "./components/Md/markdown";
 import {type Lang} from "./utils/localization";
-import { BuildOpts } from "../build";
+import {type BuildOpts} from "../build";
+import {upgrade} from "../utility_scripts/migrate";
 
 export type PageId = string;
 
@@ -83,18 +84,21 @@ export async function loadPageIndex(contentDir): Promise<PageIndex> {
     const lang = parseLangSuffix(fileName) ?? "en";
 
     // const langs = Object.keys(pageMeta.title);
-    const mdSrc = await fs.promises.readFile(mdFilePath, "utf8");
-    if (mdSrc.startsWith("---")) {
-      const {ast, frontmatter: front} = parse<PageFrontMatter>(mdSrc, mdFilePath);
-      if (front) {
-        if (!pages[pageId]) pages[pageId] = {};
-        pages[pageId][lang] = {
-          front,
-          ast,
-          logicalPath,
-          logicalPathTail,
-        };
-      }
+    let mdSrc = await fs.promises.readFile(mdFilePath, "utf8");
+    if (!mdSrc.startsWith("---")) {
+      const ymlSrc = await fs.promises.readFile(path.join(dirPath, "page.yml"), "utf8");
+      mdSrc = upgrade(mdSrc, ymlSrc);
+    }
+
+    const {ast, frontmatter: front} = parse<PageFrontMatter>(mdSrc, mdFilePath);
+    if (front) {
+      if (!pages[pageId]) pages[pageId] = {};
+      pages[pageId][lang] = {
+        front,
+        ast,
+        logicalPath,
+        logicalPathTail,
+      };
     }
   }));
 
@@ -105,6 +109,7 @@ export function resolvePageGlobal(pageIndex: PageIndex, lang: Lang, fromPageId: 
   if (!idTail.startsWith("/")) {
     idTail = "/" + idTail;
   }
+  idTail = idTail.toLowerCase();
 
   const candidatePageIds = Object.keys(pageIndex).filter(otherPageId => otherPageId.endsWith(idTail));
   if (candidatePageIds.length == 0) {

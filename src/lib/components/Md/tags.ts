@@ -1,10 +1,25 @@
-import {Schema, Tag} from "@markdoc/markdoc";
+import {type Schema} from "@markdoc/markdoc";
 import {alertTypes} from "../Alert/Alert";
 import {iconNames} from "../Icon/names";
-import {onlyTypes} from "../DataTable/RelatedHsc";
+import {onlyTypes} from "../RelatedHsc/RelatedHsc";
 
 // These are the custom markdoc "tags" we suppport, and the components they map to
 const tags: Record<string, Schema> = {
+  color: {
+    render: "Color",
+    selfClosing: true,
+    attributes: {
+      primary: {
+        type: String,
+        required: true,
+        render: "hex",
+      }
+    }
+  },
+  unitConverter: {
+    render: "UnitConverter",
+    selfClosing: true,
+  },
   figure: {
     render: "Figure",
     selfClosing: false,

@@ -1,11 +1,4 @@
-<figure>
-  <a href="h2cover.jpg">
-    <img src="h2cover.jpg" alt="""/>
-  </a>
-  <figcaption>
-    <p>Halo 2's box art</p>
-  </figcaption>
-</figure>
+![.figure Halo 2's box art](h2cover.jpg)
 
 **Halo 2** is the second installment of the Halo game series and sequel to [Halo 1][h1]. It was created by [Bungie][bungie] and initially released on the original Xbox in 2004 by publisher/owner [Microsoft][]. In 2007, the game was released for Windows PC and Mac via different studios.
 

@@ -1,11 +1,4 @@
-<figure>
-  <a href="ai.jpg">
-    <img src="ai.jpg" alt=""/>
-  </a>
-  <figcaption>
-    <p>AI firing positions and sight lines are shown for the b30 beach assault.</p>
-  </figcaption>
-</figure>
+![.figure AI firing positions and sight lines are shown for the b30 beach assault.](ai.jpg)
 
 The **AI system** is the part of the game responsible for AI behaviour over short time scales. It is paired with [level scripts][scripting] which give the AI broader or situational goals.
 

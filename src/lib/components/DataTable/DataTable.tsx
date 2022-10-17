@@ -1,18 +1,16 @@
 import {slugify} from "../../utils/strings";
 import * as R from "ramda";
-import {RenderContext, useCtx} from "../Ctx/Ctx";
+import {type RenderContext, useCtx} from "../Ctx/Ctx";
 import {Jump} from "../Heading/Heading";
-import Md from "../Md/Md";
 import CodeBlock from "../CodeBlock/CodeBlock";
 import renderMdPlaintext from "../Md/plaintext";
-import { parse, transform } from "../Md/markdown";
+import {parse, transform} from "../Md/markdown";
+import Md from "../Md/Md";
 
 const AUTO_INDEX_THRESHOLD = 100;
 
 export type DataTableProps = {
   dataPath: string | string[];
-  /** @deprecated use page-local data instead */
-  dataSource?: string;
   id?: string;
   rowSortKey?: string;
   rowSortReverse?: boolean;
@@ -185,14 +183,16 @@ export default function DataTable(props: DataTableProps) {
     classes.push("wrap-pre");
   }
 
-  //todo .join(" · ") CSS
   return (
     <>
       {rowsIndex.length > 0 &&
         <p>
           <nav>
-            {rowsIndex.map(firstRow =>
-              <a href={`#${firstRow.id}`}>{firstRow.indexKey}</a>
+            {R.intersperse(
+              " · ",
+              rowsIndex.map(firstRow =>
+                <a href={`#${firstRow.id}`}>{firstRow.indexKey}</a>
+              )
             )}
           </nav>
         </p>

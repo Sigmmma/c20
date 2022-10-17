@@ -43,14 +43,7 @@ Areas of a map which need a fog layer can be marked using _fog planes_. These ar
 
 # Weather polyhedra
 
-<figure>
-  <a href="weather-polys-aotcr.png">
-    <img src="weather-polys-aotcr.png" alt="Weather polys from AotCR"/>
-  </a>
-  <figcaption>
-    <p>Weather polys extracted from AotCR.</p>
-  </figcaption>
-</figure>
+![.figure Weather polys extracted from AotCR.](weather-polys-aotcr.png)
 
 Weather polyhedra are simple convex volumes where weather particles will not render. They can be used to mask rain or snow from under overhangs, doorways, and indoor spaces when the cluster has weather.
 
@@ -65,14 +58,7 @@ _See main page: [Lightmaps][]._
 
 # Lens flare markers
 
-<figure>
-  <a href="lens-flare-markers.jpg">
-    <img src="lens-flare-markers.jpg" alt="Lens flare markers in a10"/>
-  </a>
-  <figcaption>
-    <p>In a10, lens flare markers were generated for fluorescent lights</p>
-  </figcaption>
-</figure>
+![.figure In a10, lens flare markers were generated for fluorescent lights](lens-flare-markers.jpg)
 
 When a [shader_environment][] references a [lens_flare][], _lens flare markers_ are automatically created and stored in the BSP tag during initial [structure compilation][tool#structure-compilation] or updated with [structure-lens-flares][tool#structure-lens-flares]. These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface<sup>(how?)</sup>. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
 
@@ -81,14 +67,7 @@ A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens fl
 # Collision artifacts
 ## Phantom BSP
 
-<figure>
-  <a href="phantom.jpg">
-    <img src="phantom.jpg" alt=""/>
-  </a>
-  <figcaption>
-    <p>Danger Canyon contains at least two prevalent cases of phantom BSP. The Warthog and bullets are both colliding with invisible extensions of nearby surfaces.</p>
-  </figcaption>
-</figure>
+![.figure Danger Canyon contains at least two prevalent cases of phantom BSP. The Warthog and bullets are both colliding with invisible extensions of nearby surfaces.](phantom.jpg)
 
 Phantom BSP is a collision artifact sometimes produced when compiling BSPs. It manifests itself as invisible surfaces which projectiles and vehicles collide with (but not players), and mostly appears around sharp corners near cases of "nearly coplanar faces" warnings in your [WRL file][wrl].
 
@@ -104,16 +83,7 @@ On a technical level, cases of phantom BSP are [dividing planes](#tag-field-coll
 
 ## BSP holes
 
-<figure>
-  <a href="hole.mp4">
-    <video controls>
-      <source src="hole.mp4" type="video/mp4">
-    </video>
-  </a>
-  <figcaption>
-    <p>This location in Derelict has a small collision hole where items can fall through the map.</p>
-  </figcaption>
-</figure>
+![.figure This location in Derelict has a small collision hole where items can fall through the map.](hole.mp4)
 
 BSP holes or leaks are another type of collision artifact where items or players can fall through the map. It is not known what causes this, but it can be resolved by altering triangulation around the affected area (rotating edges). Compiling the BSP with [phantom_tool][] or H1A Tool's [fix-phantom-bsp option][h1a-tool#phantom-bsp-fix]  also prevents this.
 
@@ -125,20 +95,7 @@ _See more about the [pathfinding system][ai#pathfinding]._
 # Related script functions and globals
 The following are related [functions][scripting#functions] that you can use in your scenario scripts and/or [debug globals][scripting#external-globals] that you can enter into the developer console for troubleshooting.
 
-```.table
-id: functions-globals
-dataPath:
-  - hsc/h1/functions/functions
-  - hsc/h1/globals/external_globals
-linkCol: true
-linkSlugKey: slug
-rowSortKey: slug
-rowTagFilter: scenario_structure_bsp
-columns:
-  - key: info/en
-    name: Function/global
-    format: text
-```
+{% relatedHsc game="h1" tagFilter="scenario_structure_bsp" /%}
 
 [about-bsp]: https://en.wikipedia.org/wiki/Binary_space_partitioning
 [convex]: https://en.wikipedia.org/wiki/Convex_set

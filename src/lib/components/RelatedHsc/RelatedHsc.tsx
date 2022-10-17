@@ -1,5 +1,5 @@
 import {RenderContext, useCtx} from "../Ctx/Ctx";
-import DataTable, {type DataTableProps, renderPlaintext as renderDataTablePlaintext} from "./DataTable";
+import DataTable, {type DataTableProps, renderPlaintext as renderDataTablePlaintext} from "../DataTable/DataTable";
 
 export const onlyTypes = ["globals", "functions"] as const;
 export type OnlyType = (typeof onlyTypes)[number];
@@ -39,7 +39,7 @@ function buildDataTableProps(ctx: RenderContext, props: RelatedHscProps): DataTa
 
   return {
     dataPath: dataPath,
-    id: props.id,
+    id: props.id ?? "functions-globals",
     linkCol: true,
     linkSlugKey: "slug",
     noClear: true,

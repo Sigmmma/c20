@@ -1,11 +1,12 @@
-import {getPageBaseDir, loadPageIndex, pageIdToLogical, tryLocalizedPath, type PageIndex} from "./lib/content";
-import renderPage from "./lib/render/render";
-import {loadYamlTree} from "./lib/utils/files";
-import {buildSearchIndex, type SearchDoc} from "./lib/search";
-const loadStructuredData = require("./data");
-import buildResources from "./lib/resources";
 import fs from "fs";
 import path from "path";
+// SPOOPY BUG: do not reorder the next two lines!!!!!
+import renderPage from "./lib/render/render";
+import {getPageBaseDir, loadPageIndex, pageIdToLogical, tryLocalizedPath, type PageIndex} from "./lib/content";
+import {loadYamlTree} from "./lib/utils/files";
+import {buildSearchIndex, type SearchDoc} from "./lib/search";
+import buildResources from "./lib/resources";
+const loadStructuredData = require("./data");
 
 export type BuildOpts = {
   contentDir: string;

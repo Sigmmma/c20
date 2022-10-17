@@ -23,26 +23,6 @@ function processMeta(meta: Record<string, any> | undefined | null): Record<strin
   return meta;
 }
 
-// function addSearchTermsForPart(part) {
-//   if (part.name) {
-//     searchTerms.push(part.name.split("_"));
-//   }
-//   if (part.comments && part.comments[ctx.lang]) {
-//     searchTerms.push(renderMarkdown(ctx, part.comments[ctx.lang], true));
-//   }
-// }
-
-// function addSearchTermsForTypeDef(typeDef) {
-//   addSearchTermsForPart(typeDef);
-//   if (typeDef.class == "struct") {
-//     typeDef.fields.forEach(f => addSearchTermsForPart(f));
-//   } else if (typeDef.class == "bitfield") {
-//     typeDef.bits.forEach(b => addSearchTermsForPart(b));
-//   } else if (typeDef.class == "enum") {
-//     typeDef.options.forEach(o => addSearchTermsForPart(o));
-//   }
-// }
-
 function renderComments(ctx: RenderContext, part, localize: Localizer) {
   const meta = Object.entries(processMeta(part.meta))
     .filter(([k]) => localize(`meta_${k}` as LocalizerKey, true));
@@ -300,16 +280,16 @@ export function renderPlaintext(ctx: RenderContext | undefined, props: StructTab
     if (typeDef.class == "struct") {
       typeDef.fields.forEach(f => {
         if (f.name) {
-          lines.push(`${f.name} ${renderPlaintextFromSrc(ctx, f.comments?.[ctx.lang]) ?? ""}`);
+          lines.push(`${f.name.split("_").join(" ")} ${renderPlaintextFromSrc(ctx, f.comments?.[ctx.lang]) ?? ""}`);
         }
       });
     } else if (typeDef.class == "enum") {
       typeDef.options.forEach(o => {
-        lines.push(`${o.name} ${renderPlaintextFromSrc(ctx, o.comments?.[ctx.lang]) ?? ""}`);
+        lines.push(`${o.name.split("_").join(" ")} ${renderPlaintextFromSrc(ctx, o.comments?.[ctx.lang]) ?? ""}`);
       });
     } else if (typeDef.class == "bitfield") {
       typeDef.bits.forEach(b => {
-        lines.push(`${b.name} ${renderPlaintextFromSrc(ctx, b.comments?.[ctx.lang]) ?? ""}`);
+        lines.push(`${b.name.split("_").join(" ")} ${renderPlaintextFromSrc(ctx, b.comments?.[ctx.lang]) ?? ""}`);
       });
     }
   });

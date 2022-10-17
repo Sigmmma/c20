@@ -324,7 +324,7 @@ The season 7 MCC update ([patch notes](https://support.halowaypoint.com/hc/en-us
     * `MAXIMUM_HS_STRING_DATA_PER_SCENARIO` from 256kb to 800kb.
     * `MAXIMUM_HS_SOURCE_DATA_PER_FILE` from 256kb to 1MB.
     * `MAXIMUM_HS_SYNTAX_NODES_PER_SCENARIO` from 19001 to 32767 (SHORT_MAX).
-* The unused [spheroid][] tag has been removed.
+* The unused _spheroid_ tag has been removed.
 
 ## Maps and map loading
 * Custom maps compiled with H1A Tool are identified by having [cache version][map#map-header-cache-version-h1a-mcc] `13` in their header (H1CE is `609`).

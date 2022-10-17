@@ -22,12 +22,8 @@ Less in-depth but we hope still useful information is included for the legacy 20
 
 New to modding? Check out our [H1 introduction guide][intro-to-h1-modding].
 
-<div class="card" style="background-image: url(/h1/guides/map-making/level-creation/blender-level-modeling/blender-level-creation-advanced/1X.jpg)">
-
 **Featured guides:**
 * [Creating a custom Halo 1 map][h1/guides/map-making/level-creation]
 * [Creating a custom Halo 1 skybox][h1/guides/skyboxes]
 * [Creating a custom Halo 2 map][h2/guides/map-making/level-creation]
 * [Creating a custom Halo 3 map][h3/guides/map-making/level-creation]
-
-</div>

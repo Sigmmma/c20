@@ -2,7 +2,7 @@ import Markdoc, {type Node, RenderableTreeNode, ValidateError} from "@markdoc/ma
 import yaml from "js-yaml";
 import tagsConfig from "./tags";
 import nodesConfig from "./nodes";
-import {RenderContext} from "../Ctx/Ctx";
+import {type RenderContext} from "../Ctx/Ctx";
 export {default as renderPlaintext} from "./plaintext";
 
 export type MdSrc = string;

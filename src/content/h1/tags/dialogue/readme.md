@@ -5,8 +5,6 @@ The randomization of voice lines is not part of the dialogue tag but rather the 
 # Canonical character dialogue tags
 The following stock dialogue tags correspond to canonical characters:
 
-<div class="no-clear">
-
 | Character | Tag path
 |-----------|----------
 | 343 Guilty Spark | `sound\dialog\monitor\monitor`
@@ -18,24 +16,9 @@ The following stock dialogue tags correspond to canonical characters:
 | M. Fitzgerald  | `sound\dialog\marines\fitzgerald\conditional\fitzgerald`
 | Manuel Mendoza  | `sound\dialog\marines\mendoza\conditional\mendoza`
 
-</div>
-
 Additional level-specific character sound tags, e.g. for cinematics, can be found under the `sound\dialog\x**` folders.
 
 # Related script functions and globals
 The following are related [functions][scripting#functions] that you can use in your scenario scripts and/or [debug globals][scripting#external-globals] that you can enter into the developer console for troubleshooting.
 
-```.table
-id: functions-globals
-dataPath:
-  - hsc/h1/functions/functions
-  - hsc/h1/globals/external_globals
-linkCol: true
-linkSlugKey: slug
-rowSortKey: slug
-rowTagFilter: dialogue
-columns:
-  - key: info/en
-    name: Function/global
-    format: text
-```
+{% relatedHsc game="h1" tagFilter="dialogue" /%}

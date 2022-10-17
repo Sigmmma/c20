@@ -353,14 +353,7 @@ tool import-device-defaults <(defaults,profiles)> <savegame path>
 ```
 
 # Lightmaps
-<figure>
-  <a href="radiosity.jpg">
-    <img src="radiosity.jpg" alt=""/>
-  </a>
-  <figcaption>
-    <p>The radiosity process can be visualized in Sapien using <code>rasterizer_wireframe 1</code>. Notice how shadow edges and high detail shaders are subdivided more.</p>
-  </figcaption>
-</figure>
+![.figure The radiosity process can be visualized in Sapien using `rasterizer_wireframe 1`. Notice how shadow edges and high detail shaders are subdivided more.](radiosity.jpg)
 
 Both Tool and [Sapien][h1a-sapien#radiosity] can be used to generate [lightmaps][] (radiosity). Using Tool, you will need the following arguments:
 

@@ -129,45 +129,25 @@ As an older 32-bit Windows application, Sapien is limited to 2 GB of virtual mem
 
 [H1A Sapien][h1a-sapien] is already LAA.
 
-[wine]: https://www.winehq.org/
-[dxvk]: https://github.com/doitsujin/dxvk
-[ntcore]: https://ntcore.com/?page_id=371
-
 # Troubleshooting
 ## Interface
-<table>
-  <thead>
-    <tr>
-      <th style="width:50%">Issue</th>
-      <th style="width:50%">Solution</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>The game window is completely black and does not display the console when <kbd>~</kbd> (tilde) is pressed.</td>
-      <td>
 
-Sapien, like Halo, does not support [MSAA][msaa]. Add Sapien as a program in your graphics control panel and disable anti-aliasing for it. Fixed in [H1A Sapien][h1a-sapien]
-      </td>
-    </tr>
-    <tr>
-      <td>The "edit types" window does not allow tags to be added.</td>
-      <td>Unknown. Potential issue with Windows compatibility modes. Try running without a compatibility mode.</td>
-    </tr>
-    <tr>
-      <td>Child windows are not visible or stuck outside the main window.</td>
-      <td>
-        <p>Open the registry key <code>HKEY_USERS\S-1-5-21-0-0-0-1000\Software\Microsoft\Microsoft Games\Halo HEK\sapien</code> (user ID may vary) using regedit and delete all entries ending with "rect".</p>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        Sapien debug wireframe colors and bounding radii change at angles and turn black, making it hard to identify their types.
-      </td>
-      <td>None known for Gearbox Sapien, fixed in [H1A Sapien][h1a-sapien] </td>
-    </tr>
-  </tbody>
-</table>
+{% table %}
+* Issue
+* Solution
+---
+* The game window is completely black and does not display the console when <kbd>~</kbd> (tilde) is pressed.
+* Sapien, like Halo, does not support [MSAA][msaa]. Add Sapien as a program in your graphics control panel and disable anti-aliasing for it. Fixed in [H1A Sapien][h1a-sapien]
+---
+* The "edit types" window does not allow tags to be added.
+* Unknown. Potential issue with Windows compatibility modes. Try running without a compatibility mode.
+---
+* Child windows are not visible or stuck outside the main window.
+* Open the registry key `HKEY_USERS\S-1-5-21-0-0-0-1000\Software\Microsoft\Microsoft Games\Halo HEK\sapien` (user ID may vary) using regedit and delete all entries ending with "rect".
+---
+* Sapien debug wireframe colors and bounding radii change at angles and turn black, making it hard to identify their types.
+* None known for Gearbox Sapien, fixed in [H1A Sapien][h1a-sapien]
+{% /table %}
 
 ## Crashes
 When Sapien crashes, check `debug.txt` for hints. You can ignore `Couldn't read map file './sapienbeta.map'`.
@@ -189,3 +169,6 @@ columns:
 
 
 [msaa]: https://en.wikipedia.org/wiki/Multisample_anti-aliasing
+[wine]: https://www.winehq.org/
+[dxvk]: https://github.com/doitsujin/dxvk
+[ntcore]: https://ntcore.com/?page_id=371

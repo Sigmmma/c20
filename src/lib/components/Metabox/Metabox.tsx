@@ -1,9 +1,9 @@
 import * as R from "ramda";
 import {MdSrc} from "../Md/markdown";
-import Md from "../Md/Md";
 import Icon, {type IconName} from "../Icon/Icon";
 import {VNode} from "preact";
 import Workflows from "./Workflows";
+import Md from "../Md/Md";
 
 export type MetaboxProps = {
   title?: VNode | string;

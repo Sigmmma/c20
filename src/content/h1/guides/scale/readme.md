@@ -3,6 +3,5 @@
 * **World units** are equal to 100 JMS units. They are often seen in [Guerilla][] and are the coordinates seen when placing objects in [Sapien][].
 
 # Unit converter
-<div id="unit-converter-mountpoint"></div>
 
-<br/>
+{% unitConverter /%}

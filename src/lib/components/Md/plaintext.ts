@@ -2,12 +2,13 @@ import {type RenderableTreeNode} from "@markdoc/markdoc";
 import {type RenderContext} from "../Ctx/Ctx";
 import {type DataTableProps, renderPlaintext as renderDataTablePlaintext} from "../DataTable/DataTable";
 import {type StructTableProps, renderPlaintext as renderStructTablePlaintext} from "../StructTable/StructTable";
-import {type RelatedHscProps, renderPlaintext as renderRelatedHscPlaintext} from "../DataTable/RelatedHsc";
+import {type RelatedHscProps, renderPlaintext as renderRelatedHscPlaintext} from "../RelatedHsc/RelatedHsc";
 import {type TagStructProps, renderPlaintext as renderTagStructPlaintext} from "../StructTable/TagStruct";
 import {parse, transform, type MdSrc} from "./markdown";
 
 const padded = (children) => `${children}\n\n`; 
 const block = (children) => `${children}\n`;
+const margin = (children) => `${children} `;
 
 type Renderer = (children: string, attributes: Record<string, any>, ctx: RenderContext | undefined) => string | undefined;
 const renderers: Record<string, Renderer> = {
@@ -18,7 +19,10 @@ const renderers: Record<string, Renderer> = {
   h4: block,
   h5: block,
   h6: block,
+  th: margin,
+  td: margin,
   pre: padded,
+  tr: block,
   li: (children) => block(children),
   ul: block,
   ol: block,

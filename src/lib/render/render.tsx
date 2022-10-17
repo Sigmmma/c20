@@ -117,7 +117,7 @@ function getAboutContent(ctx: RenderContext | undefined, front?: PageFrontMatter
       const tagName = tagNameArg.length > 1 ? tagNameArg[1] : tagNameArg[0];
       const tag = ctx?.data?.tags?.[game]?.[tagName];
       if (tag?.id) {
-        metaboxProps.title = <>{metaboxProps.title} (<code>{tag.id}</code><Wat idTail="h1/tags" headingId="group-ids"/>)</>
+        metaboxProps.title = <>{tagName} (<code>{tag.id}</code><Wat idTail="h1/tags" headingId="group-ids"/>)</>
         keywords.push(tag.id);
       }
       // let hasRows = true; //todo
@@ -205,9 +205,11 @@ export default function renderPage(input: RenderInput): RenderOutput {
               <ThanksList thanks={front.thanks}/>
             }
 
-            <pre style={{color: "green"}}>
-              {bodyPlaintext}
-            </pre>
+            {input.debug &&
+              <pre style={{color: "green"}}>
+                {bodyPlaintext}
+              </pre>
+            }
           </Article>
         </PageWrapper>
       </HtmlDoc>

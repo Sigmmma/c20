@@ -57,4 +57,4 @@ The engine will replace special placeholder tokens in your message text at runti
 | `%custom-6`          | Display the key mapped to custom-6.                                                                                                 |
 | `%custom-7`          | Display the key mapped to custom-7.                                                                                                 |
 | `%custom-8`          | Display the key mapped to custom-8.                                                                                                 |
-| <code>&#124;n</code> | Add a newline to a sentence.                                                                                                        |
+| `\|n`                | Add a newline to a sentence.                                                                                                        |

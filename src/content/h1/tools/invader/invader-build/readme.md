@@ -14,16 +14,42 @@ See [official documentation][docs] for more usage instructions. The tool has man
 ## Hardcoded tag patches
 Like [Tool][h1a-tool#hardcoded-tag-patches], invader-build applies some hard-coded tag patches. The patches vary by target engine and scenario, but are designed to help users avoid incorrect tag values due to the differences in extracted stock tags across game editions and map types.
 
-|Tag type         |Tag path                           |Changes
-|-----------------|-----------------------------------|----------------
-|[weapon][]       |`weapons\pistol\pistol`            |For any SP scenario, min error to `0.2` degrees, error angle range `0.2` to `0.4` for first trigger
-|[damage_effect][]|`weapons\pistol\bullet`            |For any SP scenario, elite energy shield damage modifier to `0.8`
-|[weapon][]       |`weapons\plasma rifle\plasma rifle`|For any SP scenario, error angle range `0.25` to `2.5` for first trigger
-|[damage_effect][]|`vehicles\ghost\ghost bolt`        |<p>For stock MP scenarios:</p><ul><li>Stun: <code>0.0</code> if Custom Edition, else <code>1.0</code></li><li>Maximum stun: <code>0.0</code> if Custom Edition, else <code>1.0</code></li><li>Stun time: <code>0.0</code> if Custom Edition, else <code>0.15</code></li></ul>
-|[damage_effect][]|`vehicles\banshee\banshee bolt`    |As above.
-|[weapon][]       |`vehicles\rwarthog\rwarthog_gun`   |<p>For stock MP scenarios:</p><ul><li>Autoaim angle: <code>6.0°</code> if Custom Edition, else <code>1.0°</code></li><li>Deviation angle: <code>12.0°</code> if Custom Edition, else <code>1.0°</code></li></ul>
+{% table %}
+* Tag type
+* Tag path(s)
+* Changes
+---
+* [weapon](~)
+* `weapons\pistol\pistol`
+* For any SP scenario, min error to `0.2` degrees, error angle range `0.2` to `0.4` for first trigger
+---
+* [damage_effect](~)
+* `weapons\pistol\bullet`
+* For any SP scenario, elite energy shield damage modifier to `0.8`
+---
+* [weapon](~)
+* `weapons\plasma rifle\plasma rifle`
+* For any SP scenario, error angle range `0.25` to `2.5` for first trigger
+---
+* [damage_effect](~)
+*
+  * `vehicles\ghost\ghost bolt`
+  * `vehicles\banshee\banshee bolt`
+*
+  For stock MP scenarios:
+  * Stun: `0.0` if Custom Edition, else `1.0`
+  * Maximum stun: `0.0` if Custom Edition, else `1.0`
+  * Stun time: `0.0` if Custom Edition, else `0.15`
+---
+* [weapon](~)
+* `vehicles\rwarthog\rwarthog_gun`
+*
+  For stock MP scenarios:
+  * Autoaim angle: `6.0°` if Custom Edition, else `1.0°`
+  * Deviation angle: `12.0°` if Custom Edition, else `1.0°`
+{% /table %}
 
-Invader will also silently modify the ting sound effect for multiplayer to have a gain of 1.0 if Custom Edition and 0.2 if not. This is so the sound is not too loud or too quiet when played on their respective versions.
+Invader also modifies the "ting" sound effect for multiplayer to have a gain of 1.0 if Custom Edition and 0.2 if not. This is so the sound is not too loud or too quiet when played on their respective versions.
 
 Note that the changes done in common with [Tool][h1a-tool#hardcoded-tag-patches] are _reversed_ when extracting tags using [invader-extract][].
 

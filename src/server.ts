@@ -1,11 +1,14 @@
-import express from "express";
-import renderPage from "./lib/render/render";
-import buildConfig from "../build-config.json";
 import fs from "fs";
+import path from "path";
+import express from "express";
+import buildConfig from "../build-config.json";
+// SPOOPY BUG: do not reorder the next two lines!!!!!
+import renderPage from "./lib/render/render";
 import {getPageBaseDir, getPageMdSrcPath, loadPageIndex} from "./lib/content";
 import {loadYamlTree} from "./lib/utils/files";
 import {type BuildOpts} from "./build";
 import {parse} from "./lib/components/Md/markdown";
+import {upgrade} from "./utility_scripts/migrate";
 const loadStructuredData = require("./data");
 
 const buildOpts: BuildOpts = {
@@ -38,9 +41,14 @@ export default function runServer() {
     const localDataPromise = loadYamlTree(baseDir, {nonRecursive: true});
     const pageIndexPromise = loadPageIndex(buildOpts.contentDir);
     const mdSrcPromise = fs.promises.readFile(mdSrcPath, "utf-8");
-    if (!(await mdSrcPromise).startsWith("---")) {
-      next();
-      return;
+
+    let mdSrc = await mdSrcPromise;
+    if (!mdSrc.startsWith("---")) {
+      mdSrc = upgrade(
+        mdSrc,
+        await fs.promises.readFile(path.join(baseDir, "page.yml"), "utf-8")
+      );
+      console.log(mdSrc);
     }
     // try {
     //   mdSrc = await ;
@@ -48,9 +56,9 @@ export default function runServer() {
     //   res.status(404);
     //   res.send(`Page source not found: ${mdSrcPath}`);
     //   return;
-    // }
+    // }  
     
-    const {ast, frontmatter} = parse(await mdSrcPromise, mdSrcPath);
+    const {ast, frontmatter} = parse(mdSrc, mdSrcPath);
 
     const renderOutput = renderPage({
       baseUrl: buildOpts.baseUrl,
