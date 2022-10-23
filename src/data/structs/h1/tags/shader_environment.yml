@@ -101,6 +101,9 @@ type_defs:
         size: 24
       - name: detail_map_function
         type: ShaderDetailFunction
+        comments:
+          en: >
+            This controls how the detail map is blended with the base map.
       - type: pad
         size: 2
       - name: primary_detail_map_scale

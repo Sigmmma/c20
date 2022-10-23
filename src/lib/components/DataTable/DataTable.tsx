@@ -25,7 +25,7 @@ export type DataTableProps = {
     name: string;
     key: string;
     style?: string;
-    format?: "text" | "code" | "anchor" | "codeblock";
+    format?: "text" | "code" | "anchor" | "codeblock" | "pageLinkRaw" | "pageLink";
   }[]
 };
 
@@ -52,7 +52,7 @@ function renderCellPlaintext(ctx, format, content): string {
     return renderMdPlaintext(ctx, mdContent)?.trim() ?? "";
   } else if (format === "code") {
     return content;
-  } else if (format === "pageLink") {
+  } else if (format === "anchor" || format === "pageLink") {
     try {
       const target = ctx.resolvePage(content);
       return target.title;
@@ -76,7 +76,7 @@ function renderCell(ctx, format, content) {
     return <Md src={content}/>;
   } else if (format === "code") {
     return <code>{content}</code>;
-  } else if (format === "anchor") {
+  } else if (format === "anchor" || format === "pageLink") {
     try {
       const target = ctx.resolvePage(content);
       return <a href={target.url}>{target.title}</a>;

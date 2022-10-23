@@ -17,4 +17,4 @@ export function commonLength(strA: string, strB: string): number {
     len++;
   }
   return len;
-}
+};

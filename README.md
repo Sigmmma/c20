@@ -22,7 +22,7 @@ However, we want and need the community's help filling in gaps. Some ways you ca
 
 Don't worry if writing isn't your strong suit. We'll ensure your tips are properly incorporated into the Wiki and you're credited for them. The current focus will be on all Halo 1 modding as well as modding the later games in MCC using the official mod tools. Other content (e.g. a tutorial for how to mod Halo Reach using Assembly) is welcomed but will not be prioritized.
 
-Editors or those issuing pull requests can refer to [EDITORS.md](EDITORS.md) for writing style and other content rules.
+Editors or those issuing pull requests can refer to the Contributing page hosted on the wiki.
 
 ## Development
 [Gulp](https://gulpjs.com/) is used as the main task runner for the build. It is triggered by the command `npm run build`, defined in `package.json`. Within the `gulpfile.js` there are several tasks defined to process stylesheets, build markdown pages, create diagrams, and copy other assets.

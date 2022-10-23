@@ -1,12 +1,10 @@
 Below is a list of the possible JSON parameters that can be included within the JSON files generated during the [FBX to GR2][hr-tool#fbx-to-gr2] process. Note that in order for any changes to JSON files to take effect, you'll need to save your changes and re-run `fbx-to-gr2`.
 
-```.alert info
+{% alert %}
 NOTE: When manually editing a JSON, all properties should feature the prefix `bungie_`
 
 For example: `"bungie_mesh_type": "_connected_geometry_mesh_type_physics"`
-```
-
-
+{% /alert %}
 
 # Additional Info
 

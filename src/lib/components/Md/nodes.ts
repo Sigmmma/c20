@@ -11,11 +11,15 @@ const nodes: Partial<Record<NodeType, Schema>> = {
       },
       alt: {
         type: String
-      }
+      },
+      title: {
+        type: String
+      },
     },
     transform(node, config) {
-      const attributes = node.transformAttributes(config);
-      return new Tag("Figure", {...attributes, inline: true});
+      const {title, ...restAttrs} = node.transformAttributes(config);
+      const children = title ? [new Tag("p", {}, [title])] : undefined;
+      return new Tag("Figure", {...restAttrs, inline: false}, children);
     }
   },
   link: {

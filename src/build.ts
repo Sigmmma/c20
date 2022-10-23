@@ -70,8 +70,8 @@ async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: Bui
 }
 
 export default async function buildContent(buildOpts: BuildOpts) {
-  const pageIndex = loadPageIndex(buildOpts.contentDir);
   const data = loadStructuredData();
+  const pageIndex = loadPageIndex(buildOpts.contentDir, await data);
 
   await Promise.all([
     buildResources(await pageIndex, buildOpts),

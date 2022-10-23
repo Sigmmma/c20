@@ -39,14 +39,15 @@ export default function runServer() {
 
     const dataPromise = loadStructuredData();
     const localDataPromise = loadYamlTree(baseDir, {nonRecursive: true});
-    const pageIndexPromise = loadPageIndex(buildOpts.contentDir);
+    const pageIndexPromise = loadPageIndex(buildOpts.contentDir, await dataPromise);
     const mdSrcPromise = fs.promises.readFile(mdSrcPath, "utf-8");
 
     let mdSrc = await mdSrcPromise;
     if (!mdSrc.startsWith("---")) {
       mdSrc = upgrade(
         mdSrc,
-        await fs.promises.readFile(path.join(baseDir, "page.yml"), "utf-8")
+        await fs.promises.readFile(path.join(baseDir, "page.yml"), "utf-8"),
+        await dataPromise,
       );
       console.log(mdSrc);
     }

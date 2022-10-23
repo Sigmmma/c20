@@ -10,6 +10,7 @@ function buildTableProps(tag): StructTableProps {
   return {
     entryModule: tag.structModule,
     entryType: tag.structName,
+    noRootComments: true,
     skipPadding: true,
     simpleTypes: true,
     noEmbed: ["TagDependency", "ColorRGB", "TagString"],

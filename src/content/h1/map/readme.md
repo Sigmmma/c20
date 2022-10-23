@@ -119,75 +119,62 @@ This page does not give a full accounting of how BSP and model data are stored a
 ## Map header
 Normal playable (non-resource) cache files begin with a header which is always 2048 bytes long.
 
-```.struct
-entry_type: CacheFileHeader
-showOffsets: true
-id: map-header
-imports:
-  h1/files/map:
-    - CacheFileHeader
-```
+{% structTable
+  entryModule="h1/files/map"
+  entryType="CacheFileHeader"
+  showOffsets=true
+  id="map-header"
+/%}
 
 ### Demo map header
 Demo versions of H1PC use a different cache file header structure with reordered fields and extra padding between them as a means to make it harder to port retail cache files to the demo. The header is still 2048 bytes long.
 
-```.struct
-entry_type: DemoCacheFileHeader
-showOffsets: true
-id: demo-map-header
-noEmbed:
-  - CacheVersion
-imports:
-  h1/files/map:
-    - DemoCacheFileHeader
-```
+{% structTable
+  entryModule="h1/files/map"
+  entryType="DemoCacheFileHeader"
+  showOffsets=true
+  id="demo-map-header"
+  noEmbed=["CacheVersion"]
+/%}
 
 ## Resource map header
 
-```.struct
-entry_type: ResourceMapHeader
-showOffsets: true
-id: resource-header
-imports:
-  h1/files/map:
-    - ResourceMapHeader
-```
+{% structTable
+  entryModule="h1/files/map"
+  entryType="ResourceMapHeader"
+  showOffsets=true
+  id="resource-header"
+/%}
 
 ## Tag index header
 The tag index/tag data header is the start of where tag data and definitions are loaded directly into memory at runtime at the game's tag address. For most versions of the game, it looks like this:
 
-```.struct
-entry_type: TagDataHeaderPC
-showOffsets: true
-id: tag-header
-imports:
-  h1/files/map:
-    - TagDataHeaderPC
-```
+{% structTable
+  entryModule="h1/files/map"
+  entryType="TagDataHeaderPC"
+  showOffsets=true
+  id="tag-header"
+/%}
 
 ### Xbox tag index header
 The H1X tag index header is slightly different since model data is also in the tag data, so it uses pointers instead of file offsets.
 
-```.struct
-entry_type: TagDataHeaderXbox
-showOffsets: true
-id: xbox-tag-header
-imports:
-  h1/files/map:
-    - TagDataHeaderXbox
-```
+{% structTable
+  entryModule="h1/files/map"
+  entryType="TagDataHeaderXbox"
+  showOffsets=true
+  id="xbox-tag-header"
+/%}
 
 ## Tag array entry
 Each 32-byte element in the tag array contains information about a tag in the map, including a pointer or resource index to the actual tag definition itself.
 
-```.struct
-entry_type: TagArrayEntry
-showOffsets: true
-id: tag-entry
-imports:
-  h1/files/map:
-    - TagArrayEntry
-```
+{% structTable
+  entryModule="h1/files/map"
+  entryType="TagArrayEntry"
+  showOffsets=true
+  id="tag-entry"
+/%}
 
 [os-maps]: https://haloce3.com/category/downloads/open-sauce-maps/
 [zlib]: https://en.wikipedia.org/wiki/Zlib

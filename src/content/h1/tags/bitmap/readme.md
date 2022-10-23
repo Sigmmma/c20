@@ -87,8 +87,6 @@ When setting the usage to detail map, tool will fade the bitmap to grey in every
 
 You can modify how quickly the mipmaps fade to grey by editing "detail fade factor" under "post-processing". 0 means that it will slowly fade to grey until the last mipmap, and 1 means that the first and every subsequent mipmap is grey.
 
-This format is meant to be used with the shader setting "double/biased multiply" which functions like overlay in Photoshop.
-
 ## Light map
 This is the setting used when tool or sapien generates a lightmap, you should not use this when importing normal bitmaps.
 

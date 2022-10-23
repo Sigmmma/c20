@@ -76,7 +76,7 @@ function renderStructFieldType(ctx: RenderContext, props: StructTableProps, fiel
       <DetailsList summary={typeCode} maxOpen={4} items={field.meta.tag_classes.map(tagName => {
         if (tagName == "*") return "(any)";
         const tagPage = ctx.resolvePage(tagName);
-        return <a href={tagPage.url}>{tagPage.title}</a>;
+        return <a href={tagPage.url}>{tagName}</a>;
       })}/>
     );
   }
@@ -239,7 +239,9 @@ function renderEnumAsTable(ctx: RenderContext, instantiatedType, pathId: string[
 function renderTypeAsTable(seenTypes, typeDefs, ctx: RenderContext, props: StructTableProps, instantiatedType, pathId: string[], localize: Localizer) {
   // addSearchTermsForTypeDef(instantiatedType.typeDef);
   return <>
-    {renderComments(ctx, instantiatedType.typeDef, localize)}
+    {!props.noRootComments || pathId.length > 1 &&
+      renderComments(ctx, instantiatedType.typeDef, localize)
+    }
     {(() => {
       switch (instantiatedType.typeDef.class) {
         case "struct":
@@ -263,6 +265,7 @@ export type StructTableProps = {
 
   showOffsets?: boolean;
   noRootExtend?: boolean;
+  noRootComments?: boolean;
   skipPadding?: boolean;
   simpleTypes?: boolean;
   id?: string;

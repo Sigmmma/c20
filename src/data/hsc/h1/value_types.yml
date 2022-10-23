@@ -14,14 +14,11 @@ value_types:
       en: A value that is true or false
       es:
     ex: >-
-      `true`<br/>
-      `false`<br/>
-      `1`<br/>
-      `0`
+      `true`, `false`, `1`, `0`
 
   - type: real
     info:
-      en: 'Floating point (decimal) value <br/> Value Range: 3.4E +/- 38 (6 digits)'
+      en: 'Floating point (decimal) value. Value Range: 3.4E +/- 38 (6 digits)'
       es:
     ex: '`3.000000`'
 
@@ -29,7 +26,6 @@ value_types:
     info:
       en: >-
         16-bit short integer value, stored in [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement).
-        <br>
         Value Range: `−32,768` to `32,767`
       es:
     ex: '`2`'
@@ -38,7 +34,6 @@ value_types:
     info:
       en: >-
         32-bit long integer value, stored in [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement).
-        <br>
         Value Range: `-2,147,483,648` to `2,147,483,647`
       es:
     ex: '`2000000000`'
@@ -46,7 +41,7 @@ value_types:
   - type: string
     info:
       en: >
-        String of characters in double quotes <br/> Max number of characters: 32
+        String of characters in double quotes. Max number of characters: 32
       es:
     ex: '`"This is a string."`'
 
@@ -180,21 +175,20 @@ value_types:
 
   - type: game_difficulty
     info:
-      en: easy <br/> normal <br/> hard <br/> impossible
+      en: easy, normal, hard, impossible
       es:
     ex:
 
   - type: team
     info:
-      en: player <br/> human <br/> covenant <br/> flood <br/> sentinal
+      en: player, human, covenant, flood, sentinal
       es:
     ex:
 
   - type: ai_default_state
     info:
       en: >
-        none <br/> sleeping <br/> alert <br/> moving <br/> guarding <br/>
-        searching <br/> fleeing
+        none, sleeping, alert, moving, guarding, searching, fleeing
       es:
     ex:
 
@@ -206,7 +200,7 @@ value_types:
 
   - type: hud_corner
     info:
-      en: top_left <br/> top_right <br/> bottom_left <br/> bottom_right
+      en: top_left, top_right, bottom_left, bottom_right
       es:
     ex:
 

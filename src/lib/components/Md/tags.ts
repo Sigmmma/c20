@@ -23,7 +23,7 @@ const tags: Record<string, Schema> = {
   figure: {
     render: "Figure",
     selfClosing: false,
-    children: ['paragraph', 'tag', 'list'],
+    children: ["paragraph", "tag", "list", "text"],
     attributes: {
       src: {
         type: String,
@@ -162,7 +162,7 @@ const tags: Record<string, Schema> = {
   alert: {
     render: "Alert",
     selfClosing: false,
-    children: ['paragraph', 'tag', 'list'],
+    children: ["paragraph", "tag", "list", "text"],
     attributes: {
       type: {
         type: String,

@@ -113,8 +113,38 @@ type_defs:
     size: 2
     options:
       - name: double_biased_multiply
+        comments:
+          en: |
+            The detail colour is multiplied with the base colour and multipied by 2, then clamped to 0-1.
+            Where detail is masked, this has no effect. Unlike the S-shaped response curve of Photoshop's
+            _Overlay_ blending mode, this function continues to brighten exponentially and quickly saturates
+            when the detail map is lighter than 50% gray.
+
+            ```hlsl
+            detail = lerp(0.5, detail.rgb, detail_mask);
+            result = saturate(base.rgb * detail * 2.0);
+            ```
       - name: multiply
+        comments:
+          en: |
+            The detail map is simply multiplied with the base colour, generally darkening the result.
+            Where detail is masked, this has no effect.
+
+            ```hlsl
+            detail = lerp(1.0, detail.rgb, detail_mask);
+            result = saturate(base.rgb * detail);
+            ```
       - name: double_biased_add
+        comments:
+          en: |
+            Has the effect of adding or subtracting the detail map to/from the base map.
+            Where detail is masked or 50% gray, this has no effect.
+
+            ```hlsl
+            detail = lerp(0.5, detail.rgb, detail_mask);
+            biased_detail = 2.0 * detail - 1.0;
+            result = saturate(base.rgb + biased_detail);
+            ```
   ShaderFirstMapType:
     class: enum
     size: 2

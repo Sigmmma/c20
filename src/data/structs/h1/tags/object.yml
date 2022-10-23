@@ -38,6 +38,8 @@ type_defs:
     size: 2
     bits:
       - name: does_not_cast_shadow
+        comments:
+          en: Prevents this object from casting dynamic shadows. Does not apply to scenery, which cast shadows in lightmaps using their collision model.
       - name: transparent_self_occlusion
       - name: brighter_than_it_should_be
         comments:

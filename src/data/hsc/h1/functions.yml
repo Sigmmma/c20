@@ -4116,8 +4116,9 @@ functions:
 
         ```
 
-        **(Server Only)** Usage: `sv_map <mapname> <variantname>` <br/> Aborts the
-        current game and playlist, and starts the specified game mode on the specified
+        **(Server Only)** Usage: `sv_map <mapname> <variantname>`
+        
+        Aborts the current game and playlist, and starts the specified game mode on the specified
         map.
     context: Gearbox only
   - slug: sv_map_next
@@ -4160,8 +4161,9 @@ functions:
 
         ```
 
-        Usage: `sv_mapcycle_add <mapname> <variantname>` <br/> Add a new game
-        to the end of the mapcycle file
+        Usage: `sv_mapcycle_add <mapname> <variantname>`
+        
+        Add a new game to the end of the mapcycle file
     context: Gearbox only
   - slug: sv_mapcycle_begin
     info:
@@ -4181,8 +4183,9 @@ functions:
 
         ```
 
-        Usage: `sv_mapcycle_del <index>` <br/> Removes the game at `<index>`.
-        Will not affect running games.
+        Usage: `sv_mapcycle_del <index>`
+        
+        Removes the game at `<index>`. Will not affect running games.
     context: Gearbox only
   - slug: sv_maplist
     info:
@@ -4345,8 +4348,9 @@ functions:
 
         ```
 
-        **(Server Only)** Usage: `sv_unban <index>` <br/> Removes player at
-        index in the banlist. Use `sv_banlist` to find the index.
+        **(Server Only)** Usage: `sv_unban <index>`
+        
+        Removes player at index in the banlist. Use `sv_banlist` to find the index.
     context: Gearbox only
   - slug: switch_bsp
     info:

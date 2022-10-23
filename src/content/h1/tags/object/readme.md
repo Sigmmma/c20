@@ -9,6 +9,6 @@ Some capabilities available to objects (though not used by every subtype) are:
 * Be attached to each other (e.g. pelicans carrying warthogs)
 
 # Shadows
-For most dynamic objects, Halo uses [shadow mapping][shadow-mapping] with their render [model][gbxmodel], unless the object's ["does not cast shadow"](#structure-and-fields) flag is true. However, with [scenery][], shadows are baked into the [lightmap][scenario_structure_bsp] using the object's [collision geometry][model_collision_geometry] instead, regardless of the "does not cast shadow" flag.
+For most dynamic objects, Halo uses [shadow mapping][shadow-mapping] with their render [model][gbxmodel], unless the object's ["does not cast shadow"](#tag-field-flags-does-not-cast-shadow) flag is true. However, with [scenery][], shadows are baked into the [lightmap][scenario_structure_bsp] using the object's [collision geometry][model_collision_geometry] instead, regardless of the "does not cast shadow" flag.
 
 [shadow-mapping]: https://en.wikipedia.org/wiki/Shadow_mapping

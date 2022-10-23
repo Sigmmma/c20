@@ -67,7 +67,7 @@ function pageIdToUrl(pageId: PageId, lang: Lang, headingId?: string): string {
 }
 
 //build cross-page APIs and helpers used during rendering
-export async function loadPageIndex(contentDir): Promise<PageIndex> {
+export async function loadPageIndex(contentDir: string, data: any): Promise<PageIndex> {
   //we're going to build a map of page ids => page metadata
   const pages: Record<PageId, Record<Lang, PageData>> = {};
 
@@ -87,7 +87,7 @@ export async function loadPageIndex(contentDir): Promise<PageIndex> {
     let mdSrc = await fs.promises.readFile(mdFilePath, "utf8");
     if (!mdSrc.startsWith("---")) {
       const ymlSrc = await fs.promises.readFile(path.join(dirPath, "page.yml"), "utf8");
-      mdSrc = upgrade(mdSrc, ymlSrc);
+      mdSrc = upgrade(mdSrc, ymlSrc, data);
     }
 
     const {ast, frontmatter: front} = parse<PageFrontMatter>(mdSrc, mdFilePath);
@@ -106,8 +106,12 @@ export async function loadPageIndex(contentDir): Promise<PageIndex> {
 };
 
 export function resolvePageGlobal(pageIndex: PageIndex, lang: Lang, fromPageId: PageId, idTail: string, headingId?: string): PageLink | undefined {
+  //normalize the ID tail
   if (!idTail.startsWith("/")) {
     idTail = "/" + idTail;
+  }
+  if (idTail.length > 1 && idTail.endsWith("/")) {
+    idTail = idTail.substring(0, -1);
   }
   idTail = idTail.toLowerCase();
 
