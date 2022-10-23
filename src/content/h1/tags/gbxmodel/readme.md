@@ -28,6 +28,7 @@ This tag only contains the marker data but other tags usually determine how they
   * When used on a vehicle with "alien scout" or "alien fighter" [vehicle physics type][vehicle#tag-field-vehicle-type], creates a dust cloud effect when the vehicle is hovering close to the ground. This can be seen at a piloted Banshee's wingtips when sitting on the ground.
   * When the vehicle physics type is "human plane", creates a similar dust effect if the marker is pointed at nearby ground. Used for the Pelican's thrusters.
 * `jet thrusters`: Can also be used for vehicles with "human plane" physics to create the Pelican's thruster dust effect.
+* `primary ejection`: Used to indicate where casings fly out when firing the primary trigger
 
 [Tool][tool#model-compilation] only includes markers from the `superhigh` LOD.
 
