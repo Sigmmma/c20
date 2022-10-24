@@ -58,7 +58,7 @@ export default function Metabox(props: MetaboxProps) {
         </section>
       }
       {props.sections?.map(section =>
-        <section class={section.class}>{section.body}</section>
+        <section className={section.class}>{section.body}</section>
       )}
     </aside>
   );

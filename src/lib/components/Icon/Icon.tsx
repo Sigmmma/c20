@@ -9,7 +9,7 @@ export type IconProps = {
 // See https://feathericons.com/ for available icons
 export default function Icon(props: IconProps) {
   return (
-    <svg class="feather" aria-labelledby={props.title}>
+    <svg className="feather" aria-labelledby={props.title}>
       {props.title &&
         <title>{props.title}</title>
       }

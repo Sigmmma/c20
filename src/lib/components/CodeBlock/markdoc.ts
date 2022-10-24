@@ -10,6 +10,13 @@ const markdocLang = (hljs) => {
     subLanguage: "js",
     end: '/?%\\}'
   };
+  const FRONT = {
+    className: 'symbol',
+    begin: '\\-\\-\\-\\ntitle',
+    subLanguage: "yml",
+    end: '\\-\\-\\-'
+  };
+  md.contains.unshift(FRONT);
   md.contains.push(TAG);
   return md;
 };

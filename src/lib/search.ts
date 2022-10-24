@@ -1,8 +1,8 @@
 import {type BuildOpts} from "../build";
-
-const path = require("path");
-const fs = require("fs").promises;
+import path from "path";
+import fs from "fs";
 import MiniSearch from "minisearch";
+import * as R from "ramda";
 
 /* These words are too common to provide any real search value. Ignoring them
  * improves search relevancy and reduces the index filesize. Use lowercase.
@@ -11,7 +11,8 @@ const STOP_WORDS = {
   en: new Set([
     "halo", "and", "or", "not", "to", "from", "at", "in", "a", "the", "be", "are",
     "is", "as", "its", "it", "this", "that", "these", "any", "e", "g", "for", "of",
-	  "on", "with", "you", "do", "but", "by", "an", "will", "all", "would", "we"
+	  "on", "with", "you", "do", "but", "by", "an", "will", "all", "would", "we",
+    "our"
   ]),
   es: new Set([
     "halo", "y", "o", "no", "a", "de", "en", "una", "uno", "la", "el", "ser",
@@ -28,7 +29,7 @@ export type SearchDoc = {
   keywords: string;
 };
 
-export async function buildSearchIndex(searchDocs: SearchDoc[], buildOpts: BuildOpts) {
+export function buildSearchIndex(searchDocs: SearchDoc[]) {
   //build a search index per-language
   const searchIndexes = {};
   searchDocs.forEach(searchDoc => {
@@ -53,11 +54,14 @@ export async function buildSearchIndex(searchDocs: SearchDoc[], buildOpts: Build
     }
     searchIndexes[searchDoc.lang].add(searchDoc);
   });
+  return R.map((index) => JSON.stringify(index.toJSON()), searchIndexes);
+}
 
-  //write each language's search index to JSON so it can be loaded in the user's browser
-  await fs.mkdir(path.join(buildOpts.outputDir, "assets"), {recursive: true});
-  await Promise.all(Object.entries(searchIndexes).map(async ([lang, searchIndex]: [string, any]) => {
-    const jsonIndex = JSON.stringify(searchIndex.toJSON());
-    await fs.writeFile(path.join(buildOpts.outputDir, "assets", `search-index_${lang}.json`), jsonIndex, "utf8");
+//write each language's search index to JSON so it can be loaded in the user's browser
+export async function buildAndWriteSearchIndex(searchDocs: SearchDoc[], buildOpts: BuildOpts) {
+  const searchIndexes = buildSearchIndex(searchDocs);
+  await fs.promises.mkdir(path.join(buildOpts.outputDir, "assets"), {recursive: true});
+  await Promise.all(Object.entries(searchIndexes).map(async ([lang, jsonIndex]: [string, any]) => {
+    await fs.promises.writeFile(path.join(buildOpts.outputDir, "assets", `search-index_${lang}.json`), jsonIndex, "utf8");
   }));
 }

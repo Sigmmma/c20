@@ -72,9 +72,12 @@ At the top of every `readme.md` page file is a metadata section enclosed by two 
 
 ```md
 ---
-title: My biped tutorial
+title: Blender
+about: 'tool:Blender'
+img: blender.jpg
+caption: 'Blender being used to model a [BSP](~h1/tags/scenario_structure_bsp)'
 ---
-Welcome to my *awesome* tutorial. Today we're going to create a biped.
+**Blender** is a free and open-source 3D modeling, animating, and rendering toolset...
 ```
 
 This metadata section is in YAML format and needs a `title` at bare minimum. See below for a full description of available metadata parameters:

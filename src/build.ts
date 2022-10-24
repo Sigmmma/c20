@@ -4,7 +4,7 @@ import path from "path";
 import renderPage from "./lib/render/render";
 import {getPageBaseDir, loadPageIndex, pageIdToLogical, tryLocalizedPath, type PageIndex} from "./lib/content";
 import {loadYamlTree} from "./lib/utils/files";
-import {buildSearchIndex, type SearchDoc} from "./lib/search";
+import {buildAndWriteSearchIndex, type SearchDoc} from "./lib/search";
 import buildResources from "./lib/resources";
 const loadStructuredData = require("./data");
 
@@ -71,12 +71,12 @@ async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: Bui
 
 export default async function buildContent(buildOpts: BuildOpts) {
   const data = loadStructuredData();
-  const pageIndex = loadPageIndex(buildOpts.contentDir, await data);
+  const pageIndex = loadPageIndex(buildOpts.contentDir);
 
   await Promise.all([
     buildResources(await pageIndex, buildOpts),
     renderPages(await pageIndex, await data, buildOpts)
-      .then(searchDocs => buildSearchIndex(searchDocs, buildOpts)),
+      .then(searchDocs => buildAndWriteSearchIndex(searchDocs, buildOpts)),
     buildSitemap(await pageIndex, buildOpts)
   ]);
 }

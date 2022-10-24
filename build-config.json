@@ -13,7 +13,7 @@
     ],
     "srcContentBase": "./src/content",
     "srcStaticAssets": "./src/@(assets)/**/*.@(jpg|jpeg|png|gif|ttf)",
-    "srcScriptEntry": "./src/assets/main2.tsx",
+    "srcScriptEntry": "./src/assets/main.tsx",
     "srcStyleEntry": "./src/assets/style.scss",
     "srcStylesAny": "./src/assets/**/*.scss",
     "vendorAssets": [

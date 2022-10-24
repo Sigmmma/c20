@@ -28,9 +28,9 @@ function renderComments(ctx: RenderContext, part, localize: Localizer) {
     .filter(([k]) => localize(`meta_${k}` as LocalizerKey, true));
   return <>
     {meta.length > 0 &&
-      <ul class="field-metas">
+      <ul className="field-metas">
         {meta.map(([k, v]) =>
-          <li class="field-meta">{localize(`meta_${k}` as LocalizerKey)}{v !== true ? `: ${v}` : ""}</li>
+          <li className="field-meta">{localize(`meta_${k}` as LocalizerKey)}{v !== true ? `: ${v}` : ""}</li>
         )}
       </ul>
     }
@@ -62,7 +62,7 @@ function renderStructFieldType(ctx: RenderContext, props: StructTableProps, fiel
   let endiannessLabel;
   if (typeDef.endianness !== undefined) {
     const endianness = typeDef.endianness == "little" ? "LE" : (typeDef.endianness == "big" ? "BE" : "LE/BE");
-    endiannessLabel = <span class="field-label">{endianness}</span>;
+    endiannessLabel = <span className="field-label">{endianness}</span>;
   }
   const typeCode = (
     <code title={`${totalSize} bytes`}>
@@ -110,7 +110,7 @@ function renderStructAsTable(seenTypes, typeDefs, props: StructTableProps, ctx: 
   }
 
   return (
-    <table class="type-def struct">
+    <table className="type-def struct">
       <thead>
         <tr>
           <th style={`width:${widths}%`}>{localize("field")}</th>
@@ -162,21 +162,21 @@ function renderStructAsTable(seenTypes, typeDefs, props: StructTableProps, ctx: 
 
           return (
             <>
-              <tr class={rowClasses.join(" ")}>
-                <td class="field-name">{renderFieldName(field.name, fieldPathId)}</td>
+              <tr className={rowClasses.join(" ")}>
+                <td className="field-name">{renderFieldName(field.name, fieldPathId)}</td>
                 {props.showOffsets &&
-                  <td class="field-offset"><Hex value={fieldOffset}/></td>
+                  <td className="field-offset"><Hex value={fieldOffset}/></td>
                 }
-                <td class="field-type">
+                <td className="field-type">
                   {renderStructFieldType(ctx, props, field, instantiatedFieldType, localize)}
                   {embeddedType && hasSeenType &&
                     <Wat href={`#${slugify(hasSeenType.join("-"))}`}/>
                   }
                 </td>
-                <td class="comments">{renderComments(ctx, field, localize)}</td>
+                <td className="comments">{renderComments(ctx, field, localize)}</td>
               </tr>
               {embeddedType && !hasSeenType &&
-                <tr class="embedded-type">
+                <tr className="embedded-type">
                   <td colSpan={props.showOffsets ? 4 : 3}>
                     {renderTypeAsTable(seenTypes, typeDefs, ctx, props, embeddedType, fieldPathId, localize)}
                   </td>
@@ -192,7 +192,7 @@ function renderStructAsTable(seenTypes, typeDefs, props: StructTableProps, ctx: 
 
 function renderBitfieldAsTable(ctx: RenderContext, instantiatedType, pathId: string[], localize: Localizer) {
   return (
-    <table class="type-def bitfield">
+    <table className="type-def bitfield">
       <thead>
         <tr>
           <th style="width:25%">{localize("flag")}</th>
@@ -215,7 +215,7 @@ function renderBitfieldAsTable(ctx: RenderContext, instantiatedType, pathId: str
 
 function renderEnumAsTable(ctx: RenderContext, instantiatedType, pathId: string[], localize: Localizer) {
   return (
-    <table class="type-def enum">
+    <table className="type-def enum">
       <thead>
         <tr>
           <th style="width:25%">{localize("option")}</th>

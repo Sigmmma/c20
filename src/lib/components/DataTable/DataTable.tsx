@@ -196,7 +196,7 @@ export default function DataTable(props: DataTableProps) {
           </nav>
         </p>
       }
-      <table class={classes.join(" ")}>
+      <table className={classes.join(" ")}>
         <thead>
           <tr>
             {props.columns.map((col, i) =>

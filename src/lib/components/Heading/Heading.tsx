@@ -8,7 +8,7 @@ export type HeadingProps = {
 };
 
 export function Jump(props: {id: string, children?: ComponentChildren}) {
-  return <a class="header-anchor" href={`#${props.id}`}>{props.children}</a>;
+  return <a className="header-anchor" href={`#${props.id}`}>{props.children}</a>;
 };
 
 export default function Heading(props: HeadingProps) {

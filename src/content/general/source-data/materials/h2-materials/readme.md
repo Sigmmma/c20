@@ -104,7 +104,7 @@ city metal_roof hl:1
 city metal_roof ds:0.5
 ```
 
-Lets break down the examples above one by one.
+Let's break down the examples above one by one.
 
 1. In the first example we are looking for a shader tag named metal_roof from the city collection. Any surfaces using this material would have their generated lightmap resolution multiplied by 2.5 making shadows much sharper
 2. In the first example we are looking for a shader tag named metal_roof from the city collection. Any surfaces using this material that would have any emissive values multiplied by 5 making them much brighter 

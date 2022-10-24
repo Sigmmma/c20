@@ -17,8 +17,8 @@ export default function UnitConverter(props: {}) {
   };
 
   return (
-    <div class="unit-converter">
-      <div class="inputs">
+    <div className="unit-converter">
+      <div className="inputs">
         {Object.entries(conversions).map(([type, {label, rel}]) => {
           const name = `conversion-${type}`;
           let entryValue = state.basisValue;
@@ -38,7 +38,7 @@ export default function UnitConverter(props: {}) {
           </>;
         })}
       </div>
-      <div class="presets">
+      <div className="presets">
         <h2>Presets</h2>
         {presets.map(({label, basisValue, basisType}) => {
           const clickHandler = () => {handleChange(basisType, basisValue)};

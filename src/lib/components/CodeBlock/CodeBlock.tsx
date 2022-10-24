@@ -11,7 +11,7 @@ export default function CodeBlock(props: CodeBlockProps) {
   const result = highlight(props.code, language);
   return (
     <pre>
-      <code class={`language-${language}`} dangerouslySetInnerHTML={{__html: result}}>
+      <code className={`language-${language}`} dangerouslySetInnerHTML={{__html: result}}>
       </code>
     </pre>
   );

@@ -62,7 +62,7 @@ function pageIdToUrl(pageId: PageId, lang: Lang, headingId?: string): string {
 }
 
 //build cross-page APIs and helpers used during rendering
-export async function loadPageIndex(contentDir: string, data: any): Promise<PageIndex> {
+export async function loadPageIndex(contentDir: string): Promise<PageIndex> {
   //we're going to build a map of page ids => page metadata
   const pages: Record<PageId, Record<Lang, PageData>> = {};
 

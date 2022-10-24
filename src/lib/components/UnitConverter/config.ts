@@ -37,26 +37,6 @@ const localize = (key) => ({
     en: "American football field length",
     es: "Longitud del campo de fútbol americano",
   },
-  searchPlaceholder: {
-    en: "Search all of c20... [S]",
-    es: "Buscar todo en c20... [S]"
-  },
-  searchResults: {
-    en: "Search results",
-    es: "Resultados de la búsqueda"
-  },
-  close: {
-    en: "Close",
-    es: "Cerrar"
-  },
-  searchNoResults: {
-    en: "No results found for",
-    es: "No se encontraron resultados para",
-  },
-  limitToChildPaths: {
-    en: "Child pages only",
-    es: "Solo páginas secundarias"
-  }
 }[key][lang]);
 
 //everything relative to JMS units:

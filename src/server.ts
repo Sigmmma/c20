@@ -7,6 +7,7 @@ import {getPageBaseDir, getPageMdSrcPath, loadPageIndex} from "./lib/content";
 import {loadYamlTree} from "./lib/utils/files";
 import {type BuildOpts} from "./build";
 import {parse} from "./lib/components/Md/markdown";
+import { buildSearchIndex, SearchDoc } from "./lib/search";
 const loadStructuredData = require("./data");
 
 const buildOpts: BuildOpts = {
@@ -25,6 +26,24 @@ export default function runServer(onDemand: boolean) {
 
   if (onDemand) {
     app.use(express.static(buildOpts.contentDir));
+    app.get("/assets/search-index_:lang(\\w{2}).json", async (req, res, next) => {
+      const lang = req.params.lang.toLowerCase();
+      console.log(`Building search index: ${lang}`);
+      const pageIndex = await loadPageIndex(buildOpts.contentDir);
+      const searchDocs: SearchDoc[] = Object.entries(pageIndex).map(([pageId, pageDataByLang]): SearchDoc => {
+        const pageData = pageDataByLang[lang];
+        return {
+          lang,
+          path: pageId,
+          keywords: pageData.front.keywords?.join(" ") ?? "",
+          title: pageData.front.title ?? "",
+          text: "", //render plaintext? or keep it fast during dev?
+        };
+      });
+      const json = buildSearchIndex(searchDocs)[lang];
+      res.header("Content-Type", "application/json; charset=UTF-8");
+      res.send(json);
+    });
     app.get("/:page([-/_a-zA-Z0-9]+)?", async (req, res, next) => {
       // const lang = req.params.lang?.toLowerCase() ?? "en";
       const lang = "en";
@@ -38,7 +57,7 @@ export default function runServer(onDemand: boolean) {
 
       const dataPromise = loadStructuredData();
       const localDataPromise = loadYamlTree(baseDir, {nonRecursive: true});
-      const pageIndexPromise = loadPageIndex(buildOpts.contentDir, await dataPromise);
+      const pageIndexPromise = loadPageIndex(buildOpts.contentDir);
       const mdSrcPromise = fs.promises.readFile(mdSrcPath, "utf-8");
 
       let mdSrc = await mdSrcPromise;

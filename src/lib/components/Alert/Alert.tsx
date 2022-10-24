@@ -13,13 +13,13 @@ export type AlertProps = {
 
 export default function Alert(props: AlertProps) {
   return (
-    <div class={`alert type-${props.type || "info"}`}>
+    <div className={`alert type-${props.type || "info"}`}>
       {props.icon &&
-        <div class="alert-icon">
+        <div className="alert-icon">
           <Icon name={props.icon}/>
         </div>
       }
-      <div class="alert-body">
+      <div className="alert-body">
         {props.children}
       </div>
     </div>
