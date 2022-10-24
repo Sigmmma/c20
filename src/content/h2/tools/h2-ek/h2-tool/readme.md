@@ -1,8 +1,24 @@
-```.alert
-This is an article about the H2 Tool for use with MCC. For the legacy H2V Tool for [Halo 2 Vista][h2] see [H2V Tool][h2v-tool].
-```
+---
+title: H2 Tool (2021)
+stub: true
+about: 'tool:H2-Tool'
+img: h2tool.jpg
+caption: Using H2 Tool in CMD to view the command list
+keywords:
+  - tool
+  - lightmap
+  - cli
+  - h2tool
+related:
+  - /h1/tools/h1a-ek/h1a-tool
+  - /h2/tools/h2v-ek/h2v-tool
+  - /h3/h3-ek/h3-tool
+---
+{% alert %}
+This is an article about the H2 Tool for use with MCC. For the legacy H2V Tool for [Halo 2 Vista](~h2) see [H2V Tool](~h2v-tool).
+{% /alert %}
 
-**H2-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo 2 Editing Kit][H2-EK] by 343 Industries in 2021.
+**H2-Tool** (**tool.exe**), is a [command-line](~) utility used to compile data into [tags](~), and tags into [maps](~map). It was released as a part of the [Halo 2 Editing Kit](~H2-EK) by 343 Industries in 2021.
 
 This new version of Tool has many differences from the 2007 Pi Studios Tool. Most notably, it includes far more verbs and new options for existing ones. A major addition is the FBX to ASS/JMS/JMA/JMI toolchain to compile models regardless of what 3D modeling software you use.
 
@@ -16,11 +32,11 @@ This new version of Tool has many differences from the 2007 Pi Studios Tool. Mos
 - `Tool` or `tool.exe` - refers to the subject of this article, the H2 Tool, if the legacy Tool is being referred to that will be made explicit.
 
 # Command line flags
-- `-data_dir` and `-tags_dir` can be used to change the data and tag directories respectively. This might not work with all verbs as it's experimental. See [using custom content paths][using-custom-content-paths].
+- `-data_dir` and `-tags_dir` can be used to change the data and tag directories respectively. This might not work with all verbs as it's experimental. See [using custom content paths](~using-custom-content-paths).
 - `-pause` wait for user input before exiting, useful for custom launchers.
 
 # Batch bitmap compilation
-[TIFF][wiki-tiff] (.tif/.tiff) images can be compiled into a [bitmap][] using the `bitmaps` verb:
+[TIFF][wiki-tiff] (.tif/.tiff) images can be compiled into a [bitmap](~) using the `bitmaps` verb:
 
 ```sh
 # bitmaps <source-directory> [type] [debug-plate?]
@@ -42,7 +58,7 @@ For the example above, Tool would expect to find .tif/.tiff files at `data\scena
 Tool supports TIFF files with a [colour depth][wiki-color] of at least 8 bits per pixel, 32-bit color (8 bits per channel) being typical.
 
 # Build cache file
-A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb. Simply provide your scenario's tag path. (the last two arguments are optional):
+A [scenario](~) can be compiled into a [map](~) using the `build-cache-file` verb. Simply provide your scenario's tag path. (the last two arguments are optional):
 
 ```sh
 #  build-cache-file <scenario> [platform] [flags]
@@ -176,7 +192,7 @@ tool bulk-render "objects\multi\jmi_Test.JMI"
 * jmi-file - A local data path to where the JMI file is located.
 
 # Camera track
-This commands takes a JMA file directly and converts it to a [camera_track][] for the game. The length of the animation should be at most 16 as that is the max number of control points a camera track tag can contain. The JMA should contain a skeleton made up of a single bone that will change its position each frame. The orientation of the bone will determine the position and rotation of the control point for that index. The name of the JMA file will be the name of the tag.
+This commands takes a JMA file directly and converts it to a [camera_track](~) for the game. The length of the animation should be at most 16 as that is the max number of control points a camera track tag can contain. The JMA should contain a skeleton made up of a single bone that will change its position each frame. The orientation of the bone will determine the position and rotation of the control point for that index. The name of the JMA file will be the name of the tag.
 
 ```sh
 # camera-track <source-file>
@@ -186,7 +202,7 @@ tool camera-track cameras\ohno.JMA
 * source-file - A local data path to where the JMA file is located.
 
 # Collision
-A [JMS][] file containing a collision model can be compiled into a collision model tag
+A [JMS](~) file containing a collision model can be compiled into a collision model tag
 
 ```sh
 # collision <source-directory>
@@ -195,7 +211,7 @@ tool collision "objects\characters\masterchief"
 
 * source-directory - A local data path to the root of a model source directory.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
 
 
 # Count all class sounds
@@ -227,7 +243,7 @@ tool count-sound-tags "sound\ambience"
 * root-path - A local tag path to the root of a directory containing sound tags or child folders with sound tags.
 
 # Dialogue globals import
-Compiles a CSV file to generate a new [ai_dialogue_globals][] tag. The file path for the CSV file is `data\ai\ai_dialogue_globals.csv` and `tags\ai\ai_dialogue_globals.ai_dialogue_globals` is generated.
+Compiles a CSV file to generate a new [ai_dialogue_globals](~) tag. The file path for the CSV file is `data\ai\ai_dialogue_globals.csv` and `tags\ai\ai_dialogue_globals.ai_dialogue_globals` is generated.
 
 ```sh
 # dialogue-globals-import
@@ -235,7 +251,7 @@ tool dialogue-globals-import
 ```
 
 # Dialogue import
-Collects all [sound][] tag paths and adds them to a generated [dialogue][] tag.
+Collects all [sound](~) tag paths and adds them to a generated [dialogue](~) tag.
 
 ```sh
 # dialogue-import <root-directory>
@@ -304,7 +320,7 @@ tool export-windows-font example dummy "Arial Bold" 12
 * point-size - The font size to generate glyphs at.
 
 # Extract collision data
-Extracts import info from a [collision_model][] tag to retrieve the original JMS used to create the tag. Don't expect this command to do anything if there is no import info.
+Extracts import info from a [collision_model](~) tag to retrieve the original JMS used to create the tag. Don't expect this command to do anything if there is no import info.
 
 ```sh
 # extract-collision-data <collision_model>
@@ -314,7 +330,7 @@ tool extract-collision-data "objects\characters\masterchief\masterchief"
 * collision_model - A local tag path to a collision tag without file extension.
 
 # Extract HS scripts
-Finds all [scenario_hs_source_file][] tags in a directory and dumps the contents to an .hsc file in data.
+Finds all [scenario_hs_source_file](~) tags in a directory and dumps the contents to an .hsc file in data.
 
 ```sh
 # extract-hs-scripts <name_substring>
@@ -334,7 +350,7 @@ tool extract-lpc-data "sound_test\aiff\soundtest.aiff"
 * sound-file - A local data path to an AIF/AIFF file.
 
 # Extract physics data
-Extracts import info from a [physics_model][] tag to retrieve the original [JMS][] used to create the tag. Don't expect this command to do anything if there is no import info.
+Extracts import info from a [physics_model](~) tag to retrieve the original [JMS](~) used to create the tag. Don't expect this command to do anything if there is no import info.
 
 ```sh
 # extract-physics-data <physics_model>
@@ -344,7 +360,7 @@ tool extract-physics-data "objects\vehicles\scorpion\scorpion"
 * physics_model - A local tag path to a physics_model tag without extension.
 
 # Extract render data
-Extracts import info from a [render_model][] tag to retrieve the original [JMS][] used to create the tag. Don't expect this command to do anything if there is no import info.
+Extracts import info from a [render_model](~) tag to retrieve the original [JMS](~) used to create the tag. Don't expect this command to do anything if there is no import info.
 
 ```sh
 # extract-render-data <render_model>
@@ -354,7 +370,7 @@ tool extract-render-data "objects\vehicles\scorpion\scorpion"
 * render_model - A local tag path to a render_model tag without extension.
 
 # Extract structure data
-Extracts import info from a [scenario_structure_bsp][] tag to retrieve the original [ASS][] or [JMS][] used to create the tag. Don't expect this command to do anything if there is no import info stored in the BSP tag.
+Extracts import info from a [scenario_structure_bsp](~) tag to retrieve the original [ASS](~) or [JMS](~) used to create the tag. Don't expect this command to do anything if there is no import info stored in the BSP tag.
 
 ```sh
 # extract-structure-data <scenario_structure_bsp>
@@ -364,7 +380,7 @@ tool extract-structure-data "scenarios\solo\01b_spacestation\01_bsp_2"
 * scenario_structure_bsp - A local tag path to a scenario_structure_bsp tag without extension.
 
 # Extract unicode strings
-Extract strings from [multilingual_unicode_string_list][] and dumps the results back to a text file in data. Results may not match original source exactly so give the files a read to make sure tool won't have any issues.
+Extract strings from [multilingual_unicode_string_list](~) and dumps the results back to a text file in data. Results may not match original source exactly so give the files a read to make sure tool won't have any issues.
 
 ```sh
 # extract-unicode-strings <multilingual_unicode_string_list>
@@ -374,7 +390,7 @@ tool extract-unicode-strings "ui\hud\hud_messages"
 * multilingual_unicode_string_list - A local tag path to a multilingual_unicode_string_list tag without extension.
 
 # FBX to ASS
-This command takes an FBX and converts it to an [ASS][] file for Halo 2 level importing. Use this if you don't have access to an export script.
+This command takes an FBX and converts it to an [ASS](~) file for Halo 2 level importing. Use this if you don't have access to an export script.
 
 ```sh
 # fbx-to-ass <fbx> <ass>
@@ -384,7 +400,7 @@ tool fbx-to-ass "F:\dreamer.fbx" "F:\dreamer.ASS"
 * fbx - An absolute filepath to a valid FBX file.
 * ass - An absolute filepath that includes name and extension to write the output to.
 
-For some details on how to setup the FBX file see [FBX for H2][fbx].
+For some details on how to setup the FBX file see [FBX for H2](~fbx).
 
 # FBX to JMA
 This command takes an FBX and converts it to an animation source file for Halo 2 importing. Use this if you don't have access to an export script. Be aware that the extension can be any of the available extensions for animation importing. It does not specifically needs to be JMA. You can type JMO as the extension and the output is still valid.
@@ -400,7 +416,7 @@ tool fbx-to-jma "E:\my_fbx_files\cyborg_dab.fbx" F:\cyborg_my_custom_anim.JMA 5 
 * Start-frame - Sets the first frame index that the converter will start from. Use this if you want only a specific section of an animation from your FBX. This arg is optional so you can leave this and Last-frame out if you want the animation as is.
 * Last-frame - Sets the last frame index that the converter will end on. Use this if you want only a specific section of an animation from your FBX. This arg is optional so you can leave this and Last-frame out if you want the animation as is.
 
-For some details on how to setup the FBX file see [FBX for H2][fbx].
+For some details on how to setup the FBX file see [FBX for H2](~fbx).
 
 # FBX to JMI
 This command takes an FBX and converts it to a JMI source file for Halo 2 importing. Use this if you don't have access to an export script.
@@ -413,7 +429,7 @@ tool fbx-to-jmi "E:\my_fbx_files\scenery_set.fbx" F:\scenery_set.JMI
 * fbx - An absolute filepath to a valid FBX file.
 * jmi - An absolute filepath that includes name and extension to write the output to.
 
-For some details on how to setup the FBX file see [FBX for H2][fbx].
+For some details on how to setup the FBX file see [FBX for H2](~fbx).
 
 # FBX to JMS
 
@@ -426,7 +442,7 @@ tool fbx-to-jms render "F:\dreamer.fbx" "F:\dreamer.JMS"
 * fbx - An absolute filepath to a valid FBX file.
 * jms - An absolute filepath that includes name and extension to write the output to.
 
-For some details on how to setup the FBX file see [FBX for H2][fbx].
+For some details on how to setup the FBX file see [FBX for H2](~fbx).
 
 # Fix model materials
 Sets global material names for model tags in a directory if the name is invalid.
@@ -467,7 +483,7 @@ tool fp-model-animations "objects\characters\masterchief\fp\weapons\rifle\fp_smg
 * flags - ??? This is an optional arg.
 
 # Import damage table
-Imports `data\globals\armor_vs_damage.csv` to update the damage table block in [globals][]. The CSV (which can be exported from any spreadsheet software like Excel) uses Damage Groups as the columns, and Armor Modifiers as the rows, with each cell being the applicable Damage Multiplier.
+Imports `data\globals\armor_vs_damage.csv` to update the damage table block in [globals](~). The CSV (which can be exported from any spreadsheet software like Excel) uses Damage Groups as the columns, and Armor Modifiers as the rows, with each cell being the applicable Damage Multiplier.
 
 ```sh
 # import-damage-table
@@ -549,16 +565,16 @@ tool lightmaps-debug "scenarios\multi\halo\coagulation\coagulation" "coagulation
 ## Multi-instance lightmaps
 
 Multi instance lightmaps were intended to run on the lightmap farm, some changes were made during the development of the H2-EK to fix issues related to that but this didn't fix all of them. Overall they are a good alternative to single instance lightmaps as long as you are careful.
-If you are using a launcher such as [Osoyoos][] this should be handled for you automatically.
+If you are using a launcher such as [Osoyoos](~) this should be handled for you automatically.
 
 ### Lightmap worker
 
-```.alert danger
+{% alert type="danger" %}
 Launch worker with the index `0` last (and preferably ~30-60 seconds after the other ones) or the other workers will overwrite certain data needed for functional lightmaps.
 If this data gets overwritten scenery objects will not get lit correctly and will be pitch black.
-```
+{% /alert %}
 
-Run a lightmap-worker instance to cut down on time spent lighting. Make sure to run [`lightmaps-farm-merge`][h2-tool#lightmap-merge] afterwards to complete the process.
+Run a lightmap-worker instance to cut down on time spent lighting. Make sure to run [`lightmaps-farm-merge`](~h2-tool#lightmap-merge) afterwards to complete the process.
 
 ```sh
 # lightmaps-farm-worker <scenario> <bsp-name> <quality-setting> <worker-index> <worker-count>
@@ -584,7 +600,7 @@ tool lightmaps-farm-worker "scenarios\multi\halo\coagulation\coagulation" "coagu
 
 ### Lightmap merge
 
-Merge the results from [`lightmaps-farm-worker`][h2-tool#lightmap-worker] to form the final lightmap bitmap tag.
+Merge the results from [`lightmaps-farm-worker`](~h2-tool#lightmap-worker) to form the final lightmap bitmap tag.
 
 ```sh
 # lightmaps-farm-merge <scenario> <bsp-name> <worker-count>
@@ -598,9 +614,9 @@ tool lightmaps-farm-merge "scenarios\multi\halo\coagulation\coagulation" "coagul
 ## Quality levels
 Tool supports a few different quality levels, for testing geometry you will want to use `direct_only` if you want to test lighting you will want to use at least `draft_low` as bounced light will change how a lot of things look. The highest quality - `super` - only needs to be used as a final pass, it will take a long time even with a fast CPU and multiple instances. Modding tool to increase these settings is possible but `super` is close to the limit of how good lighting generated by tool can be and improvements from increasing these settings beyond that are minor.
 
-```.alert info
+{% alert %}
 The "cuban" quality setting is likely named after the nickname of one of the engineers that worked on the lightmapping process.
-```
+{% /alert %}
 
 | Setting      | Photon Count | Sample Count | Gather Distance | Antialiasing Samples | Bounced Lighting |
 | -------------| -------------| -------------| ----------------| ---------------------| -----------------|
@@ -635,7 +651,7 @@ Goes to all the animations in a directory and child directories. Once it's done 
 tool model-animation-count "objects\characters\masterchief"
 ```
 
-* source-directory - A local tag path to a directory containing [model_animation_graph][] tags or child folders with model_animation_graph tags.
+* source-directory - A local tag path to a directory containing [model_animation_graph](~) tags or child folders with model_animation_graph tags.
 
 
 # Model animation status
@@ -646,10 +662,10 @@ Goes to all the animations in a directory and child directories. Once it's done 
 tool model-animation-status "objects\characters\masterchief"
 ```
 
-* source-directory - A local tag path to a directory containing [model_animation_graph][] tags or child folders with model_animation_graph tags.
+* source-directory - A local tag path to a directory containing [model_animation_graph](~) tags or child folders with model_animation_graph tags.
 
 # Model animations
-A set of [animation source files][animation-data] can be compiled into a [model_animation_graph][] tag.
+A set of [animation source files](~animation-data) can be compiled into a [model_animation_graph](~) tag.
 
 ```sh
 # model-animations <source-directory> [flags]
@@ -681,7 +697,7 @@ tool monitor-data-and-tags-bitmaps
 ```
 
 ## Monitor models
-Keeps watch of the data directory for any file changes. If any model related intermediate files are modified or moved to the data directory then tool will immediately attempt to import the source files as [render_model][], [collision_model][], or [physics_model][] tags.
+Keeps watch of the data directory for any file changes. If any model related intermediate files are modified or moved to the data directory then tool will immediately attempt to import the source files as [render_model](~), [collision_model](~), or [physics_model](~) tags.
 
 ```sh
 # monitor-models
@@ -697,7 +713,7 @@ tool monitor-structures
 ```
 
 # New strings
-Converts all text files in a directory to [multilingual_unicode_string_list][] tags. Text files should be saved as UTF-16
+Converts all text files in a directory to [multilingual_unicode_string_list](~) tags. Text files should be saved as UTF-16
 
 ```sh
 # new-strings <source-directory>
@@ -741,7 +757,7 @@ ui\screens\game_shell\settings_screen\variant_settings\editing_format_screens\qu
 ```
 
 # Physics
-A [JMS][] file containing physic meshes can be compiled into a [physics_model][] tag
+A [JMS](~) file containing physic meshes can be compiled into a [physics_model](~) tag
 
 ```sh
 # physics <source-directory>
@@ -750,7 +766,7 @@ tool physics "objects\characters\masterchief"
 
 * source-directory - A local data path to the root of a model source directory.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\physics\masterchief_ragdoll.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.physics_model`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\physics\masterchief_ragdoll.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.physics_model`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
 
 
 # Plate
@@ -768,11 +784,11 @@ tool plate "F:\bitmap_test" true
 
 # PRT simulation
 
-```.alert danger
+{% alert type="danger" %}
 A utility required to run the PRT simulation was not shipped with the initial release of the tools. The commands are currently non-functional.
-```
+{% /alert %}
 
-Run a PRT (precomputed radiance transfer) simulation on an already existing [render_model][] tag.
+Run a PRT (precomputed radiance transfer) simulation on an already existing [render_model](~) tag.
 
 ```sh
 # prt-simulation <render-model>
@@ -782,7 +798,7 @@ tool prt-simulation "scenarios\objects\covenant\military\scarab\scarab"
 * render-model - A local tag path to a render_model tag without extension.
 
 # Rebuild scenario scripts
-Recompiles HSC script files from data using the [scenario_hs_source_file][] tags referenced in the scenario tag.
+Recompiles HSC script files from data using the [scenario_hs_source_file](~) tags referenced in the scenario tag.
 
 ```sh
 # rebuild-scenario-scripts <scenario>
@@ -794,12 +810,12 @@ tool rebuild-scenario-scripts "scenarios\solo\01b_spacestation\01b_spacestation"
 
 # Render
 
-```.alert danger
+{% alert type="danger" %}
 A utility required to run the PRT simulation was not shipped with the initial release of the tools. The commands are currently non-functional.
 Attempting to import a render model that uses it will not work for now.
-```
+{% /alert %}
 
-A [JMS][] file containing render geometry can be compiled into a render_model tag
+A [JMS](~) file containing render geometry can be compiled into a render_model tag
 
 ```sh
 #  render <source-directory> [accurate?] [run-prt?]
@@ -810,7 +826,7 @@ tool render "objects\characters\masterchief" false false
 * accurate - ???
 * run-prt - Run a PRT simulation on the import data. Skinned meshes are not supported.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\render\L5_masterchief.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.render_model`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\render\L5_masterchief.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.render_model`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
 
 
 
@@ -1003,7 +1019,7 @@ tool strip-single-tag-file "objects\characters\masterchief\masterchief.render_mo
 * tag - A local tag path to a tag file with extension.
 
 # Structure
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
+A [JMS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
 # structure <scenario-directory> <bsp-name> [verbose?]
@@ -1014,12 +1030,12 @@ tool structure "scenarios\multi\example" "example"
 * bsp-name - The JMS filename without extension.
 * verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
 
 
 
 # Structure compatible
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
+A [JMS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
 # structure-compatible <scenario-directory> <bsp-name>
@@ -1029,10 +1045,10 @@ tool structure-compatible "scenarios\multi\example" "example"
 * scenario-directory - A local data path to root directory of a level.
 * bsp-name - The JMS filename without extension.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
 
 # Structure compatible from JMS
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
+A [JMS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
 # structure-compatible-from-jms <jms-file>
@@ -1041,10 +1057,10 @@ tool structure-compatible-from-jms "scenarios\multi\example\structure\example.JM
 
 * jms-file - A local data path to a JMS file with extension.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
 
 # Structure from JMS
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
+A [JMS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
 # structure-from-jms <jms-file> [verbose?]
@@ -1054,10 +1070,10 @@ tool structure-from-jms "scenarios\multi\example\structure\example.JMS"
 * jms-file - A local data path to a JMS file with extension.
 * verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
 
 # Structure new
-A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
+A [ASS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
 
 ```sh
 # structure-new <scenario-directory> <bsp-name> [verbose?]
@@ -1068,10 +1084,10 @@ tool structure-new "scenarios\multi\example" "example"
 * bsp-name - The ASS filename without extension.
 * verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
-For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
+For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
 
 # Structure new from ASS
-A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag.
+A [ASS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag.
 
 ```sh
 # structure-new-from-ass <ass-file> [verbose?]
@@ -1081,14 +1097,14 @@ tool structure-new-from-ass "scenarios\multi\example\structure\example.ASS"
 * ass-file - A local data path to a ASS file with extension.
 * verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
-For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
+For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
 
-Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][scenario_structure_lightmap] are **not** produced during this step, but rather with the [lightmaps verb](#baking-lightmaps).
+Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps](~scenario_structure_lightmap) are **not** produced during this step, but rather with the [lightmaps verb](#baking-lightmaps).
 
 Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 # Structure new verbose from ASS
-A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag. This version of the structure command gives verbose output.
+A [ASS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag. This version of the structure command gives verbose output.
 
 ```sh
 # structure-new-verbose-from-ass <ass-file>
@@ -1097,7 +1113,7 @@ tool structure-new-verbose-from-ass "scenarios\multi\example\structure\example.A
 
 * ass-file - A local data path to a ASS file with extension.
 
-For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
+For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
 
 
 
@@ -1146,7 +1162,7 @@ A few commands in tool don't do anything of note:
 * `lightmap-farm <scenario> <bsp-name> <quality-setting> <priority> <branch>`
 * `lightmap-farm-update-sql <scenario-directory> <bsp-name> <sql_record_id>`
 * `dump-tag-table <tag-type>`
-* `lightmap-rendermodel` - Generates section leaves in a [render_model][] tag. Probably meant to test PRT related things.
+* `lightmap-rendermodel` - Generates section leaves in a [render_model](~) tag. Probably meant to test PRT related things.
 * Most `fix-tags` subcommands.
 
 ## Scenario analyze
@@ -1314,7 +1330,7 @@ tool lightprobes "scenarios\multi\halo\coagulation\coagulation" "coagulation" di
 tool model-animation-reset-compression "objects\characters\masterchief\masterchief"
 ```
 
-* model-animation-reset-compression - A local tag path to a [model_animation_graph][] tag without file extensions.
+* model-animation-reset-compression - A local tag path to a [model_animation_graph](~) tag without file extensions.
 # Pixel shaders
 ???
 
@@ -1346,7 +1362,7 @@ tool process-sounds
 tool rebuild-structure-audibility "scenarios\solo\01b_spacestation\01_bsp_2"
 ```
 
-* structure - A local tag path to a [scenario_structure_bsp][] tag without extension.
+* structure - A local tag path to a [scenario_structure_bsp](~) tag without extension.
 
 ## Reimport model animations
 ???

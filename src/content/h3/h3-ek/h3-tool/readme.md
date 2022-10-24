@@ -1,4 +1,17 @@
-**H3-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo 3 Editing Kit][h3-ek] by 343 Industries in 2021.
+---
+title: H3 Tool
+stub: true
+about: 'tool:H3-Tool'
+img: h3-tool.jpg
+caption: Using H3-Tool in CMD to view the command list
+keywords:
+  - tool
+  - lightmap
+  - cli
+related:
+  - /h1/tools/h1a-ek/h1a-tool
+---
+**H3-Tool** (**tool.exe**), is a [command-line](~) utility used to compile data into [tags](~), and tags into [maps](~map). It was released as a part of the [Halo 3 Editing Kit](~h3-ek) by 343 Industries in 2021.
 
 # Tips
 * If an invalid command is typed into tool then tool will print a list of commands that have the same starting character as what was typed in. This means that if we type `tool s` into command prompt then tool will only output commands that start with the letter s.
@@ -20,7 +33,7 @@ tool bitmap_single
 * image-file - A local data path to a tif/tiff file with extension.
 
 # Bitmaps
-[TIFF][wiki-tiff] (.tif/.tiff) images can be compiled into a [bitmap][] using the `bitmaps` verb:
+[TIFF][wiki-tiff] (.tif/.tiff) images can be compiled into a [bitmap](~) using the `bitmaps` verb:
 
 ```sh
 # bitmaps <source-directory>
@@ -66,7 +79,7 @@ tool bitmaps-with-type "levels\multi\chill\bitmaps" 2d
 Cache files can be built using multiple tool verbs, but you will likely only use `build-cache-file` 
 
 ## Build cache file
-A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb. Simply provide your scenario's tag path.
+A [scenario](~) can be compiled into a [map](~) using the `build-cache-file` verb. Simply provide your scenario's tag path.
 
 ```sh
 # build-cache-file <scenario> <platform> <audio-configuration> <target-language> <dedicated-server-(optional)> <compress_more|compress_most-(optional)> <use-fmod-data-(optional)>
@@ -174,7 +187,7 @@ tool build-cache-file-for-cubemaps "levels\multi\chill\chill" pc
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
 
 ## Build cache file language
-A [scenario][] can be compiled into a [map][] using the `build-cache-file-language` verb. Simply provide your scenario's tag path.
+A [scenario](~) can be compiled into a [map](~) using the `build-cache-file-language` verb. Simply provide your scenario's tag path.
 
 ```sh
 # build-cache-file-language <target-language> <scenario> <platform>
@@ -186,7 +199,7 @@ tool build-cache-file-language english "levels\multi\chill\chill" pc
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
 
 ## Build cache file language version
-A [scenario][] can be compiled into a [map][] using the `build-cache-file-language-version` verb. Simply provide your scenario's tag path.
+A [scenario](~) can be compiled into a [map](~) using the `build-cache-file-language-version` verb. Simply provide your scenario's tag path.
 
 ```sh
 # build-cache-file-language-version <target-language> <minor-version-number> <scenario> <platform>
@@ -382,7 +395,7 @@ tool check-all-tags
 ```
 
 # Collision
-A [JMS][] file containing a collision model can be compiled into a collision model tag
+A [JMS](~) file containing a collision model can be compiled into a collision model tag
 
 ```sh
 # collision <source-directory>
@@ -391,7 +404,7 @@ tool collision "objects\characters\masterchief"
 
 * source-directory - A local data path to the root of a model source directory.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 # Compile shader
 Compile the template needed for a specific shader.
@@ -471,7 +484,7 @@ tool decorator-set-link-render-model "levels\shared\decorators\barnacles\barnacl
 * render-model - A local tag path to a render_model tag file without extension.
 
 # Dialogue globals import
-Compiles a CSV file to generate a new [ai_dialogue_globals][] tag. The file path for the CSV file is `data\ai\ai_dialogue_globals.csv` and `tags\ai\ai_dialogue_globals.ai_dialogue_globals` is generated.
+Compiles a CSV file to generate a new [ai_dialogue_globals](~) tag. The file path for the CSV file is `data\ai\ai_dialogue_globals.csv` and `tags\ai\ai_dialogue_globals.ai_dialogue_globals` is generated.
 
 ```sh
 # dialogue-globals-import
@@ -479,7 +492,7 @@ tool dialogue-globals-import
 ```
 
 # Dialogue import
-Collects all [sound][] tag paths and adds them to a generated [dialogue][] tag.
+Collects all [sound](~) tag paths and adds them to a generated [dialogue](~) tag.
 
 ```sh
 # dialogue-import <root-directory>
@@ -567,7 +580,7 @@ tool export-tag-to-xml "F:\H3EK\tags\objects\characters\masterchief\masterchief.
 * output-file - An absolute file path to an output directory with file name and extension.
 
 # Extract import info
-Dumps the stored import-info data used to originally import the tag file. Only tags that contain valid import-info can use this. This means only [render_model][], [collision_model][], [physics_model][], and [scenario_structure_bsp][].
+Dumps the stored import-info data used to originally import the tag file. Only tags that contain valid import-info can use this. This means only [render_model](~), [collision_model](~), [physics_model](~), and [scenario_structure_bsp](~).
 
 ```sh
 # extract-import-info <tag-file>
@@ -617,7 +630,7 @@ tool faux_data_sync "levels\multi\riverworld\riverworld" "riverworld"
 * scenario - A local tag path to a scenario without extension
 * bsp-name - The name of a BSP tag referenced by the scenario tag
 
-If you use the [Osoyoos launcher][osoyoos] or the Python script supplied this step will be done automatically.
+If you use the [Osoyoos launcher](~osoyoos) or the Python script supplied this step will be done automatically.
 
 ## Lightmapping using the Python script
 You need to install [Python][] if you haven't already see the [official documentation on how to do that for your platform](https://docs.python.org/3/using/index.html), if at some point you are asked if you wish to add python to `PATH` it is suggested you do that as it will make your life easier.
@@ -645,7 +658,7 @@ The multi-instance faux process dumps a fair bit of intermediate data to disk wh
 
 
 # FBX to ASS
-This command takes an FBX and converts it to an [ASS][] file for Halo 3 level importing. Use this if you don't have access to an export script.
+This command takes an FBX and converts it to an [ASS](~) file for Halo 3 level importing. Use this if you don't have access to an export script.
 
 ```sh
 # fbx-to-ass <fbx> <ass>
@@ -655,7 +668,7 @@ tool fbx-to-ass "F:\dreamer.fbx" "F:\dreamer.ASS"
 * fbx - An absolute filepath to a valid FBX file.
 * ass - An absolute filepath that includes name and extension to write the output to.
 
-For some details on how to setup the FBX file see [FBX for H3][fbx].
+For some details on how to setup the FBX file see [FBX for H3](~fbx).
 
 # FBX to JMA
 This command takes an FBX and converts it to an animation source file for Halo 3 importing. Use this if you don't have access to an export script. Be aware that the extension can be any of the available extensions for animation importing. It does not specifically needs to be JMA. You can type JMO as the extension and the output is still valid.
@@ -671,7 +684,7 @@ tool fbx-to-jma "E:\my_fbx_files\cyborg_dab.fbx" F:\cyborg_my_custom_anim.JMA 5 
 * Start-frame - Sets the first frame index that the converter will start from. Use this if you want only a specific section of an animation from your FBX. This argument is optional so you can leave this and Last-frame out if you want the animation as is.
 * Last-frame - Sets the last frame index that the converter will end on. Use this if you want only a specific section of an animation from your FBX. This argument is optional so you can leave this and Last-frame out if you want the animation as is.
 
-For some details on how to setup the FBX file see [FBX for H3][fbx].
+For some details on how to setup the FBX file see [FBX for H3](~fbx).
 
 # FBX to JMI
 This command takes an FBX and converts it to a JMI source file for Halo 3 importing. Use this if you don't have access to an export script.
@@ -684,7 +697,7 @@ tool fbx-to-jmi "E:\my_fbx_files\scenery_set.fbx" F:\scenery_set.JMI
 * fbx - An absolute filepath to a valid FBX file.
 * jmi - An absolute filepath that includes name and extension to write the output to.
 
-For some details on how to setup the FBX file see [FBX for H3][fbx].
+For some details on how to setup the FBX file see [FBX for H3](~fbx).
 
 # FBX to JMS
 
@@ -697,7 +710,7 @@ tool fbx-to-jms render "F:\dreamer.fbx" "F:\dreamer.JMS"
 * fbx - An absolute filepath to a valid FBX file.
 * jms - An absolute filepath that includes name and extension to write the output to.
 
-For some details on how to setup the FBX file see [FBX for H3][fbx].
+For some details on how to setup the FBX file see [FBX for H3](~fbx).
 
 # Import Bitmap Folder as Single Tag
 This command compiles multiple .tif files from a folder into a single .bitmap tag.
@@ -868,7 +881,7 @@ tool sounds-single-mixed "sound_test" projectile_impact sfx
 * bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
 
 # Structure
-A [ASS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] tag.
+A [ASS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag.
 
 ```sh
 # structure <ass-file>
@@ -877,9 +890,9 @@ tool structure "levels\multi\example\structure\example.ASS"
 
 * ass-file - A local data path to a ASS file with extension.
 
-For the example above, Tool would expect to find a corresponding ASS file at `data\levels\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\levels\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl-2.0] for troubleshooting.
+For the example above, Tool would expect to find a corresponding ASS file at `data\levels\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\levels\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
 
-Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. This step does not produce [lightmaps][scenario_structure_lightmap] -- see [baking lightmaps](#baking-lightmaps-faux).
+Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. This step does not produce [lightmaps](~scenario_structure_lightmap) -- see [baking lightmaps](#baking-lightmaps-faux).
 
 Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario.
 

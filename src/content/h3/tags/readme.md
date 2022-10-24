@@ -1,4 +1,9 @@
-Halo 3's tags are similar to [Halo 2's][h2/tags], but there are many more types.
+---
+title: H3 tags
+stub: true
+about: 'resource:h3/tags'
+---
+Halo 3's tags are similar to [Halo 2's](~h2/tags), but there are many more types.
 
 # Tags list
 

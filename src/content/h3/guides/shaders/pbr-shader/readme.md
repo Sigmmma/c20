@@ -1,3 +1,15 @@
+---
+title: H3 PBR shader guide
+keywords:
+  - halo 3 pbr
+  - pbr
+  - pbr shader
+  - halo 3 shaders
+  - halo 3 pbr shader
+  - shaders
+thanks:
+  TheChunkierBean: Writing this page.
+---
 
 * ![](A.png "It's like talking to a brick wall")
 
@@ -17,9 +29,9 @@ Halo 3 includes a PBR-like shader that allows artists to convert their premade P
 
 With the release of the weapon and vehicle skins update to Halo 3 MCC, 343 Industries implemented a new material_model called **cook_torrance_pbr_maps**. This allowed for the menu skins that were authored in PBR to be replicated in-engine when enabled. While not 100% true PBR, this shader allows artists to now have a more modern rendering technique in Halo 3.
 
-```.alert info
+{% alert %}
 NB: There is no definitive way to utilize this shader at this time, as even 343 Industries uses inconsistent shader settings with this shader. This guide however is a good baseline setup to start with.
-```
+{% /alert %}
 
 The PBR shader needs three types of textures to work with:
 - Diffuse Map
@@ -56,9 +68,9 @@ You now have a converted Diffuse map. Make sure to save a editable copy of the D
 
 # Step 2: Creating a Specular map
 
-```.alert danger
+{% alert type="danger" %}
 NB: If you have a texture set that does not include a **Metallic map**, you do ***not*** need to make a Specular map. You can skip this step.
-```
+{% /alert %}
 In Halo 3, the shininess/highlights of a surface is defined using Specular maps. Halo 3 uses more stylized Specular maps compared to other industry Specular maps, so you will need to create your own. Below is an *experimental* method in creating Halo 3 styled Specular maps. 
 
 You will need three textures:
@@ -74,7 +86,7 @@ Conversion steps
   * ![](F.png "Metallic map layer")
 2. Create a new layer over your Metallic map. 
 3. Copy and paste your Roughness map into the new empty layer.
-4. Press <kbd>Ctrl + I</kbd> to invert the Roughness map.
+4. Press {% key "Ctrl + I" /%} to invert the Roughness map.
 5. Set the blend mode of the Roughness map to **Lighten**
   * ![](G.png "Inverted Roughness Map")
 6. Create a new layer over your inverted Roughness map.
@@ -117,11 +129,11 @@ However, if you have an OpenGL normal map, you will need to do the following:
 Conversion Steps
 1. Open up your OpenGL Normal map in your photo editing program.
 2. Go to the color channels of the Normal map.
-3. Select ONLY the green channel and press <kbd>Ctrl + I</kbd> to invert the green channel.
+3. Select ONLY the green channel and press {% key "Ctrl + I" /%} to invert the green channel.
 * ![](L.png "Normal map converted to DirectX format")
 4. Re-enable all the color channels and save your converted Normal map as .TIF in your asset's bitmaps folder.
 
-To make the texture importing more streamlined, end your texture file name with the <kbd>_zbump</kbd> flag to have the normal map import in the correct format.
+To make the texture importing more streamlined, end your texture file name with the {% key "_zbump" /%} flag to have the normal map import in the correct format.
 
 # Step 4: Bitmap Settings
 
@@ -167,9 +179,9 @@ The final step in this process is configuring the shader settings. Below is a pi
 
 
 The only settings that you should really play with while using the PBR shader is:
-- <kbd>area_specular_contribution</kbd>
-- <kbd>analytical_specular_contribution</kbd>
-- <kbd>environment_map_specular_contribution</kbd>
+- {% key "area_specular_contribution" /%}
+- {% key "analytical_specular_contribution" /%}
+- {% key "environment_map_specular_contribution" /%}
 
 With everything combined and set, you should now have your asset rendering with the PBR shader. 
 

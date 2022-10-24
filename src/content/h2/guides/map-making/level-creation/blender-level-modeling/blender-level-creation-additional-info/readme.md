@@ -1,3 +1,11 @@
+---
+title: H2 Blender level guide - Additional info
+keywords:
+  - modeling
+  - exporter
+thanks:
+  General_101: Writing this guide
+---
 # File List
 | File Link                                                                                                           | Description
 |-------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------
@@ -37,7 +45,7 @@ Here's what the hallway looks like with a weatherpoly volume.
 
 ![](B.mp4)
 
-The weather poly geometry is included in the BSP tag when you compile your [][ASS]. There can be a max of 8 on screen at any given time. Any weather polys that go over this limit will have no effect. Sapien will print a message in the console if you hit this limit.
+The weather poly geometry is included in the BSP tag when you compile your [](~ASS). There can be a max of 8 on screen at any given time. Any weather polys that go over this limit will have no effect. Sapien will print a message in the console if you hit this limit.
 
 # Multiple BSPs
 It is common for singleplayer maps to have multiple BSPs. This helps manage game resources and avoid BSP limits for long missions. To accomplish this, place multiple `ASS` files in the same `structure` folder for the level. Each ASS will be compiled into it's own unique BSP tag for your scenario to use. Do not attempt to use multiple BSPs in an MP scenario.
@@ -58,14 +66,14 @@ Object symbols are characters that go at the start of the object name.
 | `^`    | Excluded from lightprobe. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will ignore this object while running lightprobes.
 
 # Portals
-Portals are plane objects that cut through geometry to divide it into sections called clusters. This is either usually to enhance performance or section off a part of a level in order to set specific environment sounds or effects in that area. Portals are defined by the special material name `+portal`. Portals can also intersect without needing to be connected unlike CE. This makes it extremely simple to just generate a set of grid portals to quickly test high poly geometry before making better portals. See the `Portals Example Blend` and [Materials Overview][materials] for examples.
+Portals are plane objects that cut through geometry to divide it into sections called clusters. This is either usually to enhance performance or section off a part of a level in order to set specific environment sounds or effects in that area. Portals are defined by the special material name `+portal`. Portals can also intersect without needing to be connected unlike CE. This makes it extremely simple to just generate a set of grid portals to quickly test high poly geometry before making better portals. See the `Portals Example Blend` and [Materials Overview](~materials) for examples.
 
 ![](portals.jpg "Portals! Not to be confused with the ingame portals.")
 
 # Instance Geometry
 Instance geometry is geometry that is linked and duplicated to cut down on used memory. It's also a decent way to avoid having to stich in geometry into your BSP. Think of it like scenery objects with lightmaps. The ASS exporter checks if an object is an instance by seeing if it has linked mesh data. They should also have the `%` symbol at the start of their object names. The only unique property that instance can have is uniform scale. All instances will otherwise look the same. See the `Instance Geometry Example Blend` for an example on how to use this.
 
-Object data in Blender can be linked with the <kbd>Ctrl</kbd> + <kbd>L</kbd> hotkeys.
+Object data in Blender can be linked with the {% key "Ctrl" /%} + {% key "L" /%} hotkeys.
 
 ![](instancegeo.jpg "Copy pasta your geo for fun.")
 

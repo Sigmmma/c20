@@ -3,7 +3,6 @@ import path from "path";
 import { findPaths } from "../lib/utils/files";
 import yaml from "js-yaml";
 import { PageFrontMatter } from "../lib/content";
-import renderPage from "../lib/render/render";
 const loadStructuredData = require("../data");
 
 const keyOrder = [
@@ -29,6 +28,9 @@ const ymlOutOpts = {
 };
 
 export function upgrade(md: string, ymlSrc: string, data: any): string {
+  if (md.startsWith("---")) {
+    throw new Error("Page is already upgraded");
+  }
   const yml = yaml.load(ymlSrc);
   const front: PageFrontMatter = {};
   Object.entries(yml).forEach(([key, value]: [string, any]) => {

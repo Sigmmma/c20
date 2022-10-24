@@ -1,9 +1,26 @@
+---
+title: Halo engine build types
+stub: true
+keywords:
+  - build
+  - debug
+  - release
+  - assert
+  - assertion
+  - play
+  - cache
+  - tags
+  - test
+  - profile
+  - beta
+  - ship
+---
 The engine can be built with different features and checks enabled or disabled at compile time. 
 This isn't something that can be done by the end user but it's worth knowing what features are enabled or disabled on the build you are using.
 
 # Cache and tag builds
 
-The Halo resource system is [quite flexible](http://nikon.bungie.org/misc/gdc2005_mnoguchi/) as it's capable of introspection and abstracted away from the code that uses the data, allowing for the dynamically generated UIs used in [Guerilla][h1a-guerilla] and a lot of other neat features.
+The Halo resource system is [quite flexible](http://nikon.bungie.org/misc/gdc2005_mnoguchi/) as it's capable of introspection and abstracted away from the code that uses the data, allowing for the dynamically generated UIs used in [Guerilla](~h1a-guerilla) and a lot of other neat features.
 
 Two modes were implemented in H1.
 

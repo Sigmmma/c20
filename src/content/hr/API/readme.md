@@ -1,6 +1,14 @@
-```.alert
+---
+title: Halo Reach Managed API
+stub: true
+keywords:
+  - hr
+  - halo
+  - reach
+---
+{% alert %}
 This page is intended for developers as a basic primer on the API used by HR+, if you aren't a developer this information is unlikely to be useful to you.
-```
+{% /alert %}
 
 Halo Reach replaced the legacy [MFC-based][mfc] Guerilla content editor with the new and improved [WPF-based][wpf] Foundation content editor. This required the creation of a [managed][managed_code] wrapper around certain core engine subsystems.
 

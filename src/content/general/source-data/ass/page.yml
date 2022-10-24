@@ -1,7 +1,0 @@
-title:
-  en: ASS
-stub: true
-img: ass.jpg
-imgCaption:
-  en: The ASS format supports instancing (repeating) meshes like trees, rocks, and parts of bases.
-workflowName: ASS

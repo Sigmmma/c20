@@ -1,6 +1,16 @@
+---
+title: H3ODST Firefight setup
+keywords:
+  - firefight
+  - survival
+thanks:
+  Krevil: Writing this page.
+---
 Thanks to Halo 3 ODST's new Firefight additions, it's far easier than it was previously to setup a new scenario to work with Firefight. There are just a handful of steps you need to take in order for things to work.
 
-![.figure "A lone ODST faces an endless onslaught of Flood on this custom Firefight map."](firefightexample.jpg)
+{% figure src="firefightexample.jpg" %}
+"A lone ODST faces an endless onslaught of Flood on this custom Firefight map."
+{% /figure %}
 
 # Sapien
 

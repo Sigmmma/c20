@@ -1,10 +1,23 @@
+---
+title: Halo 3 ODST Editing Kit
+stub: true
+about: 'tool:H3ODST-EK'
+img: h3odstek.jpg
+caption: >-
+  Sapien, Tool, and Guerilla are still the main programs used for modding Halo 3
+  ODST.
+info: |
+  * Release date: October 2022
+---
 The **Halo 3 ODST Editing Kit** (**H3ODSTEK**) is the official set of tools for creating custom content for the MCC version of Halo 3 ODST. It was first released by 343 Industries alongside the latest update as of March 2022.
 Similarly to the mod tools for Halo 1, 2, and 3 it is ultimately based on the old internal tools used by Bungie during the development of Halo 3, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
 
-Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purchase] to gain access to the toolkit.
+Unlike the [H1A-EK](~) you ***do*** need to own [Halo 3 ODST on Steam][steam_purchase] to gain access to the toolkit.
 
 # Getting started
-![.figure Pictured: Location of the mod tools in the steam library.](/general/tools/steam_tools.jpg)
+{% figure src="/general/tools/steam_tools.jpg" %}
+Pictured: Location of the mod tools in the steam library.
+{% /figure %}
 
 0. Ensure you own [Halo 3 ODST on Steam][steam_purchase], tools are only accessible if you own the Steam version.
 1. [Download the tools using Steam](steam://run/1695794), you might need to [install Steam](https://store.steampowered.com/about/) first.
@@ -13,7 +26,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purc
 4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
 5. Run the `H3ODSTEK (Extract).bat` file - this will extract all the files required.
 6. If your operating system supports it you should enable file system compression for the `tags\sounds` folder. This is a workaround for high disk space usage caused by sound tags including zeroed out sound data.
-7. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
+7. (Optional) Check out the [guides hub](~guides) to learn more about modding or install a launcher like [Osoyoos](~) if you don't like using the command line.
 
 # Changelog
 ## What's new in the September update
@@ -64,7 +77,7 @@ Naturally there is multitude of changes compared to H2 as the engine underwent a
 
 * Tools now are all 64-bit, no more out of memory errors unless you actually run out of memory.
 * The graphics and tag subsystems went through major revisions.
-* Structures can no longer be created using [JMS][] files, you need to use [ASS][] files.
+* Structures can no longer be created using [JMS](~) files, you need to use [ASS](~) files.
 * Tag import info is not stored in a tag block but in a separate tag stream
 * Debug logs are not saved in a single folder anymore, allowing you to run multiple tools at once without confusing logs.
 * Shader tag creation was streamlined, you no longer need to select a template.

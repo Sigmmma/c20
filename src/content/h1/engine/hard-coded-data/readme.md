@@ -1,3 +1,15 @@
+---
+title: Hard-coded data
+keywords:
+  - color
+  - data
+  - engine
+  - hard-coded
+  - info
+thanks:
+  MosesOfEgypt: 'Armor color values, runtime tag paths'
+  Lavadeeto: Armor color testing and picture
+---
 There are lots of hard-coded values in Halo's engine, such as the multiplayer
 armor color. These values do not typically appear anywhere in tag data, and
 cannot be directly changed or controlled.
@@ -8,7 +20,7 @@ cannot be directly changed or controlled.
 Spartan armor colors with shaders as they appear ingame. The far left is the single-player color, which comes from the biped tag and is **not** hard-coded.
 {% /figure %}
 
-In multiplayer, the player's armor color value comes from this hard-coded list and is stored in their [profile file][files#blam-sav]. For non-player unit color change, see [actor_variant][actor_variant#change-colors] & [object][].
+In multiplayer, the player's armor color value comes from this hard-coded list and is stored in their [profile file](~files#blam-sav). For non-player unit color change, see [actor_variant](~actor_variant#change-colors) & [object](~).
 
 Color name matches the name as it appears in the game's menu. HEX and RBG color
 values are both listed in red-green-blue order. Note that these colors will look
@@ -36,10 +48,10 @@ diffuse color listed here.
 | 16    | Maroon | {% color "#9D0B0E" /%} | `#9D0B0E` | 157,  11,  14 |
 | 17    | Salmon | {% color "#F5999E" /%} | `#F5999E` | 245, 153, 158 |
 
-The developer console command [`debug_player_color [index]`][developer-console#debugfunctions-debug-player-color] can be used to set this during gameplay.
+The developer console command [`debug_player_color [index]`](~developer-console#debugfunctions-debug-player-color) can be used to set this during gameplay.
 
 # Engine-referenced tag paths
-These [tag paths][tags#tag-references-and-paths] are directly referenced by the game engine at runtime. Not every map needs to have these, but depending on which ones are missing, different things can happen. Maps might not load, menus might not appear, sounds might not play, etc.
+These [tag paths](~tags#tag-references-and-paths) are directly referenced by the game engine at runtime. Not every map needs to have these, but depending on which ones are missing, different things can happen. Maps might not load, menus might not appear, sounds might not play, etc.
 
 ## unicode_string_list
 Xbox only:

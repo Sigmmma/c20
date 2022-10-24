@@ -1,8 +1,15 @@
-Basic knowledge of **command-line interfaces** (CLI) is a required skill in Halo modding. Not only does [Tool][] use a CLI, many community tools like [Invader][] do as well. CLI usage consists of typing commands into a shell program which runs other programs and displays their output.
+---
+title: Command-line interfaces
+img: cmd.jpg
+caption: cmd.exe on Windows 7
+keywords:
+  - cli
+---
+Basic knowledge of **command-line interfaces** (CLI) is a required skill in Halo modding. Not only does [Tool](~) use a CLI, many community tools like [Invader](~) do as well. CLI usage consists of typing commands into a shell program which runs other programs and displays their output.
 
 On Windows, [Command Prompt][cmd], [PowerShell][], and the newer [Windows Terminal][wterm] are used as shells. On Linux, terminal emulators vary by distribution but [Bash][] is typically used as the shell.
 
-CLIs are an alternative to _Graphical User Interfaces_ (GUIs). While they have a learning curve, the main advantage of CLIs are that the interaction is reified as plain text which is easily shared, scripted, and repeated. For example, the often-repeated workflow of [BSP compilation][tool#structure-compilation], [radiosity][tool#lightmaps], then [map][h1/map] compilation can be scripted as a single command to save time during map development.
+CLIs are an alternative to _Graphical User Interfaces_ (GUIs). While they have a learning curve, the main advantage of CLIs are that the interaction is reified as plain text which is easily shared, scripted, and repeated. For example, the often-repeated workflow of [BSP compilation](~tool#structure-compilation), [radiosity](~tool#lightmaps), then [map](~h1/map) compilation can be scripted as a single command to save time during map development.
 
 # Basic concepts
 Across all shells, commands are entered in the format: `command <arguments>`. This should be familiar to users of Halo's developer console. The type and number of arguments varies by the command/program used, but the command name and each argument are always separated by spaces.
@@ -26,7 +33,7 @@ cd ..\data
 ```
 
 ## Running programs
-A program (.exe) can be run by typings its name if it's in the current working directory. The ".exe" extension can be used or not. For example, assuming the current working directory is where the HEK has been installed, either of these commands will work [Tool][]:
+A program (.exe) can be run by typings its name if it's in the current working directory. The ".exe" extension can be used or not. For example, assuming the current working directory is where the HEK has been installed, either of these commands will work [Tool](~):
 
 ```dos
 tool build-cache-file levels\test\tutorial\tutorial
@@ -92,9 +99,9 @@ mkdir my-halo-project
 ```
 
 ## Running programs
-Some commands like `cd` and `ls` are shell built-ins. Others are actual external programs that are invoked by the shell. Typically these programs are located by the shell using the `PATH` environment variable (try running `echo $PATH`), which is a list of directories which contain runnable programs. As an example, installing [Invader][] will place its executables in `/usr/bin/` so they can be run in any CWD like `invader-build <arguments>`.
+Some commands like `cd` and `ls` are shell built-ins. Others are actual external programs that are invoked by the shell. Typically these programs are located by the shell using the `PATH` environment variable (try running `echo $PATH`), which is a list of directories which contain runnable programs. As an example, installing [Invader](~) will place its executables in `/usr/bin/` so they can be run in any CWD like `invader-build <arguments>`.
 
-Since we are mainly interested in running Halo and [HEK][] programs like [Tool][], which are Windows programs, you will need to set up [Wine][] to run them on Linux. This page will not cover how to install and use Wine, but to run an EXE program you will need to invoke it like so:
+Since we are mainly interested in running Halo and [HEK](~) programs like [Tool](~), which are Windows programs, you will need to set up [Wine][] to run them on Linux. This page will not cover how to install and use Wine, but to run an EXE program you will need to invoke it like so:
 
 ```sh
 # Assuming tool.exe is in the CWD:
@@ -114,7 +121,7 @@ wine tool.exe build-cache-file levels\\test\\tutorial\\tutorial
 wine haloce.exe
 ```
 
-Run this script with the command `sh compile-map.sh` and it will compile, light, and build the map for you, then launch the game. Testing can be further sped up by adding an [init.txt file][arguments#init-txt] to Halo's home with the line `sv_map mapname slayer` to make the game immediately launch into your map.
+Run this script with the command `sh compile-map.sh` and it will compile, light, and build the map for you, then launch the game. Testing can be further sped up by adding an [init.txt file](~arguments#init-txt) to Halo's home with the line `sv_map mapname slayer` to make the game immediately launch into your map.
 
 
 [cmd]: https://en.wikipedia.org/wiki/Cmd.exe

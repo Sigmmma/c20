@@ -1,7 +1,14 @@
+---
+title: Halo 3 materials
+img: materials.jpg
+caption: >-
+  An example of some material names used for a level
+  [BSP](~h3/tags/scenario_structure_bsp) in [Blender](~).
+---
 **Halo 3** expanded on the foundation set by **Halo 2**. Most of the settings that used to be set in the material name were instead moved to a sub menu in the material properties window. The amount of flags and lightmap settings were expanded on even further to allow a designer to fine tune their art.
 
 # Material naming and shaders
-Intermediate files such as [JMS][] or [ASS][] files you export from your 3D software contain the material names you used. How **Tool** finds the shader from there varies depending on whether or not a `shader_collection.shader_collection` file exists and whether or not the material name includes a shader collection prefix. We will go over how this works in the shader_collection section. Be sure to always use lower-case names and do not exceed 32 characters.
+Intermediate files such as [JMS](~) or [ASS](~) files you export from your 3D software contain the material names you used. How **Tool** finds the shader from there varies depending on whether or not a `shader_collection.shader_collection` file exists and whether or not the material name includes a shader collection prefix. We will go over how this works in the shader_collection section. Be sure to always use lower-case names and do not exceed 32 characters.
 
 When no shader tag can be found, Tool will instead assign a default. The file path for the default shader can be found at `tags\shaders\invalid.shader`
 
@@ -38,13 +45,13 @@ There are a few ways **Tool** looks for shaders on import. Here are some of the 
 * If a shader_collection file exists then Tool will first check for a valid shader collection prefix in the material name. If the prefix does not match or does not exist then Tool will check the asset root directory and any child directories for a matching shader tag.
 
 # Special materials
-These material names are hard-coded into the [tools][h3-tool] and have special meaning. They do not need shader tags.
+These material names are hard-coded into the [tools](~h3-tool) and have special meaning. They do not need shader tags.
 
 | Name | Usage
 |------|------
-| `+sky`, `+sky0`, `+sky1`, ... | Applied to surfaces to render the skybox. You can add the index of the sky in the [scenario skies block][h3/tags/scenario#tag-field-skies] if your scenario has multiple skies. Since each [cluster][h3/tags/scenario_structure_bsp#clusters-and-cluster-data] can only reference [one sky][h3/tags/scenario_structure_bsp#tag-field-clusters-sky], you must ensure that all sky faces within a cluster use the same index.
-| `+portal` | Applied to faces that are used to define general portals used in the visibility solution or rendering occlusion for the level. Because they split the level into [clusters][h3/tags/scenario_structure_bsp#clusters-and-cluster-data], they are also used to define areas of different sound environments or weather.
-| `+weatherpoly` | Used on the faces of simply [convex shapes](https://en.wikipedia.org/wiki/Polyhedron#Convex_polyhedra) to generate [weather polyhedra][h3/tags/scenario_structure_bsp#weather-polyhedra]. This has been deprecated and no longer functions.
+| `+sky`, `+sky0`, `+sky1`, ... | Applied to surfaces to render the skybox. You can add the index of the sky in the [scenario skies block](~h3/tags/scenario#tag-field-skies) if your scenario has multiple skies. Since each [cluster](~h3/tags/scenario_structure_bsp#clusters-and-cluster-data) can only reference [one sky](~h3/tags/scenario_structure_bsp#tag-field-clusters-sky), you must ensure that all sky faces within a cluster use the same index.
+| `+portal` | Applied to faces that are used to define general portals used in the visibility solution or rendering occlusion for the level. Because they split the level into [clusters](~h3/tags/scenario_structure_bsp#clusters-and-cluster-data), they are also used to define areas of different sound environments or weather.
+| `+weatherpoly` | Used on the faces of simply [convex shapes](https://en.wikipedia.org/wiki/Polyhedron#Convex_polyhedra) to generate [weather polyhedra](~h3/tags/scenario_structure_bsp#weather-polyhedra). This has been deprecated and no longer functions.
 | `<` | **Portal (One-Way)**. Portal can only be seen through in a single direction.
 | `+seamsealer` | Applied to temporary geometry to "seal" the level. Most commonly used to seal holes or other open edged areas of the level during construction and testing. These faces functionally behave the same as `+sky` -- they must still form sealed connections with the open edges that they close and the sky renders through them. Seamsealer is collideable and deletes projectiles just like `+sky`.
 | `+media` | Reserved special material. Seems to have been deprecated in Halo 3.

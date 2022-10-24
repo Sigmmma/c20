@@ -1,10 +1,21 @@
+---
+title: Halo Reach Editing Kit
+stub: true
+about: 'tool:HR-EK'
+img: hrek.png
+caption: Foundation level editor and MegaloEdit game type editor.
+info: |
+  * Release date: TBA
+---
 The **Halo Reach Editing Kit** (**HREK**) is the official set of tools for creating custom content for the MCC version of Halo Reach.
 Similarly to the mod tools for Halo 2 and 3 it is ultimately based on the old internal tools used by Bungie during the development of Halo Reach, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
 
-Unlike the [H1A-EK][] you ***do*** need to own [Halo Reach on Steam][steam_purchase] to gain access to the toolkit.
+Unlike the [H1A-EK](~) you ***do*** need to own [Halo Reach on Steam][steam_purchase] to gain access to the toolkit.
 
 # Getting started
-![.figure Pictured: Location of the mod tools in the steam library.](/general/tools/steam_tools.jpg)
+{% figure src="/general/tools/steam_tools.jpg" %}
+Pictured: Location of the mod tools in the steam library.
+{% /figure %}
 
 0. Ensure you own [Halo Reach on Steam][steam_purchase], tools are only accessible if you own the Steam version.
 1. [Download the tools using Steam](steam://run/1695793), you might need to [install Steam](https://store.steampowered.com/about/) first.
@@ -13,7 +24,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo Reach on Steam][steam_purch
 4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
 5. Run the `Extract (HREK).bat` file - this will extract all the files required.
 6. If your operating system supports it you should enable file system compression for the `tags\sounds` folder. This is a workaround for high disk space usage caused by sound tags including zeroed out sound data.
-7. (Optional) Check out the [guides hub][guides] to learn more about modding or install a launcher like [Osoyoos][] if you don't like using the command line.
+7. (Optional) Check out the [guides hub](~guides) to learn more about modding or install a launcher like [Osoyoos](~) if you don't like using the command line.
 
 # Installing updates
 1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
@@ -23,7 +34,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo Reach on Steam][steam_purch
 Naturally there is multitude of changes compared to H3 as the engine underwent a major revision, this document endeavours to list the major ones.
 
 * Bonobo takes the place of Guerilla as the kit's tag editor with a completely new UI that makes it easier than ever before to create and modify tags.
-* Structures can no longer be created using [ASS][] files, you need to use GR2 files.
+* Structures can no longer be created using [ASS](~) files, you need to use GR2 files.
 
 # Known issues
 

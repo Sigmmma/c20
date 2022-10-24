@@ -1,10 +1,18 @@
+---
+title: H2 Blender level guide - Blender prep
+keywords:
+  - modeling
+  - exporter
+thanks:
+  General_101: Writing this guide
+---
 # File list
 | File Link                                         | Description
 |-------------------------------------------------- | -------------------------------------------------------------------
 |[Blender 3D Software](https://www.blender.org/)    | The Blender application that we will be using to create our assets.
 
 # Setting up Blender
-[Installing the Blender addon][halo-asset-blender-development-toolset]
+[Installing the Blender addon](~halo-asset-blender-development-toolset)
 
 See the above link for setting up the Blender addon for exporting Halo assets if you haven't installed the addon already. Beyond that there may be a few other settings you may want to adjust with before starting with any modeling.
 
@@ -32,7 +40,7 @@ Since we are modeling lets be sure to pick the correct workspace for our work. C
 ![](D.jpg "The Modeling tab is at the top of the editor window.")
 
 ## Clip start and end
-The scale at which Halo levels are modeled is quite large. By default, Blender scenes have a viewport [clipping range][wiki-clipping] of `0.01 m` to `1000 m`. This means that parts of your model may be cut off when zooming out to large scales. Blender's clipping distances can be adjusted in the View settings pane (press <kbd>N</kbd> and select the View tab).
+The scale at which Halo levels are modeled is quite large. By default, Blender scenes have a viewport [clipping range][wiki-clipping] of `0.01 m` to `1000 m`. This means that parts of your model may be cut off when zooming out to large scales. Blender's clipping distances can be adjusted in the View settings pane (press {% key "N" /%} and select the View tab).
 
 A x100 range of `1 m` to `100 000 m` works well for large outdoor maps:
 
@@ -43,8 +51,8 @@ All hotkeys given in this guide are given with the expectation that you are usin
 
 ---
 
-```.alert success
-Ready to start modeling a level? Continue to the [next guide][blender-level-creation-beginner].
-```
+{% alert type="success" %}
+Ready to start modeling a level? Continue to the [next guide](~blender-level-creation-beginner).
+{% /alert %}
 
 [wiki-clipping]: https://en.wikipedia.org/wiki/Clipping_(computer_graphics)#Clipping_in_3D_graphics

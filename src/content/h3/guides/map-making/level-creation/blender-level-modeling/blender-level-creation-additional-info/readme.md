@@ -1,3 +1,12 @@
+---
+title: H3 Blender level guide - Additional info
+keywords:
+  - modeling
+  - exporter
+thanks:
+  General_101: Writing this guide
+  MercyMoon: Writing the Seams sections
+---
 # File List
 | File Link                                                                                                           | Description
 |-------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------
@@ -47,14 +56,14 @@ Object symbols are characters that go at the start of the object name.
 | `~`    | Water group object prefix. If used in an ASS file then tool will use the object to generate water in a structure-design file.
 
 # Portals
-Portals are plane objects that cut through geometry to divide it into sections called clusters. This is either usually to enhance performance or section off a part of a level in order to set specific environment sounds or effects in that area. Portals are defined by the special material name `+portal`. Portals can also intersect without needing to be connected unlike CE. This makes it extremely simple to just generate a set of grid portals to quickly test high poly geometry before making better portals. See the `Portals Example Blend` and [Materials Overview][materials] for examples.
+Portals are plane objects that cut through geometry to divide it into sections called clusters. This is either usually to enhance performance or section off a part of a level in order to set specific environment sounds or effects in that area. Portals are defined by the special material name `+portal`. Portals can also intersect without needing to be connected unlike CE. This makes it extremely simple to just generate a set of grid portals to quickly test high poly geometry before making better portals. See the `Portals Example Blend` and [Materials Overview](~materials) for examples.
 
 ![](portals.jpg "Portals! Not to be confused with the ingame portals.")
 
 # Instance Geometry
 Instance geometry is geometry that is linked and duplicated to cut down on used memory. It's also a decent way to avoid having to stich in geometry into your BSP. Think of it like scenery objects with lightmaps. The ASS exporter checks if an object is an instance by seeing if it has linked mesh data. They should also have the `%` symbol at the start of their object names. The only unique property that instance can have is uniform scale. All instances will otherwise look the same. See the `Instance Geometry Example Blend` for an example on how to use this.
 
-Object data in Blender can be linked with the <kbd>Ctrl</kbd> + <kbd>L</kbd> hotkeys.
+Object data in Blender can be linked with the {% key "Ctrl" /%} + {% key "L" /%} hotkeys.
 
 ![](instancegeo.jpg "Copy pasta your geo for fun.")
 
@@ -105,7 +114,7 @@ Now that we've created a water region lets add another object to define the dire
 * `#` - This symbol tells tool to use the object rotation for direction.
 * water_direction00 - Just the name for our object. Call it whatever you would like. We will be using water_direction00 in this example.
 
-We will be using <kbd>Ctrl</kbd> + <kbd>P</kbd> with both `#water_direction00` and `~water_physics00` selected with `~water_physics00` being the active object in our scene. This will set `#water_direction00` to use `~water_physics00` as it's parent object. Now we can rotate our `#water_direction00` to define the direction that objects will flow in with the X axis being forward in this case. Lets rotate it 90 degrees.
+We will be using {% key "Ctrl" /%} + {% key "P" /%} with both `#water_direction00` and `~water_physics00` selected with `~water_physics00` being the active object in our scene. This will set `#water_direction00` to use `~water_physics00` as it's parent object. Now we can rotate our `#water_direction00` to define the direction that objects will flow in with the X axis being forward in this case. Lets rotate it 90 degrees.
 
 Now we can export these assets to an ASS file. The ass file we create from the meshes we created must go in a different subdirectory from the assets created in the `Visuals` section. The `structure-design` command will also be used instead of the standard `structure` command to compile our ASS file.
 

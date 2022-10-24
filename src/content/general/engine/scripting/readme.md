@@ -1,8 +1,19 @@
+---
+title: Scripting
+keywords:
+  - hsc
+  - scripts
+  - functions
+  - globals
+  - bsl
+thanks:
+  Crisp: 'Engine differences, script parameter info, object type mask info'
+---
 **Halo Script** (HSC), also known as **Blam Scripting Language** (BSL), is a
-scripting language interpreted by the [Halo engine][engine]. It is used in two main contexts:
+scripting language interpreted by the [Halo engine](~engine). It is used in two main contexts:
 
 1. To control the mission structure and encounters of campaign missions. These scripts are embedded in the map/scenario.
-2. In the interactive [developer console][h1/engine/developer-console] of Halo and Sapien, used when debugging and developing maps. This includes files executed at startup like `init.txt` and `editor_init.txt`. Script expressions entered this way are often called **commands**.
+2. In the interactive [developer console](~h1/engine/developer-console) of Halo and Sapien, used when debugging and developing maps. This includes files executed at startup like `init.txt` and `editor_init.txt`. Script expressions entered this way are often called **commands**.
 
 Script sources are denoted by the `.hsc` file extension.
 
@@ -51,7 +62,7 @@ All function arguments and expression results have a particular _type_. The type
 
 Note that the `void` type you may see documented for some functions means the function does not return a value.
 
-See game-specific pages for further reference, e.g. [H1 Scripting][h1/engine/scripting#value-types].
+See game-specific pages for further reference, e.g. [H1 Scripting](~h1/engine/scripting#value-types).
 
 ## Comments
 You can include comments in your scenario script files:
@@ -162,7 +173,7 @@ Parameters are declared when calling the script.
 
 Note that a parameter name can be anything the user declares so long as it is not already a global / script name or already used by the engine (e.g. value types or function names). Parameters are local to the static script they are named in, so multiple scripts can utilise the same parameter names without affecting one another.
 
-See game-specific pages for further reference, e.g. [H1 Scripting][h1/engine/scripting#script-types].
+See game-specific pages for further reference, e.g. [H1 Scripting](~h1/engine/scripting#script-types).
 
 # Mechanics
 ## Value type casting

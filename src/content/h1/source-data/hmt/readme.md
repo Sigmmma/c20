@@ -1,7 +1,13 @@
-The **.hmt** (HUD message text) file format contains source text content which, when [compiled by Tool][tool#hud-messages-compilation], becomes [hud_message_text][] tags.
+---
+title: HUD messages source file (.hmt)
+about: 'resource:hmt'
+thanks:
+  General_101: Documenting HMT format and text symbols
+---
+The **.hmt** (HUD message text) file format contains source text content which, when [compiled by Tool](~tool#hud-messages-compilation), becomes [hud_message_text](~) tags.
 
 # Creating a text file for HUD messages
-Start by going to the root directory of your level and creating a text file. The contents of the text file **differs** from the formatting used for [string_list][]. Instead you will define a variable and set the value for the string. Here is an example:
+Start by going to the root directory of your level and creating a text file. The contents of the text file **differs** from the formatting used for [string_list](~). Instead you will define a variable and set the value for the string. Here is an example:
 
 ```
 string1=Well, what do we have here?
@@ -19,6 +25,6 @@ Tool looks for a file with this name and extension specifically when compiling _
 
 The command requires this setup in order to complete the task successfully. You can now use the command `hud-messages` to import your source file.
 
-```.alert danger
+{% alert type="danger" %}
 If you're using hud_message_text for scripting with _display_scenario_help_, then be aware that only default singleplayer paths are considered valid.
-```
+{% /alert %}

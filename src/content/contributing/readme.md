@@ -289,7 +289,7 @@ Markdown content within
 
 The possible alert types are `info` (default), `danger`, and `success`. Rendered, an alert looks like:
 
-{% alert type="info" %}
+{% alert %}
 Don't overuse alerts. If something's important, consider prioritizing that information earlier in an article or making something bold.
 {% /alert %}
 

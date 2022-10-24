@@ -1,23 +1,33 @@
-When compiling a level's [structure BSP][scenario_structure_bsp] using [Tool][h1a-tool#structure-compilation] you may encounter warnings or errors in Tool's output indicating problems with your model, for example:
+---
+title: BSP troubleshooting
+related:
+  - /h1/tags/scenario_structure_bsp
+  - /h1/tools/h1a-ek/h1a-tool
+  - /h1/source-data/wrl
+thanks:
+  Hari: Reverse engineering the cause of T-junction warnings
+  EmmanuelCD: Subcluster limits
+---
+When compiling a level's [structure BSP](~scenario_structure_bsp) using [Tool](~h1a-tool#structure-compilation) you may encounter warnings or errors in Tool's output indicating problems with your model, for example:
 
 ```
 ### Warning found nearly coplanar surfaces (red and green).
 ### Warning found #1 degenerate triangles.
 ```
 
-With some exceptions, Halo requires your BSP to be a completely sealed volume with no intersecting faces, open edges, 0-area faces, or other _non-manifold_ surfaces. Many of these errors can also show up when compiling [model_collision_geometry][] and the solutions will be the same. You should attempt to fix all errors and warnings in your map.
+With some exceptions, Halo requires your BSP to be a completely sealed volume with no intersecting faces, open edges, 0-area faces, or other _non-manifold_ surfaces. Many of these errors can also show up when compiling [model_collision_geometry](~) and the solutions will be the same. You should attempt to fix all errors and warnings in your map.
 
-For most types of problems Tool generates a [WRL][] file that can be imported back into your 3D software to find the sources of the problems. The path of this WRL file depends on if you are using Gearbox Tool or H1A Tool (see [WRL page][wrl]).
+For most types of problems Tool generates a [WRL](~) file that can be imported back into your 3D software to find the sources of the problems. The path of this WRL file depends on if you are using Gearbox Tool or H1A Tool (see [WRL page](~wrl)).
 
-Use this guide to understand how to avoid problems _before_ you start modeling and you will have an easier time getting your BSP in-game. This guide offers examples in [Blender][], but the concepts are equally applicable to modeling BSPs in [Max][3dsmax]. Note that the shown model is triangulated during export to JMS and quads are used for modeling ease.
+Use this guide to understand how to avoid problems _before_ you start modeling and you will have an easier time getting your BSP in-game. This guide offers examples in [Blender](~), but the concepts are equally applicable to modeling BSPs in [Max](~3dsmax). Note that the shown model is triangulated during export to JMS and quads are used for modeling ease.
 
 # General geometry problems
 ## Error: Edge is open (red)
 An _open edge_ is one where the surface ends abruptly, like the edge of a sheet of paper. In other words, it is not shared between two adjacent triangles. The mesh must not contain any "holes" like this and must be a completely sealed/closed volume including faces for the sky (`+sky` material). It doesn't matter if the hole is completely airtight; if the edges are technically open then Tool will not allow it.
 
-The exceptions to this rule are render-only surfaces like lights and water, and other special 2D surfaces like ladders, glass, and fog planes that are typically modeled as simple floating quads (a rectangle made of two triangles). If you are attempting to model one of these special surfaces, make sure you are including the [necessary material symbol(s)][materials].
+The exceptions to this rule are render-only surfaces like lights and water, and other special 2D surfaces like ladders, glass, and fog planes that are typically modeled as simple floating quads (a rectangle made of two triangles). If you are attempting to model one of these special surfaces, make sure you are including the [necessary material symbol(s)](~materials).
 
-Closing open edges usually involves merging vertices. In Blender you can select multiple and press <kbd>M</kbd>, or use [_Auto Merge_][blender-tool-settings]   with snap to ensure vertices are merged when you move them to the same location as another vertex. Max users can use _Target Weld_.
+Closing open edges usually involves merging vertices. In Blender you can select multiple and press {% key "M" /%}, or use [_Auto Merge_][blender-tool-settings]   with snap to ensure vertices are merged when you move them to the same location as another vertex. Max users can use _Target Weld_.
 
 ![](open_edge.mp4)
 
@@ -26,7 +36,7 @@ This error indicates that an edge is shared by _more_ than 2 adjacent faces. Thi
 
 This is usually fixed by deleting any accidental leftover faces present after stitching together multiple objects (e.g. a base to the ground) and by avoiding connecting the edges of two shapes by a single edge.
 
-Another common cause for this error is incorrect level [scale][scale]; Tool merges together vertices which are very close together (within 0.1 JMS units) and may interpret many faces as sharing a common edge when in Blender they don't. Remember that with default JMS export settings, 1 Blender meter = 1 JMS unit and the Chief is 70 JMS units tall. Make sure you are modeling the level at the correct scale
+Another common cause for this error is incorrect level [scale](~scale); Tool merges together vertices which are very close together (within 0.1 JMS units) and may interpret many faces as sharing a common edge when in Blender they don't. Remember that with default JMS export settings, 1 Blender meter = 1 JMS unit and the Chief is 70 JMS units tall. Make sure you are modeling the level at the correct scale
 
 ![](couldnt_update_edge.mp4)
 ![](couldnt_update_edge_2.mp4)
@@ -34,7 +44,7 @@ Another common cause for this error is incorrect level [scale][scale]; Tool merg
 ## Warning: Nearly coplanar faces (red and green)
 To understand this warning, we should first understand coplanarity. If two adjacent faces are "coplanar" it means they are _on the same plane_. Think about how two sheets of paper (faces) are coplanar when they lie on the same table, no matter which way the papers are turned and even if you lift one end of the table. _Nearly coplanar_ faces means they are at a slight angle to each other; imagine the tabletop is slightly curved or warped so the sheets are facing slightly different directions.
 
-Exact coplanarity is desirable because Tool will combine together adjacent coplanar faces into a single larger collision surface as an optimization. _Nearly coplanar_ faces can also cause [phantom BSP][scenario_structure_bsp#collision-artifacts] so you should deal with the problem even though it's just warning. This is not to say all your cliffs need to be flat walls and the ground featureless, but just avoid very slightly deviations in angle from face to face. Any collection of faces which _should_ be flat, like walls and floors, should be aligned and coplanar.
+Exact coplanarity is desirable because Tool will combine together adjacent coplanar faces into a single larger collision surface as an optimization. _Nearly coplanar_ faces can also cause [phantom BSP](~scenario_structure_bsp#collision-artifacts) so you should deal with the problem even though it's just warning. This is not to say all your cliffs need to be flat walls and the ground featureless, but just avoid very slightly deviations in angle from face to face. Any collection of faces which _should_ be flat, like walls and floors, should be aligned and coplanar.
 
 This is one of the most common warnings modders will encounter. To avoid this issue you can:
 
@@ -43,14 +53,14 @@ This is one of the most common warnings modders will encounter. To avoid this is
 * Avoid sculpting tools, which produce a lot of slight angles in dense geometry;
 * Model with simple, low poly-count shapes.
 
-In some cases having nearly coplanar faces is unavoidable. When faces are axis-aligned it is easy to make them coplanar, but when they are meant to be at an 45-degree or other angle you may encounter the nearly coplanar warning due to a loss of precision in the [JMS][] format, which is only capable of storing up to 6 digits to the right of the decimal points (e.g. `123.123456`). This will result in vertices on angled surfaces going slightly out of alignment. In this case check for phantom BSP around the area identified in the WRL file. If any is found, you may be able to clear it up with simple triangulation changes or other minor alterations in the vicinity.
+In some cases having nearly coplanar faces is unavoidable. When faces are axis-aligned it is easy to make them coplanar, but when they are meant to be at an 45-degree or other angle you may encounter the nearly coplanar warning due to a loss of precision in the [JMS](~) format, which is only capable of storing up to 6 digits to the right of the decimal points (e.g. `123.123456`). This will result in vertices on angled surfaces going slightly out of alignment. In this case check for phantom BSP around the area identified in the WRL file. If any is found, you may be able to clear it up with simple triangulation changes or other minor alterations in the vicinity.
 
-You should also avoid using the [Halo Asset Blender Development Toolset.][halo-asset-blender-development-toolset] custom or world unit export scales when working with collision models/BSPs. Stick to JMS scale to avoid amplifying floating point precision inherent to the editor and causing the same issue as JMS precision loss.
+You should also avoid using the [Halo Asset Blender Development Toolset.](~halo-asset-blender-development-toolset) custom or world unit export scales when working with collision models/BSPs. Stick to JMS scale to avoid amplifying floating point precision inherent to the editor and causing the same issue as JMS precision loss.
 
 ![](nearly_coplanar.mp4)
 
 ## Error: Z-buffered triangles (red)
-_Z-buffered triangles_ are when two triangles intersect each other rather than being connected by edges and vertices. This rule applies only to collideable geometry and not render-only geometry. The [WRL][] error file represents this error as an edge along the intersection.
+_Z-buffered triangles_ are when two triangles intersect each other rather than being connected by edges and vertices. This rule applies only to collideable geometry and not render-only geometry. The [WRL](~) error file represents this error as an edge along the intersection.
 
 Modders who are used to working with other engines where this is allowed will probably find this restriction annoying, but it's a requirement for how Halo creates collision models. Avoid poking parts of your model through other parts without attaching them to form a continuous mesh.
 
@@ -73,7 +83,7 @@ This warning occurs when a collideable or render-only surface is _outside_ the B
 
 However, you might have legitimate reasons for putting render-only faces outside the BSP and ignoring this warning:
 
-* The faces are visible through `+sky` and you do not want to expand the BSP to encompass them, e.g. to reduce [lightmap][lightmaps] size.
+* The faces are visible through `+sky` and you do not want to expand the BSP to encompass them, e.g. to reduce [lightmap](~lightmaps) size.
 * The faces are part of a larger render-only object which is only partially outside the BSP and removing the faces outside the BSP would be tedious or limit your ability to adjust the model later. Examples might be foliage or wires/cables.
 
 ![](surface_clipped_to_no_leaves.mp4)
@@ -87,7 +97,7 @@ This error indicates that two collideable surfaces are overlapping ([Z-fighting]
 This is likely a side-effect of other issues with your geometry. Correct them first and this should go away. On a more technical level, this warning happens when a leaf surface is colinear with a BSP2D plane. Such surfaces would have to be very narrow. If you are seeing a T-junction warning in isolation you should look for extremely thin or small faces and resolve them the same way as [degenerate faces](#warning-degenerate-triangles-red).
 
 ## Error: Vertex has a bad point
-A vertex is too far away from the origin (0, 0, 0 coordinate). All points must be within -1500 and +1500 [world units][scale] (-150000 and +150000 JMS units) in each axis. If you have encountered this error it means your BSP is too large and must be scaled down.
+A vertex is too far away from the origin (0, 0, 0 coordinate). All points must be within -1500 and +1500 [world units](~scale) (-150000 and +150000 JMS units) in each axis. If you have encountered this error it means your BSP is too large and must be scaled down.
 
 ## Exception: bsp3d_plane_test_point(plane, point0, NULL)==_bsp3d_plane_test_on
 In full, this rare exception appears as:
@@ -121,9 +131,9 @@ An _unearthed edge_ is where a portal's open edge is exposed within the BSP. It 
 ![](unearthed_edge_2.mp4)
 
 ## Error: Portal does not define two closed spaces (yellow)
-This error is encountered when there are _more_ than two closed spaces ([clusters][scenario_structure_bsp#clusters-and-cluster-data]) created by the portal. Portals must create only [two clusters][scenario_structure_bsp#tag-field-cluster-portals-front-cluster]. Some scenarios to avoid are:
+This error is encountered when there are _more_ than two closed spaces ([clusters](~scenario_structure_bsp#clusters-and-cluster-data)) created by the portal. Portals must create only [two clusters](~scenario_structure_bsp#tag-field-cluster-portals-front-cluster). Some scenarios to avoid are:
 
-* If two portals intersect without being attached at vertices then there are 2 clusters for each side of a portal, which is invalid. Portals should be connected to each other as if they were [exact portals][materials#special-materials] connecting to map geometry.
+* If two portals intersect without being attached at vertices then there are 2 clusters for each side of a portal, which is invalid. Portals should be connected to each other as if they were [exact portals](~materials#special-materials) connecting to map geometry.
 * If a single portal passes through the BSP multiple times it could create more than two sealed spaces. Simply split up the portal into multiple portals.
 
 ![](portal_two_closed_spaces.mp4)
@@ -156,22 +166,22 @@ Consider combining together your fog planes into a singular plane. If this is no
 ![](multiple_cluster_data.mp4)
 
 ## Warning: Cluster can see multiple skies
-According to the [material naming conventions][materials], you can reference multiple skies in a BSP by including a sky index in the sky material name, e.g. `+sky0`, `+sky1`, `+sky2`, etc. Similar to how a cluster cannot see multiple fog planes, a cluster cannot see multiple skies either. This warning will happen when you have a cluster with a mix of e.g. `+sky0` and `+sky1` faces or a cluster where both are potentially visible.
+According to the [material naming conventions](~materials), you can reference multiple skies in a BSP by including a sky index in the sky material name, e.g. `+sky0`, `+sky1`, `+sky2`, etc. Similar to how a cluster cannot see multiple fog planes, a cluster cannot see multiple skies either. This warning will happen when you have a cluster with a mix of e.g. `+sky0` and `+sky1` faces or a cluster where both are potentially visible.
 
 The solution is to either use a single sky or separate the clusters as seen in ["two fog planes visible from a cluster"](#warning-two-fog-planes-visible-from-a-cluster).
 
 ## Weather polyhedra not working
-[Weather polyhedra][scenario_structure_bsp#weather-polyhedra] are volumes within which [weather particles][weather_particle_system] do not render. They are created by assigning the `+weatherpoly` material to faces which form a [convex volume][wiki-convex].
+[Weather polyhedra](~scenario_structure_bsp#weather-polyhedra) are volumes within which [weather particles](~weather_particle_system) do not render. They are created by assigning the `+weatherpoly` material to faces which form a [convex volume][wiki-convex].
 
 If you are finding that a weather polyhedron you created isn't working at all (weather still renders inside of it) then there are two possibilities:
 
-1. The polyhedron isn't convex. A hypothetical ant standing on any side of the polyhedron should not be able to see any other side or face than the one it's standing on; the surface should always be curving away behind the "horizon" from the ant's point of view. Halo requires these weather-masking volumes to be convex so they can be represented as an efficient [series of planes][scenario_structure_bsp#tag-field-weather-polyhedra-planes]. Modify your polyhedron to be convex or split it into multiple which are.
+1. The polyhedron isn't convex. A hypothetical ant standing on any side of the polyhedron should not be able to see any other side or face than the one it's standing on; the surface should always be curving away behind the "horizon" from the ant's point of view. Halo requires these weather-masking volumes to be convex so they can be represented as an efficient [series of planes](~scenario_structure_bsp#tag-field-weather-polyhedra-planes). Modify your polyhedron to be convex or split it into multiple which are.
 2. You have more than 8 weather polyhedra _visible_ at the same time (you can have more than 8 total). Combine some together if possible or alter your level to not require so many.
 
 ![](weatherpoly_convex.mp4)
 
 ## Error: Couldn't allocate polyhedron plane
-This error does not show up in [WRL files][wrl], but it is usually easy to find. It means one of your [weather polyhedra][scenario_structure_bsp#weather-polyhedra] has more than 16 sides. To be clear, this is _not_ a triangle limit for the polyhedron. One side of the shape might be comprised of multiple triangles, but as long as they are coplanar they will be treated as a single side. To resolve this error you can:
+This error does not show up in [WRL files](~wrl), but it is usually easy to find. It means one of your [weather polyhedra](~scenario_structure_bsp#weather-polyhedra) has more than 16 sides. To be clear, this is _not_ a triangle limit for the polyhedron. One side of the shape might be comprised of multiple triangles, but as long as they are coplanar they will be treated as a single side. To resolve this error you can:
 
 1. Simplify any polyhedra which have too many sides. Players will not notice if a polyhedra doesn't perfectly follow the contour of an overhang. As long as it generally hides rain and snow from under overhangs the effect will be convincing enough. Ensure any sides which are meant to be flat actually have coplanar faces.
 2. Split the polyhedron into multiple more simple shapes. It is OK for the volumes to intersect, just stay within the 8 visible polyhedra limit.
@@ -184,11 +194,11 @@ This error does not show up in [WRL files][wrl], but it is usually easy to find.
 This means the JMS file was incomplete or improperly formatted. Tool expected it to have more data but the file ended. You should never see this error unless the JMS exporter addon/script you are using has a bug, in which case you should upgrade it to the latest version or use a different JMS exporter. This error has been known to occur with some 3ds Max scripts.
 
 ## Error: model file has wrong version number
-Your JMS file was exported for the wrong game version (e.g. Halo 2). If using the [Halo Asset Blender Development Toolset][halo-asset-blender-development-toolset], pay attention to the export settings and choose Halo CE.
+Your JMS file was exported for the wrong game version (e.g. Halo 2). If using the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset), pay attention to the export settings and choose Halo CE.
 
 # Radiosity problems
 ## Degenerate triangle or triangle with bad UVs (blue)
-A _degenerate triangle_ error encountered during [radiosity][h1a-tool#lightmaps] is due to a triangle being degenerate in UV space (texture coordinates). In other words, the triangle has zero surface area in UV space because all 3 vertices are in a line or the same location so the triangle's texture will appear extremely stretched. This by itself isn't a problem for radiosity, but when the corresponding material has the [_simple parameterization_][shader#tag-field-shader-flags-simple-parameterization] flag enabled you will encounter this error, since that flag forces radiosity to use texture UV coordinates for lightmap UVs.
+A _degenerate triangle_ error encountered during [radiosity](~h1a-tool#lightmaps) is due to a triangle being degenerate in UV space (texture coordinates). In other words, the triangle has zero surface area in UV space because all 3 vertices are in a line or the same location so the triangle's texture will appear extremely stretched. This by itself isn't a problem for radiosity, but when the corresponding material has the [_simple parameterization_](~shader#tag-field-shader-flags-simple-parameterization) flag enabled you will encounter this error, since that flag forces radiosity to use texture UV coordinates for lightmap UVs.
 
 It is common for modeling operations like extruding and merging to produce degenerate/stretched UVs. You can use Blender's ["Correct Face Attributes"][blender-tool-settings] tool option to help avoid stretched UVs while modifying your model, or use a simple cube projection to unwrap faces during map development.
 
@@ -201,12 +211,12 @@ During radiosity you may see this warning logged:
 <number> clusters in structure_bsp <bsp-tag-path> have no background sound or sound environment.
 ```
 
-It is totally harmless and just means you have not assigned [background sounds][sound_looping] and [sound environments][sound_environment] to all of your [clusters][scenario_structure_bsp#clusters-and-cluster-data]. This step is done in Sapien and is recommended but optional for your map.
+It is totally harmless and just means you have not assigned [background sounds](~sound_looping) and [sound environments](~sound_environment) to all of your [clusters](~scenario_structure_bsp#clusters-and-cluster-data). This step is done in Sapien and is recommended but optional for your map.
 
 # Unknown causes
-```.alert
+{% alert %}
 If you encounter any of these errors, please contact a c20 maintainer so examples can be added.
-```
+{% /alert %}
 
 The following error messages were found in `tool.exe` but could not be reproduced in experiments:
 

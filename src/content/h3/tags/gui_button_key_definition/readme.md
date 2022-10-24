@@ -1,2 +1,8 @@
+---
+title: gui_button_key_definition
+stub: true
+noSearch: true
+about: 'tag:h3/gui_button_key_definition'
+---
   ...
   

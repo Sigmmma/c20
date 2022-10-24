@@ -52,19 +52,29 @@ async function content() {
 function watchSources() {
   gulp.watch([paths.srcStaticAssets], staticAssets);
   gulp.watch([paths.srcStylesAny], assetStyles);
-  runServer();
+  runServer(true);
+}
+
+function runStaticServer() {
+  runServer(false);
 }
 
 //composite tasks
 const assets = gulp.parallel(staticAssets, assetStyles, vendorAssets);
 const buildAll = gulp.series(clean, gulp.parallel(assets, content));
 const dev = gulp.series(clean, assets, watchSources);
+const buildAndServe = gulp.series(buildAll, runStaticServer);
 
 //tasks which can be invoked from CLI with `npx gulp <taskname>`
 module.exports = {
-  clean, //remove the dist directory
-  assets, //build just styles
-  content, //pages and their resources
-  dev, //local development mode
-  default: buildAll //typical build for publishing content
+  //removes the dist directory
+  clean,
+  //local development mode
+  dev,
+  //final build for publishing content
+  default: buildAll,
+  //serves built content assuming it's already been built
+  server: runStaticServer,
+  //builds all content then serves it
+  static: buildAndServe,
 };

@@ -1,5 +1,13 @@
+---
+title: string_list
+stub: true
+about: 'tag:h1/string_list'
+thanks:
+  Kavawuvi: Invader tag definitions
+  MosesOfEgypt: Tag structure research
+---
 # Text symbols
-These symbols can be used in your text files to get specific results. Although there is overlap with [hud_message_text symbols][hud_message_text#text-symbols], this list is not the same. Examples include displaying the necessary key to press for an action and creating a new line in a sentence:
+These symbols can be used in your text files to get specific results. Although there is overlap with [hud_message_text symbols](~hud_message_text#text-symbols), this list is not the same. Examples include displaying the necessary key to press for an action and creating a new line in a sentence:
 
 | Symbol               | Note                                                                                                                                |
 | -------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
@@ -49,3 +57,7 @@ These symbols can be used in your text files to get specific results. Although t
 | `%custom-8`          | Display the key mapped to custom-8.                                                                                                 |
 | `\h`                 | Sets a text line to a heading making the text a bit larger and displaying a yellow color. Only for the Custom Edition credits menu. |
 | `\s#`                | Write a specific number of spaces. Replace the ```#``` character with an integer. Only for the Custom Edition credits menu.         |
+
+# Structure and fields
+
+{% tagStruct "h1/string_list" /%}

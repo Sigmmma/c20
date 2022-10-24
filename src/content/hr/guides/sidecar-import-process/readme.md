@@ -1,3 +1,11 @@
+---
+title: Sidecar Import Process
+keywords:
+  - Reach
+  - sidecar
+  - import
+  - importing
+---
 ## Reach Import Process
 
 Halo Reach introduced a single funnction for importing source assets to the game engine. Use of a single function is possible because Reach relies on a sidecar XML file to define which files to import, how the files should be imported (such as defining animation types) and which tags to create.

@@ -1,3 +1,12 @@
+---
+title: Osoyoos Launcher - Settings
+stub: false
+about: 'tool:Osoyoos launcher'
+img: mainwindow_settings.jpg
+caption: The settings found in the Osoyoos launcher
+info: |
+  * [Source code and download](https://github.com/num0005/Osoyoos-Launcher)
+---
 This group lets you configure aspects of the launcher such as the current profile being used or themes. You can find it at the bottom of the launcher window.
 
 | Setting          | Description

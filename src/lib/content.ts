@@ -8,7 +8,6 @@ import {type Node} from "@markdoc/markdoc";
 import {type MdSrc} from "./components/Md/markdown";
 import {type Lang} from "./utils/localization";
 import {type BuildOpts} from "../build";
-import {upgrade} from "../utility_scripts/migrate";
 
 export type PageId = string;
 
@@ -70,7 +69,7 @@ export async function loadPageIndex(contentDir: string, data: any): Promise<Page
   //find all page.yml files under the content root -- each will become a page
   const mdFiles = await findPaths(path.join(contentDir, "**", "readme*.md"));
 
-  //load all page YAML files in a first pass
+  //load all page files
   await Promise.all(mdFiles.map(async (mdFilePath) => {
     const {dir: dirPath, name: fileName} = path.parse(mdFilePath);
     const contentDirDepth = path.normalize(contentDir).split(path.sep).length;
@@ -79,14 +78,9 @@ export async function loadPageIndex(contentDir: string, data: any): Promise<Page
     const logicalPathTail = logicalPath[logicalPath.length - 1];
     const lang = parseLangSuffix(fileName) ?? "en";
 
-    // const langs = Object.keys(pageMeta.title);
-    let mdSrc = await fs.promises.readFile(mdFilePath, "utf8");
-    if (!mdSrc.startsWith("---")) {
-      const ymlSrc = await fs.promises.readFile(path.join(dirPath, "page.yml"), "utf8");
-      mdSrc = upgrade(mdSrc, ymlSrc, data);
-    }
-
+    const mdSrc = await fs.promises.readFile(mdFilePath, "utf8");
     const {ast, frontmatter: front} = parse<PageFrontMatter>(mdSrc, mdFilePath);
+
     if (front) {
       if (!pages[pageId]) pages[pageId] = {};
       pages[pageId][lang] = {

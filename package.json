@@ -4,10 +4,11 @@
   "description": "This wiki is a comprehensive documentation of the Halo 1 Custom Edition editing kit, as well as tools created by users.",
   "main": "gulpfile.ts",
   "scripts": {
-    "build": "gulp",
+    "clean": "gulp clean",
     "dev": "gulp dev",
-    "assets": "gulp assets",
-    "server": "C20_RUN_SERVER=true ts-node src/server.ts"
+    "build": "gulp",
+    "server": "gulp server",
+    "static": "gulp static"
   },
   "files": [
     "dist"
