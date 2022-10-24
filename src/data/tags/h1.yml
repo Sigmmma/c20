@@ -325,8 +325,6 @@ sound:
       Contains sound data such as sound effects and music and parameters affecting
       how sounds are played by the [sound system](~sound-system).
 spheroid:
-  structName: Spheroid
-  structModule: h1/tags/spheroid
   id: boom
   unused: true
   description:

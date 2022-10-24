@@ -3,7 +3,7 @@ import path from "path";
 import { findPaths } from "../lib/utils/files";
 import yaml from "js-yaml";
 import { PageFrontMatter } from "../lib/content";
-import * as R from "ramda";
+import renderPage from "../lib/render/render";
 const loadStructuredData = require("../data");
 
 const keyOrder = [
@@ -59,6 +59,13 @@ export function upgrade(md: string, ymlSrc: string, data: any): string {
       console.warn(`Unhandled key: ${key} value: ${value}`);
     }
   });
+
+  if (front.about?.startsWith("tag:h1/")) {
+    if (!front.thanks) front.thanks = {};
+    front.thanks["Kavawuvi"] = "Invader tag definitions";
+    front.thanks["MosesOfEgypt"] = "Tag structure research";
+  }
+
   md = md
     .replaceAll(/\]\[([^\]]*)\]/g, "](~$1)") //smart links
     .replaceAll(/```.alert\n([^`]+\n)```/g, (m, content) => {
@@ -113,7 +120,6 @@ export function upgrade(md: string, ymlSrc: string, data: any): string {
         },
         columns: () => {
           params.push(`  columns=[`);
-          //{name: "Tag name", key: "key", format: "pageLinkRaw"},
           (v as any[]).forEach((col, i) => {
             const vs: string[] = [`name: "${col.name}"`, `key: "${col.key}"`];
             if (col.format && col.format != "text") {
@@ -143,20 +149,24 @@ async function migrate(args: string[]) {
   const pageYamls = args.length > 2 ?
     args.slice(2) :
     await findPaths("./src/content/**/page.yml");
+  const data = await loadStructuredData();
   await Promise.all(pageYamls.map(async (pageYamlPath) => {
     const dirname = path.dirname(path.relative("./src/content", pageYamlPath));
     const pageId = `/${dirname == "." ? "" : dirname}`;
     const readmeFilePath = path.join("./src/content", pageId, "readme.md");
-    const newReadmeFilePath = path.join("./src/content", pageId, "new.md");
+    const backupFilePath = path.join("./src/content", pageId, "backup.md");
 
     console.log(`Migrating ${pageId}`);
     const pageYaml = fs.promises.readFile(pageYamlPath, "utf-8");
     const md = fs.promises.readFile(readmeFilePath, "utf-8");
-    const newMd = upgrade(await md, await pageYaml, await loadStructuredData());
-    // await fs.promises.writeFile(newReadmeFilePath, newMd, "utf8");
-    console.log(newMd);
+    const newMd = upgrade(await md, await pageYaml, data);
+    await fs.promises.rename(readmeFilePath, backupFilePath);
+    await fs.promises.writeFile(readmeFilePath, newMd, "utf8");
+    console.log(`Migrated ${pageId}`);
   }));
 }
+
+//todo: related page fixup
 
 if (process.env.C20_MIGRATE) {
   migrate(process.argv);

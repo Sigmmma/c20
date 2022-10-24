@@ -1,7 +1,9 @@
 import * as R from "ramda";
-import {useCtx, useLocalize} from "../Ctx/Ctx";
-import DetailsList from "../DetailsList/DetailsList";
-import Wat from "../Wat/Wat";
+import {type RenderContext} from "../../components/Ctx/Ctx";
+import DetailsList from "../../components/DetailsList/DetailsList";
+import {type MetaboxSectionProps} from "../../components/Metabox/Metabox";
+import Wat from "../../components/Wat/Wat";
+import {localizer} from "../../utils/localization";
 
 const localizations = {
   authors: {
@@ -74,7 +76,7 @@ const workflowItemAnchor = (ctx, itemName) => {
     return <a href={item.url}>{itemName}</a>;
   }
   const target = ctx.resolvePage(item.page, item.heading);
-  return <a href={target.url}>{target.title}</a>;
+  return <a href={target.url}>{itemName}</a>;
 };
 
 function workflowType(flow) {
@@ -180,49 +182,48 @@ export type WorkflowsProps = {
   itemName: string;
 };
 
-export default function Workflows(props: WorkflowsProps) {  
-  const ctx = useCtx();
-  const localize = useLocalize(localizations);
-  const item = ctx?.data?.workflows?.getWorkflowItem(props.itemName);
-  if (!item) return null;
-  
-  return <>
-    {item.authors && item.authors.length > 0 &&
-      <section>
-        <p>
-          <DetailsList
-            summary={localize("authors")}
-            items={item.authors}
-          />
-        </p>
-      </section>
-    }  
-    {item.buildTypes && item.buildTypes.length > 0 &&
-      <section>
-        <p>
-          <DetailsList
-            summary={<>{localize("buildTypes")}<Wat href={ctx?.resolvePage("build-types", "conventions").url}/></>}
-            items={item.buildTypes}
-          />
-        </p>
-      </section>
-    }
-    {item.similarTo && item.similarTo.length > 0 &&
-      <section>
-        <p>
-          <DetailsList
-            summary={localize("similar")}
-            items={item.similarTo.map(otherItemName =>
-              <a>{workflowItemAnchor(ctx, otherItemName)}</a>
-            )}
-          />
-        </p>
-      </section>
-    }
-    {item.workflows && item.workflows.length > 0 &&
-      <section className="content-tool-minor">
-        {workflowsList(ctx, localize, item)}
-      </section>
-    }
-  </>;
+export default function getWorkflowSections(ctx: RenderContext | undefined, itemName: string): MetaboxSectionProps[] {  
+  const localize = localizer(localizations, ctx?.lang ?? "en");
+  const item = ctx?.data?.workflows?.getWorkflowItem(itemName);
+  const sections: MetaboxSectionProps[] = [];
+
+  if (item?.authors && item.authors.length > 0) {
+    sections.push({body:
+      <p>
+        <DetailsList
+          summary={localize("authors")}
+          items={item.authors}
+        />
+      </p>
+    });
+  }  
+  if (item?.buildTypes && item.buildTypes.length > 0) {
+    sections.push({body:
+      <p>
+        <DetailsList
+          summary={<>{localize("buildTypes")}<Wat href={ctx?.resolvePage("build-types", "conventions").url}/></>}
+          items={item.buildTypes}
+        />
+      </p>
+    });
+  }
+  if (item?.similarTo && item.similarTo.length > 0) {
+    sections.push({body:
+      <p>
+        <DetailsList
+          summary={localize("similar")}
+          items={item.similarTo.map(otherItemName =>
+            <a>{workflowItemAnchor(ctx, otherItemName)}</a>
+          )}
+        />
+      </p>
+    });
+  }
+  if (item.workflows && item.workflows.length > 0) {
+    sections.push({class: "content-tool-minor", body:
+      workflowsList(ctx, localize, item)
+    });
+  }
+
+  return sections;
 };

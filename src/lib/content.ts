@@ -32,13 +32,9 @@ export type PageLink = {
   pageId: string;
 };
 
-//todo: try to reduce this to minimum possible
 export type PageData = {
-  //from finding the file
-  // pageId: PageId;
   logicalPath: string[];
   logicalPathTail: string;
-  //from reading the file
   front: PageFrontMatter;
   ast: Node;
 };

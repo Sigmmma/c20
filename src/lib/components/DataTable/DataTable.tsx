@@ -112,7 +112,6 @@ export function renderPlaintext(ctx: RenderContext | undefined, props: DataTable
   return `${headerRendered}\n${rowsRendered}`;
 };
 
-//todo: split out so we can use for plaintext case
 function gatherRows(ctx: RenderContext, props: DataTableProps): {rows: object[], id: string} {
   const dataPaths = (props.dataPath ?
     (Array.isArray(props.dataPath) ?

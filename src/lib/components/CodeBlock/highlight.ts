@@ -42,7 +42,7 @@ export default function highlight(code: string, language?: string) {
     console.warn(`The codeblock language '${language}' is not supported (see highlight.ts). Falling back to plaintext`);
     language = "plaintext";
   }
-  //todo: without trim, the console lang goes into an endless loop :D
+  //without trim, the console lang goes into an endless loop :D
   return hljs.highlight(language, code.trim()).value;
 };
 

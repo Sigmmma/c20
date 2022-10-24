@@ -4,7 +4,6 @@ export type LocalizeFn<K=string> = (key: K, safe?: boolean) => any;
 
 const reportedMissingKeys = new Set();
 
-//todo: key: keyof L | string is messing with autocomplete but needed for dynamic key lookups
 export function localizer<L extends Localizations>(bundle: L, lang: Lang): LocalizeFn<keyof L> {
   return (key, safe) => {
     if (!bundle[key] && !safe) {

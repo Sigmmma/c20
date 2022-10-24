@@ -14,9 +14,10 @@ import {NavHeading} from "../components/PageWrapper/TableOfContents";
 import {slugify} from "../utils/strings";
 import {type MetaboxProps} from "../components/Metabox/Metabox";
 import Wat from "../components/Wat/Wat";
-import {VNode} from "preact";
-import {type PageFrontMatter, type PageIndex, resolvePageGlobal, getPageChildren, getPageParents, getAllThanks, getPageRelated, tryLocalizedPath, getPageOtherLangs, PageLink} from "../content";
+import {type PageFrontMatter, type PageIndex, type PageLink, resolvePageGlobal, getPageChildren, getPageParents, getAllThanks, getPageRelated, tryLocalizedPath, getPageOtherLangs} from "../content";
 import {type SearchDoc} from "../search";
+import getWorkflowSections from "./features/workflow";
+import getTagSections from "./features/tag";
 
 export const PREVIEW_LENGTH_CHARS = 100;
 
@@ -96,42 +97,34 @@ function getNavHeadings(front: PageFrontMatter | undefined, ctx: RenderContext, 
   return res[0].sub;
 }
 
-function getAboutContent(ctx: RenderContext | undefined, front?: PageFrontMatter): {metaboxProps: MetaboxProps, body: VNode[], keywords: string[]} {
+function getAboutContent(ctx: RenderContext | undefined, front?: PageFrontMatter): {metaboxProps: MetaboxProps, keywords: string[]} {
   const [aboutType, aboutArg] = (front?.about?.split(":") ?? []) as [string?, string?];
-  let body: VNode[] = [];
   let metaboxProps: Partial<MetaboxProps> = {
     title: front?.title,
     img: front?.img,
     caption: front?.caption,
     info: front?.info,
+    sections: [],
     ...(aboutType ? metaboxStyles[aboutType] : undefined),
   };
   const keywords: string[] = [];
   if (aboutType && aboutArg) {
-    if (["tag", "tool", "resource"].includes(aboutType)) {
-      metaboxProps.workflows = aboutArg;
-    }
     if (aboutType == "tag") {
       const tagNameArg = aboutArg.split("/");
       const game = tagNameArg.length > 1 ? tagNameArg[0] : "h1";
       const tagName = tagNameArg.length > 1 ? tagNameArg[1] : tagNameArg[0];
       const tag = ctx?.data?.tags?.[game]?.[tagName];
       if (tag?.id) {
-        metaboxProps.title = <>{tagName} (<code>{tag.id}</code><Wat idTail="h1/tags" headingId="group-ids"/>)</>
+        metaboxProps.title = <>{tagName} (<code>{tag.id}</code><Wat idTail="h1/tags" headingId="group-ids"/>)</>;
         keywords.push(tag.id);
+        metaboxProps.sections!.push(...getTagSections(ctx, tag));
       }
-      // let hasRows = true; //todo
-      // if (hasRows) {
-      //   body.push(<Heading level={1} id="related-hsc">Related HaloScript</Heading>);
-      //   body.push(<RelatedHsc game={game} rowTagFilter={tagName}/>)
-      // }
-      // if (tag?.structName) {
-      //   body.push(<Heading level={1} id="structure-and-fields">Structure and fields</Heading>);
-      //   body.push(<TagStruct tag={aboutArg}/>);
-      // }
+    }
+    if (["tag", "tool", "resource"].includes(aboutType)) {
+      metaboxProps.sections!.push(...getWorkflowSections(ctx, aboutArg));
     }
   }
-  return {metaboxProps, body, keywords};
+  return {metaboxProps, keywords};
 }
 
 export default function renderPage(input: RenderInput): RenderOutput {  
@@ -171,7 +164,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
   const thisPageLocalizedPath = tryLocalizedPath(input.pageIndex, input.pageId, input.lang);
   const thisPagePath = input.pageId;
 
-  const {body: aboutBody, metaboxProps, keywords} = getAboutContent(ctx, front);
+  const {metaboxProps, keywords} = getAboutContent(ctx, front);
   
   const htmlDoc = "<!DOCTYPE html>\n" + renderToString(
     <Ctx.Provider value={ctx}>
@@ -200,7 +193,6 @@ export default function renderPage(input: RenderInput): RenderOutput {
             metabox={metaboxProps}
           >
             <Md content={content}/>
-            {aboutBody}
             {front?.thanks &&
               <ThanksList thanks={front.thanks}/>
             }

@@ -1,9 +1,13 @@
 import * as R from "ramda";
 import {MdSrc} from "../Md/markdown";
 import Icon, {type IconName} from "../Icon/Icon";
-import {VNode} from "preact";
-import Workflows from "./Workflows";
+import {ComponentChildren, VNode} from "preact";
 import Md from "../Md/Md";
+
+export type MetaboxSectionProps = {
+  class?: string;
+  body: ComponentChildren
+};
 
 export type MetaboxProps = {
   title?: VNode | string;
@@ -13,13 +17,13 @@ export type MetaboxProps = {
   img?: string;
   caption?: MdSrc;
   info?: MdSrc;
-  workflows?: string;
-}
-
+  sections?: MetaboxSectionProps[];
+};
 
 export default function Metabox(props: MetaboxProps) {
-  const empty = R.pipe(
-    R.pick(["img", "caption", "info", "workflows"]),
+  const hasSections = props.sections && props.sections.length > 0;
+  const empty = !hasSections && R.pipe(
+    R.pick(["img", "caption", "info"]),
     R.values,
     R.filter(R.identity),
     R.isEmpty
@@ -53,9 +57,9 @@ export default function Metabox(props: MetaboxProps) {
           <Md src={props.info}/>
         </section>
       }
-      {props.workflows &&
-        <Workflows itemName={props.workflows}/>
-      }
+      {props.sections?.map(section =>
+        <section class={section.class}>{section.body}</section>
+      )}
     </aside>
   );
 };

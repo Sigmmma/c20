@@ -43,10 +43,9 @@ An explicit choice was made to avoid typical managed or self-hosted Wiki platfor
 
 ### Technology choices
 * [Minisearch](https://lucaong.github.io/minisearch/) for site search, since we can pre-compute a lightweight JSON search index at build time and serve it to clients to do search completely in-browser. This will work in offline distributions of the site.
-* A build of [Preact](https://preactjs.com/) combined with [htm](https://github.com/developit/htm) is used on the client-side for the few JS-driven UI components we have, like search. This is a lightweight alternative to _React_.
+* [Preact](https://preactjs.com/) is used to render HTML at build time as well as on the client (search, unit converter). This is a lightweight alternative to _React_.
 * We use [Sass](https://sass-lang.com/) as a CSS preprocessor for its productivity features. Variables should be used to ensure consistency and make changes easier. Nest selectors according to the specificity of what's being styled.
-* HTML rendering is done with `html` tagged template literals from [common-tags](https://github.com/zspecza/common-tags). It doesn't produce the prettiest HTML, but is simple to write and manipulate as a string.
-* [Marked.js](https://github.com/markedjs/marked) for Markdown rendering. This library is extremely customizable; we customize header rendering to support anchor links and have a plaintext renderer to support search and opengraph previews.
+* [Markdoc](markdoc.dev) for Markdown rendering. It can render to Preact components and allows us to easily extend Markdown.
 
 ### Building and testing
 In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite, this project requires installing at least [Node.js v14+](https://nodejs.org/en/) and [Git LFS](https://git-lfs.github.com/)
