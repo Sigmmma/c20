@@ -19,7 +19,7 @@ Pages are not directly editable by the public in order to ensure accuracy. Anyon
 * Submit information or requests in a [GitHub issue](https://github.com/Sigmmma/c20/issues).
 * For more advanced users, fork [the c20 repo](https://github.com/Sigmmma/c20) and create a pull request.
 
-Editors will review and incorporate the above into the wiki.
+Editors will review and incorporate the above into the wiki. Don't worry if writing isn't your strong suit. We'll ensure your tips are properly incorporated into the Wiki and you're credited for them.
 
 ## Becoming an editor
 Interested in curating pages? Go to **#role-selection** in our Discord and select the "Wiki Contributor" role. We expect that you'll be able to:
@@ -160,7 +160,7 @@ headingRefs:
 ```
 
 ## Markdown basics
-After the metadata is the main body of the page, which we write in Markdown format. You may be familiar with basic forms of it in Discord or Reddit, but C20 uses a more powerful version with custom extensions tailored to our needs. You can read more about it [here][mdbasic].
+After the metadata is the main body of the page, which we write in Markdown format. You may be familiar with basic forms of it in Discord or Reddit, but c20 uses a more powerful version with custom extensions tailored to our needs. You can read more about it [here][mdbasic].
 
 Paragraphs should be written as single lines of text (enable word wrap in your text editor), and separate each paragraph with an empty line. You can make text italic by surrounding it with `*` or bold with `**`, for example: `**this is important!**`. We do not support inline HTML in our Markdown files.
 

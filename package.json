@@ -1,7 +1,7 @@
 {
   "name": "c20",
-  "version": "2.2.0",
-  "description": "This wiki is a comprehensive documentation of the Halo 1 Custom Edition editing kit, as well as tools created by users.",
+  "version": "3.0.0",
+  "description": "This wiki is a comprehensive documentation of the Halo editing kits, as well as tools created by users.",
   "main": "gulpfile.ts",
   "scripts": {
     "clean": "gulp clean",

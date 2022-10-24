@@ -19,7 +19,7 @@ const nodes: Partial<Record<NodeType, Schema>> = {
     transform(node, config) {
       const {title, ...restAttrs} = node.transformAttributes(config);
       const children = title ? [new Tag("p", {}, [title])] : undefined;
-      return new Tag("Figure", {...restAttrs, inline: false}, children);
+      return new Tag("Figure", {...restAttrs, inline: true}, children);
     }
   },
   link: {

@@ -73,7 +73,7 @@ export default function runServer(onDemand: boolean) {
 
       const renderOutput = renderPage({
         baseUrl: buildOpts.baseUrl,
-        noThumbs: !!process.env.C20_NO_THUMBNAILS,
+        noThumbs: true,
         debug: !!process.env.C20_DEBUG || req.query.debug,
         pageId,
         lang,

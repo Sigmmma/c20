@@ -38,10 +38,9 @@ a abbr:hover {
   }
 
   .inline-figure {
-    display: inline-block;
     float: none;
     margin-left: 0;
-    width: 100%;
+    width: fit-content;
   }
 }
 
