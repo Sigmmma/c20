@@ -27,6 +27,7 @@ Unlike the [H1A-EK][] you ***do*** need to own [Halo 3 ODST on Steam][steam_purc
 
 * Various changes to tags and data files. Updating your tag set is highly recommended.
 * Added test, audio and lighting reference scenarios `levels\test\box`, `levels\reference\audio`, `levels\reference\lighting_reference`
+* Map info files have been added to the `H3ODSTEK.7z` which allows the main menu to load maps.
 
 ### General
 
@@ -80,7 +81,6 @@ Naturally there is multitude of changes compared to H2 as the engine underwent a
 * Halo 3 ODST custom maps requires that the map info matches the map it is replacing to load. This means having the same campaign and map ID. These values can be found at the top of the scenario tag.
 * Single threaded lightmapping is not supported, you need to use the multi-process solution. This can be run with only a single client if only using one core is desired.
 * Sound playback and sound importing require the FSB files that come with MCC in order to function. Copy the FSB files from your Halo 3 ODST MCC install.
-* The mainmenu requires the mapinfo files that come with MCC in order to load levels. Otherwise you will need to use `init.txt` or the developer console to load scenarios in the standalone build.
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
 * Lipsync won't be generated when importing sounds that use a multilingual sound class such as unit_dialog as third party tools are required.
 
