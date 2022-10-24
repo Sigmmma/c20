@@ -8,7 +8,7 @@ import Figure from "../Figure/Figure";
 import Key from "../Key/Key";
 import RelatedHsc from "../RelatedHsc/RelatedHsc";
 import TagStruct from "../StructTable/TagStruct";
-import UnitConverter from "../UnitConverter/UnitConverter";
+import {UnitConverterMountpoint} from "../UnitConverter/UnitConverter";
 import Color from "../Color/Color";
 
 // These are the components needed by tags for rendering
@@ -23,7 +23,7 @@ export const components = {
   Key,
   RelatedHsc,
   TagStruct,
-  UnitConverter,
+  UnitConverterMountpoint,
   Color,
 };
 

@@ -12,14 +12,14 @@
       "./src/data/**/*.yml"
     ],
     "srcContentBase": "./src/content",
-    "srcStaticAssets": "./src/@(assets)/**/*.@(jpg|jpeg|png|gif|ttf|js)",
+    "srcStaticAssets": "./src/@(assets)/**/*.@(jpg|jpeg|png|gif|ttf)",
+    "srcScriptEntry": "./src/assets/main2.tsx",
     "srcStyleEntry": "./src/assets/style.scss",
     "srcStylesAny": "./src/assets/**/*.scss",
     "vendorAssets": [
       "./node_modules/feather-icons/dist/feather-sprite.svg",
       "./node_modules/highlight.js/styles/night-owl.css",
       "./node_modules/highlight.js/styles/github.css",
-      "./node_modules/@(htm)/preact/standalone.umd.js",
       "./node_modules/@(minisearch)/dist/umd/index.js"
     ]
   },

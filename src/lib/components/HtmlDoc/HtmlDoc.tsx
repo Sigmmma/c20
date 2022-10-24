@@ -79,7 +79,6 @@ export default function HtmlDoc(props: HtmlDocProps) {
       <body>
         {props.children}
         <script src="/assets/minisearch/dist/umd/index.js"></script>
-        <script src="/assets/htm/preact/standalone.umd.js"></script>
         <script src="/assets/main.js"></script>
       </body>
     </html>

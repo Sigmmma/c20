@@ -17,7 +17,7 @@ const tags: Record<string, Schema> = {
     }
   },
   unitConverter: {
-    render: "UnitConverter",
+    render: "UnitConverterMountpoint",
     selfClosing: true,
   },
   figure: {

@@ -6,6 +6,7 @@ import path from "path";
 import {paths, baseUrl} from "./build-config.json";
 import buildContent from "./src/build";
 import runServer from "./src/server";
+import esbuild from "esbuild";
 
 //the dist directory may contain outdated content, so start clean
 function clean() {
@@ -25,6 +26,26 @@ function assetStyles() {
       }
     });
   });
+}
+
+function scriptBundle(watch: boolean) {
+  return function scriptBundle() {
+    return esbuild.build({
+      entryPoints: [paths.srcScriptEntry],
+      outfile: path.join(paths.distAssets, "main.js"),
+      bundle: true,
+      minify: true,
+      // todo: can we check what are our users actually using?
+      // target: ["edge16", "chrome58", "firefox57", "safari11", "ios"],
+      platform: "browser",
+      watch: watch ? {
+        onRebuild(error, result) {
+          if (error) console.error("JS build failed:", error);
+          else console.log("JS build succeeded:", result);
+        },
+      } : undefined,
+    });
+  }
 }
 
 //copies any static image or font assets over to the dist directory
@@ -60,13 +81,14 @@ function runStaticServer() {
 }
 
 //composite tasks
-const assets = gulp.parallel(staticAssets, assetStyles, vendorAssets);
+const assets = gulp.parallel(staticAssets, assetStyles, vendorAssets, scriptBundle(false));
 const buildAll = gulp.series(clean, gulp.parallel(assets, content));
-const dev = gulp.series(clean, assets, watchSources);
+const dev = gulp.series(clean, assets, gulp.parallel(scriptBundle(true), watchSources));
 const buildAndServe = gulp.series(buildAll, runStaticServer);
 
 //tasks which can be invoked from CLI with `npx gulp <taskname>`
 module.exports = {
+  assets,
   //removes the dist directory
   clean,
   //local development mode
