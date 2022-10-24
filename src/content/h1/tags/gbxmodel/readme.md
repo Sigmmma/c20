@@ -39,11 +39,17 @@ Regions are named sections of the model which can have multiple [permutations](#
 Regions render in the order they are stored in the tag. When naming regions, consider that they will be sorted by name when compiled into the `.gbxmodel`. This can be important for [skyboxes][skyboxes#regions] and objects with multiple layers of alpha-blended transparent shaders which aren't [z-culled][z-buf] and need a correct sorting order to be explicitly defined, assuming the object is viewed mostly from one direction.
 
 # Permutations
-A permutation is a randomly selected variation of a [region](#regions). They are often used to give [bipeds][biped] visual variety. Some permutations have special behaviour in-engine:
+A permutation is a variation of a [region](#regions) that can be randomly selected. They are often used to give [bipeds][biped] visual variety. Some permutations have special behaviour in-engine:
 
 * `~blur`: Switched to depending on [weapon rate of fire][weapon#tag-field-triggers-blurred-rate-of-fire] and [vehicle speed][vehicle#tag-field-blur-speed] to fake motion blur. Used for the Warthog tires and chaingun when spinning fast enough.
 
-Permutations are not [network synchronized][netcode].
+* `~damaged`: Switched to depending how much damage the object takes based on [Damage Threshold][model_collision_geometry#tag-field-regions-damage-threshold]
+
+Permutations can also be set via [script][scripting#functions-object-set-permutation] or the [Desired Permutation][scenario#tag-field-scenery-desired-permutation] field when placing objects in a Scenario.
+In order to use the Desired Permutation field the model's permutations must be named in a specific way:
+"Permutation_name-###"
+
+Randomly selected permutations are not [network synchronized][netcode].
 
 # Level of detail
 <figure>
