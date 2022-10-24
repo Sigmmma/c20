@@ -58,7 +58,7 @@ type_defs:
         type: PlayerColors
         comments:
           en: >
-            Determines the player's [multiplayer armour colour][hard-coded-data#multiplayer-armor-colors].
+            Determines the player's [multiplayer armour colour](~hard-coded-data#multiplayer-armor-colors).
             Defaults to `0xFF` (random).
 
   Action:

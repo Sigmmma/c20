@@ -147,7 +147,7 @@ type_defs:
             determine which half-space to descend into.
 
 
-            [Tool][] will create new planes or use existing surface planes when
+            [Tool](~) will create new planes or use existing surface planes when
             generating the BSP tree based on a heuristic of how many surfaces
             remain in the node. For 1024 and above, axis-aligned planes based on
             vertex bounds are used. Otherwise, the surface within the remaining
@@ -415,7 +415,7 @@ type_defs:
           en: >
             Surfaces are planar collideable polygons. They are not necessarily
             triangular and may have up to 8 edges. BSP collision surfaces can
-            be visualized in [Sapien][] using `debug_structure 1`. These
+            be visualized in [Sapien](~) using `debug_structure 1`. These
             surfaces are not used for the rendered geometry.
       - name: edges
         type: Block
@@ -480,7 +480,7 @@ type_defs:
     comments:
       en: >-
         Contains the collision mesh (also referred to as hitbox) for
-        [objects][object] as well as information about health and shields.
+        [objects](~object) as well as information about health and shields.
     assert_size: 664
     fields:
       - name: flags
@@ -493,8 +493,8 @@ type_defs:
         type: float
         comments:
           en: >
-            Sets the maximum amount of health that a [unit][] has (damage hit
-            points). For example, the cyborg [biped][] has a value of 75. This
+            Sets the maximum amount of health that a [unit](~) has (damage hit
+            points). For example, the cyborg [biped](~) has a value of 75. This
             value can also be changed at runtime for individual units by using
             `unit_set_maximum_vitality` in scripts.
       - name: body_system_shock
@@ -550,8 +550,8 @@ type_defs:
         type: float
         comments:
           en: >
-            Sets the maximum amount of shields that a [unit][] has (damage hit
-            points). For example, the cyborg [biped][] has a value of 75. This
+            Sets the maximum amount of shields that a [unit](~) has (damage hit
+            points). For example, the cyborg [biped](~) has a value of 75. This
             value can also be changed at runtime for individual units by using
             `unit_set_maximum_vitality` in scripts.
       - type: pad
@@ -560,7 +560,7 @@ type_defs:
         type: MaterialType
         comments:
           en: >
-            Determines which [damage_effect][] material modifier is used when
+            Determines which [damage_effect](~) material modifier is used when
             applying damage to the shield.
       - type: pad
         size: 24
@@ -659,7 +659,7 @@ type_defs:
         comments:
           en: >-
             Spheres which approximate the shape of the model for
-            [AI pathfinding][ai#pathfinding] avoidance. The sphere limit was
+            [AI pathfinding](~ai#pathfinding) avoidance. The sphere limit was
             increased to match Reach's in H1A.
       - name: nodes
         type: Block

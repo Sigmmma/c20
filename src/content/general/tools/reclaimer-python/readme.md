@@ -1,11 +1,20 @@
-```.alert info
-Some basic [command-line][] and Python knowledge is required to use Reclaimer.
+---
+title: Reclaimer (Python library)
+about: 'tool:reclaimer-python'
+info: |
+  * [GitHub](https://github.com/Sigmmma/reclaimer)
+  * [pypi.org](https://pypi.org/project/reclaimer/)
+keywords:
+  - mozzarilla
+---
+{% alert %}
+Some basic [command-line](~) and Python knowledge is required to use Reclaimer.
 Get started learning Python [here](https://www.python.org/about/gettingstarted/).
-```
+{% /alert %}
 
-**Reclaimer** is a [Python 3][python] library for modifying and creating Halo data formats like [tags][h1/tags], [JMS][], [maps][h1/map], and more. It can be used to write Python scripts to inspect, edit, or generate tags programmatically where it might otherwise take hours of manual effort using a tag editor like [Guerilla][]. It is the foundation of the [Mozzarilla][] editor.
+**Reclaimer** is a [Python 3][python] library for modifying and creating Halo data formats like [tags](~h1/tags), [JMS](~), [maps](~h1/map), and more. It can be used to write Python scripts to inspect, edit, or generate tags programmatically where it might otherwise take hours of manual effort using a tag editor like [Guerilla](~). It is the foundation of the [Mozzarilla](~) editor.
 
-While mainly focused on Halo 1 and [OpenSauce][] formats, it also has limited support for [Halo 2][h2], Halo 3, Stubbs, and the Shadowrun prototype.
+While mainly focused on Halo 1 and [OpenSauce](~) formats, it also has limited support for [Halo 2](~h2), Halo 3, Stubbs, and the Shadowrun prototype.
 
 # Installation
 The library must first be installed on your system using Python 3 `pip`. You may need to add the `--user` flag if you do not have permission to install globally:
@@ -16,7 +25,7 @@ pip install reclaimer
 
 # Tags usage (Halo 1)
 ## Loading tags
-You can import tag definitions according to their [group ID][h1/tags#group-ids], then load a tag file:
+You can import tag definitions according to their [group ID](~h1/tags#group-ids), then load a tag file:
 ```python
 from reclaimer.hek.defs.scnr import scnr_def
 
@@ -37,7 +46,7 @@ scenario_tag_data.local_north = 0.5
 ```
 
 ### Blocks
-Whenever you need to index or iterate over members of a [block][h1/tags#blocks], use the `STEPTREE` property:
+Whenever you need to index or iterate over members of a [block](~h1/tags#blocks), use the `STEPTREE` property:
 
 ```python
 # move all spawn positions up by 1 world unit
@@ -57,7 +66,7 @@ print(scenario_tag_data.type.enum_name)
 scenario_tag_data.type.set_to("multiplayer")
 ```
 ### Tag references
-[Tag reference fields][h1/tags#tag-references-and-paths] have multiple properties which can be set. Each reference stores both the _tag class_ and a _tag path_ to the referenced tag. The _tag class_ should not mismatch the actual referenced tag type:
+[Tag reference fields](~h1/tags#tag-references-and-paths) have multiple properties which can be set. Each reference stores both the _tag class_ and a _tag path_ to the referenced tag. The _tag class_ should not mismatch the actual referenced tag type:
 
 ```python
 # this would print "hud_message_text"
@@ -81,7 +90,7 @@ scenario_tag.serialize(backup=False, temp=False)
 ```
 
 ## Example: scanning tags
-This script prints the _type_ field of every [bitmap][h1/tags/bitmap] tag in the tags directory.
+This script prints the _type_ field of every [bitmap](~h1/tags/bitmap) tag in the tags directory.
 
 ```python
 from pathlib import Path
@@ -96,7 +105,7 @@ for bitmap_path in tags_dir.rglob("*.bitmap"):
 ```
 
 ## Example: modifying BSP data
-This script modifies a [scenario_structure_bsp][h1/tags/scenario_structure_bsp] collision BSP and makes every surface a ladder.
+This script modifies a [scenario_structure_bsp](~h1/tags/scenario_structure_bsp) collision BSP and makes every surface a ladder.
 
 ```python
 from reclaimer.hek.defs.sbsp import sbsp_def

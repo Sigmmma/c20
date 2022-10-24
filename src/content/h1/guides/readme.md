@@ -1,212 +1,148 @@
+---
+title: Halo 1 Guides hub
+stub: true
+keywords:
+  - tutorials
+thanks:
+  gbMichelle: 'Gathering the list of external tutorials, originally on halocetutorials.tk'
+---
 Welcome to the guides hub! Here you'll find links to various guides ranging from basic map-making to more advanced topics. This hub is a work in progress and will grow over time. Until it is more complete, we recommend the official [HEK tutorial][hek] as a starting point.
 
 # External tutorials list
-```.alert
+{% alert %}
 The content of these external tutorials has not been vetted and they may contain outdated information. Always use the latest available versions of any tools used to get the benefits of bug fixes since the tutorial was made. Please report any dead links encountered.
-```
+{% /alert %}
 
 ## Beginner
-```.table
-dataSource: tutorials.yml
-dataPath: tutorials
-rowTagFilter: beginner
-rowSortKey: updated
-rowSortReverse: true
-columns:
-  - key: name/en
-    name: Name
-    format: text
-  - key: description/en
-    name: Description
-    format: text
-  - key: authors
-    name: Author(s)
-    format: text
-  - key: updated
-    name: Last updated
-    format: text
-  - key: links/en
-    name: Links
-    format: text
-```
+{% dataTable
+  dataPath="tutorials/tutorials"
+  rowFilterKey="tags"
+  rowFilterValue="beginner"
+  rowSortKey="updated"
+  rowSortReverse=true
+  columns=[
+    {name: "Name", key: "name/en"},
+    {name: "Description", key: "description/en"},
+    {name: "Author(s)", key: "authors"},
+    {name: "Last updated", key: "updated"},
+    {name: "Links", key: "links/en"}
+  ]
+/%}
 
 ## Level creation
-See also the [Blender level guide][blender-prep] here on c20.
+See also the [Blender level guide](~blender-prep) here on c20.
 
-```.table
-dataSource: tutorials.yml
-dataPath: tutorials
-rowTagFilter: level
-rowSortKey: updated
-rowSortReverse: true
-columns:
-  - key: name/en
-    name: Name
-    format: text
-  - key: description/en
-    name: Description
-    format: text
-  - key: authors
-    name: Author(s)
-    format: text
-  - key: updated
-    name: Last updated
-    format: text
-  - key: links/en
-    name: Links
-    format: text
-```
+{% dataTable
+  dataPath="tutorials/tutorials"
+  rowFilterKey="tags"
+  rowFilterValue="level"
+  rowSortKey="updated"
+  rowSortReverse=true
+  columns=[
+    {name: "Name", key: "name/en"},
+    {name: "Description", key: "description/en"},
+    {name: "Author(s)", key: "authors"},
+    {name: "Last updated", key: "updated"},
+    {name: "Links", key: "links/en"}
+  ]
+/%}
 
 ## AI and scripting
-See also the [scripting information][scripting] here on c20.
+See also the [scripting information](~scripting) here on c20.
 
-```.table
-dataSource: tutorials.yml
-dataPath: tutorials
-rowTagFilter: ai-scripting
-rowSortKey: updated
-rowSortReverse: true
-columns:
-  - key: name/en
-    name: Name
-    format: text
-  - key: description/en
-    name: Description
-    format: text
-  - key: authors
-    name: Author(s)
-    format: text
-  - key: updated
-    name: Last updated
-    format: text
-  - key: links/en
-    name: Links
-    format: text
-```
+{% dataTable
+  dataPath="tutorials/tutorials"
+  rowFilterKey="tags"
+  rowFilterValue="ai-scripting"
+  rowSortKey="updated"
+  rowSortReverse=true
+  columns=[
+    {name: "Name", key: "name/en"},
+    {name: "Description", key: "description/en"},
+    {name: "Author(s)", key: "authors"},
+    {name: "Last updated", key: "updated"},
+    {name: "Links", key: "links/en"}
+  ]
+/%}
 
 ## UI and HUD
-```.table
-dataSource: tutorials.yml
-dataPath: tutorials
-rowTagFilter: hud
-rowSortKey: updated
-rowSortReverse: true
-columns:
-  - key: name/en
-    name: Name
-    format: text
-  - key: description/en
-    name: Description
-    format: text
-  - key: authors
-    name: Author(s)
-    format: text
-  - key: updated
-    name: Last updated
-    format: text
-  - key: links/en
-    name: Links
-    format: text
-```
+{% dataTable
+  dataPath="tutorials/tutorials"
+  rowFilterKey="tags"
+  rowFilterValue="hud"
+  rowSortKey="updated"
+  rowSortReverse=true
+  columns=[
+    {name: "Name", key: "name/en"},
+    {name: "Description", key: "description/en"},
+    {name: "Author(s)", key: "authors"},
+    {name: "Last updated", key: "updated"},
+    {name: "Links", key: "links/en"}
+  ]
+/%}
 
 ## Objects (bipeds, vehicles, scenery, weapons, etc)
-```.table
-dataSource: tutorials.yml
-dataPath: tutorials
-rowTagFilter: objects
-rowSortKey: updated
-rowSortReverse: true
-columns:
-  - key: name/en
-    name: Name
-    format: text
-  - key: description/en
-    name: Description
-    format: text
-  - key: authors
-    name: Author(s)
-    format: text
-  - key: updated
-    name: Last updated
-    format: text
-  - key: links/en
-    name: Links
-    format: text
-```
+{% dataTable
+  dataPath="tutorials/tutorials"
+  rowFilterKey="tags"
+  rowFilterValue="objects"
+  rowSortKey="updated"
+  rowSortReverse=true
+  columns=[
+    {name: "Name", key: "name/en"},
+    {name: "Description", key: "description/en"},
+    {name: "Author(s)", key: "authors"},
+    {name: "Last updated", key: "updated"},
+    {name: "Links", key: "links/en"}
+  ]
+/%}
 
 ## Animation
-```.table
-dataSource: tutorials.yml
-dataPath: tutorials
-rowTagFilter: animation
-rowSortKey: updated
-rowSortReverse: true
-columns:
-  - key: name/en
-    name: Name
-    format: text
-  - key: description/en
-    name: Description
-    format: text
-  - key: authors
-    name: Author(s)
-    format: text
-  - key: updated
-    name: Last updated
-    format: text
-  - key: links/en
-    name: Links
-    format: text
-```
+{% dataTable
+  dataPath="tutorials/tutorials"
+  rowFilterKey="tags"
+  rowFilterValue="animation"
+  rowSortKey="updated"
+  rowSortReverse=true
+  columns=[
+    {name: "Name", key: "name/en"},
+    {name: "Description", key: "description/en"},
+    {name: "Author(s)", key: "authors"},
+    {name: "Last updated", key: "updated"},
+    {name: "Links", key: "links/en"}
+  ]
+/%}
 
 ## Effects
-```.table
-dataSource: tutorials.yml
-dataPath: tutorials
-rowTagFilter: effects
-rowSortKey: updated
-rowSortReverse: true
-columns:
-  - key: name/en
-    name: Name
-    format: text
-  - key: description/en
-    name: Description
-    format: text
-  - key: authors
-    name: Author(s)
-    format: text
-  - key: updated
-    name: Last updated
-    format: text
-  - key: links/en
-    name: Links
-    format: text
-```
+{% dataTable
+  dataPath="tutorials/tutorials"
+  rowFilterKey="tags"
+  rowFilterValue="effects"
+  rowSortKey="updated"
+  rowSortReverse=true
+  columns=[
+    {name: "Name", key: "name/en"},
+    {name: "Description", key: "description/en"},
+    {name: "Author(s)", key: "authors"},
+    {name: "Last updated", key: "updated"},
+    {name: "Links", key: "links/en"}
+  ]
+/%}
 
 ## Other
-```.table
-dataSource: tutorials.yml
-dataPath: tutorials
-rowTagFilter: other
-rowSortKey: updated
-rowSortReverse: true
-columns:
-  - key: name/en
-    name: Name
-    format: text
-  - key: description/en
-    name: Description
-    format: text
-  - key: authors
-    name: Author(s)
-    format: text
-  - key: updated
-    name: Last updated
-    format: text
-  - key: links/en
-    name: Links
-    format: text
-```
+{% dataTable
+  dataPath="tutorials/tutorials"
+  rowFilterKey="tags"
+  rowFilterValue="other"
+  rowSortKey="updated"
+  rowSortReverse=true
+  columns=[
+    {name: "Name", key: "name/en"},
+    {name: "Description", key: "description/en"},
+    {name: "Author(s)", key: "authors"},
+    {name: "Last updated", key: "updated"},
+    {name: "Links", key: "links/en"}
+  ]
+/%}
 
 [hek]: http://hce.halomaps.org/hek/

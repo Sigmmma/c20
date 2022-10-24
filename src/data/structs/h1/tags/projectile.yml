@@ -219,7 +219,7 @@ type_defs:
             the projectile reaches the maximum range, it disappears (and does
             not detonate). If detonation at a max range is desired, used the
             _maximum range_ field above. See the [impact damage
-            formula][damage_effect#impact-damage-formula] for more information.
+            formula](~damage_effect#impact-damage-formula) for more information.
             If these values are set to 0, maximum damage is applied and the
             projectile continues traveling until colliding or detonating.
       - name: water_gravity_scale
@@ -233,7 +233,7 @@ type_defs:
         comments:
           en: >
             Like _air damage range_, but for underwater environments (determined
-            by the _is water_ flag of [fog][] tags).
+            by the _is water_ flag of [fog](~) tags).
       - name: initial_velocity
         type: float
         meta:
@@ -242,9 +242,9 @@ type_defs:
           en: >
             Sets the velocity of the projectile upon creation. For grenades
             thrown by AI, see [actor_variant _grenade
-            velocity_][actor_variant#tag-field-grenade-velocity]. For
+            velocity_](~actor_variant#tag-field-grenade-velocity). For
             player-thrown grenades, see [unit _grenade
-            velocity_][unit#tag-field-grenade-velocity].
+            velocity_](~unit#tag-field-grenade-velocity).
       - name: final_velocity
         type: float
         meta:

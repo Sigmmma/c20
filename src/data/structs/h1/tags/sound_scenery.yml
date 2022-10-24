@@ -13,8 +13,8 @@ type_defs:
       post_compile: true
     comments:
       en: >
-        Identical to [scenery][] but with collision rules like
-        [device_light_fixture][]. Used for invisible emitters of localized sound
+        Identical to [scenery](~) but with collision rules like
+        [device_light_fixture](~). Used for invisible emitters of localized sound
         like rivers and waterfalls.
     assert_size: 508
     fields: []

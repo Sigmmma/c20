@@ -1,11 +1,22 @@
-```.alert
-This is an article about the legacy H2V Tool for use with [Halo 2 Vista][h2], for the H2 Tool for MCC see [H2 Tool][h2-tool]
-```
+---
+title: H2V Tool (2007)
+stub: true
+about: 'tool:H2V-Tool'
+img: h2tool.jpg
+caption: Using H2V Tool in CMD to view the command list
+keywords:
+  - tool
+  - lightmap
+  - cli
+---
+{% alert %}
+This is an article about the legacy H2V Tool for use with [Halo 2 Vista](~h2), for the H2 Tool for MCC see [H2 Tool](~h2-tool)
+{% /alert %}
 
-**H2V Tool** (**h2tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It is part of the [H2V-EK][].
+**H2V Tool** (**h2tool.exe**), is a [command-line](~) utility used to compile data into [tags](~), and tags into [maps](~map). It is part of the [H2V-EK](~).
 
 # ASS compilation
-An [ASS][] file containing model geometry can be compiled into a [scenario_structure_bsp][] using the `structure-new-from-ass` verb:
+An [ASS](~) file containing model geometry can be compiled into a [scenario_structure_bsp](~) using the `structure-new-from-ass` verb:
 
 ```sh
 # structure-new-from-ass <ass-file> <use-release>
@@ -27,9 +38,9 @@ h2tool.exe structure-new-verbose-from-ass "scenarios\multi\example\structure\exa
 ```
 
 # Lightmaps
-Tool can be used to generate [lightmaps][]. Using Tool, you will need the following arguments:
+Tool can be used to generate [lightmaps](~). Using Tool, you will need the following arguments:
 
-1. **Scenario [tag path][tags#tag-references-and-paths]**: This is _not_ a file path! Leave off the ".scenario" extension and start the path from within the tags directory.
+1. **Scenario [tag path](~tags#tag-references-and-paths)**: This is _not_ a file path! Leave off the ".scenario" extension and start the path from within the tags directory.
 2. **BSP name:** The name of the BSP tag without the file extension.
 3. **Lightmap quality:** Choose a setting string from the following list. Settings are ordered from lowest to highest.
 
@@ -73,7 +84,7 @@ h2tool.exe lightmaps_debug "scenarios\multi\example\example" "example" checkerbo
 ```
 
 # Batch bitmap compilation
-TIF, TIFF, uncompressed 32bit TGA, JPEG, and BMP images with a color depth of 24-bits or higher can be compiled into a [bitmap][] tag using the `bitmaps` verb:
+TIF, TIFF, uncompressed 32bit TGA, JPEG, and BMP images with a color depth of 24-bits or higher can be compiled into a [bitmap](~) tag using the `bitmaps` verb:
 
 ```sh
 # bitmaps <source-directory>
@@ -83,7 +94,7 @@ h2tool.exe bitmaps "characters\cyborg\bitmaps"
 For the example above, Tool would expect to find image files at `data\characters\cyborg\bitmaps\`. Assuming no errors, each image file will be compiled into a bitmap tag at `tags\characters\cyborg\bitmaps\`. Each image file that exists in the source directory will be compiled into it's own individual tag with the name of the tag coming from the image filename.
 
 # Unicode String compilation
-UTF-16 text files containing strings can be compiled into a [multilingual_unicode_string_list][] using the `new-strings` verb:
+UTF-16 text files containing strings can be compiled into a [multilingual_unicode_string_list](~) using the `new-strings` verb:
 
 ```sh
 # new-strings <source-directory>
@@ -93,7 +104,7 @@ h2tool.exe new-strings "scenarios\descriptions"
 For the example above, Tool would expect to find text files at `data\scenarios\descriptions\`. Assuming no errors, a file named "example.txt" would be compiled into `tags\scenarios\descriptions\example.multilingual_unicode_string_list`. Each text file that exists in the source directory will be compiled into it's own individual tag with the name of the tag coming from the text filename.
 
 # Build cache file
-A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb. Simply provide your scenario's tag path:
+A [scenario](~) can be compiled into a [map](~) using the `build-cache-file` verb. Simply provide your scenario's tag path:
 
 ```sh
 # build-cache-file <scenario>

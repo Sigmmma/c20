@@ -1,4 +1,8 @@
-**invader-dependency** is a [command-line][] tool included in the [Invader][] project. It finds [tags][] which directly [reference][tags#tag-references-and-paths] a given tag.
+---
+title: invader-dependency
+about: 'tool:invader-dependency'
+---
+**invader-dependency** is a [command-line](~) tool included in the [Invader](~) project. It finds [tags](~) which directly [reference](~tags#tag-references-and-paths) a given tag.
 
 # Usage
 See [official documentation][docs] for usage instructions.

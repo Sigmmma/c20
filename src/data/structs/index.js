@@ -1,5 +1,5 @@
-const {loadYamlTree} = require("../../utils");
-const R = require("ramda");
+import {loadYamlTree} from "../../lib/utils/files";
+import * as R from "ramda";
 const INTRINSIC_TYPE_DEFS = require("./intrinsics");
 
 async function loadStructModules() {
@@ -18,11 +18,8 @@ function processGenerics(genericParams, type_args) {
   };
 }
 
-function buildTypeDefs(initialTypeDefs, initialImports, modules) {
-  let typeDefs = {
-    ...INTRINSIC_TYPE_DEFS,
-    ...initialTypeDefs
-  };
+function buildTypeDefs(initialImports, modules) {
+  let typeDefs = {...INTRINSIC_TYPE_DEFS};
 
   let importsQueue = [initialImports];
   while (importsQueue.length > 0) {
@@ -80,7 +77,7 @@ function instantiateTypeInner(typeDefs, typeParams, parentTypeArgs, opts, isRoot
 }
 
 function walkTypeDefs(structName, structModule, structModules, opts, cb) {
-  const typeDefs = buildTypeDefs({}, {[structModule]: [structName]}, structModules);
+  const typeDefs = buildTypeDefs({[structModule]: [structName]}, structModules);
 
   function walkStructInner(typeParams, typeArgs, isFirst) {
     if (typeArgs) {
@@ -89,7 +86,7 @@ function walkTypeDefs(structName, structModule, structModules, opts, cb) {
 
     let typeDef = typeDefs[typeParams.type];
     if (!typeDef) {
-      throw new Error(`Failed to resolve type ${typeName}`);
+      throw new Error(`Failed to resolve type ${typeParams.type}`);
     }
 
     if (typeDef.class == "alias") {

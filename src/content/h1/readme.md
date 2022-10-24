@@ -1,29 +1,31 @@
-<figure>
-  <a href="box-art.jpg">
-    <img src="box-art.jpg" alt="Halo's box art"/>
-  </a>
-  <figcaption>
-    <p>Halo's box art</p>
-  </figcaption>
-</figure>
+---
+title: Halo 1
+keywords:
+  - h1
+  - halo
+  - combat evolved
+  - ce
+thanks:
+  gbMichelle: H1A/MCC lineage information
+  Hasuku: Xbox modding lineage
+  Kavawuvi: Engine versions
+---
+{% figure src="box-art.jpg" %}
+Halo's box art
+{% /figure %}
 
-**Halo: Combat Evolved**, also known as **Halo 1**, is the first installment of the Halo game series. It was created by [Bungie][bungie] and initially released on the original Xbox in 2001 by publisher/owner [Microsoft][]. In 2003, the game was released for Windows PC and Mac via different studios.
+**Halo: Combat Evolved**, also known as **Halo 1**, is the first installment of the Halo game series. It was created by [Bungie][bungie] and initially released on the original Xbox in 2001 by publisher/owner [Microsoft][microsoft]. In 2003, the game was released for Windows PC and Mac via different studios.
 
-Halo 1 uses Bungie's proprietary [Blam!][engine] engine, which also formed the basis of later games in the series. PC versions of the game support a variety of command line/shortcut [arguments][] to configure and toggle features.
+Halo 1 uses Bungie's proprietary [Blam!](~engine) engine, which also formed the basis of later games in the series. PC versions of the game support a variety of command line/shortcut [arguments](~) to configure and toggle features.
 
 # Editions and versions
 
-<figure>
-  <a href="games.svg">
-    <img src="games.svg" alt="Tree view of the Halo 1 editions"/>
-  </a>
-  <figcaption>
-    <p>Evolution of the Halo 1 editions and versions, colour-coded by platform or major revision</p>
-  </figcaption>
-</figure>
+{% figure src="games.svg" %}
+Evolution of the Halo 1 editions and versions, colour-coded by platform or major revision
+{% /figure %}
 
 ## Xbox (Bungie, 2001)
-Sometimes called **h1x** or **OG Xbox**, this is the classic first release of Halo 1 for the original Xbox. It supports LAN multiplayer and spawned a competitive community which is still active. While original Xbox consoles are hard to come by, [emulation][xemu] is an emerging alternative. Though it is a more involved process, custom maps created with the [HEK][] can be ported back to Xbox.
+Sometimes called **h1x** or **OG Xbox**, this is the classic first release of Halo 1 for the original Xbox. It supports LAN multiplayer and spawned a competitive community which is still active. While original Xbox consoles are hard to come by, [emulation][xemu] is an emerging alternative. Though it is a more involved process, custom maps created with the [HEK](~) can be ported back to Xbox.
 
 Xbox has a rich history of modding, notably:
 
@@ -40,20 +42,20 @@ Often called **retail** or **PC**, this edition is the classic port of Halo 1 to
 * Addition of the flame thrower, fuel rod gun, and rocket warthog
 * Addition of the multiplayer maps Death Island, Ice Fields, Gephyrophobia, Infinity, Timberland, and Danger Canyon
 * Addition of a dedicated server, `haloceded.exe`
-* The [model][] tag was modified into [gbxmodel][]
-* A new "jet" particle creation physics type was added to the [particle_system][] tag
-* [Regressions in visuals][renderer#gearbox-regressions] and assets due to platform differences and the port being based on a pre-release version of Xbox Halo 1
+* The [model](~) tag was modified into [gbxmodel](~)
+* A new "jet" particle creation physics type was added to the [particle_system](~) tag
+* [Regressions in visuals](~renderer#gearbox-regressions) and assets due to platform differences and the port being based on a pre-release version of Xbox Halo 1
 
 The game received several patches since its release to address remote exploits, remove the CD requirement, replace the GameSpy Arcade lobby, and other minor improvements. Its current version is `1.0.10` ([2014][patch]).
 
 A **beta version** of Halo PC can also be found online. It has [unfinished versions of PC-exclusive content][pc-beta-2] and [weapon tuning][pc-beta-1] similar to pre-release Xbox versions.
 
 ## Custom Edition (PC, Gearbox Software, 2004)
-Custom edition, often called **Halo CE** or **CE** is a standalone version of Halo PC which supports custom maps created by the [HEK][], [released in 2004][custom-edition-launch]. Like Halo PC it features a server browser and its own `haloceded.exe` dedicated server, but lacks the campaign. [Maps][map] are incompatible between the editions.
+Custom edition, often called **Halo CE** or **CE** is a standalone version of Halo PC which supports custom maps created by the [HEK](~), [released in 2004][custom-edition-launch]. Like Halo PC it features a server browser and its own `haloceded.exe` dedicated server, but lacks the campaign. [Maps](~map) are incompatible between the editions.
 
 CE has many more differences from PC. To name a few:
 
-* Some tags were modified, such as stun effects, possibly as a workaround for [netcode desyncs][netcode#known-issues-and-limitations]
+* Some tags were modified, such as stun effects, possibly as a workaround for [netcode desyncs](~netcode#known-issues-and-limitations)
 * Regression in rendering of certain objects through fog
 * Addition of the the gamemode info menu (F2)
 * Addition of the teammate names toggle (F3)
@@ -75,8 +77,8 @@ In 2011, Halo: Combat Evolved Anniversary was released for Xbox 360. Often calle
 ## MCC (PC and Xbox One, 343 Industries, 2014-2021)
 Halo: The Master Chief collection (MCC) is actively maintained by [343 Industries][343i] for both PC and Xbox One. It brings the Halo series under a single [Game as a Service][gaas], including unified matchmaking and progression experiences. The PC port uses [Unreal Engine][unreal] as a menu and input layer over the respective engines of each included Halo game.
 
-Custom maps can be created for MCC PC using the official [H1A Editing kit][h1a-ek].
-The community tool [Invader][] also supports building H1A caches. The [SeT][] supports modifying S3D content (this is not supported by the offical tools).
+Custom maps can be created for MCC PC using the official [H1A Editing kit](~h1a-ek).
+The community tool [Invader](~) also supports building H1A caches. The [SeT](~) supports modifying S3D content (this is not supported by the offical tools).
 
 [gearbox]: https://en.wikipedia.org/wiki/Gearbox_Software
 [bungie]: https://en.wikipedia.org/wiki/Bungie

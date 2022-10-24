@@ -243,7 +243,7 @@ type_defs:
     comments:
       en: |-
         Contains sound data such as sound effects and music and parameters affecting
-        how sounds are played by the [sound system][sound-system].
+        how sounds are played by the [sound system](~sound-system).
     fields:
       - name: flags
         type: SoundFlags
@@ -302,7 +302,7 @@ type_defs:
           min: 0
         comments:
           en: >
-            Warning: [Legacy Guerilla][hek/guerilla] allows you to set
+            Warning: [Legacy Guerilla](~hek/guerilla) allows you to set
             this value outside its valid range. Avoid crashes by staying in the
             valid range.
       - name: maximum_bend_per_second
@@ -318,7 +318,7 @@ type_defs:
           min: 0
         comments:
           en: >
-            Warning: [Legacy Guerilla][hek/guerilla] allows you to set
+            Warning: [Legacy Guerilla](~hek/guerilla) allows you to set
             this value outside its valid range. Avoid crashes by staying in the
             valid range.
       - name: zero_pitch_modifier
@@ -334,7 +334,7 @@ type_defs:
           min: 0
         comments:
           en: >
-            Warning: [Legacy Guerilla][hek/guerilla] allows you to set
+            Warning: [Legacy Guerilla](~hek/guerilla) allows you to set
             this value outside its valid range. Avoid crashes by staying in the
             valid range.
       - name: one_pitch_modifier

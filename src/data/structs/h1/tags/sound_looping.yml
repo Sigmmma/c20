@@ -44,9 +44,9 @@ type_defs:
           en: >
             How many seconds it takes for this track to fade in, such as when
             entering a
-            [cluster][scenario_structure_bsp#clusters-and-cluster-data] with a
+            [cluster](~scenario_structure_bsp#clusters-and-cluster-data) with a
             [background
-            sound][scenario_structure_bsp#tag-field-background-sound-palette].
+            sound](~scenario_structure_bsp#tag-field-background-sound-palette).
       - name: fade_out_duration
         type: float
         meta:
@@ -193,7 +193,7 @@ type_defs:
             Tracks can be considered the "layers" of the *sound_looping*.
             Although many tracks can be added, the engine is not be capable of
             playing more than 4 of each [sound
-            class][sound#tag-field-sound-class] simultaneously when on high
+            class](~sound#tag-field-sound-class) simultaneously when on high
             sound quality setting (2 on low or in Sapien). Extra tracks past
             these limits will not be played.
       - name: detail_sounds

@@ -1,6 +1,22 @@
-**Halo Script** is a scripting language that H1 map designers can use to have greater control over how their map works. It is primarily used in controlling the mission structure of single player maps, but can also be used to achieve certain effects in multiplayer, such as [synchronizing workarounds][sync-workarounds].
+---
+title: H1 scripting
+about: 'resource:h1/hsc'
+img: bslbible.png
+keywords:
+  - script
+  - hsc
+  - bsl
+thanks:
+  kornman00: >-
+    Original Blam Scripting Language Bible,
+    http://www.modacity.net/docs/bslbible/
+  Mimickal: 'Additional background on scripting, edits for clarity and extra information'
+  t3h lag: 'Additional script information (limits, types, functionality, etc...)'
+  Ifafudafi: Script limits information
+---
+**Halo Script** is a scripting language that H1 map designers can use to have greater control over how their map works. It is primarily used in controlling the mission structure of single player maps, but can also be used to achieve certain effects in multiplayer, such as [synchronizing workarounds](~sync-workarounds).
 
-Scripts are compiled into the [scenario][] of a [map][] using [Sapien][].
+Scripts are compiled into the [scenario](~) of a [map](~) using [Sapien](~).
 
 # Compiling a script into a scenario
 Sapien searches for scripts in the data version of your scenario's path. For
@@ -56,29 +72,29 @@ either remove stuff from the script, or move stuff from one source file
 into another source file. Comments and unnecessary whitespace are non-functional
 things that can be removed to reduce size, but only do this if you *need* to!
 
-```.alert
+{% alert %}
 Comments and indentation are important for understanding your own scripts. Most
 projects will not be big enough to need to worry about exceeding source file
 size, so good coding conventions should be used until they can't be!
 
 Tools like the Halo Script Preprocessor (see below) can strip comments and
 whitespace in the final script, while keeping them in your source file.
-```
+{% /alert %}
 
 ## Number of source files is limited
 A scenario's scripts can be split into multiple files, but the number of files
 you can have is limited to 8.
 
-```.alert
+{% alert %}
 Sapien silently fails to load all of the files if there are more than 8. It
 loads the first 8 in some determined order ("asciibetical"?), then excludes the
 rest. No errors are thrown unless scripts fail to compile because of the
 excluded files.
-```
+{% /alert %}
 
 ## Stack space is limited
 If you've never heard of a stack in the context of computer programming before,
-[skim through this][stack]. Halo allocates a certain amount of memory for each [scripting thread][scripting#script-threads] in a scenario, called the "stack". Stack memory is used to hold results of invoking functions, parameters for script functions, and so on. Notably, nesting function calls will consume additional stack memory.
+[skim through this][stack]. Halo allocates a certain amount of memory for each [scripting thread](~scripting#script-threads) in a scenario, called the "stack". Stack memory is used to hold results of invoking functions, parameters for script functions, and so on. Notably, nesting function calls will consume additional stack memory.
 
 ```hsc
 ; Nested statements are statements like these, where many
@@ -98,19 +114,19 @@ If you've never heard of a stack in the context of computer programming before,
 
 It is very, very easy to exceed the limits of this memory if you have enough nested statements. The maximum number of nested statements is somewhere between 10 and 16 levels deep, depending on if you're invoking static scripts, if you're invoking methods with parameters, and other things.
 
-```.alert danger
+{% alert type="danger" %}
 **WARNING: The game *DOES NOT* guard against exceeding stack memory in release builds!!** If you exceed a script's stack memory, it will [overflow](http://en.wikipedia.org/wiki/Buffer_overflow) into other scripts' stack memory!
-```
+{% /alert %}
 
 This means that one script can ***COMPLETELY*** break another script if it nests too deeply. If another script's memory is clobbered, it can end up doing arbitrary things. It might wake up when it's supposed to be asleep. It might switch to a new BSP for no reason. It might crash the game. It might make objects flicker randomly.
 
-There is not currently a reliable way to exactly tell when stack memory has been exceeded in [release][build-types] builds, but `play` and lower optimization levels will crash with `a problem occurred while executing the script <script name>: corrupted stack. (valid_thread(thread))`. You can use the [H1A standalone build][h1a-standalone-build] or Sapien to detect overflows.
+There is not currently a reliable way to exactly tell when stack memory has been exceeded in [release](~build-types) builds, but `play` and lower optimization levels will crash with `a problem occurred while executing the script <script name>: corrupted stack. (valid_thread(thread))`. You can use the [H1A standalone build](~h1a-standalone-build) or Sapien to detect overflows.
 
 ## Console scripts
 Things manually entered into the console ingame also share script space with the scenario's baked in scripts. In rare circumstances (e.g. you're just on the cusp of using too much memory), a console script's memory can overflow into a scenario script's memory, causing the above mentioned issues.
 
 ## When to use short vs long
-There are two integer variable types: `short` and `long`. Both hold whole numbers, but `long` variables can hold much larger numbers than `short` variables. It's worth noting both use the same amount of memory, so you should decide the type you use based on what range of values makes sense or the values the functions you call accept (avoids a [cast][scripting#value-type-casting]).
+There are two integer variable types: `short` and `long`. Both hold whole numbers, but `long` variables can hold much larger numbers than `short` variables. It's worth noting both use the same amount of memory, so you should decide the type you use based on what range of values makes sense or the values the functions you call accept (avoids a [cast](~scripting#value-type-casting)).
 
 If you need to optimize memory usage you can use the bitwise functions to implement a [bitfield][].
 
@@ -134,79 +150,63 @@ For example, the following block:
 ```
 
 # HSC reference
-To learn more about HSC's general syntax and execution model, see our [cross-game scripting page][general/engine/scripting]. There is also [additional important script engine info below][scripting#gotchas-and-limits].
+To learn more about HSC's general syntax and execution model, see our [cross-game scripting page](~general/engine/scripting). There is also [additional important script engine info below](~scripting#gotchas-and-limits).
 
 ## Script types
-```.table
-dataPath: hsc/h1/script_types/script_types
-linkCol: 0
-columns:
-  - key: type
-    name: Type
-    format: code
-  - key: info/en
-    name: Comments
-    format: text
-  - key: ex
-    style: "width:50%"
-    name: Example
-    format: codeblock-hsc
-```
+{% dataTable
+  dataPath="hsc/h1/script_types/script_types"
+  linkCol=0
+  columns=[
+    {name: "Type", key: "type", format: "code"},
+    {name: "Comments", key: "info/en"},
+    {name: "Example", key: "ex", format: "codeblock-hsc", style: "width:50%"}
+  ]
+/%}
 
 ## Value types
-```.table
-dataPath: hsc/h1/value_types/value_types
-linkCol: 0
-columns:
-  - key: type
-    name: Type
-    format: code
-  - key: info/en
-    name: Details
-    format: text
-  - key: ex
-    name: Example
-    format: text
-```
+{% dataTable
+  dataPath="hsc/h1/value_types/value_types"
+  linkCol=0
+  columns=[
+    {name: "Type", key: "type", format: "code"},
+    {name: "Details", key: "info/en"},
+    {name: "Example", key: "ex"}
+  ]
+/%}
 
 ## Operators and keywords
-```.table
-dataPath: hsc/h1/ops_keywords/operators_and_keywords
-linkCol: true
-linkSlugKey: slug
-columns:
-  - key: type
-    name: Expression
-    format: text
-  - key: ex
-    name: Example
-    format: text
-```
+{% dataTable
+  dataPath="hsc/h1/ops_keywords/operators_and_keywords"
+  linkCol=true
+  linkSlugKey="slug"
+  columns=[
+    {name: "Expression", key: "type"},
+    {name: "Example", key: "ex"}
+  ]
+/%}
 
 ## Functions
-```.table
-dataPath: hsc/h1/functions/functions
-linkCol: true
-linkSlugKey: slug
-rowSortKey: slug
-columns:
-  - key: info/en
-    name: Function
-    format: text
-```
+{% dataTable
+  dataPath="hsc/h1/functions/functions"
+  linkCol=true
+  linkSlugKey="slug"
+  rowSortKey="slug"
+  columns=[
+    {name: "Function", key: "info/en"}
+  ]
+/%}
 
 ## External globals
 
-```.table
-dataPath: hsc/h1/globals/external_globals
-linkCol: true
-linkSlugKey: slug
-rowSortKey: slug
-columns:
-  - key: info/en
-    name: Global
-    format: text
-```
+{% dataTable
+  dataPath="hsc/h1/globals/external_globals"
+  linkCol=true
+  linkSlugKey="slug"
+  rowSortKey="slug"
+  columns=[
+    {name: "Global", key: "info/en"}
+  ]
+/%}
 
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)
 [c-format]: http://www.cplusplus.com/reference/cstdio/printf/

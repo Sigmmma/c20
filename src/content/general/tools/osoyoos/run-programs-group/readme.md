@@ -1,3 +1,12 @@
+---
+title: Osoyoos Launcher - Run Programs
+stub: false
+about: 'tool:Osoyoos launcher'
+img: run_programs.jpg
+caption: The run programs section of the Osoyoos launcher.
+info: |
+  * [Source code and download](https://github.com/num0005/Osoyoos-Launcher)
+---
 This group lets you run various programs and commands directly from the UI. You can find this at the top of the UI window.
 
 | Setting                    | Description

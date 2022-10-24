@@ -1,8 +1,30 @@
-```.alert
-This is an article about the H1A Tool for use with MCC. For the legacy Tool for [Halo: Custom Edition][h1] see [Tool (2004)][tool]. You may also be interested in a [summary of changes][h1a-ek#tool] from legacy Tool.
-```
+---
+title: H1A Tool (2021)
+about: 'tool:H1A-Tool'
+img: h1a-tool-structure.png
+caption: The tutorial map structure being compiled from a JMS.
+keywords:
+  - lightmap
+  - radiosity
+  - cli
+  - h1atool
+  - tool
+related:
+  - /h1/tools/hek/tool
+  - /h2/tools/h2-ek/h2-tool
+  - /h3/h3-ek/h3-tool
+thanks:
+  num0005: Documenting H1A commands and updating documentation for other commands.
+  gbMichelle: Hardcoded tag patch reversing
+  MosesOfEgypt: Explanation of radiosity passes
+  General_101: Documenting tool commands (legacy and some H1A)
+  Kavawuvi: Warning about Tool only using marker from superhigh LOD
+---
+{% alert %}
+This is an article about the H1A Tool for use with MCC. For the legacy Tool for [Halo: Custom Edition](~h1) see [Tool (2004)](~tool). You may also be interested in a [summary of changes](~h1a-ek#tool) from legacy Tool.
+{% /alert %}
 
-**H1A Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [H1A-EK][] by 343 Industries in 2021.
+**H1A Tool** (**tool.exe**), is a [command-line](~) utility used to compile data into [tags](~), and tags into [maps](~map). It was released as a part of the [H1A-EK](~) by 343 Industries in 2021.
 
 This new version of Tool has many differences from the 2003 Gearbox Tool. Most notably, it includes far more verbs and new options for existing ones. A major addition is the FBX to JMS/JMA toolchain and features supporting Saber's remastered mode.
 
@@ -18,11 +40,11 @@ This new version of Tool has many differences from the 2003 Gearbox Tool. Most n
 # Command line flags
 
 - `-noassert` command line flag can be used with any verb to disable all asserts.
-- `-data_dir`, `-tags_dir`, and `-game_root_dir` can be used to change the tags, data, and maps directories. This might not work with all verbs as it's experimental. See [using custom content paths][using-custom-content-paths].
+- `-data_dir`, `-tags_dir`, and `-game_root_dir` can be used to change the tags, data, and maps directories. This might not work with all verbs as it's experimental. See [using custom content paths](~using-custom-content-paths).
 - `-pause` wait for user input before exiting, useful for custom launchers.
 
 # Animation compilation
-[Animation data][animation-data] files containing transforms for a skeleton can be compiled into a [model_animations][] tag using the `animations` verb:
+[Animation data](~animation-data) files containing transforms for a skeleton can be compiled into a [model_animations](~) tag using the `animations` verb:
 
 ```sh
 # animations <source-directory>
@@ -33,10 +55,10 @@ tool animations "characters\cyborg"
 
 For the example above, Tool would expect to find corresponding animation data files at `data\characters\cyborg\animations\`. Assuming no errors, it would be compiled into `tags\characters\cyborg\cyborg.model_animations`.
 
-See the [animation data][animation-data] page for more info on the various extensions used during animation importing and their purpose.
+See the [animation data](~animation-data) page for more info on the various extensions used during animation importing and their purpose.
 
 # Bitmap compilation
-Compile a single TIFF image into a [bitmap][] using the `bitmap` verb:
+Compile a single TIFF image into a [bitmap](~) using the `bitmap` verb:
 
 ```sh
 # bitmap <source-file> [debug-plate?]
@@ -52,7 +74,7 @@ For the example above, Tool would expect to find a _.tif or .tiff_ file at `data
 As with the `bitmaps` verb, TIFF files must have at least 8-bit colour depth and are typically 32-bit. Image data is encoded using DirectXTex.
 
 # Batch bitmap compilation
-[TIFF][wiki-tiff] (.tif/.tiff) images can be compiled into a [bitmap][] using the `bitmaps` verb:
+[TIFF][wiki-tiff] (.tif/.tiff) images can be compiled into a [bitmap](~) using the `bitmaps` verb:
 
 ```sh
 # bitmaps <source-directory> [2d|3d|cubemaps|sprites|interface] [debug-plate?]
@@ -74,7 +96,7 @@ For the example above, Tool would expect to find .tif/.tiff files at `data\chara
 Tool supports TIFF files with a [colour depth][wiki-color] of at least 8 bits per pixel, 32-bit color (8 bits per channel) being typical.
 
 # Build cache file
-A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb. Simply provide your scenario's tag path and choose classic or remastered mode (the last two arguments are optional):
+A [scenario](~) can be compiled into a [map](~) using the `build-cache-file` verb. Simply provide your scenario's tag path and choose classic or remastered mode (the last two arguments are optional):
 
 ```sh
 #  build-cache-file <scenario-name> <classic|remastered> [resource-map-usage<none|read|read_write>] [log-tag-loads]
@@ -94,11 +116,11 @@ tool build-cache-file "levels\test\tutorial\tutorial" remastered
 
 The resulting map file can be found in the editing kit's `maps` directory. This verb also generates reports under `reports\<mapname>` including a compilation-specific `debug.txt` and a `tag_dump.txt`.
 
-```.alert danger
-H1A Tool recompiles scripts during cache compilation using **.hsc source files** from the [data directory][source-data] when available. Legacy Tool _only_ used sources stored [within the scenario tag][scenario#tag-field-source-files] which was sometimes a source of confusion.
+{% alert type="danger" %}
+H1A Tool recompiles scripts during cache compilation using **.hsc source files** from the [data directory](~source-data) when available. Legacy Tool _only_ used sources stored [within the scenario tag](~scenario#tag-field-source-files) which was sometimes a source of confusion.
 
 **It is very important** that you extract the mod tool's provided `data.zip` so the campaign scripts are available for this step because the scripts contained within the scenario tags themselves are not enough to build the stock campaign maps correctly.
-```
+{% /alert %}
 
 ## Classic and remastered mode
 
@@ -106,11 +128,11 @@ H1A Tool recompiles scripts during cache compilation using **.hsc source files**
 * "remastered" is intended for building maps compatible with S3D-based remastered graphics and sounds. Some HUD bitmaps will be read from S3D data files instead of tags.
 
 ## Updating resource maps
-There are 3 ways to use [resource maps][map#resource-maps] when building a cache file:
+There are 3 ways to use [resource maps](~map#resource-maps) when building a cache file:
 
 * `none`: Tool will build self-contained maps. This is the default and also the behaviour of the resource maps are missing from their expected location.
 * `read`: Tool will allow your map to rely on tags within `bitmaps.map` and `sounds.map`.
-* `read_write`: Tool will add bitmaps and sounds from the map being compiled into the respective resource maps. [Lightmaps][] bitmaps are still kept in the map's own cache file rather than added to `bitmaps.map`.
+* `read_write`: Tool will add bitmaps and sounds from the map being compiled into the respective resource maps. [Lightmaps](~) bitmaps are still kept in the map's own cache file rather than added to `bitmaps.map`.
 
 Note: H1A Tool will never update nor read `loc.map` because it is unused in H1A aside from H1CE compatibility.
 
@@ -118,13 +140,13 @@ Note: H1A Tool will never update nor read `loc.map` because it is unused in H1A 
 Tag loads during cache compilation can be logged to `tool_tags_loaded.txt`, this helps build a list of tags needed for a scenario if you are releasing a tag set.
 
 ## Hardcoded tag patches
-There are a number of gameplay-balancing tag patches ("Jason Jones edits") made at runtime on Xbox, but also at map compilation time by Tool. On both platforms, these patches are only made to [singleplayer scenarios][scenario#tag-field-type].
+There are a number of gameplay-balancing tag patches ("Jason Jones edits") made at runtime on Xbox, but also at map compilation time by Tool. On both platforms, these patches are only made to [singleplayer scenarios](~scenario#tag-field-type).
 
 | Tag type        | Tag path                          | Changes
 |-----------------|-----------------------------------|----------------
-|[weapon][]       |`weapons\pistol\pistol`            |Min error and first error angle to `0.2` degrees, second error angle to `0.4` for first trigger
-|[damage_effect][]|`weapons\pistol\bullet`            |Elite energy shield damage modifier to `0.8`
-|[weapon][]       |`weapons\plasma rifle\plasma rifle`|First error angle to `0.25` degrees, second error to `2.5` for first trigger
+|[weapon](~)       |`weapons\pistol\pistol`            |Min error and first error angle to `0.2` degrees, second error angle to `0.4` for first trigger
+|[damage_effect](~)|`weapons\pistol\bullet`            |Elite energy shield damage modifier to `0.8`
+|[weapon](~)       |`weapons\plasma rifle\plasma rifle`|First error angle to `0.25` degrees, second error to `2.5` for first trigger
 
 These changes are made only to the resulting tag data in the map file, but be careful when extracting tags from singleplayer maps (both PC and Xbox)! You will actually overwrite the original weapon tags and cause your custom multiplayer maps to _also_ use these values.
 
@@ -174,10 +196,10 @@ tool check-shaders levels\test\my_broke_level
 
 * root-directory - A local tag path to a directory containing shader tags.
 
-Checks all the [shader][] tags in a tag path (including sub-directories). Errors will be printed to console.
+Checks all the [shader](~) tags in a tag path (including sub-directories). Errors will be printed to console.
 
 # Collision geometry compilation
-A [JMS][] file containing a collision model can be compiled into a [model_collision_geometry][] using the `collision-geometry` verb:
+A [JMS](~) file containing a collision model can be compiled into a [model_collision_geometry](~) using the `collision-geometry` verb:
 
 ```sh
 # collision-geometry <source-directory> [fix-phantom-bsp]
@@ -188,7 +210,7 @@ tool collision-geometry "scenery\rock" true
 * source-directory - A local data path to the root of a model source directory.
 * fix-phantom-bsp - Set true or false in order to enable the phantom fixup code. If you notice collision where there shouldn't be any then enable this.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenery\rock\physics\rock.JMS`. Assuming no errors, it would be compiled into `tags\scenery\rock\rock.model_collision_geometry`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenery\rock\physics\rock.JMS`. Assuming no errors, it would be compiled into `tags\scenery\rock\rock.model_collision_geometry`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 Permutations and LODs are also supported using the same file name conventions as [render model compilation](#model-compilation):
 
@@ -197,7 +219,7 @@ Permutations and LODs are also supported using the same file name conventions as
 base superhigh.JMS
 ```
 
-The optional argument fixes [model collision artifacts][model_collision_geometry#phantom-bsp] by enabling the same fixup code used for structure BSPs.
+The optional argument fixes [model collision artifacts](~model_collision_geometry#phantom-bsp) by enabling the same fixup code used for structure BSPs.
 
 # Compiling DX11 shaders
 
@@ -217,7 +239,7 @@ tool compile-shaders dx11 all
 	* vsh
 	* all
 
-Compiles the [shader files](https://en.wikipedia.org/wiki/Shader) in the `shaders` subdirectory into `fx.bin`, `psh.bin` and `vsh.bin`. These are not the same as the [shader][] tags and unless you have a working understanding of 3D graphics programming you don't need to touch this command.
+Compiles the [shader files](https://en.wikipedia.org/wiki/Shader) in the `shaders` subdirectory into `fx.bin`, `psh.bin` and `vsh.bin`. These are not the same as the [shader](~) tags and unless you have a working understanding of 3D graphics programming you don't need to touch this command.
 The `xbox1` and `xbox1_debug` commands won't work without a copy of the XDK; [which is not publicly available](https://docs.microsoft.com/en-us/gaming/xbox-live/get-started/setup-ide/managed-partners/vstudio-xbox/live-where-to-get-xdk).
 
 # Copy detail objects
@@ -297,7 +319,7 @@ tool fbx-to-jms E:\my_fbx_files\cyborg_dab.fbx data\characters\cyborg\animations
 
 **<i>You need to use a standard file path not a path relative to the `data` folder</i>**
 
-For some details on how to setup the FBX file see [FBX for H1A][fbx].
+For some details on how to setup the FBX file see [FBX for H1A](~fbx).
 
 The start and end keyframes are optional and will default to including the full animation provided.
 
@@ -312,7 +334,7 @@ tool fbx-to-jms E:\my_fbx_files\better_cyborg.fbx data\characters\cyborg\models\
 
 **<i>You need to use a standard file path not a path relative to the `data` folder</i>**
 
-For some details on how to setup the FBX file see [FBX for H1A][fbx].
+For some details on how to setup the FBX file see [FBX for H1A](~fbx).
 
 # Find and add sounds to a dialogue tag
 
@@ -326,7 +348,7 @@ tool find-dialogue test\test_dialogue sound\dialog\jackal\combat2
 The command can at most process 512 sounds during one invocation as that is the size of the buffer it stores the filenames in. If you invoke it on a larger directory it will say it found 512 files even when there are more in the directory.
 
 # HUD messages compilation
-UTF-16 text files with an [.HMT extension][hmt] can be compiled into a [hud_message_text][] using the `hud-messages` verb:
+UTF-16 text files with an [.HMT extension](~hmt) can be compiled into a [hud_message_text](~) using the `hud-messages` verb:
 
 ```sh
 # hud-messages <path> <scenario-name>
@@ -337,7 +359,7 @@ For the example above, Tool would expect to find a text file at `data\levels\a10
 
 It's important that the file's name be "hud messages.hmt". Tool specifically looks for a file with this name when compiling HUD messages. You can simply edit the ".hmt" file with notepad. Simply renaming it from .TXT to .HMT will take care of that. The text file must also exist in the root of the scenario folder in data.
 
-[_See more in-depth instructions_][hmt#creating-a-text-file-for-hud-messages].
+[_See more in-depth instructions_](~hmt#creating-a-text-file-for-hud-messages).
 
 | Error | Solution
 |------------------------------------------------------------------|----------
@@ -353,18 +375,13 @@ tool import-device-defaults <(defaults,profiles)> <savegame path>
 ```
 
 # Lightmaps
-<figure>
-  <a href="radiosity.jpg">
-    <img src="radiosity.jpg" alt=""/>
-  </a>
-  <figcaption>
-    <p>The radiosity process can be visualized in Sapien using <code>rasterizer_wireframe 1</code>. Notice how shadow edges and high detail shaders are subdivided more.</p>
-  </figcaption>
-</figure>
+{% figure src="radiosity.jpg" %}
+The radiosity process can be visualized in Sapien using `rasterizer_wireframe 1`. Notice how shadow edges and high detail shaders are subdivided more.
+{% /figure %}
 
-Both Tool and [Sapien][h1a-sapien#radiosity] can be used to generate [lightmaps][] (radiosity). Using Tool, you will need the following arguments:
+Both Tool and [Sapien](~h1a-sapien#radiosity) can be used to generate [lightmaps](~) (radiosity). Using Tool, you will need the following arguments:
 
-1. **Scenario [tag path][tags#tag-references-and-paths]**: This is _not_ a file path! Leave off the ".scenario" extension and start the path from within the tags directory.
+1. **Scenario [tag path](~tags#tag-references-and-paths)**: This is _not_ a file path! Leave off the ".scenario" extension and start the path from within the tags directory.
 2. **BSP name:** The name of the BSP tag without the file extension. Although this is labeled as "bsp index" in Tool's usage, it is not intended to be a numeric value.
 3. **Radiosity quality:** A value of 0 runs an inaccurate "fast radiosity", with fewer light bounces, a lower resolution lightmap, and ignoring light occlusion or blocking caused by models. A value of 1 runs a "full radiosity", which is much slower but is used for the release version of maps. For further details, see the [radiosity quality settings](#radiosity-quality-technical-details) below.
 4. **Stop threshold:** Light is cast in multiple passes from each surface, getting progressively finer with each pass. Each pass also reduces the total amount of light to be cast from each surface. When the average radiosity of the scene reaches this value, the process will stop and results saved. This is the equivalent of choosing when to run `radiosity_save` in Sapien.
@@ -376,7 +393,7 @@ For example:
 tool lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.01
 ```
 
-After a short time, you should observe a number counting down towards 0. The radiosity process will stop once this number reaches your "stop" argument. If the number counts _up_ instead, it indicates an issue with your level geometry and you should cancel radiosity to address it (check for [WRL][] warnings).
+After a short time, you should observe a number counting down towards 0. The radiosity process will stop once this number reaches your "stop" argument. If the number counts _up_ instead, it indicates an issue with your level geometry and you should cancel radiosity to address it (check for [WRL](~) warnings).
 
 Consider using the `-noassert` command line flag to increase speed at the expense of skipping error checking. This should only be used once you know your structure won't cause assertions without the flag and you want to skip doing these checks again during high quality lightmaps.
 
@@ -386,12 +403,12 @@ tool lightmaps "levels\test\tutorial\tutorial" tutorial 1 0.0001 -noassert
 
 ## Radiosity quality technical details
 
-| Radiosity quality | Default stop threshold| Samples per [sky light][sky#tag-field-lights] |
+| Radiosity quality | Default stop threshold| Samples per [sky light](~sky#tag-field-lights) |
 |-------------------|-----------------------|---------------------------|
 |0 (preview)        | 10.0 / 255.0          | 4                         |
 |1 (final)          | 1.0 / 255.0           | 16                        |
 
-The radiosity process internally subdivides/tessellates the mesh into an intermediate lightmap structure which is much denser in some places. Depending on the radiosity quality chosen and [shader detail level][shader#tag-field-detail-level], different constraints will be placed on this process:
+The radiosity process internally subdivides/tessellates the mesh into an intermediate lightmap structure which is much denser in some places. Depending on the radiosity quality chosen and [shader detail level](~shader#tag-field-detail-level), different constraints will be placed on this process:
 
 | Radiosity quality         | Shader detail level | Max adjacent light difference   | Minimum edge length | Lit patch max edge length | Unlit patch max edge length |
 |---------------------------|---------------------|---------------------------------|---------------------|------------------------------------|--------------------------------------|
@@ -406,7 +423,7 @@ The radiosity process internally subdivides/tessellates the mesh into an interme
 
 
 # Merge scenery
-This command can merge the scenery tag blocks of the source scenario to the destination scenario. This was probably used to automate work on [child scenarios][scenario#child-scenarios] in Halo's development.
+This command can merge the scenery tag blocks of the source scenario to the destination scenario. This was probably used to automate work on [child scenarios](~scenario#child-scenarios) in Halo's development.
 
 ```sh
 # merge-scenery <source scenario> <destination scenario>
@@ -414,7 +431,7 @@ tool merge-scenery
 ```
 
 # Model compilation
-A [JMS][] file containing model geometry can be compiled into a [gbxmodel][] using the `model` verb:
+A [JMS](~) file containing model geometry can be compiled into a [gbxmodel](~) using the `model` verb:
 
 ```sh
 # model <source-directory> [use-halo2-permutation-lod-selection-logic?]
@@ -422,7 +439,7 @@ tool model "scenery\rock"
 tool model "weapons\mygun" 1
 ```
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenery\rock\models\rock.JMS`. Assuming no errors, it would be compiled into `tags\scenery\rock\rock.gbxmodel`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenery\rock\models\rock.JMS`. Assuming no errors, it would be compiled into `tags\scenery\rock\rock.gbxmodel`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 Something to note is that Tool reads the filename of the JMS to decide how to generate specific tag data for the model. The format for this is as follows:
 
@@ -431,7 +448,7 @@ Something to note is that Tool reads the filename of the JMS to decide how to ge
 base superhigh.JMS
 ```
 
-[Permutations][gbxmodel#permutations] are variants for model's [regions][gbxmodel#regions]. LODs (level of detail) are different quality models rendered depending on the object's size on screen. Permutations can be named arbitrarily, though they should match a model's existing permutation names if modifying an existing asset. LOD needs to use a specific string from the list below:
+[Permutations](~gbxmodel#permutations) are variants for model's [regions](~gbxmodel#regions). LODs (level of detail) are different quality models rendered depending on the object's size on screen. Permutations can be named arbitrarily, though they should match a model's existing permutation names if modifying an existing asset. LOD needs to use a specific string from the list below:
 
 * `superhigh`
 * `high`
@@ -441,17 +458,17 @@ base superhigh.JMS
 
 Use multiple JMS files to generate multiple permutations in a model.
 
-```.alert danger
-Tool only uses [markers][gbxmodel#markers] from the `superhigh` LOD when making a model tag. If you don't have a superhigh LOD (i.e. you have something explicity set as superlow/low/medium/high but not superhigh), no markers will be generated.
-```
+{% alert type="danger" %}
+Tool only uses [markers](~gbxmodel#markers) from the `superhigh` LOD when making a model tag. If you don't have a superhigh LOD (i.e. you have something explicity set as superlow/low/medium/high but not superhigh), no markers will be generated.
+{% /alert %}
 
 ## Halo 2 LOD selection logic
-The optional boolean argument `[use-halo2-permutation-lod-selection-logic?]` causes Tool to use [H2 Tool][h2-tool] logic for choosing LODs. The 'base' permutation's LODs are chosen the same way as the non-base; all permutations propagate using any existing LOD in that permutation when LODs are missing. Any missing LODs for a permutation will use the last non-NONE LOD within that permutation.
+The optional boolean argument `[use-halo2-permutation-lod-selection-logic?]` causes Tool to use [H2 Tool](~h2-tool) logic for choosing LODs. The 'base' permutation's LODs are chosen the same way as the non-base; all permutations propagate using any existing LOD in that permutation when LODs are missing. Any missing LODs for a permutation will use the last non-NONE LOD within that permutation.
 
 This is the more intuitive behaviour and probably what you want to use. The prior lack of this is what causes the Banshee's destroyed permutation to appear intact at the lowest LODs because it re-uses the base permutation's LOD.
 
 # Physics compilation
-A [JMS][] file containing collision spheres can be compiled into a [physics][] using the `physics` verb:
+A [JMS](~) file containing collision spheres can be compiled into a [physics](~) using the `physics` verb:
 
 ```sh
 # physics <source-directory>
@@ -489,7 +506,7 @@ tool print-tag-to-xml ui\english.virtual_keyboard
 More or less the same thing as `export-tag-to-xml` but prints the tag to standard output instead.
 
 # Process sounds
-This command searches for sounds in a tag directory and sets the values in the [sound][] tag.
+This command searches for sounds in a tag directory and sets the values in the [sound](~) tag.
 
 ```sh
 # process-sounds <root path> <substring> <gain+|gain-|gain=|maximum-distance|minimum-distance> <value>
@@ -510,7 +527,7 @@ tool script_doc developer_mode # get documentation for the `developer_mode` glob
 ```
 
 # Sounds compilation
-A 16-bit [WAV][wiki-wav] file can be compiled into a [sound][] tag using the `sounds` verb:
+A 16-bit [WAV][wiki-wav] file can be compiled into a [sound](~) tag using the `sounds` verb:
 
 ```sh
 # sounds <source-directory> <platform(xbox,wav,ogg)> [ogg_only_value_flag<quality or bitrate>]
@@ -524,7 +541,7 @@ In order to import Xbox sounds you will need the XBADPCM codec installed on your
 Regardless of the platform you choose, the sound file you import should still be saved as a 16 bit WAV file.
 
 # Sounds by type
-A 16-bit WAV file can be compiled into a [sound][] tag using the `sounds_by_type` verb:
+A 16-bit WAV file can be compiled into a [sound](~) tag using the `sounds_by_type` verb:
 
 ```sh
 # sounds_by_type <source-directory> <type(sound_class)> <round to 64 samples:yes/no>
@@ -569,10 +586,10 @@ Replace type with a string of your choosing from the following list.
 |scripted_dialog_force_unspatialized |
 |game_event                          |
 
-The sound class will influence the capabilities of the sound tag, and may be used when the map is compiled or at runtime. See the [sound class field][sound#tag-field-sound-class] for more info.
+The sound class will influence the capabilities of the sound tag, and may be used when the map is compiled or at runtime. See the [sound class field](~sound#tag-field-sound-class) for more info.
 
 # Structure compilation
-A [JMS][] file containing level geometry can be compiled into a [scenario_structure_bsp][] using the `structure` verb:
+A [JMS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) using the `structure` verb:
 
 ```sh
 # structure <scenario-directory> <bsp-name> [fix-phantom-bsp]
@@ -581,17 +598,17 @@ tool structure levels\test\tutorial tutorial
 tool structure levels\test\tutorial tutorial true
 ```
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\levels\a30\models\a30_a.JMS`. Assuming no errors, it would be compiled into `tags\levels\a30\a30_a.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\levels\a30\models\a30_a.JMS`. Assuming no errors, it would be compiled into `tags\levels\a30\a30_a.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
-Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps][] are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario][] tag if one does not exist already.
+Structure compilation converts the raw polygon and materials data from the JMS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps](~) are **not** produced during this step, but rather with the [lightmaps verb](#lightmaps). Structure compilation will create a [scenario](~) tag if one does not exist already.
 
 Multiple JMS files can be placed in a level's `models` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be compiled into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
 ## Phantom BSP fix
-When the optional argument `[fix-phantom-bsp]` is `true` [collision artifacts][scenario_structure_bsp#collision-artifacts] like phantom BSP will be fixed at the cost of a larger BSP tag (collision data grows about 23%). This option performs the same fix which [phantom_tool][] enabled.
+When the optional argument `[fix-phantom-bsp]` is `true` [collision artifacts](~scenario_structure_bsp#collision-artifacts) like phantom BSP will be fixed at the cost of a larger BSP tag (collision data grows about 23%). This option performs the same fix which [phantom_tool](~) enabled.
 
 # Structure breakable surfaces
-Updates [breakable surface data][scenario_structure_bsp#tag-field-breakable-surfaces] for an existing BSP tag. Saves the tag if only if there was no error.
+Updates [breakable surface data](~scenario_structure_bsp#tag-field-breakable-surfaces) for an existing BSP tag. Saves the tag if only if there was no error.
 
 ```sh
 # structure-breakable-surfaces <bsp-path>
@@ -599,7 +616,7 @@ tool structure-breakable-surfaces "levels\a10\a10a"
 ```
 
 # Structure lens flares
-This command updates a BSP's [lens flare markers][scenario_structure_bsp#lens-flare-markers] using the current lens flare fields in the BSP's referenced [shader_environment][] tags. This can be used to update the markers after changes to the shader fields without having to recompile the BSP entirely with the `structure` verb.
+This command updates a BSP's [lens flare markers](~scenario_structure_bsp#lens-flare-markers) using the current lens flare fields in the BSP's referenced [shader_environment](~) tags. This can be used to update the markers after changes to the shader fields without having to recompile the BSP entirely with the `structure` verb.
 
 ```sh
 # structure-lens-flares <bsp-path>
@@ -608,7 +625,7 @@ tool structure-lens-flares "levels\a10\a10a"
 
 
 # Unicode String compilation
-UTF-16 text files containing strings can be compiled into a [unicode_string_list][] using the `unicode-strings` verb:
+UTF-16 text files containing strings can be compiled into a [unicode_string_list](~) using the `unicode-strings` verb:
 
 ```sh
 # unicode-strings <source-directory>
@@ -617,7 +634,7 @@ tool unicode-strings "ui\mp_map_ui"
 
 For the example above, Tool would expect to find text files at `data\ui\mp_map_ui\`. Assuming no errors, a file named "prisoner.txt" would be compiled into `tags\ui\mp_map_ui\prisoner.unicode_string_list`. Each text file that exists in the source directory will be compiled into its own individual tag with the name of the tag coming from the text filename.
 
-For more in depth instructions see the [string list format reference][strings-txt#creating-a-text-file-for-string-lists].
+For more in depth instructions see the [string list format reference](~strings-txt#creating-a-text-file-for-string-lists).
 
 
 # Windows font

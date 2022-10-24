@@ -428,7 +428,7 @@ type_defs:
       read_only: true
     comments:
       en: >-
-        Stores the render model of [objects][object] in the original Xbox
+        Stores the render model of [objects](~object) in the original Xbox
         version of the game.
     assert_size: 232
     fields:

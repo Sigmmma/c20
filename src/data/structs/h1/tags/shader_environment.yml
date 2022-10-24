@@ -60,7 +60,7 @@ type_defs:
     comments:
       en: >-
         General-purpose opaque and alpha-tested shader used for
-        [scenario_structure_bsp][] materials.
+        [scenario_structure_bsp](~) materials.
     assert_size: 836
     fields:
       - name: shader_environment_flags
@@ -72,7 +72,7 @@ type_defs:
         comments:
           en: >
             Determines how far apart [BSP lens
-            flares][scenario_structure_bsp#lens-flare-markers] are generated, in
+            flares](~scenario_structure_bsp#lens-flare-markers) are generated, in
             world units, along a surface part using this shader. If set to `0`,
             a single lens flare will be created at the center of the surface.
       - name: lens_flare
@@ -101,6 +101,9 @@ type_defs:
         size: 24
       - name: detail_map_function
         type: ShaderDetailFunction
+        comments:
+          en: >
+            This controls how the detail map is blended with the base map.
       - type: pad
         size: 2
       - name: primary_detail_map_scale

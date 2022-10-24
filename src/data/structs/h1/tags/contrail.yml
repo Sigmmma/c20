@@ -102,9 +102,9 @@ type_defs:
       pre_compile: true
     comments:
       en: >
-        Contrails are trail-like repeating [bitmap][] effects which can be
-        attached to any [object][], optionally to one of their
-        [markers][gbxmodel#markers]. Commonly used for projectiles, but also for
+        Contrails are trail-like repeating [bitmap](~) effects which can be
+        attached to any [object](~), optionally to one of their
+        [markers](~gbxmodel#markers). Commonly used for projectiles, but also for
         the Banshee's wingtips.
     assert_size: 324
     fields:

@@ -36,7 +36,7 @@ type_defs:
         comments:
           en: >
             When enabled, makes the active camouflage the _hyper stealth_
-            variant from [globals][], which can have a different appearance.
+            variant from [globals](~), which can have a different appearance.
       - name: cannot_use_ranged_weapons
         comments:
           en: >
@@ -47,7 +47,7 @@ type_defs:
           en: >
             The actor will prefer to enter a vehicle's passenger seat over a
             gunner seat, as determined by the [unit's _seat_
-            flags][unit#tag-field-seats].
+            flags](~unit#tag-field-seats).
   ActorVariantMovementType:
     class: enum
     size: 2
@@ -71,7 +71,7 @@ type_defs:
         comments:
           en: >-
             The actor will fire the weapon's secondary
-            [trigger][weapon#tag-field-triggers].
+            [trigger](~weapon#tag-field-triggers).
   ActorVariantSpecialFireSituation:
     class: enum
     size: 2
@@ -120,7 +120,7 @@ type_defs:
       post_compile: true
     comments:
       en: >
-        Specializes an [actor][] by defining their use of weapons, grenades,
+        Specializes an [actor](~) by defining their use of weapons, grenades,
         their health, their color, and what equipment they drop.
     assert_size: 568
     fields:
@@ -137,7 +137,7 @@ type_defs:
           tag_classes:
             - unit
         comments:
-          en: 'Specifies which [biped][] this variant will spawn as.'
+          en: 'Specifies which [biped](~) this variant will spawn as.'
       - name: major_variant
         type: TagDependency
         meta:
@@ -147,9 +147,9 @@ type_defs:
           en: >
             Specifies the next highest "rank" of this actor variant. This allows
             enemies to "upgrade" in higher difficulties, with the chance being
-            controlled by both the per-difficulty _major upgrade_ [globals][]
+            controlled by both the per-difficulty _major upgrade_ [globals](~)
             multipliers and the _major upgrade_ squad setting in the
-            [scenario][].
+            [scenario](~).
       - name: metagame_type
         type: MCCMetagameType
         meta:
@@ -285,7 +285,7 @@ type_defs:
             The distance in world units the actor will try to be in to attack;
             lower bounds is the minimum range and upper is the maximum. The
             actor may still fire outside this range, but will [move to attain
-            it][ai#firing-positions].
+            it](~ai#firing-positions).
       - name: custom_stand_gun_offset
         type: Vector3D
       - name: custom_crouch_gun_offset
@@ -312,7 +312,7 @@ type_defs:
             Determines how accurately to predict lead on moving targets. A value
             of `0` means not leading at all and shooting directly at the target,
             while `1` means perfectly predicting how far in front of the target
-            to lead based on [projectile][] speed and distance. A value
+            to lead based on [projectile](~) speed and distance. A value
             in-between can be provided.
       - name: weapon_damage_modifier
         type: float
@@ -489,7 +489,7 @@ type_defs:
         comments:
           en: >
             Overrides the [actor's vision
-            range][actor#tag-field-max-vision-distance]. Normal if `0`.
+            range](~actor#tag-field-max-vision-distance). Normal if `0`.
       - name: special_fire_mode
         type: ActorVariantSpecialFireMode
         comments:
@@ -595,8 +595,8 @@ type_defs:
           en: >
             This is responsibile for giving the grenade it's thrown velocity,
             rather than the [projectile _initial
-            velocity_][projectile#tag-field-initial-velocity] or the [unit
-            _grenade velocity_][unit#tag-field-grenade-velocity].
+            velocity_](~projectile#tag-field-initial-velocity) or the [unit
+            _grenade velocity_](~unit#tag-field-grenade-velocity).
       - name: grenade_ranges
         type: Bounds
         meta:
@@ -639,7 +639,7 @@ type_defs:
         comments:
           en: >
             The AI will not throw a grenade if another AI in the
-            [encounter][scenario#encounters] threw one within this timeout. This
+            [encounter](~scenario#encounters) threw one within this timeout. This
             prevents AI from all throwing grenades at the same time.
       - type: pad
         size: 20
@@ -687,9 +687,9 @@ type_defs:
             charge no matter this field's value under special circumstances: *
             If a model region was destroyed and that region's [_forces drop
             weapon_
-            flag][model_collision_geometry#tag-field-regions-forces-drop-weapon]
+            flag](~model_collision_geometry#tag-field-regions-forces-drop-weapon)
             is enabled, such as shooting the arm off a Flood actor. * If the
-            actor has a chance of [feigning death][unit#feigning-death] and
+            actor has a chance of [feigning death](~unit#feigning-death) and
             reviving, but not if the damage exceeds the _hard death threshold_.
             ---
       - name: drop_weapon_ammo
@@ -711,14 +711,14 @@ type_defs:
         comments:
           en: >
             Overrides the biped's [collision geometry _maximum body
-            vitality_][model_collision_geometry#tag-field-maximum-body-vitality]
+            vitality_](~model_collision_geometry#tag-field-maximum-body-vitality)
             for a different amount of health.
       - name: shield_vitality
         type: float
         comments:
           en: >
             Overrides the biped's [collision geometry _maximum shield
-            vitality_][model_collision_geometry#tag-field-maximum-body-vitality]
+            vitality_](~model_collision_geometry#tag-field-maximum-body-vitality)
             for a different amount of shields.
       - name: shield_sapping_radius
         type: float
@@ -731,7 +731,7 @@ type_defs:
             If non-zero, forces the bitmap index for any shader the biped uses.
             For example, the Elite major uses the value `1` which forces its
             shaders to use the second (red) cubemap in
-            `characters\elite\bitmaps\cubemaps.bitmap`. [Bitmap tags][bitmap]
+            `characters\elite\bitmaps\cubemaps.bitmap`. [Bitmap tags](~bitmap)
             which do not have a bitmap for this index will instead use the first
             map (index `0`).
       - type: pad

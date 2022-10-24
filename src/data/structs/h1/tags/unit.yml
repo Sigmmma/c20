@@ -297,7 +297,7 @@ type_defs:
             Used to place a mounted weapon unit at this seat, which aims and
             fires independently of this unit. An example is the bottom-mounted
             turret on the covenant dropship. The game can only simulate [up to
-            8][game-state] of these mounted units at a time.
+            8](~game-state) of these mounted units at a time.
       - type: pad
         size: 20
   Unit:
@@ -308,7 +308,7 @@ type_defs:
       tag_id: unit
     comments:
       en: >-
-        Parent tag of [bipeds][biped] and [vehicles][vehicle], containing fields
+        Parent tag of [bipeds](~biped) and [vehicles](~vehicle), containing fields
         common to these AI-driven or controllable objects.
     assert_size: 752
     fields:
@@ -470,7 +470,7 @@ type_defs:
         comments:
           en: >-
             Only used for scoring in H1A (MCC only); overridden by
-            [actor_variant's metagame type][actor_variant#tag-field-metagame-type]
+            [actor_variant's metagame type](~actor_variant#tag-field-metagame-type)
             if unit is an actor.
       - name: metagame_class
         type: MCCMetagameClass
@@ -479,7 +479,7 @@ type_defs:
         comments:
           en: >-
             Only used for scoring in H1A (MCC only); overridden by
-            [actor_variant's metagame class][actor_variant#tag-field-metagame-class]
+            [actor_variant's metagame class](~actor_variant#tag-field-metagame-class)
             if unit is an actor.
       - type: pad
         size: 8
@@ -503,9 +503,9 @@ type_defs:
           en: >
             The velocity of thrown grenades. This field is used for the player,
             but overidden by [actor_variant _grenade
-            velocity_][actor_variant#tag-field-grenade-velocity] for AI. The
+            velocity_](~actor_variant#tag-field-grenade-velocity) for AI. The
             [projectile _initial
-            velocity_][projectile#tag-field-initial-velocity] for grenades is
+            velocity_](~projectile#tag-field-initial-velocity) for grenades is
             not used.
       - name: grenade_type
         type: GrenadeType

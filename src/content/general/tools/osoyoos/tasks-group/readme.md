@@ -1,3 +1,12 @@
+---
+title: Osoyoos Launcher - Tasks
+stub: false
+about: 'tool:Osoyoos launcher'
+img: mainwindow_tasks.jpg
+caption: The Tasks section of the Osoyoos launcher.
+info: |
+  * [Source code and download](https://github.com/num0005/Osoyoos-Launcher)
+---
 This group lets you run various commands for your selected profile directly from the UI. You can find this at the middle of the UI window.
 
 # Import & light level

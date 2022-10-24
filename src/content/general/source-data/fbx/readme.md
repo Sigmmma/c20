@@ -1,4 +1,17 @@
-This page will go over how to setup your scene to export FBX files for users who use 3D editing software with no available intermediate source file exporters. All rules of standard [JMS][jms], [animation source files][animation-data], and [ASS][ass] workflow in Blender or 3DS Max apply so be sure to read up on that.
+---
+title: Using FBX in MCC
+stub: true
+about: 'resource:fbx-mcc'
+keywords:
+  - FBX
+  - Model
+  - Animation
+related:
+  - /h1/tools/h1a-ek/h1a-tool
+  - /h2/tools/h2-ek/h2-tool
+  - /h3/h3-ek/h3-tool
+---
+This page will go over how to setup your scene to export FBX files for users who use 3D editing software with no available intermediate source file exporters. All rules of standard [JMS](~jms), [animation source files](~animation-data), and [ASS](~ass) workflow in Blender or 3DS Max apply so be sure to read up on that.
 
 # Missing file format features
 FBX covers enough ground to be a decent format to use for multiple 3D software solutions. Unfortunately there are a few things the converter just can't do due to the limitations of using FBX or stuff that still needs more work.

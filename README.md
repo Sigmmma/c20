@@ -7,51 +7,15 @@
 This repo contains the source content and build scripts for the Reclaimers Library (https://c20.reclaimers.net). It aims to document the immense tribal knowledge of the Halo modding community and covers game engine details, the Halo Editing Kit, community tools, and guides for map-making.
 
 ## Contributing
-The library is not directly editable by its readers. This allows the editing team to test and vet information for accuracy and consistency and we instead curate content from a variety of sources:
-
-* Direct submissions and tips from community members
-* Q&A with the community's experts
-* New research and reverse engineering
-* Incorporation of previously documented information
-* Mining of forums and Discord help channels
-
-However, we want and need the community's help filling in gaps. Some ways you can help are:
-
-* Submit tips or request more documentation in a GitHub issue
-* Create a pull request if you're more technically inclined
-
-Don't worry if writing isn't your strong suit. We'll ensure your tips are properly incorporated into the Wiki and you're credited for them. The current focus will be on all Halo 1 modding as well as modding the later games in MCC using the official mod tools. Other content (e.g. a tutorial for how to mod Halo Reach using Assembly) is welcomed but will not be prioritized.
-
-Editors or those issuing pull requests can refer to [EDITORS.md](EDITORS.md) for writing style and other content rules.
+The library is not directly editable by its readers. This allows the editing team to verify information before it's added. However, we want and need the community's help filling in gaps. If you want to submit information or join the editing team, see the [Contributing page](https://c20.reclaimers.net/contributing).
 
 ## Development
-[Gulp](https://gulpjs.com/) is used as the main task runner for the build. It is triggered by the command `npm run build`, defined in `package.json`. Within the `gulpfile.js` there are several tasks defined to process stylesheets, build markdown pages, create diagrams, and copy other assets.
+The codebase is essentially a [static site](https://en.wikipedia.org/wiki/Static_web_page) generator. We use [Gulp](https://gulpjs.com/) as the build task runner, with various tasks to process stylesheets, render pages, bundle JS ([esbuild](https://esbuild.github.io/)), and copy assets. All static results go into a `dist` folder that is ready to serve.
 
-The goal is to produce static assets that are easily distributed. The server must be configured to serve `index.html` for directory GETs (any server should be able to do this).
-
-The main task is `contentPages`, which calls out to `src/content.js` where the heavy lifting happens. This code crawls `src/content/` for `readme.md` files, which contain YAML front matter with metadata followed by markdown. This information is assembled into a master "meta index" of all pages before rendering is done in a second pass. This allows each page to potentially include tables or indexes of other pages' metadata.
-
-### Technical goals
-An explicit choice was made to avoid typical managed or self-hosted Wiki platforms for this library and opt for building a [static site](https://en.wikipedia.org/wiki/Static_web_page) generator. This makes it easy to host and distribute, and easier to automatically generate content based on Halo's tag definitions and other data structures. The main tenets are:
-
-* No API or dynamic content: the site should be easy to host and test locally with any HTTP server capable of serving files, and is easily cached on a CDN. No compute needed means low hosting costs. Even the search index is client-side.
-* Distributable: another benefit of the static website is that it can be packaged in a distributable offline format. This not not yet implemented, but planned when content is more complete.
-* Low maintenance surface area: Development time should be spent on content, not maintaining the build process. We limit our dependencies, and avoid too many bells and whistles.
-* Semantic HTML: Page structures are document-like and use the right elements for the job to maintain accessibility.
-* Mobile-friendly: Pages should be responsive and readable on mobile.
-* The website should make minimum use of client side JavaScript unless there are interactive features desired.
-
-### Technology choices
-* [Minisearch](https://lucaong.github.io/minisearch/) for site search, since we can pre-compute a lightweight JSON search index at build time and serve it to clients to do search completely in-browser. This will work in offline distributions of the site.
-* A build of [Preact](https://preactjs.com/) combined with [htm](https://github.com/developit/htm) is used on the client-side for the few JS-driven UI components we have, like search. This is a lightweight alternative to _React_.
-* We use [Sass](https://sass-lang.com/) as a CSS preprocessor for its productivity features. Variables should be used to ensure consistency and make changes easier. Nest selectors according to the specificity of what's being styled.
-* HTML rendering is done with `html` tagged template literals from [common-tags](https://github.com/zspecza/common-tags). It doesn't produce the prettiest HTML, but is simple to write and manipulate as a string.
-* [Marked.js](https://github.com/markedjs/marked) for Markdown rendering. This library is extremely customizable; we customize header rendering to support anchor links and have a plaintext renderer to support search and opengraph previews.
+Content is written in a combination of [Markdoc-flavoured markdown](markdoc.dev) and YAML files, which are rendered to HTML using [Preact](https://preactjs.com/) in TypeScript/TSX. Pages are also rendered in plaintext form and bundled into a client-side search index using [Minisearch](https://lucaong.github.io/minisearch/). We use [Sass](https://sass-lang.com/) as a CSS preprocessor.
 
 ### Building and testing
-In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite, this project requires installing at least [Node.js v14+](https://nodejs.org/en/) and [Git LFS](https://git-lfs.github.com/)
-
-[FFmpeg](https://ffmpeg.org/) is an optional dependency used to generate video thumbnails. It needs to be available on your system `PATH`, or Windows users can simply download `ffmpeg.exe` and place it in the project root. If you don't want to set up FFmpeg for development you can set the environment variable `C20_NO_THUMBNAILS=true` and it won't be used.
+In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite, this project requires installing at least [Node.js v14+](https://nodejs.org/en/) and [Git LFS](https://git-lfs.github.com/).
 
 If you have installed Git LFS _after_ checking out the project already, you'll need to run `git lfs install` and `git lfs pull` to download the objects. If you forget to do this the build will fail because `ffmpeg` will be unable to read video files as videos ("Invalid data found when processing input").
 
@@ -61,20 +25,15 @@ Once those are installed, clone the project and run the following shell commands
 # install dependencies
 npm ci
 
-# build content into `./dist`
+# run the development server which renders pages on-demand
 npm run dev
-
-# if you don't want to rely on ffmpeg
-C20_NO_THUMBNAILS=true npm run dev
-```
-
-You should be able to visit http://localhost:8080/ in a browser and see the built website. The website will be automatically rebuilt if you make changes to source content. Refresh your browser to see changes.
-
-If a different port is desired, set the environment variable `C20_PORT`:
-
-```sh
+# If a different port is desired:
 C20_PORT=9001 npm run dev
 ```
+
+You should be able to visit http://localhost:8080/ in a browser and see the website. Refresh your browser to see changes you've made to content source files.
+
+You can also run `npm run static` to fully render all pages to HTML and serve them, but this takes longer and isn't recommended for quick content writing. You can use it as a final step to verify the build will work once changes are merged. Note: [FFmpeg](https://ffmpeg.org/) is an optional dependency used to generate video thumbnails during a full build. It needs to be available on your system `PATH`. Windows users can simply download `ffmpeg.exe` and place it in the project root. If you don't want to set up FFmpeg you instead run `C20_NO_THUMBNAILS=true npm run static` and it won't be used.
 
 ### Releasing
 The website is currently hosted as a static site in [AWS S3](https://aws.amazon.com/s3/), fronted by a [CloudFront](https://aws.amazon.com/cloudfront/) CDN distribution, managed in [reclaimers-aws](https://github.com/Sigmmma/reclaimers-aws). To deploy a new version, simple make changes to the `master` branch and a build/deploy will be triggered automatically with CodeBuild.
@@ -86,6 +45,17 @@ aws s3 sync --delete ./dist s3://reclaimers-wiki-files/
 ```
 
 Because of cache TTLs, content may not appear updated immediately. An invalidation can be run in CloudFront to force updates, but it will not affect clients unless they clear their browser cache. Live content can be seen by directly viewing the [S3 hosting origin][s3-origin].
+
+### Technical goals
+An explicit choice was made to avoid typical managed or self-hosted Wiki platforms for this library and opt for building a . This makes it easy to host and distribute, and easier to automatically generate content based on Halo's tag definitions and other data structures. The main tenets are:
+
+* Only produce static assets that are easily distributed and served by any web server or CDN.
+* No API or dynamic content: the site should be easy to host and test locally with any HTTP server capable of serving files, and is easily cached on a CDN. No compute needed means low hosting costs. Even the search index is client-side.
+* Distributable: another benefit of the static website is that it can be packaged in a distributable offline format. This not not yet implemented, but planned when content is more complete.
+* Respect the time of the editors. Wiki features should empower them to write faster and easier. Nobody will write if it's a chore.
+* Semantic HTML: Page structures are document-like and use the right elements for the job to maintain accessibility.
+* Mobile-friendly: Pages should be responsive and readable on mobile.
+* The website should make minimum use of client side JavaScript unless there are interactive features needed.
 
 ## License
 C20's codebase is licensed under version 3.0 of the GNU General Public License. A copy of its text can be found in COPYING.

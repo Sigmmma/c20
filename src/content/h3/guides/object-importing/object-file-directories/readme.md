@@ -1,3 +1,20 @@
+---
+title: H3 Object Importing Guide - File Directories
+keywords:
+  - modeling
+  - exporter
+  - importing
+  - render model
+  - render_model
+  - physics model
+  - physics_model
+  - collision model
+  - collision_model
+  - animations
+thanks:
+  General_101: Writing the level file directories guide
+  PepperMan: Writing this guide by converting General_101's level file directories guide
+---
 # Introduction
 We will start by going over how Halo requires your folders to be structured for import.
 
@@ -14,7 +31,7 @@ has the compiled assets outputted to:
 
 Let's first start by creating our very own custom object directory in the data folder. We'll call this object "new_scenery_piece" for simplicities sake but you can call it whatever you would like:
 
-1. In the root of your H3EK install find a folder named `data`. If it does not exist then, you likely haven't [extracted the zip file properly][h3-ek].
+1. In the root of your H3EK install find a folder named `data`. If it does not exist then, you likely haven't [extracted the zip file properly](~h3-ek).
 2. In the `data` directory find a folder named `objects`. If it does not exist then create it.
 3. In the `objects` directory find a folder named `scenery`. If it does not exist then create it.
 4. For our last step we will now create our first custom object in the `scenery` directory.
@@ -46,12 +63,12 @@ An object will typically at *least* require a "render" folder for the render mod
 		* `(H3EK Install Path)\data\objects\scenery\(Your Object Name Here)\animations`
 	* This `animations` folder name is something Tool.exe specifically looks for when compiling object animations. Be sure that the folder is named exactly this. As you have probably already guessed this is where you will compile your object's animations from, into a .model_animation_graph tag.
 
-```.alert info
+{% alert %}
 As stated before compiled assets will end up in a path that mirrors the path of the raw asset but replacing the data directory with the tags directory. The output path is typically shown in the command prompt when Tool is finished compiling the data.
-```
+{% /alert %}
 
 # End of file directory info
 
-```.alert success
-Now that you fully understand the data directory setup we can begin to work on our custom model in the [next section][blender-prep]. If you already understand how Blender works then skip ahead to the [modeling section.][blender-level-creation-beginner] If you also already understand Halo object creation in Blender or wish to attempt importing something first then go ahead and skip over to the [export section.][exporting]
-```
+{% alert type="success" %}
+Now that you fully understand the data directory setup we can begin to work on our custom model in the [next section](~blender-prep). If you already understand how Blender works then skip ahead to the [modeling section.](~blender-level-creation-beginner) If you also already understand Halo object creation in Blender or wish to attempt importing something first then go ahead and skip over to the [export section.](~exporting)
+{% /alert %}

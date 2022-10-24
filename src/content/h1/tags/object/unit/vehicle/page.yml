@@ -1,7 +1,0 @@
-title:
-  en: vehicle
-img: vehicles.jpg
-imgCaption:
-  en: Vehicles spawned using the command `cheat_all_vehicles`
-stub: true
-tagName: h1/vehicle

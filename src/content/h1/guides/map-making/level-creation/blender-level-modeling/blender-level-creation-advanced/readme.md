@@ -1,6 +1,14 @@
-```.alert
-This guide assumes you are already familiar with the [basics of Blender map-making][blender-level-creation-beginner]. You may also need the provided files from that guide.
-```
+---
+title: H1 Blender level guide - Advanced
+keywords:
+  - modeling
+  - exporter
+thanks:
+  General_101: Writing this guide
+---
+{% alert %}
+This guide assumes you are already familiar with the [basics of Blender map-making](~blender-level-creation-beginner). You may also need the provided files from that guide.
+{% /alert %}
 
 # File list
 | File Link                                                                                              | Description
@@ -27,9 +35,9 @@ The end result of this should look something like this:
 
 ![](1H.jpg)
 
-```.alert info
+{% alert %}
 You may have noticed that I am seeing through the object in this image. If you want to enable this then you can enable [backface culling](https://docs.blender.org/manual/en/latest/render/workbench/options.html) in shading options. You must be in the solid renderer for this option to work. You can also enable the xray option here to select faces through other faces. This will make working in backface culling mode less awkward.
-```
+{% /alert %}
 
 ![](1I.jpg)
 
@@ -46,9 +54,9 @@ We will need to create some hills on the edge of our level that our players can'
 5. Select the [move tool.](https://docs.blender.org/manual/en/latest/scene_layout/object/properties/transforms.html)
 6. Move the planes to around 128 units up on the Z axis.
 
-```.alert info
+{% alert %}
 You can find the exact units you are setting during translation by looking in the top left by default. It should look something like the image below.
-```
+{% /alert %}
 
 ![Depending on your setting this could be in any other corner. This is the default place for it though](1K.jpg)
 
@@ -88,18 +96,18 @@ From here we will change a few settings. You can choose to ignore these suggesti
 This is where the face set you created comes into play. We will be using it to hide the geometry we do not want to edit currently.
 
 1. Drag your cursor over a patch of colored geometry that was generated from the face set.
-2. Click the <kbd>H</kbd> key. This should [hide](https://docs.blender.org/manual/en/latest/scene_layout/object/editing/show_hide.html) all geometry except for the geometry connected to the face set we currently hovering over.
-3. Left click on the remaining geometry until you have hills you are satisfied with. You can always hit <kbd>Ctrl + Z</kbd> to undo if you are unsatisfied with any of your work.
+2. Click the {% key "H" /%} key. This should [hide](https://docs.blender.org/manual/en/latest/scene_layout/object/editing/show_hide.html) all geometry except for the geometry connected to the face set we currently hovering over.
+3. Left click on the remaining geometry until you have hills you are satisfied with. You can always hit {% key "Ctrl + Z" /%} to undo if you are unsatisfied with any of your work.
 
 The end result should look something like the following image.
 
 ![Let's paint some happy little hills.](1S.jpg)
 
-```.alert info
+{% alert %}
 If you can't see your masks in sculpt mode then temporarily disable any modifiers you have until the job is done. Clicking on the computer icon will hide it from the viewport. Reenable it once you're done.
 
 ![Let's paint some happy little hills.](1T.png)
-```
+{% /alert %}
 
 Let's add some final touches to the geometry we sculpted.
 
@@ -166,21 +174,21 @@ Now that we've set up our materials and textures let's make sure our UVs are cor
 
 ## UV mapping our stream
 
-Go ahead and open a viewport for a UV editor if you don't have one open already. Once you have it open select all faces of the stream mesh with the <kbd>A</kbd> key. You should see the UV for the mesh in the UV editor now. Let's go over a few tools you'll need to know for manually adjusting UVs:
+Go ahead and open a viewport for a UV editor if you don't have one open already. Once you have it open select all faces of the stream mesh with the {% key "A" /%} key. You should see the UV for the mesh in the UV editor now. Let's go over a few tools you'll need to know for manually adjusting UVs:
 
 * The highlighted options are your selection modes like the ones found in edit mode. You can pick from vertex, edge, face, and island selection. We will go with island for this example.
 ![](2H.jpg)
-* Some of the hotkeys you may be familiar with from edit mode work here as well. We can use the <kbd>R</kbd> key to rotate selected UVs. You can also use the <kbd>G</kbd> key to move the selected UVs and <kbd>S</kbd> to scale them. You can of course also hold <kbd>Ctrl</kbd> while doing any of these actions to have fine control over them. Using the <kbd>X</kbd> or <kbd>Y</kbd> key while doing a transform will lock your transform to that axis.
+* Some of the hotkeys you may be familiar with from edit mode work here as well. We can use the {% key "R" /%} key to rotate selected UVs. You can also use the {% key "G" /%} key to move the selected UVs and {% key "S" /%} to scale them. You can of course also hold {% key "Ctrl" /%} while doing any of these actions to have fine control over them. Using the {% key "X" /%} or {% key "Y" /%} key while doing a transform will lock your transform to that axis.
 
-Let's fix the UV for this stream mesh. If you were to look at it you probably have noticed that it appears stretched. We need to rotate it in the correct direction and scale it to fix this issue. Use the <kbd>R</kbd> key while holding <kbd>Ctrl</kbd> to rotate it 90 degrees counter clockwise.
+Let's fix the UV for this stream mesh. If you were to look at it you probably have noticed that it appears stretched. We need to rotate it in the correct direction and scale it to fix this issue. Use the {% key "R" /%} key while holding {% key "Ctrl" /%} to rotate it 90 degrees counter clockwise.
 
 ![](2I.jpg)
 
-Now make sure to scale it on the X axis to fit the texture. Press the <kbd>S</kbd> key to enter scale mode then press the <kbd>X</kbd> key to lock it to that axis. Click the <kbd>Left Mouse Button</kbd> to confirm your transform. It should end up with something that looks like this:
+Now make sure to scale it on the X axis to fit the texture. Press the {% key "S" /%} key to enter scale mode then press the {% key "X" /%} key to lock it to that axis. Click the {% key "Left Mouse Button" /%} to confirm your transform. It should end up with something that looks like this:
 
 ![](2J.jpg)
 
-Scale it again but this time on the Y axis. Repeat the steps from above but replace the <kbd>X</kbd> key with a <kbd>Y</kbd> key press. This should be the end result.
+Scale it again but this time on the Y axis. Repeat the steps from above but replace the {% key "X" /%} key with a {% key "Y" /%} key press. This should be the end result.
 
 ![](2K.jpg)
 
@@ -237,7 +245,7 @@ When creating a level, particularly indoor environments and\or buildings or stru
 
 ![](2P.jpg)
 
-1. Bring up the [sidebar](https://youtu.be/H64e1RDZKuA) with <kbd>N</kbd> and set it to the Halo tools tab.
+1. Bring up the [sidebar](https://youtu.be/H64e1RDZKuA) with {% key "N" /%} and set it to the Halo tools tab.
 2. Find the box named `Scale Model Helper` You can select what game to generate a model from along with whether the model is a character or a vehicle. 
 3. From there just select the model and click `Generate Scale Model`
 
@@ -262,27 +270,27 @@ The box will now be manipulated to create a ramp and simple hallway.
 2. Merge the two edges facing the center of the map. Here's how to do that:
 	* A: Use vertex selection for this. You'll need it to merge the vertices.
 	* B: Start with the verts on the left side from top to bottom
-	* C: While having your cursor over your 3D viewport hit the <kbd>M</kbd> key to bring up the merge menu. Select the "At Last" option from the menu.
+	* C: While having your cursor over your 3D viewport hit the {% key "M" /%} key to bring up the merge menu. Select the "At Last" option from the menu.
 	* D: Repeat this for the right side. The end result should look something like this:
 
 ![](2U.jpg)
 
 Now let's create the hallways in our structure.
 
-Switch to face selection and delete the faces on the sides of the cube along with the bottom. You can do this by having your cursor over the 3D viewport and pressing <kbd>X</kbd> to bring up a menu. Select the "Faces" option to delete the selected faces.
+Switch to face selection and delete the faces on the sides of the cube along with the bottom. You can do this by having your cursor over the 3D viewport and pressing {% key "X" /%} to bring up a menu. Select the "Faces" option to delete the selected faces.
 
 ![](2V.jpg)
 
 Once that's done you can extrude the areas you made to generate the area we will use for our hallways.
 
-1. Select the edges that belonged to the faces on the side of the structure and hit the <kbd>E</kbd> key then right click.
-2. Press the <kbd>S</kbd> key to scale it and then press <kbd>X</kbd> to lock it to the X axis. Extend it around 3 units. Take this opportunity to also move the ramp forward a bit. The end result should look something like this:
+1. Select the edges that belonged to the faces on the side of the structure and hit the {% key "E" /%} key then right click.
+2. Press the {% key "S" /%} key to scale it and then press {% key "X" /%} to lock it to the X axis. Extend it around 3 units. Take this opportunity to also move the ramp forward a bit. The end result should look something like this:
 
 ![](2W.jpg)
 
 Now let's start with the internals. Consider bringing your reference model over to see how big the hallway needs to be to fit our players.
 
-Select the left and right edge on both ends of the hallway, and extrude them with the <kbd>E</kbd> key and right click once. Press the <kbd>S</kbd> key to scale it and then <kbd>Y</kbd> to scale it in the Y axis. Bring them in for around 0.4 units.
+Select the left and right edge on both ends of the hallway, and extrude them with the {% key "E" /%} key and right click once. Press the {% key "S" /%} key to scale it and then {% key "Y" /%} to scale it in the Y axis. Bring them in for around 0.4 units.
 
 ![](2X.jpg)
 
@@ -290,17 +298,17 @@ Bring down the vertices on the top of the doorway so we make some room to connec
 
 ![](2Y.jpg)
 
-Select the top edges of the door frame and of the roof then hit the <kbd>F</kbd> key to fill it. You can do <kbd>Alt + Shift</kbd> while selecting an edge to quickly select the entire thing you need. Do each side individually to avoid the edges connecting to each other from opposite ends. Now our doorframe is complete:
+Select the top edges of the door frame and of the roof then hit the {% key "F" /%} key to fill it. You can do {% key "Alt + Shift" /%} while selecting an edge to quickly select the entire thing you need. Do each side individually to avoid the edges connecting to each other from opposite ends. Now our doorframe is complete:
 
 ![](2Z.jpg)
 
-Select the edges on the left side of the door frame from both ends and press the <kbd>F</kbd> key to connect them. Repeat this process for each side until you have a hallway:
+Select the edges on the left side of the door frame from both ends and press the {% key "F" /%} key to connect them. Repeat this process for each side until you have a hallway:
 
 ![](3A.jpg)
 
 Make sure the normals for the object are pointing in the correct direction. Use the "Recalculate Outside" from the "Normals" menu in the "Mesh" tab.
 
-Move the edges on the bottom a bit away from the center of the hallway. Select the edges and then hit the <kbd>S</kbd> key to scale and then the <kbd>Y</kbd> key to lock it to the Y axis. Move it around 1.2 units.
+Move the edges on the bottom a bit away from the center of the hallway. Select the edges and then hit the {% key "S" /%} key to scale and then the {% key "Y" /%} key to lock it to the Y axis. Move it around 1.2 units.
 
 ![](3B.jpg)
 
@@ -312,7 +320,7 @@ Go ahead and delete the back and top faces on the left and right:
 
 ![](3C.jpg)
 
-Grab each edge on the back faces and press <kbd>E</kbd> to extend it then press right click. Press <kbd>S</kbd> to scale it and then <kbd>X</kbd> to lock it to the X axis. Pull the selected edges in about 0.5 units. Do each side individually to avoid any issues.
+Grab each edge on the back faces and press {% key "E" /%} to extend it then press right click. Press {% key "S" /%} to scale it and then {% key "X" /%} to lock it to the X axis. Pull the selected edges in about 0.5 units. Do each side individually to avoid any issues.
 
 ![The frame for our ladder.](3D.jpg)
 
@@ -320,15 +328,15 @@ Repeat the previous steps on the new faces you made but move it for about 0.7 un
 
 ![](3E.jpg)
 
-Now Press <kbd>E</kbd> and right click then move it around 4 units on the Y axis
+Now Press {% key "E" /%} and right click then move it around 4 units on the Y axis
 
 ![](3F.jpg)
 
-Go ahead and fill in the areas you deleted with the <kbd>F</kbd> key. It should end up like this:
+Go ahead and fill in the areas you deleted with the {% key "F" /%} key. It should end up like this:
 
 ![](3G.jpg)
 
-Select the back faces where the ladder belongs and press <kbd>Shift + D</kbd> to duplicate the selected faces. Move them around -2 units on the Y axis.
+Select the back faces where the ladder belongs and press {% key "Shift + D" /%} to duplicate the selected faces. Move them around -2 units on the Y axis.
 
 ![](3H.jpg)
 
@@ -336,13 +344,13 @@ Select the back faces where the ladder belongs and press <kbd>Shift + D</kbd> to
 
 1. Delete the face in the middle of the backside of the structure. We will be extruding the edges for our teleporter.
 ![](3I.jpg)
-2. Select the left, right, and top edges of the hole you just made and press <kbd>E</kbd> to extrude it and right click. Press <kbd>S</kbd> to scale the selected edges for around 0.7 units. Once the scaling is done move the two vertices on the bottom so that they touch the floor again.
+2. Select the left, right, and top edges of the hole you just made and press {% key "E" /%} to extrude it and right click. Press {% key "S" /%} to scale the selected edges for around 0.7 units. Once the scaling is done move the two vertices on the bottom so that they touch the floor again.
 ![](3J.jpg)
-3. Select the left, right, and top edges of the hole again and press <kbd>E</kbd> to extrude it and right click. Move the selected edges around -20 units on the Y axis. Press <kbd>S</kbd> to scale the selected edges for around 0.8 units. Make sure the vertices on the bottom are touching the floor as well.
+3. Select the left, right, and top edges of the hole again and press {% key "E" /%} to extrude it and right click. Move the selected edges around -20 units on the Y axis. Press {% key "S" /%} to scale the selected edges for around 0.8 units. Make sure the vertices on the bottom are touching the floor as well.
 ![](3K.jpg)
-4. Select the left, right, and top edges of the hole again and press <kbd>E</kbd> to extrude it and right click. Press <kbd>S</kbd> to scale the selected edges for around 0.8 units. Make sure the vertices on the bottom are touching the floor one last time.
+4. Select the left, right, and top edges of the hole again and press {% key "E" /%} to extrude it and right click. Press {% key "S" /%} to scale the selected edges for around 0.8 units. Make sure the vertices on the bottom are touching the floor one last time.
 ![](3L.jpg)
-5. Select the edges on the left and right and press <kbd>E</kbd> to extrude it and right click. Move them around 30 units on the Y axis. Fill in the back and roof face from here.
+5. Select the edges on the left and right and press {% key "E" /%} to extrude it and right click. Move them around 30 units on the Y axis. Fill in the back and roof face from here.
 ![](3M.jpg)
 
 Now that the gateway is done let's add the teleporter mesh real quick to finish this off.
@@ -407,24 +415,24 @@ We will be using this unique material to select the faces in a later section.
 Now let's join the level and base geometry to help make cleaning up triangles in the next section easier.
 
 1. Select your base object.
-2. While holding <kbd>Ctrl</kbd> also select your level object.
-3. <kbd>Ctrl</kbd> + <kbd>J</kbd> to join the two objects as one.
+2. While holding {% key "Ctrl" /%} also select your level object.
+3. {% key "Ctrl" /%} + {% key "J" /%} to join the two objects as one.
 
 Now let's go into edit mode on the object and do what we need to do.
 
 Let's merge the verts first.
 
 1. Select your level object and switch from object mode to edit mode.
-2. Press <kbd>A</kbd> to select all faces in the level.
-3. While having your cursor over the 3D viewport press the <kbd>M</kbd> key to bring up the merge menu and select "By Distance" or press <kbd>B</kbd>
+2. Press {% key "A" /%} to select all faces in the level.
+3. While having your cursor over the 3D viewport press the {% key "M" /%} key to bring up the merge menu and select "By Distance" or press {% key "B" /%}
 
 Now you'll want to select the faces around the structure. Make sure to get in there and ensure you have everything selected. There may be some small triangles generated from the boolean modifier. It's important then you select all the faces for the next step to work properly.
 
 ![](3T.jpg)
 
-While having your cursor over the 3D viewport press the <kbd>X</kbd> key to bring up the delete menu. Either select the "Limited Dissolve" option or press the <kbd>L</kbd> key. You don't need to mess with any of the options so you can just triangulate the geometry to see how the wireframe ended up.
+While having your cursor over the 3D viewport press the {% key "X" /%} key to bring up the delete menu. Either select the "Limited Dissolve" option or press the {% key "L" /%} key. You don't need to mess with any of the options so you can just triangulate the geometry to see how the wireframe ended up.
 
-Once that's all done you can go into edge select mode and press the <kbd>Print Screen</kbd> key to run "Select Non Manifold".
+Once that's all done you can go into edge select mode and press the {% key "Print Screen" /%} key to run "Select Non Manifold".
 
 ![](3U.png)
 
@@ -432,7 +440,7 @@ If the only things that light up match the image then you're good. Otherwise try
 
 Now that we've cleaned up the triangles and made sure our geometry is sealed we can make the base object separate once more.
 
-Go into face selection and select one of the base faces. Press the key combo <kbd>Shift + G</kbd> to open the "Select Similar" menu. This is where that material you made will come in handy cause otherwise you're gonna have to select all the faces of the base manually. Select the material option from the menu so that the base gets highlighted and while having the cursor over the 3D viewport hit the <kbd>P</kbd> key and then select "Selection" or press <kbd>S</kbd>. For the final step make sure to rename level.001 to "blue base"
+Go into face selection and select one of the base faces. Press the key combo {% key "Shift + G" /%} to open the "Select Similar" menu. This is where that material you made will come in handy cause otherwise you're gonna have to select all the faces of the base manually. Select the material option from the menu so that the base gets highlighted and while having the cursor over the 3D viewport hit the {% key "P" /%} key and then select "Selection" or press {% key "S" /%}. For the final step make sure to rename level.001 to "blue base"
 
 # Application of materials to the base
 Now that the blue base has been separated into a separate object, we will start creating materials for our base object.
@@ -506,7 +514,7 @@ With the previous section in mind let's unwrap the teleporter gateway and scale 
 
 ![](4H.jpg)
 
-Scale the interior hallway ceiling UV so that it resembles something like this. The <kbd>N</kbd> key was used in the UV viewport to bring up the UV vertex menu. This will give us more fine control over the texture coordinates.
+Scale the interior hallway ceiling UV so that it resembles something like this. The {% key "N" /%} key was used in the UV viewport to bring up the UV vertex menu. This will give us more fine control over the texture coordinates.
 
 ![](4I.jpg)
 
@@ -518,7 +526,7 @@ Scale the exterior wall UVs so that it resembles something like this. 12.3 units
 
 ![](4K.png)
 
-Scale the interior hallway floor UV so that it resembles something like this. The <kbd>N</kbd> key was used in the UV viewport to bring up the UV vertex menu. This will give us more fine control over the texture coordinates.
+Scale the interior hallway floor UV so that it resembles something like this. The {% key "N" /%} key was used in the UV viewport to bring up the UV vertex menu. This will give us more fine control over the texture coordinates.
 
 ![](4L.jpg)
 
@@ -559,7 +567,7 @@ Now that the blue base structure has been completed, it can be copied and used t
 
 ![](4S.png)
 
-Select all of the faces of the newly created structure. You can quickly do this by hovering your mouse over sections of the structure and pressing the <kbd>L</kbd> hotkey to select linked geometry. Once that is done hit the <kbd>P</kbd> key and then select "Selection" or press <kbd>S</kbd>. Once you've finished separating it you can rename the object to "red base".
+Select all of the faces of the newly created structure. You can quickly do this by hovering your mouse over sections of the structure and pressing the {% key "L" /%} hotkey to select linked geometry. Once that is done hit the {% key "P" /%} key and then select "Selection" or press {% key "S" /%}. Once you've finished separating it you can rename the object to "red base".
 
 Repeat the process you went through with the blue base to make the red base follow the sealed world rules. If the boolean modifier doesn't cut through the geometry properly then extrude the bottom of the base and bring it down in the Z axis so that it intersects with the level geometry.
 
@@ -576,13 +584,13 @@ Restricting the player is also often used to keep the player from seeing "behind
 
 The following tutorials will discuss the uses of and demonstrate the creation of the player clipping material and the implementation of player containment or player clipping.
 
-1. Select the edges of the entrance to your teleporter gateways and press the <kbd>F</kbd> key to create a face. Go ahead and separate it from the base mesh.
+1. Select the edges of the entrance to your teleporter gateways and press the {% key "F" /%} key to create a face. Go ahead and separate it from the base mesh.
 ![](4T.jpg)
 2. We will be creating a wall that surrounds the level so that players can't walk to the very edge and stare into the abyss. Start by deleting the top face of your sky mesh to open the level up. You'll need this for the new faces you'll create.
 ![](4U.jpg)
 3. Do you remember that row of border faces we raised [earlier in this guide](#creating-the-border-for-our-level)? We will be selecting the edges of that to form a wall.
-4. Once it's selected press the <kbd>E</kbd> key to extrude your selection. Press <kbd>Z</kbd> to lock movement to the Z axis and move it up to around the same height as the skybox currently is.
-5. Press the <kbd>S</kbd> key to scale the edges and lock it to the Z axis. Scale it so that the units read 0.0 units. This will make the edges you just raised flat along the Z axis.
+4. Once it's selected press the {% key "E" /%} key to extrude your selection. Press {% key "Z" /%} to lock movement to the Z axis and move it up to around the same height as the skybox currently is.
+5. Press the {% key "S" /%} key to scale the edges and lock it to the Z axis. Scale it so that the units read 0.0 units. This will make the edges you just raised flat along the Z axis.
 6. Set the Z coordinates for the selected edges to a value of 1600.0 units. You can do this through the properties panel.
 7. Dissolve any vertices on the top besides the corners. We won't be needing them.
 8. Fill in the hole you created and apply the "+sky" material to the geometry once more. You can use "Bridge Edge Loops" in the "Edge" tab to help you with this. Separate the faces you raised from the border like with the teleporter gateway faces.
@@ -612,14 +620,14 @@ In this section we will be using the entrances to our interior hallway on both s
 
 Later, when the level is running in the game, use rasterizer_wireframe 1 to view the level and exit and enter the hallways to see how the level geometry and objects are not drawn from the player view as this portal volume is entered and exited.
 
-1. Select the edges that make up the entrance of the hallway and create a face using the <kbd>F</kbd> key. Once you've done this for all 4 entrances separate them from the structure objects to make them a unique object. Join the new objects you created from the structure and rename it to "base portals".
+1. Select the edges that make up the entrance of the hallway and create a face using the {% key "F" /%} key. Once you've done this for all 4 entrances separate them from the structure objects to make them a unique object. Join the new objects you created from the structure and rename it to "base portals".
 ![](4W.jpg)
 2. Remove all other materials from the object and create a new material. Name this material "+exactportal".
 3. Make sure the normals for the faces are pointing outwards. This will help define the volume
 
 Now let's set divide up the level using standard portals.
 
-1. Create a plane and rotate it 90 degrees on the Y axis. Make sure to apply the rotation with <kbd>Ctrl</kbd> + <kbd>A</kbd> and then set the dimensions of the plane to Y: 3600.0 Z: 2000.0. Set the position of the plane to X: 0.0 Y: 0.0 Z: 650.0. Subdivide the top and bottom plane edges to get five sections.
+1. Create a plane and rotate it 90 degrees on the Y axis. Make sure to apply the rotation with {% key "Ctrl" /%} + {% key "A" /%} and then set the dimensions of the plane to Y: 3600.0 Z: 2000.0. Set the position of the plane to X: 0.0 Y: 0.0 Z: 650.0. Subdivide the top and bottom plane edges to get five sections.
 2. Make sure the sections you created split the map somewhat nicely. The values we used for ours is:
 	* X: 0.0 Y: -1200.0 Z: 650.0
 	* X: 0.0 Y: -400.0 Z: 650.0
@@ -641,7 +649,7 @@ It's probably a good idea to make frequent backups as you make progress just in 
 
 1. Go to File dropdown in the top left and click it.
 2. Click on the menu item labeled "Save As".
-3. A window named "Blender File Dialog" should come up. Navigate to `(HEK Install Path)\data\levels\test\(Level Name)\models` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory][file-directories#creation-of-a-level-directory] section.
+3. A window named "Blender File Dialog" should come up. Navigate to `(HEK Install Path)\data\levels\test\(Level Name)\models` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory](~file-directories#creation-of-a-level-directory) section.
 4. Click on the button labeled "Save As".
 
 You've now saved your level. The file as is will be used for future sections in this tutorial.
@@ -655,8 +663,8 @@ As previously mentioned, a completed version or example version of the level cre
 The source and related materials have been provided as a reference to aid in the learning process.
 
 
-```.alert success
-Once the user has successfully completed the tutorials in _Level creation_ they can proceed to the [next section][exporting].
+{% alert type="success" %}
+Once the user has successfully completed the tutorials in _Level creation_ they can proceed to the [next section](~exporting).
 
 Please note that the section _Level exporting_ and the subsequent sections will assume that the end user has completed all of the examples and tutorials up to and including those in _Level creation_. The remaining sections in _Multiplayer level design_ will use the completed "tutorial.blend" file from these sections.
-```
+{% /alert %}

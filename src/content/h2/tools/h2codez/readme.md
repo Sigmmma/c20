@@ -1,4 +1,24 @@
-**H2Codez** is a mod for the [Halo 2 Vista Editing Kit][h2v-ek] (H2V-EK) that aims to restore some of the missing or damaged functionality.
+---
+title: H2Codez
+stub: true
+about: 'tool:H2Codez'
+info: >
+  * [Link to official repo](https://github.com/Project-Cartographer/H2Codez) *
+  [Patcher/installer for
+  H2V-EK](https://github.com/Project-Cartographer/H2Codez-Installer)
+keywords:
+  - H2Codez
+  - Mod
+  - Patch
+  - OSS
+  - H2EK
+related:
+  - /h2/tools/h2v-ek
+  - /h2/tools/h2v-ek/h2v-tool
+  - /h2/tools/h2v-ek/h2v-sapien
+  - /h2/tools/h2v-ek/h2v-guerilla
+---
+**H2Codez** is a mod for the [Halo 2 Vista Editing Kit](~h2v-ek) (H2V-EK) that aims to restore some of the missing or damaged functionality.
 
 ## Changelog ##
 * Restore tool commands used by bungie to distribute lightmapping over multiple machines.

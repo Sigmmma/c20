@@ -1,6 +1,17 @@
-```.alert
-This guide assumes you have already [prepared Blender][blender-prep].
-```
+---
+title: H3 Object Importing Guide - Render
+keywords:
+  - modeling
+  - exporter
+  - importing
+  - render model
+  - render_model
+thanks:
+  PepperMan: Writing this guide
+---
+{% alert %}
+This guide assumes you have already [prepared Blender](~blender-prep).
+{% /alert %}
 
 # File list
 | File Link                                                                                          | Description
@@ -18,8 +29,8 @@ By the end of this guide, the aim is to create a basic "platform" of sorts, with
 Here, we will simply create a new empty blender scene, and save it inside your `H3EK\data` directory, making the sub-folders for the new object as we go:
 
 1. Open Blender, New File, General
-2. Press <kbd>A</kbd> to select all, hit <kbd>X</kbd> and click delete to confirm
-3. Press File -> Save As, or simply hit <kbd>Ctrl+S</kbd>
+2. Press {% key "A" /%} to select all, hit {% key "X" /%} and click delete to confirm
+3. Press File -> Save As, or simply hit {% key "Ctrl+S" /%}
 4. Inside the save window that pops up, navigate to your `H3EK` directory
 5. Enter the `data` folder. Enter the `objects` folder, or create it if it does not exist.
 6. Enter the `scenery` folder, or create it if it does not exist.
@@ -30,7 +41,7 @@ All objects created for Halo, be they vehicles, scenery, weapons, or any other t
 
 To create an Armature, do the following:
 
-1. Press <kbd>Shift+A</kbd> to open the Add menu
+1. Press {% key "Shift+A" /%} to open the Add menu
 2. Select Armature from the list  
 * ![](A.png "Add an Armature from the Add menu")
 
@@ -43,7 +54,7 @@ For the purposes of this tutorial, the model we will be creating shall be extrem
 
 ## Creating a simple cube
 
-1. Press <kbd>Shift+A</kbd> to open the Add menu
+1. Press {% key "Shift+A" /%} to open the Add menu
 2. Select Mesh, then Cube to add a new cube to the scene
 * ![](C.png "Add a simple cube to the scene")
 3. You should now see a basic cube in the center of your scene
@@ -51,7 +62,7 @@ For the purposes of this tutorial, the model we will be creating shall be extrem
 ## Matching Halo scale
 The scale of Halo objects in Blender is actually very large, and so we will need to both scale the Cube to be much larger, as well as adjusting our camera clipping in Blender to make sure we can always see what we are doing.
 
-If you have not done so already, follow the section called `Clip start and end` [on the blender prep page.][blender-prep]
+If you have not done so already, follow the section called `Clip start and end` [on the blender prep page.](~blender-prep)
 
 To determine how big objects need to be in Blender, the addon you installed earlier comes with handy scale helper models that can be added to your scene, which accurately depict the size of different Halo objects in Blender, such as characters and vehicles. We want a platform that is big enough for at least a couple of Spartans to stand on, so we will use the Master Chief model as a reference for how big to make the cube:
 
@@ -64,16 +75,16 @@ Your scene should now hopefully look like this:
 
 As you can see, we need to scale the cube up quite a bit to fit a full-grown Spartan!
 1. Select your Cube object
-2. Press <kbd>S</kbd> to scale the object, and press <kbd>Shift+Z</kbd> to prevent scaling along the Z-axis
+2. Press {% key "S" /%} to scale the object, and press {% key "Shift+Z" /%} to prevent scaling along the Z-axis
 3. You will notice that as you move your mouse, the cube scales in the X and Y directions. You can also input numbers with your keyboard to define how much to scale by.
 4. If you wish to follow my example exactly, I scale by 60 on the X and Y axis.
-5. The exact input required would be: <kbd>S</kbd>,<kbd>Shift+Z</kbd>,<kbd>60</kbd>,<kbd>Enter</kbd>
+5. The exact input required would be: {% key "S" /%},{% key "Shift+Z" /%},{% key "60" /%},{% key "Enter" /%}
 
 The cube in your scene should now look something like this, which for now will serve us quite well as a basic platform object
 * ![](F.png "Scaled up cube")
 
 # Application of materials
-Halo Materials can be quite a tricky topic to understande for newcomers, and so it is HIGHLY recommended that the [Materials Overview][materials] page be read at some point before the texturing page. However, this information won't be required for this section, as we are not applying any custom textures for now. However, it is good practice to apply a material now, as we will be using it later.
+Halo Materials can be quite a tricky topic to understande for newcomers, and so it is HIGHLY recommended that the [Materials Overview](~materials) page be read at some point before the texturing page. However, this information won't be required for this section, as we are not applying any custom textures for now. However, it is good practice to apply a material now, as we will be using it later.
 
 ## Creating new materials
 1. Select the cube object and navigate to the materials tab.
@@ -85,10 +96,10 @@ For now, this material is simply a placeholder. As we will not yet be importing 
 # Setting up the Armature
 Right now, the Armature and Cube are two separate entities, and have no way to interact. We need the Cube to be a child object of the Armature, or else it will not be included when we export the scene to Halo. To do this, we make use of Blender's Parenting feature:
 1. Select your Cube
-2. Holding <kbd>Ctrl</kbd>, click/select the Armature object in the outliner (the list in the top right that shows all of the objects in your scene)
+2. Holding {% key "Ctrl" /%}, click/select the Armature object in the outliner (the list in the top right that shows all of the objects in your scene)
 3. You should have both objects selected, with the Cube being a darker orange
 * ![](H.png "The Outliner, with both Cube and Armature selected")
-4. With your mouse over the 3D Viewport, press <kbd>Ctrl+P</kbd> to show the Parenting menu.
+4. With your mouse over the 3D Viewport, press {% key "Ctrl+P" /%} to show the Parenting menu.
 5. Select `Object (Keep Transform)`. Your Cube should now appear inside the Armature in the Outliner.
 * ![](I.gif "Parenting the Cube to the Armature")
 
@@ -112,9 +123,9 @@ You may be wondering what to do about the scale model we still have in our scene
 See the process in realtime [here.](https://youtu.be/Tu436ifYA3A)
 
 # Importing your Render JMS with Tool
-If you aren't already familiar, Tool (tool.exe) is a commandline program used within the Halo Editing Kits mostly to provide import and export functionality. As such, we will need to use it now to turn our newly exported .JMS file into a `.render_model` tag. You can read more about tool [here.][h3-tool]
+If you aren't already familiar, Tool (tool.exe) is a commandline program used within the Halo Editing Kits mostly to provide import and export functionality. As such, we will need to use it now to turn our newly exported .JMS file into a `.render_model` tag. You can read more about tool [here.](~h3-tool)
 
-1. Open a command prompt within your H3EK directory. You can do this by typing `cmd` into the address bar whilst in the H3EK folder, and pressing <kbd>Enter</kbd>.
+1. Open a command prompt within your H3EK directory. You can do this by typing `cmd` into the address bar whilst in the H3EK folder, and pressing {% key "Enter" /%}.
 * ![](J.gif "Opening command prompt")
 2. Take note of the filepath of your custom object. If you've been following along exactly, that would be `H3EK\data\objects\scenery\custom_platform`. The tool command we are about to run only requires the relative path, and for H3EK this means you can exclude everything up to and including `data` from the filepath. Therefore, we just need `objects\scenery\custom_platform`
 3. The command also takes one last option, `draft` or `final`. This is to do with PRT shadow creation, which is out of the scope of this tutorial. For now, we will simply use `draft`.
@@ -127,11 +138,11 @@ That's about all there is to the .JMS importing process. Tool has taken our .JMS
 # Creating the Model and Scenery tags
 Now, render model tags themselves cannot be directly displayed in the Halo 3 engine - they need to be added to a `.model` tag, and the that model tag needs to be added to a high-level tag, such as `.vehicle`, `.scenery`, `.biped` etc, depending on the type of object you want. Scenery is a typically static object that can have collision, but otherwise floats where you place. This is what we want right now, and heres how to get there:
 
-1. Open [Guerilla.exe][h3-guerilla]
-2. Create a new tag, either with `File -> New` or <kbd>Ctrl+N</kbd>
+1. Open [Guerilla.exe](~h3-guerilla)
+2. Create a new tag, either with `File -> New` or {% key "Ctrl+N" /%}
 3. You can manually look for `model` in the drop-down, or you can start typing the word model and it should come up. Click OK
 4. We only need to do one thing in this tag, which is to add a reference to our newly generated `.render_model` tag - Click the `...` next to the `render model` box near the top of the tag. This will open a file browser. Navigate to `H3EK\tags\objects\scenery\custom_platform`, and double-click the `custom_platform.render_model` tag.
-5. Now that it is in the model, we can save this tag with <kbd>Ctrl+S</kbd>. Save it to `H3EK\tags\objects\scenery\custom_platform`, where the render model tag is also stored. We generally give all the tags the same name, and rely only on the file extension, so in this case save the tag with the name `custom_platform`. Once this is done, you can close the tag with the X in the top right.
+5. Now that it is in the model, we can save this tag with {% key "Ctrl+S" /%}. Save it to `H3EK\tags\objects\scenery\custom_platform`, where the render model tag is also stored. We generally give all the tags the same name, and rely only on the file extension, so in this case save the tag with the name `custom_platform`. Once this is done, you can close the tag with the X in the top right.
 6. Create another new tag, this time making it a `Scenery` tag.
 7. For `bounding radius`, give it a value of 3 (this is a rough approximation of the size of the object).
 8. Find the `model` box a little way down from the top, click the `...` and select the `custom_platform.model` tag you just saved.
@@ -139,12 +150,12 @@ Now, render model tags themselves cannot be directly displayed in the Halo 3 eng
 
 If you need, [there is a video](https://youtu.be/HH_Zcs1wxEE) which follows this exact process.
 
-Done! Our custom object is now ready to be placed and used in [Sapien][h3-sapien] just like any other scenery object.
+Done! Our custom object is now ready to be placed and used in [Sapien](~h3-sapien) just like any other scenery object.
 
 ## Checking out the object in Sapien
 Now that we have a functional `.scenery` tag with the custom render model in it, we can add it to any map with sapien and use it! Although currently, it will be using the default missing texture, and wont be collideable (yet!).
 
-1. Open [Sapien][h3-sapien] and lauch any `.scenario` of your choosing
+1. Open [Sapien](~h3-sapien) and lauch any `.scenario` of your choosing
 2. Once it has loaded, in the Hierarchy View, click on `Scenario -> Objects -> Scenery`, and the click the `Edit Types` button.
 3. Click `Add`, and navigate to our new `custom_platform.scenery` tag in `H3EK\tags\objects\scenery\custom_platform`.
 4. Double click it, then click `Done`, then `OK`.
@@ -155,6 +166,6 @@ Now that we have a functional `.scenery` tag with the custom render model in it,
 Check the video [here](https://youtu.be/DgsMVhR1FN8) to see this process in action.
 
 
-```.alert success
-Once you've gotten to this point, you are ready to look at adding a custom material! Proceed to the [next section][blender-object-creation-materials]
-```
+{% alert type="success" %}
+Once you've gotten to this point, you are ready to look at adding a custom material! Proceed to the [next section](~blender-object-creation-materials)
+{% /alert %}

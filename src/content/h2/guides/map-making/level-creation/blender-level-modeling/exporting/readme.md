@@ -1,14 +1,22 @@
-```.alert
-This guide assumes you have already gone through [level creation - beginner][blender-level-creation-beginner] or have the end result file ready. You will also be expected to know how to handle level directories which you can find [here.][file-directories]
-```
+---
+title: H2 Blender level guide - Exporting
+keywords:
+  - modeling
+  - exporter
+thanks:
+  General_101: Writing this guide
+---
+{% alert %}
+This guide assumes you have already gone through [level creation - beginner](~blender-level-creation-beginner) or have the end result file ready. You will also be expected to know how to handle level directories which you can find [here.](~file-directories)
+{% /alert %}
 
 # Introduction
-Now that we've created a level, we can start going through the necessary steps for export. This page will describe all the options you can find in the export menu for exporting a level to [.ASS][ass]
+Now that we've created a level, we can start going through the necessary steps for export. This page will describe all the options you can find in the export menu for exporting a level to [.ASS](~ass)
 
 If there are any images that you find difficult to read then try opening the image in a new tab to view it in full resolution.
 
 # Finding the export menu
-We will be starting by finding the export menu for our [Blender][blender] exporter. Find the File menu in the toolbar on the top left and open it to reveal the contents. In the menu you will see a few options but the only option relevant to you is the menu option labeled `Export`. To export our geometry as a `.ASS` file you will want to select the option labeled `Halo Amalgam Scene Specification (.ass)`:
+We will be starting by finding the export menu for our [Blender](~blender) exporter. Find the File menu in the toolbar on the top left and open it to reveal the contents. In the menu you will see a few options but the only option relevant to you is the menu option labeled `Export`. To export our geometry as a `.ASS` file you will want to select the option labeled `Halo Amalgam Scene Specification (.ass)`:
 
 ![](A.jpg "A nice export menu so thoughtfully provided by our benefactors.")
 
@@ -16,7 +24,7 @@ An export menu should appear on your screen after clicking `Halo Amalgam Scene S
 
 ![](B.jpg "Plenty of options for you to mess with. Lets dig in!")
 
-Use the default settings for a proper level export. [Generate asset subdirectories][exporting#file-details] is optional.
+Use the default settings for a proper level export. [Generate asset subdirectories](~exporting#file-details) is optional.
 
 # Selecting your directory
 After you have set the settings you've wanted you can start browsing for a directory to dump the files into. The directory we will be choosing will be the following:
@@ -33,9 +41,9 @@ If `Generate Asset Subdirectories` was disabled then it would be
 
 Just hit the button labeled `Export ASS` to finish the job.
 
-```.alert success
+{% alert type="success" %}
 Now that you've exported your level you can compile the results in tool and see your hard work pay off. Now get out there and make something awesome for you and your friends to criticize until none of you are comfortable showing your work to each other.
-```
+{% /alert %}
 
 # Additional information
 Lets break down each of the options found in the menu.
@@ -109,6 +117,6 @@ We will be leaving this as is.
 ![](K.jpg "Shouldn't have to bother with this unless you're developing something for the toolset.")
 
 ## ASS settings
-Now lets open the ASS settings dropdown to reveal the settings used for the exporter. Set any settings you want used each time you export and make sure to have `Use as Default Export Settings`. You can turn this off or on in the export menu as well by checking `Use Scene Export Settings` enabled. Any settings you have in your scene settings will be saved to the blend file. See the [Additional Information section][exporting#additional-information] for details on what each option does. They are the exact same.
+Now lets open the ASS settings dropdown to reveal the settings used for the exporter. Set any settings you want used each time you export and make sure to have `Use as Default Export Settings`. You can turn this off or on in the export menu as well by checking `Use Scene Export Settings` enabled. Any settings you have in your scene settings will be saved to the blend file. See the [Additional Information section](~exporting#additional-information) for details on what each option does. They are the exact same.
 
 ![](L.jpg "For your convenience")

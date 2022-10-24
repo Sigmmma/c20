@@ -1,4 +1,21 @@
-The [Halo Reach Editing Kit][hr-ek] uses several types of animations when building a model_animation_graph from source data. Using legacy commands these are filetypes, however in the Sidecar pipeline animation types are defined in the sidecar.xml
+---
+title: Reach Animation data
+stub: true
+keywords:
+  - jma
+  - jmm
+  - jmt
+  - jmz
+  - jmv
+  - jmo
+  - jmr
+  - animation
+  - model_animation_graph
+  - reach
+thanks:
+  Crisp: Writing this page
+---
+The [Halo Reach Editing Kit](~hr-ek) uses several types of animations when building a model_animation_graph from source data. Using legacy commands these are filetypes, however in the Sidecar pipeline animation types are defined in the sidecar.xml
 
 # JMM (Base)
 Full body animation, however it will not move the physics pill of an object. Ideal for idle, and enter/exit vehicle animations or cinematic animations.

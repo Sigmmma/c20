@@ -19,15 +19,15 @@ type_defs:
       - name: atmosphere_dominant
         comments:
           en: >-
-            As documented in [Guerilla][], this was originally used to fix
+            As documented in [Guerilla](~), this was originally used to fix
             polygon popping when atmospheric fog density reached 1.0 within the
             confines of the map and interacted with fog planes. It is only
             enabled in c10's swamp fog tag.
 
 
             This flag can be used as a workaround on H1PC and H1CE to fix fog not
-            rendering over the sky, a [renderer bug][renderer#gearbox-regressions]
-            introduced during the PC port. Some [Chimera][] builds automatically
+            rendering over the sky, a [renderer bug](~renderer#gearbox-regressions)
+            introduced during the PC port. Some [Chimera](~) builds automatically
             flip this flag at runtime. It is **not necessary** to use this flag
             as a visual workaround in H1A because fog rendering has been fixed.
       - name: fog_screen_only

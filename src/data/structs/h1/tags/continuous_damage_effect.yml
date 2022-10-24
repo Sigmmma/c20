@@ -13,8 +13,8 @@ type_defs:
     comments:
       en: >-
         Creates a continuous screen shake and controller vibration within a radius
-        of a [sound_looping][] source. This tag class is not used in any stock maps
-        and the effect only applies while certain [damage_effect][] are also applying
+        of a [sound_looping](~) source. This tag class is not used in any stock maps
+        and the effect only applies while certain [damage_effect](~) are also applying
         to the player.
     class: struct
     meta:
@@ -29,7 +29,7 @@ type_defs:
         comments:
           en: >
             The minimum radius (falloff start) maximum (cutoff) fade the scale
-            of the effect's camera shake linearly by distance from the [sound_looping][]
+            of the effect's camera shake linearly by distance from the [sound_looping](~)
             source which references this tag class.
       - name: cutoff_scale
         type: float

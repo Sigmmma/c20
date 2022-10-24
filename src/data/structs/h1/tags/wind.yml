@@ -10,9 +10,9 @@ type_defs:
     comments:
       en: >
         Describes the speed and variation of wind in a [BSP
-        cluster][scenario_structure_bsp#clusters-and-cluster-data], affecting
-        local [point_physics][] like [flags][flag] and
-        [weather][weather_particle_system].
+        cluster](~scenario_structure_bsp#clusters-and-cluster-data), affecting
+        local [point_physics](~) like [flags](~flag) and
+        [weather](~weather_particle_system).
     assert_size: 64
     fields:
       - name: velocity

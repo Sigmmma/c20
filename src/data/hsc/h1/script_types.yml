@@ -54,17 +54,17 @@ script_types:
 
   - type: stub
     info:
-      en: >
+      en: |
         A `stub` script by itself does nothing. It allows you to pre-declare a
         `static` script without providing a script body.
         This allows other scripts to invoke a `static` script without the full
         function body being declared yet.
-        <br/><br/>
-        The script you override a `stub` with must have the same "signature" (
-        i.e. name, parameters, and return type). A stub cannot be declared more
+        
+        The script you override a `stub` with must have the same "signature"
+        (i.e. name, parameters, and return type). A stub cannot be declared more
         than once. The full implementation of a `stub` *may* be placed in
         another script file.
-        <br/><br/>
+
         If you're familiar with C function prototypes, this is very similar.
       es:
     ex: (script stub object player0)

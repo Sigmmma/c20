@@ -1,6 +1,14 @@
-```.alert
-This guide assumes you have already [prepared Blender][blender-prep].
-```
+---
+title: H3 Blender level guide - Beginner
+keywords:
+  - modeling
+  - exporter
+thanks:
+  General_101: Writing this guide
+---
+{% alert %}
+This guide assumes you have already [prepared Blender](~blender-prep).
+{% /alert %}
 
 # File list
 | File Link                                                                                          | Description
@@ -24,9 +32,9 @@ While the level pipeline for Halo 3 hasn't changed much from Halo 2 and Halo CE,
 # Creation of a reference frame
 This section is optional but you can follow it if you wish to understand reference frames. The reference frame is the origin for all objects in our scene.
 
-```.alert danger
+{% alert type="danger" %}
 Be aware that once you have started to edit the level using the Halo level editing tool known as Sapien you cannot move the origin of the reference frame. Changing the origin will cause all placed objects to move.
-```
+{% /alert %}
 
 If a reference frame is used then any objects that are not a child of the reference frame will be excluded from the level mesh on import in Tool. This helps the designer keep reference models for scale but not have to fumble around with deleting objects before export to prevent issues. This can also be used to remove objects from the reference frame to debug which object in particular may be causing an issue.
 
@@ -37,19 +45,19 @@ Consider placing the frame outside of the level you are creating as to not inter
 To create a reference frame do the following:
 
 1. [Add a sphere object](https://www.youtube.com/watch?v=zqy0tHLiOig) to your scene.
-2. Set the name of the object in the [outliner](https://youtu.be/UIRaqLLjnmY) to "b_levelroot" by double clicking it or pressing <kbd>F2</kbd> to edit it.
+2. Set the name of the object in the [outliner](https://youtu.be/UIRaqLLjnmY) to "b_levelroot" by double clicking it or pressing {% key "F2" /%} to edit it.
 
 Make sure the reference frame is at the origin of your scene. [Move](https://youtu.be/P0RfuocRY9c) the object if needed. Your translation coordinates should read:
 
 X: `0.0` Y: `0.0` Z: `0.0`
 
-```.alert info
+{% alert %}
 Reference frames do not have to be called b_levelroot specifically. They just have to start with a valid Halo node prefix. In the case of our b_levelroot `b` is the node prefix and `levelroot` is the object name. The underscore can either be said underscore or a space. Node prefixes should always have a space or underscore between it and the object name.
-```
+{% /alert %}
 
-```.alert info
+{% alert %}
 The Reference Frame does not have to have a specific Material applied to it. The application of Materials in Blender will be discussed in a later section.
-```
+{% /alert %}
 
 # Creation of a simple level
 The following steps and example images will demonstrate the creation of a box that will serve as the tutorial level and will be utilized for all the subsequent tutorials.
@@ -63,10 +71,10 @@ The level must be a sealed. The level must be a contiguous structure that forms 
 ## creation of a simple box room
 
 1. [Add a new box object](https://www.youtube.com/watch?v=zqy0tHLiOig)
-2. Bring up the [sidebar](https://youtu.be/H64e1RDZKuA) with <kbd>N</kbd> and set it to the item tab.
+2. Bring up the [sidebar](https://youtu.be/H64e1RDZKuA) with {% key "N" /%} and set it to the item tab.
 3. Set the [location](https://youtu.be/P0RfuocRY9c) of the box to X: `0.0` Y: `0.0` Z: `0.0`
-4. The [dimensions](https://youtu.be/P0RfuocRY9c) for the Box can be manually set. The dimensions for the box that will be used are X: `2000.0`  Y: `2000.0`  Z: `1000.0`. Make sure to apply this with <kbd>Ctrl</kbd> + <kbd>A</kbd> and select `Scale`.
-5. Set the name of the object in the [outliner](https://youtu.be/UIRaqLLjnmY) to "level" by double clicking it or pressing <kbd>F2</kbd> to edit it.
+4. The [dimensions](https://youtu.be/P0RfuocRY9c) for the Box can be manually set. The dimensions for the box that will be used are X: `2000.0`  Y: `2000.0`  Z: `1000.0`. Make sure to apply this with {% key "Ctrl" /%} + {% key "A" /%} and select `Scale`.
+5. Set the name of the object in the [outliner](https://youtu.be/UIRaqLLjnmY) to "level" by double clicking it or pressing {% key "F2" /%} to edit it.
 6. While having the box selected [change the context mode](https://youtu.be/SVLAYHJSXYA) from object mode to edit mode
 	* The following steps will make the box satisfy the Sealed World Rules and will link it to the frame, in effect making it a simple Halo level in terms of geometry.
 7. [Flip all the normals](https://youtu.be/zog43sqj0Qc) for the box inwards, the interior of the box will be the playable area of the level.
@@ -80,12 +88,12 @@ The level must be a sealed. The level must be a contiguous structure that forms 
 8. [Set context](https://youtu.be/SVLAYHJSXYA) back to object mode if you haven't already.
 9. With both your level and frame object selected, [set the parent](https://youtu.be/FsMnUhG1CWo) of the box (level) to the Reference Frame (b_levelroot) with b_levelroot being the active object.
 
-```.alert info
+{% alert %}
 The last object you selected is considered the active object and will be the parent of all other objects you have selected when doing set to parent object.
-```
+{% /alert %}
 
 # Application of materials
-Before discussing and demonstrating materials and the application of materials to surfaces in the level, it is HIGHLY recommended that the [Materials Overview][materials] page be reviewed. The information contained in the Material Naming Conventions and Rules as well as the names of Special Materials and special Shader Symbols of this section will be referenced in the following examples.
+Before discussing and demonstrating materials and the application of materials to surfaces in the level, it is HIGHLY recommended that the [Materials Overview](~materials) page be reviewed. The information contained in the Material Naming Conventions and Rules as well as the names of Special Materials and special Shader Symbols of this section will be referenced in the following examples.
 
 The following section will show you how to create new materials and use them across multiple objects properly. We will also show how to assign a texture to a material so that it displays on surfaces that have that material assigned. This is not necessary for exporting or the compiling of raw assets but it should help you visualize the look of your level in your scene. The only data exported to the .ASS is the name of our material. The name of the material will be the filename tool.exe searches for when looking for a shader tag to assign to a surface.
 
@@ -94,7 +102,7 @@ Images assigned to materials can be used to examine generated UVs from your scen
 If a face does not have a material assigned then it will use a default shader on import.
 
 ## Creating new materials
-If you do not have the textures referenced in this section then grab them from the [file list.][#file-list]
+If you do not have the textures referenced in this section then grab them from the [file list.](#file-list)
 
 1. Select the box object (level) and navigate to the materials tab.
 	* ![](C.jpg "Match the numbers in the image to the numbers in the list below.")
@@ -104,13 +112,13 @@ If you do not have the textures referenced in this section then grab them from t
 5. [Assign an image texture node](https://youtu.be/2yOOzN0zJfQ) to your material.
 6. Since there is no included data for the game bitmaps you can use the included panel_wall_vert.tiff file from the example blend file in the file list table above.
 
-```.alert info
+{% alert %}
 Material names in Blender must be unique. Blender does not allow for any duplicate material names in your scene. If you have an existing material named `test` and create a new material in another object named `test` then that material will be renamed to `test.001`. If you need the same material name then reselect it from the material dropdown.
-```
+{% /alert %}
 
-```.alert info
+{% alert %}
 Be sure to keep your material names lowercase as all tags paths in Halo should not make use of uppercase letters.
-```
+{% /alert %}
 
 ## Applying new materials
 
@@ -190,9 +198,9 @@ The result should look something like this.
 
 Now that we finished our work we can begin to mark the edges as sharp.
 
-```.alert info
+{% alert %}
 Do not worry about sharp edges for materials that are considered special materials such as +portal and +sky.
-```
+{% /alert %}
 
 Follow the instructions [here](https://youtu.be/Zlu5pT1WPJY) for setting up the sharp edges on your geometry.
 
@@ -221,13 +229,13 @@ It's probably a good idea to make frequent backups as you make progress just in 
 
 1. Go to File dropdown in the top left and click it.
 2. Click on the menu item labeled `Save As`.
-3. A window named "Blender File Dialog" should come up. Navigate to `(H3EK Install Path)\data\levels\multi\(Level Name)\structure` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory][file-directories] section
+3. A window named "Blender File Dialog" should come up. Navigate to `(H3EK Install Path)\data\levels\multi\(Level Name)\structure` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory](~file-directories) section
 4. Click on the button labeled `Save As`.
 
 You've now saved your level. The file as is will be used for future sections in this tutorial.
 
 # End of basics
 
-```.alert success
-Once you've gotten to this point your level is ready to export. Proceed to the [next section][exporting]
-```
+{% alert type="success" %}
+Once you've gotten to this point your level is ready to export. Proceed to the [next section](~exporting)
+{% /alert %}

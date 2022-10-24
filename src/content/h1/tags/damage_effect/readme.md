@@ -1,6 +1,19 @@
-The **damage effect** tag determines the results of damage application in a wide range of use cases, including but not limited to: projectile impacts, detonations, melee attacks, falling, and vehicle collisions. They can be part of an [effect][].
+---
+title: damage_effect
+about: 'tag:h1/damage_effect'
+img: explosion.jpg
+caption: 'The grenade detonation [effect](~) includes a damage_effect.'
+thanks:
+  Mortis: Explaining headshot damage and bleedthrough
+  Conscars: Checking multiplayer headshot flag and radii behaviour
+  gbMichelle: Reverse engineering the damage formula
+  King Feraligatr: Testing EMP effect on shields
+  Kavawuvi: Invader tag definitions
+  MosesOfEgypt: Tag structure research
+---
+The **damage effect** tag determines the results of damage application in a wide range of use cases, including but not limited to: projectile impacts, detonations, melee attacks, falling, and vehicle collisions. They can be part of an [effect](~).
 
-A damage effect is not strictly about applying shield and health damage to [units][unit]; these tags can have an area of effect, impart acceleration on additional objects like [items][item] and [projectiles][projectile] too, and cause screen effects like colour flashes and shaking.
+A damage effect is not strictly about applying shield and health damage to [units](~unit); these tags can have an area of effect, impart acceleration on additional objects like [items](~item) and [projectiles](~projectile) too, and cause screen effects like colour flashes and shaking.
 
 # Bleedthrough
 When damage to shields exceeds the currently shield vitality, damage carries over to health. When this occurs, the damage multiplier of the shields still carries over to the health damage. This even occurs if the current shield vitality is 0. The result is that the initial carryover health damage may be higher than expected with weapons like the plasma rifle, which have a 2x shield multiplier. Subsequent shots will impact the body and use its material type modifiers instead.
@@ -37,19 +50,10 @@ Or, more visually:
 ![Diagram of damage falloff for the shotgun](shotgun-example.png)
 
 # Related script functions and globals
-The following are related [functions][scripting#functions] that you can use in your scenario scripts and/or [debug globals][scripting#external-globals] that you can enter into the developer console for troubleshooting.
+The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.
 
-```.table
-id: functions-globals
-dataPath:
-  - hsc/h1/functions/functions
-  - hsc/h1/globals/external_globals
-linkCol: true
-linkSlugKey: slug
-rowSortKey: slug
-rowTagFilter: damage
-columns:
-  - key: info/en
-    name: Function/global
-    format: text
-```
+{% relatedHsc game="h1" tagFilter="damage" /%}
+
+# Structure and fields
+
+{% tagStruct "h1/damage_effect" /%}

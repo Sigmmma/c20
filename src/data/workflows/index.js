@@ -1,8 +1,5 @@
-const fs = require("fs").promises;
-const path = require("path");
-const R = require("ramda");
-const yaml = require("js-yaml");
-const {loadYamlTree} = require("../../utils");
+import * as R from "ramda";
+import {loadYamlTree} from "../../lib/utils/files";
 
 function strAsList(strOrList) {
   if (!strOrList) return [];
@@ -190,13 +187,13 @@ async function loadWorkflows() {
     relationshipsPass,
     uniquePass,
     noDeprecatedPass,
-  )(await loadYamlTree(__dirname, true));
+  )(await loadYamlTree(__dirname, {flat: true}));
 
   return {
     getWorkflowItem: (itemName, ctx) => {
       let result = items[itemName];
       if (!result) {
-        throw new Error(`Could not find workflow item with name ${itemName} (from ${ctx ? ctx.page.pageId : "unknown"})`);
+        throw new Error(`Could not find workflow item with name ${itemName} (from ${ctx ? ctx.pageId : "unknown"})`);
       }
       if (!result.url && !result.page) {
         throw new Error(`The workflow item ${itemName} does not exist or is missing page/url attribute`);

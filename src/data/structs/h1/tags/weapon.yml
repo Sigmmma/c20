@@ -36,7 +36,7 @@ type_defs:
       - name: detonates_when_dropped
         comments:
           en: >
-            Causes the weapon to explode using its [item][] _detonation effect_
+            Causes the weapon to explode using its [item](~) _detonation effect_
             after being dropped. This is used to make the singleplayer fuel rod
             gun and energy sword explode when the enemies who carry them die.
       - name: cannot_fire_at_maximum_age
@@ -202,7 +202,7 @@ type_defs:
         comments:
           en: >
             If true the projectiles will spawn at the third person `primary
-            trigger` or `secondary trigger` [marker][gbxmodel#markers] instead
+            trigger` or `secondary trigger` [marker](~gbxmodel#markers) instead
             of originating from the center of the first person view.
       - name: sticks_when_dropped
         comments:
@@ -365,7 +365,7 @@ type_defs:
         comments:
           en: >
             The rate of fire needed to switch the object to its [~blur
-            permutation][gbxmodel#permutations].
+            permutation](~gbxmodel#permutations).
       - type: pad
         size: 8
       - name: magazine
@@ -422,7 +422,7 @@ type_defs:
         comments:
           en: >
             The function of this field is unknown. It is **unused by the game**.
-            Although labeled in [Guerilla][] as a range \[0, 1\], the pistol has
+            Although labeled in [Guerilla](~) as a range \[0, 1\], the pistol has
             a max value of 2. Setting this to 0 does not affect projectile
             spread.
       - name: error_acceleration_time
@@ -497,7 +497,7 @@ type_defs:
           en: >
             Floor value for error angle. Even if the minimum error angle is 0,
             this value takes precedence. Note that this field receives a
-            [hard-coded singleplayer adjustment][tool#hardcoded-tag-patches] at
+            [hard-coded singleplayer adjustment](~tool#hardcoded-tag-patches) at
             map compile time for the pistol.
       - name: error_angle
         type: Bounds
@@ -510,7 +510,7 @@ type_defs:
             after a period of sustained fire. The values are shown in degrees in
             Guerilla, but internally stored in radians. Note that these fields
             receives [hard-coded singleplayer
-            adjustments][tool#hardcoded-tag-patches] at map compile time for the
+            adjustments](~tool#hardcoded-tag-patches) at map compile time for the
             pistol and plasma rifle.
       - name: first_person_offset
         type: Point3D
@@ -624,7 +624,7 @@ type_defs:
     comments:
       en: >-
         Used for both weildable weapons and those attached to
-        [vehicles][vehicle].
+        [vehicles](~vehicle).
     assert_size: 1288
     fields:
       - name: weapon_flags
@@ -747,7 +747,7 @@ type_defs:
         comments:
           en: >
             Determines the aiming cone where projectiles paths will be pulled
-            towards the target biped's [autoaim pill][biped#physics-and-autoaim-pills].
+            towards the target biped's [autoaim pill](~biped#physics-and-autoaim-pills).
             This is the "red reticle" angle.
       - name: autoaim_range
         type: float

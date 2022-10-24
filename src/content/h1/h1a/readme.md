@@ -1,21 +1,32 @@
+---
+title: 'Halo: Combat Evolved Anniversary'
+stub: true
+img: cea.jpg
+caption: H1A was released independently on Xbox 360 and under MCC for PC and Xbox One.
+thanks:
+  zatarita: >-
+    Documenting H1A differences from PC and between versions, summarizing new
+    formats
+  Kavawuvi: H1A BSP data base address
+---
 **Halo: Combat Evolved Anniversary**, commonly referred to as **H1A** or **CEA** was first released in 2011 as a collaboration project between [343 Industries][343i-wiki], and [Saber Interactive][saber-wiki]. It aimed to modernize the look and feel of the original game for use with the more powerful [Xbox 360][360-wiki]. With the release of [Halo MCC][mcc-wiki], CEA has also seen a port to PC and Xbox One.
 
-One of its quirks is the ability to switch between the Saber3d and [blam!][engine] engine visuals and sounds with the press of a button. It's common to see the them referred to as classic, and anniversary to reduce ambiguity.
+One of its quirks is the ability to switch between the Saber3d and [blam!](~engine) engine visuals and sounds with the press of a button. It's common to see the them referred to as classic, and anniversary to reduce ambiguity.
 
 As of season 7, H1A represents a merger between the original H1CE and H1PC branches of the engine.
 
 # Modding
-H1A officially supports modding with the release of the upgraded [H1A Editing Kit][h1a-ek]. The editing kit can be downloaded via Steam and used to make custom maps. At this time, users must turn EAC off and replace existing stock maps with custom ones in order to play them.
+H1A officially supports modding with the release of the upgraded [H1A Editing Kit](~h1a-ek). The editing kit can be downloaded via Steam and used to make custom maps. At this time, users must turn EAC off and replace existing stock maps with custom ones in order to play them.
 
 # Changes
-The H1A engine saw some adjustments to the [map][] format. This made it difficult for some existing [modding programs][tools] to read the new format.
+The H1A engine saw some adjustments to the [map](~) format. This made it difficult for some existing [modding programs](~tools) to read the new format.
 
 * BSP vertices are stored outside of the BSP tag <sup>[(source)][h1a-map-files]</sup> and BSP data is loaded at address `0x41448000` instead of within the tag data space.
 * The tag data address has been adjusted from `0x40440000` to `0x40448000`.
 * The maps (and other files) are compressed using a variant of [zlib][] compression.
-* [Bitmaps][bitmap], and [sounds][sound] have been relocated from their respective bitmaps.map/sounds.map locations. The sounds are now in [FMOD][] sound banks, and the bitmaps are stored inside ipaks.
+* [Bitmaps](~bitmap), and [sounds](~sound) have been relocated from their respective bitmaps.map/sounds.map locations. The sounds are now in [FMOD][] sound banks, and the bitmaps are stored inside ipaks.
 
-The rest of the [tags][] system appears to be unaltered.
+The rest of the [tags](~) system appears to be unaltered.
 
 With the introduction of the Saber3d engine also came new file formats:
 

@@ -119,7 +119,7 @@ type_defs:
         comments:
           en: >
             The minimum speed where the vehicle's [gbxmodel ~blur
-            permutation][gbxmodel#permutations] is used for fake motion blur. An
+            permutation](~gbxmodel#permutations) is used for fake motion blur. An
             example is the Warthog's tires.
       - name: vehicle_a_in
         type: VehicleFunctionIn

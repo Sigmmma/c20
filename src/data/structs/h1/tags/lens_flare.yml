@@ -124,8 +124,8 @@ type_defs:
     comments:
       en: >
         A 2D sprite which can fade by distance and angle. Can be part of a
-        [light][] or attached to [the
-        BSP][scenario_structure_bsp#lens-flare-markers].
+        [light](~) or attached to [the
+        BSP](~scenario_structure_bsp#lens-flare-markers).
     assert_size: 240
     fields:
       - name: falloff_angle

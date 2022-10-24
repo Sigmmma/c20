@@ -23,7 +23,7 @@ camera_fx_settings:
   description:
     en: >
       Post-processing screen effects like bloom and exposure that can be
-      assigned to a [BSP cluster][scenario_structure_bsp#clusters].
+      assigned to a [BSP cluster](~scenario_structure_bsp#clusters).
 camera_track:
   #id: trak
 cellular_automata:
@@ -275,7 +275,7 @@ structure_design:
 structure_seams:
   description:
     en: >
-      Defines the geometry between seam-connected [BSPs][scenario_structure_bsp].
+      Defines the geometry between seam-connected [BSPs](~scenario_structure_bsp).
 style:
   #id: styl
 text_value_pair_definition:

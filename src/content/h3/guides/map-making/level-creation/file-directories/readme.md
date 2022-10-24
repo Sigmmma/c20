@@ -1,3 +1,11 @@
+---
+title: H3 level guide - File Directories
+keywords:
+  - modeling
+  - exporter
+thanks:
+  General_101: Writing this guide
+---
 # File list
 | File Link                                                                                       | Description
 |------------------------------------------------------------------------------------------------ | -----------------------------------
@@ -19,9 +27,9 @@ has the compiled assets outputted to:
 
 When creating a level the scenario tag will take the name of the folder containing the sub directories and raw assets while the structure BSP tag will take the name of the ASS file itself. Compiled scenario tags can then reference other tags for use in the level.
 
-```.alert danger
+{% alert type="danger" %}
 The name of the level folder containing our sub directories MUST BE UNIQUE from any other level folder in the data/tags directory. Level folders of the same name will overwrite each other in the maps folder when packaging your level.
-```
+{% /alert %}
 
 Let's first start by creating our very own level directory in the data folder. We'll call this level tutorial for simplicities sake but you can call it whatever you would like:
 
@@ -51,12 +59,12 @@ If you have any images or custom models then the folders you will need are as fo
 	* This `structure_design` folder name is something Tool.exe specifically looks for when compiling structure design related assets. Be sure that the folder is named exactly this. The contents of this folder will only be read if the user runs the `structure-design` command.
 
 
-```.alert info
+{% alert %}
 As stated before compiled assets will end up in a path that mirrors the path of the raw asset but replacing the data directory with the tags directory. A packaged map file will take the name of the scenario tag and placed in your toolset's map folder.
-```
+{% /alert %}
 
 # End of file directory info
 
-```.alert success
-Now that you fully understand the data directory setup we can begin to work on our level geometry in the [next section][blender-prep]. If you already understand how Blender works then skip ahead to the [modeling section.][blender-level-creation-beginner] If you also already understand Halo level creation in Blender or wish to attempt importing something first then go ahead and skip over to the [export section.][exporting] You can also take the end result file linked in the [file list][file-directories#file-list] section to get used to the data directory setup.
-```
+{% alert type="success" %}
+Now that you fully understand the data directory setup we can begin to work on our level geometry in the [next section](~blender-prep). If you already understand how Blender works then skip ahead to the [modeling section.](~blender-level-creation-beginner) If you also already understand Halo level creation in Blender or wish to attempt importing something first then go ahead and skip over to the [export section.](~exporting) You can also take the end result file linked in the [file list](~file-directories#file-list) section to get used to the data directory setup.
+{% /alert %}

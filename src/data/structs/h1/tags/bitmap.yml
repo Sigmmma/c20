@@ -18,7 +18,7 @@ type_defs:
       - name: 2d_textures
       - name: 3d_textures
         comments:
-          en: 'Used for [shader_transparent_plasma][] noise maps.'
+          en: 'Used for [shader_transparent_plasma](~) noise maps.'
       - name: cube_maps
       - name: sprites
       - name: interface_bitmaps
@@ -250,7 +250,7 @@ type_defs:
       en: >
         Stores texture data like sprite sheets, environment maps, normal maps,
         and more. Commonly (but not exclusively) referenced by
-        [shaders][shader].
+        [shaders](~shader).
     assert_size: 108
     fields:
       - name: type
@@ -304,7 +304,7 @@ type_defs:
         comments:
           en: >-
             Contains the original raw source data used to compile this bitmap tag,
-            if available. Bitmap tags which have been extracted from [cache files][map]
+            if available. Bitmap tags which have been extracted from [cache files](~map)
             will not have this data.
       - name: processed_pixel_data
         type: TagDataOffset

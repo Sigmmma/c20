@@ -1,3 +1,17 @@
+---
+title: bitmap
+about: 'tag:h1/bitmap'
+img: bitmap_example.jpg
+caption: 'A typical level texture bitmap, used for environment shaders'
+thanks:
+  gbMichelle: 'Information on formats, bitmap types, usage, compilation, and errors'
+  Mimickal: >-
+    Information on formats, bitmap types, usage, compilation, errors, sprite
+    sheets, and proofreading
+  Jesse: Misc info
+  Kavawuvi: Invader tag definitions
+  MosesOfEgypt: Tag structure research
+---
 Bitmaps are used for visuals that need textures or sprites like environments, objects, effects, menus, etc.
 
 # Basics
@@ -86,8 +100,6 @@ Using this is not recommended as generating your own normal map from a height ma
 When setting the usage to detail map, tool will fade the bitmap to grey in every mipmap, this is so that when you are further away things that use the detail map won't look as noisy. The alpha fades to white.
 
 You can modify how quickly the mipmaps fade to grey by editing "detail fade factor" under "post-processing". 0 means that it will slowly fade to grey until the last mipmap, and 1 means that the first and every subsequent mipmap is grey.
-
-This format is meant to be used with the shader setting "double/biased multiply" which functions like overlay in Photoshop.
 
 ## Light map
 This is the setting used when tool or sapien generates a lightmap, you should not use this when importing normal bitmaps.
@@ -242,3 +254,7 @@ Errors that are known and suggestions on how to fix them.
 - Cause: "sprite budget count" is not set in the bitmap tag
 - Effect: Tool picks a size for you, and you're probably not going to like it.
 - Fix: set the sprite budget count
+
+# Structure and fields
+
+{% tagStruct "h1/bitmap" /%}

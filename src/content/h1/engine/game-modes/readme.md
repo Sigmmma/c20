@@ -1,3 +1,7 @@
+---
+title: Game modes
+stub: true
+---
 There are 5 base **game modes**, also called "game engine variants", which implement multiplayer game rules and scoring:
 
 * King
@@ -6,7 +10,7 @@ There are 5 base **game modes**, also called "game engine variants", which imple
 * Slayer
 * CTF
 
-All gametypes are customizations of these base modes. Objectives depend on [scenario netgame flags][scenario#tag-field-netgame-flags] placed using [Sapien][].
+All gametypes are customizations of these base modes. Objectives depend on [scenario netgame flags](~scenario#tag-field-netgame-flags) placed using [Sapien](~).
 
 # CTF
 The CTF engine is responsible for controlling CTF and Assault games.

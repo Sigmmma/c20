@@ -1,4 +1,17 @@
-**HR-Tool** (**tool.exe**), is a [command-line][] utility used to compile data into [tags][], and tags into [maps][map]. It was released as a part of the [Halo Reach Editing Kit][hr-ek] by 343 Industries in 2021. Users can also run Tool commands in [Foundation][hr-foundation] where commands can be filtered and favorited.
+---
+title: HR Tool
+stub: true
+about: 'tool:HR-Tool'
+img: hr-tool.jpg
+caption: Using HR-Tool in CMD to view the command list
+keywords:
+  - tool
+  - lightmap
+  - cli
+related:
+  - /h1/tools/h1a-ek/h1a-tool
+---
+**HR-Tool** (**tool.exe**), is a [command-line](~) utility used to compile data into [tags](~), and tags into [maps](~map). It was released as a part of the [Halo Reach Editing Kit](~hr-ek) by 343 Industries in 2021. Users can also run Tool commands in [Foundation](~hr-foundation) where commands can be filtered and favorited.
 
 Users should note that whilst HR Tool includes several legacy commands for creating render, collision and physics models, the expected workflow is to use the Import command which uses the granny format.
 
@@ -34,7 +47,7 @@ tool bitmap_single
 * image-file - A local data path to a tif/tiff file with extension.
 
 # Bitmaps
-[TIFF][wiki-tiff] (.tif/.tiff) images can be compiled into a [bitmap][] using the `bitmaps` verb:
+[TIFF][wiki-tiff] (.tif/.tiff) images can be compiled into a [bitmap](~) using the `bitmaps` verb:
 
 ```sh
 # bitmaps <source-directory>
@@ -70,7 +83,7 @@ tool bitmaps-with-type "levels\multi\30_settlement\bitmaps" 2d
 Cache files can be built using multiple tool verbs, but you will likely only use `build-cache-file` 
 
 ## Build cache file
-A [scenario][] can be compiled into a [map][] using the `build-cache-file` verb. Simply provide your scenario's tag path.
+A [scenario](~) can be compiled into a [map](~) using the `build-cache-file` verb. Simply provide your scenario's tag path.
 
 ```sh
 # build-cache-file <scenario> <platform> <target-language> <dedicated-server-(optional)> <compress_more|compress_most-(optional)> <use-fmod-data-(optional)> <audio-configuration>
@@ -178,7 +191,7 @@ tool build-cache-file-for-cubemaps "levels\multi\30_settlement\30_settlement" pc
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
 
 ## Build cache file language
-A [scenario][] can be compiled into a [map][] using the `build-cache-file-language` verb. Simply provide your scenario's tag path.
+A [scenario](~) can be compiled into a [map](~) using the `build-cache-file-language` verb. Simply provide your scenario's tag path.
 
 ```sh
 # build-cache-file-language <target-language> <scenario> <platform>
@@ -190,7 +203,7 @@ tool build-cache-file-language english "levels\multi\30_settlement\30_settlement
 * platform - The platform this cache file is being built for. If nothing is set then it will default to `pc`. This is an optional argument
 
 ## Build cache file language version
-A [scenario][] can be compiled into a [map][] using the `build-cache-file-language-version` verb. Simply provide your scenario's tag path.
+A [scenario](~) can be compiled into a [map](~) using the `build-cache-file-language-version` verb. Simply provide your scenario's tag path.
 
 ```sh
 # build-cache-file-language-version <target-language> <minor-version-number> <scenario> <platform>
@@ -386,7 +399,7 @@ tool check-all-tags
 ```
 
 # Collision
-A [JMS][] file containing a collision model can be compiled into a collision model tag
+A [JMS](~) file containing a collision model can be compiled into a collision model tag
 
 ```sh
 # collision <source-directory>
@@ -395,7 +408,7 @@ tool collision "objects\characters\masterchief"
 
 * source-directory - A local data path to the root of a model source directory.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files][wrl] for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 # Compile shader
 Compile the template needed for a specific shader.
@@ -471,7 +484,7 @@ tool decorator-set-link-render-model "levels\shared\decorators\barnacles\barnacl
 * render-model - A local tag path to a render_model tag file without extension.
 
 # Dialogue globals import
-Compiles a CSV file to generate a new [ai_dialogue_globals][] tag. The file path for the CSV file is `data\ai\ai_dialogue_globals.csv` and `tags\ai\ai_dialogue_globals.ai_dialogue_globals` is generated.
+Compiles a CSV file to generate a new [ai_dialogue_globals](~) tag. The file path for the CSV file is `data\ai\ai_dialogue_globals.csv` and `tags\ai\ai_dialogue_globals.ai_dialogue_globals` is generated.
 
 ```sh
 # dialogue-globals-import
@@ -479,7 +492,7 @@ tool dialogue-globals-import
 ```
 
 # Dialogue import
-Collects all [sound][] tag paths and adds them to a generated [dialogue][dialogue] tag.
+Collects all [sound](~) tag paths and adds them to a generated [dialogue](~dialogue) tag.
 
 ```sh
 # dialogue-import <root-directory>
@@ -567,11 +580,11 @@ tool export-tag-to-xml "F:\HREK\tags\objects\characters\spartans\spartans.render
 * output-file - An absolute file path to an output directory with file name and extension.
 
 # Extract import info
-Dumps the stored import-info data used to originally import the tag file. Only tags that contain valid import-info can use this. This means only [render_model][], [collision_model][], [physics_model][], and [scenario_structure_bsp][].
+Dumps the stored import-info data used to originally import the tag file. Only tags that contain valid import-info can use this. This means only [render_model](~), [collision_model](~), [physics_model](~), and [scenario_structure_bsp](~).
 
-```.alert
+{% alert %}
 The stock tags that come with the HREK do not contain any import info, so this command will not work on them.
-```
+{% /alert %}
 
 ```sh
 # extract-import-info <tag-file>
@@ -621,7 +634,7 @@ tool faux_data_sync "levels\multi\20_sword_slayer\20_sword_slayer" "20_sword_sla
 * scenario - A local tag path to a scenario without extension
 * bsp-name - The name of a BSP tag referenced by the scenario tag
 
-If you use the [Osoyoos launcher][osoyoos] or the Python script supplied this step will be done automatically.
+If you use the [Osoyoos launcher](~osoyoos) or the Python script supplied this step will be done automatically.
 
 ## Lightmapping using the Python script
 You need to install [Python][] if you haven't already see the [official documentation on how to do that for your platform](https://docs.python.org/3/using/index.html), if at some point you are asked if you wish to add python to `PATH` it is suggested you do that as it will make your life easier.

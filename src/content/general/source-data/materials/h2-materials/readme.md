@@ -1,7 +1,14 @@
+---
+title: Halo 2 materials
+img: materials.jpg
+caption: >-
+  An example of some material names used for a level
+  [BSP](~h2/tags/scenario_structure_bsp) in [Blender](~).
+---
 **Halo 2** saw some much needed improvements to material processing. The user can now define a directory to search for a shader in a directory. The amount of flags was expanded and some new properties were added to help with lightmap settings. 
 
 # Material naming and shaders
-Intermediate files such as [JMS][] or [ASS][] files you export from your 3D software contain the material names you used. How **Tool** finds the shader from there varies depending on whether or not a `shader_collection.shader_collection` file exists and whether or not the material name includes a shader collection prefix. We will go over how this works in the shader_collection section. Be sure to always use lower-case names and do not exceed 32 characters.
+Intermediate files such as [JMS](~) or [ASS](~) files you export from your 3D software contain the material names you used. How **Tool** finds the shader from there varies depending on whether or not a `shader_collection.shader_collection` file exists and whether or not the material name includes a shader collection prefix. We will go over how this works in the shader_collection section. Be sure to always use lower-case names and do not exceed 32 characters.
 
 When no shader tag can be found, Tool will instead assign a default. The file path for the default shader can be found at `tags\shaders\invalid.shader`
 
@@ -42,15 +49,15 @@ There are a few ways **Tool** looks for shaders on import. Here are some of the 
 * If a shader_collection file exists and the imported file is a model then Tool will first check for a valid shader collection prefix in the material name. If the prefix does not match or does not exist then Tool will check the model root directory for a matching shader tag in a shaders folder.
 
 # Special materials
-These material names are hard-coded into the [tools][h2-tool] and have special meaning. They do not need shader tags.
+These material names are hard-coded into the [tools](~h2-tool) and have special meaning. They do not need shader tags.
 
 | Name | Usage
 |------|------
-| `+sky`, `+sky0`, `+sky1`, ... | Applied to surfaces to render the [skybox][h2/tags/sky]. You can add the index of the sky in the [scenario skies block][h2/tags/scenario#tag-field-skies] if your scenario has multiple skies. Since each [cluster][h2/tags/scenario_structure_bsp#clusters-and-cluster-data] can only reference [one sky][h2/tags/scenario_structure_bsp#tag-field-clusters-sky], you must ensure that all sky faces within a cluster use the same index.
-| `+portal` | Applied to faces that are used to define general portals used in the visibility solution or rendering occlusion for the level. Because they split the level into [clusters][h2/tags/scenario_structure_bsp#clusters-and-cluster-data], they are also used to define areas of different sound environments or weather.
-| `+weatherpoly` | Used on the faces of simply [convex shapes](https://en.wikipedia.org/wiki/Polyhedron#Convex_polyhedra) to generate [weather polyhedra][h2/tags/scenario_structure_bsp#weather-polyhedra], which are used to mask [weather particles][weather_system] from areas under overhangs and around doorways. The faces do not need to be sealed but do need to be connected to each other in each polyhedron.
+| `+sky`, `+sky0`, `+sky1`, ... | Applied to surfaces to render the [skybox](~h2/tags/sky). You can add the index of the sky in the [scenario skies block](~h2/tags/scenario#tag-field-skies) if your scenario has multiple skies. Since each [cluster](~h2/tags/scenario_structure_bsp#clusters-and-cluster-data) can only reference [one sky](~h2/tags/scenario_structure_bsp#tag-field-clusters-sky), you must ensure that all sky faces within a cluster use the same index.
+| `+portal` | Applied to faces that are used to define general portals used in the visibility solution or rendering occlusion for the level. Because they split the level into [clusters](~h2/tags/scenario_structure_bsp#clusters-and-cluster-data), they are also used to define areas of different sound environments or weather.
+| `+weatherpoly` | Used on the faces of simply [convex shapes](https://en.wikipedia.org/wiki/Polyhedron#Convex_polyhedra) to generate [weather polyhedra](~h2/tags/scenario_structure_bsp#weather-polyhedra), which are used to mask [weather particles](~weather_system) from areas under overhangs and around doorways. The faces do not need to be sealed but do need to be connected to each other in each polyhedron.
 | `+seamsealer` | Applied to temporary geometry to "seal" the level. Most commonly used to seal holes or other open edged areas of the level during construction and testing. These faces functionally behave the same as `+sky` -- they must still form sealed connections with the open edges that they close and the sky renders through them. Seamsealer is collideable and deletes projectiles just like `+sky`.
-| `+media` | Reserved special material that has many uses and can be used in conjunction with the special shader symbols to define its use and behavior. For example, it can be used with the `$` fog plane shader symbol to make `+media$`, which can be applied to faces to construct a fog plane used to define a volumetric [fog][] region (assigned using [Sapien][h2-sapien]).
+| `+media` | Reserved special material that has many uses and can be used in conjunction with the special shader symbols to define its use and behavior. For example, it can be used with the `$` fog plane shader symbol to make `+media$`, which can be applied to faces to construct a fog plane used to define a volumetric [fog](~) region (assigned using [Sapien](~h2-sapien)).
 
 # Material symbols
 Material symbols are added to the **start** or **end** of the material name and give the surface certain attributes or behaviours in-engine.
@@ -97,7 +104,7 @@ city metal_roof hl:1
 city metal_roof ds:0.5
 ```
 
-Lets break down the examples above one by one.
+Let's break down the examples above one by one.
 
 1. In the first example we are looking for a shader tag named metal_roof from the city collection. Any surfaces using this material would have their generated lightmap resolution multiplied by 2.5 making shadows much sharper
 2. In the first example we are looking for a shader tag named metal_roof from the city collection. Any surfaces using this material that would have any emissive values multiplied by 5 making them much brighter 

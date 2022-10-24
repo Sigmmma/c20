@@ -31,7 +31,7 @@ type_defs:
     comments:
       en: >-
         Used for interactive switches and buttons to operate
-        [device_machines][device_machine] like doors and elevators.
+        [device_machines](~device_machine) like doors and elevators.
     assert_size: 792
     fields:
       - name: type

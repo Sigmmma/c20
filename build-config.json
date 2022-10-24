@@ -6,18 +6,20 @@
       "./src/content/**/readme.md",
       "./src/content/**/readme_*.md",
       "./src/content/**/*.yml",
-      "./src/content/**/*.(mp4|jpg|jpeg|png|gif|ms|dot|neato|fdp|sfdp|twopi|circo)",
+      "./src/content/**/*.(mp4|jpg|jpeg|png|gif|ms|dot|neato|fdp|sfdp|twopi|circo)"
+    ],
+    "srcData": [
       "./src/data/**/*.yml"
     ],
     "srcContentBase": "./src/content",
-    "srcStaticAssets": "./src/@(assets)/**/*.@(jpg|jpeg|png|gif|ttf|js)",
+    "srcStaticAssets": "./src/@(assets)/**/*.@(jpg|jpeg|png|gif|ttf)",
+    "srcScriptEntry": "./src/assets/main.tsx",
     "srcStyleEntry": "./src/assets/style.scss",
     "srcStylesAny": "./src/assets/**/*.scss",
     "vendorAssets": [
       "./node_modules/feather-icons/dist/feather-sprite.svg",
       "./node_modules/highlight.js/styles/night-owl.css",
       "./node_modules/highlight.js/styles/github.css",
-      "./node_modules/@(htm)/preact/standalone.umd.js",
       "./node_modules/@(minisearch)/dist/umd/index.js"
     ]
   },

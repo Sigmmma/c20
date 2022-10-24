@@ -1,4 +1,14 @@
-This tag is specifically for messages that appear on your HUD, including level-specific messages like objectives and global generic interaction messages for vehicles, pickups, and devices. It is created by compiling [HMT files][hmt] with [Tool][tool#hud-messages-compilation].
+---
+title: hud_message_text
+stub: true
+about: 'tag:h1/hud_message_text'
+img: hmt.jpg
+caption: Level objectives are one use of this tag.
+thanks:
+  Kavawuvi: Invader tag definitions
+  MosesOfEgypt: Tag structure research
+---
+This tag is specifically for messages that appear on your HUD, including level-specific messages like objectives and global generic interaction messages for vehicles, pickups, and devices. It is created by compiling [HMT files](~hmt) with [Tool](~tool#hud-messages-compilation).
 
 # Scripted messages
 A HUD message can be shown for a 4 second duration like so:
@@ -57,4 +67,8 @@ The engine will replace special placeholder tokens in your message text at runti
 | `%custom-6`          | Display the key mapped to custom-6.                                                                                                 |
 | `%custom-7`          | Display the key mapped to custom-7.                                                                                                 |
 | `%custom-8`          | Display the key mapped to custom-8.                                                                                                 |
-| <code>&#124;n</code> | Add a newline to a sentence.                                                                                                        |
+| `\|n`                | Add a newline to a sentence.                                                                                                        |
+
+# Structure and fields
+
+{% tagStruct "h1/hud_message_text" /%}

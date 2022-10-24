@@ -3,7 +3,7 @@ tutorials:
   - name:
       en: "Halo CE MCC: Mod Tools Tutorials #1 - Starting With The Basics"
     description:
-      en: A guide to setting up and getting started with the [H1A-EK][].
+      en: A guide to setting up and getting started with the [H1A-EK](~).
     authors: RXK1NG
     updated: "2021"
     tags:
@@ -14,7 +14,7 @@ tutorials:
   - name:
       en: Mo's Halo tutorials
     description:
-      en: A set of tutorials on how to mod with the legacy [Halo Editing Kit][hek] for H1CE and the [MEK][].
+      en: A set of tutorials on how to mod with the legacy [Halo Editing Kit](~hek) for H1CE and the [MEK](~).
     authors: MosesOfEgypt
     updated: "2019"
     tags:
@@ -28,7 +28,7 @@ tutorials:
   - name:
       en: How to easily share tags/assets
     description:
-      en: How to easily share [tags][] and assets using [Refinery][].
+      en: How to easily share [tags](~) and assets using [Refinery](~).
     authors: gbMichelle
     updated: "2019"
     tags:
@@ -73,7 +73,7 @@ tutorials:
   - name:
       en: Terrain modeling tutorial
     description:
-      en: An in-depth look at how Higuy (a Lumoria dev) models his outdoor terrain, using [3ds Max][3dsmax].
+      en: An in-depth look at how Higuy (a Lumoria dev) models his outdoor terrain, using [3ds Max](~3dsmax).
     authors: Higuy
     updated: "2010"
     tags:
@@ -83,7 +83,7 @@ tutorials:
   - name:
       en: Phantom BSP tutorial
     description:
-      en: A simple tutorial to help you fix [invisible walls][scenario_structure_bsp#phantom-bsp] that only block bullets and vehicles in your maps.
+      en: A simple tutorial to help you fix [invisible walls](~scenario_structure_bsp#phantom-bsp) that only block bullets and vehicles in your maps.
     authors: Siliconmaster
     updated: "2010"
     tags:
@@ -93,7 +93,7 @@ tutorials:
   - name:
       en: BSP errors explanation
     description:
-      en: An image illustrating common geometry errors encountered during [structure compilation][tool#structure-compilation].
+      en: An image illustrating common geometry errors encountered during [structure compilation](~tool#structure-compilation).
     authors: "?"
     updated: "?"
     tags:
@@ -103,7 +103,7 @@ tutorials:
   - name:
       en: Detail objects tutorial
     description:
-      en: A tutorial on how to make and place [detail objects][detail_object_collection] like little grasses and tiny rocks.
+      en: A tutorial on how to make and place [detail objects](~detail_object_collection) like little grasses and tiny rocks.
     authors: ZexGX
     updated: "2007"
     tags:
@@ -113,7 +113,7 @@ tutorials:
   - name:
       en: Intro to water
     description:
-      en: Explains how to make a water plane. Note that "water" is a shader from b30, but you can make your own [water material][shader_transparent_water].
+      en: Explains how to make a water plane. Note that "water" is a shader from b30, but you can make your own [water material](~shader_transparent_water).
     authors: Wildrender
     updated: "2013"
     tags:
@@ -123,7 +123,7 @@ tutorials:
   - name:
       en: Weather poly tutorial
     description:
-      en: This tutorial will help you make [weather polyhedra][scenario_structure_bsp#weather-polyhedra] for your map.
+      en: This tutorial will help you make [weather polyhedra](~scenario_structure_bsp#weather-polyhedra) for your map.
     authors: Dsalimander
     updated: "2018"
     tags:
@@ -133,7 +133,7 @@ tutorials:
   - name:
       en: Custom lighting in 3ds Max using Aether (video version)
     description:
-      en: A slightly less detailed than the [written tutorial][aether#aether-tutorial-for-3ds-max], but is defenitly helpful for the people who are better at listening and watching than reading. This is an advanced topic.
+      en: A slightly less detailed than the [written tutorial](~aether#aether-tutorial-for-3ds-max), but is defenitly helpful for the people who are better at listening and watching than reading. This is an advanced topic.
     authors: MattDratt
     updated: "2014"
     tags:
@@ -144,7 +144,7 @@ tutorials:
       en: Setting up OpenSauce 4.0 directional lightmaps (DLMs)
     description:
       en: An extensive explanation on how to set up directional lightmaps/radiosity normals in Halo CE to give your levels more visual depth. This is an advanced topic.
-    authors: The [OpenSauce][] team
+    authors: The [OpenSauce](~) team
     updated: "2015"
     tags:
       - level
@@ -191,7 +191,7 @@ tutorials:
   - name:
       en: OpenSauce scripting interfaces
     description:
-      en: Describes the scripting capabilities special to [OpenSauce][].
+      en: Describes the scripting capabilities special to [OpenSauce](~).
     authors: The OpenSauce Team
     updated: "2015"
     tags:
@@ -246,7 +246,7 @@ tutorials:
   - name:
       en: Scripting tutorial
     description:
-      en: A deep dive into the value types, control flow, and script types of [HaloScript][scripting].
+      en: A deep dive into the value types, control flow, and script types of [HaloScript](~scripting).
     authors: Nickster5000
     updated: "2017"
     tags:
@@ -298,7 +298,7 @@ tutorials:
   - name:
       en: Scope masks
     description:
-      en: This video will demonstrate the rules and settings applicable to scope masks used with zoomable [weapons][weapon].
+      en: This video will demonstrate the rules and settings applicable to scope masks used with zoomable [weapons](~weapon).
     authors: Jesse
     updated: "2019"
     tags:
@@ -418,7 +418,7 @@ tutorials:
   - name:
       en: Animation export types
     description:
-      en: Helps you export animations with the right [file type][animation-data].
+      en: Helps you export animations with the right [file type](~animation-data).
     authors: CtrlAltDestroy
     updated: "2009"
     tags:
@@ -478,7 +478,7 @@ tutorials:
   - name:
       en: LODs
     description:
-      en: A short and simple tutorial on how to import [LODs][gbxmodel#level-of-detail] (level of detail models) into CE.
+      en: A short and simple tutorial on how to import [LODs](~gbxmodel#level-of-detail) (level of detail models) into CE.
     authors: aLTis94
     updated: "2016"
     tags:
@@ -488,7 +488,7 @@ tutorials:
   - name:
       en: Halo CE bitmap compression
     description:
-      en: Statistics and tips for people who want to get the most out of their [bitmaps][bitmap].
+      en: Statistics and tips for people who want to get the most out of their [bitmaps](~bitmap).
     authors: gbMichelle
     updated: "2017"
     tags:
@@ -508,7 +508,7 @@ tutorials:
   - name:
       en: Saving space by making portals fully coplanar
     description:
-      en: How to stay under the [BSP][scenario_structure_bsp] portal limit by optimizing the amount of data Halo needs to store them.
+      en: How to stay under the [BSP](~scenario_structure_bsp) portal limit by optimizing the amount of data Halo needs to store them.
     authors: MosesofEgypt
     updated: "2014"
     tags:
@@ -518,7 +518,7 @@ tutorials:
   - name:
       en: World units explanation
     description:
-      en: An explanation of the size of [world units][scale] and their equivalents.
+      en: An explanation of the size of [world units](~scale) and their equivalents.
     authors: Ki11erFTW
     updated: "?"
     tags:
@@ -540,7 +540,7 @@ tutorials:
   - name:
       en: Colorchange mask explanation GIF
     description:
-      en: An animated representation of how color change with [shader_model multipurpose maps works][shader_model#multipurpose-map].
+      en: An animated representation of how color change with [shader_model multipurpose maps works](~shader_model#multipurpose-map).
     authors: Giraffe
     updated: "?"
     tags:
@@ -551,7 +551,7 @@ tutorials:
   - name:
       en: Shader transparent rundown
     description:
-      en: An extensive explanation of how [shader_transparent][shader_transparent_chicago] based shaders work.
+      en: An extensive explanation of how [shader_transparent](~shader_transparent_chicago) based shaders work.
     authors: MosesOfEgypt
     updated: "2019"
     tags:

@@ -1,3 +1,13 @@
+---
+title: Reach JSON File Breakdown
+keywords:
+  - Reach
+  - import
+  - importing
+  - JSON
+thanks:
+  Crisp: Writing this page
+---
 JSON files are automatically generated when the user first runs `fbx-to-gr2` on an fbx file. If a JSON file already exists, the recreate_json argument can be used to rebuild this.
 
 Each exported FBX file will have a corresponding .json and .gr2 file. The purpose of the JSON file is to provide additional information needed by Tool in order to produce certain results. For example exporting an fbx with a single mesh with a prefix in its name of $ (e.g. $my_object) will when run through `fbx-to-gr2` result in a JSON file with the parameter `"bungie_mesh_type": "_connected_geometry_mesh_type_physics"`.

@@ -1,14 +1,22 @@
-```.alert
-This guide assumes you have already gone through [level creation - beginner][blender-level-creation-beginner] and [level creation - advanced][blender-level-creation-advanced] or have the end result file ready. You will also be expected to know how to handle level directories which you can find [here.][file-directories]
-```
+---
+title: H1 Blender level guide - Exporting
+keywords:
+  - modeling
+  - exporter
+thanks:
+  General_101: Writing this guide
+---
+{% alert %}
+This guide assumes you have already gone through [level creation - beginner](~blender-level-creation-beginner) and [level creation - advanced](~blender-level-creation-advanced) or have the end result file ready. You will also be expected to know how to handle level directories which you can find [here.](~file-directories)
+{% /alert %}
 
 # Introduction
-Now that we've created a level, we can start going through the necessary steps for export. This page will describe all the options you can find in the export menu for exporting a level to [.JMS][jms]
+Now that we've created a level, we can start going through the necessary steps for export. This page will describe all the options you can find in the export menu for exporting a level to [.JMS](~jms)
 
 If there are any images that you find difficult to read then try opening the image in a new tab to view it in full resolution.
 
 # Finding the export menu
-We will be starting by finding the export menu for our [Blender][blender] exporter. Find the File menu in the toolbar on the top left and open it to reveal the contents. In the menu you will see a few options but the only option relevant to you is the menu option labeled `Export`. To export our geometry as a `.JMS` file you will want to select the option labeled `Halo Jointed Model Skeleton (.jms)`:
+We will be starting by finding the export menu for our [Blender](~blender) exporter. Find the File menu in the toolbar on the top left and open it to reveal the contents. In the menu you will see a few options but the only option relevant to you is the menu option labeled `Export`. To export our geometry as a `.JMS` file you will want to select the option labeled `Halo Jointed Model Skeleton (.jms)`:
 
 ![](A.jpg "A nice export menu so thoughtfully provided by our benefactors.")
 
@@ -16,7 +24,7 @@ An export menu should appear on your screen after clicking `Halo Jointed Model S
 
 ![](B.jpg "Plenty of options for you to mess with. Lets dig in!")
 
-Use the default settings for a proper level export. [Generate asset subdirectories][exporting#scene-options] is optional.
+Use the default settings for a proper level export. [Generate asset subdirectories](~exporting#scene-options) is optional.
 
 # Selecting your directory
 After you have set the settings you've wanted you can start browsing for a directory to dump the files into. The directory we will be choosing will be the following:
@@ -33,9 +41,9 @@ If `Generate Asset Subdirectories` was disabled then it would be
 
 Just hit the button labeled `Export JMS` to finish the job.
 
-```.alert success
+{% alert type="success" %}
 Now that you've exported your level you can compile the results in tool and see your hard work pay off. Now get out there and make something awesome for you and your friends to criticize until none of you are comfortable showing your work to each other.
-```
+{% /alert %}
 
 # Additional information
 Lets break down each of the options found in the menu.
@@ -48,8 +56,8 @@ The `Game Version` option lets us choose our target game:
 ## File details
 A CE-specific box that will let us set the filename for our `JMS` from the menu easily without having to rename the file manually. Using either of these options will overwrite whatever the user inputs as the filename:
 
-* Permutation - String: Type in a name for the model permutation here. This string will default to `unnamed` if LOD is used but permutation is not filled in. See the [GBXmodel permutations section][gbxmodel#permutations] for details on permutations' purpose in Halo.
-* LOD - Dropdown: Select a [level of detail][gbxmodel#level-of-detail] to use for the file here. If the LOD is set to none but permutation is filled in then LOD will default to `Super High`.
+* Permutation - String: Type in a name for the model permutation here. This string will default to `unnamed` if LOD is used but permutation is not filled in. See the [GBXmodel permutations section](~gbxmodel#permutations) for details on permutations' purpose in Halo.
+* LOD - Dropdown: Select a [level of detail](~gbxmodel#level-of-detail) to use for the file here. If the LOD is set to none but permutation is filled in then LOD will default to `Super High`.
 * Generate Checksum - bool: Whether or not we generate a checksum based on the order of the JMS skeleton. Checksum will be written as zero if disabled.
 * Generate Asset Subdirectories - bool: Whether or not we generate the relevant subdirectories wherever we export our file. If this option is checked then the output will become `Output directory + blend filename(folder) + model type models/physics(folder) + filename.JMS`. If it is exported to an already existing valid folder setup then it will reuse that directory by replacing the existing JMS no matter what level it is written to. All that matters is that the parent folder name matches the blend filename and that it contains a valid subdirectory such as `models` or `physics`. If this is unchecked then it will just write the JMS to as is to wherever the user sets the output to without generating folders.
 
@@ -114,6 +122,6 @@ We will be leaving this as is.
 ![](K.jpg "Shouldn't have to bother with this unless you're developing something for the toolset.")
 
 ## JMS settings
-Now lets open the JMS settings dropdown to reveal the settings used for the exporter. Set any settings you want used each time you export and make sure to have `Use as Default Export Settings`. You can turn this off or on in the export menu as well by checking `Use Scene Export Settings` enabled. Any settings you have in your scene settings will be saved to the blend file. See the [game version section][#game-version] for details on what each option does. They are the exact same.
+Now lets open the JMS settings dropdown to reveal the settings used for the exporter. Set any settings you want used each time you export and make sure to have `Use as Default Export Settings`. You can turn this off or on in the export menu as well by checking `Use Scene Export Settings` enabled. Any settings you have in your scene settings will be saved to the blend file. See the [game version section](#game-version) for details on what each option does. They are the exact same.
 
 ![](L.jpg "For your convenience")

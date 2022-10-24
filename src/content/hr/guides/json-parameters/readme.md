@@ -1,12 +1,21 @@
-Below is a list of the possible JSON parameters that can be included within the JSON files generated during the [FBX to GR2][hr-tool#fbx-to-gr2] process. Note that in order for any changes to JSON files to take effect, you'll need to save your changes and re-run `fbx-to-gr2`.
+---
+title: JSON Parameters
+keywords:
+  - Reach
+  - sidecar
+  - import
+  - importing
+  - JSON
+thanks:
+  Crisp: Writing this page
+---
+Below is a list of the possible JSON parameters that can be included within the JSON files generated during the [FBX to GR2](~hr-tool#fbx-to-gr2) process. Note that in order for any changes to JSON files to take effect, you'll need to save your changes and re-run `fbx-to-gr2`.
 
-```.alert info
+{% alert %}
 NOTE: When manually editing a JSON, all properties should feature the prefix `bungie_`
 
 For example: `"bungie_mesh_type": "_connected_geometry_mesh_type_physics"`
-```
-
-
+{% /alert %}
 
 # Additional Info
 
@@ -22,21 +31,12 @@ Defines the particular object_type for which a property can be used. For example
 
 Defines the specific subtype of objects for which this property can be used. For example the mesh_portal_type property can only be used when an object has the mesh_type property with the parameter: _connected_geometry_mesh_type_portal
 
-```.table
-dataSource: params.yml
-dataPath: parameters
-
-columns:
-  - key: name
-    name: Name
-    format: text
-  - key: type
-    name: Type
-    format: text
-  - key: values
-    name: Values
-    format: text
-  - key: info
-    name: Additional Info
-    format: text
-```
+{% dataTable
+  dataPath="params/parameters"
+  columns=[
+    {name: "Name", key: "name"},
+    {name: "Type", key: "type"},
+    {name: "Values", key: "values"},
+    {name: "Additional Info", key: "info"}
+  ]
+/%}

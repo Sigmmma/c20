@@ -1,7 +1,16 @@
+---
+title: H3 shader compiling
+keywords:
+  - shaders
+  - templates
+  - HLSL
+thanks:
+  num0005: Writing this page.
+---
 Halo 3 has a flexible shader system based on automatically generated templates. Usually as a map maker you can ignore the technical details of it.
 
 # What are templates?
-In [Halo 2][h2] there was a limited number of templates with each one being handwritten by a graphics programmer, Halo 3 moved away from this and now has a more flexible shader system based on render method definitions. Each definition contains **categories** and each category contains one or more **options**. The option selected for each category uniquely identifies a **shader template**. A template will only be generated if its combination of options is used in a shader - generating all templates including ones that will never be used would waste disk space and time.
+In [Halo 2](~h2) there was a limited number of templates with each one being handwritten by a graphics programmer, Halo 3 moved away from this and now has a more flexible shader system based on render method definitions. Each definition contains **categories** and each category contains one or more **options**. The option selected for each category uniquely identifies a **shader template**. A template will only be generated if its combination of options is used in a shader - generating all templates including ones that will never be used would waste disk space and time.
 
 # Regenerating templates
 Tool when patched will compile any new templates when needed, as will Sapien but this can be slow and can increase the load time for a level with a lot of custom templates. 

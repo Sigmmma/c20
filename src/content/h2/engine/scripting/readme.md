@@ -1,26 +1,32 @@
-Like earlier games, Halo 2 supports **scripting** with [HaloScript][general/engine/scripting].
+---
+title: H2 scripting
+stub: true
+keywords:
+  - script
+  - hsc
+  - bsl
+---
+Like earlier games, Halo 2 supports **scripting** with [HaloScript](~general/engine/scripting).
 
 # Functions
-Since H2 documentation will be an ongoing work-in-progress, please refer to the more complete [H1 scripting page][h1/engine/scripting] for info on common functions.
+Since H2 documentation will be an ongoing work-in-progress, please refer to the more complete [H1 scripting page](~h1/engine/scripting) for info on common functions.
 
-```.table
-dataPath: hsc/h2/functions/functions
-linkCol: true
-linkSlugKey: slug
-rowSortKey: slug
-columns:
-  - key: info/en
-    name: Function
-    format: text
-```
+{% dataTable
+  dataPath="hsc/h2/functions/functions"
+  linkCol=true
+  linkSlugKey="slug"
+  rowSortKey="slug"
+  columns=[
+    {name: "Function", key: "info/en"}
+  ]
+/%}
 
 # External globals
-```.table
-dataPath: hsc/h2/globals/external_globals
-linkCol: true
-linkSlugKey: slug
-columns:
-  - key: info/en
-    name: Global
-    format: text
-```
+{% dataTable
+  dataPath="hsc/h2/globals/external_globals"
+  linkCol=true
+  linkSlugKey="slug"
+  columns=[
+    {name: "Global", key: "info/en"}
+  ]
+/%}
