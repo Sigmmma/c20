@@ -5,7 +5,7 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 17.x
+      nodejs: 14.x
     commands:
       - apt update
       - apt install -y ffmpeg
