@@ -1,5 +1,5 @@
 import {type PageLink} from "../../content";
-import {useLocalize} from "../Ctx/Ctx";
+import {useLocalize} from "../Locale/Locale";
 
 const localizations = {
   homeOverride: {
@@ -13,7 +13,7 @@ export type BreadcrumbsProps = {
 };
 
 export default function Breadcrumbs(props: BreadcrumbsProps) {
-  const localize = useLocalize(localizations);
+  const {localize} = useLocalize(localizations);
 
   if (props.parents.length == 0) {
     return null;

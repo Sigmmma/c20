@@ -1,6 +1,6 @@
 import {slugify} from "../../utils/strings";
-import {useLocalize} from "../Ctx/Ctx";
 import Icon from "../Icon/Icon";
+import {useLocalize} from "../Locale/Locale";
 
 const TOC_LEVELS = 2;
 
@@ -30,7 +30,7 @@ const renderSub = (level: number, sub: NavHeading[]) => {
 };
 
 export default function TableOfContents(props: TableOfContentsProps) {
-  const localize = useLocalize(localizations);
+  const {localize} = useLocalize(localizations);
   return (
     <div className="sidebar-toc">
       <h2 id="table-of-contents"><Icon name="list"/> {localize("toc")}</h2>

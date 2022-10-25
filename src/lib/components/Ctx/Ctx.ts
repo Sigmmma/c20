@@ -24,9 +24,4 @@ export function useCtx(): RenderContext | undefined {
   return useContext(Ctx);
 };
 
-export function useLocalize<L extends Localizations>(localizations: L): LocalizeFn<keyof L> {
-  const lang = useCtx()?.lang;
-  return localizer(localizations, lang ?? "en");
-};
-
 export default Ctx;

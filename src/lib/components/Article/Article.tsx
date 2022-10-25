@@ -1,11 +1,12 @@
 import Metabox, {MetaboxProps} from "../Metabox/Metabox";
 import Stub from "../Article/Stub";
 import Breadcrumbs from "./Breadcrumbs";
-import {useCtx, useLocalize} from "../Ctx/Ctx";
+import {useCtx} from "../Ctx/Ctx";
 import {REPO_URL} from "../../utils/external-urls";
 import {Lang} from "../../utils/localization";
 import {ComponentChildren} from "preact";
-import { PageLink } from "../../content";
+import {type PageLink} from "../../content";
+import {useLocalize} from "../Locale/Locale";
 
 // keep this sorted with longer root/prefixes listed first as the code looks for the first match.
 const spaces = [
@@ -39,7 +40,7 @@ const localizations = {
 
 export default function Article(props: ArticleProps) {
   const ctx = useCtx();
-  const localize = useLocalize(localizations);
+  const {localize} = useLocalize(localizations);
   const editPageUrl = ctx ? `${REPO_URL}/edit/master/src/content${ctx.pageId}/readme${ctx.lang == "en" ? "" : "_" + ctx.lang}.md` : undefined;
   const space = ctx ? spaces.find(s => ctx.pageId.startsWith(s.root)) : undefined;
 

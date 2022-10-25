@@ -1,5 +1,6 @@
-import { useState } from "preact/hooks";
-import {conversions, presets} from "./config";
+import {useState} from "preact/hooks";
+import {useLocalize} from "../Locale/Locale";
+import {localizations, conversions, presets} from "./config";
 
 type State = {
   basisType: string;
@@ -7,6 +8,7 @@ type State = {
 };
 
 export default function UnitConverter(props: {}) {
+  const {localize} = useLocalize(localizations);
   const [state, setState] = useState<State>({
     basisType: "world",
     basisValue: "1",
@@ -28,7 +30,7 @@ export default function UnitConverter(props: {}) {
           }
           return <>
             <br/>
-            <label htmlFor={name}>{label}</label>
+            <label htmlFor={name}>{localize(label as keyof typeof localizations)}</label>
             <input
               name={name}
               type="text"
@@ -43,7 +45,7 @@ export default function UnitConverter(props: {}) {
         {presets.map(({label, basisValue, basisType}) => {
           const clickHandler = () => {handleChange(basisType, basisValue)};
           return <>
-            <button onClick={clickHandler}>{label}</button>
+            <button onClick={clickHandler}>{localize(label as keyof typeof localizations)}</button>
             <br/>
           </>;
         })}

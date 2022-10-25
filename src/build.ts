@@ -50,6 +50,7 @@ async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: Bui
       const renderOutput = renderPage({
         baseUrl: buildOpts.baseUrl,
         noThumbs: buildOpts.noThumbs,
+        preloadSearch: true,
         debug: !!process.env.C20_DEBUG,
         pageId: pageId,
         lang,

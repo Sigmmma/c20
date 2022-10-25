@@ -2,6 +2,7 @@ import PageWrapper from "../components/PageWrapper/PageWrapper";
 import * as R from "ramda";
 import renderToString from "preact-render-to-string";
 import Ctx, {type RenderContext} from "../components/Ctx/Ctx";
+import Locale from "../components/Locale/Locale";
 import Article from "../components/Article/Article";
 import HtmlDoc from "../components/HtmlDoc/HtmlDoc";
 import Md from "../components/Md/Md";
@@ -51,6 +52,7 @@ export type RenderOutput = {
 export type RenderInput = {
   //global
   baseUrl: string;
+  preloadSearch?: boolean;
   noThumbs?: boolean;
   debug?: boolean,
   //local
@@ -168,43 +170,46 @@ export default function renderPage(input: RenderInput): RenderOutput {
   
   const htmlDoc = "<!DOCTYPE html>\n" + renderToString(
     <Ctx.Provider value={ctx}>
-      <HtmlDoc
-        title={front?.title}
-        baseUrl={input.baseUrl}
-        noSearch={front?.noSearch}
-        ogDescription={createPlaintextPreview(bodyPlaintext)}
-        ogImg={front?.img}
-        ogOtherLangs={Object.keys(navOtherLangs)}
-        ogTags={front?.keywords}
-        localizedPath={thisPageLocalizedPath}
-        path={thisPagePath}
-      >
-        <PageWrapper
+      <Locale.Provider value={ctx.lang}>
+        <HtmlDoc
           title={front?.title}
-          navChildren={navChildren}
-          navRelated={navRelated}
-          navHeadings={navHeadings}
+          baseUrl={input.baseUrl}
+          noSearch={front?.noSearch}
+          ogDescription={createPlaintextPreview(bodyPlaintext)}
+          ogImg={front?.img}
+          ogOtherLangs={Object.keys(navOtherLangs)}
+          ogTags={front?.keywords}
+          preloadSearch={input.preloadSearch}
+          localizedPath={thisPageLocalizedPath}
+          path={thisPagePath}
         >
-          <Article
-            stub={front?.stub}
+          <PageWrapper
             title={front?.title}
-            navParents={navParents}
-            otherLangs={navOtherLangs}
-            metabox={metaboxProps}
+            navChildren={navChildren}
+            navRelated={navRelated}
+            navHeadings={navHeadings}
           >
-            <Md content={content}/>
-            {front?.thanks &&
-              <ThanksList thanks={front.thanks}/>
-            }
+            <Article
+              stub={front?.stub}
+              title={front?.title}
+              navParents={navParents}
+              otherLangs={navOtherLangs}
+              metabox={metaboxProps}
+            >
+              <Md content={content}/>
+              {front?.thanks &&
+                <ThanksList thanks={front.thanks}/>
+              }
 
-            {input.debug &&
-              <pre style={{color: "green"}}>
-                {bodyPlaintext}
-              </pre>
-            }
-          </Article>
-        </PageWrapper>
-      </HtmlDoc>
+              {input.debug &&
+                <pre style={{color: "green"}}>
+                  {bodyPlaintext}
+                </pre>
+              }
+            </Article>
+          </PageWrapper>
+        </HtmlDoc>
+      </Locale.Provider>
     </Ctx.Provider>
   );
 

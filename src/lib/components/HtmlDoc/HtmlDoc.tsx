@@ -1,10 +1,12 @@
-import {ComponentChildren} from "preact";
-import {Lang} from "../../utils/localization";
-import {useCtx, useLocalize} from "../Ctx/Ctx";
+import {type ComponentChildren} from "preact";
+import {type Lang} from "../../utils/localization";
+import {useCtx} from "../Ctx/Ctx";
+import {useLocalize} from "../Locale/Locale";
 
 export type HtmlDocProps = {
   title?: string;
   noSearch?: boolean;
+  preloadSearch?: boolean;
   baseUrl: string;
   ogDescription?: string;
   ogTags?: string[];
@@ -27,7 +29,7 @@ const localizations = {
 };
 
 export default function HtmlDoc(props: HtmlDocProps) {
-  const localize = useLocalize(localizations);
+  const {localize} = useLocalize(localizations);
   const ctx = useCtx();
   const lang = ctx?.lang ?? "en";
   
@@ -68,7 +70,9 @@ export default function HtmlDoc(props: HtmlDocProps) {
         <meta property="og:image" content={ogImgAbsoluteUrl}/>
         <title>{props.title ? `${props.title} - c20` : "c20"}</title>
         <base href={props.path.endsWith("/") ? props.path : `${props.path}/`}/>
-        <link rel="preload" type="application/json" as="fetch" href={`/assets/search-index_${lang}.json`}/>
+        {props.preloadSearch &&
+          <link rel="preload" type="application/json" as="fetch" href={`/assets/search-index_${lang}.json`}/>
+        }
         <link rel="icon" type="image/png" href="/assets/librarian.png"/>
         <link rel="stylesheet" href="/assets/style.css"/>
         <link id="syntax" rel="stylesheet" href="/assets/night-owl.css"/>

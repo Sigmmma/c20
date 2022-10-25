@@ -15,25 +15,23 @@ The codebase is essentially a [static site](https://en.wikipedia.org/wiki/Static
 Content is written in a combination of [Markdoc-flavoured markdown](markdoc.dev) and YAML files, which are rendered to HTML using [Preact](https://preactjs.com/) in TypeScript/TSX. Pages are also rendered in plaintext form and bundled into a client-side search index using [Minisearch](https://lucaong.github.io/minisearch/). We use [Sass](https://sass-lang.com/) as a CSS preprocessor.
 
 ### Building and testing
-In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite, this project requires installing at least [Node.js v14+](https://nodejs.org/en/) and [Git LFS](https://git-lfs.github.com/).
+In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite this project requires installing at least [Node.js v14+](https://nodejs.org/en/) and [Git LFS](https://git-lfs.github.com/).
 
 If you have installed Git LFS _after_ checking out the project already, you'll need to run `git lfs install` and `git lfs pull` to download the objects. If you forget to do this the build will fail because `ffmpeg` will be unable to read video files as videos ("Invalid data found when processing input").
 
-Once those are installed, clone the project and run the following shell commands to build and locally serve the website:
+Once those are installed, clone the project and run these shell commands to get the site running locally:
 
 ```sh
-# install dependencies
+# install dependencies (run once)
 npm ci
 
-# run the development server which renders pages on-demand
+# start the development server
 npm run dev
-# If a different port is desired:
-C20_PORT=9001 npm run dev
 ```
 
-You should be able to visit http://localhost:8080/ in a browser and see the website. Refresh your browser to see changes you've made to content source files.
+You can now visit http://localhost:8080/ in a browser and see the website. Edit content source files, then refresh your browser to see changes. You can run the server on a different port with `C20_PORT=9001 npm run dev`.
 
-You can also run `npm run static` to fully render all pages to HTML and serve them, but this takes longer and isn't recommended for quick content writing. You can use it as a final step to verify the build will work once changes are merged. Note: [FFmpeg](https://ffmpeg.org/) is an optional dependency used to generate video thumbnails during a full build. It needs to be available on your system `PATH`. Windows users can simply download `ffmpeg.exe` and place it in the project root. If you don't want to set up FFmpeg you instead run `C20_NO_THUMBNAILS=true npm run static` and it won't be used.
+The development server renders pages on-demand, but you can also run `npm run static` to fully render all pages to HTML and serve them. A full static build takes longer and isn't recommended for quick content writing. You can use it as a final step to verify the build will work once changes are merged. Note: [FFmpeg](https://ffmpeg.org/) is an optional dependency used to generate video thumbnails during a full build. It needs to be available on your system `PATH`. Windows users can simply download `ffmpeg.exe` and place it in the project root. If you don't want to set up FFmpeg just run `C20_NO_THUMBNAILS=true npm run static` and thumbnails won't be used.
 
 ### Releasing
 The website is currently hosted as a static site in [AWS S3](https://aws.amazon.com/s3/), fronted by a [CloudFront](https://aws.amazon.com/cloudfront/) CDN distribution, managed in [reclaimers-aws](https://github.com/Sigmmma/reclaimers-aws). To deploy a new version, simple make changes to the `master` branch and a build/deploy will be triggered automatically with CodeBuild.
@@ -44,7 +42,7 @@ As a backup, users with bucket permission can simply sync the `dist` directory t
 aws s3 sync --delete ./dist s3://reclaimers-wiki-files/
 ```
 
-Because of cache TTLs, content may not appear updated immediately. An invalidation can be run in CloudFront to force updates, but it will not affect clients unless they clear their browser cache. Live content can be seen by directly viewing the [S3 hosting origin][s3-origin].
+Because of cache TTLs, content may not appear updated immediately. An invalidation can be run in CloudFront to force updates but it will not affect clients unless they clear their browser cache. Live content can be seen by directly viewing the [S3 hosting origin][s3-origin].
 
 ### Technical goals
 An explicit choice was made to avoid typical managed or self-hosted Wiki platforms for this library and opt for building a . This makes it easy to host and distribute, and easier to automatically generate content based on Halo's tag definitions and other data structures. The main tenets are:

@@ -2,7 +2,7 @@ const {instantiateType, buildTypeDefs, walkTypeDefs} = require("../../../data/st
 import {slugify} from "../../utils/strings";
 import localizations from "./localizations";
 import Hex from "../Hex/Hex";
-import {RenderContext, useCtx, useLocalize} from "../Ctx/Ctx";
+import {RenderContext, useCtx} from "../Ctx/Ctx";
 import {type LocalizeFn} from "../../utils/localization";
 import {type VNode} from "preact";
 import {Jump} from "../Heading/Heading";
@@ -11,6 +11,7 @@ import DetailsList from "../DetailsList/DetailsList";
 import {renderPlaintextFromSrc} from "../Md/plaintext";
 import Wat from "../Wat/Wat";
 import {type FoundHeading} from "../Md/headings";
+import {useLocalize} from "../Locale/Locale";
 
 type LocalizerKey = keyof typeof localizations;
 type Localizer = LocalizeFn<LocalizerKey>;
@@ -340,6 +341,6 @@ export default function StructTable(props: StructTableProps) {
   // const headings: any = [];
   const seenTypes = {};
   const pathId = [props.id ?? props.entryType];
-  const localize = useLocalize(localizations);
+  const {localize} = useLocalize(localizations);
   return renderTypeAsTable(seenTypes, typeDefs, ctx, props, instantiatedType, pathId, localize);
 };

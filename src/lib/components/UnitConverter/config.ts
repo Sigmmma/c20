@@ -1,6 +1,4 @@
-const lang = "en"; //document.querySelector("html")!.lang;
-
-const localize = (key) => ({
+export const localizations = {
   worldUnits: {
     en: "World units",
     es: "Unidades mundiales"
@@ -12,6 +10,10 @@ const localize = (key) => ({
   feet: {
     en: "Feet",
     es: "Pie"
+  },
+  jms: {
+    en: "JMS",
+    es: "JMS",
   },
   meters: {
     en: "Meters",
@@ -37,55 +39,55 @@ const localize = (key) => ({
     en: "American football field length",
     es: "Longitud del campo de fútbol americano",
   },
-}[key][lang]);
+};
 
 //everything relative to JMS units:
 export const conversions = {
   jms: {
-    label: "JMS",
+    label: "jms",
     rel: 1
   },
   world: {
-    label: localize("worldUnits"),
+    label: "worldUnits",
     rel: 100
   },
   inches: {
-    label: localize("inches"),
+    label: "inches",
     rel: 1 / 1.2
   },
   feet: {
-    label: localize("feet"),
+    label: "feet",
     rel: 10
   },
   meters: {
-    label: localize("meters"),
+    label: "meters",
     rel: 1 / 0.03048
   },
 };
 
 export const presets = [
   {
-    label: localize("warthogLength"),
+    label: "warthogLength",
     basisValue: "191.766",
     basisType: "jms"
   },
   {
-    label: localize("playerHeightStanding"),
+    label: "playerHeightStanding",
     basisValue: "70",
     basisType: "jms"
   },
   {
-    label: localize("playerHeightCrouching"),
+    label: "playerHeightCrouching",
     basisValue: "50",
     basisType: "jms"
   },
   {
-    label: localize("bgFlagsDist"),
+    label: "bgFlagsDist",
     basisValue: "97.60443705836329",
     basisType: "world"
   },
   {
-    label: localize("footballField"),
+    label: "footballField",
     basisValue: "109.73",
     basisType: "meters"
   },

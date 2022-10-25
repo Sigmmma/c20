@@ -1,8 +1,8 @@
-import {MdSrc} from "../Md/markdown";
-import { slugify } from "../../utils/strings";
-import {useLocalize} from "../Ctx/Ctx";
+import {type MdSrc} from "../Md/markdown";
+import {slugify} from "../../utils/strings";
 import Heading from "../Heading/Heading";
 import Md from "../Md/Md";
+import {useLocalize} from "../Locale/Locale";
 
 export const localizations = {
   thanksHeadingText: {
@@ -26,7 +26,7 @@ export default function ThanksList(props: ThanksListProps) {
   }
   thanksEntries.sort(([aTo], [bTo]) => aTo.localeCompare(bTo));
 
-  const localize = useLocalize(localizations);
+  const {localize} = useLocalize(localizations);
   const headingText = localize("thanksHeadingText");
   
   return (

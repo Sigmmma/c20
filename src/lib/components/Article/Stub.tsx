@@ -1,7 +1,7 @@
 import Alert from "../Alert/Alert";
-import {useLocalize} from "../Ctx/Ctx";
 import Icon from "../Icon/Icon";
 import {REPO_URL} from "../../utils/external-urls";
+import {useLocalize} from "../Locale/Locale";
 
 const localizations = {
   stubNotice: {
@@ -14,7 +14,7 @@ const localizations = {
 };
 
 export default function Stub() {
-  const localize = useLocalize(localizations);
+  const {localize} = useLocalize(localizations);
   return (
     <Alert>
       {localize("stubNotice")}

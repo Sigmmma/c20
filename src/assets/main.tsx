@@ -1,4 +1,5 @@
 import * as preact from "preact";
+import Locale from "../lib/components/Locale/Locale";
 import Search from "../lib/components/Search/Search";
 import UnitConverter from "../lib/components/UnitConverter/UnitConverter";
 
@@ -9,12 +10,24 @@ import UnitConverter from "../lib/components/UnitConverter/UnitConverter";
 //   document.querySelector('[id=missing-page]').innerText = "(" + window.location.pathname + ")";
 // }
 
+const lang = document.querySelector("html")?.lang ?? "en";
+
 document.querySelectorAll("#unit-converter-mountpoint").forEach(mountpoint => {
-  preact.render(<UnitConverter/>, mountpoint);
+  preact.render(
+    <Locale.Provider value={lang}>
+      <UnitConverter/>
+    </Locale.Provider>,
+    mountpoint
+  );
 });
 
 const searchMount = document.getElementById("c20-search-mountpoint");
-preact.render(<Search/>, searchMount!);
+preact.render(
+  <Locale.Provider value={lang}>
+    <Search/>
+  </Locale.Provider>,
+  searchMount!
+);
 
 //flash heading matching URL hash
 function hashFlash() {

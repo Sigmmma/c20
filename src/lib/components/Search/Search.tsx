@@ -1,8 +1,8 @@
 import {useEffect, useRef, useState} from "preact/hooks";
 import MiniSearch from "minisearch";
+import {useLocalize} from "../Locale/Locale";
 
-const lang = "en"; //todo
-const localize = (key) => ({
+const localizations = {
   searchPlaceholder: {
     en: "Search all of c20... [S]",
     es: "Buscar todo en c20... [S]"
@@ -23,7 +23,7 @@ const localize = (key) => ({
     en: "Child pages only",
     es: "Solo páginas secundarias"
   },
-}[key][lang])
+};
 
 const miniSearchConfig = {
   idField: "path",
@@ -51,6 +51,7 @@ export type SearchProps = {
 };
 
 export default function Search(props: SearchProps) {
+  const {localize, lang} = useLocalize(localizations);
   //save a reference to the DOM element which gets rendered, so we can focus it later
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [state, setState] = useState<State>({
@@ -127,7 +128,7 @@ export default function Search(props: SearchProps) {
     }
   };
 
-  const handleChange = (query: string, filterChildPaths) => {
+  const handleChange = (query: string, filterChildPaths: boolean) => {
     if (state.searchIndex) {
       let searchResults = state.searchIndex.search(query);
 
@@ -207,7 +208,7 @@ export default function Search(props: SearchProps) {
                 <li className={isSelected ? "selected" : ""}>
                   <a href={result.id}>
                     {result.title}
-                    {pathPrefix != "" && <span className="path-prefix">({pathPrefix})</span>}
+                    {pathPrefix != "" && <span className="path-prefix"> ({pathPrefix})</span>}
                     {isSelected && <kbd className="desktop-only">⬍ Enter</kbd>}
                   </a>
                 </li>

@@ -17,6 +17,8 @@ const buildOpts: BuildOpts = {
   noThumbs: !!process.env.C20_NO_THUMBNAILS,
 };
 
+const reqs: any[] = [];
+
 export default function runServer(onDemand: boolean) {
   const port = process.env.C20_PORT ? Number(process.env.C20_PORT) : 8080;
   const app = express();
@@ -74,6 +76,7 @@ export default function runServer(onDemand: boolean) {
       const renderOutput = renderPage({
         baseUrl: buildOpts.baseUrl,
         noThumbs: true,
+        preloadSearch: false,
         debug: !!process.env.C20_DEBUG || req.query.debug,
         pageId,
         lang,

@@ -1,11 +1,12 @@
 import Icon from "../Icon/Icon";
-import {useCtx, useLocalize} from "../Ctx/Ctx";
+import {useCtx} from "../Ctx/Ctx";
 import {type PageLink} from "../../content";
 import {ComponentChildren} from "preact";
 import {JIF_ISSUE_URL, REPO_URL, DISCORD_URL, LICENSE_URL} from "../../utils/external-urls";
 import DetailsList from "../DetailsList/DetailsList";
 import localizations from "./localizations";
 import TableOfContents, {NavHeading} from "./TableOfContents";
+import {useLocalize} from "../Locale/Locale";
 
 const COLLAPSE_CHILD_PAGES = 20;
 const COLLAPSE_RELATED_PAGES = 4;
@@ -52,7 +53,7 @@ export type PageWrapperProps = {
 
 export default function PageWrapper(props: PageWrapperProps) {
   const ctx = useCtx();
-  const localize = useLocalize(localizations);
+  const {localize} = useLocalize(localizations);
   const isToolkitPage = ctx ? mccToolkitPages.some(prefix => ctx.pageId.startsWith(prefix)) : undefined;
   const newIssueUrl = `${REPO_URL}/issues/new?title=${encodeURIComponent("[" + props.title + "] - <Your issue here>")}&body=${encodeURIComponent("<!---" + localize("issue") + "-->")}`;
 
