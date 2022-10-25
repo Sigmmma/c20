@@ -6,7 +6,7 @@ const TOC_LEVELS = 2;
 
 const localizations = {
   toc: {
-    en: "Page contents",
+    en: "On this page",
     es: "En esta página"
   },
 };
@@ -32,9 +32,11 @@ const renderSub = (level: number, sub: NavHeading[]) => {
 export default function TableOfContents(props: TableOfContentsProps) {
   const {localize} = useLocalize(localizations);
   return (
-    <div className="sidebar-toc">
-      <h2 id="table-of-contents"><Icon name="list"/> {localize("toc")}</h2>
-      {renderSub(1, props.headings)}
-    </div>
+    <aside class="sidebar-toc">
+      <nav class="sidebar-toc-inner nav-list">
+        <h2 id="table-of-contents">{localize("toc")}</h2>
+        {renderSub(1, props.headings)}
+      </nav>
+    </aside>
   );
 };

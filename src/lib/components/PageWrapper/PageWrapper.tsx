@@ -12,6 +12,14 @@ const COLLAPSE_CHILD_PAGES = 20;
 const COLLAPSE_RELATED_PAGES = 4;
 const COLLAPSE_MAIN_TOPIC_PAGES = 20;
 
+// const spaces = [
+//   {root: "/hr", img: "/hr/Halo_reach_final_boxshot.jpg"},
+//   {root: "/h3odst", img: "/h3odst/Halo_3_odst_final_boxshot.jpg"},
+//   {root: "/h3", img: "/h3/Halo_3_final_boxshot.jpg"},
+//   {root: "/h2", img: "/h2/h2cover.jpg"},
+//   {root: "/h1", img: "/h1/box-art.jpg"},
+// ];
+
 const mainTopics = [
   "/general",
 
@@ -54,68 +62,66 @@ export type PageWrapperProps = {
 export default function PageWrapper(props: PageWrapperProps) {
   const ctx = useCtx();
   const {localize} = useLocalize(localizations);
+  //todo: generalize
   const isToolkitPage = ctx ? mccToolkitPages.some(prefix => ctx.pageId.startsWith(prefix)) : undefined;
   const newIssueUrl = `${REPO_URL}/issues/new?title=${encodeURIComponent("[" + props.title + "] - <Your issue here>")}&body=${encodeURIComponent("<!---" + localize("issue") + "-->")}`;
 
   return (
     <div className="page-layout">
+      <header className="page-header">
+        <a className="c20-logo" href={ctx?.resolvePage("/")?.url}>
+          <span className="c20-name-short">c20</span>
+          <span className="c20-name-long">{localize("siteName")}</span>
+        </a>
+        <div id="c20-search-mountpoint"></div>
+        <button className="nobg" id="toggle-theme">
+          <span className="dark"><Icon name="moon" title={localize("darkMode")}/></span>
+          <span className="light"><Icon name="sun" title={localize("lightMode")}/></span>
+        </button>
+        <a href={DISCORD_URL}><Icon name="message-square"/> Discord</a>
+        <a href={newIssueUrl}><Icon name="flag"/> {localize("reportWiki")}.</a>
+        {isToolkitPage &&
+          <p><a href={JIF_ISSUE_URL}><Icon name="flag"/> {localize("reportToolkit")}.</a></p>
+        }
+      </header>
       <div className="page-sidebar">
-        <div className="sidebar-inner">
-          <header className="sidebar-header">
-            <a className="c20-logo" href={ctx?.resolvePage("/")?.url}>
-              <span className="c20-name-short">c20</span>
-              <span className="c20-name-long">{localize("siteName")}</span>
-            </a>
-            <button className="nobg" id="toggle-theme">
-              <span className="dark"><Icon name="moon" title={localize("darkMode")}/></span>
-              <span className="light"><Icon name="sun" title={localize("lightMode")}/></span>
-            </button>
-          </header>
-          <nav className="sidebar-nav">
-            <div id="c20-search-mountpoint"></div>
-            {props.navHeadings && props.navHeadings.length > 0 &&
-              <TableOfContents headings={props.navHeadings}/>
-            }
-            {props.navChildren && props.navChildren.length > 0 &&
-              <DetailsList
-                summary={<h2>{localize("children")}</h2>}
-                maxOpen={COLLAPSE_CHILD_PAGES}
-                allowInline={false}
-                items={props.navChildren?.map(({url, title}) =>
-                  <a href={url}>{title}</a>
-                )}
-              />
-            }
-            {props.navRelated && props.navRelated.length > 0 &&
-              <DetailsList
-                summary={<h2>{localize("related")}</h2>}
-                maxOpen={COLLAPSE_RELATED_PAGES}
-                allowInline={false}
-                items={props.navRelated?.map(({url, title}) =>
-                  <a href={url}>{title}</a>
-                )}
-              />
-            }
-            {ctx &&
-              <DetailsList
-                summary={<h2>{localize("main")}</h2>}
-                maxOpen={COLLAPSE_MAIN_TOPIC_PAGES}
-                allowInline={false}
-                items={mainTopics.map((pageId) => {
-                  const {url, title} = ctx.resolvePage(pageId);
-                  return <a href={url}>{title}</a>;
-                })}
-              />
-            }
-
-            <p><a href={DISCORD_URL}><Icon name="message-square"/> Discord</a></p>
-            <p><a href={newIssueUrl}><Icon name="flag"/> {localize("reportWiki")}.</a></p>
-            {isToolkitPage &&
-              <p><a href={JIF_ISSUE_URL}><Icon name="flag"/> {localize("reportToolkit")}.</a></p>
-            }
-          </nav>
-        </div>
+        <nav class="sidebar-nav nav-list major">
+          {props.navChildren && props.navChildren.length > 0 &&
+            <DetailsList
+              summary={<h2>{localize("children")}</h2>}
+              maxOpen={COLLAPSE_CHILD_PAGES}
+              allowInline={false}
+              items={props.navChildren?.map(({url, title}) =>
+                <a href={url}>{title}</a>
+              )}
+            />
+          }
+          {props.navRelated && props.navRelated.length > 0 &&
+            <DetailsList
+              summary={<h2>{localize("related")}</h2>}
+              maxOpen={COLLAPSE_RELATED_PAGES}
+              allowInline={false}
+              items={props.navRelated?.map(({url, title}) =>
+                <a href={url}>{title}</a>
+              )}
+            />
+          }
+          {ctx &&
+            <DetailsList
+              summary={<h2>{localize("main")}</h2>}
+              maxOpen={COLLAPSE_MAIN_TOPIC_PAGES}
+              allowInline={false}
+              items={mainTopics.map((pageId) => {
+                const {url, title} = ctx.resolvePage(pageId);
+                return <a href={url}>{title}</a>;
+              })}
+            />
+          }
+        </nav>
       </div>
+      {props.navHeadings && props.navHeadings.length > 0 &&
+        <TableOfContents headings={props.navHeadings}/>
+      }
       <main role="main" className="page-content-main">
         {props.children}
       </main>

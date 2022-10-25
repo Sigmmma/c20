@@ -15,10 +15,6 @@
   --padding-sm: #{$padding-sm-desktop};
 }
 
-#toggle-theme {
-  margin: 0;
-}
-
 html[data-theme="dark"] {
   #toggle-theme .dark {
     display: none;
@@ -128,12 +124,22 @@ body {
   background: $bg-guide;
 }
 
-.sidebar-header {
+:target {
+  scroll-margin-top: 100px;
+}
+
+.page-header {
+  grid-area: header;
+  position: sticky;
+  z-index: 100;
+  top: 0;
+  column-gap: var(--padding-md);
   display: flex;
   flex-direction: row;
-  align-items: baseline;
+  align-items: center;
   padding: var(--padding-sm) var(--padding-md);
   justify-content: space-between;
+  background: var(--bg-overlay);
   border-bottom: 1px solid var(--border-color);;
 
   .c20-logo::before {
@@ -151,9 +157,8 @@ body {
   .c20-logo {
     position: relative;
     font-family: $font-family-headers;
-    padding-left: 48px;
-    margin-right: 1em;
-    line-height: 40px;
+    padding-left: 46px;
+    line-height: 36px;
     font-size: $font-size-logo;
     text-decoration: none;
     font-weight: bold;
@@ -171,10 +176,14 @@ body {
     flex-grow: 1;
     position: relative;
   }
+
+  #toggle-theme {
+    margin: 0;
+  }
 }
 
 .search-input {
-  margin-top: var(--padding-md);
+  margin: 0;
   transition: width $transition-time;
   width: 100%;
 
@@ -250,24 +259,78 @@ body {
   grid-area: sidebar;
   background: var(--bg-inset);
 
-  .sidebar-inner {
+  .sidebar-nav {
     overflow-y: scroll;
     position: sticky;
-    top: 0;
+    top: 60px;
     height: 100vh;
-    background: linear-gradient(0deg, rgba(black, 0.25), var(--bg-inset) 2.5%) fixed no-repeat;
+    padding: 0 var(--padding-md);
+    // background: linear-gradient(0deg, rgba(black, 0.25), var(--bg-inset) 2.5%) fixed no-repeat;
+  }
+}
+
+
+.nav-list {
+  details {
+    & > ol, & > ul {
+      padding-left: 0;
+    }
+  }
+  & > ol, & > ul {
+    padding-left: 0;
   }
 
-  .sidebar-nav {
-    padding: 0 var(--padding-md);
+  ol, ul {
+    list-style: none;
   }
 
-  .sidebar-toc {
-    margin: var(--padding-md) 0;
-    padding: 0 var(--padding-md);
-    background: var(--bg);
+  li {
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid var(--border-color);
+  }
+
+  a {
+    display: block;
     border-radius: $border-radius;
-    border: 1px solid var(--border-color);
+    padding: 6px var(--padding-sm);
+    transition: background-color,color $transition-time;
+    cursor: pointer;
+
+    &:hover {
+      text-decoration: none;
+      color: var(--fg);
+    }
+  }
+
+  a, h2 {
+    color: var(--fg-faded);
+  }
+
+  li[aria-current="location"]:first-child a, li.active a {
+    color: var(--fg);
+  }
+
+  &.major {
+    a {
+      color: var(--fg);
+    }
+    a:hover, li[aria-current="location"]:first-child a, li.active a {
+      background: var(--bg-overlay);
+    }
+  }
+}
+
+.sidebar-toc {
+  grid-area: toc;
+  padding: 0 var(--padding-md);
+
+  .sidebar-toc-inner {
+    position: sticky;
+    height: 100vh;
+    top: 60px;
+    overflow-y: auto;
+    font-size: 11pt;
   }
 }
 
@@ -289,7 +352,6 @@ body {
 
     h1 {
       margin: 0;
-      padding: 0;
       font-size: 2.2em;
       border-bottom: none;
       flex-grow: 1;
@@ -308,18 +370,6 @@ body {
 
       & > * {
         padding-left: var(--padding-md);
-      }
-    }
-
-    .space-image {
-      display: inline-block;
-      height: var(--padding-xl);
-      border: 1px solid var(--border-color);
-      opacity: 0.5;
-      transition: opacity $transition-time;
-
-      &:hover {
-        opacity: 1.0;
       }
     }
   }
@@ -405,14 +455,15 @@ body {
 .page-layout {
   display: grid;
   grid-template-rows: max-content 1fr;
-  grid-template-columns: 24em auto;
+  grid-template-columns: 16em auto 14em;
   grid-template-areas:
-    "sidebar main"
-    "sidebar footer";
+    "header header header"
+    "sidebar main toc"
+    "sidebar footer toc";
 }
 
 //tablet view
-@media all and (max-width: 85em) {
+@media all and (max-width: 70em) {
   :root {
     --padding-xl: #{$padding-xl-mobile};
     --padding-lg: #{$padding-lg-mobile};
@@ -421,9 +472,9 @@ body {
   }
 
   .page-layout {
-    grid-template-columns: 30% auto;
+    grid-template-columns: 12em auto 10em;
   }
-  .sidebar-header {
+  .page-header {
     .c20-name-short {
       display: inline-block;
     }
@@ -435,7 +486,7 @@ body {
 
 //mobile view
 @media all and (max-width: 55em) {
-  .sidebar-header {
+  .page-header {
     .c20-name-short {
       display: none;
     }
@@ -456,6 +507,7 @@ body {
     grid-template-columns: 100%;
     grid-template-areas:
       "sidebar"
+      "toc"
       "main"
       "footer";
   }

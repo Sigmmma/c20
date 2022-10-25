@@ -4,8 +4,8 @@ import {useLocalize} from "../Locale/Locale";
 
 const localizations = {
   searchPlaceholder: {
-    en: "Search all of c20... [S]",
-    es: "Buscar todo en c20... [S]"
+    en: "Search all of c20... [/]",
+    es: "Buscar todo en c20... [/]"
   },
   searchResults: {
     en: "Search results",
@@ -78,8 +78,8 @@ export default function Search(props: SearchProps) {
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
-      //check for global keydown of "s" to move focus to the search input
-      if (e.key == "s" && inputRef.current && document.activeElement !== inputRef.current) {
+      //check for global keydown of "/" to move focus to the search input
+      if (e.key == "/" && inputRef.current && document.activeElement !== inputRef.current) {
         inputRef.current.focus();
         //prevents event from being passed to next handlers to avoid "s" being put in now-focused input
         e.preventDefault();

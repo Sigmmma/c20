@@ -1,18 +1,18 @@
-$bg-dark: #23292f;
-$fg-dark: #ccc;
-$fg-faded-dark: mix($fg-dark, $bg-dark, 35%);
-$fg-strong-dark: lighten($fg-dark, 35%);
+$bg-dark: #1d1d33; //#23292f;
+$fg-dark:  mix(blue, #ccc, 10%);
+$fg-faded-dark: mix($fg-dark, $bg-dark, 60%);
+$fg-strong-dark: lighten($fg-dark, 8%);
 $bg-overlay-dark: lighten($bg-dark, 5%);
-$bg-inset-dark: darken($bg-dark, 3%);
+$bg-inset-dark: rgba(#000, 0.2);
 $border-color-dark: lighten($bg-dark, 10%);
 $fg-link-dark: #6dc0f2;
 
 $bg-light: #eeeeeb;
 $fg-light: #111;
-$fg-faded-light: mix($fg-light, $bg-light, 35%);
+$fg-faded-light: mix($fg-light, $bg-light, 60%);
 $fg-strong-light: darken($fg-light, 35%);
 $bg-overlay-light: lighten($bg-light, 5%);
-$bg-inset-light: darken($bg-light, 5%);
+$bg-inset-light: rgba(#000, 0.1);
 $border-color-light: darken($bg-light, 20%);
 $fg-link-light: #0038bb;
 

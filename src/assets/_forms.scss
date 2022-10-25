@@ -1,6 +1,6 @@
 @import "_constants";
 
-button {
+button, a.button {
   background: var(--bg-overlay);
   color: var(--fg);
   border-radius: $border-radius;
@@ -49,7 +49,7 @@ input {
   display: block;
   border-radius: $border-radius;
   border: 1px solid var(--border-color);;
-  background: var(--bg-overlay);
+  background: var(--bg-inset);
   padding: var(--padding-sm);
   font-size: $font-size;
   color: var(--fg);

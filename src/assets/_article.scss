@@ -52,14 +52,6 @@ a {
   }
 }
 
-html[lang="es"] {
-  a:not([href^="http"]):not([href^="#"]):not([href*="/es/"]):not([href="/es"])[href*="/"]:after {
-    content: "(inglés)";
-    vertical-align: super;
-    font-size: 50%;
-  }
-}
-
 .metabox {
   section.img {
     display: flex;
@@ -83,18 +75,24 @@ hr {
   border-bottom: 1px solid var(--border-color);;
 }
 
-details summary {
-  cursor: pointer;
-}
+details {
+  li & {
+    margin: 0;
+  }
+  margin: var(--padding-md) 0;
+  summary {
+    cursor: pointer;
+  }
 
-summary h1,
-summary h2,
-summary h3,
-summary h4,
-summary h5,
-summary h6 {
-  display: inline-block;
-  margin: 0;
+  summary h1,
+  summary h2,
+  summary h3,
+  summary h4,
+  summary h5,
+  summary h6 {
+    display: inline-block;
+    margin: 0;
+  }
 }
 
 a.header-anchor {
