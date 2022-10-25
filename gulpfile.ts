@@ -28,13 +28,14 @@ function assetStyles() {
   });
 }
 
-function scriptBundle(watch: boolean) {
+function scriptBundle(watch: boolean, devMode: boolean) {
   return function scriptBundle() {
     return esbuild.build({
       entryPoints: [paths.srcScriptEntry],
       outfile: path.join(paths.distAssets, "main.js"),
       bundle: true,
-      minify: true,
+      minify: !devMode,
+      sourcemap: devMode ? "inline" : false,
       // todo: can we check what are our users actually using?
       // target: ["edge16", "chrome58", "firefox57", "safari11", "ios"],
       platform: "browser",
@@ -81,9 +82,9 @@ function runStaticServer() {
 }
 
 //composite tasks
-const assets = gulp.parallel(staticAssets, assetStyles, vendorAssets, scriptBundle(false));
-const buildAll = gulp.series(clean, gulp.parallel(assets, content));
-const dev = gulp.series(clean, assets, gulp.parallel(scriptBundle(true), watchSources));
+const assets = gulp.parallel(staticAssets, assetStyles, vendorAssets);
+const buildAll = gulp.series(clean, gulp.parallel(assets, content, scriptBundle(false, false)));
+const dev = gulp.series(clean, assets, gulp.parallel(scriptBundle(true, true), watchSources));
 const buildAndServe = gulp.series(buildAll, runStaticServer);
 
 //tasks which can be invoked from CLI with `npx gulp <taskname>`

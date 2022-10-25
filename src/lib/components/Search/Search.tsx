@@ -136,8 +136,8 @@ export default function Search(props: SearchProps) {
       if (searchResults.length == 0) {
         const suggestions = state.searchIndex.autoSuggest(query);
         if (suggestions.length > 0) {
-          const firstSuggestionTerm = suggestions[0].suggestion;
-          searchResults = state.searchIndex.search(firstSuggestionTerm);
+          const suggestedTerms = suggestions[0].suggestion.split(" ");
+          searchResults = state.searchIndex.search(suggestedTerms[suggestedTerms.length - 1]);
         }
       }
 
