@@ -20,27 +20,10 @@ export default {
     en: "Main topics",
     es: "Temas principales"
   },
-  issue: {
-    en: "Please describe the issue with the wiki page in as much detail as you can and make sure to update the title.",
+  toggleTheme: {
+    en: "Toggle theme",
   },
-  reportWiki: {
-    en: "Report a wiki issue",
-  },
-  reportToolkit: {
-    en: "Report a toolkit issue",
-  },
-  darkMode: {
-    en: "Dark mode",
-  },
-  lightMode: {
-    en: "Light mode",
-  },
-  goTop: {
-    en: "Go to top",
-    es: "Ir arriba"
-  },
-  license: {
-    en: (link) => <span>This text is available under the {link} license</span>,
-    es: (link) => <span>Este texto está disponible bajo la licencia CC {link}</span>,
+  menu: {
+    en: "Menu",
   },
 };

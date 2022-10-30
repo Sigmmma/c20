@@ -15,7 +15,7 @@
     "srcStaticAssets": "./src/@(assets)/**/*.@(jpg|jpeg|png|gif|ttf)",
     "srcScriptEntry": "./src/assets/main.tsx",
     "srcStyleEntry": "./src/assets/style.scss",
-    "srcStylesAny": "./src/assets/**/*.scss",
+    "srcStylesAny": "./src/**/*.scss",
     "vendorAssets": [
       "./node_modules/feather-icons/dist/feather-sprite.svg",
       "./node_modules/highlight.js/styles/night-owl.css",

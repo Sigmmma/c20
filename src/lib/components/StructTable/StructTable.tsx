@@ -342,5 +342,9 @@ export default function StructTable(props: StructTableProps) {
   const seenTypes = {};
   const pathId = [props.id ?? props.entryType];
   const {localize} = useLocalize(localizations);
-  return renderTypeAsTable(seenTypes, typeDefs, ctx, props, instantiatedType, pathId, localize);
+  return (
+    <div className="table-wrapper">
+      {renderTypeAsTable(seenTypes, typeDefs, ctx, props, instantiatedType, pathId, localize)}
+    </div>
+  );
 };

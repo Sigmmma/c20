@@ -33,15 +33,6 @@ code {
     color: fuchsia;
   }
 
-  &.language-hsc:before {
-    transition: opacity $transition-time;
-    content: ".hsc";
-    float: right;
-    opacity: 0;
-    color: var(--fg-faded);
-    font-style: italic;
-  }
-
   .placeholder {
     text-decoration: underline;
   }

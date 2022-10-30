@@ -183,7 +183,7 @@ export default function DataTable(props: DataTableProps) {
   }
 
   return (
-    <>
+    <div className="table-wrapper">
       {rowsIndex.length > 0 &&
         <p>
           <nav>
@@ -228,6 +228,6 @@ export default function DataTable(props: DataTableProps) {
           })}
         </tbody>
       </table>
-    </>
+    </div>
   );
 };

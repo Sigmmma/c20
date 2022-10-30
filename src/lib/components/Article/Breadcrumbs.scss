@@ -1,0 +1,22 @@
+@import "../../../assets/_constants.scss";
+
+.breadcrumbs {
+  margin: var(--padding-md) 0;
+
+  ol {
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    &::after {
+      content: '›';
+      display: inline-block;
+      font-weight: bold;
+      font-size: 1rem;
+      margin: 0 var(--padding-sm);
+    }
+  }
+}

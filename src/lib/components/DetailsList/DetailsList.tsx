@@ -7,6 +7,7 @@ export type DetailsListProps = {
   items?: VNode[];
   maxOpen?: number;
   allowInline?: boolean;
+  hideCount?: boolean;
 };
 
 export default function DetailsList(props: DetailsListProps) {
@@ -28,9 +29,12 @@ export default function DetailsList(props: DetailsListProps) {
       );
     }
   } else {
+    const summary = props.hideCount ?
+      <summary>{props.summary}</summary> : 
+      <summary>{props.summary} ({items.length})</summary>;
     return (
       <details>
-        <summary>{props.summary} ({items.length})</summary>
+        {summary}
         <ul>{items.map(item => <li>{item}</li>)}</ul>
       </details>
     );

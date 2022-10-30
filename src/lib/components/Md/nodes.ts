@@ -1,4 +1,5 @@
 import {type NodeType, type Schema, Tag} from "@markdoc/markdoc";
+import { linkables } from "../../utils/external-urls";
 import {slugify} from "../../utils/strings";
 import {type RenderContext} from "../Ctx/Ctx";
 import renderPlaintext from "./plaintext";
@@ -45,6 +46,8 @@ const nodes: Partial<Record<NodeType, Schema>> = {
         const {title: foundTitle, url} = ctx.resolvePage(idTail, headingId);
         href = url;
         title = foundTitle;
+      } else if (linkables[href]) {
+        href = linkables[href];
       }
       return new Tag("a", {...attributes, title, href}, children);
     }

@@ -34,11 +34,17 @@ function hashFlash() {
   const hash = document.location.hash;
   if (hash) {
     const heading = document.getElementById(decodeURI(hash.substring(1)));
+    const query = new URLSearchParams(document.location.search);
     if (heading) {
       heading.classList.add("destination");
-      setTimeout(() => {
-        heading.classList.remove("destination");
-      }, 1500);
+      if (query.get("note")) {
+        heading.dataset.note = query.get("note")!;
+      }
+      if (!query.get("note")) {
+        setTimeout(() => {
+          heading.classList.remove("destination");
+        }, 1500);
+      }
     }
   }
 }
@@ -60,3 +66,8 @@ document.getElementById("toggle-theme")!.addEventListener("click", () => {
   setSyntax();
 });
 setSyntax();
+
+
+document.getElementById("toggle-menu")!.addEventListener("click", () => {
+  document.querySelector(".nav-tree")!.classList.toggle("open");
+});

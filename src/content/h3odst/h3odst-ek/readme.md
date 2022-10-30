@@ -8,6 +8,7 @@ caption: >-
   ODST.
 info: |
   * Release date: October 2022
+  * [Report issues](JIF_ISSUE_URL)
 ---
 The **Halo 3 ODST Editing Kit** (**H3ODSTEK**) is the official set of tools for creating custom content for the MCC version of Halo 3 ODST. It was first released by 343 Industries alongside the latest update as of March 2022.
 Similarly to the mod tools for Halo 1, 2, and 3 it is ultimately based on the old internal tools used by Bungie during the development of Halo 3, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.

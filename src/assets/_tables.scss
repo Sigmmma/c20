@@ -1,9 +1,21 @@
 @import "_constants";
 
+.table-wrapper {
+  overflow-x: auto;
+  clear: both;
+}
+
 table {
   border-collapse: collapse;
   margin-bottom: var(--padding-sm);
   width: 100%;
+
+  pre {
+    white-space: pre;
+    overflow-x: auto;
+    width: 0;
+    min-width: 100%;
+  }
 
   &.no-clear, .no-clear & {
     width: auto;

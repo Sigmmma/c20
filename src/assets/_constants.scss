@@ -1,5 +1,5 @@
-$bg-dark: #1d1d33; //#23292f;
-$fg-dark:  mix(blue, #ccc, 10%);
+$bg-dark: #23292f;
+$fg-dark:  mix(blue, #ccc, 5%);
 $fg-faded-dark: mix($fg-dark, $bg-dark, 60%);
 $fg-strong-dark: lighten($fg-dark, 8%);
 $bg-overlay-dark: lighten($bg-dark, 5%);
@@ -38,12 +38,38 @@ $padding-lg-mobile: 16px;
 $padding-md-mobile: 8px;
 $padding-sm-mobile: 4px;
 
-$font-size: 12pt;
+$font-size: 11pt;
+$font-size-article: 12pt;
 $font-size-logo: 14pt;
 $font-family: "Avenir", "Noto Sans", "Helvetica", sans-serif;
 $font-family-headers: "ConvectionRegular", $font-family;
 $font-family-code: "Fira Code", Menlo, Consolas, Monaco, monospace;
 $font-size-code: 10pt;
 
-$width-content: 80em;
+$width-content: 50em;
 $transition-time: 0.25s;
+$transition-time-interactive: 0.1s;
+
+@mixin mobile-xs {
+  @media all and (max-width: 40em) {
+    & {
+      @content;
+    }
+  }
+}
+
+@mixin mobile {
+  @media all and (max-width: 55em) {
+    & {
+      @content;
+    }
+  }
+}
+
+@mixin tablet {
+  @media all and (max-width: 70em) {
+    & {
+      @content;
+    }
+  }
+}

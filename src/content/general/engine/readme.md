@@ -1,5 +1,5 @@
 ---
-title: The Blam Engine
+title: The Blam engine
 stub: true
 ---
 All games in the Halo series use some generation of Bungie's in-house proprietary **Blam!** engine. Each generation added new capabilities and had systems overhauled, but one of its defining characteristics is the [tags system](~h1/tags) used for managing resources.

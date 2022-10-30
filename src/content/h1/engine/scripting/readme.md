@@ -181,7 +181,7 @@ To learn more about HSC's general syntax and execution model, see our [cross-gam
   linkSlugKey="slug"
   columns=[
     {name: "Expression", key: "type"},
-    {name: "Example", key: "ex"}
+    {name: "Example", key: "ex", style: "width:50%"}
   ]
 /%}
 

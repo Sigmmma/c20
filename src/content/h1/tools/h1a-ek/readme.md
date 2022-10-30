@@ -16,6 +16,8 @@ info: >-
 
   * [Steam community
   discussions](https://steamcommunity.com/app/976730/discussions/3/)
+
+  * [Report issues](JIF_ISSUE_URL)
 keywords:
   - h1a
   - hek

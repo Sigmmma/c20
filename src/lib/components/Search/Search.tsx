@@ -4,8 +4,8 @@ import {useLocalize} from "../Locale/Locale";
 
 const localizations = {
   searchPlaceholder: {
-    en: "Search all of c20... [/]",
-    es: "Buscar todo en c20... [/]"
+    en: "Search all pages... [S]",
+    es: "Buscar c20... [S]"
   },
   searchResults: {
     en: "Search results",
@@ -79,7 +79,7 @@ export default function Search(props: SearchProps) {
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
       //check for global keydown of "/" to move focus to the search input
-      if (e.key == "/" && inputRef.current && document.activeElement !== inputRef.current) {
+      if (e.key == "s" && inputRef.current && document.activeElement !== inputRef.current) {
         inputRef.current.focus();
         //prevents event from being passed to next handlers to avoid "s" being put in now-focused input
         e.preventDefault();
@@ -191,7 +191,7 @@ export default function Search(props: SearchProps) {
     {isNonEmptyQuery &&
       <nav className="search-results">
         <div className="results-header">
-          <h2>{localize("searchResults")}</h2>
+          <b>{localize("searchResults")}</b>
           <button className="clear-button" onClick={clearInput}>{localize("close")} <span className="desktop-only">[Esc]</span></button>
         </div>
         <div className="results-toggle-child-pages">

@@ -8,6 +8,7 @@ button, a.button {
   padding: var(--padding-sm) 1em;
   margin: var(--padding-sm) 0;
   box-shadow: 0px -2px 0px rgba(black, 0.1) inset;
+  cursor: pointer;
 
   &.nobg {
     background: none;
@@ -16,7 +17,6 @@ button, a.button {
 
   &:hover {
     background: var(--bg);
-    cursor: pointer;
   }
 }
 

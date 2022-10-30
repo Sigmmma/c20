@@ -1,4 +1,4 @@
-import PageWrapper from "../components/PageWrapper/PageWrapper";
+import PageWrapper, { NavTree } from "../components/PageWrapper/PageWrapper";
 import * as R from "ramda";
 import renderToString from "preact-render-to-string";
 import Ctx, {type RenderContext} from "../components/Ctx/Ctx";
@@ -11,7 +11,7 @@ import {type Lang, localizer} from "../utils/localization";
 import ThanksList, {localizations as thanksLocalizations} from "../components/Article/ThanksList";
 import findHeadings from "../components/Md/headings";
 import {type Node, type RenderableTreeNode} from "@markdoc/markdoc";
-import {NavHeading} from "../components/PageWrapper/TableOfContents";
+import {type NavHeading} from "../components/Article/TableOfContents";
 import {slugify} from "../utils/strings";
 import {type MetaboxProps} from "../components/Metabox/Metabox";
 import Wat from "../components/Wat/Wat";
@@ -79,12 +79,12 @@ export function createPlaintextPreview(plaintext?: string): string | undefined {
 
 function getNavHeadings(front: PageFrontMatter | undefined, ctx: RenderContext, content: RenderableTreeNode | undefined): NavHeading[] {
   const foundHeadings = findHeadings(ctx, content);
-  const thanks = Object.entries(front?.thanks ?? {});
-  if (thanks.length > 0) {
-    const localize = localizer(thanksLocalizations, ctx.lang);
-    const thanksHeadingText = localize("thanksHeadingText");
-    foundHeadings.push({level: 1, title: thanksHeadingText, id: slugify(thanksHeadingText) ?? ""});
-  }
+  // const thanks = Object.entries(front?.thanks ?? {});
+  // if (thanks.length > 0) {
+  //   const localize = localizer(thanksLocalizations, ctx.lang);
+  //   const thanksHeadingText = localize("thanksHeadingText");
+  //   foundHeadings.push({level: 1, title: thanksHeadingText, id: slugify(thanksHeadingText) ?? ""});
+  // }
   //we want to have the headings in a nice hierarchy for rendering
   const res: NavHeading[] = [{level: 0, title: "root", sub: []}];
   foundHeadings.forEach(hdg => {
@@ -129,6 +129,14 @@ function getAboutContent(ctx: RenderContext | undefined, front?: PageFrontMatter
   return {metaboxProps, keywords};
 }
 
+function buildPageTree(input: RenderInput, pageId: string): NavTree {
+  const children = getPageChildren(input.pageIndex, pageId, input.lang);
+  return children.map(child => ({
+    link: child,
+    children: buildPageTree(input, child.pageId)
+  }));
+}
+
 export default function renderPage(input: RenderInput): RenderOutput {  
   const {front} = input;
 
@@ -158,7 +166,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
   const content = transform(input.ast, ctx, input.front);
   
   const navParents = getPageParents(input.pageIndex, input.pageId, input.lang);
-  const navChildren = getPageChildren(input.pageIndex, input.pageId, input.lang);
+  const navTree = buildPageTree(input, "/");
   const navRelated = getPageRelated(input.pageIndex, input.pageId, input.lang);
   const navOtherLangs = getPageOtherLangs(input.pageIndex, input.pageId, input.lang);
   const navHeadings = getNavHeadings(front, ctx, content);
@@ -185,7 +193,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
         >
           <PageWrapper
             title={front?.title}
-            navChildren={navChildren}
+            navTree={navTree}
             navRelated={navRelated}
             navHeadings={navHeadings}
           >

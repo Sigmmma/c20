@@ -11,7 +11,7 @@ export type FigureProps = {
 export default function Figure(props: FigureProps) {
   const ctx = useCtx();
   return (
-    <figure className={props.inline ? "inline-figure" : undefined}>
+    <figure className={props.inline ? "inline" : undefined}>
       {props.src.endsWith(".mp4") ? (() => {
         const poster = props.src.replace(".mp4", ".thumb_1.jpg");
         return (

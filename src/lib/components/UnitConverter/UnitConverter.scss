@@ -1,0 +1,9 @@
+.unit-converter {
+  display: flex;
+  flex-wrap: wrap;
+  .inputs, .presets {
+    flex-grow: 1;
+    flex-basis: 50%;
+    min-width: 15em;
+  }
+}

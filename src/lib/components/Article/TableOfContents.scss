@@ -1,0 +1,63 @@
+@import "../../../assets/_constants.scss";
+
+.toc.mobile {
+  display: none;
+  @include mobile {
+    display: block;
+  }
+
+  details {
+    & > ol, & > ul {
+      padding-left: 0;
+    }
+  }
+}
+
+.toc.desktop {
+  display: block;
+  transition: opacity $transition-time-interactive;
+  opacity: 0.5;
+
+  @include mobile {
+    display: none;
+  }
+
+  &:hover {
+    opacity: 1.0;
+  }
+}
+
+.toc {
+  & > ol, & > ul {
+    padding-left: 0;
+  }
+
+  ol, ul {
+    list-style: none;
+  }
+
+  li {
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid var(--border-color);
+  }
+
+  a {
+    display: block;
+    border-radius: 0 $border-radius $border-radius 0;
+    padding: 6px 8px;
+    transition: padding $transition-time-interactive;
+    cursor: pointer;
+    color: var(--fg);
+
+    &:hover {
+      padding-left: 12px;
+      padding-right: 4px;
+      text-decoration: none;
+    }
+  }
+
+  a:hover, li[aria-current="location"]:first-child a, li.active a {
+    background: var(--bg-overlay);
+  }
+}

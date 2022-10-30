@@ -1,0 +1,147 @@
+@import "../../../assets/_constants.scss";
+
+.wrapper {
+  display: flex;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  .wrapper-nav {
+    background: var(--bg-sidebar);
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    width: 20em;
+
+    @include mobile {
+      position: unset;
+      height: auto;
+      width: 100%;
+      border-bottom: 1px solid var(--border-color);
+    }
+
+    .nav-bar {
+      column-gap: var(--padding-sm);
+      display: flex;
+      flex-direction: row;
+      padding: var(--padding-sm) var(--padding-md);
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-color);
+
+      .c20-logo::before {
+        content: '';
+        height: 36px;
+        width: 36px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-image: url("/assets/librarian.png");
+        background-repeat: no-repeat;
+        background-size: contain;
+      }
+    
+      .c20-logo {
+        position: relative;
+        font-family: $font-family-headers;
+        padding-left: 40px;
+        line-height: 36px;
+        font-size: $font-size-logo;
+        text-decoration: none;
+        font-weight: bold;
+        color: var(--fg);
+      }
+
+      .button-group {
+        display: flex;
+        column-gap: var(--padding-sm);
+        button, a.button {
+          margin: 0;
+        }
+      }
+    }
+
+    #c20-search-mountpoint {
+      padding: var(--padding-sm) var(--padding-md);
+    }
+
+    .nav-tree {
+      padding: 0 var(--padding-md);
+      overflow-x: auto;
+
+      &:not(.open) {
+        @include mobile {
+          display: none;
+        }
+      }
+    
+      & > ol, & > ul {
+        padding-left: 0;
+        & > li {
+          border-left: none;
+        }
+      }
+
+      .feather {
+        color: var(--fg-faded);
+      }
+    
+      ol, ul {
+        list-style: none;
+      }
+    
+      li {
+        padding: 0;
+        margin: 0;
+        border-left: 1px solid var(--border-color);
+      }
+    
+      a {
+        display: block;
+        border-radius: 0 $border-radius $border-radius 0;
+        padding: 6px 8px;
+        transition: padding $transition-time-interactive;
+        cursor: pointer;
+        color: var(--fg);
+    
+        &:hover {
+          padding-left: 12px;
+          padding-right: 4px;
+          text-decoration: none;
+        }
+      }
+    
+      a:hover, a[aria-current="location"] {
+        background: var(--bg-overlay);
+      }
+    }
+  }
+
+  .wrapper-body {
+    order: 1;
+    overflow-y: auto;
+    flex-grow: 1;
+
+    @include mobile {
+      order: 2;
+    }
+  }
+
+  .wrapper-toc {
+    order: 2;
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    width: 15em;
+    padding: var(--padding-sm) var(--padding-md);
+
+    @include mobile {
+      position: unset;
+      height: auto;
+      order: 1;
+      width: 100%;
+    }
+  }
+}

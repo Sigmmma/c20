@@ -6,6 +6,7 @@ img: hrek.png
 caption: Foundation level editor and MegaloEdit game type editor.
 info: |
   * Release date: September 2022
+  * [Report issues](JIF_ISSUE_URL)
 ---
 The **Halo Reach Editing Kit** (**HREK**) is the official set of tools for creating custom content for the MCC version of Halo Reach.
 Similarly to the mod tools for Halo 2 and 3 it is ultimately based on the old internal tools used by Bungie during the development of Halo Reach, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.

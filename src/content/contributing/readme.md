@@ -238,6 +238,14 @@ However, linking within c20 is cumbersome and fragile with standard markdown. Th
 
 When multiple target pages match, c20 will choose the one _most related_ to the origin page in the content tree. When this is not possible, the ambiguity must be clarified by specifying more of the path tail in the link.
 
+Another special type of link we support is **global links** to URLs defined in `external-urls.ts`:
+
+```md
+[Joint issue tracker](JIF_ISSUE_URL)
+[Reclaimers Discord server](DISCORD_URL)
+[The c20 GitHub repo](REPO_URL)
+```
+
 Tips for good links:
 
 * Add links where it is helpful for the reader, but avoid over-linking especially when there is already the same link visible within a short scrolling distance on the same page.

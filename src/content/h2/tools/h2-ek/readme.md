@@ -5,6 +5,7 @@ img: h2-ek.jpg
 caption: '[H2-Sapien](~), [H2-Guerilla](~), and [H2-Tool](~) running like a champ'
 info: |
   * Release date: 2021
+  * [Report issues](JIF_ISSUE_URL)
 keywords:
   - h2ek
 related:

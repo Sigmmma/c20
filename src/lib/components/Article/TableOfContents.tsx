@@ -1,12 +1,11 @@
 import {slugify} from "../../utils/strings";
-import Icon from "../Icon/Icon";
 import {useLocalize} from "../Locale/Locale";
 
 const TOC_LEVELS = 2;
 
 const localizations = {
   toc: {
-    en: "On this page",
+    en: "Page contents",
     es: "En esta página"
   },
 };
@@ -31,12 +30,16 @@ const renderSub = (level: number, sub: NavHeading[]) => {
 
 export default function TableOfContents(props: TableOfContentsProps) {
   const {localize} = useLocalize(localizations);
-  return (
-    <aside class="sidebar-toc">
-      <nav class="sidebar-toc-inner nav-list">
-        <h2 id="table-of-contents">{localize("toc")}</h2>
+  return <>
+    <nav class="toc mobile">
+      <details>
+        <summary><h2>{localize("toc")}</h2></summary>
         {renderSub(1, props.headings)}
-      </nav>
-    </aside>
-  );
+      </details>
+    </nav>
+    <nav class="toc desktop">
+      <h2>{localize("toc")}</h2>
+      {renderSub(1, props.headings)}
+    </nav>
+  </>;
 };
