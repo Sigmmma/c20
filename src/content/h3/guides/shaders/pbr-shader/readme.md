@@ -1,14 +1,16 @@
 ---
-title: H3 PBR shader guide
+title: Halo 3 Pseudo-PBR Shader Guide
 keywords:
   - halo 3 pbr
   - pbr
   - pbr shader
+  - pseudo pbr shader
   - halo 3 shaders
   - halo 3 pbr shader
   - shaders
 thanks:
   TheChunkierBean: Writing this page.
+  TheGrimDealer: Help with Adobe Substance research.
 ---
 
 * ![](A.png "It's like talking to a brick wall")
@@ -19,7 +21,7 @@ Halo 3 includes a PBR-like shader that allows artists to convert their premade P
 
 * ![](B.png "An example of PBR")
 
-[Physically based rendering](https://en.wikipedia.org/wiki/Physically_based_rendering) (PBR) is a way of rendering images that mimics how light works in the real world. Most modern game engines have a form of this method in there shading systems.
+[Physically based rendering](https://en.wikipedia.org/wiki/Physically_based_rendering) (PBR) is a way of rendering images that mimics how light works in the real world. Most modern game engines have a form of this method in their shading systems.
 
 
 
@@ -30,7 +32,7 @@ Halo 3 includes a PBR-like shader that allows artists to convert their premade P
 With the release of the weapon and vehicle skins update to Halo 3 MCC, 343 Industries implemented a new material_model called **cook_torrance_pbr_maps**. This allowed for the menu skins that were authored in PBR to be replicated in-engine when enabled. While not 100% true PBR, this shader allows artists to now have a more modern rendering technique in Halo 3.
 
 {% alert %}
-NB: There is no definitive way to utilize this shader at this time, as even 343 Industries uses inconsistent shader settings with this shader. This guide however is a good baseline setup to start with.
+There is no definitive way to utilize this shader at this time, as even 343 Industries uses inconsistent shader settings with this shader. This guide however is a good baseline setup to start with.
 {% /alert %}
 
 The PBR shader needs three types of textures to work with:
@@ -43,14 +45,17 @@ The PBR shader needs three types of textures to work with:
 - *Parallax/Displacement Map*
 
 
-# Step 1: Creating a Diffuse map
+# Converting Existing Textures
 
-Halo 3's  **cook_torrance** material models do not use Albedo maps. Instead it uses Diffuse maps, which is a combo of the Albedo map and Ambient Occulsion map. This way you can have baked shadows in your shader.
+
+## Step 1: Creating a Diffuse map
+
+Halo 3's  **cook_torrance** material models do not use Albedo maps. Instead it uses Diffuse maps, which is a combo of the Albedo map and Ambient Occlusion map. This way you can have baked shadows in your shader.
 
 You will need two textures for creating a Diffuse map:
 
   - Albedo/Base Color
-  - Ambient Occulsion
+  - Ambient Occlusion
 
 
 Conversion steps
@@ -58,18 +63,18 @@ Conversion steps
 1. Open up your Albedo map in your photo editing program.
   * ![](D.png "Albedo map")
 2. Create a new layer over your Albedo map.
-3. Copy and paste your Ambient Occulsion map into the new empty layer.
-4. Set the blend mode of the Ambient Occulsion to **Multiply**.
-  * ![](E.png "Multiplied Ambient Occulsion map")
+3. Copy and paste your Ambient Occlusion map into the new empty layer.
+4. Set the blend mode of the Ambient Occlusion to **Multiply**.
+  * ![](E.png "Multiplied Ambient Occlusion map")
 5. Save your new Diffuse map as .TIF in your asset's bitmaps folder.
 
-You now have a converted Diffuse map. Make sure to save a editable copy of the Diffuse map in case you wish to make changes later.
+You now have a converted Diffuse map. Make sure to save an editable copy of the Diffuse map in case you wish to make changes later.
 
 
-# Step 2: Creating a Specular map
+## Step 2: Creating a Specular map
 
 {% alert type="danger" %}
-NB: If you have a texture set that does not include a **Metallic map**, you do ***not*** need to make a Specular map. You can skip this step.
+If you have a texture set that does not include a **Metallic map**, you do ***not*** need to make a Specular map. You can skip this step.
 {% /alert %}
 In Halo 3, the shininess/highlights of a surface is defined using Specular maps. Halo 3 uses more stylized Specular maps compared to other industry Specular maps, so you will need to create your own. Below is an *experimental* method in creating Halo 3 styled Specular maps. 
 
@@ -77,7 +82,7 @@ You will need three textures:
 
   - Metallic
   - Roughness
-  - Ambient Occulsion
+  - Ambient Occlusion
 
 
 Conversion steps
@@ -90,14 +95,14 @@ Conversion steps
 5. Set the blend mode of the Roughness map to **Lighten**
   * ![](G.png "Inverted Roughness Map")
 6. Create a new layer over your inverted Roughness map.
-7. Copy and paste your Ambient Occulsion map into the new empty layer.
-8. Set the blend mode of the Ambient Occulsion to **Multiply** and the opacity to **75%**.
-  * ![](H.png "Multiplied Ambient Occulsion map")
+7. Copy and paste your Ambient Occlusion map into the new empty layer.
+8. Set the blend mode of the Ambient Occlusion to **Multiply** and the opacity to **75%**.
+  * ![](H.png "Multiplied Ambient Occlusion map")
 9. Save your new Specular map as .TIF in your asset's bitmaps folder.    
 
-And there you go, you should now have a working Specular map. Make sure to save a editable copy of the Specular map in case you wish to make changes later.
+And there you go, you should now have a working Specular map. Make sure to save an editable copy of the Specular map in case you wish to make changes later.
 
-# Step 3: Creating a Control Map
+## Step 3: Creating a Control Map
 
 Halo 3's PBR shader needs one more texture map to complete the shader. This Control map holds two texture maps in the RGB color channels. In the red channel is the Specular map and in the green channel is the Roughness map. The blue channel is just a solid white. This is the most important step. Without the correct Control map setup, your asset will not look correct in-engine.
 
@@ -120,7 +125,7 @@ The final Control map should resemble a pink and blue texture, with the pink col
 
 * ![](K.png "Final Control map")
 
-# Step 4: Converting a Normal Map
+## Step 4: Converting a Normal Map
 
 Make sure to identify what type of Normal map you have ([click here to learn more](https://www.texturecan.com/post/3/DirectX-vs-OpenGL-Normal-Map/)). Halo 3 uses DirectX normals and those do not need to be converted to work with the engine. Simply save the normal as a .TIF in your asset's bitmaps folder and you will be good to go.
 
@@ -135,7 +140,22 @@ Conversion Steps
 
 To make the texture importing more streamlined, end your texture file name with the {% key "_zbump" /%} flag to have the normal map import in the correct format.
 
-# Step 4: Bitmap Settings
+# Creating New Textures with Adobe Substance Designer
+
+If you have Adobe Substance Designer, you can easily export your new textures with this graph preset made by Grim! You can download it [here](https://en.wikipedia.org/wiki/Physically_based_rendering).
+
+* ![](https://user-images.githubusercontent.com/8784093/199033006-75124bb9-32cc-4328-940a-fd2db642c327.png "Substance Template")
+
+For new graphs, drag the preset into any folder you like, then point Designer to the folder in Preferences>Projects>General. You should now see the preset show up when creating new graphs.
+
+For existing graphs, open the preset in Designer and copy-paste the contents into your project. 
+
+{% alert type="danger" %}
+When using any RGB/Alpha merge nodes, the alpha channel for any applicable textures must not be left blank, or else you will have export issues.
+{% /alert %}
+
+
+# Bitmap Settings
 
 Once everything has been exported as .TIFs and imported into Guerilla, the textures (known as bitmaps in Halo 3) need to be configured to render correctly. Below is the bitmap settings you need to use for your PBR asset:
 
@@ -159,7 +179,7 @@ Parallax Bitmap:
 
 * ![](P.png)
 
-# Step 5: Shader Settings
+# Shader Settings
 
 The final step in this process is configuring the shader settings. Below is a picture showcasing what your shader values and settings need to be set to:
 
@@ -187,5 +207,6 @@ With everything combined and set, you should now have your asset rendering with 
 
 
 * ![](T.png "Final PBR shader setup for the asset")
+
 
 
