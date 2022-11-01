@@ -43,6 +43,17 @@ Transparent shaders can also be used, for example:
 
 The [shader_model](~) type will not be rendered by the game since it is intended for use with [object models](~gbxmodel).
 
+# Portals
+If you think of the BSP as a sealed volume, _portals_ are like doorways that split that space into distinct sealed "rooms" called _clusters_. This lets the game know what areas of a level can be culled to maintain good framerates, and the resulting clusters can each have unique properties assigned like background sound.
+
+You can create portals in a few ways:
+
+1. Surfaces which cut through the level and use the material name `+portal`. The portal planes can be connected along edges and even form box shapes but cannot have "leaky" gaps between the spaces they are meant to seal. Portal planes must not intersect each other.
+2. Surfaces which exactly match at their boundary with the vertices and eges in level geometry (e.g. around a doorway) and use the material name `+exactportal`. The faces of the exact portal do not need to be coplanar.
+3. Existing materials in the level that happen to consistently seal off closed volumes wherever they're used as if they were exact portals, like floor grates or glass windows covering a pit. Add the `.` material symbol, e.g. `floor_grate.%`.
+
+It may be necessary to add multiple portals to close a space. For example, if a building had multiple doors and windows you would need to add portals to each of them for the inside of the building to be considered sealed off from the outside. For help troubleshooting portals, [see here](~bsp-troubleshooting#portal-problems).
+
 # Clusters and cluster data
 Clusters are sealed volumes of a BSP separated by portal planes. They are used both as a rendering optimization and artistically; map authors can assign [weather_particle_system](~), [wind](~), [sound_environment](~), and [sound_looping](~) tags to define local atmospheric and ambience qualities for each section of the map. Different clusters can even reference [different skies](~blender-level-creation-additional-info#multiple-skies). The level will contain a single large cluster if no portals were created.
 
@@ -61,19 +72,23 @@ The _potentially visible set_ data (PVS) is precomputed when a BSP is compiled a
 Tool also takes into account the indoor sky's [_indoor fog opaque distance_](~sky#tag-field-outdoor-fog-opaque-distance) and [_indoor fog maximum density_](~sky#tag-field-indoor-fog-maximum-density) when computing the PVS. If the density is `1.0` (fully opaque) then Tool knows that indoor clusters cannot see beyond the opaque distance even if there are clusters within a line of sight. Tool logs the indoor maximum world units when the BSP is compiled (if there a sky referenced).
 
 # Fog planes
-Areas of a map which need a fog layer can be marked using _fog planes_. These are 2D surfaces which reference [fog tags](~fog), not to be confused with atmospheric fog which is part of the [sky tag](~sky). It is invalid for a cluster to be able to see multiple fog planes ([see more](~bsp-troubleshooting#warning-two-fog-planes-visible-from-a-cluster)).
+Areas of a map which need a fog layer can be marked using _fog planes_. These are 2D surfaces which reference [fog tags](~fog), not to be confused with atmospheric fog which is part of the [sky tag](~sky). 
+
+Create a fog plane by modeling a flat plane and giving its faces the material name `+unused$`. The fog will exist behind/antinormal to the plane. It must be completely flat and it is invalid for any cluster to be able to see multiple fog planes ([see more](~bsp-troubleshooting#warning-two-fog-planes-visible-from-a-cluster)), so adjust the size and shape of the plane accordingly. You can even create slanted or upside-down fog planes as long as they follow the rules. Once your BSP is compiled, you'll be able to assign fog to your plane(s) in Sapien.
 
 # Weather polyhedra
 
 {% figure src="weather-polys-aotcr.png" %}
-Weather polys extracted from AotCR.
+Weather polys extracted from _Assault on the Control Room_.
 {% /figure %}
 
-Weather polyhedra are simple convex volumes where weather particles will not render. They can be used to mask rain or snow from under overhangs, doorways, and indoor spaces when the cluster has weather.
+Weather polyhedra are artist-defined volumes where [weather particle systems](~weather_particle_system) will not render, such as under overhangs where you would not expect to see rain.
 
-When a JMS is compiled to BSP by [tool], connected convex faces with the material name `+weatherpoly` will generate _weather polyhedra_. Within the tag, the polyhedra are represented as a center point, bounding radius, and up to 16 planes which enclose a volume.
+To create them, simply model outwardly facing convex volumes where all faces use the `+weatherpoly` material name and [Tool](~h1a-tool) will generate the weather polyhedra when compiling your BSP. The volumes can overlap and up to 8 can be visible at any time before the game starts ignoring some ([Sapien](~) will print warnings when this happens).
 
-The game can only support a maximum of 8 visible weather polyhedra. Beyond this point, some polyhedra will be ignored and [Sapien](~) will print warnings.
+It is important that you still create weather polyhedra even if you have portals separating inside and outside spaces. Simply not assigning weather to the clusters which are under cover is not enough to prevent rain from appearing there. This is because the game renders weather based on the camera's current cluster, so if the player is outside a building looking in through a doorway they will still see rain indoors because the camera is currently located outside. Conversely, if the cluster within the building has no weather assigned then players will not see rain outdoors when looking out the doorway from inside. The solution is still assigning weather to covered clusters, then masking those areas with large weather polyhedra. This can be seen in the example figure.
+
+Within the tag, the polyhedra are represented as a center point, bounding radius, and up to 16 planes which enclose a volume. Therefore your polyhedra technically don't need to be _sealed_ volumes because they are limited to their bounding radius. A polyhedron can be created with as little as 1 plane.
 
 # Lightmaps
 _Lightmaps_ are the visual representation of the BSP, and are stored in a separate representation from its collision data. The lightmaps data includes the renderable triangles and a precalculated radiosity bitmap.
@@ -99,7 +114,7 @@ Danger Canyon contains at least two prevalent cases of phantom BSP. The Warthog 
 
 Phantom BSP is a collision artifact sometimes produced when compiling BSPs. It manifests itself as invisible surfaces which projectiles and vehicles collide with (but not players), and mostly appears around sharp corners near cases of "nearly coplanar faces" warnings in your [WRL file](~wrl).
 
-Bungie was aware of this artifact and implemented a feature to help spot it (`collision_debug_phantom_bsp 1` in [Sapien](~h1a-sapien) or [standalone](~h1a-standalone-build)). If you find phantom BSP in your map, there are a few steps you can take to resolve it:
+Bungie was aware of this artifact and implemented a feature to help spot it (`collision_debug_phantom_bsp 1` in [Sapien](~h1a-sapien) or [Standalone](~h1a-standalone-build)). If you find phantom BSP in your map, there are a few steps you can take to resolve it:
 
 1. Preemptively, keep your geometry simple and robust without an abundance of dense, complex, or spiky shapes. Flat surfaces like floors and walls should be kept as flat as possible by using alignment tools when modeling rather than "eyeballing it".
 2. Fix any "nearly coplanar" warnings in your source model by scaling affected faces to 0 along their normal axis or using alignment. Since Tool slightly rounds vertex coordinates when compiling BSPs, sometimes this warning cannot be resolved for surfaces which are not axis-aligned.
