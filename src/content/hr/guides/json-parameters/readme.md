@@ -8,6 +8,8 @@ keywords:
   - JSON
 thanks:
   Crisp: Writing this page
+redirects:
+  - /hr/json-parameters
 ---
 Below is a list of the possible JSON parameters that can be included within the JSON files generated during the [FBX to GR2](~hr-tool#fbx-to-gr2) process. Note that in order for any changes to JSON files to take effect, you'll need to save your changes and re-run `fbx-to-gr2`.
 

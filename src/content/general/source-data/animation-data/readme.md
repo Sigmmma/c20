@@ -8,6 +8,8 @@ keywords:
 thanks:
   General_101: Documentation on animation types
   ODX: JMO frames
+redirects:
+  - /h1/source-data/animation-data
 ---
 The [HEK](~) uses several file types as intermediate representations of animation data. These files provide a common target for exporters like [Bluestreak](~) and [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset), and can then be converted to [model_animations](~) tags by [Tool](~) for use in Halo.
 

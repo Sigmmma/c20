@@ -9,6 +9,8 @@ keywords:
   - shaders
 thanks:
   TheChunkierBean: Writing this page.
+redirects:
+  - /h3/pbr-shaders
 ---
 
 * ![](A.png "It's like talking to a brick wall")

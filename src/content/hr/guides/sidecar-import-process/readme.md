@@ -5,6 +5,8 @@ keywords:
   - sidecar
   - import
   - importing
+redirects:
+  - /hr/sidecar-import-process
 ---
 ## Reach Import Process
 

@@ -2,10 +2,12 @@ import fs from "fs";
 import path from "path";
 // SPOOPY BUG: do not reorder the next two lines!!!!!
 import renderPage from "./lib/render/render";
-import {getPageBaseDir, loadPageIndex, pageIdToLogical, tryLocalizedPath, type PageIndex} from "./lib/content";
+import {getPageBaseDir, loadPageIndex, pageIdToLogical, type PageIndex} from "./lib/content";
 import {loadYamlTree} from "./lib/utils/files";
 import {buildAndWriteSearchIndex, type SearchDoc} from "./lib/search";
 import buildResources from "./lib/resources";
+import { buildSitemap } from "./lib/sitemap";
+import { buildAndWriteRedirects } from "./lib/redirects";
 const loadStructuredData = require("./data");
 
 export type BuildOpts = {
@@ -14,28 +16,6 @@ export type BuildOpts = {
   baseUrl: string;
   noThumbs?: boolean;
 };
-
-async function buildSitemap(pageIndex: PageIndex, buildOpts: BuildOpts) {
-  const {outputDir, baseUrl} = buildOpts;
-  const urls: string[] = [];
-
-  Object.entries(pageIndex).forEach(([pageId, pageDataByLang]) => {
-    Object.entries(pageDataByLang).forEach(([lang, pageData]) => {
-      if (!pageData.front.stub && !pageData.front.noSearch) {
-        urls.push(`${baseUrl}${tryLocalizedPath(pageIndex, pageId, lang)}`);
-      }
-    });
-  });
-
-  const sitemap = urls.join("\n");
-  const robots = `User-agent: *\nDisallow: /assets/\nSitemap: ${baseUrl}/sitemap.txt\n`;
-
-  await fs.promises.mkdir(outputDir, {recursive: true});
-  await Promise.all([
-    fs.promises.writeFile(path.join(outputDir, "sitemap.txt"), sitemap, "utf8"),
-    fs.promises.writeFile(path.join(outputDir, "robots.txt"), robots, "utf8")
-  ]);
-}
 
 async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: BuildOpts): Promise<SearchDoc[]> {
   //for all pages, and for all of their languages...
@@ -78,6 +58,7 @@ export default async function buildContent(buildOpts: BuildOpts) {
     buildResources(await pageIndex, buildOpts),
     renderPages(await pageIndex, await data, buildOpts)
       .then(searchDocs => buildAndWriteSearchIndex(searchDocs, buildOpts)),
-    buildSitemap(await pageIndex, buildOpts)
+    buildSitemap(await pageIndex, buildOpts),
+    buildAndWriteRedirects(await pageIndex, buildOpts)
   ]);
 }

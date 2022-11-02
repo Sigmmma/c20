@@ -6,6 +6,8 @@ keywords:
   - HLSL
 thanks:
   num0005: Writing this page.
+redirects:
+  - /h3/compiling-shaders
 ---
 Halo 3 has a flexible shader system based on automatically generated templates. Usually as a map maker you can ignore the technical details of it.
 

@@ -12,6 +12,8 @@ keywords:
   - export
 related:
   - /h1/guides/intro-to-h1-modding
+redirects:
+  - /h2/sources
 ---
 Some **Source data file** formats are shared between the different versions of the [Blam engine](~engine).
 These are the assets which have not yet been converted into tags. In most cases, assets within `data` will have a corresponding tag under the same folder layout in `tags`.

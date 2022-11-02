@@ -5,6 +5,8 @@ keywords:
   - exporter
 thanks:
   General_101: Writing this guide
+redirects:
+  - /h3/level-creation/blender-level-creation-beginner
 ---
 {% alert %}
 This guide assumes you have already [prepared Blender](~blender-prep).

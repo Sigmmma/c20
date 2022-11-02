@@ -1,5 +1,7 @@
 ---
 title: Using custom content paths
+redirects:
+  - /h1/tools/h1a-ek/using-custom-content-paths
 ---
 {% alert type="danger" %}
 H3-EK currently ***doesn't*** support custom content paths and neither do legacy editing kits. This is an MCC-only feature.

@@ -5,6 +5,8 @@ keywords:
   - exporter
 thanks:
   General_101: Writing this guide
+redirects:
+  - /h2/level-creation/blender-level-creation-additional-info
 ---
 # File List
 | File Link                                                                                                           | Description

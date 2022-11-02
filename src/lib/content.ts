@@ -23,6 +23,7 @@ export type PageFrontMatter = {
   keywords?: string[];
   stub?: boolean;
   related?: string[];
+  redirects?: PageId[];
 };
 
 export type PageLink = {

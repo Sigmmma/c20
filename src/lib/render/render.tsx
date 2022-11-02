@@ -130,7 +130,8 @@ function getAboutContent(ctx: RenderContext | undefined, front?: PageFrontMatter
 }
 
 function buildPageTree(input: RenderInput, pageId: string): NavTree {
-  const children = getPageChildren(input.pageIndex, pageId, input.lang);
+  const children = getPageChildren(input.pageIndex, pageId, input.lang)
+    .filter(child => !child.pageId.startsWith("/utility"));
   return children.map(child => ({
     link: child,
     children: buildPageTree(input, child.pageId)

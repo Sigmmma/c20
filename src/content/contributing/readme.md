@@ -7,6 +7,8 @@ keywords:
   - contribute
   - help
   - wiki
+redirects:
+  - /thanks
 ---
 **The Reclaimers Library** is a wiki created by modders for modders. It has a primary team of volunteer editors who incorporate new information of their own or submissions by the community. Anyone can submit tips or become an editor.
 
@@ -150,6 +152,12 @@ thanks:
 # Excludes the page from the search index. Use this for pages which are
 # incomplete or people won't need to search for.
 noSearch: true
+
+# An optional list of page IDs that should be redirected to this page instead.
+# Use this when content is moved between pages or pages are moved to new URLs.
+redirects:
+  - /h1/old/page
+  - /h1/another/old/page
 
 # You probably don't need to use this. Some pages contain headings which are
 # directly referenced by code in this project. This config allows other page
