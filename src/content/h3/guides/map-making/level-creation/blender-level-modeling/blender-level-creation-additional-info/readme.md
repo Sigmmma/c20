@@ -79,7 +79,6 @@ Instance geometry is geometry that is linked and duplicated to cut down on used 
 
 Object data in Blender can be linked with the {% key "Ctrl" /%} + {% key "L" /%} hotkeys.
 
-
 ![](instancegeo.jpg "Copy pasta your geo for fun.")
 
 # Infinite Water Plane
