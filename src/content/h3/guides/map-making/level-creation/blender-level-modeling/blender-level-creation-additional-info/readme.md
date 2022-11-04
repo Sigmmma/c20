@@ -6,6 +6,7 @@ keywords:
 thanks:
   General_101: Writing this guide
   MercyMoon: Writing the Seams sections
+  Crisp: Adding additional information on instanced geometry
 redirects:
   - /h3/level-creation/blender-level-creation-additional-info
 ---
@@ -51,11 +52,22 @@ Object symbols are characters that go at the start of the object name.
 | `%`    | Instanced object prefix. Used to tell the ASS exporter that this object is to be treated as instance geo.
 | `@`    | Collision object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only collision geometry.
 | `$`    | Physics object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only physics geometry.
+| `~`    | Water group object prefix. If used in an ASS file then tool will use the object to generate water in a structure-design file.
+
+Some symbols are specific when used in conjunction with instanced geometry
+
+| Symbol | Description
+|------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | `+`    | Static pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol it will generate pathfinding for the mesh.
 | `-`    | Not pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol ignore the object while generating the pathfinding mesh.
 | `?`    | Light object per vertex. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will set the geo to use per vertex for lightmap policy.
 | `!`    | Light object per pixel. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will set the geo to use per pixel for lightmap policy.
-| `~`    | Water group object prefix. If used in an ASS file then tool will use the object to generate water in a structure-design file.
+| `*`    | Render only prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to use only render geometry.
+| `&`    | Chops portals prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to chop portals (as regular bsp geometry does).
+| `^`    | Does not block AOE prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to not block area of effect damage.
+| `<`    | Excluded from lightprobes prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to be excluded from lightprobes.
+| `\|`    | Decal spacing prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to use decal spacing.
+| `@`    | Instanced Geometry collision prefix. Used as a prefix for a child object of an instanced geometry object. In the case of this symbol it will override the collision of the parent object with its own collision mesh (note that you do not need the % prefix when using this).
 
 # Portals
 Portals are plane objects that cut through geometry to divide it into sections called clusters. This is either usually to enhance performance or section off a part of a level in order to set specific environment sounds or effects in that area. Portals are defined by the special material name `+portal`. Portals can also intersect without needing to be connected unlike CE. This makes it extremely simple to just generate a set of grid portals to quickly test high poly geometry before making better portals. See the `Portals Example Blend` and [Materials Overview](~materials) for examples.
@@ -66,6 +78,7 @@ Portals are plane objects that cut through geometry to divide it into sections c
 Instance geometry is geometry that is linked and duplicated to cut down on used memory. It's also a decent way to avoid having to stich in geometry into your BSP. Think of it like scenery objects with lightmaps. The ASS exporter checks if an object is an instance by seeing if it has linked mesh data. They should also have the `%` symbol at the start of their object names. The only unique property that instance can have is uniform scale. All instances will otherwise look the same. See the `Instance Geometry Example Blend` for an example on how to use this.
 
 Object data in Blender can be linked with the {% key "Ctrl" /%} + {% key "L" /%} hotkeys.
+
 
 ![](instancegeo.jpg "Copy pasta your geo for fun.")
 
