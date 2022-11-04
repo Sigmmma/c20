@@ -41,7 +41,7 @@ The import Sidecars task is designed to handle all the tedious parts of importin
 
 1. Select the Import Sidecar task in Osoyoos (if this is greyed out, you haven't assigned the current profile to Reach). Generate Sidecar will be selected by default. Under Asset Type ensure model is chosen in the dropdown and select the Create Asset Sub-Directories checkbox (this will generate a valid set of sub-folders for later use.)
 
-2. Select the output tags you wish to create. At a minmium you should select the Crate output tag for this asset.
+2. Select the output tags you wish to create. At a minimum you should select the Crate output tag for this asset.
 
 3. Next navigate to any path within your data directory and add a folder called box. Or simply type out the path in the text box e.g. objects\test\box
 

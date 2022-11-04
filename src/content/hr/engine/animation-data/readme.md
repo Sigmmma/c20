@@ -24,7 +24,7 @@ Full body animation, however it will not move the physics pill of an object. Ide
 Full body animation with physics pill movement on the XY plane. Ideal for animations which move an object in physical space such as walking or hard ping animations.
 
 # JMT (Base - Turn/Yaw Rotation)
-Full body animation with phyiscs pills that allows for rotation on the yaw axis. Ideal for biped turning animations
+Full body animation with physics pills that allows for rotation on the yaw axis. Ideal for biped turning animations
 
 # JMZ (Base - Up Axis)
 Full body animation with physics pill movement on the Z axis. Ideal for jumping animations.
@@ -39,7 +39,7 @@ Keyframe overlay animations will only animate bones on top of existing animation
 Pose overlay animations will instead use poses (keyframes which define extremes). Ideal for aiming animations to handle weapon sway.
 
 # JMR (Replacement)
-Simliar to overlay animations except the animation of keyframed bones are completely replaced by JMR animations. These animations can either be relative to local or object space. Ideal for ready/stow and throw grenade animations.
+Similiar to overlay animations except the animation of keyframed bones are completely replaced by JMR animations. These animations can either be relative to local or object space. Ideal for ready/stow and throw grenade animations.
 
 # Defining Animation types in Sidecars
 
