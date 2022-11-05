@@ -122,7 +122,7 @@ parameters:
     values: |-
       _connected_geometry_primitive_type_none
 
-      _connected_geometry_primitive_type_box;
+      _connected_geometry_primitive_type_box
 
       _connected_geometry_primitive_type_pill
 
@@ -1131,7 +1131,7 @@ parameters:
       Group of properties: face level properties
 
       Valid for object_type: _connected_geometry_object_type_mesh
-  - name: face_type
+  - name: face_mode
     type: _enum
     values: |-
       _connected_geometry_face_mode_none

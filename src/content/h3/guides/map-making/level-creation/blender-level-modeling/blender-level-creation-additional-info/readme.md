@@ -6,6 +6,7 @@ keywords:
 thanks:
   General_101: Writing this guide
   MercyMoon: Writing the Seams sections
+  Crisp: Adding additional information on instanced geometry
 redirects:
   - /h3/level-creation/blender-level-creation-additional-info
 ---
@@ -36,7 +37,7 @@ If you were not aware, a cluster is a section of a level divided by a portal. In
 Avoid using trailing digits on non-sky material names, or you'll get tool warnings about duplicate shaders, and avoid numbers in shader tag names. Use letters instead if you need to make variants.
 
 # Weather polyhedra
-You may be aware of weather polyhedra from previous games. This was a feature that allowed map designers to prevent weather effects from appearing in a certain section of level. I regret to inform you that this is not a feature in Halo 3. It seems to be have been deprecated during the switch from weather tags to atmosphere parameters.
+You may be aware of weather polyhedra from previous games. This was a feature that allowed map designers to prevent weather effects from appearing in a certain section of level. I regret to inform you that this is not a feature in Halo 3. It seems to have been deprecated during the switch from weather tags to atmosphere parameters.
 
 # Multiple BSPs
 It is common for singleplayer maps to have multiple BSPs. This helps manage game resources and avoid BSP limits for long missions. To accomplish this, place multiple `ASS` files in the same `structure` folder for the level. Each ASS will be compiled into it's own unique BSP tag for your scenario to use. Do not attempt to use multiple BSPs in an MP scenario.
@@ -51,11 +52,22 @@ Object symbols are characters that go at the start of the object name.
 | `%`    | Instanced object prefix. Used to tell the ASS exporter that this object is to be treated as instance geo.
 | `@`    | Collision object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only collision geometry.
 | `$`    | Physics object prefix. Used to tell the JMI exporter that the object is to be written to a JMS containing only physics geometry.
+| `~`    | Water group object prefix. If used in an ASS file then tool will use the object to generate water in a structure-design file.
+
+Some symbols are specific when used in conjunction with instanced geometry
+
+| Symbol | Description
+|------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | `+`    | Static pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol it will generate pathfinding for the mesh.
 | `-`    | Not pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol ignore the object while generating the pathfinding mesh.
 | `?`    | Light object per vertex. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will set the geo to use per vertex for lightmap policy.
 | `!`    | Light object per pixel. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will set the geo to use per pixel for lightmap policy.
-| `~`    | Water group object prefix. If used in an ASS file then tool will use the object to generate water in a structure-design file.
+| `*`    | Render only prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to use only render geometry.
+| `&`    | Chops portals prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to chop portals (as regular bsp geometry does).
+| `^`    | Does not block AOE prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to not block area of effect damage.
+| `<`    | Excluded from lightprobes prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to be excluded from lightprobes.
+| `\|`    | Decal spacing prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to use decal spacing.
+| `@`    | Instanced Geometry collision prefix. Used as a prefix for a child object of an instanced geometry object. In the case of this symbol it will override the collision of the parent object with its own collision mesh (note that you do not need the % prefix when using this).
 
 # Portals
 Portals are plane objects that cut through geometry to divide it into sections called clusters. This is either usually to enhance performance or section off a part of a level in order to set specific environment sounds or effects in that area. Portals are defined by the special material name `+portal`. Portals can also intersect without needing to be connected unlike CE. This makes it extremely simple to just generate a set of grid portals to quickly test high poly geometry before making better portals. See the `Portals Example Blend` and [Materials Overview](~materials) for examples.
@@ -70,7 +82,7 @@ Object data in Blender can be linked with the {% key "Ctrl" /%} + {% key "L" /%}
 ![](instancegeo.jpg "Copy pasta your geo for fun.")
 
 # Infinite Water Plane
-You may be aware of infinite water planes from Halo 2. This was a feature that allowed map designers to set an infinite water plane at a certain height in the level. I regret to inform you that this is not a feature in Halo 3. It seems to be have been deprecated.
+You may be aware of infinite water planes from Halo 2. This was a feature that allowed map designers to set an infinite water plane at a certain height in the level. I regret to inform you that this is not a feature in Halo 3. It seems to have been deprecated.
 
 # XREFs
 
