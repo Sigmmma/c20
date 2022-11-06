@@ -9,7 +9,7 @@ import buildResources from "./lib/resources";
 import { buildSitemap } from "./lib/sitemap";
 import { buildAndWriteRedirects } from "./lib/redirects";
 import { Lang } from "./lib/utils/localization";
-const loadStructuredData = require("./data");
+import loadStructuredData from "./data";
 
 export type BuildOpts = {
   contentDir: string;

@@ -9,7 +9,7 @@ import {type BuildOpts} from "./build";
 import {parse} from "./lib/components/Md/markdown";
 import { buildSearchIndex, SearchDoc } from "./lib/search";
 import { buildRedirects } from "./lib/redirects";
-const loadStructuredData = require("./data");
+import loadStructuredData from "./data";
 
 const buildOpts: BuildOpts = {
   baseUrl: buildConfig.baseUrl,

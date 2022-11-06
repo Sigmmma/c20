@@ -26,7 +26,8 @@ type LoadTreeOpts = {flat?: boolean, nonRecursive?: boolean};
 export async function loadYamlTree<T=object>(baseDir: string, opts?: LoadTreeOpts): Promise<T> {
   let result = {};
   const files = await findPaths(path.join(baseDir, opts?.nonRecursive ? "*.yml" : "**/*.yml"));
-  for (let filePath of files) {
+
+  await Promise.all(files.map(async (filePath) => {
     const fileData = await loadYamlFile(filePath);
     if (opts?.flat) {
       result = R.mergeRight(result, fileData);
@@ -35,7 +36,8 @@ export async function loadYamlTree<T=object>(baseDir: string, opts?: LoadTreeOpt
       const objectPath = [...path.relative(baseDir, dir).split(path.sep), moduleName].filter(part => part != "");
       result = R.assocPath(objectPath, fileData, result);
     }
-  }
+  }));
+
   return result as T;
 };
 
