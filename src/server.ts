@@ -3,7 +3,7 @@ import express from "express";
 import buildConfig from "../build-config.json";
 // SPOOPY BUG: do not reorder the next two lines!!!!!
 import renderPage from "./lib/render/render";
-import {getPageBaseDir, getPageMdSrcPath, loadPageIndex} from "./lib/content";
+import {buildPageTree, getPageBaseDir, getPageMdSrcPath, loadPageIndex} from "./lib/content";
 import {loadYamlTree} from "./lib/utils/files";
 import {type BuildOpts} from "./build";
 import {parse} from "./lib/components/Md/markdown";
@@ -85,6 +85,7 @@ export default function runServer(onDemand: boolean) {
         localData: await localDataPromise,
         globalData: await dataPromise,
         pageIndex: await pageIndexPromise,
+        navTree: buildPageTree(await pageIndexPromise, "/", lang),
       });
     
       res.header("Content-Type", "text/html; charset=UTF-8");

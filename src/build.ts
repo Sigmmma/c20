@@ -2,12 +2,13 @@ import fs from "fs";
 import path from "path";
 // SPOOPY BUG: do not reorder the next two lines!!!!!
 import renderPage from "./lib/render/render";
-import {getPageBaseDir, loadPageIndex, pageIdToLogical, type PageIndex} from "./lib/content";
+import {buildPageTree, getPageBaseDir, loadPageIndex, NavTree, pageIdToLogical, type PageIndex} from "./lib/content";
 import {loadYamlTree} from "./lib/utils/files";
 import {buildAndWriteSearchIndex, type SearchDoc} from "./lib/search";
 import buildResources from "./lib/resources";
 import { buildSitemap } from "./lib/sitemap";
 import { buildAndWriteRedirects } from "./lib/redirects";
+import { Lang } from "./lib/utils/localization";
 const loadStructuredData = require("./data");
 
 export type BuildOpts = {
@@ -18,13 +19,16 @@ export type BuildOpts = {
 };
 
 async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: BuildOpts): Promise<SearchDoc[]> {
+  const navTrees: Record<Lang, NavTree> = {};
+
   //for all pages, and for all of their languages...
   const searchDocs = await Promise.all(Object.entries(pageIndex).flatMap(([pageId, pageDataByLang]) => {
     return Object.entries(pageDataByLang).map(async ([lang, pageData]) => {
       const baseDir = getPageBaseDir(pageId, buildOpts);
       const outputDir = path.join(buildOpts.outputDir, ...pageIdToLogical(pageId));
       const outputFileName = path.join(outputDir, lang == "en" ? "index.html" : `${lang}.html`);
-      const localData = await loadYamlTree(baseDir, {nonRecursive: true});
+      const localData = loadYamlTree(baseDir, {nonRecursive: true});
+      const navTree = navTrees[lang] ?? (navTrees[lang] = buildPageTree(pageIndex, "/", lang));
 
       //render the page to HTML and also gather search index data
       const renderOutput = renderPage({
@@ -36,9 +40,10 @@ async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: Bui
         lang,
         ast: pageData.ast,
         front: pageData.front,
-        localData,
+        localData: await localData,
         globalData,
         pageIndex,
+        navTree,
       });
 
       await fs.promises.mkdir(outputDir, {recursive: true});

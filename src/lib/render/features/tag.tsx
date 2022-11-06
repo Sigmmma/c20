@@ -3,6 +3,7 @@ import {type RenderContext} from "../../components/Ctx/Ctx";
 import DetailsList from "../../components/DetailsList/DetailsList";
 import {type MetaboxSectionProps} from "../../components/Metabox/Metabox";
 import {localizer} from "../../utils/localization";
+import { addBreaks } from "../../utils/strings";
 
 const localizations = {
   tagStructureHeading: {
@@ -41,7 +42,7 @@ const localizations = {
 
 const tagAnchor = (ctx: RenderContext, tagName: string) => {
   const tagPage = ctx.resolvePage(tagName);
-  return <a href={tagPage.url}>{tagName}</a>;
+  return <a href={tagPage.url}>{addBreaks(tagName, <wbr/>)}</a>;
 };
 
 export default function getTagSections(ctx: RenderContext | undefined, tag: any): MetaboxSectionProps[] {

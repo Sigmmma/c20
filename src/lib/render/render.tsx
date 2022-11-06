@@ -1,4 +1,4 @@
-import PageWrapper, { NavTree } from "../components/PageWrapper/PageWrapper";
+import PageWrapper from "../components/PageWrapper/PageWrapper";
 import * as R from "ramda";
 import renderToString from "preact-render-to-string";
 import Ctx, {type RenderContext} from "../components/Ctx/Ctx";
@@ -7,18 +7,18 @@ import Article from "../components/Article/Article";
 import HtmlDoc from "../components/HtmlDoc/HtmlDoc";
 import Md from "../components/Md/Md";
 import {transform, renderPlaintext} from "../components/Md/markdown";
-import {type Lang, localizer} from "../utils/localization";
-import ThanksList, {localizations as thanksLocalizations} from "../components/Article/ThanksList";
+import {type Lang} from "../utils/localization";
+import ThanksList from "../components/Article/ThanksList";
 import findHeadings from "../components/Md/headings";
 import {type Node, type RenderableTreeNode} from "@markdoc/markdoc";
 import {type NavHeading} from "../components/Article/TableOfContents";
-import {slugify} from "../utils/strings";
 import {type MetaboxProps} from "../components/Metabox/Metabox";
 import Wat from "../components/Wat/Wat";
-import {type PageFrontMatter, type PageIndex, type PageLink, resolvePageGlobal, getPageChildren, getPageParents, getAllThanks, getPageRelated, tryLocalizedPath, getPageOtherLangs} from "../content";
+import {type PageFrontMatter, type PageIndex, type PageLink, resolvePageGlobal, getPageParents, getAllThanks, getPageRelated, tryLocalizedPath, getPageOtherLangs, type NavTree} from "../content";
 import {type SearchDoc} from "../search";
 import getWorkflowSections from "./features/workflow";
 import getTagSections from "./features/tag";
+import { addBreaks } from "../utils/strings";
 
 export const PREVIEW_LENGTH_CHARS = 100;
 
@@ -64,6 +64,7 @@ export type RenderInput = {
   //non-local:
   globalData: any;
   pageIndex: PageIndex;
+  navTree: NavTree; //can be derived from `pageIndex` but slow to do every time
 };
 
 //trim the plaintext preview to a maximum length
@@ -112,12 +113,11 @@ function getAboutContent(ctx: RenderContext | undefined, front?: PageFrontMatter
   const keywords: string[] = [];
   if (aboutType && aboutArg) {
     if (aboutType == "tag") {
-      const tagNameArg = aboutArg.split("/");
-      const game = tagNameArg.length > 1 ? tagNameArg[0] : "h1";
-      const tagName = tagNameArg.length > 1 ? tagNameArg[1] : tagNameArg[0];
+      const [game, tagName] = aboutArg.split("/");
+      if (!tagName) throw new Error(`Incorrectly formatted about:tag ${aboutArg}`);
       const tag = ctx?.data?.tags?.[game]?.[tagName];
       if (tag?.id) {
-        metaboxProps.title = <>{tagName} (<code>{tag.id}</code><Wat idTail="h1/tags" headingId="group-ids"/>)</>;
+        metaboxProps.title = <>{addBreaks(tagName, <wbr/>)} (<code>{tag.id}</code><Wat idTail="h1/tags" headingId="group-ids"/>)</>;
         keywords.push(tag.id);
         metaboxProps.sections!.push(...getTagSections(ctx, tag));
       }
@@ -127,15 +127,6 @@ function getAboutContent(ctx: RenderContext | undefined, front?: PageFrontMatter
     }
   }
   return {metaboxProps, keywords};
-}
-
-function buildPageTree(input: RenderInput, pageId: string): NavTree {
-  const children = getPageChildren(input.pageIndex, pageId, input.lang)
-    .filter(child => !child.pageId.startsWith("/utility"));
-  return children.map(child => ({
-    link: child,
-    children: buildPageTree(input, child.pageId)
-  }));
 }
 
 export default function renderPage(input: RenderInput): RenderOutput {  
@@ -167,7 +158,6 @@ export default function renderPage(input: RenderInput): RenderOutput {
   const content = transform(input.ast, ctx, input.front);
   
   const navParents = getPageParents(input.pageIndex, input.pageId, input.lang);
-  const navTree = buildPageTree(input, "/");
   const navRelated = getPageRelated(input.pageIndex, input.pageId, input.lang);
   const navOtherLangs = getPageOtherLangs(input.pageIndex, input.pageId, input.lang);
   const navHeadings = getNavHeadings(front, ctx, content);
@@ -194,7 +184,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
         >
           <PageWrapper
             title={front?.title}
-            navTree={navTree}
+            navTree={input.navTree}
             navRelated={navRelated}
             navHeadings={navHeadings}
           >

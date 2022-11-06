@@ -1,10 +1,23 @@
 import {type NodeType, type Schema, Tag} from "@markdoc/markdoc";
 import { linkables } from "../../utils/external-urls";
-import {slugify} from "../../utils/strings";
+import {addBreaks, slugify} from "../../utils/strings";
 import {type RenderContext} from "../Ctx/Ctx";
 import renderPlaintext from "./plaintext";
 
+const wbr = new Tag("wbr");
+
 const nodes: Partial<Record<NodeType, Schema>> = {
+  text: {
+    attributes: {
+      content: {
+        type: String
+      },
+    },
+    transform(node, config) {
+      const {content} = node.transformAttributes(config);
+      return addBreaks(content, wbr);
+    }
+  },
   image: {
     attributes: {
       src: {
