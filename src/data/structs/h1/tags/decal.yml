@@ -112,12 +112,20 @@ type_defs:
           unit: seconds
         type_args:
           T: float
+        comments:
+          en: |-
+            Controls how long the decal will exist for.
       - name: decay_time
         type: Bounds
         meta:
           unit: seconds
         type_args:
           T: float
+        comments:
+          en: |-
+            Controls how long it takes for the decal to fade out at the end of
+            its lifetime. This does not extend the lifetime, but rather the
+            decal begins fading out this many seconds before it will expire.
       - type: pad
         size: 12
       - type: pad

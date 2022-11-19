@@ -6,17 +6,21 @@ caption: 'Painted signs, bullet holes, and blood splats are all decal instances.
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+  Conscars: Testing functions and globals
 ---
-The game's decal system is responsible for rendering bullet holes, blood splatter, explosion marks, and other flat textures applied over over [BSP](~scenario_structure_bsp) surfaces (decals cannot appear on [objects](~object)). Decal tags describe the appearance and lifetime of these effects.
+The **decal** system is responsible for rendering bullet holes, blood splatter, explosion marks, and other flat textures applied over over [BSP](~scenario_structure_bsp) surfaces (decals cannot appear on [objects](~object)). Decal tags describe the appearance and lifetime of these effects.
 
-# Effect decals
-Decals are most commonly created dynamically from [effects](~effect), such as explosions and bullet impacts. In these cases, it is recommended to give the decal a maximum lifetime to avoid poor framerates.
+# Dynamic decals
+Dynamic decals are created from [effects](~effect), such as explosions and projectile impacts. It is recommended to give the decal a [maximum lifetime](#tag-field-lifetime) to avoid poor framerates. The game supports up to [2048](~game-state) decal "slots".
 
-# Environment decals
-A [scenario](~scenario) can also contain permanent decals placed throughout the environment. These can be placed in [Sapien](~) under the _game data_ section.
+# Permanent decals
+Also called _environment decals_, these are placed throughout the [scenario](~) using [Sapien](~) (under _game data_ in the hierarchy window).
 
 # Decal meshes
-Although often created as quads, the game may generate more complex decal meshes to conform to the underlying geometry. Vertices of decal meshes typically stand off from their background with a small margin to avoid Z-fighting, but the distance is not consistent.
+Although often created as quads against a flat surface, the game may generate more complex decal meshes to conform to the underlying geometry. You can observe decal mesh generation using `debug_decals 1`. Original corner vertices of decal meshes stand off from their background with a small margin to avoid Z-fighting, controlled by `rasterizer_zoffset`, while additional vertices generated from the conformation process are not z-offset.
+
+# Related HaloScript
+{% relatedHsc game="h1" tagFilter="decal" /%}
 
 # Structure and fields
 

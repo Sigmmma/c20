@@ -3,7 +3,7 @@ import glob from "glob";
 import yaml from "js-yaml";
 import fs from "fs";
 import * as R from "ramda";
-import { Lang } from "./localization";
+import {type Lang} from "./localization";
 
 export async function findPaths(globPattern: string): Promise<string[]> {
   return new Promise((resolve, reject) => {

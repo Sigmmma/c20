@@ -25,7 +25,8 @@ export type DataTableProps = {
     name: string;
     key: string;
     style?: string;
-    format?: "text" | "code" | "anchor" | "codeblock" | "pageLinkRaw" | "pageLink";
+    format?: "text" | "code" | "anchor" | "codeblock" | "pageLinkRaw" | "pageLink" | "indexedValue";
+    values?: string[] | Record<string, string>;
   }[]
 };
 
@@ -42,14 +43,16 @@ function rowId(tableId: string, props: DataTableProps, row: object, index: numbe
   return slugify(`${tableId}-${R.path(linkSlugKey.split("/"), row)}`)!;
 }
 
-function renderCellPlaintext(ctx, format, content): string {
-  format = format ?? "text";
-  if (!content) {
+function renderCellPlaintext(ctx, col, content): string {
+  const format = col.format ?? "text";
+  if (content === undefined || content === null) {
     return "";
   } else if (format === "text") {
     const {ast, frontmatter} = parse(content);
     const mdContent = transform(ast, ctx, frontmatter);
     return renderMdPlaintext(ctx, mdContent)?.trim() ?? "";
+  } else if (format == "indexedValue") {
+    return col.values?.[content] ?? "";
   } else if (format === "code") {
     return content;
   } else if (format === "anchor" || format === "pageLink") {
@@ -68,12 +71,14 @@ function renderCellPlaintext(ctx, format, content): string {
   }
 }
 
-function renderCell(ctx, format, content) {
-  format = format ?? "text";
-  if (!content) {
+function renderCell(ctx, col, content) {
+  const format = col.format ?? "text";
+  if (content === undefined || content === null) {
     return "";
   } else if (format === "text") {
     return <Md src={content}/>;
+  } else if (format === "indexedValue") {
+    return col.values?.[content] ?? "";
   } else if (format === "code") {
     return <code>{content}</code>;
   } else if (format === "anchor" || format === "pageLink") {
@@ -105,7 +110,7 @@ export function renderPlaintext(ctx: RenderContext | undefined, props: DataTable
   const rowsRendered = rows.map(row =>
     props.columns.map(col => {
       const rowContent = R.path(col.key.split("/"), row);
-      const cell = renderCellPlaintext(ctx, col.format, rowContent);
+      const cell = renderCellPlaintext(ctx, col, rowContent);
       return cell;
     }).join(" ")
   ).join("\n");
@@ -123,10 +128,10 @@ function gatherRows(ctx: RenderContext, props: DataTableProps): {rows: object[],
   const id = props.id ?? dataPaths.map(R.last).join("-");
   
   const rows = R.pipe(
-    R.map(dataPath => R.pathOr([], dataPath, ctx.data)),
-    R.map(rows => Array.isArray(rows) ?
-      rows :
-      Object.entries(rows).map(([key, value]) => ({key, value}))
+    R.map(dataPath => [dataPaths.indexOf(dataPath), R.pathOr([], dataPath, ctx.data)]),
+    R.map(([dataPathIndex, rows]) => Array.isArray(rows) ?
+      rows.map(r => ({...r, dataPathIndex})) :
+      Object.entries(rows).map(([key, value]) => ({dataPathIndex, key, value}))
     ),
     R.flatten,
     props.rowSortKey ?
@@ -196,12 +201,15 @@ export default function DataTable(props: DataTableProps) {
           </nav>
         </p>
       }
-      <table className={classes.join(" ")}>
+      <table id={id} className={classes.join(" ")}>
         <thead>
           <tr>
+            {props.linkCol === true &&
+              <th><Jump id={id}/></th>
+            }
             {props.columns.map((col, i) =>
-              <th style={col.style} colSpan={(props.linkCol === true && i == 0) ? 2 : 1}>
-                {renderCell(ctx, "text", col.name)}
+              <th style={col.style}>
+                <Md src={col.name}/>
               </th>
             )}
           </tr>
@@ -216,7 +224,7 @@ export default function DataTable(props: DataTableProps) {
                 }
                 {props.columns.map((col, i) => {
                   const rowContent = R.path(col.key.split("/"), row);
-                  const cell = renderCell(ctx, col.format, rowContent);
+                  const cell = renderCell(ctx, col, rowContent);
                   return (
                     <td style={col.style}>
                       {props.linkCol === i ? <Jump id={slugId}>{cell}</Jump> : cell}
