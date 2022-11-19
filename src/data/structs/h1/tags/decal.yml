@@ -12,21 +12,43 @@ type_defs:
     bits:
       - name: geometry_inherited_by_next_decal_in_chain
       - name: interpolate_color_in_hsv
+        comments:
+          en: |-
+            When choosing a random colour between _color lower bounds_ and
+            _color upper bounds_, interpolate in HSV space rather than RGB.
+            The interpolation will happen along the shortest hue distance.
       - name: more_colors
+        comments:
+          en: |-
+            When _interpolate color in hsv_ is set, this causes interpolation
+            to happen along the longer hue distance. For example, instead
+            of interpolating orange between red and yellow, it will select
+            random colors among purples, blues, and greens.
       - name: no_random_rotation
       - name: water_effect
       - name: sapien_snap_to_axis
       - name: sapien_incremental_counter
       - name: animation_loop
       - name: preserve_aspect
+      - name: disabled_in_remastered_by_blood_setting
   DecalType:
     class: enum
     size: 2
     options:
       - name: scratch
+        comments:
+          en: The decal will conform to the underlying geometry.
       - name: splatter
+        comments:
+          en: No observed difference from _scratch_.
       - name: burn
+        comments:
+          en: No observed difference from _scratch_.
       - name: painted_sign
+        comments:
+          en: |-
+            The decal will be clipped at the edges of the underlying geometry
+            rather than wrap around (neither convex nor concave).
   DecalLayer:
     class: enum
     size: 2
@@ -51,6 +73,8 @@ type_defs:
         type: DecalFlags
       - name: type
         type: DecalType
+        comments:
+          en: Controls how the decal geometry is generated.
       - name: layer
         type: DecalLayer
       - type: pad
