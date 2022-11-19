@@ -54,8 +54,16 @@ type_defs:
     size: 2
     options:
       - name: primary
+        comments:
+          en: Draws after the environment diffuse texture.
       - name: secondary
+        comments:
+          en: Draws after _primary_, allowing these decals to cover them.
       - name: light
+        comments:
+          en: |-
+            Draws after diffuse light, but before diffuse textures, allowing
+            these decals to act like [lightmaps](~).
       - name: alpha_tested
       - name: water
   Decal:
@@ -77,6 +85,8 @@ type_defs:
           en: Controls how the decal geometry is generated.
       - name: layer
         type: DecalLayer
+        comments:
+          en: Determines what stage of rendering the decal will be drawn in.
       - type: pad
         size: 2
       - name: next_decal_in_chain
@@ -93,6 +103,11 @@ type_defs:
             - 0.125
         type_args:
           T: float
+        comments:
+          en: |-
+            Controls how big the decal is. `0` defaults to `0.125`. The ingame
+            radius caps out at approximately 16 world units even if the tag
+            value is set higher.
       - type: pad
         size: 12
       - name: intensity
@@ -105,6 +120,11 @@ type_defs:
             - 1
         type_args:
           T: Fraction
+        comments:
+          en: |-
+            Sets lower and upper bounds for how visible the decal is. Defaults
+            to fully visible (`1-1`) if set to `0-0`, but otherwise the game
+            randomly selects an intensity within the given range.
       - name: color_lower_bounds
         type: ColorRGB
         comments:
@@ -169,6 +189,14 @@ type_defs:
         size: 2
       - name: framebuffer_blend_function
         type: FramebufferBlendFunction
+        comments:
+          en: |-
+            Sets how this decal will be blended into its background. Examples
+            are:
+
+            * _add_ for plasma,
+            * _double multiple_ for bullet holes on metal,
+            * _multiply_ for blood or burns
       - type: pad
         size: 2
       - type: pad
@@ -178,6 +206,8 @@ type_defs:
         meta:
           tag_classes:
             - bitmap
+        comments:
+          en: The texture to use for the decal.
       - type: pad
         size: 20
       - name: maximum_sprite_extent
