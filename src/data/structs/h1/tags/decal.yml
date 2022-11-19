@@ -107,6 +107,11 @@ type_defs:
           T: Fraction
       - name: color_lower_bounds
         type: ColorRGB
+        comments:
+          en: |-
+            A lower bound for color that will be multiplied with the decal.
+            Defaults to white. The color will be selected at random between
+            this and the upper bound.
         meta:
           default:
             - 1
@@ -114,6 +119,10 @@ type_defs:
             - 1
       - name: color_upper_bounds
         type: ColorRGB
+        comments:
+          en: |-
+            An upper bound for color that will be multiplied with the decal.
+            Defaults to white.
         meta:
           default:
             - 1
