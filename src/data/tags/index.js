@@ -1,6 +1,6 @@
 import * as R from "ramda";
 import {loadYamlTree} from "../../lib/utils/files";
-const {walkTypeDefs} = require("../structs");
+const {walkTypeDefs} = require("../../lib/structs");
 
 function findDirectTagRefs(structName, structModule, structModules, tagName) {
   if (!structName) return [];

@@ -14,6 +14,11 @@
     top: 0;
     overflow-y: auto;
     width: 20em;
+    scrollbar-color: transparent transparent;
+
+    &:hover {
+      scrollbar-color: var(--bg-inset) transparent;
+    }
 
     @include mobile {
       position: unset;
@@ -136,6 +141,11 @@
     overflow-y: auto;
     width: 15em;
     padding: var(--padding-sm) var(--padding-md);
+    scrollbar-color: transparent transparent;
+
+    &:hover {
+      scrollbar-color: var(--bg-inset) transparent;
+    }
 
     @include mobile {
       position: unset;

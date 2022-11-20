@@ -1,4 +1,4 @@
-const {instantiateType, buildTypeDefs, walkTypeDefs} = require("../../../data/structs");
+import {instantiateType, buildTypeDefs, walkTypeDefs} from "../../structs";
 import {slugify} from "../../utils/strings";
 import localizations from "./localizations";
 import Hex from "../Hex/Hex";

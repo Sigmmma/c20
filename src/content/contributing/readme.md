@@ -448,7 +448,7 @@ The [H1 tags list](~h1/tags#tags-list) reads `src/data/tags/h1.yml` and looks li
 
 Supported options:
 
-* `dataPath`: String or array of strings denoting the path under `src/data` where rows come from. For example, `tags/h1` will load `src/data/tags/h1.yml`. You can extend the data path with additional keys to select from nested objects within a YAML file. If the selected data is an object, its entries will become rows as `{key, value}`. If multiple data paths are provided the data from each will be merged into a single row array.
+* `dataPath`: String or array of strings denoting the path under `src/data` where rows come from. For example, `tags/h1` will load `src/data/tags/h1.yml`. You can extend the data path with additional keys to select from nested objects within a YAML file. If the selected data is an object, its entries will become rows as `{key, value, dataPathIndex}`. If multiple data paths are provided the data from each will be merged into a single row array. The index of the data path will be included in each row as `dataPathIndex`, which can be useful in combination with `indexedValue` columns.
 * `id`: Determines the prefix for HTML ID attributes given to each row. Choose something unique.
 * `rowSortKey`: A slash-separated path into each row which selects a value to sort rows by.
 * `rowSortReverse`: If `true`, reverses the sort order.
@@ -462,7 +462,8 @@ Supported options:
 * `columns`: An array of objects describing each column:
   * `name`: Name shown in table header.
   * `key`: A slash-separated path into each row which selects the column's value.
-  * `format`: How the cell value should be rendered. Can be `text` (the default), `code`, `codeblock-<lang>`, `anchor` (smart link using destination page title), or `pageLinkRaw` (smart link using the raw value as the title).
+  * `format`: How the cell value should be rendered. Can be `text` (the default), `indexedValue` (see below), `code`, `codeblock-<lang>`, `anchor` (smart link using destination page title), or `pageLinkRaw` (smart link using the raw value as the title).
+  * `values`: An array or object of plaintext strings used with the `indexedValue` format. The value at `key` will be used to index into this array/object to provide the actual cell value.
   * `style`: CSS style to inject into the header cell.
 
 ## Struct tables

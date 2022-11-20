@@ -11,7 +11,7 @@ Like the [renderer's texture cache](~renderer#texture-cache), the sound system a
 The [predicted resources](~scenario#tag-field-predicted-resources) block seen in some tag classes are meant to give the engine a hint about what sounds (and textures) should be cached.
 
 # Environmental audio
-MCC and Custom Edition (when using EAX emulation with [DSOAL][dsoal]) apply positional and environmental effects to sounds. For this reason, it is important that level artists ensure [BSP clusters](~scenario_structure_bsp#clusters and cluster data) have an appropriate [sound_environment](~) applied.
+MCC and Custom Edition (when using EAX emulation with [DSOAL][dsoal]) apply positional and environmental effects to sounds. For this reason, it is important that level artists ensure [BSP clusters](~scenario_structure_bsp#clusters-and-cluster-data) have an appropriate [sound_environment](~) applied.
 
 # Sound obstruction
 Sounds which are playing behind an obstruction are muffled. An obstruction is anything which blocks a collision ray test between the sound source and the camera. This may be the [BSP](~scenario_structure_bsp) or an object with [collision geometry](~model_collision_geometry).
