@@ -6,6 +6,7 @@ caption: The mass points of a Warthog.
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+  Conscars: Mass point node testing
 ---
 **Physics** tags characterize the dynamic physics and propulsion of [vehicles](~vehicle). They are essentially a collection of spherical _mass points_. Since vehicles can have both [model_collision_geometry](~) and physics, each tag is used in different situations:
 
@@ -20,11 +21,15 @@ Physics tags are created by [compiling a JMS](~tool) with specially-named<sup>(h
 # Mass points
 Mass points (also known as physics spheres) are spherical volumes with mass and density. They can have various types of friction and may provide powered impulse for flight and driving.
 
-Even though mass points are parented to nodes, they do not move with base, overlay, or aiming animations unlike [model_collision_geometry](~). However, when mass points are parented to nodes they can be used to engage a vehicle's suspension animation (e.g. the Warthog and Scorpion). The animation tag specifies the compression and extension depth. It is unknown if the mass points move with the node in this case.
+Even though mass points are parented to nodes, they do not move with base, overlay, or aiming animations unlike [model_collision_geometry](~). However, when mass points are parented to nodes they can be used to engage a vehicle's suspension animation (e.g. the Warthog and Scorpion). The animation tag specifies the compression and extension depth. The mass points move with the node in this case.
 
-[bouncy]: https://youtu.be/Vz48n5jZaQ8?t=1
-[stuck-bsp]: https://youtu.be/n5uN1RuOVRM?t=22
+# Related HaloScript
+
+{% relatedHsc game="h1" tagFilter="physics" /%}
 
 # Structure and fields
 
 {% tagStruct "h1/physics" /%}
+
+[bouncy]: https://youtu.be/Vz48n5jZaQ8?t=1
+[stuck-bsp]: https://youtu.be/n5uN1RuOVRM?t=22

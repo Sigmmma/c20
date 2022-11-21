@@ -870,24 +870,43 @@ type_defs:
         size: 20
       - name: default_ambient_color
         type: ColorRGB
+        comments:
+          en: |-
+            If the red component of this colour is non-zero, this and all
+            following default lighting fields will be used to light objects when
+            a ground point does not exist within 10wu below them.
       - type: pad
         size: 4
       - name: default_distant_light_0_color
         type: ColorRGB
+        comments:
+          en: Primary distant light colour when default lighting applies.
       - name: default_distant_light_0_direction
         type: Vector3D
+        comments:
+          en: Primary distant light direction when default lighting applies.
       - name: default_distant_light_1_color
         type: ColorRGB
+        comments:
+          en: Secondary distant light colour when default lighting applies.
       - name: default_distant_light_1_direction
         type: Vector3D
+        comments:
+          en: Secondary distant light direction when default lighting applies.
       - type: pad
         size: 12
       - name: default_reflection_tint
         type: ColorARGB
+        comments:
+          en: Reflection tint when default lighting applies.
       - name: default_shadow_vector
         type: Vector3D
+        comments:
+          en: Shadow vector when default lighting applies.
       - name: default_shadow_color
         type: ColorRGB
+        comments:
+          en: Shadow colour when default lighting applies.
       - type: pad
         size: 4
       - name: collision_materials
