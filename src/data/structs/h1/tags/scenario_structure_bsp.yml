@@ -15,6 +15,7 @@ imports:
     - TagString
     - Quaternion
     - Point2D
+    - VertexType
   h1/tags/model_collision_geometry:
     - ModelCollisionGeometryBSP
 type_defs:
@@ -146,20 +147,31 @@ type_defs:
         type: Index
       - type: pad
         size: 2
-      - name: do_not_screw_up_the_model
-        type: uint32
+      - name: rendered_vertices_type
+        type: VertexType
         meta:
-          h1x_only: true
           cache_only: true
         endianness: little
         comments:
-          en: '(Xbox only) if this isn''t set to 1, then the world ends'
+          en: Indicates how rendered vertices are stored.
+      - type: pad
+        size: 2
       - name: rendered_vertices_count
         type: uint32
       - name: rendered_vertices_offset
         type: uint32
-      - type: pad
-        size: 4
+        comments:
+          en: |-
+            An offset to an array of rendered vertices, each 56 bytes:
+            * Position
+            * Normal
+            * Binormal
+            * Tangent
+            * UV
+      - name: unknown_pointer
+        type: ptr32
+        meta:
+          runtime: true
         comments:
           en: >-
             on PC, this gets changed to a pointer to something when the BSP is
@@ -172,20 +184,24 @@ type_defs:
         endianness: little
         comments:
           en: (Xbox only) an indirect pointer to the rendered vertices
-      - name: set_this_or_die
-        type: uint32
+      - name: lightmap_vertices_type
+        type: VertexType
         meta:
-          h1x_only: true
           cache_only: true
         endianness: little
         comments:
-          en: >-
-            (Xbox only) if this isn't set to 3, then the visible lightmap UVs do
-            not work
+          en: Indicates how lightmap vertices are stored.
+      - type: pad
+        size: 2
       - name: lightmap_vertices_count
         type: uint32
       - name: lightmap_vertices_offset
         type: uint32
+        comments:
+          en: |-
+            An offset to an array of lightmap vertices, each 20 bytes:
+            * Normal (used for dynamic object shadows)
+            * UV
       - type: pad
         size: 4
       - name: lightmap_vertices_index_pointer
