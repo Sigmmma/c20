@@ -14,6 +14,9 @@ const localizations = {
   both: {
     en: "Function/global"
   },
+  type: {
+    en: "Type"
+  },
 };
 
 export type RelatedHscProps = {
@@ -37,6 +40,13 @@ function buildDataTableProps(ctx: RenderContext, props: RelatedHscProps): DataTa
     columnName = "function";
   }
 
+  const columns: DataTableProps["columns"] = [
+    {key: `info/${ctx?.lang ?? "en"}`, name: localizations[columnName][ctx.lang]}
+  ];
+  if (!props.only) {
+    columns.push({name: localizations["type"][ctx.lang], key: "dataPathIndex", values: [localizations["function"][ctx.lang], localizations["global"][ctx.lang]], format: "indexedValue"});
+  }
+
   return {
     dataPath: dataPath,
     id: props.id ?? "functions-globals",
@@ -46,9 +56,7 @@ function buildDataTableProps(ctx: RenderContext, props: RelatedHscProps): DataTa
     rowSortKey: "slug",
     rowFilterKey: "tags",
     rowFilterValue: props.tagFilter,
-    columns: [
-      {key: `info/${ctx?.lang ?? "en"}`, name: localizations[columnName][ctx.lang]}
-    ]
+    columns,
   };
 }
 

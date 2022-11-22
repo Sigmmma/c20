@@ -133,7 +133,7 @@ Generally map files consist of a map header section followed by BSP, model, raw 
 ![A map file containing header, BSP data, raw data, and indexed tags](map-structure.png)
 
 {% alert %}
-This page does not give a full accounting of how BSP and model data are stored and loaded. For further information, see this page's [acknowledgments](#acknowledgments) section for source material.
+This page does not give a full accounting of how BSP and model data are stored and loaded. For further information, see this page's [acknowledgments](#acknowledgements) section for source material.
 {% /alert %}
 
 ## Map header

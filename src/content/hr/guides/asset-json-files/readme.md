@@ -7,14 +7,16 @@ keywords:
   - JSON
 thanks:
   Crisp: Writing this page
+redirects:
+  - /hr/asset-json-files
 ---
 JSON files are automatically generated when the user first runs `fbx-to-gr2` on an fbx file. If a JSON file already exists, the recreate_json argument can be used to rebuild this.
 
 Each exported FBX file will have a corresponding .json and .gr2 file. The purpose of the JSON file is to provide additional information needed by Tool in order to produce certain results. For example exporting an fbx with a single mesh with a prefix in its name of $ (e.g. $my_object) will when run through `fbx-to-gr2` result in a JSON file with the parameter `"bungie_mesh_type": "_connected_geometry_mesh_type_physics"`.
 
-This information will be recorded in the .gr2 file. On import Tool will recognise that we are trying to import a physics mesh and create the resulting data (provided we have corrrectly set up the sidecar).
+This information will be recorded in the .gr2 file. On import Tool will recognise that we are trying to import a physics mesh and create the resulting data (provided we have correctly set up the sidecar).
 
-Please note that support for certain parameters being written to the JSON file (such as collision or physics) is limited. For most parameters, the user will need to add thse values by manually editing the JSON file.
+Please note that support for certain parameters being written to the JSON file (such as collision or physics) is limited. For most parameters, the user will need to add these values by manually editing the JSON file.
 
 JSON files have the following structure:
 
@@ -28,7 +30,7 @@ JSON files have the following structure:
 
 ## material_properties
 
-- material properties contains a list of all materials within an fbx file. Each material only ever has too parameter types: "bungie_shader_path"  and "bungie_shader_type". The shader path is a direct tag relative file path to the shader we want to use for this material. The shader extension (e.g. .shader) should be ommitted.
+- material properties contains a list of all materials within an fbx file. Each material only ever has too parameter types: "bungie_shader_path"  and "bungie_shader_type". The shader path is a direct tag relative file path to the shader we want to use for this material. The shader extension (e.g. .shader) should be omitted.
 
 The shader type is taken from the extension of the shader we are referencing. Most of the time this will be "shader".
 

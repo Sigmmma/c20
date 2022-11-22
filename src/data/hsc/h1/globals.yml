@@ -1521,11 +1521,23 @@ external_globals:
         Logs damage to the player as messages at the bottom of the screen. Includes
         body and shield vitality and the damage source.
   - slug: debug_decals
+    tags:
+      - decal
     info:
       en: |-
         ```hsc
         (debug_decals)
         ```
+        Displays red numbers over each dynamic and permanent decal in the
+        environment. The mesh of the most recently created dynamic
+        decal will also be highlighted so you can see how it conforms around the
+        BSP.
+        
+        White points indicate the original 4 corners of the decal, while
+        red ones were added during the conformation to the BSP. The meaning of
+        the number is not known definitely, but seems to be the number of
+        vertices needed if we assume each projected decal region must be
+        converted into quads.
   - slug: debug_detail_objects
     info:
       en: |-
@@ -1857,11 +1869,15 @@ external_globals:
         (debug_obstacle_path_start_surface_index)
         ```
   - slug: debug_permanent_decals
+    tags:
+      - decal
     info:
       en: |-
         ```hsc
         (debug_permanent_decals)
         ```
+        Toggles the display of yellow bounding spheres around each permanent
+        decal in the environment.
   - slug: debug_physics_disable_penetration_freeze
     info:
       en: |-
@@ -2632,11 +2648,16 @@ external_globals:
         (rasterizer_environment_alpha_testing)
         ```
   - slug: rasterizer_environment_decals
+    tags:
+      - decal
     info:
       en: |-
         ```hsc
         (rasterizer_environment_decals)
         ```
+        Toggles the display and creation of both permanent and dynamic decals.
+        While `false`, effects cannot create new decals but previous ones will
+        reappear when reset to `true`.
   - slug: rasterizer_environment_diffuse_lights
     info:
       en: |-
@@ -2738,6 +2759,8 @@ external_globals:
         Sets the [far clip distance](https://en.wikipedia.org/wiki/Clipping_(computer_graphics)),
         which is the maximum draw distance (world units). Defaults to `1024.0`.
   - slug: rasterizer_filthy_decal_fog_hack
+    tags:
+      - decal
     info:
       en: |-
         ```hsc
@@ -3067,6 +3090,8 @@ external_globals:
         (rasterizer_zbias)
         ```
   - slug: rasterizer_zoffset
+    tags:
+      - decal
     info:
       en: |-
         ```hsc

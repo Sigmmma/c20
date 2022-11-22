@@ -5,6 +5,8 @@ keywords:
   - exporter
 thanks:
   General_101: Writing this guide
+redirects:
+  - /h2/level-creation/exporting
 ---
 {% alert %}
 This guide assumes you have already gone through [level creation - beginner](~blender-level-creation-beginner) or have the end result file ready. You will also be expected to know how to handle level directories which you can find [here.](~file-directories)

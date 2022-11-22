@@ -5,6 +5,8 @@ about: 'tool:Halo Asset Blender Development Toolset'
 info: >
   * [Source code and
   download](https://github.com/General-101/Halo-Asset-Blender-Development-Toolset)
+redirects:
+  - /general/tools/jointed-model-blender-toolset
 ---
 The **Halo Asset Blender Development Toolset** is a set of add-ons for [Blender](~) which allows the import and export of [JMS](~), [animation data](~animation-data) (e.g. JMA), [ASS](~), and JMI for [Halo 1](~h1), [Halo 2](~h2), [Halo 3](~h3) and Halo 3: ODST.
 

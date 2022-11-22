@@ -14,6 +14,8 @@ keywords:
   - profile
   - beta
   - ship
+redirects:
+  - /h1/engine/build-types
 ---
 The engine can be built with different features and checks enabled or disabled at compile time. 
 This isn't something that can be done by the end user but it's worth knowing what features are enabled or disabled on the build you are using.

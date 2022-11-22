@@ -1,10 +1,5 @@
-import {loadYamlTree} from "../../lib/utils/files";
 import * as R from "ramda";
 const INTRINSIC_TYPE_DEFS = require("./intrinsics");
-
-async function loadStructModules() {
-  return await loadYamlTree(__dirname);
-}
 
 function processGenerics(genericParams, type_args) {
   if (!type_args) return genericParams;
@@ -18,7 +13,7 @@ function processGenerics(genericParams, type_args) {
   };
 }
 
-function buildTypeDefs(initialImports, modules) {
+export function buildTypeDefs(initialImports, modules) {
   let typeDefs = {...INTRINSIC_TYPE_DEFS};
 
   let importsQueue = [initialImports];
@@ -35,7 +30,7 @@ function buildTypeDefs(initialImports, modules) {
     }
   }
   return typeDefs;
-}
+};
 
 /* responsible for resolving aliases, calculating type, and replacing type args
  */
@@ -76,7 +71,7 @@ function instantiateTypeInner(typeDefs, typeParams, parentTypeArgs, opts, isRoot
   return {typeDef, totalSize, singleSize, variableSize: size, count, type_args, typeName};
 }
 
-function walkTypeDefs(structName, structModule, structModules, opts, cb) {
+export function walkTypeDefs(structName, structModule, structModules, opts, cb) {
   const typeDefs = buildTypeDefs({[structModule]: [structName]}, structModules);
 
   function walkStructInner(typeParams, typeArgs, isFirst) {
@@ -108,15 +103,8 @@ function walkTypeDefs(structName, structModule, structModules, opts, cb) {
   }
 
   walkStructInner({type: structName}, null, true);
-}
+};
 
-function instantiateType(typeDefs, typeParams, parentTypeArgs, opts) {
+export function instantiateType(typeDefs, typeParams, parentTypeArgs, opts) {
   return instantiateTypeInner(typeDefs, typeParams, parentTypeArgs, opts, true);
-}
-
-module.exports = {
-  walkTypeDefs,
-  buildTypeDefs,
-  instantiateType,
-  loadStructModules
 };

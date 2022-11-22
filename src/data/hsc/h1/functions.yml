@@ -3385,12 +3385,17 @@ functions:
         ```
         returns a random value in the range [lower bound, upper bound)
   - slug: rasterizer_decals_flush
+    tags:
+      - decal
     info:
       en: |-
         ```hsc
         (<void> rasterizer_decals_flush)
         ```
-        Flush all decals
+        Destroys all dynamic and permanent decals. You shouldn't use this to
+        optimize your map's framerate because it doesn't preserve decorative
+        environmental decals. Instead, set reasonable lifetimes for your dynamic
+        decals and limit the number of decals created by custom effects.
   - slug: rasterizer_fixed_function_ambient
     info:
       en: |-

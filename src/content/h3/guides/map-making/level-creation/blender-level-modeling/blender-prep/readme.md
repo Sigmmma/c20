@@ -6,6 +6,8 @@ keywords:
 thanks:
   General_101: Writing this guide
   PepperMan: Editing
+redirects:
+  - /h3/level-creation/blender-prep
 ---
 # File list
 | File Link                                                      | Description

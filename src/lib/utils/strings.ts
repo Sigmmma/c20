@@ -1,3 +1,5 @@
+import * as R from "ramda";
+
 //converts a title into a URL- or ID-friendly slug
 export function slugify(title?: string, allowUnderscore?: boolean): string | undefined {
   return title ? title
@@ -17,4 +19,23 @@ export function commonLength(strA: string, strB: string): number {
     len++;
   }
   return len;
+};
+
+export function addBreaks<T>(content: string | undefined, replacement: T): (string | T)[] {
+  if (!content) return [];
+  if (content.length < 10) return [content];
+  return R.pipe(
+    //split to tokens
+    R.split(" "),
+    //map each token to an array of itself or a series of nodes
+    R.map(token => {
+      return token.length < 10 ?
+        [token] :
+        R.flatten(R.intersperse(["_", replacement], token.split("_")));
+    }),
+    //re-add the spaces between tokens
+    R.intersperse(" "),
+    //collapse multi-node tokens
+    R.flatten,
+  )(content);
 };

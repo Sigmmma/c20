@@ -5,10 +5,12 @@ keywords:
   - sidecar
   - import
   - importing
+redirects:
+  - /hr/sidecar-import-process
 ---
 ## Reach Import Process
 
-Halo Reach introduced a single funnction for importing source assets to the game engine. Use of a single function is possible because Reach relies on a sidecar XML file to define which files to import, how the files should be imported (such as defining animation types) and which tags to create.
+Halo Reach introduced a single function for importing source assets to the game engine. Use of a single function is possible because Reach relies on a sidecar XML file to define which files to import, how the files should be imported (such as defining animation types) and which tags to create.
 
 # Intermediate Files
 
@@ -18,7 +20,7 @@ Like previous workflows, a intermediate file is needed by Tool before source ass
 
 # Sidecars
 
-A sidecar file is essential to importing an asset into the Reach engine. The sidecar gives Tool all the information about how to import intermediate files. Its basic structure can be summised as:
+A sidecar file is essential to importing an asset into the Reach engine. The sidecar gives Tool all the information about how to import intermediate files. Its basic structure can be understood as:
 
 The path and high level tag types to be produced. For example a model sidecar always contains an output tag for a .model tag, and may have as many top level output tags as is needed (for example a single sidecar could be used to import a .crate, .scenery, and .weapon tag for a single model).
 
@@ -33,9 +35,5 @@ The basic structure of a sidecar can be generated in Foundation through Libraria
 The import command uses the information in the sidecar and the intermediary files to produce tags, and will additionally correctly link these files together.
 
 Import has its own useful shortcut in Foundation. Simply hit ctrl+T and Foundation will fill in the arguments necessary to import that particular asset. Here you can select optional arguments prior running import. Import can also be accessed by right clicking on a tag, or through Librarian.
-
-# Notes
-
-- The devlopers would have originally exported intermediate files directly from 3DS Max/Maya. However, given the properietary format of .gr2 files this feature is not provided for users. The functionality of fbx-to-gr2 is in ongoing development.
 
 

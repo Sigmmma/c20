@@ -3,12 +3,13 @@ import express from "express";
 import buildConfig from "../build-config.json";
 // SPOOPY BUG: do not reorder the next two lines!!!!!
 import renderPage from "./lib/render/render";
-import {getPageBaseDir, getPageMdSrcPath, loadPageIndex} from "./lib/content";
+import {buildPageTree, getPageBaseDir, getPageMdSrcPath, loadPageIndex} from "./lib/content";
 import {loadYamlTree} from "./lib/utils/files";
 import {type BuildOpts} from "./build";
 import {parse} from "./lib/components/Md/markdown";
 import { buildSearchIndex, SearchDoc } from "./lib/search";
-const loadStructuredData = require("./data");
+import { buildRedirects } from "./lib/redirects";
+import loadStructuredData from "./data";
 
 const buildOpts: BuildOpts = {
   baseUrl: buildConfig.baseUrl,
@@ -62,14 +63,13 @@ export default function runServer(onDemand: boolean) {
       const pageIndexPromise = loadPageIndex(buildOpts.contentDir);
       const mdSrcPromise = fs.promises.readFile(mdSrcPath, "utf-8");
 
-      let mdSrc = await mdSrcPromise;
-      // try {
-      //   mdSrc = await ;
-      // } catch (err) {
-      //   res.status(404);
-      //   res.send(`Page source not found: ${mdSrcPath}`);
-      //   return;
-      // }  
+      let mdSrc
+      try {
+        mdSrc = await mdSrcPromise;
+      } catch (err) {
+        next();
+        return;
+      }  
       
       const {ast, frontmatter} = parse(mdSrc, mdSrcPath);
 
@@ -85,6 +85,7 @@ export default function runServer(onDemand: boolean) {
         localData: await localDataPromise,
         globalData: await dataPromise,
         pageIndex: await pageIndexPromise,
+        navTree: buildPageTree(await pageIndexPromise, "/", lang),
       });
     
       res.header("Content-Type", "text/html; charset=UTF-8");
@@ -92,8 +93,23 @@ export default function runServer(onDemand: boolean) {
     });
   }
 
+  app.get("/:page([-/_a-zA-Z0-9]+)?", async (req, res, next) => {
+    const pageIndex = await loadPageIndex(buildOpts.contentDir);
+    const redirects = buildRedirects(pageIndex);
+    const pageId = req.params.page ?
+      `/${req.params.page.endsWith("/") ? req.params.page.replace(/\/+$/, "") : req.params.page}` :
+      "/";
+    const redirect = redirects[pageId];
+    if (redirect) {
+      console.log(`Using redirect from '${pageId}' to ${redirect}`);
+      res.redirect(redirect);
+    } else {
+      next();
+    }
+  });
+
   // Fall through to 404 handler
-  app.use(function(req, res) {
+  app.use((req, res) => {
     console.warn(`Unable to handle URL ${req.url}, returning 404!`);
 	  res.status(404);
 	  res.header("Content-Type", "text/plain; charset=UTF-8");

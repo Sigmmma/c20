@@ -13,6 +13,8 @@ keywords:
   - animations
 thanks:
   PepperMan: Writing this page.
+redirects:
+  - /h3/object-importing
 ---
 This page will serve as the hub for custom object importing guides. As of right now, these guides have been written for Blender users, although those with knowledge in other 3D modeling programs such as Max may be able to follow along, and export to [FBX](~).
 

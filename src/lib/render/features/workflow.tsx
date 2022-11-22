@@ -4,6 +4,7 @@ import DetailsList from "../../components/DetailsList/DetailsList";
 import {type MetaboxSectionProps} from "../../components/Metabox/Metabox";
 import Wat from "../../components/Wat/Wat";
 import {localizer} from "../../utils/localization";
+import { addBreaks } from "../../utils/strings";
 
 const localizations = {
   authors: {
@@ -72,6 +73,7 @@ const localizations = {
 
 const workflowItemAnchor = (ctx, itemName) => {
   const item = ctx.data.workflows.getWorkflowItem(itemName, ctx);
+  itemName = addBreaks(itemName, <wbr/>);
   if (item.url) {
     return <a href={item.url}>{itemName}</a>;
   }

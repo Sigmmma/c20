@@ -9,8 +9,9 @@ keywords:
   - halo 3 pbr shader
   - shaders
 thanks:
-  TheChunkierBean: Writing this page.
-  TheGrimDealer: Help with Adobe Substance research.
+  TheChunkierBean: Writing this page. TheGrimDealer: Help with Adobe Substance research.
+redirects:
+  - /h3/pbr-shaders
 ---
 
 * ![](A.png "It's like talking to a brick wall")

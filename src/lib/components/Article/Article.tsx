@@ -8,6 +8,7 @@ import {ComponentChildren} from "preact";
 import {type PageLink} from "../../content";
 import {useLocalize} from "../Locale/Locale";
 import Icon from "../Icon/Icon";
+import { addBreaks } from "../../utils/strings";
 
 const langNames = {
   en: "English",
@@ -44,12 +45,6 @@ export type ArticleProps = {
   children?: ComponentChildren;
 };
 
-//some tag names get long and break mobile
-function putBreaksInTitle(title: string | undefined) {
-  if (!title) return undefined;
-  return title.split("_").flatMap((part, i) => i == 0 ? [part] : ["_", <wbr/>, part]);
-}
-
 export default function Article(props: ArticleProps) {
   const ctx = useCtx();
   const {localize} = useLocalize(localizations);
@@ -66,7 +61,7 @@ export default function Article(props: ArticleProps) {
             </nav>
           }
           <div className="title-line">
-            <h1 className="page-title">{putBreaksInTitle(props.title)}</h1>
+            <h1 className="page-title">{addBreaks(props.title, <wbr/>)}</h1>
             <div className="title-extra">
               {props.otherLangs && Object.entries(props.otherLangs).length > 0 && Object.entries(props.otherLangs).map(([otherLang, otherLink]) =>
                 <a href={otherLink.url} title={otherLink.title}>{langNames[otherLang] ?? otherLang} /</a>

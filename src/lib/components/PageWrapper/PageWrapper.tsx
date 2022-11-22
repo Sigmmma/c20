@@ -1,6 +1,6 @@
 import Icon from "../Icon/Icon";
 import {useCtx} from "../Ctx/Ctx";
-import {type PageLink} from "../../content";
+import {type PageLink, type NavTree} from "../../content";
 import {type ComponentChildren} from "preact";
 import {DISCORD_URL} from "../../utils/external-urls";
 import localizations from "./localizations";
@@ -10,9 +10,6 @@ import TableOfContents, {type NavHeading} from "../Article/TableOfContents";
 const COLLAPSE_CHILD_PAGES = 20;
 const COLLAPSE_RELATED_PAGES = 4;
 const COLLAPSE_MAIN_TOPIC_PAGES = 20;
-
-
-export type NavTree = {link: PageLink, children: NavTree}[];
 
 export type PageWrapperProps = {
   title?: string;

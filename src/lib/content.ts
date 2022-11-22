@@ -23,6 +23,7 @@ export type PageFrontMatter = {
   keywords?: string[];
   stub?: boolean;
   related?: string[];
+  redirects?: PageId[];
 };
 
 export type PageLink = {
@@ -37,6 +38,8 @@ export type PageData = {
   front: PageFrontMatter;
   ast: Node;
 };
+
+export type NavTree = {link: PageLink, children: NavTree}[];
 
 export type PageIndex = Record<PageId, Record<Lang, PageData>>;
 
@@ -178,15 +181,26 @@ export function getPageOtherLangs(pageIndex: PageIndex, pageId: string, lang: La
   return others;
 };
 
+export function buildPageTree(pageIndex: PageIndex, pageId: string, lang: Lang): NavTree {
+  const children = getPageChildren(pageIndex, pageId, lang)
+    .filter(child => !child.pageId.startsWith("/utility"));
+  return children.map(child => ({
+    link: child,
+    children: buildPageTree(pageIndex, child.pageId, lang)
+  }));
+};
+
 export function getPageChildren(pageIndex: PageIndex, pageId: string, lang: Lang): PageLink[] {
   const children: PageLink[] = [];
-  Object.entries(pageIndex).forEach(([cPageId, cPageDataByLang]) => {
-    const cLogical = pageIdToLogical(cPageId);
-    if (cLogical.length == 0) return;
-    if (logicalToPageId(cLogical.slice(0, -1)) == pageId) {
-      children.push(createPageLink(pageIndex, cPageId, lang)!);
-    }
-  });
+  Object.entries(pageIndex)
+    .filter(([cPageId]) => cPageId.startsWith(pageId))
+    .forEach(([cPageId, cPageDataByLang]) => {
+      const cLogical = pageIdToLogical(cPageId);
+      if (cLogical.length == 0) return;
+      if (logicalToPageId(cLogical.slice(0, -1)) == pageId) {
+        children.push(createPageLink(pageIndex, cPageId, lang)!);
+      }
+    });
   return children;
 };
 
