@@ -142,7 +142,7 @@ To make the texture importing more streamlined, end your texture file name with 
 
 # Creating New Textures with Adobe Substance Designer
 
-If you have Adobe Substance Designer, you can easily export your new textures with this graph preset made by Grim! You can download it [here](https://en.wikipedia.org/wiki/Physically_based_rendering).
+If you have Adobe Substance Designer, you can easily export your new textures with this graph preset made by Grim! You can download it [here](substance_h3ppbr_presets.zip).
 
 * ![](https://user-images.githubusercontent.com/8784093/199033006-75124bb9-32cc-4328-940a-fd2db642c327.png "Substance Template")
 
