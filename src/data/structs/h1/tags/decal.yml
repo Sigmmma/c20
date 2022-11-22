@@ -11,6 +11,13 @@ type_defs:
     size: 2
     bits:
       - name: geometry_inherited_by_next_decal_in_chain
+        comments:
+          en: |-
+            If using chain decals, the next decal will inherit the same
+            mesh as this one rather than being generated anew. This is
+            useful if aspects of the texture need to line up from one
+            decal to the next, e.g. if plasma splatter patterns fade into
+            scorch marks that need to be aligned.
       - name: interpolate_color_in_hsv
         comments:
           en: |-
@@ -94,6 +101,10 @@ type_defs:
         meta:
           tag_classes:
             - decal
+        comments:
+          en: |-
+            The next decal to generate at this location. Do not form a circular
+            chain of decals.
       - name: radius
         type: Bounds
         meta:

@@ -7,6 +7,7 @@ thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Testing functions and globals, tag fields, decal geometry
+  Ifafudafi: Explaining chain decals
 ---
 The **decal** system is responsible for rendering bullet holes, blood splatter, explosion marks, and other flat textures applied over over [BSP](~scenario_structure_bsp) surfaces (decals cannot appear on [objects](~object)). Decal tags describe the appearance and lifetime of these effects.
 
@@ -22,12 +23,15 @@ This means there are 37 "locked" decals (unexpired). When these decals reach the
 # Permanent decals
 Also called _environment decals_, these are placed throughout the [scenario](~) using [Sapien](~) (under _game data_ in the hierarchy window).
 
+# Chain decals
+Chain decals are when multiple decals are created at the same time. A decal tag can specify [another decal](#tag-field-next-decal-in-chain) which should be generated at the same location. It's useful for composite effects, especially when mixing [blending modes](#tag-field-framebuffer-blend-function). For example, you might want to have a plasma impact generate both a short-lived _add_ glowing decal and a long-lived _multiply_ scorch mark. You could spawn more decals from effects to achieve a similar result, but doing it by chain decals means it's easier to re-use across different effects and allows you to [share geometry](#tag-field-flags-geometry-inherited-by-next-decal-in-chain).
+
 # Decal meshes
 When a decal needs to be created the game goes through a process to generate geometry for it. In most cases decals are created against flat surfaces so are built as simple 4-sided quads. However, if the decal needs to cover an area which is not flat, the game may need to conform the decal to the underlying BSP geometry (depending on [_type_](#tag-field-type)) which may result in dozens of faces and hundreds of vertices.
 
-You can observe decal mesh generation using `debug_decals 1`. Original corner vertices of decal meshes stand off from their background with a small margin to avoid Z-fighting, controlled by `rasterizer_zoffset`, while additional vertices generated from the conformation process are not necessarily z-offset.
+You can observe decal mesh generation using `debug_decals 1`. Original corner vertices of decal meshes stand off from their background with a small margin to avoid Z-fighting, controlled by `rasterizer_zoffset`, while additional vertices generated from the conformation process are not necessarily z-offset. Decals can wrap onto `+sky` faces, but not onto or past [breakable surfaces](~scenario_structure_bsp#tag-field-breakable-surfaces) even after the surface is broken.
 
-Decals can wrap onto `+sky` faces, but not onto or past [breakable surfaces](~scenario_structure_bsp#tag-field-breakable-surfaces) even after the surface is broken.
+Decals only render when their origin point is in a visible [cluster](~scenario_structure_bsp#clusters-and-cluster-data). If the decal wraps into another cluster and the origin cluster goes off-screen, the decal will abruptly disappear.
 
 # Related HaloScript
 {% relatedHsc game="h1" tagFilter="decal" /%}
