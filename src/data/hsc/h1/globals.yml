@@ -1226,7 +1226,7 @@ external_globals:
         (collision_debug_flag_structure [boolean])
         ```
         Toggles if collision debug rays collide with the [structure BSP](~scenario_structure_bsp).
-        Collisions with [model_collision_geometry] BSPs are unaffected.
+        Collisions with [model_collision_geometry](~) BSPs are unaffected.
   - slug: collision_debug_flag_try_to_keep_location_valid
     info:
       en: |-
@@ -1494,10 +1494,10 @@ external_globals:
         Globally disables vector/ray collision tests, with the following observed effects:
         - [Projectiles](~projectile), [particles](~particle) and moving [items](~item) will pass through everything, even the BSP.
         - Melees will have no effect.
-        - [Vehicle] suspension, such as the Warthog's wheels, will hang.
-        - [Object lighting](~renderer#lighting) will be unable to determine if an object
-          exists in direct sunlight from the [sky](~), resulting in incorrect lighting
-          and shadow direction when an object moves.
+        - [Vehicle](~) suspension, such as the Warthog's wheels, will hang.
+        - [Object lighting](~renderer#lighting) will be unable to determine the
+          ground point below the object when it moves, resulting in incorrect
+          lighting and shadow direction.
         - [Sounds](~sound) behind obstructions will not be muffled.
   - slug: debug_damage
     tags:
@@ -1529,9 +1529,9 @@ external_globals:
         (debug_decals)
         ```
         Displays red numbers over each dynamic and permanent decal in the
-        environment. The mesh of the most recently created dynamic
-        decal will also be highlighted so you can see how it conforms around the
-        BSP.
+        environment. The mesh of the most recently created decal (initially a
+        permanent decal if one exists, then any new dynamic one) will also be
+        highlighted so you can see how it conforms around the BSP.
         
         White points indicate the original 4 corners of the decal, while
         red ones were added during the conformation to the BSP. The meaning of
@@ -1673,12 +1673,21 @@ external_globals:
         (debug_object_garbage_collection)
         ```
   - slug: debug_object_lights
+    tags:
+      - object
+      - lightmaps
     info:
       en: |-
         ```hsc
         (debug_object_lights)
         ```
+        Shows the incoming light colour and vector for all objects which results
+        from [sampling lightmap data](~lightmaps#lighting-for-dynamic-objects)
+        at the ground point beneath the object. This data is used to shade the
+        object and cast its shadow.
   - slug: debug_objects
+    tags:
+      - object
     info:
       en: |-
         ```hsc
@@ -1688,6 +1697,8 @@ external_globals:
         (such as bounding sphere and collision models). Individual debug
         features can be toggled with the `debug_objects_*` commands.
   - slug: debug_objects_biped_autoaim_pills
+    tags:
+      - object
     info:
       en: |-
         ```hsc
@@ -1702,6 +1713,8 @@ external_globals:
         (debug_objects_biped_messages)
         ```
   - slug: debug_objects_biped_physics_pills
+    tags:
+      - object
     info:
       en: |-
         ```hsc
@@ -1710,6 +1723,8 @@ external_globals:
         When `debug_objects` is enabled, displays
         [biped physics pills](~biped#physics-and-autoaim-pills) in white.
   - slug: debug_objects_bounding_spheres
+    tags:
+      - object
     info:
       en: |-
         ```hsc
@@ -1721,6 +1736,7 @@ external_globals:
         in H1CE Sapien but not H1A Sapien.
   - slug: debug_objects_collision_models
     tags:
+      - object
       - model_collision_geometry
     info:
       en: |-
@@ -1743,6 +1759,8 @@ external_globals:
         (debug_objects_equipment_messages)
         ```
   - slug: debug_objects_names
+    tags:
+      - object
     info:
       en: |-
         ```hsc
@@ -1752,6 +1770,7 @@ external_globals:
         The names are shown in purple.
   - slug: debug_objects_pathfinding_spheres
     tags:
+      - object
       - model_collision_geometry
     info:
       en: |-
@@ -1761,17 +1780,26 @@ external_globals:
         When `debug_objects` is enabled, displays object [pathfinding spheres](~model_collision_geometry#pathfinding-spheres)
         in blue.
   - slug: debug_objects_physics
+    tags:
+      - object
+      - physics
     info:
       en: |-
         ```hsc
         (debug_objects_physics)
         ```
+        When `debug_objects` is enabled, displays [physics](~) mass points as white spheres. 
   - slug: debug_objects_position_velocity
+    tags:
+      - object
+      - physics
     info:
       en: |-
         ```hsc
         (debug_objects_position_velocity)
         ```
+        When `debug_objects` is enabled, displays red, green, and blue object-space
+        reference axes and a yellow velocity vector on each object.
   - slug: debug_objects_projectile_messages
     info:
       en: |-
@@ -1779,11 +1807,16 @@ external_globals:
         (debug_objects_projectile_messages)
         ```
   - slug: debug_objects_root_node
+    tags:
+      - object
     info:
       en: |-
         ```hsc
         (debug_objects_root_node)
         ```
+        When `debug_objects` is enabled, displays red, green, and blue object-space
+        reference axes and orange text including object ID, class, and tag name
+        on each object. Defaults to `true` in H1A.
   - slug: debug_objects_unit_mouth_apeture
     info:
       en: |-
@@ -1791,17 +1824,29 @@ external_globals:
         (debug_objects_unit_mouth_apeture)
         ```
   - slug: debug_objects_unit_seats
+    tags:
+      - object
+      - vehicle
+      - unit
     info:
       en: |-
         ```hsc
         (debug_objects_unit_seats)
         ```
+        When `debug_objects` is enabled, displays blue markers at unit seat
+        locations, red markers at their entry points, and a yellow marker at the
+        object origin.
   - slug: debug_objects_unit_vectors
+    tags:
+      - object
+      - physics
     info:
       en: |-
         ```hsc
         (debug_objects_unit_vectors)
         ```
+        When `debug_objects` is enabled, displays white and red vectors on
+        objects. Their meaning is unknown.
   - slug: debug_objects_vehicle_messages
     info:
       en: |-
@@ -1814,6 +1859,7 @@ external_globals:
         ```hsc
         (debug_objects_vehicle_powered_mass_points)
         ```
+        No visible effect, even with `debug_objects_physics` enabled.
   - slug: debug_objects_weapon_messages
     info:
       en: |-
@@ -2389,29 +2435,48 @@ external_globals:
         (network_connect_timeout)
         ```
   - slug: object_light_ambient_base
+    tags:
+      - object
     info:
       en: |-
         ```hsc
         (object_light_ambient_base)
         ```
+        Sets the amount of ambient light all objects receive. Note that this
+        only affects moving objects when their lighting updates, so you will
+        not see any change on scenery. Setting this to `1` makes objects
+        fullbright. Defaults to `0.03`.
   - slug: object_light_ambient_scale
+    tags:
+      - lightmaps
+      - object
     info:
       en: |-
         ```hsc
         (object_light_ambient_scale)
         ```
+        Scales ambient light from the lightmap. Defaults to `0.4`.
   - slug: object_light_interpolate
+    tags:
+      - lightmaps
+      - object
     info:
       en: |-
         ```hsc
         (object_light_interpolate)
         ```
+        Toggles if [object lighting](~lightmaps#lighting-for-dynamic-objects) transitions smoothly when the object moves
+        between different ground point surfaces or default lighting.
   - slug: object_light_secondary_scale
+    tags:
+      - object
     info:
       en: |-
         ```hsc
         (object_light_secondary_scale)
         ```
+        Scales secondary light on objects, but doesn't apply to default lighting.
+        Defaults to `1`.
   - slug: object_prediction
     info:
       en: |-

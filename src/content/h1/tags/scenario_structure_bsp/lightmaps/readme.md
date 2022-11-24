@@ -8,6 +8,8 @@ keywords:
   - lightmap
   - radiosity
   - bake
+thanks:
+  Conscars: Object lighting tests
 ---
 **Lightmaps** are a combination of data storing the static "baked" lighting of a [BSP](~scenario_structure_bsp). Since the BSP does not move, and many shadow-casting objects like [scenery](~) have fixed locations, base [global illumination][global-illumination] can be precalculated. Dynamic objects will cast [shadow-mapped][shadow-mapping] shadows and be lit using lightmap data at runtime.
 
@@ -24,9 +26,9 @@ If higher resolution or greater control of lighting is desired, [Aether](~) faci
 [Sky](~sky) lights, emissive [environment shaders](~shader), scenery with [lights](~light), and [light fixtures](~device_light_fixture) can all be used as light sources to illuminate the BSP. If you change any of these inputs, or move any scenery, you must re-run radiosity.
 
 # Lighting for dynamic objects
-All [objects](~object) receive their lighting from the environment using data in the BSP, generated during radiosity. Similar to light probes in other engines, this data encodes the shadow direction and incoming light of locations throughout the BSP.
+All [objects](~object) usually receive their lighting from the environment using data in the BSP tag generated during radiosity. See object [shadows and lighting](~object#shadows-and-lighting).
 
-Only moving objects like [units](~unit) cast real-time shadows; [scenery](~) cast shadows in the baked lightmap using the object's [collision model](~model_collision_geometry) rather than its [render model](~gbxmodel), likely because the collision model is stored using a BSP structure which is more efficient to perform lighting calculations with.
+Only moving objects like [units](~unit) cast real-time shadows; [scenery](~) cast shadows in the baked lightmap using the object's [collision model](~model_collision_geometry) rather than its [render model](~gbxmodel), likely because the collision model is stored using a BSP structure which is more efficient to perform lighting calculations with. Dynamic shadows will only be rendered if the ground point lightmap sample is bright enough or when default lighting applies.
 
 # Related script functions and globals
 The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.

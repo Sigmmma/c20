@@ -609,3 +609,13 @@ type_defs:
     bits:
       - name: blend in hsv
       - name: more colors
+  VertexType:
+    class: enum
+    size: 2
+    options:
+      - name: structure_bsp_uncompressed_rendered_vertices
+      - name: structure_bsp_compressed_rendered_vertices
+      - name: structure_bsp_uncompressed_lightmap_vertices
+      - name: structure_bsp_compressed_lightmap_vertices
+      - name: model_uncompressed
+      - name: model_compressed
