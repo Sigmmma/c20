@@ -187,6 +187,7 @@ export default function Search(props: SearchProps) {
       value={state.query}
       onInput={handleInput}
       onKeyDown={handleKeyDown}
+      enterkeyhint="go"
     />
     {isNonEmptyQuery &&
       <nav className="search-results">

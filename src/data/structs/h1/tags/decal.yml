@@ -116,9 +116,11 @@ type_defs:
           T: float
         comments:
           en: |-
-            Controls how big the decal is. `0` defaults to `0.125`. The ingame
-            radius caps out at approximately 16 world units even if the tag
-            value is set higher.
+            Sets the world units scale for 16px of decal. For example, a value
+            of `1` world unit means that a 16x16px decal will be a 1x1wu square
+            in-game, and a 32x32px decal will be 2x2wu, etc. `0` defaults to
+            `0.125`. The ingame radius caps out at approximately 16 world units
+            even if the tag value is set higher.
       - type: pad
         size: 12
       - name: intensity
