@@ -20,9 +20,6 @@ export default {
     en: "Main topics",
     es: "Temas principales"
   },
-  toggleTheme: {
-    en: "Toggle theme",
-  },
   menu: {
     en: "Menu",
   },

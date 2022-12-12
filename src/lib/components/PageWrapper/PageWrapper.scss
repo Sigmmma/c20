@@ -7,6 +7,10 @@
     flex-direction: column;
   }
 
+  #theme-mountpoint {
+    display: flex;
+  }
+
   .wrapper-nav {
     background: var(--bg-sidebar);
     height: 100vh;

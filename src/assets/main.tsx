@@ -1,5 +1,7 @@
 import * as preact from "preact";
+import { IconName } from "../lib/components/Icon/names";
 import Locale from "../lib/components/Locale/Locale";
+import ThemeSelector from "../lib/components/PageWrapper/ThemeSelector";
 import Search from "../lib/components/Search/Search";
 import UnitConverter from "../lib/components/UnitConverter/UnitConverter";
 
@@ -52,21 +54,35 @@ window.addEventListener("hashchange", hashFlash, false);
 hashFlash();
 
 //theme stuff
-function setSyntax() {
-  const link = document.getElementById("syntax") as HTMLLinkElement;
-  link.href = document.documentElement.dataset.theme == "dark" ?
-    "/assets/night-owl.css" :
-    "/assets/github.css";
+const themes: {name: string, syntax: string, icon: IconName}[] = [
+  {name: "dark", syntax: "/assets/night-owl.css", icon: "moon"},
+  {name: "light", syntax: "/assets/github.css", icon: "sun"},
+  {name: "holiday", syntax: "/assets/night-owl.css", icon: "gift"},
+];
+const themeMount = document.getElementById("theme-mountpoint");
+const savedTheme = window.localStorage.getItem("theme") ?? "dark";
+function handleThemeSelected(theme: string) {
+  let themeConfig = themes.find(t => t.name == theme);
+  if (!themeConfig) {
+    theme = "dark";
+    themeConfig = themes.find(t => t.name == theme);
+  }
+  document.documentElement.dataset.theme = theme;
+  const syntaxCssLink = document.getElementById("syntax") as HTMLLinkElement;
+  syntaxCssLink.href = themeConfig!.syntax;
+  window.localStorage.setItem("theme", theme);
 }
-document.documentElement.dataset.theme = window.localStorage.getItem("theme") || "dark";
-document.getElementById("toggle-theme")!.addEventListener("click", () => {
-  const data = document.documentElement.dataset;
-  data.theme = data.theme == "dark" ? "light" : "dark";
-  window.localStorage.setItem("theme", data.theme);
-  setSyntax();
-});
-setSyntax();
-
+preact.render(
+  <Locale.Provider value={lang}>
+    <ThemeSelector
+      themes={themes}
+      initialValue={savedTheme}
+      onSelect={handleThemeSelected}
+    />
+  </Locale.Provider>,
+  themeMount!
+);
+handleThemeSelected(savedTheme);
 
 document.getElementById("toggle-menu")!.addEventListener("click", () => {
   document.querySelector(".nav-tree")!.classList.toggle("open");

@@ -65,10 +65,7 @@ export default function PageWrapper(props: PageWrapperProps) {
             <span className="c20-name-long">c20</span>
           </a>
           <div className="button-group">
-            <button className="nobg" id="toggle-theme" title={localize("toggleTheme")}>
-              <span className="dark"><Icon name="moon"/></span>
-              <span className="light"><Icon name="sun"/></span>
-            </button>
+            <div id="theme-mountpoint"></div>
             <a className="button nobg" href={DISCORD_URL} title="Discord">
               <Icon name="message-square"/>
             </a>

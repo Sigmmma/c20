@@ -16,12 +16,6 @@
   --padding-sm: #{$padding-sm-desktop};
 }
 
-html[data-theme="dark"] {
-  #toggle-theme .dark {
-    display: none;
-  }
-}
-
 html[data-theme="light"] {
   --bg: #{$bg-light};
   --fg: #{$fg-light};
@@ -33,12 +27,24 @@ html[data-theme="light"] {
   --border-color: #{$border-color-light};
   --fg-link: #{$fg-link-light};
 
-  #toggle-theme .light {
-    display: none;
-  }
-
   .c20-logo::before {
     filter: brightness(0%);
+  }
+}
+
+html[data-theme="holiday"] {
+  --bg: #{darken(green, 10%)};
+  --fg: #fff;
+  --fg-faded: #ccc;
+  --fg-strong: #fff;
+  --bg-overlay: #{darken(green, 5%)};
+  --bg-inset: #{darken(green, 15%)};
+  --bg-sidebar: #{darken(red, 30%)};
+  --border-color: green;
+  --fg-link: red;
+
+  .c20-logo::before {
+    filter: invert(100%);
   }
 }
 

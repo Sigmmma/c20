@@ -2,6 +2,7 @@
 node_modules
 report.*.json
 nohup.out
+todo.txt
 /src/content/**/todo.md
 /src/content/**/todo
 *.swp
