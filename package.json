@@ -27,7 +27,7 @@
     "@markdoc/markdoc": "^0.1.10",
     "del": "^5.1.0",
     "esbuild": "^0.15.12",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "feather-icons": "^4.28.0",
     "glob": "^7.1.6",
     "gulp": "^4.0.2",
