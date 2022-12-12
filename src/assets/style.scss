@@ -39,13 +39,22 @@ html[data-theme="holiday"] {
   --fg-strong: #fff;
   --bg-overlay: #{darken(green, 5%)};
   --bg-inset: #{darken(green, 15%)};
-  --bg-sidebar: #{darken(red, 30%)};
+  --bg-sidebar: #{darken(red, 35%)};
   --border-color: green;
   --fg-link: red;
 
   .c20-logo::before {
     filter: invert(100%);
   }
+
+  body {
+    background: url("/assets/plaid.jpg") #888;
+    background-blend-mode: multiply;
+  }
+  h1, h2, h3, body {
+    font-family: "Comic Sans MS", "Comic Sans", cursive;
+  }
+  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🎄</text></svg>") 16 8, auto;
 }
 
 //firefox can use scrollbar-color but it looks fine as-is
