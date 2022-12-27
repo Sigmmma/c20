@@ -16,8 +16,22 @@ type_defs:
     size: 2
     bits:
       - name: alpha_tested
+        comments:
+          en: |
+            Causes the shader to become _alpha tested_, using the bump map's
+            alpha channel as the transparency mask. Where the alpha channel is darker than 50% grey this
+            shader will not be drawn, and otherwise is fully opaque. This is
+            commonly used for foliage and grates.
       - name: bump_map_is_specular_mask
       - name: true_atmospheric_fog
+      # - name: use_alternate_bump_attenuation
+      #   comments:
+      #     en: |
+      #       Causes the shader to use an alternate shading method for bump maps
+      #       which prevents certain artifacts from appearing near light sources
+      #       close to surfaces and near shadow edges in geometrically sparse
+      #       regions, at the cost of less saturated bump map highlights close
+      #       to strong light sources and slightly brighter lighting.
   ShaderEnvironmentType:
     class: enum
     size: 2

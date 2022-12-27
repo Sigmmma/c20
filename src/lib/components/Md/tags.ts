@@ -20,6 +20,15 @@ const tags: Record<string, Schema> = {
     render: "UnitConverterMountpoint",
     selfClosing: true,
   },
+  comment: {
+    render: "Hidden",
+    attributes: {
+      primary: {
+        type: String,
+        required: false,
+      }
+    }
+  },
   figure: {
     render: "Figure",
     selfClosing: false,

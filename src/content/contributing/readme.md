@@ -503,11 +503,12 @@ You can easily add a [table of related script functions and globals](~h1/tags/sc
 This takes data from `src/data/hsc/<game>/*.yml` and filters by each row's `tags` list. You can optionally provide `only="globals"` or `only="functions"` to limit the selection.
 
 ## Misc. features
-These features are only used for a few specific pages:
+These features are only used for a few specific cases:
 
 * Create a block of color with a hex code using `{% color "#FF56B9" /%}`. [Used here](~hard-coded-data#multiplayer-armor-colors).
 * The [scale page](~scale) uses `{% unitConverter /%}`.
 * This page uses `{% thanksIndex /%}` to list [all contributors](#contributor-list) from all pages.
+* You can comment out some markdown by surrounding it with `{% comment %}..{% /comment %}`.
 
 # Appendix
 ## Struct definitions

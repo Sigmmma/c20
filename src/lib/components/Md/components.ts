@@ -25,6 +25,7 @@ export const components = {
   TagStruct,
   UnitConverterMountpoint,
   Color,
+  Hidden: () => null,
 };
 
 if (Object.values(components).find(it => it === undefined)) {
