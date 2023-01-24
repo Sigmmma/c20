@@ -154,5 +154,5 @@ If you don't have it open already, open Sapien and place down your custom platfo
 Not a bad looking first model! If something has gone wrong and you would like to check my source files and tags, feel free to grab the files from the link at the [top of the page](~blender-object-creation-materials#file-list)
 
 {% alert type="success" %}
-Once you've gotten to this point, you are ready to look at adding a custom physics model, so that we can stand on the platform! This page is currently under construction, check back here in the future or [return to the hub to review your progress.](~object-importing)
+Once you've gotten to this point, you are ready to look at adding a custom physics model, so that we can stand on the platform! This next section is [available here](~blender-object-creation-physics)
 {% /alert %}
