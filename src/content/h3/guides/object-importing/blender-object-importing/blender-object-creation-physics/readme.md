@@ -16,7 +16,7 @@ This guide assumes you have already [read/completed the previous tutorials](~obj
 # File List
 | File Link                                                                                          | Description
 |--------------------------------------------------------------------------------------------------- | -----------------------------------
-|[End Result](https://drive.google.com/file/d/1mteG515evA6pH74s-XFSnwx96Xe6MsOY/view?usp=sharing)    | The end product of this tutorial for you to examine and compare.
+|[End Result](https://drive.google.com/file/d/1_XAJ1ZUPvQedONuiVW0g5uh1h084t2ys/view?usp=share_link)    | The end product of this tutorial for you to examine and compare.
 
 # Introduction
 In this section, we will cover how to create a basic physics model for our custom platform, look at making it a `.crate` tag, as well as go over the differences between `collision models` and `physics models` to clear up any confusion.
