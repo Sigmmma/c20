@@ -17,7 +17,7 @@ thanks:
 This guide assumes you have already [read/completed the previous tutorials](~object-importing).
 {% /alert %}
 
-# File list
+# File List
 | File Link                                                                                          | Description
 |--------------------------------------------------------------------------------------------------- | -----------------------------------
 |[Required Textures](https://drive.google.com/file/d/1kLznd8QZZXJma0G3nBwZl7QHsL6b1-K8/view?usp=sharing) | The custom textures used in this tutorial
