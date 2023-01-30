@@ -27,8 +27,7 @@ The guides below show you how to create and import a simple cube shape into Halo
 
 In this section we will be covering how to setup proper folder structures for our assets in the H3EK data folder. This section does not cater to a specific 3D software and can be read by anyone.
 
-# Importing Custom Objects with Blender
-## Blender preparation
+# Blender preparation
 [Preparing your Blender scene](~blender-prep)
 
 The next section will cover the common settings you should mess with when working in Blender. If you already have a solid grasp of what you should configure in Blender then go ahead and skip this section. 
@@ -39,7 +38,11 @@ The next section will cover the common settings you should mess with when workin
 The next section will show the user how to create a simple custom object render mesh that can be imported in Halo to make a valid scenery object.
 
 # Importing Custom Textures
-## Setting up materials in Blender
 [How to set up Materials in Blender for use in Halo](~blender-object-creation-materials)
 
 This section will go over how to set up materials within Blender for use on custom objects in Halo 3. This will explain naming conventions, using custom textures, the basics of UV unwrapping, and shader and bitmap tag creation in Guerilla.
+
+# Creating a Physics Model
+[How to create a custom physics model for the platform](~blender-object-creation-physics)
+
+This tutorial will go over the basics of physics models, the differences between physics and collision models, an explanation of strictly-convex shapes, and a step by step guide on how to make a basic physics model.
