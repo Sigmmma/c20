@@ -27,7 +27,6 @@ namespace Sample
 
             };
             var param = new ManagedBlamStartupParameters();
-            param.InitializationLevel = InitializationType.TagsOnly;
             // e.g. G:\SteamLibrary\steamapps\common\HREK
             Bungie.ManagedBlamSystem.Start(@"<path to HREK install>", del, param);
 
