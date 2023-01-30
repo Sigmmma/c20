@@ -13,7 +13,7 @@ thanks:
 This guide assumes you have already [read/completed the previous tutorials](~object-importing).
 {% /alert %}
 
-# File List
+# File list
 | File Link                                                                                          | Description
 |--------------------------------------------------------------------------------------------------- | -----------------------------------
 |[End Result](https://drive.google.com/file/d/1_XAJ1ZUPvQedONuiVW0g5uh1h084t2ys/view?usp=share_link)    | The end product of this tutorial for you to examine and compare.
@@ -23,7 +23,7 @@ In this section, we will cover how to create a basic physics model for our custo
 
 The goal of the following tutorial is to make a `.crate` tag for our custom platform, so that you can learn the difference between the tag types.
 
-# Collision Vs Physics
+# Collision vs physics
 In the Blam! engine, collision models and physics models are used to handle different types of "collisions". Both types are generally highly simplified 3D meshes of the render model, as using the render model would be too computationally expensive.
 
 Physics models are used by the Havok engine to manage environment collisions and most player collisions, and are required for certain types of tags to function, such as `.vehicle` and `.crate` tags. For example, a physics model is what allows a `.vehicle` to sit on or crash into the environment, or a `.crate` to fall dynamically and roll around.
@@ -37,12 +37,12 @@ On the other hand, collision models are usually a much closer representation of 
 TL;DR - Physics models are used for player and environment interaction, collision models are for projectile collisions.
 {% /alert %}
 
-# Example Mongoose Collision and Physics Models
-![](A.png "Physics model of the mongoose. Note how it is strictly-convex.")
-![](B.png "Physics (highlighted) overlayed on the render model. Note how much less complex the physics model is.")
-![](C.png "Collision model of the mongoose. Note how it is still low-poly, but much more complex than the physics model. It also does not need to be strictly-convex.")
+# Example mongoose collision and physics models
+![](A.jpg "Physics model of the mongoose. Note how it is strictly-convex.")
+![](B.jpg "Physics (highlighted) overlayed on the render model. Note how much less complex the physics model is.")
+![](C.jpg "Collision model of the mongoose. Note how it is still low-poly, but much more complex than the physics model. It also does not need to be strictly-convex.")
 
-# Creating the Crate Tag
+# Creating the crate tag
 1. Open Guerilla.
 2. Press {% key "Ctrl" /%}+{% key "N" /%} or `File -> New`.
 3. Type `crate`, or find it in the list. Press `Ok`.
@@ -65,14 +65,14 @@ We've now successfully made a `.crate` tag for our platform! I wonder what will 
 
 If you were paying attention in [this section](#collision-vs-physics) earlier, you may already realise the issue - `.crate` tags *require* a physics model in order to be spawned, similarly to `.vehicle` tags.
 
-# Making a Physics Model
+# Making a physics model
 Making a basic physics model, especially for a render model as simple as our platform, is actually quite straightforward. In the following steps we will add a basic cuboid to act as a physics mesh for our model. We will also edit our render model to be a bit thicker, as I think it will help demonstrate things better down the line.
 
 1. Open your Blender file from the last tutorial, or download the [end result](~blender-object-creation-materials) from the previous page.
 2. Select the platform object.
 3. Press {% key "S" /%} to scale, press {% key "Z" /%} for Z-axis only, and then press {% key "3" /%} to make the platform thrice as thick. Press {% key "Left Click" /%} or {% key "Enter" /%} to confirm.
 
-![](D.png "The platform should now be three times as thick. Looks better already!")
+![](D.jpg "The platform should now be three times as thick. Looks better already!")
 
 Now that the render model edit is out of the way, lets move on to making the physics object:
 
@@ -85,7 +85,7 @@ Now that the render model edit is out of the way, lets move on to making the phy
     The Blender addon looks for certain symbols in object names to determine what type of object they should be treated as. Here, the `$` symbol denotes that this is a physics mesh, and should only be exported into the physics model. Without this symbol, it would be exported as part of the render model instead.
     {% /alert %}
 5. For clarity's sake, I will rename the render model object to `platform` as well, but this step is optional.
-![](G.png "Your Outliner view should now look something like this.")
+![](G.jpg "Your Outliner view should now look something like this.")
 6. The next step is to make the physics model big enough to roughly match the render model. Select your physics object, then press {% key "S" /%}, followed by {% key "Shift" /%}+{% key "Z" /%}, then {% key "59.5" /%}. Now hit left click or {% key "Enter" /%}. The physics object is now almost as wide and long as the render model.
 7. Next, press {% key "S" /%}, then {% key "Z" /%}, then {% key "2.9" /%} to make it the right height too. You may have noticed this isn't *quite* as big as the render model. This is personal preference, but I typically make physics models slightly smaller than the object they represent to allow the player to feel like they can get as naturally close to the object as they should be able to.
 8. Finally, we need to add a material to the physics model. This does not need to be a halo shader name, it can be anything but you might like to match it to a global material such as `hard_metal_thick`. Select the physics object, and switch to the `Material Properties` tab.
@@ -133,11 +133,11 @@ After you've made sure that is working, try to re-place the `.crate` version usi
 
 ![](I.gif "Demonstration of both the scenery and crate tags.")
 
-# Stricly Convex Explanation
+# Stricly convex explanation
 In the *Halo* engines, presumably to save on resources physics models have a restriction where each shape used can only be convex, with no concave surfaces. If you are unfamiliar with 3D geometry, this can be a little tricky to get your head around at first, but with the help of a diagram and example it should become easier to grasp.
 
 Firstly, one of the best ways to determine if a shape is strictly convex is to draw a line through it. If the line passes through more than two edges/faces, then the shape is not strictly convex. See the following very crudely drawn diagram as an example:
-![](J.png "Example of strictly-convex vs non-strictly-convex shape in 2D")
+![](J.jpg "Example of strictly-convex vs non-strictly-convex shape in 2D")
 Note how it is impossible to draw a line anywhere through the regular Pentagon that passes through more than two edges - this is because the pentagon is a strictly-convex shape. On the other hand, the line in the right diagram shows how in some places on the abstract shape, it is possible to do so. Although this example is in 2D, the exact same thinking can be applied to a 3D object as well.
 
 Blender has a built-in function that can be used to determine if the 3D mesh you have made is strictly-convex or not - the `Convex Hull` tool. Here's an example of how to use it:
