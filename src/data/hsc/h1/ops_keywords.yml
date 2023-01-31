@@ -14,13 +14,13 @@ operators_and_keywords:
   - slug: minus
     type: |
       ```hsc
-      (- <number_1> <number_2>)
+      (- <number_1> <number_2> [... <number_n>])
       ```
-      Returns the difference of two expressions.
+      Returns the first expression subtracted by all following expressions.
     ex: |
       ```hsc
-      (- 10 5)
-      ; returns: 5
+      (- 10 5 1)
+      ; returns: 4
       ```
 
   - slug: mult
