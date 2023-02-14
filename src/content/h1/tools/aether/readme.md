@@ -18,6 +18,8 @@ related:
 thanks:
   Reindeer: Porting Aether documentation from ModaWiki
   aLTis: Finding a fix for frozen marker importing
+  Firescythe: Writing the original guide
+  Siliconmaster: Additional tips and comments on usage
 ---
 Aether is a tool which supports externally baking [lightmaps](~) within 3D software like [3ds Max](~3dsmax) rather than with the [HEK's](~hek) radiosity process. This allows for much higher resolution lightmaps than possible with [Tool](~tool#lightmaps) or [Sapien](~sapien#radiosity), and shorter baking times since external software is much better optimized for lighting.
 
