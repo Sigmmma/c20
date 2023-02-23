@@ -56,7 +56,7 @@ Halo Physics Importer:
 Bluestreak:
   page: bluestreak
   authors:
-    - TheGhost
+    - TheGhost, various later contributors
   workflows:
     - from:
         - Gmax
