@@ -6,7 +6,7 @@ caption: A biped model imported with rigging data intact
 info: |
   * Release date: 2006
   * [Project homepage](http://ghost.halomaps.org/bluestreak/)
-  * [Recommended JMS exporter](JMS_Exporter_v1-0-4_Korn.ms)
+  * [Recommended JMS exporter](JMS_Exporter_v1-0-4.ms)
 keywords:
   - max
 thanks:
@@ -26,7 +26,7 @@ Bluestreak supports more capabilities than both [Chimp](~) and [Blitzkrieg](~) a
 {% alert %}
 While [Blender](~) has become the de-facto standard 3D tool for Halo, those who prefer Max can also use H1A Tool's [FBX to JMS/JMA pipeline](~h1a-tool#creating-a-jms-file-from-an-fbx-file) as a modern officially-supported alternative to using Bluestreak. You may need Bluestreak to work with Max scenes from the HEK era, which predate the FBX pipeline.
 
-**If you plan on using the Bluestreak JMS exporter, [download the recommended v1-0-4](JMS_Exporter_v1-0-4_Korn.ms).**
+**If you plan on using the Bluestreak JMS exporter, [download the recommended v1-0-4](JMS_Exporter_v1-0-4.ms).**
 {% /alert %}
 
 # Usage
