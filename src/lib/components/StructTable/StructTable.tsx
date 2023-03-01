@@ -1,7 +1,7 @@
 import {instantiateType, buildTypeDefs, walkTypeDefs} from "../../structs";
 import {slugify} from "../../utils/strings";
 import localizations from "./localizations";
-import Hex from "../Hex/Hex";
+import Hex, {format as formatHex} from "../Hex/Hex";
 import {RenderContext, useCtx} from "../Ctx/Ctx";
 import {type LocalizeFn} from "../../utils/localization";
 import {type VNode} from "preact";
@@ -41,7 +41,7 @@ function renderComments(ctx: RenderContext, part, localize: Localizer) {
   </>;
 }
 
-function renderStructFieldType(ctx: RenderContext, props: StructTableProps, field, instantiatedType, localize: Localizer) {
+function renderStructFieldType(ctx: RenderContext, props: StructTableProps, field, fieldOffset, instantiatedType, localize: Localizer) {
   const {typeDef, totalSize, singleSize, variableSize, count, type_args, typeName} = instantiatedType;
   let typeStr: string = typeName;
   if (typeDef.class == "bitfield" || typeDef.class == "enum") {
@@ -66,7 +66,7 @@ function renderStructFieldType(ctx: RenderContext, props: StructTableProps, fiel
     endiannessLabel = <span className="field-label">{endianness}</span>;
   }
   const typeCode = (
-    <code title={`${totalSize} bytes`}>
+    <code title={`${totalSize} bytes @ ${formatHex(fieldOffset)}`}>
       {typeStr}
       {endiannessLabel && " "}
       {endiannessLabel}
@@ -169,7 +169,7 @@ function renderStructAsTable(seenTypes, typeDefs, props: StructTableProps, ctx: 
                   <td className="field-offset"><Hex value={fieldOffset}/></td>
                 }
                 <td className="field-type">
-                  {renderStructFieldType(ctx, props, field, instantiatedFieldType, localize)}
+                  {renderStructFieldType(ctx, props, field, fieldOffset, instantiatedFieldType, localize)}
                   {embeddedType && hasSeenType &&
                     <Wat href={`#${slugify(hasSeenType.join("-"))}`}/>
                   }
