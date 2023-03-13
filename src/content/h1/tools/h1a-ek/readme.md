@@ -61,9 +61,13 @@ Pictured: Location of the mod tools in the steam library.
 1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
 2. Re-run `Extract (HCEEK).bat` and replace all files.
 
-# What's new in the September update
+# Changelog
+## December 2022
+* Vertex explosion when going above 30 FPS fixed
 
-## General
+## September 202x
+
+### General
 
 * New script functions `sleep_forever`, `debug_script_thread`, `debug_scripting`, `breakpoint`, `kill_active_scripts`, `get_executing_running_thread`, `kill_thread`, `script_started` and `script_finished`
 * New script globals `hs_verbose` and `breakpoints_enabled`
@@ -72,84 +76,84 @@ Pictured: Location of the mod tools in the steam library.
 * The Movement Penalized field in weapon tags is now functional.
 * HUD prompts for actions such as entering vehicles will now display correctly.
 
-## Content
+### Content
 
 * Various changes to tags and data files. Updating your tag set is highly recommended.
 
-## Guerilla
+### Guerilla
 
 * Mouseover text for the inconsequential flag is no longer cut off.
 * Added support for 3rd and 4th grenade slots.
 * Added flag to toggle runtime tag patches to the scenario tag.
 
-## Standalone
+### Standalone
 
 * The command `core_load_name` now loads instead of saving.
 * The debug menu now has the option for `debug_menu_rebuild`
 * The command `player_spawn_count` will no longer cause an assertion when used without multiple controllers.
 * Decals will no longer appear in front of geometry when viewed from a certain distance.
 
-## Tool
+### Tool
 
 * Zoom in hud messages will no longer be treated as crouch when importing strings.
 
-# What's new in the March update
+## March 202x
 
-## General
+### General
 
 * Add script function `game_time_authoritative`
 
-## Content
+### Content
 * Fixed mirrors on AOTCR showing clipping near the player boots. This is a tag change so make sure to update your files for this to take effect.
 * Various changes to tags and data zips. Updating your tag set is highly recommended.
 
-## Guerilla
+### Guerilla
 
 * Fix flags displaying weirdly unless the window was refreshed.
 
-## Sapien
+### Sapien
 
 * Now has a debug menu similar to the one seen in H2+. Commands can be defined in the debug_menu_init.txt found in the root folder.
 * Fixed mouse sensitivity in vehicle and zoom.
 
-## Standalone
+### Standalone
 * Now supports loading MP scenarios for testing.
 * Now has a debug menu similar to the one seen in H2+. Commands can be defined in the debug_menu_init.txt found in the root folder.
 * Fixed mouse sensitivity in vehicle and zoom.
 
-# What's new in the season 8 hotfix v1
+## What's new in the season 8 hotfix v1
 
-## Sapien
+### Sapien
 * Autocomplete in console should display columns a little more evenly.
 * Game view window now uses an aspect ratio that fits the size the user sets. 
 * Fix toggling "Draw transparent geometry" causing a crash.
 * UI tooltips should flicker less. 
 
-## Guerilla
+### Guerilla
 * UI tooltips should flicker less. 
 
 
-# What's new in season 8?
+## What's new in season 8?
 
-## General
+### General
 
 * Many changes to the base game will also apply to the tools. Reading the official update is recommended.
 * Some functions for handling tag names and Unicode string list were changed to more gracefully handle missing data.
 
-## Content
+### Content
 * Tags were updated to season 8 content. Updating your tag set is highly recommended.
 * Shader source code is now included.
 
-## FBX
+### FBX
 
 * FBX converter performance was improved.
 * Fixed marker radius not being handled correctly.
 
-## Guerilla
+### Guerilla
 
 Some tag field names were changed to better reflect their usage, used fields were hidden and some tooltips were updated.
 
-## Sapien
+### Sapien
 Some of these also apply to standalone or MCC itself.
 
 * A rare vertex explosion issue that occurred when the framerate was not capped was fixed.

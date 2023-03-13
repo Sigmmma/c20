@@ -149,6 +149,14 @@ thanks:
   PersonName: Explaining how actors work
   "Person Name": Writing this guide
 
+# If provided, child pages of this one will be ordered as follows in the
+# navigation tree. Otherwise child pages are ordered alphabetically by their
+# slug (last part of their URL).
+childOrder:
+  - general
+  - h1
+  - h2
+
 # Excludes the page from the search index. Use this for pages which are
 # incomplete or people won't need to search for.
 noSearch: true
@@ -219,6 +227,7 @@ Always use _sentence case_, with the first word capitalized only. The exception 
 * Compatibility
 * Troubleshooting
 * Installation
+* Changelog
 * Usage
 * Appendix
 

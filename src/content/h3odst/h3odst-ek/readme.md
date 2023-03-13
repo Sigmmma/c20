@@ -9,6 +9,11 @@ caption: >-
 info: |
   * Release date: October 2022
   * [Report issues](JIF_ISSUE_URL)
+keywords:
+  - h3odst-ek
+  - h3odstek
+  - odst-ek
+  - odst
 ---
 The **Halo 3 ODST Editing Kit** (**H3ODSTEK**) is the official set of tools for creating custom content for the MCC version of Halo 3 ODST. It was first released by 343 Industries alongside the latest update as of March 2022.
 Similarly to the mod tools for Halo 1, 2, and 3 it is ultimately based on the old internal tools used by Bungie during the development of Halo 3, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
@@ -30,12 +35,17 @@ Pictured: Location of the mod tools in the steam library.
 7. (Optional) Check out the [guides hub](~guides) to learn more about modding or install a launcher like [Osoyoos](~) if you don't like using the command line.
 
 # Changelog
-## What's new in the September update
+## December 2022
+* AI objectives crash fix
+* Unused fields removed from [scenario](~) and [globals](~) tags
+* `bin/ManagedBlam.dll` added
 
-### Installing the September update
-1. Delete the shader templates from the previous update as they are not compatible, delete `tags\shaders\beam_templates`, `tags\shaders\black_templates`, `tags\shaders\contrail_templates`, `tags\shaders\custom_templates`, `tags\shaders\decal_templates`, `tags\shaders\foliage_templates`, `tags\shaders\halogram_templates`,`tags\shaders\light_volume_templates`, `tags\shaders\particle_templates`, `tags\shaders\screen_templates`, `tags\shaders\shader_templates`, `tags\shaders\terrain_templates` and `tags\shaders\water_templates`.
-2a. (recommended) Extract the new `H3ODSTEK.7z`.
-2b. (alternative) If you don't want to update all your tags it's highly recommended you at least update the `tags\shaders` folder.
+## September 2022
+{% alert %}
+A caveat to this update is that you will need to delete the following shader templates in `tags\shaders\` from the previous update, as they are not compatible: `beam_templates`, `black_templates`, `contrail_templates`, `custom_templates`, `decal_templates`, `foliage_templates`, `halogram_templates`,`light_volume_templates`, `particle_templates`, `screen_templates`, `shader_templates`, `terrain_templates` and `water_templates`.
+
+Otherwise, extract the new `H3ODSTEK.7z` as usual. If you don't want to update all your tags it's highly recommended you at least update the `tags\shaders` folder.
+{% /alert %}
 
 ### Content
 

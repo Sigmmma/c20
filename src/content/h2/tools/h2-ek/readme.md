@@ -38,6 +38,11 @@ Pictured: Location of the mod tools in the steam library.
 1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
 2. Re-run `Extract H2EK.bat` and replace all files.
 
+# Changelog
+## December 2022
+* Guerilla will no longer crash when opening [multiplayer_variant_settings_interface_definition](~) tags.
+* [Antenna](~) widgets will now render on objects such as the Warthog.
+
 # What's new in the September update
 
 {% alert type="danger" %}

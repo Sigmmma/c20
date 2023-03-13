@@ -2,6 +2,16 @@
 title: The Reclaimers Library
 keywords:
   - home
+childOrder:
+  - general
+  - h1
+  - h2
+  - h3
+  - h3odst
+  - hr
+  - h4
+  - h2amp
+  - contributing
 ---
 {% figure src="343.jpg" %}
 "This installation's research facilities are most impressive! Perhaps we'll have time to see them later."

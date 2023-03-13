@@ -264,10 +264,11 @@ type_defs:
             * Setting the shadow map size for dynamic object shadows.
             * Selecting an appropriate [LOD](~gbxmodel#level-of-detail).
             * Skipping collision checks.
+            * Determining if spawn points are blocked by an object.
 
-            The radius should contain this object completely, but not be too large.
-            Setting it too high will cause the object to draw unccessarily when
-            off-screen, but setting it too low will cause the object to have clipped
+            The radius should contain this object completely, but not be too large
+            or else the object will draw unccessarily when off-screen and block
+            spawn points. Setting it too low will cause the object to have clipped
             shadows, pop in and out of visibility at the edges of the screen, and
             have inconsistent collision with other objects.
 

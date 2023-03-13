@@ -16,7 +16,7 @@ thanks:
 # Alpha testing
 When the [_alpha tested_](#tag-field-shader-environment-flags-alpha-tested) flag is checked, the bump map's alpha channel can be used as a kind of transparency mask. The shader will either be fully opaque or fully transparent depending on if the alpha value is lighter or darker than 50% gray.
 
-You should use this feature for transparent shaders that need to maintain the appearance of sharp edges regardless of distance and where semi-transparency is not needed. Some examples of this include the "billboard" trees outside _Timberland_, the floor grates in _Derelict_, or foliage textures on scenery.
+You should use this feature for transparent shaders that need to maintain the appearance of sharp edges regardless of distance and where semi-transparency is not needed. Some examples of this include the 2D "billboard" trees outside _Timberland_, the floor grates in _Derelict_, or foliage textures on scenery.
 
 Depending on the texture, you may find that at a distance small transparent or opaque details become lost, such as a chain link fence becoming totally invisible. This is the result of [mipmapping][mip] in the bump map since the alpha chanel is "blurring" as it becomes smaller and details are being lost. It can be important to tune the bump map's mipmap generation to avoid this:
 
@@ -24,7 +24,7 @@ Depending on the texture, you may find that at a distance small transparent or o
 * Tuning the [_alpha bias_](~bitmap/#tag-field-alpha-bias) lightens or darkens the alpha channel in mipmaps to result in more or less pixels passing the 50% alpha test.
 
 # Bump maps
-_Bump maps_ are special textures that encode the "bumpiness" of the surfaces they map to. They can be used to represent fine surface details like cracks and grooves and affect specular reflections and lighting to make the surface look more geometrically detailed than it actually is.
+_Bump maps_ are special textures that encode the "bumpiness" of the surfaces they map to. They are used to represent fine details like cracks and grooves that affect specular reflections and lighting to make the surface look more geometrically detailed than it actually is.
 
 Artists can create them as simple grayscale height maps in TIFF format, and once compiled by [Tool](~h1a-tool) or [invader-bitmap](~) into a [bitmap tag](~bitmap) with ["height map" usage](~bitmap#tag-field-usage-height-map), they are represented as standard [normal maps][normals] for use in-engine. Halo CE does not use height maps and doesn't support tessellation or parallax occlusion. The alpha channel of the bump map is unused unless the shader is _alpha tested_.
 
@@ -35,25 +35,21 @@ Artists should ensure that the bump map referenced by a shader is a valid normal
 
 Modders who are porting older Custom Edition maps to MCC may find that existing shaders have this problem, since environmental bump mapping was unsupported in H1CE and the original mappers would not have seen this darkening.
 
-## Attenuation artifacts
-{% comment %}
+## Shading artifacts
 {% figure src="artifacts.jpg" inline=false %}
 Left: default stock shaders in _Chiron TL-34_ and _The Silent Cartographer_. Right: The same shaders with the alternate bump mapping flag enabled.
 {% /figure %}
-{% /comment %}
 
-By default, environmental bump mapping is rendered by darkening surfaces based on the dot product (angle difference) between incoming light and the bump map. However, in some locations and lighting setups this can result in strange triangular shading artifacts that _look like_ bad smoothing despite level geometry having the intended normals.
+By default, environmental bump mapping is rendered by darkening surfaces based on the dot product (angle difference) between incoming light and the bump map. However, in some locations and lighting setups this can result in strange triangular shading artifacts that _look like_ bad smoothing despite level geometry having the intended normals:
 
 * Where small or point-like light sources are very close to surfaces.
 * Where sharp shadows should be, but the area has either low geometric complexity and/or uses shaders with low radiosity detail levels.
 
-This is because the incident radiosity vector is stored only per-vertex and can vary greatly across a surface, while the lightmap is limited in detail. Another factor is that the baked lightmap already accounts for diffuse attenuation and it shouldn't be doubly applied, which could be considered a legacy bug.
+This could be considered a legacy bug, because the baked lightmap already accounts for diffuse attenuation and it shouldn't be doubly applied. It is made worse by the fact that both the intermediate lightmap mesh and baked lightmap texture have limited resolution so light bleeds into areas it shouldn't, and that per-vertex incident radiosity vectors cannot represent quickly changing light directions across a surface.
 
-{% comment %}
-You can set the new [_alternate bump attenuation_](#tag-field-shader-environment-flags-use-alternate-bump-attenuation) flag to use a different bump mapping method that instead darkens or brightens the surface based on how the bump map differs from a flat surface, which removes these artifacts at the cost of overbrightening some highlights near coloured light sources towards white.
+You can set the new [_alternate bump attenuation_](#tag-field-shader-environment-flags-use-alternate-bump-attenuation) flag to use a different bump mapping method (similar to Halo 2's) which removes these artifacts at the cost of desaturating some highlights near coloured light sources toward white.
 
-If you are noticing these artifacts then you should use this option on the affected shaders. You can use `debug_camera 1` to help identify the shader if needed. Modders who are porting maps from Custom Edition to MCC may also find this useful since the lack of bump mapping in H1CE meant the original mappers never would have seen this issue in their maps and worked around it.
-{% /comment %}
+Modders who are porting maps from Custom Edition to MCC may also find this useful since the lack of bump mapping in H1CE meant the original mappers never would have seen this issue in their maps and worked around it. Use `debug_camera 1` to help identify the shader if needed.
 
 If you are having this issue and want to change your lighting setup or level geometry to fix it, you can:
 

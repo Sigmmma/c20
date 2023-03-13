@@ -150,6 +150,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
         title: "[Unresolved]",
         url: "#",
         pageId: idTail,
+        logicalPathTail: idTail,
       };
     },
     data: R.mergeDeepRight(input.globalData, input.localData),

@@ -1,6 +1,5 @@
 ---
 title: Halo Reach Editing Kit
-stub: true
 about: 'tool:HR-EK'
 img: hrek.png
 caption: Foundation level editor and MegaloEdit game type editor.
@@ -8,8 +7,9 @@ info: |
   * Release date: September 2022
   * [Report issues](JIF_ISSUE_URL)
 ---
-The **Halo Reach Editing Kit** (**HREK**) is the official set of tools for creating custom content for the MCC version of Halo Reach.
-Similarly to the mod tools for Halo 2 and 3 it is ultimately based on the old internal tools used by Bungie during the development of Halo Reach, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
+The **Halo Reach Editing Kit** (**HREK**) is the official set of tools for creating custom content for the MCC version of Halo Reach. Like the other officla mod tools, it is ultimately based on the old internal tools used by Bungie during the development of Halo Reach, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
+
+Compared to H3, [Foundation](~hr-foundation) takes the place of [Guerilla](~h3-guerilla) as the kit's tag editor with a completely new UI that makes it easier than ever before to create and modify tags. Another major difference is the introduction of GR2 (Granny) files as the new intermediate model format, replacing [ASS](~) and [JMS](~).
 
 Unlike the [H1A-EK](~) you _do_ need to own [Halo Reach on Steam][steam_purchase] to gain access to the toolkit.
 
@@ -31,11 +31,16 @@ Pictured: Location of the mod tools in the steam library.
 1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
 2. Re-run `Extract (HREK).bat` and replace all files.
 
-# Major changes from H3
-Naturally there is multitude of changes compared to H3 as the engine underwent a major revision, this document endeavours to list the major ones.
-
-* Foundation takes the place of Guerilla as the kit's tag editor with a completely new UI that makes it easier than ever before to create and modify tags.
-* Structures can no longer be created using [ASS](~) files, you need to use GR2 files.
+# Changelog
+## December 2022
+* Instance imposters can now be generated
+* Tool command `import` will no longer show garbage characters
+* Tool command `import` will no longer print unnecessary warnings about materials
+* Tool command `extract-unicode-strings` added
+* Tool command `model-animations` can now import JMRX files
+* Tool command `fbx-to-gr2` will now correctly apply materials to multiple objects
+* Updated icons for tools
+* Project chooser added
 
 # Known issues
 

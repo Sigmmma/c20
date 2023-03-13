@@ -11,6 +11,9 @@ info: |
   * [Report issues](JIF_ISSUE_URL)
 redirects:
   - /h3/tools/h3-ek
+keywords:
+  - h3-ek
+  - h3ek
 ---
 The **Halo 3 Editing Kit** (**H3EK**) is the official set of tools for creating custom content for the MCC version of Halo 3. It was first released by 343 Industries alongside MCC Season 8.
 Similarly to the mod tools for Halo 1 and 2 it is ultimately based on the old internal tools used by Bungie during the development of Halo 3, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
@@ -35,21 +38,24 @@ Pictured: Location of the mod tools in the steam library.
 1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
 2. Re-run `Extract (H3EK).bat` and replace all files.
 
-# What's new in the September update
+# Changelog
+## December 2022
+* AI objectives crash fix
+* Unused fields removed from [scenario](~) and [globals](~) tags
 
-## Installing the September update
-1. Delete the shader templates from the previous update as they are not compatible, delete `tags\shaders\beam_templates`, `tags\shaders\black_templates`, `tags\shaders\contrail_templates`, `tags\shaders\cortana_templates`, `tags\shaders\custom_templates`, `tags\shaders\decal_templates`, `tags\shaders\foliage_templates`, `tags\shaders\halogram_templates`,`tags\shaders\light_volume_templates`, `tags\shaders\particle_templates`, `tags\shaders\screen_templates`, `tags\shaders\shader_templates`, `tags\shaders\terrain_templates` and `tags\shaders\water_templates`.
-2a. (recommended) Extract the new `H3EK.7z`.
-2b. (alternative) If you don't want to update all your tags it's highly recommended you at least update the `tags\shaders` folder.
+## September 2022
+{% alert %}
+A caveat to this update is that you will need to delete the following shader templates in `tags\shaders\` from the previous update, as they are not compatible: `beam_templates`, `black_templates`, `contrail_templates`, `cortana_templates`, `custom_templates`, `decal_templates`, `foliage_templates`, `halogram_templates`,`light_volume_templates`, `particle_templates`, `screen_templates`, `shader_templates`, `terrain_templates` and `water_templates`.
 
-## Content
+Otherwise, extract the new `H3EK.7z` as usual. If you don't want to update all your tags it's highly recommended you at least update the `tags\shaders` folder.
+{% /alert %}
 
+Content:
 * Various changes to tags and data files. Updating your tag set is highly recommended.
 * Added test, audio and lighting reference scenarios `levels\test\box`, `levels\reference\audio`, `levels\reference\lighting_reference`
 * Map info files have been added to the `H3EK.7z` which allows the main menu to load maps.
 
-## General
-
+General:
 * Maximum string storage for cache files increased.
 * New flag for equipment to prevent AI from dropping them on death.
 * Script doc has new formatting and will now contain globals.
@@ -57,38 +63,32 @@ Pictured: Location of the mod tools in the steam library.
 * HUD sounds in `chud_globals_definition` tags are no longer capped at eight elements.
 * Health related flags in HUD sounds will now work.
 
-## Tool
-
+Tool:
 * Export bitmap commands now have support for cubemaps.
 * New commands `extract_unicode_strings` and `print_tag_to_XML` added.
 * Using the command `faux_farm_dillum` with the checkerboard setting will no longer trigger an assert.
 * Various improvements to the `export-tag-to-xml` command output.
 * The `build-cache-file` command now uses the flag use-fmod-data by default which should result in smaller cache files.
 
-## Guerilla
-
+Guerilla:
 * String list editor improvements.
 * The List button for stringids that can be found in ODST has been added where appropriate.
 * Reserved chud text stringids are now listed.
 
-## Sapien
-
+Sapien:
 * Additional FMOD banks will no longer stop working after a map reset.
 * Using the command `render_debug_structure_all_cluster_errors` will no longer trigger a crash.
 * The keybinding for dual wield has been moved to the C key.
 * The keybindings for switching Forge categories are now functional.
 * Reloading tags should no longer cause an FMOD related assertion.
 
-## Standalone
-
+Standalone:
 * Additional FMOD banks will no longer stop working after a map reset.
 * The keybinding for dual wield has been moved to the C key.
 * The keybindings for switching Forge categories are now functional.
 
-# What's new in the March update
-
-## Installing the March update
-1. Delete the shader templates from the previous update as they are not compatible, delete `tags\shaders\beam_templates`, `tags\shaders\black_templates`, `tags\shaders\contrail_templates`, `tags\shaders\cortana_templates`, `tags\shaders\custom_templates`, `tags\shaders\decal_templates`, `tags\shaders\foliage_templates`, `tags\shaders\halogram_templates`,`tags\shaders\light_volume_templates`, `tags\shaders\particle_templates`, `tags\shaders\screen_templates`, `tags\shaders\shader_templates`, `tags\shaders\terrain_templates` and `tags\shaders\water_templates`.
+## March 2022
+1. Delete the shader templates from the previous update as they are not compatible, delete `beam_templates`, `black_templates`, `contrail_templates`, `cortana_templates`, `custom_templates`, `decal_templates`, `foliage_templates`, `halogram_templates`,`light_volume_templates`, `particle_templates`, `screen_templates`, `shader_templates`, `terrain_templates` and `water_templates`.
 2a. (recommended) Extract the new `tags.zip` and `data.zip`.
 2b. (alternative) If you don't want to update all your tags it's highly recommended you at least update the `tags\shaders` folder.
 
