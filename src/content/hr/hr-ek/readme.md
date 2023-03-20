@@ -39,8 +39,9 @@ Pictured: Location of the mod tools in the steam library.
 * Tool command `extract-unicode-strings` added.
 * Tool command `model-animations` can now import JMRX and JMOX files.
 * Tool command `fbx-to-gr2` will now correctly apply materials to multiple objects.
-* Tool command `fbx-to-gr2` will sort bones by descending order of weights.
+* Tool command `fbx-to-gr2` will sort bones by descending order of weights, fixing improper bone rotations.
 * Tool command `fbx-to-gr2` will try to read `bungie_shader_path` from FBX custom properties to enable shader assignment in 3D editor rather than JSON sidecar.
+* Tool command `print-tag-to-xml` now correctly uses argument filename.
 * Fix axis conversion on importing Granny file created from FBX.
 * Dumping Granny to JSON writes granny_int32 as expected signed ints.
 * Updated icons for tools.

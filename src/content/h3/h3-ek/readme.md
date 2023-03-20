@@ -42,6 +42,7 @@ Pictured: Location of the mod tools in the steam library.
 * AI objectives crash fix
 * Unused fields removed from [scenario](~) and [globals](~) tags
 * The Sapien/Standalone debug menu is properly scaled for the window size.
+* Fixed Sapien crashing when compiling scripts a second time
 
 ## September 2022
 {% alert %}
