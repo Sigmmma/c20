@@ -188,7 +188,7 @@ export default function DataTable(props: DataTableProps) {
   }
 
   return (
-    <div className="table-wrapper">
+    <div className={`table-wrapper ${classes.join(" ")}`}>
       {rowsIndex.length > 0 &&
         <p>
           <nav>

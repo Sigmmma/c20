@@ -85,6 +85,10 @@ LODs are created by using [a special naming convention](~tool#model-compilation)
 
 [z-buf]: https://en.wikipedia.org/wiki/Z-buffering
 
+# Related HaloScript
+
+{% relatedHsc game="h1" tagFilter="gbxmodel" /%}
+
 # Structure and fields
 
 {% tagStruct "h1/gbxmodel" /%}

@@ -57,6 +57,15 @@ type_defs:
       - name: disable_height_map_compression
       - name: uniform_sprite_sequences
       - name: filthy_sprite_bug_fix
+      - name: hud_scale_0.5
+      - name: invert_detail_fade
+      - name: use_average_color_for_detail_fade
+        comments:
+          en: >
+            When bitmap usage is _detail map_, mipmaps will fade to the
+            average colour of the bitmap when importing. Otherwise it will fade
+            to gray. Prior to this flag being added in December 2022, the H1 MCC
+            mod tools would fade to average colour by default like Halo 2.
   BitmapSpriteBudgetSize:
     class: enum
     size: 2

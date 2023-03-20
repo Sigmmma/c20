@@ -1,6 +1,5 @@
 ---
 title: Halo 3 ODST Editing Kit
-stub: true
 about: 'tool:H3ODST-EK'
 img: h3odstek.jpg
 caption: >-
@@ -39,6 +38,7 @@ Pictured: Location of the mod tools in the steam library.
 * AI objectives crash fix
 * Unused fields removed from [scenario](~) and [globals](~) tags
 * `bin/ManagedBlam.dll` added
+* The Sapien/Standalone debug menu is properly scaled for the window size.
 
 ## September 2022
 {% alert %}
@@ -47,44 +47,38 @@ A caveat to this update is that you will need to delete the following shader tem
 Otherwise, extract the new `H3ODSTEK.7z` as usual. If you don't want to update all your tags it's highly recommended you at least update the `tags\shaders` folder.
 {% /alert %}
 
-### Content
-
+Content:
 * Various changes to tags and data files. Updating your tag set is highly recommended.
 * Added test, audio and lighting reference scenarios `levels\test\box`, `levels\reference\audio`, `levels\reference\lighting_reference`
 * Map info files have been added to the `H3ODSTEK.7z` which allows the main menu to load maps.
 
-### General
-
+General:
 * Maximum string storage for cache files increased.
 * New flag for equipment to prevent AI from dropping them on death.
 * Script doc has new formatting and will now contain globals.
 * Reports are now contained within the reports folder.
 * Giants will now synchronize in co-operative Firefight games.
 
-### Tool
-
+Tool:
 * New commands `extract_unicode_strings` and `print_tag_to_XML` added.
 * Various improvements to the `export-tag-to-xml` command output.
 * Export bitmap commands now have support for cubemaps.
 * The `build-cache-file` command now uses the flag use-fmod-data by default which should result in smaller cache files.
 
-### Guerilla
-
+Guerilla:
 * Reserved chud text stringids are now listed.
 
-### Sapien
-
+Sapien:
 * Additional FMOD banks no longer stops working after a map reset.
 
-### Standalone
-
+Standalone:
 * Additional FMOD banks no longer stops working after a map reset.
 * Firefight maps can now be successfully launched from the main menu.
 
-## May 2022 Patch
+## May 2022
 * Tags were updated to include the [balance changes](https://support.halowaypoint.com/hc/en-us/articles/5178835359380-Halo-The-Master-Chief-Collection-MCC-Update-April-2022) from the corresponding MCC update.
 
-# Major changes from H2
+# Comparison with H2
 Naturally there is multitude of changes compared to H2 as the engine underwent a major revision, this document endeavours to list the major ones.
 
 * Tools now are all 64-bit, no more out of memory errors unless you actually run out of memory.

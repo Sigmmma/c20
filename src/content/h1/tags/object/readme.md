@@ -20,7 +20,7 @@ Some capabilities available to objects (though not used by every subtype) are:
 * Be attached to each other (e.g. pelicans carrying warthogs)
 
 # Shadows and lighting
-For most dynamic objects, Halo uses [shadow mapping][shadow-mapping] with their [render model](~gbxmodel), unless the object's ["does not cast shadow"](#tag-field-flags-does-not-cast-shadow) flag is true. However, with [scenery](~), shadows are baked into the [lightmap](~lightmaps) using the object's [collision geometry](~model_collision_geometry) instead, regardless of the "does not cast shadow" flag.
+For most dynamic objects, Halo uses [shadow mapping][shadow-mapping] with their [render model](~gbxmodel), unless the object's ["does not cast shadow"](#tag-field-flags-does-not-cast-shadow) flag is true or `render_shadows` is disabled. [Scenery](~) shadows are baked into the [lightmap](~lightmaps) using the object's [collision geometry](~model_collision_geometry) instead, regardless of the "does not cast shadow" flag.
 
 Objects receive a few parameters from [the environment](~lightmaps#lighting-for-dynamic-objects) as inputs to their lighting model. These include up to two distant light sources (direction and colour), ambient light, reflection tint, shadow direction, and shadow colour. Lighting is calculated when objects are created and also when dynamic objects move. To do this the game casts a ray straight down to a BSP _ground point_ up to 10 world units away to determine its lighting and can result in a few scenarios:
 

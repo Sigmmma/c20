@@ -3066,6 +3066,11 @@ external_globals:
         ```hsc
         (rasterizer_screen_flashes)
         ```
+        Toggles the display of screen flashes, such as those from a [damage_effect](~h1/tags/damage_effect)
+        or powerup [equipment](~h1/tags/object/item/equipment).
+    tags:
+      - damage
+      - equipment
   - slug: rasterizer_secondary_render_target_debug
     info:
       en: |-
@@ -3222,14 +3227,22 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (render_contrails)
+        (render_contrails [boolean])
         ```
+        Toggles the display of all contrails.
+    tags:
+      - contrail
   - slug: render_model_index_counts
     info:
       en: |-
         ```hsc
-        (render_model_index_counts)
+        (render_model_index_counts [boolean])
         ```
+        If `true`, displays a red number above each object with its model index count.
+        If `render_model_vertex_counts` is also enabled, the vertex count and index
+        count are separated by a slash like "<vertices>/<indices>".
+    tags:
+      - gbxmodel
   - slug: render_model_markers
     info:
       en: |-
@@ -3238,6 +3251,8 @@ external_globals:
         ```
         If enabled, all [model markers](~gbxmodel#markers) will be rendered in
         3D with their name and rotation axis.
+    tags:
+      - gbxmodel
   - slug: render_model_no_geometry
     info:
       en: |-
@@ -3252,18 +3267,28 @@ external_globals:
         ```
         If enabled, all model skeletons will be rendered. Nodes are shown as
         axis gizmos and connected to their parents by white lines.
+    tags:
+      - gbxmodel
   - slug: render_model_vertex_counts
     info:
       en: |-
         ```hsc
-        (render_model_vertex_counts)
+        (render_model_vertex_counts [boolean])
         ```
+        If `true`, displays a red number above each object with its model vertex count.
+        If `render_model_index_counts` is also enabled, the vertex count and index
+        count are separated by a slash like "<vertices>/<indices>".
+    tags:
+      - gbxmodel
   - slug: render_particles
     info:
       en: |-
         ```hsc
-        (render_particles)
+        (render_particles [boolean])
         ```
+        Toggles the display of all particles.
+    tags:
+      - particle
   - slug: render_psystems
     info:
       en: |-
@@ -3274,8 +3299,11 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (render_shadows)
+        (render_shadows [boolean])
         ```
+        Toggles the display of dynamic object shadows.
+    tags:
+      - object
   - slug: render_wsystems
     info:
       en: |-
@@ -3405,8 +3433,9 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (terminal_render)
+        (terminal_render [boolean])
         ```
+        Toggles the display of console output. Defaults to `true`.
   - slug: texture_cache_graph
     info:
       en: |-

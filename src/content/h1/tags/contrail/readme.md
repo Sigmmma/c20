@@ -16,6 +16,10 @@ Contrails are represented in-engine as series of connected points. There is a [l
 
 Setting the _point generation rate_ to 15 per second or higher can cause visual artifacts in the contrail since point generation is framerate dependent and can conflict with the game's tick rate. Modern client mods will modify the effect in-engine to prevent this.
 
+# Related HaloScript
+
+{% relatedHsc game="h1" tagFilter="contrail" /%}
+
 # Structure and fields
 
 {% tagStruct "h1/contrail" /%}

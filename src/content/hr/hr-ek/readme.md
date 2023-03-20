@@ -33,14 +33,24 @@ Pictured: Location of the mod tools in the steam library.
 
 # Changelog
 ## December 2022
-* Instance imposters can now be generated
-* Tool command `import` will no longer show garbage characters
-* Tool command `import` will no longer print unnecessary warnings about materials
-* Tool command `extract-unicode-strings` added
-* Tool command `model-animations` can now import JMRX files
-* Tool command `fbx-to-gr2` will now correctly apply materials to multiple objects
-* Updated icons for tools
-* Project chooser added
+* Instance imposters can now be generated.
+* Tool command `import` will no longer show garbage characters.
+* Tool command `import` will no longer print unnecessary warnings about materials.
+* Tool command `extract-unicode-strings` added.
+* Tool command `model-animations` can now import JMRX and JMOX files.
+* Tool command `fbx-to-gr2` will now correctly apply materials to multiple objects.
+* Tool command `fbx-to-gr2` will sort bones by descending order of weights.
+* Tool command `fbx-to-gr2` will try to read `bungie_shader_path` from FBX custom properties to enable shader assignment in 3D editor rather than JSON sidecar.
+* Fix axis conversion on importing Granny file created from FBX.
+* Dumping Granny to JSON writes granny_int32 as expected signed ints.
+* Updated icons for tools.
+* Project chooser added.
+* The Sapien/Standalone debug menu is properly scaled for the window size.
+* Fixed lightmapping failure.
+* Fixed a loud repeating sound distortion on some sounds in Sapien/Standalone.
+* Console tab stops adjust with viewport resolution.
+* Fixed crash in `structure_instance_snapshot`.
+* Added missing spreadsheets for AI dialog and damage globals.
 
 # Known issues
 

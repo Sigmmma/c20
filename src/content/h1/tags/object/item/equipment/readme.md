@@ -9,6 +9,9 @@ thanks:
   MosesOfEgypt: Tag structure research
 ---
 ...
+# Related HaloScript
+
+{% relatedHsc game="h1" tagFilter="equipment" noClear=true /%}
 
 # Structure and fields
 

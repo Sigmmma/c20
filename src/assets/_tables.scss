@@ -3,6 +3,10 @@
 .table-wrapper {
   overflow-x: auto;
   clear: both;
+
+  &.no-clear {
+    clear: none;
+  }
 }
 
 table {

@@ -1,6 +1,5 @@
 ---
 title: Halo 3 Editing Kit
-stub: true
 about: 'tool:H3-EK'
 img: h3ek.jpg
 caption: >-
@@ -42,6 +41,7 @@ Pictured: Location of the mod tools in the steam library.
 ## December 2022
 * AI objectives crash fix
 * Unused fields removed from [scenario](~) and [globals](~) tags
+* The Sapien/Standalone debug menu is properly scaled for the window size.
 
 ## September 2022
 {% alert %}
@@ -88,39 +88,35 @@ Standalone:
 * The keybindings for switching Forge categories are now functional.
 
 ## March 2022
-1. Delete the shader templates from the previous update as they are not compatible, delete `beam_templates`, `black_templates`, `contrail_templates`, `cortana_templates`, `custom_templates`, `decal_templates`, `foliage_templates`, `halogram_templates`,`light_volume_templates`, `particle_templates`, `screen_templates`, `shader_templates`, `terrain_templates` and `water_templates`.
-2a. (recommended) Extract the new `tags.zip` and `data.zip`.
-2b. (alternative) If you don't want to update all your tags it's highly recommended you at least update the `tags\shaders` folder.
+{% alert %}
+Delete the shader templates from the previous update as they are not compatible, delete `beam_templates`, `black_templates`, `contrail_templates`, `cortana_templates`, `custom_templates`, `decal_templates`, `foliage_templates`, `halogram_templates`,`light_volume_templates`, `particle_templates`, `screen_templates`, `shader_templates`, `terrain_templates` and `water_templates`.
 
-## Content
-* Tags.zip now includes scenario_structure_lighting_info for all included scenarios. Relighting should just work now.
+Otherwise, extract the new `tags.zip` and `data.zip` as usual. If you don't want to update all your tags it's highly recommended you at least update the `tags\shaders` folder.
+{% /alert %}
+
+Content:
+* Tags.zip now includes [scenario_structure_lighting_info](~) for all included scenarios. Relighting should just work now.
 * Various changes to tags and data zips. Updating your tag set is highly recommended. WARNING: YOU WILL NOT BE ABLE TO LOAD FILES USING SHADER TEMPLATES FROM THE PREVIOUS RELEASE.
 
-## FBX
+Tool:
 * Fixed `FBX-to-JMS` command including geometry from render and physics in physics output.
-
-## Tool
-
 * Make some changes to tackle `verify_same_triangle_indices` asserts. Users should keep a look out and report models that continue to display this issue.
 * Add a proper error for importing a DDS instead of asserting.
 * Now capable of compiling shaders. You no longer need community fixes for this to work.
 
-## Guerilla
-
+Guerilla:
 * Fix flags displaying weirdly unless the window was refreshed.
 * Skin shader tags no-longer crash.
 
-## Sapien
-
+Sapien:
 * Can now load the FMOD files provided in MCC to play sound in the editor. Sound importing should also function. Make sure to copy the fmod folder from your Halo 3 MCC install over to your H3EK editor for playback and importing to work properly.
 
-## Standalone
-
+Standalone:
 * Can now load the FMOD files provided in MCC to play sound in the editor. Sound importing should also function. Make sure to copy the fmod folder from your Halo 3 MCC install over to your H3EK editor for playback and importing to work properly.
 * Fixed a bug that didn't allow users to load campaign maps from the legacy mainmenu. Should now be able to use the mainmenu for loading maps if you provide the mapinfo files from your MCC install.
 * Parts of the main menu such as the matchmaking lobby will no longer cause a crash.
 
-# What's new in the season 8 hotfix v1
+## November 2021
 
 - Export-bitmap-DDS should now export bitmap pixel data with proper gamma values.
 - Export-bitmap-TGA should now export an actual TGA file.
@@ -131,7 +127,7 @@ Standalone:
 - FBX-to-JMS now writes all regions used in the FBX file properly.
 - Disable bitmap previewing for bitmap arrays to avoid a crash.
 
-# Major changes from H2
+# Comparison with H2
 Naturally there is multitude of changes compared to H2 as the engine underwent a major revision, this document endeavours to list the major ones.
 
 * Tools now are all 64-bit, no more out of memory errors unless you actually run out of memory.

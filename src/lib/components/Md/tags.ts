@@ -122,6 +122,9 @@ const tags: Record<string, Schema> = {
         type: String,
         matches: [...onlyTypes],
       },
+      noClear: {
+        type: Boolean,
+      }
     },
   },
   dataTable: {

@@ -8,6 +8,7 @@ info: |
   * [Report issues](JIF_ISSUE_URL)
 keywords:
   - h2ek
+  - h2-ek
 related:
   - /h1/tools/h1a-ek
   - /h2/tools/h2v-ek
@@ -43,40 +44,34 @@ Pictured: Location of the mod tools in the steam library.
 * Guerilla will no longer crash when opening [multiplayer_variant_settings_interface_definition](~) tags.
 * [Antenna](~) widgets will now render on objects such as the Warthog.
 
-# What's new in the September update
+# September 2022
 
 {% alert type="danger" %}
 After downloading the update you need to clear your shader cache by deleting the `shader_cache` folder. You also need to update your shader template files.
 {% /alert %}
 
-## General
-
+General:
 * First person permutations will match the third person permutations when object render models match.
 * Data mine files will no longer be generated when using the editing kit.
 * Antenna widgets will now render on objects.
 
-## Content
-
+Content:
 * Various changes to tags and data files. Updating your tag set is highly recommended.
 
-## Guerilla
-
+GUerilla:
 * String list editor improvements.
 
-## Standalone
-
+Standalone:
 * The debug menu now has the option for `debug_menu_rebuild`
 
-## Sapien
-
+Sapien:
 * Orders will no longer trigger an assert when clicking into the game window.
 * The Map Warnings window should now provide more accurate information.
 * Using the Undo action while editing AI Squads should no longer trigger an assert.
 * Using `map_reset` while hilighting a numerical input field will no longer trigger an assert.
 * The debug menu now has the option for `debug_menu_rebuild`
 
-## Tool
-
+Tool:
 * The `extract_unicode_strings` command will now output text files that are valid for reimporting.
 * Reimporting an existing bitmap with the interface type should no longer trigger an assert.
 * Importing an interface bitmap that has mip maps will now show a clearer error message.
@@ -86,41 +81,35 @@ After downloading the update you need to clear your shader cache by deleting the
 * Meshes created using triangle strips instead of triangle lists will now render properly when using the `rasterizer_wireframe` command.
 * Bitmaps with the monochrome format now correctly import as monochrome.
 
-# What's new in the March update
+## March 2022
 
 {% alert type="danger" %}
 After downloading the update you need to clear your shader cache by deleting the `shader_cache` folder. You also need to update your shader template files.
 {% /alert %}
 
-## Content
+Content:
 * Various changes to tags and data files. Updating your tag set is highly recommended.
 * Content is now stored in a single [7z](https://en.wikipedia.org/wiki/7z) file. A script is included to automatically extract these files.
 
-## FBX
+Tool:
 * Fixed FBX-to-JMS command including geometry from render and physics in physics output.
 
-## Guerilla
-
+Guerilla:
 * Fix flags displaying weirdly unless the window was refreshed.
 * Add flag in scenario tag to disable Bungie MP tag patches.
 
-## Sapien
-
+Sapien:
 * Fixed Sapien hanging if a netgame flag had "All except CTF" for the type.
 
-# What's new in the season 8 hotfix v1
+## November 2021
 
-## FBX
+Tool:
 * FBX-to-JMS now writes all regions used in the FBX file properly.
-
-## Tool
-
 * Backwash source files should no longer trigger an assert.
 * Earthcity_1 will no longer trigger an assert when importing.
 * New commands `extract-bitmap-dds` and `export-bitmap-tga` added.
 
-## Sapien & Standalone
-
+Sapien & standalone:
 * Fixed IN_RANGE assert when editing level data.
 * Now renders geometry error info such as degenerate triangles and overlapping faces.
 * Some speedups for BSP Havok representation. Loading times should be a bit faster.
@@ -128,7 +117,7 @@ After downloading the update you need to clear your shader cache by deleting the
 * Shaders are now cached in `shader_cache`.
 * Brand new loading screen more in-line with the Halo 3+ one.
 
-# What's changed?
+# Comparison to H2V
 ## General changes from stock H2V tools
 * Tools are not stripped down, you can create models, animations, different types of textures, sounds and more!
 * FBX support was ported over from [H1A tools](~h1a-ek), the legacy export tools were not included.
@@ -166,16 +155,7 @@ All [tags](~) used in H2C are included meaning tag extraction is no longer requi
 - A *`tag_release`* build (`tool_fast.exe`) was included alongside the typical *`tag_test`* builds.
 - Optional argument support was ported from [H1A tool](~h1a-tool).
 
-## Changes from H2Codez enhanced H2V-EK
-The tools include many improvements over an [H2Codez](~) enhanced H2V-EK, most notably:
-
-* Render models can be created without using the BSP conversion method or other third-party tools.
-* Sounds can be imported directly instead of using the CE upgrade pipeline.
-* Tag reloading is fully functional.
-* Fully functional player simulation.
-* Better overall stability.
-
-# Transferring tags from H2V
+## Transferring tags from H2V
 If you have existing H2V tags they should largely work in MCC. Some tags will not work due to graphical changes and the like.
 Steps for transferring:
 1. Ensure MCC stock tags are extracted to the target path for the new MCC tagset.
@@ -195,6 +175,15 @@ Remember it needs to load all your tags which can take quite some time.
 {% /alert %}
 
 H2 MCC tags can't currently be downgraded to work in H2V so consider this a one way upgrade. Follow best practices and keep a backup of your old files.
+
+## Changes from H2Codez
+The tools include many improvements over an [H2Codez](~)-enhanced H2V-EK, most notably:
+
+* Render models can be created without using the BSP conversion method or other third-party tools.
+* Sounds can be imported directly instead of using the CE upgrade pipeline.
+* Tag reloading is fully functional.
+* Fully functional player simulation.
+* Better overall stability.
 
 # Known issues
 

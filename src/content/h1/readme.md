@@ -9,6 +9,8 @@ thanks:
   gbMichelle: H1A/MCC lineage information
   Hasuku: Xbox modding lineage
   Kavawuvi: Engine versions
+  Vaporeon: Analyzing marketing beta
+  Neo: Providing the marketing beta
 ---
 {% figure src="box-art.jpg" %}
 Halo's box art
@@ -48,7 +50,7 @@ Often called **retail** or **PC**, this edition is the classic port of Halo 1 to
 
 The game received several patches since its release to address remote exploits, remove the CD requirement, replace the GameSpy Arcade lobby, and other minor improvements. Its current version is `1.0.10` ([2014][patch]).
 
-A **beta version** of Halo PC can also be found online. It has [unfinished versions of PC-exclusive content][pc-beta-2] and [weapon tuning][pc-beta-1] similar to pre-release Xbox versions.
+Several beta versions of Halo PC can also be found online. Beta 1.5 has [unfinished versions of PC-exclusive content][pc-beta-2] and [weapon tuning][pc-beta-1] similar to pre-release Xbox versions. [Marketing beta 1.8][pc-beta-3] features doppler and a model detail option.
 
 ## Custom Edition (PC, Gearbox Software, 2004)
 Custom edition, often called **Halo CE** or **CE** is a standalone version of Halo PC which supports custom maps created by the [HEK](~), [released in 2004][custom-edition-launch]. Like Halo PC it features a server browser and its own `haloceded.exe` dedicated server, but lacks the campaign. [Maps](~map) are incompatible between the editions.
@@ -87,6 +89,7 @@ The community tool [Invader](~) also supports building H1A caches. The [SeT](~) 
 [xemu]: https://github.com/mborgerson/xemu/wiki
 [pc-beta-1]: https://www.youtube.com/watch?v=fvXuoceVhpg
 [pc-beta-2]: https://www.youtube.com/watch?v=qAK-rIR_st8
+[pc-beta-3]: https://archive.org/details/halopcmarketingbeta
 [h15]: https://www.youtube.com/watch?v=_a0R8SOIjWQ
 [h15-maps-ce]: https://opencarnage.net/index.php?/topic/7455-halo-15-maps-converted-to-ce/
 [h1final]: http://halo1final.com

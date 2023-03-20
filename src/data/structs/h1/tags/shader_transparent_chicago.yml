@@ -119,6 +119,15 @@ type_defs:
     bits:
       - name: don't_fade_active_camouflage
       - name: numeric_countdown_timer
+      - name: custom_edition_blending
+        comments:
+          en: >
+            Custom edition originally had an incorrect implementation of the
+            _multiply_ and _double multiply_ framebuffer blend functions for
+            transparent shaders which made fully dark pixels transparent. MCC
+            is fixed but this flag allows modders to use custom edition's
+            blending, which can help when porting legacy tags to the updated
+            engine.
   ShaderTransparentChicago:
     class: struct
     extends:

@@ -1,10 +1,9 @@
 ---
 title: H2Codez
-stub: true
 about: 'tool:H2Codez'
-info: >
-  * [Link to official repo](https://github.com/Project-Cartographer/H2Codez) *
-  [Patcher/installer for
+info: |
+  * [Link to official repo](https://github.com/Project-Cartographer/H2Codez)
+  * [Patcher/installer for
   H2V-EK](https://github.com/Project-Cartographer/H2Codez-Installer)
 keywords:
   - H2Codez
@@ -18,9 +17,9 @@ related:
   - /h2/tools/h2v-ek/h2v-sapien
   - /h2/tools/h2v-ek/h2v-guerilla
 ---
-**H2Codez** is a mod for the [Halo 2 Vista Editing Kit](~h2v-ek) (H2V-EK) that aims to restore some of the missing or damaged functionality.
+**H2Codez** is a mod for the legacy [Halo 2 Vista Editing Kit](~h2v-ek) (H2V-EK) that aims to restore some of its missing or damaged functionality.
 
-## Changelog ##
+# Changelog
 * Restore tool commands used by bungie to distribute lightmapping over multiple machines.
 * Real-time tag editing.
 * Increased FPS in Sapien (hardware TCL/vertex processing).
