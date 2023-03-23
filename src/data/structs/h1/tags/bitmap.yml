@@ -39,6 +39,15 @@ type_defs:
           en: >
             This format is only supported on Xbox and MCC. Using this format
             can significantly reduce tag size for monochromatic bitmaps.
+      - name: high-quality_compression
+        meta:
+          h1a_only: true
+        comments:
+          en: >
+            [BC7](https://learn.microsoft.com/en-us/windows/win32/direct3d11/bc7-format)
+            is a new compression format supported in MCC. It allows each compressed
+            block of pixels to be encoded with a different allocation of bits per
+            channel, providing good compression and maintaining a high quality.
   BitmapUsage:
     class: enum
     size: 2
@@ -162,7 +171,10 @@ type_defs:
       - name: dxt5
       - name: p8_bump
         comments:
-          en: This format is only supported on Xbox.
+          en: This format is only supported on Xbox and MCC.
+      - name: bc7
+        comments:
+          en: This format is only supported on MCC.
   BitmapDataFlags:
     class: bitfield
     size: 2

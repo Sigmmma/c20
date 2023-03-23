@@ -48,6 +48,15 @@ type_defs:
             see in dark spaces. This is used for items which are important to
             gameplay like weapons and powerups.
       - name: not_a_pathfinding_obstacle
+      - name: extension_of_parent
+        meta:
+          h1a_only: true
+      - name: cast_shadow_by_default
+        meta:
+          h1a_only: true
+      - name: does_not_have_remastered_geometry
+        meta:
+          h1a_only: true
   ObjectFunctionIn:
     class: enum
     size: 2

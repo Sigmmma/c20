@@ -19,6 +19,8 @@ When no shader tag can be found, Tool will ask you to generate an empty one by c
 
 Sapien and/or Halo may crash if you do not set up any [bitmap](~h1/tags/bitmap) references in these new shaders so do that before proceeding; empty shaders are invalid.
 
+Legacy Tool is hard-coded to not find any shader matches for the cut level `levels\b20`. This is no longer the case in H1A Tool.
+
 # Special materials
 These material names are hard-coded into Tool and have special meaning. They do not need shader tags.
 

@@ -30,6 +30,8 @@ Objects receive a few parameters from [the environment](~lightmaps#lighting-for-
 
 You can test the latter two scenarios by setting `debug_collision_skip_vectors 1` to make the ray cast always fail. Scenery which are outside the BSP will also fail to get a ground point and therefore receive default lighting.
 
+BSP switches do not cause fixed objects to resample lighting.
+
 # Related HaloScript
 
 {% relatedHsc game="h1" tagFilter="object" /%}

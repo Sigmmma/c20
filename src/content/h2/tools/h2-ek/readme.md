@@ -40,6 +40,12 @@ Pictured: Location of the mod tools in the steam library.
 2. Re-run `Extract H2EK.bat` and replace all files.
 
 # Changelog
+This changelog is focused on known modding-related changes and is not guaranteed to be complete.
+
+## TBD 2023
+* Added a [weapon](~) flag to use third person camera while holding it.
+* Camera point transitions now interpolate correctly over 60 FPS.
+
 ## December 2022
 * Guerilla will no longer crash when opening [multiplayer_variant_settings_interface_definition](~) tags.
 * [Antenna](~) widgets will now render on objects such as the Warthog.
@@ -58,7 +64,7 @@ General:
 Content:
 * Various changes to tags and data files. Updating your tag set is highly recommended.
 
-GUerilla:
+Guerilla:
 * String list editor improvements.
 
 Standalone:

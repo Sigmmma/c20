@@ -32,6 +32,19 @@ Pictured: Location of the mod tools in the steam library.
 2. Re-run `Extract (HREK).bat` and replace all files.
 
 # Changelog
+This changelog is focused on known modding-related changes and is not guaranteed to be complete.
+
+## TBD 2023
+* Fixed background sounds not playing in Sapien.
+* Importing a BSP with water_physics no longer causes import errors when using tool_fast.
+* Add support for FSBs with custom names in MCC.
+* Fixed lightmapping failure.
+* Camera point transitions now interpolate correctly over 60 FPS.
+* Reloading the globals tag no longer crashes Sapien.
+* Using `debug_objects` no longer crashes Sapien/Standalone at part of ff10_prototype.
+* Reduced verbosity of Tool's `fbx-to-gr2` logging.
+* Fixed Tool stripper_wrapper assert on complex geometry.
+
 ## December 2022
 * Instance imposters can now be generated.
 * Tool command `import` will no longer show garbage characters.
@@ -47,7 +60,6 @@ Pictured: Location of the mod tools in the steam library.
 * Updated icons for tools.
 * Project chooser added.
 * The Sapien/Standalone debug menu is properly scaled for the window size.
-* Fixed lightmapping failure.
 * Fixed a loud repeating sound distortion on some sounds in Sapien/Standalone.
 * Console tab stops adjust with viewport resolution.
 * Fixed crash in `structure_instance_snapshot`.

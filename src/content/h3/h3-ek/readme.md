@@ -38,6 +38,17 @@ Pictured: Location of the mod tools in the steam library.
 2. Re-run `Extract (H3EK).bat` and replace all files.
 
 # Changelog
+This changelog is focused on known modding-related changes and is not guaranteed to be complete.
+
+## TBD 2023
+* Added missing bitmap tags for s3d_tutorial.
+* Fixed screenshot commands creating strange artifacts when screen effects are enabled.
+* Add support for FSBs with custom names in MCC.
+* Camera point transitions now interpolate correctly over 60 FPS.
+* Fixed Guerilla having distorted sound playback on certain tags.
+* Sounds imported into a new FSB bank no longer have corrupted playback in Sapien/Standalone.
+* `m_prediction_quanta` and `m_prediction_molecules` limits aligned with ODST.
+
 ## December 2022
 * AI objectives crash fix
 * Unused fields removed from [scenario](~) and [globals](~) tags

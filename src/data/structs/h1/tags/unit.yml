@@ -355,6 +355,13 @@ type_defs:
         type: Block
         type_args:
           T: UnitCameraTrack
+        comments:
+          en: >
+            First person and third person camera tracks for the unit. The third
+            person view is used when toggling third person mode in
+            [Standalone](~h1a-standalone-build#debug-camera-controls)
+            or when a weapon's [_uses 3rd person camera_](~weapon#tag-field-weapon-flags-uses-3rd-person-camera)
+            flag is set.
       - name: seat_acceleration_scale
         type: Point3D
       - type: pad

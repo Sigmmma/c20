@@ -36,11 +36,9 @@ Artists should ensure that the bump map referenced by a shader is a valid normal
 Modders who are porting older Custom Edition maps to MCC may find that existing shaders have this problem, since environmental bump mapping was unsupported in H1CE and the original mappers would not have seen this darkening.
 
 ## Shading artifacts
-{% comment %}
 {% figure src="artifacts.jpg" inline=false %}
 Left: default stock shaders in _Chiron TL-34_ and _The Silent Cartographer_. Right: The same shaders with the alternate bump mapping flag enabled.
 {% /figure %}
-{% /comment %}
 
 By default, environmental bump mapping is rendered by darkening surfaces based on the dot product (angle difference) between incoming light and the bump map. However, in some locations and lighting setups this can result in strange triangular shading artifacts that _look like_ bad smoothing despite level geometry having the intended normals:
 
@@ -49,9 +47,7 @@ By default, environmental bump mapping is rendered by darkening surfaces based o
 
 This could be considered a legacy bug, because the baked lightmap already accounts for diffuse attenuation and it shouldn't be doubly applied. It is made worse by the fact that both the intermediate lightmap mesh and baked lightmap texture have limited resolution so light bleeds into areas it shouldn't, and that per-vertex incident radiosity vectors cannot represent quickly changing light directions across a surface.
 
-{% comment %}
 You can set the new [_alternate bump attenuation_](#tag-field-shader-environment-flags-use-alternate-bump-attenuation) flag to use a different bump mapping method (similar to Halo 2's) which removes these artifacts at the cost of desaturating some highlights near coloured light sources toward white.
-{% /comment %}
 
 Modders who are porting maps from Custom Edition to MCC may also find this useful since the lack of bump mapping in H1CE meant the original mappers never would have seen this issue in their maps and worked around it. Use `debug_camera 1` to help identify the shader if needed.
 

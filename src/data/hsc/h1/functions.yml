@@ -3550,6 +3550,14 @@ functions:
         (or zero, if the animation is over). This function intentionally returns
         a value **2 frames lower** than the actual remaining frame count so scripts
         waiting for the animation to end can do something before it's over.
+  - slug: screenshot_cubemap
+    info:
+      en: |-
+        ```hsc
+        (<void> screenshot_cubemap <string>)
+        ```
+        Takes a cubemap screenshot from the camera's point of view and saves as `<name>.tif`.
+        It can then be used to import a cubemap bitmap tag.
   - slug: script_doc
     info:
       en: |-

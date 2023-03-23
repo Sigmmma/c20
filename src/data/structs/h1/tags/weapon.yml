@@ -19,8 +19,14 @@ type_defs:
     size: 4
     bits:
       - name: vertical_heat_display
+        meta:
+          unused: true
       - name: mutually_exclusive_triggers
+        meta:
+          unused: true
       - name: attacks_automatically_on_bump
+        meta:
+          unused: true
       - name: must_be_readied
       - name: doesn't_count_toward_maximum
         comments:
@@ -31,7 +37,11 @@ type_defs:
       - name: aim_assists_only_when_zoomed
       - name: prevents_grenade_throwing
       - name: must_be_picked_up
+        meta:
+          unused: true
       - name: holds_triggers_when_dropped
+        meta:
+          unused: true
       - name: prevents_melee_attack
       - name: detonates_when_dropped
         comments:
@@ -42,8 +52,21 @@ type_defs:
       - name: cannot_fire_at_maximum_age
       - name: secondary_trigger_overrides_grenades
       - name: obsolete_does_not_depower_active_camo_in_multilplayer
+        meta:
+          unused: true
       - name: enables_integrated_night_vision
       - name: ais_use_weapon_melee_damage
+      - name: prevents_crouching
+        meta:
+          h1a_only: true
+      - name: uses_3rd_person_camera
+        meta:
+          h1a_only: true
+        comments:
+          en: >
+            While this weapon is held the player will have a third person view.
+            The player unit's [second _camera track_](~unit#tag-field-camera-tracks)
+            is used for this. The camera smoothly transitions to/from third person.
   WeaponSecondaryTriggerMode:
     class: enum
     size: 2
