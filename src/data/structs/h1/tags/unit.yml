@@ -225,8 +225,23 @@ type_defs:
       - name: driver
       - name: gunner
       - name: third_person_camera
+        comments:
+          en: >
+            The player will use a third person camera when occupying this seat.
+            If this flag is not set, and _allow weapons_ is set, the player will
+            still use a third person camera if they are holding a
+            [third person weapon](~weapon#tag-field-weapon-flags-uses-3rd-person-camera).
+            This seat's [_camera track_](#tag-field-seats-camera-tracks) is always
+            used, not the player unit's, and it defaults to the
+            [globals default](~globals#tag-field-camera-default-unit-camera-track)
+            if not set.
       - name: allows_weapons
       - name: third_person_on_enter
+        comments:
+          en: >
+            When entering the seat the player will temporarily enter third
+            person camera before returning to first person. The Warthog
+            passenger seat uses this.
       - name: first_person_camera_slaved_to_gun
       - name: allow_vehicle_communication_animations
       - name: not_valid_without_driver
@@ -271,6 +286,15 @@ type_defs:
           T: UnitCameraTrack
         meta:
           hek_max_count: 2
+        comments:
+          en: >
+            The "loose" camera track is used for this seat's third person view.
+            You may wish to provide this even for first person seats without the
+            [_third person camera_](#tag-field-seats-flags-third-person-camera)
+            flag because the camera may still be forced into third person if
+            the seat allows weapons and the player is holding a third person weapon.
+            If not set, the [globals default](~globals#tag-field-camera-default-unit-camera-track)
+            is used.
       - name: unit_hud_interface
         type: Block
         type_args:
@@ -355,13 +379,19 @@ type_defs:
         type: Block
         type_args:
           T: UnitCameraTrack
+        meta:
+          hek_max_count: 2
         comments:
           en: >
-            First person and third person camera tracks for the unit. The third
-            person view is used when toggling third person mode in
+            The first entry is the "loose" camera track, while the second is
+            labeled "tight". The loose camera track, if present, is used for
+            the third person view of a player unit. Don't confuse this with
+            [seat camera tracks](#tag-field-seats-camera-tracks).
+            This third person view is used for the "following camera" mode in
             [Standalone](~h1a-standalone-build#debug-camera-controls)
-            or when a weapon's [_uses 3rd person camera_](~weapon#tag-field-weapon-flags-uses-3rd-person-camera)
-            flag is set.
+            as well as for weapons with [_uses 3rd person camera_](~weapon#tag-field-weapon-flags-uses-3rd-person-camera).
+            If a loose camera track is not present then the third person view
+            uses the [globals default](~globals#tag-field-camera-default-unit-camera-track).
       - name: seat_acceleration_scale
         type: Point3D
       - type: pad
