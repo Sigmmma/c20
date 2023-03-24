@@ -59,6 +59,13 @@ type_defs:
       - name: cast_shadow_by_default
         meta:
           h1a_only: true
+        comments:
+          en: >
+            Forces static objects like scenery to have dynamic shadows,
+            unless _does not cast shadow_ is also set. This flag does not
+            prevent such objects from also casting lightmapped shadows, so it is
+            best used for objects which have been added to a map after baking
+            like scenery which is scripted to appear.
       - name: does_not_have_remastered_geometry
         meta:
           h1a_only: true
