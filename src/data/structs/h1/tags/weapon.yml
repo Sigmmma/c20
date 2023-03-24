@@ -59,6 +59,9 @@ type_defs:
       - name: prevents_crouching
         meta:
           h1a_only: true
+          unused: true
+        comments:
+          en: Planned backport from H3, currently unused.
       - name: uses_3rd_person_camera
         meta:
           h1a_only: true

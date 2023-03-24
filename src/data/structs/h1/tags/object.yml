@@ -51,12 +51,21 @@ type_defs:
       - name: extension_of_parent
         meta:
           h1a_only: true
+          unused: true
+        comments:
+          en: >
+            Planned H2 backport, currently unused. In H2 this is documented as
+            "passes all function values to parent and uses parent's markers".
       - name: cast_shadow_by_default
         meta:
           h1a_only: true
       - name: does_not_have_remastered_geometry
         meta:
           h1a_only: true
+        comments:
+          en: >
+            The object does not appear in anniversary/remastered graphics mode.
+            Used for campaign moas.
   ObjectFunctionIn:
     class: enum
     size: 2

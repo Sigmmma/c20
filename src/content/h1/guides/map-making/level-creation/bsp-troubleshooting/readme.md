@@ -7,6 +7,7 @@ related:
 thanks:
   Hari: Reverse engineering the cause of T-junction warnings
   EmmanuelCD: Subcluster limits
+  Kornman: Theorizing cause of floating point precision differences in MCC-era tools.
 ---
 When compiling a level's [structure BSP](~scenario_structure_bsp) using [Tool](~h1a-tool#structure-compilation) you may encounter warnings or errors in Tool's output indicating problems with your model, for example:
 
@@ -204,6 +205,15 @@ It is common for modeling operations like extruding and merging to produce degen
 
 ![](degenerate_uvs.mp4)
 
+## Exception: !point_is_coplanar || _realcmp(transformed_point.z, 0.f, k_real_epsilon * 2)
+In full this error appears as:
+
+```
+EXCEPTION halt in e:\jenkins\workspace\mcch1code-release\mcc\release\h1\code\h1a2\sources\structures\radiosity\intermediate_radiosity.c,#890: !point_is_coplanar || _realcmp(transformed_point.z, 0.f, k_real_epsilon * 2)
+```
+
+Tool is encountering a floating point precision problem, likely from your map being too big. This was less likely to occur in the legacy HEK because MCC-era tools use SSE2 which has [lower floating point precision][precision] than the x87 FPU.
+
 ## Warning: Clusters have no background sound or sound environment
 During radiosity you may see this warning logged:
 
@@ -226,3 +236,4 @@ The following error messages were found in `tool.exe` but could not be reproduce
 
 [blender-tool-settings]: https://docs.blender.org/manual/en/latest/modeling/meshes/tools/tool_settings.html#transform
 [wiki-convex]: https://en.wikipedia.org/wiki/Convex_polytope
+[precision]: https://en.wikipedia.org/wiki/SSE2#Differences_between_x87_FPU_and_SSE2
