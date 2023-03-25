@@ -32,7 +32,7 @@ Pictured: Location of the mod tools in the steam library.
 2. Re-run `Extract (HREK).bat` and replace all files.
 
 # Changelog
-This changelog is focused on known modding-related changes and is not guaranteed to be complete.
+This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
 ## TBD 2023
 * Fixed background sounds not playing in Sapien.

@@ -38,7 +38,7 @@ Pictured: Location of the mod tools in the steam library.
 2. Re-run `Extract (H3EK).bat` and replace all files.
 
 # Changelog
-This changelog is focused on known modding-related changes and is not guaranteed to be complete.
+This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
 ## TBD 2023
 * Added missing bitmap tags for s3d_tutorial.
@@ -48,6 +48,7 @@ This changelog is focused on known modding-related changes and is not guaranteed
 * Fixed Guerilla having distorted sound playback on certain tags.
 * Sounds imported into a new FSB bank no longer have corrupted playback in Sapien/Standalone.
 * `m_prediction_quanta` and `m_prediction_molecules` limits aligned with ODST.
+* Fixed instance geometry often failing to show correct dynamic cubemaps.
 
 ## December 2022
 * AI objectives crash fix

@@ -40,10 +40,12 @@ Pictured: Location of the mod tools in the steam library.
 2. Re-run `Extract H2EK.bat` and replace all files.
 
 # Changelog
-This changelog is focused on known modding-related changes and is not guaranteed to be complete.
+This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
 ## TBD 2023
 * Camera point transitions now interpolate correctly over 60 FPS.
+* Added a weapon flag to use third person camera while holding it.
+* Added 4 new outer center anchors for HUD elements.
 
 ## December 2022
 * Guerilla will no longer crash when opening [multiplayer_variant_settings_interface_definition](~) tags.

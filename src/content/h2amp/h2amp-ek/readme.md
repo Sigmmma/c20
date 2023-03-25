@@ -9,7 +9,7 @@ info: |
 The **Halo 2 Anniversary MP Mod Tools** is the official release of content creation tools for [H2A MP](~h2amp). These tools are updated versions of the original internal ones and are closest in relation to [Halo 4's tools](~h4-ek).
 
 # Changelog
-This changelog is focused on known modding-related changes and is not guaranteed to be complete.
+This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
 ## TBD 2023
 * Fixed background sounds not playing in Sapien.
@@ -21,3 +21,9 @@ This changelog is focused on known modding-related changes and is not guaranteed
 * Camera point transitions now interpolate correctly over 60 FPS.
 * Pasting text into Sapien's console no longer replaces existing text.
 * Text can now be pasted into Standalone's console.
+* Fixed crashes in Foundation:
+  * Using sound tag playback controls,
+  * Keyword Chooser.
+* Fixed Tag Mover failing to connect to depot and being unusable.
+* Controller triggers now work in Standalone.
+* Tool no longer logs a rasterizer warning.

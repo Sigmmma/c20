@@ -9,7 +9,7 @@ info: |
 The **Halo 4 Mod Tools** are the official release of content creation tools for [Halo 4](~h4). They are updated versions of the original internal tools used during development of the game and are an evolution of [Halo Reach's tools](~hr-ek).
 
 # Changelog
-This changelog is focused on known modding-related changes and is not guaranteed to be complete.
+This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
 ## TBD 2023
 * Fixed background sounds not playing in Sapien.
@@ -21,3 +21,10 @@ This changelog is focused on known modding-related changes and is not guaranteed
 * Camera point transitions now interpolate correctly over 60 FPS.
 * Pasting text into Sapien's console no longer replaces existing text.
 * Text can now be pasted into Standalone's console.
+* Fixed crashes in Foundation:
+  * Opening or creating particle_emitter_custom_points,
+  * Using sound tag playback controls,
+  * Keyword Chooser,
+  * Usurp Preview button in materials.
+* Fixed Tag Mover failing to connect to depot and being unusable.
+* Tool no longer logs a rasterizer warning.

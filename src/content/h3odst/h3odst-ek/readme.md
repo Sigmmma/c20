@@ -34,13 +34,14 @@ Pictured: Location of the mod tools in the steam library.
 7. (Optional) Check out the [guides hub](~guides) to learn more about modding or install a launcher like [Osoyoos](~) if you don't like using the command line.
 
 # Changelog
-This changelog is focused on known modding-related changes and is not guaranteed to be complete.
+This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
 ## TBD 2023
 * Add support for FSBs with custom names in MCC.
 * Fixed being unable to manipulate trigger volumes in Sapien.
 * Camera point transitions now interpolate correctly over 60 FPS.
 * Sounds imported into a new FSB bank no longer have corrupted playback in Sapien/Standalone.
+* Fixed instance geometry often failing to show correct dynamic cubemaps.
 
 ## December 2022
 * AI objectives crash fix

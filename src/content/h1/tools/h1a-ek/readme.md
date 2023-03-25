@@ -62,7 +62,7 @@ Pictured: Location of the mod tools in the steam library.
 2. Re-run `Extract (HCEEK).bat` and replace all files.
 
 # Changelog
-This changelog is focused on known modding-related changes and is not guaranteed to be complete.
+This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
 ## TBD 2023
 * Backported [`screenshot_cubemap`](~scripting#functions-screenshot-cubemap) from H2 to H1.

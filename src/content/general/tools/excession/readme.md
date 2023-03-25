@@ -21,3 +21,4 @@ keywords:
 * Upload screen relays messages to the user if they likely exceeded their Steam Cloud quota.
 * Errors now logged when there are missing map files for the scenarios defined. The MCC UI will also ignore such invalid content.
 * Fixed custom campaign mission names not showing after mission number.
+* Fixed a crash and "save all failed" errors when saving background videos.
