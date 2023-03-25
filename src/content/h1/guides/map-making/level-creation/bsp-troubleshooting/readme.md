@@ -212,7 +212,7 @@ In full this error appears as:
 EXCEPTION halt in e:\jenkins\workspace\mcch1code-release\mcc\release\h1\code\h1a2\sources\structures\radiosity\intermediate_radiosity.c,#890: !point_is_coplanar || _realcmp(transformed_point.z, 0.f, k_real_epsilon * 2)
 ```
 
-Tool is encountering a floating point precision problem, likely from your map being too big. This was less likely to occur in the legacy HEK because MCC-era tools use SSE2 which has [lower floating point precision][precision] than the x87 FPU.
+Tool is encountering a floating point precision problem, likely from your map being too big. This was less likely to occur in the legacy HEK because MCC-era tools use SSE2 which has [lower floating point precision][precision] than the x87 FPU. You can try working around this issue with `-noassert`.
 
 ## Warning: Clusters have no background sound or sound environment
 During radiosity you may see this warning logged:

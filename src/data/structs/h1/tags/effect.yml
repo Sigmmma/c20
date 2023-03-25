@@ -18,9 +18,17 @@ type_defs:
     bits:
       - name: deleted_when_attachment_deactivates
       - name: required_for_gameplay_cannot_optimize_out
-      - name: do_not_cull
+      - name: must_be_deterministic
         meta:
           cache_only: true
+          h1a_only: true
+        comments:
+          en: >
+            Prevents culling of effects that are important for synchronous
+            networking determinism.
+      - name: disabled_in_remastered_by_blood_setting
+        meta:
+          h1a_only: true
   EffectLocation:
     class: struct
     assert_size: 32
