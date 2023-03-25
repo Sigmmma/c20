@@ -24,6 +24,11 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Fixed crashes in Foundation:
   * Using sound tag playback controls,
   * Keyword Chooser.
-* Fixed Tag Mover failing to connect to depot and being unusable.
+* Removed Tag Mover dependency on tag depot.
 * Controller triggers now work in Standalone.
 * Tool no longer logs a rasterizer warning.
+* Fixed JSON property `bungie_specular_intensity` incorrectly setting `specular_power`
+* Added a solution for setting up marker permutations in FBX to GR2 pipeline.
+* Fixed prefab markers and scenario lights not having rotations written on import.
+* Added [play builds](~build-types#optimization-options) of Sapien and Standalone.
+* Using period key in MegaloEdit now brings up autocomplete.

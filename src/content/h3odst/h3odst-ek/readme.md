@@ -42,6 +42,15 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Camera point transitions now interpolate correctly over 60 FPS.
 * Sounds imported into a new FSB bank no longer have corrupted playback in Sapien/Standalone.
 * Fixed instance geometry often failing to show correct dynamic cubemaps.
+* Fixed preference.dat error seen when converting an FBX to JMS while another ODST mod tool is open.
+* Fixed Sapien crashing when switching BSP/zone set.
+* Added [play builds](~build-types#optimization-options) of Sapien, Standalone, and Guerilla.
+* Added forked MP biped for odst_recon and odst_oni_op.
+* ODST MP game variants are now in the PC build's game_variants and show expected settings.
+* Removed various unused or deprecated tag fields.
+* Removed Guerilla's Tag Mover dependency on tag depot.
+* Picking up a gravity hammer while `skull_third_person` is active no longer crahses Standalone.
+* Added Tool command `extract-unicode-strings`.
 
 ## December 2022
 * AI objectives crash fix

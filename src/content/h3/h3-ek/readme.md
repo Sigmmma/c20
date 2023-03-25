@@ -49,6 +49,13 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Sounds imported into a new FSB bank no longer have corrupted playback in Sapien/Standalone.
 * `m_prediction_quanta` and `m_prediction_molecules` limits aligned with ODST.
 * Fixed instance geometry often failing to show correct dynamic cubemaps.
+* Fixed distorted sound playback on certain sound tags.
+* Backported support to set [device_machine](~) variants from ODST (Sapien and Guerilla).
+* Added [play builds](~build-types#optimization-options) of Sapien, Standalone, and Guerilla.
+* Removed various unused or deprecated tag fields.
+* Removed Guerilla's Tag Mover dependency on tag depot.
+* Updated an outdated description for "Game Engine Settings Halo3" in [multiplayer_globals](~) tag.
+* Added Tool command `extract-unicode-strings`.
 
 ## December 2022
 * AI objectives crash fix

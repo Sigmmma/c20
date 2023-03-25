@@ -22,3 +22,4 @@ keywords:
 * Errors now logged when there are missing map files for the scenarios defined. The MCC UI will also ignore such invalid content.
 * Fixed custom campaign mission names not showing after mission number.
 * Fixed a crash and "save all failed" errors when saving background videos.
+* Fixed crash when exporting Map Info BLF when map title is 32 characters or longer.

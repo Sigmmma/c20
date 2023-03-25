@@ -34,7 +34,6 @@ Resources are loaded from individual files stored on disk that can be edited usi
 
 Resources are loaded from cache files (sometimes referred to as "maps" because of their extension), these can't be easily edited and only go through minimal validation.
 
-
 # Optimization options
 
 Halo games in MCC support multiple levels of optimization depending on what features are needed, in decreasing order of optimization:

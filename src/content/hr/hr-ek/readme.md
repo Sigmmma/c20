@@ -44,6 +44,10 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Using `debug_objects` no longer crashes Sapien/Standalone at part of ff10_prototype.
 * Reduced verbosity of Tool's `fbx-to-gr2` logging.
 * Fixed Tool stripper_wrapper assert on complex geometry.
+* Fixed Foundation crashing when launching scenario.
+* Fixed Sapien crashing when using structure painter.
+* Added a solution for setting up marker permutations in FBX to GR2 pipeline.
+* Added [play builds](~build-types#optimization-options) of Sapien and Standalone.
 
 ## December 2022
 * Instance imposters can now be generated.
