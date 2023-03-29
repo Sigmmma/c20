@@ -157,24 +157,54 @@ type_defs:
         size: 24
       - name: ai_sideslip_distance
         type: float
+        comments:
+          en: >
+            For floating vehicles, maximum distance for free movement.
       - name: ai_destination_radius
         type: float
+        comments:
+          en: >
+            How close to a destination the pilot will go before searching for another one.
       - name: ai_avoidance_distance
         type: float
+        comments:
+          en: >
+            How far the pilot tries to stay away from other units.
       - name: ai_pathfinding_radius
         type: float
+        comments:
+          en: >
+            How far the pilot tries to stay way from pathfinding markers.
       - name: ai_charge_repeat_timeout
         type: float
+        comments:
+          en: >
+            Minimum time between charge attempts.
       - name: ai_strafing_abort_range
         type: float
+        comments:
+          en: >
+            Pilot aborts a charge when this close to the target.
       - name: ai_oversteering_bounds
         type: Bounds
         type_args:
           T: float
+        comments:
+          en: >
+            When AI pilot's steering angle is between
+            these bounds, use oversteering AI behaviour.
       - name: ai_steering_maximum
         type: Angle
+        comments:
+          en: >
+            The maximum angle AI pilots can steer at
+            under normal circumstances.
       - name: ai_throttle_maximum
         type: float
+        comments:
+          en: >
+            How fast the pilot can attempt to drive their vehicle,
+            as a fraction of the vehicle's max speed. 0 uses max speed.
       - name: ai_move_position_time
         type: float
       - type: pad
