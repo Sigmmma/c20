@@ -18,6 +18,10 @@ type_defs:
       - name: slide_wakes_physics
       - name: kills_riders_at_terminal_velocity
       - name: causes_collision_damage
+        comments:
+          en: >
+            Makes the vehicle damage actors when colliding with them,
+            using _vehicle_collision_damage_ from [globals](~).
       - name: ai_weapon_cannot_rotate
       - name: ai_does_not_require_driver
       - name: ai_unused
@@ -159,7 +163,7 @@ type_defs:
         type: float
         comments:
           en: >
-            For floating vehicles, maximum distance for free movement.
+            For floating vehicles, maximum distance for free movement under AI control.
       - name: ai_destination_radius
         type: float
         comments:
