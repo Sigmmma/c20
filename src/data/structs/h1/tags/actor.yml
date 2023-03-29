@@ -15,13 +15,22 @@ type_defs:
       - name: sneak_uncovering_pursuit_position
       - name: unused
       - name: shoot_at_target_s_last_location
+        comments:
+          en: >
+            When no target is visible, briefly shoot at where the target was last seen.
       - name: try_to_stay_still_when_crouched
       - name: crouch_when_not_in_combat
       - name: crouch_when_guarding
       - name: unused_1
       - name: must_crouch_to_shoot
       - name: panic_when_surprised
+        comments:
+          en: >
+            When an enemy unit is newly detected within this actor's [surprise distance](#tag-field-surprise-distance), panic.
       - name: always_charge_at_enemies
+        comments:
+          en: >
+            Always ignore other paramaters such as desired combat ranges and run at enemies.
       - name: gets_in_vehicles_with_player
       - name: start_firing_before_aligned
       - name: standing_must_move_forward
@@ -35,7 +44,14 @@ type_defs:
       - name: panicked_by_unopposable_enemy
       - name: crouch_when_hiding_from_unopposable
       - name: always_charge_in_attacking_mode
+        comments:
+          en: >
+            When this actor's [squad](~scenario#tag-field-encounters-squads) is in attacking mode, ignore other paramaters
+            such as desired combat ranges and run straight at enemies.
       - name: dive_off_ledges
+        comments:
+          en: >
+            Will not attempt to avoid sheer drops when diving away from dangerous objects.
       - name: swarm
       - name: suicidal_melee_attack
       - name: cannot_move_while_crouching
@@ -51,6 +67,9 @@ type_defs:
       - name: must_stop_to_fire
       - name: disallow_vehicle_combat
       - name: pathfinding_ignores_danger
+        comments:
+          en: >
+            Will not attempt to avoid live grenades, projectiles, environmental damage, etc when moving.
       - name: panic_in_groups
       - name: no_corpse_shooting
   ActorType:
@@ -73,6 +92,9 @@ type_defs:
       - name: sentinel
       - name: none
       - name: mounted_weapon
+    comments:
+      en: >
+        Enables or disables some behaviours (e.g, combat_form can never use grenades).
   ActorUnreachableDangerTrigger:
     class: enum
     size: 2
@@ -498,14 +520,24 @@ type_defs:
         type: float
         meta:
           unit: seconds
+        comments:
+          en: >
+            Minimum time between consecutive melee attempts.
       - name: melee_fudge_factor
         type: float
         meta:
           unit: world units
+        comments:
+          en: >
+            Determines where to start the melee animation:0 begins on top of the target,
+            positive values begin in front of the target, negative values begin behind the target.
       - name: melee_charge_time
         type: float
         meta:
           unit: seconds
+        comments:
+          en: >
+            How long to chase a target to begin a melee attack before giving up.
       - name: melee_leap_range
         type: Bounds
         meta:
@@ -518,6 +550,7 @@ type_defs:
           unit: world units per tick
           min: 0
           max: 1
+        comments:
       - name: melee_leap_chance
         type: float
         meta:
@@ -533,15 +566,26 @@ type_defs:
         meta:
           min: 0
           max: 1
+        comments:
+          en: >
+            When HP is below the berserk damage threshold, the actor may berserk
+            when receiving any damage that deals this much of the actor's maximum HP in one tick. 
       - name: berserk_damage_threshold
         type: float
         meta:
           min: 0
           max: 1
+        comments:
+          en: >
+            Below this fraction of total HP, the actor may berserk when receiving damage,
+            depending on their berserk damage amount.
       - name: berserk_proximity
         type: float
         meta:
           unit: world units
+        comments:
+          en: >
+            When an enemy unit is within this radius of the actor, berserk.
       - name: suicide_sensing_dist
         type: float
         meta:
@@ -551,6 +595,9 @@ type_defs:
         meta:
           min: 0
           max: 1
+        comments:
+          en: >
+            How likely the actor is to berserk when grenades or supercombining projectiles attach to them.
       - type: pad
         size: 12
       - name: guard_position_time
