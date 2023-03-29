@@ -82,14 +82,23 @@ type_defs:
       - name: hunter
       - name: engineer
       - name: assassin
+        comments:
+          en: >
+            Same as Elite.
       - name: player
       - name: marine
+        comments:
+          en: >
+            Same as Player.
       - name: crew
       - name: combat_form
       - name: infection_form
       - name: carrier_form
       - name: monitor
       - name: sentinel
+        comments:
+          en: >
+            Same as Monitor.
       - name: none
       - name: mounted_weapon
     comments:
