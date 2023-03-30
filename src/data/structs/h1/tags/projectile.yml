@@ -14,10 +14,29 @@ type_defs:
     size: 4
     bits:
       - name: oriented_along_velocity
+        comments: 
+          en: >
+            Projectile will always face in the
+            direction it's moving in.
       - name: ai_must_use_ballistic_aiming
+        comments:
+          en: >
+            AI will try to arc their shots to hit their targets rather
+            than firing directly at them. Useful if the projectile has
+            a strong arc or long travel time, throws off AI aim if not.
       - name: detonation_max_time_if_attached
       - name: has_super_combining_explosion
+        comments:
+          en: >
+            If seven of this projectile are attached to the same biped,
+            this projectile's super detonation effect will be triggered.
+            This number is hardcoded and cannot be changed.
       - name: combine_initial_velocity_with_parent_velocity
+        comments:
+          en: >
+            When off, projectiles add the component of the shooter's velocity
+            in the direction of travel when firing. When on, the shooter's
+            unmodified velocity is added to the projectile's when firing.
       - name: random_attached_detonation_time
       - name: minimum_unattached_detonation_time
   ProjectileDetonationTimerStarts:
@@ -64,6 +83,9 @@ type_defs:
     size: 2
     bits:
       - name: only_against_units
+      - name: never_against_units
+        meta:
+          h1a_only: true
   ProjectileScaleEffectsBy:
     class: enum
     size: 2
@@ -185,6 +207,10 @@ type_defs:
         type: float
         meta:
           unit: world units
+        comments:
+          en: >
+            Actors within this distance of the projectile may attempt to
+            avoid it, such as by diving away, depending on actor settings.
       - name: effect
         type: TagDependency
         meta:
