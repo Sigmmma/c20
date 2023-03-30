@@ -200,7 +200,8 @@ type_defs:
         comments:
           en: >
             Makes the trigger behave like a switch. Tap it to turn it on. Tap it
-            again to turn it off.
+            again to turn it off. While on, weapon will continue firing while
+            meleeing or throwing grenades, when dropped, and when switched.
       - name: projectiles_use_weapon_origin
         comments:
           en: >
@@ -810,8 +811,8 @@ type_defs:
         type: float
         comments:
           en: >
-            AI actors will not use this weapon's primary trigger
-            on targets below this range.
+            AI actors will not fire this weapon on targets below this range;
+            but Overcharge [special fire mode](~#tag-field-special-fire-mode-overcharge) will ignore this setting.
       - name: looking_time_modifier
         type: float
       - type: pad
