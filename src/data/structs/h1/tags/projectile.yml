@@ -34,8 +34,9 @@ type_defs:
       - name: combine_initial_velocity_with_parent_velocity
         comments:
           en: >
-            Unknown effect. Even without this flag, the shooter's
-            velocity is added to the projectile's when firing.
+            When off, projectiles add the component of the shooter's velocity
+            in the direction of travel when firing. When on, the shooter's
+            unmodified velocity is added to the projectile's when firing.
       - name: random_attached_detonation_time
       - name: minimum_unattached_detonation_time
   ProjectileDetonationTimerStarts:
