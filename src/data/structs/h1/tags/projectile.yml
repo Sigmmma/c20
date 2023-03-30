@@ -206,6 +206,10 @@ type_defs:
         type: float
         meta:
           unit: world units
+        comments:
+          en: >
+            Actors within this distance of the projectile may attempt to
+            avoid it, such as by diving away, depending on actor settings.
       - name: effect
         type: TagDependency
         meta:
