@@ -82,13 +82,16 @@ type_defs:
     options:
       - name: always
         comments:
-          en: No effect.
+          en: >
+             Movement is penalized at all times while held.
       - name: when_zoomed
         comments:
-          en: No effect.
+          en: >
+            Movement is penalized only when zoomed in.
       - name: when_zoomed_or_reloading
         comments:
-          en: No effect.
+          en: >
+            **Bugged.** Movement is penalized only when _not_ reloading.
   WeaponType:
     class: enum
     size: 2
@@ -207,9 +210,9 @@ type_defs:
       - name: sticks_when_dropped
         comments:
           en: >
-            If true the weapon will keep the trigger state from the time it was
-            dropped. If it was being held while dropped it will continue being
-            held.
+            If true the weapon's trigger will be held down when it is dropped,
+            regardless of whether it was held down by the wielder at the time.
+            These dropped weapons will expend ammunition but not build up age.
       - name: ejects_during_chamber
       - name: discharging_spews
       - name: analog_rate_of_fire
@@ -781,25 +784,34 @@ type_defs:
         size: 4
       - name: movement_penalized
         type: WeaponMovementPenalized
+        meta:
+          h1a_only: true
         comments:
           en: >
-            **Unused**. This was meant to slow the player when using certain
-            weapons like the rocket launcher, but it has no effect ingame
-            regardless of the options, penalty values used, or game mode.
+            Present in previous versions, but has no effect in them. Reduces or
+            inverts player movement by a fraction when this weapon is held. 
       - type: pad
         size: 2
       - name: forward_movement_penalty
         type: Fraction
         comments:
-          en: No effect.
+          en: >
+            The fraction of movement speed lost when moving forward or backward.
+            A value of 1.0 prevents movement. Values greater than 1.0 invert input,
+            up to 2.0 which gives full movement speed in the opposite direction.
       - name: sideways_movement_penalty
         type: Fraction
         comments:
-          en: No effect.
+          en: >
+            As above, but for movement from side to side.
       - type: pad
         size: 4
       - name: minimum_target_range
         type: float
+        comments:
+          en: >
+            AI actors will not use this weapon's primary trigger
+            on targets below this range.
       - name: looking_time_modifier
         type: float
       - type: pad
