@@ -83,6 +83,8 @@ type_defs:
     bits:
       - name: only_against_units
       - name: never_against_units
+        meta:
+          h1a_only: true
   ProjectileScaleEffectsBy:
     class: enum
     size: 2
