@@ -48,6 +48,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Fixed Sapien crashing when using structure painter.
 * Added a solution for setting up marker permutations in FBX to GR2 pipeline.
 * Added [play builds](~build-types#optimization-options) of Sapien and Standalone.
+* Fixed Foundation tag mover crashing if "include data" is selected.
 
 ## December 2022
 * Instance imposters can now be generated.

@@ -31,4 +31,10 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Added a solution for setting up marker permutations in FBX to GR2 pipeline.
 * Fixed prefab markers and scenario lights not having rotations written on import.
 * Added [play builds](~build-types#optimization-options) of Sapien and Standalone.
-* Using period key in MegaloEdit now brings up autocomplete.
+* MegaloEdit:
+  * Using period key now brings up autocomplete.
+  * Weapon parameters supports all weapon / damage reporting types.
+  * Entering an invalid team inheritance no longer crashes.
+  * Setting a team name when a map_object is setup below the teams sections no longer crashes.
+  * Added various autocompletes and and error detections.
+* Fixed dialogue tags crashing Foundation when closed.

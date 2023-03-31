@@ -11,6 +11,8 @@ thanks:
   Mimickal: Explaining bounce timer
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+  Vennobennu: Field documentation
+  FD: Explaining "combine initial velocity with parent velocity"
 ---
 **Projectiles** are special moving objects shot from weapons and thrown as grenades.
 

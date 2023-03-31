@@ -75,6 +75,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Raised [model_animations _units_](~model_animations#tag-field-units) limit to 512, matching OpenSauce.
 * Standalone no longer crashes when rapidly reloading and meleeing at the same time.
 * Campaign co-op now uses ODST-era netcode.
+* Added secondary reload animation support for weapons with dual triggers and magazines.
 
 ## December 2022
 * [A flag](~bitmap#tag-field-flags-use-average-color-for-detail-fade) was added to the bitmap tag that allows users to opt into Halo 2's mipmap fade behaviour rather than it being the default.

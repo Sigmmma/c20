@@ -56,6 +56,9 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Removed Guerilla's Tag Mover dependency on tag depot.
 * Updated an outdated description for "Game Engine Settings Halo3" in [multiplayer_globals](~) tag.
 * Added Tool command `extract-unicode-strings`.
+* Allowed starting profiles to exceed a weapon's "rounds total maximum".
+* Fixed style flags grapple and enforcer weapon control not functioning properly.
+* Added a flag so that infection forms can kill other characters without infecting them.
 
 ## December 2022
 * AI objectives crash fix

@@ -51,6 +51,9 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Removed Guerilla's Tag Mover dependency on tag depot.
 * Picking up a gravity hammer while `skull_third_person` is active no longer crahses Standalone.
 * Added Tool command `extract-unicode-strings`.
+* Allowed starting profiles to exceed a weapon's "rounds total maximum".
+* Added a flag so that infection forms can kill other characters without infecting them.
+* Ported `sound_impulse_time` from H3 to ODST.
 
 ## December 2022
 * AI objectives crash fix
