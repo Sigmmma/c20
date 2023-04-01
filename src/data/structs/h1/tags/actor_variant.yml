@@ -18,6 +18,9 @@ type_defs:
     size: 4
     bits:
       - name: can_shoot_while_flying
+        comments:
+          en: >
+            Also allows grounded AIs to shoot while jumping or falling.
       - name: interpolate_color_in_hsv
         comments:
           en: >
@@ -253,6 +256,10 @@ type_defs:
         type: float
         meta:
           unit: seconds
+        comments:
+          en: >
+            How long this AI follows "New target" firing modifiers when first
+            engaging a target.
       - name: surprise_delay_time
         type: float
         meta:
