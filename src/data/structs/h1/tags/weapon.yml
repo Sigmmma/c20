@@ -201,7 +201,8 @@ type_defs:
           en: >
             Makes the trigger behave like a switch. Tap it to turn it on. Tap it
             again to turn it off. While on, weapon will continue firing while
-            meleeing or throwing grenades, when dropped, and when switched.
+            meleeing or throwing grenades, when dropped, and when switched,
+            firing in unexpected directions in the latter two states.
       - name: projectiles_use_weapon_origin
         comments:
           en: >
@@ -216,12 +217,22 @@ type_defs:
             These dropped weapons will expend ammunition but not build up age.
       - name: ejects_during_chamber
       - name: discharging_spews
+        comments:
+          en: >
+            If true and the trigger is set to discharge on overcharge, will
+            automatically fire every tick for the duration of spew time.
       - name: analog_rate_of_fire
       - name: use_error_when_unzoomed
         comments:
           en: |
-            Makes the trigger always fire completely accurately when zoomed in.
+            Makes the trigger always fire completely accurately when zoomed in,
+            disregarding the triggers' defined error values.
       - name: projectile_vector_cannot_be_adjusted
+        comments:
+          en: >
+            Forces projectiles to be fired in the direction the gun (more precisely
+            the gun's trigger marker) is facing, rather than the direction the
+            wielder is looking. Most relevant for vehicle-mounted weapons.
       - name: projectiles_have_identical_error
         comments:
           en: >
@@ -266,6 +277,10 @@ type_defs:
     size: 2
     options:
       - name: point
+        comments:
+          en: >
+            Causes projectiles' firing angle to be randomly offset by a number
+            between the minimum error and the current error angle (see below).
       - name: horizontal_fan
         comments:
           en: >
@@ -301,6 +316,10 @@ type_defs:
             - effect
       - name: firing_damage
         type: TagDependency
+        comments:
+          en: >
+            Damage effect applied to the wielder when a shot
+            is normally fired. Used for camera shaking, etc.
         meta:
           tag_classes:
             - damage_effect
