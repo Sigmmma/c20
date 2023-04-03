@@ -199,3 +199,6 @@ type_defs:
         meta:
           tag_classes:
             - effect
+        comments:
+          en: >
+            Used for [hover/jet thruster effects](~gbxmodel#markers).
