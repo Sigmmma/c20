@@ -1115,8 +1115,8 @@ type_defs:
       - name: none
         comments:
           en: >
-            Use same behaviour previously defined. Used for starting locations,
-            or empty squads meant for migration
+            Retain behaviour previously defined. Used for starting locations,
+            or empty squads meant for migration.
       - name: sleeping
         comments:
           en: >
