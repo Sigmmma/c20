@@ -64,6 +64,12 @@ type_defs:
           unused: true
         comments:
           en: Unused at this time.
+      - name: do_not_apply_bungie_campaign_tag_patches
+        meta:
+          h1a_only: true
+        comments:
+          en: >
+            Disables the [hardcoded tag patches](~tool#hardcoded-tag-patches)
   ScenarioChildScenario:
     class: struct
     assert_size: 32
@@ -174,9 +180,22 @@ type_defs:
     size: 2
     bits:
       - name: automatically
+        comments:
+          en: >
+            This object does not exist on map start and must be created by a script.
       - name: on_easy
+        meta:
+          unused: true
+        comments:
+          en: >
+            Has no effect on spawning. Use scripts to control difficulty-specific
+            spawning of non-actor objects.
       - name: on_normal
+        meta:
+          unused: true
       - name: on_hard
+        meta:
+          unused: true
   SpawnPrelude:
     class: struct
     assert_size: 32
@@ -374,6 +393,10 @@ type_defs:
       - name: initially_at_rest
       - name: obsolete
       - name: does_accelerate
+        comments:
+         en: >
+           Can be moved by impulses like explosions.
+           Grenades with this flag can be detonated.
   ScenarioEquipment:
     class: struct
     extends:
@@ -634,6 +657,9 @@ type_defs:
         meta:
           min: 0
           max: 3
+        comments:
+          en: >
+            Values above 1 give Overshield layers.
       - name: primary_weapon
         type: TagDependency
         meta:
@@ -1063,6 +1089,9 @@ type_defs:
     size: 2
     options:
       - name: default_by_unit
+        comments:
+          en: >
+            Uses the default team defined in the unit's biped tag.
       - name: player
       - name: human
       - name: covenant
@@ -1239,10 +1268,17 @@ type_defs:
         type: Index
         meta:
           index_of: platoons
-      - name: Tinitial_state
+      - name: initial_state
         type: ScenarioReturnState
-      - name: Treturn_state
+        comments:
+          en: >
+            The squad's or unit's behaviour when initially placed.
+      - name: return_state
         type: ScenarioReturnState
+        comments:
+          en: >
+            The squad's or unit's behaviour when it has been alerted
+            but has since completely lost track of any living enemies.
       - name: flags
         type: ScenarioSquadFlags
       - name: unique_leader_type
@@ -1255,32 +1291,65 @@ type_defs:
         size: 2
       - name: maneuver_to_squad
         type: Index
+        comments:
+          en: >
+            What squad to switch to when maneuvering is triggered,
+            whether by platoon conditions or by a script.
       - name: squad_delay_time
         type: float
       - name: attacking
         type: ScenarioSquadAttacking
+        comments:
+          en: >
+            Which firing positions to use when shooting at enemies.
       - name: attacking_search
         type: ScenarioSquadAttacking
+        comments:
+          en: >
+            Which firing positions to look for a target that's broken
+            line of sight with the squad.
       - name: attacking_guard
         type: ScenarioSquadAttacking
+        comments:
+          en: >
+            Which firing positions to use for the inital/return states
+            "guarding" or "guarding at guard position".
       - name: defending
         type: ScenarioSquadAttacking
+        comments:
+          en: >
+            As above, but used in the defending state.
       - name: defending_search
         type: ScenarioSquadAttacking
       - name: defending_guard
         type: ScenarioSquadAttacking
       - name: pursuing
         type: ScenarioSquadAttacking
+        meta:
+          unused: true
+        comments:
+          en: >
+            AIs never use these firing positions; this field can be left blank.
       - type: pad
         size: 4
       - type: pad
         size: 8
       - name: normal_diff_count
         type: uint16
+          en: >
+            Hoe many actors to spawn on Easy and Normal.
       - name: insane_diff_count
         type: uint16
+        comments:
+          en: >
+            How many actors to spawn on Legendary. Heroic uses the average of
+            this and the previous value.
       - name: major_upgrade
         type: ScenarioMajorUpgrade
+        comments:
+          en: >
+            Along with difficulty level, influences how many actors in the squad
+            will spawn as their major variants instead.
       - type: pad
         size: 2
       - name: respawn_min_actors
@@ -1311,6 +1380,10 @@ type_defs:
           T: ScenarioActorStartingLocation
         meta:
           hek_max_count: 32
+        comments:
+          en: >
+            Squads need at least one valid starting position for units to spawn.
+            If there are more units than valid locations, they will be reused.
       - type: pad
         size: 12
   ScenarioPlatoonFlags:
@@ -1334,6 +1407,10 @@ type_defs:
       - name: 75_dead
       - name: all_but_one_dead
       - name: all_dead
+    comments:
+      en: >
+        Strength is the fraction of total HP across all members
+        of the platoon
   ScenarioPlatoon:
     class: struct
     assert_size: 172
@@ -1610,6 +1687,10 @@ type_defs:
           max: 65534
       - type: pad
         size: 24
+      - comments:
+          en: >
+            Sets of predefined actions for actors to take
+            upon being spawned.
   ScenarioAIAnimationReference:
     class: struct
     assert_size: 60
@@ -2137,7 +2218,7 @@ type_defs:
           en: >-
             Determines the type of map this scenario represents. This also causes
             map compilers like Tool and invader to apply certain
-            [hardcoded tag patches](~tool#hardcoded-tag-patches).
+            [hardcoded tag patches](~tool#hardcoded-tag-patches), but see below in H1A.
       - name: flags
         type: ScenarioFlags
       - name: child_scenarios
