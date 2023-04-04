@@ -1302,12 +1302,14 @@ type_defs:
         comments:
           en: >
             Which firing positions to use when shooting at enemies.
+            Actors will further discriminate between firing positions
+            based on cover provided, proximity of allies or foes, etc.
       - name: attacking_search
         type: ScenarioSquadAttacking
         comments:
           en: >
-            Which firing positions to look for a target that's broken
-            line of sight with the squad.
+            Which firing positions to use when looking for a target
+            that's broken line of sight with the squad.
       - name: attacking_guard
         type: ScenarioSquadAttacking
         comments:
