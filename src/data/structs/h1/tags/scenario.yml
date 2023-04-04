@@ -1113,17 +1113,44 @@ type_defs:
     size: 2
     options:
       - name: none
+        comments:
+          en: >
+            Use same behaviour previously defined. Used for starting locations,
+            or empty squads meant for migration
       - name: sleeping
+        comments:
+          en: >
+            Actors will only be alerted by sounds or physical contact,
+            and will use sleeping animations if they have any.
       - name: alert
+        comments:
+          en: >
+            Actors will stand still and look forward.
       - name: moving_repeat_same_position
+        comments:
+          en: >
+            These and the following behaviours use [move positions](#tag-field-encounters-squads-move-positions) defined
+            in squad data to determine where to move. Use casual walking animations if applicable.
       - name: moving_loop
       - name: moving_loop_back_and_forth
       - name: moving_loop_randomly
       - name: moving_randomly
       - name: guarding
+        comments:
+          en: >
+            Choose one guard firing position and move there, remaining alert afterward.
       - name: guarding_at_guard_position
+        comments:
+          en: >
+            Randomly move between guard firing positions, using running animations.
       - name: searching
+        comments:
+          en: >
+            Randomly move between search firing positions, using searching walking animations.
       - name: fleeing
+        comments:
+          en: >
+            Randomly move between firing positions, using fleeing animations.
   ScenarioSquadFlags:
     class: bitfield
     size: 4
@@ -1376,6 +1403,9 @@ type_defs:
           T: ScenarioMovePosition
         meta:
           hek_max_count: 64
+        comments:
+          en: >
+            Used for actor initial and return states, eg as patrol routes.
       - name: starting_locations
         type: Block
         type_args:
@@ -2217,7 +2247,7 @@ type_defs:
       - name: type
         type: ScenarioType
         comments:
-          en: >-
+          en: >
             Determines the type of map this scenario represents. This also causes
             map compilers like Tool and invader to apply certain
             [hardcoded tag patches](~tool#hardcoded-tag-patches), but see below in H1A.
