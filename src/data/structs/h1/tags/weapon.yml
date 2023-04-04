@@ -831,7 +831,7 @@ type_defs:
         comments:
           en: >
             AI actors will not fire this weapon on targets below this range;
-            but Overcharge [special fire mode](~#tag-field-special-fire-mode-overcharge) will ignore this setting.
+            but Overcharge [special fire mode](~actor_variant#tag-field-special-fire-mode-overcharge) will ignore this setting.
       - name: looking_time_modifier
         type: float
       - type: pad
