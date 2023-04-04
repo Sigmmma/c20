@@ -163,10 +163,21 @@ type_defs:
         type: int8
       - name: sequence_index
         type: Index
+        comments:
+          en: >
+            For HUD bitmaps which are split into multiple parts
+            or "sequences," specifies which sequence to use. 0-indexed.
       - name: alpha_multiplier
         type: int8
+          en: >
+            The difference in alpha mask values from one round in an
+            ammo meter to the next. This value times the number of
+            rounds in the magazine cannot exceed 255.
       - name: alpha_bias
         type: int8
+          en: >
+            When nonzero, offsets the starting value of alpha mask in
+            a meter to (255-alpha bias). Can usually be left at zero.
       - name: value_scale
         type: int16
       - name: opacity
@@ -568,12 +579,25 @@ type_defs:
         size: 2
       - name: total_ammo_cutoff
         type: uint16
+        comments:
+          en: >
+            When the reserve ammo is below this amount, flash.
       - name: loaded_ammo_cutoff
         type: uint16
+        comments:
+          en: >
+            When the ammo in the magazine is below this amount, flash.
       - name: heat_cutoff
         type: uint16
+        comments:
+          en: >
+            When the weapon heat is above this amount, flash.
       - name: age_cutoff
         type: uint16
+        comments:
+          en: >
+            When the weapon has aged this much (eg for plasma weapon
+            batteries), flash.
       - type: pad
         size: 32
       - name: anchor
