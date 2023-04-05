@@ -177,7 +177,8 @@ type_defs:
         type: int8
           en: >
             When nonzero, offsets the starting value of alpha mask in
-            a meter to (255-alpha bias). Can usually be left at zero.
+            a meter to (255-alpha bias). Can usually be left at zero
+            or 255 minus the alpha mask of the first round.
       - name: value_scale
         type: int16
       - name: opacity
