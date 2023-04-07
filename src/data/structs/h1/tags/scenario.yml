@@ -69,7 +69,7 @@ type_defs:
           h1a_only: true
         comments:
           en: >
-            Disables the [hardcoded tag patches](~tool#hardcoded-tag-patches)
+            Disables the [hardcoded tag patches](~tool#hardcoded-tag-patches).
   ScenarioChildScenario:
     class: struct
     assert_size: 32
@@ -189,7 +189,7 @@ type_defs:
         comments:
           en: >
             Has no effect on spawning. Use scripts to control difficulty-specific
-            spawning of non-actor objects.
+            spawning of objects.
       - name: on_normal
         meta:
           unused: true
@@ -1442,7 +1442,7 @@ type_defs:
     comments:
       en: >
         Strength is the fraction of total HP across all members
-        of the platoon
+        of the platoon.
   ScenarioPlatoon:
     class: struct
     assert_size: 172
