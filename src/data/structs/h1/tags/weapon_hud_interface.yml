@@ -169,12 +169,14 @@ type_defs:
             or "sequences," specifies which sequence to use. 0-indexed.
       - name: alpha_multiplier
         type: int8
+        comments:
           en: >
             The difference in alpha mask values from one round in an
             ammo meter to the next. This value times the number of
             rounds in the magazine cannot exceed 255.
       - name: alpha_bias
         type: int8
+        comments:
           en: >
             When nonzero, offsets the starting value of alpha mask in
             a meter to (255-alpha bias). Can usually be left at zero

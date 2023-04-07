@@ -81,7 +81,8 @@ export function walkTypeDefs(structName, structModule, structModules, opts, cb) 
 
     let typeDef = typeDefs[typeParams.type];
     if (!typeDef) {
-      throw new Error(`Failed to resolve type ${typeParams.type}`);
+      console.log(typeParams);
+      throw new Error(`Failed to resolve type ${typeParams.type} (structName: ${structName})`);
     }
 
     if (typeDef.class == "alias") {

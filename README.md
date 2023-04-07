@@ -10,9 +10,9 @@ This repo contains the source content and build scripts for the Reclaimers Libra
 The library is not directly editable by its readers. This allows the editing team to verify information before it's added. However, we want and need the community's help filling in gaps. If you want to submit information or join the editing team, see the [Contributing page](https://c20.reclaimers.net/contributing).
 
 ## Development
-The codebase is essentially a [static site](https://en.wikipedia.org/wiki/Static_web_page) generator. We use [Gulp](https://gulpjs.com/) as the build task runner, with various tasks to process stylesheets, render pages, bundle JS ([esbuild](https://esbuild.github.io/)), and copy assets. All static results go into a `dist` folder that is ready to serve.
+The codebase is essentially a [static site](https://en.wikipedia.org/wiki/Static_web_page) generator. We use [Gulp](https://gulpjs.com/) as the build task runner, with various tasks to process stylesheets, render pages, bundle JS ([esbuild](https://esbuild.github.io/)), and copy assets. All build results go into a `dist` folder that is ready to serve.
 
-Content is written in a combination of [Markdoc-flavoured markdown](markdoc.dev) and YAML files, which are rendered to HTML using [Preact](https://preactjs.com/) in TypeScript/TSX. Pages are also rendered in plaintext form and bundled into a client-side search index using [Minisearch](https://lucaong.github.io/minisearch/). We use [Sass](https://sass-lang.com/) as a CSS preprocessor.
+Content is written in a combination of [Markdoc-flavoured markdown](https://markdoc.dev) and YAML files for structured data, which are rendered to HTML using [Preact](https://preactjs.com/) in TypeScript. Pages are also rendered in plaintext form and bundled into a client-side search index using [Minisearch](https://lucaong.github.io/minisearch/). We use [Sass](https://sass-lang.com/) as a CSS preprocessor.
 
 ### Building and testing
 In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite this project requires installing at least [Node.js v14+](https://nodejs.org/en/) and [Git LFS](https://git-lfs.github.com/).
@@ -45,15 +45,15 @@ aws s3 sync --delete ./dist s3://reclaimers-wiki-files/
 Because of cache TTLs, content may not appear updated immediately. An invalidation can be run in CloudFront to force updates but it will not affect clients unless they clear their browser cache. Live content can be seen by directly viewing the [S3 hosting origin][s3-origin].
 
 ### Technical goals
-An explicit choice was made to avoid typical managed or self-hosted Wiki platforms for this library and opt for building a . This makes it easy to host and distribute, and easier to automatically generate content based on Halo's tag definitions and other data structures. The main tenets are:
+An explicit choice was made to avoid typical managed or self-hosted Wiki platforms for this library and instead build a static site generator with custom features for Halo. The main tenets are:
 
-* Only produce static assets that are easily distributed and served by any web server or CDN.
 * No API or dynamic content: the site should be easy to host and test locally with any HTTP server capable of serving files, and is easily cached on a CDN. No compute needed means low hosting costs. Even the search index is client-side.
-* Distributable: another benefit of the static website is that it can be packaged in a distributable offline format. This not not yet implemented, but planned when content is more complete.
 * Respect the time of the editors. Wiki features should empower them to write faster and easier. Nobody will write if it's a chore.
 * Semantic HTML: Page structures are document-like and use the right elements for the job to maintain accessibility.
 * Mobile-friendly: Pages should be responsive and readable on mobile.
 * The website should make minimum use of client side JavaScript unless there are interactive features needed.
+
+Non-goals are user accounts, live editing, and on-site discussion pages. We use the pull request model and Discord discussions to ensure new information is vetted.
 
 ## License
 C20's codebase is licensed under version 3.0 of the GNU General Public License. A copy of its text can be found in COPYING.

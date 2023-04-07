@@ -1365,8 +1365,9 @@ type_defs:
         size: 8
       - name: normal_diff_count
         type: uint16
+        comments:
           en: >
-            Hoe many actors to spawn on Easy and Normal.
+            How many actors to spawn on Easy and Normal.
       - name: insane_diff_count
         type: uint16
         comments:
@@ -1687,6 +1688,10 @@ type_defs:
   ScenarioCommandList:
     class: struct
     assert_size: 96
+    comments:
+      en: >
+        Sets of predefined actions for actors to take
+        upon being spawned.
     fields:
       - name: name
         type: TagString
@@ -1719,10 +1724,6 @@ type_defs:
           max: 65534
       - type: pad
         size: 24
-      - comments:
-          en: >
-            Sets of predefined actions for actors to take
-            upon being spawned.
   ScenarioAIAnimationReference:
     class: struct
     assert_size: 60

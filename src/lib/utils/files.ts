@@ -28,13 +28,17 @@ export async function loadYamlTree<T=object>(baseDir: string, opts?: LoadTreeOpt
   const files = await findPaths(path.join(baseDir, opts?.nonRecursive ? "*.yml" : "**/*.yml"));
 
   await Promise.all(files.map(async (filePath) => {
-    const fileData = await loadYamlFile(filePath);
-    if (opts?.flat) {
-      result = R.mergeRight(result, fileData);
-    } else {
-      const {dir, name: moduleName} = path.parse(filePath);
-      const objectPath = [...path.relative(baseDir, dir).split(path.sep), moduleName].filter(part => part != "");
-      result = R.assocPath(objectPath, fileData, result);
+    try {
+      const fileData = await loadYamlFile(filePath);
+      if (opts?.flat) {
+        result = R.mergeRight(result, fileData);
+      } else {
+        const {dir, name: moduleName} = path.parse(filePath);
+        const objectPath = [...path.relative(baseDir, dir).split(path.sep), moduleName].filter(part => part != "");
+        result = R.assocPath(objectPath, fileData, result);
+      }
+    } catch (e) {
+      throw new Error(`Failed to load YAML file ${filePath}:\n${e}`);
     }
   }));
 
