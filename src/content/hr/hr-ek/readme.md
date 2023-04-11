@@ -49,6 +49,9 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Added a solution for setting up marker permutations in FBX to GR2 pipeline.
 * Added [play builds](~build-types#optimization-options) of Sapien and Standalone.
 * Fixed Foundation tag mover crashing if "include data" is selected.
+* Removed unused tag fields.
+* Reach now supports temporaries and `begin` actions in Megalo like H4.
+* MegaloEdit can now take [command line](~command-line) args to compile a script or directory.
 
 ## December 2022
 * Instance imposters can now be generated.

@@ -54,6 +54,8 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Allowed starting profiles to exceed a weapon's "rounds total maximum".
 * Added a flag so that infection forms can kill other characters without infecting them.
 * Ported `sound_impulse_time` from H3 to ODST.
+* Fixed Guerilla tag blocks extending out of their borders.
+* Allowed [chocolate_mountain_new](~) tags to be assigned per BSP rather than globally in the scenario.
 
 ## December 2022
 * AI objectives crash fix
