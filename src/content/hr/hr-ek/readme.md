@@ -52,6 +52,10 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Removed unused tag fields.
 * Reach now supports temporaries and `begin` actions in Megalo like H4.
 * MegaloEdit can now take [command line](~command-line) args to compile a script or directory.
+* Added Tool command `multiplayer-mapinfo-replace-object-type-bitvector`.
+* ManagedBlam now targets .NET 4.8.
+* Backported the following Megalo actions from H4: `hs_function_call`, `get_button_time`, `team_set_vehicle_spawning`, `player_set_vehicle_spawning`, `set_player_respawn_vehicle`, `set_team_respawn_vehicle`, `hide_object`.
+* Various Megalo parsing improvements.
 
 ## December 2022
 * Instance imposters can now be generated.

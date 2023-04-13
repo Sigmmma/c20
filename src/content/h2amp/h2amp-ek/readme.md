@@ -38,3 +38,4 @@ This changelog is focused on known notable modding-related changes and is not gu
   * Setting a team name when a map_object is setup below the teams sections no longer crashes.
   * Added various autocompletes and and error detections.
 * Fixed dialogue tags crashing Foundation when closed.
+* Added Tool command `multiplayer-mapinfo-replace-object-type-bitvector`.
