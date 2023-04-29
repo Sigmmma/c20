@@ -23,7 +23,8 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Text can now be pasted into Standalone's console.
 * Fixed crashes in Foundation:
   * Using sound tag playback controls,
-  * Keyword Chooser.
+  * Keyword Chooser,
+  * Selecting the Prefab Browser from Assets in the Tools dropdown.
 * Removed Tag Mover dependency on tag depot.
 * Controller triggers now work in Standalone.
 * Tool no longer logs a rasterizer warning.
@@ -37,5 +38,8 @@ This changelog is focused on known notable modding-related changes and is not gu
   * Entering an invalid team inheritance no longer crashes.
   * Setting a team name when a map_object is setup below the teams sections no longer crashes.
   * Added various autocompletes and and error detections.
+  * Targting "everyone" with `set_score`, `submit_incident`, `submit_incident_with_custom_value` now actually targets everyone.
 * Fixed dialogue tags crashing Foundation when closed.
 * Added Tool command `multiplayer-mapinfo-replace-object-type-bitvector`.
+* `bin\tools\tagDb.sdf` is now pre-populated, preventing some crashes when TagWatcher hadn't run yet.
+* Optimizations to make TagWatcher faster.

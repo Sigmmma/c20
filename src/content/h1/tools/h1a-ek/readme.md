@@ -65,6 +65,7 @@ Pictured: Location of the mod tools in the steam library.
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
 ## TBD 2023
+* Inclusion of digsite content.
 * Backported [`screenshot_cubemap`](~scripting#functions-screenshot-cubemap) from H2 to H1.
 * Added a [weapon flag](~weapon#tag-field-weapon-flags-uses-3rd-person-camera) to use third person camera while holding it.
 * Added 4 new outer center anchors for HUD elements (usable in [hud_globals](~), [grenade_hud_interface](~), [unit_hud_interface](~), and [weapon_hud_interface](~)).

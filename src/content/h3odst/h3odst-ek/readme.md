@@ -56,6 +56,8 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Ported `sound_impulse_time` from H3 to ODST.
 * Fixed Guerilla tag blocks extending out of their borders.
 * Allowed [chocolate_mountain_new](~) tags to be assigned per BSP rather than globally in the scenario.
+* MP maps have rebaked lightmaps.
+* `scenario_validate_game_progression` has some fixes to better handle `game_progression` modding setups.
 
 ## December 2022
 * AI objectives crash fix
