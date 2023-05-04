@@ -51,7 +51,10 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Fixed Foundation tag mover crashing if "include data" is selected.
 * Removed unused tag fields.
 * Reach now supports temporaries and `begin` actions in Megalo like H4.
-* MegaloEdit can now take [command line](~command-line) args to compile a script or directory.
+* MegaloEdit
+  * Can now take [command line](~command-line) args to compile a script or directory.
+  * Improved autocomplete options for condition's variables.
+  * Fixed crash when putting a period in an include path before there's a closing parenthesis.
 * Targting "everyone" with `set_score`, `submit_incident`, `submit_incident_with_custom_value` now actually targets everyone.
 * Added Tool command `multiplayer-mapinfo-replace-object-type-bitvector`.
 * ManagedBlam now targets .NET 4.8.
@@ -59,6 +62,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Various Megalo parsing improvements.
 * `bin\tools\tagDb.sdf` is now pre-populated, preventing some crashes when TagWatcher hadn't run yet.
 * Optimizations to make TagWatcher faster.
+* Game variants without `engine_data` no longer crash MCC.
 
 ## December 2022
 * Instance imposters can now be generated.

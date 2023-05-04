@@ -39,7 +39,10 @@ This changelog is focused on known notable modding-related changes and is not gu
   * Setting a team name when a map_object is setup below the teams sections no longer crashes.
   * Added various autocompletes and and error detections.
   * Targting "everyone" with `set_score`, `submit_incident`, `submit_incident_with_custom_value` now actually targets everyone.
+  * Improved autocomplete options for condition's variables.
+  * Fixed crash when putting a period in an include path before there's a closing parenthesis.
 * Fixed dialogue tags crashing Foundation when closed.
 * Added Tool command `multiplayer-mapinfo-replace-object-type-bitvector`.
 * `bin\tools\tagDb.sdf` is now pre-populated, preventing some crashes when TagWatcher hadn't run yet.
 * Optimizations to make TagWatcher faster.
+* Game variants without `engine_data` no longer crash MCC.

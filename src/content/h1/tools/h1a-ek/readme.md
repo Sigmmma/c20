@@ -72,11 +72,15 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Added a new bitmap compression format, BC7 [_high-quality compression_](~bitmap#tag-field-encoding-format-high-quality-compression).
 * Alpha channel is no longer discarded when importing fully transparent bitmaps to an uncompressed format.
 * Added the [_alternate bump attenuation_ flag](~shader_environment#tag-field-shader-environment-flags-use-alternate-bump-attenuation) to shader_environment to prevent [shading artifacts](~h1/tags/shader/shader_environment#shading-artifacts).
-* Fixed a shading artifact on shader_environment when lightmaps contain invalid incident radiosity vectors.
 * Raised [model_animations _units_](~model_animations#tag-field-units) limit to 512, matching OpenSauce.
+* Trigger volume placement is no longer buggy after the first. This required hiding their parameter fields under expert mode.
+* AI enable and disable now use correct command in debug menu.
+* Fixed rename.txt sometimes crashing Tool during imports.
+* Fixed a shading artifact on shader_environment when lightmaps contain invalid incident radiosity vectors.
 * Standalone no longer crashes when rapidly reloading and meleeing at the same time.
 * Campaign co-op now uses ODST-era netcode.
 * Added secondary reload animation support for weapons with dual triggers and magazines.
+* Sapien no longer crashes on close if you have selected the trigger volume node and there exist trigger volumes.
 
 ## December 2022
 * [A flag](~bitmap#tag-field-flags-use-average-color-for-detail-fade) was added to the bitmap tag that allows users to opt into Halo 2's mipmap fade behaviour rather than it being the default.
