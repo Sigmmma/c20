@@ -66,6 +66,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 
 ## TBD 2023
 * Inclusion of digsite content.
+* Biped seats are now functional, meaning rideable bipeds are possible.
 * Backported [`screenshot_cubemap`](~scripting#functions-screenshot-cubemap) from H2 to H1.
 * Added a [weapon flag](~weapon#tag-field-weapon-flags-uses-3rd-person-camera) to use third person camera while holding it.
 * Added 4 new outer center anchors for HUD elements (usable in [hud_globals](~), [grenade_hud_interface](~), [unit_hud_interface](~), and [weapon_hud_interface](~)).
@@ -73,6 +74,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Alpha channel is no longer discarded when importing fully transparent bitmaps to an uncompressed format.
 * Added the [_alternate bump attenuation_ flag](~shader_environment#tag-field-shader-environment-flags-use-alternate-bump-attenuation) to shader_environment to prevent [shading artifacts](~h1/tags/shader/shader_environment#shading-artifacts).
 * Raised [model_animations _units_](~model_animations#tag-field-units) limit to 512, matching OpenSauce.
+* Resetting a player's inventory through the HS function `player_add_equipment` no longer causes an exception.
 * Trigger volume placement is no longer buggy after the first. This required hiding their parameter fields under expert mode.
 * Classic mode HUD text elements scale properly.
 * Console messages warning of generic shaders missing maps/stages now specify which shader.
