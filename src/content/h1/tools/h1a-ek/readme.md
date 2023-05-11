@@ -74,6 +74,9 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Added the [_alternate bump attenuation_ flag](~shader_environment#tag-field-shader-environment-flags-use-alternate-bump-attenuation) to shader_environment to prevent [shading artifacts](~h1/tags/shader/shader_environment#shading-artifacts).
 * Raised [model_animations _units_](~model_animations#tag-field-units) limit to 512, matching OpenSauce.
 * Trigger volume placement is no longer buggy after the first. This required hiding their parameter fields under expert mode.
+* Classic mode HUD text elements scale properly.
+* Console messages warning of generic shaders missing maps/stages now specify which shader.
+* Fog planes can now be reassigned back to "none" using Sapien.
 * AI enable and disable now use correct command in debug menu.
 * Fixed rename.txt sometimes crashing Tool during imports.
 * Fixed a shading artifact on shader_environment when lightmaps contain invalid incident radiosity vectors.

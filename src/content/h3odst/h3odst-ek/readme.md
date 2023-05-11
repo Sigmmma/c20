@@ -58,6 +58,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Allowed [chocolate_mountain_new](~) tags to be assigned per BSP rather than globally in the scenario.
 * MP maps have rebaked lightmaps.
 * `scenario_validate_game_progression` has some fixes to better handle `game_progression` modding setups.
+* In modded maps, `game_level_advance` goes to the next mission now instead of the main menu.
 
 ## December 2022
 * AI objectives crash fix
