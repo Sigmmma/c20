@@ -283,10 +283,19 @@ type_defs:
         type: uint8
         meta:
           default: 255
+        comments:
+          en: |
+            Allows the rendering order of parts to be manually specified for
+            correct transparency sorting. In H1CE Tool, this defaults to `-1`
+            (unused) if set to `0`. In H1A Tool, this defaulting only occurs when
+            _both_ filthy part indices are `0`, since `0` should be a useable index.
       - name: next_filthy_part_index
         type: uint8
         meta:
           default: 255
+        comments:
+          en: |
+            Sets the next part to render.
       - name: centroid_primary_node
         type: Index
         meta:

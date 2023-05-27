@@ -45,18 +45,18 @@ By default, environmental bump mapping is rendered by darkening surfaces based o
 * Where small or point-like light sources are very close to surfaces.
 * Where sharp shadows should be, but the area has either low geometric complexity and/or uses shaders with low radiosity detail levels.
 
-This could be considered a legacy bug, because the baked lightmap already accounts for diffuse attenuation and it shouldn't be doubly applied. It is made worse by the fact that both the intermediate lightmap mesh and baked lightmap texture have limited resolution so light bleeds into areas it shouldn't, and that per-vertex incident radiosity vectors cannot represent quickly changing light directions across a surface.
+The artifact could be considered a problem with the legacy lighting model; the baked lightmap already accounts for diffuse attenuation and it shouldn't be doubly applied. It is made worse by the limited resolution of both the intermediate lightmap mesh and baked lightmap texture which results in light bleeding, and how per-vertex incident radiosity vectors cannot represent quickly changing light directions across a surface.
 
-You can set the new [_alternate bump attenuation_](#tag-field-shader-environment-flags-use-alternate-bump-attenuation) flag to use a different bump mapping method (similar to Halo 2's) which removes these artifacts at the cost of desaturating some highlights near coloured light sources toward white.
+You can set the new [_alternate bump attenuation_](#tag-field-shader-environment-flags-use-alternate-bump-attenuation) flag to use a different bump mapping method (similar to Halo 2's) which removes these artifacts, but comes at the cost of possibly overexposing highlights from coloured lights and generally lightening surfaces. Using the flag or not is an artistic choice.
 
-Modders who are porting maps from Custom Edition to MCC may also find this useful since the lack of bump mapping in H1CE meant the original mappers never would have seen this issue in their maps and worked around it. Use `debug_camera 1` to help identify the shader if needed.
+Custom Edition mappers never encountered this artifact due to CE's broken bump mapping. If you're porting a map from CE to MCC you may find that this this artifact is now noticeable. The new flag can be a quick fix to better maintain the original map's appearance and, if applied to all shaders, will generally brighten up a map and make it look more like CE.
 
-If you are having this issue and want to change your lighting setup or level geometry to fix it, you can:
+If you want to avoid this artifact _without_ using the flag because you prefer the classic look for a shader, here are some workarounds:
 
-* Use high radiosity detail level for affected shaders if you aren't already.
+* Use high radiosity detail level for affected shader(s) if you aren't already.
 * Tesselate surfaces where sharp shadows lie, especially where shadow umbras and penumbras would lie. This limits light bleeding by forcing the lightmapper to resolve a higher level of detail than it normally would based on quality settings, and results in more incident radiosity vectors being stored to better match the baked lighting texture, but has the cost of increasing triangle count.
-* Replace point light sources with large diffuse invisible light casting surfaces that avoid hard shadows. This blurs away sharp shadows but removes artistic choice.
-* Avoid putting lights too close to surfaces or in locations that would cast sharp shadows.
+* Replace nearby point light sources with large diffuse invisible light casting surfaces that avoid sharp shadows.
+* Avoid putting scenery lights too close to surfaces or in locations that would cast sharp shadows.
 
 # Use by gbxmodels
 When a [gbxmodel](~) references this shader type it will not render correctly in H1CE due to [renderer bugs](~renderer#gearbox-regressions). Specular masking and tinting don't work and [sky](~) fog does not render over it. Some affected [scenery](~) include the teleporter base and human barricades. It is not recommended to use this shader type for custom objects when targeting Custom Edition, but it is safe to use in H1A.

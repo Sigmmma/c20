@@ -48,6 +48,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Added a weapon flag to use third person camera while holding it.
 * Added 4 new outer center anchors for HUD elements in [new_hud_definition](~). Legacy H1 HUD tags in H2 like [unit_hud_interface](~) and [weapon_hud_interface](~) were not given the anchors.
 * Removed Guerilla's Tag Mover dependency on tag depot.
+* Models with large import info can now be imported (fixes `tag_data_resize() failed`).
 
 ## December 2022
 * Guerilla will no longer crash when opening [multiplayer_variant_settings_interface_definition](~) tags.

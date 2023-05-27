@@ -61,6 +61,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Added a flag so that infection forms can kill other characters without infecting them.
 * Fixed Guerilla tag blocks extending out of their borders.
 * Allowed [chocolate_mountain_new](~) tags to be assigned per BSP rather than globally in the scenario.
+* Models with large import info can now be imported (fixes `tag_data_resize() failed`).
 
 ## December 2022
 * AI objectives crash fix

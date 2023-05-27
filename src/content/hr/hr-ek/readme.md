@@ -63,6 +63,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * `bin\tools\tagDb.sdf` is now pre-populated, preventing some crashes when TagWatcher hadn't run yet.
 * Optimizations to make TagWatcher faster.
 * Game variants without `engine_data` no longer crash MCC.
+* Models with large import info can now be imported (fixes `tag_data_resize() failed`).
 
 ## December 2022
 * Instance imposters can now be generated.
