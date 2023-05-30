@@ -3364,14 +3364,22 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (screenshot_count)
+        (screenshot_count [short])
         ```
+        When the `-screenshot` [argument](~arguments#arguments) is enabled,
+        pressing {% key "Prnt Scrn" /%} will generate a series of tiled screenhots
+        in the `screenshots` directory. For example, a value of `2` will generate
+        4 screenshots meant to tile in a 2x2 arrangement for a high resolution
+        result. You should disable the HUD with `show_hud 0` before using this.
   - slug: screenshot_size
     info:
       en: |-
         ```hsc
-        (screenshot_size)
+        (screenshot_size [short])
         ```
+        Appears to set some kind of crop or scaling factor for generated screenshots,
+        but is probably not working as intended. Ssetting this to a value other than `1`
+        can crash when using `screenshot_size`.
   - slug: slow_server_startup_safety_zone_in_seconds
     info:
       en: |-
