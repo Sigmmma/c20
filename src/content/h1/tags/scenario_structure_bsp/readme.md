@@ -101,7 +101,7 @@ _See main page: [Lightmaps](~)._
 In a10, lens flare markers were generated for fluorescent lights
 {% /figure %}
 
-When a [shader_environment](~) references a [lens_flare](~), _lens flare markers_ are automatically created and stored in the BSP tag during initial [structure compilation](~tool#structure-compilation) or updated with [structure-lens-flares](~tool#structure-lens-flares). These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface<sup>(how?)</sup>. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
+When a [shader_environment](~) references a [lens_flare](~), _lens flare markers_ are automatically created and stored in the BSP tag during initial [structure compilation](~tool#structure-compilation) or updated with [structure-lens-flares](~tool#structure-lens-flares). These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
 
 A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens flares. However, there is a much lower limit to how many the game will draw at a given time, exactly how many is unknown.
 
