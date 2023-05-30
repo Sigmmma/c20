@@ -247,10 +247,10 @@ type_defs:
             for the faces of these materials. In other words, the baked lightmaps
             can be split across multiple bitmap "pages" and this index tells the
             game what page the faces of these materials use. An index of `-1`
-            (usually found on the last item in this block) means these faces are
-            still rendered but aren't lightmapped, used for
-            [additive blended](~shader_transparent_chicago#tag-field-framebuffer-blend-function)
-            transparent shaders like lights.
+            means these faces are not lightmapped, like if radiosity has not
+            been run yet or, once it has, for [additive blended](~shader_transparent_chicago#tag-field-framebuffer-blend-function)
+            transparent shaders like lights (which Tool groups in the last item of
+            this block).
       - type: pad
         size: 2
       - type: pad
