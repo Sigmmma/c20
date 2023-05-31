@@ -31,7 +31,6 @@ This changelog is focused on known notable modding-related changes and is not gu
   * Usurp Preview button in materials,
   * Selecting the Prefab Browser from Assets in the Tools dropdown.
 * Removed Tag Mover dependency on tag depot.
-* Tool no longer logs a rasterizer warning.
 * Fixed JSON property `bungie_specular_intensity` incorrectly setting `specular_power`
 * Added a solution for setting up marker permutations in FBX to GR2 pipeline.
 * Fix lights and markers import, update FBX samples according to new import logic:
@@ -48,9 +47,14 @@ This changelog is focused on known notable modding-related changes and is not gu
   * Improved autocomplete options for condition's variables.
   * Fixed crash when putting a period in an include path before there's a closing parenthesis.
 * Fixed dialogue tags crashing Foundation when closed.
-* Added Tool command `multiplayer-mapinfo-replace-object-type-bitvector`.
+* Tool:
+  * Tool no longer logs a rasterizer warning.
+  * Added Tool command `multiplayer-mapinfo-replace-object-type-bitvector`.
+  * The platform argument in `build-cache-file` is now optional.
+  * Tool no longer complains about "missing materialManager_attrib" for each material during model/scenario imports.
 * `bin\tools\tagDb.sdf` is now pre-populated, preventing some crashes when TagWatcher hadn't run yet.
 * Optimizations to make TagWatcher faster.
 * Game variants without `engine_data` no longer crash MCC.
 * Models with large import info can now be imported (fixes `tag_data_resize() failed`).
 * Added support for custom PCKs loaded from PnP mod folder.
+* `script_doc` now includes globals.
