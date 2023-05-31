@@ -2979,7 +2979,7 @@ external_globals:
         | `0`  | Normal (default).
         | `1`  | BSP specular reflections will not be multiplied by the lightmap.
         | `2`  | Fullbright mode. You can set the ambient light with `rasterizer_lightmap_ambient`.
-        | `3`  | Colours BSP surfaces by what lightmap [bitmap index](~scenario_structure_bsp#tag-field-lightmaps-bitmap) they use. It can help to disable `rasterizer_environment_diffuse_textures` and `rasterizer_environment_reflections` to see this more clearly.
+        | `3`  | Colours BSP surfaces by what lightmap [bitmap index](~scenario_structure_bsp#tag-field-lightmaps-bitmap) they use (technically, with a random colour seeded by the lightmap address). It can help to disable `rasterizer_environment_diffuse_textures` and `rasterizer_environment_reflections` to see this more clearly.
         | `4`  | Fullbright without environmental bump map lighting. Ambient light is not configurable in this mode.
         
         Any higher value will appear the same as `1`. Repeated changing of this value can cause degraded performance and eventually a crash.
