@@ -52,3 +52,4 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Models with large import info can now be imported (fixes `tag_data_resize() failed`).
 * Added support for custom PCKs loaded from PnP mod folder.
 * `script_doc` now includes globals.
+* Inclusion of scripts needed to build shared files.

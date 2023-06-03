@@ -62,6 +62,10 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Fixed Guerilla tag blocks extending out of their borders.
 * Allowed [chocolate_mountain_new](~) tags to be assigned per BSP rather than globally in the scenario.
 * Models with large import info can now be imported (fixes `tag_data_resize() failed`).
+* Fixed bug where driver boost damage effects are controlled by rider boost effects.
+* Custom player bipeds no longer invisible if new customization toggle is set to disabled.
+* Addition of ManagedBlam DLL.
+* Fixed crash on `prune_global_keep_playable 1`.
 
 ## December 2022
 * AI objectives crash fix
