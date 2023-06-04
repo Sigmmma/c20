@@ -3492,11 +3492,16 @@ functions:
         ```
         Return the time remaining in the specified unit's cutscene recording
   - slug: reload_shader_transparent_chicago
+    tags:
+      - shader_transparent_chicago
     info:
       en: |
         ```hsc
         (<void> reload_shader_transparent_chicago)
         ```
+        Reloads all [shader_transparent_chicago](~) tags. Use this in Sapien or
+        Standalone to see changes to their bitmaps or parameters without having
+        to reload the scenario.
   - slug: remote_player_stats
     info:
       en: |-

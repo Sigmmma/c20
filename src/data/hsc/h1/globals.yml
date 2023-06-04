@@ -2827,6 +2827,7 @@ external_globals:
         (rasterizer_environment_shadows [boolean])
         ```
         Toggles [dynamic shadow mapping](~object#shadows-and-lighting) for objects.
+        Same effect as `render_shadows`.
   - slug: rasterizer_environment_specular_lightmaps
     info:
       en: |-
@@ -2960,14 +2961,18 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (rasterizer_hud_motion_sensor)
+        (rasterizer_hud_motion_sensor [boolean])
         ```
+        Toggles the yellow and red dots seen in the motion sensor.
   - slug: rasterizer_lens_flares
+    tags:
+      - lens_flare
     info:
       en: |-
         ```hsc
-        (rasterizer_lens_flares)
+        (rasterizer_lens_flares [boolean])
         ```
+        Toggles rendering of all [lens flares](~lens_flare).
   - slug: rasterizer_lens_flares_occlusion
     tags:
       - lens_flare
@@ -3061,17 +3066,31 @@ external_globals:
         (rasterizer_model_lighting_ambient)
         ```
   - slug: rasterizer_model_transparents
+    tags:
+      - gbxmodel
+      - shader_transparent_glass
+      - shader_transparent_chicago
+      - shader_transparent_chicago_extended
+      - shader_transparent_generic
     info:
       en: |-
         ```hsc
-        (rasterizer_model_transparents)
+        (rasterizer_model_transparents [boolean])
         ```
+        Toggles the rendering of transparent shaders in [models](~gbxmodel).
+        For example, the Warthog's windshield.
   - slug: rasterizer_models
+    tags:
+      - gbxmodel
     info:
       en: |-
         ```hsc
-        (rasterizer_models)
+        (rasterizer_models [boolean])
         ```
+        Toggles the rendering of all [models](~gbxmodel). When disabled, all
+        objects like scenery, units, projectiles, and even the skybox and FP arms
+        will become invisible. The BSP and effects like particles and decals are
+        still visible.
   - slug: rasterizer_near_clip_distance
     info:
       en: |-
@@ -3112,7 +3131,7 @@ external_globals:
         ```hsc
         (rasterizer_ray_of_buddha [boolean])
         ```
-        Toggles the [sky's](~sky) sun effect.
+        Toggles the [sky's](~sky) "god rays" effect.
     tags:
       - sky
   - slug: rasterizer_refresh_rate
@@ -3363,26 +3382,32 @@ external_globals:
     tags:
       - particle
   - slug: render_psystems
+    tags:
+      - particle_system
+      - weather_particle_system
     info:
       en: |-
         ```hsc
-        (render_psystems)
+        (render_psystems [boolean])
         ```
+        Toggles the rendering of [particle_systems](particle_system~) and
+        [weather_particle_system](~).
   - slug: render_shadows
     info:
       en: |-
         ```hsc
         (render_shadows [boolean])
         ```
-        Toggles the display of dynamic object shadows.
+        Toggles the display of dynamic object shadows. Same effect as `rasterizer_environment_shadows`.
     tags:
       - object
   - slug: render_wsystems
     info:
       en: |-
         ```hsc
-        (render_wsystems)
+        (render_wsystems [boolean])
         ```
+        No visible effect on weather or particle systems.
   - slug: rider_ejection
     info:
       en: |-
@@ -3573,6 +3598,8 @@ external_globals:
         (weapon_incremental_rate)
         ```
   - slug: weather
+    tags:
+      - weather_particle_system
     info:
       en: |-
         ```hsc
