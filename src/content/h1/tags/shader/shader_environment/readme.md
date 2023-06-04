@@ -61,6 +61,9 @@ If you want to avoid this artifact _without_ using the flag because you prefer t
 # Use by gbxmodels
 When a [gbxmodel](~) references this shader type it will not render correctly in H1CE due to [renderer bugs](~renderer#gearbox-regressions). Specular masking and tinting don't work and [sky](~) fog does not render over it. Some affected [scenery](~) include the teleporter base and human barricades. It is not recommended to use this shader type for custom objects when targeting Custom Edition, but it is safe to use in H1A.
 
+# Related HaloScript
+{% relatedHsc game="h1" tagFilter="shader_environment" /%}
+
 # Structure and fields
 
 {% tagStruct "h1/shader_environment" /%}

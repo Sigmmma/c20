@@ -12,6 +12,10 @@ thanks:
 ---
 ...
 
+# Related HaloScript
+{% relatedHsc game="h1" tagFilter="light" /%}
+
 # Structure and fields
 
 {% tagStruct "h1/light" /%}
+

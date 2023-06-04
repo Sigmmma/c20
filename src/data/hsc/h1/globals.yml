@@ -1621,11 +1621,14 @@ external_globals:
         (debug_leaf_portals)
         ```
   - slug: debug_lights
+    tags:
+      - light
     info:
       en: |-
         ```hsc
-        (debug_lights)
+        (debug_lights [boolean])
         ```
+        Shows orange and white spheres with the [_radius_](~light#tag-field-radius) of each dynamic [light](~). White seems to show when a light is not yet been activated, such as the Warthog's brake lights until their first use. Lens flare only lights are not shown since their radius is 0.
   - slug: debug_looping_sound
     tags:
       - sound
@@ -2133,17 +2136,27 @@ external_globals:
         ```
         Renders all scenario [trigger volumes](~scenario#trigger-volumes) and their names.
   - slug: debug_unit_all_animations
+    tags:
+      - model_animations
+      - unit
     info:
       en: |-
         ```hsc
-        (debug_unit_all_animations)
+        (debug_unit_all_animations [boolean])
         ```
+        Logs lines to the console output as unit animations occur.
+        For example: `cyborg_mp: animation stand pistol move-right`.
   - slug: debug_unit_animations
+    tags:
+      - model_animations
+      - unit
     info:
       en: |-
         ```hsc
-        (debug_unit_animations)
+        (debug_unit_animations [boolean])
         ```
+        Shows red console log output whenever a unit animation is missing.
+        For example: `MISSING: cyborg 'G-driver unarned aim-still'`.
   - slug: debug_unit_illumination
     info:
       en: |-
@@ -2183,7 +2196,7 @@ external_globals:
         ```hsc
         (display_framerate [boolean])
         ```
-        No visible effect.
+        Displays the current framerate in green in the bottom-right corner of the screen.
   - slug: display_precache_progress
     info:
       en: |-
@@ -2267,8 +2280,9 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (framerate_throttle)
+        (framerate_throttle [boolean])
         ```
+        Limits rendering to 30 FPS.
   - slug: freeze_flying_camera
     info:
       en: |-
@@ -2523,8 +2537,12 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (profile_display)
+        (profile_display [boolean])
         ```
+        Displays profiling and budget information in the upper-left of the screen,
+        including object, effects, particles, AI encounters, collision tests,
+        and more. You may find it useful to open the console while using this
+        feature in order to stop the game simulation.
   - slug: profile_dump_frames
     info:
       en: |-
@@ -2560,8 +2578,11 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (rasterizer_active_camouflage)
+        (rasterizer_active_camouflage [boolean])
         ```
+        Toggles the active camouflage distortion effect. When disabled, objects
+        with active camouflage are rendered as they normally would without the
+        effect.
   - slug: rasterizer_active_camouflage_multipass
     info:
       en: |-
@@ -2710,11 +2731,16 @@ external_globals:
         (rasterizer_environment)
         ```
   - slug: rasterizer_environment_alpha_testing
+    tags:
+      - shader_environment
     info:
       en: |-
         ```hsc
-        (rasterizer_environment_alpha_testing)
+        (rasterizer_environment_alpha_testing [boolean])
         ```
+        Toggles [alpha testing](~shader_environment#alpha-testing)
+        for BSP [shader_environment](~). These shaders are
+        rendered opaquely when disabled.
   - slug: rasterizer_environment_decals
     tags:
       - decal
@@ -2748,10 +2774,13 @@ external_globals:
         ```hsc
         (rasterizer_environment_fog)
         ```
-        Toggles environmental [sky fog](~sky#tag-field-outdoor-fog-color) and
-        [fog plane](~fog) colors. Does not affect _fog screen_.
+        Toggles both environmental [sky fog](~sky#tag-field-outdoor-fog-color) and
+        [fog plane](~fog) colors. Does not affect _fog screen_. Use
+        `rasterizer_fog_plane` or `rasterizer_fog_atmosphere` to individually
+        toggle fog types.
     tags:
       - sky
+      - fog
   - slug: rasterizer_environment_fog_screen
     info:
       en: |-
@@ -2790,11 +2819,14 @@ external_globals:
         ```
         Toggles specular reflections in the BSP.
   - slug: rasterizer_environment_shadows
+    tags:
+      - object
     info:
       en: |-
         ```hsc
-        (rasterizer_environment_shadows)
+        (rasterizer_environment_shadows [boolean])
         ```
+        Toggles [dynamic shadow mapping](~object#shadows-and-lighting) for objects.
   - slug: rasterizer_environment_specular_lightmaps
     info:
       en: |-
@@ -2859,18 +2891,23 @@ external_globals:
         (rasterizer_floating_point_zbuffer)
         ```
   - slug: rasterizer_fog_atmosphere
+    tags:
+      - sky
     info:
       en: |-
         ```hsc
-        (rasterizer_fog_atmosphere)
+        (rasterizer_fog_atmosphere [boolean])
         ```
+        Toggles atmospheric fog as defined in the active [sky](~) tag.
   - slug: rasterizer_fog_plane
+    tags:
+      - fog
     info:
       en: |-
         ```hsc
-        (rasterizer_fog_plane [boolea])
+        (rasterizer_fog_plane [boolean])
         ```
-        Toggles the rendering of [fog](~).
+        Toggles the rendering of [fog planes](~fog).
   - slug: rasterizer_fps
     info:
       en: |-

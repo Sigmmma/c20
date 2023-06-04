@@ -13,6 +13,9 @@ thanks:
 ---
 ...
 
+# Related HaloScript
+{% relatedHsc game="h1" tagFilter="model_animations" /%}
+
 # Structure and fields
 
 {% tagStruct "h1/model_animations" /%}
