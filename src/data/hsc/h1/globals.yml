@@ -7,11 +7,15 @@ external_globals:
         ```
         Prints help information for a function name.
   - slug: ai_debug_ballistic_lineoffire_freeze
+    tags:
+      - projectile
     info:
       en: |-
         ```hsc
-        (ai_debug_ballistic_lineoffire_freeze)
+        (ai_debug_ballistic_lineoffire_freeze [boolean])
         ```
+        If enabled, the ballistic arc drawn by `ai_render_ballistic_lineoffire`
+        will not update when new grenades are thrown.
   - slug: ai_debug_blind
     info:
       en: |-
@@ -322,11 +326,14 @@ external_globals:
         (ai_print_secondary_looking)
         ```
   - slug: ai_print_speech
+    tags:
+      - dialogue
     info:
       en: |-
         ```hsc
-        (ai_print_speech)
+        (ai_print_speech [boolean])
         ```
+        Displays red text over AI whenever they vocalize, with the name of the [dialogue](~) field played. For example, `pain body minor`.
   - slug: ai_print_speech_timers
     info:
       en: |-
@@ -352,11 +359,16 @@ external_globals:
         (ai_print_unfinished_paths)
         ```
   - slug: ai_print_vocalizations
+    tags:
+      - dialogue
     info:
       en: |-
         ```hsc
-        (ai_print_vocalizations)
+        (ai_print_vocalizations [boolean])
         ```
+        Prints vocalizations to the console as they happen, including the
+        encounter, squad, actor, dialogue type (e.g. exclaim), and line. For
+        example, `beach_lz/camp_center_grunt/grunt: talk flee [72/flee]`.
   - slug: ai_profile_disable
     info:
       en: |-
@@ -373,8 +385,9 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (ai_render)
+        (ai_render [boolean])
         ```
+        Toggles the display of any enabled AI debug overlays. Defaults to `true`.
   - slug: ai_render_activation
     info:
       en: |-
@@ -412,11 +425,20 @@ external_globals:
         (ai_render_audibility)
         ```
   - slug: ai_render_ballistic_lineoffire
+    tags:
+      - projectile
     info:
       en: |-
         ```hsc
-        (ai_render_ballistic_lineoffire)
+        (ai_render_ballistic_lineoffire [boolean])
         ```
+        Toggles the rendering of [ballistic aiming](~projectile#tag-field-projectile-flags-ai-must-use-ballistic-aiming)
+        arcs when AI throw grenades only (does not include hunter guns, wraiths,
+        or other ballistic weapons). The arc is shown in green when unobstructed
+        and orange when obstructed by an object or the BSP. Its origin point and
+        vector are shown in yellow. Only a single arc is shown at a time and
+        updates whenever a new grenade is thrown. This can be paused with
+        `ai_debug_ballistic_lineoffire_freeze`.
   - slug: ai_render_burst_geometry
     info:
       en: |-
@@ -457,10 +479,11 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (ai_render_dialogue_variants)
+        (ai_render_dialogue_variants [boolean])
         ```
         Shows pink text overlays over each unit with [dialogue](~h1/tags/dialogue)
         showing which variant they use, like if marines are a "mendoza" or a "bisenti".
+        For example, `variant 11 dialogue 0 aussie`.
     tags:
       - dialogue
   - slug: ai_render_emotions
@@ -884,11 +907,17 @@ external_globals:
         (ai_show_stats)
         ```
   - slug: ai_show_swarms
+    tags:
+      - game-state
     info:
       en: |-
         ```hsc
-        (ai_show_swarms)
+        (ai_show_swarms [boolean])
         ```
+        Displays debug information in the bottom left with the current counts
+        for swarms and swarm component [datum arrays](~game-state). Swarms are
+        groups of Flood infection forms while components are individual infection
+        forms.
   - slug: allow_client_side_weapon_projectiles
     info:
       en: |-
@@ -2753,11 +2782,15 @@ external_globals:
         While `false`, effects cannot create new decals but previous ones will
         reappear when reset to `true`.
   - slug: rasterizer_environment_diffuse_lights
+    tags:
+      - light
     info:
       en: |-
         ```hsc
-        (rasterizer_environment_diffuse_lights)
+        (rasterizer_environment_diffuse_lights [boolean])
         ```
+        Toggles the rendering of [_dynamic_ light](~light#tag-field-flags-dynamic)
+        illumination on the BSP.
   - slug: rasterizer_environment_diffuse_textures
     tags:
       - lightmaps
@@ -2806,11 +2839,14 @@ external_globals:
         (rasterizer_environment_reflection_lightmap_mask)
         ```
   - slug: rasterizer_environment_reflection_mirrors
+    tags:
+      - shader_environment
     info:
       en: |-
         ```hsc
-        (rasterizer_environment_reflection_mirrors)
+        (rasterizer_environment_reflection_mirrors [boolean])
         ```
+        Toggles the rendering of [dynamic mirrors](~shader_environment#tag-field-reflection-flags-dynamic-mirror).
   - slug: rasterizer_environment_reflections
     info:
       en: |-
@@ -3225,17 +3261,21 @@ external_globals:
         (rasterizer_transparent_pixel_counter)
         ```
   - slug: rasterizer_water
+    tags:
+      - shader_transparent_water
     info:
       en: |-
         ```hsc
-        (rasterizer_water)
+        (rasterizer_water [boolean])
         ```
+        Toggles the rendering of [shader_transparent_water](~) shaders.
   - slug: rasterizer_water_mipmapping
     info:
       en: |-
         ```hsc
-        (rasterizer_water_mipmapping)
+        (rasterizer_water_mipmapping [boolean])
         ```
+        No visible effect. Defaults to `false`.
   - slug: rasterizer_wireframe
     info:
       en: |-

@@ -57,3 +57,6 @@ Since the game world is dynamic, the datum count can rise up to a limit. The fol
 |recorded animations|64|-|
 |[AI knowledge](~ai#knowledge-model)|768|-|
 |[mounted weapon units](~unit#tag-field-seats-built-in-gunner)|8|-|
+
+# Related HaloScript
+{% relatedHsc game="h1" tagFilter="game-state" /%}

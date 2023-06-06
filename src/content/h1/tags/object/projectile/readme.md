@@ -25,8 +25,12 @@ If no collision is detected, the projectile is moved to its next position at the
 
 A sufficiently high velocity projectile is essentially [hitscan][] if it can cross a playable space within a single tick, with the game being simulated at 30 ticks per second. Otherwise, ballistic leading will be required to hit a moving target.
 
-[hitscan]: https://en.wikipedia.org/wiki/Hitscan
+# Related HaloScript
+{% relatedHsc game="h1" tagFilter="projectile" /%}
 
 # Structure and fields
 
 {% tagStruct "h1/projectile" /%}
+
+
+[hitscan]: https://en.wikipedia.org/wiki/Hitscan
