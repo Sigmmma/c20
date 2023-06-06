@@ -2613,11 +2613,19 @@ external_globals:
         with active camouflage are rendered as they normally would without the
         effect.
   - slug: rasterizer_active_camouflage_multipass
+    tags:
+      - shader_transparent_glass
+      - shader_transparent_chicago
+      - shader_transparent_chicago_extended
+      - shader_transparent_generic
     info:
       en: |-
         ```hsc
-        (rasterizer_active_camouflage_multipass)
+        (rasterizer_active_camouflage_multipass [boolean])
         ```
+        Toggles whether or not transparent shaders are shown through
+        active camouflage. If disabled, shaders like glass or lights
+        will not be visible through a camouflaged unit.
   - slug: rasterizer_bump_mapping
     info:
       en: |-
@@ -3513,11 +3521,18 @@ external_globals:
         (sound_cache_size)
         ```
   - slug: sound_gain_under_dialog
+    tags:
+      - sound
     info:
       en: |-
         ```hsc
-        (sound_gain_under_dialog)
+        (sound_gain_under_dialog [real])
         ```
+        Controls how quiet non-dialog sounds are when scripted dialog is playing
+        (sound class must be `scripted_dialog_other`, `scripted_dialog_force_player`,
+        or `scripted_dialog_force_unspatialized`). Does not apply to involuntary
+        AI dialog like death/pain lines. Defaults to `0.7`. The effect takes
+        about half a second to fade in/out.
   - slug: sound_obstruction_ratio
     tags:
       - sound
