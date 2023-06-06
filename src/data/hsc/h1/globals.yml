@@ -2722,7 +2722,18 @@ external_globals:
         ```hsc
         (rasterizer_draw_first_person_weapon_first [boolean])
         ```
-        No visible effect.
+        Controls whether the first person weapon/arms is rendered before or
+        after the rest of the scene. Defaults to `true`. If set to `false`,
+        parts of the FP model can be occluded by nearby objects because they fail
+        the depth test against the [depth buffer](https://en.wikipedia.org/wiki/Z-buffering).
+        This is easily seen in the Warthog passenger seat or with the sniper
+        rifle against scenery.
+
+        Typically, the FP view draws first and also writes to a
+        [stencil buffer](https://en.wikipedia.org/wiki/Stencil_buffer) which is
+        later used to prevent the background from overlapping the FP view. You
+        can disable `rasterizer_stencil_mask` for the same effect as disabling
+        this global.
   - slug: rasterizer_DXTC_noise
     info:
       en: |-
@@ -3252,8 +3263,13 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (rasterizer_stencil_mask)
+        (rasterizer_stencil_mask [boolean])
         ```
+        Enables or disables the [stencil mask](https://en.wikipedia.org/wiki/Stencil_buffer)
+        used to prevent the background scene from overlapping the first person
+        view. Defaults to `true`. Disabling this has the same effect as disabling
+        `rasterizer_draw_first_person_weapon_first` and you will sometimes see
+        nearby objects occluding parts of the FP model.
   - slug: rasterizer_transparent_pixel_counter
     info:
       en: |-
@@ -3460,8 +3476,10 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (run_game_scripts)
+        (run_game_scripts [boolean])
         ```
+        If enabled, causes level scripts to be run in Sapien. This would allow
+        you to see how the beach battle plays out in b30, for example.
   - slug: screenshot_count
     info:
       en: |-
