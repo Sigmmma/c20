@@ -2148,7 +2148,21 @@ external_globals:
         (debug_structure [boolean])
         ```
         When enbled, all [scenario_structure_bsp](~) collision surfaces will be
-        rendered with green outlines.
+        rendered with green outlines. A red bounding box surrounds renderable
+        surfaces.
+  - slug: debug_structure_automatic
+    tags:
+      - scenario_structure_bsp
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_automatic [boolean])
+        ```
+        Like `debug_structure`, but only appears when the camera is in "solid"
+        space (outside the BSP). This can be handy for finding your way back to
+        the level when switching BSPs. It is set to `true` by default in Sapien.
+        This is a backported feature from later Halos and only available in the
+        newer MCC tools.
   - slug: debug_texture_cache
     info:
       en: |-

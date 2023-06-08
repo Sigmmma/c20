@@ -84,7 +84,6 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Fixed rename.txt sometimes crashing Tool during imports.
 * Fixed a shading artifact on shader_environment when lightmaps contain invalid incident radiosity vectors.
 * Standalone no longer crashes when rapidly reloading and meleeing at the same time.
-* Campaign co-op now uses ODST-era netcode.
 * Added secondary reload animation support for weapons with dual triggers and magazines.
 * Sapien no longer crashes on close if you have selected the trigger volume node and there exist trigger volumes.
 * [Filthy part indices in gbxmodel](~gbxmodel#tag-field-geometries-parts-prev-filthy-part-index) now only default to `-1` if both prev and next indices are `0`.
