@@ -50,6 +50,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Removed Guerilla's Tag Mover dependency on tag depot.
 * Models with large import info can now be imported (fixes `tag_data_resize() failed`).
 * Capturing a territory with a location name string no longer crashes.
+* Outskirts intro effect `human_and_cov_firing_cine` now plays in Standalone.
 
 ## December 2022
 * Guerilla will no longer crash when opening [multiplayer_variant_settings_interface_definition](~) tags.

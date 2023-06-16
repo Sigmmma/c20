@@ -71,6 +71,8 @@ The _potentially visible set_ data (PVS) is precomputed when a BSP is compiled a
 
 Tool also takes into account the indoor sky's [_indoor fog opaque distance_](~sky#tag-field-outdoor-fog-opaque-distance) and [_indoor fog maximum density_](~sky#tag-field-indoor-fog-maximum-density) when computing the PVS. If the density is `1.0` (fully opaque) then Tool knows that indoor clusters cannot see beyond the opaque distance even if there are clusters within a line of sight. Tool logs the indoor maximum world units when the BSP is compiled (if there a sky referenced).
 
+In addition to using the static PVS, the game may dynamically cull parts of clusters using [portal frustums](~scripting#external-globals-debug-no-frustum-clip).
+
 # Fog planes
 Areas of a map which need a fog layer can be marked using _fog planes_. These are 2D surfaces which reference [fog tags](~fog), not to be confused with atmospheric fog which is part of the [sky tag](~sky). 
 
@@ -118,8 +120,8 @@ Bungie was aware of this artifact and implemented a feature to help spot it (`co
 
 1. Preemptively, keep your geometry simple and robust without an abundance of dense, complex, or spiky shapes. Flat surfaces like floors and walls should be kept as flat as possible by using alignment tools when modeling rather than "eyeballing it".
 2. Fix any "nearly coplanar" warnings in your source model by scaling affected faces to 0 along their normal axis or using alignment. Since Tool slightly rounds vertex coordinates when compiling BSPs, sometimes this warning cannot be resolved for surfaces which are not axis-aligned.
-2. There is an element of chance to phantom BSP appearing which depends on how your geometry is recursively subdivided form a BSP tree. Modifying unrelated parts of your level like adding portals or moving vertices can sometimes affect how the level is subdivided and make phantom BSP disappear.
-3. Using [phantom_tool](~) or H1A Tool's [fix-phantom-bsp option](~h1a-tool#phantom-bsp-fix) to compile your BSP will prevent phantom BSP at the cost of slightly increasing the tag size.
+2. There is an element of chance to phantom BSP appearing which depends on how your geometry is recursively subdivided to form a BSP tree. Modifying unrelated parts of your level like adding portals or moving vertices can sometimes affect how the level is subdivided and make phantom BSP disappear or appear in new places.
+3. Using [phantom_tool](~) or H1A Tool's [fix-phantom-bsp option](~h1a-tool#phantom-bsp-fix) to compile your BSP will prevent phantom BSP at the cost of slightly increasing the tag size. There have been reports that this may not resolve all phantom BSP.
 4. If you do not have access to source JMS, and are trying to fix a BSP tag, the tool [Ghostbuster](~) may fix it but has known issues.
 
 On a technical level, cases of phantom BSP are [dividing planes](#tag-field-collision-bsp-bsp3d-nodes-plane) where a child index is `-1`, but the space on that side of the plane is not actually _completely_ outside the level. The artifact is bounded by all parent dividing planes.

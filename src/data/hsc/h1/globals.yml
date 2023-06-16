@@ -1693,11 +1693,23 @@ external_globals:
         replace its final argument with `true` or `1` and press <kbd>Enter</kbd>
         to resume rendering.
   - slug: debug_no_frustum_clip
+    tags:
+      - scenario_structure_bsp
+      - portals
     info:
       en: |-
         ```hsc
-        (debug_no_frustum_clip)
+        (debug_no_frustum_clip [boolean])
         ```
+        If frustum clipping is disabled by setting this to `true`, certain
+        objects and parts of the BSP will be drawn even when behind foreground
+        geometry (use `rasterizer_wireframe 1` to see this).
+        This isn't about clipping to the whole view frustum but rather portal
+        diminished frustrums; in addition to the [PVS](~scenario_structure_bsp#potentially-visible-set),
+        the game seems to cull objects and the BSP by whether object bounding
+        spheres and possibly subclusters are visible through portals.
+        The use of `debug_pvs` at the same time makes the behaviour of this
+        unpredictable.
   - slug: debug_object_garbage_collection
     info:
       en: |-
@@ -1999,6 +2011,8 @@ external_globals:
         and [particle_systems](~particle_system). It can help to enable `framerate_throttle`
         for these markers to render consistently.
   - slug: debug_pvs
+    tags:
+      - portals
     info:
       en: |-
         ```hsc
@@ -2007,6 +2021,7 @@ external_globals:
         Alias of `debug_portals`, but with a mandatory argument.
   - slug: debug_portals
     tags:
+      - portals
       - scenario_structure_bsp
     info:
       en: |-
@@ -3286,7 +3301,7 @@ external_globals:
         |------|-------------|
         | `0`  | Off (default).
         | `1`  | Some unknown counts which always read 0.
-        | `2`  | Vertices, triangles, and primitives counts for various model and environment features and effects. **This mode causes glitched rendering and will crash Halo eventually**.
+        | `2`  | Vertices, triangles, and primitives counts for various model and environment features and effects.
         | `3`  | GPU profiling for each stage of rendering. Uknown if this still works.
         | `4`  | Memory usage for dynamic vertices, shadow buffers, and more.
         | `5`  | Just framerate stats.
