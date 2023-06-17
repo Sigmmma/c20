@@ -1081,10 +1081,11 @@ external_globals:
         ```hsc
         (collision_debug [boolean])
         ```
-        If enabled, the center of the view is used to test for collisions. A
-        red normal-aligned marker will be shown where the ray from the center of
-        view collides with a surface. The collision surface itself, whether [BSP](~scenario_structure_bsp)
-        or [model](~model_collision_geometry), will be outline in red. Information
+        If enabled, a ray is continually shot from the camera (by default) to
+        troubleshoot ray-object and ray-BSP collisions. A red normal-aligned
+        marker will be shown where the ray collides with a surface. The collision
+        surface itself, whether [BSP](~scenario_structure_bsp) or
+        [model](~model_collision_geometry), will be outline in red. Information
         about the collision surface will be shown in the top left corner of the screen,
         including plane and surface indices from the BSP structure, material type,
         and how many degrees the surface's normal differs from vertical.
@@ -1092,6 +1093,11 @@ external_globals:
         The types of surfaces which the test ray hits or ignores can be toggled
         with the `collision_debug_flag_*` commands. The maximum range of the ray
         is controlled with `collision_debug_length`.
+
+        This feature can be frozen in place with `collision_debug_repeat` and
+        also moved directly with the `collision_debug_point_*` and `collision_debug_vector_*`
+        globals. A red ray is visible in these situations when the ray is no
+        longer shot from the camera's point of view.
   - slug: collision_debug_features
     tags:
       - model_collision_geometry
@@ -1306,20 +1312,27 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (collision_debug_point_x)
+        (collision_debug_point_x [real])
         ```
+        Represents the current origin of the `collision_debug` test ray. While
+        `collision_debug` is active, this value will be continually updated
+        with the camera's location unless `collision_debug_repeat` is also
+        enabled. In repeat mode, you are able to set this global to move
+        the ray origin to any point you need. See also `collision_debug_vector_i`.
   - slug: collision_debug_point_y
     info:
       en: |-
         ```hsc
-        (collision_debug_point_y)
+        (collision_debug_point_y [real])
         ```
+        See `collision_debug_point_x`.
   - slug: collision_debug_point_z
     info:
       en: |-
         ```hsc
-        (collision_debug_point_z)
+        (collision_debug_point_z [real])
         ```
+        See `collision_debug_point_x`.
   - slug: collision_debug_repeat
     info:
       en: |-
@@ -1347,20 +1360,27 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (collision_debug_vector_i)
+        (collision_debug_vector_i [real])
         ```
+        Represents the current direction of the `collision_debug` test ray as
+        _ijk_ vector components. While `collision_debug` is active, this value
+        will be continually updated with the camera's direction unless
+        `collision_debug_repeat` is also enabled. In repeat mode, you are able
+        to set this global to orient the ray as needed.
   - slug: collision_debug_vector_j
     info:
       en: |-
         ```hsc
-        (collision_debug_vector_j)
+        (collision_debug_vector_j [real])
         ```
+        See `collision_debug_vector_i`.
   - slug: collision_debug_vector_k
     info:
       en: |-
         ```hsc
-        (collision_debug_vector_k)
+        (collision_debug_vector_k [real])
         ```
+        See `collision_debug_vector_i`.
   - slug: collision_debug_width
     info:
       en: |-
@@ -1453,11 +1473,20 @@ external_globals:
         the shape of the surfaces below them. If set to `false`, the limp body system
         will take effect again even for existing dead bipeds.
   - slug: debug_biped_physics
+    tasgs:
+      - biped
     info:
       en: |-
         ```hsc
-        (debug_biped_physics)
+        (debug_biped_physics [boolean])
         ```
+        For this to be visible, `collision_debug` must also be enabled which has
+        the side-effect of making the `collision_debug` feature itself unusable
+        until the game is restarted. This displays several markers and vectors
+        within the player's physics pill (`debug_objects_biped_physics_pill`)
+        which can be more easily observed in third person and with `framerate_throttle 1`.
+        The number and colours of the debug overlays can vary by which map
+        is loaded and it's not known why.
   - slug: debug_biped_skip_collision
     tags:
       - biped
@@ -1537,7 +1566,7 @@ external_globals:
         (debug_damage [boolean])
         ```
         When enabled, looking at any collideable [object](~) and pressing
-        <kbd>Space</kbd> will display the object's body and shield vitalities
+        {% key "Space" /%} will display the object's body and shield vitalities
         on the HUD.
   - slug: debug_damage_taken
     tags:
@@ -1595,7 +1624,7 @@ external_globals:
         ```hsc
         (debug_framerate [boolean])
         ```
-        No visible effect. Replaced with the <kbd>Ctrl + F12</kbd> hotkey?
+        No visible effect. Replaced with the {% key "Ctrl+F12" /%} hotkey?
   - slug: debug_frustum
     info:
       en: |-
@@ -1689,8 +1718,8 @@ external_globals:
         If enabled, completely stops the game from rendering new frames. This
         includes preventing the rendering of the developer console itself, so
         disabling this feature can be tricky. If you think the console is still
-        open, press <kbd>Up</kbd> to re-enter the previous command, then
-        replace its final argument with `true` or `1` and press <kbd>Enter</kbd>
+        open, press {% key "Up" /%} to re-enter the previous command, then
+        replace its final argument with `true` or `1` and press {% key "Enter" /%}
         to resume rendering.
   - slug: debug_no_frustum_clip
     tags:
