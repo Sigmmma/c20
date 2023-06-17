@@ -62,6 +62,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Models with large import info can now be imported (fixes `tag_data_resize() failed`).
 * Explanation fields no longer take up space in Guerilla's grid view.
 * Fixed `effect_scenery` lights appearing in the wrong location of the skybox for non-hosts.
+* Fixed shader views under expert mode in Guerilla.
 
 ## December 2022
 * AI objectives crash fix

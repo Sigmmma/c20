@@ -53,3 +53,4 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Added support for custom PCKs loaded from PnP mod folder.
 * `script_doc` now includes globals.
 * Inclusion of scripts needed to build shared files.
+* Fixed `build-cache-file-custom` asserts.

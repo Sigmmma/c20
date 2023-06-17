@@ -66,6 +66,8 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Custom player bipeds no longer invisible if new customization toggle is set to disabled.
 * Addition of ManagedBlam DLL.
 * Fixed crash on `prune_global_keep_playable 1`.
+* Fixed shader views under expert mode in Guerilla.
+* Fixed lightmap generation for ported size classifications from H3.
 
 ## December 2022
 * AI objectives crash fix

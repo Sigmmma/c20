@@ -60,3 +60,4 @@ This changelog is focused on known notable modding-related changes and is not gu
 * `script_doc` now includes globals.
 * Fixed an assert when posessing a vehicle.
 * Inclusion of scripts needed to build shared files.
+* Fixed `build-cache-file-custom` asserts.
