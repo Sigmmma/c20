@@ -1342,7 +1342,8 @@ external_globals:
         Setting this to `true` will freeze the test rays and points for
         `collision_debug`, `collision_debug_phantom_bsp`, `collision_debug_spray`,
         and `collision_debug_features`, allowing you to move and view the debug
-        information from another angle.
+        information from another angle or manually set the origin and direction
+        with the `collision_debug_point_*` and `collision_debug_vector_*` globals.
   - slug: collision_debug_spray
     tags:
       - model_collision_geometry
@@ -1698,11 +1699,17 @@ external_globals:
         Displays active [sound_looping](~) with cyan spheres for their maxmimum
         distance and blue spheres for their minimum.
   - slug: debug_material_effects
+    tags:
+      - physics
+      - material_effects
     info:
       en: |-
         ```hsc
-        (debug_material_effects)
+        (debug_material_effects [boolean])
         ```
+        Displays cyan spheres wherever [material_effects](~) are being generated,
+        like under the player's feet and where [physics spheres](~physics#mass-points)
+        intersect with the [BSP](~scenario_structure_bsp) or [model_collision_geometry](~).
   - slug: debug_motion_sensor_draw_all_units
     info:
       en: |-
