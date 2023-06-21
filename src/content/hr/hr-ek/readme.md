@@ -64,6 +64,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Optimizations to make TagWatcher faster.
 * Game variants without `engine_data` no longer crash MCC.
 * Models with large import info can now be imported (fixes `tag_data_resize() failed`).
+* Fixed assertion when accessing some CUI components (customization items, firefight lobby game type) in Standalone's main menu.
 
 ## December 2022
 * Instance imposters can now be generated.

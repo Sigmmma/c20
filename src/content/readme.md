@@ -39,6 +39,7 @@ For details on each game:
 * [Halo Reach](~hr-ek#tbd-2023)
 * [Halo 4](~h4-ek#tbd-2023)
 * [Halo 2 Anniversary MP](~h2amp-ek#tbd-2023)
+* [Excession](~excession#tbd-2023)
 
 {% /alert %}
 
