@@ -12,6 +12,7 @@ thanks:
   gbMichelle: Node limits
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+  Kolshgamer: Common marker name
 ---
 The Gearbox model tag contains the marker points and render models for [objects](~object) such as [vehicles](~vehicle), [scenery](~), and [weapons](~weapon) among others. It is not collideable nor animated on its own, and objects may reference additional [model_collision_geometry](~) and [model_animations](~) tags. This tag supports LODs and permutations, and includes [shader_model](~) references.
 
@@ -43,7 +44,10 @@ This tag only contains the marker data but other tags usually determine how they
   * When used on a vehicle with "alien scout" or "alien fighter" [vehicle physics type](~vehicle#tag-field-vehicle-type), creates a dust cloud effect when the vehicle is hovering close to the ground. This can be seen at a piloted Banshee's wingtips when sitting on the ground.
   * When the vehicle physics type is "human plane", creates a similar dust effect if the marker is pointed at nearby ground. Used for the Pelican's thrusters.
 * `jet thrusters`: Can also be used for vehicles with "human plane" physics to create the Pelican's thruster dust effect.
-* `primary ejection`: Used to indicate where casings fly out when firing the primary trigger
+
+Commonly used marker names without hard-coded behaviour include:
+
+* `primary ejection`: Used to indicate where casings fly out when firing the primary trigger.
 
 [Tool](~tool#model-compilation) only includes markers from the `superhigh` LOD.
 
