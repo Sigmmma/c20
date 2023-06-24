@@ -153,5 +153,5 @@ If any of your physics shapes are not strictly-convex, the Blender addon will st
 ![](K.gif "Make a concave object strictly-convex with Blender's Convex Hull function.")
 
 {% alert type="success" %}
-Once you've gotten to this point, you are ready to look at adding a custom animation and creating a `.device_machine` tag, so that we can have the platform move us around! This page is currently under construction, check back here in the future or [return to the hub to review your progress.](~object-importing)
+Once you've gotten to this point, you are ready to look at adding a custom animation and creating a `.device_machine` tag, so that we can have the platform move us around! This next section is [available here](~blender-object-creation-animation)
 {% /alert %}
