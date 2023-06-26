@@ -3950,9 +3950,10 @@ functions:
       en: |-
         ```hsc
         (<void> sound_set_music_gain <real>)
-        (sound_set_music_gain 3.0)
+        (sound_set_music_gain 0.5)
         ```
-        Set the game's music gain
+        Set the game's music gain. This should be in the range 0-1. Setting it
+        outside this range will crash Standalone.
   - slug: sound_set_rolloff
     info:
       en: |-
