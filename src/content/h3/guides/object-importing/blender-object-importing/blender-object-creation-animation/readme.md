@@ -151,3 +151,8 @@ It's about time we saw that platform spinning in Sapien! We've already done 99% 
 ![](H.jpg "Add the animation graph reference like so.")
 5. Open Sapien on a map of your choice, and add the platform scenery tag to the scenery palette if you haven't added it already. If you can't remember how to do this, refer to [this section of the render importing guide](~blender-object-creation-render#checking-out-the-object-in-sapien)
 6. Place the scenery down anywhere, and witness it spin!
+![](I.gif "Look at it go!")
+
+
+
+# Device Machines

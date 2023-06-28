@@ -133,7 +133,7 @@ After you've made sure that is working, try to re-place the `.crate` version usi
 
 ![](I.gif "Demonstration of both the scenery and crate tags.")
 
-# Stricly convex explanation
+# Strictly convex explanation
 In the *Halo* engines, presumably to save on resources physics models have a restriction where each shape used can only be convex, with no concave surfaces. If you are unfamiliar with 3D geometry, this can be a little tricky to get your head around at first, but with the help of a diagram and example it should become easier to grasp.
 
 Firstly, one of the best ways to determine if a shape is strictly convex is to draw a line through it. If the line passes through more than two edges/faces, then the shape is not strictly convex. See the following very crudely drawn diagram as an example:
