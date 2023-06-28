@@ -44,7 +44,7 @@ There are three last requirements to get vehicle airprobes working - making sure
 1. Open your vehicle's `.render_model` tag, and scroll right to the bottom. Locate the `Structure Meta Data` field.
 2. Enable `Expert Mode` with `Edit -> Expert Mode`.
 3. Click the `...` next to the field, and choose your vehicle's `.structure_meta` tag. This should be in your vehicle's root folder, and is auto-generated during Foundry's export/import process.
-4. Open your vehicle's `.vehicle` tag. In the `Flags` block near the top, tick `early mover` and `early mover localised physics`.
+4. Open your vehicle's `.vehicle` tag. In the `Flags` block near the top, tick `early mover` and `early mover localised physics`. *The airprobes will not affect object lighting if the early mover flag is not ticked*.
 5. Open Foundation's `tool` GUI with {% key "Ctrl + Shift + T" /%}. Set the radio button to `All Commands`. Search for or scroll down to `faux lightmap model` and select it.
 6. For the `model` entry, simply select your vehicle's `.model` tag. You can leave the other two options `false`.
 7. Press `Run Tool`. Wait for the GPU lightmapping GUI to appear. Set the options you wish to use - if you aren't sure what to pick, set the options as per the following image for a decent "medium" quality lightmapping result:

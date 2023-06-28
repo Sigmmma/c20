@@ -153,6 +153,11 @@ It's about time we saw that platform spinning in Sapien! We've already done 99% 
 6. Place the scenery down anywhere, and witness it spin!
 ![](I.gif "Look at it go!")
 
+# Device machines - what are they?
+Now let's take a look at a new tag type we haven't used before - the `.device_machine`. These tags, at first glance, seem no different to animation `.scenery` objects. They have a few key difference though, the major one being dynamic (moving) physics models.
 
+Step onto your newly spinning platform - you will notice that you do not spin with the platform. Walk into the platform from the side - you do not get pushed away by the pointy edges of the platform flying past. If you brush up against the platform enough, you will likely come to the correct conclusion that the physics model is not moving whatsoever. Even if we weighted the physics model to the `Bone` in blender, it would not animate in-engine. This is the main reason for using a `.device_machine` tag, as it *does* allow for all sorts of moving physics shenanigans.
 
-# Device Machines
+Let's go over a couple of well-known device machine examples throughtout the games (even if you did not know thats what they are!) to gain a better understanding of their wide range of applications. In Halo 2's Cairo Station mission, you may remember the second time you venture into space, and you fight some flying elites on a large platform that moves up and down as part of the mac gun's firing mechanism. This entire area is not part of the level BSP, but is rather a large device machine. As it animates up and down, the physics do too. In Halo 3, remember the huge spinning wheel on Last Resort? That too is a device machine - it's blades push the player and other objects around as the wheel animates, indicating that it has dynamic physics! Most, if not all elevators in H2+ are also device machines for reasons that should now be obvious.
+
+# Creating a new animation
