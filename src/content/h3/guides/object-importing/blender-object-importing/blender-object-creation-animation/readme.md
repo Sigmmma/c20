@@ -1,5 +1,5 @@
 ---
-title: H3 Object Importing Guide - Animations and Device Machines
+title: H3 Object Importing Guide - Scenery Animation
 keywords:
   - modeling
   - exporter
@@ -10,12 +10,6 @@ keywords:
   - jmad
   - .model_animation_graph
   - .jmad
-  - device
-  - devices
-  - machine
-  - device machine
-  - device_machine
-  - .device_machine
   - JMA
   - JMO
   - .JMA
@@ -23,7 +17,6 @@ keywords:
   - object animation
 thanks:
   PepperMan: Writing this guide
-  Krevil: Info about JMO usage
 ---
 {% alert %}
 This guide assumes you have already [read/completed the previous tutorials](~object-importing).
@@ -32,12 +25,10 @@ This guide assumes you have already [read/completed the previous tutorials](~obj
 # File list
 | File Link                                                                                          | Description
 |--------------------------------------------------------------------------------------------------- | -----------------------------------
-|[End Result](https://drive.google.com/file/d/1_XAJ1ZUPvQedONuiVW0g5uh1h084t2ys/view?usp=share_link)    | The end product of this tutorial for you to examine and compare.
+|[End Result](https://drive.google.com/file/d/1zKDSBci0hkruj9X4Qkdd7no4jBMrUs2y/view?usp=sharing)    | The end product of this tutorial for you to examine and compare.
 
 # Introduction
-On this page, we will take a look at how to create a basic animation, the process of getting it in-engine, gain an understanding of `.device_machine` tags and go over their different applications.
-
-The overall goal of the following tutorial is to add an animation to our platform and make a `.device_machine` tag for it so that we can ride it around!
+On this page, we will take a look at how to create a basic animation, the process of getting it in-engine, and gain and understanding of the `.model_animation_graph` tag. The overall goal of the following tutorial is to add an animation to our platform scenery to make it move in-engine.
 
 # Animations in Blam!
 Animation in the Blam! engine is quite a broad topic and not everything will be covered here, but the following basics should give you a good enough understanding such that you can create animations for any scenery or device machine object you wish. Unlike models, which all use the `.JMS` format for importing, animations use a multitude of formats that determine how `tool` handles them on import. You can see a list of all types [here](~animation-data), but the main two we will focus on are `.JMM` and `.JMO`. Think of `.JMM` as the "base" type of animation - one that causes an object's bones to simply move. The most common use-case is for object idling animations. `.JMO` are overlay animations - these are **additive** meaning that the bone movement data is applied on top of any current base animation on the object. When talking about things that apply to all extension types, I will use `.JMx` to indicate any extension.
@@ -153,11 +144,6 @@ It's about time we saw that platform spinning in Sapien! We've already done 99% 
 6. Place the scenery down anywhere, and witness it spin!
 ![](I.gif "Look at it go!")
 
-# Device machines - what are they?
-Now let's take a look at a new tag type we haven't used before - the `.device_machine`. These tags, at first glance, seem no different to animation `.scenery` objects. They have a few key difference though, the major one being dynamic (moving) physics models.
-
-Step onto your newly spinning platform - you will notice that you do not spin with the platform. Walk into the platform from the side - you do not get pushed away by the pointy edges of the platform flying past. If you brush up against the platform enough, you will likely come to the correct conclusion that the physics model is not moving whatsoever. Even if we weighted the physics model to the `Bone` in blender, it would not animate in-engine. This is the main reason for using a `.device_machine` tag, as it *does* allow for all sorts of moving physics shenanigans.
-
-Let's go over a couple of well-known device machine examples throughtout the games (even if you did not know thats what they are!) to gain a better understanding of their wide range of applications. In Halo 2's Cairo Station mission, you may remember the second time you venture into space, and you fight some flying elites on a large platform that moves up and down as part of the mac gun's firing mechanism. This entire area is not part of the level BSP, but is rather a large device machine. As it animates up and down, the physics do too. In Halo 3, remember the huge spinning wheel on Last Resort? That too is a device machine - it's blades push the player and other objects around as the wheel animates, indicating that it has dynamic physics! Most, if not all elevators in H2+ are also device machines for reasons that should now be obvious.
-
-# Creating a new animation
+{% alert type="success" %}
+Once you've gotten to this point, you are ready to look at adding creating a second custom animation and a `.device_machine` tag, so that we can have the platform move us around! This next section is [available here](~blender-object-creation-device-machines)
+{% /alert %}

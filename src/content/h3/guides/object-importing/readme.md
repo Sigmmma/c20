@@ -11,6 +11,9 @@ keywords:
   - collision model
   - collision_model
   - animations
+  - device
+  - device machine
+  - device_machine
 thanks:
   PepperMan: Writing this page.
 redirects:
@@ -50,4 +53,9 @@ This tutorial will go over the basics of physics models, the differences between
 # Adding Custom Animations (Basic)
 [How to add a custom animation to the platform](~blender-object-creation-animation)
 
-This page will describe how to create and export simple animations for objects, as well as covering how to set up and use the `.device_machine` tag type.
+This page will describe how to create and export simple animations for scenery objects, as well as covering some of the basics of how animations work in Blam!
+
+# Device Machines
+[Explaining device machines, and how to make a custom one](~blender-object-creation-device-machines)
+
+A guide covering what `.device_machine` tags are, how they work, and converting our platform into a device machine with a new animation made from scratch.
