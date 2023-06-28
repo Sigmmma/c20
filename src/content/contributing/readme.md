@@ -190,7 +190,7 @@ The **scenario structure BSP** tag, commonly just called the **BSP**, contains l
 ```
 
 ## Writing style
-* When writing guide/tutorial pages you can use a more conversational voice. Otherwise, use a "textbook" or Wikipedia style of writing
+* Use a "textbook" or Wikipedia style of writing. When writing guide/tutorial pages you can be a little more conversational, using phrases like "you will see a..." or "next we need to...".
 * Make points plainly with simple English and avoid expressions unfamiliar to those whose first language is not English.
 * There is no strong preference at this time for UK/Canada vs. US spelling of words like colour, unless you are referring to a tag's field name which should match exactly.
 * Assume your reader is a novice. Include links to prerequisite information and other pages to fill out concepts. Use examples that the reader might be familiar with to help get your points across.
