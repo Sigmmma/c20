@@ -8,8 +8,6 @@ keywords:
   - reflections
 thanks:
   Kashiiera: Writing this guide
-redirects:
-  - /h3/cubemaps
 ---
 
 # Introduction
