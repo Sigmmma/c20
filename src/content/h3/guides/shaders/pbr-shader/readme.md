@@ -13,13 +13,13 @@ redirects:
   - /h3/pbr-shaders
 ---
 
-* ![](A.png "It's like talking to a brick wall")
+![](A.png "It's like talking to a brick wall")
 
 Halo 3 includes a PBR-like shader that allows artists to convert their premade PBR assets to work with Halo 3's shader system. This guide will explain how to convert your existing PBR assets into Halo 3. 
 
 # What is PBR?
 
-* ![](B.png "An example of PBR")
+![](B.png "An example of PBR")
 
 [Physically based rendering](https://en.wikipedia.org/wiki/Physically_based_rendering) (PBR) is a way of rendering images that mimics how light works in the real world. Most modern game engines have a form of this method in there shading systems.
 
@@ -27,7 +27,7 @@ Halo 3 includes a PBR-like shader that allows artists to convert their premade P
 
 # Halo 3's "PBR"
 
-* ![](C.png "Halo 3 PBR shader in action")
+![](C.png "Halo 3 PBR shader in action")
 
 With the release of the weapon and vehicle skins update to Halo 3 MCC, 343 Industries implemented a new material_model called **cook_torrance_pbr_maps**. This allowed for the menu skins that were authored in PBR to be replicated in-engine when enabled. While not 100% true PBR, this shader allows artists to now have a more modern rendering technique in Halo 3.
 
@@ -58,11 +58,11 @@ You will need two textures for creating a Diffuse map:
 Conversion steps
 
 1. Open up your Albedo map in your photo editing program.
-  * ![](D.png "Albedo map")
+  ![](D.png "Albedo map")
 2. Create a new layer over your Albedo map.
 3. Copy and paste your Ambient Occulsion map into the new empty layer.
 4. Set the blend mode of the Ambient Occulsion to **Multiply**.
-  * ![](E.png "Multiplied Ambient Occulsion map")
+  ![](E.png "Multiplied Ambient Occulsion map")
 5. Save your new Diffuse map as .TIF in your asset's bitmaps folder.
 
 You now have a converted Diffuse map. Make sure to save a editable copy of the Diffuse map in case you wish to make changes later.
@@ -85,16 +85,16 @@ You will need three textures:
 Conversion steps
 
 1. Open up your Metallic map in your photo editing program.
-  * ![](F.png "Metallic map layer")
+  ![](F.png "Metallic map layer")
 2. Create a new layer over your Metallic map. 
 3. Copy and paste your Roughness map into the new empty layer.
 4. Press {% key "Ctrl + I" /%} to invert the Roughness map.
 5. Set the blend mode of the Roughness map to **Lighten**
-  * ![](G.png "Inverted Roughness Map")
+  ![](G.png "Inverted Roughness Map")
 6. Create a new layer over your inverted Roughness map.
 7. Copy and paste your Ambient Occulsion map into the new empty layer.
 8. Set the blend mode of the Ambient Occulsion to **Multiply** and the opacity to **75%**.
-  * ![](H.png "Multiplied Ambient Occulsion map")
+  ![](H.png "Multiplied Ambient Occulsion map")
 9. Save your new Specular map as .TIF in your asset's bitmaps folder.    
 
 And there you go, you should now have a working Specular map. Make sure to save a editable copy of the Specular map in case you wish to make changes later.
@@ -109,18 +109,18 @@ Setup steps
 2. Copy your Specular map.
 3. Create a new image with the exact same pixel resolution of the Specular map.
 4. Open the color channels of the new image and paste the Specular map in the red channel.
-  * ![](I.png "Specular map in the red channel")
+  ![](I.png "Specular map in the red channel")
 
   **NOTE**: *If you do not have a Metallic map, make the red channel solid black.*
 
 5. Copy your unaltered Roughness map and paste it into the green channel.
 6. Make the blue channel solid white.
-  * ![](J.png "Roughness map in the green channel")
+  ![](J.png "Roughness map in the green channel")
 7. Save your new Control map as .TIF in your asset's bitmaps folder.    
 
 The final Control map should resemble a pink and blue texture, with the pink colors representing the reflective surfaces and the blue colors the dull surfaces. If you have a material that has no metal, the Control map should only have blue colors. 
 
-* ![](K.png "Final Control map")
+![](K.png "Final Control map")
 
 # Step 4: Converting a Normal Map
 
@@ -132,7 +132,7 @@ Conversion Steps
 1. Open up your OpenGL Normal map in your photo editing program.
 2. Go to the color channels of the Normal map.
 3. Select ONLY the green channel and press {% key "Ctrl + I" /%} to invert the green channel.
-* ![](L.png "Normal map converted to DirectX format")
+  ![](L.png "Normal map converted to DirectX format")
 4. Re-enable all the color channels and save your converted Normal map as .TIF in your asset's bitmaps folder.
 
 To make the texture importing more streamlined, end your texture file name with the {% key "_zbump" /%} flag to have the normal map import in the correct format.
@@ -143,29 +143,29 @@ Once everything has been exported as .TIFs and imported into Guerilla, the textu
 
 Diffuse Bitmap:
 
-* ![](M.png)
+![](M.png)
 
 Control Bitmap:
 
-* ![](N.png)
+![](N.png)
 
 Normal Bitmap:
 
-* ![](O.png)
+![](O.png)
 
 Emission Bitmap:
 
-* ![](Q.png)
+![](Q.png)
 
 Parallax Bitmap:
 
-* ![](P.png)
+![](P.png)
 
 # Step 5: Shader Settings
 
 The final step in this process is configuring the shader settings. Below is a picture showcasing what your shader values and settings need to be set to:
 
-* ![](R.png "Shader settings to use")
+![](R.png "Shader settings to use")
 
 - The base_map field is where your Diffuse map goes.
 - The bump_map field is where your Normal map goes.
@@ -177,7 +177,7 @@ The final step in this process is configuring the shader settings. Below is a pi
 
 *Here is an example of some settings for emission and parallax:*
 
-* ![](S.png "Emission and parallax settings to use")
+![](S.png "Emission and parallax settings to use")
 
 
 The only settings that you should really play with while using the PBR shader is:
@@ -187,7 +187,6 @@ The only settings that you should really play with while using the PBR shader is
 
 With everything combined and set, you should now have your asset rendering with the PBR shader. 
 
-
-* ![](T.png "Final PBR shader setup for the asset")
+![](T.png "Final PBR shader setup for the asset")
 
 

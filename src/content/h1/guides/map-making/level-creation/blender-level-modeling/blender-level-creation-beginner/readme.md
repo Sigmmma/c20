@@ -64,7 +64,7 @@ The level must be a sealed. The level must be a contiguous structure that forms 
 * There must not be any open edges, the component parts or geometry of the level must match (edges and verts). There are some exceptions to the rule which will be covered in later tutorials and examples in later sections, but basically, anything that is solid (has to have collision with the player and vehicles) cannot have any open edges.
 * The normals of the faces used to create the level geometry must face towards the playable area of the level or section of the level. The normals of the faces or polygons determine not just the face that will be rendered or seen by the player but also the surface to be used for collision and physics.
 
-## creation of a simple box room
+## Creation of a simple box room
 
 1. [Add a new box object](https://www.youtube.com/watch?v=zqy0tHLiOig)
 2. Bring up the [sidebar](https://youtu.be/H64e1RDZKuA) with {% key "N" /%} and set it to the item tab.
@@ -76,10 +76,10 @@ The level must be a sealed. The level must be a contiguous structure that forms 
 7. [Flip all the normals](https://youtu.be/zog43sqj0Qc) for the box inwards, the interior of the box will be the playable area of the level.
 	* There are two ways you can confirm the direction of the normals on the model. They are as follows:
 	* Backface culling: This option will render the geometry transparent when viewed from the opposite side of the face normal.
-		* ![](A.jpg "Find backface culling in the viewport shading options menu")
+		![](A.jpg "Find backface culling in the viewport shading options menu")
 		* [Backface culling docs](https://youtu.be/FAiMN1Zohps)
 	* Normal overlay: This option will render lines coming out the center of the face to indicate the direction it is pointing. This option will only be available to you if you are in edit mode for the object you wish to examine.
-		* ![](B.jpg "Find normals in the viewport overlay options menu")
+		![](B.jpg "Find normals in the viewport overlay options menu")
 		* [Normal overlay docs](https://youtu.be/zog43sqj0Qc)
 8. [Set context](https://youtu.be/SVLAYHJSXYA) back to object mode if you haven't already.
 9. With both your level and frame object selected, [set the parent](https://youtu.be/FsMnUhG1CWo) of the box (level) to the Reference Frame (frame) with frame being the active object.
@@ -102,14 +102,14 @@ Every face for the game level must have a material assigned to it (except for th
 If you do not have the textures referenced in this section then grab them from the [file list.](#file-list)
 
 1. Select the box object (level) and navigate to the materials tab.
-	* ![](C.png "Match the numbers in the image to the numbers in the list below.")
+  ![](C.png "Match the numbers in the image to the numbers in the list below.")
 2. [Add a material](https://youtu.be/2yOOzN0zJfQ) named `+sky` to your box (level) object.
 3. [Add a material](https://youtu.be/2yOOzN0zJfQ) named `example_tutorial_ground` to your box (level) object.
 4. This is where we will assign a texture to our `example_tutorial_ground` material. Your material will need to have `Use Nodes` enabled in order to make use of textures.
 5. [Assign an image texture node](https://youtu.be/2yOOzN0zJfQ) to your material.
 6. Once the image texture node has been assigned you should now see file directory options instead of a diffuse color option. We will be clicking on the button labeled `Open` and browsing to our HEK install directory.
 7. Navigate to the following directory `(HEK Install Path)\data\levels\test\tutorial\bitmaps`
-	* ![](D.png "Match the numbers in the image to the numbers in the list below.")
+  ![](D.png "Match the numbers in the image to the numbers in the list below.")
 8. Select an image texture to use for your material. In this instance we shall use `example_tutorial_ground.tif`.
 9. Go ahead and click the button labeled `Open Image` to set the selected image to be used by your material. This completes the texture assigning process.
 
@@ -130,7 +130,7 @@ Be sure to keep your material names lowercase as all tags paths in Halo should n
 We will now be going over how to apply your newly created materials to faces in your scene.
 
 1. Select the box (level) object.
-	* ![](E.jpg "Match the numbers in the image to the numbers in the list below.")
+  ![](E.jpg "Match the numbers in the image to the numbers in the list below.")
 2. [Change context mode](https://youtu.be/SVLAYHJSXYA) from object mode to edit mode.
 3. Make sure you are in [face selection](https://youtu.be/C_X7muZP3XA) so that you can properly select the object faces.
 4. [Select all](https://youtu.be/p27vyrHvpkk) faces of the cube except for the bottom area.

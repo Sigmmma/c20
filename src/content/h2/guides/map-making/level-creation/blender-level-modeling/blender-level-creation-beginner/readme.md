@@ -82,10 +82,10 @@ The level must be a sealed. The level must be a contiguous structure that forms 
 7. [Flip all the normals](https://youtu.be/zog43sqj0Qc) for the box inwards, the interior of the box will be the playable area of the level.
 	* There are two ways you can confirm the direction of the normals on the model. They are as follows:
 	* Backface culling: This option will render the geometry transparent when viewed from the opposite side of the face normal.
-		* ![](A.jpg "Find backface culling in the viewport shading options menu")
+		![](A.jpg "Find backface culling in the viewport shading options menu")
 		* [Backface culling docs](https://youtu.be/FAiMN1Zohps)
 	* Normal overlay: This option will render lines coming out the center of the face to indicate the direction it is pointing. This option will only be available to you if you are in edit mode for the object you wish to examine.
-		* ![](B.jpg "Find normals in the viewport overlay options menu")
+		![](B.jpg "Find normals in the viewport overlay options menu")
 		* [Normal overlay docs](https://youtu.be/zog43sqj0Qc)
 8. [Set context](https://youtu.be/SVLAYHJSXYA) back to object mode if you haven't already.
 9. With both your level and frame object selected, [set the parent](https://youtu.be/FsMnUhG1CWo) of the box (level) to the Reference Frame (b_levelroot) with b_levelroot being the active object.
@@ -107,14 +107,14 @@ If a face does not have a material assigned then it will use a default shader on
 If you do not have the textures referenced in this section then grab them from the [file list.](#file-list)
 
 1. Select the box object (level) and navigate to the materials tab.
-	* ![](C.jpg "Match the numbers in the image to the numbers in the list below.")
+	![](C.jpg "Match the numbers in the image to the numbers in the list below.")
 2. [Add a material](https://youtu.be/2yOOzN0zJfQ) named `+sky` to your box (level) object.
 3. [Add a material](https://youtu.be/2yOOzN0zJfQ) named `f_im flat_light_scratchy` to your box (level) object.
 4. This is where we will assign a texture to our `f_im flat_light_scratchy` material. Your material will need to have `Use Nodes` enabled in order to make use of textures.
 5. [Assign an image texture node](https://youtu.be/2yOOzN0zJfQ) to your material.
 6. Once the image texture node has been assigned you should now see file directory options instead of a diffuse color option. We will be clicking on the button labeled `Open` and browsing to our H2EK install directory.
 7. Navigate to the following directory `(H2EK Install Path)\data\scenarios\bitmaps\forerunner\industrial\metals`
-	* ![](D.jpg "Match the numbers in the image to the numbers in the list below.")
+	![](D.jpg "Match the numbers in the image to the numbers in the list below.")
 8. Select an image texture to use for your material. In this instance we shall use `flat_dark_scratchy.tif`.
 9. Go ahead and click the button labeled `Open Image` to set the selected image to be used by your material. This completes the texture assigning process.
 
@@ -131,7 +131,7 @@ Be sure to keep your material names lowercase as all tags paths in Halo should n
 We will now be going over how to apply your newly created materials to faces in your scene.
 
 1. Select the box (level) object.
-	* ![](E.jpg "Match the numbers in the image to the numbers in the list below.")
+	![](E.jpg "Match the numbers in the image to the numbers in the list below.")
 2. [Change context mode](https://youtu.be/SVLAYHJSXYA) from object mode to edit mode.
 3. Make sure you are in [face selection](https://youtu.be/C_X7muZP3XA) so that you can properly select the object faces.
 4. [Select all](https://youtu.be/p27vyrHvpkk) faces of the cube except for the bottom area.

@@ -48,7 +48,7 @@ There are three last requirements to get vehicle airprobes working - making sure
 5. Open Foundation's `tool` GUI with {% key "Ctrl + Shift + T" /%}. Set the radio button to `All Commands`. Search for or scroll down to `faux lightmap model` and select it.
 6. For the `model` entry, simply select your vehicle's `.model` tag. You can leave the other two options `false`.
 7. Press `Run Tool`. Wait for the GPU lightmapping GUI to appear. Set the options you wish to use - if you aren't sure what to pick, set the options as per the following image for a decent "medium" quality lightmapping result:
-![](C.jpg "Good "medium" quality lightmapping settings to use. Adjust to your preference.")
+  ![](C.jpg "Good 'medium' quality lightmapping settings to use. Adjust to your preference.")
 8. Wait for the lightmapping process to finish successfully. This should not take longer than a few minutes unless your render model is extremely complex.
 9. Once the lightmapping is finished, check in-engine to see the results! If all has gone well, you should notice that the player biped (and other objects) respond correctly to the lighting inside the vehicle. You may wish to add more airprobes if the transitions are too harsh.
 {% alert type="danger" %}

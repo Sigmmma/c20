@@ -1,19 +1,15 @@
 ---
-title: H3 Object Importing Hub
+title: H3 object importing hub
 keywords:
   - modeling
   - exporter
   - importing
   - render model
-  - render_model
   - physics model
-  - physics_model
   - collision model
-  - collision_model
   - animations
   - device
   - device machine
-  - device_machine
 thanks:
   PepperMan: Writing this page.
 redirects:
@@ -40,22 +36,22 @@ The next section will cover the common settings you should mess with when workin
 
 The next section will show the user how to create a simple custom object render mesh that can be imported in Halo to make a valid scenery object.
 
-# Importing Custom Textures
+# Importing custom textures
 [How to set up Materials in Blender for use in Halo](~blender-object-creation-materials)
 
 This section will go over how to set up materials within Blender for use on custom objects in Halo 3. This will explain naming conventions, using custom textures, the basics of UV unwrapping, and shader and bitmap tag creation in Guerilla.
 
-# Creating a Physics Model
+# Creating a physics model
 [How to create a custom physics model for the platform](~blender-object-creation-physics)
 
 This tutorial will go over the basics of physics models, the differences between physics and collision models, an explanation of strictly-convex shapes, and a step by step guide on how to make a basic physics model.
 
-# Adding Custom Animations (Basic)
+# Adding custom animations (basic)
 [How to add a custom animation to the platform](~blender-object-creation-animation)
 
 This page will describe how to create and export simple animations for scenery objects, as well as covering some of the basics of how animations work in Blam!
 
-# Device Machines
+# Device machines
 [Explaining device machines, and how to make a custom one](~blender-object-creation-device-machines)
 
 A guide covering what `.device_machine` tags are, how they work, and converting our platform into a device machine with a new animation made from scratch.

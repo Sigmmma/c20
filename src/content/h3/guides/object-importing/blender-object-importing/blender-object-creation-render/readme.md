@@ -43,10 +43,10 @@ To create an Armature, do the following:
 
 1. Press {% key "Shift+A" /%} to open the Add menu
 2. Select Armature from the list  
-* ![](A.png "Add an Armature from the Add menu")
+  ![](A.png "Add an Armature from the Add menu")
 
 For now, this is all we need to do with the Armature. The Armature can remain named the default, or you can rename it if you so wish.
-* ![](B.png "Your scene should look like this")
+  ![](B.png "Your scene should look like this")
 
 
 # Creation of a simple model
@@ -56,7 +56,7 @@ For the purposes of this tutorial, the model we will be creating shall be extrem
 
 1. Press {% key "Shift+A" /%} to open the Add menu
 2. Select Mesh, then Cube to add a new cube to the scene
-* ![](C.png "Add a simple cube to the scene")
+  ![](C.png "Add a simple cube to the scene")
 3. You should now see a basic cube in the center of your scene
 
 ## Matching Halo scale
@@ -71,7 +71,7 @@ To determine how big objects need to be in Blender, the addon you installed earl
 3. As Halo scale is so large, you will likely have to use your mouse scroll wheel to zoom out of the scene until the Spartan model is well within view
 
 Your scene should now hopefully look like this:
-* ![](E.png "Master Chief has arrived in the scene")
+![](E.png "Master Chief has arrived in the scene")
 
 As you can see, we need to scale the cube up quite a bit to fit a full-grown Spartan!
 1. Select your Cube object
@@ -81,14 +81,14 @@ As you can see, we need to scale the cube up quite a bit to fit a full-grown Spa
 5. The exact input required would be: {% key "S" /%},{% key "Shift+Z" /%},{% key "60" /%},{% key "Enter" /%}
 
 The cube in your scene should now look something like this, which for now will serve us quite well as a basic platform object
-* ![](F.png "Scaled up cube")
+![](F.png "Scaled up cube")
 
 # Application of materials
 Halo Materials can be quite a tricky topic to understande for newcomers, and so it is HIGHLY recommended that the [Materials Overview](~materials) page be read at some point before the texturing page. However, this information won't be required for this section, as we are not applying any custom textures for now. However, it is good practice to apply a material now, as we will be using it later.
 
 ## Creating new materials
 1. Select the cube object and navigate to the materials tab.
-	* ![](G.png "The Material Properties Tab in Blender")  
+	![](G.png "The Material Properties Tab in Blender")  
 2. [Add a material](https://youtu.be/2yOOzN0zJfQ) named `material` to your cube object. We will rename this at a later stage. Keep the color default, as it is common practice for only physics and collision meshes to use solid colors to stand out.
 
 For now, this material is simply a placeholder. As we will not yet be importing any custom textures into Halo 3, the cube will simply use the default/missing "DaVinci" texture that Halo assings to faces with no texture.
@@ -98,10 +98,10 @@ Right now, the Armature and Cube are two separate entities, and have no way to i
 1. Select your Cube
 2. Holding {% key "Ctrl" /%}, click/select the Armature object in the outliner (the list in the top right that shows all of the objects in your scene)
 3. You should have both objects selected, with the Cube being a darker orange
-* ![](H.png "The Outliner, with both Cube and Armature selected")
+  ![](H.png "The Outliner, with both Cube and Armature selected")
 4. With your mouse over the 3D Viewport, press {% key "Ctrl+P" /%} to show the Parenting menu.
 5. Select `Object (Keep Transform)`. Your Cube should now appear inside the Armature in the Outliner.
-* ![](I.gif "Parenting the Cube to the Armature")
+  ![](I.gif "Parenting the Cube to the Armature")
 
 # Saving your progress!
 We are pretty much done with the Blender part of this tutorial, so now would be a very good time to make sure you have saved your Blender scene recently. It is also a good idea to make backups often of stuff you wouldn't want to lose, or when you make major changes to a file.
@@ -126,12 +126,12 @@ See the process in realtime [here.](https://youtu.be/Tu436ifYA3A)
 If you aren't already familiar, Tool (tool.exe) is a commandline program used within the Halo Editing Kits mostly to provide import and export functionality. As such, we will need to use it now to turn our newly exported .JMS file into a `.render_model` tag. You can read more about tool [here.](~h3-tool)
 
 1. Open a command prompt within your H3EK directory. You can do this by typing `cmd` into the address bar whilst in the H3EK folder, and pressing {% key "Enter" /%}.
-* ![](J.gif "Opening command prompt")
+  ![](J.gif "Opening command prompt")
 2. Take note of the filepath of your custom object. If you've been following along exactly, that would be `H3EK\data\objects\scenery\custom_platform`. The tool command we are about to run only requires the relative path, and for H3EK this means you can exclude everything up to and including `data` from the filepath. Therefore, we just need `objects\scenery\custom_platform`
 3. The command also takes one last option, `draft` or `final`. This is to do with PRT shadow creation, which is out of the scope of this tutorial. For now, we will simply use `draft`.
 4. Type the command `tool render objects\scenery\custom_platform draft` into CMD, and hit enter. If you used a different filepath, be sure to use that instead - if your path contains spaces in folder names, you will need to wrap the filepath in quotes when inputting this command.
 5. Do not be alarmed if you don't understand most of what is printed to the screen - if you see `writing out render model` somewhere, then it has succeeded. Refer to the following image to check that your output matches:
-* ![](K.png "Tool.exe output when successfully running the render command")
+  ![](K.png "Tool.exe output when successfully running the render command")
 
 That's about all there is to the .JMS importing process. Tool has taken our .JMS file, processed it, and produced a .render_model tag in the *mirror* filepath inside of the `H3EK\tags` directory. For example, our .JMS filepath of `H3EK\data\objects\scenery\custom_platform` means that the .render_model has been saved to `H3EK\tags\objects\scenery\custom_platform`. Try to find it in explorer!
 
