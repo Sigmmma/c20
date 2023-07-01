@@ -14,7 +14,7 @@ import {type Node, type RenderableTreeNode} from "@markdoc/markdoc";
 import {type NavHeading} from "../components/Article/TableOfContents";
 import {type MetaboxProps} from "../components/Metabox/Metabox";
 import Wat from "../components/Wat/Wat";
-import {type PageFrontMatter, type PageIndex, type PageLink, resolvePageGlobal, getPageParents, getAllThanks, getPageRelated, tryLocalizedPath, getPageOtherLangs, type NavTree} from "../content";
+import {type PageFrontMatter, type PageIndex, type PageLink, resolvePageGlobal, getPageParents, getAllThanks, getPageRelated, tryLocalizedPath, getPageOtherLangs, type NavTree, getPageChildren} from "../content";
 import {type SearchDoc} from "../search";
 import getWorkflowSections from "./features/workflow";
 import getTagSections from "./features/tag";
@@ -141,6 +141,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
     title: front?.title,
     //non-local
     allThanks: getAllThanks(input.pageIndex, input.lang),
+    children: getPageChildren(input.pageIndex, input.pageId, input.lang),
     resolvePage: (idTail: string, headingId?: string): PageLink => {
       const page = resolvePageGlobal(input.pageIndex, input.lang, input.pageId, idTail, headingId);
       if (!page && !input.debug) {

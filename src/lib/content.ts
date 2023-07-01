@@ -97,14 +97,16 @@ export async function loadPageIndex(contentDir: string): Promise<PageIndex> {
     }
   }));
 
-  // Object.entries(pages).forEach(([pageId, page]) => {
-  //   const parentPage = [...page["en"].logicalPath];
-  //   parentPage.pop();
-  //   const parentId = logicalToPageId(parentPage);
-  //   if (parentId != "/" && !pages[parentId]) {
-  //     throw new Error(`Missing parent page ID: ${parentId}`);
-  //   }
-  // });
+  const missing = {};
+  Object.entries(pages).forEach(([pageId, page]) => {
+    const parentPage = [...page["en"].logicalPath];
+    parentPage.pop();
+    const parentId = logicalToPageId(parentPage);
+    if (parentId != "/" && parentId != "/utility" && !pages[parentId] && !missing[parentId]) {
+      console.warn(`Missing parent page ID: ${parentId}`);
+      missing[parentId] = true;
+    }
+  });
 
   return pages;
 };

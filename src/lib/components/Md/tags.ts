@@ -16,6 +16,10 @@ const tags: Record<string, Schema> = {
       }
     }
   },
+  childList: {
+    render: "ChildList",
+    selfClosing: true,
+  },
   unitConverter: {
     render: "UnitConverterMountpoint",
     selfClosing: true,

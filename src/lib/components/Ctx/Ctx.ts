@@ -15,6 +15,7 @@ export type RenderContext = {
   //non-local
   allThanks?: string[];
   resolvePage: (idTail: string, headingId?: string) => PageLink;
+  children: PageLink[];
   data: any;
 };
 
