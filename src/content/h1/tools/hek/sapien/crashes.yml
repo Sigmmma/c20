@@ -47,3 +47,7 @@ crashes:
       EXCEPTION halt in objects.c,#2419: got an object type we didn't expect (expected one of 0x00000001 but got #1).
     solution: >-
       Attempted to take over a unit in recording mode while no unit was selected. Make sure to select a unit first.
+  - error: >-
+      EXCEPTION halt in \halopc\haloce\source\tag_files\tag_groups.c,#3142: offset>=0 && offset+size<=data->size
+    solution: >-
+      You may have a corrupted [sound](~) tag which was extracted with [HEK+](~hek-plus). Always use [invader-extract](~) instead.
