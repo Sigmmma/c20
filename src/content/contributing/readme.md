@@ -518,6 +518,7 @@ These features are only used for a few specific cases:
 * The [scale page](~scale) uses `{% unitConverter /%}`.
 * This page uses `{% thanksIndex /%}` to list [all contributors](#contributor-list) from all pages.
 * You can comment out some markdown by surrounding it with `{% comment %}..{% /comment %}`.
+* A list of child pages can be created with `{% childList /%}`.
 
 # Appendix
 ## Struct definitions

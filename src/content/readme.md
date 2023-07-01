@@ -33,7 +33,7 @@ Dip your toes in with simple modifications to existing maps, or build a complete
 Perhaps the best part is connecting with other creative, passionate fans. Knowledge sharing and collaborative work are staples of this community.
 
 # Getting started
-We cover [engine details](~h1/engine), the legacy 2003 [Halo Editing Kit](~hek) and its 2021 re-release the [H1A Editing Kit](~h1a-ek), community tools, and [guides](~) for custom content creation.
+We cover [engine details](~h1/engine), the legacy 2003 [Halo Editing Kit](~hek) and its 2021 re-release the [H1A Editing Kit](~h1a-ek), community tools, and [guides](~h1/guides) for custom content creation.
 
 Less in-depth but we hope still useful information is included for the legacy 2007 [Halo 2 Vista Editing Kit](~h2v-ek), its 2021 MCC re-release the [Halo 2 Editing Kit](~h2-ek) as well as the [Halo 3 Editing Kit](~h3-ek) that was first publicly released in 2021.
 
