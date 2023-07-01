@@ -6230,7 +6230,8 @@ functions:
         ```hsc
         (<void> cubemap_dynamic_generate)
         ```
-        generates a dynamic cubemap and saves in the cubemaps directory
+        Generates a dynamic cubemap and saves in the cubemaps directory.
+        See [this guide](~dynamic-cubemaps) for more details.
     net_safe_raw: unknown, assumed unsafe
   - slug: main_menu
     info:
