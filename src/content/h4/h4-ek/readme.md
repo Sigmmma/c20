@@ -14,7 +14,7 @@ The **Halo 4 Mod Tools** are the official release of content creation tools for 
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
-## TBD 2023
+## July 2023
 * Fixed background sounds not playing in Sapien.
 * Fixed blocky shadows when lightmapping.
 * Looping sounds attached to vehicles now play in Sapien.

@@ -28,18 +28,18 @@ _Modding_ is the modification of a game by its fans in order to change existing 
 
 # What's new?
 {% alert type="success" %}
-**TBD 2023 tool updates:** over 150 new features and bug fixes across all modding tools!
+**July 2023 tool updates:** over 150 new features and bug fixes across all modding tools!
 
 For details on each game:
 
-* [Halo 1](~h1a-ek#tbd-2023)
-* [Halo 2](~h2-ek#tbd-2023)
-* [Halo 3](~h3-ek#tbd-2023)
-* [Halo 3 ODST](~h3odst-ek#tbd-2023)
-* [Halo Reach](~hr-ek#tbd-2023)
-* [Halo 4](~h4-ek#tbd-2023)
-* [Halo 2 Anniversary MP](~h2amp-ek#tbd-2023)
-* [Excession](~excession#tbd-2023)
+* [Halo 1](~h1a-ek#july-2023)
+* [Halo 2](~h2-ek#july-2023)
+* [Halo 3](~h3-ek#july-2023)
+* [Halo 3 ODST](~h3odst-ek#july-2023)
+* [Halo Reach](~hr-ek#july-2023)
+* [Halo 4](~h4-ek#july-2023)
+* [Halo 2 Anniversary MP](~h2amp-ek#july-2023)
+* [Excession](~excession#july-2023)
 
 {% /alert %}
 

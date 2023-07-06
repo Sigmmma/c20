@@ -34,7 +34,7 @@ Pictured: Location of the mod tools in the steam library.
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
-## TBD 2023
+## July 2023
 * Fixed background sounds not playing in Sapien.
 * Importing a BSP with water_physics no longer causes import errors when using tool_fast.
 * Add support for FSBs with custom names in MCC.

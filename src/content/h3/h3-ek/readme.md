@@ -40,7 +40,7 @@ Pictured: Location of the mod tools in the steam library.
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
-## TBD 2023
+## July 2023
 * Added missing bitmap tags for s3d_tutorial.
 * Fixed screenshot commands creating strange artifacts when screen effects are enabled.
 * Add support for FSBs with custom names in MCC.

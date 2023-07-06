@@ -64,7 +64,7 @@ Pictured: Location of the mod tools in the steam library.
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
-## TBD 2023
+## July 2023
 * Inclusion of digsite content.
 * Biped seats are now functional, meaning rideable bipeds are possible.
 * Backported [`screenshot_cubemap`](~scripting#functions-screenshot-cubemap) from H2 to H1.

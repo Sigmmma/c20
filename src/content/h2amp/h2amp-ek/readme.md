@@ -11,7 +11,7 @@ The **Halo 2 Anniversary MP Mod Tools** is the official release of content creat
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
-## TBD 2023
+## July 2023
 * Fixed background sounds not playing in Sapien.
 * Fixed blocky shadows when lightmapping.
 * Looping sounds attached to vehicles now play in Sapien.

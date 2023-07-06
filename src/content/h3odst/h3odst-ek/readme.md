@@ -36,7 +36,7 @@ Pictured: Location of the mod tools in the steam library.
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
-## TBD 2023
+## July 2023
 * Add support for FSBs with custom names in MCC.
 * Fixed being unable to manipulate trigger volumes in Sapien.
 * Camera point transitions now interpolate correctly over 60 FPS.

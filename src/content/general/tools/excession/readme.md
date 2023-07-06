@@ -8,7 +8,7 @@ keywords:
 **Excession** is the official mod uploader for MCC which allows modders to publish their work to the Steam workshop. It is used for for all games in the MCC.
 
 # Changelog
-## TBD 2023
+## July 2023
 * Added support for gamepad preset mods.
 
 ## December 2022
