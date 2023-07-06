@@ -9,8 +9,8 @@ keywords:
   - model
 thanks:
   Fubih: Regions render order tip
-  gbMichelle: Node limits
-  Kavawuvi: Invader tag definitions
+  gbMichelle: Node limits and reversing hard-coded markers
+  Kavawuvi: Invader tag definitions, filthy part index research
   MosesOfEgypt: Tag structure research
   Kolshgamer: Common marker name
 ---
@@ -41,7 +41,7 @@ This tag only contains the marker data but other tags usually determine how they
 * `left hand`: Used during the grenade throwing animation.
 * `melee`: Where melee damage comes from here. If not present, the engine picks an unknown default location.
 * `hover thrusters`:
-  * When used on a vehicle with "alien scout" or "alien fighter" [vehicle physics type](~vehicle#tag-field-vehicle-type), creates a dust cloud effect when the vehicle is hovering close to the ground. This can be seen at a piloted Banshee's wingtips when sitting on the ground.
+  * When used on a vehicle with "alien scout" or "alien fighter" [vehicle physics type](~vehicle#tag-field-vehicle-type), spawns [an effect](~vehicle#tag-field-effect) when the vehicle is hovering close to the ground. This can be seen at a piloted Banshee's wingtips when sitting on the ground.
   * When the vehicle physics type is "human plane", creates a similar dust effect if the marker is pointed at nearby ground. Used for the Pelican's thrusters.
 * `jet thrusters`: Can also be used for vehicles with "human plane" physics to create the Pelican's thruster dust effect.
 

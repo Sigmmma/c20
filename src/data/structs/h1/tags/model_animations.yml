@@ -509,6 +509,9 @@ type_defs:
           T: ModelAnimationsAnimationGraphUnitSeat
         meta:
           hek_max_count: 33
+          h1a_max_count: 512
+        comments:
+          en: Max limit raised to 512 in a 2023 H1A update, matching OpenSauce.
       - name: weapons
         type: Block
         type_args:

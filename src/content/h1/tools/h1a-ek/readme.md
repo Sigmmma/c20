@@ -62,6 +62,34 @@ Pictured: Location of the mod tools in the steam library.
 2. Re-run `Extract (HCEEK).bat` and replace all files.
 
 # Changelog
+This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
+
+## TBD 2023
+* Inclusion of digsite content.
+* Biped seats are now functional, meaning rideable bipeds are possible.
+* Backported [`screenshot_cubemap`](~scripting#functions-screenshot-cubemap) from H2 to H1.
+* BSPs without [lightmaps](~) now properly render fullbright rather than being invisible.
+* Added a [weapon flag](~weapon#tag-field-weapon-flags-uses-3rd-person-camera) to use third person camera while holding it.
+* Added 4 new outer center anchors for HUD elements (usable in [hud_globals](~), [grenade_hud_interface](~), [unit_hud_interface](~), and [weapon_hud_interface](~)).
+* Added a new bitmap compression format, BC7 [_high-quality compression_](~bitmap#tag-field-encoding-format-high-quality-compression).
+* Alpha channel is no longer discarded when importing fully transparent bitmaps to an uncompressed format.
+* Added the [_alternate bump attenuation_ flag](~shader_environment#tag-field-shader-environment-flags-use-alternate-bump-attenuation) to shader_environment to prevent [shading artifacts](~h1/tags/shader/shader_environment#shading-artifacts).
+* Raised [model_animations _units_](~model_animations#tag-field-units) limit to 512, matching [OpenSauce](~).
+* Resetting a player's inventory through the HS function `player_add_equipment` no longer causes an exception.
+* Trigger volume placement is no longer buggy after the first. This required hiding their parameter fields under expert mode.
+* Classic mode HUD text elements scale properly.
+* Console messages warning of generic shaders missing maps/stages now specify which shader.
+* Fog planes can now be reassigned back to "none" using Sapien.
+* AI enable and disable now use correct command in debug menu.
+* Fixed rename.txt sometimes crashing Tool during imports.
+* Fixed a shading artifact on shader_environment when lightmaps contain invalid incident radiosity vectors.
+* Standalone no longer crashes when rapidly reloading and meleeing at the same time.
+* Added secondary reload animation support for weapons with dual triggers and magazines.
+* Sapien no longer crashes on close if you have selected the trigger volume node and there exist trigger volumes.
+* [Filthy part indices in gbxmodel](~gbxmodel#tag-field-geometries-parts-prev-filthy-part-index) now only default to `-1` if both prev and next indices are `0`.
+* Standalone no longer raises asserts when loading certain old profile save data.
+* [`rasterizer_stats 2`](~scripting#external-globals-rasterizer-stats) no longer causes buggy rendering and crashes.
+
 ## December 2022
 * [A flag](~bitmap#tag-field-flags-use-average-color-for-detail-fade) was added to the bitmap tag that allows users to opt into Halo 2's mipmap fade behaviour rather than it being the default.
 * Vertex explosion when going above 30 FPS fixed.

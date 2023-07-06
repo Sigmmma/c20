@@ -58,7 +58,7 @@ digraph G {
     h1a_xbone_china [label="H1A \"Pegasus\" (China) (XB1)"];
     h1a_pc [label="H1A MCC (PC)"];
     h1a_pc_s7 [label="H1A MCC (PC)\nSeason 7"];
-    h1a_pc_live [label="", fixedsize="false", width=0, height=0, shape=none];
+    h1a_pc_live [label="H1A MCC (PC)\nActive updates"];
     h1a_xbone_live [label="", fixedsize="false", width=0, height=0, shape=none];
   }
 
@@ -67,6 +67,7 @@ digraph G {
   #other games
   node [style=filled color="#88afaf"];
   h2 [label="Halo 2"];
+  odst [label="Halo 3 ODST"];
 
   h1x_pre -> h1x_1749;
   h1x_1749 -> h1x_ntsc_beta;
@@ -132,5 +133,7 @@ digraph G {
   h1ce_110 -> h1a_pc_s7 [label="Code"];
   h1x_ntsc_retail -> h1a_pc_s7 [label="Tags"];
   h2 -> h1a_pc_s7 [label="Code"];
-  h1a_pc_s7 -> h1a_pc_live [label="Active updates"];
+  h2 -> h1a_pc_live [label="Modding features"];
+  odst -> h1a_pc_live [label="Netcode"];
+  h1a_pc_s7 -> h1a_pc_live;
 }

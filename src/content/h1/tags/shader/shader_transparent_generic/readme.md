@@ -23,8 +23,11 @@ The most complex of the shaders can only be recreated using very large animated 
 
 The [Refined project][refined] attempts to recreate classic Xbox visuals by improving transparent shaders using these techniques.
 
-[refined]: https://www.reddit.com/r/HaloCERefined
+# Related HaloScript
+{% relatedHsc game="h1" tagFilter="shader_transparent_generic" /%}
 
 # Structure and fields
 
 {% tagStruct "h1/shader_transparent_generic" /%}
+
+[refined]: https://www.reddit.com/r/HaloCERefined

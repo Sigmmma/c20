@@ -8,6 +8,9 @@ keywords:
 **Excession** is the official mod uploader for MCC which allows modders to publish their work to the Steam workshop. It is used for for all games in the MCC.
 
 # Changelog
+## TBD 2023
+* Added support for gamepad preset mods.
+
 ## December 2022
 * Fixed a crash where pressing remove on an empty directory in configure would crash.
 * Now properly recognizes the minimum package of the game client and no longer errors when changing the app version.
@@ -21,3 +24,5 @@ keywords:
 * Upload screen relays messages to the user if they likely exceeded their Steam Cloud quota.
 * Errors now logged when there are missing map files for the scenarios defined. The MCC UI will also ignore such invalid content.
 * Fixed custom campaign mission names not showing after mission number.
+* Fixed a crash and "save all failed" errors when saving background videos.
+* Fixed crash when exporting Map Info BLF when map title is 32 characters or longer.

@@ -12,7 +12,7 @@ thanks:
 The **decal** system is responsible for rendering bullet holes, blood splatter, explosion marks, and other flat textures applied over over [BSP](~scenario_structure_bsp) surfaces (decals cannot appear on [objects](~object)). Decal tags describe the appearance and lifetime of these effects.
 
 # Dynamic decals
-Dynamic decals are created from [effects](~effect), such as explosions and projectile impacts. It is recommended to give the decal a [maximum lifetime](#tag-field-lifetime) to avoid poor framerates. The game supports up to [2048](~game-state) decal "slots". However it may also reach a limit at fewer decals when it can no longer allocate decal vertices. This is extremely unlikely there are many decals with a large radius being created, but the console will log:
+Dynamic decals are created from [effects](~effect), such as explosions and projectile impacts. It is recommended to give the decal a [maximum lifetime](#tag-field-lifetime) to avoid poor framerates. The game supports up to [2048](~game-state) decal "slots". However it may also reach a limit at fewer decals when it can no longer allocate decal vertices. This is extremely unlikely unless there are many decals with a large radius being created, but the console will log:
 
 ```
 ### WUT? decals: failed to allocate vertices (locked=37, permanent=4)

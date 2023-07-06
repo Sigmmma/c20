@@ -16,6 +16,18 @@ type_defs:
       - name: bottom_left
       - name: bottom_right
       - name: center
+      - name: top_center
+        meta:
+          h1a_only: true
+      - name: bottom_center
+        meta:
+          h1a_only: true
+      - name: left_center
+        meta:
+          h1a_only: true
+      - name: right_center
+        meta:
+          h1a_only: true
   HUDInterfaceFlashFlags:
     class: bitfield
     size: 2

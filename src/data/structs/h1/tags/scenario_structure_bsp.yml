@@ -158,6 +158,12 @@ type_defs:
         size: 2
       - name: rendered_vertices_count
         type: uint32
+        comments:
+          en: >
+            The number of rendered vertices for this material, found at
+            _rendered vertices offset_. This count is always equal to [_lightmap
+            vertices count_](#tag-field-lightmaps-materials-lightmap-vertices-count)
+            when the bitmap index is not `-1`.
       - name: rendered_vertices_offset
         type: uint32
         comments:
@@ -195,13 +201,19 @@ type_defs:
         size: 2
       - name: lightmap_vertices_count
         type: uint32
+        comments:
+          en: >
+            The number of lightmap vertices for this material, found at
+            _lightmap vertices offset_. This count is always equal to [_rendered
+            vertices count_](#tag-field-lightmaps-materials-rendered-vertices-count)
+            when the bitmap index is not `-1`.
       - name: lightmap_vertices_offset
         type: uint32
         comments:
           en: |-
             An offset to an array of lightmap vertices, each 20 bytes:
-            * Normal (used for dynamic object shadows)
-            * UV
+            * Incident radiosity vector, used for dynamic object shadows and environmental bump mapping)
+            * UV coordinate in lightmap page indicated by bitmap index.
       - type: pad
         size: 4
       - name: lightmap_vertices_index_pointer
@@ -228,6 +240,17 @@ type_defs:
     fields:
       - name: bitmap
         type: Index
+        comments:
+          en: >
+            Indicates which index of bitmap data within the
+            [lightmap bitmaps](#tag-field-lightmap-bitmaps) is used
+            for the faces of these materials. In other words, the baked lightmaps
+            can be split across multiple bitmap "pages" and this index tells the
+            game what page the faces of these materials use. An index of `-1`
+            means these faces are not lightmapped, like if radiosity has not
+            been run yet or, once it has, for [additive blended](~shader_transparent_chicago#tag-field-framebuffer-blend-function)
+            transparent shaders like lights (which Tool groups in the last item of
+            this block).
       - type: pad
         size: 2
       - type: pad
@@ -848,7 +871,7 @@ type_defs:
         multiple BSPs.
     assert_size: 648
     fields:
-      - name: lightmaps_bitmap
+      - name: lightmap_bitmaps
         type: TagDependency
         meta:
           tag_classes:

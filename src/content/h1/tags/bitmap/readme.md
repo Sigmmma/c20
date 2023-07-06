@@ -77,7 +77,10 @@ This format is 50% the size of a 32-bit bitmap. This format has a few different 
 As the biggest size for bitmap formats 32-bit (Also referred to as true color) bitmaps store their colors at the same settings as most consumer monitors. The internal formats are a8r8g8b8 and x8r8g8b8, the only difference between these is that in x8r8g8b8 the 8 bits that would store the alpha in a8r8g8b8 are ignored.
 
 ## Monochrome
-using 25% of the size of a 32-bit bitmap this format was mainly used for huds in the xbox version of the game. Sadly this format does not function properly anymore on the PC version and Custom Edition of the game.
+Using 25% of the size of a 32-bit bitmap this format was mainly used for huds in the xbox version of the game. This format does not function properly anymore on the PC version and Custom Edition of the game, but does work again in MCC.
+
+## High-quality compression
+This is a new format (BC7) added to H1A MCC in 2023 which provides both high quality and good compression. You can read more about BC7 [here][bc7].
 
 ## Notes
 When importing TIF file using tool with the format set to a compressed one tool might make the bitmap it outputs more noisy than it needs to be. It is speculated that this is because of a broken DXT toolkit being used in tool. Using other programs like Mozzarilla you can import DXT1,2,3 at higher qualities without increasing memory footprint.
@@ -258,3 +261,5 @@ Errors that are known and suggestions on how to fix them.
 # Structure and fields
 
 {% tagStruct "h1/bitmap" /%}
+
+[bc7]: https://learn.microsoft.com/en-us/windows/win32/direct3d11/bc7-format

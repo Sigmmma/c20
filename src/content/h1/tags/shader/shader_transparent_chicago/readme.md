@@ -12,6 +12,9 @@ Alpha-tested [BSP](~scenario_structure_bsp) surfaces like 2D billboard trees and
 
 If referenced as an extra shader layer, this tag will inherit some fields from its parent regardless of its own flags (e.g. _first map type_).
 
+# Related HaloScript
+{% relatedHsc game="h1" tagFilter="shader_transparent_chicago" /%}
+
 # Structure and fields
 
 {% tagStruct "h1/shader_transparent_chicago" /%}

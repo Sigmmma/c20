@@ -16,7 +16,7 @@ thanks:
 ---
 **Halo Script** is a scripting language that H1 map designers can use to have greater control over how their map works. It is primarily used in controlling the mission structure of single player maps, but can also be used to achieve certain effects in multiplayer, such as [synchronizing workarounds](~sync-workarounds).
 
-Scripts are compiled into the [scenario](~) of a [map](~) using [Sapien](~).
+Scripts must be compiled into the [scenario](~) of a [map](~) using [Sapien](~) when using the legacy HEK, but the H1A modding tools now compile scripts on map build and loading the scenario in Standalone using the script sources themselves.
 
 # Compiling a script into a scenario
 Sapien searches for scripts in the data version of your scenario's path. For
@@ -27,8 +27,6 @@ Your script file can be named anything, but must have a `.hsc` file extension.
 Open your scenario in Sapien, then under the file menu, click "Compile Scripts".
 If there are any compilation errors, Sapien will display them in the Game View
 screen.
-
-
 
 # Gotchas and limits
 ## Using begin_random in startup scripts
