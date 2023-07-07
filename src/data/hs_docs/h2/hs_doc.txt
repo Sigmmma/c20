@@ -1,0 +1,4736 @@
+; AVAILABLE FUNCTIONS:
+
+(<passthrough> begin <expression(s)>)
+; returns the last expression in a sequence after evaluating the sequence in order.
+
+(<passthrough> begin_random <expression(s)>)
+; evaluates the sequence of expressions in random order and returns the last value evaluated.
+
+(<passthrough> if <boolean> <then> [<else>])
+; returns one of two values based on the value of a condition.
+
+(<passthrough> cond (<boolean1> <result1>) [(<boolean2> <result2>) [...]])
+; returns the value associated with the first true condition.
+
+(<passthrough> set <variable name> <expression>)
+; set the value of a global variable.
+
+(<boolean> and <boolean(s)>)
+; returns true if all specified expressions are true.
+
+(<boolean> or <boolean(s)>)
+; returns true if any specified expressions are true.
+
+(<real> + <number(s)>)
+; returns the sum of all specified expressions.
+
+(<real> - <number> <number>)
+; returns the difference of two expressions.
+
+(<real> * <number(s)>)
+; returns the product of all specified expressions.
+
+(<real> / <number> <number>)
+; returns the quotient of two expressions.
+
+(<real> min <number(s)>)
+; returns the minimum of all specified expressions.
+
+(<real> max <number(s)>)
+; returns the maximum of all specified expressions.
+
+(<boolean> = <expression> <expression>)
+; returns true if two expressions are equal
+
+(<boolean> != <expression> <expression>)
+; returns true if two expressions are not equal
+
+(<boolean> > <number> <number>)
+; returns true if the first number is larger than the second.
+
+(<boolean> < <number> <number>)
+; returns true if the first number is smaller than the second.
+
+(<boolean> >= <number> <number>)
+; returns true if the first number is larger than or equal to the second.
+
+(<boolean> <= <number> <number>)
+; returns true if the first number is smaller than or equal to the second.
+
+(<void> sleep <short> [<script>])
+; pauses execution of this script (or, optionally, another script) for the specified number of ticks.
+
+(<void> sleep_forever [<script>])
+; pauses execution of this script (or, optionally, another script) forever.
+
+(<void> sleep_until <boolean> [<short>])
+; pauses execution of this script until the specified condition is true, checking once per second unless a different number of ticks is specified.
+
+(<void> wake <script name>)
+; wakes a sleeping script in the next update.
+
+(<void> inspect <expression>)
+; prints the value of an expression to the screen for debugging purposes.
+
+(<unit> unit <object>)
+; converts an object to a unit.
+
+(<boolean> not <boolean>)
+; returns the opposite of the expression.
+
+(<real> pin <real> <real> <real>)
+; returns the first value pinned between the second two
+
+(<void> print <string>)
+; prints a string to the console.
+
+(<object_list> players)
+; returns a list of the players
+
+(<void> kill_volume_enable <trigger_volume>)
+; enables a kill volume
+
+(<void> kill_volume_disable <trigger_volume>)
+; disables a kill volume
+
+(<void> volume_teleport_players_not_inside <trigger_volume> <cutscene_flag>)
+; moves all players outside a specified trigger volume to a specified flag.
+
+(<boolean> volume_test_object <trigger_volume> <object>)
+; returns true if the specified object is within the specified volume.
+
+(<boolean> volume_test_objects <trigger_volume> <object_list>)
+; returns true if any of the specified objects are within the specified volume. trigger volume must have been postprocessed
+
+(<boolean> volume_test_objects_all <trigger_volume> <object_list>)
+; returns true if any of the specified objects are within the specified volume. trigger volume must have been postprocessed
+
+(<object_list> volume_return_objects <trigger_volume>)
+; returns list of objects in volume or (max 128).
+
+(<object_list> volume_return_objects_by_type <trigger_volume> <long>)
+; returns list of objects in volume or (max 128).
+
+(<object> list_get <object_list> <short>)
+; returns an item in an object list.
+
+(<short> list_count <object_list>)
+; returns the number of objects in a list
+
+(<short> list_count_not_dead <object_list>)
+; returns the number of objects in a list that aren't dead
+
+(<void> effect_new <effect> <cutscene_flag>)
+; starts the specified effect at the specified flag.
+
+(<void> effect_new_on_object_marker <effect> <object> <string_id>)
+; starts the specified effect on the specified object at the specified marker.
+
+(<void> damage_new <damage> <cutscene_flag>)
+; causes the specified damage at the specified flag.
+
+(<void> damage_object <damage> <object>)
+; causes the specified damage at the specified object.
+
+(<void> damage_objects <damage> <object_list>)
+; causes the specified damage at the specified object list.
+
+(<void> damage_players <damage>)
+; damages all players with the given damage effect
+
+(<void> object_create <object_name>)
+; creates an object from the scenario.
+
+(<void> object_create_clone <object_name>)
+; creates an object, potentially resulting in multiple objects if it already exists.
+
+(<void> object_create_anew <object_name>)
+; creates an object, destroying it first if it already exists.
+
+(<void> object_create_containing <string>)
+; creates all objects from the scenario whose names contain the given substring.
+
+(<void> object_create_clone_containing <string>)
+; creates clones for all objects from the scenario whose names contain the given substring.
+
+(<void> object_create_anew_containing <string>)
+; creates anew all objects from the scenario whose names contain the given substring.
+
+(<void> object_destroy <object>)
+; destroys an object.
+
+(<void> object_destroy_containing <string>)
+; destroys all objects from the scenario whose names contain the given substring.
+
+(<void> object_destroy_all)
+; destroys all non player objects.
+
+(<void> object_destroy_type_mask <long>)
+; destroys all objects matching the type mask
+
+(<void> objects_delete_by_definition <object_definition>)
+; deletes all objects of type <definition>
+
+(<void> object_hide <object> <boolean>)
+; hides or shows the object passed in
+
+(<void> object_set_shadowless <object> <boolean>)
+; set/reset shadow castingness of object
+
+(<void> object_function_set <long> <real>)
+; sets a global object function (0-3) to value
+
+(<void> object_set_function_variable <object> <string_id> <real> <real>)
+; sets funciton variable for sin-o-matic use
+
+(<void> object_clear_function_variable <object> <string_id>)
+; clears one funciton variables for sin-o-matic use
+
+(<void> object_clear_all_function_variables <object>)
+; clears all funciton variables for sin-o-matic use
+
+(<void> object_dynamic_simulation_disable <object> <boolean>)
+; disabled dynamic simulation for this object (makes it fixed)
+
+(<void> object_set_phantom_power <object> <boolean>)
+; sets phantom power to be latched at 1.0f or 0.0f
+
+(<void> object_wake_physics <object>)
+; wakes physics of an object.  For example it would make an usupported crate fall
+
+(<void> object_set_ranged_attack_inhibited <object> <boolean>)
+; FALSE prevents object from using ranged attack
+
+(<void> object_set_melee_attack_inhibited <object> <boolean>)
+; FALSE prevents object from using melee attack
+
+(<void> objects_dump_memory)
+; debugs object memory usage
+
+(<real> object_get_health <object>)
+; returns the health [0,1] of the object, returns -1 if the object does not exist
+
+(<real> object_get_shield <object>)
+; returns the shield [0,1] of the object, returns -1 if the object does not exist
+
+(<void> object_set_shield_effect <object> <real> <real>)
+; sets the shield response effect (not current shield amount) to a given value over the given number of seconds (cinematic use only, remember to call (object_set_shield_effect 0 0) after use!)
+
+(<void> object_set_physics <object> <boolean>)
+; prevents an object from running physics or colliding with any other objects
+
+(<object> object_get_parent <object>)
+; returns the parent of the given object
+
+(<void> objects_attach <object> <string_id> <object> <string_id>)
+; attaches the second object to the first both strings can be empty
+
+(<object> object_at_marker <object> <string_id>)
+; returns the object attached to the marker of the given parent object
+
+(<void> objects_detach <object> <object>)
+; detaches from the given parent object the given child object
+
+(<void> object_set_scale <object> <real> <short>)
+; sets the scale for a given object and interpolates over the given number of frames to achieve that scale
+
+(<void> object_set_velocity <object> <real>)
+; Sets the (object-relative) forward velocity of the given object
+
+(<void> object_set_velocity <object> <real> <real> <real>)
+; Sets the (object-relative) velocity of the given object
+
+(<void> object_set_deleted_when_deactivated <object>)
+; when this object deactivates it will be deleted
+
+(<void> object_copy_player_appearance <object> <long>)
+; copy appearance into object from player n (starts counting from 0)
+
+(<boolean> object_model_target_destroyed <object> <string_id>)
+; returns TRUE if the specified model target is destroyed
+
+(<short> object_model_targets_destroyed <object> <string_id>)
+; returns TRUE if the specified model target is destroyed
+
+(<void> object_damage_damage_section <object> <string_id> <real>)
+; applies damage to a damage section, causing all manner of effects/constraint breakage to occur
+
+(<void> object_cannot_die <object> <boolean>)
+; Set whether the object can die from damage or not (as opposed to by scripting)
+
+(<boolean> object_vitality_pinned <object>)
+; returns TRUE if the object's vitality is currently pinned at some minimum value because it cannot die.
+
+(<void> garbage_collect_now)
+; causes all garbage objects except those visible to a player to be collected immediately
+
+(<void> garbage_collect_unsafe)
+; forces all garbage objects to be collected immediately, even those visible to a player (dangerous!)
+
+(<void> garbage_collect_multiplayer)
+; runs multiplayer garbage collection
+
+(<void> object_cannot_take_damage <object_list>)
+; prevents an object from taking damage
+
+(<void> object_can_take_damage <object_list>)
+; allows an object to take damage again
+
+(<void> object_cinematic_lod <object> <boolean>)
+; makes an object use the highest lod for the remainder of the levels' cutscenes.
+
+(<void> object_cinematic_collision <object> <boolean>)
+; makes an object not collide with other cinematic collision objects.
+
+(<void> object_cinematic_visibility <object> <boolean>)
+; makes an object bypass visibility and always render during cinematics.
+
+(<void> object_uses_cinematic_lighting <object> <boolean>)
+; makes an object use the cinematic directional and ambient lights instead of sampling the lightmap.
+
+(<void> cinematic_lighting_set_primary_light <real> <real> <real> <real> <real>)
+; sets the pitch, yaw, and color (red, green, blue) of the cinematic shadowing diffuse and specular directional light.
+
+(<void> cinematic_lighting_set_secondary_light <real> <real> <real> <real> <real>)
+; sets the pitch, yaw, and color (red, green, blue) of the cinematic non-shadowing diffuse directional light.
+
+(<void> cinematic_lighting_set_ambient_light <real> <real> <real>)
+; sets the color (red, green, blue) of the cinematic ambient light.
+
+(<void> objects_predict <object_list>)
+; loads textures/geometry/sounds necessary to present objects that are about to come on-screen
+
+(<void> objects_predict_high <object_list>)
+; loads textures/geometry/sounds necessary to present objects that are about to come on-screen
+
+(<void> objects_predict_low <object_list>)
+; loads textures/geometry/sounds necessary to present objects that are about to come on-screen
+
+(<void> object_type_predict_high <object_definition>)
+; loads textures necessary to draw an object that's about to come on-screen.
+
+(<void> object_type_predict_low <object_definition>)
+; loads textures necessary to draw an object that's about to come on-screen.
+
+(<void> object_type_predict <object_definition>)
+; loads textures necessary to draw an object that's about to come on-screen.
+
+(<void> object_teleport <object> <cutscene_flag>)
+; moves the specified object to the specified flag.
+
+(<void> object_set_facing <object> <cutscene_flag>)
+; turns the specified object in the direction of the specified flag.
+
+(<void> object_set_shield <object> <real>)
+; sets the shield vitality of the specified object (between 0 and 1).
+
+(<void> object_set_shield_stun <object> <real>)
+; set how long the shield will be stunned for, 0 is unstunned
+
+(<void> object_set_shield_stun_infinite <object>)
+; make this objects shield be stunned permanently
+
+(<void> object_set_permutation <object> <string_id> <string_id>)
+; sets the desired region (use "" for all regions) to the permutation with the given name, e.g. (object_set_permutation flood "right arm" ~damaged)
+
+(<void> object_set_region_state <object> <string_id> <model_state>)
+; sets the desired region (use "" for all regions) to the model state with the given name, e.g. (object_set_region_state marine head destroyed)
+
+(<boolean> objects_can_see_object <object_list> <object> <real>)
+; returns true if any of the specified units are looking within the specified number of degrees of the object.
+
+(<boolean> objects_can_see_flag <object_list> <cutscene_flag> <real>)
+; returns true if any of the specified units are looking within the specified number of degrees of the flag.
+
+(<real> objects_distance_to_object <object_list> <object>)
+; returns minimum distance from any of the specified objects to the specified destination object. (returns -1 if there are no objects to check)
+
+(<real> objects_distance_to_flag <object_list> <cutscene_flag>)
+; returns minimum distance from any of the specified objects to the specified flag. (returns -1 if there are no objects, or no flag, to check)
+
+(<real> objects_distance_to_position <object_list> <real> <real> <real>)
+; returns minimum distance from any of the specified objects to the specified position. (returns -1 if there are no objects to check)
+
+(<void> map_info)
+; prints the current map and bsp name and index
+
+(<void> position_predict <real> <real> <real>)
+; in: x, y, z position. loads textures/geometry/sounds necessary to present locations that are about to come on-screen.
+
+(<void> shader_predict <shader>)
+; in: shader name. loads textures necessary for a shader.
+
+(<void> bitmap_predict <bitmap>)
+; in: bitmap name. loads all the bitmaps in that bitmap group
+
+(<void> script_recompile)
+; recompiles scripts.
+
+(<void> script_doc)
+; saves a file called hs_doc.txt with parameters for all script commands.
+
+(<void> help <string>)
+; prints a description of the named function.
+
+(<object_list> game_engine_objects)
+; returns a list of the special game engine objects
+
+(<short> random_range <short> <short>)
+; returns a random value in the range [lower bound, upper bound)
+
+(<real> real_random_range <real> <real>)
+; returns a random value in the range [lower bound, upper bound)
+
+(<void> physics_constants_reset)
+; resets all physics constants to earthly values
+
+(<void> physics_set_gravity <real>)
+; set global gravity acceleration relative to halo standard gravity
+
+(<void> physics_set_velocity_frame <real> <real> <real>)
+; sets a local frame of motion for updating physics of things that wish to respect it
+
+(<void> physics_disable_character_ground_adhesion_forces <real>)
+; turn off ground adhesion forces so you can play tricks with gravity
+
+(<void> havok_debug_start)
+; start up the havok visual debugger
+
+(<void> havok_dump_world <string> <boolean>)
+; dump the state of the havok world, with our without a movie
+
+(<void> havok_dump_world_close_movie)
+; end the capture of a havok dump movie
+
+(<void> havok_profile_start)
+; start profiling havok
+
+(<void> havok_profile_end)
+; start profiling havok
+
+(<void> havok_reset_allocated_state)
+; strips down and builds back up all allocated havok memory
+
+(<void> breakable_surfaces_enable <boolean>)
+; enables or disables breakability of all breakable surfaces on level
+
+(<void> breakable_surfaces_reset)
+; restores all breakable surfaces
+
+(<boolean> recording_play <unit> <cutscene_recording>)
+; make the specified unit run the specified cutscene recording.
+
+(<boolean> recording_play_and_delete <unit> <cutscene_recording>)
+; make the specified unit run the specified cutscene recording, deletes the unit when the animation finishes.
+
+(<boolean> recording_play_and_hover <vehicle> <cutscene_recording>)
+; make the specified vehicle run the specified cutscene recording, hovers the vehicle when the animation finishes.
+
+(<void> recording_kill <unit>)
+; kill the specified unit's cutscene recording.
+
+(<short> recording_time <unit>)
+; return the time remaining in the specified unit's cutscene recording.
+
+(<boolean> render_lights <boolean>)
+; enables/disables dynamic lights
+
+(<void> texture_camera_set_object_marker <object> <string_id> <real>)
+; sets the render texture camera to a given object marker
+
+(<void> texture_camera_off)
+; turns off the render texture camera
+
+(<void> render_lights_enable_cinematic_shadow <boolean> <object> <string_id> <real>)
+; enable/disable the specified unit to receive cinematic shadows where the shadow is focused about a radius around a marker name
+
+(<void> fog_report)
+
+(<void> fog_report_summary)
+
+(<void> fog_report_verbose)
+
+(<void> fog_mode_control <boolean> <boolean> <boolean> <boolean>)
+
+(<void> fog_override_off)
+
+(<void> fog_override_mode <long>)
+
+(<void> fog_override_mode_off)
+
+(<void> fog_override_atmospheric_fog <real> <string> <real> <real>)
+
+(<void> fog_override_atmospheric_fog_off)
+
+(<void> fog_override_secondary_fog <real> <string> <real> <real>)
+
+(<void> fog_override_secondary_fog_off)
+
+(<void> fog_override_sky_fog <real> <string>)
+
+(<void> fog_override_sky_fog_off)
+
+(<void> fog_override_planar_fog <real> <string> <real> <real> <real>)
+
+(<void> fog_override_planar_fog_off)
+
+(<void> fog_override_planar_fog_plane <real> <real> <real>)
+
+(<void> fog_override_planar_fog_plane_off)
+
+(<void> fog_override_planar_max_atmospheric_depth <real>)
+
+(<void> fog_override_planar_max_atmospheric_depth_off)
+
+(<void> fog_override_planar_planar_eye_density <real>)
+
+(<void> fog_override_planar_planar_eye_density_off)
+
+(<void> fog_override_atmospheric_secondary_blend <real>)
+
+(<void> fog_override_atmospheric_secondary_blend_off)
+
+(<void> fog_override_atmospheric_planar_blend <real>)
+
+(<void> fog_override_atmospheric_planar_blend_off)
+
+(<void> render_debug_structure_cluster_visibility <long>)
+; enables cluster visibility debugging
+
+(<void> render_debug_structure_cluster_fog <long>)
+; enables cluster fog debugging
+
+(<void> render_debug_structure_fog_plane <long>)
+; enables fog plane debugging
+
+(<void> render_debug_structure_fog_plane_infinite_extent <long>)
+; enables fog plane debugging
+
+(<void> render_debug_structure_fog_zone <long>)
+; enabled fog zone debugging
+
+(<void> render_debug_structure_fog_zone_floodfill <long>)
+; enables fog zone debugging
+
+(<void> render_debug_structure_all_fog_planes <boolean>)
+; enables fog plane debugging (all)
+
+(<void> render_debug_structure_all_cluster_errors <boolean>)
+; enables cluster error debugging (all)
+
+(<void> render_debug_structure_line_opacity <real> <real> <real> <real>)
+; sets the opacity (0 is default)
+
+(<void> render_debug_structure_text_opacity <real> <real> <real> <real>)
+; sets the opacity (0 is default)
+
+(<void> render_debug_structure_opacity <real> <real> <real> <real>)
+; sets the opacity (0 is default)
+
+(<void> render_debug_structure_non_occluded_fog_planes <boolean>)
+; controls non-occluded fog plane debugging
+
+(<void> scenery_animation_start <scenery> <animation_graph> <string_id>)
+; starts a custom animation playing on a piece of scenery
+
+(<void> scenery_animation_start_loop <scenery> <animation_graph> <string_id>)
+; starts a custom looping animation playing on a piece of scenery
+
+(<void> scenery_animation_start_relative <scenery> <animation_graph> <string_id> <object>)
+; starts a custom animation playing on a piece of scenery relative to a parent object
+
+(<void> scenery_animation_start_relative_loop <scenery> <animation_graph> <string_id> <object>)
+; starts a custom looping animation playing on a piece of scenery relative to a parent object
+
+(<void> scenery_animation_start_at_frame <scenery> <animation_graph> <string_id> <short>)
+; starts a custom animation playing on a piece of scenery at a specific frame
+
+(<void> scenery_animation_idle <scenery>)
+; starts the idle animation (if any) for a piece of scenery
+
+(<short> scenery_get_animation_time <scenery>)
+; returns the number of ticks remaining in a custom animation (or zero, if the animation is over).
+
+(<void> render_effects <boolean>)
+
+(<void> unit_can_blink <unit> <boolean>)
+; allows a unit to blink or not (units never blink when they are dead)
+
+(<void> unit_set_active_camo <unit> <boolean> <real>)
+; enable or disable active camo for the given unit over the specified number of seconds
+
+(<void> unit_open <unit>)
+; opens the hatches on the given unit
+
+(<void> unit_close <unit>)
+; closes the hatches on a given unit
+
+(<void> unit_kill <unit>)
+; kills a given unit, no saving throw
+
+(<void> unit_kill_silent <unit>)
+; kills a given unit silently (doesn't make them play their normal death animation or sound)
+
+(<boolean> unit_is_emitting <unit>)
+; returns whether or not the given unit is current emitting an ai
+
+(<short> unit_get_custom_animation_time <unit>)
+; returns the number of ticks remaining in a unit's custom animation (or zero, if the animation is over).
+
+(<void> unit_stop_custom_animation <unit>)
+; stops the custom animation running on the given unit.
+
+(<boolean> custom_animation <unit> <animation_graph> <string_id> <boolean>)
+; starts a custom animation playing on a unit (interpolates into animation if last parameter is TRUE)
+
+(<boolean> custom_animation_loop <unit> <animation_graph> <string_id> <boolean>)
+; starts a custom animation playing on a unit (interpolates into animation if last parameter is TRUE)
+
+(<boolean> custom_animation_relative <unit> <animation_graph> <string_id> <boolean> <object>)
+; starts a custom animation relative to some other object (interpolates into animation if last parameter is TRUE)
+
+(<boolean> custom_animation_relative_loop <unit> <animation_graph> <string_id> <boolean> <object>)
+; starts a custom animation relative to some other object (interpolates into animation if last parameter is TRUE)
+
+(<boolean> custom_animation_list <object_list> <animation_graph> <string_id> <boolean>)
+; starts a custom animation playing on a unit list (interpolates into animation if last parameter is TRUE)
+
+(<boolean> unit_custom_animation_at_frame <unit> <animation_graph> <string_id> <boolean> <short>)
+; starts a custom animation playing on a unit at a specific frame index(interpolates into animation if next to last parameter is TRUE)
+
+(<boolean> unit_is_playing_custom_animation <unit>)
+; returns TRUE if the given unit is still playing a custom animation
+
+(<void> object_set_custom_animations_hold_on_last_frame <boolean>)
+; changes the default behavior for custom animations
+
+(<void> object_set_custom_animations_prevent_lipsync_head_movement <boolean>)
+; when true, prevents lipsync from bobbing the head during custom animations. default is true.
+
+(<void> unit_set_actively_controlled <unit> <boolean>)
+; sets unit's actively controlled flag
+
+(<short> unit_get_team_index <unit>)
+; returns the team index of the unit, returns -1 if the unit does not have a team
+
+(<void> unit_aim_without_turning <unit> <boolean>)
+; allows a unit to aim in place without turning
+
+(<void> unit_set_enterable_by_player <unit> <boolean>)
+; can be used to prevent the player from entering a vehicle
+
+(<boolean> unit_get_enterable_by_player <unit>)
+; returns true if a player may enter the vehicle
+
+(<void> unit_only_takes_damage_from_players_team <unit> <boolean>)
+; used for the tartarus boss fight
+
+(<void> unit_enter_vehicle <unit> <vehicle> <string_id>)
+; puts the specified unit in the specified vehicle (in the named seat)
+
+(<void> unit_board_vehicle <unit> <string_id>)
+; Causes the given unit to attempt to board the named seat
+
+(<void> unit_set_emotion <unit> <short>)
+; sets a unit's facial expression (-1 is none, other values depend on unit)
+
+(<void> unit_set_emotion_animation <unit> <string_id>)
+; sets the emotion animation to be used for the given unit
+
+(<void> unit_set_emotional_state <unit> <string_id> <real> <short>)
+; sets a unit's facial expression by name with weight and transition time
+
+(<void> unit_enable_eye_tracking <unit> <boolean>)
+; enable/disable eye aiming on a unit
+
+(<boolean> unit_in_vehicle <unit>)
+; returns true if the given unit is seated on a parent unit
+
+(<boolean> vehicle_test_seat_list <vehicle> <string_id> <object_list>)
+; tests whether the named seat has an object in the object list (use "" to test all seats for any unit in the list)
+
+(<boolean> vehicle_test_seat <vehicle> <string_id> <unit>)
+; tests whether the named seat has a specified unit in it (use "" to test all seats for this unit)
+
+(<void> unit_set_prefer_tight_camera_track <unit> <boolean>)
+; sets the unit to prefer a tight camera track
+
+(<void> unit_exit_vehicle <unit>)
+; makes a unit exit its vehicle
+
+(<void> unit_exit_vehicle <unit> <short>)
+; makes a unit exit its vehicle (0 = normal exit to airborne, 1 = ejection, 2 = ejection + death, 3 = exit to ground)
+
+(<void> unit_set_maximum_vitality <unit> <real> <real>)
+; sets a unit's maximum body and shield vitality
+
+(<void> units_set_maximum_vitality <object_list> <real> <real>)
+; sets a group of units' maximum body and shield vitality
+
+(<void> unit_set_current_vitality <unit> <real> <real>)
+; sets a unit's current body and shield vitality
+
+(<void> units_set_current_vitality <object_list> <real> <real>)
+; sets a group of units' current body and shield vitality
+
+(<short> vehicle_load_magic <object> <unit_seat_mapping> <object_list>)
+; makes a list of units (named or by encounter) magically get into a vehicle, in the substring-specified seats (e.g. CD-passenger... empty string matches all seats)
+
+(<short> vehicle_unload <object> <unit_seat_mapping>)
+; makes units get out of an object from the substring-specified seats (e.g. CD-passenger... empty string matches all seats)
+
+(<void> unit_set_animation_mode <unit> <string_id>)
+; this unit will assume the named animation mode
+
+(<void> magic_melee_attack)
+; causes player's unit to start a melee attack
+
+(<object_list> vehicle_riders <unit>)
+; returns a list of all riders in a vehicle
+
+(<unit> vehicle_driver <unit>)
+; returns the driver of a vehicle
+
+(<unit> vehicle_gunner <unit>)
+; returns the gunner of a vehicle
+
+(<real> unit_get_health <unit>)
+; returns the health [0,1] of the unit, returns -1 if the unit does not exist
+
+(<real> unit_get_shield <unit>)
+; returns the shield [0,1] of the unit, returns -1 if the unit does not exist
+
+(<short> unit_get_total_grenade_count <unit>)
+; returns the total number of grenades for the given unit, 0 if it does not exist
+
+(<boolean> unit_has_weapon <unit> <object_definition>)
+; returns TRUE if the <unit> has <object> as a weapon, FALSE otherwise
+
+(<boolean> unit_has_weapon_readied <unit> <object_definition>)
+; returns TRUE if the <unit> has <object> as the primary weapon, FALSE otherwise
+
+(<void> unit_lower_weapon <unit> <short>)
+; lower the units weapon over x ticks
+
+(<void> unit_raise_weapon <unit> <short>)
+; raises the units weapon over x ticks
+
+(<void> unit_animation_forced_seat <string_id>)
+; all units controlled by the player will assume the given seat name (valid values are 'asleep', 'alert', 'stand', 'crouch' and 'flee')
+
+(<void> unit_doesnt_drop_items <object_list>)
+; prevents any of the given units from dropping weapons or grenades when they die
+
+(<void> unit_impervious <object_list> <boolean>)
+; prevents any of the given units from being knocked around or playing ping animations
+
+(<void> unit_suspended <unit> <boolean>)
+; stops gravity from working on the given unit
+
+(<void> unit_add_equipment <unit> <starting_profile> <boolean> <boolean>)
+; adds/resets the unit's health, shield, and inventory (weapons and grenades) to the named profile. resets if third parameter is true, adds if false. weapons will be marked as garbage if fourth parameter is true (for respawning equipment).
+
+(<void> weapon_hold_trigger <weapon> <long> <boolean>)
+; turns the trigger for a weapon  on/off
+
+(<void> weapon_enable_warthog_chaingun_light <boolean>)
+; turns the trigger for a weapon  on/off
+
+(<void> device_set_never_appears_locked <device> <boolean>)
+; changes a machine's never_appears_locked flag, but only if paul is a bastard
+
+(<void> device_set_power <device> <real>)
+; immediately sets the power of a named device to the given value
+
+(<real> device_get_power <device>)
+; gets the current power of a named device
+
+(<boolean> device_set_position <device> <real>)
+; set the desired position of the given device (used for devices without explicit device groups)
+
+(<real> device_get_position <device>)
+; gets the current position of the given device (used for devices without explicit device groups)
+
+(<void> device_set_position_immediate <device> <real>)
+; instantaneously changes the position of the given device (used for devices without explicit device groups
+
+(<real> device_group_get <device_group>)
+; returns the desired value of the specified device group.
+
+(<boolean> device_group_set <device> <device_group> <real>)
+; changes the desired value of the specified device group.
+
+(<void> device_group_set_immediate <device_group> <real>)
+; instantaneously changes the value of the specified device group.
+
+(<void> device_one_sided_set <device> <boolean>)
+; TRUE makes the given device one-sided (only able to be opened from one direction), FALSE makes it two-sided
+
+(<void> device_operates_automatically_set <device> <boolean>)
+; TRUE makes the given device open automatically when any biped is nearby, FALSE makes it not
+
+(<void> device_closes_automatically_set <device> <boolean>)
+; TRUE makes the given device close automatically after it has opened, FALSE makes it not
+
+(<void> device_group_change_only_once_more_set <device_group> <boolean>)
+; TRUE allows a device to change states only once
+
+(<boolean> device_set_position_track <device> <string_id> <real>)
+; set the desired position track animation to use (optional interpolation time onto track)
+
+(<boolean> device_set_overlay_track <device> <string_id>)
+; set the desired overlay animation to use
+
+(<void> device_animate_position <device> <real> <real> <real> <real> <boolean>)
+; animate the position over time
+
+(<void> device_animate_overlay <device> <real> <real> <real> <real>)
+; animate the overlay over time
+
+(<void> cheat_all_powerups)
+; drops all powerups near player
+
+(<void> cheat_all_weapons)
+; drops all weapons near player
+
+(<void> cheat_all_vehicles)
+; drops all vehicles on player
+
+(<void> cheat_teleport_to_camera)
+; teleports player to camera location
+
+(<void> cheat_active_camouflage <boolean>)
+; gives the player active camouflage
+
+(<void> cheat_active_camouflage_by_player <short> <boolean>)
+; gives a specific player active camouflage
+
+(<void> cheats_load)
+; reloads the cheats.txt file
+
+(<void> drop <string>)
+; drops the named tag e.g. objects\vehicles\banshee\banshee.vehicle
+
+(<void> ai_enable <boolean>)
+; turns all AI on or off.
+
+(<boolean> ai_enabled)
+; returns whether AI is turned on or off.
+
+(<void> ai_grenades <boolean>)
+; turns grenade inventory on or off.
+
+(<void> ai_dialogue_enable <boolean>)
+; turn combat dialogue on/off
+
+(<void> ai_dialogue_log_reset)
+; reset the dialogue log
+
+(<void> ai_dialogue_log_dump <string>)
+; dump a file of the given name with csv statistics on vocalizations
+
+(<object> ai_get_object <ai>)
+; returns the unit/object corresponding to the given actor
+
+(<unit> ai_get_unit <ai>)
+; returns the unit/object corresponding to the given actor
+
+(<void> ai_attach <unit> <ai>)
+; attaches the specified unit to the specified encounter.
+
+(<void> ai_attach_units <object_list> <ai>)
+; attaches the specified list of units to the specified encounter.
+
+(<void> ai_detach <unit>)
+; detaches the specified unit from all AI.
+
+(<void> ai_detach_units <object_list>)
+; detaches the specified list of units from all AI.
+
+(<void> ai_place <ai>)
+; places the specified squad on the map.
+
+(<void> ai_place <ai> <short>)
+; places the given number of members of the specified squad.
+
+(<void> ai_place_in_vehicle <ai> <ai>)
+; places the specified squad (1st arg) on the map in the vehicles belonging to the specified vehicle squad (2nd arg).
+
+(<void> ai_cannot_die <ai> <boolean>)
+; AI cannot die from damage (as opposed to by scripting)
+
+(<boolean> ai_vitality_pinned <ai>)
+; Returns true if the ai's units are ALL vitality pinned (see object_vitality_pinned)
+
+(<void> ai_overcomes_oversteer <ai> <boolean>)
+; Don't use this for anything other than bug 3926.  AI magically cancels vehicle oversteer.
+
+(<void> ai_kill <ai>)
+; instantly kills the specified encounter and/or squad.
+
+(<void> ai_kill_silent <ai>)
+; instantly and silently (no animation or sound played) kills the specified encounter and/or squad.
+
+(<void> ai_erase <ai>)
+; erases the specified encounter and/or squad.
+
+(<void> ai_erase_all)
+; erases all AI.
+
+(<void> ai_disposable <ai> <boolean>)
+; enables or disables automatic garbage collection for actors in the specified encounter and/or squad.
+
+(<void> ai_select <ai>)
+; selects the specified squad.
+
+(<void> ai_deselect)
+; clears the selected encounter.
+
+(<void> ai_set_deaf <ai> <boolean>)
+; enables or disables hearing for actors in the specified encounter.
+
+(<void> ai_set_blind <ai> <boolean>)
+; enables or disables sight for actors in the specified encounter.
+
+(<void> ai_magically_see <ai> <ai>)
+; Make one squad magically aware of another.
+
+(<void> ai_magically_see_object <ai> <object>)
+; Make a squad magically aware of a particular object.
+
+(<void> ai_set_active_camo <ai> <boolean>)
+; Turn on active camoflage on actor/squad/squad-group
+
+(<void> ai_suppress_combat <ai> <boolean>)
+; Turn on/off combat suppression on actor/squad/squad-group
+
+(<void> ai_migrate <ai> <ai>)
+; makes all or part of an encounter move to another encounter.
+
+(<void> ai_allegiance <team> <team>)
+; creates an allegiance between two teams.
+
+(<void> ai_allegiance_remove <team> <team>)
+; destroys an allegiance between two teams.
+
+(<void> ai_braindead <ai> <boolean>)
+; makes a group of actors braindead, or restores them to life (in their initial state)
+
+(<void> ai_braindead_by_unit <object_list> <boolean>)
+; makes a list of objects braindead, or restores them to life. if you pass in a vehicle index, it makes all actors in that vehicle braindead (including any built-in guns)
+
+(<void> ai_disregard <object_list> <boolean>)
+; if TRUE, forces all actors to completely disregard the specified units, otherwise lets them acknowledge the units again
+
+(<void> ai_prefer_target <object_list> <boolean>)
+; if TRUE, *ALL* enemies will prefer to attack the specified units. if FALSE, removes the preference.
+
+(<void> ai_teleport_to_starting_location_if_outside_bsp <ai>)
+; teleports a group of actors to the starting locations of their current squad(s) if they are currently outside the world.
+
+(<void> ai_renew <ai>)
+; refreshes the health and grenade count of a group of actors, so they are as good as new
+
+(<void> ai_force_active <ai> <boolean>)
+; forces an encounter to remain active (i.e. not freeze in place) even if there are no players nearby
+
+(<void> ai_force_active_by_unit <unit> <boolean>)
+; forces a named actor that is NOT in an encounter to remain active (i.e. not freeze in place) even if there are no players nearby
+
+(<void> ai_playfight <ai> <boolean>)
+; sets an encounter to be playfighting or not
+
+(<void> ai_reconnect)
+; reconnects all AI information to the current structure bsp (use this after you create encounters or command lists in sapien, or place new firing points or command list points)
+
+(<void> ai_berserk <ai> <boolean>)
+; forces a group of actors to start or stop berserking
+
+(<void> ai_set_team <ai> <team>)
+; makes an encounter change to a new team
+
+(<void> ai_allow_dormant <ai> <boolean>)
+; either enables or disables automatic dormancy for a group of actors
+
+(<boolean> ai_is_attacking <ai>)
+; returns whether a platoon is in the attacking mode (or if an encounter is specified, returns whether any platoon in that encounter is attacking)
+
+(<short> ai_fighting_count <ai>)
+; return the number of actors that are fighting in a squad or squad_group
+
+(<short> ai_living_count <ai>)
+; return the number of living actors in the specified encounter and/or squad.
+
+(<real> ai_living_fraction <ai>)
+; return the fraction [0-1] of living actors in the specified encounter and/or squad.
+
+(<real> ai_strength <ai>)
+; return the current strength (average body vitality from 0-1) of the specified encounter and/or squad.
+
+(<short> ai_swarm_count <ai>)
+; return the number of swarm actors in the specified encounter and/or squad.
+
+(<short> ai_nonswarm_count <ai>)
+; return the number of non-swarm actors in the specified encounter and/or squad.
+
+(<object_list> ai_actors <ai>)
+; converts an ai reference to an object list.
+
+(<boolean> ai_allegiance_broken <team> <team>)
+; returns whether two teams have an allegiance that is currently broken by traitorous behavior
+
+(<void> ai_set_orders <ai> <ai_orders>)
+; Takes the squad or squad group (arg1) and gives it the order (arg3) in zone (arg2). Use the zone_name/order_name format
+
+(<short> ai_spawn_count <ai>)
+; returns the number of actors spawned in the given squad or squad group
+
+(<ai> object_get_ai <object>)
+; returns the ai attached to this object, if any
+
+(<boolean> ai_trigger_test <string> <ai>)
+; Tests the named trigger on the named squad
+
+(<boolean> generate_pathfinding)
+; Generate pathfinding info for all structure bsps in the current scenario
+
+(<void> ai_render_paths_all)
+; Turns on raw, smoothed, avoided paths and avoidance obstacles
+
+(<vehicle> ai_vehicle_get <ai>)
+; Returns the vehicle that the given actor is in.
+
+(<vehicle> ai_vehicle_get_from_starting_location <ai>)
+; Returns the vehicle that was spawned at the given starting location.
+
+(<boolean> ai_vehicle_reserve_seat <vehicle> <string_id> <boolean>)
+; Reserves the given seat on the given vehicle (so that AI may not enter it
+
+(<boolean> ai_vehicle_reserve <vehicle> <boolean>)
+; Reserves the given vehicle (so that AI may not enter it
+
+(<void> ai_vehicle_enter <ai> <unit> <unit_seat_mapping>)
+; tells a group of actors to get into a vehicle, in the substring-specified seats (e.g. passenger for pelican)... does not interrupt any actors who are already going to vehicles
+
+(<void> ai_vehicle_enter <ai> <unit>)
+; tells a group of actors to get into a vehicle... does not interrupt any actors who are already going to vehicles
+
+(<void> ai_vehicle_enter_immediate <ai> <unit> <unit_seat_mapping>)
+; the given group of actors is snapped into a vehicle, in the substring-specified seats (e.g. passenger for pelican)... does not interrupt any actors who are already going to vehicles
+
+(<void> ai_vehicle_enter_immediate <ai> <unit>)
+; the given group of actors is snapped into a vehicle
+
+(<short> ai_enter_squad_vehicles <ai>)
+; Instructs the ai in the given squad to get in all their vehicles
+
+(<void> ai_vehicle_exit <ai> <unit_seat_mapping>)
+; tells a group of actors to get out of any vehicles that they are in (if their seat matches the substring)
+
+(<void> ai_vehicle_exit <ai>)
+; tells a group of actors to get out of any vehicles that they are in
+
+(<boolean> vehicle_overturned <vehicle>)
+; Returns true if the vehicle is overturned
+
+(<void> vehicle_flip <vehicle>)
+; Flips an overturned vehicle
+
+(<short> ai_combat_status <ai>)
+; Returns the highest integer combat status in the given squad-group/squad/actor
+
+(<boolean> flock_start <string_id>)
+; The flock starts producing boids
+
+(<boolean> flock_stop <string_id>)
+; The flock stops producing boids
+
+(<boolean> flock_create <string_id>)
+; Create the given flock
+
+(<boolean> flock_delete <string_id>)
+; Delete the given flock
+
+(<void> ai_verify_tags)
+; Verifies state of ai-related tags (e.g. orders, squads, zones, etc.)
+
+(<boolean> ai_wall_lean <ai>)
+; Makes the actor lean against a wall RIGHT NOW
+
+(<real> ai_play_line <ai> <string_id>)
+; Play the given mission dialogue line on the given ai
+
+(<real> ai_play_line_at_player <ai> <string_id>)
+; Play the given mission dialogue line on the given ai, directing the ai's gaze at the nearest visible player
+
+(<real> ai_play_line_on_object <object> <string_id>)
+; Play the given mission dialogue line on the given object (uses first available variant)
+
+(<boolean> ai_scene <string_id> <ai_command_script> <ai>)
+; Start the named scene, with the named command script on the named squad
+
+(<boolean> ai_scene <string_id> <ai_command_script> <ai> <ai>)
+; Start the named scene, with the named command script on the named set of squads
+
+(<boolean> ai_scene <string_id> <ai_command_script> <ai> <ai> <ai>)
+; Start the named scene, with the named command script on the named set of squads
+
+(<void> cs_run_command_script <ai> <ai_command_script>)
+; Causes the specified actor(s) to start executing a command script immediately (discarding any other command scripts in the queue)
+
+(<void> cs_queue_command_script <ai> <ai_command_script>)
+; Add a command script onto the end of an actor's command script queue
+
+(<void> cs_stack_command_script <ai> <ai_command_script>)
+; Push a command script to the top of the actor's command script queue
+
+(<void> cs_run_joint_command_script <ai_command_script> <ai> <ai>)
+; Causes the specified actor(s) to start executing a command script immediately (discarding any other command scripts in the queue)
+
+(<void> cs_run_joint_command_script <ai_command_script> <ai> <ai> <ai>)
+; Causes the specified actor(s) to start executing a command script immediately (discarding any other command scripts in the queue)
+
+(<boolean> cs_command_script_running <ai> <ai_command_script>)
+; Returns true if the ai is running the command script in question
+
+(<boolean> cs_command_script_queued <ai> <ai_command_script>)
+; Returns true if the command script is in the ai's cs queue
+
+(<short> cs_number_queued <ai>)
+; Returns the number of queued command scripts
+
+(<void> cs_switch <string_id>)
+; Switch control of the joint command script to the given member
+
+(<void> cs_switch_index <short>)
+; Switch control of the joint command script to the given member
+
+(<void> cs_transfer <ai>)
+; Transfer control of the command script to the given actor (replacing what he has)
+
+(<void> cs_transfer_stack <ai>)
+; Transfer control of the command script to the given actor (stacking it)
+
+(<void> cs_transfer_queue <ai>)
+; Transfer control of the command script to the given actor (queueing it)
+
+(<void> cs_fly_to <point reference>)
+; Flies the actor to the given point
+
+(<void> cs_fly_to <point reference> <real>)
+; Flies the actor to the given point (within the given tolerance)
+
+(<void> cs_fly_to_and_face <point reference> <point reference>)
+; Flies the actor to the given point and orients him in the appropriate direction
+
+(<void> cs_fly_to_and_face <point reference> <point reference> <real>)
+; Flies the actor to the given point and orients him in the appropriate direction (within the given tolerance)
+
+(<void> cs_fly_by <point reference>)
+; Flies the actor through the given point
+
+(<void> cs_fly_by <point reference> <real>)
+; Flies the actor through the given point (within the given tolerance)
+
+(<void> cs_go_to <point reference>)
+; Moves the actor to a specified point
+
+(<void> cs_go_to <point reference> <real>)
+; Moves the actor to a specified point, attenuating throttle by the given amount when near the goal
+
+(<void> cs_go_by <point reference> <point reference>)
+; Actor moves toward the point, and considers it hit when it breaks the indicated plane
+
+(<void> cs_go_by <point reference> <point reference> <real>)
+; Actor moves toward the point, and considers it hit when it breaks the indicated plane, attenuating throttle by the given amount when near the goal
+
+(<void> cs_go_to_and_face <point reference> <point reference>)
+; Moves the actor to a specified point and has him face the second point
+
+(<void> cs_start_to <point reference>)
+; Moves the actor to a specified point. DOES NOT BLOCK SCRIPT EXECUTION.
+
+(<void> cs_go_to_nearest <point reference>)
+; Given a point set, AI goes toward the nearest point
+
+(<boolean> cs_moving)
+; Returns TRUE if the actor is currently following a path
+
+(<void> cs_look <boolean> <point reference>)
+; Actor looks at the point for the remainder of the cs, or until overridden
+
+(<void> cs_look_player <boolean>)
+; Actor looks at nearest player for the duration of the cs, or until overridden
+
+(<void> cs_look_object <boolean> <object>)
+; Actor looks at the object for the duration of the cs, or until overridden
+
+(<void> cs_aim <boolean> <point reference>)
+; Actor aims at the point for the remainder of the cs, or until overridden (overrides look)
+
+(<void> cs_aim_player <boolean>)
+; Actor aims at nearest player for the duration of the cs, or until overridden (overrides look)
+
+(<void> cs_aim_object <boolean> <object>)
+; Actor aims at the object for the duration of the cs, or until overridden (overrides look)
+
+(<void> cs_face <boolean> <point reference>)
+; Actor faces exactly the point for the remainder of the cs, or until overridden (overrides aim, look)
+
+(<void> cs_face_player <boolean>)
+; Actor faces exactly the nearest player for the duration of the cs, or until overridden (overrides aim, look)
+
+(<void> cs_face_object <boolean> <object>)
+; Actor faces exactly the given object for the duration of the cs, or until overridden (overrides aim, look)
+
+(<void> cs_move_in_direction <real> <real> <real>)
+; Actor moves at given angle, for the given distance, optionally with the given facing (angle, distance, facing)
+
+(<void> cs_pause <real>)
+; The actor does nothing for the given number of seconds
+
+(<void> cs_shoot <boolean>)
+; Actor is allowed to shoot at its target or not
+
+(<void> cs_shoot <boolean> <object>)
+; Actor shoots at given target
+
+(<void> cs_shoot_point <boolean> <point reference>)
+; Actor shoots at given point
+
+(<void> cs_vehicle_speed <real>)
+; Set the speed at which the actor will drive a vehicle, expressed as a multiplier 0-1
+
+(<void> cs_grenade <point reference> <short>)
+; Actor throws a grenade, either by tossing (arg2=0), lobbing (1) or bouncing (2)
+
+(<void> cs_jump <real> <real>)
+; Actor jumps in direction of angle at the given velocity (angle, velocity)
+
+(<void> cs_jump_to_point <real> <real>)
+; Actor jumps with given horizontal and vertical velocity
+
+(<void> cs_vocalize <short>)
+; Actor emits vocalization of given type
+
+(<void> cs_play_sound <sound>)
+; Actor plays an impulse sound and the atom blocks until it is complete
+
+(<void> cs_play_sound <sound> <real>)
+; Actor plays an impulse sound and the atom blocks for the given percentage of the sound's total length
+
+(<void> cs_play_sound <sound> <real> <real>)
+; Actor plays an impulse sound and the atom blocks for the given percentage of the sound's total length, at the given volume (0..1)
+
+(<void> cs_stop_sound <sound>)
+; Stops the specified impulse sound.
+
+(<void> cs_custom_animation <animation_graph> <string_id> <real> <boolean>)
+; starts a custom animation playing on the unit (interpolates into animation if last parameter is TRUE)
+
+(<void> cs_stop_custom_animation)
+; Stop running a custom animation
+
+(<void> cs_play_line <string_id>)
+; Play the named line in the current scene
+
+(<void> cs_die <short>)
+; Actor dies in specified manner
+
+(<void> cs_teleport <point reference> <point reference>)
+; Actor teleports to point1 facing point2
+
+(<void> cs_animate <long> <short>)
+; Actor performs animation with given modifier (anim-ref, modifier)
+
+(<void> cs_movement_mode <short>)
+; Actor switches to given animation mode
+
+(<void> cs_crouch <boolean>)
+; Actor crouches for the remainder of the command script, or until overridden
+
+(<void> cs_crouch <boolean> <real>)
+; Actor crouches / uncrouches, transitioning over the given number of seconds
+
+(<void> cs_set_pathfinding_radius <real>)
+; Sets the actor's pathfinding radius (this distance at which a destination is considered to have been reached) for the remainder of the command script
+
+(<void> cs_go_to_vehicle <vehicle>)
+; Actor gets in the appropriate vehicle
+
+(<void> cs_set_behavior <ai_behavior>)
+; Actor performs the indicated behavior
+
+(<void> cs_formation <short> <ai> <point reference> <point reference>)
+; Actor initiates a formation of the given type at the given point, facing (initially) at the given other point. Formation types are (0) 1x column (1) 2x column ... (4) wall (5) wedge.
+
+(<void> cs_deploy_turret <point reference>)
+; Deploy a turret at the given script point
+
+(<void> cs_approach <object> <real> <real> <real>)
+; (approach <object> <distance> <max-distance> <follow-distance>)
+
+(<void> cs_start_approach <object> <real> <real> <real>)
+; (approach <object> <distance> <max-distance> <follow-distance>) NON-BLOCKING
+
+(<void> cs_approach_player <real> <real> <real>)
+; (approach player <distance> <max-distance> <follow-distance>)
+
+(<void> cs_start_approach_player <real> <real> <real>)
+; (approach <distance> <max-distance> <follow-distance>) NON-BLOCKING
+
+(<void> cs_approach_stop)
+; Actor stops approaching
+
+(<void> cs_ignore_obstacles <boolean>)
+; Actor does not avoid obstacles when true
+
+(<void> cs_turn_sharpness <boolean> <real>)
+; Set the sharpness of a vehicle turn (values 0 -> 1). Only applicable to nondirectional flying vehicles (e.g. dropships)
+
+(<void> cs_vehicle_speed_instantaneous <real>)
+; Set the instantaneous speed of the vehicle we're driving
+
+(<void> cs_vehicle_boost <boolean>)
+; Enables or disables boost
+
+(<void> cs_abort_on_alert <boolean>)
+; Command script ends prematurely when actor's combat status raises to 'alert' or higher
+
+(<void> cs_abort_on_damage <boolean>)
+; Command script ends prematurely when actor is damaged
+
+(<void> cs_abort_on_combat_status <short>)
+; Command script ends prematurely when actor's combat status rises to given level
+
+(<void> cs_enable_targeting <boolean>)
+; Actor autonomous target selection enabled/disabled.
+
+(<void> cs_enable_looking <boolean>)
+; Actor autonomous looking enabled/disabled.
+
+(<void> cs_enable_moving <boolean>)
+; Actor autonomous moving enabled/disabled.
+
+(<void> cs_enable_dialogue <boolean>)
+; Actor combat dialogue enabled/disabled.
+
+(<void> cs_suppress_dialogue_global <boolean>)
+; Combat dialogue is suppressed for the remainder of the command script
+
+(<void> cs_set_style <style>)
+; Override the actor's style
+
+(<void> cs_force_combat_status <short>)
+; Force the actor's combat status (0= no override, 1= asleep, 2=idle, 3= alert, 4= active)
+
+(<void> cs_enable_pathfinding_failsafe <boolean>)
+; Actor blocks until pathfinding calls succeed
+
+(<void> camera_control <boolean>)
+; toggles script control of the camera.
+
+(<void> camera_set <cutscene_camera_point> <short>)
+; moves the camera to the specified camera point over the specified number of ticks.
+
+(<void> camera_set_relative <cutscene_camera_point> <short> <object>)
+; moves the camera to the specified camera point over the specified number of ticks (position is relative to the specified object).
+
+(<void> camera_set_animation <animation_graph> <string_id>)
+; begins a prerecorded camera animation.
+
+(<void> camera_set_animation_relative <animation_graph> <string_id> <unit> <cutscene_flag>)
+; begins a prerecorded camera animation synchronized to unit relative to cutscene flag.
+
+(<void> camera_predict_resources_at_frame <animation_graph> <string_id> <unit> <cutscene_flag> <long>)
+; predict resources at a frame in camera animation.
+
+(<void> camera_predict_resources_at_point <cutscene_camera_point>)
+; predict resources given a camera point
+
+(<void> camera_set_first_person <unit>)
+; makes the scripted camera follow a unit.
+
+(<void> camera_place_relative <object>)
+; all subsequent camera placement in sapien be marked as relative to this object
+
+(<void> camera_place_worldspace)
+; all subsequent camera placement in sapien will be marked as worldspace
+
+(<short> camera_time)
+; returns the number of ticks remaining in the current camera interpolation.
+
+(<void> camera_set_field_of_view <real> <short>)
+; sets the field of view
+
+(<void> camera_set_pan <cutscene_camera_point> <short>)
+; moves the camera to the specified camera point over the specified number of ticks with a constant speed.
+
+(<void> camera_pan <cutscene_camera_point> <cutscene_camera_point> <short> <short> <real> <short> <real>)
+; camera_pan <start point> <end point> <ticks> <ease-in ticks> <start velocity scale> <ease-out ticks> <end velocity scale>
+
+(<void> debug_camera_save)
+; saves the camera position and facing.
+
+(<void> debug_camera_load)
+; loads the saved camera position and facing.
+
+(<void> debug_camera_save_name <string>)
+; saves the camera position and facing to filename
+
+(<void> debug_camera_load_name <string>)
+; loads the camera position and facing from filename
+
+(<void> director_debug_camera <boolean>)
+; enable/disable camera debugging
+
+(<game_difficulty> game_difficulty_get)
+; returns the current difficulty setting, but lies to you and will never return easy, instead returning normal
+
+(<game_difficulty> game_difficulty_get_real)
+; returns the actual current difficulty setting without lying
+
+(<void> pvs_set_object <object>)
+; sets the specified object as the special place that activates everything it sees.
+
+(<void> pvs_set_camera <cutscene_camera_point>)
+; sets the specified cutscene camera point as the special place that activates everything it sees.
+
+(<void> pvs_clear)
+; removes the special place that activates everything it sees.
+
+(<void> players_unzoom_all)
+; resets zoom levels on all players
+
+(<void> player_enable_input <boolean>)
+; toggle player input. the player can still free-look, but nothing else.
+
+(<void> player_disable_movement <boolean>)
+; toggle player input. the look stick works, but nothing else.
+
+(<boolean> player_flashlight_on)
+; returns true if any player has a flashlight on
+
+(<boolean> player_active_camouflage_on)
+; returns true if any player is active camouflaged
+
+(<boolean> player_camera_control <boolean>)
+; enables/disables camera control globally
+
+(<void> player_action_test_reset)
+; resets the player action test state so that all tests will return false.
+
+(<boolean> player_action_test_jump)
+; returns true if any player has jumped since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_primary_trigger)
+; returns true if any player has used primary trigger since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_grenade_trigger)
+; returns true if any player has used grenade trigger since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_vision_trigger)
+; returns true if any player has used vision trigger since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_zoom)
+; returns true if any player has hit the zoom button since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_rotate_weapons)
+; returns true if any player has hit the rotate-weapon button since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_rotate_grenades)
+; returns true if any player has hit the rotate-grenades button since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_melee)
+; returns true if any player has hit the melee button since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_action)
+; returns true if any player has hit the action key since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_accept)
+; returns true if any player has hit accept since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_cancel)
+; returns true if any player has hit cancel key since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_look_relative_up)
+; returns true if any player has looked up since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_look_relative_down)
+; returns true if any player has looked down since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_look_relative_left)
+; returns true if any player has looked left since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_look_relative_right)
+; returns true if any player has looked right since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_look_relative_all_directions)
+; returns true if any player has looked up, down, left, and right since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_move_relative_all_directions)
+; returns true if any player has moved forward, backward, left, and right since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_start)
+; returns true if any player has pressed the start button since the last call to (player_action_test_reset).
+
+(<boolean> player_action_test_back)
+; returns true if any player has pressed the back button since the last call to (player_action_test_reset).
+
+(<boolean> player0_looking_up)
+; true if the first player is looking up
+
+(<boolean> player0_looking_down)
+; true if the first player is looking down
+
+(<void> player_action_test_look_up_begin)
+; sets up player look up test
+
+(<void> player_action_test_look_down_begin)
+; sets down player look down test
+
+(<void> player_action_test_look_pitch_end)
+; ends the look pitch testing
+
+(<boolean> player_action_test_lookstick_forward)
+; true if the first player pushed forward on lookstick
+
+(<boolean> player_action_test_lookstick_backward)
+; true if the first player pushed backward on lookstick
+
+(<void> debug_teleport_player <long> <long>)
+; for testing: teleports one player to another's location
+
+(<void> map_reset)
+; starts the map from the beginning.
+
+(<void> switch_bsp <short>)
+; takes off your condom and changes to a different structure bsp
+
+(<void> switch_bsp_by_name <structure_bsp>)
+; leaves your condom on and changes to a different structure bsp by name
+
+(<short> structure_bsp_index)
+; returns the current structure bsp index
+
+(<void> crash <string>)
+; crashes (for debugging).
+
+(<void> version)
+; prints the build version.
+
+(<void> record_movie <short> <long> <short>)
+; <frame rate> <seconds> <screen size>
+
+(<void> record_movie_distributed <short> <long> <short> <long> <long>)
+; <frame rate> <seconds> <screen size> <mod count> <mod index>
+
+(<void> screenshot <string>)
+; takes a screenshot and saves as <name>.tif
+
+(<void> screenshot_big <short> <string>)
+; takes an NxN multiple-page screenshot and saves as <name>.tif
+
+(<void> screenshot_big_jittered <short> <string>)
+; takes an NxN subpixel sampled 640x480 screenshot and saves as <name>.tif
+
+(<void> screenshot_cubemap <string>)
+; takes a cubemap screenshot and saves as <name>.tif
+
+(<void> main_menu)
+; goes back to the main menu
+
+(<void> main_halt)
+; goes to a halted pregame state
+
+(<void> map_name <string>)
+; the same as game_start: launches a game for debugging purposes
+
+(<void> game_multiplayer <string>)
+; debug map launching: sets the multiplayer variant for the next map.
+
+(<void> game_splitscreen <long>)
+; debug map launching: sets the number of multiplayer splitscreen players for the next map.
+
+(<void> game_difficulty <game_difficulty>)
+; debug map launching: sets the difficulty of the next map.
+
+(<void> game_coop_players <long>)
+; debug map launching: sets the number of coop players for the next map.
+
+(<void> game_initial_bsp <long>)
+; debug map launching: sets the initial bsp for the next map.
+
+(<void> game_tick_rate <long>)
+; debug map launching: sets the tick rate for the next map.
+
+(<void> game_start <string>)
+; debug map launching: starts a game on the specified map.
+
+(<void> game_rate <real> <real> <real>)
+; changes game update rate (DANGER: only use if you know what you're doing!)
+
+(<void> sound_cache_flush)
+; i'm a rebel!
+
+(<void> font_cache_flush)
+
+(<void> debug_memory)
+; dumps memory leaks.
+
+(<void> debug_memory_by_file)
+; dumps memory leaks by source file.
+
+(<void> debug_memory_for_file <string>)
+; dumps memory leaks from the specified source file.
+
+(<void> debug_tags)
+; writes all memory being used by tag files into tag_dump.txt
+
+(<void> tags_verify_all)
+; verifies usage of infidel fields is correct
+
+(<void> collision_log_enable <boolean>)
+; enables or disables collision logging.
+
+(<void> damage_control_get <string>)
+; gets a damage control setting by string
+
+(<void> damage_control_set <string> <boolean>)
+; sets a damage control setting by string
+
+(<void> ai_lines)
+; cycles through AI line-spray modes
+
+(<void> ai_debug_sound_point_set)
+; drops the AI debugging sound point at the camera location
+
+(<void> ai_dialogue_break_on_vocalization <string_id>)
+; break when the following vocalization is chosen for utterance
+
+(<void> fade_in <real> <real> <real> <short>)
+; does a screen fade in from a particular color
+
+(<void> fade_out <real> <real> <real> <short>)
+; does a screen fade out to a particular color
+
+(<void> cinematic_start)
+; initializes game to start a cinematic (interruptive) cutscene
+
+(<void> cinematic_stop)
+; initializes the game to end a cinematic (interruptive) cutscene
+
+(<void> cinematic_skip_start_internal)
+
+(<void> cinematic_skip_stop_internal)
+
+(<void> cinematic_show_letterbox <boolean>)
+; sets or removes the letterbox bars
+
+(<void> cinematic_show_letterbox_immediate <boolean>)
+; sets or removes the letterbox bars
+
+(<void> cinematic_set_title <cutscene_title>)
+; activates the chapter title
+
+(<void> cinematic_set_title_delayed <cutscene_title> <real>)
+; activates the chapter title, delayed by <real> seconds
+
+(<void> cinematic_suppress_bsp_object_creation <boolean>)
+; suppresses or enables the automatic creation of objects during cutscenes due to a bsp switch
+
+(<void> cinematic_subtitle <string_id> <real>)
+; displays the named subtitle for <real> seconds
+
+(<void> attract_mode_start)
+; starts an attract mode movie
+
+(<void> attract_mode_set_seconds <long>)
+; sets number of seconds of the attract mode countdown timer.
+
+(<void> game_won)
+; causes the player to successfully finish the current level and move to the next
+
+(<void> game_lost <boolean>)
+; marks the game as lost or not lost
+
+(<void> game_revert)
+; causes the player to revert to his previous saved game (for testing, the first bastard that does this to me gets it in the head)
+
+(<boolean> game_is_cooperative)
+; returns TRUE if the game is cooperative
+
+(<boolean> game_is_playtest)
+; returns the hs global boolean 'global_playtest_mode' which can be set in your init.txt
+
+(<void> game_can_use_flashlights <boolean>)
+; allows or disallows the user of player flashlights
+
+(<void> game_save_and_quit)
+; save & quit to the main menu
+
+(<void> game_save_unsafe)
+; saves right now, even if the game is in an immediate-loss state (NEVER USE THIS! EVER!)
+
+(<void> debug_spawning <string> <boolean>)
+; debugs spawn points for the inputted player
+
+(<void> king_set_hill <long>)
+; sets which index the active hill should be
+
+(<void> core_load)
+; loads debug game state from core\core.bin
+
+(<void> core_load_name <string>)
+; loads debug game state from core\<path>
+
+(<void> core_save)
+; saves debug game state to core\core.bin
+
+(<void> core_save_name <string>)
+; saves debug game state to core\<path>
+
+(<void> core_load_game)
+; loads level and game state from core\core.bin
+
+(<void> core_load_game_name <string>)
+; loads level and game state from core\<path>
+
+(<void> core_regular_upload_to_debug_server <boolean>)
+; toggle periodic core uploading to debug server
+
+(<void> core_set_upload_option <string>)
+; sets options for game state uploading (current options are 'default', 'repro', and 'stress'
+
+(<boolean> game_safe_to_save)
+; returns FALSE if it would be a bad idea to save the player's game right now
+
+(<boolean> game_safe_to_speak)
+; returns FALSE if it would be a bad idea to play mission dialog right now
+
+(<boolean> game_all_quiet)
+; returns FALSE if there are bad guys around, projectiles in the air, etc.
+
+(<void> game_save)
+; checks to see if it is safe to save game, then saves (gives up after 8 seconds)
+
+(<void> game_save_cancel)
+; cancels any pending game_save, timeout or not
+
+(<void> game_save_no_timeout)
+; checks to see if it is safe to save game, then saves (this version never gives up)
+
+(<void> game_save_immediate)
+; disregards player's current situation and saves (BE VERY CAREFUL!)
+
+(<boolean> game_saving)
+; checks to see if the game is trying to save the map.
+
+(<boolean> game_reverted)
+; don't use this for anything, you black-hearted bastards.
+
+(<void> sound_set_tag_parameter_unsafe <string> <string> <long> <long> <long> <real> <real> <real>)
+; this is the second sign of the coming of the antichrist
+
+(<void> sound_impulse_predict <sound>)
+; your mom part 2.
+
+(<void> sound_impulse_trigger <sound> <object> <real> <long>)
+; plays an impulse sound from the specified source object (or "none"), with the specified scale.
+
+(<void> sound_impulse_start <sound> <object> <real>)
+; plays an impulse sound from the specified source object (or "none"), with the specified scale.
+
+(<void> sound_impulse_start_cinematic <sound> <object> <real> <real> <real>)
+; <sound> <object> <scale> <3d gain> <first person gain> plays an impulse sound from the specified source object.
+
+(<void> sound_impulse_start_effect <sound> <object> <real> <string_id>)
+; plays an impulse sound from the specified source object (or "none"), with the specified scale and effect.
+
+(<long> sound_impulse_time <sound>)
+; returns the time remaining for the specified impulse sound.
+
+(<long> sound_impulse_time <sound> <long>)
+; <sound> <total playing time> returns the time remaining for the specified impulse sound based on <total playing time>.
+
+(<long> sound_impulse_language_time <sound>)
+; returns the time remaining for the specified impulse sound. DO NOT CALL IN CUTSCENES.
+
+(<void> sound_impulse_stop <sound>)
+; stops the specified impulse sound.
+
+(<void> sound_impulse_start_3d <sound> <real> <real>)
+; <sound> <azimuth> <scale> at the sound's minimum distance
+
+(<void> sound_looping_predict <looping_sound>)
+; your mom.
+
+(<void> sound_looping_start <looping_sound> <object> <real>)
+; plays a looping sound from the specified source object (or "none"), with the specified scale.
+
+(<void> sound_looping_stop <looping_sound>)
+; stops the specified looping sound.
+
+(<void> sound_looping_stop_immediately <looping_sound>)
+; stops the specified looping sound immediately.
+
+(<void> sound_looping_set_scale <looping_sound> <real>)
+; changes the scale of the sound (which should affect the volume) within the range 0 to 1.
+
+(<void> sound_looping_set_alternate <looping_sound> <boolean>)
+; enables or disables the alternate loop/alternate end for a looping sound.
+
+(<void> sound_loop_spam)
+; start all loaded looping sounds
+
+(<void> sound_class_show_channel <string> <boolean>)
+; shows/hides sound classes w/ substring in debug_sound_channels view
+
+(<void> sound_class_debug_sound_start <string> <boolean>)
+; shows/hides when sounds of sound classes w/ substring start
+
+(<void> debug_sounds_enable <string> <boolean>)
+; enables or disables all sound classes matching the substring.
+
+(<void> sound_class_set_gain <string> <real> <short>)
+; changes the gain on the specified sound class(es) to the specified gain over the specified number of ticks.
+
+(<void> sound_class_set_gain_db <string> <real> <short>)
+; changes the gain on the specified sound class(es) to the specified gain(dB) over the specified number of ticks.
+
+(<void> sound_class_enable_ducker <string> <boolean>)
+; enables or disables the ducker on all sound classes matching the substring.
+
+(<void> debug_sound_environment_parameter <long> <real>)
+
+(<void> sound_set_global_effect <string_id> <real>)
+; bleh
+
+(<void> sound_set_global_effect_scale <string_id> <real>)
+; more bleh
+
+(<void> sound_set_trace_callback_level <long>)
+; set Miles tracing callback depth
+
+(<void> sound_dump_miles_debug)
+; dump Miles timing info and other goodies
+
+(<void> vehicle_hover <vehicle> <boolean>)
+; stops the vehicle from running real physics and runs fake hovering physics instead.
+
+(<long> vehicle_count_bipeds_killed <vehicle>)
+; returns how many people this vehicle has killed
+
+(<void> biped_ragdoll <unit>)
+; given a dead biped, turns on ragdoll
+
+(<void> hud_cinematic_fade <real> <real>)
+; parameter 1 is how, parameter 2 is when
+
+(<boolean> show_hud <boolean>)
+; shows or hides the hud
+
+(<boolean> show_hud_help_text <boolean>)
+; shows or hides the hud help text
+
+(<boolean> show_hud_messages <boolean>)
+; shows or hides the hud messages
+
+(<void> hud_show_training_text <boolean>)
+; true turns on scripted training text
+
+(<void> hud_set_training_text <string_id>)
+; sets the string id fo the scripted training text
+
+(<void> hud_enable_training <boolean>)
+; true turns training on, false turns it off.
+
+(<void> player_training_activate_flashlight)
+; guess
+
+(<void> player_training_activate_crouch)
+; guess
+
+(<void> player_training_activate_stealth)
+; guess
+
+(<void> activate_nav_point_flag <navpoint> <unit> <cutscene_flag> <real>)
+; activates a nav point type <string> attached to (local) player <unit> anchored to a flag with a vertical offset <real>. If the player is not local to the machine, this will fail
+
+(<void> activate_nav_point_object <navpoint> <unit> <object> <real>)
+; activates a nav point type <string> attached to (local) player <unit> anchored to an object with a vertical offset <real>. If the player is not local to the machine, this will fail
+
+(<void> activate_team_nav_point_flag <navpoint> <team> <cutscene_flag> <real>)
+; activates a nav point type <string> attached to a team anchored to a flag with a vertical offset <real>. If the player is not local to the machine, this will fail
+
+(<void> activate_team_nav_point_object <navpoint> <team> <object> <real>)
+; activates a nav point type <string> attached to a team anchored to an object with a vertical offset <real>. If the player is not local to the machine, this will fail
+
+(<void> deactivate_nav_point_flag <unit> <cutscene_flag>)
+; deactivates a nav point type attached to a player <unit> anchored to a flag
+
+(<void> deactivate_nav_point_object <unit> <object>)
+; deactivates a nav point type attached to a player <unit> anchored to an object
+
+(<void> deactivate_team_nav_point_flag <team> <cutscene_flag>)
+; deactivates a nav point type attached to a team anchored to a flag
+
+(<void> deactivate_team_nav_point_object <team> <object>)
+; deactivates a nav point type attached to a team anchored to an object
+
+(<void> breadcrumbs_activate_team_nav_point_position <navpoint> <team> <real> <real> <real> <string> <real>)
+; activates a nav point type <string> attached to a team anchored to position xyz <real, real, real> named <_hs_type_string> and with a vertical offset <real>. If the player is not local to the machine or the improved navpoints setting is disabled, this will fail
+
+(<void> breadcrumbs_activate_team_nav_point_flag <navpoint> <team> <cutscene_flag> <real>)
+; activates a nav point type <string> attached to a team anchored to a flag with a vertical offset <real>. If the player is not local to the machine or the improved navpoints setting is disabled, this will fail
+
+(<void> breadcrumbs_activate_team_nav_point_object <navpoint> <team> <object> <real>)
+; activates a nav point type <string> attached to a team anchored to an object with a vertical offset <real>. If the player is not local to the machine or the improved navpoints setting is disabled, this will fail
+
+(<void> breadcrumbs_deactivate_team_nav_point <team> <string>)
+; deactivates a nav point type attached to a team of name <_hs_type_string>
+
+(<void> breadcrumbs_deactivate_team_nav_point_flag <team> <cutscene_flag>)
+; deactivates a nav point type attached to a team anchored to a flag
+
+(<void> breadcrumbs_deactivate_team_nav_point_object <team> <object>)
+; deactivates a nav point type attached to a team anchored to an object
+
+(<void> cls)
+; clears console text from the screen
+
+(<void> error_overflow_suppression <boolean>)
+; enables or disables the suppression of error spamming
+
+(<void> error_geometry_show <string>)
+; highlights all error geometry with a name that includes the given substring
+
+(<void> error_geometry_hide <string>)
+; hides all error geometry with a name that includes the given substring
+
+(<void> error_geometry_show_all)
+; highlights all error geometry
+
+(<void> error_geometry_hide_all)
+; hides all error geometry
+
+(<void> error_geometry_list)
+; prints out a list of all error geometry types and counts
+
+(<void> player_effect_set_max_translation <real> <real> <real>)
+; <x> <y> <z>
+
+(<void> player_effect_set_max_rotation <real> <real> <real>)
+; <yaw> <pitch> <roll>
+
+(<void> player_effect_set_max_vibration <real> <real>)
+; <left> <right>
+
+(<void> player_effect_start <real> <real>)
+; <max_intensity> <attack time>
+
+(<void> player_effect_stop <real>)
+; <decay>
+
+(<void> time_code_show <boolean>)
+; shows the time code timer
+
+(<void> time_code_start <boolean>)
+; starts/stops the time code timer
+
+(<void> time_code_reset)
+; resets the time code timer
+
+(<void> rasterizer_profile_include <string>)
+
+(<void> rasterizer_profile_include_all)
+
+(<void> rasterizer_profile_include_all_except <string>)
+
+(<void> rasterizer_profile_exclude <string>)
+
+(<void> rasterizer_profile_exclude_all)
+
+(<void> rasterizer_profile_exclude_all_except <string>)
+
+(<void> rasterizer_debug_display_bitmap <string>)
+; displays a bitmap
+
+(<void> rasterizer_decals_flush)
+; flush all decals
+
+(<void> rasterizer_lens_flares_clear_for_frame)
+
+(<void> rasterizer_test_screen <long> <real> <real>)
+
+(<void> rasterizer_test_screen_supablur <real> <real> <real> <real> <real>)
+
+(<void> rasterizer_test_screen_off)
+
+(<void> rasterizer_f2 <real> <real>)
+
+(<void> rasterizer_f3 <real> <real> <real>)
+
+(<void> rasterizer_f4 <real> <real> <real> <real>)
+
+(<void> rasterizer_f5 <real> <real> <real> <real> <real>)
+
+(<void> rasterizer_f6 <real> <real> <real> <real> <real> <real>)
+
+(<void> rasterizer_decal_depth_bias <real>)
+; sets the depth bias offset for decals
+
+(<void> rasterizer_decal_depth_bias_slope_scale <real>)
+; sets the depth bias slope scale for decals
+
+(<void> rasterizer_hud_ten_foot <short>)
+; sets the 10 foot HUD experience implementation
+
+(<void> rasterizer_blur <short>)
+; sets the blur (0=disabled, 1=4x, 2=16x)
+
+(<void> rasterizer_solid_model_color <real> <real> <real> <real>)
+
+(<void> rasterizer_solid_structure_color <real> <real> <real> <real>)
+
+(<void> rasterizer_solid_structure_instanced_geometry_color <real> <real> <real> <real>)
+
+(<void> rasterizer_solid_sky_color <real> <real> <real> <real>)
+
+(<void> rasterizer_solid_decorator_color <real> <real> <real> <real>)
+
+(<void> rasterizer_solid_decorator_model_color <real> <real> <real> <real>)
+
+(<void> rasterizer_solid_decorator_decal_color <real> <real> <real> <real>)
+
+(<void> rasterizer_solid_decorator_sprite_color <real> <real> <real> <real>)
+
+(<void> decorator_rebuild_all)
+
+(<void> script_screen_effect_set_value <short> <real>)
+; sets a screen effect script value
+
+(<void> cinematic_screen_effect_start <boolean>)
+; starts screen effect pass TRUE to clear
+
+(<void> cinematic_screen_effect_set_depth_of_field <real> <real> <real> <real> <real> <real> <real>)
+; sets dof: <seperation dist>, <near blur lower bound> <upper bound> <time> <far blur lower bound> <upper bound> <time>
+
+(<void> cinematic_screen_effect_set_crossfade <real>)
+; transition-time
+
+(<void> cinematic_screen_effect_set_crossfade2 <real> <real>)
+; transition-time, exponent
+
+(<void> cinematic_screen_effect_stop)
+; returns control of the screen effects to the rest of the game
+
+(<void> cinematic_set_near_clip_distance <real>)
+
+(<void> cinematic_set_far_clip_distance <real>)
+
+(<void> cinematic_set_environment_map_attenuation <real> <real> <real>)
+; interpolates environment-map attenuation (on flagged shaders) from <low> to <high> over <time>
+
+(<void> cinematic_set_environment_map_bitmap <bitmap>)
+; sets environment-map bitmap (on flagged shaders) instantly
+
+(<void> cinematic_reset_environment_map_bitmap)
+; resets environment-map bitmap (on flagged shaders) to default instantly
+
+(<void> cinematic_set_environment_map_tint <real> <real> <real> <real> <real> <real> <real> <real>)
+; perpendicular color: (red green blue brightness), parallel color: (red green blue brightness)... sets environment-map tint (on flagged shaders) instantly
+
+(<void> cinematic_reset_environment_map_tint)
+; resets environment-map tint (on flagged shaders) to default instantly
+
+(<void> cinematic_layer <long> <real> <real>)
+; interpolates the value of <cinematic layer x> from current position to <value> over <time>
+
+(<void> cinematic_dynamic_reflections <boolean> <boolean>)
+; sets up dynamic reflections: <enabled: [true, false]> <filtering enabled: [true, false]>
+
+(<void> player_profile_create <string> <short> <short> <boolean> <boolean> <boolean>)
+; create a player profile
+
+(<void> player_profile_create_corrupt <string>)
+; create a corrupt player profile, for ui testing
+
+(<void> controller_invert_look)
+; invert look on all attached controllers
+
+(<void> controller_look_speed <short>)
+; set look speed for all attached controllers
+
+(<void> controller_set_look_invert <boolean>)
+; invert player0's look
+
+(<boolean> controller_get_look_invert)
+; returns TRUE if player0's look pitch is inverted
+
+(<void> controller_unlock_solo_levels <short>)
+; unlocks all the solo player levels for <controller index>'s profile
+
+(<long> user_interface_controller_get_last_level_played <short>)
+; returns index of last completed solo level for profile index passed in
+
+(<void> ui_debug_load_main_menu)
+; loads the main menu screen
+
+(<void> ui_debug_text_bounds <boolean>)
+; toggle rendering of ui text boundaries
+
+(<void> ui_debug_show_title_safe_bounds <boolean>)
+; toggle display of title safe boundary
+
+(<void> ui_debug_element_bounds <boolean>)
+; toggle rendering of widget tag block bounds
+
+(<void> ui_debug_screen_tag <string>)
+; test a ui screen
+
+(<void> ui_transition_out_console_window)
+; transition out any ui on the console window
+
+(<void> ui_debug_show_screen_tag_path <boolean>)
+; display tag path of screens as they load
+
+(<void> ui_debug_show_current_screen_tag <string>)
+; displays the current tag path on a specified channel
+
+(<void> ui_set_beta <boolean>)
+; set ui beta testing on/off
+
+(<void> ui_memory_dump <string>)
+; dump the UI memory tracked allocations to a specified file
+
+(<void> ui_set_automation_mode <string>)
+; set ui automation mode
+
+(<void> ui_set_automation_variant_type_and_map <short> <long>)
+; set ui / mp automation variant and mp map
+
+(<void> ui_set_automation_desired_local_user_count <short>)
+; set ui / mp automation desired local user count
+
+(<void> ui_set_automation_desired_desired_network_game_player_count <short>)
+; set ui / mp automation desired network game player count
+
+(<void> ui_set_automation_desired_network_game_length_seconds <long>)
+; set ui / mp automation desired game time length
+
+(<void> ui_set_automation_desired_network_session_name <string>)
+; set ui / mp automation desired session name
+
+(<void> ui_set_automation_desired_controller_team <short> <short>)
+; set desired mp team for a controller
+
+(<void> ui_set_automation_desired_controller_player_profile <short> <string> <string>)
+; set desired player profile and gamertag for a controller
+
+(<void> objectives_clear)
+; clears the mission objectives.
+
+(<void> objectives_show_up_to <long>)
+; show objectives 0..n
+
+(<void> objectives_finish_up_to <long>)
+; mark objectives 0..n as complete
+
+(<void> input_suppress_vibration <boolean>)
+; disable the friggin' vibration
+
+(<void> update_remote_camera)
+; force synchronization of remote machine camera
+
+(<void> net_status_filter <string>)
+; filters the set of network status to display
+
+(<void> net_sim_reset)
+; network simulation: resets the simulation state
+
+(<void> net_sim_spike_now)
+; network simulation: starts a latency spike immediately
+
+(<void> net_sim_dropspike_now)
+; network simulation: starts a packet loss spike immediately
+
+(<void> net_test_ping)
+; network test: sends a ping
+
+(<void> net_test_channel_loopback)
+; network test: creates loopback channels
+
+(<void> net_test_channel_delete)
+; network test: deletes all channels
+
+(<void> net_test_leave_squad)
+; network test: leave current squad
+
+(<void> net_test_delegate_host <long>)
+; network test: delegate hosting to the specified player
+
+(<void> net_test_delegate_leader <long>)
+; network test: delegate leadership to the specified player
+
+(<void> net_test_map_name <string>)
+; network test: sets the name of the scenario to play
+
+(<void> net_test_campaign_difficulty <short>)
+; network test: sets the difficulty of the campaign game to play
+
+(<void> net_test_player_color <long>)
+; network test: temporarily sets the color for all local players
+
+(<void> net_test_reset_objects)
+; network test: resets all objects on the map
+
+(<void> net_test_fatal_error)
+; creates a fatal simulation error
+
+(<void> net_set_machine_name <string>)
+; sets the nickname of your xbox
+
+(<void> net_event_display_category <string> <network_event>)
+; sets the display level for a named category of network events
+
+(<void> net_event_log_category <string> <network_event>)
+; sets the log level for a named category of network events
+
+(<void> net_event_list_categories <string>)
+; lists all categories that exist under a particular category string
+
+(<void> play_bink_movie <string>)
+; um...
+
+(<void> play_credits)
+; ur...
+
+(<boolean> bink_done)
+; returns true if the movie is done playing
+
+(<void> set_global_doppler_factor <real>)
+; new doppler factor: <real>
+
+(<void> set_global_mixbin_headroom <long> <long>)
+; blah
+
+(<void> debug_sound_environment_source_parameter <long> <real>)
+; blah
+
+(<void> data_mine_set_mission_segment <string>)
+; sets the mission segment for single player data mine events
+
+(<void> data_mine_display_mission_segment <boolean>)
+; display the current mission segment
+
+(<void> data_mine_insert <string>)
+; insert text and camera position in the data mine
+
+(<void> data_mine_playback <string>)
+; loads and displays data mine data from a file
+
+(<void> data_mine_enable <boolean>)
+; enable/disable data mining
+
+(<void> data_mine_track_event <string>)
+; enable mining of an event
+
+(<void> data_mine_display_event <string>)
+; enable displaying of an event
+
+(<void> data_mine_display_disk_writes <boolean>)
+; enable/disable console message on disk writes
+
+(<void> data_mine_debug_menu_setting <string>)
+; close debug menu and set user experience setting to string
+
+(<void> error_enable <string> <boolean>)
+; enables/disables display for a class of errors
+
+(<void> render_layer_enable <string> <boolean>)
+; enable/disables a render_layer
+
+(<void> render_layer_enable_all <boolean>)
+; enable/disables all render_layers
+
+(<void> rasterizer_overdraw_z)
+; toggles overdraw with z compare on
+
+(<void> rasterizer_overdraw)
+; toggles overdraw with z compare off
+
+(<void> rasterizer_layers_overdraw_z)
+; toggles layer overdraw with z compare on
+
+(<void> rasterizer_layers_overdraw)
+; toggles layer overdraw with z compare off
+
+(<void> test_memory_allocators <long> <short> <short> <short> <long>)
+; performs tests on different memory allocators
+
+(<void> test_memory_allocators <long> <short> <short> <short> <long> <string>)
+; performs tests on different memory allocators and saves the results
+
+(<void> test_xcr_monkey_enable <boolean>)
+; enable/disable controller monkeys for all in game players
+
+(<void> test_web_map_snapshot <string>)
+; takes two special screenshots and saves them, along with the camera information, as <name>.tif, <name>_secondary.tif and <name>_camera.txt
+
+(<void> test_telnet_status_enable <boolean>)
+; enable/disable status events being sent to the telnet console
+
+(<void> test_telnet_status_interval <long>)
+; sets the interval that status events are sent to the telnet console.
+
+(<void> webstats_disable <boolean>)
+; disables webstats
+
+(<void> webstats_test_submit <string>)
+; submits a string to webstats upload
+
+(<void> netdebug_prefer_internet <boolean>)
+; hints to the netdebug code that that we're on the internet
+
+(<void> script_temporary_disable_lightmap_shadows <boolean>)
+; disable lightmap shadows
+
+(<void> flag_new <string> <string>)
+; <name> <description>
+
+(<void> flag_new_at_look <string> <string>)
+; <name> <description>
+
+(<void> flags_clear)
+; erases all comment flags when not in editor (sapien)
+
+(<void> flags_save)
+; dump comment flags to vrml file
+
+(<void> flags_save_filtered <string>)
+; <substring filter>
+
+(<void> flags_save_named <string>)
+; <file name>
+
+(<void> flags_save_named_filtered <string> <string>)
+; <filter string> <file name>
+
+(<void> flags_default_name <string>)
+; <default comment flag name>
+
+(<void> flags_default_comment <string>)
+; <default comment flag description>
+
+(<void> flags_set_filter <string>)
+; <flag name filter>
+
+(<void> flags_export)
+; dump comment flags to a .txt file
+
+(<void> flags_export_filtered <string>)
+; <substring filter>
+
+(<void> flags_export_named <string>)
+; <file name>
+
+(<void> flags_export_named_filtered <string> <string>)
+; <filter string> <file name>
+
+(<void> bug_now <string>)
+; uploads files for bug <name>
+
+(<void> bug_now_lite <string>)
+; uploads files (w/ no minidump) for bug <name>
+
+(<void> bug_now_auto <boolean>)
+; uploads bug files, auto named <include_minidump>
+
+(<object_list> object_list_children <object> <object_definition>)
+; returns list of child objects by definition.
+
+(<void> voice_set_outgoing_channel_count <long> <long>)
+; sets the outgoing channel count <in-game> <out-of-game>
+
+(<void> voice_set_voice_repeater_peer_index <long>)
+; sets the repeater peer index
+
+(<void> dump_loaded_tags)
+; dump a list of open tags to <map_name>_tags.txt
+
+(<long> interpolator_start <string_id> <real> <real>)
+; <name> <final value> <time>
+
+(<long> interpolator_start_smooth <string_id> <real> <real>)
+; <name> <final value> <time>
+
+(<long> interpolator_stop <string_id>)
+; <name>
+
+(<long> interpolator_restart <string_id>)
+; <name>
+
+(<boolean> interpolator_is_active <string_id>)
+; <name>
+
+(<boolean> interpolator_is_finished <string_id>)
+; <name>
+
+(<long> interpolator_set_current_value <string_id> <real>)
+; <name> <current value>
+
+(<real> interpolator_get_current_value <string_id> <boolean>)
+; <name> <use function ON/OFF>
+
+(<real> interpolator_get_start_value <string_id> <boolean>)
+; <name> <use function ON/OFF>
+
+(<real> interpolator_get_final_value <string_id> <boolean>)
+; <name> <use function ON/OFF>
+
+(<real> interpolator_get_current_phase <string_id>)
+; <name>
+
+(<real> interpolator_get_current_time_fraction <string_id>)
+; <name>
+
+(<real> interpolator_get_start_time <string_id>)
+; <name>
+
+(<real> interpolator_get_final_time <string_id>)
+; <name>
+
+(<real> interpolator_evaluate_at <string_id> <real> <boolean>)
+; <name> <value in> <use function ON/OFF>
+
+(<real> interpolator_evaluate_at_time_fraction <string_id> <real> <boolean>)
+; <name> <time fraction in> <use function ON/OFF>
+
+(<real> interpolator_evaluate_at_time <string_id> <real> <boolean>)
+; <name> <time in> <use function ON/OFF>
+
+(<real> interpolator_evaluate_at_time_delta <string_id> <real> <boolean>)
+; <name> <time delta> <use function ON/OFF>
+
+(<void> interpolator_stop_all)
+
+(<void> interpolator_restart_all)
+
+(<void> interpolator_flip)
+
+(<void> set_pc_runtime_language <string>)
+; sets the pc language from a string
+
+(<void> weather_start <real>)
+; <time>
+
+(<void> weather_stop <real>)
+; <time>
+
+(<void> weather_change_intensity <real> <real>)
+; <time> <intensity>
+
+(<void> cinematic_clone_players_weapon <object> <string_id> <string_id>)
+; clone the first player's most reasonable weapon and attach it to the specified object's marker
+
+(<void> cinematic_move_attached_objects <object> <string_id> <string_id> <string_id>)
+; move the object's children attached to the first marker to the second marker
+
+(<void> vehicle_enable_ghost_effects <boolean>)
+
+(<void> ice_cream_flavor_stock <long>)
+
+(<boolean> ice_cream_flavor_available <long>)
+
+(<void> set_global_sound_environment <real> <real> <real> <real> <long> <real>)
+; this is your brain on drugs
+
+(<void> game_save_cinematic_skip)
+; don't use this, except in one place.
+
+(<void> cinematic_outro_start)
+; flag this cutscene as an outro cutscene
+
+(<void> cinematic_enable_ambience_details <boolean>)
+; enable/disable ambience details in cinematics
+
+(<void> set_rasterizer_gamma <real>)
+; power
+
+(<void> predict_model_section <render model> <long>)
+; predict a geometry block.
+
+(<void> predict_structure_section <structure_bsp> <long> <boolean>)
+; predict a geometry block.
+
+(<void> predict_lightmap_bucket <structure_bsp> <long>)
+; predict a geometry block.
+
+(<void> predict_bitmap <bitmap> <long>)
+; predict a bitmap.
+
+(<void> rasterizer_bloom_override <boolean>)
+; enable
+
+(<void> rasterizer_bloom_override_reset <boolean>)
+; reset
+
+(<void> rasterizer_bloom_override_blur_amount <real>)
+; blur mount
+
+(<void> rasterizer_bloom_override_threshold <real>)
+; threshold
+
+(<void> rasterizer_bloom_override_brightness <real>)
+; brightness
+
+(<void> rasterizer_bloom_override_box_factor <real>)
+; box factor
+
+(<void> rasterizer_bloom_override_max_factor <real>)
+; max factor
+
+(<void> rasterizer_bloom_override_silver_bullet <boolean>)
+; silver bullet
+
+(<void> rasterizer_bloom_override_only <boolean>)
+; only
+
+(<void> rasterizer_bloom_override_high_res <boolean>)
+; high res
+
+(<void> rasterizer_bloom_override_brightness_alpha <real>)
+; brightness alpha
+
+(<void> rasterizer_bloom_override_max_factor_alpha <real>)
+; max factor alpha
+
+(<void> cache_block_for_one_frame)
+; call this to force texture and geometry cache to block until satiated
+
+(<void> sound_suppress_ambience_update_on_revert)
+; call this when transitioning between two cinematics so ambience won't fade in between the skips
+
+(<void> ui_test_error_ok <short>)
+; test error code display w/ ok dialog
+
+(<void> ui_test_error_ok_cancel <short>)
+; test error code display w/ ok-cancel dialog
+
+(<void> ui_test_confirmation <short>)
+; test confirmation dialog display
+
+(<void> cinematic_lightmap_shadow_disable)
+; turn off lightmap shadow in cinematics
+
+(<void> cinematic_lightmap_shadow_enable)
+; turn on lightmap shadow in cinematics
+
+(<void> loading_screen_fade_to_white)
+; sets the next loading screen to just fade to white
+
+(<void> rasterizer_debug_frame_usage <boolean>)
+; spew texture usage data per frame
+
+(<void> rasterizer_debug_crap_pixel_shader <boolean>)
+; spew texture usage data per frame
+
+(<void> enable_render_light_suppressor)
+; enables the code that constrains the max # active lights
+
+(<void> disable_render_light_suppressor)
+; disables the code that constrains the max # active lights
+
+(<void> cinematic_start_movie <string>)
+; starts cinematic movie
+
+(<void> drop_variant <string> <string>)
+; drops the named tag e.g. objects\vehicles\banshee\banshee.vehicle
+
+(<void> determinism_debug_manager_enable_logging <boolean>)
+; enable/disable determinism logging
+
+(<void> determinism_debug_manager_set_trace_flags <long>)
+; set which determinism debugging traces should be turned on
+
+(<void> determinism_debug_manager_enable_game_state_checksum <boolean>)
+; enable/disable determinism checkpoints
+
+(<void> determinism_debug_manager_enable_trace <boolean>)
+; enable determinism tracing
+
+(<void> determinism_debug_manager_set_consumer_sample_level <string> <long>)
+; sets sample level for a consumer
+
+(<void> determinism_log_compare_log_files <string> <string>)
+; comares determinism log files
+
+(<void> determinism_debug_manager_enable_log_file_comparision_on_oos <boolean>)
+; enables/disables determinism log file comparision on oos
+; NETWORK SAFE: No
+
+(<void> debug_sound_channels_by_substring <string>)
+; filter display sound channels by substring
+
+(<void> flush_ddm)
+; flush ddm file
+
+(<long> game_tick_get)
+; returns current game tick
+; NETWORK SAFE: only if game_time_get is
+
+(<long> game_tick_rate)
+; returns current game ticks per second rate
+; NETWORK SAFE: only if game_time_get is
+
+(<long> game_tick_rate_scalar)
+; returns current game ticks per second rate relative to k_authored_tick_rate (30Hz)
+; NETWORK SAFE: only if game_time_get is
+
+(<real> game_tick_length)
+; returns how many seconds are in a current game tick
+; NETWORK SAFE: only if game_time_get is
+
+(<void> TestPrintBool <string> <boolean>)
+; Prints the specified boolean with the format '<string> = '<boolean>' to the Shell.
+
+(<void> TestPrintReal <string> <real>)
+; Prints the specified real with the format '<string> = '<real>' to the Shell.
+
+(<void> debug_menu_rebuild)
+; Reparses the debug menu from the text file.
+
+(<void> debug_camera_load_text <string>)
+; loads the camera position and facing from a passed in string
+
+; AVAILABLE EXTERNAL GLOBALS:
+
+(<boolean> debug_no_drawing)
+
+(<boolean> debug_force_all_player_views_to_default_player)
+
+(<boolean> debug_render_freeze)
+
+(<boolean> debug_render_horizontal_splitscreen)
+
+(<boolean> debug_load_panic_to_main_menu)
+
+(<boolean> display_framerate)
+
+(<boolean> display_frame_deltas)
+
+(<boolean> console_status_string_render)
+
+(<boolean> console_pauses_game)
+
+(<boolean> framerate_infinite)
+
+(<boolean> framerate_debug)
+
+(<boolean> framerate_use_system_time)
+
+(<boolean> framerate_stabilization)
+
+(<boolean> terminal_render)
+
+(<boolean> console_dump_to_file)
+
+(<boolean> console_dump_to_debug_display)
+
+(<real> camera_fov_scale)
+
+(<real> rasterizer_near_clip_distance)
+
+(<real> rasterizer_far_clip_distance)
+
+(<boolean> rasterizer_far_clip_nudge)
+
+(<boolean> rasterizer_wbuffer_clip_enable)
+
+(<short> rasterizer_frame_bounds_left)
+
+(<short> rasterizer_frame_bounds_right)
+
+(<short> rasterizer_frame_bounds_top)
+
+(<short> rasterizer_frame_bounds_bottom)
+
+(<short> rasterizer_vblank_interval)
+
+(<long> rasterizer_flicker_filter)
+
+(<boolean> rasterizer_soft_display_filter)
+
+(<short> rasterizer_stats)
+
+(<short> rasterizer_mode)
+
+(<boolean> rasterizer_wireframe)
+
+(<real> rasterizer_gamma_power)
+
+(<boolean> rasterizer_shaders)
+
+(<boolean> rasterizer_shader_submit_unified)
+
+(<boolean> rasterizer_shader_submit_unified_safe)
+
+(<boolean> rasterizer_shader_submit_unified_super_safe)
+
+(<boolean> rasterizer_shader_submit_force_extern_refresh)
+
+(<boolean> rasterizer_sort)
+
+(<short> rasterizer_sort_force_layer)
+
+(<short> rasterizer_sort_force_order)
+
+(<boolean> rasterizer_smart)
+
+(<boolean> rasterizer_karma_events)
+
+(<boolean> rasterizer_karma_events_detailed)
+
+(<short> rasterizer_debug_model_lod)
+
+(<boolean> rasterizer_debug_transparents)
+
+(<boolean> rasterizer_debug_meter_shader)
+
+(<boolean> rasterizer_models)
+
+(<boolean> rasterizer_model_transparents)
+
+(<boolean> rasterizer_draw_first_person_weapon_first)
+
+(<boolean> rasterizer_stencil_mask)
+
+(<boolean> rasterizer_environment)
+
+(<boolean> rasterizer_decals)
+
+(<boolean> rasterizer_water)
+
+(<boolean> rasterizer_lens_flares)
+
+(<short> rasterizer_lens_flares_dof_region)
+
+(<boolean> rasterizer_dynamic_unlit_geometry)
+
+(<boolean> rasterizer_dynamic_lit_geometry)
+
+(<boolean> rasterizer_dynamic_screen_geometry)
+
+(<boolean> rasterizer_hud_motion_sensor)
+
+(<boolean> rasterizer_detail_objects)
+
+(<boolean> rasterizer_debug_geometry)
+
+(<boolean> rasterizer_debug_geometry_multipass)
+
+(<boolean> rasterizer_fog_atmosphere)
+
+(<boolean> rasterizer_fog_plane)
+
+(<boolean> rasterizer_bump_mapping)
+
+(<boolean> rasterizer_environment_alpha_testing)
+
+(<boolean> rasterizer_environment_specular_mask)
+
+(<boolean> rasterizer_shadows_convolution)
+
+(<boolean> rasterizer_shadows_debug)
+
+(<boolean> rasterizer_water_mipmapping)
+
+(<boolean> rasterizer_active_camouflage)
+
+(<boolean> rasterizer_active_camouflage_multipass)
+
+(<boolean> rasterizer_lens_flares_occlusion)
+
+(<boolean> rasterizer_lens_flares_occlusion_debug)
+
+(<boolean> rasterizer_lens_flares_occluded_by_active_camo)
+
+(<boolean> rasterizer_ray_of_buddha)
+
+(<boolean> rasterizer_screen_flashes)
+
+(<boolean> rasterizer_screen_effects)
+
+(<boolean> rasterizer_DXTC_noise)
+
+(<boolean> rasterizer_profile_log)
+
+(<real> rasterizer_detail_objects_offset_multiplier)
+
+(<boolean> rasterizer_decal_flush_on_create)
+
+(<long> rasterizer_decal_z_bias)
+
+(<boolean> rasterizer_decal_z_offset_slopescale_enabled)
+
+(<real> rasterizer_decal_z_offset)
+
+(<real> rasterizer_decal_z_slopescale)
+
+(<real> rasterizer_decal_z_geometry_offset)
+
+(<long> rasterizer_decal_debug_draw_grid)
+
+(<boolean> rasterizer_safe_frame_bounds)
+
+(<boolean> rasterizer_zsprites)
+
+(<boolean> rasterizer_filthy_decal_fog_hack)
+
+(<boolean> rasterizer_splitscreen_VB_optimization)
+
+(<boolean> rasterizer_counters_enabled)
+
+(<boolean> rasterizer_markers_enabled)
+
+(<boolean> rasterizer_profile_print_locks)
+
+(<real> rasterizer_profile_objectlock_time)
+
+(<boolean> rasterizer_tiny)
+
+(<long> rasterizer_busywork)
+
+(<boolean> rasterizer_shadow_buffer_use_offsets)
+
+(<real> rasterizer_shadow_buffer_z_offset)
+
+(<real> rasterizer_shadow_buffer_z_slope)
+
+(<real> rasterizer_shadow_buffer_env_z_offset)
+
+(<real> rasterizer_shadow_buffer_env_z_slope)
+
+(<real> rasterizer_shadow_buffer_blur)
+
+(<boolean> rasterizer_shadow_buffer_cinematic_debug)
+
+(<boolean> rasterizer_shadow_buffer_debug)
+
+(<real> rasterizer_shadow_buffer_lod_resolution_area_scale)
+
+(<real> rasterizer_shadow_buffer_lod_resolution_light_bias_scale)
+
+(<real> rasterizer_shadow_buffer_lod_resolution_minimum)
+
+(<real> rasterizer_shadow_buffer_lod_samples_area_scale)
+
+(<real> rasterizer_shadow_buffer_lod_samples_light_bias_scale)
+
+(<long> rasterizer_artist_profile)
+
+(<short> rasterizer_dynamic_gamma_mode)
+
+(<real> rasterizer_dynamic_gamma_bias)
+
+(<real> rasterizer_dynamic_gamma_dark_clamp)
+
+(<real> rasterizer_dynamic_gamma_light_clamp)
+
+(<real> rasterizer_dynamic_gamma_dark_adjust_dt)
+
+(<real> rasterizer_dynamic_gamma_light_adjust_dt)
+
+(<real> rasterizer_dynamic_gamma_contrast_adjust_dt)
+
+(<real> rasterizer_dynamic_gamma_dark_threshold)
+
+(<real> rasterizer_dynamic_gamma_light_threshold)
+
+(<real> rasterizer_dynamic_gamma_bloom_scale)
+
+(<boolean> rasterizer_dynamic_gamma_debug)
+
+(<real> rasterizer_vision_distance)
+
+(<real> rasterizer_vision_jitter_scale)
+
+(<real> rasterizer_vision_noise_scale)
+
+(<real> rasterizer_vision_scan_scale)
+
+(<real> rasterizer_vision_scan_speed)
+
+(<real> rasterizer_bloom_default_threshold)
+
+(<real> rasterizer_selfibloomination_scale)
+
+(<real> rasterizer_selfibloomination_to_bloom_amount)
+
+(<boolean> rasterizer_selfibloomination_is_fogged)
+
+(<real> rasterizer_depth_of_field_near_filter_box_factor)
+
+(<real> rasterizer_depth_of_field_near_filter_max_factor)
+
+(<real> rasterizer_depth_of_field_far_filter_box_factor)
+
+(<real> rasterizer_depth_of_field_far_filter_max_factor)
+
+(<boolean> colorbars)
+
+(<real> rasterizer_LMO_ambient)
+
+(<real> rasterizer_LMO_direct)
+
+(<real> rasterizer_LMO_indirect)
+
+(<real> rasterizer_LMO_specular)
+
+(<real> rasterizer_lightmap_shadow_falloff_scale)
+
+(<real> rasterizer_lightmap_shadow_cutoff_scale)
+
+(<boolean> rasterizer_new_submission_interface)
+
+(<real> rasterizer_line_width)
+
+(<boolean> rasterizer_linear_gradients)
+
+(<boolean> rasterizer_fog_atmospheric_auto_blend)
+
+(<long> rasterizer_solid_color_mode)
+
+(<real> rasterizer_decorator_accuracy_min)
+
+(<real> rasterizer_decorator_accuracy_max)
+
+(<real> rasterizer_first_person_w_scale)
+
+(<long> rasterizer_tessellation_scale)
+
+(<boolean> rasterizer_patchy_fog_alpha_modulate)
+
+(<boolean> rasterizer_patchy_fog_force_100_percent)
+
+(<boolean> rasterizer_fog_planar_separate_enabled)
+
+(<boolean> rasterizer_force_specular)
+
+(<boolean> rasterizer_fog_planar_care)
+
+(<boolean> rasterizer_light_volume_debug)
+
+(<boolean> rasterizer_light_volume_perspective_midpoints)
+
+(<real> rasterizer_light_offset)
+
+(<boolean> rasterizer_debug_fog_geometry)
+
+(<boolean> ssc_debug)
+
+(<boolean> ssc_debug_lights)
+
+(<boolean> ssc_debug_lights_gel)
+
+(<short> ssc_debug_text_mode)
+
+(<boolean> ssc_debug_hulls)
+
+(<boolean> ssc_debug_edges)
+
+(<real> ssc_viewport_scale)
+
+(<boolean> ssc_lightmaps)
+
+(<long> ssc_lightmap_control)
+
+(<real> ssc_lightmap_shadow_darkening)
+
+(<real> ssc_lightmap_shadow_extrusion)
+
+(<boolean> ssc_lightmap_shadow_carmack_optimization)
+
+(<boolean> ssc_lightmap_force_non_bumped)
+
+(<boolean> ssc_scissor_enable)
+
+(<boolean> ssc_force_legacy)
+
+(<boolean> ssc_multisample_enable)
+
+(<boolean> ssc_shadow)
+
+(<boolean> ssc_shadow_view)
+
+(<long> ssc_shadow_mode)
+
+(<long> ssc_shadow_debug_cluster)
+
+(<boolean> ssc_shadow_multi_region)
+
+(<boolean> ssc_shadow_cyborg)
+
+(<boolean> ssc_carmack_optimization)
+
+(<boolean> ssc_carmack_reverse)
+
+(<boolean> ssc_back_projection)
+
+(<boolean> ssc_single_pass_vol)
+
+(<boolean> ssc_dsq)
+
+(<boolean> ssc_dsq_vis)
+
+(<boolean> ssc_isq)
+
+(<boolean> ssc_isq_sse)
+
+(<boolean> ssc_isq_point_debug)
+
+(<boolean> ssc_subcluster_debug)
+
+(<boolean> ssc_subcluster_freeze)
+
+(<boolean> ssc_subcluster_optimization)
+
+(<boolean> ssc_subcluster_all_visible)
+
+(<real> ssc_overbright)
+
+(<real> ssc_ambient_diffuse)
+
+(<real> ssc_ambient_diffuse_bump)
+
+(<real> ssc_ambient_diffuse_radiosity)
+
+(<real> ssc_ambient_envmap)
+
+(<boolean> ssc_light_gel)
+
+(<boolean> ssc_light_n_dot_e_mask)
+
+(<real> ssc_light_diffuse)
+
+(<boolean> ssc_light_diffuse_shadow)
+
+(<long> ssc_light_diffuse_mask_flags)
+
+(<boolean> ssc_light_diffuse_n_dot_l)
+
+(<real> ssc_light_specular)
+
+(<boolean> ssc_light_specular_shadow)
+
+(<long> ssc_light_specular_mask_flags)
+
+(<boolean> ssc_light_specular_enable)
+
+(<real> ssc_texture_diffuse)
+
+(<real> ssc_texture_specular)
+
+(<short> ssc_texture_mode)
+
+(<short> ssc_stencil_mode)
+
+(<short> ssc_bump_mode)
+
+(<short> ssc_bump_aniso)
+
+(<boolean> ssc_bump_mode_debug)
+
+(<boolean> ssc_env_zge)
+
+(<boolean> ssc_env_brev)
+
+(<boolean> ssc_env_voltex)
+
+(<boolean> ssc_env_malice)
+
+(<boolean> ssc_pop_fix)
+
+(<real> ssc_pop_fix_factor)
+
+(<short> ssc_radiosity_hack)
+
+(<boolean> ssc_radiosity_hack_shadow)
+
+(<long> ssc_shader_profile_mode)
+
+(<long> ssc_shader_profile_layer)
+
+(<boolean> ssc_objects_env_map_enabled)
+
+(<boolean> ssc_environment_env_map_enabled)
+
+(<long> debug_view)
+
+(<short> pad4)
+
+(<short> pad3)
+
+(<real> pad3_scale)
+
+(<real> pad_thai)
+
+(<short> taco_salad)
+
+(<short> anisotropic_binormal)
+
+(<real> f0)
+
+(<real> f1)
+
+(<real> f2)
+
+(<real> f3)
+
+(<real> f4)
+
+(<real> f5)
+
+(<real> g0)
+
+(<real> g1)
+
+(<real> g2)
+
+(<real> g3)
+
+(<real> g4)
+
+(<real> g5)
+
+(<real> g6)
+
+(<real> g7)
+
+(<real> g8)
+
+(<real> g9)
+
+(<real> g10)
+
+(<real> g11)
+
+(<boolean> rasterizer_frame_dump)
+
+(<boolean> rasterizer_transparent_pixel_counter)
+
+(<real> ssc_e3_clip_scale)
+
+(<boolean> async_display_statistics)
+
+(<boolean> async_record_statistics)
+
+(<boolean> suppress_upload_debug)
+
+(<boolean> lightmap_pointsample)
+
+(<boolean> debug_no_frustum_clip)
+
+(<boolean> debug_camera_projection)
+
+(<boolean> game_paused)
+
+(<real> game_speed)
+
+(<boolean> game_time_lock)
+
+(<boolean> game_time_statistics)
+
+(<boolean> debug_game_save)
+
+(<boolean> recover_saved_games_hack)
+
+(<boolean> debug_detail_objects)
+
+(<boolean> debug_structure_sampling)
+
+(<boolean> display_precache_progress)
+
+(<boolean> log_precache_progress)
+
+(<boolean> debug_object_garbage_collection)
+
+(<boolean> debug_object_dump_log)
+
+(<boolean> allow_all_sounds_on_player)
+
+(<boolean> disable_player_rotation)
+
+(<real> player_rotation_scale)
+
+(<boolean> temporary_hud)
+
+(<boolean> disable_hud)
+
+(<boolean> debug_unit_all_animations)
+
+(<boolean> debug_unit_animations)
+
+(<boolean> debug_unit_illumination)
+
+(<real> debug_unit_active_camo_frequency_modulator)
+
+(<real> debug_unit_active_camo_frequency_modulator_bias)
+
+(<boolean> debug_player_melee_attack)
+
+(<boolean> debug_boarding_force_enemy)
+
+(<boolean> debug_model_groups_merge_nothing)
+
+(<boolean> debug_model_groups_merge_everything)
+
+(<boolean> enable_analog_movement)
+
+(<boolean> enable_eye_tracking)
+
+(<boolean> enable_animation_influenced_flight)
+
+(<boolean> enable_flight_noise)
+
+(<boolean> enable_player_transitions)
+
+(<boolean> cheat_deathless_player)
+
+(<boolean> cheat_valhalla)
+
+(<boolean> cheat_jetpack)
+
+(<boolean> cheat_infinite_ammo)
+
+(<boolean> cheat_bottomless_clip)
+
+(<boolean> cheat_bump_possession)
+
+(<boolean> cheat_super_jump)
+
+(<boolean> cheat_reflexive_damage_effects)
+
+(<boolean> cheat_medusa)
+
+(<boolean> cheat_omnipotent)
+
+(<boolean> cheat_controller)
+
+(<boolean> cheat_chevy)
+
+(<long> debug_simulate_gamepad)
+
+(<boolean> effects_corpse_nonviolent)
+
+(<boolean> debug_effects_nonviolent)
+
+(<boolean> debug_effects_locations)
+
+(<boolean> debug_effects_allocation)
+
+(<boolean> debug_effects_play_distances)
+
+(<real> sound_global_room_gain)
+
+(<boolean> enable_pc_sound)
+
+(<boolean> debug_sound_cache)
+
+(<boolean> debug_sound)
+
+(<boolean> debug_looping_sound)
+
+(<boolean> debug_sound_channels)
+
+(<boolean> debug_sound_reverb)
+
+(<boolean> sound_cache_graph)
+
+(<boolean> debug_speaker_output_peak)
+
+(<boolean> debug_speaker_output_rms)
+
+(<boolean> debug_sound_listeners)
+
+(<boolean> debug_sound_reference_counts)
+
+(<boolean> background_sound_meter_display)
+
+(<boolean> debug_sound_environment_parameters)
+
+(<boolean> debug_sound_channel_overflow)
+
+(<boolean> debug_sound_impulse_time)
+
+(<boolean> debug_sound_impulse_spam)
+
+(<boolean> use_dynamic_object_obstruction)
+
+(<boolean> debug_sound_stabbed)
+
+(<boolean> debug_sound_environment)
+
+(<real> object_light_ambient_base)
+
+(<real> object_light_ambient_scale)
+
+(<real> object_light_secondary_scale)
+
+(<real> object_light_secondary_direction_lerp)
+
+(<boolean> object_light_interpolate)
+
+(<real> object_light_accuracy_lower_bound)
+
+(<real> object_light_accuracy_upper_bound)
+
+(<real> object_light_accuracy_exponent)
+
+(<boolean> object_light_new)
+
+(<real> object_light_ambient_brightness)
+
+(<real> object_light_primary_brightness)
+
+(<real> object_light_secondary_brightness)
+
+(<real> object_light_primary_exclusion_cone_lower_bound)
+
+(<real> object_light_primary_exclusion_cone_upper_bound)
+
+(<real> object_light_secondary_exclusion_cone_lower_bound)
+
+(<real> object_light_secondary_exclusion_cone_upper_bound)
+
+(<real> object_light_secondary_rotation)
+
+(<boolean> light_local_basis)
+
+(<boolean> collision_log_render)
+
+(<boolean> collision_log_detailed)
+
+(<boolean> collision_log_extended)
+
+(<boolean> collision_log_totals_only)
+
+(<boolean> collision_log_time)
+
+(<real> havok_collision_tolerance)
+
+(<long> havok_debug_mode)
+
+(<long> havok_environment_type)
+
+(<real> havok_shape_radius)
+
+(<boolean> havok_jumping_beans)
+
+(<boolean> havok_weld_environment)
+
+(<boolean> havok_enable_back_stepping)
+
+(<boolean> havok_enable_sweep_shapes)
+
+(<boolean> havok_display_stats)
+
+(<real> havok_back_step_penetration_depth)
+
+(<boolean> impacts_debug)
+
+(<boolean> collision_damage_debug)
+
+(<boolean> havok_play_impact_effects)
+
+(<boolean> havok_play_biped_impact_effects)
+
+(<boolean> physics_debug)
+
+(<boolean> havok_cleanup_inactive_agents)
+
+(<boolean> havok_memory_always_system)
+
+(<boolean> render_environment)
+
+(<boolean> render_objects)
+
+(<boolean> render_instanced_geometry)
+
+(<boolean> render_sky)
+
+(<boolean> render_fog)
+
+(<boolean> render_patchy_fog)
+
+(<boolean> render_lens_flares)
+
+(<boolean> render_decals)
+
+(<boolean> render_colonies)
+
+(<boolean> render_contrails)
+
+(<boolean> render_particles)
+
+(<boolean> render_psystems)
+
+(<boolean> render_wsystems)
+
+(<boolean> render_decorators)
+
+(<boolean> render_old_dof)
+
+(<boolean> render_particles_use_visibility)
+
+(<boolean> render_particles_render_bounding_sphere)
+
+(<boolean> render_submit_opaque)
+
+(<boolean> render_submit_transparent)
+
+(<boolean> render_debug_decorator_visibility)
+
+(<boolean> render_debug_decorator_octree)
+
+(<boolean> render_debug_decorator_group_visibility)
+
+(<boolean> render_debug_decorators)
+
+(<boolean> render_shadow_force_self_shadow)
+
+(<boolean> render_debug_lightmap_shadows)
+
+(<boolean> render_disable_screen_effects_not_first_person)
+
+(<boolean> render_debug_cloth)
+
+(<boolean> render_debug_object_lighting)
+
+(<boolean> render_debug_object_lighting_refresh)
+
+(<boolean> render_debug_fake_lightprobes)
+
+(<boolean> render_debug_infinite_framerate)
+
+(<boolean> render_debug_no_sapien_textures)
+
+(<boolean> render_debug_set_pix_profile_mode)
+
+(<long> render_debug_toggle_default_lightmaps_texaccum)
+
+(<boolean> render_debug_single_shader)
+
+(<boolean> render_debug_simple_shader)
+
+(<boolean> shader_submit_record_globals_active)
+
+(<boolean> shader_submit_record_globals_active_verbose)
+
+(<real> g_shader_and_mipmap_lod_scale)
+
+(<boolean> render_debug_emitters)
+
+(<boolean> render_debug_locations)
+
+(<boolean> render_debug_particles)
+
+(<boolean> render_submit_profile)
+
+(<boolean> render_dyanmic_objects_sh)
+
+(<boolean> debug_light_probes)
+
+(<boolean> render_water_enable)
+
+(<boolean> render_weather_enable)
+
+(<boolean> texture_camera_view)
+
+(<real> texture_camera_scale)
+
+(<boolean> debug_inactive_objects)
+
+(<boolean> debug_pvs)
+
+(<boolean> debug_pvs_render_all)
+
+(<boolean> debug_pvs_activation)
+
+(<boolean> render_debug_use_sorted_cache)
+
+(<boolean> render_light_traversal)
+
+(<boolean> render_default_lighting)
+
+(<boolean> render_default_lighting_at_console)
+
+(<boolean> render_default_lighting_automatic)
+
+(<long> render_light_restrict_by_light_index)
+
+(<boolean> render_lights_specular_fade_disable)
+
+(<boolean> render_light_suppressor_enabled)
+
+(<long> debug_light_suppressor)
+
+(<boolean> visibility_debug_region_projections)
+
+(<boolean> visibility_debug_working_portals)
+
+(<boolean> visibility_debug_region_volumes)
+
+(<boolean> visibility_debug_volume_intersections)
+
+(<boolean> visibility_debug_region_volumes_by_cluster_index)
+
+(<long> visibility_debug_region_volumes_cluster_index)
+
+(<boolean> visibility_debug_portals)
+
+(<long> visibility_debug_portals_cluster_index)
+
+(<boolean> visibility_debug_subcluster_lighting)
+
+(<boolean> visibility_debug_subcluster_cycle)
+
+(<boolean> visibility_debug_subcluster_lighting_text_list)
+
+(<boolean> visibility_debug_light_cluster_intersections)
+
+(<long> visibility_debug_light_cluster_intersections_mode)
+
+(<boolean> visibility_debug_dof)
+
+(<boolean> visibility_debug_allow_part_mopp)
+
+(<boolean> visibility_dont_use_precomputed_lights)
+
+(<boolean> visibility_perform_final_checks)
+
+(<boolean> visibility_merge_working_portals)
+
+(<boolean> debug_objects)
+
+(<boolean> debug_objects_position_velocity)
+
+(<boolean> debug_objects_origin)
+
+(<boolean> debug_objects_root_node)
+
+(<boolean> debug_objects_bounding_spheres)
+
+(<boolean> debug_objects_dynamic_render_bounding_spheres)
+
+(<boolean> debug_objects_render_models)
+
+(<boolean> debug_objects_collision_models)
+
+(<boolean> debug_objects_early_movers)
+
+(<boolean> debug_objects_contact_points)
+
+(<boolean> debug_objects_constraints)
+
+(<boolean> debug_objects_vehicle_physics)
+
+(<boolean> debug_objects_mass)
+
+(<boolean> debug_objects_physics_models)
+
+(<boolean> debug_objects_names)
+
+(<boolean> debug_objects_full_names)
+
+(<boolean> debug_objects_indices)
+
+(<boolean> debug_objects_functions)
+
+(<boolean> debug_objects_model_targets)
+
+(<boolean> debug_objects_pathfinding)
+
+(<boolean> debug_objects_profile_times)
+
+(<boolean> debug_objects_node_bounds)
+
+(<boolean> debug_objects_unit_vectors)
+
+(<boolean> debug_objects_unit_seats)
+
+(<boolean> debug_objects_unit_mouth_apeture)
+
+(<boolean> debug_objects_unit_firing)
+
+(<boolean> debug_objects_unit_state)
+
+(<boolean> debug_objects_unit_lipsync)
+
+(<boolean> debug_objects_unit_lipsync_verbose)
+
+(<boolean> debug_objects_unit_emotion)
+
+(<boolean> debug_objects_unit_acceleration)
+
+(<boolean> debug_objects_unit_camera)
+
+(<boolean> debug_objects_biped_autoaim_pills)
+
+(<boolean> debug_objects_physics_control_node)
+
+(<boolean> debug_objects_ground_plane)
+
+(<boolean> debug_objects_movement_mode)
+
+(<boolean> debug_objects_unit_pathfinding_surface)
+
+(<boolean> debug_objects_devices)
+
+(<boolean> debug_objects_machines)
+
+(<boolean> debug_objects_garbage)
+
+(<long> debug_objects_type_mask)
+
+(<boolean> debug_objects_sound_spheres)
+
+(<boolean> debug_objects_active_nodes)
+
+(<boolean> debug_objects_animation_times)
+
+(<boolean> debug_objects_freeze_ragdolls)
+
+(<boolean> debug_objects_disable_relaxation)
+
+(<boolean> debug_objects_sentinel_physics_ignore_lag)
+
+(<boolean> debug_objects_ignore_node_masks)
+
+(<boolean> debug_objects_force_awake)
+
+(<boolean> debug_objects_force_render_time_node_processing)
+
+(<boolean> debug_objects_disable_node_animation)
+
+(<object> debug_objects_object)
+
+(<boolean> debug_objects_player_only)
+
+(<boolean> render_model_nodes)
+
+(<boolean> render_model_point_counts)
+
+(<boolean> render_model_vertex_counts)
+
+(<boolean> render_model_names)
+
+(<boolean> render_model_triangle_counts)
+
+(<boolean> render_model_collision_vertex_counts)
+
+(<boolean> render_model_collision_surface_counts)
+
+(<boolean> render_model_texture_usage)
+
+(<boolean> render_model_geometry_usage)
+
+(<boolean> render_model_cost)
+
+(<boolean> render_model_markers)
+
+(<boolean> render_model_no_geometry)
+
+(<boolean> render_model_skinning_disable)
+
+(<boolean> debug_damage)
+
+(<boolean> debug_player_damage)
+
+(<boolean> debug_damage_verbose)
+
+(<boolean> debug_damage_radius)
+
+(<boolean> debug_scripting)
+
+(<boolean> debug_trigger_volumes)
+
+(<boolean> debug_point_physics)
+
+(<boolean> debug_motion_sensor_draw_all_units)
+
+(<boolean> collision_debug)
+
+(<boolean> collision_debug_spray)
+
+(<boolean> collision_debug_features)
+
+(<boolean> collision_debug_phantom_bsp)
+
+(<long> collision_debug_flags)
+
+(<boolean> collision_debug_flag_structure)
+
+(<boolean> collision_debug_flag_media)
+
+(<boolean> collision_debug_flag_instanced_geometry)
+
+(<boolean> collision_debug_flag_objects)
+
+(<boolean> collision_debug_flag_objects_bipeds)
+
+(<boolean> collision_debug_flag_objects_vehicles)
+
+(<boolean> collision_debug_flag_objects_weapons)
+
+(<boolean> collision_debug_flag_objects_equipment)
+
+(<boolean> collision_debug_flag_objects_garbage)
+
+(<boolean> collision_debug_flag_objects_projectiles)
+
+(<boolean> collision_debug_flag_objects_scenery)
+
+(<boolean> collision_debug_flag_objects_machines)
+
+(<boolean> collision_debug_flag_objects_controls)
+
+(<boolean> collision_debug_flag_objects_light_fixtures)
+
+(<boolean> collision_debug_flag_objects_sound_scenery)
+
+(<boolean> collision_debug_flag_objects_crates)
+
+(<boolean> collision_debug_flag_objects_creatures)
+
+(<boolean> collision_debug_flag_ignore_child_objects)
+
+(<boolean> collision_debug_flag_ignore_nonpathfindable_objects)
+
+(<boolean> collision_debug_flag_ignore_cinematic_objects)
+
+(<boolean> collision_debug_flag_ignore_dead_bipeds)
+
+(<boolean> collision_debug_flag_ignore_passthrough_bipeds)
+
+(<boolean> collision_debug_flag_front_facing_surfaces)
+
+(<boolean> collision_debug_flag_back_facing_surfaces)
+
+(<boolean> collision_debug_flag_ignore_two_sided_surfaces)
+
+(<boolean> collision_debug_flag_ignore_invisible_surfaces)
+
+(<boolean> collision_debug_flag_ignore_breakable_surfaces)
+
+(<boolean> collision_debug_flag_allow_early_out)
+
+(<boolean> collision_debug_flag_try_to_keep_location_valid)
+
+(<boolean> collision_debug_repeat)
+
+(<real> collision_debug_point_x)
+
+(<real> collision_debug_point_y)
+
+(<real> collision_debug_point_z)
+
+(<real> collision_debug_vector_i)
+
+(<real> collision_debug_vector_j)
+
+(<real> collision_debug_vector_k)
+
+(<real> collision_debug_length)
+
+(<real> collision_debug_width)
+
+(<real> collision_debug_height)
+
+(<long> collision_debug_ignore_object_index)
+
+(<boolean> debug_obstacle_path)
+
+(<boolean> debug_obstacle_path_on_failure)
+
+(<real> debug_obstacle_path_start_point_x)
+
+(<real> debug_obstacle_path_start_point_y)
+
+(<long> debug_obstacle_path_start_sector_index)
+
+(<real> debug_obstacle_path_goal_point_x)
+
+(<real> debug_obstacle_path_goal_point_y)
+
+(<long> debug_obstacle_path_goal_sector_index)
+
+(<boolean> suppress_pathfinding_generation)
+
+(<boolean> debug_camera)
+
+(<boolean> debug_tangent_space)
+
+(<boolean> debug_player)
+
+(<boolean> debug_structure)
+
+(<boolean> debug_structure_automatic)
+
+(<boolean> debug_instanced_geometry)
+
+(<boolean> debug_instanced_geometry_bounding_spheres)
+
+(<boolean> debug_instanced_geometry_names)
+
+(<boolean> debug_instanced_geometry_vertex_counts)
+
+(<boolean> debug_instanced_geometry_collision_geometry)
+
+(<boolean> debug_structure_surface_references)
+
+(<boolean> debug_bsp)
+
+(<boolean> debug_input)
+
+(<boolean> debug_permanent_decals)
+
+(<boolean> debug_vector_palette)
+
+(<long> debug_leaf0_index)
+
+(<long> debug_leaf1_index)
+
+(<long> debug_leaf_connection_index)
+
+(<long> debug_cluster_index)
+
+(<boolean> debug_first_person_weapons)
+
+(<boolean> debug_first_person_models)
+
+(<boolean> debug_fog_planes)
+
+(<boolean> breakable_surfaces)
+
+(<boolean> decals)
+
+(<boolean> debug_decals)
+
+(<boolean> colonies)
+
+(<real> colonies_time_scale)
+
+(<boolean> debug_colonies)
+
+(<boolean> debug_colonies_cells)
+
+(<boolean> debug_colonies_spores)
+
+(<boolean> debug_colonies_spore_pods)
+
+(<long> debug_colonies_spore_desires)
+
+(<boolean> debug_colonies_spread)
+
+(<boolean> debug_colonies_change)
+
+(<boolean> debug_object_lights)
+
+(<boolean> debug_lights)
+
+(<boolean> debug_light_passes)
+
+(<boolean> debug_lightmap_sampling)
+
+(<boolean> debug_biped_landing)
+
+(<boolean> debug_biped_throttle)
+
+(<boolean> debug_collision_skip_instanced_geometry)
+
+(<boolean> debug_collision_skip_objects)
+
+(<boolean> debug_collision_skip_vectors)
+
+(<boolean> debug_collision_object_payload_collision)
+
+(<boolean> debug_material_effects)
+
+(<boolean> debug_material_default_effects)
+
+(<boolean> player_training_debug)
+
+(<boolean> player_training_disable)
+
+(<boolean> game_engine_debug_statborg)
+
+(<boolean> ai_profile_disable)
+
+(<boolean> ai_profile_random)
+
+(<boolean> ai_show)
+
+(<boolean> ai_show_stats)
+
+(<boolean> ai_show_actors)
+
+(<boolean> ai_show_swarms)
+
+(<boolean> ai_show_paths)
+
+(<boolean> ai_show_line_of_sight)
+
+(<boolean> ai_show_prop_types)
+
+(<boolean> ai_show_sound_distance)
+
+(<boolean> ai_render)
+
+(<boolean> ai_render_all_actors)
+
+(<boolean> ai_render_inactive_actors)
+
+(<boolean> ai_render_lineoffire_crouching)
+
+(<boolean> ai_render_lineoffire)
+
+(<boolean> ai_render_lineofsight)
+
+(<boolean> ai_render_ballistic_lineoffire)
+
+(<boolean> ai_render_encounter_activeregion)
+
+(<boolean> ai_render_vision_cones)
+
+(<boolean> ai_render_current_state)
+
+(<boolean> ai_render_detailed_state)
+
+(<boolean> ai_render_props)
+
+(<boolean> ai_render_props_web)
+
+(<boolean> ai_render_props_no_friends)
+
+(<boolean> ai_render_props_unreachable)
+
+(<boolean> ai_render_props_unopposable)
+
+(<boolean> ai_render_props_target_weight)
+
+(<boolean> ai_render_idle_look)
+
+(<boolean> ai_render_support_surfaces)
+
+(<boolean> ai_render_recent_damage)
+
+(<boolean> ai_render_current_damage)
+
+(<boolean> ai_render_threats)
+
+(<boolean> ai_render_emotions)
+
+(<boolean> ai_render_audibility)
+
+(<boolean> ai_render_aiming_vectors)
+
+(<boolean> ai_render_secondary_looking)
+
+(<boolean> ai_render_targets)
+
+(<boolean> ai_render_targets_last_visible)
+
+(<boolean> ai_render_states)
+
+(<boolean> ai_render_vitality)
+
+(<boolean> ai_render_active_cover_seeking)
+
+(<boolean> ai_render_evaluations)
+
+(<boolean> ai_render_pursuit)
+
+(<boolean> ai_render_shooting)
+
+(<boolean> ai_render_trigger)
+
+(<boolean> ai_render_projectile_aiming)
+
+(<boolean> ai_render_aiming_validity)
+
+(<boolean> ai_render_speech)
+
+(<boolean> ai_render_dialogue)
+
+(<boolean> ai_render_dialogue_triggers)
+
+(<boolean> ai_render_dialogue_queue)
+
+(<short> ai_render_dialogue_queue_team)
+
+(<boolean> ai_render_dialogue_player_weights)
+
+(<boolean> ai_dialogue_test_mode)
+
+(<boolean> ai_render_teams)
+
+(<boolean> ai_render_player_ratings)
+
+(<boolean> ai_render_spatial_effects)
+
+(<boolean> ai_render_firing_positions)
+
+(<boolean> ai_render_gun_positions)
+
+(<boolean> ai_render_burst_geometry)
+
+(<boolean> ai_render_vehicle_avoidance)
+
+(<boolean> ai_render_vehicles_enterable)
+
+(<boolean> ai_render_melee_check)
+
+(<boolean> ai_render_dialogue_variants)
+
+(<boolean> ai_render_grenades)
+
+(<boolean> ai_render_danger_zones)
+
+(<boolean> ai_render_charge_decisions)
+
+(<boolean> ai_render_control)
+
+(<boolean> ai_render_activation)
+
+(<boolean> ai_render_paths)
+
+(<boolean> ai_render_paths_selected_only)
+
+(<boolean> ai_render_paths_destination)
+
+(<boolean> ai_render_paths_raw)
+
+(<boolean> ai_render_paths_current)
+
+(<boolean> ai_render_paths_failed)
+
+(<boolean> ai_render_paths_smoothed)
+
+(<boolean> ai_render_paths_avoided)
+
+(<boolean> ai_render_paths_error_thresholds)
+
+(<short> ai_render_paths_avoidance_segment)
+
+(<boolean> ai_render_paths_avoidance_obstacles)
+
+(<boolean> ai_render_paths_avoidance_search)
+
+(<boolean> ai_render_paths_nodes)
+
+(<boolean> ai_render_paths_nodes_all)
+
+(<boolean> ai_render_paths_nodes_polygons)
+
+(<boolean> ai_render_paths_nodes_costs)
+
+(<boolean> ai_render_paths_nodes_closest)
+
+(<boolean> ai_render_player_aiming_blocked)
+
+(<boolean> ai_render_vector_avoidance)
+
+(<boolean> ai_render_vector_avoidance_rays)
+
+(<boolean> ai_render_vector_avoidance_sense_t)
+
+(<boolean> ai_render_vector_avoidance_avoid_t)
+
+(<boolean> ai_render_vector_avoidance_clear_time)
+
+(<boolean> ai_render_vector_avoidance_weights)
+
+(<boolean> ai_render_vector_avoidance_objects)
+
+(<boolean> ai_render_vector_avoidance_intermediate)
+
+(<boolean> ai_render_postcombat)
+
+(<boolean> ai_render_dynamic_firing_positions)
+
+(<boolean> ai_render_clumps)
+
+(<boolean> ai_render_clump_props)
+
+(<boolean> ai_render_clump_props_all)
+
+(<boolean> ai_render_sectors)
+
+(<boolean> ai_render_sector_bsps)
+
+(<boolean> ai_render_sector_link_errors)
+
+(<boolean> ai_render_intersection_links)
+
+(<boolean> ai_render_non_walkable_sectors)
+
+(<boolean> ai_render_threshold_links)
+
+(<boolean> ai_render_sector_geometry_errors)
+
+(<boolean> ai_pathfinding_generation_verbose)
+
+(<long> ai_render_sectors_range_max)
+
+(<long> ai_render_sectors_range_min)
+
+(<long> ai_render_link_specific)
+
+(<boolean> ai_render_links)
+
+(<boolean> ai_render_user_hints)
+
+(<boolean> ai_render_hints)
+
+(<boolean> ai_render_object_hints)
+
+(<boolean> ai_render_object_hints_all)
+
+(<boolean> ai_render_object_properties)
+
+(<boolean> ai_render_hints_movement)
+
+(<boolean> ai_orders_print_entries)
+
+(<boolean> ai_orders_print_entries_verbose)
+
+(<boolean> ai_render_orders)
+
+(<boolean> ai_render_suppress_combat)
+
+(<boolean> ai_render_behavior_stack)
+
+(<boolean> ai_render_behavior_stack_all)
+
+(<boolean> ai_render_combat_status)
+
+(<boolean> ai_render_decisions)
+
+(<boolean> ai_render_command_scripts)
+
+(<boolean> ai_render_scenes)
+
+(<boolean> ai_render_scene_failures)
+
+(<boolean> ai_hide_actor_errors)
+
+(<boolean> ai_debug_tracking_data)
+
+(<boolean> ai_debug_perception_data)
+
+(<boolean> ai_debug_combat_status)
+
+(<boolean> ai_render_tracked_props)
+
+(<boolean> ai_render_joint_behaviors)
+
+(<boolean> ai_render_swarm)
+
+(<boolean> ai_render_flocks)
+
+(<boolean> ai_render_vehicle_interest)
+
+(<boolean> ai_debug_prop_refresh)
+
+(<boolean> ai_debug_all_disposable)
+
+(<ai> ai_current_squad)
+
+(<ai> ai_current_actor)
+
+(<boolean> ai_render_vehicle_turns)
+
+(<boolean> ai_render_discarded_firing_positions)
+
+(<boolean> ai_render_firing_positions_all)
+
+(<boolean> ai_render_firing_position_info)
+
+(<boolean> ai_inspect_avoidance_failure)
+
+(<boolean> ai_render_action_selection_failure)
+
+(<short> ai_combat_status_asleep)
+
+(<short> ai_combat_status_idle)
+
+(<short> ai_combat_status_alert)
+
+(<short> ai_combat_status_active)
+
+(<short> ai_combat_status_uninspected)
+
+(<short> ai_combat_status_definite)
+
+(<short> ai_combat_status_certain)
+
+(<short> ai_combat_status_visible)
+
+(<short> ai_combat_status_clear_los)
+
+(<short> ai_combat_status_dangerous)
+
+(<short> ai_movement_patrol)
+
+(<short> ai_movement_asleep)
+
+(<short> ai_movement_combat)
+
+(<short> ai_movement_flee)
+
+(<short> ai_movement_flaming)
+
+(<short> ai_movement_stunned)
+
+(<short> ai_movement_berserk)
+
+(<boolean> ai_print_pursuit_checks)
+
+(<boolean> ai_print_rules)
+
+(<boolean> ai_print_rule_values)
+
+(<boolean> ai_print_major_upgrade)
+
+(<boolean> ai_print_respawn)
+
+(<boolean> ai_print_evaluation_statistics)
+
+(<boolean> ai_print_communication)
+
+(<boolean> ai_print_communication_player)
+
+(<boolean> ai_print_vocalizations)
+
+(<boolean> ai_print_placement)
+
+(<boolean> ai_print_speech)
+
+(<boolean> ai_print_speech_timers)
+
+(<boolean> ai_print_allegiance)
+
+(<boolean> ai_print_lost_speech)
+
+(<boolean> ai_print_migration)
+
+(<boolean> ai_print_automatic_migration)
+
+(<boolean> ai_print_scripting)
+
+(<boolean> ai_print_disposal)
+
+(<boolean> ai_print_surprise)
+
+(<boolean> ai_print_command_lists)
+
+(<boolean> ai_print_damage_modifiers)
+
+(<boolean> ai_print_secondary_looking)
+
+(<boolean> ai_print_oversteer)
+
+(<boolean> ai_print_conversations)
+
+(<boolean> ai_print_killing_sprees)
+
+(<boolean> ai_print_acknowledgement)
+
+(<boolean> ai_print_unfinished_paths)
+
+(<boolean> ai_print_bsp_transition)
+
+(<boolean> ai_print_uncovering)
+
+(<boolean> ai_naimad_spew)
+
+(<boolean> ai_debug_fast_los)
+
+(<boolean> ai_debug_oversteer_disable)
+
+(<boolean> ai_debug_evaluate_all_positions)
+
+(<boolean> ai_debug_path)
+
+(<boolean> ai_debug_path_start_freeze)
+
+(<boolean> ai_debug_path_end_freeze)
+
+(<boolean> ai_debug_path_flood)
+
+(<real> ai_debug_path_maximum_radius)
+
+(<boolean> ai_debug_path_attractor)
+
+(<real> ai_debug_path_attractor_radius)
+
+(<real> ai_debug_path_attractor_weight)
+
+(<real> ai_debug_path_accept_radius)
+
+(<boolean> ai_debug_path_destructible)
+
+(<boolean> ai_debug_ballistic_lineoffire_freeze)
+
+(<boolean> ai_debug_blind)
+
+(<boolean> ai_debug_deaf)
+
+(<boolean> ai_debug_invisible_player)
+
+(<boolean> ai_debug_ignore_player)
+
+(<boolean> ai_debug_flee_always)
+
+(<boolean> ai_debug_force_all_active)
+
+(<boolean> ai_debug_disable_wounded_sounds)
+
+(<boolean> ai_debug_force_vocalizations)
+
+(<boolean> ai_debug_force_crouch)
+
+(<boolean> ai_debug_path_disable_smoothing)
+
+(<boolean> ai_debug_path_disable_obstacle_avoidance)
+
+(<boolean> ai_fix_defending_guard_firing_positions)
+
+(<boolean> ai_fix_actor_variants)
+
+(<boolean> net_halt_on_critical_events)
+
+(<long> net_bitstream_debug)
+
+(<boolean> net_bitstream_display_errors)
+
+(<boolean> net_bitstream_capture_structure)
+
+(<boolean> net_never_timeout)
+
+(<boolean> net_use_local_time)
+
+(<boolean> net_traffic_warnings)
+
+(<boolean> net_traffic_print)
+
+(<boolean> net_messages_print)
+
+(<boolean> net_replication_requests_print)
+
+(<boolean> net_packet_print_mask)
+
+(<boolean> net_experimental)
+
+(<boolean> net_rate_unlimited)
+
+(<long> net_rate_server)
+
+(<long> net_rate_client)
+
+(<boolean> net_window_unlimited)
+
+(<long> net_window_size)
+
+(<boolean> net_bandwidth_unlimited)
+
+(<long> net_bandwidth_per_channel)
+
+(<boolean> net_skip_countdown)
+
+(<boolean> net_host_delegation_disable)
+
+(<boolean> net_streams_disable)
+
+(<boolean> net_disable_flooding)
+
+(<boolean> net_ignore_version)
+
+(<boolean> net_ignore_join_checking)
+
+(<boolean> net_ignore_migration_checking)
+
+(<long> net_maximum_machine_count)
+
+(<long> net_maximum_player_count)
+
+(<boolean> net_debug_random_seeds)
+
+(<boolean> net_debug_object_logs)
+
+(<boolean> net_allow_out_of_sync)
+
+(<boolean> net_distributed_always)
+
+(<boolean> net_distributed_never)
+
+(<boolean> net_matchmaking_no_gather)
+
+(<boolean> net_matchmaking_no_search)
+
+(<boolean> net_matchmaking_observer_enabled)
+
+(<boolean> net_matchmaking_fail_arbitration)
+
+(<boolean> net_matchmaking_4_box_testing_enabled)
+
+(<boolean> net_connectivity_model_enabled)
+
+(<boolean> net_matchmaking_nat_check_enabled)
+
+(<boolean> net_prerelease_settings)
+
+(<boolean> net_event)
+
+(<network_event> net_event_display)
+
+(<network_event> net_event_log)
+
+(<network_event> net_event_log_remote)
+
+(<boolean> net_status_memory)
+
+(<boolean> net_status_link)
+
+(<boolean> net_status_sim)
+
+(<boolean> net_status_channels)
+
+(<boolean> net_status_connections)
+
+(<boolean> net_status_message_queues)
+
+(<boolean> net_status_observer)
+
+(<boolean> net_status_sessions)
+
+(<boolean> net_status_leaderboard)
+
+(<long> net_status_leaderboard_mask)
+
+(<boolean> net_sim)
+
+(<long> net_sim_latency)
+
+(<long> net_sim_latency_wander)
+
+(<long> net_sim_latency_period)
+
+(<long> net_sim_latency_random)
+
+(<long> net_sim_spike_chance)
+
+(<long> net_sim_spike_amount)
+
+(<long> net_sim_spike_duration)
+
+(<long> net_sim_drop)
+
+(<long> net_sim_dropspike_chance)
+
+(<long> net_sim_dropspike_amount)
+
+(<long> net_sim_dropspike_duration)
+
+(<long> net_sim_bandwidth_down_rate)
+
+(<long> net_sim_bandwidth_up_rate)
+
+(<long> net_sim_bandwidth_down_buffer)
+
+(<long> net_sim_bandwidth_up_buffer)
+
+(<boolean> net_test)
+
+(<long> net_test_rate)
+
+(<boolean> net_test_update_server)
+
+(<boolean> net_test_update_client)
+
+(<boolean> net_test_replication_scheduler)
+
+(<boolean> net_test_debug_spheres)
+
+(<long> net_test_matchmaking_playlist_index)
+
+(<boolean> net_voice_diagnostics)
+
+(<boolean> sim_status_world)
+
+(<boolean> sim_status_views)
+
+(<boolean> sim_entity_validate)
+
+(<boolean> sim_disable_aim_assist)
+
+(<long> sim_bandwidth_eater)
+
+(<boolean> debug_player_teleport)
+
+(<boolean> debug_players)
+
+(<boolean> display_vibration_status_lines)
+
+(<boolean> texture_cache_show_mipmap_bias)
+
+(<boolean> texture_cache_graph)
+
+(<boolean> texture_cache_list)
+
+(<boolean> texture_cache_force_low_detail)
+
+(<boolean> texture_cache_force_medium_detail)
+
+(<boolean> texture_cache_force_high_detail)
+
+(<boolean> texture_cache_status)
+
+(<boolean> texture_cache_usage)
+
+(<boolean> texture_cache_block_warning)
+
+(<boolean> texture_cache_lod_bias)
+
+(<boolean> texture_cache_dynamic_low_detail_texture)
+
+(<boolean> debug_resource_predition)
+
+(<boolean> generate_prediction_scripts)
+
+(<boolean> geometry_cache_graph)
+
+(<boolean> geometry_cache_list)
+
+(<boolean> geometry_cache_status)
+
+(<boolean> geometry_cache_block_warning)
+
+(<boolean> geometry_cache_never_block)
+
+(<boolean> geometry_cache_debug_display)
+
+(<boolean> director_camera_switch_fast)
+
+(<boolean> debug_recording)
+
+(<short> debug_recording_newlines)
+
+(<long> cinematic_letterbox_style)
+
+(<boolean> run_game_scripts)
+
+(<boolean> vehicle_status_display)
+
+(<boolean> biped_meter_display)
+
+(<boolean> debug_menu_enabled)
+
+(<boolean> catch_exceptions)
+
+(<boolean> debug_first_person_hide_base)
+
+(<boolean> debug_first_person_hide_movement)
+
+(<boolean> debug_first_person_hide_jitter)
+
+(<boolean> debug_first_person_hide_overlay)
+
+(<boolean> debug_first_person_hide_pitch_turn)
+
+(<boolean> debug_first_person_hide_ammo)
+
+(<boolean> global_playtest_mode)
+
+(<boolean> render_comment_flags)
+
+(<boolean> render_comment_flags_text)
+
+(<boolean> render_comment_flags_look_at)
+
+(<boolean> enable_controller_flag_drop)
+
+(<long> override_player_character_type)
+
+(<boolean> e3)
+
+(<real> banshee_maximum_trick_frequency)
+
+(<real> banshee_loop_trick_duration)
+
+(<real> banshee_roll_trick_duration)
+
+(<real> banshee_zero_gravity_speed)
+
+(<real> banshee_full_gravity_speed)
+
+(<real> banshee_strafe_boost_scale_factor)
+
+(<real> banshee_finger_off_stick_deceleration_factor)
+
+(<real> banshee_cruising_throttle)
+
+(<boolean> debug_tag_dependencies)
+
+(<boolean> disable_network_configuration_download)
+
+(<boolean> disable_message_of_the_day_download)
+
+(<boolean> check_system_heap)
+
+(<boolean> always_dirty_structure_objects)
+
+(<real> ui_time_scale)
+
+(<boolean> ui_display_memory)
+
+(<boolean> editor_strip_dialogue_sounds)
+
+(<boolean> force_player_walking)
+
+(<boolean> unit_animation_report_missing_animations)
+
+(<boolean> font_cache_status)
+
+(<boolean> ui_force_long_save_progress)
+
+(<boolean> force_multiplayer_maps_unlocked)
+
+(<boolean> force_campaign_maps_unlocked)
+
+(<boolean> net_bandwidth_profiler)
+
+(<real> coop_speed_up)
+
+(<boolean> lruv_lirp_enabled)
+
+(<boolean> allow_sound_cache_file_editing)
+
+(<boolean> halt_on_stack_overflow)
+
+(<boolean> disable_progress_screen)
+
+(<boolean> force_crash_uploads)
+
+(<boolean> log_cinematic_times)
+
+(<boolean> smooth_anim_enabled)
+
+(<boolean> debug_sound_transmission)
+
+(<boolean> debug_effect_names)
+
+(<real> debug_effect_names_distance)
+
+(<boolean> debug_sound_channels_filters)
+
+(<boolean> debug_sound_channels_type)
+
+(<boolean> debug_sound_channels_sound_class)
+
+(<boolean> debug_sound_channels_short_names)
+
+(<boolean> debug_sound_channels_tag_id)
+
+(<boolean> debug_sound_channels_position)
+
+(<boolean> debug_sound_channels_levels)
+
+(<boolean> debug_sound_stereo_weapon_fire_force_3d)
+
+(<real> debug_sound_stereo_weapon_fire_left_scale)
+
+(<real> debug_sound_stereo_weapon_fire_right_scale)
+
+(<boolean> debug_ice_cream_flavor_status_arbiter_envy)
+
+(<boolean> debug_ice_cream_flavor_status_grunt_birthday_party)
+
+(<boolean> debug_ice_cream_flavor_status_assassins)
+
+(<boolean> debug_ice_cream_flavor_status_famine)
+
+(<boolean> debug_ice_cream_flavor_status_i_would_have_been_your_daddy)
+
+(<boolean> debug_ice_cream_flavor_status_blind)
+
+(<boolean> debug_ice_cream_flavor_status_ghost)
+
+(<boolean> debug_ice_cream_flavor_status_black_eye)
+
+(<boolean> debug_ice_cream_flavor_status_catch)
+
+(<boolean> debug_ice_cream_flavor_status_sputnik)
+
+(<boolean> debug_ice_cream_flavor_status_mythic)
+
+(<boolean> debug_ice_cream_flavor_status_anger)
+
+(<boolean> debug_ice_cream_flavor_status_thunderstorm)
+
+(<boolean> debug_ice_cream_flavor_status_iron)
+
+(<boolean> debug_ice_cream_flavor_status_thats_just_wrong)
+
+(<boolean> debug_ice_cream_flavor_status_bandanna)
+
+(<boolean> debug_ice_cream_flavor_status_boom)
+
+(<boolean> debug_ice_cream_flavor_status_eye_patch)
+
+(<boolean> debug_ice_cream_flavor_status_fog)
+
+(<boolean> debug_ice_cream_flavor_status_foreign)
+
+(<boolean> debug_ice_cream_flavor_status_grunt_funeral)
+
+(<boolean> debug_ice_cream_flavor_status_pinata)
+
+(<boolean> debug_ice_cream_flavor_status_recession)
+
+(<boolean> debug_ice_cream_flavor_status_malfunction)
+
+(<boolean> debug_ice_cream_flavor_status_streaking)
+
+(<boolean> debug_ice_cream_flavor_status_jacked)
+
+(<boolean> debug_ice_cream_flavor_status_scarab)
+
+(<boolean> debug_ice_cream_flavor_status_styx)
+
+(<boolean> debug_ice_cream_flavor_status_feather)
+
+(<boolean> debug_ice_cream_flavor_status_bonded_pair)
+
+(<boolean> debug_ice_cream_flavor_status_masterblaster)
+
+(<boolean> debug_ice_cream_flavor_status_so_angry)
+
+(<boolean> debug_ice_cream_flavor_status_prophet_birthday_party)
+
+(<boolean> debug_ice_cream_flavor_status_they_come_back)
+
+(<boolean> debug_ice_cream_flavor_force_coop)
+
+(<boolean> g_sound_use_remastered)
+
+(<real> g_sound_global_gain_db)
+
+(<boolean> scenario_load_fast)
+
+(<boolean> scenario_load_fast_and_playable)
+
+(<boolean> breadcrumbs_navpoints_enabled_override)
+

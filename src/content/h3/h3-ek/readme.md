@@ -55,8 +55,6 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Removed various unused or deprecated tag fields.
 * Removed Guerilla's Tag Mover dependency on tag depot.
 * Updated an outdated description for "Game Engine Settings Halo3" in [multiplayer_globals](~) tag.
-* Added Tool command `extract-unicode-strings`.
-* Allowed starting profiles to exceed a weapon's "rounds total maximum".
 * Fixed style flags grapple and enforcer weapon control not functioning properly.
 * Added a flag so that infection forms can kill other characters without infecting them.
 * Fixed Guerilla tag blocks extending out of their borders.
@@ -70,6 +68,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Fixed lightmap generation for ported size classifications from H3.
 
 ## December 2022
+* Added Tool command `extract-unicode-strings`.
 * AI objectives crash fix
 * Unused fields removed from [scenario](~) and [globals](~) tags
 * The Sapien/Standalone debug menu is properly scaled for the window size.

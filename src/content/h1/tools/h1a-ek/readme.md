@@ -89,6 +89,8 @@ This changelog is focused on known notable modding-related changes and is not gu
 * [Filthy part indices in gbxmodel](~gbxmodel#tag-field-geometries-parts-prev-filthy-part-index) now only default to `-1` if both prev and next indices are `0`.
 * Standalone no longer raises asserts when loading certain old profile save data.
 * [`rasterizer_stats 2`](~scripting#external-globals-rasterizer-stats) no longer causes buggy rendering and crashes.
+* Removal of deprecated/non-functioning script functions and globals.
+* Addition of new script functions and globals (not yet documented here on c20, see `script_doc` in the meanwhile).
 
 ## December 2022
 * [A flag](~bitmap#tag-field-flags-use-average-color-for-detail-fade) was added to the bitmap tag that allows users to opt into Halo 2's mipmap fade behaviour rather than it being the default.

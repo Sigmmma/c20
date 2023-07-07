@@ -50,8 +50,6 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Removed various unused or deprecated tag fields.
 * Removed Guerilla's Tag Mover dependency on tag depot.
 * Picking up a gravity hammer while `skull_third_person` is active no longer crahses Standalone.
-* Added Tool command `extract-unicode-strings`.
-* Allowed starting profiles to exceed a weapon's "rounds total maximum".
 * Added a flag so that infection forms can kill other characters without infecting them.
 * Ported `sound_impulse_time` from H3 to ODST.
 * Fixed Guerilla tag blocks extending out of their borders.
@@ -65,6 +63,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Fixed shader views under expert mode in Guerilla.
 
 ## December 2022
+* Added Tool command `extract-unicode-strings`.
 * AI objectives crash fix
 * Unused fields removed from [scenario](~) and [globals](~) tags
 * `bin/ManagedBlam.dll` added
