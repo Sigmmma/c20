@@ -6,6 +6,7 @@ import CodeBlock from "../CodeBlock/CodeBlock";
 import renderMdPlaintext from "../Md/plaintext";
 import {parse, transform} from "../Md/markdown";
 import Md from "../Md/Md";
+import voll from "voll";
 
 const AUTO_INDEX_THRESHOLD = 100;
 
@@ -15,8 +16,7 @@ export type DataTableProps = {
   rowSortKey?: string;
   rowSortReverse?: boolean;
   rowFilterKey?: string;
-  rowFilterValue?: string;
-  rowFilterNot?: boolean;
+  rowFilterExpr?: string;
   linkCol?: boolean | number;
   noClear?: boolean;
   wrapPre?: boolean;
@@ -126,6 +126,8 @@ function gatherRows(ctx: RenderContext, props: DataTableProps): {rows: object[],
     []
   ).map(dataPath => dataPath.split("/"));
   const id = props.id ?? dataPaths.map(R.last).join("-");
+
+  const filterTest = props.rowFilterExpr ? voll(props.rowFilterExpr) : undefined;
   
   const rows = R.pipe(
     R.map(dataPath => [dataPaths.indexOf(dataPath), R.pathOr([], dataPath, ctx.data)]),
@@ -145,16 +147,20 @@ function gatherRows(ctx: RenderContext, props: DataTableProps): {rows: object[],
       R.identity,
     props.rowFilterKey ?
       R.filter(row => {
-        const predicateValue = (() => {
-          const value = R.path(props.rowFilterKey!.split("/"), row);
-          if (!props.rowFilterValue) {
-            return !!value
-          } else if (Array.isArray(value)) {
-            return value.includes(props.rowFilterValue);
-          }
-          return value == props.rowFilterValue;
-        })();
-        return props.rowFilterNot ? !predicateValue : predicateValue;
+        let value = R.path(props.rowFilterKey!.split("/"), row);
+        if (!value) {
+          value = "";
+        } else if (Array.isArray(value)) {
+          value = value.filter(v => v).join(" ");
+        } else if (typeof(value) == "object") {
+          value = Object.entries(value)
+            .filter(([k, v]) => v)
+            .map(([k, v]) => k)
+            .join(" ");
+        } else if (typeof(value) != "string") {
+          value = String(value);
+        }
+        return filterTest ? filterTest(value) : (value != "");
       }) :
       R.identity
   )(dataPaths);

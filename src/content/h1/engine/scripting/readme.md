@@ -172,39 +172,30 @@ To learn more about HSC's general syntax and execution model, see our [cross-gam
   ]
 /%}
 
-## Operators and keywords
+## Keywords
 {% dataTable
-  dataPath="hsc/h1/ops_keywords/operators_and_keywords"
+  dataPath="hsc/h1/keywords/keywords"
   linkCol=true
   linkSlugKey="slug"
   columns=[
-    {name: "Expression", key: "type"},
-    {name: "Example", key: "ex", style: "width:50%"}
+    {name: "Keyword", key: "info/en"}
   ]
 /%}
+
+## Control
+{% relatedHsc game="h1" only="functions" tagFilter="control" /%}
+
+## Math
+{% relatedHsc game="h1" only="functions" tagFilter="math" /%}
+
+## Logic and comparison
+{% relatedHsc game="h1" only="functions" tagFilter="logic OR comp" /%}
 
 ## Functions
-{% dataTable
-  dataPath="hsc/h1/functions/functions"
-  linkCol=true
-  linkSlugKey="slug"
-  rowSortKey="slug"
-  columns=[
-    {name: "Function", key: "info/en"}
-  ]
-/%}
+{% relatedHsc game="h1" only="functions" tagFilter="NOT math AND NOT control AND NOT comp AND NOT logic" /%}
 
 ## External globals
-
-{% dataTable
-  dataPath="hsc/h1/globals/external_globals"
-  linkCol=true
-  linkSlugKey="slug"
-  rowSortKey="slug"
-  columns=[
-    {name: "Global", key: "info/en"}
-  ]
-/%}
+{% relatedHsc game="h1" only="globals" /%}
 
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)
 [c-format]: http://www.cplusplus.com/reference/cstdio/printf/

@@ -283,12 +283,12 @@ type_defs:
         comments:
           en: |-
             The bounding radius sets the approximate maximum size of the object
-            and is used for a variety of optimizations by the game:
+            and is used for _at least_ the following optimizations by the game:
 
-            * Culling objects for rendering which are not partially on screen.
-            * Setting the shadow map size for dynamic object shadows.
+            * Culling objects for rendering which are not partially on screen or [visible through portals](~scripting#external-globals-debug-no-frustum-clip).
+            * Setting the shadow map size for [dynamic object shadows](~object#shadows-and-lighting).
             * Selecting an appropriate [LOD](~gbxmodel#level-of-detail).
-            * Skipping collision checks.
+            * Skipping [collision](~model_collision_geometry) checks.
             * Determining if spawn points are blocked by an object.
 
             The radius should contain this object completely, but not be too large

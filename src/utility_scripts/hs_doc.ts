@@ -1,6 +1,19 @@
 import loadStructuredData from "../data";
 import { loadTextTree } from "../lib/utils/files";
 
+const slugAliases = {
+    "/": "div",
+    "+": "plus",
+    "-": "minus",
+    "*": "mult",
+    "=": "eq",
+    "!=": "ne",
+    ">": "gt",
+    "<": "lt",
+    ">=": "ge",
+    "<=": "le",
+};
+
 function parseDoc(text: string) {
     const results: any = {functions: [], globals: []};
     let mode: "functions" | "globals" | undefined = undefined;
@@ -13,8 +26,6 @@ function parseDoc(text: string) {
             mode = "globals";
             continue;
         } else if (mode == "functions") {
-            //(<boolean> and <boolean(s)>)
-            // const match = line.match(/\(<(\w+\(\))> ([\w\d_\)\()]+)(?:\s<(\w+\(\))>)*\)/);
             const match = line.match(/\(<([\w\(\)]+)> ([\w\d_\)\()]+)((?:\s<[\w\(\)]+>)*)\)/);
             if (match) {
                 const args: string[] = [];
@@ -24,7 +35,6 @@ function parseDoc(text: string) {
                     }
                 }
                 results.functions.push({name: match[2], type: match[1], args});
-                // console.log(match);
             }
         } else if (mode == "globals") {
             const match = line.match(/\(<([\w\(\)]+)> ([\w\d_\)\()]+)\)/);
