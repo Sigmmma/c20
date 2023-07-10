@@ -1401,6 +1401,15 @@ functions:
     context: H1A only
     tags:
       - logic
+  - slug: breadcrumbs_nav_points_active
+    info:
+      en: |-
+        ```hsc
+        (<boolean> breadcrumbs_nav_points_active)
+        ```
+        Returns true if breadcrumbs improved nav points are enabled.
+    tags:
+      - added_in_mcc
   - slug: breakable_surfaces_enable
     info:
       en: |-
@@ -1714,7 +1723,7 @@ functions:
         ```hsc
         (<void> cls)
         ```
-        clears console text from the screen
+        Clears console output and tab completions from the screen.
   - slug: config_one_control
     info:
       en: |-
@@ -3881,6 +3890,8 @@ functions:
         ```
         Takes a cubemap screenshot from the camera's point of view and saves as `<name>.tif`.
         It can then be used to import a cubemap bitmap tag.
+    tags:
+      - added_in_mcc
   - slug: script_doc
     info:
       en: |-

@@ -67,7 +67,6 @@ This changelog is focused on known notable modding-related changes and is not gu
 ## July 2023
 * Inclusion of digsite content.
 * Biped seats are now functional, meaning rideable bipeds are possible.
-* Backported [`screenshot_cubemap`](~scripting#functions-screenshot-cubemap) from H2 to H1.
 * BSPs without [lightmaps](~) now properly render fullbright rather than being invisible.
 * Added a [weapon flag](~weapon#tag-field-weapon-flags-uses-3rd-person-camera) to use third person camera while holding it.
 * Added 4 new outer center anchors for HUD elements (usable in [hud_globals](~), [grenade_hud_interface](~), [unit_hud_interface](~), and [weapon_hud_interface](~)).
@@ -89,8 +88,9 @@ This changelog is focused on known notable modding-related changes and is not gu
 * [Filthy part indices in gbxmodel](~gbxmodel#tag-field-geometries-parts-prev-filthy-part-index) now only default to `-1` if both prev and next indices are `0`.
 * Standalone no longer raises asserts when loading certain old profile save data.
 * [`rasterizer_stats 2`](~scripting#external-globals-rasterizer-stats) no longer causes buggy rendering and crashes.
-* Removal of deprecated/non-functioning script functions and globals.
-* Addition of new script functions and globals (not yet documented here on c20, see `script_doc` in the meanwhile).
+* Addition of new script functions and globals:
+  * Globals: [`breadcrumbs_navpoints_enabled_override`](~scripting#functions-globals-breadcrumbs-navpoints-enabled-override), [`rasterizer_debug_shader_transparent_generic`](~scripting#functions-globals-rasterizer-debug-shader-transparent-generic).
+  * Functions: [`screenshot_cubemap`](~scripting#functions-screenshot-cubemap) (h2 backport), [`breadcrumbs_nav_points_active`](~scripting#functions-breadcrumbs-nav-points-active).
 
 ## December 2022
 * [A flag](~bitmap#tag-field-flags-use-average-color-for-detail-fade) was added to the bitmap tag that allows users to opt into Halo 2's mipmap fade behaviour rather than it being the default.

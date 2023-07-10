@@ -1,6 +1,239 @@
 functions:
   - slug: begin
     info:
+      en: >-
+        ```hsc
+
+        (begin <expression(s)>)
+
+        ```
+
+        returns the last expression in a sequence after evaluating the sequence
+        in order.
+    net_safe_raw: 'yes'
+  - slug: begin_random
+    info:
+      en: >-
+        ```hsc
+
+        (begin_random <expression(s)>)
+
+        ```
+
+        evaluates the sequence of expressions in random order and returns the
+        last value evaluated.
+    net_safe_raw: 'yes'
+  - slug: if
+    info:
+      en: |-
+        ```hsc
+        (if <boolean> <then> [<else>])
+        ```
+        returns one of two values based on the value of a condition.
+    net_safe_raw: 'yes'
+  - slug: cond
+    info:
+      en: |-
+        ```hsc
+        (cond (<boolean1> <result1>) [(<boolean2> <result2>) [...]])
+        ```
+        returns the value associated with the first true condition.
+    net_safe_raw: 'yes'
+  - slug: set
+    info:
+      en: |-
+        ```hsc
+        (set <variable name> <expression>)
+        ```
+        set the value of a global variable.
+    net_safe_raw: yes (depending on result)
+  - slug: and
+    info:
+      en: |-
+        ```hsc
+        (and <boolean(s)>)
+        ```
+        returns true if all specified expressions are true.
+    net_safe_raw: 'yes'
+  - slug: or
+    info:
+      en: |-
+        ```hsc
+        (or <boolean(s)>)
+        ```
+        returns true if any specified expressions are true.
+    net_safe_raw: 'yes'
+  - slug: not
+    info:
+      en: |-
+        ```hsc
+        (not <boolean>)
+        ```
+        returns the opposite of the expression.
+    net_safe_raw: 'yes'
+  - slug: plus
+    info:
+      en: |-
+        ```hsc
+        (+ <number(s)>)
+        ```
+        returns the sum of all specified expressions.
+    net_safe_raw: 'yes'
+  - slug: minus
+    info:
+      en: |-
+        ```hsc
+        (- <number> <number>)
+        ```
+        returns the difference of two expressions.
+    net_safe_raw: 'yes'
+  - slug: mult
+    info:
+      en: |-
+        ```hsc
+        (* <number(s)>)
+        ```
+        returns the product of all specified expressions.
+    net_safe_raw: 'yes'
+  - slug: div
+    info:
+      en: |-
+        ```hsc
+        (/ <number> <number>)
+        ```
+        returns the quotient of two expressions.
+    net_safe_raw: 'yes'
+  - slug: min
+    info:
+      en: |-
+        ```hsc
+        (min <number(s)>)
+        ```
+        returns the minimum of all specified expressions.
+    net_safe_raw: 'yes'
+  - slug: max
+    info:
+      en: |-
+        ```hsc
+        (max <number(s)>)
+        ```
+        returns the maximum of all specified expressions.
+    net_safe_raw: 'yes'
+  - slug: eq
+    info:
+      en: |-
+        ```hsc
+        (= <expression> <expression>)
+        ```
+        returns true if two expressions are equal
+    net_safe_raw: 'yes'
+  - slug: ne
+    info:
+      en: |-
+        ```hsc
+        (!= <expression> <expression>)
+        ```
+        returns true if two expressions are not equal
+    net_safe_raw: 'yes'
+  - slug: gt
+    info:
+      en: |-
+        ```hsc
+        (> <number> <number>)
+        ```
+        returns true if the first number is larger than the second.
+    net_safe_raw: 'yes'
+  - slug: lt
+    info:
+      en: |-
+        ```hsc
+        (< <number> <number>)
+        ```
+        returns true if the first number is smaller than the second.
+    net_safe_raw: 'yes'
+  - slug: ge
+    info:
+      en: |-
+        ```hsc
+        (>= <number> <number>)
+        ```
+        returns true if the first number is larger than or equal to the second.
+    net_safe_raw: 'yes'
+  - slug: le
+    info:
+      en: |-
+        ```hsc
+        (<= <number> <number>)
+        ```
+        returns true if the first number is smaller than or equal to the second.
+    net_safe_raw: 'yes'
+  - slug: sleep
+    info:
+      en: >-
+        ```hsc
+
+        (sleep <short> [<script>])
+
+        ```
+
+        pauses execution of this script (or, optionally, another script) for the
+        specified number of ticks @ 30Hz.
+    net_safe_raw: 'yes'
+  - slug: sleep_for_ticks
+    info:
+      en: >-
+        ```hsc
+
+        (sleep_for_ticks <short> [<script>])
+
+        ```
+
+        pauses execution of this script (or, optionally, another script) for the
+        specified number of ticks.
+    net_safe_raw: 'yes'
+  - slug: sleep_forever
+    info:
+      en: >-
+        ```hsc
+
+        (sleep_forever [<script>])
+
+        ```
+
+        pauses execution of this script (or, optionally, another script)
+        forever.
+    net_safe_raw: 'yes'
+  - slug: sleep_until
+    info:
+      en: >-
+        ```hsc
+
+        (sleep_until <boolean> [<short>])
+
+        ```
+
+        pauses execution of this script until the specified condition is true,
+        checking once per second unless a different number of ticks is
+        specified.
+    net_safe_raw: 'yes'
+  - slug: wake
+    info:
+      en: |-
+        ```hsc
+        (wake <script name>)
+        ```
+        wakes a sleeping script in the next update.
+    net_safe_raw: 'yes'
+  - slug: inspect
+    info:
+      en: |-
+        ```hsc
+        (inspect <expression>)
+        ```
+        prints the value of an expression to the screen for debugging purposes.
+    net_safe_raw: 'yes'
+  - slug: begin
+    info:
       en: |-
         ```hsc
         (<passthrough> begin <expression(s)>)

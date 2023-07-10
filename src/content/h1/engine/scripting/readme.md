@@ -152,7 +152,7 @@ To learn more about HSC's general syntax and execution model, see our [cross-gam
 
 ## Script types
 {% dataTable
-  dataPath="hsc/h1/script_types/script_types"
+  dataPath="script_types/script_types"
   linkCol=0
   columns=[
     {name: "Type", key: "type", format: "code"},
@@ -163,7 +163,7 @@ To learn more about HSC's general syntax and execution model, see our [cross-gam
 
 ## Value types
 {% dataTable
-  dataPath="hsc/h1/value_types/value_types"
+  dataPath="value_types/value_types"
   linkCol=0
   columns=[
     {name: "Type", key: "type", format: "code"},
@@ -174,7 +174,7 @@ To learn more about HSC's general syntax and execution model, see our [cross-gam
 
 ## Keywords
 {% dataTable
-  dataPath="hsc/h1/keywords/keywords"
+  dataPath="keywords/keywords"
   linkCol=true
   linkSlugKey="slug"
   columns=[

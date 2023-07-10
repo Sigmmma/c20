@@ -1,5 +1,6 @@
 import loadStructuredData from "../data";
 import { loadTextTree } from "../lib/utils/files";
+import * as R from "ramda";
 
 const slugAliases = {
     "/": "div",
@@ -34,7 +35,7 @@ function parseDoc(text: string) {
                         args.push(argMatch[1]);
                     }
                 }
-                results.functions.push({name: match[2], type: match[1], args});
+                results.functions.push({name: slugAliases[match[2]] ?? match[2], type: match[1], args});
             }
         } else if (mode == "globals") {
             const match = line.match(/\(<([\w\(\)]+)> ([\w\d_\)\()]+)\)/);
@@ -48,24 +49,10 @@ function parseDoc(text: string) {
 }
 
 (async function main() {
-    const docs = await loadTextTree<any>("./src/data/hs_docs");
     const data = await loadStructuredData() as any;
+    const docs = await loadTextTree<any>("./src/data/hs_docs");
     
-    const gameDocs = parseDoc(docs.h1.hs_doc_sapien);
-
-    const docsFunctions = {};
-    gameDocs.globals.forEach(func => {
-        docsFunctions[func.name] = func;
-    });
-
-    const dataFunctions = {};
-    data.hsc.h1.globals.external_globals.forEach(func => {
-        dataFunctions[func.slug] = func;
-    });
-
-    const newDiff = Object.keys(docsFunctions).filter(n => !dataFunctions[n]);
-    const removedDiff = Object.keys(dataFunctions).filter(n => !docsFunctions[n]);
-    console.log(newDiff);
-    console.log("---")
-    console.log(removedDiff);
+    const h1_new_standalone_functions = parseDoc(docs.h1.hs_doc_standalone).functions.map(g => g.name);
+    const h1_old_standalone_functions = parseDoc(docs.h1.hs_doc_standalone_retail).functions.map(g => g.name);
+    console.log(R.difference(h1_old_standalone_functions, h1_new_standalone_functions));
 })();

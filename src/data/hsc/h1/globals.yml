@@ -1,11 +1,4 @@
 external_globals:
-  - slug: help
-    info:
-      en: |-
-        ```hsc
-        (help [string])
-        ```
-        Prints help information for a function name.
   - slug: ai_debug_ballistic_lineoffire_freeze
     tags:
       - projectile
@@ -937,6 +930,16 @@ external_globals:
         (biped_incremental_rate [short])
         ```
         Unknown purpose. Default value is 7.
+  - slug: breadcrumbs_navpoints_enabled_override
+    info:
+      en: |-
+        ```hsc
+        (breadcrumbs_navpoints_enabled_override [boolean])
+        ```
+        Enables on-demand/revised nav points like MCC. Off by default.
+        Newly added to the MCC tools in the July 2023 CU.
+    tags:
+      - added_in_mcc
   - slug: breakable_surfaces
     info:
       en: |-
@@ -1041,13 +1044,6 @@ external_globals:
         [`cheat_deathless_player`](#debugfunctions-cheat-deathless-player)
         are not used. This can be used to quickly reach areas when
         testing maps.
-  - slug: cls
-    info:
-      en: |-
-        ```hsc
-        (cls)
-        ```
-        Clears the screen of developer console output and tab completions.
   - slug: cl_remote_player_action_queue_limit
     info:
       en: |-
@@ -2775,6 +2771,16 @@ external_globals:
         ```hsc
         (rasterizer_debug_transparents)
         ```
+  - slug: rasterizer_debug_shader_transparent_generic
+    info:
+      en: |-
+        ```hsc
+        (rasterizer_debug_shader_transparent_generic [boolean])
+        ```
+        Disabling this silences "generic shader has no maps or stages" warnings
+        in the console. Newly added to the MCC tools in the July 2023 CU.
+    tags:
+      - added_in_mcc
   - slug: rasterizer_detail_objects
     info:
       en: |-
@@ -3374,6 +3380,8 @@ external_globals:
         (rasterizer_water_mipmapping [boolean])
         ```
         No visible effect. Defaults to `false`.
+    tags:
+      - removed_in_mcc
   - slug: rasterizer_wireframe
     info:
       en: |-
