@@ -131,13 +131,11 @@ _NOTE: Having multiple cube maps in one bitmap does not randomize them._
 
 |Unfolded|Sprite Sequence|Multiple in one tag|
 |--------|------------|-------------------|
-<img src="bitmap_cubemap_swamp.jpg" width="200">|<img src="bitmap_cubemap_beach.jpg" width="200"><br><br><img src="bitmap_cubemap_grunt.jpg" width="200">|<img src="bitmap_cubemap_elite_multiple.jpg" width="200">|
+![](bitmap_cubemap_swamp.jpg)|![](bitmap_cubemap_beach.jpg)![](bitmap_cubemap_grunt.jpg)|![](bitmap_cubemap_elite_multiple.jpg)|
 
 # Sprites
 
-<img src="bitmap_sprites_source_vs_tag.jpg" width="600">
-
-The sprite type allows a bitmap to contain a non-power-of-two texture, with support for animations with multiple permutations (sequences). Sprites are typically used for particles.
+![](bitmap_sprites_source_vs_tag.jpg "The sprite type allows a bitmap to contain a non-power-of-two texture, with support for animations with multiple permutations (sequences). Sprites are typically used for particles.")
 
 ## Color Plate
 
@@ -159,9 +157,7 @@ Any amount of padding may be used as long as the sprite is isolated by at least 
 
 ## Budget
 
-<img src="bitmap_sprites_budget_utilisation.png" width="400">
-
-Budget size determines how big each texture page is (and thus how many sprites will appear on each page). Budget count sets how many texture pages there will be. Both of these values should be set for sprites.
+![](bitmap_sprites_budget_utilisation.png "Budget size determines how big each texture page is (and thus how many sprites will appear on each page). Budget count sets how many texture pages there will be. Both of these values should be set for sprites.")
 
 When compiling a bitmap, tool will output how many pages were generated and the percentage of space filled by the sprites. Budget size and count should be tweaked to get this percentage as high as possible, as unused space is wasted memory.
 
@@ -170,9 +166,7 @@ Budget sizes are limited to "square" dimensions like 256x256 and 512x512. Becaus
 _NOTE: Tool automatically uses at least 4 pixels of padding between each sprite. (This is so that there will always be at least one pixel of space between different sprites in all mipmaps, as tool also uses a default mipmap count of 2 for these. 4 -> 2 -> 1.) This means four 32x32 sprites will for instance not fit on a 64x64 page. Make sure to take this into account when choosing a budget size!_
 
 ## Sequences
-<img src="bitmap_sprite_sequences.png" width="200">
-
-A sprite sheet with multiple sequences. Frames are lined up horizontally, and permutations are stacked vertically. Note the magenta line separating each sequence. A sequence is an animated sprite. Each sprite in a sequence represents a "frame" of the sprite's animation. A bitmap may contain multiple sequences, which allows for random and forced permutations. Each frame of a sequence is lined up left-to-right. Each sequence permutation is stacked vertically, top-to-bottom.
+![](bitmap_sprite_sequences.png "A sprite sheet with multiple sequences. Frames are lined up horizontally, and permutations are stacked vertically. Note the magenta line separating each sequence. A sequence is an animated sprite. Each sprite in a sequence represents a \"frame\" of the sprite's animation. A bitmap may contain multiple sequences, which allows for random and forced permutations. Each frame of a sequence is lined up left-to-right. Each sequence permutation is stacked vertically, top-to-bottom.")
 
 If the source file has more than one sequence, each sequence should also have a sequence divider above it. A sequence divider is a straight line of solid color (using the color plate's second pixel's color) at least one pixel wide that spans the entire width of the image. The divider must be a different color than the sprite border. The sequence divider may be left out if the file only has one sequence or if it has no color plate.
 
@@ -185,9 +179,7 @@ _NOTE: Tool will sometimes split a sequence across several pages. This does not 
 _QUIRK: Only the start of a sequence divider needs to be the color defined on the color plate. After that it can be any color, or could even just end prematurely._
 
 ## Dummy Space
-<img src="bitmap_sprite_dummy_space.png" width="400">
-
-Space usage on a sprite with dummy space vs without
+![](bitmap_sprite_dummy_space.png "Space usage on a sprite with dummy space vs without.")
 
 Dummy space is space that is counted toward the size and position of your sprite, but not included in the data of the sprite in the bitmap. This is useful for two reasons: It allows a sprite that's smaller than other sprites in a sequence, and it tells tool how to center the smaller sprite without bulking up the file size with padding. Dummy space must be a solid color that is different from the sprite border and sequence separator colors.
 
