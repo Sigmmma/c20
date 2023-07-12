@@ -4363,7 +4363,7 @@ functions:
         ```
         Sets and opens the file to be used for the player ban list.
     context: Gearbox only
-  - slug: 'sv_banopt:'
+  - slug: sv_ban
     info:
       en: |-
         ```hsc

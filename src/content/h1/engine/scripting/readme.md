@@ -197,6 +197,9 @@ To learn more about HSC's general syntax and execution model, see our [cross-gam
 ## External globals
 {% relatedHsc game="h1" only="globals" /%}
 
+## Removed
+{% relatedHsc game="h1" tagFilter="removed_in_mcc" /%}
+
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)
 [c-format]: http://www.cplusplus.com/reference/cstdio/printf/
 [rng]: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
