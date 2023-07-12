@@ -58,10 +58,9 @@ type_defs:
     bits:
       - name: cortana_hack
       - name: use_demo_ui
-      - name: disable_color_correction
+      - name: color_correction_ntsc_to_srgb
         meta:
           h1a_only: true
-          unused: true
         comments:
           en: Unused at this time.
       - name: do_not_apply_bungie_campaign_tag_patches
@@ -69,7 +68,8 @@ type_defs:
           h1a_only: true
         comments:
           en: >
-            Disables the [hardcoded tag patches](~tool#hardcoded-tag-patches).
+            Opts out of [hard-coded tag patches](~h1a-tool#hardcoded-tag-patches)
+            made to the pistol and plasma rifle for singleplayer scenarios.
   ScenarioChildScenario:
     class: struct
     assert_size: 32

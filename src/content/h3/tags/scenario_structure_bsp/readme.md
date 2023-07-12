@@ -25,19 +25,7 @@ Unlike Halo 1 and 2, Halo 3 can have multiple BSPs loaded at a time. Combination
 
 Related script [functions](~scripting#functions) and [globals](~scripting#external-globals):
 
-{% dataTable
-  dataPath="hsc/h3/functions/functions,hsc/h3/globals/external_globals"
-  id="zone-sets-functions-globals"
-  linkCol=true
-  noClear=true
-  linkSlugKey="slug"
-  rowSortKey="slug"
-  rowFilterKey="tags"
-  rowFilterValue="zone_set"
-  columns=[
-    {name: "Function/global", key: "info/en"}
-  ]
-/%}
+{% relatedHsc game="h3" tagFilter="zone_set" /%}
 
 # Clusters
 _Clusters_ are spaces in the BSP which are separated by portals. This is both done as an optimization and to assign localized effects in Sapien, where _cluster points_ are analogous to cluster properties from [H1 Sapien](~h1/tools/h1a-ek/h1a-sapien). Assignable properties are:

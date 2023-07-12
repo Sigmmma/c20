@@ -12,6 +12,9 @@ thanks:
 # Feigning death
 ...
 
+# Related HaloScript
+{% relatedHsc game="h1" tagFilter="unit" /%}
+
 # Structure and fields
 
 {% tagStruct "h1/unit" /%}

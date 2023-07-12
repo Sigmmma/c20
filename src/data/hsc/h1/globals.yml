@@ -1,17 +1,14 @@
 external_globals:
-  - slug: help
-    info:
-      en: |-
-        ```hsc
-        (help [string])
-        ```
-        Prints help information for a function name.
   - slug: ai_debug_ballistic_lineoffire_freeze
+    tags:
+      - projectile
     info:
       en: |-
         ```hsc
-        (ai_debug_ballistic_lineoffire_freeze)
+        (ai_debug_ballistic_lineoffire_freeze [boolean])
         ```
+        If enabled, the ballistic arc drawn by `ai_render_ballistic_lineoffire`
+        will not update when new grenades are thrown.
   - slug: ai_debug_blind
     info:
       en: |-
@@ -322,11 +319,14 @@ external_globals:
         (ai_print_secondary_looking)
         ```
   - slug: ai_print_speech
+    tags:
+      - dialogue
     info:
       en: |-
         ```hsc
-        (ai_print_speech)
+        (ai_print_speech [boolean])
         ```
+        Displays red text over AI whenever they vocalize, with the name of the [dialogue](~) field played. For example, `pain body minor`.
   - slug: ai_print_speech_timers
     info:
       en: |-
@@ -352,11 +352,16 @@ external_globals:
         (ai_print_unfinished_paths)
         ```
   - slug: ai_print_vocalizations
+    tags:
+      - dialogue
     info:
       en: |-
         ```hsc
-        (ai_print_vocalizations)
+        (ai_print_vocalizations [boolean])
         ```
+        Prints vocalizations to the console as they happen, including the
+        encounter, squad, actor, dialogue type (e.g. exclaim), and line. For
+        example, `beach_lz/camp_center_grunt/grunt: talk flee [72/flee]`.
   - slug: ai_profile_disable
     info:
       en: |-
@@ -373,8 +378,9 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (ai_render)
+        (ai_render [boolean])
         ```
+        Toggles the display of any enabled AI debug overlays. Defaults to `true`.
   - slug: ai_render_activation
     info:
       en: |-
@@ -412,11 +418,20 @@ external_globals:
         (ai_render_audibility)
         ```
   - slug: ai_render_ballistic_lineoffire
+    tags:
+      - projectile
     info:
       en: |-
         ```hsc
-        (ai_render_ballistic_lineoffire)
+        (ai_render_ballistic_lineoffire [boolean])
         ```
+        Toggles the rendering of [ballistic aiming](~projectile#tag-field-projectile-flags-ai-must-use-ballistic-aiming)
+        arcs when AI throw grenades only (does not include hunter guns, wraiths,
+        or other ballistic weapons). The arc is shown in green when unobstructed
+        and orange when obstructed by an object or the BSP. Its origin point and
+        vector are shown in yellow. Only a single arc is shown at a time and
+        updates whenever a new grenade is thrown. This can be paused with
+        `ai_debug_ballistic_lineoffire_freeze`.
   - slug: ai_render_burst_geometry
     info:
       en: |-
@@ -457,10 +472,11 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (ai_render_dialogue_variants)
+        (ai_render_dialogue_variants [boolean])
         ```
         Shows pink text overlays over each unit with [dialogue](~h1/tags/dialogue)
         showing which variant they use, like if marines are a "mendoza" or a "bisenti".
+        For example, `variant 11 dialogue 0 aussie`.
     tags:
       - dialogue
   - slug: ai_render_emotions
@@ -884,11 +900,17 @@ external_globals:
         (ai_show_stats)
         ```
   - slug: ai_show_swarms
+    tags:
+      - game-state
     info:
       en: |-
         ```hsc
-        (ai_show_swarms)
+        (ai_show_swarms [boolean])
         ```
+        Displays debug information in the bottom left with the current counts
+        for swarms and swarm component [datum arrays](~game-state). Swarms are
+        groups of Flood infection forms while components are individual infection
+        forms.
   - slug: allow_client_side_weapon_projectiles
     info:
       en: |-
@@ -908,6 +930,16 @@ external_globals:
         (biped_incremental_rate [short])
         ```
         Unknown purpose. Default value is 7.
+  - slug: breadcrumbs_navpoints_enabled_override
+    info:
+      en: |-
+        ```hsc
+        (breadcrumbs_navpoints_enabled_override [boolean])
+        ```
+        Enables on-demand/revised nav points like MCC. Off by default.
+        Newly added to the MCC tools in the July 2023 CU.
+    tags:
+      - added_in_mcc
   - slug: breakable_surfaces
     info:
       en: |-
@@ -1012,13 +1044,6 @@ external_globals:
         [`cheat_deathless_player`](#debugfunctions-cheat-deathless-player)
         are not used. This can be used to quickly reach areas when
         testing maps.
-  - slug: cls
-    info:
-      en: |-
-        ```hsc
-        (cls)
-        ```
-        Clears the screen of developer console output and tab completions.
   - slug: cl_remote_player_action_queue_limit
     info:
       en: |-
@@ -1052,10 +1077,11 @@ external_globals:
         ```hsc
         (collision_debug [boolean])
         ```
-        If enabled, the center of the view is used to test for collisions. A
-        red normal-aligned marker will be shown where the ray from the center of
-        view collides with a surface. The collision surface itself, whether [BSP](~scenario_structure_bsp)
-        or [model](~model_collision_geometry), will be outline in red. Information
+        If enabled, a ray is continually shot from the camera (by default) to
+        troubleshoot ray-object and ray-BSP collisions. A red normal-aligned
+        marker will be shown where the ray collides with a surface. The collision
+        surface itself, whether [BSP](~scenario_structure_bsp) or
+        [model](~model_collision_geometry), will be outline in red. Information
         about the collision surface will be shown in the top left corner of the screen,
         including plane and surface indices from the BSP structure, material type,
         and how many degrees the surface's normal differs from vertical.
@@ -1063,6 +1089,11 @@ external_globals:
         The types of surfaces which the test ray hits or ignores can be toggled
         with the `collision_debug_flag_*` commands. The maximum range of the ray
         is controlled with `collision_debug_length`.
+
+        This feature can be frozen in place with `collision_debug_repeat` and
+        also moved directly with the `collision_debug_point_*` and `collision_debug_vector_*`
+        globals. A red ray is visible in these situations when the ray is no
+        longer shot from the camera's point of view.
   - slug: collision_debug_features
     tags:
       - model_collision_geometry
@@ -1277,20 +1308,27 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (collision_debug_point_x)
+        (collision_debug_point_x [real])
         ```
+        Represents the current origin of the `collision_debug` test ray. While
+        `collision_debug` is active, this value will be continually updated
+        with the camera's location unless `collision_debug_repeat` is also
+        enabled. In repeat mode, you are able to set this global to move
+        the ray origin to any point you need. See also `collision_debug_vector_i`.
   - slug: collision_debug_point_y
     info:
       en: |-
         ```hsc
-        (collision_debug_point_y)
+        (collision_debug_point_y [real])
         ```
+        See `collision_debug_point_x`.
   - slug: collision_debug_point_z
     info:
       en: |-
         ```hsc
-        (collision_debug_point_z)
+        (collision_debug_point_z [real])
         ```
+        See `collision_debug_point_x`.
   - slug: collision_debug_repeat
     info:
       en: |-
@@ -1300,7 +1338,8 @@ external_globals:
         Setting this to `true` will freeze the test rays and points for
         `collision_debug`, `collision_debug_phantom_bsp`, `collision_debug_spray`,
         and `collision_debug_features`, allowing you to move and view the debug
-        information from another angle.
+        information from another angle or manually set the origin and direction
+        with the `collision_debug_point_*` and `collision_debug_vector_*` globals.
   - slug: collision_debug_spray
     tags:
       - model_collision_geometry
@@ -1318,20 +1357,27 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (collision_debug_vector_i)
+        (collision_debug_vector_i [real])
         ```
+        Represents the current direction of the `collision_debug` test ray as
+        _ijk_ vector components. While `collision_debug` is active, this value
+        will be continually updated with the camera's direction unless
+        `collision_debug_repeat` is also enabled. In repeat mode, you are able
+        to set this global to orient the ray as needed.
   - slug: collision_debug_vector_j
     info:
       en: |-
         ```hsc
-        (collision_debug_vector_j)
+        (collision_debug_vector_j [real])
         ```
+        See `collision_debug_vector_i`.
   - slug: collision_debug_vector_k
     info:
       en: |-
         ```hsc
-        (collision_debug_vector_k)
+        (collision_debug_vector_k [real])
         ```
+        See `collision_debug_vector_i`.
   - slug: collision_debug_width
     info:
       en: |-
@@ -1424,11 +1470,20 @@ external_globals:
         the shape of the surfaces below them. If set to `false`, the limp body system
         will take effect again even for existing dead bipeds.
   - slug: debug_biped_physics
+    tasgs:
+      - biped
     info:
       en: |-
         ```hsc
-        (debug_biped_physics)
+        (debug_biped_physics [boolean])
         ```
+        For this to be visible, `collision_debug` must also be enabled which has
+        the side-effect of making the `collision_debug` feature itself unusable
+        until the game is restarted. This displays several markers and vectors
+        within the player's physics pill (`debug_objects_biped_physics_pill`)
+        which can be more easily observed in third person and with `framerate_throttle 1`.
+        The number and colours of the debug overlays can vary by which map
+        is loaded and it's not known why.
   - slug: debug_biped_skip_collision
     tags:
       - biped
@@ -1508,7 +1563,7 @@ external_globals:
         (debug_damage [boolean])
         ```
         When enabled, looking at any collideable [object](~) and pressing
-        <kbd>Space</kbd> will display the object's body and shield vitalities
+        {% key "Space" /%} will display the object's body and shield vitalities
         on the HUD.
   - slug: debug_damage_taken
     tags:
@@ -1566,7 +1621,7 @@ external_globals:
         ```hsc
         (debug_framerate [boolean])
         ```
-        No visible effect. Replaced with the <kbd>Ctrl + F12</kbd> hotkey?
+        No visible effect. Replaced with the {% key "Ctrl+F12" /%} hotkey?
   - slug: debug_frustum
     info:
       en: |-
@@ -1621,11 +1676,14 @@ external_globals:
         (debug_leaf_portals)
         ```
   - slug: debug_lights
+    tags:
+      - light
     info:
       en: |-
         ```hsc
-        (debug_lights)
+        (debug_lights [boolean])
         ```
+        Shows orange and white spheres with the [_radius_](~light#tag-field-radius) of each dynamic [light](~). White seems to show when a light is not yet been activated, such as the Warthog's brake lights until their first use. Lens flare only lights are not shown since their radius is 0.
   - slug: debug_looping_sound
     tags:
       - sound
@@ -1637,11 +1695,17 @@ external_globals:
         Displays active [sound_looping](~) with cyan spheres for their maxmimum
         distance and blue spheres for their minimum.
   - slug: debug_material_effects
+    tags:
+      - physics
+      - material_effects
     info:
       en: |-
         ```hsc
-        (debug_material_effects)
+        (debug_material_effects [boolean])
         ```
+        Displays cyan spheres wherever [material_effects](~) are being generated,
+        like under the player's feet and where [physics spheres](~physics#mass-points)
+        intersect with the [BSP](~scenario_structure_bsp) or [model_collision_geometry](~).
   - slug: debug_motion_sensor_draw_all_units
     info:
       en: |-
@@ -1657,15 +1721,27 @@ external_globals:
         If enabled, completely stops the game from rendering new frames. This
         includes preventing the rendering of the developer console itself, so
         disabling this feature can be tricky. If you think the console is still
-        open, press <kbd>Up</kbd> to re-enter the previous command, then
-        replace its final argument with `true` or `1` and press <kbd>Enter</kbd>
+        open, press {% key "Up" /%} to re-enter the previous command, then
+        replace its final argument with `true` or `1` and press {% key "Enter" /%}
         to resume rendering.
   - slug: debug_no_frustum_clip
+    tags:
+      - scenario_structure_bsp
+      - portals
     info:
       en: |-
         ```hsc
-        (debug_no_frustum_clip)
+        (debug_no_frustum_clip [boolean])
         ```
+        If frustum clipping is disabled by setting this to `true`, certain
+        objects and parts of the BSP will be drawn even when behind foreground
+        geometry (use `rasterizer_wireframe 1` to see this).
+        This isn't about clipping to the whole view frustum but rather portal
+        diminished frustrums; in addition to the [PVS](~scenario_structure_bsp#potentially-visible-set),
+        the game seems to cull objects and the BSP by whether object bounding
+        spheres and possibly subclusters are visible through portals.
+        The use of `debug_pvs` at the same time makes the behaviour of this
+        unpredictable.
   - slug: debug_object_garbage_collection
     info:
       en: |-
@@ -1967,6 +2043,8 @@ external_globals:
         and [particle_systems](~particle_system). It can help to enable `framerate_throttle`
         for these markers to render consistently.
   - slug: debug_pvs
+    tags:
+      - portals
     info:
       en: |-
         ```hsc
@@ -1975,6 +2053,7 @@ external_globals:
         Alias of `debug_portals`, but with a mandatory argument.
   - slug: debug_portals
     tags:
+      - portals
       - scenario_structure_bsp
     info:
       en: |-
@@ -2116,7 +2195,21 @@ external_globals:
         (debug_structure [boolean])
         ```
         When enbled, all [scenario_structure_bsp](~) collision surfaces will be
-        rendered with green outlines.
+        rendered with green outlines. A red bounding box surrounds renderable
+        surfaces.
+  - slug: debug_structure_automatic
+    tags:
+      - scenario_structure_bsp
+    info:
+      en: |-
+        ```hsc
+        (debug_structure_automatic [boolean])
+        ```
+        Like `debug_structure`, but only appears when the camera is in "solid"
+        space (outside the BSP). This can be handy for finding your way back to
+        the level when switching BSPs. It is set to `true` by default in Sapien.
+        This is a backported feature from later Halos and only available in the
+        newer MCC tools.
   - slug: debug_texture_cache
     info:
       en: |-
@@ -2133,17 +2226,27 @@ external_globals:
         ```
         Renders all scenario [trigger volumes](~scenario#trigger-volumes) and their names.
   - slug: debug_unit_all_animations
+    tags:
+      - model_animations
+      - unit
     info:
       en: |-
         ```hsc
-        (debug_unit_all_animations)
+        (debug_unit_all_animations [boolean])
         ```
+        Logs lines to the console output as unit animations occur.
+        For example: `cyborg_mp: animation stand pistol move-right`.
   - slug: debug_unit_animations
+    tags:
+      - model_animations
+      - unit
     info:
       en: |-
         ```hsc
-        (debug_unit_animations)
+        (debug_unit_animations [boolean])
         ```
+        Shows red console log output whenever a unit animation is missing.
+        For example: `MISSING: cyborg 'G-driver unarned aim-still'`.
   - slug: debug_unit_illumination
     info:
       en: |-
@@ -2183,7 +2286,7 @@ external_globals:
         ```hsc
         (display_framerate [boolean])
         ```
-        No visible effect.
+        Displays the current framerate in green in the bottom-right corner of the screen.
   - slug: display_precache_progress
     info:
       en: |-
@@ -2267,8 +2370,9 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (framerate_throttle)
+        (framerate_throttle [boolean])
         ```
+        Limits rendering to 30 FPS.
   - slug: freeze_flying_camera
     info:
       en: |-
@@ -2523,8 +2627,12 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (profile_display)
+        (profile_display [boolean])
         ```
+        Displays profiling and budget information in the upper-left of the screen,
+        including object, effects, particles, AI encounters, collision tests,
+        and more. You may find it useful to open the console while using this
+        feature in order to stop the game simulation.
   - slug: profile_dump_frames
     info:
       en: |-
@@ -2560,20 +2668,34 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (rasterizer_active_camouflage)
+        (rasterizer_active_camouflage [boolean])
         ```
+        Toggles the active camouflage distortion effect. When disabled, objects
+        with active camouflage are rendered as they normally would without the
+        effect.
   - slug: rasterizer_active_camouflage_multipass
+    tags:
+      - shader_transparent_glass
+      - shader_transparent_chicago
+      - shader_transparent_chicago_extended
+      - shader_transparent_generic
     info:
       en: |-
         ```hsc
-        (rasterizer_active_camouflage_multipass)
+        (rasterizer_active_camouflage_multipass [boolean])
         ```
+        Toggles whether or not transparent shaders are shown through
+        active camouflage. If disabled, shaders like glass or lights
+        will not be visible through a camouflaged unit.
   - slug: rasterizer_bump_mapping
     info:
       en: |-
         ```hsc
-        (rasterizer_bump_mapping)
+        (rasterizer_bump_mapping [boolean])
         ```
+        Toggles bump mapping on the BSP, affecting both environmental bump
+        lighting and specular reflections. If you only want to toggle
+        bump lighting, use `rasterizer_lightmaps_incident_radiosity`.
   - slug: rasterizer_d3dlight_attenuation0
     info:
       en: |-
@@ -2649,6 +2771,16 @@ external_globals:
         ```hsc
         (rasterizer_debug_transparents)
         ```
+  - slug: rasterizer_debug_shader_transparent_generic
+    info:
+      en: |-
+        ```hsc
+        (rasterizer_debug_shader_transparent_generic [boolean])
+        ```
+        Disabling this silences "generic shader has no maps or stages" warnings
+        in the console. Newly added to the MCC tools in the July 2023 CU.
+    tags:
+      - added_in_mcc
   - slug: rasterizer_detail_objects
     info:
       en: |-
@@ -2669,7 +2801,18 @@ external_globals:
         ```hsc
         (rasterizer_draw_first_person_weapon_first [boolean])
         ```
-        No visible effect.
+        Controls whether the first person weapon/arms is rendered before or
+        after the rest of the scene. Defaults to `true`. If set to `false`,
+        parts of the FP model can be occluded by nearby objects because they fail
+        the depth test against the [depth buffer](https://en.wikipedia.org/wiki/Z-buffering).
+        This is easily seen in the Warthog passenger seat or with the sniper
+        rifle against scenery.
+
+        Typically, the FP view draws first and also writes to a
+        [stencil buffer](https://en.wikipedia.org/wiki/Stencil_buffer) which is
+        later used to prevent the background from overlapping the FP view. You
+        can disable `rasterizer_stencil_mask` for the same effect as disabling
+        this global.
   - slug: rasterizer_DXTC_noise
     info:
       en: |-
@@ -2707,11 +2850,16 @@ external_globals:
         (rasterizer_environment)
         ```
   - slug: rasterizer_environment_alpha_testing
+    tags:
+      - shader_environment
     info:
       en: |-
         ```hsc
-        (rasterizer_environment_alpha_testing)
+        (rasterizer_environment_alpha_testing [boolean])
         ```
+        Toggles [alpha testing](~shader_environment#alpha-testing)
+        for BSP [shader_environment](~). These shaders are
+        rendered opaquely when disabled.
   - slug: rasterizer_environment_decals
     tags:
       - decal
@@ -2724,11 +2872,15 @@ external_globals:
         While `false`, effects cannot create new decals but previous ones will
         reappear when reset to `true`.
   - slug: rasterizer_environment_diffuse_lights
+    tags:
+      - light
     info:
       en: |-
         ```hsc
-        (rasterizer_environment_diffuse_lights)
+        (rasterizer_environment_diffuse_lights [boolean])
         ```
+        Toggles the rendering of [_dynamic_ light](~light#tag-field-flags-dynamic)
+        illumination on the BSP.
   - slug: rasterizer_environment_diffuse_textures
     tags:
       - lightmaps
@@ -2745,10 +2897,13 @@ external_globals:
         ```hsc
         (rasterizer_environment_fog)
         ```
-        Toggles environmental [sky fog](~sky#tag-field-outdoor-fog-color) and
-        [fog plane](~fog) colors. Does not affect _fog screen_.
+        Toggles both environmental [sky fog](~sky#tag-field-outdoor-fog-color) and
+        [fog plane](~fog) colors. Does not affect _fog screen_. Use
+        `rasterizer_fog_plane` or `rasterizer_fog_atmosphere` to individually
+        toggle fog types.
     tags:
       - sky
+      - fog
   - slug: rasterizer_environment_fog_screen
     info:
       en: |-
@@ -2774,23 +2929,31 @@ external_globals:
         (rasterizer_environment_reflection_lightmap_mask)
         ```
   - slug: rasterizer_environment_reflection_mirrors
+    tags:
+      - shader_environment
     info:
       en: |-
         ```hsc
-        (rasterizer_environment_reflection_mirrors)
+        (rasterizer_environment_reflection_mirrors [boolean])
         ```
+        Toggles the rendering of [dynamic mirrors](~shader_environment#tag-field-reflection-flags-dynamic-mirror).
   - slug: rasterizer_environment_reflections
     info:
       en: |-
         ```hsc
-        (rasterizer_environment_reflections)
+        (rasterizer_environment_reflections [boolean])
         ```
+        Toggles specular reflections in the BSP.
   - slug: rasterizer_environment_shadows
+    tags:
+      - object
     info:
       en: |-
         ```hsc
-        (rasterizer_environment_shadows)
+        (rasterizer_environment_shadows [boolean])
         ```
+        Toggles [dynamic shadow mapping](~object#shadows-and-lighting) for objects.
+        Same effect as `render_shadows`.
   - slug: rasterizer_environment_specular_lightmaps
     info:
       en: |-
@@ -2855,18 +3018,23 @@ external_globals:
         (rasterizer_floating_point_zbuffer)
         ```
   - slug: rasterizer_fog_atmosphere
+    tags:
+      - sky
     info:
       en: |-
         ```hsc
-        (rasterizer_fog_atmosphere)
+        (rasterizer_fog_atmosphere [boolean])
         ```
+        Toggles atmospheric fog as defined in the active [sky](~) tag.
   - slug: rasterizer_fog_plane
+    tags:
+      - fog
     info:
       en: |-
         ```hsc
-        (rasterizer_fog_plane [boolea])
+        (rasterizer_fog_plane [boolean])
         ```
-        Toggles the rendering of [fog](~).
+        Toggles the rendering of [fog planes](~fog).
   - slug: rasterizer_fps
     info:
       en: |-
@@ -2919,33 +3087,52 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (rasterizer_hud_motion_sensor)
+        (rasterizer_hud_motion_sensor [boolean])
         ```
+        Toggles the yellow and red dots seen in the motion sensor.
   - slug: rasterizer_lens_flares
+    tags:
+      - lens_flare
     info:
       en: |-
         ```hsc
-        (rasterizer_lens_flares)
+        (rasterizer_lens_flares [boolean])
         ```
+        Toggles rendering of all [lens flares](~lens_flare).
   - slug: rasterizer_lens_flares_occlusion
+    tags:
+      - lens_flare
     info:
       en: |-
         ```hsc
-        (rasterizer_lens_flares_occlusion)
+        (rasterizer_lens_flares_occlusion [boolean])
         ```
+        Toggles [lens flare](~lens_flare) occlusion. If set to `false`, lens
+        flares will no longer be occluded and stay visible even through objects
+        in the foreground.
   - slug: rasterizer_lens_flares_occlusion_debug
+    tags:
+      - lens_flare
     info:
       en: |-
         ```hsc
-        (rasterizer_lens_flares_occlusion_debug)
+        (rasterizer_lens_flares_occlusion_debug [boolean])
         ```
+        Displays red squares over [lens flares](~lens_flare) in the environment.
+        How much the square is occluded by other geometry or the view frustrum
+        is how much the lens flare fades out. The size of the square relates to
+        the [_occlusion radius_](~lens_flare#tag-field-occlusion-radius).
   - slug: rasterizer_lightmap_ambient
     info:
       en: |-
         ```hsc
         (rasterizer_lightmap_ambient [real])
         ```
-        Defaults to `1.0`. No visible effect when changed.
+        Sets the amount of ambient light when rendering the BSP in fullbright mode
+        (like when radiosity has not yet been baked or `rasterizer_lightmap_mode 2`)
+        This defaults to `1.0`. It has no effect on the normal lightmap rendering mode.
+      tags:
+        - lightmaps
   - slug: rasterizer_lightmap_mode
     tags:
       - lightmaps
@@ -2954,9 +3141,16 @@ external_globals:
         ```hsc
         (rasterizer_lightmap_mode [short])
         ```
-        If the mode is `0`, the default, BSP specular reflections will be multiplied
-        by the [lightmap](~lightmaps). Any other value results in reflections being
-        unaltered.
+        Changes the rendering mode of [lightmaps](~):
+        | Mode | Description |
+        |------|-------------|
+        | `0`  | Normal (default).
+        | `1`  | BSP specular reflections will not be multiplied by the lightmap.
+        | `2`  | Fullbright mode. You can set the ambient light with `rasterizer_lightmap_ambient`.
+        | `3`  | Colours BSP surfaces by what lightmap [bitmap index](~scenario_structure_bsp#tag-field-lightmaps-bitmap) they use (technically, with a random colour seeded by the lightmap address). It can help to disable `rasterizer_environment_diffuse_textures` and `rasterizer_environment_reflections` to see this more clearly.
+        | `4`  | Fullbright without environmental bump map lighting. Ambient light is not configurable in this mode.
+        
+        Any higher value will appear the same as `1`. Repeated changing of this value can cause degraded performance and eventually a crash.
   - slug: rasterizer_lightmaps_filtering
     tags:
       - lightmaps
@@ -2974,13 +3168,23 @@ external_globals:
         ```hsc
         (rasterizer_lightmaps_incident_radiosity [boolean])
         ```
-        No visible effect.
+        Toggles directional environmental bump mapped lighting. Does not
+        affect the sampling of [stored incident radiosity](~scenario_structure_bsp#tag-field-lightmaps-materials-lightmap-vertices-offset)
+        for object shadows.
+    tags:
+      - lightmaps
   - slug: rasterizer_mode
     info:
       en: |-
         ```hsc
-        (rasterizer_mode)
+        (rasterizer_mode [short])
         ```
+        Changes rendering mode of the level and its objects:
+        | Mode | Description |
+        |------|-------------|
+        | `0`  | Normal (default).
+        | `1`  | Additive blending.
+        | `2`  | Disables specular on the BSP (like `rasterizer_environment_reflections`).
   - slug: rasterizer_model_lighting_ambient
     info:
       en: |-
@@ -2988,17 +3192,31 @@ external_globals:
         (rasterizer_model_lighting_ambient)
         ```
   - slug: rasterizer_model_transparents
+    tags:
+      - gbxmodel
+      - shader_transparent_glass
+      - shader_transparent_chicago
+      - shader_transparent_chicago_extended
+      - shader_transparent_generic
     info:
       en: |-
         ```hsc
-        (rasterizer_model_transparents)
+        (rasterizer_model_transparents [boolean])
         ```
+        Toggles the rendering of transparent shaders in [models](~gbxmodel).
+        For example, the Warthog's windshield.
   - slug: rasterizer_models
+    tags:
+      - gbxmodel
     info:
       en: |-
         ```hsc
-        (rasterizer_models)
+        (rasterizer_models [boolean])
         ```
+        Toggles the rendering of all [models](~gbxmodel). When disabled, all
+        objects like scenery, units, projectiles, and even the skybox and FP arms
+        will become invisible. The BSP and effects like particles and decals are
+        still visible.
   - slug: rasterizer_near_clip_distance
     info:
       en: |-
@@ -3039,7 +3257,7 @@ external_globals:
         ```hsc
         (rasterizer_ray_of_buddha [boolean])
         ```
-        Toggles the [sky's](~sky) sun effect.
+        Toggles the [sky's](~sky) "god rays" effect.
     tags:
       - sky
   - slug: rasterizer_refresh_rate
@@ -3117,15 +3335,29 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (rasterizer_stats [boolean])
+        (rasterizer_stats [short])
         ```
-        Displays framerate statistics on the screen, including average, min, max, and dropped.
+        Displays renderer statistics on the screen, with several modes. All modes
+        include at least framerate stats.
+        | Mode | Description |
+        |------|-------------|
+        | `0`  | Off (default).
+        | `1`  | Some unknown counts which always read 0.
+        | `2`  | Vertices, triangles, and primitives counts for various model and environment features and effects.
+        | `3`  | GPU profiling for each stage of rendering. Uknown if this still works.
+        | `4`  | Memory usage for dynamic vertices, shadow buffers, and more.
+        | `5`  | Just framerate stats.
   - slug: rasterizer_stencil_mask
     info:
       en: |-
         ```hsc
-        (rasterizer_stencil_mask)
+        (rasterizer_stencil_mask [boolean])
         ```
+        Enables or disables the [stencil mask](https://en.wikipedia.org/wiki/Stencil_buffer)
+        used to prevent the background scene from overlapping the first person
+        view. Defaults to `true`. Disabling this has the same effect as disabling
+        `rasterizer_draw_first_person_weapon_first` and you will sometimes see
+        nearby objects occluding parts of the FP model.
   - slug: rasterizer_transparent_pixel_counter
     info:
       en: |-
@@ -3133,17 +3365,23 @@ external_globals:
         (rasterizer_transparent_pixel_counter)
         ```
   - slug: rasterizer_water
+    tags:
+      - shader_transparent_water
     info:
       en: |-
         ```hsc
-        (rasterizer_water)
+        (rasterizer_water [boolean])
         ```
+        Toggles the rendering of [shader_transparent_water](~) shaders.
   - slug: rasterizer_water_mipmapping
     info:
       en: |-
         ```hsc
-        (rasterizer_water_mipmapping)
+        (rasterizer_water_mipmapping [boolean])
         ```
+        No visible effect. Defaults to `false`.
+    tags:
+      - removed_in_mcc
   - slug: rasterizer_wireframe
     info:
       en: |-
@@ -3290,26 +3528,32 @@ external_globals:
     tags:
       - particle
   - slug: render_psystems
+    tags:
+      - particle_system
+      - weather_particle_system
     info:
       en: |-
         ```hsc
-        (render_psystems)
+        (render_psystems [boolean])
         ```
+        Toggles the rendering of [particle_systems](particle_system~) and
+        [weather_particle_system](~).
   - slug: render_shadows
     info:
       en: |-
         ```hsc
         (render_shadows [boolean])
         ```
-        Toggles the display of dynamic object shadows.
+        Toggles the display of dynamic object shadows. Same effect as `rasterizer_environment_shadows`.
     tags:
       - object
   - slug: render_wsystems
     info:
       en: |-
         ```hsc
-        (render_wsystems)
+        (render_wsystems [boolean])
         ```
+        No visible effect on weather or particle systems.
   - slug: rider_ejection
     info:
       en: |-
@@ -3322,20 +3566,30 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (run_game_scripts)
+        (run_game_scripts [boolean])
         ```
+        If enabled, causes level scripts to be run in Sapien. This would allow
+        you to see how the beach battle plays out in b30, for example.
   - slug: screenshot_count
     info:
       en: |-
         ```hsc
-        (screenshot_count)
+        (screenshot_count [short])
         ```
+        When the `-screenshot` [argument](~arguments#arguments) is enabled,
+        pressing {% key "Prnt Scrn" /%} will generate a series of tiled screenhots
+        in the `screenshots` directory. For example, a value of `2` will generate
+        4 screenshots meant to tile in a 2x2 arrangement for a high resolution
+        result. You should disable the HUD with `show_hud 0` before using this.
   - slug: screenshot_size
     info:
       en: |-
         ```hsc
-        (screenshot_size)
+        (screenshot_size [short])
         ```
+        Appears to set some kind of crop or scaling factor for generated screenshots,
+        but is probably not working as intended. Ssetting this to a value other than `1`
+        can crash when using `screenshot_size`.
   - slug: slow_server_startup_safety_zone_in_seconds
     info:
       en: |-
@@ -3349,11 +3603,18 @@ external_globals:
         (sound_cache_size)
         ```
   - slug: sound_gain_under_dialog
+    tags:
+      - sound
     info:
       en: |-
         ```hsc
-        (sound_gain_under_dialog)
+        (sound_gain_under_dialog [real])
         ```
+        Controls how quiet non-dialog sounds are when scripted dialog is playing
+        (sound class must be `scripted_dialog_other`, `scripted_dialog_force_player`,
+        or `scripted_dialog_force_unspatialized`). Does not apply to involuntary
+        AI dialog like death/pain lines. Defaults to `0.7`. The effect takes
+        about half a second to fade in/out.
   - slug: sound_obstruction_ratio
     tags:
       - sound
@@ -3492,6 +3753,8 @@ external_globals:
         (weapon_incremental_rate)
         ```
   - slug: weather
+    tags:
+      - weather_particle_system
     info:
       en: |-
         ```hsc

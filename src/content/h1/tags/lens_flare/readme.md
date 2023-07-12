@@ -10,6 +10,9 @@ thanks:
 ---
 ...
 
+# Related HaloScript
+{% relatedHsc game="h1" tagFilter="lens_flare" /%}
+
 # Structure and fields
 
 {% tagStruct "h1/lens_flare" /%}

@@ -30,8 +30,8 @@ Each edition of the game has a slightly different tag set in its maps. Be aware 
   id="tags"
   rowSortKey="key"
   linkSlugKey="key"
-  rowFilterKey="value/unused"
-  rowFilterNot=true
+  rowFilterKey="value"
+  rowFilterExpr="NOT unused"
   columns=[
     {name: "Tag name", key: "key", format: "pageLinkRaw"},
     {name: "Group ID", key: "value/id", format: "code"},
@@ -48,7 +48,8 @@ The following tags are leftover from earlier in Halo's development and are unuse
   id="tags"
   rowSortKey="key"
   linkSlugKey="key"
-  rowFilterKey="value/unused"
+  rowFilterKey="value"
+  rowFilterExpr="unused"
   columns=[
     {name: "Tag name", key: "key", format: "pageLinkRaw"},
     {name: "Group ID", key: "value/id", format: "code"},

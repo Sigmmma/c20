@@ -25,6 +25,24 @@ _Modding_ is the modification of a game by its fans in order to change existing 
 **This website is always a work in progress!** If you would like to contribute, see our [GitHub project](https://github.com/Sigmmma/c20#contributing).
 {% /alert %}
 
+
+# What's new?
+{% alert type="success" %}
+**July 2023 tool updates:** over 150 new features and bug fixes across all modding tools!
+
+For details on each game:
+
+* [Halo 1](~h1a-ek#july-2023)
+* [Halo 2](~h2-ek#july-2023)
+* [Halo 3](~h3-ek#july-2023)
+* [Halo 3 ODST](~h3odst-ek#july-2023)
+* [Halo Reach](~hr-ek#july-2023)
+* [Halo 4](~h4-ek#july-2023)
+* [Halo 2 Anniversary MP](~h2amp-ek#july-2023)
+* [Excession](~excession#july-2023)
+
+{% /alert %}
+
 # Why mod Halo?
 Halo's 2001 engine is not as generalized as _Unity_, _Source_, _Creation Engine_, and _Unreal_, but this is actually a strength. Halo provides all the foundational game systems of a sandbox shooter, yet these systems are highly data-driven by [_tag_ assets](~h1/tags) which you create. No coding required!
 

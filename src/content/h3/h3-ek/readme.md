@@ -38,7 +38,37 @@ Pictured: Location of the mod tools in the steam library.
 2. Re-run `Extract (H3EK).bat` and replace all files.
 
 # Changelog
+This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
+
+## July 2023
+* Added missing bitmap tags for s3d_tutorial.
+* Fixed screenshot commands creating strange artifacts when screen effects are enabled.
+* Add support for FSBs with custom names in MCC.
+* Camera point transitions now interpolate correctly over 60 FPS.
+* Fixed Guerilla having distorted sound playback on certain tags.
+* Sounds imported into a new FSB bank no longer have corrupted playback in Sapien/Standalone.
+* `m_prediction_quanta` and `m_prediction_molecules` limits aligned with ODST.
+* Fixed instance geometry often failing to show correct dynamic cubemaps.
+* Fixed distorted sound playback on certain sound tags.
+* Backported support to set [device_machine](~) variants from ODST (Sapien and Guerilla).
+* Added [play builds](~build-types#optimization-options) of Sapien, Standalone, and Guerilla.
+* Removed various unused or deprecated tag fields.
+* Removed Guerilla's Tag Mover dependency on tag depot.
+* Updated an outdated description for "Game Engine Settings Halo3" in [multiplayer_globals](~) tag.
+* Fixed style flags grapple and enforcer weapon control not functioning properly.
+* Added a flag so that infection forms can kill other characters without infecting them.
+* Fixed Guerilla tag blocks extending out of their borders.
+* Allowed [chocolate_mountain_new](~) tags to be assigned per BSP rather than globally in the scenario.
+* Models with large import info can now be imported (fixes `tag_data_resize() failed`).
+* Fixed bug where driver boost damage effects are controlled by rider boost effects.
+* Custom player bipeds no longer invisible if new customization toggle is set to disabled.
+* Addition of ManagedBlam DLL.
+* Fixed crash on `prune_global_keep_playable 1`.
+* Fixed shader views under expert mode in Guerilla.
+* Fixed lightmap generation for ported size classifications from H3.
+
 ## December 2022
+* Added Tool command `extract-unicode-strings`.
 * AI objectives crash fix
 * Unused fields removed from [scenario](~) and [globals](~) tags
 * The Sapien/Standalone debug menu is properly scaled for the window size.
