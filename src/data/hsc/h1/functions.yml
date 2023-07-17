@@ -4188,8 +4188,10 @@ functions:
 
         ```
 
-        Plays an impulse sound from the specified source object (or "none"), with
-        the specified scale
+        Plays an impulse sound from the specified source object (or "none"), with the specified scale. Note that the sound may
+        not play under certain situations, like if its sound class
+        is [_scripted_dialog_player_](~sound#tag-field-sound-class-scripted-dialog-player)
+        and the player is dead.
   - slug: sound_impulse_stop
     info:
       en: |-

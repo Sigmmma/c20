@@ -6,6 +6,7 @@ thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Neo: Researching global `sound_gain_under_dialog`
+  InfernoPlus: Discovering scripted player dialog class does not play when dead
 ---
 ...
 
