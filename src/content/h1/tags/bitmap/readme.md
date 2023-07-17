@@ -204,11 +204,10 @@ Under "miscellaneous" there is a setting for how many mipmaps you want in your b
 Errors that are known and suggestions on how to fix them.
 ## --> !!WARNING!! failed to open TIFF: file does not exist <--
 
-- Cause<sup>1</sup>: The file is not where you told tool it is
-- Fix<sup>1</sup>: Make sure the file is somewhere in data or a subfolder and check your spelling of the path.
-- Cause<sup>2</sup>: The file is a TIFF file and not a TIF file
-- Fix<sup>2</sup>: save as a .TIF file
-- Info<sup>2</sup>: Tool doesn't understand .TIFF for some reason, but it does understand TIF.
+| Cause | Fix
+|-------|------
+| The file is not where you told tool it is | Make sure the file is somewhere in data or a subfolder and check your spelling of the path.
+| The file is a TIFF file and not a TIF file | save as a .TIF file; legacy Tool doesn't understand .TIFF for some reason, but it does understand TIF. No longer true in MCC Tool.
 
 ## Unknown data compression algoritm # (0x#). --> !!WARNING!! failed to open TIFF: not a TIFF file <--
 - Cause: Your TIF file might be using a new algoritm that is not supported by tool
@@ -221,19 +220,19 @@ Errors that are known and suggestions on how to fix them.
 - Alternative fix: If you are intending to make a sprite sheet or an interface bitmap, ignore this and set the type to the correct value in the .bitmap file, save, and put in the tool command again.
 
 ## ### ERROR can't extract sprites without a valid plate
-- Cause:<sup>1</sup> You didn't add the three color plate pixels in the top-left corner of the source file.
-- Fix<sup>1</sup>: Add the color plate
-- Cause<sup>2</sup>: You have bitmaps of different size in a sequence.
-- Fix<sup>2</sup>: Use dummy space to pad the smaller sprites to match the bigger ones.
-- Cause<sup>3</sup>: One of your sprites is touching the plate.
-- Fix<sup>3</sup>: Move the sprite away from the plate by at least one pixel.
+
+| Cause | Fix
+|-------|------
+| You didn't add the three color plate pixels in the top-left corner of the source file. | Add the color plate
+| You have bitmaps of different size in a sequence. | Use dummy space to pad the smaller sprites to match the bigger ones.
+| One of your sprites is touching the plate. | Move the sprite away from the plate by at least one pixel.
 
 ## ### ERROR one or more sprites do not fit in the requested page size
-- Cause<sup>1</sup>: The sprite page is too small to contain the sprite sheet.
-- Effect<sup>1</sup>: Not all bitmaps are processed if any.
-- Fix<sup>1</sup>: Set a bigger page size in the bitmap tag.
-- Cause<sup>2</sup>: A sequence divider has been interpreted as a sprite.
-- Fix<sup>2</sup>: Make sure your plate pixel that indicates the color of the dividers has the exact same color as the dividers.
+
+| Cause | Fix
+|-------|------
+| The sprite page is too small to contain the sprite sheet; not all bitmaps are processed if any. | Set a bigger page size in the bitmap tag.
+| A sequence divider has been interpreted as a sprite. | Make sure your plate pixel that indicates the color of the dividers has the exact same color as the dividers.
 
  _Reminder: Every sprite is padded with 4 pixels on each border, so while your sprites may fit in theory, they may not in practice._
 
