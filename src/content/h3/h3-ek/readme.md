@@ -55,7 +55,6 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Removed various unused or deprecated tag fields.
 * Removed Guerilla's Tag Mover dependency on tag depot.
 * Updated an outdated description for "Game Engine Settings Halo3" in [multiplayer_globals](~) tag.
-* Fixed style flags grapple and enforcer weapon control not functioning properly.
 * Added a flag so that infection forms can kill other characters without infecting them.
 * Fixed Guerilla tag blocks extending out of their borders.
 * Allowed [chocolate_mountain_new](~) tags to be assigned per BSP rather than globally in the scenario.
