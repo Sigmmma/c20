@@ -89,10 +89,8 @@ This changelog is focused on known notable modding-related changes and is not gu
 # Known issues
 
 * Resource sharing is currently not supported.
-* Halo Reach custom maps require that EAC is turned off to load
 * Halo Reach custom maps requires that the map info matches the map it is replacing to load. This means having the same campaign and map ID. These values can be found at the top of the scenario tag.
 * Single threaded lightmapping is not supported, you need to use the multi-process solution. This can be run with only a single client if only using one core is desired.
-* Sound playback and sound importing require the FSB files that come with MCC in order to function. Copy the FSB files from your Halo Reach MCC install.
 * All the stock tags do not contain import info so you will not be able to extract source assets that way.
 
 [steam_purchase]: https://store.steampowered.com/app/1064220
