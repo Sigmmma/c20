@@ -28,6 +28,16 @@ _Modding_ is the modification of a game by its fans in order to change existing 
 
 # What's new?
 {% alert type="success" %}
+**July 2023 hotfix:** a followup to the major July 2023 update with better file override support and some game-specific fixes:
+* [Halo 1](~h1a-ek#july-2023-hotfix)
+* [Halo 2](~h2-ek#july-2023-hotfix)
+* [Halo 3 ODST](~h3odst-ek#july-2023-hotfix)
+* Font icon files added to the game's font folder will function as expected for all titles.
+* Shared.map and campaign.map overrides are now respected for all titles consistently.
+
+{% /alert %}
+
+{% alert type="info" %}
 **July 2023 tool updates:** over 150 new features and bug fixes across all modding tools!
 
 For details on each game:

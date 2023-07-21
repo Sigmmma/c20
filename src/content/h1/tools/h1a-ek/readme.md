@@ -64,6 +64,10 @@ Pictured: Location of the mod tools in the steam library.
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
+## July 2023 hotfix
+* Using a non-default FOV setting no longer causes campaign cutscenes to have the incorrect FOV.
+* Fixed vehicle secondary weapons being unusable in Standalone on mouse and keyboard.
+
 ## July 2023
 * Inclusion of digsite content.
 * Biped seats are now functional, meaning rideable bipeds are possible.

@@ -42,6 +42,9 @@ Pictured: Location of the mod tools in the steam library.
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
+## July 2023 hotfix
+* Players using a non-English voice language setting will no longer experience a crash upon accessing English-only modded content.
+
 ## July 2023
 * Inclusion of digsite content.
 * Camera point transitions now interpolate correctly over 60 FPS.

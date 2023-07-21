@@ -36,6 +36,9 @@ Pictured: Location of the mod tools in the steam library.
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
+## July 2023 hotfix
+* The Invisibility equipment and Overshields now work as expected when added to campaign missions.
+
 ## July 2023
 * Add support for FSBs with custom names in MCC.
 * Fixed being unable to manipulate trigger volumes in Sapien.
