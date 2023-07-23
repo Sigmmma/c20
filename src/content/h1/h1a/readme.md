@@ -21,7 +21,7 @@ H1A officially supports modding with the release of the upgraded [H1A Editing Ki
 # Changes
 The H1A engine saw some adjustments to the [map](~) format. This made it difficult for some existing [modding programs](~tools) to read the new format.
 
-* BSP vertices are stored outside of the BSP tag <sup>[(source)][h1a-map-files]</sup> and BSP data is loaded at address `0x41448000` instead of within the tag data space.
+* BSP vertices are stored [outside of the BSP tag][h1a-map-files] and BSP data is loaded at address `0x41448000` instead of within the tag data space.
 * The tag data address has been adjusted from `0x40440000` to `0x40448000`.
 * The maps (and other files) are compressed using a variant of [zlib][] compression.
 * [Bitmaps](~bitmap), and [sounds](~sound) have been relocated from their respective bitmaps.map/sounds.map locations. The sounds are now in [FMOD][] sound banks, and the bitmaps are stored inside ipaks.

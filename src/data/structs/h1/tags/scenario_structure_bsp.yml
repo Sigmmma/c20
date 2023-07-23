@@ -912,8 +912,12 @@ type_defs:
         comments:
           en: |-
             If the red component of this colour is non-zero, this and all
-            following default lighting fields will be used to light objects when
-            a ground point does not exist within 10wu below them.
+            following default lighting fields will be used to
+            [light objects](~h1/tags/object#shadows-and-lighting)
+            when a ground point cannot be found within 10wu below them,
+            including when objects are outside the BSP or above [phantom BSP](#phantom-bsp).
+            Otherwise, objects sample [lightmaps data](#tag-field-lightmaps-materials-lightmap-vertices-offset)
+            at their ground point.
       - type: pad
         size: 4
       - name: default_distant_light_0_color

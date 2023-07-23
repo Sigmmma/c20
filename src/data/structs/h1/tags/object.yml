@@ -297,6 +297,9 @@ type_defs:
             shadows, pop in and out of visibility at the edges of the screen, and
             have inconsistent collision with other objects.
 
+            Additionally, the bounding radius for [device_control](~) determines
+            their interaction radius.
+
             The bounding radius can be visualized in Sapien or Standalone using
             [debug_objects_bounding_spheres](~developer-console#debugfunctions-debug-objects-bounding-spheres).
       - name: bounding_offset

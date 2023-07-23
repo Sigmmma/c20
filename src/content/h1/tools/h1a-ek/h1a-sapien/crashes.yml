@@ -5,7 +5,8 @@ crashes:
       This is probably not an issue with your tags, but rather Sapien failing to
       initialize its sound system (perhaps after device changes or system sleep).
       Restart your system or put `sound_enable 0` into Sapien's `editor_init.txt`
-      if you don't need to hear sounds in Sapien for now.
+      if you don't need to hear sounds in Sapien for now. Also ensure you don't
+      have any scripts setting `sound_set_music_gain` over 1.
   - error: >-
       EXCEPTION halt in \\...\rasterizer\dx9\rasterizer_dx9.c,#1461: global_window_parameters.fog.planar_maximum_depth>0.0f
     solution: >-

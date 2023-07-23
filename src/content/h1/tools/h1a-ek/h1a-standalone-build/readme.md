@@ -70,6 +70,21 @@ You can quickly spawn a variety of objects for testing:
 * Spawn all [weapons](~weapon) by pressing {% key "F7" /%} or entering `cheat_all_weapons` into the console.
 * Spawn just a Warthog by entering `cheat_spawn_warthog` into the console.
 
+# Profile files
+H1 standalone stores its profiles and savegames in a [binary format](~files#profile-and-savegame-files) under `C:\Users\%username%\Documents\My Games\Halo1A`. Sometimes you may need to delete the contents of this folder if scenarios which loaded successfully before will no longer load, often with `debug.txt` errors like these:
+
+```
+EXCEPTION halt in c:\mcc\release\h1\code\h1a2\sources\tag_files\tag_groups.c,#4437: !block->definition || block->definition->element_size==element_size
+
+EXCEPTION halt in e:\jenkins\workspace\mcch1code-release\mcc\release\h1\code\h1a2\sources\memory\data.c,#723: script node index #0 (0x12d0000) is unused or changed
+
+EXCEPTION halt in e:\jenkins\workspace\mcch1code-release\mcc\release\h1\code\h1a2\sources\memory\data.c,#723: hs thread index #0 (0xf3690000) is unused or changed
+
+EXCEPTION halt in e:\jenkins\workspace\mcch1code-release\mcc\release\h1\code\h1a2\sources\memory\data.c,#723: object looping sounds index #4059 (0x40c90fdb) is unused or changed
+```
+
+This is because the files in your profile can contain memory dumps which, when loaded, are not compatible between reloads of your tags or tag edits.
+
 # Known issues
 
 * Sound cuts out - ensure `framerate_throttle 1` is set.

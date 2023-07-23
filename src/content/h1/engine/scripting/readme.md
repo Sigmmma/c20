@@ -13,6 +13,7 @@ thanks:
   Mimickal: 'Additional background on scripting, edits for clarity and extra information'
   t3h lag: 'Additional script information (limits, types, functionality, etc...)'
   Ifafudafi: Script limits information
+  InfernoPlus: Flipped vehicle test
 ---
 **Halo Script** is a scripting language that H1 map designers can use to have greater control over how their map works. It is primarily used in controlling the mission structure of single player maps, but can also be used to achieve certain effects in multiplayer, such as [synchronizing workarounds](~sync-workarounds).
 
@@ -183,19 +184,19 @@ To learn more about HSC's general syntax and execution model, see our [cross-gam
 /%}
 
 ## Control
-{% relatedHsc game="h1" only="functions" tagFilter="control" /%}
+{% relatedHsc game="h1" only="functions" id="functions" tagFilter="control" /%}
 
 ## Math
-{% relatedHsc game="h1" only="functions" tagFilter="math" /%}
+{% relatedHsc game="h1" only="functions" id="functions" tagFilter="math" /%}
 
 ## Logic and comparison
-{% relatedHsc game="h1" only="functions" tagFilter="logic OR comp" /%}
+{% relatedHsc game="h1" only="functions" id="functions" tagFilter="logic OR comp" /%}
 
 ## Functions
-{% relatedHsc game="h1" only="functions" tagFilter="NOT math AND NOT control AND NOT comp AND NOT logic" /%}
+{% relatedHsc game="h1" only="functions" id="functions" tagFilter="NOT math AND NOT control AND NOT comp AND NOT logic" /%}
 
 ## External globals
-{% relatedHsc game="h1" only="globals" /%}
+{% relatedHsc game="h1" only="globals" id="external-globals" /%}
 
 ## Removed
 {% relatedHsc game="h1" tagFilter="removed_in_mcc" /%}

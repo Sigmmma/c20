@@ -791,16 +791,17 @@ functions:
         Removes a set of units from their encounter (if any) and sets them free
   - slug: ai_go_to_vehicle
     info:
-      en: >-
+      en: |-
         ```hsc
-
         (<void> ai_go_to_vehicle <ai> <unit> <string>)
-
         ```
-
         Tells a group of actors to get into a vehicle, in the substring-specified
         seats (e.g. passenger for pelican). Does not interrupt any actors who are
         already going to vehicles.
+
+        You can test if a vehicle is flipped by calling this function, then
+        in the same tick testing `ai_going_to_vehicle`. If it returns `0` it
+        means the vehicle is flipped.
   - slug: ai_go_to_vehicle_override
     info:
       en: >-
@@ -1994,6 +1995,8 @@ functions:
         ```hsc
         (<void> debug_teleport_player <short> <short>)
         ```
+        Given two local player indices, teleports the first to the second
+        if they both exist.
   - slug: delete_save_game_files
     info:
       en: |-

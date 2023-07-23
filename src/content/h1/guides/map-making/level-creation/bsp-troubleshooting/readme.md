@@ -8,6 +8,7 @@ thanks:
   Hari: Reverse engineering the cause of T-junction warnings
   EmmanuelCD: Subcluster limits
   Kornman: Theorizing cause of floating point precision differences in MCC-era tools.
+  Conscars: Documenting various problems and solutions
 ---
 When compiling a level's [structure BSP](~scenario_structure_bsp) using [Tool](~h1a-tool#structure-compilation) you may encounter warnings or errors in Tool's output indicating problems with your model, for example:
 
@@ -16,7 +17,7 @@ When compiling a level's [structure BSP](~scenario_structure_bsp) using [Tool](~
 ### Warning found #1 degenerate triangles.
 ```
 
-With some exceptions, Halo requires your BSP to be a completely sealed volume with no intersecting faces, open edges, 0-area faces, or other _non-manifold_ surfaces. Many of these errors can also show up when compiling [model_collision_geometry](~) and the solutions will be the same. You should attempt to fix all errors and warnings in your map.
+With some exceptions, Halo requires your BSP to be a completely sealed volume with no intersecting faces, open edges, 0-area faces, or other _non-manifold_ surfaces. It should not be too geometrically complex or too large. Many of these errors can also show up when compiling [model_collision_geometry](~) and the solutions will be the same. You should attempt to fix all errors and warnings in your map.
 
 For most types of problems Tool generates a [WRL](~) file that can be imported back into your 3D software to find the sources of the problems. The path of this WRL file depends on if you are using Gearbox Tool or H1A Tool (see [WRL page](~wrl)).
 
@@ -43,11 +44,13 @@ Another common cause for this error is incorrect level [scale](~scale); Tool mer
 ![](couldnt_update_edge_2.mp4)
 
 ## Warning: Nearly coplanar faces (red and green)
-To understand this warning, we should first understand coplanarity. If two adjacent faces are "coplanar" it means they are _on the same plane_. Think about how two sheets of paper (faces) are coplanar when they lie on the same table, no matter which way the papers are turned and even if you lift one end of the table. _Nearly coplanar_ faces means they are at a slight angle to each other; imagine the tabletop is slightly curved or warped so the sheets are facing slightly different directions.
+This is one of the most common warnings map-makers will encounter. Let's first define coplanarity. If two faces are "coplanar" it means they are _on the same plane_; there is a flat infinite surface that both faces would perfectly lie on. Tool warns you when connected faces are _nearly coplanar_, meaning they are actually facing slightly different directions and the edge they share is a slight hill or valley.
 
-Exact coplanarity is desirable because Tool will combine together adjacent coplanar faces into a single larger collision surface as an optimization. _Nearly coplanar_ faces can also cause [phantom BSP](~scenario_structure_bsp#collision-artifacts) so you should deal with the problem even though it's just warning. This is not to say all your cliffs need to be flat walls and the ground featureless, but just avoid very slightly deviations in angle from face to face. Any collection of faces which _should_ be flat, like walls and floors, should be aligned and coplanar.
+Exact coplanarity is desirable because Tool will combine together adjacent coplanar faces into a single larger collision surface as an optimization. _Nearly coplanar_ faces are undesirable because they can cause a problem called [phantom BSP](~scenario_structure_bsp#collision-artifacts), including cases undetectable by [`collision_debug_phantom_bsp`](~scripting#external-globals-collision-debug-phantom-bsp) but which cause objects to fall back to [BSP default lighting](~object#shadows-and-lighting).
 
-This is one of the most common warnings modders will encounter. To avoid this issue you can:
+You should deal with this problem even though it's a warning. This is not to say all your cliffs need to be flat walls and the ground featureless, but just avoid very slightly deviations in angle from face to face. Any collection of faces which _should_ be flat, like walls and floors, should be aligned and coplanar.
+
+To avoid this issue you can:
 
 * Avoid "eyeballing it" when modeling things which should be straight and aligned. Use snap when moving vertices along an axis to ensure they align with others;
 * Scale sets of faces which should be coplanar to 0 along an axis (see video);
@@ -158,7 +161,7 @@ Note that a fog plane which is not completely flat (not planar) will be counted 
 ![](fog_planes_intersected_2.mp4)
 
 ## Warning: two fog planes visible from a cluster
-Although you can add portals to ensure two fog planes are not in the same localized cluster and avoid ["two fog planes intersected in a cluster"](#two-fog-planes-intersected-in-a-cluster-black), Tool will still warn you when two fog planes are potentially visible to each other. In this case Sapien will only allow the assignment of a fog palette to a single fog plane and only one will render in-game.
+Although you can add portals to ensure two fog planes are not in the same localized cluster and avoid ["two fog planes intersected in a cluster"](#two-fog-planes-intersected-in-a-cluster-black), Tool will still warn you when two fog planes are [potentially visible](~scenario_structure_bsp#potentially-visible-set) to each other. In this case Sapien will only allow the assignment of a fog palette to a single fog plane and only one will render in-game.
 
 Consider combining together your fog planes into a singular plane. If this is not desirable because you want different fog palette assignments or fog planes at different heights then you will need to ensure the clusters which contain them are completely isolated from each other either by separating the BSP into two volumes (e.g. connected by a teleporter) or ensuring there is an indoor cluster between them by creating a series of long hallways that block visibility.
 
@@ -213,6 +216,23 @@ EXCEPTION halt in e:\jenkins\workspace\mcch1code-release\mcc\release\h1\code\h1a
 ```
 
 Tool is encountering a floating point precision problem, likely from your map being too big. This was less likely to occur in the legacy HEK because MCC-era tools use SSE2 which has [lower floating point precision][precision] than the x87 FPU. You can try working around this issue with `-noassert`.
+
+## Exception: bitmap_format_type_valid_height(format, _bitmap_type_2d, height)
+This means that radiosity has internally completed, but the final resulting lightmap texture dimension is larger than supported. This will happen if you have large continuous sections of your level that require a lot of lightmap space, possibly due to them using a high [radiosity detail level](~shader#tag-field-detail-level-high) and/or [simple parameterization](~shader#tag-field-shader-flags-simple-parameterization). Avoid this by:
+
+* Making your level smaller.
+* Introducing seams to large continuous surfaces, especially those with continuous UV unwraps and simple parameterization. This will let Tool treat the UV islands as different packable charts rather than a single larger one that needs to fit in a single lightmap page. These seams can be in UV space or through adding modeled details like short cliffs.
+* Reducing radiosity detail level.
+* Disabling simple parameterization where not needed.
+
+## Error: smooth triangle group too big for page
+An example error appears like:
+```
+radiosity error: smooth triangle group too big for page radon\levels\grounded\shaders\grounded_snow
+EXCEPTION halt in e:\jenkins\workspace\mcch1codebuild\mcc\main\h1\code\h1a2\sources\structures\radiosity\intermediate_radiosity.c,#2311: surface_index==last_material->first_surface_index+last_material->surface_count
+```
+
+This likely has the same cause as [above](#exception-bitmap-format-type-valid-height-format-bitmap-type-2d-height); you have a smooth continuous area which should form a single lightmap chart but is too big to fit in a bitmap page.
 
 ## Warning: Clusters have no background sound or sound environment
 During radiosity you may see this warning logged:

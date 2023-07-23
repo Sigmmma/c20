@@ -30,7 +30,7 @@ Objects receive a few parameters from [the environment](~lightmaps#lighting-for-
 2. If a ground point is not found and the BSP tag has a non-zero red value for [_default ambient color_ field](~scenario_structure_bsp#tag-field-default-distant-light-0-color), BSP default lighting fields will apply.
 2. Otherwise the object receives hard-coded white light from the +x +y direction and casts shadows straight down.
 
-You can test the latter two scenarios by setting `debug_collision_skip_vectors 1` to make the ray cast always fail. Scenery which are outside the BSP will also fail to get a ground point and therefore receive default lighting.
+You can test the latter two scenarios by setting `debug_collision_skip_vectors 1` to make the ray cast always fail. Objects which are outside the BSP will fail to find a valid ground point and therefore receive default lighting. Objects above [phantom BSP](~scenario_structure_bsp#phantom-bsp) and nearly coplanar faces may fail to do so too.
 
 BSP switches do not cause fixed objects to resample lighting.
 

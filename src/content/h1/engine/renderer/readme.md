@@ -67,7 +67,7 @@ _Most_ of these issues have now been corrected in DX11 renderer in [H1A](~h1a) M
   * The bumped cubemap reflection type does not tint cubemaps. Perpendicular and parallel brightness do not take angle into account.
   * Some specular lighting may be missing, which makes dynamic lights appear smaller in radius (e.g. flashlight).
   * Bump map shadows are only visible when dynamic lights are nearby, but should be visible at all times using [lightmap data](~lightmaps) for light direction and tint.
-  * The "normal" _type_ may<sup>(unconfirmed)</sup> incorrectly mask primary and secondary detail maps when an alpha is present in the base map, visible in b40 exterior tech wall.
+  * The "normal" _type_ may incorrectly mask primary and secondary detail maps when an alpha is present in the base map, visible in b40 exterior tech wall.
 
 # Limits
 {% figure src="max-light-surfaces.jpg" %}
