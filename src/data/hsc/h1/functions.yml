@@ -2374,7 +2374,9 @@ functions:
         ```hsc
         (<long> game_time)
         ```
-        Gets ticks elapsed since the start of the game
+        Gets ticks elapsed since the start of the game (when the map loaded).
+        This is not authoritative game time in the case of multiplayer since
+        clients can join at different times.
   - slug: game_variant
     info:
       en: |-

@@ -33,6 +33,10 @@ type_defs:
       - name: impact_melee_attaches_to_unit
       - name: impact_melee_dies_on_shields
       - name: cannot_open_doors_automatically
+        comments:
+          en: |
+            Disables a biped's ability to [automatically open doors](~device_machine#automatic-doors).
+            Does not apply to vehicles, which cannot automatically open doors.
       - name: melee_attackers_cannot_attach
       - name: not_instantly_killed_by_melee
         comments:

@@ -120,6 +120,14 @@ type_defs:
         type: float
         meta:
           unit: world units
+        comments:
+          en: |-
+            This sets the activation radius for [automatic doors](~device_machine#automatic-doors).
+            The device must be a [device_machine](~) which
+            [operates automatically](~scenario#tag-field-machines-machine-flags-does-not-operate-automatically)
+            and has ["door" machine type](~device_machine#tag-field-machine-type-door).
+            If this value is 0 or negative, the [object bounding radius](~object#tag-field-bounding-radius)
+            is used instead. This field is known not to be used for any other purposes.
       - type: pad
         size: 84
       - name: inverse_power_acceleration_time

@@ -495,7 +495,14 @@ type_defs:
     size: 4
     bits:
       - name: does_not_operate_automatically
+        comments:
+          en: |-
+            Disables the [automatic door](~device_machine#automatic-doors) feature.
       - name: one_sided
+        comments:
+          en: |-
+            Prevents allies from [automatically opening](~device_machine#automatic-doors)
+            a door when on its "forward" side. May have other effects.
       - name: never_appears_locked
       - name: opened_by_melee_attack
   ScenarioMachine:

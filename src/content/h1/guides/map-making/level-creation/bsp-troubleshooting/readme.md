@@ -7,7 +7,7 @@ related:
 thanks:
   Hari: Reverse engineering the cause of T-junction warnings
   EmmanuelCD: Subcluster limits
-  Kornman: Theorizing cause of floating point precision differences in MCC-era tools.
+  kornman00: Theorizing cause of floating point precision differences in MCC-era tools.
   Conscars: Documenting various problems and solutions
 ---
 When compiling a level's [structure BSP](~scenario_structure_bsp) using [Tool](~h1a-tool#structure-compilation) you may encounter warnings or errors in Tool's output indicating problems with your model, for example:
