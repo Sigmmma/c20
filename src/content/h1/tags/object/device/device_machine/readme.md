@@ -22,7 +22,7 @@ If the tag's [_automatic activation radius_](~device#tag-field-automatic-activat
 
 * Is alive,
 * Doesn't have the [_cannot open doors automatically_](~unit/#tag-field-unit-flags-cannot-open-doors-automatically) flag set,
-* Is not on a team friendly to the player and on the forward side of a [one-sided door](~scenario#tag-field-machines-machine-flags-one-sided) in the fully closed position.
+* Is not an ally to the player standing on the forward side of a [one-sided door](~scenario#tag-field-machines-machine-flags-one-sided) in the fully closed position.
 
 If one of these bipeds passes all the conditions, the device group desired position will be set to 1 which opens the door. 
 
