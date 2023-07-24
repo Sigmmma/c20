@@ -1109,6 +1109,12 @@ type_defs:
           hek_max_count: 64
       - name: sound_pas_data
         type: TagDataOffset
+        comments:
+          en: |
+            Contains the [_potentially audible set_](#potentially-audible-set)
+            (PAS) data. Similar to the PVS with visibility, this encodes which
+            clusters can potentially hear sounds from other clusters.
+            Custom Edition doesn't make use of this data but H1A does.
       - type: pad
         size: 24
       - name: markers
