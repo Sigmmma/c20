@@ -7,7 +7,7 @@ info: |
   * Release date: September 2022
   * [Report issues](JIF_ISSUE_URL)
 ---
-The **Halo Reach Editing Kit** (**HREK**) is the official set of tools for creating custom content for the MCC version of Halo Reach. Like the other officla mod tools, it is ultimately based on the old internal tools used by Bungie during the development of Halo Reach, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
+The **Halo Reach Editing Kit** (**HREK**) is the official set of tools for creating custom content for the MCC version of Halo Reach. Like the other officlal mod tools, it is based on the old internal tools used by Bungie during the development of Halo Reach, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
 
 Compared to H3, [Foundation](~hr-foundation) takes the place of [Guerilla](~h3-guerilla) as the kit's tag editor with a completely new UI that makes it easier than ever before to create and modify tags. Another major difference is the introduction of GR2 (Granny) files as the new intermediate model format, replacing [ASS](~) and [JMS](~).
 

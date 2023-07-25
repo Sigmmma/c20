@@ -15,7 +15,7 @@ keywords:
   - odst
 ---
 The **Halo 3 ODST Editing Kit** (**H3ODSTEK**) is the official set of tools for creating custom content for the MCC version of Halo 3 ODST. It was first released by 343 Industries alongside the latest update as of March 2022.
-Similarly to the mod tools for Halo 1, 2, and 3 it is ultimately based on the old internal tools used by Bungie during the development of Halo 3, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
+Similarly to the other mod tools, it is based on the old internal tools used by Bungie during the development of Halo 3, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
 
 Unlike the [H1A-EK](~) you ***do*** need to own [Halo 3 ODST on Steam][steam_purchase] to gain access to the toolkit.
 
@@ -127,10 +127,7 @@ Naturally there is multitude of changes compared to H2 as the engine underwent a
 # Known issues
 
 * Resource sharing is currently not supported.
-* Halo 3 ODST custom maps require that EAC is turned off to load
-* Halo 3 ODST custom maps requires that the map info matches the map it is replacing to load. This means having the same campaign and map ID. These values can be found at the top of the scenario tag.
 * Single threaded lightmapping is not supported, you need to use the multi-process solution. This can be run with only a single client if only using one core is desired.
-* Sound playback and sound importing require the FSB files that come with MCC in order to function. Copy the FSB files from your Halo 3 ODST MCC install.
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
 * Lipsync won't be generated when importing sounds that use a multilingual sound class such as unit_dialog as third party tools are required.
 
