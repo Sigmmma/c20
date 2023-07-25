@@ -825,10 +825,10 @@ Imports a single sound file
 
 ```sh
 #  sound-single <source-file> <type> [-bank:suffix-where-suffix-is-a-fmod-bank-suffix-(optional)]
-tool sound-multi-layer "sound_test\aiff" projectile_impact sfx
+tool sound-single "sound_test\sound_file.aiff" projectile_impact sfx
 ```
 
-* source-file - A local data path to the root of a directory containing sound files. Supported extensions are WAV saved as 16 bit PCM and AIFF.
+* source-file - A local data path to the sound file with extension. Supported extensions are WAV saved as 16 bit PCM and AIFF.
 * type - Set the sound class
 * bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
 
