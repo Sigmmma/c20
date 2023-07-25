@@ -15,7 +15,7 @@ keywords:
   - h3ek
 ---
 The **Halo 3 Editing Kit** (**H3EK**) is the official set of tools for creating custom content for the MCC version of Halo 3. It was first released by 343 Industries alongside MCC Season 8.
-Similarly to the other mod tools, it is ultimately based on the old internal tools used by Bungie during the development of Halo 3, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
+Similarly to the other mod tools, it is based on the old internal tools used by Bungie during the development of Halo 3, with modifications made during the porting of the game to MCC and some changes to make them more user-friendly.
 
 Unlike the [H1A-EK](~) you ***do*** need to own [Halo 3 on Steam][steam_purchase] to gain access to the toolkit.
 
