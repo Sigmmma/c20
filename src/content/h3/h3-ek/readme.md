@@ -174,10 +174,7 @@ Naturally there is multitude of changes compared to H2 as the engine underwent a
 # Known issues
 
 * Resource sharing is currently not supported.
-* Halo 3 custom maps require that EAC is turned off to load
-* Halo 3 custom maps requires that the map info matches the map it is replacing to load. This means having the same campaign and map ID. These values can be found at the top of the scenario tag.
 * Single threaded lightmapping is not supported, you need to use the multi-process solution. This can be run with only a single client if only using one core is desired.
-* Sound playback and sound importing require the FSB files that come with MCC in order to function. Copy the FSB files from your Halo 3 MCC install.
 * Guerilla uses red text and greyed out folders for all tags - this doesn't mean there is something wrong with your tags it's just a graphical issue.
 * Lipsync won't be generated when importing sounds that use a multilingual sound class such as unit_dialog as third party tools are required.
 * Forging objects while using the Standalone client will cause a crash. A workaround is to use the main menu to launch Forge from the lobby.
