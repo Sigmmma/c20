@@ -77,7 +77,10 @@ This format is 50% the size of a 32-bit bitmap. This format has a few different 
 As the biggest size for bitmap formats 32-bit (Also referred to as true color) bitmaps store their colors at the same settings as most consumer monitors. The internal formats are a8r8g8b8 and x8r8g8b8, the only difference between these is that in x8r8g8b8 the 8 bits that would store the alpha in a8r8g8b8 are ignored.
 
 ## Monochrome
-using 25% of the size of a 32-bit bitmap this format was mainly used for huds in the xbox version of the game. Sadly this format does not function properly anymore on the PC version and Custom Edition of the game.
+Using 25% of the size of a 32-bit bitmap this format was mainly used for huds in the xbox version of the game. This format does not function properly anymore on the PC version and Custom Edition of the game, but does work again in MCC.
+
+## High-quality compression
+This is a new format (BC7) added to H1A MCC in 2023 which provides both high quality and good compression. You can read more about BC7 [here][bc7].
 
 ## Notes
 When importing TIF file using tool with the format set to a compressed one tool might make the bitmap it outputs more noisy than it needs to be. It is speculated that this is because of a broken DXT toolkit being used in tool. Using other programs like Mozzarilla you can import DXT1,2,3 at higher qualities without increasing memory footprint.
@@ -131,13 +134,11 @@ _NOTE: Having multiple cube maps in one bitmap does not randomize them._
 
 |Unfolded|Sprite Sequence|Multiple in one tag|
 |--------|------------|-------------------|
-<img src="bitmap_cubemap_swamp.jpg" width="200">|<img src="bitmap_cubemap_beach.jpg" width="200"><br><br><img src="bitmap_cubemap_grunt.jpg" width="200">|<img src="bitmap_cubemap_elite_multiple.jpg" width="200">|
+![](bitmap_cubemap_swamp.jpg)|![](bitmap_cubemap_beach.jpg)![](bitmap_cubemap_grunt.jpg)|![](bitmap_cubemap_elite_multiple.jpg)|
 
 # Sprites
 
-<img src="bitmap_sprites_source_vs_tag.jpg" width="600">
-
-The sprite type allows a bitmap to contain a non-power-of-two texture, with support for animations with multiple permutations (sequences). Sprites are typically used for particles.
+![](bitmap_sprites_source_vs_tag.jpg "The sprite type allows a bitmap to contain a non-power-of-two texture, with support for animations with multiple permutations (sequences). Sprites are typically used for particles.")
 
 ## Color Plate
 
@@ -159,9 +160,7 @@ Any amount of padding may be used as long as the sprite is isolated by at least 
 
 ## Budget
 
-<img src="bitmap_sprites_budget_utilisation.png" width="400">
-
-Budget size determines how big each texture page is (and thus how many sprites will appear on each page). Budget count sets how many texture pages there will be. Both of these values should be set for sprites.
+![](bitmap_sprites_budget_utilisation.png "Budget size determines how big each texture page is (and thus how many sprites will appear on each page). Budget count sets how many texture pages there will be. Both of these values should be set for sprites.")
 
 When compiling a bitmap, tool will output how many pages were generated and the percentage of space filled by the sprites. Budget size and count should be tweaked to get this percentage as high as possible, as unused space is wasted memory.
 
@@ -170,9 +169,7 @@ Budget sizes are limited to "square" dimensions like 256x256 and 512x512. Becaus
 _NOTE: Tool automatically uses at least 4 pixels of padding between each sprite. (This is so that there will always be at least one pixel of space between different sprites in all mipmaps, as tool also uses a default mipmap count of 2 for these. 4 -> 2 -> 1.) This means four 32x32 sprites will for instance not fit on a 64x64 page. Make sure to take this into account when choosing a budget size!_
 
 ## Sequences
-<img src="bitmap_sprite_sequences.png" width="200">
-
-A sprite sheet with multiple sequences. Frames are lined up horizontally, and permutations are stacked vertically. Note the magenta line separating each sequence. A sequence is an animated sprite. Each sprite in a sequence represents a "frame" of the sprite's animation. A bitmap may contain multiple sequences, which allows for random and forced permutations. Each frame of a sequence is lined up left-to-right. Each sequence permutation is stacked vertically, top-to-bottom.
+![](bitmap_sprite_sequences.png "A sprite sheet with multiple sequences. Frames are lined up horizontally, and permutations are stacked vertically. Note the magenta line separating each sequence. A sequence is an animated sprite. Each sprite in a sequence represents a \"frame\" of the sprite's animation. A bitmap may contain multiple sequences, which allows for random and forced permutations. Each frame of a sequence is lined up left-to-right. Each sequence permutation is stacked vertically, top-to-bottom.")
 
 If the source file has more than one sequence, each sequence should also have a sequence divider above it. A sequence divider is a straight line of solid color (using the color plate's second pixel's color) at least one pixel wide that spans the entire width of the image. The divider must be a different color than the sprite border. The sequence divider may be left out if the file only has one sequence or if it has no color plate.
 
@@ -185,9 +182,7 @@ _NOTE: Tool will sometimes split a sequence across several pages. This does not 
 _QUIRK: Only the start of a sequence divider needs to be the color defined on the color plate. After that it can be any color, or could even just end prematurely._
 
 ## Dummy Space
-<img src="bitmap_sprite_dummy_space.png" width="400">
-
-Space usage on a sprite with dummy space vs without
+![](bitmap_sprite_dummy_space.png "Space usage on a sprite with dummy space vs without.")
 
 Dummy space is space that is counted toward the size and position of your sprite, but not included in the data of the sprite in the bitmap. This is useful for two reasons: It allows a sprite that's smaller than other sprites in a sequence, and it tells tool how to center the smaller sprite without bulking up the file size with padding. Dummy space must be a solid color that is different from the sprite border and sequence separator colors.
 
@@ -209,11 +204,10 @@ Under "miscellaneous" there is a setting for how many mipmaps you want in your b
 Errors that are known and suggestions on how to fix them.
 ## --> !!WARNING!! failed to open TIFF: file does not exist <--
 
-- Cause<sup>1</sup>: The file is not where you told tool it is
-- Fix<sup>1</sup>: Make sure the file is somewhere in data or a subfolder and check your spelling of the path.
-- Cause<sup>2</sup>: The file is a TIFF file and not a TIF file
-- Fix<sup>2</sup>: save as a .TIF file
-- Info<sup>2</sup>: Tool doesn't understand .TIFF for some reason, but it does understand TIF.
+| Cause | Fix
+|-------|------
+| The file is not where you told tool it is | Make sure the file is somewhere in data or a subfolder and check your spelling of the path.
+| The file is a TIFF file and not a TIF file | save as a .TIF file; legacy Tool doesn't understand .TIFF for some reason, but it does understand TIF. No longer true in MCC Tool.
 
 ## Unknown data compression algoritm # (0x#). --> !!WARNING!! failed to open TIFF: not a TIFF file <--
 - Cause: Your TIF file might be using a new algoritm that is not supported by tool
@@ -226,19 +220,19 @@ Errors that are known and suggestions on how to fix them.
 - Alternative fix: If you are intending to make a sprite sheet or an interface bitmap, ignore this and set the type to the correct value in the .bitmap file, save, and put in the tool command again.
 
 ## ### ERROR can't extract sprites without a valid plate
-- Cause:<sup>1</sup> You didn't add the three color plate pixels in the top-left corner of the source file.
-- Fix<sup>1</sup>: Add the color plate
-- Cause<sup>2</sup>: You have bitmaps of different size in a sequence.
-- Fix<sup>2</sup>: Use dummy space to pad the smaller sprites to match the bigger ones.
-- Cause<sup>3</sup>: One of your sprites is touching the plate.
-- Fix<sup>3</sup>: Move the sprite away from the plate by at least one pixel.
+
+| Cause | Fix
+|-------|------
+| You didn't add the three color plate pixels in the top-left corner of the source file. | Add the color plate
+| You have bitmaps of different size in a sequence. | Use dummy space to pad the smaller sprites to match the bigger ones.
+| One of your sprites is touching the plate. | Move the sprite away from the plate by at least one pixel.
 
 ## ### ERROR one or more sprites do not fit in the requested page size
-- Cause<sup>1</sup>: The sprite page is too small to contain the sprite sheet.
-- Effect<sup>1</sup>: Not all bitmaps are processed if any.
-- Fix<sup>1</sup>: Set a bigger page size in the bitmap tag.
-- Cause<sup>2</sup>: A sequence divider has been interpreted as a sprite.
-- Fix<sup>2</sup>: Make sure your plate pixel that indicates the color of the dividers has the exact same color as the dividers.
+
+| Cause | Fix
+|-------|------
+| The sprite page is too small to contain the sprite sheet; not all bitmaps are processed if any. | Set a bigger page size in the bitmap tag.
+| A sequence divider has been interpreted as a sprite. | Make sure your plate pixel that indicates the color of the dividers has the exact same color as the dividers.
 
  _Reminder: Every sprite is padded with 4 pixels on each border, so while your sprites may fit in theory, they may not in practice._
 
@@ -258,3 +252,5 @@ Errors that are known and suggestions on how to fix them.
 # Structure and fields
 
 {% tagStruct "h1/bitmap" /%}
+
+[bc7]: https://learn.microsoft.com/en-us/windows/win32/direct3d11/bc7-format

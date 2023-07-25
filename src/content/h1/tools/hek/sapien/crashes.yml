@@ -10,7 +10,8 @@ crashes:
       This is probably not an issue with your tags, but rather Sapien failing to
       initialize its sound system (perhaps after device changes or system sleep).
       Restart your system or put `sound_enable 0` into Sapien's `editor_init.txt`
-      if you don't need to hear sounds in Sapien for now.
+      if you don't need to hear sounds in Sapien for now. Also ensure you don't
+      have any scripts setting `sound_set_music_gain` over 1.
   - error: >-
       \halopc\haloce\source\rasterizer\dx9\rasterizer_dx9_hardware_bitmaps.c(148): E_OUTOFMEMORY in IDirect3DDevice9_CreateTexture(global_d3d_device, width, height, bitmap->mipmap_count+1-mip_levels_to_drop, 0, rasterizer_bitmap_format_table[bitmap->format], D3DPOOL_MANAGED, &(IDirect3DTexture9*)bitmap->hardware_format, NULL) (code=-2147024882, error=<can't get description>)
     solution: >-
@@ -47,3 +48,7 @@ crashes:
       EXCEPTION halt in objects.c,#2419: got an object type we didn't expect (expected one of 0x00000001 but got #1).
     solution: >-
       Attempted to take over a unit in recording mode while no unit was selected. Make sure to select a unit first.
+  - error: >-
+      EXCEPTION halt in \halopc\haloce\source\tag_files\tag_groups.c,#3142: offset>=0 && offset+size<=data->size
+    solution: >-
+      You may have a corrupted [sound](~) tag which was extracted with [HEK+](~hek-plus). Always use [invader-extract](~) instead.

@@ -19,6 +19,7 @@ thanks:
   Galap: Researching the effect of cluster sky index on lighting
   Hari: Collision BSP compilation reversing
   Kavawuvi: Invader tag definitions
+  Ifafudafi: Discovering that PAS data is unused in H1CE
 ---
 The **scenario structure BSP** tag, commonly just called the **BSP**, contains level geometry, weather data, material assignments, AI pathfinding information, [lightmaps](~), and other data structures. You can think of the BSP as the "stage" where the game takes place [objects](~object) are placed within it. Aside from sounds and [bitmaps](~bitmap), the BSP tends to be one of the largest tags in a map. Singleplayer [scenarios](~scenario) often use multiple BSPs which are switched between at loading zones.
 
@@ -67,9 +68,14 @@ An indoor cluster is one where none of its potentially visible clusters are outd
 When the game transitions between indoor and outdoor clusters the fog colour fades based on cumulative camera movement, not time. This effect can be seen easily in Danger Canyon: load it in [Sapien](~h1a-sapien) and fly the camera through the hallways while `debug_pvs 1` and `rasterizer_wireframe 1` are enabled.
 
 # Potentially visible set
-The _potentially visible set_ data (PVS) is precomputed when a BSP is compiled and helps the engine determine which [clusters](#clusters-and-cluster-data) are visible from each other. A cluster can "see" any other cluster behind portals visible from itself plus one level of clusters further. Any clusters beyond that will not be rendered.
+The _potentially visible set_ (PVS) data is precomputed when a BSP is compiled and helps the engine determine which [clusters](#clusters-and-cluster-data) are likely visible from each other. A cluster can "see" any other cluster behind portals visible from itself plus one level of clusters further. Any clusters beyond that will not be rendered.
 
 Tool also takes into account the indoor sky's [_indoor fog opaque distance_](~sky#tag-field-outdoor-fog-opaque-distance) and [_indoor fog maximum density_](~sky#tag-field-indoor-fog-maximum-density) when computing the PVS. If the density is `1.0` (fully opaque) then Tool knows that indoor clusters cannot see beyond the opaque distance even if there are clusters within a line of sight. Tool logs the indoor maximum world units when the BSP is compiled (if there a sky referenced).
+
+In addition to using the static PVS, the game may dynamically cull objects and parts of clusters using [portal frustums](~scripting#external-globals-debug-no-frustum-clip).
+
+# Potentially audible set
+Like the PVS, the [_potentially audible set_](#tag-field-sound-pas-data) (PAS) data encodes which clusters can hear sounds from other clusters. This allows the engine to cull sounds without having to perform a costlier [obstruction check](~sound-system#sound-obstruction). It is unknown what criteria make clusters potentially audible.
 
 # Fog planes
 Areas of a map which need a fog layer can be marked using _fog planes_. These are 2D surfaces which reference [fog tags](~fog), not to be confused with atmospheric fog which is part of the [sky tag](~sky). 
@@ -101,7 +107,7 @@ _See main page: [Lightmaps](~)._
 In a10, lens flare markers were generated for fluorescent lights
 {% /figure %}
 
-When a [shader_environment](~) references a [lens_flare](~), _lens flare markers_ are automatically created and stored in the BSP tag during initial [structure compilation](~tool#structure-compilation) or updated with [structure-lens-flares](~tool#structure-lens-flares). These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface<sup>(how?)</sup>. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
+When a [shader_environment](~) references a [lens_flare](~), _lens flare markers_ are automatically created and stored in the BSP tag during initial [structure compilation](~tool#structure-compilation) or updated with [structure-lens-flares](~tool#structure-lens-flares). These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
 
 A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens flares. However, there is a much lower limit to how many the game will draw at a given time, exactly how many is unknown.
 
@@ -112,14 +118,14 @@ A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens fl
 Danger Canyon contains at least two prevalent cases of phantom BSP. The Warthog and bullets are both colliding with invisible extensions of nearby surfaces.
 {% /figure %}
 
-Phantom BSP is a collision artifact sometimes produced when compiling BSPs. It manifests itself as invisible surfaces which projectiles and vehicles collide with (but not players), and mostly appears around sharp corners near cases of "nearly coplanar faces" warnings in your [WRL file](~wrl).
+Phantom BSP is a collision artifact sometimes produced when compiling BSPs. It manifests itself as invisible surfaces which projectiles and vehicles collide with (but not players), and mostly appears around sharp corners near cases of ["nearly coplanar faces"](~bsp-troubleshooting#warning-nearly-coplanar-faces-red-and-green) warnings in your [WRL file](~wrl). It can also cause objects above the problem area to fall back to [BSP default lighting](~object#shadows-and-lighting).
 
 Bungie was aware of this artifact and implemented a feature to help spot it (`collision_debug_phantom_bsp 1` in [Sapien](~h1a-sapien) or [Standalone](~h1a-standalone-build)). If you find phantom BSP in your map, there are a few steps you can take to resolve it:
 
 1. Preemptively, keep your geometry simple and robust without an abundance of dense, complex, or spiky shapes. Flat surfaces like floors and walls should be kept as flat as possible by using alignment tools when modeling rather than "eyeballing it".
 2. Fix any "nearly coplanar" warnings in your source model by scaling affected faces to 0 along their normal axis or using alignment. Since Tool slightly rounds vertex coordinates when compiling BSPs, sometimes this warning cannot be resolved for surfaces which are not axis-aligned.
-2. There is an element of chance to phantom BSP appearing which depends on how your geometry is recursively subdivided form a BSP tree. Modifying unrelated parts of your level like adding portals or moving vertices can sometimes affect how the level is subdivided and make phantom BSP disappear.
-3. Using [phantom_tool](~) or H1A Tool's [fix-phantom-bsp option](~h1a-tool#phantom-bsp-fix) to compile your BSP will prevent phantom BSP at the cost of slightly increasing the tag size.
+2. There is an element of chance to phantom BSP appearing which depends on how your geometry is recursively subdivided to form a BSP tree. Modifying unrelated parts of your level like adding portals or moving vertices can sometimes affect how the level is subdivided and make phantom BSP disappear or appear in new places.
+3. Using [phantom_tool](~) or H1A Tool's [fix-phantom-bsp option](~h1a-tool#phantom-bsp-fix) to compile your BSP will prevent phantom BSP at the cost of slightly increasing the tag size. There have been reports that this may not resolve all phantom BSP.
 4. If you do not have access to source JMS, and are trying to fix a BSP tag, the tool [Ghostbuster](~) may fix it but has known issues.
 
 On a technical level, cases of phantom BSP are [dividing planes](#tag-field-collision-bsp-bsp3d-nodes-plane) where a child index is `-1`, but the space on that side of the plane is not actually _completely_ outside the level. The artifact is bounded by all parent dividing planes.

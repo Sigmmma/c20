@@ -20,7 +20,7 @@ Gearbox-era Halo uses the DirectX 9 API and shader version 2.0, being an early a
 Current versions of H1A use DirectX 11 instead.
 
 # Texture cache
-Textures to be rendered are loaded in a texture cache in memory. When a texture must be drawn that is not in this cache, it will be loaded from a [map cache file](~map) (possibly a shared resource map) or the [tags directory](~tags) depending on the build of the engine. This is called a _cache miss_ and, because it takes some time to stream data, the engine may not render the desired effect. This is the reason why weapons will sometimes not produce projectile [decals](~decal) on the first impact.
+Textures to be rendered are loaded in a texture cache in memory. When a texture must be drawn that is not in this cache, it will be loaded from a [map cache file](~map) (possibly a shared resource map) or the [tags directory](~tags) depending on the [build type](~build-types#tag) of the engine. This is called a _cache miss_ and, because it takes some time to stream data, the engine may not render the desired effect. This is the reason why weapons will sometimes not produce projectile [decals](~decal) on the first impact.
 
 The [predicted resources](~scenario#tag-field-predicted-resources) block seen in some tag classes are meant to give the engine a hint about what textures (and sounds) should be cached.
 
@@ -67,7 +67,7 @@ _Most_ of these issues have now been corrected in DX11 renderer in [H1A](~h1a) M
   * The bumped cubemap reflection type does not tint cubemaps. Perpendicular and parallel brightness do not take angle into account.
   * Some specular lighting may be missing, which makes dynamic lights appear smaller in radius (e.g. flashlight).
   * Bump map shadows are only visible when dynamic lights are nearby, but should be visible at all times using [lightmap data](~lightmaps) for light direction and tint.
-  * The "normal" _type_ may<sup>(unconfirmed)</sup> incorrectly mask primary and secondary detail maps when an alpha is present in the base map, visible in b40 exterior tech wall.
+  * The "normal" _type_ may incorrectly mask primary and secondary detail maps when an alpha is present in the base map, visible in b40 exterior tech wall.
 
 # Limits
 {% figure src="max-light-surfaces.jpg" %}

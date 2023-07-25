@@ -34,14 +34,13 @@ Resources are loaded from individual files stored on disk that can be edited usi
 
 Resources are loaded from cache files (sometimes referred to as "maps" because of their extension), these can't be easily edited and only go through minimal validation.
 
-
 # Optimization options
 
 Halo games in MCC support multiple levels of optimization depending on what features are needed, in decreasing order of optimization:
 
 1. **release**: Used for the MCC itself and has minimal checks, no error logging and maximum optimizations. Invalid data will either be ignored or crash the engine.
 2. **profile**: More or less the same as `release` but with some extra debug code.
-3. **play**: Includes error logging and most [assertions](https://en.wikipedia.org/wiki/Assertion_(software_development)). Optimizations are still enabled for this build type. Invalid data will usually result in an error or a fatal error.
+3. **play**: Includes error logging and most [assertions](https://en.wikipedia.org/wiki/Assertion_(software_development)). Optimizations are still enabled for this build type. Invalid data will usually result in an error or a fatal error. It is not recommended to use _sapien_play_ builds for editing scenarios with AI (non-MP), as it excludes some AI tools and editor functionality.
 4. **test**: Includes more error checking and has optimizations disabled. AI debugging code is included at this level in H1A (used to only be included in debug builds).
 5. **debug**: Includes full error checking and isn't optimized, this is used internally for development.
 

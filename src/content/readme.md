@@ -25,6 +25,34 @@ _Modding_ is the modification of a game by its fans in order to change existing 
 **This website is always a work in progress!** If you would like to contribute, see our [GitHub project](https://github.com/Sigmmma/c20#contributing).
 {% /alert %}
 
+
+# What's new?
+{% alert type="success" %}
+**July 2023 hotfix:** a followup to the major July 2023 update with better file override support and some game-specific fixes:
+* [Halo 1](~h1a-ek#july-2023-hotfix)
+* [Halo 2](~h2-ek#july-2023-hotfix)
+* [Halo 3 ODST](~h3odst-ek#july-2023-hotfix)
+* Font icon files added to the game's font folder will function as expected for all titles.
+* Shared.map and campaign.map overrides are now respected for all titles consistently.
+
+{% /alert %}
+
+{% alert type="info" %}
+**July 2023 tool updates:** over 150 new features and bug fixes across all modding tools!
+
+For details on each game:
+
+* [Halo 1](~h1a-ek#july-2023)
+* [Halo 2](~h2-ek#july-2023)
+* [Halo 3](~h3-ek#july-2023)
+* [Halo 3 ODST](~h3odst-ek#july-2023)
+* [Halo Reach](~hr-ek#july-2023)
+* [Halo 4](~h4-ek#july-2023)
+* [Halo 2 Anniversary MP](~h2amp-ek#july-2023)
+* [Excession](~excession#july-2023)
+
+{% /alert %}
+
 # Why mod Halo?
 Halo's 2001 engine is not as generalized as _Unity_, _Source_, _Creation Engine_, and _Unreal_, but this is actually a strength. Halo provides all the foundational game systems of a sandbox shooter, yet these systems are highly data-driven by [_tag_ assets](~h1/tags) which you create. No coding required!
 
@@ -33,7 +61,7 @@ Dip your toes in with simple modifications to existing maps, or build a complete
 Perhaps the best part is connecting with other creative, passionate fans. Knowledge sharing and collaborative work are staples of this community.
 
 # Getting started
-We cover [engine details](~h1/engine), the legacy 2003 [Halo Editing Kit](~hek) and its 2021 re-release the [H1A Editing Kit](~h1a-ek), community tools, and [guides](~) for custom content creation.
+We cover [engine details](~h1/engine), the legacy 2003 [Halo Editing Kit](~hek) and its 2021 re-release the [H1A Editing Kit](~h1a-ek), community tools, and [guides](~h1/guides) for custom content creation.
 
 Less in-depth but we hope still useful information is included for the legacy 2007 [Halo 2 Vista Editing Kit](~h2v-ek), its 2021 MCC re-release the [Halo 2 Editing Kit](~h2-ek) as well as the [Halo 3 Editing Kit](~h3-ek) that was first publicly released in 2021.
 

@@ -57,7 +57,7 @@ hashFlash();
 const themes: {name: string, syntax: string, icon: IconName}[] = [
   {name: "dark", syntax: "/assets/night-owl.css", icon: "moon"},
   {name: "light", syntax: "/assets/github.css", icon: "sun"},
-  {name: "holiday", syntax: "/assets/night-owl.css", icon: "gift"},
+  // {name: "holiday", syntax: "/assets/night-owl.css", icon: "gift"},
 ];
 const themeMount = document.getElementById("theme-mountpoint");
 const savedTheme = window.localStorage.getItem("theme") ?? "dark";

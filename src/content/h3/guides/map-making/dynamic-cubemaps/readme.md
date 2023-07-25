@@ -1,5 +1,5 @@
 ---
-title: Halo 3 Dynamic Cubemaps Guide
+title: Halo 3 dynamic cubemaps guide
 keywords:
   - cubemaps
   - halo 3 cubemaps
@@ -12,13 +12,13 @@ thanks:
 
 # Introduction
 
-Halo 3 introduced a **Dynamic Cubemap** system in conjunction with **Dynamic Environment Mapping** which allows you to place down points in a level where cubemaps should be generated, this allows any objects, and map geometry their shaders to display reflections based on where those cubemap points were placed.
+Halo 3 introduced a **dynamic cubemap** system in conjunction with **dynamic environment mapping** which allows you to place down points in a level where cubemaps should be generated, this allows any objects, and map geometry their shaders to display reflections based on where those cubemap points were placed.
 
 For objects, the cubemap changes depending on which point you're closest to.
-For Level geometry, the cubemap that gets used is determined by which cubemap point is inside of the current cluster.
+For level geometry, the cubemap that gets used is determined by which cubemap point is inside of the current cluster.
 
 {% alert %}
-For shaders to display dynamic cubemaps, you must set the ***environment_mapping*** option at the top of the shader tag to ***dynamic***. Otherwise it'll display the default cubemap
+For shaders to display dynamic cubemaps, you must set the ***environment_mapping*** option at the top of the shader tag to ***dynamic***. Otherwise it'll display the default cubemap.
 {% /alert %}
 
 ![](A.png "A Covenant environment with cubemaps disabled, no reflections.")
@@ -26,62 +26,68 @@ For shaders to display dynamic cubemaps, you must set the ***environment_mapping
 
 # Setup
 
-## Placing Cubemap Points
-Cubemap point placement is done through Sapien, to place down points you will need to navigate to Scenario > Structure Data and click on the Cubemaps folder in the **Hierarchy View** window, once inside you should now be able to right click inside of the Game Window and place down Cubemap points which will then appear in the Hiearchy View.
-![](C.png "A cubemap point which has been placed down")
+## Placing cubemap points
+Cubemap point placement is done through Sapien, to place down points you will need to navigate to _Scenario > Structure Data_ and click on the _Cubemaps_ folder in the **_Hierarchy view_** window, once inside you should now be able to right click inside of the _Game window_ and place down cubemap points which will then appear in the _Hierarchy view_.
 
-### Cubemap Resolution
-By default any placed Cubemap points will be 16x16 in resolution, but you can change that by clicking the Cubemap point in either the **Hierarchy View** window or the **Game window** and changing the `cubemap resolution` option in the **Properties palette** window.
+![](C.png "A cubemap point which has been placed down.")
+
+### Cubemap resolution
+By default any placed cubemap points will be 16x16 in resolution, but you can change that by clicking the cubemap point in either the _Hierarchy view_ window or the _Game window_ and changing the **_cubemap resolution_** option in the **_Properties palette_** window.
 ![](D.png "")
 
 {% alert %}
 Higher Resolutions will result in clearer, more visible reflections but will negatively impact the size of the cubemaps bitmap tag and in turn, the compiled cache file.
 {% /alert %}
 
-## Generatng Cubemaps
-We can now move on to generating the cubemaps, to do this it's recommended you use **Tag Test** (halo3_tag_test.exe) to generate the cubemaps.
+## Generating cubemaps
+We can now move on to generating the cubemaps. To do this it's recommended you use [Standalone](~h3-standalone-build) (halo3_tag_test.exe).
 
-If you're generating cubemaps for a Multiplayer level, use the following console commands in order:
-```
+If you're generating cubemaps for a multiplayer level, use the following console commands in order:
+
+```console
 game_multiplayer slayer
-game_start path\to\scenario\scenario (Replace the path to your actual .scenario tag WITHOUT the extension)
+; Replace with the path to your actual .scenario tag WITHOUT the extension:
+game_start path\to\scenario\scenario
 ```
-If you're generating cubemaps for a Campaign level, you will just need to run the `game_start` command using the same format as above.
+
+If you're generating cubemaps for a campaign level, you will only need to run the `game_start` command using the same format as above.
 
 When you're loaded in the level, open the console and run the following commands:
-```
+
+```console
 set terminal_render false
 set console_status_string_render false
 set events_debug_spam_render false
 error_geometry_hide_all
 ```
 
-This will ensure that no debug text is visible on screen as those will be visible during cubemap generation which we do not want. Finally, open the console once more and run the `cubemap_dynamic_generate` command and wait for it to finish.
+This will ensure that no debug text is visible on screen as those will be visible during cubemap generation which we do not want. Finally, open the console once more and run the [`cubemap_dynamic_generate`](~scripting#functions-cubemap-dynamic-generate) command and wait for it to finish.
 
-## Importing Cubemaps
+## Importing cubemaps
 ### Making the .bitmap tag
-We can now import our cubemaps into a .bitmap tag, to do so open a command prompt window in your **H3EK install folder** and run the `cubemaps` command with the first arguement pointing to your scenario tag **(without the .scenario extension)** and the second arguements pointing to the cubemaps folder in the root of your H3EK folder like so:
-```
+We can now import our cubemaps into a [bitmap](~) tag. To do so open a [command prompt](~command-line) window in your **H3EK install folder** and run the `tool cubemaps` command with the first arguement pointing to your scenario tag **(without the .scenario extension)** and the second arguements pointing to the cubemaps folder in the root of your H3EK folder like so:
+
+```sh
 tool cubemaps "path\to\scenario\scenario" "(H3EK Folder)\cubemaps"
 ```
 
 ![](E.png "")
 
-### Referencing the Cubemaps bitmap
-After all of that, we can finally reference our cubemaps bitmap to our level. To do so open **Guerilla** and open your level's **scenario tag** and look for the **Structure BSPs** block.
+### Referencing the cubemaps bitmap
+After all of that, we can finally reference our cubemaps bitmap to our level. Open your level's [scenario](~) tag with [Guerilla](~h3-guerilla) and look for the **_Structure BSPs_** block:
 ![](F.png "")
 
-Click on the **...** button next to `cubemap bitmap group reference` and navigate to the folder where your scenario is stored, the `cubemaps` command we ran earlier should have generated a bitmap tag that starts with your scenario's name, the BSP the cubemaps were taken in which ends with `_cubemaps`. 
+Click on the **...** button next to **_cubemap bitmap group reference_** and navigate to the folder where your scenario is stored. The `cubemaps` command we ran earlier should have generated a bitmap tag that includes your scenario's name, the BSP the cubemaps were taken in, and ends with `_cubemaps`.
 
-Since my scenario is named `test` and my bsp named `030_030`, my bitmap tag `test_030_030_cubemaps`
+For example with a scenario named `test` and a BSP named `030_030`, the bitmap bitmap tag would be `test_030_030_cubemaps.bitmap`:
 
 ![](G.png "")
 
 If you have multiple BSPs setup in your scenario, make sure to assign the correct cubemaps bitmap to each one.
 
-# End Result
+# End result
 
 After you've completed all steps, you should now have a level setup with dynamic cubemaps!
 
-![](H.png "Masterchief inside of a Covenant environment without dynamic cubemaps setup")
-![](J.png "Masterchief inside of a Covenant environment with dynamic cubemaps setup")
+![](H.png "Masterchief inside of a Covenant environment without dynamic cubemaps setup.")
+![](J.png "Masterchief inside of a Covenant environment with dynamic cubemaps setup.")

@@ -23,6 +23,24 @@ export async function loadYamlFile<T=any>(filePath: string): Promise<T> {
 
 type LoadTreeOpts = {flat?: boolean, nonRecursive?: boolean};
 
+export async function loadTextTree<T=object>(baseDir: string): Promise<T> {
+  let result = {};
+  const files = await findPaths(path.join(baseDir, "**/*.txt"));
+
+  await Promise.all(files.map(async (filePath) => {
+    try {
+      const fileText = await fs.promises.readFile(filePath, "utf8");
+      const {dir, name: moduleName} = path.parse(filePath);
+      const objectPath = [...path.relative(baseDir, dir).split(path.sep), moduleName].filter(part => part != "");
+      result = R.assocPath(objectPath, fileText, result);
+    } catch (e) {
+      throw new Error(`Failed to load YAML file ${filePath}:\n${e}`);
+    }
+  }));
+
+  return result as T;
+};
+
 export async function loadYamlTree<T=object>(baseDir: string, opts?: LoadTreeOpts): Promise<T> {
   let result = {};
   const files = await findPaths(path.join(baseDir, opts?.nonRecursive ? "*.yml" : "**/*.yml"));

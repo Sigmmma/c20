@@ -65,9 +65,22 @@ type_defs:
       - name: unused16
       - name: unused17
       - name: scripted_dialog_player
+        comments:
+          en: |
+            Causes non-dialog sounds to temporarily fade out while playing, controlled by `sound_gain_under_dialog`.
+            This sound class will not play when the player is dead,
+            regardless of how the sound was triggered.
       - name: scripted_effect
       - name: scripted_dialog_other
+        comments:
+          en: |
+            Causes non-dialog sounds to temporarily fade out while playing,
+            controlled by `sound_gain_under_dialog`.
       - name: scripted_dialog_force_unspatialized
+        comments:
+          en: |
+            Causes non-dialog sounds to temporarily fade out while playing,
+            controlled by `sound_gain_under_dialog`.
       - name: unused18
       - name: unused19
       - name: game_event

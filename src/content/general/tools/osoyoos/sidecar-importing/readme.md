@@ -73,6 +73,4 @@ The import Sidecars task is designed to handle all the tedious parts of importin
 
 # Example - Importing a Scenario into Reach
 
-TBD
-
-
+TODO

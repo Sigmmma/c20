@@ -10,6 +10,9 @@ type_defs:
     size: 2
     options:
       - name: door
+        comments:
+          en: |
+            Causes this machine to act like an automatic door.
       - name: platform
       - name: gear
   MachineFlags:
@@ -19,6 +22,11 @@ type_defs:
       - name: pathfinding_obstacle
       - name: but_not_when_open
       - name: elevator
+        comments:
+          en: |
+            [Object lighting](~object#shadows-and-lighting) samples the lightmap
+            near the object, rather than the ground point directly below it like
+            most objects do.
   MachineCollisionResponse:
     class: enum
     size: 2
@@ -48,6 +56,11 @@ type_defs:
         type: float
         meta:
           unit: seconds
+        comments:
+          en: |
+            Determines how long a door will stay open for once it has reached a
+            fully open position, even once [eligible bipeds](#automatic-doors)
+            have left the activation radius.
       - type: pad
         size: 80
       - name: collision_response
@@ -61,3 +74,10 @@ type_defs:
         meta:
           cache_only: true
         endianness: little
+        comments:
+          en: |
+            This value is derived from _door open time_ and is compared at
+            runtime to the number of ticks a door-typed machine has been fully
+            open. If the door has been open for more ticks than this value, its
+            desired device group position will be set to 0 causing the door to
+            begin closing.

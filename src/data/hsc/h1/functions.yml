@@ -1,4 +1,299 @@
 functions:
+  - slug: plus
+    info:
+      en: |
+        ```hsc
+        (<real> + <number(s)>)
+        (+ 5 6 7 8 9)
+        ; returns: 35
+        ```
+        Returns the sum of all specified expressions.
+    tags:
+      - math
+  - slug: minus
+    info:
+      en: |
+        ```hsc
+        (<real> - <number(s)>)
+        (- 10 5 1)
+        ; returns: 4
+        ```
+        Returns the first expression subtracted by all following expressions.
+    tags:
+      - math
+  - slug: mult
+    info:
+      en: |
+        ```hsc
+        (<real> * <number(s)>)
+        (* 5 5)
+        ; returns: 25
+        (* 5.5 6)
+        ; returns: 33
+        ```
+        Returns the product of all specified expressions.
+    tags:
+      - math
+  - slug: div
+    info:
+      en: |
+        ```hsc
+        (<real> / <number> <number>)
+        (/ 10 5)
+        ; returns: 2
+        (/ 2.5 2)
+        ; returns: 1.25
+        ```
+        Returns the quotient of two expressions.
+    tags:
+      - math
+  - slug: eq
+    info:
+      en: |
+        ```hsc
+        (<boolean> = <expression> <expression>)
+        (= (hud_get_timer_ticks) 0)
+        ```
+        Returns true if two expressions are equal.
+    tags:
+      - comp
+  - slug: ne
+    info:
+      en: |
+        ```hsc
+        (<boolean> != <expression> <expression>)
+        (!= (hud_get_timer_ticks) 0)
+        ```
+        Returns true if two expressions are not equal.
+    tags:
+      - comp
+  - slug: gt
+    info:
+      en: |
+        ```hsc
+        (<boolean> > <number> <number>)
+        (> 10 5)
+        ; returns: true
+        (> 5 10)
+        ; returns: false
+        ```
+        Returns true if the first number is larger than the second.
+    tags:
+      - comp
+  - slug: lt
+    info:
+      en: |
+        ```hsc
+        (<boolean> < <number> <number>)
+        (> 4 8)
+        ; returns: true
+        (> 8 4)
+        ; returns: false
+        ```
+        Returns true if the first number is smaller than the second.
+    tags:
+      - comp
+  - slug: ge
+    info:
+      en: |
+        ```hsc
+        (<boolean> >= <number> <number>)
+        (>= 10 10)
+        ; returns: true
+        (>= 5 10)
+        ; returns: false
+        ```
+        Returns true if the first number is larger than or equal to the second.
+    tags:
+      - comp
+  - slug: le
+    info:
+      en: |
+        ```hsc
+        (<boolean> <= <number> <number>)
+        (<= 4 4)
+        ; returns: true
+        (<= 8 4)
+        ; returns: false
+        ```
+        Returns true if the first number is smaller than or equal to the second.
+    tags:
+      - comp
+  - slug: and
+    info:
+      en: |
+        ```hsc
+        (<boolean> and <boolean(s)>)
+        (and (player_action_test_action) (= 1 (list_count (players))))
+        ```
+        Returns true if all specified expressions are true. This function is
+        _short circuiting_, meaning it will not evaluate subsequent expressions
+        if a a prior one evaluates to `false`.
+    tags:
+      - logic
+  - slug: begin
+    info:
+      en: |
+        ```hsc
+        (<passthrough> begin <expression(s)>)
+        (begin
+          (something)
+          (something_else)
+          20
+        )
+        ; returns: 20
+        ```
+        Returns the last expression in a sequence after evaluating the
+        sequence in order.
+    tags:
+      - control
+  - slug: begin_random
+    info:
+      en: |
+        ```hsc
+        (<passthrough> begin_random <expression(s))
+        ```
+        Evaluates the sequence of expressions in random order and returns the
+        last value evaluated. This function can contain up to 32 expressions.
+    tags:
+      - control
+  - slug: cond
+    info:
+      en: |
+        ```hsc
+        (<passthrough> cond (<boolean1> <result1>) [(<boolean2> <result2>) [...]])
+        (cond
+          (false_val 10)
+          (true_val 20)
+        )
+        ; returns: 20
+        ```
+        Returns the value associated with the first true condition. Has no default value.
+    tags:
+      - control
+  - slug: if
+    info:
+      en: |
+        ```hsc
+        (<passthrough> if <boolean> <then> [<else>])
+        (if (bsl_sucks)
+          (print "Stop whining.")
+        )
+        ```
+        Returns one of two values based on the value of a condition.
+    tags:
+      - control
+  - slug: inspect
+    info:
+      en: |
+        ```hsc
+        (<void> inspect <expression>)
+        (inspect (+ 3 4))
+        ; outputs: 7
+        ```
+        Prints the value of an expression to the screen for debugging purposes.
+    tags:
+      - debug
+  - slug: min
+    info:
+      en: |
+        ```hsc
+        (<real> min <number(s)>)
+        (min 60 5 10)
+        ; returns: 5
+        ```
+        Returns the minimum of all specified expressions.
+    tags:
+      - math
+  - slug: max
+    info:
+      en: |
+        ```hsc
+        (<real> max <number(s)>)
+        (max 60 5 10)
+        ; returns: 60
+        ```
+        Returns the maximum of all specified expressions.
+    tags:
+      - math
+  - slug: not
+    info:
+      en: |
+        ```hsc
+        (<boolean> not <boolean>)
+        (not bsl_sucks)
+        ; returns: false
+        ```
+        Returns the opposite of the expression.
+    tags:
+      - logic
+  - slug: or
+    info:
+      en: |
+        ```hsc
+        (<boolean> or <boolean(s)>)
+        (or (player_action_test_action) true)
+        ; returns: true
+        ```
+        Returns true if any specified expressions are true. This function is
+        _short circuiting_, meaning it will not evaluate subsequent expressions
+        if a a prior one evaluates to `true`.
+    tags:
+      - logic
+  - slug: set
+    info:
+      en: |
+        ```hsc
+        (<passthrough> set <variable name> <expression>)
+        (set bsl_sucks true)
+        ```
+        Sets the value of a defined global variable.
+  - slug: sleep
+    info:
+      en: |
+        ```hsc
+        (<void> sleep <short> [<script>])
+        (sleep 30 more_weapons)
+        ```
+        Pauses execution of this script (or, optionally, another script) for
+        the specified number of ticks (1 tick = 1/30 second).
+    tags:
+      - control
+  - slug: sleep_until
+    info:
+      en: |
+        ```hsc
+        (<void> sleep_until <boolean> [short_1] [short_2])
+        (sleep_until false 5 600)
+        ```
+        Pauses execution of this script until `condition` is true.
+        By default, this checks once per second. If `short_1` is specified, it
+        checks every `short_1` ticks instead. By default, this will await the
+        condition indefinitely. `short_2` can be used to timeout after a
+        certain number of ticks, instead. After the timeout, the script will
+        continue on as if `condition` became true.
+    tags:
+      - control
+  - slug: wake
+    info:
+      en: |
+        ```hsc
+        (<void> wake <script name>)
+        (wake more_weapons)
+        ```
+        Wakes a sleeping or dormant script in the next update.
+    tags:
+      - control
+  - slug: thread_sleep
+    info:
+      en: |
+        ```hsc
+        (void> thread_sleep <long>)
+        (thread_sleep 20)
+        ```
+        Sleeps the calling thread for the specified number of ms.
+    tags:
+      - control
   - slug: activate_nav_point_flag
     info:
       en: >-
@@ -19,6 +314,8 @@ functions:
         ```
         return the absolute (non-negative) value of an integer
     context: H1A only
+    tags:
+      - math
   - slug: abs_real
     info:
       en: |-
@@ -27,6 +324,8 @@ functions:
         ```
         return the absolute (non-negative) value of a real
     context: H1A only
+    tags:
+      - math
   - slug: activate_nav_point_object
     info:
       en: >-
@@ -492,16 +791,17 @@ functions:
         Removes a set of units from their encounter (if any) and sets them free
   - slug: ai_go_to_vehicle
     info:
-      en: >-
+      en: |-
         ```hsc
-
         (<void> ai_go_to_vehicle <ai> <unit> <string>)
-
         ```
-
         Tells a group of actors to get into a vehicle, in the substring-specified
         seats (e.g. passenger for pelican). Does not interrupt any actors who are
         already going to vehicles.
+
+        You can test if a vehicle is flipped by calling this function, then
+        in the same tick testing `ai_going_to_vehicle`. If it returns `0` it
+        means the vehicle is flipped.
   - slug: ai_go_to_vehicle_override
     info:
       en: >-
@@ -1002,6 +1302,9 @@ functions:
         ```
         Returns `1` or `0` for the bit at the given position.
     context: H1A only
+    tags:
+      - logic
+      - comp
   - slug: bit_toggle
     info:
       en: |-
@@ -1012,6 +1315,8 @@ functions:
         ```
         Sets the value's bit at the given position on or off.
     context: H1A only
+    tags:
+      - logic
   - slug: bitwise_and
     info:
       en: |-
@@ -1023,6 +1328,8 @@ functions:
         of two numbers. If a bit is `1` in both of the inputs, it is `1` in the
         output and otherwise `0`.
     context: H1A only
+    tags:
+      - logic
   - slug: bitwise_flags_toggle
     info:
       en: |-
@@ -1034,6 +1341,8 @@ functions:
         Uses the second argument as a mask to toggle bits on or off in the
         first argument.
     context: H1A only
+    tags:
+      - logic
   - slug: bitwise_left_shift
     info:
       en: |-
@@ -1048,6 +1357,8 @@ functions:
         Returns `0` if the positions argument is negative. This has the effect
         of multiplying the argument by a power of 2.
     context: H1A only
+    tags:
+      - logic
   - slug: bitwise_or
     info:
       en: |-
@@ -1059,6 +1370,8 @@ functions:
         of two numbers. If a bit is `1` in either or both of the inputs, it is
         `1` in the output and otherwise `0`.
     context: H1A only
+    tags:
+      - logic
   - slug: bitwise_right_shift
     info:
       en: |-
@@ -1072,6 +1385,8 @@ functions:
         All bits are moved to the right by a number of positions, with the leftmost
         bits filling with 0's. Returns `0` if the positions argument is negative.
     context: H1A only
+    tags:
+      - logic
   - slug: bitwise_xor
     info:
       en: |-
@@ -1085,6 +1400,17 @@ functions:
         `1` in the output and otherwise `0`. In other words, one or the other
         bit must be `1` but not both.
     context: H1A only
+    tags:
+      - logic
+  - slug: breadcrumbs_nav_points_active
+    info:
+      en: |-
+        ```hsc
+        (<boolean> breadcrumbs_nav_points_active)
+        ```
+        Returns true if breadcrumbs improved nav points are enabled.
+    tags:
+      - added_in_mcc
   - slug: breakable_surfaces_enable
     info:
       en: |-
@@ -1398,7 +1724,7 @@ functions:
         ```hsc
         (<void> cls)
         ```
-        clears console text from the screen
+        Clears console output and tab completions from the screen.
   - slug: config_one_control
     info:
       en: |-
@@ -1669,6 +1995,8 @@ functions:
         ```hsc
         (<void> debug_teleport_player <short> <short>)
         ```
+        Given two local player indices, teleports the first to the second
+        if they both exist.
   - slug: delete_save_game_files
     info:
       en: |-
@@ -2046,7 +2374,9 @@ functions:
         ```hsc
         (<long> game_time)
         ```
-        Gets ticks elapsed since the start of the game
+        Gets ticks elapsed since the start of the game (when the map loaded).
+        This is not authoritative game time in the case of multiplayer since
+        clients can join at different times.
   - slug: game_variant
     info:
       en: |-
@@ -2223,6 +2553,8 @@ functions:
         (help cheats_load)
         ```
         Prints a description of the named function
+    tags:
+      - debug
   - slug: hud_blink_health
     info:
       en: |-
@@ -3492,11 +3824,16 @@ functions:
         ```
         Return the time remaining in the specified unit's cutscene recording
   - slug: reload_shader_transparent_chicago
+    tags:
+      - shader_transparent_chicago
     info:
       en: |
         ```hsc
         (<void> reload_shader_transparent_chicago)
         ```
+        Reloads all [shader_transparent_chicago](~) tags. Use this in Sapien or
+        Standalone to see changes to their bitmaps or parameters without having
+        to reload the scenario.
   - slug: remote_player_stats
     info:
       en: |-
@@ -3550,6 +3887,16 @@ functions:
         (or zero, if the animation is over). This function intentionally returns
         a value **2 frames lower** than the actual remaining frame count so scripts
         waiting for the animation to end can do something before it's over.
+  - slug: screenshot_cubemap
+    info:
+      en: |-
+        ```hsc
+        (<void> screenshot_cubemap <string>)
+        ```
+        Takes a cubemap screenshot from the camera's point of view and saves as `<name>.tif`.
+        It can then be used to import a cubemap bitmap tag.
+    tags:
+      - added_in_mcc
   - slug: script_doc
     info:
       en: |-
@@ -3846,8 +4193,10 @@ functions:
 
         ```
 
-        Plays an impulse sound from the specified source object (or "none"), with
-        the specified scale
+        Plays an impulse sound from the specified source object (or "none"), with the specified scale. Note that the sound may
+        not play under certain situations, like if its sound class
+        is [_scripted_dialog_player_](~sound#tag-field-sound-class-scripted-dialog-player)
+        and the player is dead.
   - slug: sound_impulse_stop
     info:
       en: |-
@@ -4021,7 +4370,7 @@ functions:
         ```
         Sets and opens the file to be used for the player ban list.
     context: Gearbox only
-  - slug: 'sv_banopt:'
+  - slug: sv_ban
     info:
       en: |-
         ```hsc

@@ -17,7 +17,7 @@ The content of these external tutorials has not been vetted and they may contain
 {% dataTable
   dataPath="tutorials/tutorials"
   rowFilterKey="tags"
-  rowFilterValue="beginner"
+  rowFilterExpr="beginner"
   rowSortKey="updated"
   rowSortReverse=true
   columns=[
@@ -35,7 +35,7 @@ See also the [Blender level guide](~blender-prep) here on c20.
 {% dataTable
   dataPath="tutorials/tutorials"
   rowFilterKey="tags"
-  rowFilterValue="level"
+  rowFilterExpr="level"
   rowSortKey="updated"
   rowSortReverse=true
   columns=[
@@ -53,7 +53,7 @@ See also the [scripting information](~scripting) here on c20.
 {% dataTable
   dataPath="tutorials/tutorials"
   rowFilterKey="tags"
-  rowFilterValue="ai-scripting"
+  rowFilterExpr="ai-scripting"
   rowSortKey="updated"
   rowSortReverse=true
   columns=[
@@ -69,7 +69,7 @@ See also the [scripting information](~scripting) here on c20.
 {% dataTable
   dataPath="tutorials/tutorials"
   rowFilterKey="tags"
-  rowFilterValue="hud"
+  rowFilterExpr="hud"
   rowSortKey="updated"
   rowSortReverse=true
   columns=[
@@ -85,7 +85,7 @@ See also the [scripting information](~scripting) here on c20.
 {% dataTable
   dataPath="tutorials/tutorials"
   rowFilterKey="tags"
-  rowFilterValue="objects"
+  rowFilterExpr="objects"
   rowSortKey="updated"
   rowSortReverse=true
   columns=[
@@ -101,7 +101,7 @@ See also the [scripting information](~scripting) here on c20.
 {% dataTable
   dataPath="tutorials/tutorials"
   rowFilterKey="tags"
-  rowFilterValue="animation"
+  rowFilterExpr="animation"
   rowSortKey="updated"
   rowSortReverse=true
   columns=[
@@ -117,7 +117,7 @@ See also the [scripting information](~scripting) here on c20.
 {% dataTable
   dataPath="tutorials/tutorials"
   rowFilterKey="tags"
-  rowFilterValue="effects"
+  rowFilterExpr="effects"
   rowSortKey="updated"
   rowSortReverse=true
   columns=[
@@ -133,7 +133,7 @@ See also the [scripting information](~scripting) here on c20.
 {% dataTable
   dataPath="tutorials/tutorials"
   rowFilterKey="tags"
-  rowFilterValue="other"
+  rowFilterExpr="other"
   rowSortKey="updated"
   rowSortReverse=true
   columns=[

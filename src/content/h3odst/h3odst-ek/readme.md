@@ -34,7 +34,39 @@ Pictured: Location of the mod tools in the steam library.
 7. (Optional) Check out the [guides hub](~guides) to learn more about modding or install a launcher like [Osoyoos](~) if you don't like using the command line.
 
 # Changelog
+This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
+
+## July 2023 hotfix
+* The Invisibility equipment and Overshields now work as expected when added to campaign missions.
+
+## July 2023
+* Add support for FSBs with custom names in MCC.
+* Fixed being unable to manipulate trigger volumes in Sapien.
+* Camera point transitions now interpolate correctly over 60 FPS.
+* Sounds imported into a new FSB bank no longer have corrupted playback in Sapien/Standalone.
+* Fixed instance geometry often failing to show correct dynamic cubemaps.
+* Fixed preference.dat error seen when converting an FBX to JMS while another ODST mod tool is open.
+* Fixed Sapien crashing when switching BSP/zone set.
+* Added [play builds](~build-types#optimization-options) of Sapien, Standalone, and Guerilla.
+* Added forked MP biped for odst_recon and odst_oni_op.
+* ODST MP game variants are now in the PC build's game_variants and show expected settings.
+* Removed various unused or deprecated tag fields.
+* Removed Guerilla's Tag Mover dependency on tag depot.
+* Picking up a gravity hammer while `skull_third_person` is active no longer crahses Standalone.
+* Added a flag so that infection forms can kill other characters without infecting them.
+* Ported `sound_impulse_time` from H3 to ODST.
+* Fixed Guerilla tag blocks extending out of their borders.
+* Allowed [chocolate_mountain_new](~) tags to be assigned per BSP rather than globally in the scenario.
+* MP maps have rebaked lightmaps.
+* `scenario_validate_game_progression` has some fixes to better handle `game_progression` modding setups.
+* In modded maps, `game_level_advance` goes to the next mission now instead of the main menu.
+* Models with large import info can now be imported (fixes `tag_data_resize() failed`).
+* Explanation fields no longer take up space in Guerilla's grid view.
+* Fixed `effect_scenery` lights appearing in the wrong location of the skybox for non-hosts.
+* Fixed shader views under expert mode in Guerilla.
+
 ## December 2022
+* Added Tool command `extract-unicode-strings`.
 * AI objectives crash fix
 * Unused fields removed from [scenario](~) and [globals](~) tags
 * `bin/ManagedBlam.dll` added

@@ -123,7 +123,12 @@ export default function Search(props: SearchProps) {
       e.preventDefault(); //prevent moving the cursor left in the input
     } else if (e.key == "Enter") {
       if (state.searchResults.length != 0) {
-        window.location = state.searchResults[state.selectedResultIndex].id;
+        const url = state.searchResults[state.selectedResultIndex].id;
+        if (e.altKey) {
+          window.open(url, '_blank');
+        } else {
+          window.location = url;
+        }
       }
     }
   };

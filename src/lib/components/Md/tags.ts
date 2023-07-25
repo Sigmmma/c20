@@ -16,6 +16,10 @@ const tags: Record<string, Schema> = {
       }
     }
   },
+  childList: {
+    render: "ChildList",
+    selfClosing: true,
+  },
   unitConverter: {
     render: "UnitConverterMountpoint",
     selfClosing: true,
@@ -116,7 +120,6 @@ const tags: Record<string, Schema> = {
       },
       tagFilter: {
         type: String,
-        required: true,
       },
       only: {
         type: String,
@@ -147,11 +150,8 @@ const tags: Record<string, Schema> = {
       rowFilterKey: {
         type: String,
       },
-      rowFilterValue: {
+      rowFilterExpr: {
         type: String,
-      },
-      rowFilterNot: {
-        type: Boolean,
       },
       linkCol: {
         type: [Boolean, Number],

@@ -202,13 +202,18 @@ function renderBitfieldAsTable(ctx: RenderContext, instantiatedType, pathId: str
         </tr>
       </thead>
       <tbody>
-        {instantiatedType.typeDef.bits.map((bit, i) =>
-          <tr>
-            <td>{renderFieldName(bit.name, [...pathId, bit.name])}</td>
-            <td><Hex value={0x1 << i >>> 0}/></td>
-            <td>{renderComments(ctx, bit, localize)}</td>
-          </tr>
-        )}
+        {instantiatedType.typeDef.bits.map((bit, i) => {
+          const rowClasses = [
+            ...(bit.meta ? Object.entries(bit.meta).map(([k]) => `field-meta-${k}`) : []),
+          ];
+          return (
+            <tr className={rowClasses.join(" ")}>
+              <td>{renderFieldName(bit.name, [...pathId, bit.name])}</td>
+              <td><Hex value={0x1 << i >>> 0}/></td>
+              <td>{renderComments(ctx, bit, localize)}</td>
+            </tr>
+          );
+      })}
       </tbody>
     </table>
   );
@@ -225,13 +230,18 @@ function renderEnumAsTable(ctx: RenderContext, instantiatedType, pathId: string[
         </tr>
       </thead>
       <tbody>
-        {instantiatedType.typeDef.options.map((option, i) =>
-          <tr>
-            <td>{renderFieldName(option.name, [...pathId, option.name])}</td>
-            <td><Hex value={option.value !== undefined ? option.value : i}/></td>
-            <td>{renderComments(ctx, option, localize)}</td>
-          </tr>
-        )}
+        {instantiatedType.typeDef.options.map((option, i) => {
+          const rowClasses = [
+            ...(option.meta ? Object.entries(option.meta).map(([k]) => `field-meta-${k}`) : []),
+          ];
+          return (
+            <tr className={rowClasses.join(" ")}>
+              <td>{renderFieldName(option.name, [...pathId, option.name])}</td>
+              <td><Hex value={option.value !== undefined ? option.value : i}/></td>
+              <td>{renderComments(ctx, option, localize)}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

@@ -24,14 +24,14 @@ type_defs:
             commonly used for foliage and grates.
       - name: bump_map_is_specular_mask
       - name: true_atmospheric_fog
-      # - name: use_alternate_bump_attenuation
-      #   comments:
-      #     en: |
-      #       Causes the shader to use an alternate shading method for bump maps
-      #       which prevents certain artifacts from appearing near light sources
-      #       close to surfaces and near shadow edges in geometrically sparse
-      #       regions, at the cost of less saturated bump map highlights close
-      #       to strong light sources and slightly brighter lighting.
+      - name: use_alternate_bump_attenuation
+        comments:
+          en: |
+            Causes the shader to use an alternate shading method for bump maps
+            which prevents certain [artifacts](~h1/tags/shader/shader_environment#shading-artifacts)
+            from appearing near light sources close to surfaces and near shadow
+            edges in geometrically sparse regions, at the cost of sometimes having
+            over-exposed bump map highlights.
   ShaderEnvironmentType:
     class: enum
     size: 2

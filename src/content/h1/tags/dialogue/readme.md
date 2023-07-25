@@ -32,6 +32,7 @@ Additional level-specific character sound tags, e.g. for cinematics, can be foun
 The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.
 
 {% relatedHsc game="h1" tagFilter="dialogue" /%}
+
 # Structure and fields
 
 {% tagStruct "h1/dialogue" /%}

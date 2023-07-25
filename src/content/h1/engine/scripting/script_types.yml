@@ -45,7 +45,9 @@ script_types:
 
   - type: static
     info:
-      en: Performed when called from another script.
+      en: >
+        Performed when called from another script. In H1A these can support up
+        to 16 parameters like later games.
       es:
     ex: >-
       (script static "unit" player0

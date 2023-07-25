@@ -14,8 +14,26 @@ type_defs:
     size: 2
     options:
       - name: toward_viewer
+        comments:
+          en: |
+            The occlusion test square is moved towards the viewer by the
+            _occlusion radius_. This avoids the test square being always half-embedded
+            if the lens flare is placed directly on a surface.
+            
+            However, this offsets the test square perpendicularly toward the
+            camera's view plane, not toward the camera location itself. This
+            results in test squares near the edges of the screen not aligning
+            with their lens flares, causing them to fade out even while on-screen.
+            Avoid setting this value too high to make this less apparent.
       - name: marker_forward
+        comments:
+          en: |
+            The test square is moved in the "forward" direction of the marker
+            by the _occlusion radius_, usually off the surface in the case of
+            [BSP lens flares](~scenario_structure_bsp#lens-flare-markers).
       - name: none
+        comments:
+          en: The test square is not offset.
   LensFlareFlags:
     class: bitfield
     size: 2
@@ -146,6 +164,17 @@ type_defs:
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            Primarily controls the size of the camera-facing occlusion square.
+            The more this square is covered, the more the lens flare fades out.
+            A larger radius covers more screen space and gradually fades in/out
+            while passing behind objects in the foreground, while a small radius
+            will cause the lens flare to quickly appear or disappear. The square
+            can be visualized with `rasterizer_lens_flares_occlusion_debug 1`.
+
+            This also controls how far the test square is moved depending on the
+            _occlusion offset direction_.
       - name: occlusion_offset_direction
         type: LensFlareOcclusionOffsetDirection
       - type: pad

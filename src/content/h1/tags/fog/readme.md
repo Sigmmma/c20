@@ -19,6 +19,9 @@ Due to a [renderer regression](~renderer#gearbox-regressions), the _screen layer
 
 As of MCC season 7, there is a new issue where fog does not render at the right density over models and causes them to stand out especially in areas of high fog density.
 
+# Related HaloScript
+{% relatedHsc game="h1" tagFilter="fog" /%}
+
 # Structure and fields
 
 {% tagStruct "h1/fog" /%}
