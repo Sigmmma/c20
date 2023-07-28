@@ -151,6 +151,11 @@ This warning is pretty much what it sounds like -- a portal is completely outsid
 ## Warning: Portal doesn't divide any space (green)
 If you are seeing this warning you likely have other issues with your portals that need addressing first, such as portals outside the BSP or unearthed edges. This warning could not be reproduced in isolation even when placing portal planes outside the BSP, or coincident with its boundary or seamsealer.
 
+## Warning: this structure_bsp needs to be reimported for new, faster visibility
+This warning is logged when loading a level in Sapien, not when you import a structure or run lightmaps. It indicates some kind of problem with the [PVS](~scenario_structure_bsp#potentially-visible-set) and your level will probably be invisible despite having run lightmaps. This warning should not be taken literally; at some time during Halo's development a new method of cluster visibility was developed and this message would have told artists to reimport their BSPs. With today's tools it just means that visibility data is invalid somehow.
+
+The only known reason this can happen is if you have a cluster floating in the level that is not touching any level geometry. For example, if you have a cube floating in the air with the `+portal` material applied to it. This forms a valid cluster surrouned by 6 portals but Tool seems unable to generate the PVS in this case.
+
 # Other
 ## Two fog planes intersected in a cluster (black)
 This error indicates that you have two fog planes in the same sealed space (cluster). Clusters are only capable of referencing a single fog plane, and only one fog plane can be rendered at a time. You should not only avoid having multiple fog planes within a cluster, but also within the same sealed section of the level no matter how many clusters it has (see ["two fog planes visible from cluster"](#warning-two-fog-planes-visible-from-a-cluster)).
