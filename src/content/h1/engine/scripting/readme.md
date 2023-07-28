@@ -149,7 +149,7 @@ For example, the following block:
 ```
 
 # HSC reference
-To learn more about HSC's general syntax and execution model, see our [cross-game scripting page](~general/engine/scripting). There is also [additional important script engine info below](~scripting#gotchas-and-limits).
+To learn more about HSC's general syntax and execution model, see our [cross-game scripting page](~general/scripting). There is also [additional important script engine info below](~scripting#gotchas-and-limits).
 
 ## Script types
 {% dataTable

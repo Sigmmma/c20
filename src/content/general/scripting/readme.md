@@ -5,41 +5,54 @@ keywords:
   - scripts
   - functions
   - globals
+  - scripting
+  - commands
   - bsl
 thanks:
   Crisp: 'Engine differences, script parameter info, object type mask info'
+redirects:
+  - /general/engine/scripting
 ---
-**Halo Script** (HSC), also known as **Blam Scripting Language** (BSL), is a
-scripting language interpreted by the [Halo engine](~engine). It is used in two main contexts:
-
-1. To control the mission structure and encounters of campaign missions. These scripts are embedded in the map/scenario.
-2. In the interactive [developer console](~h1/engine/developer-console) of Halo and Sapien, used when debugging and developing maps. This includes files executed at startup like `init.txt` and `editor_init.txt`. Script expressions entered this way are often called **commands**.
+**HaloScript** (HS or HSC), sometimes called **Blam Scripting Language** (BSL), is a [Lisp-like][Lisp] scripting language interpreted by the various iterations of the [Halo engine](~engine). It's primarily used to control the mission structure and encounters of campaign missions when embedded in the map/scenario, but can also be entered interactively through the [developer console](~h1/engine/developer-console) found in Standalone, Sapien, and some Halo builds.
 
 Script sources are denoted by the `.hsc` file extension.
 
-If you are writing Halo Script using [Visual Studio Code][vscode], the [Atlas][] extension provides syntax highlighting and completion suggestions (supports H1-H3).
+# Tools
+Since `.hsc` files are plain text you can edit them with programs like notepad. However it's highly recommended to use a text editor like [Visual Studio Code][vscode]. The unofficial [Atlas][] extension provides syntax highlighting and completion suggestions (supports H1-H3).
 
 # Syntax
-As a language, HSC is [Lisp-like][Lisp] and is comprised of [S-expressions][sexp], though it lacks some constructs like looping. This limitation also ensures that scripts never enter into endless loops that block the game's simulation from advancing.
+Here's a taste of HaloScript's syntax:
+
+```hsc
+(script continuous kill_player_in_zone
+  (if (volume_test_object kill_volume (list_get (players) 0))
+    (unit_kill (unit (list_get (players) 0)))
+  )
+)
+```
+
+This continuously checks if player 0 has walked into a trigger volume and kills them if they do. Don't worry if this doesn't make much sense yet, that's what this page is for!
 
 ## Expressions
-Here's a basic HSC expression:
+A basic expression looks like this:
 
 ```hsc
 (print "Hello, world!")
 ```
 
-_Expressions_ are enclosed by parentheses and contain a _function_ name usually followed by _arguments_, all separated by spaces. Note that in the above example, `"Hello, world!"` The function name is always first, so to add two numbers you would write `(+ 1 2)` and **not** `(1 + 2)`. Not all functions need arguments, for example `(garbage_collect_now)`.
+_Expressions_ are enclosed by parentheses and contain a _function_ name usually followed by _arguments_, all separated by spaces. In the above example the text is surrounded with `""` so it's treated like a single argument.
 
-Expressions can also evaluate to a value of a certain type, depending on the function used. As a simple example, `(+ 1 2)` evaluates to `3`. You can then use expressions in place of arguments of other expressions:
+The function name is always first, so to add two numbers you would write `(+ 1 2)` and **not** `(1 + 2)`. Each function implemented by the engine has an expected order and type of arguments that it can be given. Some don't need arguments, like `(garbage_collect_now)`, while others may handle a varying number of arguments like `(+ 1 2)` and `(+ 1 2 3 4)`.
+
+Expressions can also evaluate to a value of a certain type depending on the function used. As a simple example, `(+ 1 2)` evaluates to `3`. You can then use expressions as arguments to other expressions:
 
 ```hsc
 (/ 12 (+ 1 2))
 ```
 
-If entered into Halo or Sapien's console, this would output "4.000000" as the result of dividing 12 by 3.
+If entered into Standalone or Sapien's console, this would output `4.000000`.
 
-You must always balance opening parentheses with closing parentheses and you must use spaces to separate arguments and the function name. Some expressions which would not be allowed are `(/ 12 (+ 1 2)` and `(+(+1 2)3)`. To make it easier to tell if your parentheses are matched and to make your scenario scripts easier to read, it is recommended to use nested indentation for longer expressions like so:
+You must always balance opening parentheses with closing parentheses and use spaces to separate arguments and the function name; expressions like `(/ 12 (+ 1 2)` and `(+(+1 2)3)` are not valid. To make it easier to tell if your parentheses are matched and to make your scenario scripts easier to read, it is recommended to use nested indentation for longer expressions like so:
 
 ```hsc
 ; equivalent to writing  (* (+ 10 2) (- 5 1))
@@ -49,8 +62,11 @@ You must always balance opening parentheses with closing parentheses and you mus
 )
 ```
 
+## Control flow
+HS does not support [looping][loops] constructs, which ensures that scripts never enter into endless loops that block the game's simulation from advancing.
+
 ## Value types
-All function arguments and expression results have a particular _type_. The types vary by game, but some common types are:
+All function arguments and expression results have a particular _type_. The types vary by game (e.g. [H1](~h1/engine/scripting#value-types)), but some common types are:
 
 | Type                          | Example                     |
 | ----------------------------- | --------------------------- |
@@ -61,8 +77,6 @@ All function arguments and expression results have a particular _type_. The type
 | string                        | `"hello, world!"`           |
 
 Note that the `void` type you may see documented for some functions means the function does not return a value.
-
-See game-specific pages for further reference, e.g. [H1 Scripting](~h1/engine/scripting#value-types).
 
 ## Comments
 You can include comments in your scenario script files:
@@ -79,7 +93,7 @@ with multiple lines
 ```
 
 ## Global variables
-A _global variable_ is a value of a fixed [type](#value-types) that can be set and used by any [script thread](#script-threads) at any time. These variables are given a place in memory so they can be used by scripts over the course of gameplay and are saved in checkpoints. HaloScript did **not** have the notion of [local variables][local] until their introduction in Halo 4's iteration of Halo Script.
+A _global variable_ is a value of a fixed [type](#value-types) that can be set and used by any [script thread](#script-threads) at any time. These variables are given a place in memory so they can be used by scripts over the course of gameplay and are saved in checkpoints. HaloScript did **not** have the notion of [local variables][local] until their introduction in Halo 4's iteration of HaloScript.
 
 You can only declare globals within scenario scripts. Global variables cannot be declared in the developer console, though you can use or update any that were already initialized by the loaded scenario.
 
@@ -141,7 +155,7 @@ Script types vary by engine, but the common ones are:
 * `command_script`: Runs when executed by an ai. Allows the use of special external globals like `ai_current_actor` and `ai_current_squad` which return information about the ai executing the script. This is the only script type which allows the use of cs_ functions (e.g. `cs_go_to`, `cs_play_line`).
 * `static`: Can be called by another script and return a value. Useful for re-usable code -- similar to _methods/functions_ from other programming languages.
 
-Halo 3 introduced script parameters to Halo Script. Parameters can only be defined on script types that accept return types (i.e. statics and stubs).
+Halo 3 introduced script parameters to HaloScript. Parameters can only be defined on script types that accept return types (i.e. statics and stubs).
 
 These have the following structure:
 
@@ -277,7 +291,8 @@ Below is a full listing of object type mask combinations:
 [local]: https://en.wikipedia.org/wiki/Local_variable
 [cast]: https://en.wikipedia.org/wiki/Type_conversion
 [stack]: http://en.wikipedia.org/wiki/Call_stack
-[sexp]: https://en.wikipedia.org/wiki/S-expression
+[sexp]: https://en.wikipedia.org/wiki/S-expression#Use_in_Lisp
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)
 [atlas]: https://marketplace.visualstudio.com/items?itemName=Crisp.atlas
 [vscode]: https://code.visualstudio.com/
+[loops]: https://en.wikipedia.org/wiki/Control_flow#Loops

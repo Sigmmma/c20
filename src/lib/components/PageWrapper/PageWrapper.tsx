@@ -25,10 +25,11 @@ function renderPageTree(pageId: string, navTree: NavTree) {
       {navTree.map(({link, children}) => {
         const isParent = (pageId + "/").startsWith(link.pageId + "/");
         const isCurrent = pageId == link.pageId;
+        const icon = <Icon name="file-text"/>;
         const title = !isParent && children.length > 0 ?
           <>{link.title} <Icon name="plus"/></> :
           link.title;
-        const page = <a href={link.url} aria-current={isCurrent ? "location" : undefined}>{title}</a>;
+        const page = <a href={link.url} aria-current={isCurrent ? "location" : undefined}>{icon} {title}</a>;
         return (
           <li>
             {page}
