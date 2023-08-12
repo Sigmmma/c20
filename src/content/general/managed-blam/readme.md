@@ -284,5 +284,8 @@ block_parameters = struct_render_method.SelectField("parameters")
         self.Element_set_field_values(element, m)
 ```
 
+## Tool for transferring H2 zones/areas/firingpositions to a H3 scenario
+[Tool's Github page](https://github.com/Pepper-Man/h2_h3_zones_patcher_mb)
+
 ## Additional examples
 If you have experience with ManagedBlam and wish to provide more examples for this page, either make a pull request with the code, or contact `pepperman` on `Discord`!
