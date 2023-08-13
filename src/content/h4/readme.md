@@ -11,7 +11,7 @@ Halo 4's box art
 
 **Halo 4** is the fifth instalment of the Halo game series and is a direct sequel to [Halo 3](~h3). It was created by [343 Industries][343i] and initially released on the Xbox 360 in November 2012 by publisher/owner [Microsoft][]. In 2020 the game was re-released as a part of *Halo: The Master Chief Collection* on the Xbox One and Microsoft Windows.
 
-Like other games in the series Halo 4 uses Bungie/343i's proprietary [Blam!](~engine) with a multitude of upgrades over the Halo Reach version of the engine.
+Like other games in the series Halo 4 uses Bungie/343i's proprietary [Blam!](~blam) with a multitude of upgrades over the Halo Reach version of the engine.
 
 ## Xbox (343i, November 2012)
 This is the classic first release of Halo 4 for the Xbox 360.

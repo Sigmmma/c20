@@ -151,6 +151,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
         title: "[Unresolved]",
         url: "#",
         pageId: idTail,
+        isStub: true,
         logicalPathTail: idTail,
       };
     },

@@ -8,6 +8,9 @@ info: |
 ---
 The **Halo 2 Anniversary MP Mod Tools** is the official release of content creation tools for [H2A MP](~h2amp). These tools are updated versions of the original internal ones and are closest in relation to [Halo 4's tools](~h4-ek).
 
+# Getting started
+See the [general installation steps](~/general/mod-tools#installation) for help installing these tools. Don't forget to run the extract script!
+
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
@@ -30,7 +33,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Fixed JSON property `bungie_specular_intensity` incorrectly setting `specular_power`
 * Added a solution for setting up marker permutations in FBX to GR2 pipeline.
 * Fixed prefab markers and scenario lights not having rotations written on import.
-* Added [play builds](~build-types#optimization-options) of Sapien and Standalone.
+* Added [play builds](~blam#build-types) of Sapien and Standalone.
 * MegaloEdit:
   * Using period key now brings up autocomplete.
   * Weapon parameters supports all weapon / damage reporting types.

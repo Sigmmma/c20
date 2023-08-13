@@ -25,11 +25,11 @@ Use this guide to understand how to avoid problems _before_ you start modeling a
 
 # General geometry problems
 ## Error: Edge is open (red)
-An _open edge_ is one where the surface ends abruptly, like the edge of a sheet of paper. In other words, it is not shared between two adjacent triangles. The mesh must not contain any "holes" like this and must be a completely sealed/closed volume including faces for the sky (`+sky` material). It doesn't matter if the hole is completely airtight; if the edges are technically open then Tool will not allow it.
+_Open edges_ are holes in the surface of your level. Your level needs to be a completely sealed/closed volume. Even outdoor levels must including faces which form a "roof" over your playable space with the `+sky` material. It doesn't matter if the hole is completely airtight and not visible; if the edges are technically open then Tool will not allow it. An unmerged seam along two edges is not considered open if the vertices along those edges are in the same position. In fact, this is the result of the Edge Split modifier that gives you sharp edges.
 
-The exceptions to this rule are render-only surfaces like lights and water, and other special 2D surfaces like ladders, glass, and fog planes that are typically modeled as simple floating quads (a rectangle made of two triangles). If you are attempting to model one of these special surfaces, make sure you are including the [necessary material symbol(s)](~materials).
+Open edges are also allowed on render-only surfaces like lights and water, and other special 2D surfaces like ladders, glass, and fog planes that are typically modeled as simple floating quads (a rectangle made of two triangles). If you are attempting to model one of these special surfaces, make sure you are including the [necessary material symbol(s)](~materials).
 
-Closing open edges usually involves merging vertices. In Blender you can select multiple and press {% key "M" /%}, or use [_Auto Merge_][blender-tool-settings]   with snap to ensure vertices are merged when you move them to the same location as another vertex. Max users can use _Target Weld_.
+Closing open edges usually involves merging vertices or filling. In Blender you can select multiple and press {% key "M" /%}, or use [_Auto Merge_][blender-tool-settings] with snap to ensure vertices are merged when you move them to the same location as another vertex. Max users can use _Target Weld_. Filling can be done by selecting multiple edges and pressing {% key "F" /%}.
 
 ![](open_edge.mp4)
 
@@ -55,7 +55,7 @@ To avoid this issue you can:
 * Avoid "eyeballing it" when modeling things which should be straight and aligned. Use snap when moving vertices along an axis to ensure they align with others;
 * Scale sets of faces which should be coplanar to 0 along an axis (see video);
 * Avoid sculpting tools, which produce a lot of slight angles in dense geometry;
-* Model with simple, low poly-count shapes.
+* Model with simple, low-poly shapes.
 
 In some cases having nearly coplanar faces is unavoidable. When faces are axis-aligned it is easy to make them coplanar, but when they are meant to be at an 45-degree or other angle you may encounter the nearly coplanar warning due to a loss of precision in the [JMS](~) format, which is only capable of storing up to 6 digits to the right of the decimal points (e.g. `123.123456`). This will result in vertices on angled surfaces going slightly out of alignment. In this case check for phantom BSP around the area identified in the WRL file. If any is found, you may be able to clear it up with simple triangulation changes or other minor alterations in the vicinity.
 
@@ -220,7 +220,7 @@ In full this error appears as:
 EXCEPTION halt in e:\jenkins\workspace\mcch1code-release\mcc\release\h1\code\h1a2\sources\structures\radiosity\intermediate_radiosity.c,#890: !point_is_coplanar || _realcmp(transformed_point.z, 0.f, k_real_epsilon * 2)
 ```
 
-Tool is encountering a floating point precision problem, likely from your map being too big. This was less likely to occur in the legacy HEK because MCC-era tools use SSE2 which has [lower floating point precision][precision] than the x87 FPU. You can try working around this issue with `-noassert`.
+Tool checks that your level will not run into floating point precision problems. If you're getting this error it means your map is probably too big. This was less likely to occur in the legacy HEK because MCC-era tools use SSE2 which has [lower floating point precision][precision] than the x87 FPU. You can try working around this issue with `-noassert`, but this may cause problems down the line. It's better to reduce the scale of your level to a reasonable size that the engine was intended to support.
 
 ## Exception: bitmap_format_type_valid_height(format, _bitmap_type_2d, height)
 This means that radiosity has internally completed, but the final resulting lightmap texture dimension is larger than supported. This will happen if you have large continuous sections of your level that require a lot of lightmap space, possibly due to them using a high [radiosity detail level](~shader#tag-field-detail-level-high) and/or [simple parameterization](~shader#tag-field-shader-flags-simple-parameterization). Avoid this by:

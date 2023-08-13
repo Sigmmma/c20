@@ -6,7 +6,7 @@ keywords:
   - hsc
   - bsl
 ---
-Like earlier games, Halo 3 supports **scripting** with [HaloScript](~general/engine/scripting).
+Like earlier games, Halo 3 supports **scripting** with [HaloScript](~general/scripting).
 
 # Operators and keywords
 {% dataTable

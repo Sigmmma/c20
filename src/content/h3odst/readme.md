@@ -11,7 +11,7 @@ Halo 3 ODST's box art featuring the Rookie
 
 **Halo 3 ODST** is the fourth instalment of the Halo game series and is set during the events of [Halo 2](~h2). It is not a direct sequel to [Halo 3](~h3). It was created by [Bungie][bungie] and initially released on the Xbox 360 in 2009 by publisher/owner [Microsoft][]. In 2015 the game was re-released as a part of *Halo: The Master Chief Collection* on the Xbox One and later in 2020 was ported to Microsoft Windows alongside other halo titles in the collection.
 
-Like other games in the series Halo 3 ODST uses Bungie's proprietary [Blam!](~engine).
+Like other games in the series Halo 3 ODST uses Bungie's proprietary [Blam!](~blam).
 
 ## Xbox (Bungie, September 2009)
 This is the classic first release of Halo 3 ODST for the Xbox 360.

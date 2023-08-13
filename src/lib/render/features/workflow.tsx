@@ -203,7 +203,7 @@ export default function getWorkflowSections(ctx: RenderContext | undefined, item
     sections.push({body:
       <p>
         <DetailsList
-          summary={<>{localize("buildTypes")}<Wat href={ctx?.resolvePage("build-types", "conventions").url}/></>}
+          summary={<>{localize("buildTypes")}<Wat href={ctx?.resolvePage("mod-tools", "build-types").url}/></>}
           items={item.buildTypes}
         />
       </p>

@@ -40,7 +40,7 @@ This new version of Tool has many differences from the 2003 Gearbox Tool. Most n
 # Command line flags
 
 - `-noassert` command line flag can be used with any verb to disable all asserts.
-- `-data_dir`, `-tags_dir`, and `-game_root_dir` can be used to change the tags, data, and maps directories. This might not work with all verbs as it's experimental. See [using custom content paths](~using-custom-content-paths).
+- `-data_dir`, `-tags_dir`, and `-game_root_dir` can be used to change the tags, data, and maps directories. This might not work with all verbs as it's experimental. See [using custom content paths](~mod-tools#using-custom-content-paths).
 - `-pause` wait for user input before exiting, useful for custom launchers.
 
 # Animation compilation

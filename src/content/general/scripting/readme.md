@@ -13,12 +13,12 @@ thanks:
 redirects:
   - /general/engine/scripting
 ---
-**HaloScript** (HS or HSC), sometimes called **Blam Scripting Language** (BSL), is a [Lisp-like][Lisp] scripting language interpreted by the various iterations of the [Halo engine](~engine). It's primarily used to control the mission structure and encounters of campaign missions when embedded in the map/scenario, but can also be entered interactively through the [developer console](~h1/engine/developer-console) found in Standalone, Sapien, and some Halo builds.
+**HaloScript** (HS or HSC), sometimes called **Blam Scripting Language** (BSL), is a [Lisp-like][Lisp] scripting language interpreted by the various iterations of the [Halo engine](~blam). It's primarily used to control the mission structure and encounters of campaign missions when embedded in the map/scenario, but can also be entered interactively through the [developer console](~developer-console) found in Standalone, Sapien, and some Halo builds.
 
-Script sources are denoted by the `.hsc` file extension.
+You won't need to do scripting unless you're modifying campaign scripts or creating new campaigns, but it helps to know a bit about HaloScript's syntax and expressions for use in the developer console.
 
 # Tools
-Since `.hsc` files are plain text you can edit them with programs like notepad. However it's highly recommended to use a text editor like [Visual Studio Code][vscode]. The unofficial [Atlas][] extension provides syntax highlighting and completion suggestions (supports H1-H3).
+Script sources are denoted by the `.hsc` file extension, and are plain text files that you can edit with programs like notepad. However it's highly recommended to use a text editor like [Visual Studio Code][vscode]. The unofficial [Atlas][] extension provides syntax highlighting and completion suggestions (supports H1-H3).
 
 # Syntax
 Here's a taste of HaloScript's syntax:
@@ -233,9 +233,9 @@ Several control structures implicitly return the value of their final expression
 ```
 
 ## Object type masks
-Several functions from Halo 2 onwards allow the user to perform actions on all objects of a certain type (e.g. bipeds, vehicles etc) that are currently loaded in a scenario. These functions use long values to determine which object types should be referenced.
+Several functions from Halo 2 onwards allow the user to perform actions on all objects of a certain type (e.g. bipeds, vehicles etc) that are currently loaded in a scenario. These functions use `long` values to determine which object types should be referenced.
 
-| Type Mask       | Object Type     |
+| Type mask       | Object type     |
 | ----------------| --------------- |
 | 1               | biped           |
 | 2               | vehicle         |
@@ -253,7 +253,7 @@ These values can be added together to affect multiple object types at once. For 
 ```
 Below is a full listing of object type mask combinations:
 
-| Type Mask       | Object Type                             |
+| Type mask       | Object types                            |
 | ----------------| ---------------                         |
 | 0               | biped, vehicle, weapon, equipment, crate|
 | 1               | biped                                   |

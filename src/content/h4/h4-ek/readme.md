@@ -8,8 +8,12 @@ info: |
 keywords:
   - h4
   - h4-ek
+  - midnight
 ---
 The **Halo 4 Mod Tools** are the official release of content creation tools for [Halo 4](~h4). They are updated versions of the original internal tools used during development of the game and are an evolution of [Halo Reach's tools](~hr-ek).
+
+# Getting started
+See the [general installation steps](~/general/mod-tools#installation) for help installing these tools. Don't forget to run the extract script!
 
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
@@ -37,7 +41,7 @@ This changelog is focused on known notable modding-related changes and is not gu
   > Remove transition of transforms from model initial placement to skeleton during fbx to granny import. Lights and markers use granny initial placement. So we cannot transfer it to skeleton to simplify compatibility with maya models. Now model in blender will exactly match one in granny and sapien. For compatibility with retail animations/skeletons fbx should be exported/imported with matching blender/sapien bone orientation (z-up). Fix light orientation during import from fbx as fbx uses -Y light direction when blender/sapien use -Z.
 * Add verbose Tool error when trying to import structure with mix of meshes with compressed and uncompressed vertices.
 * Fixed prefab markers and scenario lights not having rotations written on import.
-* Added [play builds](~build-types#optimization-options) of Sapien and Standalone.
+* Added [play builds](~blam#build-types) of Sapien and Standalone.
 * MegaloEdit:
   * Using period key now brings up autocomplete.
   * Entering an invalid team inheritance no longer crashes.

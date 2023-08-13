@@ -25,7 +25,7 @@ function renderPageTree(pageId: string, navTree: NavTree) {
       {navTree.map(({link, children}) => {
         const isParent = (pageId + "/").startsWith(link.pageId + "/");
         const isCurrent = pageId == link.pageId;
-        const icon = <Icon name="file-text"/>;
+        const icon = link.isStub ? <Icon name="file"/> : <Icon name="file-text"/>;
         const title = !isParent && children.length > 0 ?
           <>{link.title} <Icon name="plus"/></> :
           link.title;

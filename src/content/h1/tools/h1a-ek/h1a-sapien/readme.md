@@ -44,7 +44,7 @@ You can even place these in your `editor_init.txt` so they are run automatically
 Command line flags can be passed to H1A Sapien at launch to change run-time behavior. These features are experimental and might not work as expected.
 
 * `-multipleinstance` command line flag can be used to allow multiple instances of Sapien to be launched at once.
-* `-data_dir` and `-tags_dir` can be used to change the tags and data directories. See [using custom content paths](~using-custom-content-paths).
+* `-data_dir` and `-tags_dir` can be used to change the tags and data directories. See [using custom content paths](~mod-tools#using-custom-content-paths).
 
 # Menu options
 ## Switch BSP

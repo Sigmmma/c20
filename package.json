@@ -25,6 +25,7 @@
   "homepage": "https://c20.reclaimers.net",
   "devDependencies": {
     "@markdoc/markdoc": "^0.1.10",
+    "@viz-js/viz": "^3.1.0",
     "del": "^5.1.0",
     "esbuild": "^0.15.12",
     "express": "^4.17.1",

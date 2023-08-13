@@ -32,7 +32,7 @@ This new version of Tool has many differences from the 2007 Pi Studios Tool. Mos
 - `Tool` or `tool.exe` - refers to the subject of this article, the H2 Tool, if the legacy Tool is being referred to that will be made explicit.
 
 # Command line flags
-- `-data_dir` and `-tags_dir` can be used to change the data and tag directories respectively. This might not work with all verbs as it's experimental. See [using custom content paths](~using-custom-content-paths).
+- `-data_dir` and `-tags_dir` can be used to change the data and tag directories respectively. This might not work with all verbs as it's experimental. See [using custom content paths](~mod-tools#using-custom-content-paths).
 - `-pause` wait for user input before exiting, useful for custom launchers.
 
 # Batch bitmap compilation
@@ -211,7 +211,7 @@ tool collision "objects\characters\masterchief"
 
 * source-directory - A local data path to the root of a model source directory.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\collision\mc_collision.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.collision_model`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 
 # Count all class sounds
@@ -766,7 +766,7 @@ tool physics "objects\characters\masterchief"
 
 * source-directory - A local data path to the root of a model source directory.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\physics\masterchief_ragdoll.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.physics_model`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\physics\masterchief_ragdoll.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.physics_model`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 
 # Plate
@@ -826,7 +826,7 @@ tool render "objects\characters\masterchief" false false
 * accurate - ???
 * run-prt - Run a PRT simulation on the import data. Skinned meshes are not supported.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\render\L5_masterchief.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.render_model`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\objects\characters\masterchief\render\L5_masterchief.JMS`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.render_model`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 
 
@@ -1030,7 +1030,7 @@ tool structure "scenarios\multi\example" "example"
 * bsp-name - The JMS filename without extension.
 * verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 
 
@@ -1045,7 +1045,7 @@ tool structure-compatible "scenarios\multi\example" "example"
 * scenario-directory - A local data path to root directory of a level.
 * bsp-name - The JMS filename without extension.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 # Structure compatible from JMS
 A [JMS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
@@ -1057,7 +1057,7 @@ tool structure-compatible-from-jms "scenarios\multi\example\structure\example.JM
 
 * jms-file - A local data path to a JMS file with extension.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 # Structure from JMS
 A [JMS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
@@ -1070,7 +1070,7 @@ tool structure-from-jms "scenarios\multi\example\structure\example.JMS"
 * jms-file - A local data path to a JMS file with extension.
 * verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
-For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
+For the example above, Tool would expect to find a corresponding JMS file at `data\scenarios\multi\example\structure\example.JMS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 # Structure new
 A [ASS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag. Do not use this command for level imports as it's outdated (use [structure-new-from-ass instead](#structure-new-from-ass)).
@@ -1084,7 +1084,7 @@ tool structure-new "scenarios\multi\example" "example"
 * bsp-name - The ASS filename without extension.
 * verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
-For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
+For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 # Structure new from ASS
 A [ASS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag.
@@ -1097,7 +1097,7 @@ tool structure-new-from-ass "scenarios\multi\example\structure\example.ASS"
 * ass-file - A local data path to a ASS file with extension.
 * verbose - An optional boolean arg. Prints more debug info during file importing for levels.
 
-For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
+For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. Note that [lightmaps](~scenario_structure_lightmap) are **not** produced during this step, but rather with the [lightmaps verb](#baking-lightmaps).
 
@@ -1113,7 +1113,7 @@ tool structure-new-verbose-from-ass "scenarios\multi\example\structure\example.A
 
 * ass-file - A local data path to a ASS file with extension.
 
-For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
+For the example above, Tool would expect to find a corresponding ASS file at `data\scenarios\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\scenarios\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 
 

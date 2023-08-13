@@ -890,7 +890,7 @@ tool structure "levels\multi\example\structure\example.ASS"
 
 * ass-file - A local data path to a ASS file with extension.
 
-For the example above, Tool would expect to find a corresponding ASS file at `data\levels\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\levels\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl-2.0) for troubleshooting.
+For the example above, Tool would expect to find a corresponding ASS file at `data\levels\multi\example\structure\example.ASS`. Assuming no errors, it would be compiled into `tags\levels\multi\example\example.scenario_structure_bsp`. Geometry errors will cause Tool to create [WRL files](~wrl) for troubleshooting.
 
 Structure compilation converts the raw polygon and materials data from the ASS into data structures which are more efficient for Halo to use during rendering, collision tests, and AI pathfinding among other tasks. This step does not produce [lightmaps](~scenario_structure_lightmap) -- see [baking lightmaps](#baking-lightmaps-faux).
 

@@ -1,7 +1,7 @@
 import {getPageBaseDir, pageIdToLogical, tryLocalizedPath, type PageIndex} from "./content";
 import path from "path";
 import fs from "fs";
-import Viz from "viz.js";
+import Viz from "@viz-js/viz";
 import {exec} from "child_process";
 import vizRenderOpts from "viz.js/full.render.js";
 import {type BuildOpts} from "../build";
@@ -10,6 +10,14 @@ const COPY_FILES_PATTERN = /\.(jpg|jpeg|png|gif|ms|mp4|blend|zip)/;
 const VIDEO_FILES_PATTERN = /\.(mp4)/;
 const VIZ_RENDER_PATTERN = /\.(dot|neato|fdp|sfdp|twopi|circo)/;
 const noThumbs = process.env.C20_NO_THUMBNAILS == "true";
+
+export async function renderViz(vizSrc: string): Promise<string> {
+  const viz = await Viz.instance();
+  const svg = viz.renderString(vizSrc, {format: "svg"});
+  // const viz = new Viz(vizRenderOpts);
+  // const svg = await viz.renderString(vizSrc);
+  return svg;
+}
 
 async function processFile(srcPath: string, outputDir: string) {
   const {ext, base, name} = path.parse(srcPath);
@@ -22,8 +30,7 @@ async function processFile(srcPath: string, outputDir: string) {
   if (ext.match(VIZ_RENDER_PATTERN)) {
     //build content graphviz diagrams into SVG (https://graphviz.org)
     const vizSrc = await fs.promises.readFile(srcPath, "utf8");
-    const viz = new Viz(vizRenderOpts);
-    const svg = await viz.renderString(vizSrc);
+    const svg = await renderViz(vizSrc);
     const destPath = path.join(outputDir, `${name}.svg`);
     await fs.promises.writeFile(destPath, svg, "utf8");
   }

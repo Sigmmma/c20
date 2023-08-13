@@ -20,22 +20,7 @@ Similarly to the other mod tools, it is based on the old internal tools used by 
 Unlike the [H1A-EK](~) you ***do*** need to own [Halo 3 on Steam][steam_purchase] to gain access to the toolkit.
 
 # Getting started
-{% figure src="/general/tools/steam_tools.jpg" %}
-Pictured: Location of the mod tools in the steam library.
-{% /figure %}
-
-0. Ensure you own [Halo 3 on Steam][steam_purchase], tools are only accessible if you own the Steam version.
-1. [Download the tools using Steam](steam://run/1695791), you might need to [install Steam](https://store.steampowered.com/about/) first.
-2. Follow the on screen prompts to download the tools.
-3. Once the tools are done downloading you can find them in your library in the tools section.
-4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
-5. Run the `Extract (H3EK).bat` file - this will extract all the files required.
-6. If your operating system supports it you should enable file system compression for the `tags\sounds` folder. This is a workaround for high disk space usage caused by sound tags including zeroed out sound data.
-7. (Optional) Check out the [guides hub](~guides) to learn more about modding or install a launcher like [Osoyoos](~) if you don't like using the command line.
-
-# Installing updates
-1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
-2. Re-run `Extract (H3EK).bat` and replace all files.
+See the [general installation steps](~/general/mod-tools#installation) for help installing these tools. Don't forget to run the extract script!
 
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
@@ -51,7 +36,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Fixed instance geometry often failing to show correct dynamic cubemaps.
 * Fixed distorted sound playback on certain sound tags.
 * Backported support to set [device_machine](~) variants from ODST (Sapien and Guerilla).
-* Added [play builds](~build-types#optimization-options) of Sapien, Standalone, and Guerilla.
+* Added [play builds](~blam#build-types) of Sapien, Standalone, and Guerilla.
 * Removed various unused or deprecated tag fields.
 * Removed Guerilla's Tag Mover dependency on tag depot.
 * Updated an outdated description for "Game Engine Settings Halo3" in [multiplayer_globals](~) tag.
@@ -179,4 +164,3 @@ Naturally there is multitude of changes compared to H2 as the engine underwent a
 * Lipsync won't be generated when importing sounds that use a multilingual sound class such as unit_dialog as third party tools are required.
 * Forging objects while using the Standalone client will cause a crash. A workaround is to use the main menu to launch Forge from the lobby.
 
-[steam_purchase]: https://store.steampowered.com/app/1064271

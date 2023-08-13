@@ -11,7 +11,7 @@ Blender:
     - edit:
         - obj
         - collada
-        - wrl 2.0
+        - wrl
 Gmax:
   page: gmax
   deprecated: true
@@ -26,7 +26,6 @@ Gmax:
         - obj
         - collada
         - wrl
-        - wrl 2.0
 Maya:
   page: maya
   authors:

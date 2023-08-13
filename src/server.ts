@@ -1,5 +1,6 @@
 import fs from "fs";
 import express from "express";
+import path from "path";
 import buildConfig from "../build-config.json";
 // SPOOPY BUG: do not reorder the next two lines!!!!!
 import renderPage from "./lib/render/render";
@@ -10,6 +11,7 @@ import {parse} from "./lib/components/Md/markdown";
 import { buildSearchIndex, SearchDoc } from "./lib/search";
 import { buildRedirects } from "./lib/redirects";
 import loadStructuredData from "./data";
+import { renderViz } from "./lib/resources";
 
 const buildOpts: BuildOpts = {
   baseUrl: buildConfig.baseUrl,
@@ -29,6 +31,16 @@ export default function runServer(onDemand: boolean) {
 
   if (onDemand) {
     app.use(express.static(buildOpts.contentDir));
+    
+    app.get("/:path([-/_a-zA-Z0-9]+).svg", async (req, res, next) => {
+      const dotFilePath = path.join(buildOpts.contentDir, `${req.params.path}.dot`);
+      console.log(`Rendering dot file ${dotFilePath}`);
+      const vizSrc = await fs.promises.readFile(dotFilePath, "utf8");
+      const svg = await renderViz(vizSrc);
+      res.header("Content-Type", "image/svg+xml; charset=UTF-8");
+      res.send(svg);
+    });
+    
     app.get("/assets/search-index_:lang(\\w{2}).json", async (req, res, next) => {
       const lang = req.params.lang.toLowerCase();
       console.log(`Building search index: ${lang}`);
@@ -47,6 +59,7 @@ export default function runServer(onDemand: boolean) {
       res.header("Content-Type", "application/json; charset=UTF-8");
       res.send(json);
     });
+    
     app.get("/:page([-/_a-zA-Z0-9]+)?", async (req, res, next) => {
       // const lang = req.params.lang?.toLowerCase() ?? "en";
       const lang = "en";

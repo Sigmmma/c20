@@ -12,14 +12,14 @@ thanks:
   Zeddikins: Finding the spawning hotkeys
 ---
 The [H1A-EK](~) includes a **standalone build** of that game (**halo_tag_test.exe**). This build doesn't include network functionality and it intended for testing single-player maps. It includes AI debugging code not included in other published builds of the engine.
-[Using custom content paths](~using-custom-content-paths) is supported.
+[Using custom content paths](~mod-tools#using-custom-content-paths) is supported.
 
 {% alert type="danger" %}
 The standalone build is still somewhat experimental and bugs should be expected. Again, only single-player maps are officially supported at this time. Maps should always receive final testing as [map cache files](~map) loaded by MCC itself.
 {% /alert %}
 
 # Usage
-The UI works to a limited degree but loading maps is best done using the [`map_name`](~scripting#functions-map-name) command in the [console](~developer-console). Note: you need to use the **full scenario tag path** as this is a [tag build](~build-types#tag). For example:
+The UI works to a limited degree but loading maps is best done using the [`map_name`](~scripting#functions-map-name) command in the [console](~developer-console). Note: you need to use the **full scenario tag path** as this is a [tag build](~blam#build-types). For example:
 
 ```consoleh1a
 ; load tags\levels\a30\a30.scenario:
@@ -90,7 +90,7 @@ This is because the files in your profile can contain memory dumps which, when l
 * Sound cuts out - ensure `framerate_throttle 1` is set.
 * Menus are rendered at their native size of 640x480 in the top left corner of the screen rather than stretched to the entire game resolution.
 * Low mouse sensitivity in vehicles and when zoomed in.
-* Some AI may behave differently than in a [cache build](~build-types#cache). For example, the sentinels during d40's Warthog run are inactive.
+* Some AI may behave differently than in a [cache build](~blam#build-types). For example, the sentinels during d40's Warthog run are inactive.
 * Player cannot be controlled while in debug camera mode.
 * Some transparent geometry like lights and decals may be visible even when they are behind an obstruction.
 * Crashes that [happen in H1A Sapien](~h1a-sapien#crashes) may also occur.

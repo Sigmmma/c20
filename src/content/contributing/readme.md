@@ -10,18 +10,17 @@ keywords:
 redirects:
   - /thanks
 ---
-**The Reclaimers Library** is a wiki created by modders for modders. It has a primary team of volunteer editors who incorporate new information of their own or submissions by the community. Anyone can submit tips or become an editor.
-
-This page details the wiki's features, how to contribute, and how to add or update pages as an editor.
+**The Reclaimers Library** is an [open source](https://github.com/Sigmmma/c20) wiki created by modders for modders. It has a primary team of volunteer editors who incorporate new information from their own research or from community tips. This page details how you can contribute, and how to write pages as an editor.
 
 # How to contribute
-Pages are not directly editable by the public in order to ensure accuracy. Anyone can:
+Pages are not publicly editable, but anyone can:
 
 * Join our [Discord server](https://discord.com/invite/tVduNg9Ztb) and submit information to the **#wiki-dump** channel.
 * Submit information or requests in a [GitHub issue](https://github.com/Sigmmma/c20/issues).
-* For more advanced users, fork [the c20 repo](https://github.com/Sigmmma/c20) and create a pull request.
+* Create a [pull request](https://github.com/Sigmmma/c20). Each page has an edit button which will take you to GitHub for basic edits.
+* [Become an editor](#becoming-an-editor) and contribute directly.
 
-Editors will review and incorporate the above into the wiki. Don't worry if writing isn't your strong suit. We'll ensure your tips are properly incorporated into the Wiki and you're credited for them.
+Editors will review and incorporate information into the wiki. Don't worry if writing isn't your strong suit. We'll ensure your tips are properly included and you're [credited](#contributor-list) for them.
 
 ## Becoming an editor
 Interested in curating pages? Go to **#role-selection** in our Discord and select the "Wiki Contributor" role. We expect that you'll be able to:
@@ -222,6 +221,7 @@ Headings automatically generate a table of contents shown in the page sidebar an
 Always use _sentence case_, with the first word capitalized only. The exception is if the title is a proper name like a tool. To maintain consistency across pages, try to use some of these common heading names if relevant:
 
 * Known issues
+* More information
 * Limits
 * Related script functions and globals
 * Compatibility
@@ -253,7 +253,7 @@ However, linking within c20 is cumbersome and fragile with standard markdown. Th
 [the scenario _bipeds_ block](~scenario#tag-field-bipeds)
 ```
 
-When multiple target pages match, c20 will choose the one _most related_ to the origin page in the content tree. When this is not possible, the ambiguity must be clarified by specifying more of the path tail in the link.
+When multiple target pages match, c20 will choose the one _most related_ to the origin page in the content tree. When this is not possible, the ambiguity must be resolved by specifying more of the path tail in the link.
 
 Another special type of link we support is **global links** to URLs defined in `external-urls.ts`:
 
@@ -590,7 +590,7 @@ Intrinsic types do not need to be defined:
 # Contributor list
 The primary maintainer of c20 is Conscars, with technical and content contributions from num0005, General-101, Krevil, gbMichelle, Mimickal (Donut), and [more](https://github.com/Sigmmma/c20/graphs/contributors).
 
-I want to extend a thanks to the developers involved in Halo over the years, including Bungie, Gearbox Software, Hired Gun, Certain Affinity, Saber Interactive, and 343 Industries.
+We extend a thanks to the developers involved in Halo over the years, including Bungie, Gearbox Software, Hired Gun, Certain Affinity, Saber Interactive, and 343 Industries.
 
 Most of the community's knowledge comes from the hard work of modders who have researched, reverse engineered, experimented, and documented over the years. Our current understanding is built on a mountain of documents, forum posts, tutorials, and conversations. While we can't include everyone, we would at least like to thank the following people for their roles either writing or being a source for c20:
 

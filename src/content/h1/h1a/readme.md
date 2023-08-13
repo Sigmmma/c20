@@ -11,7 +11,7 @@ thanks:
 ---
 **Halo: Combat Evolved Anniversary**, commonly referred to as **H1A** or **CEA** was first released in 2011 as a collaboration project between [343 Industries][343i-wiki], and [Saber Interactive][saber-wiki]. It aimed to modernize the look and feel of the original game for use with the more powerful [Xbox 360][360-wiki]. With the release of [Halo MCC][mcc-wiki], CEA has also seen a port to PC and Xbox One.
 
-One of its quirks is the ability to switch between the Saber3d and [blam!](~engine) engine visuals and sounds with the press of a button. It's common to see the them referred to as classic, and anniversary to reduce ambiguity.
+One of its quirks is the ability to switch between classic and remastered/anniversary visuals and sounds with the press of a button.
 
 As of season 7, H1A represents a merger between the original H1CE and H1PC branches of the engine.
 

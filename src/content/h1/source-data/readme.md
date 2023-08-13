@@ -1,8 +1,6 @@
 ---
 title: Source data files
 about: 'resource:Source data files'
-img: src-data.png
-caption: 'Scripts, textures, and models are some examples of source data files.'
 keywords:
   - uncompiled
   - data
@@ -11,8 +9,6 @@ keywords:
   - assets
   - textures
   - export
-related:
-  - /h1/guides/intro-to-h1-modding
 ---
 **Source data files** are the files found in your editing kit's `data` folder. These are the assets which have not yet been converted into [tag](~tags) format by [Tool](~) (or [Sapien](~) in the case of scripts). In most cases, assets within `data` will have a corresponding tag under the same folder layout in `tags`.
 

@@ -32,6 +32,7 @@ export type PageLink = {
   url: string;
   pageId: string;
   logicalPathTail: string;
+  isStub: boolean;
 };
 
 export type PageData = {
@@ -181,6 +182,7 @@ function createPageLink(pageIndex: PageIndex, pageId: string, lang: Lang, headin
     title: tryLocalizedTitle(pageIndex, pageId, lang),
     url: tryLocalizedPath(pageIndex, pageId, lang, headingId),
     logicalPathTail: pageIndex[pageId][lang].logicalPathTail,
+    isStub: pageIndex[pageId][lang].front.stub ?? false,
     pageId,
   };
 }

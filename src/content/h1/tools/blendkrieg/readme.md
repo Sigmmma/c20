@@ -1,7 +1,6 @@
 ---
 title: Blendkrieg
 about: 'tool:Blendkrieg'
-info: !<tag:yaml.org,2002:js/undefined> ''
 ---
 **Blendkrieg** is an add-on for importing [JMS](~), [model](~), and [gbxmodel](~) into [Blender](~).
 

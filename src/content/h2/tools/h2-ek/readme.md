@@ -23,21 +23,7 @@ The **Halo 2 Editing Kit (H2-EK)** or **Halo 2 Mod Tools** is the official suite
 Unlike the [H1A-EK](~) you ***do*** need to own [Halo 2: Anniversary on Steam][steam_purchase] to gain access to the toolkit.
 
 # Getting started
-{% figure src="/general/tools/steam_tools.jpg" %}
-Pictured: Location of the mod tools in the steam library.
-{% /figure %}
-
-0. Ensure you own [Halo 2: Anniversary on Steam][steam_purchase], tools are only accessible if you own the Steam version.
-1. [Download the tools using Steam](steam://run/1613450), you might need to [install Steam](https://store.steampowered.com/about/) first.
-2. Follow the on screen prompts to download the tools.
-3. Once the tools are done downloading you can find them in your library in the tools section.
-4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
-5. Run the `Extract (H2EK).bat` file - this will extract all the files required.
-6. (Optional) Check out the [guides hub](~guides) to learn more about modding or install a launcher like [Osoyoos](~) if you don't like using the command line.
-
-# Installing updates
-1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
-2. Re-run `Extract H2EK.bat` and replace all files.
+See the [general installation steps](~/general/mod-tools#installation) for help installing these tools. Don't forget to run the extract script!
 
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
@@ -139,7 +125,7 @@ Sapien & standalone:
 * The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
 * A standalone build similar in function to H1A standalone.
 * All tools are still 32-bit but they are now large address aware (LAA). This allows them to use up to 4 GiB of virtual memory (exact limit depends on your system) instead of 2, this along with fixed memory leaks should help avoid out of memory issues.
-* The tags, data, and maps directories can now be set when running all tools. See [custom content paths](~using-custom-content-paths) for more info. This makes it easier to work with different tag sets.
+* The tags, data, and maps directories can now be set when running all tools. See [custom content paths](~mod-tools#using-custom-content-paths) for more info. This makes it easier to work with different tag sets.
 * Better overall stability.
 * Pathfinding can now be generated.
 
@@ -211,4 +197,4 @@ The tools include many improvements over an [H2Codez](~)-enhanced H2V-EK, most n
 [csv]: https://en.wikipedia.org/wiki/Comma-separated_values
 [xls]: https://en.wikipedia.org/wiki/Microsoft_Excel_file_format
 [msdn_d3dcreate]: https://docs.microsoft.com/en-us/windows/win32/direct3d9/d3dcreate
-[steam_purchase]: https://store.steampowered.com/app/1064270
+

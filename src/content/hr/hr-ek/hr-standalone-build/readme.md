@@ -17,7 +17,7 @@ The standalone build is configuered differently from the retail build of Halo Re
 {% /alert %}
 
 # Usage
-The UI works to a limited degree but not all maps can be loaded using it. Map load should be done by adding the required [`game_start`](~scripting#functions-map-name) command to `init.txt`. Note: you need to use the **full scenario tag path** as this is a [tag build](~build-types#tag). For example:
+The UI works to a limited degree but not all maps can be loaded using it. Map load should be done by adding the required [`game_start`](~scripting#functions-map-name) command to `init.txt`. Note: you need to use the **full scenario tag path** as this is a [tag build](~blam#build-types). For example:
 
 ```console
 ; load tags\levels\solo\m20\m20.scenario:

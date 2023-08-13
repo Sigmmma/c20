@@ -14,22 +14,7 @@ Compared to H3, [Foundation](~hr-foundation) takes the place of [Guerilla](~h3-g
 Unlike the [H1A-EK](~) you _do_ need to own [Halo Reach on Steam][steam_purchase] to gain access to the toolkit.
 
 # Getting started
-{% figure src="/general/tools/steam_tools.jpg" %}
-Pictured: Location of the mod tools in the steam library.
-{% /figure %}
-
-0. Ensure you own [Halo Reach on Steam][steam_purchase], tools are only accessible if you own the Steam version.
-1. [Download the tools using Steam](steam://run/1695793), you might need to [install Steam](https://store.steampowered.com/about/) first.
-2. Follow the on screen prompts to download the tools.
-3. Once the tools are done downloading you can find them in your library in the tools section.
-4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
-5. Run the `Extract (HREK).bat` file - this will extract all the files required.
-6. If your operating system supports it you should enable file system compression for the `tags\sounds` folder. This is a workaround for high disk space usage caused by sound tags including zeroed out sound data.
-7. (Optional) Check out the [guides hub](~guides) to learn more about modding or install a launcher like [Osoyoos](~) if you don't like using the command line.
-
-# Installing updates
-1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
-2. Re-run `Extract (HREK).bat` and replace all files.
+See the [general installation steps](~/general/mod-tools#installation) for help installing these tools. Don't forget to run the extract script!
 
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
@@ -47,7 +32,7 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Fixed Foundation crashing when launching scenario.
 * Fixed Sapien crashing when using structure painter.
 * Added a solution for setting up marker permutations in FBX to GR2 pipeline.
-* Added [play builds](~build-types#optimization-options) of Sapien and Standalone.
+* Added [play builds](~blam#build-types) of Sapien and Standalone.
 * Fixed Foundation tag mover crashing if "include data" is selected.
 * Removed unused tag fields.
 * Reach now supports temporaries and `begin` actions in Megalo like H4.
@@ -92,4 +77,3 @@ This changelog is focused on known notable modding-related changes and is not gu
 * Single threaded lightmapping is not supported, you need to use the multi-process solution. This can be run with only a single client if only using one core is desired.
 * All the stock tags do not contain import info so you will not be able to extract source assets that way.
 
-[steam_purchase]: https://store.steampowered.com/app/1064220

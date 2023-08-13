@@ -1,6 +1,5 @@
 ---
-title: Using FBX in MCC
-stub: true
+title: FBX
 about: 'resource:fbx-mcc'
 keywords:
   - FBX
@@ -13,10 +12,12 @@ related:
 redirects:
 	- /h1/tools/h1a-ek/using-fbx-in-h1a
 ---
+**FBX** is a geometry file format which can be exported by most major [3D software](~art-tools#modeling). Bungie originally relied on in-house or proprietary exporters to create ASS, JMS, JMA, JMI, and GR2. Modern versions of Tool re-released by 343i now support converting FBX to these formats to bridge the gap. Note that [community-made addons](~halo-asset-blender-development-toolset) can shorten this process by exporting directly to ASS, JMS, and JMA.
+
 This page will go over how to setup your scene to export FBX files for users who use 3D editing software with no available intermediate source file exporters. All rules of standard [JMS](~jms), [animation source files](~animation-data), and [ASS](~ass) workflow in Blender or 3DS Max apply so be sure to read up on that.
 
 # Missing file format features
-FBX covers enough ground to be a decent format to use for multiple 3D software solutions. Unfortunately there are a few things the converter just can't do due to the limitations of using FBX or stuff that still needs more work.
+FBX covers enough ground to be a decent format to use for multiple 3D software solutions. Unfortunately, there are a few things the converter can't do because of FBX limitations or incomplete implementation.
 
 ## Halo 1
 The FBX command fully supports all of the features in the JMS and JMA file formats. You should have no issues converting files here.

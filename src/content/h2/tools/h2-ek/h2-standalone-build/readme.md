@@ -12,14 +12,14 @@ related:
   - /h3/h3-ek/h3-standalone-build
 ---
 The [Halo 2 Anniversary Editing Kit](~H2-EK) includes a **standalone build** of that game (**halo2_tag_test.exe**). This build doesn't include network functionality and it intended for testing single-player maps. It includes AI debugging code not included in other published builds of the engine.
-[Using custom content paths](~using-custom-content-paths) is supported.
+[Using custom content paths](~mod-tools#using-custom-content-paths) is supported.
 
 {% alert type="danger" %}
 The standalone build is still somewhat experimental and bugs should be expected. Maps should always receive final testing as [map cache files](~map) loaded by MCC itself.
 {% /alert %}
 
 # Usage
-The UI works is largely functional so you can load built in maps using it or add your own maps to the UI but loading maps is easier to do using the [`game_start`](~h1/engine/scripting#functions-map-name) command in the [console](~developer-console). Note: you need to use the **full scenario tag path** as this is a [tag build](~build-types#tag). For example:
+The UI works is largely functional so you can load built in maps using it or add your own maps to the UI but loading maps is easier to do using the [`game_start`](~h1/engine/scripting#functions-map-name) command in the [console](~developer-console). Note: you need to use the **full scenario tag path** as this is a [tag build](~blam#build-types). For example:
 
 ```consoleh2a
 ; load tags\scenarios\solo\01b_spacestation\01b_spacestation.scenario:

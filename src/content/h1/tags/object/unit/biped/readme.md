@@ -1,6 +1,5 @@
 ---
 title: biped
-stub: true
 about: 'tag:h1/biped'
 img: bipeds.jpg
 caption: Some bipeds scripted to run along a path during c10's intro

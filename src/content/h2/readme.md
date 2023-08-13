@@ -11,7 +11,7 @@ Halo 2's box art
 
 **Halo 2** is the second installment of the Halo game series and sequel to [Halo 1](~h1). It was created by [Bungie][bungie] and initially released on the original Xbox in 2004 by publisher/owner [Microsoft][]. In 2007, the game was released for Windows PC and Mac via different studios.
 
-Halo 2 uses Bungie's proprietary [Blam!](~engine) engine, which also formed the basis of later games in the series.
+Halo 2 uses Bungie's proprietary [Blam!](~blam) engine, which also formed the basis of later games in the series.
 
 # Xbox (Bungie, 2004)
 Sometimes called **h2x**, this is the classic first release of Halo 2 for the original Xbox. Multiplayer had support for LAN multiplayer along with online play through Xbox Live.

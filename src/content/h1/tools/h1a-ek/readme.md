@@ -25,7 +25,6 @@ keywords:
   - h1a-ek
 related:
   - /h1/tools/hek
-  - /h1/guides/intro-to-h1-modding
   - /h3/h3-ek
   - /h2/tools/h2-ek
 ---
@@ -46,20 +45,7 @@ These tools are based on the original internal tools created by Bungie during th
 Using the H1A-EK to create content for H1CE rather than H1A is not officially supported. For example, H1CE uses a different [map version](~map#map-header-cache-version) and won't load maps compiled for H1A. Taking advantage of many of the fixes and extended limits below will also result in your tags not being backwards compatible. **Use at your own risk.**
 
 # Getting started
-{% figure src="/general/tools/steam_tools.jpg" %}
-Pictured: Location of the mod tools in the steam library.
-{% /figure %}
-
-1. [Download the tools using Steam](steam://run/1532190), you might need to [install Steam](https://store.steampowered.com/about/) first.
-2. Follow the on screen prompts to download the tools.
-3. Once the tools are done downloading you can find them in your library in the tools section.
-4. Right click the entry for the mod tools, select the "Manage" context menu entry then select the "Browse local files" subentry.
-5. Run the `Extract (HCEEK).bat` file - this will extract all the files required.
-6. (Optional) Check out the [guides hub](~guides) to learn more about modding or install a launcher like [Osoyoos](~) if you don't like using the command line.
-
-# Installing updates
-1. Make sure you didn't update any stock tags, and if you did make a backup of those files.
-2. Re-run `Extract (HCEEK).bat` and replace all files.
+See the [general installation steps](~/general/mod-tools#installation) for help installing these tools. Don't forget to run the extract script!
 
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
@@ -213,9 +199,9 @@ The season 7 MCC update ([patch notes](https://support.halowaypoint.com/hc/en-us
   * Various buffer overflow, index out of range, and stale pointer fixes.
   * Increase `MAXIMUM_NUMBER_OF_BUILD_SPRITE_BITMAPS` from 8 to 16 (renderer stability).
 * The engine will now check and log when an invalid [particle_system](~) using [rotational complex render mode](~particle_system#tag-field-particle-types-complex-sprite-render-modes-rotational) has a particle state where the sprites bitmap does not include another "sideways" sequence after the given "forward" _sequence index_.
-* The tools are in general faster and more responsive (in part due to manual optimizations, in part due to [*play* builds](~build-types#optimization-options) built with a modern optimizing compiler being used instead of *test* builds).
+* The tools are in general faster and more responsive (in part due to manual optimizations, in part due to [*play* builds](~blam#build-types) built with a modern optimizing compiler being used instead of *test* builds).
 * Asserts can be disabled using the `-noassert` command line flag.
-* The tags, data, and maps directories can now be set when running all tools. See [custom content paths](~using-custom-content-paths) for more info. This makes it easier to work with different tag sets.
+* The tags, data, and maps directories can now be set when running all tools. See [custom content paths](~mod-tools#using-custom-content-paths) for more info. This makes it easier to work with different tag sets.
 * All tools are still 32-bit but they are now large address aware (LAA). This allows them to use up to 4 GiB of virtual memory instead of 2, which prevents Sapien from running out of memory when editing scenarios with many large assets.
 * Various cases of unnecessary/confusing logging in the tools have been removed, such as "Couldn't read map file toolbeta.map" and "Sound card doesn't meet minimum hardware requirements".
 

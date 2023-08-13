@@ -25,7 +25,7 @@ Download [sky_tut_files.zip](sky_tut_files.zip), which contains final copies of 
 
 # Prerequisites
 {% alert %}
-If you are new to Halo 1 modding and need a primer on the general asset-creation workflow, see [Introduction to Halo 1 modding](~intro-to-h1-modding). [Basic Blender knowledge](~blender#usage-basics) is also needed.
+If you are new to Halo modding and need a primer on the general asset-creation workflow, see [mod tools](~general/mod-tools). [Basic Blender knowledge](~blender#usage-basics) is also needed.
 {% /alert %}
 
 To complete this guide you will need:
