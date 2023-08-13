@@ -1,6 +1,5 @@
 ---
 title: ManagedBlam
-stub: true
 keywords:
   - managed
   - blam
@@ -14,8 +13,7 @@ thanks:
   Krevil: Significant early research and help, and for making [PresentationODST](https://github.com/Krevil/PresentationODST), which exemplifies use of ManagedBlam for H3/ODST
   Crisp: Research and help, example python code, .SelectField() usage, and for development of [Foundry](https://github.com/ILoveAGoodCrisp/Foundry-Halo-Blender-Creation-Kit), which has many examples of ManagedBlam functionality for Reach+
 ---
-# Introduction
-The ManagedBlam.dll is a wrapper that allows for direct in-code access to engine functions and tag data, examples being - reading tag data, manipulating tag fields, creating tag entries or tags from scratch and much more. It is available for all engines post-H2 (it was backported to H3 and ODST with the July 2023 update).
+**ManagedBlam.dll** is a wrapper library that allows for direct in-code access to engine functions and tag data, examples being - reading tag data, manipulating tag fields, creating tag entries or tags from scratch and much more. It is available for all engines post-H2 (it was backported to H3 and ODST with the July 2023 update).
 
 Of course this is an extremely powerful tool with practically endless possibilities and greatly increases the potential and speed of external helper programs. On this page, we will provide some basic information on getting ManagedBlam up and running in your dev environment, and some simple(ish!) code examples for doing things such as reading and writing tag field data.
 

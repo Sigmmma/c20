@@ -35,7 +35,7 @@ The following tools come with each game's mod tools, sometimes with [build type]
 * **Guerilla**, and later **Foundation**, are tag data editors. Use them to modify and create tags.
 * **Sapien** is a visual [scenario](~h1/tags/scenario) and [scenario_structure_bsp](~h1/tags/scenario_structure_bsp) editor, sort of like Forge. It's used to populate levels with objects, place multiplayer objectives, set up AI encounters, and assign environmental effects like weather.
 * **Standalone** (halo_tag_test.exe) is a [build](~blam#build-types) of Halo which loads from tags rather than maps. Use it to rapidly test and debug levels without having to build them for MCC.
-* **ManagedBlam.dll** is a library present for H3+ which allows programmers creating custom tools to work with tag data compatibly.
+* **[ManagedBlam.dll](~managed-blam)** is a library present for H3+ which allows programmers creating custom tools to work with tag data compatibly.
 
 Another tool, [Excession](~), is not part of the mod tools but is needed to publish mods to the Steam workshop.
 
