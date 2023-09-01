@@ -199,6 +199,15 @@ type_defs:
         type: float
         meta:
           unit: world units
+        comments:
+          en: >
+            Setting this to a non-zero value causes the game to test for
+            projectile collisions using 3 horizontal rays. In addition to
+            the normal central ray, two additional rays are added to the left
+            and right offset by this distance (like [Quake's lightning gun](https://youtu.be/4gNYTqn3qRc?t=60)).
+            The side rays can only collide with objects and not BSP. When the
+            side rays detect a collision then the projectile will be snapped to
+            that location. The projectile's bounding radius does not affect this.
       - name: arming_time
         type: float
         meta:
