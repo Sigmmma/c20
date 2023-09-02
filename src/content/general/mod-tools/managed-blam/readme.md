@@ -107,7 +107,7 @@ Want to read tag data into code? Need to add new entries to blocks with code? Ac
 1. Using the block, element and field indices (if they are known).
 2. Using the `.SelectField()` function to access elements based on their names
 
-It doesn't particularly matter which method you use, but option 2 will usually result in code that is easier to read. The first few examples that follow will use option 1, but and example of option 2 will be shown later.
+It doesn't particularly matter which method you use, but option 2 will usually result in code that is easier to read.
 
 See this example, which will add an extra zone to the `Zones` block of a scenario tag, and then adds a new area entry to the `Areas` block. As this requires knowing the amount of pre-existing zones, the first line is an example of reading data:
 ```cs
@@ -126,6 +126,90 @@ using (var tagFile = new Bungie.Tags.TagFile(tag_path))
     // Save the changes to the tag file
     tagFile.Save();
 }
+```
+
+Examples of using method 2 - the `.SelectField()` function:
+```cs
+// Access the curve mode value of a bitmap tag
+var curve = (TagFieldEnum)tagFile.SelectField("CharEnum:curve mode");
+
+// Access the fade factor value of a bitmap tag
+var fade = (TagFieldElementSingle)tagFile.SelectField("RealFraction:fade factor");
+
+// Access the type of an animated parameter element in a given parameter in a shader tag
+var type = (TagFieldEnum)tagFile.SelectField($"Struct:render_method[0]/Block:parameters[{index}]/Block:animated parameters[{anim_index}]/LongEnum:type");
+
+// Add an element to the animated parameters block of a given parameter in a shader tag
+((TagFieldBlock)tagFile.SelectField($"Struct:render_method[0]/Block:parameters[{index}]/Block:animated parameters")).AddElement();
+```
+
+# Field data types
+When using `.SelectField()`, you may need to know what data type a given field uses, so that you can set it correctly.
+For example, if you read the tag XML, or otherwise view the tag block data, you may see data types such as `long enum`, `short integer`, `string id` or `tag reference`, to name just a few examples. When accessing these fields with `.SelectField()`, you will need to provide the data type. For the previous examples, they would be `LongEnum`, `ShortInteger`, `StringID`, and `Reference` respectively. Some of these are not obvious conversions, so see the list below of all possible field data types for use in your code:
+```
+# 0 String
+# 1 LongString
+# 2 StringId
+# 3 OldStringId
+# 4 CharInteger
+# 5 ShortInteger
+# 6 LongInteger
+# 7 Int64Integer
+# 8 Angle
+# 9 Tag
+# 10 CharEnum
+# 11 ShortEnum
+# 12 LongEnum
+# 13 Flags
+# 14 WordFlags
+# 15 ByteFlags
+# 16 Point2d
+# 17 Rectangle2d
+# 18 RgbPixel32
+# 19 ArgbPixel32
+# 20 Real
+# 21 RealSlider
+# 22 RealFraction
+# 23 RealPoint2d
+# 24 RealPoint3d
+# 25 RealVector2d
+# 26 RealVector3d
+# 27 RealQuaternion
+# 28 RealEulerAngles2d
+# 29 RealEulerAngles3d
+# 30 RealPlane2d
+# 31 RealPlane3d
+# 32 RealRgbColor
+# 33 RealArgbColor
+# 34 RealHsvColor
+# 35 RealAhsvColor
+# 36 ShortIntegerBounds
+# 37 AngleBounds
+# 38 RealBounds
+# 39 RealFractionBounds
+# 40 Reference
+# 41 Block
+# 42 BlockFlags
+# 43 WordBlockFlags
+# 44 ByteBlockFlags
+# 45 CharBlockIndex
+# 46 CharBlockIndexCustomSearch
+# 47 ShortBlockIndex
+# 48 ShortBlockIndexCustomSearch
+# 49 LongBlockIndex
+# 50 LongBlockIndexCustomSearch
+# 51 Data
+# 52 VertexBuffer
+# 53 Pad
+# 54 UselessPad
+# 55 Skip
+# 56 Explanation
+# 57 Custom
+# 58 Struct
+# 59 Array
+# 60 Resource
+# 61 Interop
+# 62 Terminator
 ```
 
 # Changing tag data
@@ -161,7 +245,7 @@ using (var tagFile = new Bungie.Tags.TagFile(tag_path))
 ```
 
 # Determining field indices
-Should you be using the previously demonstrated method to access tag data, you will need to know the indices of the blocks/elements/fields that are relevant to what you want to edit. This can be a little tricky, as tag blocks often have hidden data (that doesn't even show up in Expert Mode).
+Should you be using the previously demonstrated method 1 to access tag data, you will need to know the indices of the blocks/elements/fields that are relevant to what you want to edit. This can be a little tricky, as tag blocks often have hidden data (that doesn't even show up in Expert Mode).
 Let's take the `Scenery` block within a `.scenario` tag as an example:
 Looking at the block, the first two fields we can see are `type` and `name`. However if you try to access these with field indices of `0` and `1` respectively, you will get type casting errors. This is because there are hidden data fields padding the block. So how can we figure out the correct field indices without using a lengthy trial and error process? The Visual Studio debugger! By hitting a breakpoint on a line where field data is accessed within the block we want to introspect, we can press `View` on the `Value` section in the variables window to open the `IEnumerable Visualizer`, which shows us a table with all the block data!
 
@@ -192,10 +276,6 @@ finally
     tag.Dispose();
 }
 ```
-{% alert type="info" %}
-This code showcases a slightly different method for loading a tag into memory, and provides an example of using the `.SelectField()` method to select a tag field.
-{% /alert %}
-
 ## Running ManagedBlam with Python
 ```py
 # Requires the pythonnet module to be installed -> pip install pythonnet
