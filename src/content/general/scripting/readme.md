@@ -18,7 +18,7 @@ redirects:
 You won't need to do scripting unless you're modifying campaign scripts or creating new campaigns, but it helps to know a bit about HaloScript's syntax and expressions for use in the developer console.
 
 # Tools
-Script sources are denoted by the `.hsc` file extension, and are plain text files that you can edit with programs like notepad. However it's highly recommended to use a text editor like [Visual Studio Code][vscode]. The unofficial [Atlas][] extension provides syntax highlighting and completion suggestions (supports H1-H3).
+Script sources are denoted by the `.hsc` file extension, and are plain text files that you can edit with programs like notepad. However it's highly recommended to use a text editor like [Visual Studio Code][vscode]. The unofficial [HaloScript][] extension provides language support for all HaloScript versions present in *Halo: The Master Chief Collection*.
 
 # Syntax
 Here's a taste of HaloScript's syntax:
@@ -293,6 +293,6 @@ Below is a full listing of object type mask combinations:
 [stack]: http://en.wikipedia.org/wiki/Call_stack
 [sexp]: https://en.wikipedia.org/wiki/S-expression#Use_in_Lisp
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)
-[atlas]: https://marketplace.visualstudio.com/items?itemName=Crisp.atlas
+[HaloScript]: https://marketplace.visualstudio.com/items?itemName=Crisp.atlas
 [vscode]: https://code.visualstudio.com/
 [loops]: https://en.wikipedia.org/wiki/Control_flow#Loops
