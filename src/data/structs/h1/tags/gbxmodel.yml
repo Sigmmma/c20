@@ -143,20 +143,32 @@ type_defs:
         type: float
         meta:
           default: 1
-          comments:
-          en: >-
-              U/V map scale is derived upon model creation as a box that encompasses all the vertices in U/V space
-where 1 unit is 1 tile of the texture. The U scale will be set by the length of the box on the U direction
-(for example, if the farthest point in the U coordinate is 1.5 texture tiles away from the center, this value will become 1.5.
-the same thing happens for the V coordinate. If new geometry is added and the model rebuilt, and the vertices are mapped in UV space inside
-the space already mapped by the existing geometry, the scale in the gbxmodel will not change.
-If they are farther from the origin, the scale will increase.  Using tools such as Mozzarilla to import/export
-geometry in the tag directly will only look correct if the source and destination U/V map scale values are the same.
-Values of 0 will have the same effect as values of 1.
+        comments:
+          en: |-
+            UV map scale is derived upon model import as a box that encompasses
+            all the vertices in UV space, where 1 unit is 1 tile of the texture.
+            The U scale will be set by the length of the box on the U direction.
+            For example, if the furthest point in the U coordinate is 1.5
+            texture tiles away from the center, this value will become 1.5.
+            The same thing happens for the V scale.
+            
+            If new geometry parts are added and the model rebuilt, and the
+            vertices are mapped in UV space inside the space already mapped by
+            the existing geometry, the scale in the gbxmodel will not change.
+            If they are further from the origin, the scale will increase. Using
+            tools such as Mozzarilla to import/export geometry in the tag
+            directly will only look correct if the source and destination UV map
+            scale values are the same.
+
+            Note that shader_transparent_chicago has [its own UV scale](~shader_transparent_chicago#tag-field-maps-map-u-scale).
+            
+            Values of `0` will default to `1`.
       - name: base_map_v_scale
         type: float
         meta:
           default: 1
+        comments:
+          en: See _base map u scale_.
       - type: pad
         size: 116
       - name: markers

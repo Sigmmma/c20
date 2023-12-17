@@ -13,6 +13,7 @@ thanks:
   Kavawuvi: Invader tag definitions, filthy part index research
   MosesOfEgypt: Tag structure research
   Kolshgamer: Common marker name
+  Galap: Base map UV scale research
 ---
 The Gearbox model tag contains the marker points and render models for [objects](~object) such as [vehicles](~vehicle), [scenery](~), and [weapons](~weapon) among others. It is not collideable nor animated on its own, and objects may reference additional [model_collision_geometry](~) and [model_animations](~) tags. This tag supports LODs and permutations, and includes [shader_model](~) references.
 
