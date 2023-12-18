@@ -139,8 +139,8 @@ type_defs:
         type: GlowTrailingParticleDistribution
         comments:
           en: |-
-            Controls how trailing particles are generated from the path start
-            marker. Unaffected by _particles move backwards_ and _particles move in both directions_.
+            Controls how trailing particles are generated from the path segment
+            defined at the end of the tag. Unaffected by _particles move backwards_ and _particles move in both directions_.
       - name: glow_flags
         type: GlowFlags
       - type: pad
