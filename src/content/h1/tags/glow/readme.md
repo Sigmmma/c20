@@ -6,6 +6,7 @@ caption: The gold Elite's energy sword is the only use of glow tags in Halo 1.
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+  Conscars: Testing behaviour of tag fields and glow path creation.
 ---
 **Glow** tags are an [object widget](~object#tag-field-widgets) used to create a particle-based glowing effect, where camera-facing sprite particles travel along and/or emit from a path defined by markers in the [gbxmodel](~gbxmodel#markers). This tag is capable of much more complex effects than used in the energy sword, though has some known issues too.
 
@@ -31,6 +32,10 @@ Some general tips to avoid these issues are:
 * Avoid having more than ~6 markers.
 
 ![](glow_path.jpg "A glow system with many pink particles shows how a smooth path is created between markers.")
+
+{% alert %}
+When creating glow paths it's helpful to set small [size bounds](#tag-field-particle-size-bounds), `0` [distance](#tag-field-min-distance-particle-to-object), and a high [particle count](#tag-field-number-of-particles) to make the curve easy to see. You should also enable `render_model_markers 1` so you can make sure all markers are being used as intended.
+{% /alert %}
 
 # Particle types
 Glows can contain two types of particles. _Normal particles_ follow the glow path and can be distanced from it radially, as well as animated in colour, speed, rotation, and distance. Once a normal particle reaches the end of the path they can bounce back or wrap to the beginning again. _Trailing particles_ are emitted at a given rate from a defineable segment of the path, either in random directions or vertically. They have limited lifetimes and can fade, scale down, and slow down over the lifetime.
