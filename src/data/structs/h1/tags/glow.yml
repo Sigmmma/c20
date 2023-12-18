@@ -11,30 +11,95 @@ type_defs:
     size: 2
     options:
       - name: bounce
+        comments:
+          en: When glow particles reach the end of the path, they will change direction and return.
       - name: wrap
+        comments:
+          en: When glow particles reach the end of the path, they will reappear at its start.
   GlowNormalParticleDistribution:
     class: enum
     size: 2
     options:
       - name: distributed_randomly
+        comments:
+          en: Particles will be randomly spaced along the glow path.
       - name: distributed_uniformly
+        comments:
+          en: |-
+            Particles will be evenly spaced along the glow path. Glow markers
+            do not need to be uniformly distanced for this to work; the game
+            can calculate the total path length and space particles accordingly.
   GlowTrailingParticleDistribution:
     class: enum
     size: 2
     options:
       - name: emit_vertically
+        comments:
+          en: Trailing particles emit in the global Z direction.
       - name: emit_normal_up
+        comments:
+          en: Trailing particles emit in the marker-local Z direction.
       - name: emit_randomly
+        comments:
+          en: Trailing particles emit spherically in random directions.
   GlowFlags:
     class: bitfield
     size: 4
     bits:
       - name: modify_particle_color_in_range
+        comments:
+          en: |-
+            If set, the particle color will fade as they translate along the path.
+            The fade behaviour is somewhat unintuitive; rather than fade between
+            [_color_bound_0_](#tag-field-color-bound-0) and [_color_bound_1_](#tag-field-color-bound-1)
+            from start to end, each color channel fades at a different rate
+            depending on both [_color rate of change_](#tag-field-color-rate-of-change)
+            and the per-channel difference between color bounds.
+
+            The color `c` at distance `d` from the path start, having color bound
+            values `c0` and `c1`, and _color rate of change_ `v`, is calculated with:
+            
+            ```js
+            let c = (c0 + v * d * (c1 - c0)) % 1
+            ```
+            
+            For example: assume a bound 0 red of `0.8`, a bound 1 red of `1`,
+            rate of change `10`, and distance `1.37`. The red value will be:
+            ```js
+            c = (0.8 + 10 * 1.37 * (1 - 0.8)) % 1
+            c = 3.54 % 1
+            c = 0.54
+            ```
+
+            If not set, particle colors are randomly selected between the color
+            bounds or interpolated via function attachment.
       - name: particles_move_backwards
+        comments:
+          en: Reverses the direction particles translate along the path.
       - name: partices_move_in_both_directions
+        comments:
+          en: Every second particle travels in the reverse direction.
       - name: trailing_particles_fade_over_time
+        comments:
+          en: |-
+            Trailing particles fade out to `0` opacity over their lifetime.
       - name: trailing_particles_shrink_over_time
+        comments:
+          en: |-
+            If set, trailing particles will shrink from an initial randomly-selected
+            bounds size to `0` over their lifetime, at which point for a single
+            frame the particle texture will render at actual resolution before
+            disappearing. This seems to be due to the size `0` defaulting to
+            actual pixel scale rather than scaled by distance. This can be
+            mitigated by also using _trailing particles fade over time_ so the
+            particle is invisible for that frame anyway.
+
+            If _not set_, trailing particles are always shown at actual resolution.
       - name: trailing_particles_slow_over_time
+        comments:
+          en: |-
+            Trailing particles gradually slow down and come to a stop at the
+            end of their lifetime.
   Glow:
     class: struct
     meta:
@@ -47,14 +112,35 @@ type_defs:
     fields:
       - name: attachment_marker
         type: TagString
+        comments:
+          en: |-
+            The name of the [gbxmodel](~) markers which make up the [glow path](#glow-path).
+            The model should have multiple markers with the same name. A model
+            can have multiple sets of markers, e.g. `glow 1` and `glow 2`.
       - name: number_of_particles
         type: uint16
+        comments:
+          en: |-
+            How many normal particles to distribute along the path. The game is
+            [limited](~game-state#datum-arrays) to 512 glow particles total, across
+            up to 8 glow systems, so budget according to how many glow systems
+            you expect to exist simultaneously.
+
+            You can set this to `0` if you only want to use trailing particles.
       - name: boundary_effect
         type: GlowBoundaryEffect
+        comments:
+          en: Determines the behaviour of particles which reach the end of the path.
       - name: normal_particle_distribution
         type: GlowNormalParticleDistribution
+        comments:
+          en: Controls how particles are distributed along the glow path.
       - name: trailing_particle_distribution
         type: GlowTrailingParticleDistribution
+        comments:
+          en: |-
+            Controls how trailing particles are generated from the path start
+            marker. Unaffected by _particles move backwards_ and _particles move in both directions_.
       - name: glow_flags
         type: GlowFlags
       - type: pad
@@ -69,58 +155,148 @@ type_defs:
         type: FunctionOut
         meta:
           shifted_by_one: true
+          unused: true
+        comments:
+          en: Seemingly unused. Setting this to an object function has no effect.
       - type: pad
         size: 2
       - name: particle_rotational_velocity
         type: float
+        meta:
+          unused: true
+        comments:
+          en: |-
+            No effect on normal or trailing particles. With a non-zero value,
+            particle sprites did not rotate in screen space or radially around
+            the glow path. Neither an object function attachment nor multiplier
+            values changed this.
       - name: particle_rot_vel_mul_low
         type: float
+        meta:
+          unused: true
+        comments:
+          en: No visible effect.
       - name: particle_rot_vel_mul_high
         type: float
+        meta:
+          unused: true
+        comments:
+          en: No visible effect.
       - name: attachment_1
         type: FunctionOut
         meta:
           shifted_by_one: true
+        comments:
+          en: |-
+            Sets an object function which controls the rotational velocity.
       - type: pad
         size: 2
       - name: effect_rotational_velocity
         type: float
+        comments:
+          en: |-
+            Controls how quickly normal particles rotate radially around the
+            path, in radians/sec.
       - name: effect_rot_vel_mul_low
         type: float
+        comments:
+          en: |-
+            Rotational velocity multipler when the function value is at 0.
+            This only takes effect when a function attachment is set.
+            It's not known exactly how this multiplier works; it has a
+            gradually varying effect over the length of the glow path.
       - name: effect_rot_vel_mul_high
         type: float
+        comments:
+          en: As above, but for a high function value.
       - name: attachment_2
         type: FunctionOut
         meta:
           shifted_by_one: true
+        comments:
+          en: Sets an object function which controls the translational velocity.
       - type: pad
         size: 2
       - name: effect_translational_velocity
         type: float
+        comments:
+          en: |-
+            Controls how quickly particles move along the path, in world units/sec.
+            This is not used for trailing particles, which instead use _velocity of trailing particles_.
       - name: effect_trans_vel_mul_low
         type: float
+        comments:
+          en: |-
+            Multiplier for the translational velocity for the function low value.
+            Must be non-zero when a function is being used, or else the game
+            will crash on `render_cameras.c,#1086: bounds->x0<=bounds->x1`.
       - name: effect_trans_vel_mul_high
         type: float
+        comments:
+          en: |-
+            Multiplier for the translational velocity for the function high value.
+            This value can be `0` safely.
       - name: attachment_3
         type: FunctionOut
         meta:
           shifted_by_one: true
+        comments:
+          en: |-
+            Allows the radial distance of normal particles to be scaled by an object
+            function. No effect on trailing particles.
       - type: pad
         size: 2
       - name: min_distance_particle_to_object
         type: float
+        comments:
+          en: |-
+            When the distance attachment function is NONE, sets the minimum
+            radial distance from the glow path that particles will be
+            randomly placed. When distance is scaled by a function, sets the
+            minimum distance of all particles. No effect on trailing particles.
+
+            Radial distances are perpendicular to the path markers' +X axes,
+            meaning marker rotation matters.
       - name: max_distance_particle_to_object
         type: float
+        comments:
+          en: |-
+            When the distance attachment function is NONE, sets the maximum
+            radial distance from the glow path that particles will be
+            randomly placed. When distance is scaled by a function, sets the
+            maximum distance of all particles. No effect on trailing particles.
       - name: distance_to_object_mul_low
         type: float
+        comments:
+          en: |-
+            When distance is scaled by an attachment function, determines the
+            how a function value of `0` maps to a linear interpolation between
+            min and max distances. For example, a multiplier of `0` means when
+            the function is low, the distance will be equal to
+            _min distance particle to object_.
       - name: distance_to_object_mul_high
         type: float
+        comments:
+          en: |-
+            When distance is scaled by an attachment function, determines the
+            how a function value of `1` maps to a linear interpolation between
+            min and max distances. For example, a multiplier of `1` means when
+            the function is high, the distance will be equal to
+            _max distance particle to object_.
       - type: pad
         size: 8
       - name: attachment_4
         type: FunctionOut
         meta:
           shifted_by_one: true
+        comments:
+          en: |-
+            Intended to make particle size scale with a function, but does not
+            work. When not NONE, all particle spites render at their actual resolution
+            regardless of distance rather than scale with the function.
+            
+            This does not affect trailing particles, which continue to be randomly
+            selected between size bounds if _trailing particles shrink over time_ is set.
       - type: pad
         size: 2
       - name: particle_size_bounds
@@ -129,44 +305,122 @@ type_defs:
           unit: world units
         type_args:
           T: float
+        comments:
+          en: |-
+            When particle size is not scaled by a function attachment, particle
+            sizes will be randomly chosen from this range. When scaled by a
+            function, or when size bounds are both `0`, particle sprites are
+            rendered at their actual resolution regardless of distance.
+            
+            Trailing particles will always render at actual resolution unless
+            _trailing particles shrink over time_ is set, in which case size is
+            selected randomly from these bounds regardless of any function attachment.
       - name: size_attachment_multiplier
         type: Bounds
+        meta:
+          unused: true
         type_args:
           T: float
+        comments:
+          en: |-
+            Does not work as intended. When a function is used, these values
+            don't affect the sprite size.
       - name: attachment_5
         type: FunctionOut
         meta:
           shifted_by_one: true
+        comments:
+          en: |-
+            If set to a function, all normal particles will blend between
+            _color bound 0_ and _color bound 1_ according to the function.
+            Otherwise particle colors are randomly selected from the range.
+            When [_modify particle color in range_](#tag-field-glow-flags-modify-particle-color-in-range)
+            is set, both cases are overridden and particles blend over the
+            length of the glow path according to [_color rate of change_](#tag-field-color-rate-of-change).
+
+            No effect on trailing particles, which always randomly select from
+            the bounds.
       - type: pad
         size: 2
       - name: color_bound_0
         type: ColorARGB
+        comments:
+          en: |-
+            Sets a lower bound for particle color selection. Particle
+            colors are interpolated in RGB space, not HSL. The chosen color is
+            multiplied with the sprite texture. The alpha value has no effect,
+            unlike in some tags where it controls tint vs. modulation.
       - name: color_bound_1
         type: ColorARGB
+        comments:
+          en: |-
+            Sets an upper bound for particle color selection.
       - name: scale_color_0
         type: ColorARGB
+        meta:
+          unused: true
+        comments:
+          en: No visible effect in any color selection modes.
       - name: scale_color_1
         type: ColorARGB
+        meta:
+          unused: true
+        comments:
+          en: No visible effect in any color selection modes.
       - name: color_rate_of_change
         type: float
+        comments:
+          en: |-
+            When [_modify particle color in range_](#tag-field-glow-flags-modify-particle-color-in-range)
+            is set, controls how many times the per-channel difference between color
+            bounds is added per world unit of distance along the glow path.
       - name: fading_percentage_of_glow
         type: float
+        comments:
+          en: |-
+            Controls the distance that particles fade in and out at the path boundaries.
+            A value of `0` means they do not fade in/out at all, while a value of
+            `1` means the particles reach full opacity only at the middle of the path
+            before beginning to fade out again.
       - name: particle_generation_freq
         type: float
         meta:
           unit: Hz
+        comments:
+          en: |-
+            The frequency that [trailing particles](#particle-types) are generated, in particles/sec.
+            This is likely limited by the tick rate since values over 30 have no
+            visual difference.
       - name: lifetime_of_trailing_particles
         type: float
         meta:
           unit: seconds
+        comments:
+          en: How long trailing particles live.
       - name: velocity_of_trailing_particles
         type: float
         meta:
           unit: world units per second
+        comments:
+          en: |-
+            Initial trailing particle velocity at generation. Although this is
+            labeled "wu/s", testing found that the the actual speed is roughly
+            1/40th the value given here. The exact factor or what factors might
+            apply is unknown. Unaffected by _effect translational velocity_.
       - name: trailing_particle_minimum_t
         type: float
+        comments:
+          en: |-
+            Trailing particles will spawn from this minimum distance along the
+            glow path, where `0` is the start of the path and `1` is the end of
+            the path.
       - name: trailing_particle_maximum_t
         type: float
+        comments:
+          en: |-
+            Trailing particles will spawn up to this maximum distance along the
+            glow path, where `0` is the start of the path and `1` is the end of
+            the path.
       - type: pad
         size: 52
       - name: texture
@@ -174,3 +428,10 @@ type_defs:
         meta:
           tag_classes:
             - bitmap
+        comments:
+          en: |-
+            The sprite texture of particles. The referenced bitmap must have
+            type [_sprites_](~bitmap#tag-field-type-sprites). It will not be
+            randomly selected from sprite sheets (just the first). The particle
+            is always shown camera-facing and with additive framebuffer blending.
+            Alpha channel is ignored.
