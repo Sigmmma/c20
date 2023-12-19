@@ -58,5 +58,18 @@ Since the game world is dynamic, the datum count can rise up to a limit. The fol
 |[AI knowledge](~ai#knowledge-model)|768|-|
 |[mounted weapon units](~unit#tag-field-seats-built-in-gunner)|8|-|
 
+{% comment %}
+## Glow datum
+Glow datums hold the state of [glows](~glow). For example, the gold Elite's energy sword is composed of 2 glows, one for the bottom blade and one for the top.
+
+{% structTable
+  entryModule="h1/gamestate/glow_datum"
+  entryType="GlowDatum"
+  showOffsets=true
+  id="savegame"
+/%}
+
+{% /comment %}
+
 # Related HaloScript
 {% relatedHsc game="h1" tagFilter="game-state" /%}

@@ -114,16 +114,23 @@ type_defs:
         type: TagString
         comments:
           en: |-
-            The name of the [gbxmodel](~) markers which make up the [glow path](#glow-path).
-            The model should have multiple markers with the same name. A model
+            The name of the [gbxmodel](~) marker(s) which make up the [glow path](#glow-path).
+            The model can have up 5 markers with the same name. A model
             can have multiple sets of markers, e.g. `glow 1` and `glow 2`.
+
+            If no markers have this name, or the field is left empty, a marker
+            will be derived from the object's root node as the default.
+
+            When the path is only defined by a single marker (including the root
+            default) then then normal particles will not be generated. Trailing
+            particles can still be generated.
       - name: number_of_particles
         type: uint16
         comments:
           en: |-
             How many normal particles to distribute along the path. The game is
             [limited](~game-state#datum-arrays) to 512 glow particles total, across
-            up to 8 glow systems, so budget according to how many glow systems
+            up to 8 glow effects, so budget according to how many glow effects
             you expect to exist simultaneously.
 
             You can set this to `0` if you only want to use trailing particles.
@@ -256,7 +263,9 @@ type_defs:
             minimum distance of all particles. No effect on trailing particles.
 
             Radial distances are perpendicular to the path markers' +X axes,
-            meaning marker rotation matters.
+            meaning marker rotation matters. Distance cannot vary over the
+            length of the path, even when using a function, but you can twist
+            some of the markers in the path to introduce a pinching effect.
       - name: max_distance_particle_to_object
         type: float
         comments:
@@ -396,7 +405,10 @@ type_defs:
         meta:
           unit: seconds
         comments:
-          en: How long trailing particles live.
+          en: |-
+            How long trailing particles live. If _particle generation freq_
+            is non-zero, then this field must be too. An undefined lifetime
+            will cause a crash on `render_cameras.c,#1086: bounds->x0<=bounds->x1`.
       - name: velocity_of_trailing_particles
         type: float
         meta:
@@ -413,14 +425,14 @@ type_defs:
           en: |-
             Trailing particles will spawn from this minimum distance along the
             glow path, where `0` is the start of the path and `1` is the end of
-            the path.
+            the path. This has no effect if the path is made of a single marker.
       - name: trailing_particle_maximum_t
         type: float
         comments:
           en: |-
             Trailing particles will spawn up to this maximum distance along the
             glow path, where `0` is the start of the path and `1` is the end of
-            the path.
+            the path. This has no effect if the path is made of a single marker.
       - type: pad
         size: 52
       - name: texture
