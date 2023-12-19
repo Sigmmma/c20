@@ -1,0 +1,6 @@
+type_defs:
+  DatumHeader:
+    class: alias
+    type: uint16
+    comments:
+      en: ID for this datum.

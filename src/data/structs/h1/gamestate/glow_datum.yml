@@ -1,0 +1,44 @@
+entry_type: GlowDatum
+imports:
+  h1/gamestate/common:
+    - DatumHeader
+type_defs:
+  GlowDatum:
+    class: struct
+    endianness: little
+    fields:
+      - name: id
+        type: DatumHeader
+      - name: initialized
+        type: bool
+      - type: pad
+        size: 1
+      - name: number_of_markers
+        type: uint16
+      - type: pad
+        size: 2
+      - name: markers
+        type: byte
+        size: 0x6C
+        count: 5
+      - name: definition_index
+        type: uint32
+      - name: bitmap_dimension
+        type: uint16
+      - name: marker_order
+        type: uint16
+        count: 5
+      - name: total_time
+        type: float
+      - name: marker_time_index
+        type: float
+        count: 5
+      - name: accumulated_trailing_particle_generation_ticks
+        type: uint16
+      - name: number_of_particles
+        type: uint16
+      - name: head_particle_offset
+        type: uint32
+      - name: tail_particle_offset
+        type: uint32
+        
