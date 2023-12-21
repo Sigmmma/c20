@@ -56,6 +56,9 @@ Some general tips to avoid these issues are:
 When creating glow paths it's helpful to set small [size bounds](#tag-field-particle-size-bounds), `0` [distance](#tag-field-min-distance-particle-to-object), and a high [particle count](#tag-field-number-of-particles) to make the curve easy to see. You should also enable `render_model_markers 1` so you can make sure all markers are being used as intended.
 {% /alert %}
 
+## Animation
+Since markers can be parented to nodes and animated with a [model_animations](~), it's possible to have an animated glow path. The path will continue to be smoothly interpolated between the markers. Note that it's still possible to make the game unresponsive if some frames put the path into a bad shape.
+
 # Limits
 Glow particles are distinct from other [particles](~particle). Halo's [gamestate](~game-state) can store up to **512 glow particles**, which are shared across up to **8 glows**. Note that a single model with two glow widgets still counts as 2 glows. Each glow effect can have up to **5 markers** defining its path.
 
