@@ -8,6 +8,8 @@ keywords:
   - reflections
 thanks:
   Kashiiera: Writing this guide
+  PepperMan: \"Fixing highly-compressed cubemaps\" section
+  J-S: Original discovery of HDR cubemap compression fix
 ---
 
 # Introduction
@@ -84,6 +86,22 @@ For example with a scenario named `test` and a BSP named `030_030`, the bitmap b
 ![](G.png "")
 
 If you have multiple BSPs setup in your scenario, make sure to assign the correct cubemaps bitmap to each one.
+
+## Fixing highly-compressed cubemaps
+Occasionally (and for currently unknown reasons), tool may produce cubemaps that look incredibly low quality, with bad colour compression. See
+this example:
+![](K.png "Horrible compression artifacting.")
+
+This can be fixed, but only *before* cubemap generation.
+1. Before you use the `cubemap_dynamic_generate` cubemap command, open the debug menu with the {% key "Home" /%} key.
+2. Press {% key "4" /%} to enter the `Graphics` sub-menu.
+3. Press {% key "4" /%} to enter the `Rasterizer` sub-menu.
+4. Use the arrow keys to navigate to the `HDR Multiplier (stops)` option.
+5. Use the left arrow key to reduce the value of this option to zero.
+6. Now exit out of the debug menu (use {% key "Home" /%} or {% key "End" /%}) and continue with the rest of the process as normal.
+
+Once you have finished re-generating and re-importing the cubemaps, they should be much better quality! See the following example:
+![](L.png "Note the huge difference in colour quality, especially in the clouds.")
 
 # End result
 
