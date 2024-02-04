@@ -33,6 +33,9 @@ You can now visit http://localhost:8080/ in a browser and see the website. Edit 
 
 The development server renders pages on-demand, but you can also run `npm run static` to fully render all pages to HTML and serve them. A full static build takes longer and isn't recommended for quick content writing. You can use it as a final step to verify the build will work once changes are merged. Note: [FFmpeg](https://ffmpeg.org/) is an optional dependency used to generate video thumbnails during a full build. It needs to be available on your system `PATH`. Windows users can simply download `ffmpeg.exe` and place it in the project root. If you don't want to set up FFmpeg just run `C20_NO_THUMBNAILS=true npm run static` and thumbnails won't be used.
 
+### Utility scripts
+Under `src/utility_scripts` you'll find some helper scripts for managing wiki content. You can run a typescript-based script like `npx ts-node src/utility_scripts/hs_doc.ts` while some others will need python.
+
 ### Releasing
 The website is currently hosted as a static site in [AWS S3](https://aws.amazon.com/s3/), fronted by a [CloudFront](https://aws.amazon.com/cloudfront/) CDN distribution, managed in [reclaimers-aws](https://github.com/Sigmmma/reclaimers-aws). To deploy a new version, simple make changes to the `master` branch and a build/deploy will be triggered automatically with CodeBuild.
 

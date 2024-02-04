@@ -10,7 +10,7 @@ keywords:
   - h2ek
   - h2-ek
 related:
-  - /h1/tools/h1a-ek
+  - /h1/h1a-ek
   - /h2/tools/h2v-ek
   - /h3/h3-ek
 ---

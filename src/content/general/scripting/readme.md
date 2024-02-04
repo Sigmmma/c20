@@ -66,7 +66,7 @@ You must always balance opening parentheses with closing parentheses and use spa
 HS does not support [looping][loops] constructs, which ensures that scripts never enter into endless loops that block the game's simulation from advancing.
 
 ## Value types
-All function arguments and expression results have a particular _type_. The types vary by game (e.g. [H1](~h1/engine/scripting#value-types)), but some common types are:
+All function arguments and expression results have a particular _type_. The types vary by game (e.g. [H1](~h1/scripting#value-types)), but some common types are:
 
 | Type                          | Example                     |
 | ----------------------------- | --------------------------- |
@@ -187,7 +187,7 @@ Parameters are declared when calling the script.
 
 Note that a parameter name can be anything the user declares so long as it is not already a global / script name or already used by the engine (e.g. value types or function names). Parameters are local to the static script they are named in, so multiple scripts can utilise the same parameter names without affecting one another.
 
-See game-specific pages for further reference, e.g. [H1 Scripting](~h1/engine/scripting#script-types).
+See game-specific pages for further reference, e.g. [H1 Scripting](~h1/scripting#script-types).
 
 # Mechanics
 ## Value type casting

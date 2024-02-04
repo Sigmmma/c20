@@ -7,7 +7,7 @@ caption: Sapien being used to edit zones in `sc100.scenario`
 keywords:
   - scenario
 related:
-  - /h1/tools/h1a-ek/h1a-sapien
+  - /h1/h1a-ek/h1a-sapien
 ---
 **H3ODST-Sapien**, part of the [Halo 3 ODST Editing Kit](~H3ODST-EK), is a visual [scenario](~) and BSP editor used to populate levels with objects, configure BSP cluster data like wind and sound environments, compile scripts, and more. Sapien shares some systems with Halo 3 ODST itself, including its AI system to support interactive AI scripting and debugging.
 

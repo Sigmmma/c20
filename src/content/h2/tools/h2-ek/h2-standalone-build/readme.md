@@ -8,7 +8,7 @@ keywords:
   - cache
   - h2a
 related:
-  - /h1/tools/h1a-ek/h1a-standalone-build
+  - /h1/h1a-ek/h1a-standalone-build
   - /h3/h3-ek/h3-standalone-build
 ---
 The [Halo 2 Anniversary Editing Kit](~H2-EK) includes a **standalone build** of that game (**halo2_tag_test.exe**). This build doesn't include network functionality and it intended for testing single-player maps. It includes AI debugging code not included in other published builds of the engine.
@@ -19,7 +19,7 @@ The standalone build is still somewhat experimental and bugs should be expected.
 {% /alert %}
 
 # Usage
-The UI works is largely functional so you can load built in maps using it or add your own maps to the UI but loading maps is easier to do using the [`game_start`](~h1/engine/scripting#functions-map-name) command in the [console](~developer-console). Note: you need to use the **full scenario tag path** as this is a [tag build](~blam#build-types). For example:
+The UI works is largely functional so you can load built in maps using it or add your own maps to the UI but loading maps is easier to do using the [`game_start`](~h1/scripting#functions-map-name) command in the [console](~developer-console). Note: you need to use the **full scenario tag path** as this is a [tag build](~blam#build-types). For example:
 
 ```consoleh2a
 ; load tags\scenarios\solo\01b_spacestation\01b_spacestation.scenario:

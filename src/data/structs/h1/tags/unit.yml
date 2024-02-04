@@ -346,6 +346,8 @@ type_defs:
         type: UnitDefaultTeam
       - name: constant_sound_volume
         type: ObjectNoise
+        comments:
+          en: How loudly AI will perceive this unit.
       - name: rider_damage_fraction
         type: float
         meta:

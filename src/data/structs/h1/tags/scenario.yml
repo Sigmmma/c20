@@ -42,15 +42,15 @@ type_defs:
       - name: singleplayer
         comments:
           en: >-
-            The map is meant to be used for [singleplayer](~map#singleplayer) and
-            loaded with the `map_name` command. Cannot be played in multiplayer.
+            The map is meant to be used for singleplayer and loaded with the
+            `map_name` command. Cannot be played in multiplayer.
       - name: multiplayer
         comments:
           en: The map is meant for multiplayer and can be loaded with `sv_map`.
       - name: user_interface
         comments:
           en: >-
-            The map is meant to serve as [ui.map](~map#ui) for the game's main
+            The map is meant to serve as [ui.map](~map#map-types) for the game's main
             menu.
   ScenarioFlags:
     class: bitfield
@@ -70,6 +70,7 @@ type_defs:
           en: >
             Opts out of [hard-coded tag patches](~h1a-tool#hardcoded-tag-patches)
             made to the pistol and plasma rifle for singleplayer scenarios.
+            [invader-build](~) respects this when building maps targeting Custom Edition.
   ScenarioChildScenario:
     class: struct
     assert_size: 32

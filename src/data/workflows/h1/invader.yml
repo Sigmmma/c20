@@ -81,7 +81,6 @@ invader-extract:
     - h1_tag_extractor_base
   similarTo:
     - Refinery
-    - HEKPlus
 invader-font:
   inherit: invader_base
   page: invader-font

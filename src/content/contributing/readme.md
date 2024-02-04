@@ -150,7 +150,7 @@ thanks:
 
 # If provided, child pages of this one will be ordered as follows in the
 # navigation tree. Otherwise child pages are ordered alphabetically by their
-# slug (last part of their URL).
+# slug (last part of their URL). Manually-ordered pages always appear first.
 childOrder:
   - general
   - h1

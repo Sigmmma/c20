@@ -35,7 +35,7 @@ The _multipurpose map_ is an optional bitmap whose individual channels provide g
 The Chief's multipurpose map with alpha shown in the top right (Gearbox channel order).
 {% /figure %}
 
-When Gearbox ported Halo to PC, the channels were reordered for an unknown reason. This is also true for all Gearbox-derived ports like [H1A](~) unless the [OG Xbox channel order flag](#tag-field-shader-model-flags-multipurpose-map-uses-og-xbox-channel-order) is set. Because of this change in shader behaviour, multipurpose map tags differ between H1X and Gearbox.
+When Gearbox ported Halo to PC, the channels were reordered for an unknown reason. This is also true for all Gearbox-derived ports like H1A unless the [OG Xbox channel order flag](#tag-field-shader-model-flags-multipurpose-map-uses-og-xbox-channel-order) is set. Because of this change in shader behaviour, multipurpose map tags differ between H1X and Gearbox.
 
 {% alert type="danger" %}
 If you're using the [legacy HEK](~hek) and H1CE, don't pay attention to Guerilla's channel usage description when editing this tag. It describes Xbox channel order which is incorrect. In [H1A Guerilla](~h1a-guerilla) this description is corrected.

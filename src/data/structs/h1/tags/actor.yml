@@ -89,7 +89,7 @@ type_defs:
       - name: marine
         comments:
           en: >
-            Same as Player.
+            Same as Player. Units with this actor type prefer to group together.
       - name: crew
       - name: combat_form
       - name: infection_form
@@ -98,7 +98,8 @@ type_defs:
       - name: sentinel
         comments:
           en: >
-            Same as Monitor.
+            Same as Monitor. This actor type will not throw grenades even if the
+            unit has the animations and stimulus for it.
       - name: none
       - name: mounted_weapon
     comments:

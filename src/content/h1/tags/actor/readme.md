@@ -8,6 +8,7 @@ thanks:
   MosesOfEgypt: Tag structure research
   Vennobennu: Field documentation
   gbMichelle: Reversing actor type aliases
+  Elefant: Researching sentinel actor type behaviour
 ---
 ...
 

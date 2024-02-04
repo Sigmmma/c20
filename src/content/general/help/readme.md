@@ -12,10 +12,10 @@ There's a number of things you can do _before_ or _while_ modding to avoid issue
 
 * Keep backups. It's not fun to keep reinstalling Halo or your tag set because you've gotten it into a bad state. Periodically back up your work, especially if you're unsure what the effects of something will be.
 * Take things one step at a time. Make small incremental changes and test them. This will help you avoid being unable to identify the change that caused a problem.
-* Use the latest versions of any tools you're relying on and read their documentation. Check for any "README" files that come with them.
+* Use the latest versions of any tools you're relying on and read their documentation. Check for any "README" files that come with them. Don't use any [obsolete tools](~obsolete).
 * Skim through tutorials that you'll follow so you know what to expect.
 * Read any relevant pages on this site.
-* Use officially released tags, or ones extracted with modern [invader-extract](~) rather than [Refinery](~) or [HEK+](~hek-plus).
+* Use officially released tags, or ones extracted with modern [invader-extract](~) rather than [Refinery](~) or [HEK+](~obsolete#hek).
 * If you're worried about making accidental changes, you can mark certain tag files as read-only. Guerilla will grey out fields for these tags.
 * [Prevent the Windows virtual store from interfering](~tips#windows-virtual-store) when modding H1CE.
 

@@ -33,27 +33,6 @@ Sapien:
   page: sapien
   buildTypes:
     - tag_test
-
-# hek mods
-phantom_tool:
-  page: phantom_tool
-  deprecated: true
-  authors:
-    - Conscars
-  similarTo:
-    - Tool
-  workflows:
-    - from: JMS
-      to: h1/scenario_structure_bsp
-LM_Tool:
-  inherit:
-    - h1_lightmapper_base
-  page: lm_tool
-  authors:
-    - gbMichelle
-  similarTo:
-    - Tool
-
 h1_tool_workflows_base:
   abstract: true
   inherit:

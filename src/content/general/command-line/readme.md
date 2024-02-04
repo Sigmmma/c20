@@ -13,7 +13,11 @@ Most people use [Command Prompt](#command-prompt) (`cmd.exe`), but you can also 
 
 # Command Prompt
 ## Opening
-Much like an Explorer window, Command Prompt always has a _current directory_. For most purposes you'll want the current directory to be one of your mod tools installations, where `tool.exe` is found. The easiest way to open Command Prompt this way is to navigate to your mod tools installation in Explorer ([Steam can do it](~mod-tools#installation)) and type `cmd` into the navigation bar. Alternatively, some modders copy `C:\Windows\System32\cmd.exe` into their mod tools directory and launch it from there. You can confirm that the correct current directory is shown at the start of the prompt line.
+Much like an Explorer window, Command Prompt always has a _current directory_ (also called _working directory_). For most purposes you'll want the current directory to be one of your mod tools installations, where `tool.exe` is found. The easiest way to open Command Prompt this way is to navigate to your mod tools installation in Explorer ([Steam can do it](~mod-tools#installation)) and type `cmd` into the navigation bar. Alternatively, some modders copy `C:\Windows\System32\cmd.exe` into their mod tools directory and launch it from there. You can confirm that the correct current directory is shown at the start of the prompt line.
+
+{% figure src="explorer.jpg" alt="Explorer's location bar selected" inline=true %}
+Replace this text with `cmd` and hit {% key "Enter" /%} to launch Command Prompt.
+{% /figure %}
 
 ## Running programs
 Commands are entered in the form `<program> <arguments>`. Command Prompt will first look in the current directory for the program you want to run, and the `.exe` extension is optional. To run [Tool](~mod-tools#tools-overview) commands, type them into the prompt and hit {% key "Enter" /%}. For example, to build the tutorial map for H1:

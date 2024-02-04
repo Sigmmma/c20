@@ -8,7 +8,7 @@ caption: >-
 related:
   - /general/tools/reclaimer
 ---
-**Reclaimer** is a tool capable of viewing and extracting assets from Halo 1-5 maps, OpenSauce [.yelo](~h1/map#opensauce-yelo-maps), modules (H5), and paks (S3D) so they can be ported by modders between games or to other engines. [Support varies][compat] by asset type, game, and platform.
+**Reclaimer** is a tool capable of viewing and extracting assets from Halo 1-5 maps, OpenSauce [.yelo](~h1/engine/map#opensauce-yelo-maps), modules (H5), and paks (S3D) so they can be ported by modders between games or to other engines. [Support varies][compat] by asset type, game, and platform.
 
 Reclaimer can only extract assets from tags _within_ maps; it does not work on source tag files.
 

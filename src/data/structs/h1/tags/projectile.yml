@@ -178,6 +178,8 @@ type_defs:
         type: ProjectileDetonationTimerStarts
       - name: impact_noise
         type: ObjectNoise
+        comments:
+          en: How loudly AI will perceive this impact.
       - name: projectile_a_in
         type: ProjectileFunctionIn
       - name: projectile_b_in
@@ -290,6 +292,8 @@ type_defs:
           unit: degrees per second
       - name: detonation_noise
         type: ObjectNoise
+        comments:
+          en: How loudly AI will perceive this detonation.
       - type: pad
         size: 2
       - name: detonation_started

@@ -416,7 +416,13 @@ type_defs:
     size: 2
     options:
       - name: silent
+        comments:
+          en: The sound is not perceived at all.
       - name: medium
+        comments:
+          en: This is the volume of the sniper rifle. The exact radius is unknown.
       - name: loud
       - name: shout
+        comments:
+          en: Every AI in the BSP can hear this.
       - name: quiet

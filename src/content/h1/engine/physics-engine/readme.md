@@ -1,6 +1,5 @@
 ---
 title: Physics engine
-stub: true
 ---
 The physics engine of Halo 1 is an in-house implementation which simulates the movement of dynamic objects like [units](~unit), [items](~item), [projectiles](~projectile), and [point_physics](~) dynamics systems like [particle_system](~) and [weather_particle_system](~). Unlike [Halo 2](~h2) and later titles, Halo 1 does _not_ use any middleware like [Havok][].
 

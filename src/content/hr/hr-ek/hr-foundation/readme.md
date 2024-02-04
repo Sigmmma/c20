@@ -7,7 +7,7 @@ caption: A screenshot of Foundation
 keywords:
   - tag-editor
 related:
-  - /h1/tools/h1a-ek/h1a-guerilla
+  - /h1/h1a-ek/h1a-guerilla
 ---
 **HR Foundation** (`Foundation.exe`) is part of the [Halo Reach Editing Kit](~hr-ek), is a visual [tag](~tags) editor. Although it can visualize [bitmaps](~bitmap), [models](~model) and [interfaces](~chud_definition) it is primarily focused on editing and viewing the structured fields which comprise tags. It does not offer interactive placement of objects, which is [Sapien's](~HR-Sapien) role.
 

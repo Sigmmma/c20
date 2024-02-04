@@ -1,5 +1,5 @@
 ---
-title: In-memory game state
+title: Game state
 thanks:
   gbMichelle: Reversing stock table limits
 ---

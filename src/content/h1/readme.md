@@ -8,9 +8,24 @@ keywords:
 thanks:
   gbMichelle: H1A/MCC lineage information
   Hasuku: Xbox modding lineage
-  Kavawuvi: Engine versions
+  Kavawuvi: Engine versions, H1A BSP data base address
   Vaporeon: Analyzing marketing beta
   Neo: Providing the marketing beta
+  zatarita: >-
+    Documenting H1A differences from PC and between versions, summarizing new
+    formats
+redirects:
+  - /h1/h1a
+childOrder:
+  - h1a-ek
+  - custom-edition
+  - community-tools
+  - source-data
+  - tags
+  - scripting
+  - guides
+  - engine
+  - sharing
 ---
 {% figure src="box-art.jpg" %}
 Halo's box art
@@ -19,6 +34,9 @@ Halo's box art
 **Halo: Combat Evolved**, also known as **Halo 1**, is the first installment of the Halo game series. It was created by [Bungie][bungie] and initially released on the original Xbox in 2001 by publisher/owner [Microsoft][microsoft]. In 2003, the game was released for Windows PC and Mac via different studios.
 
 Halo 1 uses Bungie's proprietary [Blam!](~blam) engine, which also formed the basis of later games in the series. PC versions of the game support a variety of command line/shortcut [arguments](~) to configure and toggle features.
+
+# Modding
+Today, most modding of H1 is focused on [H1A MCC](#mcc-pc-and-xbox-one-343-industries-2014-2021) and [Halo Custom Edition](~custom-edition). Regardless of the target engine, the recommended approach is to use the [MCC mod tools](~h1a-ek) for [tag](~general/tags) authoring and optionally [invader](~) to extract tags and build maps for other targets.
 
 # Editions and versions
 
@@ -53,17 +71,7 @@ The game received several patches since its release to address remote exploits, 
 Several beta versions of Halo PC can also be found online. Beta 1.5 has [unfinished versions of PC-exclusive content][pc-beta-2] and [weapon tuning][pc-beta-1] similar to pre-release Xbox versions. [Marketing beta 1.8][pc-beta-3] features doppler and a model detail option.
 
 ## Custom Edition (PC, Gearbox Software, 2004)
-Custom edition, often called **Halo CE** or **CE** is a standalone version of Halo PC which supports custom maps created by the [HEK](~), [released in 2004][custom-edition-launch]. Like Halo PC it features a server browser and its own `haloceded.exe` dedicated server, but lacks the campaign. [Maps](~map) are incompatible between the editions.
-
-CE has many more differences from PC. To name a few:
-
-* Some tags were modified, such as stun effects, possibly as a workaround for [netcode desyncs](~netcode#known-issues-and-limitations)
-* Regression in rendering of certain objects through fog
-* Addition of the the gamemode info menu (F2)
-* Addition of the teammate names toggle (F3)
-* Addition of new server-related console commands like `sv_say`
-
-Custom Edition has become the de facto standard PC title due to its support of custom maps, actively maintained client and server mods, and [campaign ports][refined]. Like retail, its current version is `1.0.10` ([2014][patch]).
+[Custom Edition](~custom-edition) is a standalone version of Halo PC released in 2004 which supports custom multiplayer and singleplayer maps created using the [HEK](~). It does not include the stock campaign.
 
 ## Mac (Westlake Interactive, 2003)
 The Gearbox PC port (retail) was itself ported to Mac by _Westlake Interactive_ and published by _MacSoft_. No significant changes were made aside from platform compatibility, and maps are byte-for-byte identical to retail's. With _MacSoft's_ shutdown in 2011, this version has not been receiving the latest patches. [Nil's fix][nil-fix] enables its continued use with intel GPUs on OSX Mavericks and the post-Gamespy lobby master server.
@@ -74,18 +82,36 @@ The Mac edition has a mod called [Halo Mini Demo][halomd], or **HaloMD**, which 
 The free demo versions of Halo 1 on Mac and PC include just the multiplayer map Blood Gulch and the campaign mission _The Silent Cartographer_ (b30). Upon closing the demo, players are presented with the [iconic Sergeant Johnson advertisement][demo-ad] (`demo.bik`).
 
 ## Anniversary (Xbox 360, 343 Industries, 2011)
-In 2011, Halo: Combat Evolved Anniversary was released for Xbox 360. Often called **CEA** by the community. It was developed by [343 Industries][343i] and [Saber Interactive][saber] as a remaster of the original Halo: Combat Evolved, and is derived from the Gearbox PC port. This edition contains the secondary _Saber3D_ engine for its remastered graphics mode.
+{% figure src="cea.jpg" %}
+H1A was released independently on Xbox 360 and under MCC for PC and Xbox One.
+{% /figure %}
+
+In 2011, Halo: Combat Evolved Anniversary was released for Xbox 360. Often called **CEA** or **H1A**. It was developed by [343 Industries][343i] and [Saber Interactive][saber] as a remaster of the original Halo: Combat Evolved, and is derived from the Gearbox PC port.
+
+This edition introduced the ability to switch between classic and remastered/anniversary visuals and sounds with the press of a button, using the secondary _Saber3D_ engine and assets alongside Halo's classic [renderer](~).
 
 ## MCC (PC and Xbox One, 343 Industries, 2014-2021)
-Halo: The Master Chief collection (MCC) is actively maintained by [343 Industries][343i] for both PC and Xbox One. It brings the Halo series under a single [Game as a Service][gaas], including unified matchmaking and progression experiences. The PC port uses [Unreal Engine][unreal] as a menu and input layer over the respective engines of each included Halo game.
+CEA was ported to PC and Xbox One too as a part of _Halo: The Master Chief collection_ (MCC), again maintained by 343i and Saber. MCC uses [Unreal Engine][unreal] as a menu and input layer over the respective engines of each included Halo game.
 
-Custom maps can be created for MCC PC using the official [H1A Editing kit](~h1a-ek).
-The community tool [Invader](~) also supports building H1A caches. The [SeT](~) supports modifying S3D content (this is not supported by the offical tools).
+Custom maps can be created for MCC PC using its official [mod tools](~h1a-ek). [Invader](~) also supports building H1A maps from tags. Mods for the Saber3D content are unsupported. Users must turn EAC off to play custom maps in multiplayer.
+
+This branch of the H1 engine is certainly the "most advanced" and definitive. It contains hundreds of bug fixes, extends limits, cleans up deprecated tag fields and script functions, incorporates code from Custom Edition and later Halo games, and adds new modding capabilities (even some from [OpenSauce](~)).
+
+With the introduction of the Saber3d engine also came new file formats:
+
+* The **ipak** holds all the texture information for the game. This includes classic textures as well.
+* The **imeta** holds entries for the ipak. This links textures in the ipak to the level.
+* The **fmeta** is designed to link dependent files together.
+* The **s3dpak** is an archive file holding the files needed for the Saber engine.
+
+There are some differences between the PC/MCC and Xbox 360 versions; most of the assets have been rearranged to optimize things for their respective platforms.
+
+* Xbox uses a different compression algorithm. The chunking is still done the same; however, it does not utilize zlib.
+* Xbox does not utilize ipak/imeta/fmeta. Instead the primary filetype is the s3dpak.
 
 [gearbox]: https://en.wikipedia.org/wiki/Gearbox_Software
 [bungie]: https://en.wikipedia.org/wiki/Bungie
 [microsoft]: https://en.wikipedia.org/wiki/Xbox_Game_Studios
-[patch]: https://www.bungie.net/en/Forums/Post/64943622
 [xemu]: https://github.com/mborgerson/xemu/wiki
 [pc-beta-1]: https://www.youtube.com/watch?v=fvXuoceVhpg
 [pc-beta-2]: https://www.youtube.com/watch?v=qAK-rIR_st8
@@ -93,7 +119,6 @@ The community tool [Invader](~) also supports building H1A caches. The [SeT](~) 
 [h15]: https://www.youtube.com/watch?v=_a0R8SOIjWQ
 [h15-maps-ce]: https://opencarnage.net/index.php?/topic/7455-halo-15-maps-converted-to-ce/
 [h1final]: http://halo1final.com
-[refined]: https://www.reddit.com/r/HaloCERefined/
 [demo-ad]: https://www.youtube.com/watch?v=N11I-YtyLf8
 [nil-fix]: https://halo-fixes.forumotion.com/t9-mac-patch-for-the-new-lobby
 [halomd]: https://www.halomd.net/
@@ -101,6 +126,4 @@ The community tool [Invader](~) also supports building H1A caches. The [SeT](~) 
 [halomd-bridge]: https://opencarnage.net/index.php?/topic/7082-misc-ce-development/&page=18#comment-83828
 [saber]: https://en.wikipedia.org/wiki/Saber_Interactive
 [343i]: https://en.wikipedia.org/wiki/343_Industries
-[gaas]: https://en.wikipedia.org/wiki/Games_as_a_service
 [unreal]: https://en.wikipedia.org/wiki/Unreal_Engine
-[custom-edition-launch]: https://www.gamespot.com/articles/gearbox-readying-halo-custom-edition/1100-6095140/

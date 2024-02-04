@@ -29,6 +29,27 @@ Halo's lighting engine benefits from the fact that there is no dynamic time of d
 
 Dynamic shadows for moving objects like [units](~unit) and [items](~item) are rendered with 128x128 [shadow maps][shadow-mapping] at run-time. An object's _bounding radius_ field, not its _render bounding radius_, is used to calculate the physical width of the shadow canvas. If the bounding radius is too small, the shadow will be cut off.
 
+# Limits
+{% figure src="max-light-surfaces.jpg" %}
+Dynamic lights cause parts of the BSP to be rendered in another pass, but only 4096 triangles per light. High-poly spaces may reach this limit.
+{% /figure %}
+
+Known renderer limits with the _unmodified_ game are:
+
+* [Particle_system](~) particles: 256
+* Non-particle system [particles](~particle): 512
+* [Objects](~object): 256 (raised to 512 in H1A)
+* Maximum dynamic [BSP triangles](~scenario_structure_bsp): 16k (raised to 32k in H1A) -- a BSP can have more triangles than this, but the rendered amount should be managed with portals.
+* [Lights](~light): 128
+* Surfaces per point light: 4096 -- limits how many triangles can be illuminated by a dynamic light (see figure)
+* Surfaces per dynamic [object](~object) shadow: 4096 -- limits how many triangles can be shaded by dynamic object shadows (Highly unlikely scenario)
+
+There are also [game state limits](~game-state#limits) which can appear like renderer limitations (eg. maximum simulated antennas).
+
+Some client mods like [Chimera](~) can raise limits. See mod-specific documentation for details.
+
+At large distances from the [origin][origin-wiki] (starting at approximately 1,000 world units), the effects of low 32-bit floating point precision become apparent in greater [z-fighting][z-fight-wiki] and jittering of moving vertices from the inability to represent small distances. The game is hard-coded to prevent the camera from moving outside of a 10,000-world unit cube centered at the origin (5,000 units along any axis). Game mechanics and mesh rendering begin to break down around 1 million world units.
+
 # Gearbox regressions
 
 {% figure src="glass-bug.jpg" %}
@@ -37,7 +58,7 @@ The glass shader with bump-mapped reflections renders incorrectly in Custom Edit
 
 When Halo was ported to PC by Gearbox in 2003 many visual bugs were introduced. Among the challenges were updating H1X's shaders and rendering code to work with DirectX 9 and unlocked framerates in an engine which previously assumed 30 FPS always. The renderer also needed to be adapted for the range of user hardware for the PC port.
 
-_Most_ of these issues have now been corrected in DX11 renderer in [H1A](~h1a) MCC.
+_Most_ of these issues have now been corrected in DX11 renderer in MCC.
 
 * H1X's [shader_transparent_generic](~) tags were converted to [shader_transparent_chicago](~) (or extended) tags which are less sophisticated.
 * The _detail after reflection_ flag of [shader_model](~) is working in reverse of how it should. Enabling the flag should cause detail maps to apply after specularity/cubemaps. The client mod [Chimera](~) has a built-in fix which is disabled for Halo Custom Edition (but enabled in Retail) except in the Vaporeon builds.
@@ -68,27 +89,6 @@ _Most_ of these issues have now been corrected in DX11 renderer in [H1A](~h1a) M
   * Some specular lighting may be missing, which makes dynamic lights appear smaller in radius (e.g. flashlight).
   * Bump map shadows are only visible when dynamic lights are nearby, but should be visible at all times using [lightmap data](~lightmaps) for light direction and tint.
   * The "normal" _type_ may incorrectly mask primary and secondary detail maps when an alpha is present in the base map, visible in b40 exterior tech wall.
-
-# Limits
-{% figure src="max-light-surfaces.jpg" %}
-Dynamic lights cause parts of the BSP to be rendered in another pass, but only 4096 triangles per light. High-poly spaces may reach this limit.
-{% /figure %}
-
-Known renderer limits with the _unmodified_ game are:
-
-* [Particle_system](~) particles: 256
-* Non-particle system [particles](~particle): 512
-* [Objects](~object): 256 (raised to 512 in H1A)
-* Maximum dynamic [BSP triangles](~scenario_structure_bsp): 16k (raised to 32k in H1A) -- a BSP can have more triangles than this, but the rendered amount should be managed with portals.
-* [Lights](~light): 128
-* Surfaces per point light: 4096 -- limits how many triangles can be illuminated by a dynamic light (see figure)
-* Surfaces per dynamic [object](~object) shadow: 4096 -- limits how many triangles can be shaded by dynamic object shadows (Highly unlikely scenario)
-
-There are also [game state limits](~game-state#limits) which can appear like renderer limitations (eg. maximum simulated antennas).
-
-Some client mods like [Chimera](~) can raise limits. See mod-specific documentation for details.
-
-At large distances from the [origin][origin-wiki] (starting at approximately 1,000 world units), the effects of low 32-bit floating point precision become apparent in greater [z-fighting][z-fight-wiki] and jittering of moving vertices from the inability to represent small distances. The game is hard-coded to prevent the camera from moving outside of a 10,000-world unit cube centered at the origin (5,000 units along any axis). Game mechanics and mesh rendering begin to break down around 1 million world units.
 
 # Troubleshooting
 Some PC hardware configurations may cause problems with the renderer, specifically transparent shaders stretching/exploding, and mirror reflections exploding. If you are experiencing this, try forcing 1 core affinity for the game process.

@@ -22,6 +22,8 @@ Pictured: Location of the mod tools in the steam library.
 
 It's recommended that you pin the installation folder to explorer or create a shortcut to it. You will need frequent access to these files and it's easier to run the tools from explorer than through Steam's launcher.
 
+You should also add your mod tools folders to the Windows Defender exclusions list. Tools like Sapien and Standalone will load faster.
+
 ## Installing updates
 Steam updates will not overwrite your tags. Instead, the tags `7z` archive will be updated with any content changes. Sometimes it may be necessary for updates to provide new versions of stock tags.
 

@@ -56,7 +56,7 @@ You can create portals in a few ways:
 It may be necessary to add multiple portals to close a space. For example, if a building had multiple doors and windows you would need to add portals to each of them for the inside of the building to be considered sealed off from the outside. For help troubleshooting portals, [see here](~bsp-troubleshooting#portal-problems).
 
 # Clusters and cluster data
-Clusters are sealed volumes of a BSP separated by portal planes. They are used both as a rendering optimization and artistically; map authors can assign [weather_particle_system](~), [wind](~), [sound_environment](~), and [sound_looping](~) tags to define local atmospheric and ambience qualities for each section of the map. Different clusters can even reference [different skies](~blender-level-creation-additional-info#multiple-skies). The level will contain a single large cluster if no portals were created.
+Clusters are sealed volumes of a BSP separated by portal planes. They are used both as a rendering optimization and artistically; map authors can assign [weather_particle_system](~), [wind](~), [sound_environment](~), and [sound_looping](~) tags to define local atmospheric and ambience qualities for each section of the map. Different clusters can even reference [different skies](~sky#multiple-skies). The level will contain a single large cluster if no portals were created.
 
 Note that it may still be desirable to reference weather for indoor clusters if there are outdoor areas visible from them, otherwise snow and rain particles will abruptly disappear. To mask weather in such clusters, use [weather polyhedra](#weather-polyhedra).
 
@@ -117,6 +117,9 @@ A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens fl
 {% figure src="phantom.jpg" %}
 Danger Canyon contains at least two prevalent cases of phantom BSP. The Warthog and bullets are both colliding with invisible extensions of nearby surfaces.
 {% /figure %}
+{% figure src="phantom_2.jpg" %}
+The phantom BSP here is caused by nearly coplanar faces on the nearby ramp.
+{% /figure %}
 
 Phantom BSP is a collision artifact sometimes produced when compiling BSPs. It manifests itself as invisible surfaces which projectiles and vehicles collide with (but not players), and mostly appears around sharp corners near cases of ["nearly coplanar faces"](~bsp-troubleshooting#warning-nearly-coplanar-faces-red-and-green) warnings in your [WRL file](~wrl). It can also cause objects above the problem area to fall back to [BSP default lighting](~object#shadows-and-lighting).
 
@@ -125,8 +128,8 @@ Bungie was aware of this artifact and implemented a feature to help spot it (`co
 1. Preemptively, keep your geometry simple and robust without an abundance of dense, complex, or spiky shapes. Flat surfaces like floors and walls should be kept as flat as possible by using alignment tools when modeling rather than "eyeballing it".
 2. Fix any "nearly coplanar" warnings in your source model by scaling affected faces to 0 along their normal axis or using alignment. Since Tool slightly rounds vertex coordinates when compiling BSPs, sometimes this warning cannot be resolved for surfaces which are not axis-aligned.
 2. There is an element of chance to phantom BSP appearing which depends on how your geometry is recursively subdivided to form a BSP tree. Modifying unrelated parts of your level like adding portals or moving vertices can sometimes affect how the level is subdivided and make phantom BSP disappear or appear in new places.
-3. Using [phantom_tool](~) or H1A Tool's [fix-phantom-bsp option](~h1a-tool#phantom-bsp-fix) to compile your BSP will prevent phantom BSP at the cost of slightly increasing the tag size. There have been reports that this may not resolve all phantom BSP.
-4. If you do not have access to source JMS, and are trying to fix a BSP tag, the tool [Ghostbuster](~) may fix it but has known issues.
+3. Using H1A Tool's [fix-phantom-bsp option](~h1a-tool#phantom-bsp-fix) to compile your BSP will prevent _most_ phantom BSP at the cost of slightly increasing the tag size. There have been reports that this may not resolve all phantom BSP.
+4. If you do not have access to source JMS, and are trying to fix a BSP tag, you will need to import the tag into Blender and rework the model to make it export-ready and free of nearly coplanar surfaces.
 
 On a technical level, cases of phantom BSP are [dividing planes](#tag-field-collision-bsp-bsp3d-nodes-plane) where a child index is `-1`, but the space on that side of the plane is not actually _completely_ outside the level. The artifact is bounded by all parent dividing planes.
 
@@ -136,7 +139,7 @@ On a technical level, cases of phantom BSP are [dividing planes](#tag-field-coll
 This location in Derelict has a small collision hole where items can fall through the map.
 {% /figure %}
 
-BSP holes or leaks are another type of collision artifact where items or players can fall through the map. It is not known what causes this, but it can be resolved by altering triangulation around the affected area (rotating edges). Compiling the BSP with [phantom_tool](~) or H1A Tool's [fix-phantom-bsp option](~h1a-tool#phantom-bsp-fix)  also prevents this.
+BSP holes or leaks are another type of collision artifact where items or players can fall through the map. It is not known what causes this, but it can be resolved by altering triangulation around the affected area (rotating edges). Compiling the BSP with H1A Tool's [fix-phantom-bsp option](~h1a-tool#phantom-bsp-fix) also prevents this.
 
 # Pathfinding data
 The BSP contains data on traversable surfaces which aid AI in pathfinding (walking to a destination). This data is generated automatically during BSP compilation and is retained even in when the BSP is compiled into multiplayer maps.

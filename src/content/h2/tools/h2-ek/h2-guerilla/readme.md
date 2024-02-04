@@ -8,7 +8,7 @@ keywords:
   - tag-editor
   - h2guerilla
 related:
-  - /h1/tools/h1a-ek/h1a-guerilla
+  - /h1/h1a-ek/h1a-guerilla
   - /h2/tools/h2v-ek/h2v-guerilla
   - /h3/h3-ek/h3-guerilla
 ---

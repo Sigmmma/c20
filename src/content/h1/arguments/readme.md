@@ -6,7 +6,7 @@ thanks:
 Halo's startup can be customized through the combination of arguments and console scripting. Using these options allows you to quickly configure Halo for various testing or server hosting scenarios.
 
 # init.txt
-If this file is placed in Halo's installation directory, the game will execute all lines as console commands at startup. The game can be told to use another file with the `-exec` argument. Example contents are:
+If this file is placed in the root of the mod tools or Custom Edition's installation directory, the game will execute all lines as [console commands](~developer-console) at startup and they will be present in the console history. The game can be told to use another file with the `-exec` argument. Example contents are:
 
 ```inittxt
 ;set the "ting" hit noise to full volume
@@ -17,10 +17,7 @@ cls
 sv_map bloodgulch slayer
 ```
 
-Similarly, [Sapien](~h1a-sapien) loads `editor_init.txt`.
-
-## OpenSauce users
-If using the [OpenSauce mod](~opensauce), use the file name `initc.txt` instead.
+Similarly, [Sapien](~h1a-sapien) loads `editor_init.txt`. If using the [OpenSauce mod](~opensauce), use the file name `initc.txt` instead.
 
 # Arguments
 Halo accepts [command line/shortcut arguments][about-args] to customize how the game launches and what features are enabled. From a terminal or Windows command prompt, such arguments are provided after the executable name, e.g. `haloce.exe -screenshot` to run the game with screenshot mode enabled. These arguments can also be added in Windows by editing a shortcut to the Halo executable.

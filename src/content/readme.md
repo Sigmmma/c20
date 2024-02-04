@@ -36,7 +36,7 @@ Everyone makes mods for different reasons; maybe it's to rebalance the sandbox, 
 New to modding? Check out the [general information section](~general). Each other section in the sidebar will allow you to explore game-specific guides and reference materials.
 
 **Featured guides:**
-* [Creating a custom Halo 1 level](~h1/guides/map-making/level-creation)
+* [Creating a custom Halo 1 level](~h1/guides/levels)
 * [Creating a custom Halo 1 skybox](~h1/guides/skyboxes)
 * [Creating a custom Halo 2 level](~h2/guides/map-making/level-creation)
 * [Creating a custom Halo 3 level](~h3/guides/map-making/level-creation)

@@ -10,7 +10,7 @@ keywords:
   - cli
   - h2tool
 related:
-  - /h1/tools/h1a-ek/h1a-tool
+  - /h1/h1a-ek/h1a-tool
   - /h2/tools/h2v-ek/h2v-tool
   - /h3/h3-ek/h3-tool
 ---

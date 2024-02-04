@@ -9,7 +9,7 @@ keywords:
   - lightmap
   - cli
 related:
-  - /h1/tools/h1a-ek/h1a-tool
+  - /h1/h1a-ek/h1a-tool
 ---
 **H3-Tool** (**tool.exe**), is a [command-line](~) utility used to compile data into [tags](~), and tags into [maps](~map). It was released as a part of the [Halo 3 Editing Kit](~h3-ek) by 343 Industries in 2021.
 

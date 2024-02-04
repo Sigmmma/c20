@@ -1,10 +1,17 @@
 ---
-title: Halo 1 Guides hub
+title: Guides
 stub: true
 keywords:
   - tutorials
 thanks:
   gbMichelle: 'Gathering the list of external tutorials, originally on halocetutorials.tk'
+childOrder:
+  - levels
+  - skyboxes
+  - scale
+  - tips
+  - sharing
+  - porting-maps
 ---
 Welcome to the guides hub! Here you'll find links to various guides ranging from basic map-making to more advanced topics. This hub is a work in progress and will grow over time. Until it is more complete, we recommend the official [HEK tutorial][hek] as a starting point.
 

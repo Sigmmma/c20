@@ -19,7 +19,7 @@ Like earlier games, Halo Reach supports **scripting** with [HaloScript](~general
 /%}
 
 # Functions
-Since HR documentation will be an ongoing work-in-progress, please refer to the more complete [H1 scripting page](~h1/engine/scripting) for info on common functions.
+Since HR documentation will be an ongoing work-in-progress, please refer to the more complete [H1 scripting page](~h1/scripting) for info on common functions.
 
 {% dataTable
   dataPath="hsc/hr/functions/functions"

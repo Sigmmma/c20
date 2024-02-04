@@ -11,19 +11,6 @@ Chimp:
       to: JMS
     - from: 3ds Max
       to: JMS
-Blendkrieg:
-  page: blendkrieg
-  authors:
-    - gbMichelle
-  similarTo:
-    - Blender .gbxmodel Importer
-  workflows:
-    - from: h1/gbxmodel
-      to: Blender
-    - from: h1/model
-      to: Blender
-    - from: JMS
-      to: Blender
 CAD animation exporter:
   page: cad-animation-exporter
   authors:
@@ -34,17 +21,6 @@ CAD animation exporter:
         - 3ds Max
         - Gmax
       to: Animation data
-Blender .gbxmodel Importer:
-  page: blender-gbxmodel-importer
-  deprecated: true
-  authors:
-    - Fulsy
-    - TheGhost
-  similarTo:
-    - Blendkrieg
-  workflows:
-    - from: h1/gbxmodel
-      to: Blender
 Halo Physics Importer:
   page: halo-physics-importer
   authors:

@@ -134,6 +134,6 @@ digraph G {
   h1x_ntsc_retail -> h1a_pc_s7 [label="Tags"];
   h2 -> h1a_pc_s7 [label="Code"];
   h2 -> h1a_pc_live [label="Modding features"];
-  odst -> h1a_pc_live [label="Netcode"];
+  #odst -> h1a_pc_live [label="Netcode"];
   h1a_pc_s7 -> h1a_pc_live;
 }

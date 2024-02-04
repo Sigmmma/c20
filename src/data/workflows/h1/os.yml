@@ -4,6 +4,7 @@ OpenSauce:
     - kornman00
     - TheFieryScythe
     - ChokingVictim
+    - bitterbanana
 OS_Guerilla:
   inherit:
     - OpenSauce

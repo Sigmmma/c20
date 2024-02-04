@@ -219,7 +219,10 @@ export function getPageChildren(pageIndex: PageIndex, pageId: string, lang: Lang
     });
   return R.sortWith(
     [
-      R.ascend((c: PageLink) => pageIndex[pageId][lang].front.childOrder?.indexOf(c.logicalPathTail)),
+      R.ascend((c: PageLink) => {
+        const index = pageIndex[pageId][lang].front.childOrder?.indexOf(c.logicalPathTail);
+        return (index === undefined || index < 0) ? 1000 : index;
+      }),
       R.ascend((c: PageLink) => c.logicalPathTail)
     ],
     children

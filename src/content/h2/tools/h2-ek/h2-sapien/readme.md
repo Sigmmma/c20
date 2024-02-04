@@ -8,7 +8,7 @@ keywords:
   - scenario
   - h2sapien
 related:
-  - /h1/tools/h1a-ek/h1a-sapien
+  - /h1/h1a-ek/h1a-sapien
   - /h2/tools/h2v-ek/h2v-sapien
   - /h3/h3-ek/h3-sapien
 ---

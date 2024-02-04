@@ -145,7 +145,7 @@ Since we are using the Halo Asset Blender Development Toolset to export our JMS,
 4. Assign the region to the selected faces.
 
 {% alert %}
-If you are using the FBX export pipeline you'll instead need to assign regions by [combining them with material names](~fbx#region-assignment). 3ds Max users who are directly exporting to JMS with a legacy plugin like [Blitzkrieg](~) can use named selection sets (note that [Bluestreak](~) does not support regions).
+If you are using the FBX export pipeline you'll instead need to assign regions by [combining them with material names](~fbx#region-assignment). 3ds Max users who are directly exporting to JMS with a legacy plugin like [Blitzkrieg](~hek#blitzkrieg) can use named selection sets (note that [Bluestreak](~) does not support regions).
 {% /alert %}
 
 ![](region.mp4)

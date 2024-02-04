@@ -1,5 +1,5 @@
 ---
-title: H1 tags
+title: Tags
 about: resource:h1/tags
 img: control-panels.jpg
 caption: Tags offer a lot of control, but there's also a lot to learn. Try to focus on one area at a time if you're new.
@@ -73,7 +73,7 @@ Tag paths also appear in arguments to [Tool](~) and scripting.
 ## Blocks
 A _tag block_ field is essentially a list of smaller data structures within a tag. An example is the [scenario](~) tag containing a block of vehicle spawns points. In visual tag editors, blocks appear as a list of elements which are often editable by adding or removing elements. A block field internally consists of an item count and a pointer to an array of structures of the expected type.
 
-Some older unofficial tools refer to blocks as _reflexives_, a term considered outdated and comes from early [halo-map-tools](~) modding.
+Some older unofficial tools refer to blocks as _reflexives_, a term considered outdated and comes from early [halo-map-tools](~obsolete#hmt) modding.
 
 ## Group IDs
 To identity tag types in-engine and within tag data, Halo uses compact fixed-size (4 character) identifiers rather than the longer tag names/extensions seen in the [HEK](~). Some examples include `bitm` for [bitmap](~bitmap), `snd!` for [sound](~), and `DeLa` for [ui_widget_definition](~). These identifiers are case-sensitive and may be padded with trailing spaces.
