@@ -2,7 +2,7 @@
 title: shader_transparent_generic
 about: 'tag:h1/shader_transparent_generic'
 img: generic.jpg
-caption: The energy field of the Spirit dropship uses this shader type.
+caption: The energy field of the Spirit dropship uses this shader type in H1A and Xbox.
 keywords:
   - shader_transparent_chicago
   - shader_transparent_chicago_extended
@@ -10,7 +10,7 @@ thanks:
   MosesOfEgypt: Tag structure research
   Kavawuvi: Invader tag definitions
 ---
-The **shader_transparent_generic** tag is used for a large number of materials, such as jackal shields, teleporters, control panels, Cortana, and more.
+The **shader_transparent_generic** tag is a powerful transparent shader used for jackal shields, teleporters, control panels, Cortana, and more.
 
 Instances of this tag were replaced with [shader_transparent_chicago](~) and [shader_transparent_chicago_extended](~) when the game was ported to PC, but these shader types cannot fully replicate original appearances. Only the original Xbox version of the game and H1A in MCC support this shader; it is invisible in the Gearbox PC port.
 

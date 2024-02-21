@@ -1,6 +1,5 @@
 ---
 title: Sidecar Importing
-stub: false
 about: 'tool:Osoyoos launcher'
 img: import_sidecar_view.png
 caption: The settings found in the Import Sidecar task

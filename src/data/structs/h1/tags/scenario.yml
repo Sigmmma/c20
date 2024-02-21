@@ -2146,8 +2146,7 @@ type_defs:
         comments:
           en: >-
             Sets the title text style. This field is hidden in
-            [H1CE Guerilla](~hek/guerilla), but visible in
-            [H1A Guerilla](~h1a-guerilla).
+            HEK Guerilla, but visible in H1A Guerilla.
       - name: justification
         type: ScenarioJustification
       - type: pad
@@ -2157,8 +2156,7 @@ type_defs:
         comments:
           en: >-
             Positioning flags for the title. This field is hidden in
-            [H1CE Guerilla](~hek/guerilla), but visible in
-            [H1A Guerilla](~h1a-guerilla).
+            HEK Guerilla, but visible in H1A Guerilla.
       - name: text_color
         type: ColorARGBInt
       - name: shadow_color
@@ -2259,7 +2257,7 @@ type_defs:
           en: >
             Determines the type of map this scenario represents. This also causes
             map compilers like Tool and invader to apply certain
-            [hardcoded tag patches](~tool#hardcoded-tag-patches), but see below in H1A.
+            [hardcoded tag patches](~h1a-tool#hardcoded-tag-patches), but see below in H1A.
       - name: flags
         type: ScenarioFlags
       - name: child_scenarios
@@ -2347,7 +2345,7 @@ type_defs:
             will be properly difficulty-scaled.
 
             Although there is technically a very high limit to this block,
-            unmodified [Sapien](~) only supports up to 128 bipeds being placed.
+            unmodified [Sapien](~h1a-sapien) only supports up to 128 bipeds being placed.
       - name: biped_palette
         type: Block
         type_args:

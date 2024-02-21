@@ -1,6 +1,5 @@
 ---
 title: Osoyoos Launcher - Settings
-stub: false
 about: 'tool:Osoyoos launcher'
 img: mainwindow_settings.jpg
 caption: The settings found in the Osoyoos launcher

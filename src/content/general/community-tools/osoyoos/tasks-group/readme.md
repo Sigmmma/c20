@@ -1,6 +1,5 @@
 ---
 title: Osoyoos Launcher - Tasks
-stub: false
 about: 'tool:Osoyoos launcher'
 img: mainwindow_tasks.jpg
 caption: The Tasks section of the Osoyoos launcher.

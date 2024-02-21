@@ -33,7 +33,6 @@ invader-build:
   inherit: invader_base
   page: invader-build
   similarTo:
-    - Tool
     - H1A-Tool
   workflows:
     - from: h1/scenario
@@ -71,7 +70,6 @@ invader-edit-qt:
     - invader_base
     - h1_tag_editor_base
   similarTo:
-    - Guerilla
     - H1A-Guerilla
     - Mozzarilla
 invader-extract:

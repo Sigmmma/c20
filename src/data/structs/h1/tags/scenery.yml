@@ -26,7 +26,7 @@ type_defs:
     comments:
       en: >
         Fixed decoration objects like boulders, plants, and crates. Placed in
-        the level using [Sapien](~).
+        the level using [Sapien](~h1a-sapien).
     assert_size: 508
     fields:
       - name: flags

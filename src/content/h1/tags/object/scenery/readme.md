@@ -9,7 +9,7 @@ thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
 ---
-**Scenery** are non-moving objects placed within maps that are not part of the [BSP](~scenario_structure_bsp). Some examples of scenery include boulders, trees, crashed pelicans, and smoke emitters. Scenery objects can be added to a palette in [Sapien](~) and placed many times throughout the level, with each scenery implicitly belonging to a particular BSP.
+**Scenery** are non-moving objects placed within maps that are not part of the [BSP](~scenario_structure_bsp). Some examples of scenery include boulders, trees, crashed pelicans, and smoke emitters. Scenery objects can be added to a palette in [Sapien](~h1a-sapien) and placed many times throughout the level, with each scenery implicitly belonging to a particular BSP.
 
 While scenery and their collision models can be animated, they do not have physics like [units](~unit) and [items](~item) and the object technically remains fixed at one location. Doors and elevators are implemented using [device_machine](~) instead.
 

@@ -3,6 +3,7 @@
 :root {
   --bg: #{$bg-dark};
   --fg: #{$fg-dark};
+  --fg-code: #{$fg-code-dark};
   --fg-faded: #{$fg-faded-dark};
   --fg-strong: #{$fg-strong-dark};
   --bg-overlay: #{$bg-overlay-dark};
@@ -19,6 +20,7 @@
 html[data-theme="light"] {
   --bg: #{$bg-light};
   --fg: #{$fg-light};
+  --fg-code: #{$fg-code-light};
   --fg-faded: #{$fg-faded-light};
   --fg-strong: #{$fg-strong-light};
   --bg-overlay: #{$bg-overlay-light};

@@ -45,7 +45,7 @@ Evolution of the Halo 1 editions and versions, colour-coded by platform or major
 {% /figure %}
 
 ## Xbox (Bungie, 2001)
-Sometimes called **h1x** or **OG Xbox**, this is the classic first release of Halo 1 for the original Xbox. It supports LAN multiplayer and spawned a competitive community which is still active. While original Xbox consoles are hard to come by, [emulation][xemu] is an emerging alternative. Though it is a more involved process, custom maps created with the [HEK](~) can be ported back to Xbox.
+Sometimes called **h1x** or **OG Xbox**, this is the classic first release of Halo 1 for the original Xbox. It supports LAN multiplayer and spawned a competitive community which is still active. While original Xbox consoles are hard to come by, [emulation][xemu] is an emerging alternative. Though it is a more involved process, custom maps created with the [HEK](~custom-edition#halo-editing-kit) can be ported back to Xbox.
 
 Xbox has a rich history of modding, notably:
 
@@ -71,7 +71,7 @@ The game received several patches since its release to address remote exploits, 
 Several beta versions of Halo PC can also be found online. Beta 1.5 has [unfinished versions of PC-exclusive content][pc-beta-2] and [weapon tuning][pc-beta-1] similar to pre-release Xbox versions. [Marketing beta 1.8][pc-beta-3] features doppler and a model detail option.
 
 ## Custom Edition (PC, Gearbox Software, 2004)
-[Custom Edition](~custom-edition) is a standalone version of Halo PC released in 2004 which supports custom multiplayer and singleplayer maps created using the [HEK](~). It does not include the stock campaign.
+[Custom Edition](~custom-edition) is a standalone version of Halo PC released in 2004 which supports custom multiplayer and singleplayer maps created using the [HEK](~custom-edition#halo-editing-kit). It does not include the stock campaign.
 
 ## Mac (Westlake Interactive, 2003)
 The Gearbox PC port (retail) was itself ported to Mac by _Westlake Interactive_ and published by _MacSoft_. No significant changes were made aside from platform compatibility, and maps are byte-for-byte identical to retail's. With _MacSoft's_ shutdown in 2011, this version has not been receiving the latest patches. [Nil's fix][nil-fix] enables its continued use with intel GPUs on OSX Mavericks and the post-Gamespy lobby master server.

@@ -8,12 +8,12 @@ redirects:
   - /h1/guides/map-making/kill-volumes
 ---
 {% alert %}
-This guide assumes you have basic working knowledge of [Sapien](~) and [Tool](~).
+This guide assumes you have basic working knowledge of [Sapien](~h1a-sapien) and [Tool](~h1a-tool).
 {% /alert %}
 Map authors who want to prevent players from reaching certain areas can use **kill volumes** (aka **death barriers** or **kill zones**). These are cuboid 3D trigger volumes which are scripted to instantly kill any player that enters them. Adding them to a map is easy:
 
 # Adding trigger volumes
-The first step is to add trigger volumes to your map's [scenario](~) using [Sapien](~).
+The first step is to add trigger volumes to your map's [scenario](~) using [Sapien](~h1a-sapien).
 
 1. Select "Trigger volumes" in the Hierarchy view.
 1. Right click on the ground in the Game window to place a volume.
@@ -92,6 +92,6 @@ If you created multiple trigger volumes, you will need to repeat the above code 
 # Compiling the script and saving the scenario
 The final steps takes place back in Sapien. From the File menu, select "Compile scripts". This will convert the raw script source from the `data\levels\...\scripts\` directory into compiled script data in your scenario. You should see "scripts successfully compiled" in the Game window. Save the scenario since you've added scripts and trigger volume(s).
 
-At this time, you should [compile the map](~tool#build-cache-file) and test the kill volumes ingame.
+At this time, you should [build the map](~h1a-tool#build-cache-file) and test the kill volumes ingame.
 
 [loops]: https://en.wikipedia.org/wiki/For_loop

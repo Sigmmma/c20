@@ -2,7 +2,7 @@
 title: invader-string
 about: 'tool:invader-string'
 ---
-**invader-string** is a [command-line](~) tool included in the [Invader](~) project. It compiles [string sources](~strings-txt) into [unicode_string_list](~) or [string_list](~) as an alternative to using the respective [Tool verbs](~h1a-tool#unicode-string-compilation).
+**invader-string** is a [command-line](~) tool included in the [Invader](~) project. It imports [string sources](~strings-txt) into [unicode_string_list](~) or [string_list](~) as an alternative to using the respective [Tool verbs](~h1a-tool#unicode-strings).
 
 The reverse workflow of this tool is implemented in [invader-recover](~).
 

@@ -179,7 +179,7 @@ type_defs:
 
             **Warning**: Using a shader with extra layers on an [object](~) with
             _transparent self occlusion_ enabled causes [Sapien to
-            crash](~sapien#crashes).
+            crash](~h1a-sapien#crashes).
       - name: maps
         type: Block
         type_args:
@@ -189,7 +189,7 @@ type_defs:
           max: 4
         comments:
           en: >
-            Warning: [Legacy Sapien](~hek/sapien) will crash if this block is
+            Warning: HEK Sapien will crash if this block is
             empty. The shader is not rendered in H1A Sapien or in-game in this case.
       - name: extra_flags
         type: ShaderTransparentChicagoExtraFlags

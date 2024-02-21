@@ -10,7 +10,7 @@ keywords:
   - textures
   - export
 ---
-**Source data files** are the files found in your editing kit's `data` folder. These are the assets which have not yet been converted into [tag](~tags) format by [Tool](~) (or [Sapien](~) in the case of scripts).
+**Source data files** are the files found in your editing kit's `data` folder. These are the assets which have not yet been converted into [tag](~tags) format by [Tool](~h1a-tool) (or [Sapien](~h1a-sapien) in the case of scripts).
 
 # Types of data
 Halo 1 makes use of the following source data formats:

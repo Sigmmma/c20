@@ -71,7 +71,7 @@ type_defs:
           en: >
             Determines how detailed lightmaps will be for surfaces using this
             shader. This affects various [radiosity tessellation
-            parameters](~tool#radiosity-quality-technical-details).
+            parameters](~h1a-tool#radiosity-quality-technical-details).
       - name: power
         type: float
       - name: color_of_emitted_light

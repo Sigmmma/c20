@@ -9,20 +9,20 @@ OS_Guerilla:
   inherit:
     - OpenSauce
     - h1_tag_editor_base
-  heading: os-guerilla
+  heading: modding-with-opensauce
   similarTo:
-    - Guerilla
+    - H1A-Guerilla
 OS_Tool:
   inherit:
     - OpenSauce
     - h1_tool_workflows_base
-  heading: os-tool
+  heading: modding-with-opensauce
   similarTo:
-    - Tool
+    - H1A-Tool
 OS_Sapien:
   inherit:
     - OpenSauce
     - h1_sapien_workflows_base
-  heading: os-sapien
+  heading: modding-with-opensauce
   similarTo:
-    - Sapien
+    - H1A-Sapien

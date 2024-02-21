@@ -17,7 +17,7 @@ There's a number of things you can do _before_ or _while_ modding to avoid issue
 * Read any relevant pages on this site.
 * Use officially released tags, or ones extracted with modern [invader-extract](~) rather than [Refinery](~) or [HEK+](~obsolete#hek).
 * If you're worried about making accidental changes, you can mark certain tag files as read-only. Guerilla will grey out fields for these tags.
-* [Prevent the Windows virtual store from interfering](~tips#windows-virtual-store) when modding H1CE.
+* [Prevent the Windows virtual store from interfering](~custom-edition#installation) when modding H1CE.
 
 # Troubleshooting issues
 If you do have an unidentified problem, try applying the following general methods:

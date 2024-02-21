@@ -130,7 +130,7 @@ type_defs:
           en: >-
             A bitfield which customizes how the cache file is treated by H1A in MCC.
             These are set by set by the `classic/remastered` option of
-            [H1A Tool build-cache-file](~h1a-tool#classic-and-remastered-mode).
+            [H1A Tool build-cache-file](~h1a-tool#build-cache-file).
       - type: pad
         size: 0x790
       - name: foot_magic

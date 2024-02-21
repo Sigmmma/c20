@@ -6,9 +6,9 @@ info: |
   * [Source](https://github.com/yumiris/OpenSauce)
   * [Download](https://haloce3.com/downloads/applications/open-sauce-4-0/)
 keywords:
-  - tool
-  - sapien
-  - guerilla
+  - mod
+  - os
+  - yelo
 ---
 **OpenSauce** (often just "**OS**") is a mod for Halo Custom Edition, its Halo Editing Kit, and dedicated server. For players, it offers customization and some QoL features. For modders, it offers engine extensions and modified tools for more extensive modding of the game.
 

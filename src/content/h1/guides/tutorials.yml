@@ -14,7 +14,7 @@ tutorials:
   - name:
       en: Mo's Halo tutorials
     description:
-      en: A set of tutorials on how to mod with the legacy [Halo Editing Kit](~hek) for H1CE and the [MEK](~).
+      en: A set of tutorials on how to mod with the legacy [Halo Editing Kit](~custom-edition#halo-editing-kit) for H1CE and the [MEK](~).
     authors: MosesOfEgypt
     updated: "2019"
     tags:
@@ -93,7 +93,7 @@ tutorials:
   - name:
       en: BSP errors explanation
     description:
-      en: An image illustrating common geometry errors encountered during [structure compilation](~tool#structure-compilation).
+      en: An image illustrating common geometry errors encountered during [structure compilation](~h1a-tool#structure).
     authors: "?"
     updated: "?"
     tags:

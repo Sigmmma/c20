@@ -7,7 +7,7 @@ keywords:
 redirects:
   - /general/tools/command-line
 ---
-Basic **command-line** skills are helpful in Halo modding. [Tool](~) and some community tools like [Invader](~) are used via a command-line interface. In a CLI, you type commands into a shell window which runs programs and displays their output. CLIs may seem a bit intimidating compared to GUIs, but they allow you to easily share commands and output as text and run them in [scripts](#scripting) for repetitive tasks.
+Basic **command-line** skills are helpful in Halo modding. [Tool](~h1a-tool) and some community tools like [Invader](~) are used via a command-line interface. In a CLI, you type commands into a shell window which runs programs and displays their output. CLIs may seem a bit intimidating compared to GUIs, but they allow you to easily share commands and output as text and run them in [scripts](#scripting) for repetitive tasks.
 
 Most people use [Command Prompt](#command-prompt) (`cmd.exe`), but you can also use [PowerShell](#powershell). If you wish to avoid CLIs then you can use the community-made [Osoyoos](~) launcher for wrapping Tool functions.
 
@@ -68,7 +68,7 @@ It was mentioned earlier that Command Prompt _first_ looks in the current direct
 # Bash (Linux)
 In the rare case you're using the HEK on Linux, you probably already know what you're doing, but here are some tips for working under this setup specifically.
 
-Since we are mainly interested in running Halo and [HEK](~) programs like [Tool](~), which are Windows programs, you will need to set up [Wine][] to run them on Linux. This page will not cover how to install and use Wine, but to run an EXE program you will need to invoke it like so:
+Since we are mainly interested in running Halo and [HEK](~custom-edition#halo-editing-kit) programs like [Tool](~h1a-tool), which are Windows programs, you will need to set up [Wine][] to run them on Linux. This page will not cover how to install and use Wine, but to run an EXE program you will need to invoke it like so:
 
 ```sh
 # Assuming tool.exe is in the CWD:

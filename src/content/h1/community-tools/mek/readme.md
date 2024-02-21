@@ -14,7 +14,7 @@ childOrder:
   - reclaimer-python
   - wrl-to-obj-converter
 ---
-The **Mozz Editing Kit**, previously called the **Moses Editing Kit** or **Mo's Editing Kit** (MEK), is an [open source][mek-repo] and cross-platform Python-based toolset which offers alternatives to and supplements the tools of the [HEK](~). 
+The **Mozz Editing Kit**, previously called the **Moses Editing Kit** or **Mo's Editing Kit** (MEK), is an [open source][mek-repo] and cross-platform Python-based toolset which offers alternatives to and supplements the tools of the [HEK](~custom-edition#halo-editing-kit). 
 
 Being pre-MCC, it only supports Custom Edition and should not be used with MCC tags. However, unlike [invader](~) it does support [OpenSauce tags](~opensauce#new-tag-groups).
 

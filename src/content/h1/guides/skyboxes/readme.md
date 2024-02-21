@@ -30,11 +30,11 @@ If you are new to Halo modding and need a primer on the general asset-creation w
 
 To complete this guide you will need:
 
-* The [Halo Editing Kit](~hek) for Custom Edition or the [H1A Editing Kit](~h1a-ek) for H1A in MCC (available on Steam).
-* 3D software like [Blender](~) or [3ds Max](~3dsmax). Blender is free software and you can export to JMS directly with the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) or use [H1A-Tool's FBX pipeline](~h1a-tool#creating-a-jms-file-from-an-fbx-file). Max users can also use the FBX pipeline or a JMS exporter like [Bluestreak](~).
+* The [Halo Editing Kit](~custom-edition#halo-editing-kit) for Custom Edition or the [H1A Editing Kit](~h1a-ek) for H1A in MCC (available on Steam).
+* 3D software like [Blender](~) or [3ds Max](~3dsmax). Blender is free software and you can export to JMS directly with the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) or use [H1A-Tool's FBX pipeline](~h1a-tool#fbx-to-jms). Max users can also use the FBX pipeline or a JMS exporter like [Bluestreak](~).
 * 2D software like [Krita](~), [GIMP](~), or [Photoshop](~) for creating custom textures.
 
-This guide will specifically be using the H1A-EK, Blender, the Halo asset toolset, and Krita. The techniques are generally transferrable to 3ds Max (see [regions and FBX](~fbx#region-assignment)) and Photoshop if you use those. The process is also the same using either the [HEK](~) or [H1A-EK](~).
+This guide will specifically be using the H1A-EK, Blender, the Halo asset toolset, and Krita. The techniques are generally transferrable to 3ds Max (see [regions and FBX](~fbx#region-assignment)) and Photoshop if you use those. The process is also the same using either the [HEK](~custom-edition#halo-editing-kit) or [H1A-EK](~).
 
 # Setting up the project folders
 We'll need some folders to organize our source assets. Navigate to your editing kit home/root folder and create these folders as needed:
@@ -145,7 +145,7 @@ Since we are using the Halo Asset Blender Development Toolset to export our JMS,
 4. Assign the region to the selected faces.
 
 {% alert %}
-If you are using the FBX export pipeline you'll instead need to assign regions by [combining them with material names](~fbx#region-assignment). 3ds Max users who are directly exporting to JMS with a legacy plugin like [Blitzkrieg](~hek#blitzkrieg) can use named selection sets (note that [Bluestreak](~) does not support regions).
+If you are using the FBX export pipeline you'll instead need to assign regions by [combining them with material names](~fbx#region-assignment). 3ds Max users who are directly exporting to JMS with a legacy plugin like [Blitzkrieg](~) can use named selection sets (note that [Bluestreak](~) does not support regions).
 {% /alert %}
 
 ![](region.mp4)
@@ -162,7 +162,7 @@ We're now ready to get our first version of the skybox in-game. This begins by e
 You should now see a new file created if you browse to the `models` folder in Explorer: `data\sky\sky_tutorial\models\sky_tutorial.JMS`. It's time to start tagging our sky, starting with compiling the gbxmodel.
 
 ## Compiling the gbxmodel
-With our JMS file exported, we can now use [Tool](~) to create a [gbxmodel](~) tag from it. [Open a command prompt](~command-line#command-prompt-windows) in the editing kit root and enter the following command:
+With our JMS file exported, we can now use [Tool](~h1a-tool) to create a [gbxmodel](~) tag from it. [Open a command prompt](~command-line#command-prompt-windows) in the editing kit root and enter the following command:
 
 ```dos
 tool model sky\sky_tutorial
@@ -178,7 +178,7 @@ This means it has successfully created the tag `tags\sky\sky_tutorial\sky_tutori
 
 ## Creating the sky tag
 
-Open [Guerilla](~) and use _File > New_ to create a new empty [sky](~) tag. We're going to set just a few values to get the sky in-game and make sure it's working before continuing with the guide:
+Open [Guerilla](~h1a-guerilla) and use _File > New_ to create a new empty [sky](~) tag. We're going to set just a few values to get the sky in-game and make sure it's working before continuing with the guide:
 
 | Field | Value | Purpose
 |-------|-------|--------
@@ -325,7 +325,7 @@ In order for `dome.tif` to be usable by the game, it needs to be compiled into a
 tool bitmaps sky\sky_tutorial\bitmaps
 ```
 
-This command will tell Tool to [batch compile](~h1a-tool#batch-bitmap-compilation) every TIFF file found in the `data\sky\sky_tutorial\bitmaps` folder into a corresponding bitmap tag under `tags\sky\sky_tutorial\bitmaps`. You should see this output:
+This command will tell Tool to [batch compile](~h1a-tool#bitmaps) every TIFF file found in the `data\sky\sky_tutorial\bitmaps` folder into a corresponding bitmap tag under `tags\sky\sky_tutorial\bitmaps`. You should see this output:
 
 ```
 ### dome.tif

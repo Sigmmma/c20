@@ -1,6 +1,5 @@
 ---
 title: Halo 2 Sapien (disambiguation)
-stub: false
 ---
 **Halo 2 Sapien** can refer to both:
 * [H2 Sapien (2021)](~h2-sapien) a part of the MCC [Halo 2 Mod Tools](~h2-ek)

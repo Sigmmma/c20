@@ -14,6 +14,9 @@ See the [general installation steps](~/general/mod-tools#installation) for help 
 # Changelog
 This changelog is focused on known notable modding-related changes and is not guaranteed to be complete.
 
+## February 2024
+* Fixed a Sapien crash when selecting the structure painter (not an issue for H4 Sapien).
+
 ## July 2023
 * Fixed background sounds not playing in Sapien.
 * Fixed blocky shadows when lightmapping.

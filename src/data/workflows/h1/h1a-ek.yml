@@ -1,45 +1,50 @@
 H1A-EK:
   page: h1a-ek
-  similarTo:
-    - HEK
   authors:
     - 343 Industries
     - Bungie
     - Saber Interactive
     - Gearbox
-
 H1A-Tool:
   inherit:
     - H1A-EK
     - h1_tool_workflows_base
+    - h1_tag_compiler_base
   page: h1a-tool
   similarTo:
-    - Tool
+    - Invader
   buildTypes:
-    - tag_play
+    - tag_play (H1A)
+    - tag_test (HEK)
   workflows:
     - from: fbx-mcc
       to: JMS
     - from: fbx-mcc
       to: Animation data
+    - from: Animation data
+      to: h1/camera_track
 H1A-Guerilla:
   inherit:
     - H1A-EK
     - h1_tag_editor_non_deprecated_base
   page: h1a-guerilla
-  similarTo:
-    - Guerilla
   buildTypes:
-    - tag_play
+    - tag_play (H1A)
+    - tag_test (HEK)
+  similarTo:
+    - Mozzarilla
+    - invader-edit-qt
+    - OS_Guerilla
 H1A-Sapien:
   inherit:
     - H1A-EK
     - h1_sapien_workflows_base
   page: h1a-sapien
   similarTo:
-    - Sapien
+    - OS_Sapien
   buildTypes:
-    - tag_play
+    - tag_play (H1A)
+    - tag_test (HEK)
 H1A-standalone:
   inherit:
     - H1A-EK

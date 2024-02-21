@@ -147,7 +147,7 @@ type_defs:
             determine which half-space to descend into.
 
 
-            [Tool](~) will create new planes or use existing surface planes when
+            [Tool](~h1a-tool) will create new planes or use existing surface planes when
             generating the BSP tree based on a heuristic of how many surfaces
             remain in the node. For 1024 and above, axis-aligned planes based on
             vertex bounds are used. Otherwise, the surface within the remaining
@@ -415,7 +415,7 @@ type_defs:
           en: >
             Surfaces are planar collideable polygons. They are not necessarily
             triangular and may have up to 8 edges. BSP collision surfaces can
-            be visualized in [Sapien](~) using `debug_structure 1`. These
+            be visualized in [Sapien](~h1a-sapien) using `debug_structure 1`. These
             surfaces are not used for the rendered geometry.
       - name: edges
         type: Block

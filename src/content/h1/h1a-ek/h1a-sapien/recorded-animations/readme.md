@@ -2,19 +2,22 @@
 title: Recorded Animations
 keywords:
   - animations
+  - dropship
+redirects:
+  - /h1/tools/hek/sapien/recorded-animations
 ---
 {% alert type="danger" %}
-This feature does not function in the Gearbox HEK release.
+This feature does not function in the Gearbox HEK release since it is not possible to control the posessed unit while recording. With H1A, this requires an Xinput controller (e.g. An Xbox controller) to be connected to your device.
 {% /alert %}
 # Introduction
 Recorded animations are a simple way for designers to animate a scene using ingame tools without any need for animating a scene in 3D modeling software. This feature allows you to record your inputs and save them for playback. They can then be invoked through a script to have a [unit](~) play out the prerecorded inputs. We will go over how recorded animations in the toolset works.
 
 {% alert type="danger" %}
-Be warned that recordings done after reloading a scenario in [Sapien](~) may cause stability issues. Try to keep it to your first scenario load.
+Be warned that recordings done after reloading a scenario in [Sapien](~h1a-sapien) may cause stability issues. Try to keep it to your first scenario load.
 {% /alert %}
 
 # Entering scripted camera mode
-You will need to set your editor mode so that we can start using recording commands. Find the toolbar in the top left and select the camera icon. This will set your [Sapien](~) instance to scripted camera mode.
+You will need to set your editor mode so that we can start using recording commands. Find the toolbar in the top left and select the camera icon. This will set your [Sapien](~h1a-sapien) instance to scripted camera mode.
 
 ![](A.png "Make sure you've selected this. You won't be able to use any of the hotkeys said below if you aren't using this mode.")
 

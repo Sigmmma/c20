@@ -315,9 +315,9 @@ type_defs:
           min: 0
         comments:
           en: >
-            Warning: [Legacy Guerilla](~hek/guerilla) allows you to set
-            this value outside its valid range. Avoid crashes by staying in the
-            valid range.
+            Warning: HEK Guerilla allows you to set this value outside its
+            valid range. Avoid crashes by staying in the valid range.
+            H1A Guerilla doesn't have this issue.
       - name: maximum_bend_per_second
         type: float
       - type: pad
@@ -331,9 +331,9 @@ type_defs:
           min: 0
         comments:
           en: >
-            Warning: [Legacy Guerilla](~hek/guerilla) allows you to set
-            this value outside its valid range. Avoid crashes by staying in the
-            valid range.
+            Warning: HEK Guerilla allows you to set this value outside its
+            valid range. Avoid crashes by staying in the valid range.
+            H1A Guerilla doesn't have this issue.
       - name: zero_pitch_modifier
         type: float
       - type: pad
@@ -347,9 +347,9 @@ type_defs:
           min: 0
         comments:
           en: >
-            Warning: [Legacy Guerilla](~hek/guerilla) allows you to set
-            this value outside its valid range. Avoid crashes by staying in the
-            valid range.
+            Warning: HEK Guerilla allows you to set this value outside its
+            valid range. Avoid crashes by staying in the valid range.
+            H1A Guerilla doesn't have this issue.
       - name: one_pitch_modifier
         type: float
       - type: pad

@@ -1,6 +1,5 @@
 ---
 title: Halo 2 Guerilla (disambiguation)
-stub: false
 ---
 **Halo 2 Guerilla** can refer to both:
 * [H2 Guerilla (2021)](~h2-guerilla) a part of the MCC [Halo 2 Mod Tools](~h2-ek)

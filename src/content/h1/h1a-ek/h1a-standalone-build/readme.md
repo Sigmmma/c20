@@ -1,5 +1,5 @@
 ---
-title: H1A Standalone
+title: H1 Standalone
 about: 'tool:H1A-standalone'
 img: halo_tag_test.jpg
 caption: Using some `ai_render_*` and `ai_debug_*` globals
@@ -7,11 +7,13 @@ keywords:
   - test
   - cache
   - h1a
+  - tag_test
+  - tag test
 thanks:
   num0005: Documenting H1A standalone build
   Zeddikins: Finding the spawning hotkeys
 ---
-**Standalone** (halo_tag_test.exe), often called **tag test** after its [build type](~blam#build-types), is a special build of H1 used for testing mods. It loads loose [tags](~general/tags) rather than [maps](~general/maps) like MCC, and includes a wide variety of debugging features.
+**Standalone** (halo_tag_test.exe), often called **tag test** after its [build type](~blam#build-types), is a special build of H1 used for testing mods. It loads loose [tags](~general/tags) rather than [maps](~general/maps) like MCC, and includes a wide variety of debugging features. Standalone is not included in the [HEK](~custom-edition#halo-editing-kit).
 
 This build doesn't include network functionality but can load multiplayer scenarios and test [game modes](~game-modes). For testing singleplayer missions, it includes AI debugging code not included in other published builds of the engine. [Using custom content paths](~mod-tools#using-custom-content-paths) is supported.
 
@@ -20,16 +22,19 @@ There can be small differences between the way a map plays in Standalone and MCC
 {% /alert %}
 
 # Usage
-The UI works to a limited degree but loading scenarios is best done using the [`map_name`](~scripting#functions-map-name) command in the [console](~developer-console). Note: you need to use the **full scenario tag path** as this is a [tag build](~blam#build-types). For example:
+The UI works to a limited degree but loading scenarios is best done using the [`map_name`](~scripting#functions-map-name) command in the [console](~developer-console). Note: you need to use the **full scenario tag path** since this is a [tag build](~blam#build-types). The path is relative to the `tags` folder and does not include the `.scenario` suffix. For example:
 
 ```consoleh1a
-; load tags\levels\a30\a30.scenario:
+; load the singleplayer mission a30:
 map_name levels\a30\a30
-; load tags\levels\test\bloodgulch\bloodgulch.scenario:
+; set the game mode to slayer and load blood gulch:
+game_variant slayer
 map_name levels\test\bloodgulch\bloodgulch
+; if your tag path contains spaces, use quotes:
+map_name "levels\test\my level\my level"
 ```
 
-To avoid having to enter these and other debugging commands every time you start Standalone, you can place commands in an [init.txt](~arguments#init-txt) file and they will be run automatically on startup.
+To avoid having to enter these and other debugging commands every time you start Standalone, you can place commands in an [init.txt](~arguments#init-txt) file and they will be run automatically on startup. You also don't need to reopen Standalone every time you maked changes to your tags; simple access `map_name` again in your console history ({% key "Up" /%} key) to reload the map with updated tags.
 
 Standalone supports some of the same [arguments](~arguments#arguments-list) that H1CE does, such as `-vidmode 2560,1440,120` to set resolution and `-windowed` mode. You can toggle full-screen with {% key "Alt+Enter" /%}.
 

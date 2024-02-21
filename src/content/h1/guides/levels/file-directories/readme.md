@@ -20,7 +20,7 @@ We will start by going over how Halo requires your folders to be structured for 
 # Creation of a level directory
 For the sake of organizing your asset files you should consider keeping all your source files in the same level directory used to create the level (.blend, .tif, .psd, .jms, etc..).
 
-[Tool](~) will search for subdirectories in the level directory that contain the raw asset data for compilation and eventually package the resulting assets from the raw data into a map cache file that can run in Halo CE. Any assets that you compile will end up in the tags directory plus the local path to the raw assets in the data folder. For example the file below:
+[Tool](~h1a-tool) will search for subdirectories in the level directory that contain the raw asset data for compilation and eventually package the resulting assets from the raw data into a map cache file that can run in Halo CE. Any assets that you compile will end up in the tags directory plus the local path to the raw assets in the data folder. For example the file below:
 
 `(HEK Install Path)\data\levels\test\dreamer\models\test.JMS`
 

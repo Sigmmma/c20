@@ -20,7 +20,7 @@ This page documents the function and format of some of Halo's installation and p
 # haloce.exe
 This is the main game executable containing the bulk of the game's code.
 
-By default, [Halo](~h1) is only permitted to use [2 GB][2gb] of virtual memory. By applying value `0x2F` at offset `0x136` in the 1.0.10 executable, Halo can be made "Large Address Aware" and capable of using up to 4GB of virtual memory. The same upgrade can be made to [Sapien](~sapien#limits). The increased limit can be useful for client mods like [Chimera](~) which run in the game's address space and allocate more memory to speed up map loading.
+By default, [Halo](~h1) is only permitted to use [2 GB][2gb] of virtual memory. By applying value `0x2F` at offset `0x136` in the 1.0.10 executable, Halo can be made "Large Address Aware" and capable of using up to 4GB of virtual memory. The same upgrade can be made to [Sapien](~h1a-sapien#limits). The increased limit can be useful for client mods like [Chimera](~) which run in the game's address space and allocate more memory to speed up map loading.
 
 # strings.dll
 The library `strings.dll` is required to run the game or dedicated server. It serves multiple purposes:

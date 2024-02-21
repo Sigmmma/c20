@@ -31,7 +31,7 @@ Despite their age, these tools are pervasive in outdated tutorials and forum pos
 HEK+ was last updated in 2006 and is still available for download at [HaloMaps.org](http://hce.halomaps.org/index.cfm?fid=2289).
 {% /figure %}
 
-**Halo Editing Kit Plus (HEK+)** by SteelIXB (not to be confused with the official [HEK](~)) was a tool for [extracting tags](~map#extracting-tags-from-maps) from Halo Custom Edition maps, as well as "protecting" maps to hinder tag extraction. While it was the go-to tag extractor for a while, we now know it introduces issues to the tags it extracts, causing crashes or buggy behaviours.
+**Halo Editing Kit Plus (HEK+)** by SteelIXB (not to be confused with the official [HEK](~custom-edition#halo-editing-kit)) was a tool for [extracting tags](~map#extracting-tags-from-maps) from Halo Custom Edition maps, as well as "protecting" maps to hinder tag extraction. While it was the go-to tag extractor for a while, we now know it introduces issues to the tags it extracts, causing crashes or buggy behaviours.
 
 Because HEK+ was widely used in the past to extract tags for inclusion in new maps, the tags in those maps can contain invalid data. For example, [weapon](~) zoom levels always extracts as 256 and sounds may be corrupted. Use the modern tag extractor [invader-extract](~) instead. Even if those tags are now extracted using [invader-extract](~) that invalid data needs to be corrected. Invader will warn you about bad tag data and you can use [invader-bludgeon](~) to help correct it.
 
@@ -53,7 +53,7 @@ The **Blender .gbxmodel importer** by Fulsam was an add-on for Blender 2.7 to im
 SparkEdit source code is available on [GitHub](https://github.com/HaloMods/SparkEdit).
 {% /figure %}
 
-**SparkEdit** by Grenadiac was a direct [map](~) editor for H1PC. It features a 3D scenario editor where users can place and modify objects similar to [Sapien](~). Custom maps created with SparkEdit were sometimes called "log mods" because modders often used the fallen log scenery to build additional platforms and structures into maps.
+**SparkEdit** by Grenadiac was a direct [map](~) editor for H1PC. It features a 3D scenario editor where users can place and modify objects similar to [Sapien](~h1a-sapien). Custom maps created with SparkEdit were sometimes called "log mods" because modders often used the fallen log scenery to build additional platforms and structures into maps.
 
 There is also the OSX fork **Swordedit**, by bobindashadows, Sword, Samuco. Little is known about this but it may have supported some extra features and Custom Edition maps. Source code is available on [GitHub](https://github.com/ChadSki/Swordedit).
 
@@ -96,14 +96,14 @@ Directly editing tags in memory is a fast way to preview changes, but using [Sta
 # HEK mods
 ## LM_Tool
 {% figure src="lm-time.jpg" %}
-LM_Tool outperforms legacy H1CE Tool in lightmapping, but is slower than H1A Tool with `-noassert` enabled.
+LM_Tool outperforms legacy HEK Tool in lightmapping, but is slower than H1A Tool with `-noassert` enabled.
 {% /alert %}
-**LM_Tool** by gbMichelle is a modified version of [H1CE Tool](~hek/tool) which improves the speed of [lightmaps](~) generation (radiosity) by disabling some runtime debug checks. It can _only_ be used for radiosity; all other functions are disabled. See its [development thread](https://opencarnage.net/index.php?/topic/7751-lm_tool-a-version-of-tool-specifically-for-speeding-up-lightmaps/#comment-98219) for more history.
+**LM_Tool** by gbMichelle is a modified version of HEK [Tool](~h1a-tool) which improves the speed of [lightmaps](~) generation (radiosity) by disabling some runtime debug checks. It can _only_ be used for radiosity; all other functions are disabled. See its [development thread](https://opencarnage.net/index.php?/topic/7751-lm_tool-a-version-of-tool-specifically-for-speeding-up-lightmaps/#comment-98219) for more history.
 
 The updated [H1A Tool](~h1a-tool) supports a `-noassert` flag that, with its other lightmapping optimizations, greatly outperforms LM_Tool and is now the fastest lightmapping solution.
 
 ## phantom_tool
-**phantom_tool** by Conscars is a modified version of [H1CE Tool](~hek#tool) which allows the compilation of [BSPs](~scenario_structure_bsp) and [model_collision_geometry](~) without [collision artifacts](~scenario_structure_bsp#collision-artifacts) like phantom BSP. This is done by enabling the orphaned code in Tool for the [fix-phantom-bsp flag](~h1a-tool#phantom-bsp-fix). Modders should simply use [H1A Tool](~h1a-tool) since this flag is exposed now. See the tool's [release thread](https://opencarnage.net/index.php?/topic/8286-phantom_tool-toolexe-mod-which-prevents-phantom-bsp/) for more info.
+**phantom_tool** by Conscars was a modified version of HEK [Tool](~h1a-tool) which allows importing [BSPs](~scenario_structure_bsp) and [model_collision_geometry](~) without [collision artifacts](~scenario_structure_bsp#collision-artifacts) like phantom BSP. This is done by enabling the orphaned code in Tool for the [fix-phantom-bsp flag](~h1a-tool#phantom-bsp-fix). Modders should simply use [H1A Tool](~h1a-tool) since this flag is exposed now. See the tool's [release thread](https://opencarnage.net/index.php?/topic/8286-phantom_tool-toolexe-mod-which-prevents-phantom-bsp/) for more info.
 
 ## tool_pro
 **tool_pro** was a community-modified version of the HEK's Tool which extended the [map cache file size limit](~map#map-file-size-limit) and vertex buffer beyond their defaults.

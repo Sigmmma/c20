@@ -27,7 +27,7 @@ If there are any images that you find difficult to read then try opening the ima
 In order to create a Halo level you first have to create a reference frame for all our geometry to be linked to. The reference frame is the origin for all objects in our scene.
 
 {% alert type="danger" %}
-Be aware that once you have started to edit the level using the Halo level editing tool known as [Sapien](~) you cannot move the origin of the reference frame. Changing the origin will cause all placed objects to move.
+Be aware that once you have started to edit the level using the Halo level editing tool known as [Sapien](~h1a-sapien) you cannot move the origin of the reference frame. Changing the origin will cause all placed objects to move.
 {% /alert %}
 
 Any objects that are not a child of the reference frame are excluded from export. This helps the designer keep reference models for scale but not have to fumble around with deleting objects before export to prevent issues. This can also be used to remove objects from the reference frame to debug which object in particular may be causing an issue.

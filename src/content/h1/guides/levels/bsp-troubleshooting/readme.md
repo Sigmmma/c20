@@ -12,7 +12,7 @@ thanks:
 redirects:
   - /h1/guides/map-making/level-creation/bsp-troubleshooting
 ---
-When compiling a level's [structure BSP](~scenario_structure_bsp) using [Tool](~h1a-tool#structure-compilation) you may encounter warnings or errors in Tool's output indicating problems with your model, for example:
+When compiling a level's [structure BSP](~scenario_structure_bsp) using [Tool](~h1a-tool#structure) you may encounter warnings or errors in Tool's output indicating problems with your model, for example:
 
 ```
 ### Warning found nearly coplanar surfaces (red and green).

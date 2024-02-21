@@ -2,7 +2,7 @@
 title: Mozzarilla
 about: 'tool:Mozzarilla'
 img: screenshot.png
-caption: 'Screenshot of the MEK tool Mozzarilla, a replacement for [Guerilla](~)'
+caption: 'Screenshot of the MEK tool Mozzarilla, a replacement for [Guerilla](~h1a-guerilla)'
 info: |
   * [Source](https://github.com/Sigmmma/mozzarilla)
   * [Support Discord](https://discord.reclaimers.net)
@@ -10,7 +10,7 @@ info: |
 keywords:
   - tag-editor
 ---
-**Mozzarilla** is a tag editor and processor intended to be a complete replacement for Halo Custom Edition's [Guerilla](~), with additional tools and ease of use upgrades, including:
+**Mozzarilla** is a tag editor and processor intended to be a complete replacement for Halo Custom Edition's [Guerilla](~h1a-guerilla), with additional tools and ease of use upgrades, including:
 
 * Edits regular [tags](~h1/tags), [OpenSauce](~) tags, and gametypes
 * Loads corrupt tags and view/edit hidden data

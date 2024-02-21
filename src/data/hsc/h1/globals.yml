@@ -239,7 +239,7 @@ external_globals:
         ```hsc
         (ai_print_damage_modifiers [boolean])
         ```
-        When an encounter is [selected](~sapien#encounters-and-ai), damage modifiers are logged at the bottom of the screen.
+        When an encounter is [selected](~h1a-sapien#encounters-and-ai), damage modifiers are logged at the bottom of the screen.
   - slug: ai_print_evaluation_statistics
     info:
       en: |-
@@ -1809,7 +1809,7 @@ external_globals:
         When `debug_objects` is enabled, displays yellow spheres for [object
         bounding radius](~object#tag-field-bounding-radius). The sphere will be
         black when the object is _inactive_. This setting defaults to `true`
-        in H1CE Sapien but not H1A Sapien.
+        in HEK Sapien but not H1A Sapien.
   - slug: debug_objects_collision_models
     tags:
       - object
@@ -1821,7 +1821,7 @@ external_globals:
         ```
         When `debug_objects` is enabled, displays green meshes for object
         [collision models](~model_collision_geometry). This setting defaults
-        to `true` in H1CE Sapien but not H1A Sapien.
+        to `true` in HEK Sapien but not H1A Sapien.
   - slug: debug_objects_devices
     info:
       en: |-

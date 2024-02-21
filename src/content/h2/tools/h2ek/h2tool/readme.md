@@ -1,6 +1,5 @@
 ---
 title: Halo 2 Tool (disambiguation)
-stub: false
 ---
 **Halo 2 Tool** can refer to both:
 * [H2 Tool (2021)](~h2-tool) a part of the MCC [Halo 2 Mod Tools](~h2-ek)

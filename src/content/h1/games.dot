@@ -1,4 +1,7 @@
 digraph G {
+  bgcolor="transparent"
+  edge [color="#E66533" fontcolor="#E66533"]
+
   subgraph h1x {
     node [style=filled color="#8fcc86"]
     h1x_pre [label="Unknown pre-release build"]

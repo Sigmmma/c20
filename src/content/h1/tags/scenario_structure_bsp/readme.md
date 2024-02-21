@@ -3,7 +3,7 @@ title: scenario_structure_bsp
 about: 'tag:h1/scenario_structure_bsp'
 img: bsp-debug.jpg
 caption: >-
-  Blood Gulch's BSP surfaces and clusters visualized in [Sapien](~) using
+  Blood Gulch's BSP surfaces and clusters visualized in [Sapien](~h1a-sapien) using
   `debug_structure 1` and `debug_pvs 1`
 keywords:
   - lightmap
@@ -26,7 +26,7 @@ The **scenario structure BSP** tag, commonly just called the **BSP**, contains l
 The term "BSP" stands for [Binary Space Partitioning][about-bsp], a technique where space within a sealed static mesh is recursively subdivided by planes into [convex][] _leaf nodes_. The resulting _BSP tree_ can be used to efficiently answer geometric queries, such as which surfaces should be collision-tested for physics objects.
 
 # Compilation
-After level geometry is exported to [JMS](~) format, it can be compiled into a BSP tag using [Tool's structure verb](~tool#structure-compilation).
+After level geometry is exported to [JMS](~) format from your 3D software of choice, it can be compiled into a BSP tag using [Tool's structure verb](~h1a-tool#structure).
 
 # BSP transitions
 While a [scenario](~) can reference multiple BSPs, Halo can only have [a single BSP loaded](~map#map-loading) at a time. Transitions between BSPs can be scripted (`switch_bsp`), e.g. using trigger volumes. Objects in unloaded BSPs are not simulated.
@@ -90,7 +90,7 @@ Weather polys extracted from _Assault on the Control Room_.
 
 Weather polyhedra are artist-defined volumes where [weather particle systems](~weather_particle_system) will not render, such as under overhangs where you would not expect to see rain.
 
-To create them, simply model outwardly facing convex volumes where all faces use the `+weatherpoly` material name and [Tool](~h1a-tool) will generate the weather polyhedra when compiling your BSP. The volumes can overlap and up to 8 can be visible at any time before the game starts ignoring some ([Sapien](~) will print warnings when this happens).
+To create them, simply model outwardly facing convex volumes where all faces use the `+weatherpoly` material name and [Tool](~h1a-tool) will generate the weather polyhedra when importing your BSP. The volumes can overlap and up to 8 can be visible at any time before the game starts ignoring some ([Sapien](~h1a-sapien) will print warnings when this happens).
 
 It is important that you still create weather polyhedra even if you have portals separating inside and outside spaces. Simply not assigning weather to the clusters which are under cover is not enough to prevent rain from appearing there. This is because the game renders weather based on the camera's current cluster, so if the player is outside a building looking in through a doorway they will still see rain indoors because the camera is currently located outside. Conversely, if the cluster within the building has no weather assigned then players will not see rain outdoors when looking out the doorway from inside. The solution is still assigning weather to covered clusters, then masking those areas with large weather polyhedra. This can be seen in the example figure.
 
@@ -107,7 +107,7 @@ _See main page: [Lightmaps](~)._
 In a10, lens flare markers were generated for fluorescent lights
 {% /figure %}
 
-When a [shader_environment](~) references a [lens_flare](~), _lens flare markers_ are automatically created and stored in the BSP tag during initial [structure compilation](~tool#structure-compilation) or updated with [structure-lens-flares](~tool#structure-lens-flares). These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
+When a [shader_environment](~) references a [lens_flare](~), _lens flare markers_ are automatically created and stored in the BSP tag during initial [structure import](~h1a-tool#structure) or updated with [structure-lens-flares](~h1a-tool#structure-lens-flares). These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
 
 A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens flares. However, there is a much lower limit to how many the game will draw at a given time, exactly how many is unknown.
 

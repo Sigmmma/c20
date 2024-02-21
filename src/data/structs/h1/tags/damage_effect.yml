@@ -449,7 +449,7 @@ type_defs:
             Damage modifier for the "elite energy shield" material type. See the
             _shield material type_ field of the unit's
             [model_collision_geometry](~) tag. Note that this field receives a
-            [hard-coded singleplayer adjustment](~tool#hardcoded-tag-patches) at
+            [hard-coded singleplayer adjustment](~h1a-tool#hardcoded-tag-patches) at
             map compile time for the pistol's damage effect.
       - name: ice
         type: float

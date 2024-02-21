@@ -1,38 +1,13 @@
-HEK:
-  page: hek
+Blitzkrieg:
+  page: blitzkrieg
   authors:
     - Bungie
     - Gearbox
-Blitzkrieg:
-  inherit: HEK
-  page: blitzkrieg
   workflows:
     - from: 3ds Max
       to: JMS
     - from: 3ds Max
       to: Animation data
-Tool:
-  inherit:
-    - HEK
-    - h1_tool_workflows_base
-    - h1_tag_compiler_base
-  page: tool
-  buildTypes:
-    - tag_test
-Guerilla:
-  inherit:
-    - HEK
-    - h1_tag_editor_base
-  page: guerilla
-  buildTypes:
-    - tag_test
-Sapien:
-  inherit:
-    - HEK
-    - h1_sapien_workflows_base
-  page: sapien
-  buildTypes:
-    - tag_test
 h1_tool_workflows_base:
   abstract: true
   inherit:
@@ -60,7 +35,6 @@ h1_tool_workflows_base:
       to: h1/bitmap
     - from: h1/scenario
       to: h1/map
-
 h1_sapien_workflows_base:
   abstract: true
   inherit:

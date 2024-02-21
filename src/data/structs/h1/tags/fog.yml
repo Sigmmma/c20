@@ -19,7 +19,7 @@ type_defs:
       - name: atmosphere_dominant
         comments:
           en: >-
-            As documented in [Guerilla](~), this was originally used to fix
+            As documented in [Guerilla](~h1a-guerilla), this was originally used to fix
             polygon popping when atmospheric fog density reached 1.0 within the
             confines of the map and interacted with fog planes. It is only
             enabled in c10's swamp fog tag.

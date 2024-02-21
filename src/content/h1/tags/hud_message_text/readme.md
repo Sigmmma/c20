@@ -8,7 +8,7 @@ thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
 ---
-This tag is specifically for messages that appear on your HUD, including level-specific messages like objectives and global generic interaction messages for vehicles, pickups, and devices. It is created by compiling [HMT files](~hmt) with [Tool](~tool#hud-messages-compilation).
+This tag is specifically for messages that appear on your HUD, including level-specific messages like objectives and global generic interaction messages for vehicles, pickups, and devices. It is created by importing [HMT files](~hmt) with [Tool](~h1a-tool#hud-messages).
 
 # Scripted messages
 A HUD message can be shown for a 4 second duration like so:

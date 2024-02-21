@@ -1,6 +1,5 @@
 ---
 title: Halo 2 Editing Kit (disambiguation)
-stub: false
 noSearch: true
 keywords:
   - H2EK

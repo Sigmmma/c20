@@ -77,7 +77,7 @@ type_defs:
     comments:
       en: >
         Determines the mix and appearance of small 2D detail objects like grass,
-        which are painted onto a [BSP](~scenario_structure_bsp) in [Sapien](~).
+        which are painted onto a [BSP](~scenario_structure_bsp) in [Sapien](~h1a-sapien).
     assert_size: 128
     fields:
       - name: collection_type

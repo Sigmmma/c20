@@ -1,6 +1,5 @@
 ---
 title: Osoyoos Launcher - Run Programs
-stub: false
 about: 'tool:Osoyoos launcher'
 img: run_programs.jpg
 caption: The run programs section of the Osoyoos launcher.

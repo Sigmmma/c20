@@ -21,10 +21,10 @@ thanks:
 * **JMS (Model) Exporter**, for exporting level and object JMS files.
 * **Animation Importer**, which can also export animations.
 
-Bluestreak supports more capabilities than both [Chimp](~) and [Blitzkrieg](~hek#blitzkrieg) and still works with modern versions of 3ds Max since it is MaxScript-based.
+Bluestreak supports more capabilities than both [Chimp](~) and [Blitzkrieg](~) and still works with modern versions of 3ds Max since it is MaxScript-based.
 
 {% alert %}
-While [Blender](~) has become the de-facto standard 3D tool for Halo, those who prefer Max can also use H1A Tool's [FBX to JMS/JMA pipeline](~h1a-tool#creating-a-jms-file-from-an-fbx-file) as a modern officially-supported alternative to using Bluestreak. You may need Bluestreak to work with Max scenes from the HEK era, which predate the FBX pipeline.
+While [Blender](~) has become the de-facto standard 3D tool for Halo, those who prefer Max can also use H1A Tool's [FBX to JMS/JMA pipeline](~h1a-tool#fbx-to-jms) as a modern officially-supported alternative to using Bluestreak. You may need Bluestreak to work with Max scenes from the HEK era, which predate the FBX pipeline.
 
 **If you plan on using the Bluestreak JMS exporter, [download the recommended v1-0-4](JMS_Exporter_v1-0-4.ms).**
 {% /alert %}

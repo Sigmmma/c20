@@ -10,7 +10,7 @@ thanks:
 ---
 The **sky** tag, often called a **skybox**, models the environment outside the [BSP](~scenario_structure_bsp). It contains radiosity parameters that affect [lightmaps](~) like ambient light and directional lights, defines general atmospheric fog (not to be confused with [planar fog](~fog)), and can have a 3D model that draws behind level geometry.
 
-The sky is not responsible for [weather effects](~weather_particle_system), which are instead assigned to clusters in [Sapien](~).
+The sky is not responsible for [weather effects](~weather_particle_system), which are instead assigned to clusters in [Sapien](~h1a-sapien).
 
 # Indoor skies
 Even fully indoor levels can use a sky. Sky tags contain both outdoor/exterior and indoor/interior options for ambient light, fog, and directional light. The first sky in the [scenario's skies block](~scenario#tag-field-skies) (sky `0`) has special meaning and its indoor options are used for any [indoor clusters](~scenario_structure_bsp#indoor-vs-outdoor-clusters) the BSP has. A fully indoor level with no visible sky faces will only have indoor clusters.

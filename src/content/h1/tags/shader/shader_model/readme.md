@@ -38,7 +38,7 @@ The Chief's multipurpose map with alpha shown in the top right (Gearbox channel 
 When Gearbox ported Halo to PC, the channels were reordered for an unknown reason. This is also true for all Gearbox-derived ports like H1A unless the [OG Xbox channel order flag](#tag-field-shader-model-flags-multipurpose-map-uses-og-xbox-channel-order) is set. Because of this change in shader behaviour, multipurpose map tags differ between H1X and Gearbox.
 
 {% alert type="danger" %}
-If you're using the [legacy HEK](~hek) and H1CE, don't pay attention to Guerilla's channel usage description when editing this tag. It describes Xbox channel order which is incorrect. In [H1A Guerilla](~h1a-guerilla) this description is corrected.
+If you're using the [legacy HEK](~custom-edition#halo-editing-kit) and H1CE, don't pay attention to Guerilla's channel usage description when editing this tag. It describes Xbox channel order only which is incorrect. In [H1A Guerilla](~h1a-guerilla) the channel order is corrected described.
 {% /alert %}
 
 * **Red:** is an auxiliary mask. It can mask the [detail map](#tag-field-detail-mask) if the [detail mask](#tag-field-detail-mask) is set to _multipurpose map alpha_. Despite the option saying "alpha" in Guerilla it really means the red channel in this context.

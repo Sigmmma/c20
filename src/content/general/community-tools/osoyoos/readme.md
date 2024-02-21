@@ -1,6 +1,5 @@
 ---
 title: Osoyoos
-stub: false
 about: 'tool:Osoyoos launcher'
 img: Osoyoos.png
 caption: Osoyoos with H1A-EK binaries and HEK tags
@@ -13,7 +12,7 @@ The **Osoyoos launcher** is an application that can be used to easily interact w
 
 # Supported editing kits
 
-- [HEK](~)
+- [HEK](~custom-edition#halo-editing-kit)
 - HEK with [opensauce](~) (partial support)
 - [H1A-EK](~)
 - [H2V-EK](~)

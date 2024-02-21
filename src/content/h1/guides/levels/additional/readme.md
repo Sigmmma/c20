@@ -44,7 +44,7 @@ Here's what the hallway looks like with a weatherpoly volume.
 
 ![](B.mp4)
 
-The weather poly geometry is included in the [BSP tag](~scenario_structure_bsp#weather-polyhedra) when you compile your [JMS](~). There can be a max of 8 on screen at any given time. Any weather polys that go over this limit will have no effect. [Sapien](~) will print a message in the console if you hit this limit.
+The weather poly geometry is included in the [BSP tag](~scenario_structure_bsp#weather-polyhedra) when you compile your [JMS](~). There can be a max of 8 on screen at any given time. Any weather polys that go over this limit will have no effect. [Sapien](~h1a-sapien) will print a message in the console if you hit this limit.
 
 # Markers
 You can use markers to snap objects to a specific location in a level. You can create a marker object by adding a mesh object to your scene and having the first character of the name use a "#" symbol.

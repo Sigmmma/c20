@@ -1,12 +1,22 @@
 ---
-title: H1A Sapien
+title: H1 Sapien
 about: 'tool:H1A-Sapien'
 img: h1a-sapien-c20.jpg
 caption: Editing chapter titles on the c20 campaign scenario using H1A Sapien.
 keywords:
   - scenario
   - h1a
-related:
+  - ai
+  - encounter
+  - squad
+  - weather
+  - spawns
+  - pickups
+  - population
+  - populate
+  - place
+  - cinematic
+redirects:
   - /h1/tools/hek/sapien
 thanks:
   num0005: Update for H1A
@@ -17,37 +27,36 @@ thanks:
   gruntfromhalo: Discovering fog plane fix
   Jakey: 'Known issues, transparent self occlusion crash explanation'
   InfernoPlus: Sound gain crash solution
+  GAIGHER: Multi-core crash solution
+  aLTis: Relight detail object collections tip
 ---
-{% alert %}
-This is an article about the H1A Sapien for use with MCC, for the legacy Sapien for [Halo: Custom Edition](~h1) see [Sapien (2004)](~hek/sapien). You may also be interested in a [summary of changes](~h1a-ek#sapien) from legacy Sapien.
-{% /alert %}
+**Sapien** is an interactive [scenario](~) and [BSP](~scenario_structure_bsp) editor used for populating levels with objects and AI encounters,
+configuring BSP [cluster data](~scenario_structure_bsp#clusters-and-cluster-data) like wind and sound environments, running [radiosity](#radiosity), compiling [scripts](~scripting), and more. It includes a [scripting console](~developer-console) and runs many of the same systems as Halo like AI and scripting, allowing you to preview encounters and inspect the game world with debug settings.
 
-**H1A Sapien**, part of the [H1A-EK](~), is a visual [scenario](~) and
-[BSP](~scenario_structure_bsp) editor used to populate levels with objects,
-configure BSP [cluster data](~scenario_structure_bsp#clusters-and-cluster-data) like wind and sound environments, compile [scripts](~scripting), and more. Sapien shares some systems with Halo itself, including its AI system to support interactive AI scripting and debugging.
+Unlike later games, H1 Sapien does not include a full player simulation mode and there is only a basic recorded animations mode, but you can use [Standalone](~h1a-standalone-build) to test a level as a player instead.
 
-It is roughly analagous to Forge found in later Halo titles, although the user cannot interact with the world as a player. Users primarily interact with Sapien's windows and menus, but the _Game Window_ also includes a [scripting console](~developer-console).
+This page covers both H1A and [HEK](~custom-edition#halo-editing-kit) versions of Sapien, which generally work the same but have [some differences](~h1a-ek#sapien).
 
-# Getting legacy debug_objects
-If you prefer legacy Sapien's `debug_objects 1` default appearance, simply set the following globals:
+# Configuration
+Similar to how [Custom Edition](~custom-edition) and [Standalone](~h1a-standalone-build) automatically run [console](~developer-console) commands at startup from `init.txt`, you can also create `editor_init.txt` for Sapien. Include console commands, one per line, in this file and Sapien will run them at startup. You can comment-out lines with a semicolon. For example:
 
-```consoleh1a
+```inittxt
+;restore default debug_objects appearance from HEK Sapien for H1A Sapien
 debug_objects_collision_models 1
 debug_objects_bounding_spheres 1
 debug_objects_root_node 0
 ```
 
-You can even place these in your `editor_init.txt` so they are run automatically at startup.
+These lines will also be present in your console's history so you can use this to preload commonly used toggles.
 
-# Command line flags
-Command line flags can be passed to H1A Sapien at launch to change run-time behavior. These features are experimental and might not work as expected.
+H1A Sapien also supports several command line arguments. These features are experimental and might not work as expected:
 
-* `-multipleinstance` command line flag can be used to allow multiple instances of Sapien to be launched at once.
-* `-data_dir` and `-tags_dir` can be used to change the tags and data directories. See [using custom content paths](~mod-tools#using-custom-content-paths).
+* `-multipleinstance`: Allow multiple instances of Sapien to be launched at once.
+* `-data_dir` and `-tags_dir`: Used to set [custom content paths](~mod-tools#using-custom-content-paths).
 
 # Menu options
 ## Switch BSP
-It is common for singleplayer scenarios to be comprised of multiple [BSPs](~scenario_structure_bsp). The _Edit > Switch BSP_ option is used to change between them. **Always use this option to switch BSPs** and don't use [`switch_bsp`](~scripting#functions-switch-bsp) in the [console](~developer-console). The menu option performs additional functions that maintain proper editor state, whereas `switch_bsp` is intended for level scripts.
+It's common for singleplayer scenarios to include multiple [BSPs](~scenario_structure_bsp). Use the _Edit > Switch BSP_ menu to change between them, but **never use** [`switch_bsp`](~scripting#functions-switch-bsp) in the console. The menu option maintains proper editor state, whereas `switch_bsp` is intended for level scripts.
 
 # Windows
 ## Game window
@@ -96,7 +105,7 @@ This window is unused and can be ignored.
 Some of these shortcuts are only used in certain windows or editor modes.
 
 ## General
-* {% key "~" /%}: Opens the command console, pressing it again or pressing {% key "enter" /%} on an empty console will close it.
+* {% key "~" /%}: Opens the HaloScript [console](~developer-console), pressing it again or pressing {% key "enter" /%} on an empty console will close it.
 * {% key "Space" /%}: clones the selected object to the camera's location and orientation. If multiple objects are selected, uses the first.
 * {% key "Pause/Break" /%}: Pauses your Sapien instance. Press "OK" in the opened window to resume Sapien.
 * {% key "Control + B" /%}: Open the BSP switch dialog window.
@@ -105,7 +114,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * {% key "Control + Click" /%}: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
 * Hold {% key "Tab" /%}: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.
 * In the hierarchy view, pressing a key will cycle through all folders that start with that character. For example, pressing {% key "A" /%} while having the "Missions" folder expanded will immediately take you to the "AI" folder.
-* {% key "N" /%}: This hotkey will snap a selected object to the normal of the ground below it.
+* {% key "N" /%}: This hotkey will snap a selected object to the normal of the ground below it. **This hotkey is broken in HEK Sapien and can cause it to crash when restarted**, also causing editor icons and name overlays to disappear for the session. This problem was fixed in H1A Sapien.
 
 ## Encounters and AI
 * {% key "Middle mouse + F1" /%}: Selects the spawned actor in the center of the game view.
@@ -132,7 +141,7 @@ These hotkeys apply in scripted camera mode.
   * First person
   * Third person
   * Flycam
-* {% key "Caps lock" /%}: Start/stop animation recording. This requires an Xinput controller (e.g. An Xbox controller) to be connected to your device.
+* {% key "Caps lock" /%}: Start/stop animation recording.
 * {% key "Shift + Q" /%}: Exits a posessed unit while in scripted camera mode.
 
 See main page: [recorded-animations](~)
@@ -143,31 +152,33 @@ See main page: [recorded-animations](~)
 * {% key "Shift + Control + L" /%}: Relight detail objects (useful after updating [lightmaps](~)).
 
 # Radiosity
-Both Tool and Sapien can be used to generate [lightmaps](~). Using H1A Tool is suggested for all but the simplest lightmaps or debugging as it doesn't require as many resources or for the window to be in-focus.  To use Sapien, enter the following console commands:
+Both Tool and Sapien can be used to generate [lightmaps](~), though [using H1A tool](~h1a-tool#lightmaps) with asserts disabled is **strongly recommended** for high quality lightmaps since it is easier to control the stop parameter (when to save), is much faster, and doesn't require the window to be focused.
+
+Sapien is suitable for draft lighting on basic maps. Enter these console commands in order:
 
 ```consoleh1a
-;0 for low quality, 1 for high, or a value like 0.8
-radiosity_quality 1
+;0 for draft quality, 1 for final
+radiosity_quality 0
 ;begins radiosity. numbers will start to count down
 radiosity_start
 ;wait for the numbers to count down to 0 or near 0, then:
 radiosity_save
 ```
 
-If you want progress feedback updated more frequently, you can set `radiosity_step_count 1`. See [Tool's lightmaps documentation](~h1a-tool#lightmaps) for an explanation of the `radiosity_quality` value. Using [H1A tool](~h1a-tool) with asserts disabled is **strongly recommended** for high quality lightmaps since it is easier to control the stop parameter (when to save) and is faster than using Sapien.
+Set `radiosity_step_count 1` for more frequent progress feedback.
 
-# editor_init.txt
-At startup, Sapien will load `editor_init.txt` if present in the same folder. This file can contain [console commands](~developer-console), one per line, which are executed automatically for you. For example:
+# Limits
+Sapien has 5x higher object limits than the game itself (memory pool size and object count at 2048*5). This is because many objects may simultaneously exist in Sapien which are actually scripted to appear at certain times only during gameplay. Despite this, you may run into other engine limits when dealing with extracted scenarios originally merged from [child scenarios](~scenario#child-scenarios) which wouldn't have individually hit limits.
 
-```inittxt
-sound_enable 0
-debug_objects 1
-;a comment
-```
+HEK Sapien is limited to 2 GB of virtual memory even on modern 64-bit Windows systems, which is common for older 32-bit applications. H1A Sapien is already "large address aware" (LAA). While this memory limit is usually not an issue, an abundance of large textures or other tags in a map may cause HEK Sapien to crash. To work around this, `sapien.exe` can be marked LAA to tell the OS it supports 4 GB of virtual memory:
+
+* Applying value `0x2F` at offset `0x136` in the executable if you're comfortable using a hex editor like [ImHex][].
+* Or, install and run [NTCore 4GB Patch][ntcore]. Select the Sapien executable.
 
 # Compatibility
-
-Sapien requires DX11 support, it is currently unknown if it can be run under WINE.
+* H1A Sapien requires DX11 support, whereas HEK Sapien requires DX9.
+* HEK Sapien users have reported problems saving tags due to the Windows VirtualStore. Ensure you have the [right permissions](~custom-edition#installation).
+* On Linux, HEK Sapien can be run successfully using [Wine][] but may not yet be compatible with [DXVK][]. If not, use built-in or standard native DirectX libraries instead.
 
 # Troubleshooting
 ## Interface
@@ -177,7 +188,9 @@ Sapien requires DX11 support, it is currently unknown if it can be run under WIN
 * Solution
 ---
 * Child windows are not visible or stuck outside the main window.
-* Open the registry key `HKEY_CURRENT_USER\Software\i343\halo1a_sapien` using regedit and delete all entries ending with "rect".
+* Open the following registry key using regedit and delete all entries ending with "rect":
+  * H1A: `HKEY_CURRENT_USER\Software\i343\halo1a_sapien`
+  * HEK: `HKEY_USERS\S-1-5-21-0-0-0-1000\Software\Microsoft\Microsoft Games\Halo HEK\sapien` (user ID may vary)
 ---
 * Clicking the _Edit Types_ button doesn't open a window.
 * Delete `HKEY_CURRENT_USER\Software\i343\halo1a_sapien` in regedit.
@@ -187,10 +200,22 @@ Sapien requires DX11 support, it is currently unknown if it can be run under WIN
 ---
 * Mouse is locked to game view
 * Issue/feature with some keyboard layouts, press the middle mouse button to unlock it.
+---
+* The game window is completely black and does not display the console when {% key "~" /%} (tilde) is pressed.
+* HEK Sapien, like Custom Edition, does not support [MSAA][msaa]. Disable anti-aliasing for Sapien in your graphics control panel. Fixed in [H1A Sapien](~h1a-sapien).
+---
+* The _Edit Types_ window does not allow tags to be added.
+* Check the debug.txt log for errors. Otherwise, with HEK Sapien, try running without a compatibility mode if you've set one.
+---
+* Child windows are not visible or stuck outside the main window.
+* Open the registry key  using regedit and delete all entries ending with "rect".
+---
+* Debug wireframe colors and bounding radii change at angles and turn black, making it hard to identify their types.
+* None known for HEK Sapien, fixed in [H1A Sapien](~h1a-sapien)
 {% /table %}
 
 ## Crashes
-When Sapien crashes, check `debug.txt` for hints.
+When Sapien crashes, check `debug.txt` for hints. Most problems are due to invalid tags. HEK Sapien logs `Couldn't read map file './sapienbeta.map'` but you can ignore this.
 
 {% dataTable
   dataPath="crashes/crashes"
@@ -200,3 +225,9 @@ When Sapien crashes, check `debug.txt` for hints.
     {name: "Solution", key: "solution", style: "width:50%"}
   ]
 /%}
+
+[msaa]: https://en.wikipedia.org/wiki/Multisample_anti-aliasing
+[wine]: https://www.winehq.org/
+[dxvk]: https://github.com/doitsujin/dxvk
+[ntcore]: https://ntcore.com/?page_id=371
+[imhex]: (https://github.com/WerWolv/ImHex)

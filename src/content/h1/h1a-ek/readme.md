@@ -1,23 +1,21 @@
 ---
 title: H1 Editing Kit
-stub: false
 about: 'tool:H1A-EK'
 img: h1a-ek.jpg
 caption: >-
   [Sapien](~h1a-sapien), [Guerilla](~h1a-guerilla), and [Tool](~h1a-tool) have
   returned!
-info: >-
-  * Release date: June 2021
-
-  * [Download/run with Steam](steam://run/1532190)
-
+info: |-
+  * Release dates: June 2021 (H1A), 2004 (HEK)
+  * [H1A-EK download (Steam)](steam://run/1532190)
   * [Steam release
   post](https://store.steampowered.com/news/app/976730/view/3007823106801144958)
-
   * [Steam community
   discussions](https://steamcommunity.com/app/976730/discussions/3/)
-
   * [Report issues](JIF_ISSUE_URL)
+  * [HEK download](http://hce.halomaps.org/index.cfm?fid=411), [mirror
+  1](https://opencarnage.net/misc/HEK%20Setup.zip), [mirror
+  2](http://vaporeon.io/hosted/halo/original_files/HEKSetup_1.00.exe)
 keywords:
   - h1a
   - hek
@@ -27,21 +25,36 @@ related:
   - /h1/tools/hek
   - /h3/h3-ek
   - /h2/tools/h2-ek
+childOrder:
+  - h1a-guerilla
+  - h1a-sapien
+  - h1a-standalone-build
+  - h1a-tool
+  - blitzkrieg
 thanks:
   Vaporeon: Tips on using the H1A-EK with Custom Edition
 ---
 
-The **H1A Editing Kit** (**H1A-EK**), also called **Halo: CE Mod Tools**, is the set of official modding tools used to create custom multiplayer and singleplayer maps targeting the PC MCC version of [Halo: Combat Evolved Anniversary](~h1#mcc-pc-and-xbox-one-343-industries-2014-2021).
+The **H1 Editing Kit** is the set of official modding tools used to create custom maps for Halo: Combat Evolved. They have been released in 2004 by Gearbox as the **Halo Editing Kit** (HEK) for [Custom Edition](~custom-edition), and again by 343i as the updated **Halo: CE Mod Tools** (HCEEK or H1A-EK) targeting [MCC](~h1#mcc-pc-and-xbox-one-343-industries-2014-2021) on PC and distributed via Steam.
 
-These tools are updated versions of Bungie's original internal tools, having received significant investment by 343 Industries beyond the legacy 2004 [HEK](~hek) released by Gearbox with [Halo Custom Edition](~h1#custom-edition-pc). [Changes](#comparison-to-the-hek) include bug fixes, quality of life improvements, extended limits, new features and tools, and the inclusion of source [tags](~) and [scripts](~scripting) for the stock maps.
-
-Maps build using the H1A-EK are not backwards compatible with Custom Edition (they use different [map versions](~map#map-header-cache-version)), but you can use the H1A-EK to create tags for H1CE as long as you avoid relying on backwards-incompatible tag features, limits, or script functions, and you build the map with [invader-build](~). Using the new tools this way is not officially supported but can improve your experience over the HEK.
+Both the legacy HEK and newer H1A-EK are derived from Bungie's original content tools and work nearly the same way as each other. However, the newer tools benefit from countless bug fixes, quality of life improvements, extended limits, new features and tools, and the inclusion of source [tags](~) and [scripts](~scripting) for the stock maps (see [summary of changes](#comparison-to-the-hek)).
 
 # Getting started
-See the [general installation steps](~/general/mod-tools#installation) for help installing these tools. Don't forget to run the extract script!
+See the general [Steam installation steps](~/general/mod-tools#installation) for the H1A-EK, or the [HEK installation steps](~custom-edition#installation). Both have important actions you need to perform after installing.
 
-# Use with Custom Edition
-It's possible to use the H1A-EK for Custom Edition content creation, as long as some rules are followed:
+The resources and tools installed may differ between the HEK and H1A-EK:
+
+* [Tool](~h1a-tool): Imports source assets like textures and models into tag format, and builds maps.
+* [Guerilla](~h1a-guerilla): A general-purpose tag editor.
+* [Sapien](~h1a-sapien): Used to populate levels with objects and encounters.
+* [Standalone](~h1a-standalone-build): A build of Halo that loads tags instead of maps (H1A-EK only).
+* [Tags](~tags): A set of base tags for the HEK, or all stock map tags for the H1A-EK.
+* [Data](~source-data): For the H1A-EK this includes all singleplayer scripts.
+
+Head over to the [general information](~/general) section or [H1 guides](~guides) to learn more.
+
+# Using the H1A-EK with Custom Edition
+Maps built using the H1A-EK are not backwards compatible with Custom Edition, but you can use the H1A-EK to create content for H1CE as long as you avoid relying on backwards-incompatible tag features, limits, or script functions, and you build the map with [invader-build](~). Using the new tools this way is not officially supported but can improve your experience over the HEK.
 
 * Use a tagset intended for Custom Edition. Although the H1A-EK is backwards compatible with legacy tags, the opposite is not true. Legacy tools and Custom Edition itself cannot handle some MCC tags correctly because they can take advantage of engine features only available in MCC, like the extended script node limit and working [shader_transparent_generic](~). If you need stock tags, be sure to extract them from Halo PC or Custom Edition maps using [invader-extract](~).
 * Avoid using backwards-incompatible features. You need to be aware of which additions were made to MCC (see [changelog](#changelog) and [HEK comparison](#comparison-to-the-hek)). This includes tag fields and flags, script functions, and limit extensions.
@@ -51,6 +64,9 @@ You can point the MCC tools at [different data and tags folders](~mod-tools#usin
 
 # Changelog
 This changelog lists notable modding-related changes and is not guaranteed to be complete.
+
+## February 2024
+* Fixed multiplayer level scripts only running for the host.
 
 ## July 2023 hotfix
 * Using a non-default FOV setting no longer causes campaign cutscenes to have the incorrect FOV.
@@ -178,7 +194,7 @@ Sapien:
 Pictured: kornman00 eliminating editing kit bugs, circa June 2021
 {% /figure %}
 
-Users of the Custom Edition [HEK](~hek) will notice two big additions:
+Users of the Custom Edition [HEK](~custom-edition#halo-editing-kit) will notice two big additions:
 
 * Scripts and source tags for the stock multiplayer and campaign maps, removing the need to [extract](~invader-extract) them to create variants of those maps.
 * A new [standalone build](~h1a-standalone-build) of Halo which loads [tags](~) instead of [maps](~map) (like Sapien) and supports _all_ console commands, intended for fast iteration and troubleshooting.
@@ -186,7 +202,7 @@ Users of the Custom Edition [HEK](~hek) will notice two big additions:
 The new CE mod tools were released with season 7 of MCC ([patch notes](https://support.halowaypoint.com/hc/en-us/articles/4402601893268-Halo-The-Master-Chief-Collection-MCC-Patch-Notes-June-2021)). It was a significant milestone for the Halo 1 engine, representing the [recombination of code](/h1/games.svg) and tags from Anniversary, Custom Edition, OG Xbox. Aspects of [Halo 2's tools](~H2V-EK) or limits from later games have even been backported.
 
 ## Exporters
-* [Blitzkrieg](~hek#blitzkrieg) was not rereleased. Use [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) or the new Tool commands for converting [Autodesk FBX](https://en.wikipedia.org/wiki/FBX) to JMS and JMA files.
+* [Blitzkrieg](~) was not rereleased. Use [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) or the new Tool commands for converting [Autodesk FBX](https://en.wikipedia.org/wiki/FBX) to JMS and JMA files.
 
 ## Content
 * All the [tags](~) used in retail MCC plus the ones used for the old HEK tutorial are included alongside the tools, meaning tag extraction with [Refinery](~) or [invader-extract](~) or prebuilt tag sets are no longer required if someone wants to mod the stock maps. Note that these tags are partially incompatible with H1CE due to their use [new flags](~weapon#tag-field-triggers-flags-use-unit-adjust-projectile-ray-from-halo1), [shader_transparent_generic](~), etc. The tags are intended for targeting H1A.

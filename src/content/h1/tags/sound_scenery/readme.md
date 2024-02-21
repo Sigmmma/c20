@@ -14,7 +14,7 @@ thanks:
 Sound scenery are a type of object, typically invisible, used to play localized ambient [looping sounds](~sound_looping). They can be found along shorelines and rivers, at the base of waterfalls, and near noisy machinery. These objects complement the "background" [sound_environment](~) used for [BSP clusters](~scenario_structure_bsp#clusters-and-cluster-data).
 
 # Attaching sounds
-When creating a sound scenery tag in [Guerilla](~) or other tag editor, simply add an attachment in the attachments block with type `sound_looping`, referring to the desired tag. It is not necessary to specify a model [marker](~gbxmodel#markers).
+When creating a sound scenery tag in [Guerilla](~h1a-guerilla) or other tag editor, simply add an attachment in the attachments block with type `sound_looping`, referring to the desired tag. It is not necessary to specify a model [marker](~gbxmodel#markers).
 
 Sound distances are determined by the actual [sound](~) tag rather than the object's bounding radius.
 

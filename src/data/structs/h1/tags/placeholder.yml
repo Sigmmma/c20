@@ -13,6 +13,6 @@ type_defs:
       pre_compile: true
       post_compile: true
     comments:
-      en: Used only by [Sapien](~) to represent interactive handles/markers.
+      en: Used only by [Sapien](~h1a-sapien) to represent interactive handles/markers.
     assert_size: 508
     fields: []

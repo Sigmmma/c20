@@ -22,7 +22,7 @@ Collision geometry, rather than the [model](~gbxmodel), is used to cast [scenery
 # Pathfinding spheres
 
 {% figure src="pathfinding-spheres.jpg" %}
-Pathfinding spheres (blue) for a50 shown in [Sapien](~) after running `debug_objects_pathfinding_spheres 1`
+Pathfinding spheres (blue) for a50 shown in [Sapien](~h1a-sapien) after running `debug_objects_pathfinding_spheres 1`
 {% /figure %}
 
 AI can figure out where to go by checking the pathfinding data on the [BSP](~scenario_structure_bsp). However, since objects like [scenery](~) and [units](~unit) are not part of the BSP, Bungie implemented _pathfinding spheres_: spherical markers on objects that AI actively avoid walking into.
@@ -52,7 +52,7 @@ Phantom BSP exists in the collision model of covenant crates.
 
 Although phantom BSP is typically seen in the context of level geometry, it can also affect model collision geometry because this tag uses the same collision data structures as a [scenario_structure_bsp](~scenario_structure_bsp#phantom-bsp). In the case of models, phantom BSP is limited to the object's bounding radius.
 
-Like with level geometry, these can be troubleshooted in [Sapien](~) by running the console commands:
+Like with level geometry, these can be troubleshooted in [Sapien](~h1a-sapien) by running the console commands:
 
 ```console
 collision_debug 1
