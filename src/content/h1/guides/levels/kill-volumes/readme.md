@@ -90,8 +90,8 @@ Because Halo scripts do not support [loops][], we must repeat the test for all 1
 If you created multiple trigger volumes, you will need to repeat the above code for each trigger volume name.
 
 # Compiling the script and saving the scenario
-The final steps takes place back in Sapien. From the File menu, select "Compile scripts". This will convert the raw script source from the `data\levels\...\scripts\` directory into compiled script data in your scenario. You should see "scripts successfully compiled" in the Game window. Save the scenario since you've added scripts and trigger volume(s).
+The final steps takes place back in Sapien. with the HEK tools we need to compile the raw script source from the `data\levels\...\scripts\` directory into script data in your scenario. Select _File > Compile scripts_ and you should see "scripts successfully compiled" in the Game window. This step is not necessary for the H1A tools because the scripts under `data` are compiled automatically when the scenario is loaded or built into a map.
 
-At this time, you should [build the map](~h1a-tool#build-cache-file) and test the kill volumes ingame.
+Save the scenario now. Next, you should [build the map](~h1a-tool#build-cache-file) and test the kill volumes ingame.
 
 [loops]: https://en.wikipedia.org/wiki/For_loop

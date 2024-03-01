@@ -3,7 +3,7 @@ title: Sound system
 img: sound-system.jpg
 caption: Active sounds visualized in Sapien.
 ---
-The **sound system** is responsible for playing effects and music [sounds](~sound) in-game and in Sapien.
+The **sound system** is responsible for playing effects and music [sounds](~sound) in-game and in tools like [Sapien](~h1a-sapien) and [Standalone](~h1a-standalone-build).
 
 # Sound cache
 Like the [renderer's texture cache](~renderer#texture-cache), the sound system also holds sound data in an in-memory _sound cache_. When a sound must be played that is not in this cache, it will be loaded from a [map cache file](~map) (possibly a shared resource map) or the [tags directory](~tags) depending on the [build type](~blam#build-types) of the engine. The cache can hold a maximum of 512 entries or 64 MB.
@@ -24,7 +24,7 @@ The engine has the following channel limits:
 * 4 stereo channels
 * 4 44k stereo channels
 
-# Related script functions and globals
+# Related HaloScript
 The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.
 
 {% relatedHsc game="h1" tagFilter="sound" /%}

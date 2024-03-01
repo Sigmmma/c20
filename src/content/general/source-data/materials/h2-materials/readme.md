@@ -1,5 +1,5 @@
 ---
-title: Halo 2 materials
+title: H2 materials
 img: materials.jpg
 caption: >-
   An example of some material names used for a level

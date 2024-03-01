@@ -10,6 +10,7 @@ Mozzarilla:
   page: mozzarilla
   similarTo:
     - H1A-Guerilla
+    - OS_Guerilla
   workflows:
     - between:
         - JMS

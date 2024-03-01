@@ -84,6 +84,11 @@
           display: none;
         }
       }
+          
+      ol, ul {
+        list-style: none;
+        padding-left: 1em;
+      }
     
       & > ol, & > ul {
         padding-left: 0;
@@ -94,10 +99,6 @@
 
       .feather {
         color: var(--fg-faded);
-      }
-    
-      ol, ul {
-        list-style: none;
       }
     
       li {

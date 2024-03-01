@@ -87,3 +87,23 @@ handleThemeSelected(savedTheme);
 document.getElementById("toggle-menu")!.addEventListener("click", () => {
   document.querySelector(".nav-tree")!.classList.toggle("open");
 });
+
+let currentHeadingId: string | undefined = undefined;
+const intersectionObserver = new IntersectionObserver(entries => {
+  const scrolledToHeadingId = entries
+    .filter(it => it.isIntersecting)
+    .map(it => it.target.id)
+    .find(it => it != "");
+  if (scrolledToHeadingId && scrolledToHeadingId != currentHeadingId) {
+    console.log(scrolledToHeadingId);
+    document.querySelector(`.toc.desktop a[href$=${currentHeadingId}]`)?.classList.remove("highlight");
+    document.querySelector(`.toc.desktop a[href$=${scrolledToHeadingId}]`)?.classList.add("highlight");
+    currentHeadingId = scrolledToHeadingId;
+  }
+}, {
+  rootMargin: "-10% 0px -80% 0px",
+  threshold: 0,
+});
+document.querySelectorAll(".article-main h1, .article-main h2, .table-wrapper > table.struct > tbody > tr.field-type-Block > td.field-name > span").forEach(heading => {
+  intersectionObserver.observe(heading);
+});

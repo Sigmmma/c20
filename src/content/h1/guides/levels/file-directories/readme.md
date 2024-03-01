@@ -68,5 +68,5 @@ As stated before compiled assets will end up in a path that mirrors the path of 
 # End of file directory info
 
 {% alert type="success" %}
-Now that you fully understand the data directory setup we can begin to work on our level geometry in the [next section](~blender-prep). If you already understand how Blender works then skip ahead to the [modeling section.](~beginner) If you also already understand Halo level creation in Blender or wish to attempt importing something first then go ahead and skip over to the [export section.](~exporting) You can also take the end result file linked in the [file list](#file-list) section to get used to the data directory setup.
+Now that you fully understand the data directory setup we can begin to work on our level geometry in the [next section](~beginner). If you already understand how Blender works then skip ahead to the [modeling section.](~beginner) If you also already understand Halo level creation in Blender or wish to attempt importing something first then go ahead and skip over to the [export section.](~exporting) You can also take the end result file linked in the [file list](#file-list) section to get used to the data directory setup.
 {% /alert %}

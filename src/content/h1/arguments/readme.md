@@ -3,7 +3,7 @@ title: Startup arguments and init.txt
 thanks:
   nToss: Information on timedemo and vidmode
 ---
-Halo's startup can be customized through the combination of arguments and console scripting. Using these options allows you to quickly configure Halo for various testing or server hosting scenarios.
+[Halo Custom Edition's](~custom-edition) and [Standalone's](~h1a-standalone-build) startup can be customized through the combination of arguments and console scripting. Using these options allows you to quickly configure Halo for various testing or server hosting scenarios.
 
 # init.txt
 If this file is placed in the root of the mod tools or Custom Edition's installation directory, the game will execute all lines as [console commands](~developer-console) at startup and they will be present in the console history. The game can be told to use another file with the `-exec` argument. Example contents are:

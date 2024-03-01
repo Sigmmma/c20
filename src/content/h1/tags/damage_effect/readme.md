@@ -49,7 +49,7 @@ Or, more visually:
 
 ![Diagram of damage falloff for the shotgun](shotgun-example.png)
 
-# Related script functions and globals
+# Related HaloScript
 The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.
 
 {% relatedHsc game="h1" tagFilter="damage" /%}

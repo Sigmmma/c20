@@ -9,7 +9,7 @@ redirects:
   - /h1/guides/map-making/level-creation/blender-level-modeling/blender-level-creation-beginner
 ---
 {% alert %}
-This guide assumes you have already [prepared Blender](~blender-prep).
+This guide assumes you have already [set up file directories](~file-directories).
 {% /alert %}
 
 # File list
@@ -22,6 +22,14 @@ This guide assumes you have already [prepared Blender](~blender-prep).
 Everything starts with an idea. Sometimes, however, we realize that we've made a terrible mistake just like this page I'm currently writing. Hello you, and welcome to the Halo CE level modeling guide. In this guide we will be showing you how to go about with creating your very own level geometry for Halo CE in the 3D modeling software app known as Blender. This guide will include a completed version of our work as an example for you to contrast and compare but be sure to follow along.
 
 If there are any images that you find difficult to read then try opening the image in a new tab to view it in full resolution.
+
+## Setting up Blender
+[Installing the Blender addon](~halo-asset-blender-development-toolset)
+
+See the above link for setting up the Blender addon for exporting Halo assets if you haven't installed the addon already. Beyond that there may be a few other settings you may want to adjust with before starting with any modeling.
+
+All hotkeys given in this guide are given with the expectation that you are using the default Blender 2.8 preset.
+
 
 # Creation of a reference frame
 In order to create a Halo level you first have to create a reference frame for all our geometry to be linked to. The reference frame is the origin for all objects in our scene.

@@ -24,7 +24,7 @@ In terms of tag data, sound scenery do not differ from [scenery](~) in any way; 
 # Known issues
 You cannot have a sound scenery and background sound at the same time if both are playing a sound tag that is classed as "music". This will crash Sapien when you enter the audible radius of the scenery object, and will crash the game immediately.
 
-# Related script functions and globals
+# Related HaloScript
 The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.
 
 {% relatedHsc game="h1" tagFilter="sound_scenery" /%}

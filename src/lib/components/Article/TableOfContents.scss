@@ -28,12 +28,14 @@
 }
 
 .toc {
-  & > ol, & > ul {
-    padding-left: 0;
-  }
 
   ol, ul {
     list-style: none;
+    padding-left: 1em;
+  }
+
+  & > ol, & > ul {
+    padding-left: 0;
   }
 
   li {
@@ -57,7 +59,7 @@
     }
   }
 
-  a:hover, li[aria-current="location"]:first-child a, li.active a {
+  a:hover, li[aria-current="location"]:first-child a, a.highlight {
     background: var(--bg-overlay);
   }
 }

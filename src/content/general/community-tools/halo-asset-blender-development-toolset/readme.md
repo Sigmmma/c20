@@ -1,16 +1,20 @@
 ---
 title: Halo Asset Blender Development Toolset
 about: 'tool:Halo Asset Blender Development Toolset'
-info: >
-  * [Source code and
-  download](https://github.com/General-101/Halo-Asset-Blender-Development-Toolset)
+info: |-
+  * [Download releases](https://github.com/General-101/Halo-Asset-Blender-Development-Toolset/releases)
+  * [Source code and README](https://github.com/General-101/Halo-Asset-Blender-Development-Toolset)
 redirects:
   - /general/tools/jointed-model-blender-toolset
 ---
-The **Halo Asset Blender Development Toolset** is a set of add-ons for [Blender](~) which allows the import and export of [JMS](~), [animation data](~animation-data) (e.g. JMA), [ASS](~), and JMI for [Halo 1](~h1), [Halo 2](~h2), [Halo 3](~h3) and Halo 3: ODST.
+The **Halo Asset Blender Development Toolset** is an addon for [Blender](~) which allows the import and export of [JMS](~), [animation data](~animation-data) (e.g. JMA), [ASS](~), and JMI for [Halo 1](~h1), [Halo 2](~h2), [Halo 3](~h3) and Halo 3: ODST.
 
 # Installation
-To download the add-on from GitHub, press the _tags_ link next to the branch name on the top left. Switch to the release tab and download the latest release. The zip you want will be in the panel labeled _Assets_ and will start with the name _halo-asset-blender-toolset_. There are two ways to install this Plugin:
+To download the add-on from GitHub, go to its [releases page](https://github.com/General-101/Halo-Asset-Blender-Development-Toolset/releases) and download the latest version. The zip you want will be in the panel labeled _Assets_ and will start with the name _halo-asset-blender-toolset_. **Do not** click "Download ZIP" from the "Code" drop-down.
+
+The addon comes in both _lite_ and _full_ versions, where full versions include typical Halo models for scale reference purposes.
+
+Once downloaded, there are two ways to install this addon:
 
 ## Preferences menu
 1. From within Blender, select _Edit > Preferences_.
@@ -26,3 +30,9 @@ Firstly, you will need to find Blender's `addons` directory.
 * Linux users will find it at `~/.config/blender/<blender version>/scripts/addons`.
 
 Simply extract the downloaded `.zip` to this location so that the `io_scene_halo` directory is contained in `addons`.
+
+# Settings
+## Halo scene properties
+Under Blender's scene properties tab you'll find _Halo Scene Properties_. The _Game Version_ will hide features of the addon which don't apply to the game version you're targeting.
+
+![](scene-options.jpg "This should help you stay focused on what matters to you.")

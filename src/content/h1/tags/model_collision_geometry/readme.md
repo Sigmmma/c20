@@ -34,7 +34,7 @@ Pathfinding spheres are imported from the collision [JMS](~) file of your object
 
 Pathfinding spheres can also be created automatically in some cases:
 
-* When an artist doesn't specify any pathfinding spheres, the game will assume one at the object's origin at half the size of the bounding sphere (which can be either too small or too big).
+* When an artist doesn't specify any pathfinding spheres, the game will assume one at the object's origin at half the size of the [bounding sphere](~object#tag-field-bounding-radius) (which can be either too small or too big and result in bad pathfinding).
 * Vehicle mass points (see [physics](~)) also count as pathfinding spheres. AI will actively avoid these.
 * [Bipeds](~biped) by default also have a pathfinding sphere around their feet with the same width as their physics pill.
 
@@ -61,7 +61,7 @@ collision_debug_phantom_bsp 1
 
 To fix them, use similar tricks as fixing level phantom BSP: fixing cases of nearly co-planar faces reported in your [WRL file](~wrl) and/or slightly altering the collision model around the problematic location. If changes to the source geometry do not resolve the phantom BSP, you can use [H1A Tool](~h1a-tool) with the `fix-phantom-bsp` option enabled to compile the collision.
 
-# Related script functions and globals
+# Related HaloScript
 The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.
 
 {% relatedHsc game="h1" tagFilter="model_collision_geometry" /%}

@@ -28,7 +28,7 @@ The following stock dialogue tags correspond to canonical characters:
 
 Additional level-specific character sound tags, e.g. for cinematics, can be found under the `sound\dialog\x**` folders.
 
-# Related script functions and globals
+# Related HaloScript
 The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.
 
 {% relatedHsc game="h1" tagFilter="dialogue" /%}

@@ -152,7 +152,8 @@ type_defs:
             remain in the node. For 1024 and above, axis-aligned planes based on
             vertex bounds are used. Otherwise, the surface within the remaining
             set whose plane minimizes the difference between front and back surface
-            counts is used.
+            counts is used. In the case of levels, only collideable surfaces and
+            portal planes are candidates.
       - name: back_child
         type: uint32
         meta:

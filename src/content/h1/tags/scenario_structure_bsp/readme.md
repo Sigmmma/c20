@@ -70,7 +70,7 @@ When the game transitions between indoor and outdoor clusters the fog colour fad
 # Potentially visible set
 The _potentially visible set_ (PVS) data is precomputed when a BSP is compiled and helps the engine determine which [clusters](#clusters-and-cluster-data) are likely visible from each other. A cluster can "see" any other cluster behind portals visible from itself plus one level of clusters further. Any clusters beyond that will not be rendered.
 
-Tool also takes into account the indoor sky's [_indoor fog opaque distance_](~sky#tag-field-outdoor-fog-opaque-distance) and [_indoor fog maximum density_](~sky#tag-field-indoor-fog-maximum-density) when computing the PVS. If the density is `1.0` (fully opaque) then Tool knows that indoor clusters cannot see beyond the opaque distance even if there are clusters within a line of sight. Tool logs the indoor maximum world units when the BSP is compiled (if there a sky referenced).
+Tool also takes into account the indoor sky's [_indoor fog opaque distance_](~sky#tag-field-outdoor-fog-opaque-distance) and [_indoor fog maximum density_](~sky#tag-field-indoor-fog-maximum-density) when computing the PVS. If the density is `1.0` (fully opaque) then Tool knows that indoor clusters cannot see beyond the opaque distance even if there are clusters within a line of sight. Tool logs the indoor maximum world units when the BSP is imported (if there a sky referenced).
 
 In addition to using the static PVS, the game may dynamically cull objects and parts of clusters using [portal frustums](~scripting#external-globals-debug-no-frustum-clip).
 
@@ -80,7 +80,9 @@ Like the PVS, the [_potentially audible set_](#tag-field-sound-pas-data) (PAS) d
 # Fog planes
 Areas of a map which need a fog layer can be marked using _fog planes_. These are 2D surfaces which reference [fog tags](~fog), not to be confused with atmospheric fog which is part of the [sky tag](~sky). 
 
-Create a fog plane by modeling a flat plane and giving its faces the material name `+unused$`. The fog will exist behind/antinormal to the plane. It must be completely flat and it is invalid for any cluster to be able to see multiple fog planes ([see more](~bsp-troubleshooting#warning-two-fog-planes-visible-from-a-cluster)), so adjust the size and shape of the plane accordingly. You can even create slanted or upside-down fog planes as long as they follow the rules. Once your BSP is compiled, you'll be able to assign fog to your plane(s) in Sapien.
+Create a fog plane by modeling a **flat plane** and giving its faces the [material symbol](~h1-materials) `$`, either on an existing material (like `my_level_ocean!$`) or as `+unused$` if the fog exists in isolation. The fog will exist behind/antinormal to the plane. It must be completely flat and it is invalid for any cluster to be able to see multiple fog planes ([more details](~bsp-troubleshooting#warning-two-fog-planes-visible-from-a-cluster)), so adjust the size and shape of the plane accordingly. It's also important to know that the fog plane is rendered as if it's infinite, no matter of how the fog plane is actually shaped when you model it. The shape of the plane in your model is used to know which clusters intersect it.
+
+You can even create slanted or upside-down fog planes as long as they follow the rules. Once your BSP is imported, you'll be able to assign fog to your plane(s) in Sapien.
 
 # Weather polyhedra
 
@@ -146,7 +148,7 @@ The BSP contains data on traversable surfaces which aid AI in pathfinding (walki
 
 _See more about the [pathfinding system](~ai#pathfinding)._
 
-# Related script functions and globals
+# Related HaloScript
 The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.
 
 {% relatedHsc game="h1" tagFilter="scenario_structure_bsp" /%}

@@ -113,9 +113,11 @@ EXCEPTION halt in e:\jenkins\workspace\mcch1codebuild\mcc\main\h1\code\h1a2\sour
 The likely culprit is that your BSP is **too large**. Scale it down to a reasonable playable size.
 
 ## Exception: global_plane_count < MAXIMUM_BSP3D_DEPTH
-The collision BSP's role is to allow efficient lookups of collideable surfaces (e.g. where a projectile will impact) without the game having to test every single surface in the level. It does this by recursively organizing all surfaces under a tree of dividing planes, where at each branch the game checks only the surfaces in front or behind the plane. The more collision surfaces (triangles) your level has, the more planes are needed to organize them. Due to the way planes are chosen, certain shapes like spheres can also exacerbate the issue. This assertion failure happens when you reach the limit of dividing planes because your model is too complex.
+The collision BSP's role is to allow efficient lookups of collideable surfaces (e.g. where a projectile will impact) without the game having to test every single surface in the level. It does this by recursively organizing all surfaces under [a tree](~scenario_structure_bsp#tag-field-collision-bsp) of dividing planes, where at each branch the game checks only the surfaces in front or behind the plane. The more collision surfaces (triangles) your level has, the more planes are needed to organize them, and at some point a limit is reached. There is no precise polygon limit here because the BSP depth depends a lot on the specific layout of your level, but generally this error means your topology is too dense and you need to reduce polygon counts.
 
-You can attempt to pass the limit using H1A Tool's `-noassert` option, but will probably encounter the error _"Couldn't build leaf map"_ next. The best solution is to simplify your geometry and reduce polygon count. From the outset of modeling you should also avoid sculpting tools which generate geometry or heavy subdividing.
+Tool tries to select optimal dividing planes from existing candidate planes in the BSP, namely collideable surfaces and portal planes. As a result certain shapes like spheres can exacerbate the depth issue because there's no face you can pick that splits the sphere in half and Tool is forced to build a very deep and unbalanced tree. Spherical spaces like this represent the worst case for BSP construction.
+
+You can attempt to pass the limit using H1A Tool's `-noassert` option, but will probably encounter the error _"Couldn't build leaf map"_ next. The best solution is to simplify your geometry and reduce polygon count. From the outset of modeling you should also avoid sculpting tools which generate dense geometry or heavy subdividing. If you absolutely need to maintain existing topology, an advanced workflow is introducing candidate plane hints by intentionally placing collision surfaces or portal planes so they optimally split a problematic area.
 
 ![](max_bsp_depth.mp4)
 
@@ -160,9 +162,9 @@ The only known reason this can happen is if you have a cluster floating in the l
 
 # Other
 ## Two fog planes intersected in a cluster (black)
-This error indicates that you have two fog planes in the same sealed space (cluster). Clusters are only capable of referencing a single fog plane, and only one fog plane can be rendered at a time. You should not only avoid having multiple fog planes within a cluster, but also within the same sealed section of the level no matter how many clusters it has (see ["two fog planes visible from cluster"](#warning-two-fog-planes-visible-from-a-cluster)).
+This error indicates that you have two [fog planes](~scenario_structure_bsp#fog-planes) in the same sealed space (cluster). Clusters are only capable of referencing a single fog plane, and only one fog plane can be rendered at a time. You should not only avoid having multiple fog planes within a cluster, but also visible to each other in different clusters (see ["two fog planes visible from cluster"](#warning-two-fog-planes-visible-from-a-cluster)).
 
-Note that a fog plane which is not completely flat (not planar) will be counted as multiple fog planes because each triangle becomes its own fog plane.
+Note that a fog plane which is not completely flat (not planar) will be counted as multiple fog planes because each triangle becomes its own fog plane. You should also make sure that your fog plane's are only as big as they need to be for the space they will be visible in so that it doesn't intersect with other clusters that contain fog planes.
 
 ![](fog_planes_intersected.mp4)
 ![](fog_planes_intersected_2.mp4)
@@ -170,7 +172,7 @@ Note that a fog plane which is not completely flat (not planar) will be counted 
 ## Warning: two fog planes visible from a cluster
 Although you can add portals to ensure two fog planes are not in the same localized cluster and avoid ["two fog planes intersected in a cluster"](#two-fog-planes-intersected-in-a-cluster-black), Tool will still warn you when two fog planes are [potentially visible](~scenario_structure_bsp#potentially-visible-set) to each other. In this case Sapien will only allow the assignment of a fog palette to a single fog plane and only one will render in-game.
 
-Consider combining together your fog planes into a singular plane. If this is not desirable because you want different fog palette assignments or fog planes at different heights then you will need to ensure the clusters which contain them are completely isolated from each other either by separating the BSP into two volumes (e.g. connected by a teleporter) or ensuring there is an indoor cluster between them by creating a series of long hallways that block visibility.
+Consider combining together your fog planes into a singular plane. If this is not desirable because you want different fog palette assignments or fog planes at different heights then you will need to ensure the clusters which contain them are completely isolated from each other either by separating the BSP into two volumes (e.g. connected by a teleporter) or ensuring they are not potentially visible to each other by creating a series of corners and intermediate portals that block visibility.
 
 ![](two_fog_planes.mp4)
 ![](two_fog_planes_2.mp4)
@@ -209,7 +211,7 @@ Your JMS file was exported for the wrong game version (e.g. Halo 2). If using th
 
 # Radiosity problems
 ## Degenerate triangle or triangle with bad UVs (blue)
-A _degenerate triangle_ error encountered during [radiosity](~h1a-tool#lightmaps) is due to a triangle being degenerate in UV space (texture coordinates). In other words, the triangle has zero surface area in UV space because all 3 vertices are in a line or the same location so the triangle's texture will appear extremely stretched. This by itself isn't a problem for radiosity, but when the corresponding material has the [_simple parameterization_](~shader#tag-field-shader-flags-simple-parameterization) flag enabled you will encounter this error, since that flag forces radiosity to use texture UV coordinates for lightmap UVs.
+A _degenerate triangle_ error encountered during [radiosity](~h1a-tool#lightmaps) is due to a triangle being degenerate in UV space (texture coordinates). In other words, the triangle has zero surface area in UV space because all 3 vertices are in a line or the same location so the triangle's texture will appear extremely stretched. This by itself isn't a problem for radiosity, but when the corresponding material has the [_simple parameterization_](~shader#tag-field-shader-flags-simple-parameterization) flag enabled you will encounter this error, since that flag forces radiosity to use texture UV coordinates as the basis for lightmap UVs and lightmap UVs must not be degenerate.
 
 It is common for modeling operations like extruding and merging to produce degenerate/stretched UVs. You can use Blender's ["Correct Face Attributes"][blender-tool-settings] tool option to help avoid stretched UVs while modifying your model, or use a simple cube projection to unwrap faces during map development.
 
@@ -225,10 +227,10 @@ EXCEPTION halt in e:\jenkins\workspace\mcch1code-release\mcc\release\h1\code\h1a
 Tool checks that your level will not run into floating point precision problems. If you're getting this error it means your map is probably too big. This was less likely to occur in the legacy HEK because MCC-era tools use SSE2 which has [lower floating point precision][precision] than the x87 FPU. You can try working around this issue with `-noassert`, but this may cause problems down the line. It's better to reduce the scale of your level to a reasonable size that the engine was intended to support.
 
 ## Exception: bitmap_format_type_valid_height(format, _bitmap_type_2d, height)
-This means that radiosity has internally completed, but the final resulting lightmap texture dimension is larger than supported. This will happen if you have large continuous sections of your level that require a lot of lightmap space, possibly due to them using a high [radiosity detail level](~shader#tag-field-detail-level-high) and/or [simple parameterization](~shader#tag-field-shader-flags-simple-parameterization). Avoid this by:
+This means that radiosity has internally completed, but the final resulting lightmap texture would exceed the maximum supported dimensions. This will happen if you have large continuous sections of your level that require a lot of lightmap space, possibly due to them using a high [radiosity detail level](~shader#tag-field-detail-level-high) and/or [simple parameterization](~shader#tag-field-shader-flags-simple-parameterization). Avoid this by:
 
 * Making your level smaller.
-* Introducing seams to large continuous surfaces, especially those with continuous UV unwraps and simple parameterization. This will let Tool treat the UV islands as different packable charts rather than a single larger one that needs to fit in a single lightmap page. These seams can be in UV space or through adding modeled details like short cliffs.
+* Introducing seams to large continuous surfaces, especially those with continuous UV unwraps and simple parameterization. This will let Tool treat the UV islands as different packable charts rather than a single larger one that needs to fit in a single lightmap page. These seams can be separations in UV space or through adding modeled details like short cliffs.
 * Reducing radiosity detail level.
 * Disabling simple parameterization where not needed.
 

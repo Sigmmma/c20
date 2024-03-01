@@ -3,10 +3,15 @@ title: Mod tools
 redirects:
   - /h1/guides/intro-to-h1-modding
   - /general/using-custom-content-paths
+childOrder:
+  - excession
+  - managed-blam
 ---
-The **mod tools**, also called the **editing kits**, are the official releases of tools used to create custom content for the games in the MCC. Each game has its own set of mod tools which includes the resources needed to build the stock multiplayer and singleplayer levels, as well as programs used to modify and import new resources.
+The **mod tools**, also called the **editing kits**, are the official releases of tools used to create custom content for the Halo games in the MCC. This site also covers the [HEK](~custom-edition#halo-editing-kit) for Custom Edition since its usage is similar to the Halo: CE Mod Tools, though it is not distributed via Steam.
 
-These tools are updated versions of the same internal tools Bungie's artists and level designers originally used when developing Halo. Depending on your needs you will probably want more software, like [Blender](~) for creating 3D models and [Osoyoos](~) if you don't like using the command line.
+Each game has its own set of mod tools which, although similar, follow the evolution of [Halo's engine](~blam) over time and include the resources specific to that game. These tools are updated versions of the same internal tools Bungie's artists and level designers originally used when developing Halo. You can use them to modify existing content or create entirely new content. A separately installed program, [Excession](~), publishes mods to the Steam workshop.
+
+Depending on your needs you will probably want more software, like [Blender](~) for creating 3D models and [Osoyoos](~) as a convenience launcher.
 
 # Installation
 {% figure src="steam_tools.jpg" %}

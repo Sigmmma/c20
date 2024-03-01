@@ -26,7 +26,7 @@ An export menu should appear on your screen after clicking `Halo Jointed Model S
 
 ![](B.jpg "Plenty of options for you to mess with. Lets dig in!")
 
-Use the default settings for a proper level export. [Generate asset subdirectories](~exporting#scene-options) is optional.
+Use the default settings for a proper level export. [Generate asset subdirectories](~halo-asset-blender-development-toolset#halo-scene-properties) is optional.
 
 # Selecting your directory
 After you have set the settings you've wanted you can start browsing for a directory to dump the files into. The directory we will be choosing will be the following:

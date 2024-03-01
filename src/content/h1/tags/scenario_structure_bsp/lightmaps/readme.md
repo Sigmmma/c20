@@ -30,7 +30,7 @@ All [objects](~object) usually receive their lighting from the environment using
 
 Only moving objects like [units](~unit) cast real-time shadows; [scenery](~) cast shadows in the baked lightmap using the object's [collision model](~model_collision_geometry) rather than its [render model](~gbxmodel), likely because the collision model is stored using a BSP structure which is more efficient to perform lighting calculations with. Dynamic shadows will only be rendered if the ground point lightmap sample is bright enough or when default lighting applies.
 
-# Related script functions and globals
+# Related HaloScript
 The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.
 
 {% relatedHsc game="h1" tagFilter="lightmaps" /%}

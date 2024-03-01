@@ -1,16 +1,26 @@
 ---
 title: Game modes
-stub: true
 ---
 There are 5 base **game modes**, also called "game engine variants", which implement multiplayer game rules and scoring:
 
-* King
-* Oddball
-* Race
-* Slayer
-* CTF
+| Engine           | `game_variant` names
+|------------------|--------------------
+| King             | `king`, `team_king`, `crazy_king`, `classic_king`, `classic_king_pro`, `classic_crazy_king`, `classic_team_king`
+| Oddball          | `oddball`, `team_oddball`, `classic_oddball`, `classic_team_oddball`, `classic_reverse_tag`, `classic_accumulation`, `juggernaut`, `classic_juggernaut`, `classic_stalker`
+| Race             | `race`, `classic_race`, `classic_rally`, `classic_team_race`, `classic_team_rally`, `team_race`
+| Slayer           | `slayer`, `team_slayer`, `classic_slayer`, `classic_slayer_pro`, `classic_phantoms`, `classic_endurance`, `classic_rockets`, `classic_snipers`, `classic_team_slayer`
+| CTF              | `ctf`, `assault`, `classic_ctf`, `classic_ctf_pro`, `classic_invasion`, `classic_iron_ctf`, 
 
-All gametypes are customizations of these base modes. Objectives depend on [scenario netgame flags](~scenario#tag-field-netgame-flags) placed using [Sapien](~h1a-sapien).
+All gametypes are customizations of these base modes. To test game modes in [Standalone](~h1a-standalone-build), use one of the names above with the [game_variant](~scripting#functions-game-variant) function:
+
+```console
+game_variant ctf
+map_name levels\test\bloodgulch\bloodgulch
+```
+
+Objectives like the CTF flags, oddball spawns, and hill boundaries depend on [scenario netgame flags](~scenario#tag-field-netgame-flags) placed using [Sapien](~h1a-sapien).
+
+The UI localizations for these game variants are found in `ui\default_multiplayer_game_setting_names.unicode_string_list`.
 
 # CTF
 The CTF engine is responsible for controlling CTF and Assault games.

@@ -6,7 +6,6 @@ Blender:
   similarTo:
     - Gmax
     - 3ds Max
-    - Maya
   workflows:
     - edit:
         - obj
@@ -27,7 +26,7 @@ Gmax:
         - collada
         - wrl
 Maya:
-  page: maya
+  url: https://www.autodesk.com/products/maya/overview
   authors:
     - Autodesk
     - Alias
@@ -48,7 +47,6 @@ collada:
     - between:
       - 3ds Max
       - Blender
-      - Maya
 AMF:
   url: https://en.wikipedia.org/wiki/Additive_manufacturing_file_format
 
@@ -71,4 +69,16 @@ Halo Asset Blender Development Toolset:
     - from: Blender
       to: ASS
     - from: ASS
+      to: Blender
+    - from: h1/gbxmodel
+      to: Blender
+    - from: h1/model
+      to: Blender
+    - from: h1/model_collision_geometry
+      to: Blender
+    - from: h1/physics
+      to: Blender
+    - from: h1/model_animations
+      to: Blender
+    - from: h1/scenario_structure_bsp
       to: Blender

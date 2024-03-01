@@ -502,7 +502,7 @@ For **tag struct tables** you can use the shorthand `{% tagStruct "h1/sky" /%}` 
 See the appendix for help [creating new struct definitions](#struct-definitions).
 
 ## Related HaloScript
-You can easily add a [table of related script functions and globals](~h1/tags/scenario_structure_bsp/lightmaps#related-script-functions-and-globals) like this:
+You can easily add a [table of related script functions and globals](~h1/tags/scenario_structure_bsp/lightmaps#related-haloscript) like this:
 
 ```md
 {% relatedHsc game="h1" tagFilter="lightmaps" /%}

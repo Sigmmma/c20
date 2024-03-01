@@ -1040,8 +1040,8 @@ external_globals:
         (cheat_super_jump [boolean])
         ```
         Players jump to an extreme height, and will die of fall damage if
-        [`cheat_jetpack`](#debugfunctions-cheat-jetpack) or
-        [`cheat_deathless_player`](#debugfunctions-cheat-deathless-player)
+        [`cheat_jetpack`](~scripting#external-globals-cheat-jetpack) or
+        [`cheat_deathless_player`](~scripting#external-globals-cheat-deathless-player)
         are not used. This can be used to quickly reach areas when
         testing maps.
   - slug: cl_remote_player_action_queue_limit

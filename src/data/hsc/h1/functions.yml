@@ -1283,7 +1283,8 @@ functions:
         ```hsc
         (attract_mode_start)
         ```
-        N/A in pc
+        On Xbox, this would trigger the ["attract" videos](https://www.youtube.com/watch?v=l0cPgrGfRC4)
+        to play when the main menu is left idle. Not applicable to PC.
     context: Gearbox only
   - slug: bind
     info:
@@ -1747,42 +1748,42 @@ functions:
         ```hsc
         (<void> core_load)
         ```
-        loads debug game state from core\core.bin
+        Loads debug [game state](~) from `core\core.bin`.
   - slug: core_load_at_startup
     info:
       en: |-
         ```hsc
         (<void> core_load_at_startup)
         ```
-        loads debug game state from core\core.bin as soon as the map is initialized
+        Loads debug [game state](~) from `core\core.bin` as soon as the map is initialized.
   - slug: core_load_name
     info:
       en: |-
         ```hsc
         (<void> core_load_name <string>)
         ```
-        loads debug game state from core\<path>
+        Loads debug [game state](~) from `core\<path>`.
   - slug: core_load_name_at_startup
     info:
       en: |-
         ```hsc
         (<void> core_load_name_at_startup <string>)
         ```
-        loads debug game state from core\<path> as soon as the map is initialized
+        Loads debug [game state](~) from `core\<path>` as soon as the map is initialized.
   - slug: core_save
     info:
       en: |-
         ```hsc
         (<void> core_save)
         ```
-        saves debug game state to core\core.bin
+        Saves debug [game state](~) to `core\core.bin`.
   - slug: core_save_name
     info:
       en: |-
         ```hsc
         (<boolean> core_save_name <string>)
         ```
-        Saves debug game state to core\<path> in pre-H1A versions of the game.
+        Saves debug [game state](~) to `core\<path>` in pre-H1A versions of the game.
         In H1A this function was hijacked for campaign segments.
   - slug: crash
     info:
@@ -2382,8 +2383,12 @@ functions:
       en: |-
         ```hsc
         (<void> game_variant <string>)
+        (game_variant ctf)
+        (game_variant team_oddball)
         ```
-        set the game engine
+        Sets the multiplayer game engine, which will take effect the next time
+        the map is loaded with `map_name`. See [game modes](~game-modes)
+        for available engines.
   - slug: game_won
     info:
       en: >-

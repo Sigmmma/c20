@@ -38,13 +38,15 @@ There is a property we need to set in the .csproj file to avoid issues at runtim
 1. Open your .csproj file. You can do this either by opening the file in a text editor, or by double clicking the solution name in Visual Studio's `Solution Explorer` to open it there.
 2. Inside the first `<PropertyGroup>` section, add this line: `<HighEntropyVA>false</HighEntropyVA>`
 This section should now read similarly to this:
-```
+
+```xml
 <PropertyGroup>
     <OutputType>Exe</OutputType>
     <TargetFramework>net4.8</TargetFramework>
     <HighEntropyVA>false</HighEntropyVA>
 </PropertyGroup>
 ```
+
 If you accidentally created the project using the wrong .NET version, or otherwise need to make sure that it is running `.NET 4.8`, this is also where you set that.
 After updating and saving the .csproj file, *you will need to unload and reload the project in Visual Studio, or close and reopen Visual Studio for the changes to take effect*.
 

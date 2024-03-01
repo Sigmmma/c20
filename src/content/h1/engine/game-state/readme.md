@@ -5,9 +5,9 @@ thanks:
 ---
 **Game state** is the in-memory data which describes the state of the game world as it is simulated over time. It differs from [tags](~) which, although they are also [loaded into memory](~map#map-loading), describe static or initial properties of classes of game objects rather than the current properties of individual ones.
 
-Game state also includes global data for systems like [scripting](~) (script globals), multiplayer [game modes](~game-modes) (scores), and [physics](~physics-engine) (game speed and gravity) to name a few.
+Game state also includes global data for systems like [scripting](~) (script globals), multiplayer [game modes](~game-modes) (scores), and [physics](~physics-engine) (game speed and gravity) to name a few. During each simulation tick (30 per second) the game runs _updates_ across the game state which result in the ongoing changes to the game world as time progresses. As an example, this might include moving a [glow](~) particle some distance based on its speed in the glow tag definition.
 
-Most of this data is saved and loaded from [save files](~files#savegame-bin).
+The game state is saved and loaded from [game saves](~files#savegame-bin) or [core saves](~scripting#functions-core-save).
 
 # Datum arrays
 Much of the game state is maintained in _datum arrays_, also called _tables_. Each entry (_datum_) in these arrays is used to store the current state of some object or effect.

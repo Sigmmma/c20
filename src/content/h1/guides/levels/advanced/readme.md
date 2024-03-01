@@ -561,7 +561,7 @@ Be sure to be in edge select mode before selecting it. Certain edges in your obj
 
 Go ahead and mark these edges as sharp through the edge context menu. The edge split modifier will take care of the rest.
 
-# Creating the opposing  base structure
+# Creating the opposing base structure
 Now that the blue base structure has been completed, it can be copied and used to construct a second base structure on the opposite end of the level. We will be using a mirror modifier to generate a structure on the opposite side of the Y axis to quickly construct a base for our red players.
 
 1. Start by selecting your blue base structure object and adding a mirror modifier to the object.

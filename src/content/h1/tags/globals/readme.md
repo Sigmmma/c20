@@ -16,7 +16,7 @@ The **globals** tag contains settings for player control, difficulty, grenade ty
 
 This tag and its dependencies are also included in a [map](~) when compiled, and the engine is [hard-coded to reference it](~hard-coded-data#globals).
 
-# Related script functions and globals
+# Related HaloScript
 The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.
 
 {% relatedHsc game="h1" tagFilter="globals" /%}

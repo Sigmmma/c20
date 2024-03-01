@@ -8,10 +8,13 @@ thanks:
 childOrder:
   - levels
   - skyboxes
-  - scale
   - tips
-  - sharing
   - porting-maps
+  - vehicles
+  - sharing
+  - scale
+redirects:
+  # - /h1/guides/tips
 ---
 Welcome to the guides hub! Here you'll find links to various guides ranging from basic map-making to more advanced topics. This hub is a work in progress and will grow over time. Until it is more complete, we recommend the official [HEK tutorial][hek] as a starting point.
 
@@ -37,7 +40,7 @@ The content of these external tutorials has not been vetted and they may contain
 /%}
 
 ## Level creation
-See also the [Blender level guide](~blender-prep) here on c20.
+See also the [Blender level guide](~levels) here on c20.
 
 {% dataTable
   dataPath="tutorials/tutorials"

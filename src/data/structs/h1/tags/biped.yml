@@ -210,7 +210,7 @@ type_defs:
           unit: world units
         comments:
           en: >
-            Sets the height of the physics pill when the biped _uses player physics_
+            Sets the height of the [physics pill](#physics-and-autoaim-pills) when the biped _uses player physics_
             and is standing.
       - name: crouching_collision_height
         type: float
@@ -218,7 +218,7 @@ type_defs:
           unit: world units
         comments:
           en: >
-            Sets the height of the physics pill when the biped _uses player physics_
+            Sets the height of the [physics pill](#physics-and-autoaim-pills) when the biped _uses player physics_
             and is crouching.
       - name: collision_radius
         type: float
@@ -226,7 +226,7 @@ type_defs:
           unit: world units
         comments:
           en: >
-            Sets the radius of the physics pill/sphere.
+            Sets the radius of the [physics pill/sphere](#physics-and-autoaim-pills).
       - type: pad
         size: 40
       - name: autoaim_width

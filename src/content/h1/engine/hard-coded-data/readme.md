@@ -48,7 +48,7 @@ diffuse color listed here.
 | 16    | Maroon | {% color "#9D0B0E" /%} | `#9D0B0E` | 157,  11,  14 |
 | 17    | Salmon | {% color "#F5999E" /%} | `#F5999E` | 245, 153, 158 |
 
-The developer console command [`debug_player_color [index]`](~developer-console#debugfunctions-debug-player-color) can be used to set this during gameplay.
+The developer console command [`debug_player_color [index]`](~scripting#external-globals-debug-player-color) can be used to set this during gameplay.
 
 # Engine-referenced tag paths
 These [tag paths](~tags#tag-references-and-paths) are directly referenced by the game engine at runtime. Not every map needs to have these, but depending on which ones are missing, different things can happen. Maps might not load, menus might not appear, sounds might not play, etc.

@@ -14,7 +14,7 @@ thanks:
 
 They are primarily controlled by density and friction parameters.
 
-# Related script functions and globals
+# Related HaloScript
 The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.
 
 {% relatedHsc game="h1" tagFilter="point_physics" /%}
