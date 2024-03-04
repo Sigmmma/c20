@@ -1,21 +1,27 @@
 ---
-title: rename.txt
+title: Text file for reusing animations
 about: 'resource:Animation data'
+keywords: 
+  - animation
+  - copy
+  - duplicate
+  - rename
+  - reuse
 thanks:
-  Abstract Ingenuity: Research and documentation
+  "Abstract Ingenuity": Research and documentation
 ---
 
 The file `rename.txt` is for reusing animations under different names.
 
 # Usage
 
-Source data files for animations go in a subfolder named `animations` as described [here](~h2/tools/h2-ek/h2-tool#model-animations). Create a text file named `rename` in that folder. Open the file in a text editor, make any necessary changes, then save.
+Source data files for animations go in a subfolder named `animations` as described [here](~h2-tool#model-animations). Create a text file named `rename` in that folder. Open the file in a text editor, make any necessary changes, then save.
 
 After importing all the animations, Tool will try to parse `rename.txt` and modify the `MODE-n-STATE GRAPH` inside the [model_animation_graph](~) tag according to the contents of that file.
 
 # Format
 
-Each line in `readme.txt` is written like this:  
+To reuse an animation as another animation, write a line in this format:
 ```
 name-of-animation = name-of-animation
 ```
@@ -53,7 +59,7 @@ first_person exit_full = first_person reload_exit
 first_person exit_empty = first_person reload_exit
 ```
 
-Output from [Tool](~h2/tools/h2-ek/h2-tool#fp-model-animations)
+Output from [Tool](~h2-tool#fp-model-animations)
 ```
 ### fp_shotgun.JMS
 ### fp_arms.JMS

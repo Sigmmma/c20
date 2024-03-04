@@ -1,8 +1,14 @@
 ---
-title: rename.txt
+title: Text file for reusing animations
 about: 'resource:Animation data'
+keywords: 
+  - animation
+  - copy
+  - duplicate
+  - rename
+  - reuse
 thanks:
-  Abstract Ingenuity: Research and documentation
+  "Abstract Ingenuity": Research and documentation
 ---
 
 The file `rename.txt` is for reusing animations under different names.
@@ -15,14 +21,16 @@ After importing all the animations, Tool will try to parse `rename.txt` and modi
 
 # Format
 
-Each line in `readme.txt` is written like this:  
+To reuse an animation as another animation, write a line in this format:
 ```
 name-of-animation = name-of-animation
 ```
 
 There are three parts: the name of an animation that does not already exist, the equal sign, and the name of an animation that does exist.
 
-[H1CE Tool](~h1/tools/hek/tool) considers any spaces around the equal sign as part of the animations' names. Files typically are not named with leading spaces or trailing spaces. That means having spaces there likely will be a problem for Tool. [H1A Tool](~h1/tools/h1a-ek/h1a-tool) ignores any spaces around the equal sign.
+[H1CE Tool](~tool) considers any spaces around the equal sign as part of the animations' names. Files typically do not have spaces at the beginning or at the end of their names. For most situations, do not add any spaces around the equal sign. The name of the animation will be incorrect. If the name is not correct, Tool will fail to find the animation. 
+
+[H1A Tool](~h1a-tool) seems to ignore spaces around the equal sign. They are not considered as part of the animations' names. 
 
 # Example
 
