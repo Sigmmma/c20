@@ -61,7 +61,9 @@ tool.exe animations "characters\cyborg"
 
 For the example above, Tool would expect to find corresponding animation data files at `data\characters\cyborg\animations\`. Assuming no errors, it would be compiled into `tags\characters\cyborg\cyborg.model_animations`.
 
-See the [animation data](~animation-data) page for more info on the various extensions used during animation importing and their purpose.
+Animation data files can have different extensions. That depends on the type of animation they are intended to be. See the [animation data](~animation-data) page for information about the various extensions and the different types of animation.
+
+Add [rename.txt](~rename-txt) to reuse animations as other animations, without copying and renaming files.
 
 # String compilation
 UTF-8 text files containing strings can be compiled into a [string_list](~) using the `strings` verb:
