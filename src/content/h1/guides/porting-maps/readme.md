@@ -23,7 +23,7 @@ The current recommended approach to porting maps is:
 * Some maps are [protected](~map#protected-maps) and/or include corrupted data from buggy community tools.
 * Custom tags may be poorly organized.
 * Some tags are unsupported or buggy. For example, H1X uses [model](~) while others use [gbxmodel](~). H1CE cannot render [shader_transparent_generic](~) and needs to use [shader_transparent_chicago](~) to emulate it.
-* Available [script functions](~scripting#hsc-reference) varies. Only H1A supports static script parameters.
+* Available [script functions](~scripting#hsc-reference) varies. Only H1A supports [static script parameters](~scripting#script-types-static).
 * New tag features have been introduced to H1A, like new tag fields and flags, which are not implemented in other editions.
 * Higher limits in H1A are not present in other editions.
 * Visual differences can arise from [renderer regressions](~renderer#gearbox-regressions) or different [limits](~renderer#limits).

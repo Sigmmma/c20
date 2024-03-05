@@ -86,7 +86,7 @@ If no content path is given the tools fallback to using the `data`, `tags`, and 
 
 Here are some examples:
 
-```sh
+```cmd
 # packages the tutorial map using assets located in the "hek_tags" tags directory
 tool -tags_dir hek_tags build-cache-file levels\test\tutorial\tutorial classic
 

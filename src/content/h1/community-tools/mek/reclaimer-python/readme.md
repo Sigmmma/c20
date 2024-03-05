@@ -21,7 +21,7 @@ While mainly focused on Halo 1 and [OpenSauce](~) formats, it also has very limi
 # Installation
 The library must first be installed on your system using Python 3 `pip`. You may need to add the `--user` flag if you do not have permission to install globally:
 
-```sh
+```cmd
 pip install reclaimer
 ```
 

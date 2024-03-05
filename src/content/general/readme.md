@@ -11,6 +11,7 @@ childOrder:
   - scripting
   - blam
   - command-line
+  - scale
   - help
 ---
 Modding means different things to different people, but this site focuses on using the official [mod tools](~mod-tools) to create new or modified content for the games in the MCC and Halo Custom Edition. These tools are updated verisons of the original content pipelines of the games. Some areas we don't cover are:

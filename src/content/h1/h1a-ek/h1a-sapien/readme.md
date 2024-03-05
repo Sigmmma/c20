@@ -55,6 +55,13 @@ H1A Sapien also supports several command line arguments. These features are expe
 * `-data_dir` and `-tags_dir`: Used to set [custom content paths](~mod-tools#using-custom-content-paths).
 
 # Menu options
+## Compile scripts
+With the classic HEK tools, it's necessary to _compile scripts_ into your scenario tag using Sapien before they will take effect. Open your scenario in Sapien, then select _File > Compile Scripts_.
+
+This takes the [script sources](~scripting) from your level's `scripts` folder and compiles them into script node data embedded in your scenario tag, which is what the game actually uses at runtime. For example, if your scenario is `tags\levels\test\tutorial\tutorial.scenario`, you would place your script file in `data\levels\test\tutorial\scripts\`. Your script file can be named anything, but must have a `.hsc` file extension. If there are any compilation errors, Sapien will display them in the _Game window_.
+
+This step is **not necessary with the H1A tools** because they automatically compile scripts from source data whenever a scenario tag is loaded by Sapien or Standalone, or built into a map using Tool.
+
 ## Switch BSP
 It's common for singleplayer scenarios to include multiple [BSPs](~scenario_structure_bsp). Use the _Edit > Switch BSP_ menu to change between them, but **never use** [`switch_bsp`](~scripting#functions-switch-bsp) in the console. The menu option maintains proper editor state, whereas `switch_bsp` is intended for level scripts.
 

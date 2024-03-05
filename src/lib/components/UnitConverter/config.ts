@@ -20,15 +20,18 @@ export const localizations = {
     es: "Metros"
   },
   warthogLength: {
-    en: "Warthog length",
+    en: "Warthog length (H1)",
     es: "Longitud del Warthog",
   },
-  playerHeightStanding: {
-    en: "Player collision height (standing)",
+  playerHeightStandingH1: {
+    en: "Player standing height (H1)",
     es: "Altura de colisión del jugador (de pie)",
   },
+  playerHeightStandingH23: {
+    en: "Player standing height (H2, H3)",
+  },
   playerHeightCrouching: {
-    en: "Player collision height (crouching)",
+    en: "Player crouching height (H1, H2, H3)",
     es: "Altura de colisión del jugador (agachado)",
   },
   bgFlagsDist: {
@@ -72,9 +75,14 @@ export const presets = [
     basisType: "jms"
   },
   {
-    label: "playerHeightStanding",
+    label: "playerHeightStandingH1",
     basisValue: "70",
     basisType: "jms"
+  },
+  {
+    label: "playerHeightStandingH23",
+    basisValue: "0.725",
+    basisType: "world"
   },
   {
     label: "playerHeightCrouching",

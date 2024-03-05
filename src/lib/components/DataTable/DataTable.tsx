@@ -204,6 +204,7 @@ export default function DataTable(props: DataTableProps) {
                 <a href={`#${firstRow.id}`}>{firstRow.indexKey}</a>
               )
             )}
+            {" "}({rows.length} total)
           </nav>
         </p>
       }

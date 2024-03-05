@@ -1,7 +1,7 @@
 ---
 title: Game modes
 ---
-There are 5 base **game modes**, also called "game engine variants", which implement multiplayer game rules and scoring:
+There are 5 base **game modes**, also called "game engines", which implement multiplayer game rules and scoring:
 
 | Engine           | `game_variant` names
 |------------------|--------------------

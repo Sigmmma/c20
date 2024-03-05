@@ -1,0 +1,8 @@
+Deathstar:
+  page: deathstar
+  authors:
+    - Aerocatia
+  workflows:
+    - edit: h1/map
+  similarTo:
+    - Refinery

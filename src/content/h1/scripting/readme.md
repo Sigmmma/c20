@@ -14,22 +14,14 @@ thanks:
   t3h lag: 'Additional script information (limits, types, functionality, etc...)'
   Ifafudafi: Script limits information
   InfernoPlus: Flipped vehicle test
+  Krevil: Modulus operator
 redirects:
   - /h1/engine/scripting
 ---
 **Halo Script** is a scripting language that H1 map designers can use to have greater control over how their map works. It is primarily used in controlling the mission structure of single player maps, but can also be used to achieve certain effects in multiplayer, such as [synchronizing workarounds](~tips#multiplayer-synchronization).
 
-Scripts must be compiled into the [scenario](~) of a [map](~) using [Sapien](~h1a-sapien) when using the legacy HEK, but the H1A modding tools now compile scripts on map build and loading the scenario in Standalone using the script sources themselves.
-
 # Compiling a script into a scenario
-Sapien searches for scripts in the data version of your scenario's path. For
-example, if your scenario is `tags\levels\test\tutorial\tutorial.scenario`, you
-would place your script file in `data\levels\test\tutorial\scripts\`.
-Your script file can be named anything, but must have a `.hsc` file extension.
-
-Open your scenario in Sapien, then under the file menu, click "Compile Scripts".
-If there are any compilation errors, Sapien will display them in the Game View
-screen.
+Scripts must be compiled into the [scenario](~) tag [with Sapien](~h1a-sapien#compile-scripts) when using the legacy HEK, but the H1A modding tools now compile scripts on map build and loading the scenario in Standalone using the script sources themselves.
 
 # Gotchas and limits
 ## Using begin_random in startup scripts
@@ -126,12 +118,6 @@ There is not currently a reliable way to exactly tell when stack memory has been
 ## Console scripts
 Things manually entered into the console ingame also share script space with the scenario's baked in scripts. In rare circumstances (e.g. you're just on the cusp of using too much memory), a console script's memory can overflow into a scenario script's memory, causing the above mentioned issues.
 
-## When to use short vs long
-There are two integer variable types: `short` and `long`. Both hold whole numbers, but `long` variables can hold much larger numbers than `short` variables. It's worth noting both use the same amount of memory, so you should decide the type you use based on what range of values makes sense or the values the functions you call accept (avoids a [cast](~scripting#value-type-casting)).
-
-If you need to optimize memory usage you can use the bitwise functions to implement a [bitfield][].
-
-
 # Extensions
 The [Halo Script Preprocessor][hsc-pre] is effectively a super-set of Halo Script that adds support for C-like `#define` pre-processor macros. The program takes a file with macros in it, then spits out a standard HSC file. This means this program is *purely* for making writing HSC easier. Scripts using the Halo Script Preprocessor are still subject to all of the above limits.
 
@@ -151,9 +137,11 @@ For example, the following block:
 ```
 
 # HSC reference
-To learn more about HSC's general syntax and execution model, see our [cross-game scripting page](~general/scripting). There is also [additional important script engine info below](~scripting#gotchas-and-limits).
+To learn more about HSC's general syntax and execution model, see our [cross-game scripting page](~general/scripting).
 
-## Script types
+## Declaring scripts
+Within a script source file you can delcare multiple _scripts_ which contain a series of expressions. There are different types of scripts which run at different times:
+
 {% dataTable
   dataPath="script_types/script_types"
   linkCol=0
@@ -163,6 +151,31 @@ To learn more about HSC's general syntax and execution model, see our [cross-gam
     {name: "Example", key: "ex", format: "codeblock-hsc", style: "width:50%"}
   ]
 /%}
+
+## Declaring globals
+_Globals_ are variables that can be read and set by your scripts. They exist for the lifetime of the level so can be used to store state related to a mission, or commonly used constant values that you want to declare once and reuse. Globals must be declared before they are used:
+
+```hsc
+(global <value type> <name> <inital value>)
+```
+
+Globals for stock levels are typically declared in the `base_*.hsc` file but used in the `mission_*.hsc` and/or `cinematics_*.hsc` files, but there is no requirement that you separate them this way. Here are some examples from a30's scripts:
+
+```hsc
+(global long delay_calm (* 30 3)) ; 3 seconds
+(global boolean global_rubble_end false)
+
+(script dormant mission_rubble
+  ; ...
+  (set global_rubble_end true)
+)
+
+(script dormant mission_river
+  ; ...
+  (sleep delay_calm)
+  (if (and global_rubble_end global_cliff_end) (set play_music_a30_07 true))
+)
+```
 
 ## Value types
 {% dataTable
@@ -175,32 +188,53 @@ To learn more about HSC's general syntax and execution model, see our [cross-gam
   ]
 /%}
 
-## Keywords
-{% dataTable
-  dataPath="keywords/keywords"
-  linkCol=true
-  linkSlugKey="slug"
-  columns=[
-    {name: "Keyword", key: "info/en"}
-  ]
-/%}
+### When to use short vs long
+There are two integer variable types: `short` and `long`. Both hold whole numbers, but `long` variables can hold much larger numbers than `short` variables. It's worth noting both use the same amount of memory, so you should decide the type you use based on what range of values makes sense or the values the functions you call accept (avoids a [cast](~scripting#value-type-casting)). If you need to optimize memory usage you can use the [bitwise functions](~scripting#logic-and-comparison) to implement a [bitfield][].
 
+# Functions
 ## Control
-{% relatedHsc game="h1" only="functions" id="functions" tagFilter="control" /%}
+Control functions include waking and sleeping script theads and conditionally executing expressions.
+{% relatedHsc game="h1" only="functions" id="control-functions" tagFilter="control" /%}
 
 ## Math
-{% relatedHsc game="h1" only="functions" id="functions" tagFilter="math" /%}
+{% relatedHsc game="h1" only="functions" id="math-functions" tagFilter="math" /%}
+
+### Modulo
+You can create a [modulo/modulus operator](https://en.wikipedia.org/wiki/Modulo) with a static script and a global. The global is necessary because it forces a cast from `real` to `short`.
+
+```hsc
+(global short mod_buffer 0)
+
+(script static short (mod (short x) (short y))
+  (set mod_buffer (/ x y))
+  (- x (* mod_buffer y))
+)
+
+(mod 10 3) ; returns 1
+```
+
 
 ## Logic and comparison
-{% relatedHsc game="h1" only="functions" id="functions" tagFilter="logic OR comp" /%}
+These functions can be used to perform logical comparisons and bitwise integer operations. Bitwise functions are new to H1A only.
 
-## Functions
+{% relatedHsc game="h1" only="functions" id="logic-functions" tagFilter="logic OR comp" /%}
+
+## Other functions
+All other functions are used for gameplay scripting purposes, such as controlling AI, cinematics, checkpoints, and more.
+
 {% relatedHsc game="h1" only="functions" id="functions" tagFilter="NOT math AND NOT control AND NOT comp AND NOT logic" /%}
 
-## External globals
+# External globals
+_External globals_ are globals which belong to the engine itself, as opposed to declared in level scripts, are are typically used to toggle debug features. If manipulating them via scripts, you need to use `set`. From the [console](~developer-console) you can just set them like this:
+
+```console
+rasterizer_fog_atmosphere false
+```
+
 {% relatedHsc game="h1" only="globals" id="external-globals" /%}
 
-## Removed
+# Removed
+Some defunct parts of HaloScript were removed in H1A MCC. This is not a complete list.
 {% relatedHsc game="h1" tagFilter="removed_in_mcc" /%}
 
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)

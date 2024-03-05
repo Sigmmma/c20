@@ -9,7 +9,7 @@ Invader-build is stricter than Tool about tag validity and offers clearer warnin
 # Usage
 As an example, to compile Prisoner for custom edition:
 
-```sh
+```cmd
 invader-build -g custom "levels\test\prisoner\prisoner"
 ```
 

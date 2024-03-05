@@ -21,27 +21,41 @@ export default function UnitConverter(props: {}) {
   return (
     <div className="unit-converter">
       <div className="inputs">
-        {Object.entries(conversions).map(([type, {label, rel}]) => {
-          const name = `conversion-${type}`;
-          let entryValue = state.basisValue;
-          if (type != state.basisType) {
-            const jmsValue = Number(state.basisValue) * conversions[state.basisType].rel;
-            entryValue = Number.isNaN(jmsValue) ? "" : String(jmsValue / conversions[type].rel);
-          }
-          return <>
-            <br/>
-            <label htmlFor={name}>{localize(label as keyof typeof localizations)}</label>
-            <input
-              name={name}
-              type="text"
-              value={entryValue}
-              onInput={(e: any) => handleChange(type, e.target.value)}
-            />
-          </>;
-        })}
+        <table>
+          <thead>
+            <tr>
+              <th>Unit</th>
+              <th>Value</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Object.entries(conversions).map(([type, {label, rel}]) => {
+              const name = `conversion-${type}`;
+              let entryValue = state.basisValue;
+              if (type != state.basisType) {
+                const jmsValue = Number(state.basisValue) * conversions[state.basisType].rel;
+                entryValue = Number.isNaN(jmsValue) ? "" : String(jmsValue / conversions[type].rel);
+              }
+              return (
+                <tr>
+                  <td>
+                    <label htmlFor={name}>{localize(label as keyof typeof localizations)}</label>
+                  </td>
+                  <td>
+                    <input
+                      name={name}
+                      type="text"
+                      value={entryValue}
+                      onInput={(e: any) => handleChange(type, e.target.value)}
+                    />
+                  </td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
       <div className="presets">
-        <h2>Presets</h2>
         {presets.map(({label, basisValue, basisType}) => {
           const clickHandler = () => {handleChange(basisType, basisValue)};
           return <>

@@ -49,11 +49,15 @@ script_types:
         Performed when called from another script. In H1A these can support up
         to 16 parameters like later games.
       es:
-    ex: >-
+    ex: |-
+      ; without parameters, call like (player0)
       (script static "unit" player0
         (unit (list_get (players) 0))
       )
-
+      ; with parameters (H1A only), call like (my_add 1 2)
+      (script static short (my_add (short x) (short y))
+        (+ x y)
+      )
   - type: stub
     info:
       en: |

@@ -11,6 +11,7 @@ childOrder:
   - halo-physics-importer
   - chimp
   - aether
+  - deathstar
   - obsolete
 ---
 Halo 1 in particular has many community-made tools which complement or replace functions of the official mod tools. It's not usually necessary for beginners to to use them, but they can unlock advanced workflows or save time.

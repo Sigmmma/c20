@@ -20,7 +20,7 @@ value_types:
     info:
       en: 'Floating point (decimal) value. Value Range: 3.4E +/- 38 (6 digits)'
       es:
-    ex: '`3.000000`'
+    ex: '`3.000000`, `1.5`, `.3`'
 
   - type: short
     info:

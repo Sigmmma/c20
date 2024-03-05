@@ -27,7 +27,7 @@ Maps are found in Halo's `maps` directory and have the ".map" extension. Maps in
 Although maps work mainly the same way in each release of H1, there are a number of differences listed on this page which prevent maps from being reused across them as-is. For example, an H1CE map file cannot be used in H1PC Demo without recompiling it from tags.
 
 # Building maps from tags
-Tool's [build-cache-file](~h1a-tool#build-cache-file) verb is the official way to build a map for MCC, or for Custom Edition with the HEK, from a scenario tag. The resulting map contains all tags needed by the scenario. The unofficial [invader-build](~) tool can also build maps from tags, including targeting all platforms like Xbox, Retail, and Demo.
+Tool's [build-cache-file](~h1a-tool#build-cache-file) verb is the official way to build a map for MCC, or for Custom Edition with the HEK, from a scenario tag. The resulting map contains all tags needed by the scenario. The unofficial [invader-build](~) tool can also build maps from tags, including targeting all platforms like Xbox, Retail, and Demo, while also validating your tags for invalid data that could cause crashes or undefined behaviour at runtime.
 
 When tags are built into a map, their data is prepared for how it will be used at runtime. [Tag path references](~general/tags#tag-paths-and-references) are replaced with pre-calculated indices or pointers, [child scenarios](~scenario#child-scenarios) are merged, extra fields are calculated, and the metadata for [bitmaps](~bitmap) and [sounds](~sound) is separated from their raw data. Tool even makes some [hard-coded tag edits](~h1a-tool#hardcoded-tag-patches).
 
@@ -66,11 +66,9 @@ This compression scheme is not supported natively in other releases of the game,
 Maps with the extension `.yelo` can only be played using the [OpenSauce](~) mod for Custom Edition, since they can contain [non-standard tag groups](~opensauce#new-tag-groups) and rely on extended game features offered by OS. These maps are created using OS_Tool. [Refinery](~) supports extracting OpenSauce tags from these maps.
 
 # Protected maps
-A _protected map_ is a map which has been intentionally corrupted in a way which still allows it to be loaded and played in-game, but hinders attempts to extract tags or edit it with [legacy tools](~obsolete) by removing or scrambling data like [tag paths](#resource-header-tag-path-pointer). It is now a discouraged practice.
+A _protected map_ is a map which has been intentionally corrupted by [legacy tools](~obsolete) in a way which still allows it to be loaded and played in-game, but hinders attempts to extract tags or edit it directly by removing or scrambling data like [tag paths](#resource-header-tag-path-pointer). Map protection was often used during the 2000s era of Custom Edition modding by some modders and groups to prevent others from using their content, with approximately 1/3 of legacy maps being protected in some way. This practice has in the long run negatively impacted the community because the resulting maps are crash-prone, cannot be easily be ported to newer engines like H1A, and beginners cannot extract their tags cleanly for study. H1A even explicitly checks for and refuses to load protected maps.
 
-Map protection was unfortunately common in the H1CE modding scene in the 2000s as a way to prevent others from using ones custom tags, and it has overall negatively impacted the community because the resulting maps are crash-prone, cannot be easily be ported to newer engines like H1A, and new modders cannot extract their tags cleanly for study. H1A even explicitly checks for and refuses to load protected maps.
-
-[Refinery](~) can "deprotect" maps for tag extraction but the results may require cleanup.
+Both [Refinery](~) and [Deathstar](~) can "deprotect" maps in preparation for tag extraction but the results will likely still require cleanup, such as giving tags meaningful names and organization. It's recommended to use the [invader](~) toolset to work with tags extracted from protected maps because they may include corrupted data that invader can bludgeon and detect on rebuild into a new map.
 
 # Map file size limit
 The maximum allowable file sizes for playable maps varies by version. Halo will reject maps if their [header has a file size](#map-header-file-size) that exceeds this limit.

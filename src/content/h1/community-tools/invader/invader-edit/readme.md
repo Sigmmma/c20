@@ -7,12 +7,12 @@ about: 'tool:invader-edit'
 # Usage
 See [official documentation][docs] for usage instructions. As an example:
 
-```sh
-invader-edit "characters/jackal/shaders/jackal shield.shader_transparent_chicago_extended" \
-  --set detail_level high \
-  --set power 0.000000 \
-  --set color_of_emitted_light "0.000000 0.000000 0.000000" \
-  --set tint_color "0.000000 0.000000 0.000000" \
+```cmd
+invader-edit "characters/jackal/shaders/jackal shield.shader_transparent_chicago_extended"
+  --set detail_level high
+  --set power 0.000000
+  --set color_of_emitted_light "0.000000 0.000000 0.000000"
+  --set tint_color "0.000000 0.000000 0.000000"
   --set material_type "hunter_armor"
 ```
 

@@ -137,24 +137,33 @@ functions:
         ```hsc
         (<passthrough> begin <expression(s)>)
         (begin
-          (something)
-          (something_else)
-          20
+          (object_destroy mid_banshee_1)
+          (ai_erase mid_banshee/pilot_1)
         )
-        ; returns: 20
         ```
-        Returns the last expression in a sequence after evaluating the
-        sequence in order.
+        The `begin` expression evaluates a series of expressions in order. It's
+        primarily used to wrap a series of expressions into a single expression
+        to be used as a `cond` result or one of the branches of an `if` expression.
+        It is not necessary to wrap all the top-level expressions within a `script`
+        declaration with a `begin`; there is already one implicit. The return
+        value of the last expression in the sequence will be returned by `cond`.
     tags:
       - control
   - slug: begin_random
     info:
       en: |
         ```hsc
-        (<passthrough> begin_random <expression(s))
+        (<passthrough> begin_random <expression(s)>)
+        (begin_random
+          (begin (vehicle_unload fort_cship "cd-passengerl01") (sleep 5))
+          (begin (vehicle_unload fort_cship "cd-passengerl02") (sleep 5))
+          (begin (vehicle_unload fort_cship "cd-passengerl03") (sleep 5))
+        )
         ```
-        Evaluates the sequence of expressions in random order and returns the
-        last value evaluated. This function can contain up to 32 expressions.
+        Like `begin`, but evaluates the sequence of expressions in random order
+        and returns the last value evaluated. An example use case is making
+        passengers exit a dropship in random order. This function can contain up to
+        32 expressions.
     tags:
       - control
   - slug: cond
@@ -163,12 +172,15 @@ functions:
         ```hsc
         (<passthrough> cond (<boolean1> <result1>) [(<boolean2> <result2>) [...]])
         (cond
-          (false_val 10)
-          (true_val 20)
+          ((game_is_cooperative) (wake fast_setup))
+          ((not (= normal (game_difficulty_get))) (wake fast_setup))
+          (true (wake tutorial_setup))
         )
-        ; returns: 20
         ```
-        Returns the value associated with the first true condition. Has no default value.
+        Tests each branch's condition expression. On the first `true` condition,
+        the associated result expression is evaluated and its value returned.
+        Has no default value. This is similar to an _if-elseif-elseif..._ chain in
+        other languages.
     tags:
       - control
   - slug: if
@@ -176,11 +188,22 @@ functions:
       en: |
         ```hsc
         (<passthrough> if <boolean> <then> [<else>])
-        (if (bsl_sucks)
-          (print "Stop whining.")
+        (if (game_safe_to_speak)
+          (ai_conversation first_arrival)
+        )
+        (if (game_is_cooperative)
+          (begin
+            (ai_place area_a_cov/elites)
+            (ai_place area_a_cov/jackals)
+          )
+          (ai_place area_a_cov/grunts)
         )
         ```
-        Returns one of two values based on the value of a condition.
+        Conditionally evaluates expressions based on a condition. If the condition
+        is `true`, the `<then>` branch is evaluated. If the condition is `false`,
+        the optional `[<else>]` branch is evaluated instead. If you want to
+        execute a series of expressions then you must wrap them with a `begin`.
+        This returns the value of the branch expression chosen.
     tags:
       - control
   - slug: inspect
@@ -253,10 +276,14 @@ functions:
       en: |
         ```hsc
         (<void> sleep <short> [<script>])
-        (sleep 30 more_weapons)
+        (sleep (* 30 10)) ; sleep this thread for 10s
+        (sleep 30 more_weapons) ; sleep more_weapons for 1s
+        (sleep -1) ; sleep indefinitely
         ```
         Pauses execution of this script (or, optionally, another script) for
-        the specified number of ticks (1 tick = 1/30 second).
+        the specified number of ticks (1 tick = 1/30 second). You can "park" a
+        thread with `(sleep -1)` and it will sleep until another thread wakes
+        it or sleeps it with a positive number of ticks.
     tags:
       - control
   - slug: sleep_until
@@ -264,14 +291,16 @@ functions:
       en: |
         ```hsc
         (<void> sleep_until <boolean> [short_1] [short_2])
-        (sleep_until false 5 600)
+        ; sleeps until less than 3 enemies remain, checking 2x per second:
+        (sleep_until (> 3 (ai_living_count first_wave)) 15)
         ```
         Pauses execution of this script until `condition` is true.
-        By default, this checks once per second. If `short_1` is specified, it
-        checks every `short_1` ticks instead. By default, this will await the
-        condition indefinitely. `short_2` can be used to timeout after a
-        certain number of ticks, instead. After the timeout, the script will
-        continue on as if `condition` became true.
+        By default, this checks once per second (every 30 ticks), but if `short_1`
+        is specified, it checks every `short_1` ticks instead.
+        
+        By default, this will await the condition indefinitely but `short_2` can
+        be used to timeout after a certain number of ticks instead. After the
+        timeout, the script will continue on as if `condition` became true.
     tags:
       - control
   - slug: wake
@@ -288,7 +317,7 @@ functions:
     info:
       en: |
         ```hsc
-        (void> thread_sleep <long>)
+        (<void> thread_sleep <long>)
         (thread_sleep 20)
         ```
         Sleeps the calling thread for the specified number of ms.
@@ -1053,7 +1082,7 @@ functions:
         ```hsc
         (<void> ai_select <ai>)
         ```
-        Selects the specified encounter
+        Selects the specified AI for use with AI debug functions like `ai_debug_speak`.
   - slug: ai_set_blind
     info:
       en: |-

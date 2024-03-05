@@ -187,7 +187,7 @@ Parameters are declared when calling the script.
 
 Note that a parameter name can be anything the user declares so long as it is not already a global / script name or already used by the engine (e.g. value types or function names). Parameters are local to the static script they are named in, so multiple scripts can utilise the same parameter names without affecting one another.
 
-See game-specific pages for further reference, e.g. [H1 Scripting](~h1/scripting#script-types).
+See game-specific pages for further reference, e.g. [H1 Scripting](~h1/scripting#declaring-scripts).
 
 # Mechanics
 ## Value type casting
