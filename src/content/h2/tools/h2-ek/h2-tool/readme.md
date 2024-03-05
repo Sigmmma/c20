@@ -482,6 +482,8 @@ tool fp-model-animations "objects\characters\masterchief\fp\weapons\rifle\fp_smg
 * weapon-directory - A local data path to the root of the first person weapon model source directory the character is using.
 * flags - ??? This is an optional arg.
 
+Add [rename.txt](~rename-txt) to reuse animations as other animations, without copying and renaming files.
+
 # Import damage table
 Imports `data\globals\armor_vs_damage.csv` to update the damage table block in [globals](~). The CSV (which can be exported from any spreadsheet software like Excel) uses Damage Groups as the columns, and Armor Modifiers as the rows, with each cell being the applicable Damage Multiplier.
 
@@ -676,6 +678,8 @@ tool model-animations "objects\characters\masterchief"
 * flags - ???
 
 For the example above, Tool would expect to find a set of corresponding animation source files at `data\objects\characters\masterchief\animations`. Assuming no errors, it would be compiled into `tags\objects\characters\masterchief\masterchief.model_animation_graph`.
+
+Add [rename.txt](~rename-txt) to reuse animations as other animations, without copying and renaming files.
 
 # Monitor changes
 These command monitor the data folder for changes and automatically reimport any data changed.
