@@ -3,7 +3,7 @@ title: Game state
 thanks:
   gbMichelle: Reversing stock table limits
 ---
-**Game state** is the in-memory data which describes the state of the game world as it is simulated over time. It differs from [tags](~) which, although they are also [loaded into memory](~map#map-loading), describe static or initial properties of classes of game objects rather than the current properties of individual ones.
+**Game state** is the in-memory data which describes the state of the game world as it is simulated over time. It differs from [tags](~) which, although they are also [loaded into memory](~maps#map-loading), describe static or initial properties of classes of game objects rather than the current properties of individual ones.
 
 Game state also includes global data for systems like [scripting](~) (script globals), multiplayer [game modes](~game-modes) (scores), and [physics](~physics-engine) (game speed and gravity) to name a few. During each simulation tick (30 per second) the game runs _updates_ across the game state which result in the ongoing changes to the game world as time progresses. As an example, this might include moving a [glow](~) particle some distance based on its speed in the glow tag definition.
 

@@ -50,7 +50,7 @@ type_defs:
       - name: user_interface
         comments:
           en: >-
-            The map is meant to serve as [ui.map](~map#map-types) for the game's main
+            The map is meant to serve as [ui.map](~maps#map-types) for the game's main
             menu.
   ScenarioFlags:
     class: bitfield
@@ -2611,11 +2611,15 @@ type_defs:
           compile_ignore: true
           hek_max_count: 19001
           h1a_ek_max_count: SHORT_MAX
+        comments:
+          en: Stores the compiled syntax node data for scripts.
       - name: script_string_data
         type: TagDataOffset
         meta:
           hek_max_size: 256kb
           h1a_ek_max_size: 800kb
+        comments:
+          en: Stores strings used by scripts.
       - name: scripts
         type: Block
         type_args:
@@ -2643,6 +2647,11 @@ type_defs:
           h1a_ek_max_count: 512
           read_only: true
           h1a_expert_mode: true
+        comments:
+          en: |-
+            Stores tag references used by compiled level scripts. In source
+            form, scripts use tag paths but for runtime those paths are compiled
+            to references here.
       - name: source_files
         type: Block
         type_args:
@@ -2705,4 +2714,4 @@ type_defs:
             scenario that can be [switched between](~scenario_structure_bsp#bsp-transitions).
             Multiplayer scenarios typically have just one, while
             singleplayer scenarios often have multiple. This block also
-            contains information used during [map loading](~map#map-loading).
+            contains information used during [map loading](~maps#map-loading).

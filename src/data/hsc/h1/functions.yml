@@ -2872,7 +2872,7 @@ functions:
         ```
         Loads a singleplayer map by scenario name. If using the
         [H1A standalone build](~h1a-standalone-build), which directly loads
-        tags instead of [cache files](~map), use the scenario
+        tags instead of [cache files](~maps), use the scenario
         [tag path](~tags#tag-references-and-paths) instead.
   - slug: map_reset
     info:
@@ -5158,6 +5158,8 @@ functions:
         ```
         Returns the gunner of a vehicle
   - slug: vehicle_hover
+    tags:
+      - physics-engine
     info:
       en: >-
         ```hsc

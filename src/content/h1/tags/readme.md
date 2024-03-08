@@ -10,7 +10,7 @@ thanks:
 ---
 **Tags** are the resources which represent all assets and entities in the game. While the core mechanics are implemented in game code, nearly everything else is customized using tags. They come in many different types (called tag _classes_ or _groups_), each with a predefined structure and data fields. Tags can depend on other tags by [reference](#tag-references-and-paths), and are reusable between maps.
 
-A playable level is represented by a [scenario](~) tag and all of its dependencies, which can include the [vehicles](~vehicle) which may spawn, any [scenery](~) placed, and any [level textures](~bitmap). Bundles of tags required for a level are typically compiled into an optimized [map cache file](~map), though certain builds of the Halo engine are capable of loading tags on-demand directly from the `tags` folder (e.g. Sapien or debug builds of Halo).
+A playable level is represented by a [scenario](~) tag and all of its dependencies, which can include the [vehicles](~vehicle) which may spawn, any [scenery](~) placed, and any [level textures](~bitmap). Bundles of tags required for a level are typically compiled into an optimized [map cache file](~maps), though certain builds of the Halo engine are capable of loading tags on-demand directly from the `tags` folder (e.g. Sapien or debug builds of Halo).
 
 The name "tag" was inspired by [XML tags][about-xml], which also have types and a structure with fields. However, unlike XML, Halo's tags are a binary format rather than plain text. To create and edit tags, you need to use purpose-built tools like the [H1A-EK](~h1a-ek), [MEK](~), or [Invader](~).
 

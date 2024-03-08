@@ -21,7 +21,7 @@ info: |
 3. Configure personal preferences in `chimera.ini` if desired.
 
 # Compatibility
-Current vesions of Chimera are incompatible with [OpenSauce](~) and [HAC2](~). Attempting to use them at the same time will result in crashes or a white screen when launching the game. Use the older [build 581][581] if you want to combine Chimera with OpenSauce so you can play [.yelo maps](~map#opensauce-yelo-maps).
+Current vesions of Chimera are incompatible with [OpenSauce](~) and [HAC2](~). Attempting to use them at the same time will result in crashes or a white screen when launching the game. Use the older [build 581][581] if you want to combine Chimera with OpenSauce so you can play [.yelo maps](~maps#opensauce-yelo-maps).
 
 Chimera works on Windows 7+ and on Linux with Wine 4+.
 

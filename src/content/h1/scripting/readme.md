@@ -18,76 +18,108 @@ thanks:
 redirects:
   - /h1/engine/scripting
 ---
-**Halo Script** is a scripting language that H1 map designers can use to have greater control over how their map works. It is primarily used in controlling the mission structure of single player maps, but can also be used to achieve certain effects in multiplayer, such as [synchronizing workarounds](~tips#multiplayer-synchronization).
+**HaloScript** is a scripting language that H1 map designers can use to have greater control over how their map works. It is primarily used in controlling the mission structure of singleplayer maps, but can also be used to achieve certain effects in multiplayer, though AI is not synchronized.
 
-# Compiling a script into a scenario
-Scripts must be compiled into the [scenario](~) tag [with Sapien](~h1a-sapien#compile-scripts) when using the legacy HEK, but the H1A modding tools now compile scripts on map build and loading the scenario in Standalone using the script sources themselves.
+To learn HaloScript basics see our [introduction page](~general/scripting).
+
+# Compiling scripts into a scenario
+Scripts live in a `data\...\your_level\scripts` folder and are text files ending with `.hsc`. With the newer H1A modding tools these scripts will be automatically compiled and added to the processed [scenario](~) tag when the level is loaded with the tools or built into a map.
+
+Users of the legacy HEK must instead [use Sapien](~h1a-sapien#compile-scripts) to compile scripts before they will take effect.
 
 # Gotchas and limits
-## Using begin_random in startup scripts
-The [random number generator][rng] used for things like `begin_random` is
-[seeded][rng-seed] on the same tick that `startup` scripts run. This means the
-first expression selected by a `begin_random` block in a `startup` script will
-always be the same. Generally since the first expression will take a variable
-amount of time to complete evaluation, the following items will be random as
-expected.
+## Random functions in startup scripts
+The script functions `begin_random`, `random_range`, and `real_random_range` use a [pseudorandom number generator][rng] which is [seeded][rng-seed] with a fixed value on the same tick that `startup` scripts run. This means the results of these random functions will always be the same if used at startup.
 
-## Syntax nodes are limited
-Syntax nodes are sections of memory that the game allocates to handle the
-structure of scripts when it compiles them. Syntax data is stuff like
-parentheses, function names, variable names... anything that has syntactic
-meaning for the script system.
+```hsc
+(script startup mission
+  (begin_random
+    (begin (wake objective_a) (sleep_until (= 0 (ai_living_count obj_a_cov))))
+    (begin (wake objective_b) (sleep_until (= 0 (ai_living_count obj_b_cov))))
+    (begin (wake objective_c) (sleep_until (= 0 (ai_living_count obj_c_cov))))
+  )
+)
+```
 
-The maximum number of syntax nodes that the game can allocate when
-compiling scripts is **19001** in legacy and **32767** (SHORT_MAX) in H1A.
+In the above example, the first expression selected by this `begin_random` will be the same. However, since each expression sleeps for a variable amount of time the subsequent expressions will appear more random.
 
-If you exceed this limit, scripts will not compile. This
-limit is cumulative across both individual scenarios and child scenarios.
-So, even if the main scenario compiles, it might not work once you add its
-children (if its children have scripts of their own). If you hit this limit,
-your only choice is to remove some syntax data. It can come from anywhere, but
-something has to go. This can sometimes be a long and painful process.
+## Syntax nodes
+| Constant                             | HEK | H1A |
+|--------------------------------------|-----|-----|
+|`MAXIMUM_HS_SYNTAX_NODES_PER_SCENARIO`|19001|32767|
 
-## Total scripts and globals are limited
-In addition to syntax nodes, the total number of globals and scripts (`startup`,
-`dormant`, etc...) is also limited.
+Syntax nodes, also called syntax data, are how scripts are represented [within the scenario tag](~scenario#tag-field-script-syntax-data) after they are compiled. Expressions and their values in the source script get compiled into compact nodes, but there is an upper limit on how many can be stored in the scenario.
 
-| Type    | Legacy limit | H1A limit |
-|---------|--------------|-----------|
-| scripts | 512          | 1024      |
-| globals | 128          | 512       |
-| threads | 256          | -         |
+If you exceed this limit, scripts will not compile. This limit is cumulative across both individual scenarios and child scenarios. So, even if the main scenario compiles, it might not work once you add its children (if its children have scripts of their own). If you hit this limit then your only choice is to remove some scripting from the level.
 
-## Source file size is limited
-The game will not compile scripts for a source file above a given size. Comments
-and whitespace **are** counted in this size! If you hit this limit, you can
-either remove stuff from the script, or move stuff from one source file
-into another source file. Comments and unnecessary whitespace are non-functional
-things that can be removed to reduce size, but only do this if you *need* to!
+## Script declarations
+| Constant                        | HEK | H1A |
+|---------------------------------|-----|-----|
+|`MAXIMUM_HS_SCRIPTS_PER_SCENARIO`|512  |1024 |
 
-{% alert %}
-Comments and indentation are important for understanding your own scripts. Most
-projects will not be big enough to need to worry about exceeding source file
-size, so good coding conventions should be used until they can't be!
+The total number of scripts (`startup`, `dormant`, etc...) is also limited. If you find yourself hitting this limit then you'll need to combine together multiple scripts or remove unnecessary ones. This could include "inlining" some static scripts.
 
-Tools like the Halo Script Preprocessor (see below) can strip comments and
-whitespace in the final script, while keeping them in your source file.
-{% /alert %}
+## Globals
+| Constant                        | HEK | H1A |
+|---------------------------------|-----|-----|
+|`MAXIMUM_HS_GLOBALS_PER_SCENARIO`|128  |512  |
 
-## Number of source files is limited
-A scenario's scripts can be split into multiple files, but the number of files
-you can have is limited to 8.
+There is a limit to the total number of declared globals in your merged scenario. The runtime state of scenario globals share space in the [script globals datum array](~game-state#datum-arrays) (limit of 1024) with [external globals](#external-globals), of which there are nearly 500 depending on the game.
 
-{% alert %}
-Sapien silently fails to load all of the files if there are more than 8. It
-loads the first 8 in some determined order ("asciibetical"?), then excludes the
-rest. No errors are thrown unless scripts fail to compile because of the
-excluded files.
-{% /alert %}
+## Source file size
+| Constant                        | HEK | H1A |
+|---------------------------------|-----|-----|
+|`MAXIMUM_HS_SOURCE_DATA_PER_FILE`|256kb|1mb  |
 
-## Stack space is limited
+The tools will not compile scripts for a source file above a certain size. Most projects will not be big enough to encounter this limit. If a single source file is getting too large, you can simply move some scripts to another source file as is common with the stock scenarios which separate cinematics from mission scripts.
+
+As a last resort, you can remove comments and whitespace since they are not functional parts of the script but this will hurt the readability of your scripts. The [Halo Script Preprocessor](#extensions) can also strip comments and whitespace in the final script, while keeping them in your source file.
+
+## Number of source files
+| Constant                             | HEK | H1A |
+|--------------------------------------|-----|-----|
+|`MAXIMUM_HS_SOURCE_FILES_PER_SCENARIO`| 8   | 16  |
+
+A scenario's scripts can be split into multiple files, but the number of files you can have is limited.
+
+Sapien silently fails to load all of the files if there are more than the limit. It loads the first 8/16 in some order ("asciibetical"?), then excludes the rest. No errors are thrown unless scripts fail to compile because of the excluded files.
+
+## Tag references
+| Constant                             | HEK | H1A |
+|--------------------------------------|-----|-----|
+|`MAXIMUM_HS_REFERENCES_PER_SCENARIO`  | 256 | 512 |
+
+Various HS functions take [tag paths](~general/tags#tag-paths-and-references) as arguments, for example spawning an [effect](~) at a cutscene flag:
+
+```hsc
+(effect_new "effects\coop teleport" teleporting_flag)
+```
+
+These tag paths are not stored as strings at runtime, but rather as compact tag references [in the scenario](~scenario#tag-field-references).
+
+## String data
+| Constant                             | HEK | H1A |
+|--------------------------------------|-----|-----|
+|`MAXIMUM_HS_STRING_DATA_PER_SCENARIO` |256kb|800kb|
+
+Strings used in scripts are also stored [in the scenario](~scenario#tag-field-script-string-data). This could include parameters like [marker](~gbxmodel#markers) names:
+
+```hsc
+(objects_attach chief "right hand" ar1 "")
+```
+
+The total amount of string data from all the scenario's scripts must remain below the limit.
+
+## Threads
+Although you can declare [512 or 1024 scripts](#script-declarations), the [game state](~game-state#datum-arrays) supports at most **256** running threads, which static scripts wouldn't contribute to.
+
+## Stack space
 If you've never heard of a stack in the context of computer programming before,
-[skim through this][stack]. Halo allocates a certain amount of memory for each [scripting thread](~scripting#script-threads) in a scenario, called the "stack". Stack memory is used to hold results of invoking functions, parameters for script functions, and so on. Notably, nesting function calls will consume additional stack memory.
+[skim through this][stack]. Halo allocates 1280 bytes for each [scripting thread](~scripting#script-threads) in a scenario, called the "stack". Stack memory is used to hold results of invoking functions, parameters for script functions, and so on.
+
+Notably, nesting function calls will consume additional stack memory. It is very, very easy to exceed the limits of this memory if you have enough nested statements. The maximum number of nested statements is somewhere between 10 and 16 levels deep, depending on if you're invoking static scripts, if you're invoking methods with parameters, and other things.
+
+Avoid unncessary expressions; for example `(+ 1 (+ 2 3))` can be simplified to `(+ 1 2 3)` and `begin` isn't necessary to wrap a single expression or at the top-level of a script.
 
 ```hsc
 ; Nested statements are statements like these, where many
@@ -104,8 +136,6 @@ If you've never heard of a stack in the context of computer programming before,
   )
 )
 ```
-
-It is very, very easy to exceed the limits of this memory if you have enough nested statements. The maximum number of nested statements is somewhere between 10 and 16 levels deep, depending on if you're invoking static scripts, if you're invoking methods with parameters, and other things.
 
 {% alert type="danger" %}
 **WARNING: The game *DOES NOT* guard against exceeding stack memory in release builds!!** If you exceed a script's stack memory, it will [overflow](http://en.wikipedia.org/wiki/Buffer_overflow) into other scripts' stack memory!

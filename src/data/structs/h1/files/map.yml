@@ -76,7 +76,7 @@ type_defs:
         comments:
           en: >-
             Length of the map in bytes when uncompressed. Halo checks this to
-            ensure the map is within the [size limit](~map#map-file-size-limit).
+            ensure the map is within the [size limit](~maps#map-file-size-limit).
       - name: padding_length
         type: uint32
         comments:
@@ -388,7 +388,7 @@ type_defs:
         comments:
           en: >-
             Pointer to the [tag path](~tags#tag-references-and-paths) string.
-            This data may unusable in [protected maps](~map#protected-maps) and is
+            This data may unusable in [protected maps](~maps#protected-maps) and is
             technically not needed at runtime except for [debugging purposes](~developer-console).
       - name: tag_data_ref
         type: TagDataRef
@@ -396,7 +396,7 @@ type_defs:
           en: >-
             This field can be interpreted as either a `ptr32` to the tag's data within
             this cache file when loaded by the game, or as a `uint32` _resource index_
-            if the tag data is external (found in a [resource map](~map#resource-maps)).
+            if the tag data is external (found in a [resource map](~maps#resource-maps)).
             H1X maps will never use a resource index since that feature was not implemented
             yet. Resource indices are replaced by a pointer to a loaded tag at runtime
             except in the case of [sound](~) tags.

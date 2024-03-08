@@ -23,6 +23,7 @@ childOrder:
   - source-data
   - tags
   - scripting
+  - maps
   - guides
   - engine
   - sharing

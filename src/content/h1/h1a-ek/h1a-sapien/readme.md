@@ -1,6 +1,6 @@
 ---
 title: H1 Sapien
-about: 'tool:H1A-Sapien'
+about: 'tool:H1-Sapien'
 img: h1a-sapien-c20.jpg
 caption: Editing chapter titles on the c20 campaign scenario using H1A Sapien.
 keywords:
@@ -116,7 +116,7 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * {% key "Space" /%}: clones the selected object to the camera's location and orientation. If multiple objects are selected, uses the first.
 * {% key "Pause/Break" /%}: Pauses your Sapien instance. Press "OK" in the opened window to resume Sapien.
 * {% key "Control + B" /%}: Open the BSP switch dialog window.
-* {% key "Control + Shift + B" /%}: Creates the file `baggage.txt`. If you end up getting a maximum tag slots error or are [running low on tag space](~map#limits), this file shows the memory usage of tags in the editor.
+* {% key "Control + Shift + B" /%}: Creates the file `baggage.txt`. If you end up getting a maximum tag slots error or are [running low on tag space](~maps#limits), this file shows the memory usage of tags in the editor.
 * {% key "Shift + Click" /%}: Select a group of objects or keep previously placed objects selected. You can also use it to select the first and last object in the hierarchy list to select everything in-between at once. Useful for deleting multiple objects or moving them all at once.
 * {% key "Control + Click" /%}: Select a group of objects or keep previously placed objects selected. This will only select the object you specifically click in the hierarchy list. Useful for deleting multiple objects or moving them all at once.
 * Hold {% key "Tab" /%}: Using this key combo while having an object selected will set the rotation gizmo to sync with the local rotation of the object. Only really useful if "Local Axes" is not enabled.

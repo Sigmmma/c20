@@ -17,7 +17,7 @@ It wasn't typically used for multiplayer maps since all clients would need to us
 {% alert %}
 OpenSauce is incompatible with current [Chimera](~) versions. Attempting to use both at the same time will result in crashes or a white screen when launching the game.
 
-It's recommended that you create a separate copy of the Halo Custom Edition installation to use with OpenSauce and [Yelo maps](~map#opensauce-yelo-maps) exclusively.
+It's recommended that you create a separate copy of the Halo Custom Edition installation to use with OpenSauce and [Yelo maps](~maps#opensauce-yelo-maps) exclusively.
 {% /alert %}
 
 # Features

@@ -1,6 +1,6 @@
 ---
 title: H1 Guerilla
-about: 'tool:H1A-Guerilla'
+about: 'tool:H1-Guerilla'
 img: h1a-guerilla.png
 caption: >-
   A [scenario's](~scenario) [sky](~) reference being changed.

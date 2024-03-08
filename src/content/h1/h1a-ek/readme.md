@@ -197,7 +197,7 @@ Pictured: kornman00 eliminating editing kit bugs, circa June 2021
 Users of the Custom Edition [HEK](~custom-edition#halo-editing-kit) will notice two big additions:
 
 * Scripts and source tags for the stock multiplayer and campaign maps, removing the need to [extract](~invader-extract) them to create variants of those maps.
-* A new [standalone build](~h1a-standalone-build) of Halo which loads [tags](~) instead of [maps](~map) (like Sapien) and supports _all_ console commands, intended for fast iteration and troubleshooting.
+* A new [standalone build](~h1a-standalone-build) of Halo which loads [tags](~) instead of [maps](~maps) (like Sapien) and supports _all_ console commands, intended for fast iteration and troubleshooting.
 
 The new CE mod tools were released with season 7 of MCC ([patch notes](https://support.halowaypoint.com/hc/en-us/articles/4402601893268-Halo-The-Master-Chief-Collection-MCC-Patch-Notes-June-2021)). It was a significant milestone for the Halo 1 engine, representing the [recombination of code](/h1/games.svg) and tags from Anniversary, Custom Edition, OG Xbox. Aspects of [Halo 2's tools](~H2V-EK) or limits from later games have even been backported.
 
@@ -252,9 +252,9 @@ The new CE mod tools were released with season 7 of MCC ([patch notes](https://s
   * The `bitmaps` verb now accepts both `.tiff` and `.tif` extensions like `bitmap` does.
 * Map compilation ([`build-cache-file`](~h1a-tool#build-cache-file)):
   * Script data is properly recompiled from source files when available now. A bug previously caused Tool to always fall back to sources stored in the scenario tag.
-  * [Resource maps](~map#resource-maps) can optionally be updated to include all the resource data for the scenario being packaged.
+  * [Resource maps](~maps#resource-maps) can optionally be updated to include all the resource data for the scenario being packaged.
   * Maps can target "classic" or "remastered" mode.
-  * `loc.map` [resource maps](~map#resource-maps) are no longer generated or used as they are not used by H1A (aside from H1CE backwards compatibility).
+  * `loc.map` [resource maps](~maps#resource-maps) are no longer generated or used as they are not used by H1A (aside from H1CE backwards compatibility).
   * Tool will now log errors when the user attempts to use swarm actors in firing-position based combat; _always charge at enemies_ must be set to prevent runtime crashes.
 * Model and structure compilation:
   * A flag to fix [collision artifacts](~scenario_structure_bsp#collision-artifacts) is now exposed for compiling [BSPs](~scenario_structure_bsp) (`structure` verb) and [model_collision_geometry](~) (`collision-geometry` verb).
@@ -396,14 +396,14 @@ The new CE mod tools were released with season 7 of MCC ([patch notes](https://s
 * The unused _spheroid_ tag has been removed.
 
 ## Maps and map loading
-* Custom maps compiled with H1A Tool are identified by having [cache version](~map#map-header-cache-version-h1a-mcc) `13` in their header (H1CE is `609`).
-* The [map file size limit](~map#map-file-size-limit) was increased to 2 GiB.
-* [Tag space](~map#tag-space) is increased from 23 MiB to 64 MiB.
-* A new [flags field](~map#map-header-h1a-flags) was added to the cache header for controlling H1A features.
+* Custom maps compiled with H1A Tool are identified by having [cache version](~maps#map-header-cache-version-h1a-mcc) `13` in their header (H1CE is `609`).
+* The [map file size limit](~maps#map-file-size-limit) was increased to 2 GiB.
+* [Tag space](~maps#tag-space) is increased from 23 MiB to 64 MiB.
+* A new [flags field](~maps#map-header-h1a-flags) was added to the cache header for controlling H1A features.
 * Tags, BSP verts (16 MiB), and game state are now stored in separate dedicated allocations rather than one giant one.
-* [Protected maps](~map#protected-maps) will be detected and force a crash because they are unsupported.
+* [Protected maps](~maps#protected-maps) will be detected and force a crash because they are unsupported.
 * H1CE's resource maps are now included in MCC and are used when playing a H1CE map.
-* Some changes were made to [map loading](~map#h1a-changes).
+* Some changes were made to [map loading](~maps#h1a-changes).
 
 ## Game state
 Due to changes in the game state structure, savegames from before season 7 are invalidated.

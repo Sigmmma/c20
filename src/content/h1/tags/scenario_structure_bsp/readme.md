@@ -29,7 +29,7 @@ The term "BSP" stands for [Binary Space Partitioning][about-bsp], a technique wh
 After level geometry is exported to [JMS](~) format from your 3D software of choice, it can be compiled into a BSP tag using [Tool's structure verb](~h1a-tool#structure).
 
 # BSP transitions
-While a [scenario](~) can reference multiple BSPs, Halo can only have [a single BSP loaded](~map#map-loading) at a time. Transitions between BSPs can be scripted (`switch_bsp`), e.g. using trigger volumes. Objects in unloaded BSPs are not simulated.
+While a [scenario](~) can reference multiple BSPs, Halo can only have [a single BSP loaded](~maps#map-loading) at a time. Transitions between BSPs can be scripted (`switch_bsp`), e.g. using trigger volumes. Objects in unloaded BSPs are not simulated.
 
 Although multiple BSPs are intended for singleplayer maps and do not [synchronize](~netcode), some custom multiplayer maps have used nearly identical BSPs which only differ in lighting to add a day/night switch [scripted by a button](~ui_widget_definition#tag-field-event-handlers-script) in the escape menu.
 

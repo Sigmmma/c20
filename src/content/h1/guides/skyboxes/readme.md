@@ -56,7 +56,7 @@ Although these models are colloquially called "skyboxes" they are not usually mo
 * It is not feasible to create objects in the skybox at "true scale". Although its model is very large compared to the level you should fake perspective by scaling down distant objects. You'll see an example of this once we import the ring model into our scene.
 * Atmospheric fog like you see on the [BSP](~scenario_structure_bsp) and the objects within it does NOT apply to the sky model. You will need to use texturing tricks to give the impression that distant parts of the sky are more occluded by fog.
 * Similarly, the sky model receives no shading at all. Lighting and shadows must be done with your textures only.
-* You should be trying to use as little texture space as possible for the skybox. [Bitmaps](~bitmap) are large assets and will use up your [available tag space](~map#tag-space). Not all parts of the sky need high resolution textures and parts of the model can be repeated.
+* You should be trying to use as little texture space as possible for the skybox. [Bitmaps](~bitmap) are large assets and will use up your [available tag space](~maps#tag-space). Not all parts of the sky need high resolution textures and parts of the model can be repeated.
 
 # Creating the first version
 Like most complex Halo assets, creating skyboxes benefits from iteration; we will start with getting a basic version in-game first then adding to and refining it in multiple steps later in this guide.

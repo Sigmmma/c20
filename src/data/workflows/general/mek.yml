@@ -9,7 +9,7 @@ Mozzarilla:
     - h1_tag_editor_base
   page: mozzarilla
   similarTo:
-    - H1A-Guerilla
+    - H1-Guerilla
     - OS_Guerilla
   workflows:
     - between:

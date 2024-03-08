@@ -1,13 +1,13 @@
-H1A-EK:
+H1-EK:
   page: h1a-ek
   authors:
     - 343 Industries
     - Bungie
     - Saber Interactive
     - Gearbox
-H1A-Tool:
+H1-Tool:
   inherit:
-    - H1A-EK
+    - H1-EK
     - h1_tool_workflows_base
     - h1_tag_compiler_base
   page: h1a-tool
@@ -23,9 +23,9 @@ H1A-Tool:
       to: Animation data
     - from: Animation data
       to: h1/camera_track
-H1A-Guerilla:
+H1-Guerilla:
   inherit:
-    - H1A-EK
+    - H1-EK
     - h1_tag_editor_non_deprecated_base
   page: h1a-guerilla
   buildTypes:
@@ -35,9 +35,9 @@ H1A-Guerilla:
     - Mozzarilla
     - invader-edit-qt
     - OS_Guerilla
-H1A-Sapien:
+H1-Sapien:
   inherit:
-    - H1A-EK
+    - H1-EK
     - h1_sapien_workflows_base
   page: h1a-sapien
   similarTo:
@@ -45,9 +45,9 @@ H1A-Sapien:
   buildTypes:
     - tag_play (H1A)
     - tag_test (HEK)
-H1A-standalone:
+H1-standalone:
   inherit:
-    - H1A-EK
+    - H1-EK
   page: h1a-standalone-build
   buildTypes:
     - tag_test

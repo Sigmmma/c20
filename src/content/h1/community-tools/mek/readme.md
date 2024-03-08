@@ -19,7 +19,7 @@ The **Mozz Editing Kit**, previously called the **Moses Editing Kit** or **Mo's 
 Being pre-MCC, it only supports Custom Edition and should not be used with MCC tags. However, unlike [invader](~) it does support [OpenSauce tags](~opensauce#new-tag-groups).
 
 The MEK is still used for some of its unique features:
-* [Map deprotection](~map#protected-maps).
+* [Map deprotection](~maps#protected-maps).
 * Exporting and importing [tag blocks](~tags#blocks), saving time when copying data across tags.
 
 {% alert type="danger" %}

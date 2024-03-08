@@ -7,7 +7,7 @@ By 2001's standards, the engine and asset tools were fairly innovative and power
 
 See also:
 
-* [Map loading](~map#map-loading)
+* [Map loading](~maps#map-loading)
 * [The renderer](~renderer)
 * [The physics engine](~physics-engine)
 * [AI system](~ai)

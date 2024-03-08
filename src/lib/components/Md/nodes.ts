@@ -52,17 +52,22 @@ const nodes: Partial<Record<NodeType, Schema>> = {
       let href = attributes.href;
       let title = attributes.title;
       if (href == "") href = "~";
-      if (href?.startsWith("~")) {
-        let [idTail, headingId] = href.slice(1).split("#");
-        if (idTail == "") idTail = slugify(children.map(c => renderPlaintext(ctx, c) ?? "").join(""), true);
-        if (headingId == "") headingId = undefined;
-        const {title: foundTitle, url} = ctx.resolvePage(idTail, headingId);
-        href = url;
-        title = foundTitle;
-      } else if (linkables[href]) {
-        href = linkables[href];
+      try {
+        if (href?.startsWith("~")) {
+          let [idTail, headingId] = href.slice(1).split("#");
+          if (idTail == "") idTail = slugify(children.map(c => renderPlaintext(ctx, c) ?? "").join(""), true);
+          if (headingId == "") headingId = undefined;
+          const {title: foundTitle, url} = ctx.resolvePage(idTail, headingId);
+          href = url;
+          title = foundTitle;
+        } else if (linkables[href]) {
+          href = linkables[href];
+        }
+        return new Tag("a", {...attributes, title, href}, children);
+      } catch (err) {
+        console.error(node.location);
+        throw err;
       }
-      return new Tag("a", {...attributes, title, href}, children);
     }
   },
   fence: {

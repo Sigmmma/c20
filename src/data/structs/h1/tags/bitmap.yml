@@ -325,7 +325,7 @@ type_defs:
         comments:
           en: >-
             Contains the original raw source data used to compile this bitmap tag,
-            if available. Bitmap tags which have been extracted from [cache files](~map)
+            if available. Bitmap tags which have been extracted from [cache files](~maps)
             will not have this data.
       - name: processed_pixel_data
         type: TagDataOffset

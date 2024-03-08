@@ -15,7 +15,7 @@ thanks:
   nToss: Researching offsets for profile input bindings and other fields
 ---
 
-This page documents the function and format of some of Halo's installation and profile files, excluding [maps](~map).
+This page documents the function and format of some of Halo's installation and profile files, excluding [maps](~maps).
 
 # haloce.exe
 This is the main game executable containing the bulk of the game's code.

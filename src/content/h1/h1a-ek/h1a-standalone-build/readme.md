@@ -1,6 +1,6 @@
 ---
 title: H1 Standalone
-about: 'tool:H1A-standalone'
+about: 'tool:H1-standalone'
 img: halo_tag_test.jpg
 caption: Using some `ai_render_*` and `ai_debug_*` globals
 keywords:
@@ -18,7 +18,7 @@ thanks:
 This build doesn't include network functionality but can load multiplayer scenarios and test [game modes](~game-modes). For testing singleplayer missions, it includes AI debugging code not included in other published builds of the engine. [Using custom content paths](~mod-tools#using-custom-content-paths) is supported.
 
 {% alert type="info" %}
-There can be small differences between the way a map plays in Standalone and MCC. Maps should always receive final testing as [map cache files](~map) loaded by MCC itself.
+There can be small differences between the way a map plays in Standalone and MCC. Maps should always receive final testing as [map cache files](~maps) loaded by MCC itself.
 {% /alert %}
 
 # Usage

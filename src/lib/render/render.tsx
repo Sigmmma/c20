@@ -121,6 +121,8 @@ function getAboutContent(ctx: RenderContext | undefined, front?: PageFrontMatter
         keywords.push(tag.id);
         metaboxProps.sections!.push(...getTagSections(ctx, tag));
       }
+    } else {
+      metaboxProps.title = aboutArg;
     }
     if (["tag", "tool", "resource"].includes(aboutType)) {
       metaboxProps.sections!.push(...getWorkflowSections(ctx, aboutArg));
@@ -145,7 +147,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
     resolvePage: (idTail: string, headingId?: string): PageLink => {
       const page = resolvePageGlobal(input.pageIndex, input.lang, input.pageId, idTail, headingId);
       if (!page && !input.debug) {
-        throw new Error(`Failed to resolve page ${idTail} from ${input.pageId} (${input.lang})`);
+        throw new Error(`Failed to resolve page ${idTail}${headingId ? `#${headingId}` : ""} from ${input.pageId} (${input.lang})`);
       }
       return page ?? {
         title: "[Unresolved]",

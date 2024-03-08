@@ -3,14 +3,14 @@ title: Sharing mods
 redirects:
   - /h1/guides/map-making/map-sharing
 ---
-Ready to share your mod with others? Most map files are self-contained and can be shared freely. Maps which rely on custom [resource maps](~map#resource-maps) need to be distributed with those resource maps too.
+Ready to share your mod with others? Most map files are self-contained and can be shared freely. Maps which rely on custom [resource maps](~maps#resource-maps) need to be distributed with those resource maps too.
 
 Consider releasing your source assets and tags alongside the map so others can remix it too.
 
 # Pre-release checklist
-* Have you left [enough spare tag space](~map#limits) in your map so players using other languages can avoid crashes?
+* Have you left [enough spare tag space](~maps#limits) in your map so players using other languages can avoid crashes?
 * Have you supported all intended gametypes by placing the appropriate _netgame flags_ in [Sapien](~h1a-sapien)?
-* Does your map rely on non-standard [resource maps](~map#resource-maps) which need to be included?
+* Does your map rely on non-standard [resource maps](~maps#resource-maps) which need to be included?
 
 # Steam workshop
 If you're targeting H1 for the MCC, you can use [Excession](~) to publish your mod to the Steam workshop.

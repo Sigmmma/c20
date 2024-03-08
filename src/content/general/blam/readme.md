@@ -53,7 +53,7 @@ However, you can create anything within the possibilities of custom [_tags_](~),
 
 The properties of the game world and its objects are stored in the _game state_. This is a collection of data that contains everything needed to represent the world at a given time, such as the position of objects, health of bipeds, and the execution state of script threads. It's what gets saved and loaded at checkpoints.
 
-The game state is updated in fixed time steps called _ticks_. This process is deterministic, meaning given any initial game state, advancing it by some number of ticks will always produce the same result. Objects will move the same way and AI will make the same decisions (essential for co-op networking). The settings in your tags will affect how updates happen. For example, if a [projectile](~h1/tags/object/projectile) is found to collide with a player then the damage applied will depend on the fields in its referenced [damage_effect](~h1/tags/damage_effect) tag.
+The game state is updated in fixed time steps called _ticks_. This process is deterministic, meaning given any initial game state, advancing it by some number of ticks and replaying player inputs will always produce the same result in the world simulation, important for co-op (synchronous) networking and theater mode. The changes made during ticks are called _updates_ and include physics simulation, handling player input, driving effects, and more. The data in your tags will affect how these updates happen.
 
 Finally, the audio are visuals of the game are rendered based on tag assets too.
 

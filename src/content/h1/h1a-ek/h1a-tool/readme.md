@@ -1,6 +1,6 @@
 ---
 title: H1 Tool
-about: 'tool:H1A-Tool'
+about: 'tool:H1-Tool'
 img: h1a-tool-structure.png
 caption: Importing the tutorial BSP tag from JMS format.
 keywords:
@@ -24,7 +24,7 @@ thanks:
   Kavawuvi: Warning about Tool only using marker from superhigh LOD
   Vaporeon: Explaining how invader-build treats the Jason Jones opt-out flag
 ---
-**H1A Tool** (**tool.exe**), is a [command-line](~) utility used to import [source data](~source-data) into [tags](~), and build tags into [maps](~map).
+**H1A Tool** (**tool.exe**), is a [command-line](~) utility used to import [source data](~source-data) into [tags](~), and build tags into [maps](~maps).
 
 This page covers both H1A and [HEK](~custom-edition#halo-editing-kit) versions of Tool. Its usage has generally not changed, but the new version of Tool has [many differences](~h1a-ek#tool) including more verbs, new options for existing ones, usability improvements, and the addition of the FBX to JMS/JMA asset pipeline.
 
@@ -106,7 +106,7 @@ With HEK Tool, **all images must use the _.tif_ extension** for this command to 
 Tool supports TIFF files with a [colour depth][wiki-color] of at least 8 bits per pixel, 32-bit color (8 bits per channel) being typical.
 
 ## build-cache-file
-A [scenario](~) can be built into a [map](~) using the `build-cache-file` verb. Simply provide your scenario's tag path and choose classic or remastered mode (the last two arguments are optional):
+A [scenario](~) can be built into a [map](~maps) using the `build-cache-file` verb. Simply provide your scenario's tag path and choose classic or remastered mode (the last two arguments are optional):
 
 ```cmd
 Usage: build-cache-file <scenario-name> <classic|remastered> [resource-map-usage<none|read|read_write>] [log-tag-loads]
@@ -120,7 +120,7 @@ Arguments:
 * classic|remastered - H1A Tool only. Whether or not S3D is disabled. There is no way to edit S3D files currently so only use remastered if you know what you're doing:
   * `classic` - Disables the S3D graphics engine. Users will not be able to toggle to the remastered graphics or sounds. This is intended for custom maps that don't support remastered graphics.
   * `remastered` - Enables the S3D graphics engine. Users will be able to toggle to the remastered graphics and sounds. This is intended for building maps compatible with S3D-based remastered graphics and sounds. Some HUD bitmaps will be read from S3D data files instead of tags.
-* resource-map-usage - H1A Tool only. How Tool uses [resource maps](~map#resource-maps) such a bitmaps.map and sounds.map during map packaging.
+* resource-map-usage - H1A Tool only. How Tool uses [resource maps](~maps#resource-maps) such a bitmaps.map and sounds.map during map packaging.
   * `none` - Tool will build self-contained maps and resource maps will not be used during packaging. All assets will be internalized. This is the default and also the behaviour when resource maps are missing from their expected location under the editing kit's `maps` folder.
   * `read` - Tool will allow your map to rely on tags within `bitmaps.map` and `sounds.map` if present. Any assets that don't exist will instead be internalized.
   * `read_write` - Tool will add bitmaps and sounds from the map being built into the respective resource maps if they weren't already present. [Lightmaps](~) bitmaps are still kept in the map's own cache file rather than added to `bitmaps.map`.

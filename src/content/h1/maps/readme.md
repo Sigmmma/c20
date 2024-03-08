@@ -1,5 +1,5 @@
 ---
-title: H1 map cache file
+title: Maps
 about: 'resource:h1/map'
 img: map-icon.jpg
 keywords:
@@ -22,12 +22,12 @@ redirects:
 ---
 A **map**, also known as a **cache file**, is a bundle of processed [tags](~) which can be loaded and used by [Halo](~h1). With the exception of [_resource maps_](#resource-maps), each map represents a playable campaign, multiplayer level, or main menu.
 
-Maps are found in Halo's `maps` directory and have the ".map" extension. Maps in subdirectories are not loaded by the game. H1CE mods like [Chimera](~) and [HAC2](~) store [downloaded](~sharing#halonet) maps in a separate location and force the game to load them regardless.
+Maps are found in Halo's `maps` directory and have the ".map" extension. Maps in subdirectories are not loaded by the game. H1CE mods like [Chimera](~) and [HAC2](~) store [downloaded](~sharing#halonet) maps in a separate location and allow the game to load them.
 
 Although maps work mainly the same way in each release of H1, there are a number of differences listed on this page which prevent maps from being reused across them as-is. For example, an H1CE map file cannot be used in H1PC Demo without recompiling it from tags.
 
 # Building maps from tags
-Tool's [build-cache-file](~h1a-tool#build-cache-file) verb is the official way to build a map for MCC, or for Custom Edition with the HEK, from a scenario tag. The resulting map contains all tags needed by the scenario. The unofficial [invader-build](~) tool can also build maps from tags, including targeting all platforms like Xbox, Retail, and Demo, while also validating your tags for invalid data that could cause crashes or undefined behaviour at runtime.
+Tool's [build-cache-file](~h1a-tool#build-cache-file) verb is the official way to build a map for MCC, or for Custom Edition with the HEK, from a [scenario](~) tag. The resulting map contains all tags needed by the scenario. The unofficial [invader-build](~) tool can also build maps from tags, including targeting all platforms like Xbox, Retail, and Demo, while also validating your tags for invalid data that could cause crashes or undefined behaviour at runtime.
 
 When tags are built into a map, their data is prepared for how it will be used at runtime. [Tag path references](~general/tags#tag-paths-and-references) are replaced with pre-calculated indices or pointers, [child scenarios](~scenario#child-scenarios) are merged, extra fields are calculated, and the metadata for [bitmaps](~bitmap) and [sounds](~sound) is separated from their raw data. Tool even makes some [hard-coded tag edits](~h1a-tool#hardcoded-tag-patches).
 
@@ -51,7 +51,7 @@ The type of a map is determined by the [scenario type field](~scenario#tag-field
 ## Resource maps
 Resource maps provide a way for certain tags to be stored _external_ to a playable map rather than its tags being totally self-contained. These maps themselves are not playable and have a different [header structure](#resource-map-header), but instead contain shared tags referenced by normal map files. This feature was introduced with H1PC with `bitmaps.map` and `sounds.map` to store [bitmap](~) and [sound](~) tags respectively, and `loc.map` was added in H1CE to store [font](~) and [unicode_string_list](~). MCC H1A no longer uses `loc.map` except for backwards compatibility with maps compiled for Custom Edition. H1X does not use resource maps.
 
-Tool's [build-cache-file](~h1a-tool#build-cache-file) will check resource maps for matching [tag paths](~map#resource-header-paths-offset), and the behaviour depends on the version and arguments. HEK tool will exclude any tag data from your map that it finds in a resource map, instead referencing it as external data. You can opt out of this behaviour by temporarily moving the resource maps away. H1A Tool includes a new _resource map usage_ argument which lets you either ignore (default), reference from, or add to resource maps. HEK users can instead use [invader-resource](~) and [OpenSauce](~) to create custom resource maps.
+Tool's [build-cache-file](~h1a-tool#build-cache-file) will check resource maps for matching [tag paths](~maps#resource-header-paths-offset), and the behaviour depends on the version and arguments. HEK tool will exclude any tag data from your map that it finds in a resource map, instead referencing it as external data. You can opt out of this behaviour by temporarily moving the resource maps away. H1A Tool includes a new _resource map usage_ argument which lets you either ignore (default), reference from, or add to resource maps. HEK users can instead use [invader-resource](~) and [OpenSauce](~) to create custom resource maps.
 
 Using incompatible resource maps will result in glitched textures, sounds, and text.
 
@@ -102,7 +102,7 @@ Care should be taken not to get too close to the tag limit, because even though 
 You can toubleshoot which tags are using the most memory by generating the `baggage.txt` report using the [Sapien](~h1a-sapien#game-window) hotkey: {% key "Control + Shift + B" /%}.
 
 # H1A changes
-The H1A engine makes some adjustments to the [map](~) format:
+The H1A engine makes some adjustments to the [map](~maps) format:
 
 * BSP vertices are stored outside of the BSP tag and BSP data is loaded at address `0x41448000` instead of within the tag data space.
 * The tag data address has been adjusted from `0x40440000` to `0x40448000`.

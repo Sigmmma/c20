@@ -11,18 +11,18 @@ OS_Guerilla:
     - h1_tag_editor_base
   heading: modding-with-opensauce
   similarTo:
-    - H1A-Guerilla
+    - H1-Guerilla
 OS_Tool:
   inherit:
     - OpenSauce
     - h1_tool_workflows_base
   heading: modding-with-opensauce
   similarTo:
-    - H1A-Tool
+    - H1-Tool
 OS_Sapien:
   inherit:
     - OpenSauce
     - h1_sapien_workflows_base
   heading: modding-with-opensauce
   similarTo:
-    - H1A-Sapien
+    - H1-Sapien

@@ -1072,6 +1072,7 @@ external_globals:
     tags:
       - model_collision_geometry
       - scenario_structure_bsp
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1098,6 +1099,7 @@ external_globals:
     tags:
       - model_collision_geometry
       - scenario_structure_bsp
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1108,6 +1110,8 @@ external_globals:
         and `collision_debug_height`. The test point can be frozen in place using
         `collision_debug_repeat`.
   - slug: collision_debug_flag_back_facing_surfaces
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1117,6 +1121,8 @@ external_globals:
         the test rays to collide with back-facing surfaces (those facing away
         from the camera). Defaults to `false`.
   - slug: collision_debug_flag_front_facing_surfaces
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1128,6 +1134,8 @@ external_globals:
         have no effect unless `collision_debug_flag_back_facing_surfaces`
         is also enabled.
   - slug: collision_debug_flag_ignore_breakable_surfaces
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1136,6 +1144,8 @@ external_globals:
         Toggles if collision debug rays ignore breakable surfaces.
         Defaults to `false`.
   - slug: collision_debug_flag_ignore_invisible_surfaces
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1144,6 +1154,8 @@ external_globals:
         Toggles if collision debug rays ignore invisible surfaces
         (e.g. collision-only player clipping). Defaults to `true`.
   - slug: collision_debug_flag_ignore_two_sided_surfaces
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1152,6 +1164,8 @@ external_globals:
         Toggles if collision debug rays ignore two-sided surfaces.
         Defaults to `false`.
   - slug: collision_debug_flag_media
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1159,6 +1173,8 @@ external_globals:
         ```
         Toggles if collision debug rays collide with water surfaces.
   - slug: collision_debug_flag_objects
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1169,6 +1185,8 @@ external_globals:
         ignored if any more specific object flag is enabled, such as
         `collision_debug_flag_objects_equipment`.
   - slug: collision_debug_flag_objects_bipeds
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1176,6 +1194,8 @@ external_globals:
         ```
         Toggles if collision debug rays collide with [bipeds](~biped).
   - slug: collision_debug_flag_objects_controls
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1183,6 +1203,8 @@ external_globals:
         ```
         Toggles if collision debug rays collide with [device_control](~).
   - slug: collision_debug_flag_objects_equipment
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1190,6 +1212,8 @@ external_globals:
         ```
         Toggles if collision debug rays collide with [equipment](~).
   - slug: collision_debug_flag_objects_light_fixtures
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1197,6 +1221,8 @@ external_globals:
         ```
         Toggles if collision debug rays collide with [device_light_fixture](~).
   - slug: collision_debug_flag_objects_machines
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1204,6 +1230,8 @@ external_globals:
         ```
         Toggles if collision debug rays collide with [device_machine](~).
   - slug: collision_debug_flag_objects_placeholders
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1213,6 +1241,8 @@ external_globals:
         This would require a custom placeholder to have an effect, since the
         placeholder tags that come with the HEK have no collision model.
   - slug: collision_debug_flag_objects_projectiles
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1221,6 +1251,8 @@ external_globals:
         Toggles if collision debug rays collide with [projectiles](~projectile).
         Note that most projectiles do not have a collision model.
   - slug: collision_debug_flag_objects_scenery
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1228,6 +1260,8 @@ external_globals:
         ```
         Toggles if collision debug rays collide with [scenery](~).
   - slug: collision_debug_flag_objects_vehicles
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1235,6 +1269,8 @@ external_globals:
         ```
         Toggles if collision debug rays collide with [vehicles](~vehicle).
   - slug: collision_debug_flag_objects_weapons
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1242,6 +1278,8 @@ external_globals:
         ```
         Toggles if collision debug rays collide with [weapons](~weapon).
   - slug: collision_debug_flag_skip_passthrough_bipeds
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1250,6 +1288,7 @@ external_globals:
         Unknown purpose. Does not seem to affect collision ray tests against bipeds.
   - slug: collision_debug_flag_structure
     tags:
+      - physics-engine
       - scenario_structure_bsp
     info:
       en: |-
@@ -1259,6 +1298,8 @@ external_globals:
         Toggles if collision debug rays collide with the [structure BSP](~scenario_structure_bsp).
         Collisions with [model_collision_geometry](~) BSPs are unaffected.
   - slug: collision_debug_flag_try_to_keep_location_valid
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1266,6 +1307,8 @@ external_globals:
         ```
         Unknown purpose.
   - slug: collision_debug_flag_use_vehicle_physics
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1274,6 +1317,8 @@ external_globals:
         If enabled, collision debug rays will collide with vehicle
         [physics spheres](~physics#mass-points) rather than their [model_collision_geometry](~).
   - slug: collision_debug_height
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1282,6 +1327,8 @@ external_globals:
         When and `collision_debug_features` is enabled, controls
         the height in world units of collision features. Defaults to `0.0`.
   - slug: collision_debug_length
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1295,6 +1342,7 @@ external_globals:
     tags:
       - scenario_structure_bsp
       - model_collision_geometry
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1305,6 +1353,8 @@ external_globals:
         [phantom BSP](~scenario_structure_bsp#phantom-bsp). It can be helpful to
         pair this with `collision_debug_spray`.
   - slug: collision_debug_point_x
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1316,6 +1366,8 @@ external_globals:
         enabled. In repeat mode, you are able to set this global to move
         the ray origin to any point you need. See also `collision_debug_vector_i`.
   - slug: collision_debug_point_y
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1323,6 +1375,8 @@ external_globals:
         ```
         See `collision_debug_point_x`.
   - slug: collision_debug_point_z
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1330,6 +1384,8 @@ external_globals:
         ```
         See `collision_debug_point_x`.
   - slug: collision_debug_repeat
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1342,6 +1398,7 @@ external_globals:
         with the `collision_debug_point_*` and `collision_debug_vector_*` globals.
   - slug: collision_debug_spray
     tags:
+      - physics-engine
       - model_collision_geometry
       - scenario_structure_bsp
     info:
@@ -1354,6 +1411,8 @@ external_globals:
         `collision_debug` setting, and only the destination hit markers are shown.
         Can be affected by collision flags, length, and frozen with `collision_debug_repeat`.
   - slug: collision_debug_vector_i
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1365,6 +1424,8 @@ external_globals:
         `collision_debug_repeat` is also enabled. In repeat mode, you are able
         to set this global to orient the ray as needed.
   - slug: collision_debug_vector_j
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1372,6 +1433,8 @@ external_globals:
         ```
         See `collision_debug_vector_i`.
   - slug: collision_debug_vector_k
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc
@@ -1379,6 +1442,8 @@ external_globals:
         ```
         See `collision_debug_vector_i`.
   - slug: collision_debug_width
+    tags:
+      - physics-engine
     info:
       en: |-
         ```hsc

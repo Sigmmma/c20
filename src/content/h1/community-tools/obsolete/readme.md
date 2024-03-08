@@ -31,11 +31,11 @@ Despite their age, these tools are pervasive in outdated tutorials and forum pos
 HEK+ was last updated in 2006 and is still available for download at [HaloMaps.org](http://hce.halomaps.org/index.cfm?fid=2289).
 {% /figure %}
 
-**Halo Editing Kit Plus (HEK+)** by SteelIXB (not to be confused with the official [HEK](~custom-edition#halo-editing-kit)) was a tool for [extracting tags](~map#extracting-tags-from-maps) from Halo Custom Edition maps, as well as "protecting" maps to hinder tag extraction. While it was the go-to tag extractor for a while, we now know it introduces issues to the tags it extracts, causing crashes or buggy behaviours.
+**Halo Editing Kit Plus (HEK+)** by SteelIXB (not to be confused with the official [HEK](~custom-edition#halo-editing-kit)) was a tool for [extracting tags](~maps#extracting-tags-from-maps) from Halo Custom Edition maps, as well as "protecting" maps to hinder tag extraction. While it was the go-to tag extractor for a while, we now know it introduces issues to the tags it extracts, causing crashes or buggy behaviours.
 
 Because HEK+ was widely used in the past to extract tags for inclusion in new maps, the tags in those maps can contain invalid data. For example, [weapon](~) zoom levels always extracts as 256 and sounds may be corrupted. Use the modern tag extractor [invader-extract](~) instead. Even if those tags are now extracted using [invader-extract](~) that invalid data needs to be corrected. Invader will warn you about bad tag data and you can use [invader-bludgeon](~) to help correct it.
 
-Another function of HEK+ was [map protection](~map#protected-maps). This was a form of controlled data corruption that still allows Halo to use the map, but breaks tag extractors and map editors so other modders can't use your content. These days, mappers usually expect to share and remix tags freely with attribution. [Refinery](~) has defeated this map protection scheme and can be used to extract maps protected with HEK+, but the extracted tags will be disorganized due to the loss of tag path data.
+Another function of HEK+ was [map protection](~maps#protected-maps). This was a form of controlled data corruption that still allows Halo to use the map, but breaks tag extractors and map editors so other modders can't use your content. These days, mappers usually expect to share and remix tags freely with attribution. [Refinery](~) has defeated this map protection scheme and can be used to extract maps protected with HEK+, but the extracted tags will be disorganized due to the loss of tag path data.
 
 # Plugins
 ## Blender .gbxmodel Importer
@@ -53,7 +53,7 @@ The **Blender .gbxmodel importer** by Fulsam was an add-on for Blender 2.7 to im
 SparkEdit source code is available on [GitHub](https://github.com/HaloMods/SparkEdit).
 {% /figure %}
 
-**SparkEdit** by Grenadiac was a direct [map](~) editor for H1PC. It features a 3D scenario editor where users can place and modify objects similar to [Sapien](~h1a-sapien). Custom maps created with SparkEdit were sometimes called "log mods" because modders often used the fallen log scenery to build additional platforms and structures into maps.
+**SparkEdit** by Grenadiac was a direct [map](~maps) editor for H1PC. It features a 3D scenario editor where users can place and modify objects similar to [Sapien](~h1a-sapien). Custom maps created with SparkEdit were sometimes called "log mods" because modders often used the fallen log scenery to build additional platforms and structures into maps.
 
 There is also the OSX fork **Swordedit**, by bobindashadows, Sword, Samuco. Little is known about this but it may have supported some extra features and Custom Edition maps. Source code is available on [GitHub](https://github.com/ChadSki/Swordedit).
 
@@ -64,7 +64,7 @@ A more powerful modern alternative is using [invader](~) and the official [mod t
 Feeling nostalgic? HMT is still on [HaloMaps](http://hce.halomaps.org/index.cfm?fid=725).
 {% /figure %}
 
-**Halo Map Tools (HMT)** by MonoxideC and tjc was a popular direct [map](~map) editor, tag injector, and asset extractor supporting H1X and H1PC (including PC beta and demo). Released in 2004, it was one of the community's earliest modding tools and was used to create modded map files by editing data within a map rather than compiling a map from source tags, albeit with limited support for [tags](~h1/tags). It can extract and inject textures, sounds, and models. This tool was featured in the classic book, [_The Black Art of Halo Mods_][book].
+**Halo Map Tools (HMT)** by MonoxideC and tjc was a popular direct [map](~maps) editor, tag injector, and asset extractor supporting H1X and H1PC (including PC beta and demo). Released in 2004, it was one of the community's earliest modding tools and was used to create modded map files by editing data within a map rather than compiling a map from source tags, albeit with limited support for [tags](~h1/tags). It can extract and inject textures, sounds, and models. This tool was featured in the classic book, [_The Black Art of Halo Mods_][book].
 
 As with SparkEdit, we can now use [invader](~) to reliably extract tags from maps, edit them using official tools and/or invader, and rebuild them for the same target engine.
 
@@ -106,7 +106,7 @@ The updated [H1A Tool](~h1a-tool) supports a `-noassert` flag that, with its oth
 **phantom_tool** by Conscars was a modified version of HEK [Tool](~h1a-tool) which allows importing [BSPs](~scenario_structure_bsp) and [model_collision_geometry](~) without [collision artifacts](~scenario_structure_bsp#collision-artifacts) like phantom BSP. This is done by enabling the orphaned code in Tool for the [fix-phantom-bsp flag](~h1a-tool#phantom-bsp-fix). Modders should simply use [H1A Tool](~h1a-tool) since this flag is exposed now. See the tool's [release thread](https://opencarnage.net/index.php?/topic/8286-phantom_tool-toolexe-mod-which-prevents-phantom-bsp/) for more info.
 
 ## tool_pro
-**tool_pro** was a community-modified version of the HEK's Tool which extended the [map cache file size limit](~map#map-file-size-limit) and vertex buffer beyond their defaults.
+**tool_pro** was a community-modified version of the HEK's Tool which extended the [map cache file size limit](~maps#map-file-size-limit) and vertex buffer beyond their defaults.
 
 {% alert type="danger" %}
 **Do not use tool_pro!** It was found to contain malware.
