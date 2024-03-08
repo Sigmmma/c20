@@ -20,7 +20,7 @@ redirects:
 ---
 **HaloScript** is a scripting language that H1 map designers can use to have greater control over how their map works. It is primarily used in controlling the mission structure of singleplayer maps, but can also be used to achieve certain effects in multiplayer, though AI is not synchronized.
 
-To learn HaloScript basics see our [introduction page](~general/scripting).
+To learn HaloScript basics see our [introduction page](~general/scripting). Advanced users may also be interested in the [Halo Script Preprocessor](~).
 
 # Compiling scripts into a scenario
 Scripts live in a `data\...\your_level\scripts` folder and are text files ending with `.hsc`. With the newer H1A modding tools these scripts will be automatically compiled and added to the processed [scenario](~) tag when the level is loaded with the tools or built into a map.
@@ -42,6 +42,7 @@ The script functions `begin_random`, `random_range`, and `real_random_range` use
 ```
 
 In the above example, the first expression selected by this `begin_random` will be the same. However, since each expression sleeps for a variable amount of time the subsequent expressions will appear more random.
+
 
 ## Syntax nodes
 | Constant                             | HEK | H1A |
@@ -73,7 +74,7 @@ There is a limit to the total number of declared globals in your merged scenario
 
 The tools will not compile scripts for a source file above a certain size. Most projects will not be big enough to encounter this limit. If a single source file is getting too large, you can simply move some scripts to another source file as is common with the stock scenarios which separate cinematics from mission scripts.
 
-As a last resort, you can remove comments and whitespace since they are not functional parts of the script but this will hurt the readability of your scripts. The [Halo Script Preprocessor](#extensions) can also strip comments and whitespace in the final script, while keeping them in your source file.
+As a last resort, you can remove comments and whitespace since they are not functional parts of the script but this will hurt the readability of your scripts. The [Halo Script Preprocessor](~) can help you strip comments from a source file.
 
 ## Number of source files
 | Constant                             | HEK | H1A |
@@ -147,24 +148,6 @@ There is not currently a reliable way to exactly tell when stack memory has been
 
 ## Console scripts
 Things manually entered into the console ingame also share script space with the scenario's baked in scripts. In rare circumstances (e.g. you're just on the cusp of using too much memory), a console script's memory can overflow into a scenario script's memory, causing the above mentioned issues.
-
-# Extensions
-The [Halo Script Preprocessor][hsc-pre] is effectively a super-set of Halo Script that adds support for C-like `#define` pre-processor macros. The program takes a file with macros in it, then spits out a standard HSC file. This means this program is *purely* for making writing HSC easier. Scripts using the Halo Script Preprocessor are still subject to all of the above limits.
-
-For example, the following block:
-```hsc
-#define UNIT_IN_COMBAT (= 6 (ai_command_list_status my_unit))
-
-(if UNIT_IN_COMBAT
-  (sleep 30)
-)
-```
-...becomes this:
-```hsc
-(if (= 6 (ai_command_list_status my_unit))
-  (sleep 30)
-)
-```
 
 # HSC reference
 To learn more about HSC's general syntax and execution model, see our [cross-game scripting page](~general/scripting).
@@ -272,6 +255,5 @@ Some defunct parts of HaloScript were removed in H1A MCC. This is not a complete
 [rng]: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
 [rng-seed]: https://en.wikipedia.org/wiki/Random_seed
 [stack]: http://en.wikipedia.org/wiki/Call_stack
-[hsc-pre]: http://hce.halomaps.org/index.cfm?fid=6552
 [bitfield]: https://en.wikipedia.org/wiki/Bit_field
 [cast]: https://en.wikipedia.org/wiki/Type_conversion

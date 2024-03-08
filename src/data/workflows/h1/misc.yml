@@ -5,3 +5,9 @@ WRL to OBJ converter:
   workflows:
     - from: wrl
       to: obj
+Halo Script Preprocessor:
+  page: halo-script-preprocessor
+  authors:
+    - Kornman00
+  workflows:
+    - edit: h1/hsc
