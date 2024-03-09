@@ -20,12 +20,15 @@ redirects:
 ---
 **HaloScript** is a scripting language that H1 map designers can use to have greater control over how their map works. It is primarily used in controlling the mission structure of singleplayer maps, but can also be used to achieve certain effects in multiplayer, though AI is not synchronized.
 
-To learn HaloScript basics see our [introduction page](~general/scripting). Advanced users may also be interested in the [Halo Script Preprocessor](~).
+To learn HaloScript basics see our [introduction page](~general/scripting). Reading the stock campaign scripts included with the H1A mod tools can also be a great way to learn.
 
 # Compiling scripts into a scenario
 Scripts live in a `data\...\your_level\scripts` folder and are text files ending with `.hsc`. With the newer H1A modding tools these scripts will be automatically compiled and added to the processed [scenario](~) tag when the level is loaded with the tools or built into a map.
 
 Users of the legacy HEK must instead [use Sapien](~h1a-sapien#compile-scripts) to compile scripts before they will take effect.
+
+# Extensions
+Advanced users may be interested in the [Halo Script Preprocessor](~), which allows you to use C-like preprocessor directives like `#define`. Modders targeting [OpenSauce](~) also have access to additional non-standard scripting functions, although some of these are now present in H1A.
 
 # Gotchas and limits
 ## Random functions in startup scripts
@@ -96,7 +99,7 @@ Various HS functions take [tag paths](~general/tags#tag-paths-and-references) as
 (effect_new "effects\coop teleport" teleporting_flag)
 ```
 
-These tag paths are not stored as strings at runtime, but rather as compact tag references [in the scenario](~scenario#tag-field-references).
+These tag paths are not stored as strings once compiled, but rather as compact tag references [in the scenario](~scenario#tag-field-references). This also helps [Tool](~h1a-tool) determine which tags the scenario depends on and need to be included in the built map.
 
 ## String data
 | Constant                             | HEK | H1A |
