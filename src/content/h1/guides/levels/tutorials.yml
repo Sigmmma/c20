@@ -1,0 +1,126 @@
+tutorials:
+  - name:
+      en: Halo Editing Kit official tutorial
+    description:
+      en: The official tutorial that comes with your HEK install.
+    authors: Gearbox
+    updated: "2004"
+    tags:
+      - level
+    links:
+      en: >-
+        [halomaps.org](http://hce.halomaps.org/hek/),
+        [halonet.net](http://reclaimed.halonet.net/content/tutorial/HEK_Tutorial/index.html),
+        [haloce.org](https://www.haloce.org/HEK_Tutorial/index.html),
+        [nikon.bungie.org](http://nikon.bungie.org/misc/hek_tutorial/)
+  - name:
+      en: Complete mapping tutorial
+    description:
+      en: An old, but still relevant beginners tutorial on making a map from start to finish for CE.
+    authors: LlamaJuice
+    updated: "2007"
+    tags:
+      - level
+    links:
+      en: |-
+        * Part 1 Setting up the enviroment: [YouTube](https://www.youtube.com/watch?v=3O0yHL-IzXc)
+        * Part 2 Modeling (1/3): [YouTube](https://www.youtube.com/watch?v=t_DUsUpktuA)
+        * Part 2 Modeling (2/3): [YouTube](https://www.youtube.com/watch?v=UQFI0J0cS8I)
+        * Part 2 Modeling (3/3): [YouTube](https://www.youtube.com/watch?v=h7c4yyUvOOI)
+        * Part 3 Texturing (1/3): [YouTube](https://www.youtube.com/watch?v=rUxEF2L6cuI&feature=youtu.be)
+        * Part 3 Texturing (2/3): [YouTube](https://www.youtube.com/watch?v=f-22rMaBMP8)
+        * Part 3 Texturing (3/3): [YouTube](https://www.youtube.com/watch?v=dp0FZVhvpe8)
+        * Part 4 Sapien, Tool, Guerilla (1/3): [YouTube](https://www.youtube.com/watch?v=JE9ayihOlW4)
+        * Part 4 Sapien, Tool, Guerilla (2/3): [YouTube](https://www.youtube.com/watch?v=n-TWErzSxGM)
+        * Part 4 Sapien, Tool, Guerilla (3/3): [YouTube](https://www.youtube.com/watch?v=eFWD2w-2J9g)
+  - name:
+      en: Terrain modeling tutorial
+    description:
+      en: An in-depth look at how Higuy (a Lumoria dev) models his outdoor terrain, using [3ds Max](~3dsmax).
+    authors: Higuy
+    updated: "2010"
+    tags:
+      - level
+    links:
+      en: "[YouTube](https://www.youtube.com/watch?v=finpBm_J7F0), [Vimeo](https://vimeo.com/11781231)"
+  - name:
+      en: Phantom BSP tutorial
+    description:
+      en: A simple tutorial to help you fix [invisible walls](~scenario_structure_bsp#phantom-bsp) that only block bullets and vehicles in your maps.
+    authors: Siliconmaster
+    updated: "2010"
+    tags:
+      - level
+    links:
+      en: "[YouTube](https://www.youtube.com/watch?v=Qg6Xj67tU6E), [YouTube](https://www.youtube.com/watch?v=S4fHSwJdEHo)"
+  - name:
+      en: BSP errors explanation
+    description:
+      en: An image illustrating common geometry errors encountered during [structure compilation](~h1a-tool#structure).
+    authors: "?"
+    updated: "?"
+    tags:
+      - level
+    links:
+      en: "[Imgur](https://i.imgur.com/rdoKsDn.jpg)"
+  - name:
+      en: Detail objects tutorial
+    description:
+      en: A tutorial on how to make and place [detail objects](~detail_object_collection) like little grasses and tiny rocks.
+    authors: ZexGX
+    updated: "2007"
+    tags:
+      - level
+    links:
+      en: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/detail_objects_collection/zexgx_dobc.pdf)"
+  - name:
+      en: Saving space by making portals fully coplanar
+    description:
+      en: How to stay under the [BSP](~scenario_structure_bsp) portal limit by optimizing the amount of data Halo needs to store them.
+    authors: MosesofEgypt
+    updated: "2014"
+    tags:
+      - level
+    links:
+      en: "[Imgur](https://i.imgur.com/MxYJRNM.png)"
+  - name:
+      en: Intro to water
+    description:
+      en: Explains how to make a water plane. Note that "water" is a shader from b30, but you can make your own [water material](~shader_transparent_water).
+    authors: Wildrender
+    updated: "2013"
+    tags:
+      - level
+    links:
+      en: "[Youtube](https://www.youtube.com/watch?v=PoMD6fh9Fhk)"
+  - name:
+      en: Weather poly tutorial
+    description:
+      en: This tutorial will help you make [weather polyhedra](~scenario_structure_bsp#weather-polyhedra) for your map.
+    authors: Dsalimander
+    updated: "2018"
+    tags:
+      - level
+    links:
+      en: "[Mediafire](https://www.mediafire.com/file/xdsgihdmgozhhn7/halo-weather-poly-tutorial.pdf/file)"
+  - name:
+      en: Custom lighting in 3ds Max using Aether (video version)
+    description:
+      en: A slightly less detailed than the [written tutorial](~aether#aether-tutorial-for-3ds-max), but is defenitly helpful for the people who are better at listening and watching than reading. This is an advanced topic.
+    authors: MattDratt
+    updated: "2014"
+    tags:
+      - level
+    links:
+      en: "[YouTube](https://www.youtube.com/watch?v=x4cYQFW4Pxw)"
+  - name:
+      en: Setting up OpenSauce 4.0 directional lightmaps (DLMs)
+    description:
+      en: An extensive explanation on how to set up directional lightmaps/radiosity normals in Halo CE to give your levels more visual depth. This is an advanced topic.
+    authors: The [OpenSauce](~) team
+    updated: "2015"
+    tags:
+      - level
+    links:
+      en: |-
+        [OpenSauce Bitbucket Wiki (archive.org)](http://web.archive.org/web/20200701041640/https://bitbucket.org/KornnerStudios/opensauce-release/wiki/Halo1/Doc_Halo1_DirectionalLightmaps)

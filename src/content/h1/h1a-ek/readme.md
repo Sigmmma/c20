@@ -1,6 +1,6 @@
 ---
 title: H1 Editing Kit
-about: 'tool:H1A-EK'
+about: 'tool:H1-EK'
 img: h1a-ek.jpg
 caption: >-
   [Sapien](~h1a-sapien), [Guerilla](~h1a-guerilla), and [Tool](~h1a-tool) have

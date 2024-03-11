@@ -1837,6 +1837,8 @@ external_globals:
         When enabled, toggles if debug information is visible on objects
         (such as bounding sphere and collision models). Individual debug
         features can be toggled with the `debug_objects_*` commands.
+        In H1A this now has `debug_objects_root_node` enabled by default; turn
+        it off if you don't want the orange text.
   - slug: debug_objects_biped_autoaim_pills
     tags:
       - object
@@ -1846,7 +1848,7 @@ external_globals:
         (debug_objects_biped_autoaim_pills [boolean])
         ```
         When `debug_objects` is enabled, displays
-        [biped autoaim pills](~biped#physics-and-autoaim-pills) in red.
+        [biped autoaim pills](~biped#autoaim-pill) in red.
   - slug: debug_objects_biped_messages
     info:
       en: |-
@@ -1862,7 +1864,7 @@ external_globals:
         (debug_objects_biped_physics_pills [boolean])
         ```
         When `debug_objects` is enabled, displays
-        [biped physics pills](~biped#physics-and-autoaim-pills) in white.
+        [biped physics pills](~biped#physics-pill) in white.
   - slug: debug_objects_bounding_spheres
     tags:
       - object
@@ -2444,6 +2446,22 @@ external_globals:
         ```hsc
         (freeze_flying_camera)
         ```
+  - slug: game_paused
+    info:
+      en: |-
+        ```hsc
+        (game_paused [boolean])
+        ```
+        Pauses the game world simulation. Backported from later titles for H1A.
+  - slug: game_speed_value
+    info:
+      en: |-
+        ```hsc
+        (game_speed_value [real])
+        ```
+        Sets the speed of the game simulation, with 1.0 being the default rate.
+        Rates above 20 should be avoided. This global is new to H1A and should
+        be used in place of the `game_speed` function.
   - slug: global_connection_dont_timeout
     info:
       en: |-
@@ -2680,8 +2698,9 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (player_magnetism)
+        (player_magnetism [boolean])
         ```
+        Enables or disables the [magnetism aim assist](~weapon#aim-assist) for controllers.
   - slug: player_spawn_count
     info:
       en: |-

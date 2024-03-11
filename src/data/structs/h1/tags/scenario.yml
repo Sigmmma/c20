@@ -1362,11 +1362,10 @@ type_defs:
         type: ScenarioSquadAttacking
       - name: pursuing
         type: ScenarioSquadAttacking
-        meta:
-          unused: true
+        # meta:
+        #   unused: true
         comments:
-          en: >
-            AIs never use these firing positions; this field can be left blank.
+          en: While game code _does_ reference these, it's not known how and when they're used.
       - type: pad
         size: 4
       - type: pad

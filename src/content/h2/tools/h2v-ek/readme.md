@@ -12,7 +12,7 @@ keywords:
   - h2ek
 ---
 {% alert type="danger" %}
-After installing the H2V-EK, Windows users must [prevent the Virtual Store from interfering with it](~tips#windows-virtual-store).
+After installing the H2V-EK, Windows users must [prevent the Virtual Store from interfering with it](~custom-edition#installation).
 {% /alert %}
 The **Halo 2 Editing Kit**, or **Halo 2 Vista Editing Kit (H2V-EK)** as it's referred to on this wiki to disambiguate it from the newer [H2-EK](~h2-ek), is the official suite of modding tools released by Hired Gun alongside the [Halo 2 Vista](~h2) port in 2007.
 

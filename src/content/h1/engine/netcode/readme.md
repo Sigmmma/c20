@@ -17,7 +17,7 @@ Weapons with homing projectiles and projectiles which can attach (e.g. sticky gr
 
 ## Known issues and limitations
 * AI characters do **not** synchronize in Halo's netcode, only players. Bipeds which are placed in a map will appear duplicated for clients. Although early flights of MCC H1 synchronized bipeds in multiplayer, this feature was removed in the released version.
-* The state of script-controlled [device_machine](~) objects is not synchronized, unless complex [synchronization workarounds](~tips#multiplayer-synchronization) are used.
+* The state of script-controlled [device_machine](~) objects is not synchronized, unless complex [synchronization workarounds](~synchronization) are used.
 * Very small damage values (exact threshold unknown) do not seem to be synchronized -- for example, a player damage of 0.0001 will cause descoping in singleplayer but not multiplayer.
 * Only player velocity is not synchronized, often causing desyncs when ejected from vehicles, pushed by explosions, or stunned by certain [damage_effect](~).
 * Grenades are improperly synchronized when players die during the throwing animation -- the grenade will not appear to any clients, but will still explode in place and cause damage.

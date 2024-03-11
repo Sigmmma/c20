@@ -14,7 +14,7 @@ type_defs:
       - name: sneak_uncovering_target
       - name: sneak_uncovering_pursuit_position
       - name: unused
-      - name: shoot_at_target_s_last_location
+      - name: shoot_at_targets_last_location
         comments:
           en: >
             When no target is visible, briefly shoot at where the target was last seen.
@@ -77,34 +77,53 @@ type_defs:
     size: 2
     options:
       - name: elite
+        comments:
+          en: Uses the [elite](#actor-type-definitions-elite) actor type definition.
       - name: jackal
+        comments:
+          en: Uses the [jackal](#actor-type-definitions-jackal) actor type definition.
       - name: grunt
+        comments:
+          en: Uses the [grunt](#actor-type-definitions-grunt) actor type definition.
       - name: hunter
+        comments:
+          en: Uses the [hunter](#actor-type-definitions-hunter) actor type definition.
       - name: engineer
+        comments:
+          en: Uses the [engineer](#actor-type-definitions-engineer) actor type definition.
       - name: assassin
         comments:
-          en: >
-            Same as Elite.
+          en: Uses the [elite](#actor-type-definitions-elite) actor type definition (duplicate).
       - name: player
+        comments:
+          en: Uses the [marine](#actor-type-definitions-marine) actor type definition (duplicate).
       - name: marine
         comments:
-          en: >
-            Same as Player. Units with this actor type prefer to group together.
+          en: Uses the [marine](#actor-type-definitions-marine) actor type definition.
       - name: crew
+        comments:
+          en: Uses the [crew](#actor-type-definitions-crew) actor type definition.
       - name: combat_form
+        comments:
+          en: Uses the [flood](#actor-type-definitions-flood) actor type definition.
       - name: infection_form
+        comments:
+          en: Uses the [infection](#actor-type-definitions-infection) actor type definition.
       - name: carrier_form
+        comments:
+          en: Uses the [flood carrier](#actor-type-definitions-flood-carrier) actor type definition.
       - name: monitor
+        comments:
+          en: Uses the [sentinel](#actor-type-definitions-sentinel) actor type definition (duplicate).
       - name: sentinel
         comments:
-          en: >
-            Same as Monitor. This actor type will not throw grenades even if the
-            unit has the animations and stimulus for it.
+          en: Uses the [sentinel](#actor-type-definitions-sentinel) actor type definition.
       - name: none
+        comments:
+          en: Uses the [grunt](#actor-type-definitions-grunt) actor type definition.
       - name: mounted_weapon
-    comments:
-      en: >
-        Enables or disables some behaviours (e.g, combat_form can never use grenades).
+        comments:
+          en: Uses the [mounted_weapon](#actor-type-definitions-mounted-weapon) actor type definition.
   ActorUnreachableDangerTrigger:
     class: enum
     size: 2
@@ -148,6 +167,10 @@ type_defs:
         size: 12
       - name: type
         type: ActorType
+        comments:
+          en: |-
+            This field acts as an index into an [actor type definitions](#actor-type-definitions)
+            array where hardcoded actor behaviours are defined.
       - type: pad
         size: 2
       - name: max_vision_distance

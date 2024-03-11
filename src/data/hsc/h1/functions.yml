@@ -411,7 +411,8 @@ functions:
         ```hsc
         (<void> ai_allegiance <team> <team>)
         ```
-        Creates an allegiance between two teams
+        Creates an allegiance between two teams. The engine supports at most
+        8 allegiances at a time.
   - slug: ai_allegiance_broken
     info:
       en: >-
@@ -2397,7 +2398,9 @@ functions:
         (<void> game_speed <real>)
         (game_speed 0.5)
         ```
-        Changes the game speed
+        Changes the game speed. Values above 20 are likley to be uncontrollable.
+        This function doesn't have an effect in H1A but you can now use the
+        `game_paused` and `game_speed_value` globals instead.
   - slug: game_time
     info:
       en: |-

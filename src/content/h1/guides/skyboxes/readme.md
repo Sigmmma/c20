@@ -378,7 +378,7 @@ Because we've modified the Blender scene we must [export the JMS](#exporting-the
 
 # Advanced topics
 ## Animation
-The sky model can be animated using overlay (JMO) animations. The x10 scenario use a subtle sky animation this to make the Pillar of Autumn appear to be turning in space.
+The sky model can be animated using overlay (JMO) animations. The x10 scenario uses this to make the Pillar of Autumn appear to be turning in space.
 
 1. With the armature in edit mode, use _Add > Single Bone_ to include new bones in the scene, which you would name something like `frame moon`.
 2. Parent the new bone under `frame sky` by first selecting the new bone, then `frame sky` while holding {% key "Ctrl" /%}, and selecting _Armature > Parent > Make > Keep Offset_ (also available via {% key "Ctrl+P" /%}).

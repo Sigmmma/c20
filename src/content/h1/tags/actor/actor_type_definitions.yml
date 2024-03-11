@@ -1,0 +1,199 @@
+e_actor_pursuit_settings:
+  - name: always
+    value: 0
+    info: |-
+      Unknown
+  - name: not_when_group
+    value: 1
+    info: |-
+      Unknown
+  - name: never
+    value: 2
+    info: |-
+      Unknown
+      
+e_races:
+  - name: none
+    value: 0
+  - name: human
+    value: 2
+  - name: covenant
+    value: 4
+  - name: flood combat
+    value: 8
+  - name: flood carrier
+    value: 16
+  - name: flood infection
+    value: 32
+  - name: sentinel
+    value: 64
+
+actor_type_definitions:
+  # 0a32a7c
+  - name: elite
+    race: covenant
+    when_to_search_at_target: always
+    when_to_pursue: not_when_group
+    when_to_search_pursuit: not_when_group
+    pursuit_controller: '`true`'
+    swarm: '`false`'
+    initialize: '`NULL`'
+    decide_action: ...
+    swarm_control: '`NULL`'
+    swarm_aim_jump: '`NULL`'
+    description: |-
+      ...
+  # 00a32cac
+  - name: jackal
+    race: covenant
+    when_to_search_at_target: never
+    when_to_pursue: always
+    when_to_search_pursuit: never
+    pursuit_controller: '`false`'
+    swarm: '`false`'
+    initialize: '`NULL`'
+    decide_action: ...
+    swarm_control: '`NULL`'
+    swarm_aim_jump: '`NULL`'
+    description: |-
+      ...
+  # 00a32b5c
+  - name: grunt
+    race: covenant
+    when_to_search_at_target: always
+    when_to_pursue: always
+    when_to_search_pursuit: always
+    pursuit_controller: '`false`'
+    swarm: '`false`'
+    initialize: '`NULL`'
+    decide_action: ...
+    swarm_control: '`NULL`'
+    swarm_aim_jump: '`NULL`'
+    description: |-
+      Flees when Elite is killed.
+  # 00a32b7c
+  - name: hunter
+    race: covenant
+    when_to_search_at_target: always
+    when_to_pursue: not_when_group
+    when_to_search_pursuit: not_when_group
+    pursuit_controller: '`true`'
+    swarm: '`false`'
+    initialize: '`NULL`'
+    decide_action: ...
+    swarm_control: '`NULL`'
+    swarm_aim_jump: '`NULL`'
+    description: |-
+      ...
+  # 00a32a9c
+  - name: engineer
+    race: covenant
+    when_to_search_at_target: always
+    when_to_pursue: always
+    when_to_search_pursuit: always
+    pursuit_controller: '`false`'
+    swarm: '`false`'
+    initialize: '`NULL`'
+    decide_action: ...
+    swarm_control: '`NULL`'
+    swarm_aim_jump: '`NULL`'
+    description: |-
+      ...
+  # 00a32ccc
+  - name: marine
+    race: human
+    when_to_search_at_target: never
+    when_to_pursue: never
+    when_to_search_pursuit: never
+    pursuit_controller: '`false`'
+    swarm: '`false`'
+    initialize: '`NULL`'
+    decide_action: ...
+    swarm_control: '`NULL`'
+    swarm_aim_jump: '`NULL`'
+    description: |-
+      Prefers to group together.
+  # 00a32a5c
+  - name: crew
+    race: human
+    when_to_search_at_target: always
+    when_to_pursue: always
+    when_to_search_pursuit: always
+    pursuit_controller: '`false`'
+    swarm: '`false`'
+    initialize: '`NULL`'
+    decide_action: ...
+    swarm_control: '`NULL`'
+    swarm_aim_jump: '`NULL`'
+    description: |-
+      ...
+  # 00a32abc
+  - name: flood
+    race: flood combat
+    when_to_search_at_target: always
+    when_to_pursue: always
+    when_to_search_pursuit: always
+    pursuit_controller: '`true`'
+    swarm: '`false`'
+    initialize: '`NULL`'
+    decide_action: ...
+    swarm_control: '`NULL`'
+    swarm_aim_jump: '`NULL`'
+    description: |-
+      Cannot throw grenades.
+  # 00a32c64
+  - name: infection
+    race: flood infection
+    when_to_search_at_target: never
+    when_to_pursue: never
+    when_to_search_pursuit: never
+    pursuit_controller: '`false`'
+    swarm: '`true`'
+    initialize: '`NULL`'
+    decide_action: ...
+    swarm_control: ...
+    swarm_aim_jump: ...
+    description: |-
+      ...
+  # 00a32a2c
+  - name: flood carrier
+    race: flood carrier
+    when_to_search_at_target: always
+    when_to_pursue: never
+    when_to_search_pursuit: never
+    pursuit_controller: '`true`'
+    swarm: '`false`'
+    initialize: '`NULL`'
+    decide_action: ...
+    swarm_control: '`NULL`'
+    swarm_aim_jump: '`NULL`'
+    description: |-
+      ...
+  # 00a32d1c
+  - name: sentinel
+    race: sentinel
+    when_to_search_at_target: always
+    when_to_pursue: always
+    when_to_search_pursuit: always
+    pursuit_controller: '`false`'
+    swarm: '`false`'
+    initialize: '`NULL`'
+    decide_action: ...
+    swarm_control: '`NULL`'
+    swarm_aim_jump: '`NULL`'
+    description: |-
+      Cannot throw grenades.
+  # 00a32cec
+  - name: mounted_weapon
+    race: none
+    when_to_search_at_target: never
+    when_to_pursue: never
+    when_to_search_pursuit: never
+    pursuit_controller: '`false`'
+    swarm: '`false`'
+    initialize: '`NULL`'
+    decide_action: ...
+    swarm_control: '`NULL`'
+    swarm_aim_jump: '`NULL`'
+    description: |-
+      ...

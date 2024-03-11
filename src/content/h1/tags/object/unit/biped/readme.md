@@ -11,18 +11,26 @@ thanks:
 
 On its own, a biped will not _do_ anything unless being controlled by a player or [actor_variant](~). This tag defines key physical characteristics like height, speed, collision, and appearance.
 
-# Physics and autoaim pills
-Biped bodies are approximated with "pills" for physics and autoaim, rather than using their [collision model](~model_collision_geometry). These [simple capsule shapes][wiki-capsule] are sufficient for these purposes and efficient to test against. Pills are parameterized by radius/width and height.
+# Physics pill
+For performance, biped bodies are approximated by vertically-oriented [capsule/pill shapes][wiki-capsule] for their physical interactions with [model_collision_geometry](~) (scenery, devices, vehicles), the [BSP](~scenario_structure_bsp), and with other biped physics pills. Note that the physics pill is _not_ used as the "hitbox" for projectiles; a biped's [model_collision_geometry](~) is tested for projectile ray casts.
 
-**Physics pills** are how the biped collides with [model_collision_geometry](~), the [BSP](~scenario_structure_bsp), or with other biped physics pills. It is _not_ used as the "hitbox" for projectiles. Its width depend on this tag's [collision radius](#tag-field-collision-radius). The height depends on [standing](#tag-field-standing-collision-height) and [crouching](#tag-field-standing-collision-height) collision heights only if the biped [uses player physics](#tag-field-biped-flags-uses-player-physics), and otherwise has 0 height (making the pill a sphere).
+Its width depend on this tag's [collision radius](#tag-field-collision-radius). The height depends on [standing](#tag-field-standing-collision-height) and [crouching](#tag-field-standing-collision-height) collision heights only if the biped [uses player physics](#tag-field-biped-flags-uses-player-physics), and otherwise has 0 height (making the pill a sphere).
 
-**Autoaim pills** are part of the autoaim system which causes [projectiles](~projectile) to fire towards a biped when the pill is with in a weapon's [autoaim angle](~weapon#tag-field-autoaim-angle) and [range](~weapon#tag-field-autoaim-range). The width of this pill is controlled solely by [this tag](#tag-field-autoaim-width), however its height depends:
+You can enable `debug_objects` and `debug_objects_biped_physics_pills` to visualize physics pills.
+
+# Autoaim pill
+{% figure src="pills.jpg" %}
+Two Grunts, the player, and an Elite shown with just their [node](~gbxmodel#nodes) skeletons, physics pills (white), and autoaim pills (red).
+{% /figure %}
+
+Autoaim pills are part of the [autoaim system](~weapon#autoaim) which causes [projectiles](~projectile) to fire towards a biped when the pill is with in a weapon's [autoaim angle](~weapon#tag-field-autoaim-angle) and [range](~weapon#tag-field-autoaim-range). The width of this pill is controlled [within this tag](#tag-field-autoaim-width), but its height and placement depends on the model:
 
 * If the biped has [head](~biped#tag-field-head-model-node-index) and [pelvis](~biped#tag-field-pelvis-model-node-index) nodes...
   * If the [spherical flag](#tag-field-biped-flags-spherical) is set, then the pill is a sphere at the midpoint between head and pelvis.
   * Otherwise, the capsule spans between the head and pelvis nodes.
 * If the biped _doesn't_ have both of these nodes, the autoaim pill is vertically-aligned and its height is a fraction of the physics pill's. It will be slightly elevated from the physics pill's base.
 
+You can enable `debug_objects` and `debug_objects_biped_autoaim_pills` to visualize autoaim pills.
 
 [wiki-capsule]: https://en.wikipedia.org/wiki/Capsule_(geometry)
 

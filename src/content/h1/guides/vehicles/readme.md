@@ -16,3 +16,17 @@ Vehicles can be made to drive up steep walls by adjusting their [physics](~) tag
 
 * The **ground friction** value must be sufficiently high (e.g. 0.4) so that the vehicle does not slip, but not too high or else it will be unable to drive.
 * The closer that **ground normals** **k1** and **k0** are set to 1.0 and -1.0 respectively, the steeper the vehicle will be able to climb without powered mass points being disabled. For example, setting k1 to 0.999998 and k0 to -0.999998 results in a vehicle being able to climb nearly vertical surfaces.
+
+# External tutorials
+{% dataTable
+  dataPath="tutorials/tutorials"
+  rowSortKey="updated"
+  rowSortReverse=true
+  columns=[
+    {name: "Name", key: "name/en"},
+    {name: "Description", key: "description/en"},
+    {name: "Author(s)", key: "authors"},
+    {name: "Last updated", key: "updated"},
+    {name: "Links", key: "links/en"}
+  ]
+/%}

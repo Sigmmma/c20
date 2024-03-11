@@ -63,4 +63,4 @@ debug_objects 1
 ```
 
 # Compatibility
-Windows users have experienced saving issues related to the Virtual Store. Ensure you have the [right permissions](~tips#windows-virtual-store) before editing tags.
+Windows users have experienced saving issues related to the Virtual Store. Ensure you have the [right permissions](~custom-edition#installation) before editing tags.

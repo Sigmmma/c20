@@ -1,5 +1,5 @@
 ---
-title: Levels
+title: Level creation
 thanks:
   General_101: Writing this page.
 childOrder:
@@ -52,3 +52,19 @@ Please refer to the original Custom Edition documentation for a tutorial on leve
 
 # Child pages
 {% childList /%}
+
+# External tutorials
+{% dataTable
+  dataPath="tutorials/tutorials"
+  rowFilterKey="tags"
+  rowFilterExpr="level"
+  rowSortKey="updated"
+  rowSortReverse=true
+  columns=[
+    {name: "Name", key: "name/en"},
+    {name: "Description", key: "description/en"},
+    {name: "Author(s)", key: "authors"},
+    {name: "Last updated", key: "updated"},
+    {name: "Links", key: "links/en"}
+  ]
+/%}

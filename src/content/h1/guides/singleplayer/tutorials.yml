@@ -1,0 +1,105 @@
+tutorials:
+  - name:
+      en: Dropship tutorial - custom animations
+    description:
+      en: >-
+        A tutorial that teaches you very basic animation, combined with how you
+        can make a dropship fly into the level without having it use a recording
+        of you flying it in. Also teaches you how to load a dropship with enemies
+        and how to make it open and close it's doors.
+    authors: MattDratt
+    updated: "2016"
+    tags:
+      - ai-scripting
+    links: 
+      en: "[YouTube](https://www.youtube.com/watch?v=6hTJ_6sWSeU)"
+  - name:
+      en: AI that follow the player
+    description:
+      en: >-
+        A tutorial that teaches you how to set up AI that follow you. You'll
+        also learn how to make firing positions and some basic scripting to
+        make it work.
+    authors: MattDratt
+    updated: "2014"
+    tags:
+      - ai-scripting
+    links: 
+      en: "[YouTube](https://www.youtube.com/watch?v=uWtwOHCB23Q)"
+  - name:
+      en: Setting up a singleplayer map and scripts
+    description:
+      en: "This is a starting tutorial for those who are getting into SP mapping for Halo: Custom Edition."
+    authors: MattDratt
+    updated: "2013"
+    tags:
+      - ai-scripting
+    links: 
+      en: "[YouTube](https://www.youtube.com/watch?v=UXa_ZPRehas)"
+  - name:
+      en: OpenSauce scripting interfaces
+    description:
+      en: Describes the scripting capabilities special to [OpenSauce](~).
+    authors: The OpenSauce Team
+    updated: "2015"
+    tags:
+      - ai-scripting
+    links:
+      en: |-
+        [OpenSauce Bitbucket Wiki](http://web.archive.org/web/20200701041643/https://bitbucket.org/KornnerStudios/opensauce-release/wiki/Halo1/Doc_Halo1_NewScriptInterfaces)
+  - name:
+      en: A few scripting tutorials
+    description:
+      en: A few tutorials by the person considered the master of CE scripting.
+    authors: Kirby_422
+    updated: "2012"
+    tags:
+      - ai-scripting
+    links: 
+      en: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/kirby_scripting/scripting_tuts.html)"
+  - name:
+      en: The Halo CE campaign scripts
+    description:
+      en: With these you can see how Bungie scripted things, if you want to compile them in a scenario though you'll have to rename their extension to _.hsc_.
+    authors: Z-team
+    updated: N/A
+    tags:
+      - ai-scripting
+    links: 
+      en: >-
+        [GitHub](https://github.com/Dwood15/HaloScripts/),
+        [halonet.net](http://reclaimed.halonet.net/content/campaign_and_ui_scripts/Zteam-Campaign_and_UI_Scripts.zip)
+  - name:
+      en: Using TSC:E and SPV3 scripting features in your own map
+    description:
+      en: A tutorial that goes over a lot of things to help you set up the TSC:E abilities and vehicle scripts.
+    authors: FtDSpartn
+    updated: "2015"
+    tags:
+      - ai-scripting
+    links: 
+      en: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/tsce_scripting/tsce_scripting_tuts.html)"
+  - name:
+      en: Making Marine AI more agressive and useful
+    description:
+      en: Allowing Marines to fire more aggressively at close range.
+    authors: Rododo
+    updated: "2014"
+    tags:
+      - ai-scripting
+    links: 
+      en: >-
+        [Imgur](https://i.imgur.com/repWwv7.png),
+        [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jUjNMUkFObzNhdGc/view)
+  - name:
+      en: Scripting tutorial
+    description:
+      en: A deep dive into the value types, control flow, and script types of [HaloScript](~scripting).
+    authors: Nickster5000
+    updated: "2017"
+    tags:
+      - ai-scripting
+    links: 
+      en: >-
+        [Google Drive](https://drive.google.com/file/d/0B1LjERLq599jMkZDWk1HZS1jQUE/view),
+        [Mega.nz](https://mega.nz/#!xMFX1LwT!vkWp5m-w-lRaf3kEPo2f4zAQ4FNfOFyj-MKuk5jATv8)

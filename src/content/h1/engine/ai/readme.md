@@ -11,6 +11,7 @@ thanks:
   gbMichelle: >-
     Discovering max pathfinding distance, following behaviour with firing
     positions
+  Conscars: Reversing AI action names
 ---
 {% figure src="ai.jpg" %}
 AI firing positions and sight lines are shown for the b30 beach assault.
@@ -24,7 +25,27 @@ Halo's game design goals heavily influenced the AI system; [actors](~actor) are 
 AI have an _individual knowledge model_ with "real" perception. They do not have complete knowledge of the battlefield but rather remember key objects and rely on cues like visibility and sound to track their enemy. This allows the AI to be fooled and act more believably.
 
 # Behaviour
-According to quotes from Halo's AI programmer _Chris Butcher_, certain AI behaviours are triggered by hard-coded conditions. For example, the Grunt behaviour of fleeing when their Elite is killed is hard-coded, likely based on the [actor type](~actor#tag-field-type). Marines have an individual behaviour to stand close, but not too close, to other Marines, giving the illusion of them working in groups.
+According to quotes from Halo's AI programmer _Chris Butcher_, certain AI behaviours are triggered by hard-coded conditions. For example, the Grunt behaviour of fleeing when their Elite is killed is hard-coded, likely based on the [actor type definition](~actor#actor-type-definitions). Marines have an individual behaviour to stand close, but not too close, to other Marines, giving the illusion of them working in groups.
+
+## Actions
+AI decide between 14 actions. The rules for selecting these and what behaviours belong to each action are not well understood.
+
+| Action index | Action name |
+|--------------|-------------|
+| `0`          | none        |
+| `1`          | sleep       |
+| `2`          | alert       |
+| `3`          | fight       |
+| `4`          | flee        |
+| `5`          | uncover     |
+| `6`          | guard       |
+| `7`          | search      |
+| `8`          | wait        |
+| `9`          | vehicle     |
+| `10`         | charge      |
+| `11`         | obey        |
+| `12`         | converse    |
+| `13`         | avoid       |
 
 # Encounters and squads
 In Halo1, AIs were grouped into encounters, which also contained a set of firing positions. Various subsets of this set were made available to the AI depending on the state of their encounter (have many of their allies been killed? Are they winning? Are they losing? This was a mapping that was created by a designer).
