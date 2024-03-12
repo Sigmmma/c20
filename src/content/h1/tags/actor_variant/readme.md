@@ -35,7 +35,7 @@ _Firing patterns_ modify the burst geometry and ranged combat values depending o
 The firing pattern multipliers (starting at _new target burst duration_) modify the default burst geometry and ranged combat values only when their value is non-zero.
 
 # Change colors
-The change colors block of the tag can be used to change armor color, which relies on the bipeds model's [shader_model](~) shader(s) having a _multipurpose map_ with a color change mask. Using the _change colors_ block of this tag overrides the biped's color change permutations.
+The [_change colors_ block](#tag-field-change-colors) of this tag can be used to change armor color, which relies on the bipeds model's [shader_model](~) shader(s) having a _multipurpose map_ with a [color change mask](~shader_model#change-color). Using the _change colors_ block of this tag overrides the [biped's color change permutations](~object#tag-field-change-colors).
 
 Halo randomly interpolates between the upper and lower bound colors, in either RGB space or HSV if the _interpolate color in HSV_ flag is checked. This gives the Flood their varying skin tones, for example.
 

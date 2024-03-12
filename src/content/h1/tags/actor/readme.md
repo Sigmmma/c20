@@ -1,6 +1,5 @@
 ---
 title: actor
-stub: true
 about: 'tag:h1/actor'
 thanks:
   justinpyne: Explaining the _friend avoid dist_ field
@@ -8,12 +7,12 @@ thanks:
   MosesOfEgypt: Tag structure research
   Vennobennu: Field documentation
   gbMichelle: Reversing actor type aliases
-  Elefant: Researching sentinel actor type behaviour
+  Elefant: Researching sentinel and grunt actor type behaviour
   Kornman: Providing actor type definition structure
   Conscars: Reversing actor type definitions
   zatarita: Reversing actor type definitions
 ---
-...
+**Actor** definitions configure core AI behaviours, including which decisions they make and how, irrespective of the character's appearance or rank-specific alterations (which is what [actor_variant](~) is for).
 
 # Actor type definitions
 There are 16 [actor types](#tag-field-type). Each actor type maps to one of 13 unique _actor type definitions_ which are hardcoded and contain a combination of basic settings and references to game code implementing the particular behaviours of that actor type. Some actor types use the same definition, like monitor and sentinel.

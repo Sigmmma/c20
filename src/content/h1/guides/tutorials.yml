@@ -26,17 +26,6 @@ tutorials:
         - Refinery introduction | Extracting tags from protected maps: [YouTube](https://www.youtube.com/watch?v=iGEjtX4u9FI)
         - Mozzarilla introduction | Making a basic custom weapon: [YouTube](https://www.youtube.com/watch?v=1UcWrZWeTYk)
   - name:
-      en: How to easily share tags/assets
-    description:
-      en: How to easily share [tags](~) and assets using [Refinery](~).
-    authors: gbMichelle
-    updated: "2019"
-    tags:
-      - beginner
-      - mek
-    links:
-      en: "[YouTube](https://www.youtube.com/watch?v=u2AQny-3mTs)"
-  - name:
       en: HUD tutorial
     description:
       en: A tutorial that covers a lot of the basics about creating a HUD for Halo CE. While this covers a lot, it does not cover everything.
@@ -276,28 +265,6 @@ tutorials:
       - other
     links:
       en: "[OpenCarnage](https://opencarnage.net/index.php?/topic/6249-tag-manipulation-in-sapp/)"
-  - name:
-      en: World units explanation
-    description:
-      en: An explanation of the size of [world units](~scale) and their equivalents.
-    authors: Ki11erFTW
-    updated: "?"
-    tags:
-      - other
-    links:
-      en: >-
-        [Imgur](https://i.imgur.com/t38bFOy.png)
-  - name:
-      en: Colorchange mask explanation GIF
-    description:
-      en: An animated representation of how color change with [shader_model multipurpose maps works](~shader_model#multipurpose-map).
-    authors: Giraffe
-    updated: "?"
-    tags:
-      - other
-    links:
-      en: >-
-        [Imgur](https://i.imgur.com/NaDSnKP.gifv)
   - name:
       en: Shader transparent rundown
     description:

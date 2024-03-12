@@ -675,14 +675,18 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (ai_render_props)
+        (ai_render_props [boolean])
         ```
+        Toggles the display of how many [props](~ai#props) each actor has in green.
+        If `ai_render_props_web` is enabled this switches from a total to
+        being split out by type, e.g. friend or enemy.
   - slug: ai_render_props_no_friends
     info:
       en: |-
         ```hsc
-        (ai_render_props_no_friends)
+        (ai_render_props_no_friends [boolean])
         ```
+        Hides prop lines for friends if enabled, which can make seeing enemy props easier.
   - slug: ai_render_props_target_weight
     info:
       en: |-
@@ -705,8 +709,9 @@ external_globals:
     info:
       en: |-
         ```hsc
-        (ai_render_props_web)
+        (ai_render_props_web [boolean])
         ```
+        Toggles the display of [props](~ai#props) as a web of lines.
   - slug: ai_render_pursuit
     info:
       en: |-
@@ -2261,7 +2266,7 @@ external_globals:
         ```hsc
         (debug_structure [boolean])
         ```
-        When enbled, all [scenario_structure_bsp](~) collision surfaces will be
+        When enabled, all [scenario_structure_bsp](~) collision surfaces will be
         rendered with green outlines. A red bounding box surrounds renderable
         surfaces.
   - slug: debug_structure_automatic

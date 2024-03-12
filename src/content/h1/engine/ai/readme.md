@@ -24,6 +24,9 @@ Halo's game design goals heavily influenced the AI system; [actors](~actor) are 
 # Knowledge model
 AI have an _individual knowledge model_ with "real" perception. They do not have complete knowledge of the battlefield but rather remember key objects and rely on cues like visibility and sound to track their enemy. This allows the AI to be fooled and act more believably.
 
+## Props
+AI maintain a list of tracked units called _props_, which are classified as into a few types like friends and enemies. The game state stores a pool of up to [768 props](~game-state#datum-arrays) to be shared among actors. Little is known about how props are used but they likely help with behaviours like [_avoid friends line of fire_](~actor#tag-field-flags-avoid-friends-line-of-fire).
+
 # Behaviour
 According to quotes from Halo's AI programmer _Chris Butcher_, certain AI behaviours are triggered by hard-coded conditions. For example, the Grunt behaviour of fleeing when their Elite is killed is hard-coded, likely based on the [actor type definition](~actor#actor-type-definitions). Marines have an individual behaviour to stand close, but not too close, to other Marines, giving the illusion of them working in groups.
 

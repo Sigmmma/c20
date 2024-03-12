@@ -12,7 +12,7 @@ thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
 ---
-Bitmaps are used for visuals that need textures or sprites like environments, objects, effects, menus, etc.
+**Bitmaps** tags store textures used for the environment, objects, cube maps, sprites, effects, menus, and more. Don't be confused by the name; this is not a `.bmp` file and it cannot be directly opened in [image editing software](~art-tools#texturing). The purpose of the tag is to store metadata about a texture and its image data, possibly compressed in a format like [DXT1][s3], ready for the engine and GPU to use. It can also store multiple images in a single tag.
 
 # Basics
 To store textures and images in maps we use bitmap tags. Bitmap tags on their simplest are compiled from a `.tif` file in your data directory.
@@ -254,3 +254,4 @@ Errors that are known and suggestions on how to fix them.
 {% tagStruct "h1/bitmap" /%}
 
 [bc7]: https://learn.microsoft.com/en-us/windows/win32/direct3d11/bc7-format
+[s3]: https://en.wikipedia.org/wiki/S3_Texture_Compression

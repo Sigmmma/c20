@@ -70,7 +70,7 @@ actor_type_definitions:
     swarm_control: '`NULL`'
     swarm_aim_jump: '`NULL`'
     description: |-
-      Flees when Elite is killed.
+      Flees when Elite is killed. Cannot evade.
   # 00a32b7c
   - name: hunter
     race: covenant

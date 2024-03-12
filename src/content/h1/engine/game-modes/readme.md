@@ -1,5 +1,20 @@
 ---
 title: Game modes
+keywords:
+  - variant
+  - game_variant
+  - gametype
+  - gametypes
+  - game types
+  - engines
+  - ctf
+  - slayer
+  - oddball
+  - king
+  - koth
+  - race
+thanks:
+  Conscars: Reversing game variant names
 ---
 There are 5 base **game modes**, also called "game engines", which implement multiplayer game rules and scoring:
 

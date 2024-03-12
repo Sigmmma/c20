@@ -33,3 +33,17 @@ The [HaloNet.net map repository][halonet-repo] hosts Halo Custom Edition maps. C
 [halonet-repo]: http://maps.halonet.net/maplist.php
 [halonet-dl]: http://wiki.halonet.net/index.php/HaloNet_Map_Download_Protocol
 [halonet-submit]: http://wiki.halonet.net/index.php/HaloNet_Halo_CE_and_PC_Map_repo
+
+# External tutorials
+{% dataTable
+  dataPath="tutorials/tutorials"
+  rowSortKey="updated"
+  rowSortReverse=true
+  columns=[
+    {name: "Name", key: "name/en"},
+    {name: "Description", key: "description/en"},
+    {name: "Author(s)", key: "authors"},
+    {name: "Last updated", key: "updated"},
+    {name: "Links", key: "links/en"}
+  ]
+/%}
