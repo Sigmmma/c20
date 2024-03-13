@@ -1806,8 +1806,8 @@ external_globals:
         If frustum clipping is disabled by setting this to `true`, certain
         objects and parts of the BSP will be drawn even when behind foreground
         geometry (use `rasterizer_wireframe 1` to see this).
-        This isn't about clipping to the whole view frustum but rather portal
-        diminished frustrums; in addition to the [PVS](~scenario_structure_bsp#potentially-visible-set),
+        This isn't about clipping to the whole view frustum but rather _portal diminished frustrums_;
+        in addition to the [PVS](~scenario_structure_bsp#potentially-visible-set),
         the game seems to cull objects and the BSP by whether object bounding
         spheres and possibly subclusters are visible through portals.
         The use of `debug_pvs` at the same time makes the behaviour of this
