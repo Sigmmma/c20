@@ -1,6 +1,7 @@
 ---
 title: Tags
 about: resource:h1/tags
+icon: tag
 img: control-panels.jpg
 caption: Tags offer a lot of control, but there's also a lot to learn. Try to focus on one area at a time if you're new.
 thanks:
@@ -12,7 +13,7 @@ thanks:
 
 A playable level is represented by a [scenario](~) tag and all of its dependencies, which can include the [vehicles](~vehicle) which may spawn, any [scenery](~) placed, and any [level textures](~bitmap). Bundles of tags required for a level are typically compiled into an optimized [map cache file](~maps), though certain builds of the Halo engine are capable of loading tags on-demand directly from the `tags` folder (e.g. Sapien or debug builds of Halo).
 
-The name "tag" was inspired by [XML tags][about-xml], which also have types and a structure with fields. However, unlike XML, Halo's tags are a binary format rather than plain text. To create and edit tags, you need to use purpose-built tools like the [H1A-EK](~h1a-ek), [MEK](~), or [Invader](~).
+Halo's tags are a binary format that must be edited with purpose-built tools like the [H1A-EK](~h1a-ek), [MEK](~), or [Invader](~).
 
 # Differences between editions
 Each edition of the game has a slightly different tag set in its maps. Be aware of this when extracting tags with [Refinery](~) or [invader-extract](~) or mixing tags.
@@ -59,8 +60,6 @@ The following tags are leftover from earlier in Halo's development and are unuse
 /%}
 
 # Tag structure
-Each tag class is a binary (non-text) data structure with a fixed layout and size.
-
 ## Tag references and paths
 A _tag path_ is like a URL for a tag. References from one tag file to another are stored as tag paths with an accompanying [group ID](#group-ids) for the type. For example, the path `levels\test\tutorial\tutorial` and group ID `sbsp` is how the tutorial [scenario](~) references its [BSP](~scenario_structure_bsp). Tag paths are assumed relative to a `tags` directory, but are not literal filesystem paths since they don't contain an extension.
 

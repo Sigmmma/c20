@@ -14,7 +14,7 @@ import {type Node, type RenderableTreeNode} from "@markdoc/markdoc";
 import {type NavHeading} from "../components/Article/TableOfContents";
 import {type MetaboxProps} from "../components/Metabox/Metabox";
 import Wat from "../components/Wat/Wat";
-import {type PageFrontMatter, type PageIndex, type PageLink, resolvePageGlobal, getPageParents, getAllThanks, getPageRelated, tryLocalizedPath, getPageOtherLangs, type NavTree, getPageChildren} from "../content";
+import {type PageFrontMatter, type PageIndex, type PageLink, resolvePageGlobal, getPageParents, getAllThanks, getPageRelated, tryLocalizedPath, getPageOtherLangs, type NavTree, getPageChildren, getPageIcon} from "../content";
 import {type SearchDoc} from "../search";
 import getWorkflowSections from "./features/workflow";
 import getTagSections from "./features/tag";
@@ -24,21 +24,17 @@ export const PREVIEW_LENGTH_CHARS = 100;
 
 const metaboxStyles: Record<string, Partial<MetaboxProps>> = {
   tool: {
-    icon: "tool",
     iconTitle: "Tool",
     class: "content-tool",
   },
   resource: {
-    icon: "file",
     iconTitle: "Resource",
   },
   tag: {
-    icon: "share-2",
     iconTitle: "Tag",
     class: "content-tag",
   },
   guide: {
-    icon: "book-open",
     iconTitle: "Guide",
     class: "content-guide",
   }
@@ -108,6 +104,7 @@ function getAboutContent(ctx: RenderContext | undefined, front?: PageFrontMatter
     caption: front?.caption,
     info: front?.info,
     sections: [],
+    icon: getPageIcon(front),
     ...(aboutType ? metaboxStyles[aboutType] : undefined),
   };
   const keywords: string[] = [];
@@ -124,7 +121,7 @@ function getAboutContent(ctx: RenderContext | undefined, front?: PageFrontMatter
     } else {
       metaboxProps.title = aboutArg;
     }
-    if (["tag", "tool", "resource"].includes(aboutType)) {
+    if (["tag", "tool", "resource", "tags"].includes(aboutType)) {
       metaboxProps.sections!.push(...getWorkflowSections(ctx, aboutArg));
     }
   }
@@ -153,7 +150,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
         title: "[Unresolved]",
         url: "#",
         pageId: idTail,
-        isStub: true,
+        icon: "file",
         logicalPathTail: idTail,
       };
     },

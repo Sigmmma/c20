@@ -1,5 +1,6 @@
 ---
 title: Community tools
+icon: tool
 childOrder:
   - invader
   - mek

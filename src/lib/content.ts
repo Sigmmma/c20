@@ -8,14 +8,27 @@ import {type Node} from "@markdoc/markdoc";
 import {type MdSrc} from "./components/Md/markdown";
 import {type Lang} from "./utils/localization";
 import {type BuildOpts} from "../build";
+import { IconName } from "./components/Icon/names";
 
 export type PageId = string;
+
+const iconMappings: Record<string, IconName> = {
+  stub: "file",
+  article: "file-text",
+  tool: "tool",
+  resource: "file-text",
+  tag: "share-2",
+  tags: "share-2",
+  guide: "book-open",
+  scripts: "terminal",
+};
 
 export type PageFrontMatter = {
   title?: string;
   about?: string;
   img?: string;
   caption?: MdSrc;
+  icon?: IconName;
   info?: MdSrc;
   thanks?: Record<string, MdSrc>;
   headingRefs?: Record<string, string>;
@@ -32,7 +45,7 @@ export type PageLink = {
   url: string;
   pageId: string;
   logicalPathTail: string;
-  isStub: boolean;
+  icon: IconName;
 };
 
 export type PageData = {
@@ -65,6 +78,12 @@ export function getPageMdSrcPath(baseDir: string, lang: Lang): string {
 function pageIdToUrl(pageId: PageId, lang: Lang, headingId?: string): string {
   const path = lang == "en" ? pageId : `${pageId}/${lang}.html`;
   return headingId ? `${path}#${headingId}` : path;
+}
+
+export function getPageIcon(front: PageFrontMatter | undefined): IconName {
+  const [aboutType, aboutArg] = (front?.about?.split(":") ?? []) as [string?, string?];
+  const iconType = (front?.icon ?? aboutType ?? (front?.stub ? "stub" : "article"));
+  return iconMappings[iconType] ?? iconType;
 }
 
 //build cross-page APIs and helpers used during rendering
@@ -182,7 +201,7 @@ function createPageLink(pageIndex: PageIndex, pageId: string, lang: Lang, headin
     title: tryLocalizedTitle(pageIndex, pageId, lang),
     url: tryLocalizedPath(pageIndex, pageId, lang, headingId),
     logicalPathTail: pageIndex[pageId][lang].logicalPathTail,
-    isStub: pageIndex[pageId][lang].front.stub ?? false,
+    icon: pageIndex[pageId][lang].front.stub ? "file" : "file-text",
     pageId,
   };
 }

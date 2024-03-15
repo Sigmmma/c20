@@ -1,6 +1,7 @@
 ---
 title: Vehicles
 stub: true
+icon: guide
 keywords:
   - tutorials
 thanks:

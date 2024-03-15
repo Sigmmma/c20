@@ -12,11 +12,11 @@ $fg-link-dark: #16A3B6;
 
 $bg-light: #eeeeeb;
 $fg-light: #111;
-$fg-code-light: $fg-light;
+$fg-code-light: #005934;
 $fg-faded-light: mix($fg-light, $bg-light, 60%);
 $fg-strong-light: darken($fg-light, 35%);
-$bg-overlay-light: lighten($bg-light, 5%);
-$bg-inset-light: rgba(#000, 0.1);
+$bg-overlay-light: lighten($bg-light, 4%);
+$bg-inset-light: rgba(#000, 0.05);
 $border-color-light: darken($bg-light, 15%);
 $fg-link-light: #0038bb;
 

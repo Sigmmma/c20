@@ -18,15 +18,14 @@ redirects:
   - /h1/h1a
 childOrder:
   - h1a-ek
-  - custom-edition
   - community-tools
+  - custom-edition
+  - guides
   - source-data
   - tags
   - scripting
   - maps
-  - guides
   - engine
-  - sharing
 ---
 {% figure src="box-art.jpg" %}
 Halo's box art

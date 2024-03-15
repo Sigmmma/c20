@@ -1,5 +1,6 @@
 ---
 title: Guides
+about: guide
 stub: true
 keywords:
   - tutorials

@@ -25,7 +25,7 @@ html[data-theme="light"] {
   --fg-strong: #{$fg-strong-light};
   --bg-overlay: #{$bg-overlay-light};
   --bg-inset: #{$bg-inset-light};
-  --bg-sidebar: #{$bg-overlay-light};
+  --bg-sidebar: #{$bg-inset-light};
   --border-color: #{$border-color-light};
   --fg-link: #{$fg-link-light};
 

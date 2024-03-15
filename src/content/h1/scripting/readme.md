@@ -1,6 +1,7 @@
 ---
 title: Scripting
 about: 'resource:h1/hsc'
+icon: scripts
 img: bslbible.png
 keywords:
   - script

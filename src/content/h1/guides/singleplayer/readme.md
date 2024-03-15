@@ -1,5 +1,6 @@
 ---
 title: Singleplayer design
+about: guide
 ---
 
 # External tutorials

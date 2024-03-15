@@ -158,8 +158,7 @@ actor:
   id: actr
   description:
     en: >-
-      Defines basic AI behaviour. Can be futher customized using the [actor_variant](~)
-      tag.
+      Defines core AI behaviours shared by [actor variants](~actor_variant).
 garbage:
   structName: Garbage
   structModule: h1/tags/garbage
@@ -470,8 +469,8 @@ actor_variant:
   id: actv
   description:
     en: >
-      Specializes an [actor](~) by defining their use of weapons, grenades, their health,
-      their color, and what equipment they drop.
+      Specializes an [actor](~) by defining their appearance, weapon use,
+      grenades, health, and dropped equipment.
 camera_track:
   structName: CameraTrack
   structModule: h1/tags/camera_track

@@ -177,14 +177,22 @@ type_defs:
         type: float
         meta:
           unit: world units
+        comments:
+          en: Maximum range of sight.
       - name: central_vision_angle
         type: Angle
+        comments:
+          en: Horizontal angle within which the actor sees targets out the the maximum range.
       - name: max_vision_angle
         type: Angle
+        comments:
+          en: Maximum horizontal angle within which the actor sees targets at range.
       - type: pad
         size: 4
       - name: peripheral_vision_angle
         type: Angle
+        comments:
+          en: Maximum horizontal angle within which the actor sees targets "out of the corner of its eye" (Guerilla description).
       - name: peripheral_distance
         type: float
         meta:

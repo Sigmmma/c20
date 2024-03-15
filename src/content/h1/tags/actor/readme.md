@@ -1,6 +1,8 @@
 ---
 title: actor
 about: 'tag:h1/actor'
+img: actors.jpg
+caption: Actors with various `ai_render_*` globals enabled, showcasing their internal state. 
 thanks:
   justinpyne: Explaining the _friend avoid dist_ field
   Kavawuvi: Invader tag definitions

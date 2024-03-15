@@ -54,16 +54,6 @@ tutorials:
     links:
       en: "[YouTube](https://www.youtube.com/watch?v=Qg6Xj67tU6E), [YouTube](https://www.youtube.com/watch?v=S4fHSwJdEHo)"
   - name:
-      en: BSP errors explanation
-    description:
-      en: An image illustrating common geometry errors encountered during [structure compilation](~h1a-tool#structure).
-    authors: "?"
-    updated: "?"
-    tags:
-      - level
-    links:
-      en: "[Imgur](https://i.imgur.com/rdoKsDn.jpg)"
-  - name:
       en: Detail objects tutorial
     description:
       en: A tutorial on how to make and place [detail objects](~detail_object_collection) like little grasses and tiny rocks.

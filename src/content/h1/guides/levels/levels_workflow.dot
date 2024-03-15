@@ -1,0 +1,35 @@
+digraph G {
+  bgcolor="transparent"
+  edge [color="#16A3B6" fontcolor="#16A3B6"]
+  node [style=empty color="#E66533" fontcolor="#E66533"]
+  rankdir = LR;
+
+  model [label="Source model"];
+  jms [label="JMS"];
+  texture [label="Source texture"];
+  tiff [label="TIFF"];
+  bitmap [label="Bitmaps"];
+  shaders [label="Shaders"];
+  bsp [label="BSP"];
+  scenario [label="Scenario"];
+  testing [label="Playtesting"];
+  map [label="Map"];
+  bitmap -> bitmap [label="Editing"];
+  shaders -> shaders [label="Editing"];
+
+  texture -> texture [label="Texturing"];
+  texture -> tiff [label="Save"];
+  tiff -> bitmap [label="Import"];
+  bitmap -> shaders [label="Referenced by"];
+  shaders -> bsp [label="Referenced by"];
+
+  model -> model [label="Modeling"];
+  model -> jms [label="Export"];
+  jms -> bsp [label="Import"];
+  bsp -> bsp [label="Lighting"];
+  bsp -> scenario [label="Referenced by"];
+  scenario -> scenario [label="Population & editing"];
+  scenario -> map [label="Build"];
+  scenario -> testing [label="Load in Standalone"];
+  map -> testing [label="Load in CE/MCC"];
+}

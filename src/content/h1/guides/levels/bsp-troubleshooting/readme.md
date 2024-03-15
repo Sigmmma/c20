@@ -1,5 +1,8 @@
 ---
 title: BSP troubleshooting
+about: guide
+img: bsp_rules.jpg
+caption: A classic BSP rules cheat sheet.
 related:
   - /h1/tags/scenario_structure_bsp
   - /h1/h1a-ek/h1a-tool
@@ -202,13 +205,6 @@ This error does not show up in [WRL files](~wrl), but it is usually easy to find
 
 ![](weatherpoly_sides.mp4)
 
-# JMS problems
-## Error: reached end of file during parse
-This means the JMS file was incomplete or improperly formatted. Tool expected it to have more data but the file ended. You should never see this error unless the JMS exporter addon/script you are using has a bug, in which case you should upgrade it to the latest version or use a different JMS exporter. This error has been known to occur with some 3ds Max scripts.
-
-## Error: model file has wrong version number
-Your JMS file was exported for the wrong game version (e.g. Halo 2). If using the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset), pay attention to the export settings and choose Halo CE.
-
 # Radiosity problems
 ## Degenerate triangle or triangle with bad UVs (blue)
 A _degenerate triangle_ error encountered during [radiosity](~h1a-tool#lightmaps) is due to a triangle being degenerate in UV space (texture coordinates). In other words, the triangle has zero surface area in UV space because all 3 vertices are in a line or the same location so the triangle's texture will appear extremely stretched. This by itself isn't a problem for radiosity, but when the corresponding material has the [_simple parameterization_](~shader#tag-field-shader-flags-simple-parameterization) flag enabled you will encounter this error, since that flag forces radiosity to use texture UV coordinates as the basis for lightmap UVs and lightmap UVs must not be degenerate.
@@ -251,6 +247,13 @@ During radiosity you may see this warning logged:
 ```
 
 It is totally harmless and just means you have not assigned [background sounds](~sound_looping) and [sound environments](~sound_environment) to all of your [clusters](~scenario_structure_bsp#clusters-and-cluster-data). This step is done in Sapien and is recommended but optional for your map.
+
+# JMS problems
+## Error: reached end of file during parse
+This means the JMS file was incomplete or improperly formatted. Tool expected it to have more data but the file ended. You should never see this error unless the JMS exporter addon/script you are using has a bug, in which case you should upgrade it to the latest version or use a different JMS exporter. This error has been known to occur with some 3ds Max scripts.
+
+## Error: model file has wrong version number
+Your JMS file was exported for the wrong game version (e.g. Halo 2). If using the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset), pay attention to the export settings and choose Halo CE.
 
 # Unknown causes
 {% alert %}
