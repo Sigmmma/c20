@@ -17,6 +17,13 @@ childOrder:
 ---
 Welcome to the H1 guides hub! Here you'll find links to various guides ranging from basic map-making to more advanced topics. This hub is a work in progress and will grow over time. Until it is more complete, we recommend the official [HEK tutorial][hek] as a starting point.
 
+# General prerequisites
+These are common things you should do or know, regardless of the guide you're following:
+
+* Install either the [HEK](~custom-edition#installation) or [H1A mod tools](~h1a-ek#getting-started) and follow their post-installation steps.
+* Read the [general help content](~general) to understand the difference between [data](~general/source-data) and [tags](~general/tags), and [how the mod tools are used](~general/mod-tools).
+* Know [how to ask for help](~help#asking-for-help).
+
 # External tutorials
 {% alert %}
 The content of these external tutorials has not been vetted and they may contain outdated information. Always use the latest available versions of any tools used to get the benefits of bug fixes since the tutorial was made. The list may contain dead links.

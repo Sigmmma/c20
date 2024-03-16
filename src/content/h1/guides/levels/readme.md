@@ -25,15 +25,15 @@ Some of these pages are intended for Blender users so 3ds Max users may want to 
 # Overview
 Creating a custom Halo level is an iterative process; you shouldn't try modeling a map to completion and only _then_ trying to get it ingame. It's best to set up the workflow first, familiarize yourself with the tools and steps needed, and understand the engine's rules. Making repeated small changes to the level and testing them ingame will help you avoid getting overwhelmed by [BSP issues](~bsp-troubleshooting), refine the layout and size of the level, experiment with lighting, and make any other changes early while it's still easy to do so.
 
-The process of building a level looks something like this:
-
-![](levels_workflow.svg)
+![](levels_workflow.svg "The process of building a level. Your level may not require custom textures/shaders.")
 
 The above workflow may be part of a broader goal, such as creating a singleplayer mission, but we'll not cover that in this section. The main point is that you'll be repeating parts of this workflow many times as the level evolves towards completion. Sometimes you need to go back and remodel, adjust a shader then relight, or move objects after playtesting.
 
-Given the iterative process, you should avoid polishing too much until you're confident that the level won't change drastically. For example, placing [detail_object_collection](~) or modeling certain areas in high detail should be done later in case you need to change the level's layout.
+Given the iterative process, you should avoid polishing too much until you're confident that the level won't change drastically. For example, placing [detail_object_collection](~), running [lightmaps](~h1a-tool#lightmaps) at final quality, or modeling certain areas in high detail should be done later in case you need to change the level's layout.
 
-# Understanding the data directory
+The guides in this section will be organized according to this process -- first we'll learn how to get a simple box map ingame, then further guides will expand on specific features you might want.
+
+# Basics
 [Data directory](~file-directories)
 
 In this section we will be covering how to setup proper folder structures for our assets in the HEK data folder. This section does not cater to a specific 3D software and can be read by anyone.

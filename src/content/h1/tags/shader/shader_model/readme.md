@@ -59,7 +59,7 @@ Channel order is different on the classic Xbox version of the game. Guerilla cor
 
 # Change color
 {% figure src="change_color.gif" %}
-An animation showing how color change is applied. This example uses ([Gearbox channel order](#gearbox)).
+An animation showing how color change is applied ([Gearbox channel order](#gearbox)).
 {% /figure %}
 
 The _change color_ feature allows parts of the shader to be recolored at runtime for random variation and different ranks without requiring a different bitmap for each color.

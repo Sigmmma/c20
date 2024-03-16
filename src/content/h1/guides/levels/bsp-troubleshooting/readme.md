@@ -1,8 +1,6 @@
 ---
 title: BSP troubleshooting
 about: guide
-img: bsp_rules.jpg
-caption: A classic BSP rules cheat sheet.
 related:
   - /h1/tags/scenario_structure_bsp
   - /h1/h1a-ek/h1a-tool
@@ -22,11 +20,20 @@ When compiling a level's [structure BSP](~scenario_structure_bsp) using [Tool](~
 ### Warning found #1 degenerate triangles.
 ```
 
-With some exceptions, Halo requires your BSP to be a completely sealed volume with no intersecting faces, open edges, 0-area faces, or other _non-manifold_ surfaces. It should not be too geometrically complex or too large. Many of these errors can also show up when compiling [model_collision_geometry](~) and the solutions will be the same. You should attempt to fix all errors and warnings in your map.
+Use this guide to understand how to avoid problems _before_ you start modeling and you will have an easier time getting your BSP in-game. This guide offers examples in [Blender](~), but the concepts are equally applicable to modeling BSPs in [Max](~3dsmax). Note that the shown model is triangulated during export to JMS and quads are used in examples for modeling ease.
+
+# Sealed world rules
+{% figure src="bsp_rules.jpg" %}
+A classic BSP rules cheat sheet.
+{% /figure %}
+
+Halo generally requires your BSP to be one or multiple completely sealed volumes with no intersecting faces, open edges (holes), 0-area faces, or other _non-manifold_ surfaces. There are some exceptions for certain types of surfaces which require [material symbols](~h1-materials), but the main "balloon" of the level still needs to follow these rules. It should also not be too geometrically complex or large.
+
+The normals of the faces used to create the level geometry must face inwards towards the playable area of the level. The normals determine not just the viewing direction but also which direction the surface is collideable from.
 
 For most types of problems Tool generates a [WRL](~) file that can be imported back into your 3D software to find the sources of the problems. The path of this WRL file depends on if you are using Gearbox Tool or H1A Tool (see [WRL page](~wrl)).
 
-Use this guide to understand how to avoid problems _before_ you start modeling and you will have an easier time getting your BSP in-game. This guide offers examples in [Blender](~), but the concepts are equally applicable to modeling BSPs in [Max](~3dsmax). Note that the shown model is triangulated during export to JMS and quads are used for modeling ease.
+You should attempt to fix all errors and warnings in your map. Many of these errors can also show up when compiling [model_collision_geometry](~) and the solutions will be the same.
 
 # General geometry problems
 ## Error: Edge is open (red)

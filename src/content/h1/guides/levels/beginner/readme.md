@@ -1,86 +1,125 @@
 ---
-title: Beginner
+title: Level basics
+about: guide
 keywords:
+  - basics
+  - bsp
+  - intro
+  - box
   - modeling
   - exporter
 thanks:
   General_101: Writing this guide
+  Conscars: Editing this guide
 redirects:
   - /h1/guides/map-making/level-creation/blender-level-modeling/blender-level-creation-beginner
 ---
+This guide covers how to create a bare-minimum box level, from modeling to getting it ingame. This will teach you the initial setup and basic end-to-end process of creating levels, which we'll build upon for intermediate and advanced level guides. This guide includes a [completed version](#file-list) of our work as an example for you to compare if needed.
+
+# Prerequisites
+* Follow the [general prerequisites](~guides#general-prerequisites) to install the mod tools/HEK and learn modding basics.
+* Install an up-to-date version of [Blender](~) and the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset#installation).
+* Understand the [basics of Blender's interface](~blender#usage-basics).
+* Read the [levels overview](~levels#overview).
+* Set up [file directories](~file-directories).
+
 {% alert %}
-This guide assumes you have already [set up file directories](~file-directories).
+All hotkeys given in this guide assume default Blender settings.
 {% /alert %}
 
-# File list
+## File list
 | File link                                                                                              | Description
 |------------------------------------------------------------------------------------------------------- | -----------------------------------
 |[End Result](https://drive.google.com/file/d/1MDxZGkpi90ETwVZDXpl2zrDAHU3SDQhu/view?usp=sharing)        | The end product of this tutorial for you to examine and compare.
 |[Tutorial Textures](https://drive.google.com/file/d/1Z9ehd94ByHRRs68rbtuDIZ3lpm1463Lf/view?usp=sharing) | The textures we will be using in this guide. Make sure to have this ready.
 
-# Introduction
-Everything starts with an idea. Sometimes, however, we realize that we've made a terrible mistake just like this page I'm currently writing. Hello you, and welcome to the Halo CE level modeling guide. In this guide we will be showing you how to go about with creating your very own level geometry for Halo CE in the 3D modeling software app known as Blender. This guide will include a completed version of our work as an example for you to contrast and compare but be sure to follow along.
+# Folder setup
+We will start by going over how your level's files and folders will be organized and creating the level's data folders. Files related to levels will be found in both the `data` and `tags` folders of your mod tools/HEK and have a similar layout. If you don't have these folders then you've missed an installation step. A typical finished level might include:
 
-If there are any images that you find difficult to read then try opening the image in a new tab to view it in full resolution.
+```
+HEK/Mod Tools
+├─data
+│ └─levels
+│   └─test
+│     └─example ┄┄┄┄┄┄┄┄┄┄┄ Your level's data folder
+│       ├─models
+│       │ ├─example.blend
+│       │ └─example.JMS
+│       ├─bitmaps
+│       │ ├─*.psd
+│       │ └─*.tiff
+│       └─scripts
+│         └─*.hsc
+├─tags
+│ └─levels
+│   └─test
+│     └─example ┄┄┄┄┄┄┄┄┄┄┄ Your level's tags folder
+│       ├─example.scenario
+│       ├─example.bitmap
+│       ├─example.scenario_structure_bsp
+│       ├─bitmaps
+│       │ └─*.bitmap
+│       └─shaders
+│         └─*.shader_*
+└─maps
+  └─example.map ┄┄┄┄┄┄┄┄┄┄┄ Your built map
+```
 
-## Setting up Blender
-[Installing the Blender addon](~halo-asset-blender-development-toolset)
+We're going to create source data/assets under the `data` folder, and _import_ them into tag format under the `tags` folder using [Tool](~h1a-tool). We will also use [Guerilla](~h1a-guerilla) to edit some tags. Not every level will require custom bitmaps and shaders or scripts, the above is just an example.
 
-See the above link for setting up the Blender addon for exporting Halo assets if you haven't installed the addon already. Beyond that there may be a few other settings you may want to adjust with before starting with any modeling.
+Firstly, **pick a name for your level** and create a data folder for it like `data\levels\test\your_level`. By convention, Halo's singleplayer levels are under `levels` while its multiplayer levels are under `levels\test`. You don't have to follow this convention and can put your level folder wherever you want, e.g. `data\my_stuff\levels\cool_map`. However, we do have some guidance on naming the level:
 
-All hotkeys given in this guide are given with the expectation that you are using the default Blender 2.8 preset.
+* Use lowercase characters.
+* Avoid spaces in favour of underscores. This avoids needing to always put quotes around tag/file paths when using CLI tools or Halo's console.
 
+Next, **create a subfolder called `models`** where you will later export the level geometry in JMS format.
 
-# Creation of a reference frame
-In order to create a Halo level you first have to create a reference frame for all our geometry to be linked to. The reference frame is the origin for all objects in our scene.
+It is not necessary to create a tags folders for your level yet unless you want to make some custom shaders in advance of importing the [BSP](~scenario_structure_bsp), which is when shaders get linked to the BSP tag. For this guide we'll use existing shaders from other levels and the [scenario](~) tag will be generated automatically for us when importing the BSP for the first time.
 
-{% alert type="danger" %}
-Be aware that once you have started to edit the level using the Halo level editing tool known as [Sapien](~h1a-sapien) you cannot move the origin of the reference frame. Changing the origin will cause all placed objects to move.
-{% /alert %}
+You may have noticed source files like Photoshop documents (`*.psd`) or the level's Blender scene (`example.blend`) in the example layout above. There is no requirement to keep them under the `data` folder like this but it can help to organize them together with your level's data.
 
-Any objects that are not a child of the reference frame are excluded from export. This helps the designer keep reference models for scale but not have to fumble around with deleting objects before export to prevent issues. This can also be used to remove objects from the reference frame to debug which object in particular may be causing an issue.
+You also may have noticed the `example.bitmap` without a corresponding `example.tiff`. This bitmap tag is the BSP's [lightmap](~lightmaps) and we'll generate that later.
 
-Keep in mind that in order for the exporter to write a JMS file successfully there must be a reference frame and at least one valid object in your scene linked to that reference frame. Not having any reference frames will return an error labeled:
+# Blender modeling
+For the next few steps we'll create the level geometry in [Blender](~). Go ahead and open it up now.
 
-`No nodes in scene. Add an armature or object mesh named frame.`
+## Scene setup
+Let's prepare the scene before adding any geometry:
 
-Having a reference frame but no valid geometry will also return:
+1. When you open Blender it may contain a default cube, light, and camera. We're going to start fresh so select and delete all of these. If you want, you can [save a startup file](~blender#startup-file) so they won't appear again.
+2. Next, you'll want to [increase the viewport clipping range](~blender#clip-start-and-end). Set _Clip Start_ to `1 m` and _End_ to `100000 m`.
+3. Save the scene to `data\levels\test\example\models\example.blend`, or similar for your level's data folder.
 
-`No objects in scene`
+We now have a saved empty scene with the right settings and can begin adding geometry.
 
-In order to create a reference frame we must first add an object to our scene. The object can be anything that contains location and rotation data. In our example we will use a simple box mesh to represent the origin of our level. The location of our mesh object will be the origin point for all objects in our level once ingame. Try to keep your reference frame at the origin of your Blender scene if possible.
+## Creating a reference frame
+We first need to create a _reference frame_ for all our geometry to be parented to. The reference frame is the origin for all objects in our scene, and only objects which are _children_ of the frame will be included in the export to JMS later. This helps you keep reference models for scale or unfinished pieces of geometry separate from the export.
 
-consider placing the frame outside of the level you are creating as to not interfere with object selection or obscure geometry but this is up to your own preference.
+In order for the exporter to write a JMS file successfully later, there **must** be a reference frame and at least one valid object in your scene parented to it. Not having any reference frame will result in the export error `No nodes in scene. Add an armature or object mesh named frame`. Having no valid geometry will also cause `No objects in scene`.
 
-To create a reference frame do the following:
+To create the reference frame we just need to add an object to our scene and name it `frame`. The object can be anything that contains location and rotation data, like an _empty_, but we will use a cube in this guide:
 
 1. [Add a cube object](https://www.youtube.com/watch?v=zqy0tHLiOig) to your scene.
-2. Set the name of the object in the [outliner](https://youtu.be/UIRaqLLjnmY) to "frame" by double clicking it or pressing {% key "F2" /%} to edit it.
+2. Set the name of the object in the [outliner](https://youtu.be/UIRaqLLjnmY) to `frame` by double clicking it or pressing {% key "F2" /%} to edit it.
 
-We can now [move](https://youtu.be/P0RfuocRY9c) the reference frame to it's new location. Your translation coordinates should read:
+You can leave the frame at its default location at the origin, or you may [move](https://youtu.be/P0RfuocRY9c) it outside of the level you are creating so as to not interfere with object selection or obscure geometry.
 
-X: `0.0` Y: `1800.0` Z: `0.0`
-
-{% alert %}
-The Reference Frame does not have to have a specific Material applied to it. The application of Materials in Blender will be discussed in a later section.
+{% alert type="danger" %}
+Be aware that once you have started to populate the level with objects using [Sapien](~h1a-sapien) you cannot move the reference frame, since it will cause all placed objects to move out of alignment with the level geometry.
 {% /alert %}
 
-# Creation of a simple level
-The following steps and example images will demonstrate the creation of a box that will serve as the tutorial level and will be utilized for all the subsequent tutorials.
-When creating or starting out a level try and keep the level centered at the origin.  This can make the creation process much easier, such as when mirroring level geometry (such as team bases and other symmetric elements of the level).
+The frame does not have to have any specific material applied to it. The application of materials in Blender will be discussed in a later section.
 
-The level must be a sealed. The level must be a contiguous structure that forms a sealed volume, the following rules are referred to as the Sealed World Rules:
+## Creating a box level
+Halo has certain requirements for level geometry called the [sealed world rules](~bsp-troubleshooting#sealed-world-rules) which we need to adhere to. With some exceptions, the level must be a sealed inwards-facing room without any holes/open edges, faces with no surface area, or intersecting faces. Even the sky of the level is sealed with a "ceiling" of invisible but collideable faces.
 
-* There must not be any open edges, the component parts or geometry of the level must match (edges and verts). There are some exceptions to the rule which will be covered in later tutorials and examples in later sections, but basically, anything that is solid (has to have collision with the player and vehicles) cannot have any open edges.
-* The normals of the faces used to create the level geometry must face towards the playable area of the level or section of the level. The normals of the faces or polygons determine not just the face that will be rendered or seen by the player but also the surface to be used for collision and physics.
-
-## Creation of a simple box room
+In this guide we'll just create a basic box level which will be expanded upon in other guides. Our box will certainly follow the sealed world rules but it's helpful to be aware of them before you begin making the model more complex later.
 
 1. [Add a new box object](https://www.youtube.com/watch?v=zqy0tHLiOig)
 2. Bring up the [sidebar](https://youtu.be/H64e1RDZKuA) with {% key "N" /%} and set it to the item tab.
-3. Set the [location](https://youtu.be/P0RfuocRY9c) of the box to X: `0.0` Y: `0.0` Z: `800.0`
+3. Set the [location](https://youtu.be/P0RfuocRY9c) of the box to X: `0.0` Y: `0.0` Z: `800.0`. This step is not really necessary but lifts the level off the viewport grid and the reference frame if you've left it at the origin. If you expect to be mirroring the level later, keep the level horizontally centered at the origin since this can make mirroring easier.
 4. The [dimensions](https://youtu.be/P0RfuocRY9c) for the Box can be manually set. The dimensions for the box that will be used are X: `2400.0`  Y: `3200.0`  Z: `1600.0`
-5. Set the name of the object in the [outliner](https://youtu.be/UIRaqLLjnmY) to "level" by double clicking it or pressing {% key "F2" /%} to edit it.
+5. Set the name of the object in the [outliner](https://youtu.be/UIRaqLLjnmY) to `level` by double clicking it or pressing {% key "F2" /%} to edit it.
 6. While having the box selected [change the context mode](https://youtu.be/SVLAYHJSXYA) from object mode to edit mode
 	* The following steps will make the box satisfy the Sealed World Rules and will link it to the frame, in effect making it a simple Halo level in terms of geometry.
 7. [Flip all the normals](https://youtu.be/zog43sqj0Qc) for the box inwards, the interior of the box will be the playable area of the level.
@@ -98,7 +137,67 @@ The level must be a sealed. The level must be a contiguous structure that forms 
 The last object you selected is considered the active object and will be the parent of all other objects you have selected when doing set to parent object.
 {% /alert %}
 
-# Application of materials
+## Applying materials
+
+## UV mapping
+
+## Assigning sharp edges
+
+## Exporting a JMS
+
+# Tagging
+The following steps are concerned with creating and editing [tags](~) for your level.
+
+## Importing the BSP
+The level geometry now needs to be imported from JMS format into [scenario_structure_bsp](~) tag format for Halo to use it. We do this using Tool's [structure](~h1a-tool#structure) verb. [Open a command prompt](~command-line#opening) in your mod tools/HEK location and enter the following command:
+
+```cmd
+tool structure "levels\test\example" example
+```
+
+The first argument, `"levels\test\example"`, is the path your level's data folder (without the `data\` prefix). The second argument, `example`, is the name of the BSP you're importing and corresponds to `models\example.JMS` you exporter earlier. Singleplayer levels may include multiple BSPs but in our case we just have one named the same as the level folder.
+
+If all went well, you now have a BSP tag at `tags\levels\test\example\example.scenario_structure_bsp`. However this is also the step where people often first run into trouble:
+
+* Tool has prompted you to select a shader type. This means you have faces in your level assigned to a material whose name did not match with any existing shader tags. You probably missed assigning some faces or named the materials incorrectly.
+* Tool logs warnings or errors about geometry errors because the level doesn't follow the [sealed world rules](~bsp-troubleshooting#sealed-world-rules) or has other issues. This indicates a mistake in modeling the level or bad level size. Tool generates a [WRL](~wrl) file which you can import back into Blender to [troubleshoot](~bsp-troubleshooting).
+
+If your level did not have a pre-existing [scenario](~) tag, which is our case, Tool also generated one at `tags\levels\test\example\example.scenario` with the BSP already referenced.
+
+## Setting a scenario type and sky
+Next we need to edit the scenario in [Guerilla](~h1a-guerilla). Open `tags\levels\test\example\example.scenario`. There are two fields we need to update, which will both be near the top of the tag:
+
+1. Set the [type](~scenario#tag-field-type) to multiplayer or leave it as solo depending on the type of level you're making.
+2. Add an entry to the [skies block](~scenario#tag-field-skies) and set the reference to a sky you want to use, such as `tags\sky\sky_timberland\sky_timberland.sky`. The referenced [sky](~) tag is responsible for the skybox you see outside the level and for lighting parameters like sunlight.
+3. Save the scenario tag.
+
+Although it's not often used, levels can actually reference multiple skies used in different BSPs or parts of the same BSP ([with restrictions](~bsp-troubleshooting#warning-cluster-can-see-multiple-skies)). Even fully indoor levels with no visible sky may still want to reference a sky tag because it sets [indoor cluster](~scenario_structure_bsp#indoor-vs-outdoor-clusters) fog and ambient light parameters. These are more advanced topics so we'll just stick with a single sky reference.
+
+## Lighting the BSP
+The BSP tag currently doesn't have any [lightmaps](~). If you were to open the scenario in [Sapien](~h1a-sapien) now the level would either be invisible (HEK Sapien) or fullbright (H1A Sapien). We need to run the radiosity process to bake lighting with the Tool [lightmaps verb](~h1a-tool#lightmaps). From a command prompt again:
+
+```cmd
+tool lightmaps "levels\test\example\example" example 0 0.3
+```
+
+The arguments are:
+1. A [tag path](~general/tags#tag-paths-and-references) to your scenario.
+2. The name of the BSP you want to light.
+3. Quality, either `0` (draft) or `1` (final). Keep it draft for now.
+4. Stop threshold. This ranges between `0` and `1` and tells Tool to stop radiosity when the amount of "in flight" light reduces to this level. Values closer to `0` result in more accurate lighting but takes longer.
+
+As with importing the BSP, this step may also halt on geometry errors and produce a WRL file. The most common issue is [degenerate UVs](~bsp-troubleshooting#degenerate-triangle-or-triangle-with-bad-uvs-blue) so make sure you followed the steps of the [UV mapping](#uv-mapping) section correctly.
+
+Lightmaps are cleared any time the BSP tag is reimported from JMS so you will need to repeat this step whenever you change level geometry. This is why you should use draft quality until later in development.
+
+## Adding spawn points
+
+# Testing the level
+Now that the tags are ready we can test the level.
+
+---
+
+# AAAAAAAAAAAAAA Application of materials
 
 Before discussing and demonstrating materials and the application of materials to surfaces in the level, it is HIGHLY recommended that the [Materials Overview](~materials) page be reviewed. The information contained in the Material Naming Conventions and Rules as well as the names of Special Materials and special Shader Symbols of this section will be referenced in the following examples.
 

@@ -81,7 +81,7 @@ For level modeling it's important to configure clip distances instead of just us
 {% /alert %}
 
 ## Startup file
-Did you know you can change the default Blender scene? Make changes like setting the [clipping range](#clip-start-and-end),  deleting any unwanted objects, creating materials, or other common steps for your typical workflow then use _File > Defaults > Save Startup File_.
+Did you know you can change the default Blender scene? Make changes like setting the [clipping range](#clip-start-and-end), deleting any unwanted objects, creating materials, or other common steps for your typical workflow then use _File > Defaults > Save Startup File_. All new scenes will start in this state.
 
 ## Unit measurement
 All units given in this site's guides expect that your Blender instance is set to use metric units, which is the default, so if you haven't changed this then it's likely already set to metric. For Halo's purposes we will not be taking this unit literally; a length of "70m" is just _70 JMS units_ (the height of the player when standing) which you can [convert to real-world units here](~scale).
