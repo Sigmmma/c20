@@ -6,18 +6,20 @@ thanks:
 [Halo Custom Edition's](~custom-edition) and [Standalone's](~h1a-standalone-build) startup can be customized through the combination of arguments and console scripting. Using these options allows you to quickly configure Halo for various testing or server hosting scenarios.
 
 # init.txt
-If this file is placed in the root of the mod tools or Custom Edition's installation directory, the game will execute all lines as [console commands](~developer-console) at startup and they will be present in the console history. The game can be told to use another file with the `-exec` argument. Example contents are:
+Both Standalone and Custom Edition will automatically load the file `init.txt` if present and run all lines within it as [console commands](~developer-console) at startup. They will also be present in the console history. Create the file in your mod tools/HEK root. It supports comments with `;` and can include empty lines. Example contents are:
 
 ```inittxt
-;set the "ting" hit noise to full volume
+; set the "ting" hit noise to full volume
 multiplayer_hit_sound_volume 1
-;clear console output so the result of above is not shown
-cls
-;launch directly into a map
-sv_map bloodgulch slayer
+; launch directly into a map (custom edition)
+map_name a30 ; SP map
+sv_map bloodgulch slayer ; MP map
+; launch directly into a map (standalone)
+game_variant slayer ; if MP
+map_name levels\test\bloodgulch\bloodgulch ; tag path to scenario
 ```
 
-Similarly, [Sapien](~h1a-sapien) loads `editor_init.txt`. If using the [OpenSauce mod](~opensauce), use the file name `initc.txt` instead.
+Similarly, [Sapien](~h1a-sapien) loads `editor_init.txt`. If using the [OpenSauce mod](~opensauce), use the file name `initc.txt` instead. The game can load a different file with the [`-exec <filename>` argument](#other).
 
 # Arguments
 Halo accepts [command line/shortcut arguments][about-args] to customize how the game launches and what features are enabled. From a terminal or Windows command prompt, such arguments are provided after the executable name, e.g. `haloce.exe -screenshot` to run the game with screenshot mode enabled. These arguments can also be added in Windows by editing a shortcut to the Halo executable.

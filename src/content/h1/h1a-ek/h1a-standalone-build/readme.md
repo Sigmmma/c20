@@ -13,7 +13,7 @@ thanks:
   num0005: Documenting H1A standalone build
   Zeddikins: Finding the spawning hotkeys
 ---
-**Standalone** (halo_tag_test.exe), often called **tag test** after its [build type](~blam#build-types), is a special build of H1 used for testing mods. It loads loose [tags](~general/tags) rather than [maps](~general/maps) like MCC, and includes a wide variety of debugging features. Standalone is not included in the [HEK](~custom-edition#halo-editing-kit).
+**Standalone** (halo_tag_test.exe), often called **tag test** after its [build type](~blam#build-types), is a special build of H1 used for testing mods. It loads scenarios from loose [tags](~general/tags) rather than built [maps](~general/maps), and includes a wide variety of debugging features. Standalone is part of the H1A mod tools and not included in the [HEK](~custom-edition#halo-editing-kit).
 
 This build doesn't include network functionality but can load multiplayer scenarios and test [game modes](~game-modes). For testing singleplayer missions, it includes AI debugging code not included in other published builds of the engine. [Using custom content paths](~mod-tools#using-custom-content-paths) is supported.
 

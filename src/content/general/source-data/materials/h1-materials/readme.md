@@ -10,19 +10,21 @@ thanks:
     tutorial](https://www.haloce.org/HEK_Tutorial/main/credits.html) which
     documents many of these conventions
 ---
-**Halo 1** is very primitive compared to later games in the series. Not having any way to specifically define a path to a shader and a small number of flags.
+Tool uses a material naming convention to assign shaders and give special properties to parts of your model. Halo 1's convention is simpler than later games. This convention applies to both 3ds Max and Blender use.
 
 # Material naming and shaders
-The [JMS](~) files you export from your 3D software contain the material names you used. **Tool** will then search for a matching shader tag within your tags directory when compiling the JMS into a model tag and will automatically assign the shader references. For example, a level BSP which has the material name `vines^` might have a corresponding shader at `tags\levels\my_level\shaders\vines.shader_environment` but it could also match with `tags\levels\some_other_level\shaders\vines.shader_environment`. For this reason it is important to name your materials and shaders uniquely. Always use lower-case names and do not exceed 32 characters.
+In your 3D software you can assign named _materials_ to parts of your model. The name of the material is included in your exported [JMS file](~jms). When importing your JMS to tag form, Tool will then parse this material name and search for a shader tag with a matching name to assign to those parts of your model. The material name can also include special symbols.
 
-When no shader tag can be found, [Tool](~h1a-tool) will ask you to generate an empty one by choosing a shader type. HEK Tool will create these in the root of the tags directory, whereas H1A Tool will create them in a `shaders` directory next to the model tag. In the case of HEK Tool, you will probably want to move these files into your level's shaders directory later just to keep things tidy. Once Tool has generated the empty shader tags, you must compile the model from JMS again for those shaders to be referenced.
+For example, a level BSP which has the material name `vines^` will cause Tool to search for a shader named `vines` and treat the surface as a ladder due to the `^` symbol. You might have a corresponding shader at `tags\levels\my_level\shaders\vines.shader_environment` but it could also unintentionally match with a `vines.shader_transparent_chicago` from some other level. For this reason it's important to name your materials and shaders uniquely. Always use lower-case names and do not exceed 32 characters.
+
+When no matching shader tag can be found, [Tool](~h1a-tool) will ask you to generate an empty one by choosing a shader type. HEK Tool will create these in the root of the tags directory, whereas H1A Tool will create them in a `shaders` directory next to the model tag. In the case of HEK Tool, you will probably want to move these files into your level's shaders directory later just to keep things tidy. Once Tool has generated the empty shader tags, you must compile the model from JMS again for those shaders to be referenced.
 
 Sapien and/or Halo may crash if you do not set up any [bitmap](~h1/tags/bitmap) references in these new shaders so do that before proceeding; empty shaders are invalid.
 
-Legacy Tool is hard-coded to not find any shader matches for the cut level `levels\b20`. This is no longer the case in H1A Tool.
+HEK Tool is hard-coded to not find any shader matches for the cut level `levels\b20`. This is no longer the case in H1A Tool.
 
 # Special materials
-These material names are hard-coded into Tool and have special meaning. They do not need shader tags.
+These material names are hard-coded into Tool and have special meaning when creating levels. They do not need shader tags.
 
 | Name | Usage
 |------|------
@@ -49,3 +51,5 @@ Material symbols are added to the **start** or **end** of the material name and 
 | `-` | **Breakable property**. Use this for breakable glass surfaces. When destroyed they will shatter into small particles and become collisionless.
 | `&` | **AI deafening property**. This is a special kind of portal which does not propagate sound. AI will not be able to hear sounds through it.
 | `.` | **Exact portal property**. This symbol can be used for materials which are always used on surfaces that perfectly separate one space from another. In other words, they will work just like `+exactportal`. This is an easy way to automatically create some exact portals where you have enclosed spaces behind glass and grates.
+
+There is no symbol for surfaces which only projectiles will collide with; just `*` for blocking vehicles/players and `@` for blocking everything. However, you _can_ create a custom [device_light_fixture](~h1/tags/object/device/device_light_fixture#collisions) since this object type blocks projectiles but not players and vehicles. This makes them ideal for energy-shielded doorways.

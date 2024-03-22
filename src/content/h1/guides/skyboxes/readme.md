@@ -112,7 +112,7 @@ A _material_ is how Blender represents different types of surfaces and their app
 To demonstrate this matching behaviour, we will create a material for the ring with the same name as an existing stock tag:
 
 1. Click to select the ring object.
-2. Switch to [edit mode](~blender#interaction-modes), then to face mode ({% key "Tab" /%} then {% key "3" /%}).
+2. Switch to [edit mode](~blender#modes), then to face mode ({% key "Tab" /%} then {% key "3" /%}).
 3. Select all faces with {% key "A" /%}
 4. Open the materials pane and add a material slot to this object, then create a new material in this slot.
 5. Name the material exactly `ring dusk`. We intend for this material name to match with the existing tag `tags\sky\sky_a30\skydusk0\shaders\ring dusk.shader_transparent_chicago`.

@@ -67,8 +67,8 @@ The intended workflow is from left to right.
 Other workflows are possible but with caveats:
 
 * (\*) Tags can't always be reversed/extracted back into source data. Depending on the game and tag type, Tool embeds copies of source data within the imported tag called _import info_, but this data isn't always present. In other cases, the process of importing data to a tag is _lossy_ and the original source data cannot be perfectly reconstructed.
-* (\*\*) Extracting tags from maps is currently only possible with H1 using [invader-extract](~). Older tag extractors for H1 like Refinery and HEK+ are not recommended because they don't properly reverse [processing](~tags#tag-loading).
-* (\*\*\*) Directly editing maps is possible with [community tools](~), however it is more limited in what's possible and prone to error. This is a practice that predates the mod tools and it's easier now to just rebuild maps from edited tags.
+* (\*\*) Extracting tags from maps is currently only possible with H1 using [invader-extract](~). Older tag extractors for H1 like Refinery and HEK+ are not recommended because they don't properly reverse all [processing](~tags#tag-loading) and may introduce invalid data to extracted tags.
+* (\*\*\*) Directly editing maps is possible with [community tools](~), however it is more limited in what's possible and prone to error. This is a practice that predates the mod tools and it's easier now to just rebuild maps from edited tags, although it's not always possible if the author of a map doesn't share their tags.
 * (\*\*\*\*) Ripping models and textures from map files can be done with [Reclaimer](~). Again, it's not always possible to perfectly reproduce source data.
 
 With some exceptions, the mod tools don't come with source data for stock content, just tags. If you extract tags from H1 maps you will also only end up with their tags. Usually this is enough to edit and rebuild your own variant of the maps, but sometimes bringing assets back into source data form will let you make deeper changes.

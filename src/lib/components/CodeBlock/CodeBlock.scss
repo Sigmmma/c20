@@ -1,3 +1,5 @@
+@import "../../../assets/_constants.scss";
+
 pre, code {
   color: var(--fg-code);
   font-family: $font-family-code;
@@ -32,6 +34,10 @@ code {
     content: "halo( ";
     transition: opacity $transition-time;
     color: fuchsia;
+  }
+
+  @include mobile {
+    word-break: break-all;
   }
 
   .placeholder {

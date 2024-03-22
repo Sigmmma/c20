@@ -9,7 +9,7 @@ redirects:
   - /h1/guides/map-making/level-creation/blender-level-modeling/blender-level-creation-advanced
 ---
 {% alert %}
-This guide assumes you are already familiar with the [basics of Blender map-making](~beginner). You may also need the provided files from that guide.
+This guide assumes you are already familiar with the [basics of Blender map-making](~box-level). You may also need the provided files from that guide.
 {% /alert %}
 
 # File list
@@ -651,7 +651,7 @@ It's probably a good idea to make frequent backups as you make progress just in 
 
 1. Go to File dropdown in the top left and click it.
 2. Click on the menu item labeled "Save As".
-3. A window named "Blender File Dialog" should come up. Navigate to `(HEK Install Path)\data\levels\test\(Level Name)\models` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory](~file-directories#creation-of-a-level-directory) section.
+3. A window named "Blender File Dialog" should come up. Navigate to `(HEK Install Path)\data\levels\test\(Level Name)\models` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory](~box-level#folder-setup) section.
 4. Click on the button labeled "Save As".
 
 You've now saved your level. The file as is will be used for future sections in this tutorial.
@@ -666,7 +666,5 @@ The source and related materials have been provided as a reference to aid in the
 
 
 {% alert type="success" %}
-Once the user has successfully completed the tutorials in _Level creation_ they can proceed to the [next section](~exporting).
-
 Please note that the section _Level exporting_ and the subsequent sections will assume that the end user has completed all of the examples and tutorials up to and including those in _Level creation_. The remaining sections in _Multiplayer level design_ will use the completed "tutorial.blend" file from these sections.
 {% /alert %}

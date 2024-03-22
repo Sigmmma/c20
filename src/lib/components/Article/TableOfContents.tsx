@@ -30,16 +30,10 @@ const renderSub = (level: number, sub: NavHeading[]) => {
 
 export default function TableOfContents(props: TableOfContentsProps) {
   const {localize} = useLocalize(localizations);
-  return <>
-    <nav class="toc mobile">
-      <details>
-        <summary><h2>{localize("toc")}</h2></summary>
-        {renderSub(1, props.headings)}
-      </details>
-    </nav>
-    <nav class="toc desktop">
+  return (
+    <nav class="toc">
       <h2>{localize("toc")}</h2>
       {renderSub(1, props.headings)}
     </nav>
-  </>;
+  );
 };

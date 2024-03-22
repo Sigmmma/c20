@@ -15,6 +15,8 @@ Consider releasing your source assets and tags alongside the map so others can r
 # Steam workshop
 If you're targeting H1 for the MCC, you can use [Excession](~) to publish your mod to the Steam workshop.
 
+[Browse for items here](https://steamcommunity.com/workshop/browse/?appid=976730&browsesort=trend&section=readytouseitems).
+
 # Release websites
 These websites can be used to host map downloads:
 
@@ -24,7 +26,7 @@ These websites can be used to host map downloads:
 
 Some archives which are no longer processing submissions, but worth checking out:
 
-* [Halomaps](http://halomaps.org/)
+* [Halomaps](https://halomaps.org/hce/)
 * [Halo CE3](https://haloce3.com/)
 
 ## HaloNet

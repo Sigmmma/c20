@@ -89,6 +89,7 @@ h1 {
   display: flow-root;
   border-bottom: 1px solid var(--border-color);
   padding-bottom: 10px;
+  color: var(--fg-strong);
 }
 
 h1, h2 {
@@ -206,7 +207,7 @@ kbd {
     clear: right;
     width: 35%;
     background: var(--bg-overlay);
-    border: 1px solid var(--border-color);;
+    border: 1px solid var(--border-color);
     border-bottom-width: 0;
     border-radius: $border-radius;
     overflow: hidden;

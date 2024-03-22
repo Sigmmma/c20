@@ -48,6 +48,7 @@ type State = {
 
 export type SearchProps = {
   initialQuery?: string;
+  onSearchFocused?: (focused: boolean) => void;
 };
 
 export default function Search(props: SearchProps) {
@@ -81,6 +82,7 @@ export default function Search(props: SearchProps) {
       //check for global keydown of "/" to move focus to the search input
       if (e.key == "s" && inputRef.current && document.activeElement !== inputRef.current) {
         inputRef.current.focus();
+        props.onSearchFocused?.(true);
         //prevents event from being passed to next handlers to avoid "s" being put in now-focused input
         e.preventDefault();
       }
@@ -106,8 +108,9 @@ export default function Search(props: SearchProps) {
         searchResults: [],
         selectedResultIndex: 0
       });
-      if (inputRef.current) {
+      if (inputRef.current && document.activeElement === inputRef.current) {
         inputRef.current.blur();
+        props.onSearchFocused?.(false);
       }
     } else if (e.key == "ArrowDown") {
       updateState({selectedResultIndex: Math.min(

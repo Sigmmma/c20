@@ -1,0 +1,70 @@
+@import "../../../assets/_constants.scss";
+
+.tabs {
+  input[type="radio"] {
+    display: none;
+  }
+
+  .tab-header {
+    padding: var(--padding-sm) var(--padding-md);
+    display: inline-block;
+    border: 1px solid var(--border-color);
+    border-bottom: none;
+    border-right-width: 0;
+    background: var(--bg-overlay);
+
+    @include mobile {
+      display: block;
+      border-right-width: 1px;
+      
+      &:first-of-type {
+        border-top-right-radius: $border-radius;
+      }
+  
+      &:last-of-type {
+        border-top-right-radius: 0 !important;
+      }
+    }
+
+    &:first-of-type {
+      border-top-left-radius: $border-radius;
+    }
+
+    &:last-of-type {
+      border-top-right-radius: $border-radius;
+      border-right-width: 1px;
+    }
+  }
+
+  .tab-body {
+    border: 1px solid var(--border-color);
+    border-radius: 0 $border-radius $border-radius $border-radius;
+    padding: 0 var(--padding-md);
+    margin-bottom: var(--padding-md);
+    display: none;
+
+    @include mobile {
+      border-radius: 0 0 $border-radius $border-radius;
+    }
+  }
+
+  .tab-input:not(:checked) + .tab-header {
+    color: var(--fg-faded);
+  }
+
+  .tab-input.i0:checked ~ .tab-body.i0 {
+    display: flow-root;
+  }
+  .tab-input.i1:checked ~ .tab-body.i1 {
+    display: flow-root;
+  }
+  .tab-input.i2:checked ~ .tab-body.i2 {
+    display: flow-root;
+  }
+  .tab-input.i3:checked ~ .tab-body.i3 {
+    display: flow-root;
+  }
+  .tab-input.i3:checked ~ .tab-body.i3 {
+    display: flow-root;
+  }
+}

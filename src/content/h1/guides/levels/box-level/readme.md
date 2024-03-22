@@ -1,5 +1,5 @@
 ---
-title: Level basics
+title: My first box level
 about: guide
 keywords:
   - basics
@@ -12,16 +12,17 @@ thanks:
   General_101: Writing this guide
   Conscars: Editing this guide
 redirects:
+  -	/h1/guides/map-making/level-creation/file-directories
   - /h1/guides/map-making/level-creation/blender-level-modeling/blender-level-creation-beginner
 ---
-This guide covers how to create a bare-minimum box level, from modeling to getting it ingame. This will teach you the initial setup and basic end-to-end process of creating levels, which we'll build upon for intermediate and advanced level guides. This guide includes a [completed version](#file-list) of our work as an example for you to compare if needed.
+In this guide you'll create a bare minimum box level. Despite the result's lackluster appearance, this is intended to teach you the basic end-to-end workflow of creating a custom level, from modeling to testing in-game, and you can use the result in [other level guides](~levels). This guide includes a [completed version](#file-list) of our work as an example for you to compare if needed.
 
 # Prerequisites
 * Follow the [general prerequisites](~guides#general-prerequisites) to install the mod tools/HEK and learn modding basics.
 * Install an up-to-date version of [Blender](~) and the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset#installation).
 * Understand the [basics of Blender's interface](~blender#usage-basics).
 * Read the [levels overview](~levels#overview).
-* Set up [file directories](~file-directories).
+* Skim the [H1 materials page](~h1-materials).
 
 {% alert %}
 All hotkeys given in this guide assume default Blender settings.
@@ -41,19 +42,19 @@ HEK/Mod Tools
 ├─data
 │ └─levels
 │   └─test
-│     └─example ┄┄┄┄┄┄┄┄┄┄┄ Your level's data folder
+│     └─example ┄┄┄┄┄┄┄┄┄┄┄ level data folder
 │       ├─models
 │       │ ├─example.blend
 │       │ └─example.JMS
 │       ├─bitmaps
 │       │ ├─*.psd
-│       │ └─*.tiff
+│       │ └─*.tif
 │       └─scripts
 │         └─*.hsc
 ├─tags
 │ └─levels
 │   └─test
-│     └─example ┄┄┄┄┄┄┄┄┄┄┄ Your level's tags folder
+│     └─example ┄┄┄┄┄┄┄┄┄┄┄ level tags folder
 │       ├─example.scenario
 │       ├─example.bitmap
 │       ├─example.scenario_structure_bsp
@@ -62,15 +63,18 @@ HEK/Mod Tools
 │       └─shaders
 │         └─*.shader_*
 └─maps
-  └─example.map ┄┄┄┄┄┄┄┄┄┄┄ Your built map
+  └─example.map ┄┄┄┄┄┄┄┄┄┄┄ built map
 ```
 
 We're going to create source data/assets under the `data` folder, and _import_ them into tag format under the `tags` folder using [Tool](~h1a-tool). We will also use [Guerilla](~h1a-guerilla) to edit some tags. Not every level will require custom bitmaps and shaders or scripts, the above is just an example.
 
-Firstly, **pick a name for your level** and create a data folder for it like `data\levels\test\your_level`. By convention, Halo's singleplayer levels are under `levels` while its multiplayer levels are under `levels\test`. You don't have to follow this convention and can put your level folder wherever you want, e.g. `data\my_stuff\levels\cool_map`. However, we do have some guidance on naming the level:
+By convention, Halo's stock singleplayer levels are under `levels` while its multiplayer levels are under `levels\test`. You don't have to follow this convention and can put your level folder wherever you want, e.g. `data\my_stuff\levels\cool_map`.
 
-* Use lowercase characters.
-* Avoid spaces in favour of underscores. This avoids needing to always put quotes around tag/file paths when using CLI tools or Halo's console.
+Firstly, **pick a name for your level** and **create a data folder** for it like `data\levels\test\example`. The name you choose for this folder will later become the scenario name (`example.scenario`) and map name (`example.map`). We do have some guidance on naming the level:
+
+* Use lower case characters.
+* Use underscores instead of spaces. This avoids needing to always put quotes around tag/file paths when using CLI tools or Halo's console.
+* Pick something unique if you intend on releasing the map later. Check the Steam workshop and/or [release sites](~sharing) for existing maps.
 
 Next, **create a subfolder called `models`** where you will later export the level geometry in JMS format.
 
@@ -78,7 +82,7 @@ It is not necessary to create a tags folders for your level yet unless you want 
 
 You may have noticed source files like Photoshop documents (`*.psd`) or the level's Blender scene (`example.blend`) in the example layout above. There is no requirement to keep them under the `data` folder like this but it can help to organize them together with your level's data.
 
-You also may have noticed the `example.bitmap` without a corresponding `example.tiff`. This bitmap tag is the BSP's [lightmap](~lightmaps) and we'll generate that later.
+You also may have noticed the `example.bitmap` without a corresponding `example.tif`. This is the BSP's [lightmap](~lightmaps) and we'll generate that later.
 
 # Blender modeling
 For the next few steps we'll create the level geometry in [Blender](~). Go ahead and open it up now.
@@ -88,7 +92,7 @@ Let's prepare the scene before adding any geometry:
 
 1. When you open Blender it may contain a default cube, light, and camera. We're going to start fresh so select and delete all of these. If you want, you can [save a startup file](~blender#startup-file) so they won't appear again.
 2. Next, you'll want to [increase the viewport clipping range](~blender#clip-start-and-end). Set _Clip Start_ to `1 m` and _End_ to `100000 m`.
-3. Save the scene to `data\levels\test\example\models\example.blend`, or similar for your level's data folder.
+3. Save the scene to `data\levels\test\example\models\example.blend`, or similar for your level's data folder. You should also periodically save during this guide.
 
 We now have a saved empty scene with the right settings and can begin adding geometry.
 
@@ -99,8 +103,8 @@ In order for the exporter to write a JMS file successfully later, there **must**
 
 To create the reference frame we just need to add an object to our scene and name it `frame`. The object can be anything that contains location and rotation data, like an _empty_, but we will use a cube in this guide:
 
-1. [Add a cube object](https://www.youtube.com/watch?v=zqy0tHLiOig) to your scene.
-2. Set the name of the object in the [outliner](https://youtu.be/UIRaqLLjnmY) to `frame` by double clicking it or pressing {% key "F2" /%} to edit it.
+1. In [object mode](~blender#modes), [add a cube object](~blender#adding-geometry) to your scene.
+2. Set the name of the object in the [outliner][] to `frame` by double clicking it or pressing {% key "F2" /%} to edit it.
 
 You can leave the frame at its default location at the origin, or you may [move](https://youtu.be/P0RfuocRY9c) it outside of the level you are creating so as to not interfere with object selection or obscure geometry.
 
@@ -108,42 +112,81 @@ You can leave the frame at its default location at the origin, or you may [move]
 Be aware that once you have started to populate the level with objects using [Sapien](~h1a-sapien) you cannot move the reference frame, since it will cause all placed objects to move out of alignment with the level geometry.
 {% /alert %}
 
-The frame does not have to have any specific material applied to it. The application of materials in Blender will be discussed in a later section.
+[outliner]: https://docs.blender.org/manual/en/latest/editors/outliner/introduction.html
 
 ## Creating a box level
-Halo has certain requirements for level geometry called the [sealed world rules](~bsp-troubleshooting#sealed-world-rules) which we need to adhere to. With some exceptions, the level must be a sealed inwards-facing room without any holes/open edges, faces with no surface area, or intersecting faces. Even the sky of the level is sealed with a "ceiling" of invisible but collideable faces.
+Halo has certain requirements for level geometry called the [sealed world rules](~bsp-troubleshooting#sealed-world-rules) which we need to adhere to. With some exceptions, the level must be a sealed inwards-facing room without any holes/open edges, faces with no surface area, or intersecting faces. Even the sky of the level is sealed with a "ceiling" of invisible but collideable faces. Our box level will certainly follow these rules, but it's helpful to be aware of them for later.
 
-In this guide we'll just create a basic box level which will be expanded upon in other guides. Our box will certainly follow the sealed world rules but it's helpful to be aware of them before you begin making the model more complex later.
+Let's go ahead and create the box now:
 
-1. [Add a new box object](https://www.youtube.com/watch?v=zqy0tHLiOig)
+1. From object mode, add another new cube.
 2. Bring up the [sidebar](https://youtu.be/H64e1RDZKuA) with {% key "N" /%} and set it to the item tab.
 3. Set the [location](https://youtu.be/P0RfuocRY9c) of the box to X: `0.0` Y: `0.0` Z: `800.0`. This step is not really necessary but lifts the level off the viewport grid and the reference frame if you've left it at the origin. If you expect to be mirroring the level later, keep the level horizontally centered at the origin since this can make mirroring easier.
 4. The [dimensions](https://youtu.be/P0RfuocRY9c) for the Box can be manually set. The dimensions for the box that will be used are X: `2400.0`  Y: `3200.0`  Z: `1600.0`
 5. Set the name of the object in the [outliner](https://youtu.be/UIRaqLLjnmY) to `level` by double clicking it or pressing {% key "F2" /%} to edit it.
-6. While having the box selected [change the context mode](https://youtu.be/SVLAYHJSXYA) from object mode to edit mode
-	* The following steps will make the box satisfy the Sealed World Rules and will link it to the frame, in effect making it a simple Halo level in terms of geometry.
-7. [Flip all the normals](https://youtu.be/zog43sqj0Qc) for the box inwards, the interior of the box will be the playable area of the level.
-	* There are two ways you can confirm the direction of the normals on the model. They are as follows:
-	* Backface culling: This option will render the geometry transparent when viewed from the opposite side of the face normal.
-		![](A.jpg "Find backface culling in the viewport shading options menu")
-		* [Backface culling docs](https://youtu.be/FAiMN1Zohps)
-	* Normal overlay: This option will render lines coming out the center of the face to indicate the direction it is pointing. This option will only be available to you if you are in edit mode for the object you wish to examine.
-		![](B.jpg "Find normals in the viewport overlay options menu")
-		* [Normal overlay docs](https://youtu.be/zog43sqj0Qc)
-8. [Set context](https://youtu.be/SVLAYHJSXYA) back to object mode if you haven't already.
-9. With both your level and frame object selected, [set the parent](https://youtu.be/FsMnUhG1CWo) of the box (level) to the Reference Frame (frame) with frame being the active object.
+
+...
+
+1. While having the box selected [change the context mode](https://youtu.be/SVLAYHJSXYA) from object mode to edit mode
+  * The following steps will make the box satisfy the Sealed World Rules and will link it to the frame, in effect making it a simple Halo level in terms of geometry.
+2. [Flip all the normals](https://youtu.be/zog43sqj0Qc) for the box inwards, the interior of the box will be the playable area of the level.
+  * There are two ways you can confirm the direction of the normals on the model. They are as follows:
+  * Backface culling: This option will render the geometry transparent when viewed from the opposite side of the face normal.
+    ![](A.jpg "Find backface culling in the viewport shading options menu")
+    * [Backface culling docs](https://youtu.be/FAiMN1Zohps)
+  * Normal overlay: This option will render lines coming out the center of the face to indicate the direction it is pointing. This option will only be available to you if you are in edit mode for the object you wish to examine.
+    ![](B.jpg "Find normals in the viewport overlay options menu")
+    * [Normal overlay docs](https://youtu.be/zog43sqj0Qc)
+3. [Set context](https://youtu.be/SVLAYHJSXYA) back to object mode if you haven't already.
+4. With both your level and frame object selected, [set the parent](https://youtu.be/FsMnUhG1CWo) of the box (level) to the Reference Frame (frame) with frame being the active object.
 
 {% alert %}
 The last object you selected is considered the active object and will be the parent of all other objects you have selected when doing set to parent object.
 {% /alert %}
 
 ## Applying materials
+_Materials_ define the appearance of surfaces within Blender, like their texture. Objects in Blender can have multiple [material slots][mtl-slots], each of which can reference a different material. You can then [assign][mtl-assign] material slots to faces on that object and they will take on the appearance of the material in that slot. A material can be referenced by multiple objects or even multiple slots in the same object, but for our needs we'll keep it one-to-one and use the term _material_ to mean both a slot and the material referenced by it.
+
+Assigning materials in Blender is how we assign different [shader](~) tags to parts of our BSP. The name of the material, and what faces it's assigned to, will be included in the JMS file and used by Tool to search for a matching shader tag to reference for those faces. For example, a material named `example_tutorial_ground` will match `tags\levels\test\tutorial\shaders\example_tutorial_ground.shader_environment`. The matched shader doesn't even need to be in your level's shaders folder; Tool can match a shader tag anywhere under your `tags` folder.
+
+{% alert %}
+**Only the material name matters** for export! Shader tags define the appearance of surfaces in-engine, while Blender materials define the appearance only in Blender itself. Assigning textures to materials in Blender has no effect on the ingame appearance and the only point is to help you preview the level and perform UV mapping. Any custom textures need to be imported as [bitmaps](~bitmap) and referenced from new custom shader tags.
+{% /alert %}
+
+There are some [special material names](~h1-materials#special-materials) which don't use shader tags. Since we need to follow the sealed world rules, we use `+sky` for faces we want the sky to be visible through. Certain [material symbols](~h1-materials#material-symbols) can be added to your material names too, like `^` in `example_tutorial_ladder^` which makes the surface climbable.
+
+
+The frame does not have to have any specific material applied to it.
+
+[mtl-slots]: https://docs.blender.org/manual/en/latest/render/materials/assignment.html#material-slots
+[mtl-assign]: https://docs.blender.org/manual/en/latest/render/materials/assignment.html#edit-mode
 
 ## UV mapping
 
 ## Assigning sharp edges
 
 ## Exporting a JMS
+Make sure you've saved your Blender scene so you don't lose any work. Now that we've created the level model, we can export it to a [JMS file](~jms) which we'll later convert to a BSP tag with Tool:
+
+![](export_jms.jpg "Select File > Export > Halo Jointed Model Skeleton (.jms)")
+
+![](export_settings.jpg "The default settings should already look like this. Click to expand.")
+
+**Ensure the export settings match those above**. Specifically:
+* _Game Version_ is **Halo CE**.
+* _Generate Asset Subdirectories_ is **disabled**.
+* _Apply Modifiers_, _Triangulate_, and _Edge Split_ are all **enabled**.
+* _Edge Split_ on _Sharp Edges_ is **enabled**.
+
+Some of the other settings don't apply to levels but you can learn more about them [here](~halo-asset-blender-development-toolset#jms-export-settings).
+
+{% alert %}
+If you want to ensure these settings are stored in your scene and used for every export, you can configure the toolset's [scene game version](~halo-asset-blender-development-toolset#scene-game-version) and [scene JMS settings](~halo-asset-blender-development-toolset#scene-jms-settings), then select _Use Scene Export Settings_. This will grey out the settings in the export window and use the settings stored in your scene instead so you don't accidentally change anything.
+{% /alert %}
+
+Next, browse the export window to your level's `models` data folder, for example `data\levels\test\example\models`. Enter the filename `example.JMS` and click _Export JMS_.
+
+You should now have a file `data\levels\test\example\models\example.JMS`.
 
 # Tagging
 The following steps are concerned with creating and editing [tags](~) for your level.
@@ -174,7 +217,7 @@ Next we need to edit the scenario in [Guerilla](~h1a-guerilla). Open `tags\level
 Although it's not often used, levels can actually reference multiple skies used in different BSPs or parts of the same BSP ([with restrictions](~bsp-troubleshooting#warning-cluster-can-see-multiple-skies)). Even fully indoor levels with no visible sky may still want to reference a sky tag because it sets [indoor cluster](~scenario_structure_bsp#indoor-vs-outdoor-clusters) fog and ambient light parameters. These are more advanced topics so we'll just stick with a single sky reference.
 
 ## Lighting the BSP
-The BSP tag currently doesn't have any [lightmaps](~). If you were to open the scenario in [Sapien](~h1a-sapien) now the level would either be invisible (HEK Sapien) or fullbright (H1A Sapien). We need to run the radiosity process to bake lighting with the Tool [lightmaps verb](~h1a-tool#lightmaps). From a command prompt again:
+The BSP tag currently doesn't have any [lightmaps](~). If you were to open the scenario in [Sapien](~h1a-sapien) now the level would either be invisible (HEK Sapien) or fullbright (H1A Sapien). We need to run the radiosity process to bake lighting with the Tool [lightmaps verb](~h1a-tool#lightmaps). From a command prompt again, enter:
 
 ```cmd
 tool lightmaps "levels\test\example\example" example 0 0.3
@@ -186,14 +229,71 @@ The arguments are:
 3. Quality, either `0` (draft) or `1` (final). Keep it draft for now.
 4. Stop threshold. This ranges between `0` and `1` and tells Tool to stop radiosity when the amount of "in flight" light reduces to this level. Values closer to `0` result in more accurate lighting but takes longer.
 
-As with importing the BSP, this step may also halt on geometry errors and produce a WRL file. The most common issue is [degenerate UVs](~bsp-troubleshooting#degenerate-triangle-or-triangle-with-bad-uvs-blue) so make sure you followed the steps of the [UV mapping](#uv-mapping) section correctly.
+If successful this will count down from 1 to your stop threshold. With a simple box level it should complete nearly instantly. As with importing the BSP, this step may also halt on geometry errors and produce a WRL file. The most common issue is [degenerate UVs](~bsp-troubleshooting#degenerate-triangle-or-triangle-with-bad-uvs-blue) so make sure you followed the steps of the [UV mapping](#uv-mapping) section correctly.
 
 Lightmaps are cleared any time the BSP tag is reimported from JMS so you will need to repeat this step whenever you change level geometry. This is why you should use draft quality until later in development.
 
 ## Adding spawn points
 
 # Testing the level
-Now that the tags are ready we can test the level.
+The tags are now ready so let's test the level in-game. How you do this will depend on which toolset you're using and the [scenario type](#setting-a-scenario-type-and-sky) you chose. Note that you will not be able to play any multiplayer [game modes](~) besides slayer until you've set up the relevant [netgame flags](~scenario#tag-field-netgame-flags) with Sapien.
+
+{% tabs id="testing" %}
+{% tab label="Testing with Standalone" %}
+If you're using the H1A mod tools you can [use Standalone](~h1a-standalone-build#usage) to test the scenario. Standalone is preferable to testing in MCC itself during development since it includes debug features and loads tag files directly, avoiding the need to build a map `file` with Tool and install it into MCC. Run `halo_tag_test.exe` and enter the following into the [developer console](~developer-console):
+
+```console
+game_variant slayer ; only if your level is a multiplayer map
+map_name levels\test\example\example ; tag path for the scenario
+```
+
+This will load the scenario tag as a playable level and you should spawn at one of the spawn points you placed earlier. A multiplayer scenario can also be loaded as a singleplayer level (without first setting a `game_variant`) if you included a singleplayer spawn too.
+
+If you can see the game world but aren't spawning then your spawn points are not correctly configured. If the game instead crashes, you likely have some problem with your tags and should open `reports\debug.txt` for a log of what went wrong.
+
+You don't need to restart Standalone to see changes to your map's tags. Use the [console history](~developer-console#usage) to rerun `map_name` and the level's tags will be reloaded. You can also put the above console lines into `init.txt` to [run at startup](~arguments#init-txt) automatically.
+{% /tab %}
+
+{% tab label="Testing with Custom Edition" %}
+If you're using the HEK and targeting Halo Custom Edition then you need to build a map from tags. This is because Custom Edition, unlike Standalone, is a [cache build](~blam#build-types) of the engine that loads [map cache files](~maps) rather than unprocessed tags. Open your command prompt and run the Tool [build-cache-file verb](~h1a-tool#build-cache-file):
+
+```cmd
+tool build-cache-file levels\test\example\example
+```
+
+This will produce `maps\example.map`. You can then launch Custom Edition and load this level, either via UI for MP maps or [via the console if enabled](~developer-console#usage):
+
+```console
+map_name example ; if SP
+sv_map example slayer ; if MP
+```
+
+You can put this command in your [init.txt](~arguments#init-txt) to run whenever the game launches.
+{% /tab %}
+
+{% tab label="Testing with MCC" %}
+If you're using the H1A tools and want to test in MCC itself then you need to build the map. It's generally recommended to test in [Standalone](~h1a-standalone-build) during development since it's easier and catches more tag errors, but doing final testing in MCC when the map is close to release is a good idea. Run Tool's [build-cache-file verb](~h1a-tool#build-cache-file) verb from command prompt:
+
+```cmd
+tool build-cache-file levels\test\example\example classic none
+```
+
+This differs a bit from the HEK tool command because H1A tool exposes more options. Tool will create the file `maps\example.map`. You can then use the _replacement method_ to play the map:
+
+1. Copy the map into `C:\Program Files (x86)\Steam\steamapps\common\Halo The Master Chief Collection\halo1\maps` or the equivalent path for your MCC installation.
+2. Choose an existing map with the same scenario type, e.g. bloodgulch for MP maps, and move it to a new subfolder called `backups`.
+3. Rename your custom map after the map you just moved.
+4. Launch MCC with EAC off and play the map you just replaced. It should load your custom map.
+5. To undo this, just move the original map from `backups` back into the `maps` folder.
+
+If you want to release the final version of your map on Steam then you would include your map file in the mod created with [Excession](~).
+{% /tab %}
+{% /tabs %}
+
+{% alert type="success" %}
+Congrats on reaching this point! You should now have a minimal starter level that you can use as the foundation for [further guides](~levels). Revisit this page if you need a refresher on any of the steps.
+{% /alert %}
+
 
 ---
 
@@ -343,13 +443,7 @@ It's probably a good idea to make frequent backups as you make progress just in 
 
 1. Go to File dropdown in the top left and click it.
 2. Click on the menu item labeled `Save As`.
-3. A window named "Blender File Dialog" should come up. Navigate to `(HEK Install Path)\data\levels\test\(Level Name)\models` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory](~file-directories) section
+3. A window named "Blender File Dialog" should come up. Navigate to `(HEK Install Path)\data\levels\test\(Level Name)\models` and set the name of the blend file to the name of your level. You'll remember that we created this directory in the [creation of a level directory](#folder-setup) section
 4. Click on the button labeled `Save As`.
 
 You've now saved your level. The file as is will be used for future sections in this tutorial.
-
-# End of basics
-
-{% alert type="success" %}
-Once you've gotten to this point your level is ready to export. We will go over some more in-depth features in the [next section](~advanced) to help you design a more interesting map. If you do drop off at this point then keep in mind that any following sections will show the tutorial level in a different state than it was during the last section.
-{% /alert %}

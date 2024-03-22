@@ -5,7 +5,7 @@ redirects:
 ---
 When sizing assets and configuring distances, modders will primarily use two unit types:
 
-* **JMS units** are used when modeling in your [3D software](~art-tools#modeling). They match 1:1 with the default [3ds max](~3dsmax) units or [Blender](~blender) meters (ignore the fact they're labeled meters). Addons for these tools will export vertex coordinates as-is to your [JMS files](~JMS).
+* **JMS units** are used when modeling in your [3D software](~art-tools#modeling). They match 1:1 with the default [3ds max](~3dsmax) units or [Blender](~blender) meters (ignore the fact they're labeled meters). Addons for these tools will export vertex coordinates as-is to your [JMS files](~JMS) by default, though the Blender addon has [an option](~halo-asset-blender-development-toolset#scale) to multiply coordinates by a value during export.
 * **World units** are the engine's native unit and are equal to 100 JMS units. This is because [Tool](~h1a-tool) divides all coordinates by 100 when importing models. World units are what you specify for distances in tag fields like [bounding radius](~/h1/tags/object#tag-field-bounding-radius) and are the coordinates seen when placing objects in [Sapien](~h1a-sapien).
 
 The relationship of these units to real-world units is up to debate, but the [original HEK tutorial](https://www.haloce.org/HEK_Tutorial/index.html) states:

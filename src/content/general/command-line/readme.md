@@ -7,7 +7,7 @@ keywords:
 redirects:
   - /general/tools/command-line
 ---
-Basic **command-line** skills are helpful in Halo modding. [Tool](~h1a-tool) and some community tools like [Invader](~) are used via a command-line interface. In a CLI, you type commands into a shell window which runs programs and displays their output. CLIs may seem a bit intimidating compared to GUIs, but they allow you to easily share commands and output as text and run them in [scripts](#scripting) for repetitive tasks.
+Basic **command-line** skills are helpful in Halo modding. [Tool](~mod-tools#tools-overview) and some community tools like [Invader](~) are used via a command-line interface. In a CLI, you type commands into a shell window which runs programs and displays their output. CLIs may seem a bit intimidating compared to GUIs, but they allow you to easily share commands and output as text and run them in [scripts](#scripting) for repetitive tasks.
 
 Most people use [Command Prompt](#command-prompt) (`cmd.exe`), but you can also use [PowerShell](#powershell). If you wish to avoid CLIs then you can use the community-made [Osoyoos](~) launcher for wrapping Tool functions.
 

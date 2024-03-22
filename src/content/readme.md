@@ -29,7 +29,7 @@ Everyone makes mods for different reasons; maybe it's to rebalance the sandbox, 
 
 # What's new?
 {% alert type="success" %}
-**March 2024:** c20 received a minor facelift and has new and revised information, mainly for H1:
+**March 2024:** c20 received a facelift and has new and revised information, mainly for H1:
 {% /alert %}
 
 * Tools:
@@ -53,7 +53,7 @@ Everyone makes mods for different reasons; maybe it's to rebalance the sandbox, 
   * Described [AI props](~ai#props) and [AI actions](~ai#actions).
 * Guides:
   * Flatter page organization.
-  * Moved [Blender setup and tips](~blender) to the Blender page, same for the [Toolset](halo-asset-blender-development-toolset#settings).
+  * Moved [Blender setup and tips](~blender) to the Blender page, same for the [Toolset](~halo-asset-blender-development-toolset).
   * Added a [map porting overview](~porting-maps).
 * Other:
   * Moved the [scale and unit conversions page](~scale) and improved descriptions of units.

@@ -7,10 +7,6 @@ import localizations from "./localizations";
 import {useLocalize} from "../Locale/Locale";
 import TableOfContents, {type NavHeading} from "../Article/TableOfContents";
 
-const COLLAPSE_CHILD_PAGES = 20;
-const COLLAPSE_RELATED_PAGES = 4;
-const COLLAPSE_MAIN_TOPIC_PAGES = 20;
-
 export type PageWrapperProps = {
   title?: string;
   navRelated?: PageLink[];
@@ -25,13 +21,19 @@ function renderPageTree(pageId: string, navTree: NavTree) {
       {navTree.map(({link, children}) => {
         const isParent = (pageId + "/").startsWith(link.pageId + "/");
         const isCurrent = pageId == link.pageId;
-        const title = !isParent && children.length > 0 ?
-          <>{link.title} <Icon name="plus"/></> :
-          link.title;
-        const page = <a href={link.url} aria-current={isCurrent ? "location" : undefined}><Icon name={link.icon}/>{title}</a>;
+        const showPlus = !isParent && children.length > 0;
+        const pageItem = (
+          <a className="item-link" href={link.url} aria-current={isCurrent ? "location" : undefined}>
+            <Icon name={link.icon}/>
+            <span className="item-title">
+              {link.title}
+              {showPlus && <Icon name="plus"/>}
+            </span>
+          </a>
+        );
         return (
           <li>
-            {page}
+            {pageItem}
             {isParent && renderPageTree(pageId, children)}
           </li>
         );
@@ -40,37 +42,24 @@ function renderPageTree(pageId: string, navTree: NavTree) {
   );
 }
 
-/*
-{props.navRelated && props.navRelated.length > 0 &&
-              <DetailsList
-                summary={<h2>{localize("related")}</h2>}
-                maxOpen={COLLAPSE_RELATED_PAGES}
-                allowInline={false}
-                items={props.navRelated?.map(({url, title}) =>
-                  <a href={url}>{title}</a>
-                )}
-              />
-            }
-*/
-
 export default function PageWrapper(props: PageWrapperProps) {
   const ctx = useCtx();
   const {localize} = useLocalize(localizations);
 
   return (
-    <div className="wrapper">
+    <div className="wrapper body-view">
       <nav className="wrapper-nav">
         <header className="nav-bar">
           <a className="c20-logo" title={localize("siteName")} href={ctx?.resolvePage("/")?.url}>
-            <span className="c20-name-long">c20</span>
+            <span className="c20-name">c20</span>
           </a>
           <div className="button-group">
             <div id="theme-mountpoint"></div>
-            <a className="button nobg" href={DISCORD_URL} title="Discord">
-              <Icon name="message-square"/>
-            </a>
             <button className="nobg mobile-only" id="toggle-menu" title={localize("menu")}>
-              <Icon name="menu"/>
+              <Icon name="search"/>
+            </button>
+            <button className="nobg mobile-only" id="toggle-toc" title={localize("toc")}>
+              <Icon name="list"/>
             </button>
           </div>
         </header>

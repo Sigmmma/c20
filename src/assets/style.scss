@@ -161,6 +161,7 @@ hr {
 @import "_forms";
 @import "_tables";
 @import "../lib/components/Alert/Alert.scss";
+@import "../lib/components/Tabs/Tabs.scss";
 @import "../lib/components/Article/Article.scss";
 @import "../lib/components/UnitConverter/UnitConverter.scss";
 @import "../lib/components/Icon/Icon.scss";
@@ -179,18 +180,5 @@ hr {
 @media all and (max-width: 55em) {
   .desktop-only {
     display: none;
-  }
-
-  .page-sidebar {
-    // position: sticky;
-    // top: 0;
-    border-bottom: 1px solid var(--border-color);
-  }
-
-  .page-sidebar .sidebar-inner {
-    overflow-y: auto;
-    position: inherit;
-    height: auto;
-    background: none;
   }
 }

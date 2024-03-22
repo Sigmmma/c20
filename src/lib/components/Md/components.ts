@@ -11,6 +11,7 @@ import TagStruct from "../StructTable/TagStruct";
 import {UnitConverterMountpoint} from "../UnitConverter/UnitConverter";
 import Color from "../Color/Color";
 import ChildList from "../ChildList/ChildList";
+import Tabs from "../Tabs/Tabs";
 
 // These are the components needed by tags for rendering
 export const components = {
@@ -27,6 +28,7 @@ export const components = {
   UnitConverterMountpoint,
   Color,
   ChildList,
+  Tabs,
   Hidden: () => null,
 };
 

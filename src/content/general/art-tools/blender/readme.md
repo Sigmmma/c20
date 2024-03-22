@@ -33,11 +33,11 @@ Blender has far more capabilities than we need for just Halo modding. You will m
 
 # Usage basics
 
-## Interaction modes
-In the upper-left of the viewport you'll see a drop-down menu labeled "Object Mode". This menu changes Blender's interaction mode. In different interaction modes, the actions and operations you can perform in the viewport change or have different effects. The two main modes you'll use are:
+## Modes
+In the upper-left of the viewport you'll see a drop-down menu labeled "Object Mode". This is the [mode selector][modes]. In different interaction modes, the actions and operations you can perform in the viewport change or have different effects. The two main modes you'll use are:
 
-* Object Mode: Allows for the selection of whole objects, adding new objects, and changing their transforms (moving, scaling, rotating).
-* Edit Mode: Used to edit the geometry within a selected object, like adding new faces, moving vertices, and UV unwrapping.
+* **Object Mode**: Allows for the selection of whole objects, adding new objects, and changing their transforms (moving, scaling, rotating).
+* **Edit Mode**: Used to edit the geometry within a selected object, like adding new faces, moving vertices, and UV unwrapping.
 
 You can quickly toggle back and forth between these modes using {% key "Tab" /%}.
 
@@ -52,6 +52,17 @@ By default, Blender's camera rotates around an invisible central "focus point", 
 To move the focus point, rotate the camera to an angle perpendicular to the direction of travel then use panning to center over the desired area. You can also press the {% key "/" /%} key to center on a selection. If you are finding this mode of camera travel difficult to get used to, you may prefer the temporary flying camera mode by pressing {% key "Shift" /%} + {% key "`" /%} (tilde) then using {% key "W" /%}, {% key "A" /%}, {% key "S" /%}, {% key "D" /%} keys, then clicking to finish.
 
 Axis-aligned orthographic views can be viewed by pressing {% key "`" /%} (tilde) then clicking the desired direction. Return to the perspective camera by simply rotating the view with {% key "Middle mouse button" /%} again.
+
+## Adding geometry
+How geometry is added depends on your [mode](#modes).
+
+In object mode, you can use _Add > Mesh_ and select an object type. This creates a new object in your scene.
+
+![](add_cube_object.jpg)
+
+If you've selected an object and switch to edit mode, you can also use the _Add_ menu to add new meshes to the current object. This is different from the above because the new mesh will not be its own object, but rather the faces are included in the currently edited object.
+
+![](add_cube_edit.jpg)
 
 ## Workspace
 The workspace presets along the top of the window customize Blender's arrangement of [editors][blender-editors] for typical tasks like modeling, UV editing, and animation. For example, choosing the _Modeling_ workspace will hide the timeline which would simplify the experience if you're just making a level. You're not limited to the layouts and available editors of the built-in workspaces; any workspace's [areas][blender-areas] can be customized and set to different editor types.
@@ -90,3 +101,4 @@ All units given in this site's guides expect that your Blender instance is set t
 
 [wiki-clipping]: https://en.wikipedia.org/wiki/Clipping_(computer_graphics)#Clipping_in_3D_graphics
 [z-fighting]: https://en.wikipedia.org/wiki/Z-fighting
+[modes]: https://docs.blender.org/manual/en/latest/editors/3dview/modes.html

@@ -1,33 +1,12 @@
 @import "../../../assets/_constants.scss";
 
-.toc.mobile {
-  display: none;
-  @include mobile {
-    display: block;
-  }
-
-  details {
-    & > ol, & > ul {
-      padding-left: 0;
-    }
-  }
-}
-
-.toc.desktop {
-  display: block;
+.toc {
   transition: opacity $transition-time-interactive;
   opacity: 0.5;
-
-  @include mobile {
-    display: none;
-  }
 
   &:hover {
     opacity: 1.0;
   }
-}
-
-.toc {
 
   ol, ul {
     list-style: none;
@@ -61,5 +40,15 @@
 
   a:hover, li[aria-current="location"]:first-child a, a.highlight {
     background: var(--bg-overlay);
+  }
+
+  @include mobile {
+    opacity: 1.0;
+
+    details {
+      & > ol, & > ul {
+        padding-left: 0;
+      }
+    }
   }
 }

@@ -1,13 +1,15 @@
 // $bg-dark: #23292f;
-$bg-dark: #0e1d1f;
 // $bg-dark: #051618;
-$fg-dark:  mix($bg-dark, #fff, 30%);
+// $bg-dark: #0e1d1f;
+$bg-dark: #0f1718;
+$bg-dark-mix: #0e1d1f;
+$fg-dark:  mix($bg-dark-mix, #fff, 35%);
 $fg-code-dark: #60c99d;
 $fg-faded-dark: #5B858B;
-$fg-strong-dark: mix($bg-dark, #fff, 25%);
-$bg-overlay-dark: lighten($bg-dark, 5%);
+$fg-strong-dark: mix($bg-dark-mix, #fff, 25%);
+$bg-overlay-dark: lighten($bg-dark-mix, 5%);
 $bg-inset-dark: rgba(#000, 0.2);
-$border-color-dark: lighten($bg-dark, 10%);
+$border-color-dark: lighten($bg-dark-mix, 10%);
 $fg-link-dark: #16A3B6;
 
 $bg-light: #eeeeeb;

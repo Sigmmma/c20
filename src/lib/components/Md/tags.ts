@@ -1,4 +1,4 @@
-import {type Schema} from "@markdoc/markdoc";
+import {Tag, type Schema} from "@markdoc/markdoc";
 import {alertTypes} from "../Alert/Alert";
 import {iconNames} from "../Icon/names";
 import {onlyTypes} from "../RelatedHsc/RelatedHsc";
@@ -49,6 +49,45 @@ const tags: Record<string, Schema> = {
         type: String,
       }
     }
+  },
+  tabs: {
+    render: "Tabs",
+    selfClosing: false,
+    children: ["tag"],
+    attributes: {
+      id: {
+        type: String,
+        required: true,
+      },
+      selectedIndex: {
+        type: Number,
+        required: false,
+      }
+    },
+    transform(node, config) {
+      const {selectedIndex, id} = node.transformAttributes(config);
+      const tabs = node.transformChildren(config)
+        .filter(child => child && typeof(child) !== "string" && child.name === "Tab")
+        .map((child: Tag) => ({
+          label: child.attributes.label,
+          body: child.children,
+        }));
+      const tabsProps = {
+        selectedIndex,
+        id,
+        tabs,
+      };
+      return new Tag(this.render, tabsProps);
+    },
+  },
+  tab: {
+    render: "Tab",
+    attributes: {
+      label: {
+        type: String,
+        required: true,
+      },
+    },
   },
   key: {
     render: "Key",
