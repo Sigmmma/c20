@@ -1,17 +1,24 @@
 value_types:
   - type: void
     info:
-      en: Nothing
+      en: |-
+        Void means "no value", used for the return type of functions or static
+        scripts which are not meant to return anything, e.g. `cinematic_start`.
       es:
     ex: N/A
   - type: passthrough
     info:
-      en: Anything, used by some control flow functions.
+      en: |-
+        This means the value type is passed through from an inner expression,
+        used by `set` and some [control flow](~scripting#control) functions like `if`.
       es:
     ex: N/A
   - type: boolean
     info:
-      en: A value that is true or false
+      en: |-
+        A value that is either `true` or `false`. Boolean values are commonly set
+        as just `1` or `0` even in official level scripts. Parsing is
+        case-insensitive so `False` and `TRUE` will be understood too.
       es:
     ex: >-
       `true`, `false`, `1`, `0`
@@ -26,9 +33,9 @@ value_types:
     info:
       en: >-
         16-bit short integer value, stored in [two's complement](https://en.wikipedia.org/wiki/Two%27s_complement).
-        Value Range: `−32,768` to `32,767`
+        Value Range: `−32,768` to `32,767`. See [when to use short vs long](#when-to-use-short-vs-long).
       es:
-    ex: '`2`'
+    ex: '`2`, `-120`, `1000`'
 
   - type: long
     info:

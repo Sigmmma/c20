@@ -44,7 +44,8 @@ Everyone makes mods for different reasons; maybe it's to rebalance the sandbox, 
   * Added explanation of [aim assist](~h1/tags/object/item/weapon#aim-assist).
 * Scripting:
   * Updated some examples on the [scripting](~h1/scripting) page to be clearer.
-  * Added [more limits](~h1/scripting#gotchas-and-limits) and better described existing ones.
+  * Added a page with [advanced scripting techniques](~advanced-scripting).
+  * Added [more limits](~h1/scripting/limits) and better described existing ones.
   * Documented the [Halo Script Preprocessor](~halo-script-preprocessor).
   * Added descriptions for some [functions](~h1/scripting#other-functions) and [globals](~h1/scripting#external-globals).
 * Engine:

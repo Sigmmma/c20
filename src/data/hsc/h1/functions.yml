@@ -44,7 +44,9 @@ functions:
         (/ 2.5 2)
         ; returns: 1.25
         ```
-        Returns the quotient of two expressions.
+        Returns the quotient of two expressions. The second argument, the
+        denominator, must NOT be in the range `-0.0001` to `0.0001` (zero or
+        near zero) or an assertion will be thrown.
     tags:
       - math
   - slug: eq
@@ -310,7 +312,7 @@ functions:
         (<void> wake <script name>)
         (wake more_weapons)
         ```
-        Wakes a sleeping or dormant script in the next update.
+        Wakes a sleeping or dormant script in the _next_ update (tick).
     tags:
       - control
   - slug: thread_sleep
@@ -4369,6 +4371,8 @@ functions:
         ```
         Places lens flares in the structure bsp
   - slug: sv_ban_penalty
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4377,6 +4381,8 @@ functions:
         Specify up to 4 ban times for repeat ban/TK offenders.
     context: Gearbox only
   - slug: sv_ban
+    tags:
+      - server
     info:
       en: >-
         ```hsc
@@ -4391,6 +4397,8 @@ functions:
         `sv_ban_penalty` rules.
     context: Gearbox only
   - slug: sv_banlist
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4400,6 +4408,8 @@ functions:
         Print a list of banned players
     context: Gearbox only
   - slug: sv_banlist_file
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4408,6 +4418,8 @@ functions:
         Sets and opens the file to be used for the player ban list.
     context: Gearbox only
   - slug: sv_ban
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4416,6 +4428,8 @@ functions:
         <Server Only> Player is kicked and added to banned.txt.  Use sv_players to find the index.Specify optional duration for timed ban.  Use 0 to follow sv_ban_penalty rules.
     context: Gearbox only
   - slug: sv_end_game
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4425,6 +4439,8 @@ functions:
         End the current game
     context: Gearbox only
   - slug: sv_friendly_fire
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4433,6 +4449,8 @@ functions:
         Use to provide a global override for the gametype friendly fire setting.
     context: Gearbox only
   - slug: sv_gamelist
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4441,6 +4459,8 @@ functions:
         Display a list of game types, matching an optional substring.
     context: Gearbox only
   - slug: sv_get_player_action_queue_length
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4449,6 +4469,8 @@ functions:
         Displays the action queue length for the specified player.
     context: Gearbox only
   - slug: sv_kick
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4458,6 +4480,8 @@ functions:
         **(Server Only)** Kicks the specified player from the server
     context: Gearbox only
   - slug: sv_log_echo_chat
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4466,6 +4490,8 @@ functions:
         Enables or disbles chat echo to the console. Set the preference to 0to disable chat echo, or 1 to enable chat echo.If the preference is not specified, displays the current preference.
     context: Gearbox only
   - slug: sv_log_enabled
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4474,6 +4500,8 @@ functions:
         Enables or disables server logging. If 0/1 is not given, displays thecurrent logging status.
     context: Gearbox only
   - slug: sv_log_file
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4482,6 +4510,8 @@ functions:
         Sets the server log file name. If no name is given, displays thecurrent log file name.
     context: Gearbox only
   - slug: sv_log_note
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4490,6 +4520,8 @@ functions:
         Leave a note in the server log
     context: Gearbox only
   - slug: sv_log_rotation_threshold
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4498,6 +4530,8 @@ functions:
         Sets the log rotation threshold. When a log file's size (in kilobytes) exceedsthis number, it will be rotated. Set to 0 to disable log rotation.If the threshold is not specified, displays the current threshold.
     context: Gearbox only
   - slug: sv_map
+    tags:
+      - server
     info:
       en: >-
         ```hsc
@@ -4514,6 +4548,8 @@ functions:
         map.
     context: Gearbox only
   - slug: sv_map_next
+    tags:
+      - server
     info:
       en: >-
         ```hsc
@@ -4527,6 +4563,8 @@ functions:
         the playlist
     context: Gearbox only
   - slug: sv_map_reset
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4536,6 +4574,8 @@ functions:
         **(Server Only)** Reset the current game
     context: Gearbox only
   - slug: sv_mapcycle
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4545,6 +4585,8 @@ functions:
         Print the contents of the currently loaded mapcycle file
     context: Gearbox only
   - slug: sv_mapcycle_add
+    tags:
+      - server
     info:
       en: >-
         ```hsc
@@ -4558,6 +4600,8 @@ functions:
         Add a new game to the end of the mapcycle file
     context: Gearbox only
   - slug: sv_mapcycle_begin
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4567,6 +4611,8 @@ functions:
         Restart or begin playing the currently loaded mapcycle file
     context: Gearbox only
   - slug: sv_mapcycle_del
+    tags:
+      - server
     info:
       en: >-
         ```hsc
@@ -4580,6 +4626,8 @@ functions:
         Removes the game at `<index>`. Will not affect running games.
     context: Gearbox only
   - slug: sv_maplist
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4588,6 +4636,8 @@ functions:
         Display a list of maps, matching an optional substring.
     context: Gearbox only
   - slug: sv_maxplayers
+    tags:
+      - server
     info:
       en: >-
         ```hsc
@@ -4602,6 +4652,8 @@ functions:
         given, displays the current value.
     context: Gearbox only
   - slug: sv_motd
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4610,6 +4662,8 @@ functions:
         Sets the server message of the day file name. If no name is given, displays thecurrent motd file name. Set to "" to turn motd off.
     context: Gearbox only
   - slug: sv_name
+    tags:
+      - server
     info:
       en: >-
         ```hsc
@@ -4626,6 +4680,8 @@ functions:
         name.
     context: Gearbox only
   - slug: sv_parameters_dump
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4635,6 +4691,8 @@ functions:
         Dumps out the local parameter configuration to `parameters.cfg` file
     context: Gearbox only
   - slug: sv_parameters_reload
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4644,6 +4702,8 @@ functions:
         **(Server Only)** Reloads the `parameters.cfg` file
     context: Gearbox only
   - slug: sv_password
+    tags:
+      - server
     info:
       en: >-
         ```hsc
@@ -4660,6 +4720,8 @@ functions:
         current password.
     context: Gearbox only
   - slug: sv_players
+    tags:
+      - server
     info:
       en: >-
         ```hsc
@@ -4673,6 +4735,8 @@ functions:
         current game
     context: Gearbox only
   - slug: sv_rcon_password
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4681,6 +4745,8 @@ functions:
         Sets the server remote console password. If no password is given, displays thecurrent password. Enter "" to disable rcon.
     context: Gearbox only
   - slug: sv_say
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4689,6 +4755,8 @@ functions:
         <Server Only> Usage: "sv_say <message>"Send a message to users
     context: Gearbox only
   - slug: sv_single_flag_force_reset
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4697,6 +4765,8 @@ functions:
         Force the flag to reset in single flag CTF games when the timer expires, even if held by a player.If not specified, displays the current value.
     context: Gearbox only
   - slug: sv_status
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4706,6 +4776,8 @@ functions:
         Shows status of the server
     context: Gearbox only
   - slug: sv_timelimit
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4714,6 +4786,8 @@ functions:
         Use to provide a global override for the gametype timelimit setting.
     context: Gearbox only
   - slug: sv_tk_cooldown
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4722,6 +4796,8 @@ functions:
         Specify a TK point cooldown period, after which players lose a TK point.
     context: Gearbox only
   - slug: sv_tk_grace
+    tags:
+      - server
     info:
       en: |-
         ```hsc
@@ -4730,6 +4806,8 @@ functions:
         Specify the grace period for TK during which you don't get a TK point.
     context: Gearbox only
   - slug: sv_unban
+    tags:
+      - server
     info:
       en: >-
         ```hsc

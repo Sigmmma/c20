@@ -7,7 +7,7 @@ info: |-
 thanks:
   Conscars: Documenting usage examples
 ---
-The **Halo Script Preprocessor** allows you to write [HaloScript](~scripting) with support for [C-like preprocessor macros][pre] like `#define`. The program takes a scripts file with macros in it, processes them, then outputs a standard HSC file. This means this program is *purely* for making writing HSC easier. Scripts output by this preprocessor are still subject to the [usual limits](~scripting#gotchas-and-limits).
+The **Halo Script Preprocessor** allows you to write [HaloScript](~scripting) with support for [C-like preprocessor macros][pre] like `#define`. The program takes a scripts file with macros in it, processes them, then outputs a standard HSC file. This means this program is *purely* for making writing HSC easier. Scripts output by this preprocessor are still subject to the [usual limits](~scripting/limits#limits).
 
 Most modders are not likely to need this tool; it's intended for expert users to save time and reduce boilerplate when writing very large level scripts. With H1A's support for static script arguments and its raised scripting limits this tool may be unnecessary for you.
 

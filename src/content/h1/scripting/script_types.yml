@@ -45,9 +45,15 @@ script_types:
 
   - type: static
     info:
-      en: >
-        Performed when called from another script. In H1A these can support up
-        to 16 parameters like later games.
+      en: |-
+        Performed when called from another script, possibly returning a value.
+        These can be called as many times as needed and are run in the thread of
+        the calling script. Static scripts are ideal for shared and reusable logic.
+        
+        In H1A these can support up to 16 parameters like later games.
+        Parameters [shadow](https://en.wikipedia.org/wiki/Variable_shadowing)
+        any globals with the same name and cannot be modified. Outside H1A,
+        you'll need to use globals to [emulate parameters](~advanced-scripting#using-globals-for-parameters).
       es:
     ex: |-
       ; without parameters, call like (player0)

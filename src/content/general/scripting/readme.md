@@ -79,7 +79,7 @@ All function arguments and expression results have a particular _type_. The type
 Note that the `void` type you may see documented for some functions means the function does not return a value.
 
 ## Comments
-You can include comments in your scenario script files:
+You can include comments in your scenario script files. Comments have no effect on the script but are useful for adding notes to your code.
 
 ```hsc
 ; this is a comment

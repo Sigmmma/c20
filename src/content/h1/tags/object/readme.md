@@ -21,6 +21,21 @@ Some capabilities available to objects (though not used by every subtype) are:
 * Have attachments like [particles](~particle_system), [sounds](~sound_looping), and [lights](~light)
 * Be attached to each other (e.g. pelicans carrying warthogs)
 
+# Functions
+_Functions_ are values of objects that can change over time and/or react to external stimulus. They can be combined in complex ways and used to drive dynamic changes across various aspects of the object, like its appearance, sound, and attachments. Some examples are Jackal shields changing colour in reaction to damage, Warthog headlights turning on when you enter the vehicle, Banshee wingtips emitting contrails when banking, and the Assault Rifle's compass pointing north.
+
+Objects can receive up to 4 sources of input from the engine called _A in_, _B in_, _C in_, and _D in_. These can be used as inputs by your _functions_ or _change colors_. Every type of object has access to sources from the _[export to functions](#tag-field-a-in)_ section. However, certain types of objects can override these base sources with additional sources related to that object type. To name a few, devices have access to [position and power](~device#tag-field-device-a-in) while vehicles have access to [speed and slide](~vehicle#tag-field-vehicle-a-in).
+
+The next relevant section is the [_functions_ block](#tag-field-functions). This is where you can define functions and how the change over time, and if they use any of the _export to functions_ inputs. Each function produces a simple numeric value over time, typically between `0` and `1`. This could be as simple as an oscillating sine wave or as complex as a noise value scaled by recent damage and clipped to a certain range. You can create up to 4 functions.
+
+The outputs of functions can be used by a variety of other tags related to the object, including but not limited to:
+
+* Set the [scales](#tag-field-attachments-primary-scale) of attachments like [lights](~light) or [sounds](~sound_looping).
+* Affect values in widgets like [glows](~glow#tag-field-attachment-1).
+* Scale or darken [_change colors_](#tag-field-change-colors-scale-by).
+* Affect the object's shaders in various ways, like [fade](~shader_transparent_chicago#tag-field-framebuffer-fade-source) or [texture animation](~shader_transparent_chicago#tag-field-maps-u-animation-source).
+
+
 # Shadows and lighting
 For most dynamic objects, Halo uses [shadow mapping][shadow-mapping] with their [render model](~gbxmodel), unless the object's ["does not cast shadow"](#tag-field-flags-does-not-cast-shadow) flag is true or `render_shadows` is disabled. [Scenery](~) shadows are baked into the [lightmap](~lightmaps) using the object's [collision geometry](~model_collision_geometry) instead, regardless of the "does not cast shadow" flag. Static objects can be forced to use shadow mapping if the [_cast shadow by default_](#tag-field-flags-cast-shadow-by-default) flag is set.
 
