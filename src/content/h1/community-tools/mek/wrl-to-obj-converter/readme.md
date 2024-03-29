@@ -3,8 +3,6 @@ title: WRL to OBJ converter
 about: 'tool:WRL to OBJ converter'
 img: converted.jpg
 caption: Examples of error geometry imported to Blender.
-redirects:
-  - /h1/tools/mek/wrl-to-obj-converter
 info: >
   * [Usage
   documentation](https://github.com/Sigmmma/mek/blob/master/READMES/tools_misc_readme.md)

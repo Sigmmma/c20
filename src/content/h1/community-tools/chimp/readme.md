@@ -6,8 +6,6 @@ info: >
   DB)](https://www.moddb.com/games/halo-2/downloads/chimp-plugin-for-gmax)
 keywords:
   - max
-redirects:
-  - /h1/tools/chimp
 thanks:
   Jason Zimmer: Usage instructions
   TheGhost: Exporter feature comparisons

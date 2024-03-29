@@ -2,8 +2,6 @@
 title: CEA compression
 thanks:
   zatarita: Documenting CEA compression scheme
-redirects:
-	- /h1/h1a/compression
 ---
 **CEA compression** is an algorithm used to compress certain files of [Halo: Combat Evolved Aniversary](~h1#anniversary-xbox-360-343-industries-2011) (H1A). It works by breaking a file down into smaller chunks, and compressing each chunk with [zlib][]. The [offsets][offset-wiki] to the beginning of each chunk are then stored in the [header][header-wiki] of the file. Each file is [little endian][little-endian-wiki].
 

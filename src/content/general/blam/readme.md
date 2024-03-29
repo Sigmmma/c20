@@ -14,10 +14,6 @@ keywords:
   - profile
   - beta
   - ship
-redirects:
-  - /h1/engine/build-types
-  - /general/engine/build-types
-  - /general/engine
 ---
 The **Halo Engine**, also called **Blam!**, is Bungie's in-house proprietary engine used in all of the Halo games. Each generation added new capabilities and had systems overhauled, but one of its defining characteristics is the [tags system](~tags) used for managing resources. It is written in a combination of C and C++ (about 1.5M LoC for Halo 2).
 

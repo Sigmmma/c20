@@ -1,8 +1,5 @@
 ---
 title: Art tools
-redirects:
-  - /tools
-  - /general/tools
 childOrder:
   - blender
   - krita

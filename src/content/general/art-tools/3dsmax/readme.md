@@ -9,8 +9,6 @@ info: |
 keywords:
   - 3d
   - max
-redirects:
-  - /general/tools/3dsmax
 ---
 **3D Studio Max** (or just **Max**) is a 3D computer graphics program that can be used to modeling, unwrap, rig, and animate assets for Halo.
 

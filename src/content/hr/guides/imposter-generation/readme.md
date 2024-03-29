@@ -13,8 +13,6 @@ thanks:
   Connor Dawn: Writing this page
   kornman00: Providing information on how to generate imposters
   Pyrosocial: Providing extensive help and testing of this process
-redirects:
-  - /hr/imposter-generation
 ---
 
 # File list

@@ -9,8 +9,6 @@ info: |
   * [Recommended JMS exporter](JMS_Exporter_v1-0-4.ms)
 keywords:
   - max
-redirects:
-  - /h1/tools/bluestreak
 thanks:
   Siliconmaster: Documenting the script's history of versions and spinoffs
   Conscars: Comparing some additional versions for functional differences

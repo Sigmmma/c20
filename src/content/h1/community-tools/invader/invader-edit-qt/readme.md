@@ -3,8 +3,6 @@ title: invader-edit-qt
 about: 'tool:invader-edit-qt'
 img: invader-edit-qt.png
 caption: 'Screenshot of invader-edit-qt, a replacement for [Guerilla](~h1-guerilla)'
-redirects:
-  - /h1/tools/invader/invader-edit-qt
 ---
 **invader-edit-qt** is a GUI [tag](~tags) editor included in the [Invader](~) project. It is similar to [Guerilla](~h1-guerilla).
 

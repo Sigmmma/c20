@@ -6,6 +6,20 @@ import {exec} from "child_process";
 import vizRenderOpts from "viz.js/full.render.js";
 import {type BuildOpts} from "../build";
 
+if (typeof btoa === 'undefined') {
+  global["btoa"] = function btoa(str) {
+    var buffer;
+
+    if (str instanceof Buffer) {
+      buffer = str;
+    } else {
+      buffer = Buffer.from(str.toString(), 'binary');
+    }
+
+    return buffer.toString('base64');
+  };
+}
+
 const COPY_FILES_PATTERN = /\.(jpg|jpeg|png|gif|ms|mp4|blend|zip)/;
 const VIDEO_FILES_PATTERN = /\.(mp4)/;
 const VIZ_RENDER_PATTERN = /\.(dot|neato|fdp|sfdp|twopi|circo)/;

@@ -4,8 +4,6 @@ img: cmd.jpg
 caption: cmd.exe on Windows 7
 keywords:
   - cli
-redirects:
-  - /general/tools/command-line
 ---
 Basic **command-line** skills are helpful in Halo modding. [Tool](~mod-tools#tools-overview) and some community tools like [Invader](~) are used via a command-line interface. In a CLI, you type commands into a shell window which runs programs and displays their output. CLIs may seem a bit intimidating compared to GUIs, but they allow you to easily share commands and output as text and run them in [scripts](#scripting) for repetitive tasks.
 

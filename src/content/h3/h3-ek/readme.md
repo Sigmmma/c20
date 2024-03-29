@@ -8,8 +8,6 @@ caption: >-
 info: |
   * Release date: October 2021
   * [Report issues](JIF_ISSUE_URL)
-redirects:
-  - /h3/tools/h3-ek
 keywords:
   - h3-ek
   - h3ek

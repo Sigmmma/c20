@@ -10,17 +10,6 @@ thanks:
   "Modders of Halo Xfire Clan": Screenshots of old tools
   Dennis: Found malware in tool_pro
   gbMichelle: 'Writing the [hex edit guide](https://pastebin.com/rNVVjyus)'
-redirects:
-  - /h1/tools/blendkrieg
-  - /h1/tools/blender-gbxmodel-importer
-  - /h1/tools/halo-map-tools
-  - /h1/tools/set
-  - /h1/tools/hek-plus
-  - /h1/tools/sparkedit
-  - /h1/tools/hek/tool/tool_pro
-  - /h1/tools/hek/tool/phantom_tool
-  - /h1/tools/ghostbuster
-  - /h1/tools/hek/tool/lm_tool
 ---
 This page lists old community-made tools which **should not be used anymore** because they have known issues and/or a newer recommended approach exists. With the long history of Halo 1 PC modding, over time our understanding of the engine and tags has grown and new community-made tools phased out older ones.
 

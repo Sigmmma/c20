@@ -7,8 +7,6 @@ thanks:
   General_101: Writing this guide
   MercyMoon: Writing the Seams sections
   Crisp: Adding additional information on instanced geometry
-redirects:
-  - /h3/level-creation/blender-level-creation-additional-info
 ---
 # File List
 | File Link                                                                                                           | Description

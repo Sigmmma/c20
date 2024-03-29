@@ -11,8 +11,6 @@ keywords:
   - bitmap
   - sprite
   - picture
-redirects:
-  - /general/tools/krita
 ---
 **Krita** is a free and open source 2D painting and image editing program. It is more similar to [Photoshop](~) than to [GIMP](~) and features advanced brushes, layers, various blending modes, and TIFF export, making it a viable tool for Halo texturing.
 

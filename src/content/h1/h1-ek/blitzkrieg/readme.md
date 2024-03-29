@@ -6,8 +6,6 @@ caption: Blitzkrieg being used to export the Tutorial map.
 info: 'Released: 2003'
 keywords:
   - max
-redirects:
-  - /h1/tools/hek/blitzkrieg
 ---
 **Blitzkrieg** is the legacy [3ds Max](~3dsmax) to [JMS](~) and [animation data](~animation-data) exporter plugin which shipped with the original [HEK](~custom-edition#halo-editing-kit) for H1CE in 2003.
 

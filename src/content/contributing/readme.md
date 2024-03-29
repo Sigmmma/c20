@@ -7,8 +7,6 @@ keywords:
   - contribute
   - help
   - wiki
-redirects:
-  - /thanks
 ---
 **The Reclaimers Library** is an [open source](https://github.com/Sigmmma/c20) wiki created by modders for modders. It has a primary team of volunteer editors who incorporate new information from their own research or from community tips. This page details how you can contribute, and how to write pages as an editor.
 
@@ -162,6 +160,7 @@ noSearch: true
 
 # An optional list of page IDs that should be redirected to this page instead.
 # Use this when content is moved between pages or pages are moved to new URLs.
+# We're limited to 50 total redirects across the site, so use sparingly.
 redirects:
   - /h1/old/page
   - /h1/another/old/page

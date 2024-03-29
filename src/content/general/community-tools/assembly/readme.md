@@ -6,8 +6,6 @@ caption: A look at the UI on startup
 info: |
   * [Github](https://github.com/XboxChaos/Assembly)
   * [Appveyor](https://ci.appveyor.com/project/ThunderWaffle/assembly/build/artifacts)
-redirects:
-  - /general/tools/assembly
 ---
 **Assembly** is a [map cache](~maps) editing tool that can be used to mod various Halo games from the 360 to MCC. This can be a way to quickly test a feature by modifying game values in real time. A user can also save changes permanently to a cache file without the need to recompile the .map file in the editing kit. Support for certain features depends on the Halo game being modified.
 

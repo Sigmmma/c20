@@ -5,8 +5,6 @@ keywords:
   - exporter
 thanks:
   General_101: Writing this guide
-redirects:
-  - /h2/level-creation/file-directories
 ---
 # File list
 | File Link                                                                                       | Description

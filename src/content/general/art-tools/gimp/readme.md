@@ -13,7 +13,5 @@ keywords:
   - painting
   - drawing
   - texture
-redirects:
-  - /general/tools/gimp
 ---
 **GIMP**, or the **GNU Image Manipulation Program**, is a free and open source image editor. It can be used to create TIFF textures for Halo.

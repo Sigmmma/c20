@@ -5,8 +5,6 @@ keywords:
   - survival
 thanks:
   Krevil: Writing this page.
-redirects:
-  - /h3odst/firefight-setup
 ---
 Thanks to Halo 3 ODST's new Firefight additions, it's far easier than it was previously to setup a new scenario to work with Firefight. There are just a handful of steps you need to take in order for things to work.
 

@@ -1,8 +1,6 @@
 ---
 title: invader-edit
 about: 'tool:invader-edit'
-redirects:
-  - /h1/tools/invader/invader-edit
 ---
 **invader-edit** is a [command-line](~) tool included in the [Invader](~) project used to edit [tags](~). Users specify a field to edit and a value or operation as arguments. This can be useful for scripting bulk tag changes.
 
