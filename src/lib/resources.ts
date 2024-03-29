@@ -19,6 +19,11 @@ if (typeof btoa === 'undefined') {
     return buffer.toString('base64');
   };
 }
+if (typeof atob === 'undefined') {
+  global["atob"] = function atob(str) {
+    return Buffer.from(str, 'base64').toString('binary');
+  };
+}
 
 const COPY_FILES_PATTERN = /\.(jpg|jpeg|png|gif|ms|mp4|blend|zip)/;
 const VIDEO_FILES_PATTERN = /\.(mp4)/;
