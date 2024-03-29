@@ -49,15 +49,15 @@ The naming convention for builds is `<cache/tag>_<build_configuration>`, for exa
 # Architecture
 Halo's engine was built to support the kind of features needed for its singleplayer and multiplayer sandbox shooter gameplay. There are only certain types of objects and effects that can exist in the world which are inherent to the engine, and it's not possible to create new ones or extend the game's systems.
 
-However, you can create anything within the possibilities of custom [_tags_](~), which allow for a surprising amount of variety. Tags describe all the kinds of assets and behaviours you want to appear in the game. When a level is loaded, all of its tags are loaded into memory and used to create the initial game world and control how it changes over time.
+However, you can create anything within the possibilities of custom [_tags_](~), which allow for a surprising amount of variety. Tags are the game's resource system and contain the properties for each unique type of object, asset, effect, and more. When a level is loaded, all of its tags are loaded into memory.
 
 The properties of the game world and its objects are stored in the _game state_. This is a collection of data that contains everything needed to represent the world at a given time, such as the position of objects, health of bipeds, and the execution state of script threads. It's what gets saved and loaded at checkpoints.
 
 The game state is updated in fixed time steps called _ticks_. This process is deterministic, meaning given any initial game state, advancing it by some number of ticks and replaying player inputs will always produce the same result in the world simulation, important for co-op (synchronous) networking and theater mode. The changes made during ticks are called _updates_ and include physics simulation, handling player input, driving effects, and more. The data in your tags will affect how these updates happen.
 
-Finally, the audio are visuals of the game are rendered based on tag assets too.
+Finally, the audio and visuals of the game are rendered based on tag assets too.
 
-The Halo resource system is [quite flexible](http://nikon.bungie.org/misc/gdc2005_mnoguchi/) as it's capable of introspection and abstracted away from the code that uses the data, allowing for the dynamically generated UIs used in [Guerilla](~h1a-guerilla). Tools like Sapien are built on the same code the game uses, allowing for player simulation and AI to act out encounters.
+The Halo resource system is [quite flexible](http://nikon.bungie.org/misc/gdc2005_mnoguchi/) as it's capable of introspection and abstracted away from the code that uses the data, allowing for the dynamically generated UIs used in [Guerilla](~h1-guerilla). Tools like Sapien are built on the same code the game uses, allowing for player simulation and AI to act out encounters.
 
 # More information
 For details on each generation see pages dedicated to them:

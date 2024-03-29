@@ -13,6 +13,7 @@ keywords:
   - import
 redirects:
   - /h1/tools/hek/tool
+  - /h1/tools/h1a-ek/h1a-tool
 related:
   - /h2/tools/h2-ek/h2-tool
   - /h3/h3-ek/h3-tool
@@ -26,7 +27,7 @@ thanks:
 ---
 **H1A Tool** (**tool.exe**), is a [command-line](~) utility used to import [source data](~source-data) into [tags](~), and build tags into [maps](~maps).
 
-This page covers both H1A and [HEK](~custom-edition#halo-editing-kit) versions of Tool. Its usage has generally not changed, but the new version of Tool has [many differences](~h1a-ek#tool) including more verbs, new options for existing ones, usability improvements, and the addition of the FBX to JMS/JMA asset pipeline.
+This page covers both H1A and [HEK](~custom-edition#halo-editing-kit) versions of Tool. Its usage has generally not changed, but the new version of Tool has [many differences](~h1-ek#tool) including more verbs, new options for existing ones, usability improvements, and the addition of the FBX to JMS/JMA asset pipeline.
 
 # Conventions used in this article
 
@@ -379,7 +380,7 @@ tool import-device-defaults <(defaults,profiles)> <savegame path>
 The radiosity process can be visualized in Sapien using `rasterizer_wireframe 1`. Notice how shadow edges and high detail shaders are subdivided more.
 {% /figure %}
 
-This generates static lighting ([lightmaps](~)) for a level's BSP using the radiosity process. Although you can also [use Sapien](~h1a-sapien#radiosity), it's recommended to use Tool since it's faster.
+This generates static lighting ([lightmaps](~)) for a level's BSP using the radiosity process. Although you can also [use Sapien](~h1-sapien#radiosity), it's recommended to use Tool since it's faster.
 
 ```cmd
 Usage: lightmaps <scenario> <bsp index> <quality> <stop threshhold>

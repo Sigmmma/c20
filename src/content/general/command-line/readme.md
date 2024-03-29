@@ -26,7 +26,7 @@ Commands are entered in the form `<program> <arguments>`. Command Prompt will fi
 tool build-cache-file levels\test\tutorial\tutorial
 ```
 
-The arguments then tell Tool what to do, and are documented per-game (e.g. [H1 Tool](~h1a-tool)). Programs and each argument are always separated by spaces. If a single argument contains spaces you need to wrap it with quotes: `"..."`.
+The arguments then tell Tool what to do, and are documented per-game (e.g. [H1 Tool](~h1-tool)). Programs and each argument are always separated by spaces. If a single argument contains spaces you need to wrap it with quotes: `"..."`.
 
 ## Navigation
 Use the `dir` command to list files in the current directory, and `cd <path>` to navigate to a different one. The parent directory can be referred to using `..`. Sub-directories are always separated with backslashes.
@@ -68,7 +68,7 @@ It was mentioned earlier that Command Prompt _first_ looks in the current direct
 # Bash (Linux)
 In the rare case you're using the HEK on Linux, you probably already know what you're doing, but here are some tips for working under this setup specifically.
 
-Since we are mainly interested in running Halo and [HEK](~custom-edition#halo-editing-kit) programs like [Tool](~h1a-tool), which are Windows programs, you will need to set up [Wine][] to run them on Linux. This page will not cover how to install and use Wine, but to run an EXE program you will need to invoke it like so:
+Since we are mainly interested in running Halo and [HEK](~custom-edition#halo-editing-kit) programs like [Tool](~h1-tool), which are Windows programs, you will need to set up [Wine][] to run them on Linux. This page will not cover how to install and use Wine, but to run an EXE program you will need to invoke it like so:
 
 ```sh
 # Assuming tool.exe is in the CWD:

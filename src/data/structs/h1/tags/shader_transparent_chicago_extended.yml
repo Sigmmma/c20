@@ -62,7 +62,7 @@ type_defs:
           en: >
             **Warning**: Using a shader with extra layers on an [object](~) with
             _transparent self occlusion_ enabled causes [Sapien to
-            crash](~h1a-sapien#crashes).
+            crash](~h1-sapien#crashes).
       - name: maps_4_stage
         type: Block
         type_args:

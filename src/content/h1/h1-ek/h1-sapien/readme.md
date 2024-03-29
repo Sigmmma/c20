@@ -18,6 +18,7 @@ keywords:
   - cinematic
 redirects:
   - /h1/tools/hek/sapien
+  - /h1/tools/h1a-ek/h1a-sapien
 thanks:
   num0005: Update for H1A
   General_101: Additional Sapien hotkey documentation and update for H1A.
@@ -33,12 +34,12 @@ thanks:
 **Sapien** is an interactive [scenario](~) and [BSP](~scenario_structure_bsp) editor used for populating levels with objects and AI encounters,
 configuring BSP [cluster data](~scenario_structure_bsp#clusters-and-cluster-data) like wind and sound environments, running [radiosity](#radiosity), compiling [scripts](~scripting), and more. It includes a [scripting console](~developer-console) and runs many of the same systems as Halo like AI and scripting, allowing you to preview encounters and inspect the game world with debug settings.
 
-Unlike later games, H1 Sapien does not include a full player simulation mode and there is only a basic recorded animations mode, but you can use [Standalone](~h1a-standalone-build) to test a level as a player instead.
+Unlike later games, H1 Sapien does not include a full player simulation mode and there is only a basic recorded animations mode, but you can use [Standalone](~h1-standalone-build) to test a level as a player instead.
 
-This page covers both H1A and [HEK](~custom-edition#halo-editing-kit) versions of Sapien, which generally work the same but have [some differences](~h1a-ek#sapien).
+This page covers both H1A and [HEK](~custom-edition#halo-editing-kit) versions of Sapien, which generally work the same but have [some differences](~h1-ek#sapien).
 
 # Configuration
-Similar to how [Custom Edition](~custom-edition) and [Standalone](~h1a-standalone-build) automatically run [console](~developer-console) commands at startup from `init.txt`, you can also create `editor_init.txt` for Sapien. Include console commands, one per line, in this file and Sapien will run them at startup. You can comment-out lines with a semicolon. For example:
+Similar to how [Custom Edition](~custom-edition) and [Standalone](~h1-standalone-build) automatically run [console](~developer-console) commands at startup from `init.txt`, you can also create `editor_init.txt` for Sapien. Include console commands, one per line, in this file and Sapien will run them at startup. You can comment-out lines with a semicolon. For example:
 
 ```inittxt
 ;restore default debug_objects appearance from HEK Sapien for H1A Sapien
@@ -159,7 +160,7 @@ See main page: [recorded-animations](~)
 * {% key "Shift + Control + L" /%}: Relight detail objects (useful after updating [lightmaps](~)).
 
 # Radiosity
-Both Tool and Sapien can be used to generate [lightmaps](~), though [using H1A tool](~h1a-tool#lightmaps) with asserts disabled is **strongly recommended** for high quality lightmaps since it is easier to control the stop parameter (when to save), is much faster, and doesn't require the window to be focused.
+Both Tool and Sapien can be used to generate [lightmaps](~), though [using H1A tool](~h1-tool#lightmaps) with asserts disabled is **strongly recommended** for high quality lightmaps since it is easier to control the stop parameter (when to save), is much faster, and doesn't require the window to be focused.
 
 Sapien is suitable for draft lighting on basic maps. Enter these console commands in order:
 
@@ -209,7 +210,7 @@ HEK Sapien is limited to 2 GB of virtual memory even on modern 64-bit Windows sy
 * Issue/feature with some keyboard layouts, press the middle mouse button to unlock it.
 ---
 * The game window is completely black and does not display the console when {% key "~" /%} (tilde) is pressed.
-* HEK Sapien, like Custom Edition, does not support [MSAA][msaa]. Disable anti-aliasing for Sapien in your graphics control panel. Fixed in [H1A Sapien](~h1a-sapien).
+* HEK Sapien, like Custom Edition, does not support [MSAA][msaa]. Disable anti-aliasing for Sapien in your graphics control panel. Fixed in [H1A Sapien](~h1-sapien).
 ---
 * The _Edit Types_ window does not allow tags to be added.
 * Check the debug.txt log for errors. Otherwise, with HEK Sapien, try running without a compatibility mode if you've set one.
@@ -218,7 +219,7 @@ HEK Sapien is limited to 2 GB of virtual memory even on modern 64-bit Windows sy
 * Open the registry key  using regedit and delete all entries ending with "rect".
 ---
 * Debug wireframe colors and bounding radii change at angles and turn black, making it hard to identify their types.
-* None known for HEK Sapien, fixed in [H1A Sapien](~h1a-sapien)
+* None known for HEK Sapien, fixed in [H1A Sapien](~h1-sapien)
 {% /table %}
 
 ## Crashes

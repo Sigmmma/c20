@@ -386,7 +386,7 @@ type_defs:
             of certain [sky](~) tag fields.
 
 
-            [Tool](~h1a-tool) appears to mark clusters as indoor when there are no
+            [Tool](~h1-tool) appears to mark clusters as indoor when there are no
             outdoor clusters visible from it according to the
             [PVS](~h1/tags/scenario_structure_bsp#potentially-visible-set). Tool
             validates that all sky faces in a cluster are for the same sky. For
@@ -1128,7 +1128,7 @@ type_defs:
             Named points with orientation within the BSP. They are similar to
             [gbxmodel markers](~gbxmodel#markers) but are not to be confused with
             [scenario _cutscene flags_](~scenario#tag-field-cutscene-flags).
-            These markers become visible in [Sapien](~h1a-sapien) when enabling _snap to
+            These markers become visible in [Sapien](~h1-sapien) when enabling _snap to
             markers_ in the tool window.
       - name: detail_objects
         type: Block

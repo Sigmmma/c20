@@ -13,6 +13,11 @@ thanks:
 ---
 **shader_environment** is intended for opaque and alpha-tested surfaces and is typically used for the majority of shaders in level [BSPs](~scenario_structure_bsp), though it can also be used on [gbxmodels](~gbxmodel). A key feature of this shader is its ability to blend between two detail maps, making it ideal for outdoor ground shaders. It also supports cube maps, bump maps, detail maps, and masked specularity.
 
+# Detail map blending
+When this shader's [type](#tag-field-shader-environment-type) is set to _blended_ or _blended base specular_, the [base map's](#tag-field-base-map) alpha channel will be used as a blending mask between the [primary and secondary detail maps](#tag-field-primary-detail-map). 
+
+This allows you to use two detail maps varyingly across a surface and is typically used for ground shaders which need both grassy and dirt areas. In this case the base map provides the general colouring across the ground of the level, while the detail maps tile and provide fine-level detail. There are [a few options](#tag-field-detail-map-function) for how the detail maps blend with the base map.
+
 # Alpha testing
 When the [_alpha tested_](#tag-field-shader-environment-flags-alpha-tested) flag is checked, the bump map's alpha channel can be used as a kind of transparency mask. The shader will either be fully opaque or fully transparent depending on if the alpha value is lighter or darker than 50% gray.
 
@@ -26,7 +31,7 @@ Depending on the texture, you may find that at a distance small transparent or o
 # Bump maps
 _Bump maps_ are special textures that encode the "bumpiness" of the surfaces they map to. They are used to represent fine details like cracks and grooves that affect specular reflections and lighting to make the surface look more geometrically detailed than it actually is.
 
-Artists can create them as simple grayscale height maps in TIFF format, and once compiled by [Tool](~h1a-tool) or [invader-bitmap](~) into a [bitmap tag](~bitmap) with ["height map" usage](~bitmap#tag-field-usage-height-map), they are represented as standard [normal maps][normals] for use in-engine. Halo CE does not use height maps and doesn't support tessellation or parallax occlusion. The alpha channel of the bump map is unused unless the shader is _alpha tested_.
+Artists can create them as simple grayscale height maps in TIFF format, and once compiled by [Tool](~h1-tool) or [invader-bitmap](~) into a [bitmap tag](~bitmap) with ["height map" usage](~bitmap#tag-field-usage-height-map), they are represented as standard [normal maps][normals] for use in-engine. Halo CE does not use height maps and doesn't support tessellation or parallax occlusion. The alpha channel of the bump map is unused unless the shader is _alpha tested_.
 
 The lighting effect of bump maps can be seen under both [dynamic lights](~light) and static [lightmaps](~) (sometimes called _environmental bump maps_), with the latter only natively supported in H1A and H1X unless using the CEnshine shader port for H1PC/H1CE. Environmental bump mapping uses incoming light directions which have been precalculated and stored per-vertex during radiosity.
 

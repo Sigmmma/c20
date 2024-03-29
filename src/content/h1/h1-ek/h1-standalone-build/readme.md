@@ -9,6 +9,8 @@ keywords:
   - h1a
   - tag_test
   - tag test
+redirects:
+  - /h1/tools/h1a-ek/h1a-standalone-build
 thanks:
   num0005: Documenting H1A standalone build
   Zeddikins: Finding the spawning hotkeys
@@ -101,4 +103,4 @@ This is because the files in your profile can contain memory dumps which, when l
 * Some AI may behave differently than in a [cache build](~blam#build-types). For example, the sentinels during d40's Warthog run are inactive.
 * Player cannot be controlled while in debug camera mode.
 * Some transparent geometry like lights and decals may be visible even when they are behind an obstruction.
-* Crashes that [happen in H1A Sapien](~h1a-sapien#crashes) may also occur.
+* Crashes that [happen in H1A Sapien](~h1-sapien#crashes) may also occur.

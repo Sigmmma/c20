@@ -1,8 +1,10 @@
 ---
 title: invader-sound
 about: 'tool:invader-sound'
+redirects:
+  - /h1/tools/invader/invader-sound
 ---
-**invader-sound** is a [command-line](~) tool included in the [Invader](~) project. It generates [sound](~) tags from source audio files, similar to the [Tool sounds verb](~h1a-tool#sounds).
+**invader-sound** is a [command-line](~) tool included in the [Invader](~) project. It generates [sound](~) tags from source audio files, similar to the [Tool sounds verb](~h1-tool#sounds).
 
 # Usage
 See official [arguments help][docs] and [instructions][docs2] on GitHub.

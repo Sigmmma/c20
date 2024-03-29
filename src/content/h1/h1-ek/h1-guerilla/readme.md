@@ -13,9 +13,9 @@ redirects:
 ---
 **Guerilla** is a generic [tag](~tags) editor for creating and modifying tag files. Its allows you to view and update their structured data including blocks, fields, and inter-tag references. For example, you might use Guerilla to define a new [weapon](~), change the [bitmaps](~bitmap) used by a [shader_environment](~), or set your custom level's [scenario type](~scenario#tag-field-type).
 
-Although it can visualize [bitmaps](~bitmap) and play [sounds](~sound), it does not offer ingame previews or interactive placement of [objects](~object) in a scenario, which is [Sapien's](~h1a-sapien) role. Guerilla is also not used to import [source data](~source-data) into tag form, which is Tool's role, but can be part of this process since importing new assets sometimes requires editing tag fields and re-importing (e.g. [bitmap format](~bitmap#tag-field-encoding-format)).
+Although it can visualize [bitmaps](~bitmap) and play [sounds](~sound), it does not offer ingame previews or interactive placement of [objects](~object) in a scenario, which is [Sapien's](~h1-sapien) role. Guerilla is also not used to import [source data](~source-data) into tag form, which is Tool's role, but can be part of this process since importing new assets sometimes requires editing tag fields and re-importing (e.g. [bitmap format](~bitmap#tag-field-encoding-format)).
 
-This page covers both H1A and [HEK](~custom-edition#halo-editing-kit) versions of Guerilla, which generally work the same but have [some differences](~h1a-ek#guerilla).
+This page covers both H1A and [HEK](~custom-edition#halo-editing-kit) versions of Guerilla, which generally work the same but have [some differences](~h1-ek#guerilla).
 
 # Expert mode
 H1A Guerilla includes the _Edit > Expert Mode_ feature. When enabled, this unlocks otherwise read-only runtime and processed fields present in some tags. These fields are normally disabled because they're not meant to be edited under normal circumstances and are instead calculated when the tag is imported or processed for engine-internal purposes.

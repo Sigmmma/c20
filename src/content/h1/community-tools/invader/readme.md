@@ -10,8 +10,10 @@ info: |
 keywords:
   - mcc
   - cli
+redirects:
+  - /h1/tools/invader
 ---
-**Invader** is an [open source][invader-repo] modding toolkit for Halo 1 which serves as an alternative or complement to the tools of the [HEK](~custom-edition#halo-editing-kit) and [H1A Mod Tools](~h1a-ek) with an emphasis on tag data correctness and extending limits where safe. It supports all [editions](~h1#editions-and-versions) like MCC, Custom Edition, Xbox, PC, and Demo but does not support tag extensions from [OpenSauce](~).
+**Invader** is an [open source][invader-repo] modding toolkit for Halo 1 which serves as an alternative or complement to the tools of the [HEK](~custom-edition#halo-editing-kit) and [H1A Mod Tools](~h1-ek) with an emphasis on tag data correctness and extending limits where safe. It supports all [editions](~h1#editions-and-versions) like MCC, Custom Edition, Xbox, PC, and Demo but does not support tag extensions from [OpenSauce](~).
 
 {% alert %}
 Familiarity with the [command-line](~) is a prerequisite for most of

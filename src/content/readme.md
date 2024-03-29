@@ -33,7 +33,7 @@ Everyone makes mods for different reasons; maybe it's to rebalance the sandbox, 
 {% /alert %}
 
 * Tools:
-  * [Combined HEK and H1A tools](~h1a-ek) under common pages, with callouts on differences.
+  * [Combined HEK and H1A tools](~h1-ek) under common pages, with callouts on differences.
   * Listed [obsolete tools](~obsolete) in once place to cut down on junk pages.
   * Documentd [Deathstar deprotector](~deathstar).
   * Centralized [mod tools installation](~general/mod-tools#installation).
@@ -49,17 +49,21 @@ Everyone makes mods for different reasons; maybe it's to rebalance the sandbox, 
   * Documented the [Halo Script Preprocessor](~halo-script-preprocessor).
   * Added descriptions for some [functions](~h1/scripting#other-functions) and [globals](~h1/scripting#external-globals).
 * Engine:
-  * [All possible `game_variant` values](~game-modes) for testing MP modes in Standalone.
+  * Listed all `game_variant` [options](~game-modes) for testing MP modes in Standalone.
   * Updated descriptions of [game state](~game-state), added glow datum.
   * Described [AI props](~ai#props) and [AI actions](~ai#actions).
 * Guides:
   * Flatter page organization.
+  * Reworked some content into a ["My first box level" guide](~h1/guides/levels/box-level).
   * Moved [Blender setup and tips](~blender) to the Blender page, same for the [Toolset](~halo-asset-blender-development-toolset).
   * Added a [map porting overview](~porting-maps).
+  * Added troubleshooting of ["waiting for space to clear"](~player-spawns#troubleshooting-waiting-for-space-to-clear).
 * Other:
+  * Added an overview of the [sealed world rules](~bsp-troubleshooting#sealed-world-rules).
   * Moved the [scale and unit conversions page](~scale) and improved descriptions of units.
   * Improved descriptions for [H1 materials and symbols](~h1-materials).
-* General editing to be less Custom Edition-centric, be more clear, fix typos, add cross-references, etc.
+  * General editing to be less Custom Edition-centric, be more clear, fix typos, add cross-references, etc.
+  * Mobile-friendly interface with swipe gesture support.
 
 # Getting started
 New to modding? Check out the [general information section](~general). Each other section in the sidebar will allow you to explore game-specific guides and reference materials.

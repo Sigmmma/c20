@@ -21,7 +21,7 @@ Dynamic decals are created from [effects](~effect), such as explosions and proje
 This means there are 37 "locked" decals (unexpired). When these decals reach the end of their lifetime, they will be destroyed and their vertices released back to the pool. Rough testing shows that the pool is likely 16*2048 vertices, with each decal able to use as many vertices from the pool as needed to conform to the BSP.
 
 # Permanent decals
-Also called _environment decals_, these are placed throughout the [scenario](~) using [Sapien](~h1a-sapien) (under _game data_ in the hierarchy window).
+Also called _environment decals_, these are placed throughout the [scenario](~) using [Sapien](~h1-sapien) (under _game data_ in the hierarchy window).
 
 # Chain decals
 Chain decals are when multiple decals are created at the same time. A decal tag can specify [another decal](#tag-field-next-decal-in-chain) which should be generated at the same location. It's useful for composite effects, especially when mixing [blending modes](#tag-field-framebuffer-blend-function). For example, you might want to have a plasma impact generate both a short-lived _add_ glowing decal and a long-lived _multiply_ scorch mark. You could spawn more decals from effects to achieve a similar result, but doing it by chain decals means it's easier to re-use across different effects and allows you to [share geometry](#tag-field-flags-geometry-inherited-by-next-decal-in-chain).

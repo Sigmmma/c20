@@ -6,6 +6,8 @@ keywords:
   - dll
 about: tool:Chimera
 img: chimera.jpg
+redirects:
+  - /h1/tools/chimera
 info: |
   * [Release
   thread](https://opencarnage.net/index.php?/topic/6916-chimera-download-source-code-and-discord/)

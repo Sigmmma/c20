@@ -12,10 +12,6 @@ export default {
     en: "Child pages",
     es: "Páginas secundarias"
   },
-  related: {
-    en: "Related pages",
-    es: "Páginas relacionadas"
-  },
   main: {
     en: "Main topics",
     es: "Temas principales"

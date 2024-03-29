@@ -13,7 +13,7 @@ thanks:
 
 A playable level is represented by a [scenario](~) tag and all of its dependencies, which can include the [vehicles](~vehicle) which may spawn, any [scenery](~) placed, and any [level textures](~bitmap). Bundles of tags required for a level are typically compiled into an optimized [map cache file](~maps), though certain builds of the Halo engine are capable of loading tags on-demand directly from the `tags` folder (e.g. Sapien or debug builds of Halo).
 
-Halo's tags are a binary format that must be edited with purpose-built tools like the [H1A-EK](~h1a-ek), [MEK](~), or [Invader](~).
+Halo's tags are a binary format that must be edited with purpose-built tools like the [H1A-EK](~h1-ek), [MEK](~), or [Invader](~).
 
 # Differences between editions
 Each edition of the game has a slightly different tag set in its maps. Be aware of this when extracting tags with [Refinery](~) or [invader-extract](~) or mixing tags.
@@ -67,7 +67,7 @@ Be careful when moving or renaming tag files; you may create "dead links" in oth
 
 When tags are compiled into a map, references are converted into pre-calculated pointers. An array of tag paths are still retained in the map but is not used by the game.
 
-Tag paths also appear in arguments to [Tool](~h1a-tool) and scripting.
+Tag paths also appear in arguments to [Tool](~h1-tool) and scripting.
 
 ## Blocks
 A _tag block_ field is essentially a list of smaller data structures within a tag. An example is the [scenario](~) tag containing a block of vehicle spawns points. In visual tag editors, blocks appear as a list of elements which are often editable by adding or removing elements. A block field internally consists of an item count and a pointer to an array of structures of the expected type.
@@ -85,9 +85,9 @@ For example, HEK Guerilla allows users to create new _spheroid_ tags despite the
 ## Invalid data
 Not only were fields added and removed during development, but some were repurposed to different types without correcting existing tag instances. This has resulted in tags which shipped with Halo's maps containing some technically invalid data. The tag `warthog gunner.actor_variant` still contains a [projectile](~) reference overlapping the space of 4 fields (starting with grenade type) in the final version of the tag structure.
 
-Invalid data is common in extracted tags, either because they were already invalid or from using buggy tools like _HEK+_. Using invalid tags for new maps can produce undefined behaviour in-game and cause [Sapien](~h1a-sapien) to crash. A tag which works in Custom Edition may cause crashes in MCC.
+Invalid data is common in extracted tags, either because they were already invalid or from using buggy tools like _HEK+_. Using invalid tags for new maps can produce undefined behaviour in-game and cause [Sapien](~h1-sapien) to crash. A tag which works in Custom Edition may cause crashes in MCC.
 
-Invalid tags can often be corrected by resetting fields and re-saving the tag using visual tag editors (e.g. [Mozarilla](~mek), [Guerilla](~h1a-guerilla)), or using [invader-bludgeon](~invader).
+Invalid tags can often be corrected by resetting fields and re-saving the tag using visual tag editors (e.g. [Mozarilla](~mek), [Guerilla](~h1-guerilla)), or using [invader-bludgeon](~invader).
 
 ## Padding
 Some tags contain unused space between fields called _padding_. Generally, any sort of data could be stored in these spaces without affecting the tags, and some community tools use this space to retain extra metadata.

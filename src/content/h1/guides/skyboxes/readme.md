@@ -30,11 +30,11 @@ If you are new to Halo modding and need a primer on the general asset-creation w
 
 To complete this guide you will need:
 
-* The [Halo Editing Kit](~custom-edition#halo-editing-kit) for Custom Edition or the [H1A Editing Kit](~h1a-ek) for H1A in MCC (available on Steam).
-* 3D software like [Blender](~) or [3ds Max](~3dsmax). Blender is free software and you can export to JMS directly with the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) or use [H1A-Tool's FBX pipeline](~h1a-tool#fbx-to-jms). Max users can also use the FBX pipeline or a JMS exporter like [Bluestreak](~).
+* The [Halo Editing Kit](~custom-edition#halo-editing-kit) for Custom Edition or the [H1A Editing Kit](~h1-ek) for H1A in MCC (available on Steam).
+* 3D software like [Blender](~) or [3ds Max](~3dsmax). Blender is free software and you can export to JMS directly with the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) or use [H1A-Tool's FBX pipeline](~h1-tool#fbx-to-jms). Max users can also use the FBX pipeline or a JMS exporter like [Bluestreak](~).
 * 2D software like [Krita](~), [GIMP](~), or [Photoshop](~) for creating custom textures.
 
-This guide will specifically be using the H1A-EK, Blender, the Halo asset toolset, and Krita. The techniques are generally transferrable to 3ds Max (see [regions and FBX](~fbx#region-assignment)) and Photoshop if you use those. The process is also the same using either the [HEK](~custom-edition#halo-editing-kit) or [H1A-EK](~).
+This guide will specifically be using the H1A-EK, Blender, the Halo asset toolset, and Krita. The techniques are generally transferrable to 3ds Max (see [regions and FBX](~fbx#region-assignment)) and Photoshop if you use those. The process is also the same using either the [HEK](~custom-edition#halo-editing-kit) or [H1A-EK](~h1-ek).
 
 # Setting up the project folders
 We'll need some folders to organize our source assets. Navigate to your editing kit home/root folder and create these folders as needed:
@@ -45,7 +45,7 @@ We'll need some folders to organize our source assets. Navigate to your editing 
       * models
       * bitmaps
 
-You can name `sky_tutorial` whatever you want, but keep the name lowercase. This guide will refer to it as `sky_tutorial` from now on. It is important that you name the `models` and `bitmaps` folders as shown since [Tool](~h1a-tool) will expect to find our assets there when we compile them later.
+You can name `sky_tutorial` whatever you want, but keep the name lowercase. This guide will refer to it as `sky_tutorial` from now on. It is important that you name the `models` and `bitmaps` folders as shown since [Tool](~h1-tool) will expect to find our assets there when we compile them later.
 
 # Planning ahead
 Although these models are colloquially called "skyboxes" they are not usually modeled as literal boxes like you might see in classic games like Counter Strike 1.6 or Half Life. Halo skyboxes are large fully 3D scenes containing multiple layered elements that can be viewed from slightly different angles as the player moves through the level. Before you start creating assets it's important to know the constraints involved in making skyboxes and set expectations accordingly.
@@ -162,7 +162,7 @@ We're now ready to get our first version of the skybox in-game. This begins by e
 You should now see a new file created if you browse to the `models` folder in Explorer: `data\sky\sky_tutorial\models\sky_tutorial.JMS`. It's time to start tagging our sky, starting with compiling the gbxmodel.
 
 ## Compiling the gbxmodel
-With our JMS file exported, we can now use [Tool](~h1a-tool) to create a [gbxmodel](~) tag from it. [Open a command prompt](~command-line#command-prompt-windows) in the editing kit root and enter the following command:
+With our JMS file exported, we can now use [Tool](~h1-tool) to create a [gbxmodel](~) tag from it. [Open a command prompt](~command-line#command-prompt-windows) in the editing kit root and enter the following command:
 
 ```dos
 tool model sky\sky_tutorial
@@ -178,7 +178,7 @@ This means it has successfully created the tag `tags\sky\sky_tutorial\sky_tutori
 
 ## Creating the sky tag
 
-Open [Guerilla](~h1a-guerilla) and use _File > New_ to create a new empty [sky](~) tag. We're going to set just a few values to get the sky in-game and make sure it's working before continuing with the guide:
+Open [Guerilla](~h1-guerilla) and use _File > New_ to create a new empty [sky](~) tag. We're going to set just a few values to get the sky in-game and make sure it's working before continuing with the guide:
 
 | Field | Value | Purpose
 |-------|-------|--------
@@ -208,7 +208,7 @@ In addition to the values we've set so far, we need some lights to cast directio
 | _direction_ | y: `135`, p: `30` | Specifies the direction toward the light from the origin. Yaw is measured in degrees counter-clockwise from the +X axis, while pitch is measured in degrees above or below horizontal (-90 to +90).
 | _diameter_ | `0.2` | Angular diameter of the light measured in degrees. The larger the value, the softer lightmapped shadows will be.
 
-The radiosity settings we picked take effect during [lightmapping](~lightmaps). While developing your sky you should periodically [run lightmaps](~h1a-tool#lightmaps) on the map you use to test the sky so you can adjust these settings as needed.
+The radiosity settings we picked take effect during [lightmapping](~lightmaps). While developing your sky you should periodically [run lightmaps](~h1-tool#lightmaps) on the map you use to test the sky so you can adjust these settings as needed.
 
 {% alert %}
 If you are wondering why we did not need to create a [marker](~gbxmodel#markers) in our model and set the _lens flare marker_ field of the light, it's because the game will use the _direction_ field to place the lens flare in the sky by default. We will cover markers as an advanced topic [later in this guide](#using-light-markers).
@@ -223,7 +223,7 @@ Here is what the completed tag should look like:
 ## Viewing the sky
 The last step before getting this sky in-game is to add it to a scenario. Open up the tag `levels\test\tutorial\tutorial.scenario` in Guerilla and replace its existing _sky_ reference with one to our new sky tag at `sky\sky_tutorial\sky_tutorial.sky`. If you have a custom map of your own you want to use for testing you can use that too.
 
-Save the edited scenario then open it in [Sapien](~h1a-sapien) or load it in [standalone](~h1a-standalone-build#usage). You should see the custom sky:
+Save the edited scenario then open it in [Sapien](~h1-sapien) or load it in [standalone](~h1-standalone-build#usage). You should see the custom sky:
 
 ![A preview of our sky in-engine](basic-sapien.jpg)
 
@@ -319,13 +319,13 @@ Our alpha channel is completely white (opaque) so technically we could have gott
 **Save the Krita document** as `data\sky\sky_tutorial\bitmaps\dome.kra`. Use this as your "master" copy in case you want to make edits later.
 
 ## Compiling a bitmap
-In order for `dome.tif` to be usable by the game, it needs to be compiled into a [bitmap](~) tag using [Tool](~h1a-tool). [Open a command prompt](~command-line#command-prompt-windows) in your editing kit folder (e.g. where you would find `tool.exe`) and enter the following command:
+In order for `dome.tif` to be usable by the game, it needs to be compiled into a [bitmap](~) tag using [Tool](~h1-tool). [Open a command prompt](~command-line#command-prompt-windows) in your editing kit folder (e.g. where you would find `tool.exe`) and enter the following command:
 
 ```
 tool bitmaps sky\sky_tutorial\bitmaps
 ```
 
-This command will tell Tool to [batch compile](~h1a-tool#bitmaps) every TIFF file found in the `data\sky\sky_tutorial\bitmaps` folder into a corresponding bitmap tag under `tags\sky\sky_tutorial\bitmaps`. You should see this output:
+This command will tell Tool to [batch compile](~h1-tool#bitmaps) every TIFF file found in the `data\sky\sky_tutorial\bitmaps` folder into a corresponding bitmap tag under `tags\sky\sky_tutorial\bitmaps`. You should see this output:
 
 ```
 ### dome.tif

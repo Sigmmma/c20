@@ -1,5 +1,5 @@
 H1-EK:
-  page: h1a-ek
+  page: h1-ek
   authors:
     - 343 Industries
     - Bungie
@@ -10,7 +10,7 @@ H1-Tool:
     - H1-EK
     - h1_tool_workflows_base
     - h1_tag_compiler_base
-  page: h1a-tool
+  page: h1-tool
   similarTo:
     - Invader
   buildTypes:
@@ -27,7 +27,7 @@ H1-Guerilla:
   inherit:
     - H1-EK
     - h1_tag_editor_non_deprecated_base
-  page: h1a-guerilla
+  page: h1-guerilla
   buildTypes:
     - tag_play (H1A)
     - tag_test (HEK)
@@ -39,7 +39,7 @@ H1-Sapien:
   inherit:
     - H1-EK
     - h1_sapien_workflows_base
-  page: h1a-sapien
+  page: h1-sapien
   similarTo:
     - OS_Sapien
   buildTypes:
@@ -48,6 +48,6 @@ H1-Sapien:
 H1-standalone:
   inherit:
     - H1-EK
-  page: h1a-standalone-build
+  page: h1-standalone-build
   buildTypes:
     - tag_test

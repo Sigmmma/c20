@@ -239,7 +239,7 @@ external_globals:
         ```hsc
         (ai_print_damage_modifiers [boolean])
         ```
-        When an encounter is [selected](~h1a-sapien#encounters-and-ai), damage modifiers are logged at the bottom of the screen.
+        When an encounter is [selected](~h1-sapien#encounters-and-ai), damage modifiers are logged at the bottom of the screen.
   - slug: ai_print_evaluation_statistics
     info:
       en: |-

@@ -76,7 +76,7 @@ With some exceptions, the mod tools don't come with source data for stock conten
 A _map cache file_ is just a way to package the tags needed for a level into an efficient format, but tags are still the core resources. Modders should consider tags to be an output of their modding efforts, not just maps, especially to share creations with other modders. Backup your tags and source data and you won't need to resort to extraction to recover data.
 
 # Using custom content paths
-The [H1A-EK](~) and [H2-EK](~) tools support overriding content paths, with some caveats. This is an advanced workflow for special circumstances, like keeping multiple large projects separated. H3-EK currently doesn't support this and neither do legacy editing kits (HEK and H2V).
+The [H1A-EK](~h1-ek) and [H2-EK](~) tools support overriding content paths, with some caveats. This is an advanced workflow for special circumstances, like keeping multiple large projects separated. H3-EK currently doesn't support this and neither do legacy editing kits (HEK and H2V).
 
 * The data directory can be set using the `-data_dir <path>` argument.
 * The tags directory can similarly be set using the `-tags_dir <path>` argument.

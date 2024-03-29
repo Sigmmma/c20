@@ -111,7 +111,7 @@ scenery:
   description:
     en: >
       Fixed decoration objects like boulders, plants, and crates. Placed in the level
-      using [Sapien](~h1a-sapien).
+      using [Sapien](~h1-sapien).
 font:
   structName: Font
   structModule: h1/tags/font
@@ -133,7 +133,7 @@ detail_object_collection:
   description:
     en: >
       Determines the mix and appearance of small 2D detail objects like grass, which are
-      painted onto a [BSP](~scenario_structure_bsp) in [Sapien](~h1a-sapien).
+      painted onto a [BSP](~scenario_structure_bsp) in [Sapien](~h1-sapien).
 weapon:
   structName: Weapon
   structModule: h1/tags/weapon
@@ -151,7 +151,7 @@ placeholder:
   parentName: object
   id: plac
   description:
-    en: 'Used only by [Sapien](~h1a-sapien) to represent interactive handles/markers.'
+    en: 'Used only by [Sapien](~h1-sapien) to represent interactive handles/markers.'
 actor:
   structName: Actor
   structModule: h1/tags/actor
@@ -330,7 +330,7 @@ spheroid:
     en: >-
       Spheroid is an unused leftover tag class from earlier in Halo's development.
       Although references to it can be seen in the H1CE HEK, it no longer exists in the
-      [H1A-EK](~).
+      [H1A-EK](~h1-ek).
 model_collision_geometry:
   structName: ModelCollisionGeometry
   structModule: h1/tags/model_collision_geometry
@@ -514,7 +514,7 @@ weapon_collection?:
     en: |-
       This group ID can still be found in leftover references in some stock scenario tags,
       but the tag itself no longer exists. It was probably replaced by [item_collection](~).
-      Scenarios which are exported to text format and re-imported using HEK [Guerilla](~h1a-guerilla)
+      Scenarios which are exported to text format and re-imported using HEK [Guerilla](~h1-guerilla)
       may cause HEK Sapien to crash due to this unrecognized tag class. H1A Guerilla is
       immune to this issue.
 antenna:

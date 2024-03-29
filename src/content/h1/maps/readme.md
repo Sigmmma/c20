@@ -27,9 +27,9 @@ Maps are found in Halo's `maps` directory and have the ".map" extension. Maps in
 Although maps work mainly the same way in each release of H1, there are a number of differences listed on this page which prevent maps from being reused across them as-is. For example, an H1CE map file cannot be used in H1PC Demo without recompiling it from tags.
 
 # Building maps from tags
-Tool's [build-cache-file](~h1a-tool#build-cache-file) verb is the official way to build a map for MCC, or for Custom Edition with the HEK, from a [scenario](~) tag. The resulting map contains all tags needed by the scenario. The unofficial [invader-build](~) tool can also build maps from tags, including targeting all platforms like Xbox, Retail, and Demo, while also validating your tags for invalid data that could cause crashes or undefined behaviour at runtime.
+Tool's [build-cache-file](~h1-tool#build-cache-file) verb is the official way to build a map for MCC, or for Custom Edition with the HEK, from a [scenario](~) tag. The resulting map contains all tags needed by the scenario. The unofficial [invader-build](~) tool can also build maps from tags, including targeting all platforms like Xbox, Retail, and Demo, while also validating your tags for invalid data that could cause crashes or undefined behaviour at runtime.
 
-When tags are built into a map, their data is prepared for how it will be used at runtime. [Tag path references](~general/tags#tag-paths-and-references) are replaced with pre-calculated indices or pointers, [child scenarios](~scenario#child-scenarios) are merged, extra fields are calculated, and the metadata for [bitmaps](~bitmap) and [sounds](~sound) is separated from their raw data. Tool even makes some [hard-coded tag edits](~h1a-tool#hardcoded-tag-patches).
+When tags are built into a map, their data is prepared for how it will be used at runtime. [Tag path references](~general/tags#tag-paths-and-references) are replaced with pre-calculated indices or pointers, [child scenarios](~scenario#child-scenarios) are merged, extra fields are calculated, and the metadata for [bitmaps](~bitmap) and [sounds](~sound) is separated from their raw data. Tool even makes some [hard-coded tag edits](~h1-tool#hardcoded-tag-patches).
 
 # Extracting tags from maps
 Tag extraction is the process of reconstructing source tag files (also called _loose tags_) from a built map so that they can be easily modified and rebuilt into new maps. H1 is currently the only game where tag extraction is possible due to its well understood tag stuctures and processing, and mature community tools. Source tags can be mostly reconstructed, but some information like [child scenarios](~scenario#child-scenarios) and [bitmap color plate data](~bitmap#tag-field-compressed-color-plate-data) is lost during map building.
@@ -39,19 +39,19 @@ Tag extractors must take care to carefully reverse all tag processing performed 
 Tag extraction can be hindered if the map has been [protected](#protected-maps).
 
 # Editing and porting maps
-The [recommended approach](~porting-maps) to porting or modifying maps is to obtain their source [tags](~) and recompile the map using [Tool](~h1a-tool) or [invader-build](~). This ensures the greatest flexibility and tags will be processed correctly when the new map is built. It is also possible to directly edit ("poke") the tags within a map using tools like [Assembly](~), but this can be error prone or more limiting than working with source tags. Adding new assets ("injecting") is harder than using the intended asset pipeline.
+The [recommended approach](~porting-maps) to porting or modifying maps is to obtain their source [tags](~) and recompile the map using [Tool](~h1-tool) or [invader-build](~). This ensures the greatest flexibility and tags will be processed correctly when the new map is built. It is also possible to directly edit ("poke") the tags within a map using tools like [Assembly](~), but this can be error prone or more limiting than working with source tags. Adding new assets ("injecting") is harder than using the intended asset pipeline.
 
 # Map types
 The type of a map is determined by the [scenario type field](~scenario#tag-field-type) when the scenario is compiled:
 
-* **Multiplayer**: In H1CE, multiplayer maps can be loaded through the in-game menu or with the [command](~developer-console) `sv_map <map> <gametype>`. Loading a multiplayer map using `map_name <map>` will trap the player in the level without spawning unless there is a singleplayer spawn present in the scenario (a spawn with no game modes set). In [Standalone](~h1a-standalone-build) you need to use the combination of `game_variant <gametype>` followed by `map_name <scenario tag path>`.
-* **Singleplayer**: To load a singleplayer map in H1CE, you can either use a modded `ui.map` which includes menu options to launch it, or load it directly using the `map_name <map>` console command. In [Standalone](~h1a-standalone-build) you just need to use `map_name <scenario tag path>`. When [Tool](~h1a-tool) compiles this map type, it strips multiplayer information from [globals](~) and applies some balancing [tag patches](~h1a-tool#hardcoded-tag-patches). These patches are applied at runtime in H1X.
+* **Multiplayer**: In H1CE, multiplayer maps can be loaded through the in-game menu or with the [command](~developer-console) `sv_map <map> <gametype>`. Loading a multiplayer map using `map_name <map>` will trap the player in the level without spawning unless there is a singleplayer spawn present in the scenario (a spawn with no game modes set). In [Standalone](~h1-standalone-build) you need to use the combination of `game_variant <gametype>` followed by `map_name <scenario tag path>`.
+* **Singleplayer**: To load a singleplayer map in H1CE, you can either use a modded `ui.map` which includes menu options to launch it, or load it directly using the `map_name <map>` console command. In [Standalone](~h1-standalone-build) you just need to use `map_name <scenario tag path>`. When [Tool](~h1-tool) compiles this map type, it strips multiplayer information from [globals](~) and applies some balancing [tag patches](~h1-tool#hardcoded-tag-patches). These patches are applied at runtime in H1X.
 * **UI**: The special `ui.map` contains resources for the game's main menu, including [bitmaps](~bitmap) for its UI elements like the server browser and the Halo ring background. When Tool compiles a UI map, it strips multiplayer info and fall damage blocks from [globals](~). Custom UI maps for Custom Edition which intend to add a campaign menu must include a dummy first menu item since the game is hardcoded to remove it.
 
 ## Resource maps
 Resource maps provide a way for certain tags to be stored _external_ to a playable map rather than its tags being totally self-contained. These maps themselves are not playable and have a different [header structure](#resource-map-header), but instead contain shared tags referenced by normal map files. This feature was introduced with H1PC with `bitmaps.map` and `sounds.map` to store [bitmap](~) and [sound](~) tags respectively, and `loc.map` was added in H1CE to store [font](~) and [unicode_string_list](~). MCC H1A no longer uses `loc.map` except for backwards compatibility with maps compiled for Custom Edition. H1X does not use resource maps.
 
-Tool's [build-cache-file](~h1a-tool#build-cache-file) will check resource maps for matching [tag paths](~maps#resource-header-paths-offset), and the behaviour depends on the version and arguments. HEK tool will exclude any tag data from your map that it finds in a resource map, instead referencing it as external data. You can opt out of this behaviour by temporarily moving the resource maps away. H1A Tool includes a new _resource map usage_ argument which lets you either ignore (default), reference from, or add to resource maps. HEK users can instead use [invader-resource](~) and [OpenSauce](~) to create custom resource maps.
+Tool's [build-cache-file](~h1-tool#build-cache-file) will check resource maps for matching [tag paths](~maps#resource-header-paths-offset), and the behaviour depends on the version and arguments. HEK tool will exclude any tag data from your map that it finds in a resource map, instead referencing it as external data. You can opt out of this behaviour by temporarily moving the resource maps away. H1A Tool includes a new _resource map usage_ argument which lets you either ignore (default), reference from, or add to resource maps. HEK users can instead use [invader-resource](~) and [OpenSauce](~) to create custom resource maps.
 
 Using incompatible resource maps will result in glitched textures, sounds, and text.
 
@@ -77,7 +77,7 @@ The maximum allowable file sizes for playable maps varies by version. Halo will 
   * SP: 278 MiB
   * MP: 47 MiB
   * UI: 35 MiB
-* H1CE: 384 MiB ([Tool](~h1a-tool) enforces 128 MiB for MP maps)
+* H1CE: 384 MiB ([Tool](~h1-tool) enforces 128 MiB for MP maps)
 * H1A: 2 GiB
 
 [invader-build](~) can be used to build cache files which exceeds the stock limits, but this may require the user to use a mod to play the map.
@@ -91,7 +91,7 @@ The game's buffer for tag data is limited:
 
 Total tag size is comprised of all non-raw tag data (ie. no bitmap or sound raw data) plus the _largest_ [BSP](~scenario_structure_bsp) size, since the BSP is loaded within the tag space and there will only be a single BSP loaded at a time. Additionally, a maximum of 65535 tags can be in a map.
 
-[Tool](~h1a-tool) will enforce this limit when compiling a map. Keep an eye on its console output:
+[Tool](~h1-tool) will enforce this limit when compiling a map. Keep an eye on its console output:
 
 ```
 total tag size is 8.43M (14.57M free)
@@ -99,7 +99,7 @@ total tag size is 8.43M (14.57M free)
 
 Care should be taken not to get too close to the tag limit, because even though you may compile a map with a certain set of resource maps (e.g. the English version of the game), Halo players with different languages may actually have _larger_ resource map tag data which now exceeds the limit and prevents your map from loading.
 
-You can toubleshoot which tags are using the most memory by generating the `baggage.txt` report using the [Sapien](~h1a-sapien#game-window) hotkey: {% key "Control + Shift + B" /%}.
+You can toubleshoot which tags are using the most memory by generating the `baggage.txt` report using the [Sapien](~h1-sapien#game-window) hotkey: {% key "Control + Shift + B" /%}.
 
 # H1A changes
 The H1A engine makes some adjustments to the [map](~maps) format:

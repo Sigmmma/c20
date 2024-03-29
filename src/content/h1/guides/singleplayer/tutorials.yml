@@ -3,10 +3,11 @@ tutorials:
       en: Dropship tutorial - custom animations
     description:
       en: >-
-        A tutorial that teaches you very basic animation, combined with how you
-        can make a dropship fly into the level without having it use a recording
-        of you flying it in. Also teaches you how to load a dropship with enemies
-        and how to make it open and close it's doors.
+        A tutorial that teaches you very basic animation so you
+        can make a dropship fly into the level without using
+        [recorded animations](~recorded-animations), which can be tricky to
+        set up. Also teaches you how to load a dropship with enemies and how to
+        make it open and close it's doors.
     authors: MattDratt
     updated: "2016"
     tags:
@@ -58,9 +59,13 @@ tutorials:
     links: 
       en: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/kirby_scripting/scripting_tuts.html)"
   - name:
-      en: The Halo CE campaign scripts
+      en: Extracted Halo CE campaign scripts
     description:
-      en: With these you can see how Bungie scripted things, if you want to compile them in a scenario though you'll have to rename their extension to _.hsc_.
+      en: |-
+        The H1A mod tools now come with the original CE campaign scripts in source
+        form, but this resource includes extracted copies from built Halo PC levels
+        if you don't have the source scripts. You'll have to rename their extension
+        to _.hsc_ if you want to compile them.
     authors: Z-team
     updated: N/A
     tags:

@@ -22,7 +22,7 @@ Users familiar with Photoshop's _Channels_ window may be confused by Krita's, wh
 1. Select all layers which should be in the group (exclude things like UV templates).
 2. Press {% key "Ctrl" /%} + {% key "G" /%} to group them.
 3. Right click the group and select _Add > Transparency Mask_. You can rename this mask layer to `alpha` if you want its purpose to be more obvious.
-4. Right click this mask/alpha layer and select _Split Alpha > Save Merged_ to export your `.tif` file. Don't forget to set compression to _None_ since [Tool](~h1a-tool) does not support deflate compression.
+4. Right click this mask/alpha layer and select _Split Alpha > Save Merged_ to export your `.tif` file. Don't forget to set compression to _None_ since [Tool](~h1-tool) does not support deflate compression.
 
 {% alert type="danger" %}
 Don't use _File > Export_ to save TIFF files because this method does not preserve RGB data where the alpha channel is black (transparent). Use the above process instead.

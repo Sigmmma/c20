@@ -2876,7 +2876,7 @@ functions:
         (map_name "levels\a10\a10")
         ```
         Loads a singleplayer map by scenario name. If using the
-        [H1A standalone build](~h1a-standalone-build), which directly loads
+        [H1A standalone build](~h1-standalone-build), which directly loads
         tags instead of [cache files](~maps), use the scenario
         [tag path](~tags#tag-references-and-paths) instead.
   - slug: map_reset
@@ -3943,7 +3943,7 @@ functions:
         (<void> script_doc)
         ```
         Saves a file called hs_doc.txt with parameters for all script commands.
-        In the [H1A-EK](~) this also includes external globals at the end of the file.
+        In the [H1A-EK](~h1-ek) this also includes external globals at the end of the file.
   - slug: script_recompile
     info:
       en: |-

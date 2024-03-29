@@ -245,7 +245,7 @@ Download [the tags][short].
 However, linking within c20 is cumbersome and fragile with standard markdown. Therefore we have a custom **smart links** feature using the `~` symbol. This feature automatically resolves links using a trailing fragment of the destination page's path, preferring pages in the same tree as the current page. The build verifies that the page actually exists. For example:
 
 ```md
-[Sapien](~h1a-sapien)
+[Sapien](~h1-sapien)
 [Chimera](~) is equivalent to [Chimera](~chimera)
 [H1 tags](~tags) if current page is in the h1 section
 [H1 tags](~h1/tags)

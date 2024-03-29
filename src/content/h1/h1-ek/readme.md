@@ -3,7 +3,7 @@ title: H1 Editing Kit
 about: 'tool:H1-EK'
 img: h1a-ek.jpg
 caption: >-
-  [Sapien](~h1a-sapien), [Guerilla](~h1a-guerilla), and [Tool](~h1a-tool) have
+  [Sapien](~h1-sapien), [Guerilla](~h1-guerilla), and [Tool](~h1-tool) have
   returned!
 info: |-
   * Release dates: June 2021 (H1A), 2004 (HEK)
@@ -26,11 +26,13 @@ related:
   - /h3/h3-ek
   - /h2/tools/h2-ek
 childOrder:
-  - h1a-guerilla
-  - h1a-sapien
-  - h1a-standalone-build
-  - h1a-tool
+  - h1-guerilla
+  - h1-sapien
+  - h1-standalone-build
+  - h1-tool
   - blitzkrieg
+redirects:
+  - /h1/tools/h1a-ek
 thanks:
   Vaporeon: Tips on using the H1A-EK with Custom Edition
 ---
@@ -44,10 +46,10 @@ See the general [Steam installation steps](~/general/mod-tools#installation) for
 
 The resources and tools installed may differ between the HEK and H1A-EK:
 
-* [Tool](~h1a-tool): Imports source assets like textures and models into tag format, and builds maps.
-* [Guerilla](~h1a-guerilla): A general-purpose tag editor.
-* [Sapien](~h1a-sapien): Used to populate levels with objects and encounters.
-* [Standalone](~h1a-standalone-build): A build of Halo that loads tags instead of maps (H1A-EK only).
+* [Tool](~h1-tool): Imports source assets like textures and models into tag format, and builds maps.
+* [Guerilla](~h1-guerilla): A general-purpose tag editor.
+* [Sapien](~h1-sapien): Used to populate levels with objects and encounters.
+* [Standalone](~h1-standalone-build): A build of Halo that loads tags instead of maps (H1A-EK only).
 * [Tags](~tags): A set of base tags for the HEK, or all stock map tags for the H1A-EK.
 * [Data](~source-data): For the H1A-EK this includes all singleplayer scripts.
 
@@ -197,7 +199,7 @@ Pictured: kornman00 eliminating editing kit bugs, circa June 2021
 Users of the Custom Edition [HEK](~custom-edition#halo-editing-kit) will notice two big additions:
 
 * Scripts and source tags for the stock multiplayer and campaign maps, removing the need to [extract](~invader-extract) them to create variants of those maps.
-* A new [standalone build](~h1a-standalone-build) of Halo which loads [tags](~) instead of [maps](~maps) (like Sapien) and supports _all_ console commands, intended for fast iteration and troubleshooting.
+* A new [standalone build](~h1-standalone-build) of Halo which loads [tags](~) instead of [maps](~maps) (like Sapien) and supports _all_ console commands, intended for fast iteration and troubleshooting.
 
 The new CE mod tools were released with season 7 of MCC ([patch notes](https://support.halowaypoint.com/hc/en-us/articles/4402601893268-Halo-The-Master-Chief-Collection-MCC-Patch-Notes-June-2021)). It was a significant milestone for the Halo 1 engine, representing the [recombination of code](/h1/games.svg) and tags from Anniversary, Custom Edition, OG Xbox. Aspects of [Halo 2's tools](~H2V-EK) or limits from later games have even been backported.
 
@@ -243,14 +245,14 @@ The new CE mod tools were released with season 7 of MCC ([patch notes](https://s
   * Widget alignment in mirror reflections
 
 ## Tool
-* Lots of new verbs have been added. See the [Tool](~h1a-tool) page for details.
+* Lots of new verbs have been added. See the [Tool](~h1-tool) page for details.
 * A `-verbose` flag can be added to see additional logging.
 * Lightmapping code has been optimized and is even faster with the `-noassert` command line flag. Lightmapping now takes roughly a quarter of the time of legacy Tool and is even faster than [LM tool](~obsolete#lm_tool). Additionally this code now only uses 32-bit integers instead of an unsafe mix with 16-bit ones, and 16 MiB stack reserve. This increases the crash stability of radiosity.
 * Most logs (like `debug.txt`) are now saved to a `reports` subfolder (similarly to Halo 2+).
 * Bitmaps compilation
   * Bitmap DXT1-3 (BC1-3) encoding now uses [DirectXTex](https://github.com/Microsoft/DirectXTex) instead of some S3TC code. This should result in higher quality similar to the original XDK.
   * The `bitmaps` verb now accepts both `.tiff` and `.tif` extensions like `bitmap` does.
-* Map compilation ([`build-cache-file`](~h1a-tool#build-cache-file)):
+* Map compilation ([`build-cache-file`](~h1-tool#build-cache-file)):
   * Script data is properly recompiled from source files when available now. A bug previously caused Tool to always fall back to sources stored in the scenario tag.
   * [Resource maps](~maps#resource-maps) can optionally be updated to include all the resource data for the scenario being packaged.
   * Maps can target "classic" or "remastered" mode.
@@ -260,7 +262,7 @@ The new CE mod tools were released with season 7 of MCC ([patch notes](https://s
   * A flag to fix [collision artifacts](~scenario_structure_bsp#collision-artifacts) is now exposed for compiling [BSPs](~scenario_structure_bsp) (`structure` verb) and [model_collision_geometry](~) (`collision-geometry` verb).
   * [WRL](~) files are saved alongside the [JMS](~) file being compiled rather than the HEK root. The user is now told that this file was generated.
   * When compiling a structure BSP and shaders do not yet exist, the chosen types of shaders will now be generated in the level's `shaders` directory instead of the tags root.
-  * Model compilation can now optionally use [Halo 2's logic for LOD selection](~h1a-tool#halo-2-lod-selection-logic), which is more intuitive.
+  * Model compilation can now optionally use [Halo 2's logic for LOD selection](~h1-tool#halo-2-lod-selection-logic), which is more intuitive.
   * Model and collision importing have more verbose output. Use `-verbose` for the most troubleshooting information.
 * Usage and feedback clarity:
   * Argument parsing is now less primitive. Verbs can include optional arguments and flags and any unrecognized options are presented to the user.
@@ -275,7 +277,7 @@ The new CE mod tools were released with season 7 of MCC ([patch notes](https://s
   * Fixes for various unsafe code: uninitialized variables, bad `printf` args, etc.
 
 ## Sapien
-* When [Sapien](~h1a-sapien) crashes it will attempt to autosave the scenario to a new file.
+* When [Sapien](~h1-sapien) crashes it will attempt to autosave the scenario to a new file.
 * The [lightmap](~lightmaps) painting feature was fixed. The user can perform touchups to fix light leaks or add missing lights and save changes to the lightmap.
 * Garbage collection now takes into account Sapien's 5x higher objects per map and object memory pool limits so Sapien no longer spams "garbage collection critical" errors after loading the c10 scenario.
 * Multiple Sapien instances can now be launched at once using the `-multipleinstance` [command line](~command-line) flag.
@@ -285,7 +287,7 @@ The new CE mod tools were released with season 7 of MCC ([patch notes](https://s
   * Interpolation code from H1A is included and `framerate_throttle` is disabled by default, allowing for smooth animation and movement.
   * The camera speed can be temporarily boosted by holding {% key "Control" /%}.
   * The _Game window_ resolution has been increased from 800x600 to 1280x720 (widescreen).
-  * A gamepad can be used to [control the camera](~h1a-sapien#game-window), though this feature is experimental.
+  * A gamepad can be used to [control the camera](~h1-sapien#game-window), though this feature is experimental.
 * User interface improvements:
   * Sapien now features a modern Windows file open dialog which includes locations like quick access. This is also true for the _Edit Types_ menu when finding new tags to add to a palette.
   * Invalid block indices are now shown as `BAD: #` rather than being set to `-1`.
@@ -349,7 +351,7 @@ The new CE mod tools were released with season 7 of MCC ([patch notes](https://s
   * `debug_camera_save` and `debug_camera_load` now save and load `camera_<mapname>.txt` instead of `camera.txt`. A console message is now logged when the camera file isn't found.
   * `player_effect_set_max_rumble` is no longer a hard-coded alias for `player_effect_set_max_vibrate`. Map scripts (like a10 and d40) were updated.
 * H1A's versions of map scripts no longer use a repurposed `core_save_name` to signal mission segments. The function again behaves like legacy and a new `mcc_mission_segment` function was added instead.
-* Globals and functions are no longer locked to specific contexts like server or multiplayer. For example, you can use `cheat_spawn_warthog` in SP maps now when using [H1A Standalone](~h1a-standalone-build).
+* Globals and functions are no longer locked to specific contexts like server or multiplayer. For example, you can use `cheat_spawn_warthog` in SP maps now when using [H1A Standalone](~h1-standalone-build).
 
 ## Debug globals
 * `debug_structure` shows invisible collision surfaces in semi-transparent red and includes a BSP bounding box now (Halo 2 Sapien backport).

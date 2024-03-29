@@ -14,7 +14,7 @@ The **Osoyoos launcher** is an application that can be used to easily interact w
 
 - [HEK](~custom-edition#halo-editing-kit)
 - HEK with [opensauce](~) (partial support)
-- [H1A-EK](~)
+- [H1A-EK](~h1-ek)
 - [H2V-EK](~)
 - H2V-EK with [H2Codez](~)
 - [H2-EK](~)

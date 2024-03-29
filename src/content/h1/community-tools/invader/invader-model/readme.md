@@ -1,8 +1,10 @@
 ---
 title: invader-model
 about: 'tool:invader-model'
+redirects:
+  - /h1/tools/invader/invader-model
 ---
-**invader-model** is a [command-line](~) tool included in the [Invader](~) project. It compiles [JMS](~) into [gbxmodel](~) and [model](~) tags as an alternative to using the [Tool model verb](~h1a-tool#model).
+**invader-model** is a [command-line](~) tool included in the [Invader](~) project. It compiles [JMS](~) into [gbxmodel](~) and [model](~) tags as an alternative to using the [Tool model verb](~h1-tool#model).
 
 The reverse workflow of this tool is implemented in [invader-recover](~).
 

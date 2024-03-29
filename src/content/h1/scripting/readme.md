@@ -31,7 +31,7 @@ To learn HaloScript basics see our [introduction page](~general/scripting) and a
 # Compiling scripts into a scenario
 Scripts source files end with `.hsc` and live in a `data\...\your_level\scripts` folder. You're limited with the [number](~limits#number-of-source-files) and [size](~limits#source-file-size) of these files. With the newer H1A modding tools these scripts will be automatically compiled and added to the processed [scenario](~) tag when the level is loaded with the tools or built into a map.
 
-Users of the legacy HEK must instead [use Sapien](~h1a-sapien#compile-scripts) to compile scripts before they will take effect.
+Users of the legacy HEK must instead [use Sapien](~h1-sapien#compile-scripts) to compile scripts before they will take effect.
 
 # Extensions
 Advanced users may be interested in the [Halo Script Preprocessor](~), which allows you to use C-like preprocessor directives like `#define`. Modders targeting [OpenSauce](~) also have access to additional non-standard scripting functions, although some of these are now present in H1A.

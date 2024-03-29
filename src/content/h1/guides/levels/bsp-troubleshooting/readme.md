@@ -13,7 +13,7 @@ thanks:
 redirects:
   - /h1/guides/map-making/level-creation/bsp-troubleshooting
 ---
-When compiling a level's [structure BSP](~scenario_structure_bsp) using [Tool](~h1a-tool#structure) you may encounter warnings or errors in Tool's output indicating problems with your model, for example:
+When compiling a level's [structure BSP](~scenario_structure_bsp) using [Tool](~h1-tool#structure) you may encounter warnings or errors in Tool's output indicating problems with your model, for example:
 
 ```
 ### Warning found nearly coplanar surfaces (red and green).
@@ -32,6 +32,11 @@ Halo generally requires your BSP to be one or multiple completely sealed volumes
 The normals of the faces used to create the level geometry must face inwards towards the playable area of the level. The normals determine not just the viewing direction but also which direction the surface is collideable from.
 
 For most types of problems Tool generates a [WRL](~) file that can be imported back into your 3D software to find the sources of the problems. The path of this WRL file depends on if you are using Gearbox Tool or H1A Tool (see [WRL page](~wrl)). You should attempt to fix all errors and warnings in your map. Many of these errors can also show up when compiling [model_collision_geometry](~) and the solutions will be the same.
+
+Your 3D software can help you find some issues before exporting. Blender has [select non-manifold][non-manifold] and 3ds Max has [STL check][stl-check].
+
+[non-manifold]: https://docs.blender.org/manual/en/latest/modeling/meshes/selecting/all_by_trait.html#non-manifold
+[stl-check]: https://help.autodesk.com/view/3DSMAX/2021/ENU/?guid=GUID-4C0D058C-4196-4D05-BE68-981E7FF68C7F
 
 # General geometry problems
 ## Error: Edge is open (red)
@@ -212,7 +217,7 @@ This error does not show up in [WRL files](~wrl), but it is usually easy to find
 
 # Radiosity problems
 ## Degenerate triangle or triangle with bad UVs (blue)
-A _degenerate triangle_ error encountered during [radiosity](~h1a-tool#lightmaps) is due to a triangle being degenerate in UV space (texture coordinates). In other words, the triangle has zero surface area in UV space because all 3 vertices are in a line or the same location so the triangle's texture will appear extremely stretched. This by itself isn't a problem for radiosity, but when the corresponding material has the [_simple parameterization_](~shader#tag-field-shader-flags-simple-parameterization) flag enabled you will encounter this error, since that flag forces radiosity to use texture UV coordinates as the basis for lightmap UVs and lightmap UVs must not be degenerate.
+A _degenerate triangle_ error encountered during [radiosity](~h1-tool#lightmaps) is due to a triangle being degenerate in UV space (texture coordinates). In other words, the triangle has zero surface area in UV space because all 3 vertices are in a line or the same location so the triangle's texture will appear extremely stretched. This by itself isn't a problem for radiosity, but when the corresponding material has the [_simple parameterization_](~shader#tag-field-shader-flags-simple-parameterization) flag enabled you will encounter this error, since that flag forces radiosity to use texture UV coordinates as the basis for lightmap UVs and lightmap UVs must not be degenerate.
 
 It is common for modeling operations like extruding and merging to produce degenerate/stretched UVs. You can use Blender's ["Correct Face Attributes"][blender-tool-settings] tool option to help avoid stretched UVs while modifying your model, or use a simple cube projection to unwrap faces during map development.
 

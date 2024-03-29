@@ -6,6 +6,8 @@ info: |
   * [Source (old)](https://github.com/Chaosvex/HAC2)
 keywords:
   - client-mod
+redirects:
+  - /h1/tools/hac2
 ---
 **Halo Anticheat 2** (**HAC2**) is a client mod for Halo Custom Edition. It can be considered an alternative to [Chimera](~) or [OpenSauce's](~opensauce) client features with its own feature set.
 

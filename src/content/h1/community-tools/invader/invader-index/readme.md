@@ -1,6 +1,8 @@
 ---
 title: invader-index
 about: 'tool:invader-index'
+redirects:
+  - /h1/tools/invader/invader-index
 ---
 **invader-index** is a [command-line](~) tool included in the [Invader](~) project. It builds tag index files from [maps](~maps) to be used with the `--with-index` argument of [invader-build](~). This ensures tags in rebuilt maps are stored in the same order as the original to maintain [netcode](~) compatibility.
 

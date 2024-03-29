@@ -16,7 +16,7 @@ See also:
 * [Scripting engine](~scripting)
 * [Netcode](~)
 
-Note that on Xbox, the engine makes some in-memory [tag edits](~h1a-tool#hardcoded-tag-patches) for balancing.
+Note that on Xbox, the engine makes some in-memory [tag edits](~h1-tool#hardcoded-tag-patches) for balancing.
 
 # Other games
 

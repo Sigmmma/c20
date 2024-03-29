@@ -2,8 +2,10 @@
 title: Startup arguments and init.txt
 thanks:
   nToss: Information on timedemo and vidmode
+redirects:
+  - /h1/arguments
 ---
-[Halo Custom Edition's](~custom-edition) and [Standalone's](~h1a-standalone-build) startup can be customized through the combination of arguments and console scripting. Using these options allows you to quickly configure Halo for various testing or server hosting scenarios.
+[Halo Custom Edition's](~custom-edition) and [Standalone's](~h1-standalone-build) startup can be customized through the combination of arguments and console scripting. Using these options allows you to quickly configure Halo for various testing or server hosting scenarios.
 
 # init.txt
 Both Standalone and Custom Edition will automatically load the file `init.txt` if present and run all lines within it as [console commands](~developer-console) at startup. They will also be present in the console history. Create the file in your mod tools/HEK root. It supports comments with `;` and can include empty lines. Example contents are:
@@ -19,12 +21,12 @@ game_variant slayer ; if MP
 map_name levels\test\bloodgulch\bloodgulch ; tag path to scenario
 ```
 
-Similarly, [Sapien](~h1a-sapien) loads `editor_init.txt`. If using the [OpenSauce mod](~opensauce), use the file name `initc.txt` instead. The game can load a different file with the [`-exec <filename>` argument](#other).
+Similarly, [Sapien](~h1-sapien) loads `editor_init.txt`. If using the [OpenSauce mod](~opensauce), use the file name `initc.txt` instead. The game can load a different file with the [`-exec <filename>` argument](#other).
 
 # Arguments
 Halo accepts [command line/shortcut arguments][about-args] to customize how the game launches and what features are enabled. From a terminal or Windows command prompt, such arguments are provided after the executable name, e.g. `haloce.exe -screenshot` to run the game with screenshot mode enabled. These arguments can also be added in Windows by editing a shortcut to the Halo executable.
 
-With H1CE many of these settings can be configured in-game, so it is not usually necessary to provide them as arguments. However, `-vidmode` is useful for the [H1A standalone build](~h1a-standalone-build) which cannot be configured in-game.
+With H1CE many of these settings can be configured in-game, so it is not usually necessary to provide them as arguments. However, `-vidmode` is useful for the [H1A standalone build](~h1-standalone-build) which cannot be configured in-game.
 
 ## How to add arguments to a shortcut (Windows)
 
@@ -33,7 +35,7 @@ Windows users looking to avoid having to use the [command prompt](~command-line#
 ![Dialog box showing how to add arguments to a Windows shortcut](windows-shortcut.jpg)
 
 ## Arguments list
-The following is a comprehensive list of arguments. Not all are not documented in Halo's `Readme.rtf` or `-help` output. Many arguments below are not applicable to the [H1A standalone build](~h1a-standalone-build) which does not include a fixed function rendering pipeline or networking.
+The following is a comprehensive list of arguments. Not all are not documented in Halo's `Readme.rtf` or `-help` output. Many arguments below are not applicable to the [H1A standalone build](~h1-standalone-build) which does not include a fixed function rendering pipeline or networking.
 
 ### Graphics options
 | Argument                      | Description

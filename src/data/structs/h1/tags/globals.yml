@@ -1106,7 +1106,7 @@ type_defs:
           T: GlobalsMultiplayerInformation
         comments:
           en: >-
-            This block is stripped by [Tool](~h1a-tool) when compiling singleplayer or UI
+            This block is stripped by [Tool](~h1-tool) when compiling singleplayer or UI
             maps.
       - name: player_information
         type: Block
@@ -1125,7 +1125,7 @@ type_defs:
         type_args:
           T: GlobalsFallingDamage
         comments:
-          en: 'This block is stripped by [Tool](~h1a-tool) when compiling UI maps.'
+          en: 'This block is stripped by [Tool](~h1-tool) when compiling UI maps.'
       - name: materials
         type: Block
         type_args:

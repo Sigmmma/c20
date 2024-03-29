@@ -3,7 +3,7 @@ title: scenario_structure_bsp
 about: 'tag:h1/scenario_structure_bsp'
 img: bsp-debug.jpg
 caption: >-
-  Blood Gulch's BSP surfaces and clusters visualized in [Sapien](~h1a-sapien) using
+  Blood Gulch's BSP surfaces and clusters visualized in [Sapien](~h1-sapien) using
   `debug_structure 1` and `debug_pvs 1`
 keywords:
   - lightmap
@@ -26,7 +26,7 @@ The **scenario structure BSP** tag, commonly just called the **BSP**, contains l
 The term "BSP" stands for [Binary Space Partitioning][about-bsp], a technique where space within a sealed static mesh is recursively subdivided by planes into [convex][] _leaf nodes_. The resulting _BSP tree_ can be used to efficiently answer geometric queries, such as which surfaces should be collision-tested for physics objects.
 
 # Compilation
-After level geometry is exported to [JMS](~) format from your 3D software of choice, it can be compiled into a BSP tag using [Tool's structure verb](~h1a-tool#structure).
+After level geometry is exported to [JMS](~) format from your 3D software of choice, it can be compiled into a BSP tag using [Tool's structure verb](~h1-tool#structure).
 
 # BSP transitions
 While a [scenario](~) can reference multiple BSPs, Halo can only have [a single BSP loaded](~maps#map-loading) at a time. Transitions between BSPs can be scripted (`switch_bsp`), e.g. using trigger volumes. Objects in unloaded BSPs are not simulated.
@@ -65,7 +65,7 @@ Clusters are either _outdoor/exterior_ or _indoor/interior_. When a cluster cont
 
 An indoor cluster is one where none of its potentially visible clusters are outdoor. These clusters have a sky index of `-1` instead and use the indoor parameters of sky index `0` (the first sky), which always has the special role of doubling as the "indoor sky". For example, indoor clusters will use use its [_indoor fog color_](~sky#tag-field-indoor-fog-color) rather than its [_outdoor fog color_](~sky#tag-field-outdoor-fog-color).
 
-When the game transitions between indoor and outdoor clusters the fog colour fades based on cumulative camera movement, not time. This effect can be seen easily in Danger Canyon: load it in [Sapien](~h1a-sapien) and fly the camera through the hallways while `debug_pvs 1` and `rasterizer_wireframe 1` are enabled.
+When the game transitions between indoor and outdoor clusters the fog colour fades based on cumulative camera movement, not time. This effect can be seen easily in Danger Canyon: load it in [Sapien](~h1-sapien) and fly the camera through the hallways while `debug_pvs 1` and `rasterizer_wireframe 1` are enabled.
 
 # Potentially visible set
 The _potentially visible set_ (PVS) data is precomputed when a BSP is compiled and helps the engine determine which [clusters](#clusters-and-cluster-data) are likely visible from each other. A cluster can "see" any other cluster behind portals visible from itself plus one level of clusters further. Any clusters beyond that will not be rendered.
@@ -92,7 +92,7 @@ Weather polys extracted from _Assault on the Control Room_.
 
 Weather polyhedra are artist-defined volumes where [weather particle systems](~weather_particle_system) will not render, such as under overhangs where you would not expect to see rain.
 
-To create them, simply model outwardly facing convex volumes where all faces use the `+weatherpoly` material name and [Tool](~h1a-tool) will generate the weather polyhedra when importing your BSP. The volumes can overlap and up to 8 can be visible at any time before the game starts ignoring some ([Sapien](~h1a-sapien) will print warnings when this happens).
+To create them, simply model outwardly facing convex volumes where all faces use the `+weatherpoly` material name and [Tool](~h1-tool) will generate the weather polyhedra when importing your BSP. The volumes can overlap and up to 8 can be visible at any time before the game starts ignoring some ([Sapien](~h1-sapien) will print warnings when this happens).
 
 It is important that you still create weather polyhedra even if you have portals separating inside and outside spaces. Simply not assigning weather to the clusters which are under cover is not enough to prevent rain from appearing there. This is because the game renders weather based on the camera's current cluster, so if the player is outside a building looking in through a doorway they will still see rain indoors because the camera is currently located outside. Conversely, if the cluster within the building has no weather assigned then players will not see rain outdoors when looking out the doorway from inside. The solution is still assigning weather to covered clusters, then masking those areas with large weather polyhedra. This can be seen in the example figure.
 
@@ -109,7 +109,7 @@ _See main page: [Lightmaps](~)._
 In a10, lens flare markers were generated for fluorescent lights
 {% /figure %}
 
-When a [shader_environment](~) references a [lens_flare](~), _lens flare markers_ are automatically created and stored in the BSP tag during initial [structure import](~h1a-tool#structure) or updated with [structure-lens-flares](~h1a-tool#structure-lens-flares). These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
+When a [shader_environment](~) references a [lens_flare](~), _lens flare markers_ are automatically created and stored in the BSP tag during initial [structure import](~h1-tool#structure) or updated with [structure-lens-flares](~h1-tool#structure-lens-flares). These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
 
 A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens flares. However, there is a much lower limit to how many the game will draw at a given time, exactly how many is unknown.
 
@@ -125,12 +125,12 @@ The phantom BSP here is caused by nearly coplanar faces on the nearby ramp.
 
 Phantom BSP is a collision artifact sometimes produced when compiling BSPs. It manifests itself as invisible surfaces which projectiles and vehicles collide with (but not players), and mostly appears around sharp corners near cases of ["nearly coplanar faces"](~bsp-troubleshooting#warning-nearly-coplanar-faces-red-and-green) warnings in your [WRL file](~wrl). It can also cause objects above the problem area to fall back to [BSP default lighting](~object#shadows-and-lighting).
 
-Bungie was aware of this artifact and implemented a feature to help spot it (`collision_debug_phantom_bsp 1` in [Sapien](~h1a-sapien) or [Standalone](~h1a-standalone-build)). If you find phantom BSP in your map, there are a few steps you can take to resolve it:
+Bungie was aware of this artifact and implemented a feature to help spot it (`collision_debug_phantom_bsp 1` in [Sapien](~h1-sapien) or [Standalone](~h1-standalone-build)). If you find phantom BSP in your map, there are a few steps you can take to resolve it:
 
 1. Preemptively, keep your geometry simple and robust without an abundance of dense, complex, or spiky shapes. Flat surfaces like floors and walls should be kept as flat as possible by using alignment tools when modeling rather than "eyeballing it".
 2. Fix any "nearly coplanar" warnings in your source model by scaling affected faces to 0 along their normal axis or using alignment. Since Tool slightly rounds vertex coordinates when compiling BSPs, sometimes this warning cannot be resolved for surfaces which are not axis-aligned.
 2. There is an element of chance to phantom BSP appearing which depends on how your geometry is recursively subdivided to form a BSP tree. Modifying unrelated parts of your level like adding portals or moving vertices can sometimes affect how the level is subdivided and make phantom BSP disappear or appear in new places.
-3. Using H1A Tool's [fix-phantom-bsp option](~h1a-tool#phantom-bsp-fix) to compile your BSP will prevent _most_ phantom BSP at the cost of slightly increasing the tag size. There have been reports that this may not resolve all phantom BSP.
+3. Using H1A Tool's [fix-phantom-bsp option](~h1-tool#phantom-bsp-fix) to compile your BSP will prevent _most_ phantom BSP at the cost of slightly increasing the tag size. There have been reports that this may not resolve all phantom BSP.
 4. If you do not have access to source JMS, and are trying to fix a BSP tag, you will need to import the tag into Blender and rework the model to make it export-ready and free of nearly coplanar surfaces.
 
 On a technical level, cases of phantom BSP are [dividing planes](#tag-field-collision-bsp-bsp3d-nodes-plane) where a child index is `-1`, but the space on that side of the plane is not actually _completely_ outside the level. The artifact is bounded by all parent dividing planes.
@@ -141,7 +141,7 @@ On a technical level, cases of phantom BSP are [dividing planes](#tag-field-coll
 This location in Derelict has a small collision hole where items can fall through the map.
 {% /figure %}
 
-BSP holes or leaks are another type of collision artifact where items or players can fall through the map. It is not known what causes this, but it can be resolved by altering triangulation around the affected area (rotating edges). Compiling the BSP with H1A Tool's [fix-phantom-bsp option](~h1a-tool#phantom-bsp-fix) also prevents this.
+BSP holes or leaks are another type of collision artifact where items or players can fall through the map. It is not known what causes this, but it can be resolved by altering triangulation around the affected area (rotating edges). Compiling the BSP with H1A Tool's [fix-phantom-bsp option](~h1-tool#phantom-bsp-fix) also prevents this.
 
 # Pathfinding data
 The BSP contains data on traversable surfaces which aid AI in pathfinding (walking to a destination). This data is generated automatically during BSP compilation and is retained even in when the BSP is compiled into multiplayer maps.

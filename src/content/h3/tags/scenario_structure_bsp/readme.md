@@ -28,7 +28,7 @@ Related script [functions](~scripting#functions) and [globals](~scripting#extern
 {% relatedHsc game="h3" tagFilter="zone_set" /%}
 
 # Clusters
-_Clusters_ are spaces in the BSP which are separated by portals. This is both done as an optimization and to assign localized effects in Sapien, where _cluster points_ are analogous to cluster properties from [H1 Sapien](~h1a-sapien). Assignable properties are:
+_Clusters_ are spaces in the BSP which are separated by portals. This is both done as an optimization and to assign localized effects in Sapien, where _cluster points_ are analogous to cluster properties from [H1 Sapien](~h1-sapien). Assignable properties are:
 
 * Acoustics: A combination of [sound_environment](~) and [sound_looping](~).
 * Weather

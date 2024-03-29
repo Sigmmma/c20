@@ -26,7 +26,7 @@ type_defs:
     comments:
       en: >
         Fixed decoration objects like boulders, plants, and crates. Placed in
-        the level using [Sapien](~h1a-sapien).
+        the level using [Sapien](~h1-sapien).
     assert_size: 508
     fields:
       - name: flags
@@ -34,6 +34,6 @@ type_defs:
         meta:
           h1a_only: true
         comments:
-          en: This field is padding in legacy Halo. It is visible in [H1A Guerilla](~h1a-guerilla).
+          en: This field is padding in legacy Halo. It is visible in [H1A Guerilla](~h1-guerilla).
       - type: pad
         size: 124

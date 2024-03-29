@@ -9,6 +9,8 @@ keywords:
   - mod
   - os
   - yelo
+redirects:
+  - /h1/tools/opensauce
 ---
 **OpenSauce** (often just "**OS**") is a mod for Halo Custom Edition, its Halo Editing Kit, and dedicated server. For players, it offers customization and some QoL features. For modders, it offers engine extensions and modified tools for more extensive modding of the game.
 

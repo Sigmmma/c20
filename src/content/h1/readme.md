@@ -17,7 +17,7 @@ thanks:
 redirects:
   - /h1/h1a
 childOrder:
-  - h1a-ek
+  - h1-ek
   - community-tools
   - custom-edition
   - guides
@@ -36,7 +36,7 @@ Halo's box art
 Halo 1 uses Bungie's proprietary [Blam!](~blam) engine, which also formed the basis of later games in the series. PC versions of the game support a variety of command line/shortcut [arguments](~) to configure and toggle features.
 
 # Modding
-Today, most modding of H1 is focused on [H1A MCC](#mcc-pc-and-xbox-one-343-industries-2014-2021) and [Halo Custom Edition](~custom-edition). Regardless of the target engine, the recommended approach is to use the [MCC mod tools](~h1a-ek) for [tag](~general/tags) authoring and optionally [invader](~) to extract tags and build maps for other targets.
+Today, most modding of H1 is focused on [H1A MCC](#mcc-pc-and-xbox-one-343-industries-2014-2021) and [Halo Custom Edition](~custom-edition). Regardless of the target engine, the recommended approach is to use the [MCC mod tools](~h1-ek) for [tag](~general/tags) authoring and optionally [invader](~) to extract tags and build maps for other targets.
 
 # Editions and versions
 
@@ -93,7 +93,7 @@ This edition introduced the ability to switch between classic and remastered/ann
 ## MCC (PC and Xbox One, 343 Industries, 2014-2021)
 CEA was ported to PC and Xbox One too as a part of _Halo: The Master Chief collection_ (MCC), again maintained by 343i and Saber. MCC uses [Unreal Engine][unreal] as a menu and input layer over the respective engines of each included Halo game.
 
-Custom maps can be created for MCC PC using its official [mod tools](~h1a-ek). [Invader](~) also supports building H1A maps from tags. Mods for the Saber3D content are unsupported. Users must turn EAC off to play custom maps in multiplayer.
+Custom maps can be created for MCC PC using its official [mod tools](~h1-ek). [Invader](~) also supports building H1A maps from tags. Mods for the Saber3D content are unsupported. Users must turn EAC off to play custom maps in multiplayer.
 
 This branch of the H1 engine is certainly the "most advanced" and definitive. It contains hundreds of bug fixes, extends limits, cleans up deprecated tag fields and script functions, incorporates code from Custom Edition and later Halo games, and adds new modding capabilities (even some from [OpenSauce](~)).
 

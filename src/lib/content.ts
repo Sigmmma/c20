@@ -261,7 +261,7 @@ export function getPageParents(pageIndex: PageIndex, pageId: PageId, lang: Lang)
   return parents;
 };
 
-export function getPageRelated(pageIndex: PageIndex, pageId: PageId, lang: Lang): PageLink[] {
-  const pageData = pageIndex[pageId][lang] ?? pageIndex[pageId]["en"];
-  return pageData.front.related?.map(other => createPageLink(pageIndex, other, lang)!) ?? [];
-};
+// export function getPageRelated(pageIndex: PageIndex, pageId: PageId, lang: Lang): PageLink[] {
+//   const pageData = pageIndex[pageId][lang] ?? pageIndex[pageId]["en"];
+//   return pageData.front.related?.map(other => createPageLink(pageIndex, other, lang)!) ?? [];
+// };

@@ -16,7 +16,7 @@ thanks:
 * Collision geometry is used in collisions with [bipeds](~biped), [items](~item), and [projectiles](~projectile).
 * Note that vehicles cannot collide with [device_light_fixture](~).
 
-Physics tags are created by [importing a JMS](~h1a-tool#physics) with specially-named markers parented to nodes. The markers become mass points.
+Physics tags are created by [importing a JMS](~h1-tool#physics) with specially-named markers parented to nodes. The markers become mass points.
 
 # Mass points
 Mass points (also known as physics spheres) are spherical volumes with mass and density. They can have various types of friction and may provide powered impulse for flight and driving.

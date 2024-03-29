@@ -20,7 +20,7 @@ After downloading the Halo 2 Editing Kit, please read `README_MODDING.txt`. You 
 
 The **Halo 2 Editing Kit (H2-EK)** or **Halo 2 Mod Tools** is the official suite of modding tools for Halo 2 MCC released by 343i. The tools are based off the internal tools used by Bungie and then 343i with some usability and stability improvements ported over from the [H2V-EK](~), although not nearly as cut down as that suite.
 
-Unlike the [H1A-EK](~) you ***do*** need to own [Halo 2: Anniversary on Steam][steam_purchase] to gain access to the toolkit.
+Unlike the [H1A-EK](~h1-ek) you ***do*** need to own [Halo 2: Anniversary on Steam][steam_purchase] to gain access to the toolkit.
 
 # Getting started
 See the [general installation steps](~/general/mod-tools#installation) for help installing these tools. Don't forget to run the extract script!
@@ -121,7 +121,7 @@ Sapien & standalone:
 # Comparison to H2V
 ## General changes from stock H2V tools
 * Tools are not stripped down, you can create models, animations, different types of textures, sounds and more!
-* FBX support was ported over from [H1A tools](~h1a-ek), the legacy export tools were not included.
+* FBX support was ported over from [H1A tools](~h1-ek), the legacy export tools were not included.
 * The tools now use the modern [DX11](https://en.wikipedia.org/wiki/DirectX#DirectX_11) graphics API instead of the obsolete [D3D9](https://en.wikipedia.org/wiki/DirectX#DirectX_9) API. this should result in better performance and support on modern systems.
 * A standalone build similar in function to H1A standalone.
 * All tools are still 32-bit but they are now large address aware (LAA). This allows them to use up to 4 GiB of virtual memory (exact limit depends on your system) instead of 2, this along with fixed memory leaks should help avoid out of memory issues.
@@ -154,7 +154,7 @@ All [tags](~) used in H2C are included meaning tag extraction is no longer requi
 ## Tool
 - All the commands are now included along with a few new commands for FBX support.
 - A *`tag_release`* build (`tool_fast.exe`) was included alongside the typical *`tag_test`* builds.
-- Optional argument support was ported from [H1A tool](~h1a-tool).
+- Optional argument support was ported from [H1A tool](~h1-tool).
 
 ## Transferring tags from H2V
 If you have existing H2V tags they should largely work in MCC. Some tags will not work due to graphical changes and the like.

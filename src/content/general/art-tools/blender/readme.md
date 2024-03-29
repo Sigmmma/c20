@@ -20,7 +20,7 @@ thanks:
   General_101: Writing this guide
   PepperMan: Editing
 ---
-**Blender** is a free and open-source 3D modeling, animating, and rendering toolset. Blender is a relative newcomer to Halo modding workflows, which traditionally relied on [3ds Max](~3dsmax). With community-made plugins like [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) and [Foundry](~) you can export the [source data](~) formats needed to create tags.
+**Blender** is a free and open-source 3D modeling, animating, and rendering toolset. It's now widely used for Halo modding workflows, which traditionally relied on [3ds Max](~3dsmax). With community-made plugins like [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) and [Foundry](~) you can export the [source data](~) formats needed to create tags.
 
 Note that older pre-2.8 versions of Blender are completely unsupported. Community plugins are regularly updated and track modern versions of Blender. Be sure to regularly update Blender and your plugins to get new features and bug fixes.
 
@@ -64,6 +64,16 @@ If you've selected an object and switch to edit mode, you can also use the _Add_
 
 ![](add_cube_edit.jpg)
 
+## Applying transforms
+For levels it's recommended to apply any transforms present on your level geometry object and frame. Users have reported issues with level size when the object itself has been scaled rather than the vertices within it. Applying transforms will ensure the object is located at the origin and scaled to `1` in each axis.
+
+![](apply_transforms.jpg)
+
+## Parenting objects
+Hold {% key "Ctrl" /%} and click objects in the viewport or outliner to multi-select. The last object you selected is considered the active object (highlighted yellow) and will be the parent of all other objects you have selected (highlighted orange) when parenting to object.
+
+![](parent.jpg)
+
 ## Workspace
 The workspace presets along the top of the window customize Blender's arrangement of [editors][blender-editors] for typical tasks like modeling, UV editing, and animation. For example, choosing the _Modeling_ workspace will hide the timeline which would simplify the experience if you're just making a level. You're not limited to the layouts and available editors of the built-in workspaces; any workspace's [areas][blender-areas] can be customized and set to different editor types.
 
@@ -73,11 +83,6 @@ The workspace presets along the top of the window customize Blender's arrangemen
 [blender-areas]: https://docs.blender.org/manual/en/latest/interface/window_system/areas.html
 
 # Settings
-## Undo count
-Consider increasing the number of edits you can undo in Blender by changing the setting in _Edit > Preferences_. Be aware that increasing this setting will use up more of your system RAM, so keep the value reasonable.
-
-![](undos.jpg "Set the undo steps in the Blender Preferences window.")
-
 ## Clip start and end
 Most 3D renderers have a minimum and maximum viewing distance, called the [clipping range][wiki-clipping]. Anything outside this range will be clipped (not visible). This is done to avoid [Z-fighting][] since the depth buffer only has limited precision. As an example, [H1's default range](~h1/scripting#external-globals-rasterizer-far-clip-distance) is `0.0625` to `1024` world units.
 
@@ -88,8 +93,23 @@ Blender's clipping distances can be adjusted in the View settings pane (press {%
 ![](clipping.png "Note that each workspace has its own clip settings.")
 
 {% alert type="danger" %}
-For level modeling it's important to configure clip distances instead of just using using _world units_ export scale in the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset). Scaling vertex coordinates during export can amplify [floating point imprecisions](https://en.wikipedia.org/wiki/Floating-point_arithmetic#Accuracy_problems) and increase the likelihood of "nearly coplanar face" warnings from [Tool](~h1a-tool) and potentially cause [phantom BSP](~h1/tags/scenario_structure_bsp#phantom-bsp).
+For level modeling it's important to configure clip distances instead of just using using _world units_ export scale in the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset). Scaling vertex coordinates during export can amplify [floating point imprecisions](https://en.wikipedia.org/wiki/Floating-point_arithmetic#Accuracy_problems) and increase the likelihood of "nearly coplanar face" warnings from [Tool](~h1-tool) and potentially cause [phantom BSP](~h1/tags/scenario_structure_bsp#phantom-bsp).
 {% /alert %}
+
+## Backface culling
+This option will render the geometry transparent when viewed from the opposite side of the face normal. It only applies to _Solid_ viewport shading. When using _Rendered_ or _Material Preview_ you need to enable backface culling in each material's properties as desired.
+
+![](backface_culling.jpg "Find backface culling in the viewport shading options menu")
+
+## Normals overlay
+This option will render lines coming out the center of the face to indicate the direction it's pointing. It will only be available to you if you are in edit mode for the object you wish to examine. It's recommended to set the size about 100 to make it easier to see.
+
+![](normals_overlay.jpg "Find normals in the viewport overlay options menu")
+
+## Undo count
+Consider increasing the number of edits you can undo in Blender by changing the setting in _Edit > Preferences_. Be aware that increasing this setting will use up more of your system RAM, so keep the value reasonable.
+
+![](undos.jpg "Set the undo steps in the Blender Preferences window.")
 
 ## Startup file
 Did you know you can change the default Blender scene? Make changes like setting the [clipping range](#clip-start-and-end), deleting any unwanted objects, creating materials, or other common steps for your typical workflow then use _File > Defaults > Save Startup File_. All new scenes will start in this state.
@@ -99,6 +119,22 @@ All units given in this site's guides expect that your Blender instance is set t
 
 ![](units.png "Units are found under the Scene Properties tab.")
 
+# External tutorials
+If you prefer video tutorials for some of the above operations, see the series by General_101:
+
+* [Set context/mode](https://youtu.be/SVLAYHJSXYA)
+* [Changing selection mode](https://youtu.be/C_X7muZP3XA)
+* [Editing normals](https://youtu.be/zog43sqj0Qc)
+* [Normal overlay](https://youtu.be/zog43sqj0Qc)
+* [Backface culling](https://youtu.be/FAiMN1Zohps)
+* [UV editing](https://youtu.be/dR_TCHUTEw0)
+* [Window management](https://youtu.be/5wcfi3o2-ks)
+* [Creating and assigning materials](https://youtu.be/2yOOzN0zJfQ)
+* [Set smooth shading](https://youtu.be/vsYkRKV-Gn8)
+* [Set sharp edges](https://youtu.be/Zlu5pT1WPJY)
+* [Modifiers](https://youtu.be/dZtNCIHLOkg)
+
 [wiki-clipping]: https://en.wikipedia.org/wiki/Clipping_(computer_graphics)#Clipping_in_3D_graphics
 [z-fighting]: https://en.wikipedia.org/wiki/Z-fighting
 [modes]: https://docs.blender.org/manual/en/latest/editors/3dview/modes.html
+[normals]: https://en.wikipedia.org/wiki/Normal_(geometry)

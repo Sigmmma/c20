@@ -10,7 +10,7 @@ related:
   - /h2/tools/h2-ek/h2-tool
   - /h3/h3-ek/h3-tool
 redirects:
-	- /h1/h1a-ek/using-fbx-in-h1a
+  - /h1/h1a-ek/using-fbx-in-h1a
 ---
 **FBX** is a geometry file format which can be exported by most major [3D software](~art-tools#modeling). Bungie originally relied on in-house or proprietary exporters to create ASS, JMS, JMA, JMI, and GR2. Modern versions of Tool re-released by 343i now support converting FBX to these formats to bridge the gap. Note that [community-made addons](~halo-asset-blender-development-toolset) can shorten this process by exporting directly to ASS, JMS, and JMA.
 

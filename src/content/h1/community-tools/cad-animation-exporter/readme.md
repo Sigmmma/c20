@@ -3,6 +3,8 @@ title: CAD animation exporter
 about: 'tool:CAD animation exporter'
 img: anim-exporter.jpg
 caption: The exporter supports all animation types.
+redirects:
+  - /h1/tools/cad-animation-exporter
 info: |
   * Release date: 2008
   * [Download (mse)](http://hce.halomaps.org/index.cfm?fid=3627)

@@ -8,6 +8,7 @@ info: |
   * [Download (Linux or using system Python)](https://github.com/Sigmmma/mek/releases)
 redirects:
   - /general/tools/mek
+  - /h1/tools/mek
 childOrder:
   - mozzarilla
   - refinery
@@ -23,7 +24,7 @@ The MEK is still used for some of its unique features:
 * Exporting and importing [tag blocks](~tags#blocks), saving time when copying data across tags.
 
 {% alert type="danger" %}
-The MEK project unmaintained and has known issues. Consider using alternatives like [Invader](~) and the updated [H1A-EK](~) for MCC.
+The MEK project unmaintained and has known issues. Consider using alternatives like [Invader](~) and the updated [H1A-EK](~h1-ek) for MCC.
 {% /alert %}
 
 # Refinery

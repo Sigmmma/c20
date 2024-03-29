@@ -8,12 +8,12 @@ redirects:
   - /h1/guides/map-making/kill-volumes
 ---
 {% alert %}
-This guide assumes you have basic working knowledge of [Sapien](~h1a-sapien) and [Tool](~h1a-tool).
+This guide assumes you have basic working knowledge of [Sapien](~h1-sapien) and [scripting](~scripting).
 {% /alert %}
-Map authors who want to prevent players from reaching certain areas can use **kill volumes** (aka **death barriers** or **kill zones**). These are cuboid 3D trigger volumes which are scripted to instantly kill any player that enters them. Adding them to a map is easy:
+Map authors who want to prevent players from reaching certain areas can use **kill volumes** (aka **death barriers** or **kill zones**). These are cuboid 3D trigger volumes which are scripted to instantly kill any player that enters them. These are safe to use in multiplayer maps because the scripts run on the host too, which will kill the players [authoritatively](~netcode#gearbox-netcode).
 
 # Adding trigger volumes
-The first step is to add trigger volumes to your map's [scenario](~) using [Sapien](~h1a-sapien).
+The first step is to add trigger volumes to your map's [scenario](~) using [Sapien](~h1-sapien).
 
 1. Select "Trigger volumes" in the Hierarchy view.
 1. Right click on the ground in the Game window to place a volume.
@@ -26,7 +26,7 @@ To cover a larger area, you may need to place multiple volumes with different na
 ![](trigger-volume.jpg)
 
 # Writing the kill script
-Now that the volume(s) are placed, you'll need to write a script to continuously test if players are within this volume, and kill them if so.
+Now that the volume(s) are placed, you'll need to write a [script](~scripting) to continuously test if players are within this volume, and kill them if so.
 
 Supposing your level was _Danger Canyon_, you would place the script file at `data\levels\test\dangercanyon\scripts\kill.hsc`. You may need to create the `scripts` directory for your level if it didn't already exist. The name of the script file, `kill.hsc`, is not important other than it must have the `.hsc` extension.
 
@@ -85,13 +85,15 @@ In the script file, paste the following:
 )
 ```
 
-Because Halo scripts do not support [loops][], we must repeat the test for all 16 players (indexes 0 to 15). For a singleplayer map, just testing for players 0 and 1 is sufficient since MCC only supports up to 2 players in co-op. Note that the script contains the name of the trigger volume, `kill_volume`, so adjust if your volume is named differently.
+Because HaloScript do not support [loops][], we must explicitly repeat the test for all 16 players (indexes 0 to 15). For a singleplayer map, just testing for players 0 and 1 is sufficient since MCC only supports up to 2 players in co-op. Because these checks are happening in a `continuous` script, all players will be tested every game tick (30 times per second). If you're OK with some delay and want to shorten this script you can rely on [faux looping](~advanced-scripting#looping).
+
+Note that the script contains the name of the trigger volume, `kill_volume`, so adjust if your volume is named differently.
 
 If you created multiple trigger volumes, you will need to repeat the above code for each trigger volume name.
 
 # Compiling the script and saving the scenario
 The final steps takes place back in Sapien. with the HEK tools we need to compile the raw script source from the `data\levels\...\scripts\` directory into script data in your scenario. Select _File > Compile scripts_ and you should see "scripts successfully compiled" in the Game window. This step is not necessary for the H1A tools because the scripts under `data` are compiled automatically when the scenario is loaded or built into a map.
 
-Save the scenario now. Next, you should [build the map](~h1a-tool#build-cache-file) and test the kill volumes ingame.
+Save the scenario now. Next, you should [build the map](~h1-tool#build-cache-file) and test the kill volumes ingame.
 
 [loops]: https://en.wikipedia.org/wiki/For_loop

@@ -8,9 +8,9 @@ The creation and editing of tags are the core workflows of modding. Tags are pac
 # Creating and editing tags
 Each games' mod tools come with a set of stock tags needed to build the game's original maps, plus tools used to create and edit tags. Here are some example workflows:
 
-* Creating a new texture by compiling a TIFF to [bitmap tag](~/h1/tags/bitmap) format using [Tool](~h1a-tool).
-* Changing the type of projectile a [weapon](~/h1/tags/object/item/weapon) fires by editing its tag in [Guerilla](~h1a-guerilla).
-* Placing new objects in a [scenario](~/h1/tags/scenario) using [Sapien](~h1a-sapien).
+* Creating a new texture by compiling a TIFF to [bitmap tag](~/h1/tags/bitmap) format using [Tool](~h1-tool).
+* Changing the type of projectile a [weapon](~/h1/tags/object/item/weapon) fires by editing its tag in [Guerilla](~h1-guerilla).
+* Placing new objects in a [scenario](~/h1/tags/scenario) using [Sapien](~h1-sapien).
 
 # Tag groups
 Tags come in many different types (called tag _groups_ or _classes_), each with a predefined structure and data fields. Each game introduces or removes tag groups compared to its predecessor, but there is a lot of overlap in tag groups and they tend to work similarly in each generation. Tags are usually incompatible across games because their layout changes, unless the tag's layout hasn't changed (e.g. many H3 and ODST tags).

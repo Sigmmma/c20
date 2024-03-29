@@ -14,7 +14,7 @@ redirects:
 The plugin does not support vertex weights needed for character animations and only works on Max versions 5-8. Many Max users later opted to use the community-made [Bluestreak exporter](~bluestreak) instead which could also be used with the free [Gmax](~) or newer Max versions.
 
 {% alert %}
-The [H1A-EK](~) does not include a Blitzkrieg equivalent for modern versions of 3ds Max but rather implemented an [FBX to JMS and JMA](~fbx) process into [Tool](~h1a-tool#fbx-to-jms). Max can export scenes to FBX format to take advantage of this.
+The [H1A-EK](~h1-ek) does not include a Blitzkrieg equivalent for modern versions of 3ds Max but rather implemented an [FBX to JMS and JMA](~fbx) process into [Tool](~h1-tool#fbx-to-jms). Max can export scenes to FBX format to take advantage of this.
 
 Given that Blitzkrieg is very old and modern alternatives exist (even using [Blender](~)), you probably _don't_ want to be using it. This page only documents it for posterity.
 {% /alert %}

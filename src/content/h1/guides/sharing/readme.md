@@ -9,7 +9,7 @@ Consider releasing your source assets and tags alongside the map so others can r
 
 # Pre-release checklist
 * Have you left [enough spare tag space](~maps#limits) in your map so players using other languages can avoid crashes?
-* Have you supported all intended gametypes by placing the appropriate _netgame flags_ in [Sapien](~h1a-sapien)?
+* Have you supported all intended gametypes by placing the appropriate _netgame flags_ in [Sapien](~h1-sapien)?
 * Does your map rely on non-standard [resource maps](~maps#resource-maps) which need to be included?
 
 # Steam workshop

@@ -7,5 +7,7 @@ info: |
 keywords:
   - tags
   - map
+redirects:
+  - /h1/tools/mek/refinery
 ---
 **Refinery** is a map extractor for games utilizing Bungie's Blam engine.

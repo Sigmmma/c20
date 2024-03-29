@@ -68,7 +68,7 @@ type_defs:
           h1a_only: true
         comments:
           en: >
-            Opts out of [hard-coded tag patches](~h1a-tool#hardcoded-tag-patches)
+            Opts out of [hard-coded tag patches](~h1-tool#hardcoded-tag-patches)
             made to the pistol and plasma rifle for singleplayer scenarios.
             [invader-build](~) respects this when building maps targeting Custom Edition.
   ScenarioChildScenario:
@@ -735,7 +735,7 @@ type_defs:
           index_of: structure bsps
           unused: true
         comments:
-          en: The game does not read from this field. It is hidden in [H1A Guerilla](~h1a-guerilla).
+          en: The game does not read from this field. It is hidden in [H1A Guerilla](~h1-guerilla).
       - name: type_0
         type: ScenarioSpawnType
       - name: type_1
@@ -910,7 +910,7 @@ type_defs:
           tag_classes:
             - item_collection
         comments:
-          en: Unused by the game. Hidden in [H1A tools](~h1a-ek).
+          en: Unused by the game. Hidden in [H1A tools](~h1-ek).
       - type: pad
         size: 112
   ScenarioNetgameEquipmentFlags:
@@ -2218,7 +2218,7 @@ type_defs:
             - scenario_structure_bsp
           unused: true
         comments:
-          en: Deprecated field, hidden in [H1A Guerilla](~h1a-guerilla).
+          en: Deprecated field, hidden in [H1A Guerilla](~h1-guerilla).
       - name: won't_use
         type: TagDependency
         meta:
@@ -2226,7 +2226,7 @@ type_defs:
             - scenario_structure_bsp
           unused: true
         comments:
-          en: Deprecated field, hidden in [H1A Guerilla](~h1a-guerilla).
+          en: Deprecated field, hidden in [H1A Guerilla](~h1-guerilla).
       - name: can't_use
         type: TagDependency
         meta:
@@ -2234,7 +2234,7 @@ type_defs:
             - sky
           unused: true
         comments:
-          en: Deprecated field, hidden in [H1A Guerilla](~h1a-guerilla).
+          en: Deprecated field, hidden in [H1A Guerilla](~h1-guerilla).
       - name: skies
         type: Block
         type_args:
@@ -2256,7 +2256,7 @@ type_defs:
           en: >
             Determines the type of map this scenario represents. This also causes
             map compilers like Tool and invader to apply certain
-            [hardcoded tag patches](~h1a-tool#hardcoded-tag-patches), but see below in H1A.
+            [hardcoded tag patches](~h1-tool#hardcoded-tag-patches), but see below in H1A.
       - name: flags
         type: ScenarioFlags
       - name: child_scenarios
@@ -2344,7 +2344,7 @@ type_defs:
             will be properly difficulty-scaled.
 
             Although there is technically a very high limit to this block,
-            unmodified [Sapien](~h1a-sapien) only supports up to 128 bipeds being placed.
+            unmodified [Sapien](~h1-sapien) only supports up to 128 bipeds being placed.
       - name: biped_palette
         type: Block
         type_args:

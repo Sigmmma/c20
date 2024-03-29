@@ -14,7 +14,7 @@ import {type Node, type RenderableTreeNode} from "@markdoc/markdoc";
 import {type NavHeading} from "../components/Article/TableOfContents";
 import {type MetaboxProps} from "../components/Metabox/Metabox";
 import Wat from "../components/Wat/Wat";
-import {type PageFrontMatter, type PageIndex, type PageLink, resolvePageGlobal, getPageParents, getAllThanks, getPageRelated, tryLocalizedPath, getPageOtherLangs, type NavTree, getPageChildren, getPageIcon} from "../content";
+import {type PageFrontMatter, type PageIndex, type PageLink, resolvePageGlobal, getPageParents, getAllThanks, tryLocalizedPath, getPageOtherLangs, type NavTree, getPageChildren, getPageIcon} from "../content";
 import {type SearchDoc} from "../search";
 import getWorkflowSections from "./features/workflow";
 import getTagSections from "./features/tag";
@@ -160,7 +160,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
   const content = transform(input.ast, ctx, input.front);
   
   const navParents = getPageParents(input.pageIndex, input.pageId, input.lang);
-  const navRelated = getPageRelated(input.pageIndex, input.pageId, input.lang);
+  // const navRelated = getPageRelated(input.pageIndex, input.pageId, input.lang);
   const navOtherLangs = getPageOtherLangs(input.pageIndex, input.pageId, input.lang);
   const navHeadings = getNavHeadings(front, ctx, content);
   const bodyPlaintext = renderPlaintext(ctx, content);
@@ -187,7 +187,6 @@ export default function renderPage(input: RenderInput): RenderOutput {
           <PageWrapper
             title={front?.title}
             navTree={input.navTree}
-            navRelated={navRelated}
             navHeadings={navHeadings}
           >
             <Article

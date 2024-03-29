@@ -394,7 +394,7 @@ type_defs:
             the third person view of a player unit. Don't confuse this with
             [seat camera tracks](#tag-field-seats-camera-tracks).
             This third person view is used for the "following camera" mode in
-            [Standalone](~h1a-standalone-build#debug-camera-controls)
+            [Standalone](~h1-standalone-build#debug-camera-controls)
             as well as for weapons with [_uses 3rd person camera_](~weapon#tag-field-weapon-flags-uses-3rd-person-camera).
             If a loose camera track is not present then the third person view
             uses the [globals default](~globals#tag-field-camera-default-unit-camera-track).

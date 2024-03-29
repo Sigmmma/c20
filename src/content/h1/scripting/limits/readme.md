@@ -72,7 +72,7 @@ Various HS functions take [tag paths](~general/tags#tag-paths-and-references) as
 (effect_new "effects\coop teleport" teleporting_flag)
 ```
 
-These tag paths are not stored as strings once compiled, but rather as compact tag references [in the scenario](~scenario#tag-field-references). This also helps [Tool](~h1a-tool) determine which tags the scenario depends on and need to be included in the built map.
+These tag paths are not stored as strings once compiled, but rather as compact tag references [in the scenario](~scenario#tag-field-references). This also helps [Tool](~h1-tool) determine which tags the scenario depends on and need to be included in the built map.
 
 ## String data
 | Constant                             | HEK | H1A |
@@ -120,7 +120,7 @@ Avoid unncessary expressions; for example `(+ 1 (+ 2 3))` can be simplified to `
 
 This means that one script can ***COMPLETELY*** break another script if it nests too deeply. If another script's memory is clobbered, it can end up doing arbitrary things. It might wake up when it's supposed to be asleep. It might switch to a new BSP for no reason. It might crash the game. It might make objects flicker randomly.
 
-There is not currently a reliable way to exactly tell when stack memory has been exceeded in [release](~blam#build-types) builds, but `play` and lower optimization levels will crash with `a problem occurred while executing the script <script name>: corrupted stack. (valid_thread(thread))`. You can use the [H1A standalone build](~h1a-standalone-build) or Sapien to detect overflows.
+There is not currently a reliable way to exactly tell when stack memory has been exceeded in [release](~blam#build-types) builds, but `play` and lower optimization levels will crash with `a problem occurred while executing the script <script name>: corrupted stack. (valid_thread(thread))`. You can use the [H1A standalone build](~h1-standalone-build) or Sapien to detect overflows.
 
 ## Console scripts
 Things manually entered into the console ingame also share script space with the scenario's baked in scripts. In rare circumstances (e.g. you're just on the cusp of using too much memory), a console script's memory can overflow into a scenario script's memory, causing the above mentioned issues.

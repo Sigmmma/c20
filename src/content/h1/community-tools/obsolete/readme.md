@@ -11,9 +11,12 @@ thanks:
   Dennis: Found malware in tool_pro
   gbMichelle: 'Writing the [hex edit guide](https://pastebin.com/rNVVjyus)'
 redirects:
+  - /h1/tools/blendkrieg
+  - /h1/tools/blender-gbxmodel-importer
+  - /h1/tools/halo-map-tools
+  - /h1/tools/set
   - /h1/tools/hek-plus
   - /h1/tools/sparkedit
-  - /h1/tools/halo-map-tools
   - /h1/tools/hek/tool/tool_pro
   - /h1/tools/hek/tool/phantom_tool
   - /h1/tools/ghostbuster
@@ -53,11 +56,11 @@ The **Blender .gbxmodel importer** by Fulsam was an add-on for Blender 2.7 to im
 SparkEdit source code is available on [GitHub](https://github.com/HaloMods/SparkEdit).
 {% /figure %}
 
-**SparkEdit** by Grenadiac was a direct [map](~maps) editor for H1PC. It features a 3D scenario editor where users can place and modify objects similar to [Sapien](~h1a-sapien). Custom maps created with SparkEdit were sometimes called "log mods" because modders often used the fallen log scenery to build additional platforms and structures into maps.
+**SparkEdit** by Grenadiac was a direct [map](~maps) editor for H1PC. It features a 3D scenario editor where users can place and modify objects similar to [Sapien](~h1-sapien). Custom maps created with SparkEdit were sometimes called "log mods" because modders often used the fallen log scenery to build additional platforms and structures into maps.
 
 There is also the OSX fork **Swordedit**, by bobindashadows, Sword, Samuco. Little is known about this but it may have supported some extra features and Custom Edition maps. Source code is available on [GitHub](https://github.com/ChadSki/Swordedit).
 
-A more powerful modern alternative is using [invader](~) and the official [mod tools](~h1a-ek) to extract and edit tags, and recompile maps compatible with these engines.
+A more powerful modern alternative is using [invader](~) and the official [mod tools](~h1-ek) to extract and edit tags, and recompile maps compatible with these engines.
 
 ## HMT
 {% figure src="hmt.jpg" %}
@@ -88,7 +91,7 @@ You can use [invader-info](~) to determine if a map file's CRC32 checksum doesn'
 ## Quickbeam
 **Quickbeam** was a map editor supporting both on disk and in memory edits allowing for faster iteration on mods. Source code is available on [GitHub](https://github.com/ChadSki/Quickbeam).
 
-Directly editing tags in memory is a fast way to preview changes, but using [Standalone](~h1a-standalone-build) and reloading a map after tag edits is nearly as fast.
+Directly editing tags in memory is a fast way to preview changes, but using [Standalone](~h1-standalone-build) and reloading a map after tag edits is nearly as fast.
 
 ## Prometheus
 **Prometheus** by the HaloDev team (Nick, Grenadiac, MonoxideC, CLuis, JamesD, Kornman, Talin64, rec0, ViperNeo) was a next-generation map editor aiming to support all editions of Halo 1 and Halo 2, building on the legacy of tools like SparkEdit and HMT. However, the project was never completed. Source code is available on [GitHub](https://github.com/HaloMods/Prometheus). A preview of this tool was featured in [_The Black Art of Halo Mods_][book].
@@ -98,12 +101,12 @@ Directly editing tags in memory is a fast way to preview changes, but using [Sta
 {% figure src="lm-time.jpg" %}
 LM_Tool outperforms legacy HEK Tool in lightmapping, but is slower than H1A Tool with `-noassert` enabled.
 {% /alert %}
-**LM_Tool** by gbMichelle is a modified version of HEK [Tool](~h1a-tool) which improves the speed of [lightmaps](~) generation (radiosity) by disabling some runtime debug checks. It can _only_ be used for radiosity; all other functions are disabled. See its [development thread](https://opencarnage.net/index.php?/topic/7751-lm_tool-a-version-of-tool-specifically-for-speeding-up-lightmaps/#comment-98219) for more history.
+**LM_Tool** by gbMichelle is a modified version of HEK [Tool](~h1-tool) which improves the speed of [lightmaps](~) generation (radiosity) by disabling some runtime debug checks. It can _only_ be used for radiosity; all other functions are disabled. See its [development thread](https://opencarnage.net/index.php?/topic/7751-lm_tool-a-version-of-tool-specifically-for-speeding-up-lightmaps/#comment-98219) for more history.
 
-The updated [H1A Tool](~h1a-tool) supports a `-noassert` flag that, with its other lightmapping optimizations, greatly outperforms LM_Tool and is now the fastest lightmapping solution.
+The updated [H1A Tool](~h1-tool) supports a `-noassert` flag that, with its other lightmapping optimizations, greatly outperforms LM_Tool and is now the fastest lightmapping solution.
 
 ## phantom_tool
-**phantom_tool** by Conscars was a modified version of HEK [Tool](~h1a-tool) which allows importing [BSPs](~scenario_structure_bsp) and [model_collision_geometry](~) without [collision artifacts](~scenario_structure_bsp#collision-artifacts) like phantom BSP. This is done by enabling the orphaned code in Tool for the [fix-phantom-bsp flag](~h1a-tool#phantom-bsp-fix). Modders should simply use [H1A Tool](~h1a-tool) since this flag is exposed now. See the tool's [release thread](https://opencarnage.net/index.php?/topic/8286-phantom_tool-toolexe-mod-which-prevents-phantom-bsp/) for more info.
+**phantom_tool** by Conscars was a modified version of HEK [Tool](~h1-tool) which allows importing [BSPs](~scenario_structure_bsp) and [model_collision_geometry](~) without [collision artifacts](~scenario_structure_bsp#collision-artifacts) like phantom BSP. This is done by enabling the orphaned code in Tool for the [fix-phantom-bsp flag](~h1-tool#phantom-bsp-fix). Modders should simply use [H1A Tool](~h1-tool) since this flag is exposed now. See the tool's [release thread](https://opencarnage.net/index.php?/topic/8286-phantom_tool-toolexe-mod-which-prevents-phantom-bsp/) for more info.
 
 ## tool_pro
 **tool_pro** was a community-modified version of the HEK's Tool which extended the [map cache file size limit](~maps#map-file-size-limit) and vertex buffer beyond their defaults.
@@ -142,7 +145,7 @@ The **Saber Editing Toolkit** (**SeT**) by Zatarita is a Python library for mani
 ## Ghostbuster
 **Ghostbuster** by Conscars was a [command-line](~) tool used to detect and fix [phantom BSP](~scenario_structure_bsp#phantom-bsp) by modifying the BSP node structure. Detecting phantom BSP is difficult to do reliably, so it both reports false positives and misses some cases, and creates [collision holes](~scenario_structure_bsp#bsp-holes). The tool's source code is on [GitHub](https://github.com/Sigmmma/ghostbuster).
 
-You should always attempt to fix phantom BSP by firstly resolving any [nearly coplanar faces](~bsp-troubleshooting#warning-nearly-coplanar-faces-red-and-green) indicated in your [WRL file](~wrl), and if that doesn't resolve it by secondly using H1A Tool with the [fix-phantom-bsp flag](~h1a-tool#phantom-bsp-fix).
+You should always attempt to fix phantom BSP by firstly resolving any [nearly coplanar faces](~bsp-troubleshooting#warning-nearly-coplanar-faces-red-and-green) indicated in your [WRL file](~wrl), and if that doesn't resolve it by secondly using H1A Tool with the [fix-phantom-bsp flag](~h1-tool#phantom-bsp-fix).
 
 ## Proton
 I couldn't find information on this tool, but know it's some type of map editor created around 2016 by a "Deleted User". It must have been released at some point because there's at least 1 case of someone asking how to use it in Discord. Just don't use it.

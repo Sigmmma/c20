@@ -4,7 +4,7 @@ about: 'resource:Strings text'
 thanks:
   General_101: Documenting text format
 ---
-The [unicode_string_list](~) and [string_list](~) tags are [imported by Tool](~h1a-tool#unicode-strings) from a specially formatted .txt file. This page describes the format Tool expects for these files.
+The [unicode_string_list](~) and [string_list](~) tags are [imported by Tool](~h1-tool#unicode-strings) from a specially formatted .txt file. This page describes the format Tool expects for these files.
 
 # Creating a text file for string lists
 Unlike with [HUD message text source files](~hmt), the source files for string lists can be anywhere under the HEK's the `data` directory and have any filename ending with ".txt". However, it's still a good idea to keep these files organized with what they're related to so it's easier to find or share your tags later.

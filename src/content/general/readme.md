@@ -14,11 +14,14 @@ childOrder:
   - scale
   - help
 ---
-Modding means different things to different people, but this site focuses on using the official [mod tools](~mod-tools) to create new or modified content for the games in the MCC and Halo Custom Edition. These tools are updated verisons of the original content pipelines of the games. Some areas we don't cover are:
-* Halo Online and [ElDewrito](https://www.eldewrito.org/).
-* Halo 2 Vista, its legacy editing kit, and [project cartographer](https://www.cartographer.online/).
+Modding means different things to different people. It can include modifying game files, hacking/extending the game's code or runtime memory, or creating custom content via the official [mod tools](~mod-tools). This site currently focuses on using the official mod tools for the games in the MCC and Halo Custom Edition, but the information here may still be relevant if you're targeting other platforms like Xbox or creating other kinds of mods.
 
-At a high level, you will be using the tools to create and edit [tags](~), build [maps](~) from them, then [publish](~excession) those maps to Steam workshop if you want.
+We don't cover modding these games:
+* Halo Online and [ElDewrito](https://www.eldewrito.org/),
+* Halo 2 Vista and [project cartographer](https://www.cartographer.online/),
+* Halo Wars, though you can visit [halowarsmodding.github.io](https://halowarsmodding.github.io/) to learn about it.
+
+At a high level, you will be using the tools to create and edit [tags](~), build [maps](~) from them, then share those maps or [publish](~excession) them to Steam workshop.
 
 # A foreword
 It's important to set some expectations before we begin. Halo modding is a fairly niche hobby so documentation and tutorials won't always be available. Despite our efforts here at c20, there's just a lot of ground to cover and [official documentation](https://learn.microsoft.com/en-us/halo-master-chief-collection/) is limited or outdated. The games are closed source and despite the long history of Halo modding, discoveries are still being made in 2024 about how they work.
@@ -32,6 +35,6 @@ Depending on your modding goals, you may need to learn general 3D modeling, anim
 Finally, keep your momentum up by learning how to [troubleshoot and ask for help](~help).
 
 # Getting started
-If you're ready to start, [download](~mod-tools#installation) the mod tools from Steam, then read through the following core concepts. These apply no matter which game you're planning to mod:
+If you're ready to start, [download](~mod-tools#installation) the mod tools from Steam (and/or the HEK for [Custom Edition](~custom-edition)), then read through the following core concepts. These apply no matter which game you're planning to mod:
 
 {% childList /%}

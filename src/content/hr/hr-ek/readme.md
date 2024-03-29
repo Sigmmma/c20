@@ -11,7 +11,7 @@ The **Halo Reach Editing Kit** (**HREK**) is the official set of tools for creat
 
 Compared to H3, [Foundation](~hr-foundation) takes the place of [Guerilla](~h3-guerilla) as the kit's tag editor with a completely new UI that makes it easier than ever before to create and modify tags. Another major difference is the introduction of GR2 (Granny) files as the new intermediate model format, replacing [ASS](~) and [JMS](~).
 
-Unlike the [H1A-EK](~) you _do_ need to own [Halo Reach on Steam][steam_purchase] to gain access to the toolkit.
+Unlike the [H1A-EK](~h1-ek) you _do_ need to own [Halo Reach on Steam][steam_purchase] to gain access to the toolkit.
 
 # Getting started
 See the [general installation steps](~/general/mod-tools#installation) for help installing these tools. Don't forget to run the extract script!

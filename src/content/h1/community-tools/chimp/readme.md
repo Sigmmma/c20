@@ -6,6 +6,8 @@ info: >
   DB)](https://www.moddb.com/games/halo-2/downloads/chimp-plugin-for-gmax)
 keywords:
   - max
+redirects:
+  - /h1/tools/chimp
 thanks:
   Jason Zimmer: Usage instructions
   TheGhost: Exporter feature comparisons
@@ -24,7 +26,7 @@ The following steps describe an example use case of exporting a BSP which has al
 4. When the process is complete you need to run the supplied `GrabListener.exe` program. Ensure that you only have one copy of GMax running when you do so.
 5. Save the listener data to your `data\levels\test\yourmapname\models` folder as `yourmapname.jms`.
 6. Open `yourmapname.jms` in your favorite text editor and remove everything before and including the line `***** Begin Jms *****`. Then go to to bottom of the file and delete everything after and including the line `***** End Jms *****`. Save `yourmapname.jms`.
-7. You should now be able to compile your JMS into a [scenario_structure_bsp](~) using [Tool](~h1a-tool).
+7. You should now be able to compile your JMS into a [scenario_structure_bsp](~) using [Tool](~h1-tool).
 
 ## Exporting from 3ds Max
 
@@ -33,7 +35,7 @@ The following steps describe an example use case of exporting a BSP which has al
 3. The "Jms File" option is selected by default.
 4. Press the "Export Halo Map" button.
 5. When the Geometry processing is complete it will ask you where you would like to save the JMS file. Save it to your `halo\data\levels\test\yourmapname\models` folder as `yourmapname.jms`.
-8. You should now be able to compile your JMS into a [scenario_structure_bsp](~) using [Tool](~h1a-tool).
+8. You should now be able to compile your JMS into a [scenario_structure_bsp](~) using [Tool](~h1-tool).
 
 ## Importing a WRL
 

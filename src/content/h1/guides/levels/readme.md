@@ -7,9 +7,8 @@ thanks:
   General_101: Writing this page.
 childOrder:
   - box-level
-  - advanced
   - bsp-troubleshooting
-  - kill-volumes
+  - advanced
   - additional
 redirects:
   - /h1/guides/map-making/level-creation/blender-level-modeling
@@ -27,39 +26,34 @@ Creating a custom Halo level is an iterative process; you shouldn't try modeling
 
 The above workflow may be part of a broader goal, such as creating a singleplayer mission, but we'll not cover that in this section. The main point is that you'll be repeating parts of this workflow many times as the level evolves towards completion. Sometimes you need to go back and remodel, adjust a shader then relight, or move objects after playtesting.
 
-Given the iterative process, you should avoid polishing too much until you're confident that the level won't change drastically. For example, placing [detail_object_collection](~), running [lightmaps](~h1a-tool#lightmaps) at final quality, or modeling certain areas in high detail should be done later in case you need to change the level's layout.
+Given the iterative process, you should avoid polishing too much until you're confident that the level won't change drastically. For example, placing [detail_object_collection](~), running [lightmaps](~h1-tool#lightmaps) at final quality, or modeling certain areas in high detail should be done later in case you need to change the level's layout.
 
 The guides in this section will be organized according to this process -- first we'll learn how to get a simple box map ingame, then further guides will expand on specific features you might want.
 
 # Guides
-## Basics
-[Level creation - Beginner](~box-level)
 
-In this section we will be covering how to setup proper folder structures for our assets in the HEK data folder. This section does not cater to a specific 3D software and can be read by anyone.
-
-The next section will cover the common settings you should mess with when working in Blender. If you already have a solid grasp of what you should configure in Blender then go ahead and skip this section.
-
-The next section will show the user how to create a simple box level that can be imported in Halo to make a valid level. Skip this section if you already have a solid grasp on modeling and setting up a valid scene for Halo or are using the example level file provided in the [beginner](~box-level) section.
-
-## Level creation - Advanced
-[Level creation - Advanced](~advanced)
-
-The next section will add details to our previously created mesh in the [Level creation - Beginner](~box-level) section. Do not read this section without reviewing the material in the [Level creation - Beginner](~box-level) section. Skip this section if you already have a solid grasp on modeling and setting up a valid scene for Halo or are using the example level file provided in the [beginner](~box-level) section.
-
-## Level creation - Exporting
-
-This next section will cover how to export a properly made mesh from Blender using the [Halo Asset Blender Development Toolset.](~halo-asset-blender-development-toolset) Be sure to review the material in the [Level creation - Beginner](~box-level) and [Level creation - Advanced](~advanced) sections or have the example level file provided in [beginner](~box-level) at the ready.
-
-## Level creation - Additional Info
-[Level creation - Additional Info](~additional)
-
-This final section will cover additional info on features mappers can implement into their maps. Only read this section if you understand the previously listed material.
-
-# 3DS Max modeling
-Please refer to the original Custom Edition documentation for a tutorial on level creation in 3DS Max.
-
-# Child pages
-{% childList /%}
+{% table %}
+* Guide
+* Skill
+* Description
+---
+* [My first box level](~box-level)
+* Beginner
+* Introduces the basic end-to-end workflow of creating a custom level, including how to set up the needed folder structures, modeling a box level in [Blender](~), exporting it using the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset), then getting it in-game. You can use the output of this guide for other guides.
+---
+* [BSP troubleshooting](~bsp-troubleshooting)
+* Intermediate
+* How to avoid and resolve some common and not-so-common errors you might encounter when importing a level BSP.
+---
+* [Advanced levels](~advanced)
+* Intermediate to Advanced
+* Covers numerous other features you might want in your level, such as sculpting terrain, adding bases, streams, and more.
+---
+* [Additional Info](~additional)
+* Advanced
+* Covers some other advanced features you may not need for your level.
+---
+{% /table %}
 
 # External tutorials
 {% dataTable

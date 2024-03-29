@@ -12,6 +12,8 @@ keywords:
   - radiosity
   - max
   - maya
+redirects:
+  - /h1/tools/aether
 related:
   - /h1/tags/scenario_structure_bsp/lightmaps
 thanks:
@@ -20,7 +22,7 @@ thanks:
   Firescythe: Writing the original guide
   Siliconmaster: Additional tips and comments on usage
 ---
-Aether is a tool which supports externally baking [lightmaps](~) within 3D software like [3ds Max](~3dsmax) rather than with the editing kit's built-in [radiosity](~h1a-tool#lightmaps) process. This allows for much higher resolution lightmaps and shorter baking times since external software is much better optimized for lighting.
+Aether is a tool which supports externally baking [lightmaps](~) within 3D software like [3ds Max](~3dsmax) rather than with the editing kit's built-in [radiosity](~h1-tool#lightmaps) process. This allows for much higher resolution lightmaps and shorter baking times since external software is much better optimized for lighting.
 
 # Overview
 Aether is an intermediary program to simplify the process of creating lightmaps for [Halo CE](~h1) in an external modelling application such as 3ds Max. It provides a simplified workflow to get the lightmap mesh and textured mesh into your modelling application, as well as all lighting significant map objects in their correct place and rotation. It also provides an easy way to get your custom lightmaps into the bitmap format that Halo uses.
@@ -73,7 +75,7 @@ With your BSP mesh selected, press the Fix Materials button. This will set all o
 
 ## Importing objects
 
-To import your objects, you are going to need TheGhost's [gbxmodel importer](http://hce.halomaps.org/index.cfm?fid=1972), so install that first. In the Aether script utility there is a _Marker Tools_ button. Press it and a window will pop up which is what we are going to use to place all of our objects. Hit the _Open Marker File_ button and select one of the `.aemk` files you exported from Aether earlier. Once you have done so, the Markers list will be populated with the object types used in the map. Look at the first object in the scenery list. It's handy to have your scenario open in [Guerilla](~h1a-guerilla) at this point so that you can easily find out what gbxmodel you need to open, as well as what bitmaps you need to extract.
+To import your objects, you are going to need TheGhost's [gbxmodel importer](http://hce.halomaps.org/index.cfm?fid=1972), so install that first. In the Aether script utility there is a _Marker Tools_ button. Press it and a window will pop up which is what we are going to use to place all of our objects. Hit the _Open Marker File_ button and select one of the `.aemk` files you exported from Aether earlier. Once you have done so, the Markers list will be populated with the object types used in the map. Look at the first object in the scenery list. It's handy to have your scenario open in [Guerilla](~h1-guerilla) at this point so that you can easily find out what gbxmodel you need to open, as well as what bitmaps you need to extract.
 
 {% alert %}
 If importing markers causes the script utility to hang/freeze, try deleting any comment lines (beginning with "#") at the start of the marker file. For example:

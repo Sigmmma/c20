@@ -9,7 +9,6 @@ import TableOfContents, {type NavHeading} from "../Article/TableOfContents";
 
 export type PageWrapperProps = {
   title?: string;
-  navRelated?: PageLink[];
   navHeadings?: NavHeading[];
   navTree?: NavTree;
   children?: ComponentChildren;

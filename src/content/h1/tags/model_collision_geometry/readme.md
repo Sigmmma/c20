@@ -22,7 +22,7 @@ Collision geometry, rather than the [model](~gbxmodel), is used to cast [scenery
 # Pathfinding spheres
 
 {% figure src="pathfinding-spheres.jpg" %}
-Pathfinding spheres (blue) for a50 shown in [Sapien](~h1a-sapien) after running `debug_objects_pathfinding_spheres 1`
+Pathfinding spheres (blue) for a50 shown in [Sapien](~h1-sapien) after running `debug_objects_pathfinding_spheres 1`
 {% /figure %}
 
 AI can figure out where to go by checking the pathfinding data on the [BSP](~scenario_structure_bsp). However, since objects like [scenery](~) and [units](~unit) are not part of the BSP, Bungie implemented _pathfinding spheres_: spherical markers on objects that AI actively avoid walking into.
@@ -52,14 +52,14 @@ Phantom BSP exists in the collision model of covenant crates.
 
 Although phantom BSP is typically seen in the context of level geometry, it can also affect model collision geometry because this tag uses the same collision data structures as a [scenario_structure_bsp](~scenario_structure_bsp#phantom-bsp). In the case of models, phantom BSP is limited to the object's bounding radius.
 
-Like with level geometry, these can be troubleshooted in [Sapien](~h1a-sapien) by running the console commands:
+Like with level geometry, these can be troubleshooted in [Sapien](~h1-sapien) by running the console commands:
 
 ```console
 collision_debug 1
 collision_debug_phantom_bsp 1
 ```
 
-To fix them, use similar tricks as fixing level phantom BSP: fixing cases of nearly co-planar faces reported in your [WRL file](~wrl) and/or slightly altering the collision model around the problematic location. If changes to the source geometry do not resolve the phantom BSP, you can use [H1A Tool](~h1a-tool) with the `fix-phantom-bsp` option enabled to compile the collision.
+To fix them, use similar tricks as fixing level phantom BSP: fixing cases of nearly co-planar faces reported in your [WRL file](~wrl) and/or slightly altering the collision model around the problematic location. If changes to the source geometry do not resolve the phantom BSP, you can use [H1A Tool](~h1-tool) with the `fix-phantom-bsp` option enabled to compile the collision.
 
 # Related HaloScript
 The following are related [functions](~scripting#functions) that you can use in your scenario scripts and/or [debug globals](~scripting#external-globals) that you can enter into the developer console for troubleshooting.

@@ -50,7 +50,7 @@ Commonly used marker names without hard-coded behaviour include:
 
 * `primary ejection`: Used to indicate where casings fly out when firing the primary trigger.
 
-[Tool](~h1a-tool#model) only includes markers from the `superhigh` LOD.
+[Tool](~h1-tool#model) only includes markers from the `superhigh` LOD.
 
 # Regions
 Regions are named sections of the model which can have multiple [permutations](#permutations). Region names are used by the engine to relate parts of the render model with the [collision model](~model_collision_geometry). For example, a Flood combat form losing an arm. Some regions have special behaviour in-engine:
@@ -87,7 +87,7 @@ Halo CE supports 5 LODs. From best to worst quality:
 
 When rendering first person models, Halo always uses the lowest quality LOD instead of the highest. When creating FP arms or weapons create a separate FP model from your 3P model which only includes a single super high LOD.
 
-LODs are created by using [a special naming convention](~h1a-tool#model) when compiling models with Tool.
+LODs are created by using [a special naming convention](~h1-tool#model) when compiling models with Tool.
 
 [z-buf]: https://en.wikipedia.org/wiki/Z-buffering
 

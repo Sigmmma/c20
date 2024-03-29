@@ -4,7 +4,7 @@ about: 'resource:hmt'
 thanks:
   General_101: Documenting HMT format and text symbols
 ---
-The **.hmt** (HUD message text) file format contains source text content which, when [imported by Tool](~h1a-tool#hud-messages), becomes [hud_message_text](~) tags.
+The **.hmt** (HUD message text) file format contains source text content which, when [imported by Tool](~h1-tool#hud-messages), becomes [hud_message_text](~) tags.
 
 # Creating a text file for HUD messages
 Start by going to the root directory of your level and creating a text file. The contents of the text file **differs** from the formatting used for [string_list](~). Instead you will define a variable and set the value for the string. Here is an example:
