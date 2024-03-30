@@ -15,9 +15,9 @@ The file `rename.txt` is for reusing animations under different names.
 
 # Usage
 
-Source data files for animations go in a subfolder named `animations` as described [here](~h2-tool#model-animations). Create a text file named `rename` in that folder. Open the file in a text editor, make any necessary changes, then save.
+Animation data files go in a folder named `animations` as described [here](~h2-tool#model-animations). Create a text file named `rename` in that folder. Add one or more lines to the file, written in the expected format.
 
-After importing all the animations, Tool will try to parse `rename.txt` and modify the `MODE-n-STATE GRAPH` inside the [model_animation_graph](~) tag according to the contents of that file.
+After compiling the animation data, Tool will try to read `rename.txt` and modify the [model_animation_graph](~) tag according to the contents of that file. There should be new blocks in the `MODE-N-STATE GRAPH` if that was successful.
 
 # Format
 

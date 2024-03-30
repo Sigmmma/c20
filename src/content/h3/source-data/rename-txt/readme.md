@@ -15,9 +15,9 @@ The file `rename.txt` is for reusing animations under different names.
 
 # Usage
 
-Source data files for animations go in a subfolder named `animations` as described [here](~h3-tool#model-animations). Create a text file named `rename` in that folder. Open the file in a text editor, make any necessary changes, then save.
+Animation data files go in a folder named `animations` as described [here](~h3-tool#model-animations). Create a text file named `rename` in that folder. Add one or more lines to the file, written in the expected format.
 
-After importing all the animations, Tool will try to parse `rename.txt` and modify the `MODE-n-STATE GRAPH` inside the [model_animation_graph](~) tag according to the contents of that file.
+After compiling the animation data, Tool will try to read `rename.txt` and modify the [model_animation_graph](~) tag according to the contents of that file. There should be new blocks in the `MODE-N-STATE GRAPH` if that was successful.
 
 # Format
 
@@ -28,14 +28,14 @@ name-of-animation = name-of-animation
 
 There are three parts: the name of an animation that does not already exist, the equal sign, and the name of an animation that does exist.
 
-[Tool](~h3-tool) can do that for multiple animations that belong to a specific mode, weapon class, and weapon type. It can reuse them as animations for another specific mode, weapon class and weapon type.
+That can be done for multiple animations, that belong to a specific mode, weapon class, and weapon type. They can be reused as animations for another specific mode, weapon class and weapon type. [Tool](~h3-tool) can copy the `ACTIONS` and the `OVERLAYS` within the `MODE-N-STATE GRAPH` from one block to another.
 
 To do that, write a line in this format:
 ```
 copy_weapon_type name-of-block = name-of-block
 ```
 
-There are four parts: the prefix that tells Tool to reuse animations in one block for another, the block that we want to reuse animations for, the equal sign, and a block that exists.
+There are four parts: the prefix that tells Tool to reuse animations in one block as animations for another, the block that we want to reuse animations for, the equal sign, and the block that has the animations we want to reuse.
 
 The "name" of a block is written in this format:
 ```

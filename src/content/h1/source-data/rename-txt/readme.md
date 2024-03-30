@@ -15,9 +15,9 @@ The file `rename.txt` is for reusing animations under different names.
 
 # Usage
 
-Source data files for animations go in a subfolder named `animations` as described [here](~tool#animation-compilation). Create a text file named `rename` in that folder. Open the file in a text editor, make any necessary changes, then save.
+Animation data files go in a folder named `animations` as described [here](~h1-tool#animations). Create a text file named `rename` in that folder. Add one or more lines to the file, written in the expected format.
 
-After importing all the animations, Tool will try to parse `rename.txt` and modify the [model_animations](~) tag according to the contents of the file.
+After compiling the animation data, Tool will try to read `rename.txt` and modify the [model_animations](~) tag according the contents of that file.
 
 # Format
 
@@ -28,9 +28,9 @@ name-of-animation = name-of-animation
 
 There are three parts: the name of an animation that does not already exist, the equal sign, and the name of an animation that does exist.
 
-[H1CE Tool](~tool) considers any spaces around the equal sign as part of the animations' names. Files typically do not have spaces at the beginning or at the end of their names. For most situations, do not add any spaces around the equal sign. The name of the animation will be incorrect. If the name is not correct, Tool will fail to find the animation. 
+H1CE Tool considers any spaces around the equal sign as part of the animations' names. Files typically do not have spaces at the beginning or at the end of their names. That means Tool probably will fail to find the animation, if there are any spaces on the right side of the equal sign.
 
-[H1A Tool](~h1a-tool) seems to ignore spaces around the equal sign. They are not considered as part of the animations' names. 
+H1A Tool seems to ignore spaces around the equal sign. They are not considered as part of the animations' names. 
 
 # Example
 
@@ -57,7 +57,7 @@ Contents of `rename.txt`
 first-person reload-empty=first-person reload-full
 ```
 
-Output from [Tool](~tool#animation-compilation)
+Output from [Tool](~h1-tool#animations)
 ```
 ### first-person firing.JMM
 ### first-person idle.JMM
