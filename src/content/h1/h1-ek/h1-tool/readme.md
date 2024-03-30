@@ -64,7 +64,9 @@ Arguments:
 
 For the example above, Tool would expect to find corresponding animation data files at `data\characters\cyborg\animations\`. Assuming no errors, it would be imported as `tags\characters\cyborg\cyborg.model_animations`.
 
-See the [animation data](~animation-data) page for more info on the various extensions used during animation importing and their purpose.
+The source files can have different extensions. That depends on the type of animation they are intended to be. See the page about [animation data](~animation-data) for information about the various extensions and the different types of animation.
+
+Add [rename.txt](~rename-txt) to reuse animations as other animations, without copying and renaming files.
 
 ## bitmap
 Import a single TIFF image into a [bitmap](~) using the `bitmap` verb:
