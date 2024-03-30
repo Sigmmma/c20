@@ -727,7 +727,7 @@ tool fp-model-animations "objects\characters\masterchief\fp\weapons\rifle\fp_ass
 - character-directory - A local data path to a folder that has a subfolder named `render` 
 - weapon-directory - A local data path to a folder that has a subfolder named `render`
 
-The subfolder `animations`should have source data files for the first-person animations. Each subfolder named `render` should have a [JMS](~) file. The first one is for the first-person arms, and the other is for the weapon. The nodes of those models and the nodes in the animations should be the same.
+The subfolder `animations` should have the source data files for the first-person animations. Each subfolder named `render` should have a [JMS](~) file. One is for the first-person arms, and the other is for the weapon. The nodes of those two models and the nodes in the animations should be the same.
 
 The source files can have different extensions. That depends on the type of animation they are intended to be. See the page about [animation data](~animation-data) for information about the various extensions and the different types of animation.
 
