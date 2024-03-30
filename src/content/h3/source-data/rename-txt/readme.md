@@ -1,6 +1,5 @@
 ---
-title: Text file for reusing animations
-about: 'resource:Animation data'
+title: rename.txt
 keywords: 
   - animation
   - copy
@@ -15,7 +14,7 @@ The file `rename.txt` is for reusing animations under different names.
 
 # Usage
 
-Animation data files go in a folder named `animations` as described [here](~h3-tool#model-animations). Create a text file named `rename` in that folder. Add one or more lines to the file, written in the expected format.
+Animation data files go in a folder named `animations` as described [here](~h3-tool#model-animations). Create a text file named `rename` in that folder. Open the file in a text editor. Write one or more lines in the expected format. Save, and then go compile the animation data.
 
 After compiling the animation data, Tool will try to read `rename.txt` and modify the [model_animation_graph](~) tag according to the contents of that file. There should be new blocks in the `MODE-N-STATE GRAPH` if that was successful.
 
