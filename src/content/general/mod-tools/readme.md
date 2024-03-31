@@ -1,7 +1,6 @@
 ---
 title: Mod tools
 redirects:
-  - /h1/guides/intro-to-h1-modding
   - /general/using-custom-content-paths
 childOrder:
   - excession

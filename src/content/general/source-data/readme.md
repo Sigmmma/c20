@@ -8,8 +8,6 @@ keywords:
   - assets
   - textures
   - export
-redirects:
-  - /h2/sources
 childOrder:
   - jms
   - ass

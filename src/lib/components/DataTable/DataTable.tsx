@@ -30,17 +30,21 @@ export type DataTableProps = {
   }[]
 };
 
-function rowId(tableId: string, props: DataTableProps, row: object, index: number): string {
+function getRowSlug(props: DataTableProps, row: object, index: number): string {
   if (props.linkCol === undefined) {
-    return `${tableId}-${index + 1}`;
+    return `${index + 1}`;
   } else if (props.linkCol === true) {
     if (!props.linkSlugKey) {
-      return `${tableId}-${index + 1}`;
+      return `${index + 1}`;
     }
-    return slugify(`${tableId}-${R.path(props.linkSlugKey.split("/"), row)}`)!;
+    return `${R.path(props.linkSlugKey.split("/"), row)}`;
   }
   const linkSlugKey = props.linkSlugKey ?? props.columns[props.linkCol as number].key;
-  return slugify(`${tableId}-${R.path(linkSlugKey.split("/"), row)}`)!;
+  return `${R.path(linkSlugKey.split("/"), row)}`;
+}
+
+function getRowId(tableId: string, props: DataTableProps, row: object, index: number): string {
+  return slugify(`${tableId}-${getRowSlug(props, row, index)}`)!;
 }
 
 function renderCellPlaintext(ctx, col, content): string {
@@ -180,7 +184,7 @@ export default function DataTable(props: DataTableProps) {
       const sortKey = R.path(props.rowSortKey!.split("/"), row);
       const indexKey = sortKey[0].toUpperCase();
       if (rowsIndex.length == 0 || rowsIndex[rowsIndex.length - 1].indexKey != indexKey) {
-        rowsIndex.push({indexKey, id: rowId(id, props, row, index)});
+        rowsIndex.push({indexKey, id: getRowId(id, props, row, index)});
       }
     });
   }
@@ -196,8 +200,9 @@ export default function DataTable(props: DataTableProps) {
   return (
     <div className={`table-wrapper ${classes.join(" ")}`}>
       {rowsIndex.length > 0 &&
-        <p>
-          <nav>
+        <nav className="table-nav">
+          <div className="table-filter-mountpoint" data-tableid={id}></div>
+          <p>
             {R.intersperse(
               " · ",
               rowsIndex.map(firstRow =>
@@ -205,8 +210,8 @@ export default function DataTable(props: DataTableProps) {
               )
             )}
             {" "}({rows.length} total)
-          </nav>
-        </p>
+          </p>
+        </nav>
       }
       <table id={id} className={classes.join(" ")}>
         <thead>
@@ -223,18 +228,19 @@ export default function DataTable(props: DataTableProps) {
         </thead>
         <tbody>
           {rows.map((row, index) => {
-            const slugId = rowId(id, props, row, index);
+            const slug = getRowSlug(props, row, index);
+            const rowId = getRowId(id, props, row, index);
             return (
-              <tr id={slugId}>
+              <tr id={rowId} data-slug={slug}>
                 {props.linkCol === true &&
-                  <td><Jump id={slugId}/></td>
+                  <td><Jump id={rowId}/></td>
                 }
                 {props.columns.map((col, i) => {
                   const rowContent = R.path(col.key.split("/"), row);
                   const cell = renderCell(ctx, col, rowContent);
                   return (
                     <td style={col.style}>
-                      {props.linkCol === i ? <Jump id={slugId}>{cell}</Jump> : cell}
+                      {props.linkCol === i ? <Jump id={rowId}>{cell}</Jump> : cell}
                     </td>
                   );
                 })}

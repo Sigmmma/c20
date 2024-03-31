@@ -1,7 +1,5 @@
 ---
 title: Sharing mods
-redirects:
-  - /h1/guides/map-making/map-sharing
 ---
 Ready to share your mod with others? Most map files are self-contained and can be shared freely. Maps which rely on custom [resource maps](~maps#resource-maps) need to be distributed with those resource maps too.
 

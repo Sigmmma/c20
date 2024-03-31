@@ -4,6 +4,7 @@ import Locale from "../lib/components/Locale/Locale";
 import ThemeSelector from "../lib/components/PageWrapper/ThemeSelector";
 import Search from "../lib/components/Search/Search";
 import UnitConverter from "../lib/components/UnitConverter/UnitConverter";
+import DataTableFilter from "../lib/components/DataTable/DataTableFilter";
 
 //todo
 //const is404Page = !!document.head.querySelector('[itemprop = Is404]');
@@ -13,6 +14,14 @@ import UnitConverter from "../lib/components/UnitConverter/UnitConverter";
 // }
 
 const lang = document.querySelector("html")?.lang ?? "en";
+
+document.querySelectorAll(".table-filter-mountpoint").forEach((mountpoint: HTMLElement) => {
+  const tableId = mountpoint.dataset.tableid;
+  preact.render(
+    <DataTableFilter tableId={tableId}/>,
+    mountpoint
+  );
+});
 
 document.querySelectorAll("#unit-converter-mountpoint").forEach(mountpoint => {
   preact.render(
@@ -91,7 +100,7 @@ function setWrapperState(newState: number) {
   });
 }
 
-const swipeThreshold = 100;
+const swipeThreshold = 60;
 const body = document.querySelector("body");
 let startX: number | undefined = undefined;
 let startY: number | undefined = undefined;
@@ -135,7 +144,6 @@ function hashFlash() {
     const heading = document.getElementById(decodeURI(hash.substring(1)));
     const query = new URLSearchParams(document.location.search);
     if (heading) {
-      setWrapperState(1);
       heading.classList.add("destination");
       if (query.get("note")) {
         heading.dataset.note = query.get("note")!;
@@ -150,6 +158,12 @@ function hashFlash() {
 }
 window.addEventListener("hashchange", hashFlash, false);
 hashFlash();
+
+document.querySelectorAll(".wrapper-toc a").forEach((a: HTMLAnchorElement) => {
+  a.addEventListener("click", (e) => {
+    setWrapperState(1);
+  });
+});
 
 const searchMount = document.getElementById("c20-search-mountpoint");
 preact.render(

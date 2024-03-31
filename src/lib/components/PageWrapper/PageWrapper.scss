@@ -160,9 +160,9 @@
       top: 55px;
       left: 0;
       width: 100vw;
-      height: 100vh;
+      height: calc(100vh - 55px);
       position: absolute;
-      transition: left $transition-time-interactive;
+      transition: left $transition-time, width $transition-time;
       // border: 2px solid red;
     }
 
@@ -179,6 +179,9 @@
     &.menu-view {
       .wrapper-nav {
         left: 0;
+        width: 95vw;
+        border-right: 1px solid var(--border-color);
+        box-shadow: 0px 0px 20px rgba(black, 0.8);
       }
 
       .wrapper-body {
@@ -214,7 +217,10 @@
       }
 
       .wrapper-toc {
-        left: 0vw;
+        left: 5vw;
+        width: 95vw;
+        border-left: 1px solid var(--border-color);
+        box-shadow: 0px 0px 20px rgba(black, 0.8);
       }
     }
   }

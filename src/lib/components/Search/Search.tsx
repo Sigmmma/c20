@@ -79,8 +79,8 @@ export default function Search(props: SearchProps) {
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
-      //check for global keydown of "/" to move focus to the search input
-      if (e.key == "s" && inputRef.current && document.activeElement !== inputRef.current) {
+      //check for global keydown of "S" to move focus to the search input
+      if (e.key == "s" && inputRef.current && document.activeElement !== inputRef.current && !(document.activeElement instanceof HTMLInputElement)) {
         inputRef.current.focus();
         props.onSearchFocused?.(true);
         //prevents event from being passed to next handlers to avoid "s" being put in now-focused input

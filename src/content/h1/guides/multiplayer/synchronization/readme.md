@@ -1,7 +1,5 @@
 ---
 title: Synchronization
-redirects:
-  - /h1/guides/sync-workarounds
 ---
 Halo 1's asynchronous [netcode](~) is responsible for sending changes in state between server and client in multiplayer. This protocol can synchronize the state of objects like players, vehicles, weapons, and more to ensure players have a shared view of the game world. However, this protocol was not designed to support AI, manually controlled [devices](~device_machine), or scripted events. [Automatic doors](~device_machine#automatic-doors) which open when players are nearby are safe to use in multiplayer, since player position _is_ part of the netcode.
 

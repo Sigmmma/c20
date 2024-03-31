@@ -12,8 +12,6 @@ keywords:
   - radiosity
   - max
   - maya
-redirects:
-  - /h1/tools/aether
 related:
   - /h1/tags/scenario_structure_bsp/lightmaps
 thanks:

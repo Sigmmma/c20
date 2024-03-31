@@ -6,9 +6,6 @@ info: |
   * [pypi.org](https://pypi.org/project/reclaimer/)
 keywords:
   - mozzarilla
-redirects:
-  - /general/tools/reclaimer-python
-  - /h1/tools/reclaimer-python
 ---
 {% alert %}
 Some basic [command-line](~) and Python knowledge is required to use Reclaimer.

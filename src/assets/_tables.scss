@@ -9,6 +9,17 @@
   }
 }
 
+.table-nav {
+  display: flex;
+  gap: var(--padding-sm);
+  align-items: center;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: baseline;
+  }
+}
+
 table {
   border-collapse: collapse;
   margin-bottom: var(--padding-sm);
@@ -44,6 +55,10 @@ table {
   th {
     text-align: left;
     background: var(--bg-overlay);
+  }
+
+  tr.filtered {
+    display: none;
   }
 }
 
