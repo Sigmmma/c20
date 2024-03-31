@@ -9,7 +9,10 @@ keywords:
   - lightmap
   - cli
 related:
-  - /h1/h1a-ek/h1a-tool
+  - /h1/h1-ek/h1-tool
+  - /h2/tools/h2-ek/h2-tool
+thanks:
+  "Abstract Ingenuity": Documentation about verbs for compilation of animation data
 ---
 **H3-Tool** (**tool.exe**), is a [command-line](~) utility used to compile data into [tags](~), and tags into [maps](~map). It was released as a part of the [Halo 3 Editing Kit](~h3-ek) by 343 Industries in 2021.
 
@@ -712,6 +715,34 @@ tool fbx-to-jms render "F:\dreamer.fbx" "F:\dreamer.JMS"
 
 For some details on how to setup the FBX file see [FBX for H3](~fbx).
 
+# FP model animations
+This command compiles animation data. Use this to import first-person weapon animations.
+
+```sh
+# fp-model-animations <source-directory> <character-directory> <weapon-directory>
+tool fp-model-animations "objects\characters\masterchief\fp\weapons\rifle\fp_assault_rifle" "objects\characters\masterchief\fp" "objects\weapons\rifle\assault_rifle\fp_assault_rifle"
+```
+
+- source-directory - A local data path to a folder that has a subfolder named `animations`
+- character-directory - A local data path to a folder that has a subfolder named `render` 
+- weapon-directory - A local data path to a folder that has a subfolder named `render`
+
+The subfolder `animations` should have the source data files for the first-person animations. Each subfolder named `render` should have a [JMS](~) file. One is for the first-person arms, and the other is for the weapon. The nodes of those two models and the nodes in the animations should be the same.
+
+The source files can have different extensions. That depends on the type of animation they are intended to be. See the page about [animation data](~animation-data) for information about the various extensions and the different types of animation.
+
+Add [rename.txt](~rename-txt) to reuse animations as other animations, without copying and renaming files.
+
+If there are no serious errors, the animations will be compiled as a [model_animation_graph](~) tag in `tags\objects\characters\masterchief\fp\weapons\rifle\fp_assault_rifle` 
+
+## Uncompressed
+
+Use this verb to import first-person animations without compression.
+```sh
+# fp-model-animations-uncompressed <source-directory> <character-directory> <weapon-directory>
+tool fp-model-animations-uncompressed "objects\characters\masterchief\fp\weapons\rifle\fp_assault_rifle" "objects\characters\masterchief\fp" "objects\weapons\rifle\assault_rifle\fp_assault_rifle"
+```
+
 # Import Bitmap Folder as Single Tag
 This command compiles multiple .tif files from a folder into a single .bitmap tag.
 
@@ -730,6 +761,32 @@ The individual images will be imported as separate "sequences", or layers, insid
 
 For images to be combined this way, Bungie naming convention is to name all of the images the same as the containing folder, with a numbered extension in square brackets for each. For example:
 `flares_generic[0], flares_generic[1], flares_generic[2]....`. However, this is optional, and in some cases it may be better to give the images distinct names so that they can be more easily recognized within the bitmap.
+
+# Model animations
+This command compiles animation data. Use this to import animations for characters, machines, vehicles, and other objects.
+
+```sh
+# model-animations <source-directory>
+tool model-animations "objects\characters\masterchief"
+```
+
+- source-directory - A local data path to the root of a model source directory
+
+Tool expects a subfolder named `animations` that has source data files for the animations. Tool also expects a subfolder named `render` that has a [JMS](~) file. The nodes of that model and the nodes in the animations should be the same. 
+
+The source files can have different extensions. That depends on the type of animation they are intended to be. See the page about [animation data](~animation-data) for information about the various extensions and the different types of animation.
+
+Add [rename.txt](~rename-txt) to reuse animations as other animations, without copying and renaming files.
+
+If there are no serious errors, the animations will be compiled as a [model_animation_graph](~) tag in `tags\objects\characters\masterchief`.
+
+## Uncompressed
+
+Use this verb to import animations without compression.
+```sh
+# model-animations-uncompressed <source-directory>
+tool model-animations-uncompressed "objects\characters\masterchief"
+```
 
 # Sounds
 ## Reimport sounds
