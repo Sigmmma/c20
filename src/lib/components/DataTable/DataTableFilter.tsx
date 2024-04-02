@@ -10,9 +10,9 @@ export default function DataTableFilter(props: DataTableFilterProps) {
   const [filterVal, setFilterVal] = useState<string | undefined>();
 
   const handleValueChanged = (e) => {
-    const strVal = e.target.value;
+    const strVal: string = e.target.value;
     document.querySelectorAll(`table#${props.tableId} tbody tr`).forEach((row: HTMLTableRowElement) => {
-      if (row.dataset?.slug?.includes(strVal)) {
+      if (row.dataset?.slug?.includes(strVal.trim().toLowerCase())) {
         row.classList.remove("filtered");
       } else {
         row.classList.add("filtered");

@@ -9,6 +9,8 @@ keywords:
   - mod
   - os
   - yelo
+  - open
+  - sauce
 redirects:
   - /h1/tools/opensauce
 ---

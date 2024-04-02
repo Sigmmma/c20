@@ -4,6 +4,10 @@ img: ce.jpg
 caption: Custom Edition is freely available to anyone who purchased the retail game.
 info: >-
   [Downloads (halomaps.org)](https://www.halomaps.org/hce/index.cfm?sid=38)
+keywords:
+  - hek
+  - editing kit
+  - ce
 redirects:
   - /h1/tools/hek
   - /h1/guides/tips

@@ -61,7 +61,7 @@ Clusters are sealed volumes of a BSP separated by portal planes. They are used b
 Note that it may still be desirable to reference weather for indoor clusters if there are outdoor areas visible from them, otherwise snow and rain particles will abruptly disappear. To mask weather in such clusters, use [weather polyhedra](#weather-polyhedra).
 
 ## Indoor vs. outdoor clusters
-Clusters are either _outdoor/exterior_ or _indoor/interior_. When a cluster contains [+sky faces](~h1-materials) it is an outdoor cluster and has a [sky index](#tag-field-clusters-sky) of `0` or greater. Furthermore, any cluster from which an outdoor cluster is [potentially visible](#potentially-visible-set) will also be an outdoor cluster.
+Clusters are either _outdoor/exterior_ or _indoor/interior_. When a cluster contains [`+sky` faces](~h1-materials) it is an outdoor cluster and has a [sky index](#tag-field-clusters-sky) of `0` or greater. Furthermore, any cluster from which an outdoor cluster is [potentially visible](#potentially-visible-set) will also be an outdoor cluster. The material `+seamsealer` does not contribute to a cluster becoming outdoor so is typically used in BSP transition areas.
 
 An indoor cluster is one where none of its potentially visible clusters are outdoor. These clusters have a sky index of `-1` instead and use the indoor parameters of sky index `0` (the first sky), which always has the special role of doubling as the "indoor sky". For example, indoor clusters will use use its [_indoor fog color_](~sky#tag-field-indoor-fog-color) rather than its [_outdoor fog color_](~sky#tag-field-outdoor-fog-color).
 
