@@ -285,14 +285,14 @@ type_defs:
         type: ptr32
         comments:
           en: A pointer to the tag array, which lists all tags in the map.
-      - name: checksum
-        type: uint32
-        comments:
-          en: A CRC32 checksum of the tag files used in the map.
       - name: scenario_tag_id
         type: uint32
         comments:
           en: Unique ID of the [scenario](~) tag in the tag array.
+      - name: checksum
+        type: uint32
+        comments:
+          en: A CRC32 checksum of the tag files used in the map.
       - name: tag_count
         type: uint32
         comments:
