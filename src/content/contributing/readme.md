@@ -217,18 +217,20 @@ Use headings to separate articles into easy-to-read sections and aid navigation.
 
 Headings automatically generate a table of contents shown in the page sidebar and have a clickable "#" anchor for easy sharing of links to specific sections of a page.
 
-Always use _sentence case_, with the first word capitalized only. The exception is if the title is a proper name like a tool. To maintain consistency across pages, try to use some of these common heading names if relevant:
+Always use _sentence case_, with the first word capitalized only. The exception is if the title contains a proper name like a tool. To maintain consistency across pages, try to use some of these common heading names if relevant:
 
-* Known issues
-* More information
-* Limits
-* Related script functions and globals
-* Compatibility
-* Troubleshooting
+* Overview
 * Installation
-* Changelog
 * Usage
+* Troubleshooting
+* Limits
+* Related HaloScript
+* Compatibility
+* Known issues
+* Changelog
 * Appendix
+* External tutorials
+
 
 ## Links
 Standard Markdown links can be written in a few ways:

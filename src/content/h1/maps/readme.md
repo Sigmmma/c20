@@ -17,8 +17,6 @@ thanks:
     [Diagrams and
     overview](https://opencarnage.net/index.php?/topic/2869-mapfiles-an-overview/&page=1)
     of the map file structure.
-redirects:
-  - /h1/map/
 ---
 A **map**, also known as a **cache file**, is a bundle of processed [tags](~) which can be loaded and used by [Halo](~h1). With the exception of [_resource maps_](#resource-maps), each map represents a playable campaign, multiplayer level, or main menu.
 
