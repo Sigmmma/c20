@@ -65,6 +65,8 @@ export default function PageWrapper(props: PageWrapperProps) {
         <div id="c20-search-mountpoint"></div>
         <div className="nav-tree">
           {props.navTree && renderPageTree(ctx?.pageId ?? "/", props.navTree)}
+          <hr/>
+          <a href={DISCORD_URL} target="_blank"><Icon name="message-circle"/>Chat on Discord</a>
         </div>
       </nav>
       <div className="wrapper-toc">

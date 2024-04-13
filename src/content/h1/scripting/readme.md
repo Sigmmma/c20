@@ -137,8 +137,6 @@ Some defunct parts of HaloScript were removed in H1A MCC. This is not a complete
 
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)
 [c-format]: http://www.cplusplus.com/reference/cstdio/printf/
-[rng]: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
-[rng-seed]: https://en.wikipedia.org/wiki/Random_seed
 [stack]: http://en.wikipedia.org/wiki/Call_stack
 [bitfield]: https://en.wikipedia.org/wiki/Bit_field
 [cast]: https://en.wikipedia.org/wiki/Type_conversion
