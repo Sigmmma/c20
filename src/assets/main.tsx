@@ -2,9 +2,11 @@ import * as preact from "preact";
 import { IconName } from "../lib/components/Icon/names";
 import Locale from "../lib/components/Locale/Locale";
 import ThemeSelector from "../lib/components/PageWrapper/ThemeSelector";
-import Search from "../lib/components/Search/Search";
 import UnitConverter from "../lib/components/UnitConverter/UnitConverter";
 import DataTableFilter from "../lib/components/DataTable/DataTableFilter";
+import Nav from "../lib/components/Nav/Nav";
+import MiniSearch from "minisearch";
+import { th } from "@markdoc/markdoc/dist/src/schema";
 
 //todo
 //const is404Page = !!document.head.querySelector('[itemprop = Is404]');
@@ -31,38 +33,6 @@ document.querySelectorAll("#unit-converter-mountpoint").forEach(mountpoint => {
     mountpoint
   );
 });
-
-
-//theme stuff
-const themes: {name: string, syntax: string, icon: IconName}[] = [
-  {name: "dark", syntax: "/assets/night-owl.css", icon: "moon"},
-  {name: "light", syntax: "/assets/github.css", icon: "sun"},
-  // {name: "holiday", syntax: "/assets/night-owl.css", icon: "gift"},
-];
-const themeMount = document.getElementById("theme-mountpoint");
-const savedTheme = window.localStorage.getItem("theme") ?? "dark";
-function handleThemeSelected(theme: string) {
-  let themeConfig = themes.find(t => t.name == theme);
-  if (!themeConfig) {
-    theme = "dark";
-    themeConfig = themes.find(t => t.name == theme);
-  }
-  document.documentElement.dataset.theme = theme;
-  const syntaxCssLink = document.getElementById("syntax") as HTMLLinkElement;
-  syntaxCssLink.href = themeConfig!.syntax;
-  window.localStorage.setItem("theme", theme);
-}
-preact.render(
-  <Locale.Provider value={lang}>
-    <ThemeSelector
-      themes={themes}
-      initialValue={savedTheme}
-      onSelect={handleThemeSelected}
-    />
-  </Locale.Provider>,
-  themeMount!
-);
-handleThemeSelected(savedTheme);
 
 let currentHeadingId: string | undefined = undefined;
 const intersectionObserver = new IntersectionObserver(entries => {
@@ -128,14 +98,6 @@ body!.addEventListener("touchmove", (e) => {
   }
 }, false);
 
-document.getElementById("toggle-menu")!.addEventListener("click", () => {
-  setWrapperState(wrapperState != 0 ? 0 : 1);
-});
-
-document.getElementById("toggle-toc")!.addEventListener("click", () => {
-  setWrapperState(wrapperState != 2 ? 2 : 1);
-});
-
 
 //flash heading matching URL hash
 function hashFlash() {
@@ -165,10 +127,71 @@ document.querySelectorAll(".wrapper-toc a").forEach((a: HTMLAnchorElement) => {
   });
 });
 
-const searchMount = document.getElementById("c20-search-mountpoint");
-preact.render(
-  <Locale.Provider value={lang}>
-    <Search onSearchFocused={(focused) => setWrapperState(focused ? 0 : 1)}/>
-  </Locale.Provider>,
-  searchMount!
-);
+
+
+//theme stuff
+const themes: {name: string, syntax: string, icon: IconName}[] = [
+  {name: "dark", syntax: "/assets/night-owl.css", icon: "moon"},
+  {name: "light", syntax: "/assets/github.css", icon: "sun"},
+  // {name: "holiday", syntax: "/assets/night-owl.css", icon: "gift"},
+];
+const savedTheme = window.localStorage.getItem("theme") ?? "dark";
+function handleThemeSelected(theme: string) {
+  let themeConfig = themes.find(t => t.name == theme);
+  if (!themeConfig) {
+    theme = "dark";
+    themeConfig = themes.find(t => t.name == theme);
+  }
+  document.documentElement.dataset.theme = theme;
+  const syntaxCssLink = document.getElementById("syntax") as HTMLLinkElement;
+  syntaxCssLink.href = themeConfig!.syntax;
+  window.localStorage.setItem("theme", theme);
+}
+handleThemeSelected(savedTheme);
+
+const miniSearchConfig = {
+  idField: "path",
+  fields: ["title", "text"],
+  storeFields: ["title"],
+  searchOptions: {
+    //customize tokenizer to allow underscores in token
+    tokenize: (str: string) => str.split(/[\s\-\."'!?,;:\[\]\(\)\|\\><]+/),
+    boost: {title: 2, keywords: 3},
+    fuzzy: 0.2,
+  }
+};
+
+const handleMenuToggled = () => {
+  setWrapperState(wrapperState != 0 ? 0 : 1);
+};
+
+const handleTocToggled = () => {
+  setWrapperState(wrapperState != 2 ? 2 : 1);
+};
+
+const searchIndexPromise = fetch(`/assets/search-index_${lang}.json`)
+  .then(res => res.text())
+  .then(indexJson => MiniSearch.loadJSON(indexJson, miniSearchConfig));
+const pageTreePromise = fetch(`/assets/page-tree_${lang}.json`)
+  .then(res => res.json());
+
+Promise.all([searchIndexPromise, pageTreePromise]).then(([searchIndex, pageTree]) => {
+  const navMount = document.getElementById("nav-mountpoint")!;
+  const pageId = navMount.dataset.pageid!;
+  preact.render(
+    <Locale.Provider value={lang}>
+      <Nav
+        pageId={pageId}
+        themes={themes}
+        initialTheme={savedTheme}
+        onThemeSelected={handleThemeSelected}
+        searchIndex={searchIndex}
+        pageTree={pageTree}
+        onSearchFocused={(focused) => setWrapperState(focused ? 0 : 1)}
+        onMenuToggled={handleMenuToggled}
+        onTocToggled={handleTocToggled}
+      />
+    </Locale.Provider>,
+    navMount!
+  );
+});

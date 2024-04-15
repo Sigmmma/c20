@@ -48,7 +48,7 @@ export type RenderOutput = {
 export type RenderInput = {
   //global
   baseUrl: string;
-  preloadSearch?: boolean;
+  preloadJson?: boolean;
   noThumbs?: boolean;
   debug?: boolean,
   //local
@@ -60,7 +60,7 @@ export type RenderInput = {
   //non-local:
   globalData: any;
   pageIndex: PageIndex;
-  navTree: NavTree; //can be derived from `pageIndex` but slow to do every time
+  pageTree: NavTree; //can be derived from `pageIndex` but slow to do every time
 };
 
 //trim the plaintext preview to a maximum length
@@ -180,13 +180,13 @@ export default function renderPage(input: RenderInput): RenderOutput {
           ogImg={front?.img}
           ogOtherLangs={Object.keys(navOtherLangs)}
           ogTags={front?.keywords}
-          preloadSearch={input.preloadSearch}
+          preloadJson={input.preloadJson}
           localizedPath={thisPageLocalizedPath}
           path={thisPagePath}
         >
           <PageWrapper
             title={front?.title}
-            navTree={input.navTree}
+            pageTree={input.pageTree}
             navHeadings={navHeadings}
           >
             <Article
@@ -208,6 +208,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
               }
             </Article>
           </PageWrapper>
+          <script src="/assets/main.js"></script>
         </HtmlDoc>
       </Locale.Provider>
     </Ctx.Provider>

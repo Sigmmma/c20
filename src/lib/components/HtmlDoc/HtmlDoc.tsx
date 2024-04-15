@@ -6,7 +6,7 @@ import {useLocalize} from "../Locale/Locale";
 export type HtmlDocProps = {
   title?: string;
   noSearch?: boolean;
-  preloadSearch?: boolean;
+  preloadJson?: boolean;
   baseUrl: string;
   ogDescription?: string;
   ogTags?: string[];
@@ -70,9 +70,10 @@ export default function HtmlDoc(props: HtmlDocProps) {
         <meta property="og:image" content={ogImgAbsoluteUrl}/>
         <title>{props.title ? `${props.title} - c20` : "c20"}</title>
         <base href={props.path.endsWith("/") ? props.path : `${props.path}/`}/>
-        {props.preloadSearch &&
+        {props.preloadJson && <>
           <link rel="preload" type="application/json" as="fetch" href={`/assets/search-index_${lang}.json`}/>
-        }
+          <link rel="preload" type="application/json" as="fetch" href={`/assets/page-tree_${lang}.json`}/>
+        </>}
         <link rel="icon" type="image/png" href="/assets/librarian.png"/>
         <link rel="stylesheet" href="/assets/style.css"/>
         <link id="syntax" rel="stylesheet" href="/assets/night-owl.css"/>
@@ -82,7 +83,6 @@ export default function HtmlDoc(props: HtmlDocProps) {
       </head>
       <body>
         {props.children}
-        <script src="/assets/main.js"></script>
       </body>
     </html>
   );

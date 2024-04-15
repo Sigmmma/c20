@@ -59,6 +59,16 @@ export default function runServer(onDemand: boolean) {
       res.header("Content-Type", "application/json; charset=UTF-8");
       res.send(json);
     });
+
+    app.get("/assets/page-tree_:lang(\\w{2}).json", async (req, res, next) => {
+      const lang = req.params.lang.toLowerCase();
+      console.log(`Building page tree: ${lang}`);
+      const pageIndex = await loadPageIndex(buildOpts.contentDir);
+      const pageTree = buildPageTree(pageIndex, "/", lang);
+      const json = JSON.stringify(pageTree);
+      res.header("Content-Type", "application/json; charset=UTF-8");
+      res.send(json);
+    });
     
     app.get("/:page([-/_a-zA-Z0-9]+)?", async (req, res, next) => {
       // const lang = req.params.lang?.toLowerCase() ?? "en";
@@ -89,7 +99,7 @@ export default function runServer(onDemand: boolean) {
       const renderOutput = renderPage({
         baseUrl: buildOpts.baseUrl,
         noThumbs: true,
-        preloadSearch: false,
+        preloadJson: false,
         debug: !!process.env.C20_DEBUG || req.query.debug,
         pageId,
         lang,
@@ -98,7 +108,7 @@ export default function runServer(onDemand: boolean) {
         localData: await localDataPromise,
         globalData: await dataPromise,
         pageIndex: await pageIndexPromise,
-        navTree: buildPageTree(await pageIndexPromise, "/", lang),
+        pageTree: buildPageTree(await pageIndexPromise, "/", lang),
       });
     
       res.header("Content-Type", "text/html; charset=UTF-8");
