@@ -91,6 +91,10 @@ LODs are created by using [a special naming convention](~h1-tool#model) when com
 
 [z-buf]: https://en.wikipedia.org/wiki/Z-buffering
 
+{% alert type="danger" %}
+LODs are currently not behaving as expected in Halo CE, both in tools and in the Master Chief Collection. This can cause only the super high LOD to be visible at all times, no matter the on-screen diameter of an object's [bounding sphere](~object#tag-field-bounding-radius). 
+{% /alert %}
+
 # Related HaloScript
 
 {% relatedHsc game="h1" tagFilter="gbxmodel" /%}
