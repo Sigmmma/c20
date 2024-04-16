@@ -64,16 +64,6 @@ tutorials:
     links:
       en: "[halonet.net](http://reclaimed.halonet.net/content/tutorial/detail_objects_collection/zexgx_dobc.pdf)"
   - name:
-      en: Saving space by making portals fully coplanar
-    description:
-      en: How to stay under the [BSP](~scenario_structure_bsp) portal limit by optimizing the amount of data Halo needs to store them.
-    authors: MosesofEgypt
-    updated: "2014"
-    tags:
-      - level
-    links:
-      en: "[Imgur](https://i.imgur.com/MxYJRNM.png)"
-  - name:
       en: Intro to water
     description:
       en: Explains how to make a water plane. Note that "water" is a shader from b30, but you can make your own [water material](~shader_transparent_water).

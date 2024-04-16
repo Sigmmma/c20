@@ -145,6 +145,8 @@ EXCEPTION halt in .\import_collision_bsp\build_collision_bsp.c,#1529: dividing_e
 The exact cause of this is unknown, but it _may_ be related to improper level scale or improper portal placement. Please contact a c20 maintainer if you encounter this.
 
 # Portal problems
+Be sure to follow the [portal placement rules](~portals-and-clusters#placement-rules) or you may encounter these types of issues:
+
 ## Warning: Unearthed edge (magenta)
 An _unearthed edge_ is where a portal's open edge is exposed within the BSP. It is similar to the [open edges error](#error-edge-is-open-red), but for portals. Portal edges should either extend through the BSP or be connected with another portal. If connecting the portal to another portal you must ensure that they are attached at vertices rather than simply touching.
 

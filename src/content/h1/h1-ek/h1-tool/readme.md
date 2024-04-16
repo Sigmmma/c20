@@ -114,18 +114,17 @@ A [scenario](~) can be built into a [map](~maps) using the `build-cache-file` ve
 ```cmd
 Usage: build-cache-file <scenario-name> <classic|remastered> [resource-map-usage<none|read|read_write>] [log-tag-loads]
 tool build-cache-file "levels\test\tutorial\tutorial"
-tool build-cache-file "levels\test\tutorial\tutorial" classic 0 # classic graphics with update resource disabled
-tool build-cache-file "levels\test\tutorial\tutorial" remastered
+tool build-cache-file "levels\test\tutorial\tutorial" classic none
 ```
 
 Arguments:
 * scenario-name - A local tag path to your scenario without the file extension.
 * classic|remastered - H1A Tool only. Whether or not S3D is disabled. There is no way to edit S3D files currently so only use remastered if you know what you're doing:
   * `classic` - Disables the S3D graphics engine. Users will not be able to toggle to the remastered graphics or sounds. This is intended for custom maps that don't support remastered graphics.
-  * `remastered` - Enables the S3D graphics engine. Users will be able to toggle to the remastered graphics and sounds. This is intended for building maps compatible with S3D-based remastered graphics and sounds. Some HUD bitmaps will be read from S3D data files instead of tags.
+  * `remastered` - Enables the S3D graphics engine. Users will be able to toggle to the remastered graphics and sounds. This is intended for building maps compatible with S3D-based remastered graphics and sounds. Some HUD bitmaps will be read from S3D data files instead of tags. Make sure you're not including any objects in your map which don't have remastered graphics support, such as the flamethrower, or else MCC will crash.
 * resource-map-usage - H1A Tool only. How Tool uses [resource maps](~maps#resource-maps) such a bitmaps.map and sounds.map during map packaging.
   * `none` - Tool will build self-contained maps and resource maps will not be used during packaging. All assets will be internalized. This is the default and also the behaviour when resource maps are missing from their expected location under the editing kit's `maps` folder.
-  * `read` - Tool will allow your map to rely on tags within `bitmaps.map` and `sounds.map` if present. Any assets that don't exist will instead be internalized.
+  * `read` - Tool will allow your map to rely on tags within `maps\bitmaps.map` and `maps\sounds.map` if present. Any assets that don't exist will instead be internalized. Make sure the resource maps are exact copies of the ones the game will use at runtime, or else the assets will be incorrectly referenced and all textures will appear corrupted in-game.
   * `read_write` - Tool will add bitmaps and sounds from the map being built into the respective resource maps if they weren't already present. [Lightmaps](~) bitmaps are still kept in the map's own cache file rather than added to `bitmaps.map`.
 * log-tag-loads - H1A Tool only. A `true` or `false` arg that writes the tags loading during packaging to `tool_tags_loaded.txt` in the H1AEK root. This helps build a list of tags needed for a scenario if you are releasing a tag set.
 
@@ -481,7 +480,7 @@ tool physics "vehicles\wraith"
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\vehicles\wraith\physics\wraith.JMS`. Assuming no errors, it would be imported as `tags\wraith\wraith.physics`.
 
-## Plate
+## plate
 H1A Tool only. The plate verb takes a set of images and places them in a sequence surrounded by a border to be imported as either sprites or animated images.
 
 ```cmd
