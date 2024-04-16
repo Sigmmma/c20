@@ -17,12 +17,12 @@ value_types:
     info:
       en: |-
         A value that is either `true` or `false`. Boolean values are commonly set
-        as just `1` or `0` even in official level scripts. Parsing is
-        case-insensitive so `False` and `TRUE` will be understood too.
+        as just `1` or `0` even in official level scripts. You can also
+        use `on` and `off`. Values are case-insensitive in H1A, so `False` and
+        `TRUE` will be understood too.
       es:
-    ex: >-
-      `true`, `false`, `1`, `0`
-
+    ex: |-
+      `true`, `false`, `1`, `0`, `on`, `off`
   - type: real
     info:
       en: 'Floating point (decimal) value. Value Range: 3.4E +/- 38 (6 digits)'

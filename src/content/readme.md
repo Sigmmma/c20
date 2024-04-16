@@ -21,10 +21,10 @@ Welcome to **The Reclaimers Library** (**c20**), a project which aims to documen
 
 _Mods_ are fan-made modifications to a game that change or add content, or implement unofficial bug fixes and new features. Halo has a 20+ year tradition of modding which is still going strong. On c20 we focus on today's best practices and tools.
 
-Everyone makes mods for different reasons; maybe it's to rebalance the sandbox, learn new skills, expand on a favourite game, or curiosity about how the game works. Regardless, we hope this resource can help you.
+Everyone makes mods for different reasons, be it rebalancing the sandbox, learning new skills, expanding content, or plain curiosity. Regardless, we hope this resource can help you.
 
 {% alert %}
-**This website is always a work in progress!** We especially need more information beyond Halo CE. Please [contribute info](~contributing) if you can.
+**This website is always a work in progress!** Please [contribute info](~contributing) if you can.
 {% /alert %}
 
 # What's new?

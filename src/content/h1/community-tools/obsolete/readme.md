@@ -31,7 +31,7 @@ Another function of HEK+ was [map protection](~maps#protected-maps). This was a 
 
 # Plugins
 ## Blender .gbxmodel Importer
-{% figure src="bi2.webp" %}
+{% figure src="bi2.jpg" %}
 A pelican model imported to Blender 2.7.
 {% /figure %}
 The **Blender .gbxmodel importer** by Fulsam was an add-on for Blender 2.7 to import [gbxmodel](~) tags. It was made obsolete by the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset), which supports importing model tags into modern versions of Blender. The addon is still available for download [here](https://haloce3.com/downloads/applications/blender-gbxmodel-importer-v0-5-1/).

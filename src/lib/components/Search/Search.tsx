@@ -5,40 +5,22 @@ import {useLocalize} from "../Locale/Locale";
 const localizations = {
   searchPlaceholder: {
     en: "Search all pages... [S]",
-    es: "Buscar c20... [S]"
   },
   searchResults: {
     en: "Search results",
-    es: "Resultados de la búsqueda"
   },
   close: {
     en: "Close",
-    es: "Cerrar"
   },
   searchNoResults: {
     en: "No results found for",
-    es: "No se encontraron resultados para",
   },
   limitToChildPaths: {
     en: "Child pages only",
-    es: "Solo páginas secundarias"
   },
 };
 
-const miniSearchConfig = {
-  idField: "path",
-  fields: ["title", "text"],
-  storeFields: ["title"],
-  searchOptions: {
-    //customize tokenizer to allow underscores in token
-    tokenize: (str: string) => str.split(/[\s\-\."'!?,;:\[\]\(\)\|\\><]+/),
-    boost: {title: 2, keywords: 3},
-    fuzzy: 0.2,
-  }
-};
-
 type State = {
-  searchIndex?: MiniSearch;
   filterChildPaths: boolean;
   firstSearchDone: boolean;
   query: string;
@@ -47,16 +29,16 @@ type State = {
 };
 
 export type SearchProps = {
+  searchIndex?: MiniSearch;
   initialQuery?: string;
   onSearchFocused?: (focused: boolean) => void;
 };
 
 export default function Search(props: SearchProps) {
-  const {localize, lang} = useLocalize(localizations);
+  const {localize} = useLocalize(localizations);
   //save a reference to the DOM element which gets rendered, so we can focus it later
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [state, setState] = useState<State>({
-    searchIndex: undefined,
     filterChildPaths: false,
     firstSearchDone: false,
     query: props.initialQuery ?? "",
@@ -67,15 +49,6 @@ export default function Search(props: SearchProps) {
   const updateState = (newState: Partial<State>) => {
     setState({...state, ...newState});
   };
-
-  useEffect(() => {
-    fetch(`/assets/search-index_${lang}.json`)
-      .then(res => res.text())
-      .then(indexJson => {
-        updateState({searchIndex: MiniSearch.loadJSON(indexJson, miniSearchConfig)});
-        console.log("Search index loaded!");
-      });
-    }, []);
 
   useEffect(() => {
     window.addEventListener("keydown", (e) => {
@@ -137,15 +110,15 @@ export default function Search(props: SearchProps) {
   };
 
   const handleChange = (query: string, filterChildPaths: boolean) => {
-    if (state.searchIndex) {
-      let searchResults = state.searchIndex.search(query);
+    if (props.searchIndex) {
+      let searchResults = props.searchIndex.search(query);
 
       //if no results, try suggested search instead
       if (searchResults.length == 0) {
-        const suggestions = state.searchIndex.autoSuggest(query);
+        const suggestions = props.searchIndex.autoSuggest(query);
         if (suggestions.length > 0) {
           const suggestedTerms = suggestions[0].suggestion.split(" ");
-          searchResults = state.searchIndex.search(suggestedTerms[suggestedTerms.length - 1]);
+          searchResults = props.searchIndex.search(suggestedTerms[suggestedTerms.length - 1]);
         }
       }
 
@@ -191,7 +164,7 @@ export default function Search(props: SearchProps) {
       className={`search-input ${isNonEmptyQuery ? "nonempty" : ""}`}
       type="text"
       placeholder={localize("searchPlaceholder")}
-      disabled={!state.searchIndex}
+      disabled={!props.searchIndex}
       value={state.query}
       onInput={handleInput}
       onKeyDown={handleKeyDown}

@@ -18,8 +18,8 @@ export type BuildOpts = {
   noThumbs?: boolean;
 };
 
-async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: BuildOpts): Promise<SearchDoc[]> {
-  const navTrees: Record<Lang, NavTree> = {};
+async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: BuildOpts): Promise<{searchDocs: SearchDoc[], pageTrees: Record<Lang, NavTree>}> {
+  const pageTrees: Record<Lang, NavTree> = {};
 
   //for all pages, and for all of their languages...
   const searchDocs = await Promise.all(Object.entries(pageIndex).flatMap(([pageId, pageDataByLang]) => {
@@ -28,13 +28,13 @@ async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: Bui
       const outputDir = path.join(buildOpts.outputDir, ...pageIdToLogical(pageId));
       const outputFileName = path.join(outputDir, lang == "en" ? "index.html" : `${lang}.html`);
       const localData = loadYamlTree(baseDir, {nonRecursive: true});
-      const navTree = navTrees[lang] ?? (navTrees[lang] = buildPageTree(pageIndex, "/", lang));
+      const pageTree = pageTrees[lang] ?? (pageTrees[lang] = buildPageTree(pageIndex, "/", lang));
 
       //render the page to HTML and also gather search index data
       const renderOutput = renderPage({
         baseUrl: buildOpts.baseUrl,
         noThumbs: buildOpts.noThumbs,
-        preloadSearch: true,
+        preloadJson: true,
         debug: !!process.env.C20_DEBUG,
         pageId: pageId,
         lang,
@@ -43,7 +43,7 @@ async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: Bui
         localData: await localData,
         globalData,
         pageIndex,
-        navTree,
+        pageTree,
       });
 
       await fs.promises.mkdir(outputDir, {recursive: true});
@@ -52,7 +52,14 @@ async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: Bui
     });
   }));
   //return all search docs so they can be written to a single file (for this lang)
-  return searchDocs.filter(it => it != null) as SearchDoc[];
+  return {searchDocs: searchDocs.filter(it => it != null) as SearchDoc[], pageTrees};
+}
+
+async function writePageTrees(pageTrees: Record<Lang, NavTree>, buildOpts: BuildOpts) {
+  await fs.promises.mkdir(path.join(buildOpts.outputDir, "assets"), {recursive: true});
+  await Promise.all(Object.entries(pageTrees).map(async ([lang, pageTree]: [string, any]) => {
+    await fs.promises.writeFile(path.join(buildOpts.outputDir, "assets", `page-tree_${lang}.json`), JSON.stringify(pageTree), "utf8");
+  }));
 }
 
 export default async function buildContent(buildOpts: BuildOpts) {
@@ -62,7 +69,10 @@ export default async function buildContent(buildOpts: BuildOpts) {
   await Promise.all([
     buildResources(await pageIndex, buildOpts),
     renderPages(await pageIndex, await data, buildOpts)
-      .then(searchDocs => buildAndWriteSearchIndex(searchDocs, buildOpts)),
+      .then(({searchDocs, pageTrees}) => Promise.all([
+        buildAndWriteSearchIndex(searchDocs, buildOpts),
+        writePageTrees(pageTrees, buildOpts),
+      ])),
     buildSitemap(await pageIndex, buildOpts),
     buildAndWriteRedirects(await pageIndex, buildOpts)
   ]);

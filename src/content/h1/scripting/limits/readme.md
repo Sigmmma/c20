@@ -123,4 +123,7 @@ This means that one script can ***COMPLETELY*** break another script if it nests
 There is not currently a reliable way to exactly tell when stack memory has been exceeded in [release](~blam#build-types) builds, but `play` and lower optimization levels will crash with `a problem occurred while executing the script <script name>: corrupted stack. (valid_thread(thread))`. You can use the [H1A standalone build](~h1-standalone-build) or Sapien to detect overflows.
 
 ## Console scripts
-Things manually entered into the console ingame also share script space with the scenario's baked in scripts. In rare circumstances (e.g. you're just on the cusp of using too much memory), a console script's memory can overflow into a scenario script's memory, causing the above mentioned issues.
+Things manually entered into the console ingame also share script space with the scenario's baked-in scripts. In rare circumstances (e.g. you're just on the cusp of using too much memory), a console script's memory can overflow into a scenario script's memory, causing the above mentioned issues.
+
+[rng]: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
+[rng-seed]: https://en.wikipedia.org/wiki/Random_seed

@@ -3,7 +3,6 @@ export default {
     en: "The Reclaimers Library",
     es: "La Biblioteca de Reclaimers"
   },
-  //remove me later:
   toc: {
     en: "Page contents",
     es: "En esta página"
@@ -19,4 +18,7 @@ export default {
   menu: {
     en: "Menu",
   },
+  discord: {
+    en: "Chat on Discord",
+  }
 };

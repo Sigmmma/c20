@@ -36,7 +36,7 @@ map_name levels\test\bloodgulch\bloodgulch
 map_name "levels\test\my level\my level"
 ```
 
-To avoid having to enter these and other debugging commands every time you start Standalone, you can place commands in an [init.txt](~arguments#init-txt) file and they will be run automatically on startup. You also don't need to reopen Standalone every time you maked changes to your tags; simple access `map_name` again in your console history ({% key "Up" /%} key) to reload the map with updated tags.
+To avoid having to enter these and other debugging commands every time you start Standalone, you can place commands in an [init.txt](~arguments#init-txt) file and they will be run automatically on startup. You also don't need to reopen Standalone every time you make changes to your tags; simply access `map_name` again in your console history ({% key "Up" /%} key) to reload the map with updated tags.
 
 Standalone supports some of the same [arguments](~arguments#arguments-list) that H1CE does, such as `-vidmode 2560,1440,120` to set resolution and `-windowed` mode. You can toggle full-screen with {% key "Alt+Enter" /%}.
 
