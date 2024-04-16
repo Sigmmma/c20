@@ -481,7 +481,7 @@ tool physics "vehicles\wraith"
 
 For the example above, Tool would expect to find a corresponding JMS file at `data\vehicles\wraith\physics\wraith.JMS`. Assuming no errors, it would be imported as `tags\wraith\wraith.physics`.
 
-## Plate
+## plate
 H1A Tool only. The plate verb takes a set of images and places them in a sequence surrounded by a border to be imported as either sprites or animated images.
 
 ```cmd

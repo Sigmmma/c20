@@ -1,0 +1,9 @@
+tutorials:
+  - name:
+      en: Saving space by making portals fully coplanar
+    description:
+      en: How to stay under the [BSP](~scenario_structure_bsp) portal limit by optimizing the amount of data Halo needs to store them.
+    authors: MosesofEgypt
+    updated: "2014"
+    links:
+      en: "[Imgur](https://i.imgur.com/MxYJRNM.png)"

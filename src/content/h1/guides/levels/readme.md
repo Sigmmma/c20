@@ -8,6 +8,7 @@ thanks:
 childOrder:
   - box-level
   - bsp-troubleshooting
+  - portals-and-clusters
   - advanced
   - additional
 redirects:

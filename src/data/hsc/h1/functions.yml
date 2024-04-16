@@ -3086,6 +3086,8 @@ functions:
         (<void> object_pvs_activate <object>)
         ```
         Just another (old) name for object_pvs_set_object.
+    tags:
+      - portals
   - slug: object_pvs_clear
     info:
       en: |-
@@ -3093,6 +3095,8 @@ functions:
         (<void> object_pvs_clear)
         ```
         Removes the special place that activates everything it sees.
+    tags:
+      - portals
   - slug: object_pvs_set_camera
     info:
       en: >-
@@ -3104,6 +3108,8 @@ functions:
 
         Sets the specified cutscene camera point as the special place that activates
         everything it sees.
+    tags:
+      - portals
   - slug: object_pvs_set_object
     info:
       en: >-
@@ -3115,6 +3121,8 @@ functions:
 
         Sets the specified object as the special place that activates everything
         it sees.
+    tags:
+      - portals
   - slug: object_set_collideable
     info:
       en: |-

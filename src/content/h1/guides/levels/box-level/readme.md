@@ -354,7 +354,7 @@ The tags are now ready so let's test the level in-game. How you do this will dep
 
 {% tabs id="testing" %}
 {% tab label="Testing with Standalone" %}
-If you're using the H1A mod tools you can [use Standalone](~h1-standalone-build#usage) to test the scenario. Standalone is preferable to testing in MCC itself during development since it includes debug features and loads tag files directly, avoiding the need to build a map `file` with Tool and install it into MCC. Run `halo_tag_test.exe` and enter the following into the [developer console](~developer-console):
+If you're using the H1A mod tools you can [use Standalone](~h1-standalone-build#usage) to test the scenario. Standalone is preferable to testing in MCC itself during development since it includes debug features and loads tag files directly, avoiding the need to build a map file with Tool and install it into MCC. Run `halo_tag_test.exe` and enter the following into the [developer console](~developer-console):
 
 ```console
 game_variant slayer ; only if your level is a multiplayer map
@@ -375,7 +375,7 @@ If you're using the HEK and targeting Halo Custom Edition then you need to build
 tool build-cache-file levels\test\example\example
 ```
 
-This will produce `maps\example.map`. You can then launch Custom Edition and load this level, either via UI for MP maps or [via the console if enabled](~developer-console#usage):
+This will produce `maps\example.map`. You can then launch Custom Edition and load this level, either via the UI for MP maps or [via the console if enabled](~developer-console#usage):
 
 ```console
 map_name example ; if SP
