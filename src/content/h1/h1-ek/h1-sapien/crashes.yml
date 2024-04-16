@@ -66,3 +66,7 @@ crashes:
       EXCEPTION halt in \halopc\haloce\source\tag_files\tag_groups.c,#3142: offset>=0 && offset+size<=data->size
     solution: >-
       You may have a corrupted [sound](~) tag which was extracted with [HEK+](~obsolete#hek). Always use [invader-extract](~) instead.
+  - error: >-
+      EXCEPTION halt in c:\mcc\main\h1\code\h1a2\sources\render\render.c,#249: !memcmp(&window->render_camera.viewport_bounds, &window->rasterizer_camera.viewport_bounds, sizeof(rectangle2d))
+    solution: >-
+      You resized the game window while `debug_render_freeze` was enabled. Disable it first.
