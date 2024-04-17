@@ -18,6 +18,7 @@ thanks:
   Ifafudafi: Script limits information
   InfernoPlus: Flipped vehicle test
   Krevil: Modulus operator
+  MattDratt: AI following the player tutorial
 redirects:
   - /h1/engine/scripting
 childOrder:
@@ -137,6 +138,5 @@ Some defunct parts of HaloScript were removed in H1A MCC. This is not a complete
 
 [Lisp]: https://en.wikipedia.org/wiki/Lisp_(programming_language)
 [c-format]: http://www.cplusplus.com/reference/cstdio/printf/
-[stack]: http://en.wikipedia.org/wiki/Call_stack
 [bitfield]: https://en.wikipedia.org/wiki/Bit_field
 [cast]: https://en.wikipedia.org/wiki/Type_conversion

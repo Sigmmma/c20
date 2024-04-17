@@ -5,6 +5,7 @@ imports:
 type_defs:
   GlowDatum:
     class: struct
+    assert_size: 0x258
     endianness: little
     fields:
       - name: id

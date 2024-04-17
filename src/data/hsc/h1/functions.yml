@@ -774,7 +774,8 @@ functions:
         ```
         Sets the follow target for an encounter to be the closest player. AI
         follow their target by [moving to firing positions](~ai#firing-positions)
-        near their target with the same letter label.
+        near their target with the same letter label. Note that the AI may need
+        to be migrated to follow the player through multiple sets of firing positions.
   - slug: ai_follow_target_unit
     info:
       en: |-
@@ -2436,15 +2437,12 @@ functions:
         the next
   - slug: garbage_collect_now
     info:
-      en: >-
+      en: |-
         ```hsc
-
         (<void> garbage_collect_now)
-
         ```
-
-        Causes all garbage objects except those visible to a player to be collected
-        immediately
+        Causes all dead [bipeds](~biped) and [garbage](~) objects except those
+        visible to a player to be collected (removed) immediately.
   - slug: get_digital_forward_throttle
     info:
       en: |-
@@ -3222,30 +3220,24 @@ functions:
         Attaches the second object to the first; both strings can be empty
   - slug: objects_can_see_flag
     info:
-      en: >-
+      en: |-
         ```hsc
-
         (<boolean> objects_can_see_flag <object_list> <cutscene_flag> <real>)
-
-        (objects_can_see_flag the_warthogs tunnel_flag 45)
-
+        (objects_can_see_flag (players) tunnel_flag 45)
         ```
-
         Returns `true` if any of the specified units are looking within the specified
-        number of degrees of the flag
+        number of degrees of the flag. This is a simple direction test; obstructions
+        like scenery or the BSP are not considered blockers.
   - slug: objects_can_see_object
     info:
-      en: >-
+      en: |-
         ```hsc
-
         (<boolean> objects_can_see_object <object_list> <object> <real>)
-
-        (objects_can_see_object the_warthogs (player0) 90)
-
+        (objects_can_see_object (player0) the_warthog 90)
         ```
-
         Returns `true` if any of the specified units are looking within the specified
-        number of degrees of the object
+        number of degrees of the object. This is a simple direction test; obstructions
+        like scenery or the BSP are not considered blockers.
   - slug: objects_delete_by_definition
     info:
       en: |-

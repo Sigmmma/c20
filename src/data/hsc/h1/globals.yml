@@ -3681,7 +3681,7 @@ external_globals:
         (screenshot_size [short])
         ```
         Appears to set some kind of crop or scaling factor for generated screenshots,
-        but is probably not working as intended. Ssetting this to a value other than `1`
+        but is probably not working as intended. Setting this to a value other than `1`
         can crash when using `screenshot_size`.
   - slug: slow_server_startup_safety_zone_in_seconds
     info:

@@ -87,6 +87,9 @@ Strings used in scripts are also stored [in the scenario](~scenario#tag-field-sc
 
 The total amount of string data from all the scenario's scripts must remain below the limit.
 
+## Object lists
+When you generate object lists by calling functions like `ai_actors`, the list and its referenced objects are stored in the [game state](~game-state). The number of lists is limited to 48 while references total 128. If you request too many object lists per tick you may see the warning `no more script object lists; something bad will probably happen` in the console. To force unused lists to be garbage collected before the tick ends, you can call `garbage_collect_now`.
+
 ## Threads
 Although you can declare [512 or 1024 scripts](#script-declarations), the [game state](~game-state#datum-arrays) supports at most **256** running threads, which static scripts wouldn't contribute to.
 
@@ -127,3 +130,4 @@ Things manually entered into the console ingame also share script space with the
 
 [rng]: https://en.wikipedia.org/wiki/Pseudorandom_number_generator
 [rng-seed]: https://en.wikipedia.org/wiki/Random_seed
+[stack]: http://en.wikipedia.org/wiki/Call_stack

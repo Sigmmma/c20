@@ -2,6 +2,7 @@
 title: Game state
 thanks:
   gbMichelle: Reversing stock table limits
+  Conscars: Reversing object list header datum
 ---
 **Game state** is the in-memory data which describes the state of the game world as it is simulated over time. It differs from [tags](~) which, although they are also [loaded into memory](~maps#map-loading), describe static or initial properties of classes of game objects rather than the current properties of individual ones.
 
@@ -25,7 +26,7 @@ Since the game world is dynamic, the datum count can rise up to a limit. The fol
 |[widget](~object#tag-field-widgets)|12|-|
 |[flag](~)|2|-|
 |[antenna](~)|12|24|
-|glow|8|-|Stores the state of [glow](~glow#glow-path) systems/paths. For example, the energy sword has 2 glow paths so up to 4 energy swords can be glowing.|
+|[glow](#glow-datum)|8|-|Stores the state of [glow](~glow#glow-path) systems/paths. For example, the energy sword has 2 glow paths so up to 4 energy swords can be glowing.|
 |glow particles|512|-|Stores the state of individual [glow particles](~glow#particle-types), like colour and position.|
 |[light volumes](~light_volume)|256|-|
 |[lightnings](~lightning)|256|-|
@@ -50,8 +51,8 @@ Since the game world is dynamic, the datum count can rise up to a limit. The fol
 |prop|768|-|Part of the [AI knowledge model](~ai#props) and stores a web of relationships between units like allies and enemies. Likely used when determining if actors have more enemies than allies nearby, if enemies are reachable, occluded, etc. Props can be visualized with `ai_render_props`.|
 |[encounter](~scenario#tag-field-encounters)|128|-|
 |ai pursuit|256|-|
-|object list header|48|-|
-|list object reference|128|-|
+|[object list header](#object-list-header-datum)|48|-|Stores object lists returned by scripting functions like `ai_actors`. These are reference-counted and periodically garbage collected.
+|list object reference|128|-|Stores object references belonging to object lists (above). These datums reference each other by ID to form linked lists.
 |[hs thread](~scripting#script-threads)|256|-|
 |hs globals|1024|-|Stores the state of HS globals, including [external globals](~scripting#external-globals), not just those in the level script.|
 |recorded animations|64|-|
@@ -67,6 +68,16 @@ Glow datums hold the state of [glows](~glow). For example, the gold Elite's ener
   showOffsets=true
   id="glow-datum"
 /%}
+
+## Object list header datum
+
+{% structTable
+  entryModule="h1/gamestate/object_list_header_datum"
+  entryType="ObjectListHeaderDatum"
+  showOffsets=true
+  id="object-list-header-datum"
+/%}
+
 
 # Related HaloScript
 {% relatedHsc game="h1" tagFilter="game-state" /%}

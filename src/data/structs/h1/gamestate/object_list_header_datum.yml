@@ -1,0 +1,24 @@
+entry_type: ObjectListHeaderDatum
+imports:
+  h1/gamestate/common:
+    - DatumHeader
+type_defs:
+  ObjectListHeaderDatum:
+    class: struct
+    assert_size: 0xC
+    endianness: little
+    fields:
+      - name: id
+        type: DatumHeader
+      - type: pad
+        size: 2
+      - name: reference_count
+        type: uint16
+      - name: count
+        type: uint16
+      - name: list_object_reference_id
+        type: uint16
+        comments:
+          en: ID of the first (or last?) element of this list, from the list object reference datum array.
+      - type: pad
+        size: 2
