@@ -2441,8 +2441,9 @@ functions:
         ```hsc
         (<void> garbage_collect_now)
         ```
-        Causes all dead [bipeds](~biped) and [garbage](~) objects except those
-        visible to a player to be collected (removed) immediately.
+        Causes all non-visible garbage objects like dead [bipeds](~biped) and
+        [garbage](~) to be garbage collected (removed) immediately rather than
+        on a timer. You can enable `debug_object_garbage_collection` for statistics.
   - slug: get_digital_forward_throttle
     info:
       en: |-

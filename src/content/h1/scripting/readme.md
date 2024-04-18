@@ -11,8 +11,7 @@ keywords:
   - bsl
 thanks:
   kornman00: >-
-    Original Blam Scripting Language Bible,
-    http://www.modacity.net/docs/bslbible/
+    Writing the original [Blam Scripting Language Bible](http://www.modacity.net/docs/bslbible/), explaining garbage collection
   Mimickal: 'Additional background on scripting, edits for clarity and extra information'
   t3h lag: 'Additional script information (limits, types, functionality, etc...)'
   Ifafudafi: Script limits information

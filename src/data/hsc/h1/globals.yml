@@ -1817,6 +1817,9 @@ external_globals:
         ```hsc
         (debug_object_garbage_collection)
         ```
+        When `garbage_collect_now` is run, enabling this causes information to
+        print to the console about the total number of objects, garbage objects,
+        and how many objects were garbage collected.
   - slug: debug_object_lights
     tags:
       - object

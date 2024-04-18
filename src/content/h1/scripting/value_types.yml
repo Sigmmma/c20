@@ -128,10 +128,23 @@ value_types:
 
   - type: object_list
     info:
-      en: An object list
+      en: |-
+        A list of objects, such as players or AI actors. Once the list is created,
+        it is semi-fixed but may shrink in size over time if objects are deleted
+        from the world. For example, if you use `vehicle_riders` to obtain a list
+        and then assign it to a global, the list will continue to contain whichever
+        units were in the vehicle at the time the list was created, regardless of
+        current riders.
+        
+        Dead units will also still remain in the list and are counted by `list_count`,
+        but not `list_count_not_dead`. However, any objects deleted from
+        the world will get removed from the list and the count will reflect that.
+        Examples include `object_destroy` or garbage collection of dead bodies
+        (either naturally or with `garbage_collect_now`).
+        This [frees up space](~limits#object-lists) for other object lists.
       es:
-    ex:
-
+    ex: |-
+      `(players)`
   - type: sound
     info:
       en: '[Sound](~)'
