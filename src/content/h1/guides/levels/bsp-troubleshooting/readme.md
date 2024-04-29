@@ -8,8 +8,9 @@ related:
 thanks:
   Hari: Reverse engineering the cause of T-junction warnings
   EmmanuelCD: Subcluster limits
-  kornman00: Theorizing cause of floating point precision differences in MCC-era tools.
+  kornman00: Theorizing cause of floating point precision differences in MCC-era tools
   Conscars: Documenting various problems and solutions
+  miriem: Providing a reproducible case of the dividing_edge problem
 redirects:
   - /h1/guides/map-making/level-creation/bsp-troubleshooting
 ---
@@ -142,7 +143,14 @@ In full, this exception appears as:
 ```
 EXCEPTION halt in .\import_collision_bsp\build_collision_bsp.c,#1529: dividing_edge->vertex_indices[1]==NONE
 ```
-The exact cause of this is unknown, but it _may_ be related to improper level scale or improper portal placement. Please contact a c20 maintainer if you encounter this.
+
+This is a very rare problem caused by nearly coplanar surfaces and/or rounding error. Nearly coplanar faces usually result in [a warning](#warning-nearly-coplanar-faces-red-and-green) and are easily identified with the WRL file. For an unknown reason, sometimes they instead cause an assertion exception like the above. We've only encountered a couple cases of this error, so we can't rule out other potential causes like improper level scale which may also contribute to imprecision.
+
+Finding the cause of this error is difficult since a WRL is not generated. Our best advice is to ensure that any sets of faces which should be planar are indeed planar. You can also try setting up a Blender material like below which accentuates faces which aren't axis-aligned.
+
+{% figure inline=true src="dividing_edge_vertex_index.jpg" %}
+This material is designed to highlight faces which are not axis-aligned. Set the level's faces to _shade flat_ and create these shaders nodes to help spot the issue. Set the scale of each axis to `0.001` and the others to `1` to check for non-axis aligned faces, which will be highlighted in a different colour.
+{% /figure %}
 
 # Portal problems
 Be sure to follow the [portal placement rules](~portals-and-clusters#placement-rules) or you may encounter these types of issues:

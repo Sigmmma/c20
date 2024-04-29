@@ -70,3 +70,7 @@ crashes:
       EXCEPTION halt in c:\mcc\main\h1\code\h1a2\sources\render\render.c,#249: !memcmp(&window->render_camera.viewport_bounds, &window->rasterizer_camera.viewport_bounds, sizeof(rectangle2d))
     solution: >-
       You resized the game window while `debug_render_freeze` was enabled. Disable it first.
+  - error: >-
+      EXCEPTION halt in e:\jenkins\workspace\mcch1code-release\mcc\release\h1\code\h1a2\sources\ai\actor_firing_position.c,#1431: (test_surface_index >= 0) && (test_surface_index < collision_bsp->surfaces.count)
+    solution: >-
+      The cause is not exactly known, but it is known that removing certain firing positions fixes this. Judging by the error message you may have a firing position outside the BSP. Check for any that you might suspect, then delete and recreate them.
