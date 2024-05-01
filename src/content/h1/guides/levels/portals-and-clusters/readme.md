@@ -46,7 +46,7 @@ You need to follow some rules when adding portal geometry, or else you will enco
 * A single portal cannot seal multiple entrances and must separate exactly 2 spaces.
 * Portals must not intersect each other, but can be connected to each other along their edges.
 * Portals must be grounded to the level geometry in some way. Don't create floating cubes of portals which form an empty cluster in mid-air.
-* Prefer portals which are perfectly planar (flat) since it will reduce the amount of portal data needed and help you avoid hitting limits.
+* Prefer portals which are perfectly coplanar (flat) since it will reduce the amount of portal data needed and help you avoid hitting limits, as well as prevent cases of [_Portal does not define two closed spaces_](~bsp-troubleshooting#error-portal-does-not-define-two-closed-spaces-yellow) errors.
 
 # Related HaloScript
 {% relatedHsc game="h1" tagFilter="portals" /%}

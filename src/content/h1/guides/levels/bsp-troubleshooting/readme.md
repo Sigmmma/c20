@@ -11,6 +11,7 @@ thanks:
   kornman00: Theorizing cause of floating point precision differences in MCC-era tools
   Conscars: Documenting various problems and solutions
   miriem: Providing a reproducible case of the dividing_edge problem
+  Ludus: Finding that nearly coplanar portals causes errors
 redirects:
   - /h1/guides/map-making/level-creation/bsp-troubleshooting
 ---
@@ -149,7 +150,7 @@ This is a very rare problem caused by nearly coplanar surfaces and/or rounding e
 Finding the cause of this error is difficult since a WRL is not generated. Our best advice is to ensure that any sets of faces which should be planar are indeed planar. You can also try setting up a Blender material like below which accentuates faces which aren't axis-aligned.
 
 {% figure inline=true src="dividing_edge_vertex_index.jpg" %}
-This material is designed to highlight faces which are not axis-aligned. Set the level's faces to _shade flat_ and create these shaders nodes to help spot the issue. Set the scale of each axis to `0.001` and the others to `1` to check for non-axis aligned faces, which will be highlighted in a different colour.
+This material assigns a distinct colour to each face direction with high sensitivity, so coplanar faces will share the same colour while nearly coplanar faces will have different colours. Temporarily assign faces to a material with this shader node setup to help spot the issue.
 {% /figure %}
 
 # Portal problems
@@ -162,10 +163,12 @@ An _unearthed edge_ is where a portal's open edge is exposed within the BSP. It 
 ![](unearthed_edge_2.mp4)
 
 ## Error: Portal does not define two closed spaces (yellow)
-This error is encountered when there are _more_ than two closed spaces ([clusters](~scenario_structure_bsp#clusters-and-cluster-data)) created by the portal. Portals must create only [two clusters](~scenario_structure_bsp#tag-field-cluster-portals-front-cluster). Some scenarios to avoid are:
+This error is usually encountered when there are _more_ than two closed spaces ([clusters](~scenario_structure_bsp#clusters-and-cluster-data)) created by the portal. Portals must create only [two clusters](~scenario_structure_bsp#tag-field-cluster-portals-front-cluster). Some scenarios to avoid are:
 
 * If two portals intersect without being attached at vertices then there are 2 clusters for each side of a portal, which is invalid. Portals should be connected to each other as if they were [exact portals](~materials#special-materials) connecting to map geometry.
 * If a single portal passes through the BSP multiple times it could create more than two sealed spaces. Simply split up the portal into multiple portals.
+
+Another reason this error can show up is when portal planes are made of nearly coplanar faces. This case can appear or disappear unpredictably as changes are made anywhere in the model. To resolve it, scale portal planes to 0 along their normal axis. Due to JMS imprecision this may not resolve the problem for non-axis aligned portals so you may need to adjust vertex locations to change the portal's shape slightly.
 
 ![](portal_two_closed_spaces.mp4)
 ![](portal_two_closed_spaces_2.mp4)
