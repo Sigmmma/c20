@@ -6,20 +6,22 @@ keywords:
 redirects:
   - /h1/tools/hek/sapien/recorded-animations
 ---
-{% alert type="danger" %}
-This feature does not function in the Gearbox HEK release since it is not possible to control the posessed unit while recording. With H1A, this requires an Xinput controller (e.g. An Xbox controller) to be connected to your device.
-{% /alert %}
-# Introduction
-Recorded animations are a simple way for designers to animate a scene using ingame tools without any need for animating a scene in 3D modeling software. This feature allows you to record your inputs and save them for playback. They can then be invoked through a script to have a [unit](~) play out the prerecorded inputs. We will go over how recorded animations in the toolset works.
+**Recorded animations** are a series of recorded inputs (e.g. movement, aiming, firing, etc) which can be later replayed on [units](~unit) like vehicles and bipeds. The animations are recorded using Sapien and stored in the [scenario](~), and can be played on units with [script functions](~scripting#functions-recording-play). They are commonly used for dropships and character movements during cinematics.
+
+Unlike [model_animations](~) created in external 3D software and imported from [JMA](~general/source-data/animation-data), recorded animations do not animate the positions of objects over time. Instead, they record controller inputs and replay them within the engine. Because Halo's physics are deterministic and the animations are recorded and replayed tick-by-tick, the results are identical. However, any later alteration to the unit's [physics](~) or walking speed will alter the path taken. This is why the stock Banshee tags include an "oldplayback" variant with older physics.
+
+The advantage of this system is that you can animate directly in-engine and the animations are more believable because they rely on the game's own physics engine.
 
 {% alert type="danger" %}
-Be warned that recordings done after reloading a scenario in [Sapien](~h1-sapien) may cause stability issues. Try to keep it to your first scenario load.
+The Sapien recording feature does not function in the Gearbox HEK release since it is not possible to control the posessed unit while recording. Modders traditionally relied on the 2011 [_Recorded Animations Recorder_](https://halomaps.org/hce/detail.cfm?fid=5939) mod for Custom Edition 1.09. With H1A Sapien, this feature is now working again but requires an Xinput controller (e.g. An Xbox controller) to be connected to your device.
+
+Also, be warned that recordings done after reloading a scenario in [Sapien](~h1-sapien) may cause stability issues. Try to keep it to your first scenario load.
 {% /alert %}
 
 # Entering scripted camera mode
 You will need to set your editor mode so that we can start using recording commands. Find the toolbar in the top left and select the camera icon. This will set your [Sapien](~h1-sapien) instance to scripted camera mode.
 
-![](A.png "Make sure you've selected this. You won't be able to use any of the hotkeys said below if you aren't using this mode.")
+![](A.png "Make sure you've selected this. You won't be able to use any of the hotkeys below if you aren't using this mode.")
 
 Some additional notes for this section. There are some new hotkeys you gain access to in this mode:
 
@@ -44,20 +46,22 @@ Once the unit is selected you can press the following keys to take over the unit
 	* Flycam
 
 # Begin recording
-Now that you've taken over the unit you should see a view that looks pretty similar to a standard ingame session. Press the {% key "Caps lock" /%} key to start recording.
+Now that you've taken over the unit you should see a view that looks pretty similar to a standard ingame session. Press the {% key "Caps lock" /%} key to start recording. This will bring up a dialog window where you can enter scripts to be run before the recording starts:
 
-![](B.png "If you want some flashy effects for your high speed chase.")
+![](B.png)
 
-Pressing the above key will bring up a simple menu. No idea for what or if it affects the recording in anyway. You can just leave it empty or click cancel if you don't want to bother with it. Type in a script function and hit ok if you want to see what it does.
+You might use this to teleport units to flags or load into vehicles. You can leave this empty if your recording requires no setup. Once you click OK the recording will start.
 
-![](C.png "Numbers and stuff")
+![](C.png "total_frames counts game ticks.")
 
-Once you've moved on past this menu you should notice some new details in output giving you the current information for your recording. Total frames should starting increasing, indicating that the recording is currently in progress. Take a quick walk around the level and join me at the next section when you're ready.
+You should now notice some new details in the output window. Total frames will starting increasing, indicating that the recording is currently in progress.
+
+Perform the actions you need to include in the recording, such as walking around the level, piloting vehicles, or using weapons. Your inputs are being recorded so they can be played back on controlled units later. Once you're ready to stop the recording, see the next section.
 
 # Saving your recording
 When you have finished performing the actions you want recorded, press {% key "Caps lock" /%} to save the animation. This will bring up the following menu:
 
-![](D.png "Name it something funny")
+![](D.png "Give your recording a name for use in scripts")
 
 Clicking "Don't Save" will throw the recorded animation data away while saving it will place the data under the hierarchy folder named "Recorded animations".
 

@@ -107,7 +107,7 @@ The Properties palette window displays the properties for the currently selected
 If this window doesn't let you interact with it and plays a Windows alert sound when you try, you have an invalid field. Look for which field is being highlighted and correct it (e.g. change `-0` rotation to just `0`).
 
 ## Output window
-This window is unused and can be ignored.
+This window is only relevant when [recording animations](~recorded-animations) and can be ignored or minimized otherwise.
 
 # Keyboard shortcuts/hotkeys
 Some of these shortcuts are only used in certain windows or editor modes.
