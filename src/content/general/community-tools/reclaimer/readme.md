@@ -7,6 +7,9 @@ caption: >-
   tag.
 related:
   - /general/tools/reclaimer
+info: |-
+  * [Download releases](https://github.com/Gravemind2401/Reclaimer/releases)
+  * [Source code](https://github.com/Gravemind2401/Reclaimer)
 ---
 **Reclaimer** is a tool capable of viewing and extracting assets from Halo 1-5 maps, OpenSauce [.yelo](~h1/maps#opensauce-yelo-maps), modules (H5), and paks (S3D) so they can be ported by modders between games or to other engines. [Support varies][compat] by asset type, game, and platform.
 
