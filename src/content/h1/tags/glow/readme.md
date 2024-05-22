@@ -17,7 +17,7 @@ Glows can contain two types of particles. _Normal particles_ follow the glow pat
 In the case that the glow path is a single marker or the root node default, only trailing particles will be emitted from that single point.
 
 # Glow path
-The glow path is a smooth 3D spline connecting **up to 5** [object markers](~gbxmodel#markers) with the same name, determined by the [_attachment marker_](#tag-field-attachment-marker) field. Any more will be ignored. It's also possible to define a "path" of a single marker or leave the field blank to use the root node as the default, in which case only trailing particles can emit.
+The glow path is a smooth 3D spline connecting **up to 5** [object markers](~gbxmodel#markers) with the same name, determined by the [_attachment marker_](#tag-field-attachment-marker) field. Any more will be ignored, and any less may be unreliable so it's recommended to use 5. It's also possible to define a "path" of a single marker or leave the field blank to use the root node as the default, in which case only trailing particles can emit.
 
 A model can have multiple sets of glow markers so multiple widgets can be added. For example, the energy sword has 5 `glow 1` markers for the upper blade and and 5 `glow 2` markers for the lower.
 
@@ -50,7 +50,7 @@ Some general tips to avoid these issues are:
 * Avoid high curvature.
 * Point the +X axis of each marker in the path toward the next marker.
 * Avoid circular loops.
-* Don't use more than 5 markers.
+* Don't use more than 5 markers. Using fewer may be unreliable too.
 
 {% alert %}
 When creating glow paths it's helpful to set small [size bounds](#tag-field-particle-size-bounds), `0` [distance](#tag-field-min-distance-particle-to-object), and a high [particle count](#tag-field-number-of-particles) to make the curve easy to see. You should also enable `render_model_markers 1` so you can make sure all markers are being used as intended.

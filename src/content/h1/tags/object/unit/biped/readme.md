@@ -12,7 +12,7 @@ thanks:
 On its own, a biped will not _do_ anything unless being controlled by a player or [actor_variant](~). This tag defines key physical characteristics like height, speed, collision, and appearance.
 
 # Physics pill
-For performance, biped bodies are approximated by vertically-oriented [capsule/pill shapes][wiki-capsule] for their physical interactions with [model_collision_geometry](~) (scenery, devices, vehicles), the [BSP](~scenario_structure_bsp), and with other biped physics pills. Note that the physics pill is _not_ used as the "hitbox" for projectiles; a biped's [model_collision_geometry](~) is tested for projectile ray casts.
+Biped bodies are approximated by vertically-oriented [capsule/pill shapes][wiki-capsule] for their physical interactions with the [level BSP](~scenario_structure_bsp), the [model_collision_geometry](~) of objects (like scenery, devices, vehicles), and with other biped physics pills. Note that the physics pill is _not_ used as the "hitbox" for projectiles; a biped's [model_collision_geometry](~) is tested for projectile ray casts.
 
 Its width depend on this tag's [collision radius](#tag-field-collision-radius). The height depends on [standing](#tag-field-standing-collision-height) and [crouching](#tag-field-standing-collision-height) collision heights only if the biped [uses player physics](#tag-field-biped-flags-uses-player-physics), and otherwise has 0 height (making the pill a sphere).
 

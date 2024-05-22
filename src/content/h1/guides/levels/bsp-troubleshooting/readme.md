@@ -33,7 +33,7 @@ Halo generally requires your BSP to be one or multiple completely sealed volumes
 
 The normals of the faces used to create the level geometry must face inwards towards the playable area of the level. The normals determine not just the viewing direction but also which direction the surface is collideable from.
 
-For most types of problems Tool generates a [WRL](~) file that can be imported back into your 3D software to find the sources of the problems. The path of this WRL file depends on if you are using Gearbox Tool or H1A Tool (see [WRL page](~wrl)). You should attempt to fix all errors and warnings in your map. Many of these errors can also show up when compiling [model_collision_geometry](~) and the solutions will be the same.
+For most types of problems Tool generates a [WRL](~) file that can be imported back into your 3D software to find the sources of the problems, usually found in either the root of your editing kit or adjacent to the JMS file you're importing; the location and name depends on the Tool version and verb used, so see [Tool verbs](~h1-tool#verbs) for help. You should attempt to fix all errors and warnings in your map. Many of these errors can also show up when compiling [model_collision_geometry](~) and the solutions will be the same.
 
 Your 3D software can help you find some issues before exporting. Blender has [select non-manifold][non-manifold] and 3ds Max has [STL check][stl-check].
 
@@ -73,10 +73,11 @@ To avoid this issue you can:
 * Scale sets of faces which should be coplanar to 0 along an axis (see video);
 * Avoid sculpting tools, which produce a lot of slight angles in dense geometry;
 * Model with simple, low-poly shapes.
+* Keep the level's size reasonable. Far from the origin, imprecision can contribute to non-planarity.
 
 In some cases having nearly coplanar faces is unavoidable. When faces are axis-aligned it is easy to make them coplanar, but when they are meant to be at an 45-degree or other angle you may encounter the nearly coplanar warning due to a loss of precision in the [JMS](~) format, which is only capable of storing up to 6 digits to the right of the decimal points (e.g. `123.123456`). This will result in vertices on angled surfaces going slightly out of alignment. In this case check for phantom BSP around the area identified in the WRL file. If any is found, you may be able to clear it up with simple triangulation changes or other minor alterations in the vicinity.
 
-You should also avoid using the [Halo Asset Blender Development Toolset.](~halo-asset-blender-development-toolset) custom or world unit export scales when working with collision models/BSPs. Stick to JMS scale to avoid amplifying floating point precision inherent to the editor and causing the same issue as JMS precision loss.
+You should also avoid using the Halo Asset Blender Development Toolset's [non-JMS scale settings](~halo-asset-blender-development-toolset#scale) when working with collision models/BSPs. Stick to JMS scale to avoid amplifying floating point precision inherent to the editor and causing the same issue as JMS precision loss.
 
 ![](nearly_coplanar.mp4)
 
@@ -147,7 +148,7 @@ EXCEPTION halt in .\import_collision_bsp\build_collision_bsp.c,#1529: dividing_e
 
 This is a very rare problem caused by nearly coplanar surfaces and/or rounding error. Nearly coplanar faces usually result in [a warning](#warning-nearly-coplanar-faces-red-and-green) and are easily identified with the WRL file. For an unknown reason, sometimes they instead cause an assertion exception like the above. We've only encountered a couple cases of this error, so we can't rule out other potential causes like improper level scale which may also contribute to imprecision.
 
-Finding the cause of this error is difficult since a WRL is not generated. Our best advice is to ensure that any sets of faces which should be planar are indeed planar. You can also try setting up a Blender material like below which accentuates faces which aren't axis-aligned.
+Finding the cause of this error is difficult since a WRL is not generated. Our best advice is to ensure that any sets of faces which should be planar are indeed planar. You can also try setting up a Blender material like below which accentuates faces which aren't coplanar with their neighbours.
 
 {% figure inline=true src="dividing_edge_vertex_index.jpg" %}
 This material assigns a distinct colour to each face direction with high sensitivity, so coplanar faces will share the same colour while nearly coplanar faces will have different colours. Temporarily assign faces to a material with this shader node setup to help spot the issue.
