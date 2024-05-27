@@ -12,7 +12,7 @@ related:
 
 **Excession** is the official mod uploader for MCC which allows you to publish your work to the Steam workshop. It is used for for all games in the MCC and is a separate download from the [mod tools](~mod-tools). It's not something you need to use until you're ready to publish your mod.
 
-See the [official documentation][docs] for help using it.
+See the [official documentation][docs] for help using it. Note that Steam needs to be open to upload mods.
 
 # Changelog
 ## July 2023

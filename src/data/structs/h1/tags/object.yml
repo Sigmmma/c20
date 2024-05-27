@@ -312,6 +312,12 @@ type_defs:
         type: float
         meta:
           min: 0
+        comments:
+          en: |-
+            Scales the acceleration of this object from forces like explosions,
+            such as when weapons or powerups are moved by grenades. This does not
+            apply to non-moving object types. If the scale is `0` then the
+            item will not react.
       - name: scales_change_colors
         type: uint32
         meta:
