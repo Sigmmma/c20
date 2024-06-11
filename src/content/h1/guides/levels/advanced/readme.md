@@ -15,7 +15,7 @@ This guide assumes you are already familiar with the [basics of Blender map-maki
 # File list
 | File Link                                                                                              | Description
 |------------------------------------------------------------------------------------------------------- | -----------------------------------
-|[Tutorial Textures](https://drive.google.com/file/d/1Z9ehd94ByHRRs68rbtuDIZ3lpm1463Lf/view?usp=sharing) | The textures we will be using in this guide. Make sure to have this ready.
+|[Tutorial Textures](https://drive.google.com/file/d/1oklHDalbKnXYPq_sttyyfy1RGgG7ZntA/view?usp=sharing) | The textures we will be using in this guide. Make sure to have this ready.
 
 # Modifying the level
 Let's paint some hills and gullies in our level to get out of this plane hell.

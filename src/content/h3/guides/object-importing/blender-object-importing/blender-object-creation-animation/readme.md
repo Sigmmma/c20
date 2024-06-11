@@ -28,7 +28,7 @@ This guide assumes you have already [read/completed the previous tutorials](~obj
 |[End Result](https://drive.google.com/file/d/1zKDSBci0hkruj9X4Qkdd7no4jBMrUs2y/view?usp=sharing)    | The end product of this tutorial for you to examine and compare.
 
 # Introduction
-On this page, we will take a look at how to create a basic animation, the process of getting it in-engine, and gain and understanding of the `.model_animation_graph` tag. The overall goal of the following tutorial is to add an animation to our platform scenery to make it move in-engine.
+On this page, we will take a look at how to create a basic animation, the process of getting it in-engine, and gain an understanding of the `.model_animation_graph` tag. The overall goal of the following tutorial is to add an animation to our platform scenery to make it move in-engine.
 
 # Animations in Blam!
 Animation in the Blam! engine is quite a broad topic and not everything will be covered here, but the following basics should give you a good enough understanding such that you can create animations for any scenery or device machine object you wish. Unlike models, which all use the `.JMS` format for importing, animations use a multitude of formats that determine how `tool` handles them on import. You can see a list of all types [here](~animation-data), but the main two we will focus on are `.JMM` and `.JMO`. Think of `.JMM` as the "base" type of animation - one that causes an object's bones to simply move. The most common use-case is for object idling animations. `.JMO` are overlay animations - these are **additive** meaning that the bone movement data is applied on top of any current base animation on the object. When talking about things that apply to all extension types, I will use `.JMx` to indicate any extension.
@@ -43,7 +43,7 @@ Vertex weighting is a complex topic - it is the process of determining how the `
 3. At the top, locate the `Vertex Groups` section, and click the `+` symbol. This adds a new vertex group to the model.
 4. Vertex groups rely on their name to determine which bone they are tied to. Put simply, rename the vertex group to `Bone` to match the name of the bone in the armature.
 ![](A.jpg "Make sure you give the vertex group the same name as the bone.")
-5. In the `3D Viewport`, press `Tab` to enter into `Edit Mode`. Set your selection mode to `Vertex` with the buttons to the right of the mode dropdown. You will notice that four new options have popped up underneath the `Vertex Groups` section - `Assign`, `Remove`, `Select` and `Deselect`. `Assign` takes any currently selected vertices, and assings them to the currently selected vertex group. `Remove` does the oppoite. `Select` will highlight any vertices assigned to the currently selected vertex group. `Deselect` does the opposite.
+5. In the `3D Viewport`, press `Tab` to enter into `Edit Mode`. Set your selection mode to `Vertex` with the buttons to the right of the mode dropdown. You will notice that four new options have popped up underneath the `Vertex Groups` section - `Assign`, `Remove`, `Select` and `Deselect`. `Assign` takes any currently selected vertices, and assigns them to the currently selected vertex group. `Remove` does the opposite. `Select` will highlight any vertices assigned to the currently selected vertex group. `Deselect` does the opposite.
 6. Press {% key "A" /%} in the `3D Viewport` to select all vertices in the model (they will turn orange). Then, in the `Properties` window, hit the `Assign` button with the `Bone` vertex group selected.
 7. In the `Properties` window, switch to the `Modifiers` (wrench icon) tab. We need to add an `Armature` modifier to our model, so that the newly added vertex group knows which armature to use (we only have one armature in the scene, but it needs the modifier regardless).
 8. Click `Add Modifier`, then choose `Armature` at the top of the `Deform` column.
@@ -128,7 +128,7 @@ The `Skeleton Nodes` block lists all of the bones used in this model and animati
 The `Animations` block is quite obvious - it lists all of the animations held in the tag, and their associated data. Here you can see our named animation. Note that spaces are replaced with colons in Guerilla, such that `any idle.JMM` becomes `any:idle` in the tag. One use of this block is to add sounds that play on certain frames of the animation - this is done in the `Sound Events` sub-block.
 ![](F.jpg "The Animations block.")
 
-The `Mode-n-State Graph` block shows in what states the animations in the graph will play. As we named the animation `any idle`, `tool` recognised that it is to be played under any circumstance, and so it is already set up correctly in this block. This is why naming convenations for `.JMx` files are important, as it tells `tool` how to automatically handle them. Our idle animation will therefore play for any mode, in any weapon class, and in any weapon type. You can see the reference to the `any:idle` animation here in the `Actions` section. `Actions` are base animations, such as `.JMA` and `.JMM`, whereas the `Overlays` section is for `.JMO` animation types.
+The `Mode-n-State Graph` block shows in what states the animations in the graph will play. As we named the animation `any idle`, `tool` recognised that it is to be played under any circumstance, and so it is already set up correctly in this block. This is why naming conventions for `.JMx` files are important, as it tells `tool` how to automatically handle them. Our idle animation will therefore play for any mode, in any weapon class, and in any weapon type. You can see the reference to the `any:idle` animation here in the `Actions` section. `Actions` are base animations, such as `.JMA` and `.JMM`, whereas the `Overlays` section is for `.JMO` animation types.
 ![](G.jpg "The Mode-n-State Graph block.")
 
 # Playing the animation in-engine
@@ -136,7 +136,7 @@ The `Mode-n-State Graph` block shows in what states the animations in the graph 
 It's about time we saw that platform spinning in Sapien! We've already done 99% of the hard work, so let's do the final steps:
 
 1. In Guerilla, open the `.model` tag for the platform.
-2. Right at the top, locate the `animation` entry - it's inbetween the entries for the `.render_model` and `.physics_model` that we have already added.
+2. Right at the top, locate the `animation` entry - it's in between the entries for the `.render_model` and `.physics_model` that we have already added.
 3. Click the `...` next to the animation entry, and open the new `.model_animation_graph` tag.
 4. Save the tag.
 ![](H.jpg "Add the animation graph reference like so.")
@@ -145,5 +145,5 @@ It's about time we saw that platform spinning in Sapien! We've already done 99% 
 ![](I.gif "Look at it go!")
 
 {% alert type="success" %}
-Once you've gotten to this point, you are ready to look at adding creating a second custom animation and a `.device_machine` tag, so that we can have the platform move us around! This next section is [available here](~blender-object-creation-device-machines)
+Once you've gotten to this point, you are ready to look at adding a second custom animation and a `.device_machine` tag, so that we can have the platform move us around! This next section is [available here](~blender-object-creation-device-machines)
 {% /alert %}

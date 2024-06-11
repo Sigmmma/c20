@@ -85,7 +85,7 @@ Using the information shown in the video, follow these steps:
 6. Lastly, we need to sort out the stretching on the concrete textures on the sides of the model. In the 3D Viewport, spin around the model and select only the 4 side faces (remember that you can hold down {% key "Shift" /%} to select multiple faces).
 7. Press the UV pill menu, select `Smart UV Project`. Set the `Angle Limit` to 66 degrees. Keep the other options at 0, make sure `Correct Aspect` is checked, and `Scale to Bounds` is *un*checked. Hit OK.
   ![](H.gif "Smart UV Projection")
-8. In the UV editing window, change the UV Vertex option in the siderbar from `0.250` to `0.5` to center the faces.
+8. In the UV editing window, change the UV Vertex option in the sidebar from `0.250` to `0.5` to center the faces.
 9. Next, hovering over the UV editing window, press {% key "R" /%}, then {% key "90" /%}, then hit {% key "Enter" /%} to rotate the UVs 90 degrees. We must do this so that when we scale, the texture wraps on the X axis and not the Y, as the texture only tiles cleanly on the X axis.
 10. Finally, press {% key "S" /%}, {% key "X" /%}, {% key "10" /%}, then hit {% key "Enter" /%} to scale the UVs by 10x on the `X` axis.
 
@@ -112,7 +112,7 @@ Similarly to `.JMS` files, `tool.exe` will only import texture files from inside
 4. Enter the tool command `tool bitmaps objects\scenery\custom_platform\bitmaps`. If successful, you should see the following output:
   ![](L.png "Tool Bitmaps output")
 
-Your textures have now been imported. Halo stores images in a tag type called `.bitmap`. Think of a `.bitmap` tag as a container for one or more images. Your newly generated bitmaps, like with the render model, will have been saved the *mirrored* file location in the `tags` folder. For example, in this tutorial, the bitmaps get saved to `H3EK\tags\objects\scenery\custom_platform\bitmaps`.
+Your textures have now been imported. Halo stores images in a tag type called `.bitmap`. Think of a `.bitmap` tag as a container for one or more images. Your newly generated bitmaps, like with the render model, will have been saved to the *mirrored* file location in the `tags` folder. For example, in this tutorial, the bitmaps get saved to `H3EK\tags\objects\scenery\custom_platform\bitmaps`.
 
 
  {% alert type="danger" %}
@@ -129,7 +129,7 @@ Simply having the textures imported as `.bitmap` tags is not enough to have them
 1. Open Guerilla
 2. Press {% key "Ctrl+N" /%}. Select `shader` from the dropdown, or type `shader` until it appears, then hit {% key "Enter" /%}.
 3. If you are new to Halo shaders, this tag may look horrific, but we only really need to change one option to get our textures on the model. I won't be going over more advanced shader options here, as this is a basic tutorial.
-4. Look for the entry called `base map` under the *ALBEDO* block. This is where your normally put any base texture that you want for the shader. Click the `...` on the right next to it and browse to `H3EK\tags\objects\scenery\custom_platform\bitmaps`. Double-click `concrete_seamless_texture_6820.bitmap` to add it to the shader.
+4. Look for the entry called `base map` under the *ALBEDO* block. This is where you normally put any base texture that you want for the shader. Click the `...` on the right next to it and browse to `H3EK\tags\objects\scenery\custom_platform\bitmaps`. Double-click `concrete_seamless_texture_6820.bitmap` to add it to the shader.
 5. Now we need to save this shader tag. Press {% key "Ctrl+S" /%}, and navigate to `H3EK\tags\objects\scenery\custom_platform`. Create a new folder here called `shaders`. Make sure to spell it exactly as shown.
 6. Navigate inside the new `shaders` folder, and save the tag here, with the name `concrete` (remember how this needs to exactly match the name of the material in Blender).
   ![](M.png "Concrete Shader")

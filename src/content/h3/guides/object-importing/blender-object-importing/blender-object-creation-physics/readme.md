@@ -30,7 +30,7 @@ Physics models are used by the Havok engine to manage environment collisions and
 
 Collision models are mainly used to handle projectile collisions - you will not be able to shoot a model in-game if it does not have a collision model, the projectiles will simply pass right through. An edge case here is that collision models can be used as a stand-in for a physics model in the case of static tags such as `.scenery`, allowing for players to collide with the model even without a physics model. This is where some confusion can arise.
 
-Physics models are typically much less complex than collision models, for several reasons. First, the physics model doesn't need to be completely accurate, as it is invisible and most players won't be able to tell. Secondly, calculating physics can be expensive (less so on modern PCs, but definitely on the X360), so the more basic the better. Finally, physics models must be made of *strictly-convex* shapes only, which limits how easily they can be made to fit the model perfectly. Don't worry if you don't understand what this means, it will be covered [later](#additional-information).
+Physics models are typically much less complex than collision models, for several reasons. First, the physics model doesn't need to be completely accurate, as it is invisible and most players won't be able to tell. Secondly, calculating physics can be expensive (less so on modern PCs, but definitely on the X360), so the more basic the better. Finally, physics models must be made of *strictly-convex* shapes only, which limits how easily they can be made to fit the model perfectly. Don't worry if you don't understand what this means, it will be covered [later](#strictly-convex-explanation).
 
 On the other hand, collision models are usually a much closer representation of the render model. This is because players will find it odd if projectiles don't seem to collide with the visual model and the shapes do not need to follow strictly-convex rules. See the following pictures for a visual idea of how the two differ.
 {% alert %}
@@ -57,7 +57,7 @@ We've now successfully made a `.crate` tag for our platform! I wonder what will 
 4. Navigate to our custom platform folder, and double click the new `.crate` tag we made.
 5. Click `Done`, and then `Ok` to close the dialog.
 6. Right click on the ground in the `Game Window` to place a new crate object
-7. In the `Propeties Palette`, change the `Type` to `custom_platform`
+7. In the `Properties Palette`, change the `Type` to `custom_platform`
 
 ...Oh dear, we seem to have an error! You should see an error that reads:  
 `WARNING objects: Could not construct crate object. Make sure you have a model and physics model linked up to the object definition for (crate custom_platform)`  
@@ -74,13 +74,13 @@ Making a basic physics model, especially for a render model as simple as our pla
 
 ![](D.jpg "The platform should now be three times as thick. Looks better already!")
 
-Now that the render model edit is out of the way, lets move on to making the physics object:
+Now that the render model edit is out of the way, let's move on to making the physics object:
 
 1. Press {% key "Shift" /%}+{% key "A" /%} to open the Add menu, then select `Mesh`, then click `Cube`. This will add a new cube object to the blend scene.
 2. Before anything else, we should parent the cube to the Armature. Failure to do so will mean the cube won't get exported! In the `Outliner`, click the cube object to make sure it's selected, then click on the `Armature` object *whilst holding {% key "Ctrl" /%}*.
 3. Now, with your mouse over the `3D view` (not the `Outliner`), press {% key "Ctrl" /%}+{% key "P" /%} to open the `Parenting` menu. Now click `Object (Keep Transform)`. The new cube object should now appear with the same indentation (hierarchy) as the render model in the `Outliner`. Here is a gif demonstrating the process:
 ![](F.gif "Parenting the new cube object to the Armature.")
-4. Double click the new cube object, or press {% key "F2" /%} with it selected, to be able to change it's name. Name the object starting with a {% key "$" /%}, the rest of the name is up to you but I will name it `$platform_physics` to keep things simple.
+4. Double click the new cube object, or press {% key "F2" /%} with it selected, to be able to change its name. Name the object starting with a {% key "$" /%}, the rest of the name is up to you but I will name it `$platform_physics` to keep things simple.
     {% alert type="info" %}
     The Blender addon looks for certain symbols in object names to determine what type of object they should be treated as. Here, the `$` symbol denotes that this is a physics mesh, and should only be exported into the physics model. Without this symbol, it would be exported as part of the render model instead.
     {% /alert %}
