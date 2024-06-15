@@ -9,7 +9,7 @@ thanks:
 # File list
 | File Link                                                                                       | Description
 |------------------------------------------------------------------------------------------------ | -----------------------------------
-|[End Result](https://drive.google.com/file/d/1BZnqoOTQqkad1vhbF_LawKX5meDf7wrP/view?usp=sharing) | The end product of this tutorial for you to examine and compare.
+|[End Result](https://drive.google.com/file/d/1mAFJYWQlvsmC0RqFley1bBOf7GQ2KRGc/view?usp=sharing) | The end product of this tutorial for you to examine and compare.
 
 # Introduction
 We will start by going over how Halo requires your folders to be structured for import.

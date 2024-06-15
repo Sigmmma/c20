@@ -50,7 +50,7 @@ For now, this is all we need to do with the Armature. The Armature can remain na
 
 
 # Creation of a simple model
-For the purposes of this tutorial, the model we will be creating shall be extremely simple. However if you can 3D model, feel free to make a more complex custom model here, but bare in mind that this may make other sections of the tutorial, such as materials/shader creation, longer and more complex.
+For the purposes of this tutorial, the model we will be creating shall be extremely simple. However if you can 3D model, feel free to make a more complex custom model here, but bear in mind that this may make other sections of the tutorial, such as materials/shader creation, longer and more complex.
 
 ## Creating a simple cube
 
@@ -84,14 +84,14 @@ The cube in your scene should now look something like this, which for now will s
 ![](F.png "Scaled up cube")
 
 # Application of materials
-Halo Materials can be quite a tricky topic to understande for newcomers, and so it is HIGHLY recommended that the [Materials Overview](~materials) page be read at some point before the texturing page. However, this information won't be required for this section, as we are not applying any custom textures for now. However, it is good practice to apply a material now, as we will be using it later.
+Halo Materials can be quite a tricky topic to understand for newcomers, and so it is HIGHLY recommended that the [Materials Overview](~materials) page be read at some point before the texturing page. However, this information won't be required for this section, as we are not applying any custom textures for now. However, it is good practice to apply a material now, as we will be using it later.
 
 ## Creating new materials
 1. Select the cube object and navigate to the materials tab.
 	![](G.png "The Material Properties Tab in Blender")  
 2. [Add a material](https://youtu.be/2yOOzN0zJfQ) named `material` to your cube object. We will rename this at a later stage. Keep the color default, as it is common practice for only physics and collision meshes to use solid colors to stand out.
 
-For now, this material is simply a placeholder. As we will not yet be importing any custom textures into Halo 3, the cube will simply use the default/missing "DaVinci" texture that Halo assings to faces with no texture.
+For now, this material is simply a placeholder. As we will not yet be importing any custom textures into Halo 3, the cube will simply use the default/missing "DaVinci" texture that Halo assigns to faces with no texture.
 
 # Setting up the Armature
 Right now, the Armature and Cube are two separate entities, and have no way to interact. We need the Cube to be a child object of the Armature, or else it will not be included when we export the scene to Halo. To do this, we make use of Blender's Parenting feature:
@@ -109,7 +109,7 @@ We are pretty much done with the Blender part of this tutorial, so now would be 
 The file as is will be used for future sections in this tutorial, so be careful not to delete it!
 
 # Exporting from Blender
-Thanks to *General_101*'s fantastic Import/Export addon for halo formats, exporting our work into a format Halo 3 can understand is quite trivial. For render/physics/collision models, this means exporting to the propriety Halo .JMS format. Don't worry too much about understanding what JMS is or how it works, just know that it stores all of the object data you export from Blender, and is the primary format for importing models into Halo 3.
+Thanks to *General_101*'s fantastic Import/Export add-on for halo formats, exporting our work into a format Halo 3 can understand is quite trivial. For render/physics/collision models, this means exporting to the proprietary Halo .JMS format. Don't worry too much about understanding what JMS is or how it works, just know that it stores all of the object data you export from Blender, and is the primary format for importing models into Halo 3.
 
 You may be wondering what to do about the scale model we still have in our scene. The exporter will *only* export meshes that are parented to the Armature, so it won't include the scale model in the JMS file, so don't worry about it. That being said, we won't really need it again, so feel free to delete it from your Blender scene, it won't be showing up again.
 
@@ -119,11 +119,11 @@ You may be wondering what to do about the scale model we still have in our scene
 4. Select `Game Version: Halo 3 MCC` from the drop-down on the right
 5. Whilst not strictly necessary as we have no collision or physics data in the scene, it is good practice to uncheck the `Export Collision Geometry` and `Export Physics Geometry` boxes.
 6. Check `Fix Rotations` to ensure that nothing goes wrong with your bone rotations.
-7. Hit Export JMS! If you see `Export Completed Succesfully` along the bottom in Blender, everything is good.
+7. Hit Export JMS! If you see `Export Completed Successfully` along the bottom in Blender, everything is good.
 See the process in realtime [here.](https://youtu.be/Tu436ifYA3A)
 
 # Importing your Render JMS with Tool
-If you aren't already familiar, Tool (tool.exe) is a commandline program used within the Halo Editing Kits mostly to provide import and export functionality. As such, we will need to use it now to turn our newly exported .JMS file into a `.render_model` tag. You can read more about tool [here.](~h3-tool)
+If you aren't already familiar, Tool (tool.exe) is a command-line program used within the Halo Editing Kits mostly to provide import and export functionality. As such, we will need to use it now to turn our newly exported .JMS file into a `.render_model` tag. You can read more about tool [here.](~h3-tool)
 
 1. Open a command prompt within your H3EK directory. You can do this by typing `cmd` into the address bar whilst in the H3EK folder, and pressing {% key "Enter" /%}.
   ![](J.gif "Opening command prompt")
@@ -136,7 +136,7 @@ If you aren't already familiar, Tool (tool.exe) is a commandline program used wi
 That's about all there is to the .JMS importing process. Tool has taken our .JMS file, processed it, and produced a .render_model tag in the *mirror* filepath inside of the `H3EK\tags` directory. For example, our .JMS filepath of `H3EK\data\objects\scenery\custom_platform` means that the .render_model has been saved to `H3EK\tags\objects\scenery\custom_platform`. Try to find it in explorer!
 
 # Creating the Model and Scenery tags
-Now, render model tags themselves cannot be directly displayed in the Halo 3 engine - they need to be added to a `.model` tag, and the that model tag needs to be added to a high-level tag, such as `.vehicle`, `.scenery`, `.biped` etc, depending on the type of object you want. Scenery is a typically static object that can have collision, but otherwise floats where you place. This is what we want right now, and heres how to get there:
+Now, render model tags themselves cannot be directly displayed in the Halo 3 engine - they need to be added to a `.model` tag, and the that model tag needs to be added to a high-level tag, such as `.vehicle`, `.scenery`, `.biped` etc, depending on the type of object you want. Scenery is a typically static object that can have collision, but otherwise floats where you place. This is what we want right now, and here's how to get there:
 
 1. Open [Guerilla.exe](~h3-guerilla)
 2. Create a new tag, either with `File -> New` or {% key "Ctrl+N" /%}

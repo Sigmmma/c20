@@ -13,8 +13,8 @@ This guide assumes you have already [prepared Blender](~blender-prep).
 # File list
 | File Link                                                                                          | Description
 |--------------------------------------------------------------------------------------------------- | -----------------------------------
-|[End Result](https://drive.google.com/file/d/1BZnqoOTQqkad1vhbF_LawKX5meDf7wrP/view?usp=sharing)    | The end product of this tutorial for you to examine and compare.
-|[Tutorial Textures](https://drive.google.com/file/d/1Xndpgz-35igbhoNoGDslzhSKpQmikDQz/view?usp=sharing) | The textures we will be using in this guide. Make sure to have this ready.
+|[End Result](https://drive.google.com/file/d/1mAFJYWQlvsmC0RqFley1bBOf7GQ2KRGc/view?usp=sharing)    | The end product of this tutorial for you to examine and compare.
+|[Tutorial Textures](https://drive.google.com/file/d/1MyFeBGQn73M2NiosIDw167yx2V6OUOhf/view?usp=sharing) | The textures we will be using in this guide. Make sure to have this ready.
 
 # Introduction
 Welcome to the Halo 3 level creation guide. If you have any experience with modeling levels in Halo 1 or Halo 2 then you should feel mostly at home for better or worse. In this guide we will be showing you how to go about with creating your very own level geometry for Halo 3 in the 3D modeling software app known as Blender. This guide will include a completed version of our work as an example for you to contrast and compare but be sure to follow along.
