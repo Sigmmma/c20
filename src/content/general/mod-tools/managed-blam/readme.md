@@ -12,6 +12,7 @@ thanks:
   PepperMan: Writing this page, compiling information together, and the example C# programs for ManagedBlam in Halo 3
   Krevil: Significant early research and help, and for making [PresentationODST](https://github.com/Krevil/PresentationODST), which exemplifies use of ManagedBlam for H3/ODST
   Crisp: Research and help, example python code, .SelectField() usage, and for development of [Foundry](https://github.com/ILoveAGoodCrisp/Foundry-Halo-Blender-Creation-Kit), which has many examples of ManagedBlam functionality for Reach+
+  num0005: Figured out how to load managedblam in dotnet 6+ because it was less hassel than figuring out how to ship two executables together. Worked out the probably cause of the ASLR linked assertions.
 ---
 **ManagedBlam.dll** is a wrapper library that allows for direct in-code access to engine functions and tag data, examples being - reading tag data, manipulating tag fields, creating tag entries or tags from scratch and much more. It is available for all engines post-H2 (it was backported to H3 and ODST with the July 2023 update).
 
@@ -19,10 +20,13 @@ Of course this is an extremely powerful tool with practically endless possibilit
 
 Most information on this page applies across all engine versions - where there are known differences, such as the initialization code, it will be pointed out.
 
-# Development environment
-ManagedBlam is primarily used with the [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) programming language. ManagedBlam also specifically requires `.NET 4.8`  - if you do not have the developer pack, you can get it [here](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48). You *will* get runtime errors if you are on a different version.
+For more details on writing foundation plugins see the [API page for Reach](~hr/API)
 
-The IDE you use is of course your personal choice, but it is recommended to use [Visual Studio](https://visualstudio.microsoft.com/downloads/). At the most basic, you can start with a blank console application, as ManagedBlam has no special requirements beyond `.NET 4.8`. If you are unfamiliar with using external libraries (.dll) files, you can add the H3 ManagedBlam.dll to your VS project like so:
+# Development environment
+ManagedBlam is primarily used with the [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) programming language. ManagedBlam also specifically requires `.NET 4.8`  - if you do not have the developer pack, you can get it [here](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48). 
+Older versions of .NET Framework ***will not work***, it is however possible to use the assembly with .NET 5+ but this requires additional setup detailed below.
+
+The IDE you use is of course your personal choice, but it is *highly* recommended to use [Visual Studio](https://visualstudio.microsoft.com/downloads/). At the most basic, you can start with a blank console application, as ManagedBlam has no special requirements beyond `.NET 4.8`. If you are unfamiliar with using external libraries (.dll) files, you can add the H3 ManagedBlam.dll to your VS project like so:
 1. Create or load your solution in Visual Studio
 2. In the `Solution Explorer` panel on the right, right-click your solution (should have a symbol like a small green C# inside a box).
 3.  Hover over `Add`, then click `Project Reference` in the sub-menu to open the `Reference Manager`.
@@ -30,6 +34,7 @@ The IDE you use is of course your personal choice, but it is recommended to use 
 5. Navigate to `H3EK\bin`, and open the `ManagedBlam.dll` file.
 6. Back in the `Reference Manager` window, make sure the checkbox next to `ManagedBlam.dll` is ticked, the click `OK`.
 7. ManagedBlam is now usable within your project! Add `using Bungie;` to the top of your C# program to import the library and get started.
+8. (optional) If you intend to use automatic builds (e.g. Github Actions) you may want to generate a reference assembly for `managedblam`. This allows you to compile code that uses the assembly without needing a copy of the full assembly. [JetBrains has an open source tool for doing this on GitHub.](https://github.com/JetBrains/Refasmer)
 
 ![](A.gif "Adding the ManagedBlam.dll to a Visual Studio project.")
 
@@ -50,7 +55,44 @@ This section should now read similarly to this:
 If you accidentally created the project using the wrong .NET version, or otherwise need to make sure that it is running `.NET 4.8`, this is also where you set that.
 After updating and saving the .csproj file, *you will need to unload and reload the project in Visual Studio, or close and reopen Visual Studio for the changes to take effect*.
 
+High Entropy ASLR (`HighEntropyVA`) needs to be disabled as H3+ uses a *pointer packing* scheme to encode some 64-bit pointers using just 32-bits, 4-byte alignment is assumed giving an effective address space of just 34-bits or 16 gigabytes. The code subtracts a base address (which appears to be the base address of the main executable) from pointers before packing them. 
+
+With High Entropy ASLR ([Address Space Layout Randomisation](https://en.wikipedia.org/wiki/Address_space_layout_randomization)) disabled memory tends to be allocated within that first 16 gigabytes that can be encoded correctly, however with it enabled Windows will attempt to make memory addresses less predictable and will almost certainly allocate memory well outside the 16-gigabyte range as each procress has ~8-128 TB of address space - much more than the 16 gigabytes the pointer packing scheme can address.
+
+If High Entropy ASLR is enabled, you will mostly likely get a fatal assertion in `cseries\port_64.h` when you first open a tag, as `blam` will attempt to pack a tag-related pointer and fail catastrophically. If you get a crash in anything relating to `port_64` make sure `HighEntropyVA` is disabled before debugging it further.
+
 ![](B.gif "Editing the .csproj file to add the required line, and convert a .NET 6.0 project to .NET 4.8")
+
+# Using ManagedBlam with .NET 5+
+*.NET 5* is not directly based on .NET Framework 4.8 and uses a new runtime and packages applications in a different way - programs are now by default compiled to a DLL file with a small loader executable (`apphost`) being used to launch the DLL, while .NET 4.8 compiles your program to an executable file that contains both a (much smaller) loader and all of your code.
+
+It is possible to package the program into a single executable afterwards but this is a post-build step (*publishing*)
+
+This new setup does cause issues when used with `managedblam` as settings such as `HighEntropyVA` or the base address are applied to the DLL that actually contains your code and not the loader. However Windows uses the configuration of the main executable file to configure ASLR including the entropy setting. 
+
+As a security measure `HighEntropyVA` is enabled by default for the loader executable which means in effect it is also enabled for all programs in dotnet 5+. We can use a custom build step manually disable it by editing the loader executable configuration. Add the following *XML* code to your `.csproj` file:
+
+```xml
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="call &quot;$(DevEnvDir)..\Tools\VsDevCmd.bat&quot; &amp;&amp; editbin /HIGHENTROPYVA:NO /DYNAMICBASE:NO /REBASE:base=0x10000 &quot;$(TargetDir)$(TargetName).exe&quot;" />
+  </Target>
+  <Target Name="PostPublish" AfterTargets="Publish">
+    <Exec Command="call &quot;$(DevEnvDir)..\Tools\VsDevCmd.bat&quot; &amp;&amp; editbin /HIGHENTROPYVA:NO /DYNAMICBASE:NO /REBASE:base=0x10000 &quot;$(TargetDir)publish\$(TargetName).exe&quot;" />
+  </Target>
+```
+
+You will now be able to use managedblam without the crashes relating to ASLR. *If you use the `dotnet` command line tool to build your project you will now need to run it from a `Visual Studio Developer Command Line` or `Visual Studio Developer Powershell` instance.* Otherwise, the `DevEnvDir` variable will not be set correctly. Alternative you can figure out a different way of adding [`editbin`](https://learn.microsoft.com/en-us/cpp/build/reference/editbin-reference?view=msvc-170) to path.
+
+If you use GitHub actions you can switch to the developer command prompt using `ilammy/msvc-dev-cmd@v1`, see the *Osoyoos* build script for an example.
+
+## Breakdown of `editbin` parameters
+
+- `/HIGHENTROPYVA:NO` - Disables High Entropy ASLR, this makes the address space more predictable and keeps the memory addresses closer together.
+- `/DYNAMICBASE:NO` - Requests ASLR is completely disabled and that the loader executable should not be randomly rebased.
+- `/REBASE:base=0x10000` - Changes the base address of the executable to be 0x10000 - this cannot be lowered further and the default base address of some builds of `apphost` is too high for managedblam to work correctly.
+
+`editbin` is invoked twice, once after building a executable and once after publishing. The second event is required for the edit to be applied to the published binary.
+
 
 # Initialising ManagedBlam for Halo 3
 This process differs slightly from the Reach+ ManagedBlam version exemplified on this page https://c20.reclaimers.net/hr/API/. ManagedBlam *must* be running in order for code to be able to open and edit tag files.
