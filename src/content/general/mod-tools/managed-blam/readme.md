@@ -20,7 +20,7 @@ Of course this is an extremely powerful tool with practically endless possibilit
 
 Most information on this page applies across all engine versions - where there are known differences, such as the initialization code, it will be pointed out.
 
-For more details on writing foundation plugins see the [API page for Reach](~hr/API)
+For more details on writing foundation plugins see the [API page for Reach](~hr/API).
 
 # Development environment
 ManagedBlam is primarily used with the [C#](https://learn.microsoft.com/en-us/dotnet/csharp/) programming language. ManagedBlam also specifically requires `.NET 4.8`  - if you do not have the developer pack, you can get it [here](https://dotnet.microsoft.com/en-us/download/dotnet-framework/net48). 
