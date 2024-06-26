@@ -141,9 +141,9 @@ export function resolvePageGlobal(pageIndex: PageIndex, lang: Lang, fromPageId: 
   }
   idTail = idTail.toLowerCase();
 
-  const candidatePageIds = Object.keys(pageIndex).filter(otherPageId => otherPageId.endsWith(idTail));
+  const candidatePageIds = Object.keys(pageIndex).filter(otherPageId => otherPageId.toLowerCase().endsWith(idTail));
   if (candidatePageIds.length == 0) {
-    // console.warn(`No page exists with logical path tail '${idTail}' (from logical path '${fromPageId}')`);
+    console.warn(`No page exists with logical path tail '${idTail}' (from logical path '${fromPageId}')`);
     return undefined;
   } else if (candidatePageIds.length > 1) {
     //there are multiple matching pages -- try disambiguating by picking best match
