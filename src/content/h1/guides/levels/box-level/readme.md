@@ -72,7 +72,7 @@ Firstly, **pick a name for your level** and **create a data folder** for it like
 
 * Use lower case characters.
 * Use underscores instead of spaces. This avoids needing to always put quotes around tag/file paths when using CLI tools or Halo's console.
-* Pick something unique if you intend on releasing the map later. Check the Steam workshop and/or [release sites](~sharing) for existing maps.
+* Pick something unique if you intend on releasing the map later. Check the [Steam workshop](https://steamcommunity.com/app/976730/workshop/) and/or [release sites](~sharing) for existing maps.
 
 Next, **create a subfolder called `models`** where you will later export the level geometry in JMS format.
 

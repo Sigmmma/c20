@@ -124,15 +124,15 @@ function renderStructAsTable(seenTypes, typeDefs, props: StructTableProps, ctx: 
       </thead>
       <tbody>
         {instantiatedType.typeDef.fields.map(field => {
-          if (props.skipPadding && field.type == "pad") {
-            return null;
-          }
-
           const fieldPathId = [...pathId, field.name];
           const fieldOffset = offset;
           const instantiatedFieldType = instantiateType(typeDefs, field, instantiatedType.type_args, {});
           const {typeDef: fieldTypeDef, totalSize: fieldSize, typeName: fieldTypeName, type_args: fieldTypeArgs} = instantiatedFieldType;
           offset += fieldSize;
+
+          if (props.skipPadding && field.type == "pad") {
+            return null;
+          }
 
           const seenTypeId = `${fieldTypeName}<${fieldTypeArgs && Object.values(fieldTypeArgs).join(",")}>`;
           const hasSeenType = seenTypes[seenTypeId];
