@@ -12,6 +12,7 @@ thanks:
   Conscars: Documenting various problems and solutions
   miriem: Providing a reproducible case of the dividing_edge problem
   Ludus: Finding that nearly coplanar portals causes errors
+  Galap: Providing a reproducible case of radiosity counting up
 redirects:
   - /h1/guides/map-making/level-creation/bsp-troubleshooting
 ---
@@ -237,6 +238,15 @@ It is common for modeling operations like extruding and merging to produce degen
 
 ![](degenerate_uvs.mp4)
 
+## Radiosity counts up
+When [running radiosity](~h1-tool#lightmaps), a number typically counts down representing the amount of light which is still bouncing around the scene. You should expect this number to gradually reduce until it reaches your stop parameter. However, this number can sometimes _count upwards_ and grow exponentially. This may happen early in the radiosity process, or the reduction in light may slow then reverse direction. This means that light is accidentally duplicating itself and growing like a chain reaction, so radiosity will never finish.
+
+This problem is rare and should not happen for valid map geometry. A confirmed cause is render-only double sided faces (the `%!` [material symbols](~h1-materials#material-symbols)) that are also overlapping/duplicated (occupying the same space). Light bouncing off these planes seems to be doubled or otherwise improperly accumulated, and when enough of these are present in a space (and large enough) the problem grows exponentially and can outpace light absorption in other parts of the map, causing the countdown to grow.
+
+One way to end up with this problem is while recycling existing BSP tags for re-export to JMS. A material which was originally double sided gets duplicated into two sets of faces by Tool when creating the level's render geometry in the BSP tag. If you use one of the typical ways to get this render geometry back into your 3D software, like [importing the tag directly to Blender](~halo-asset-blender-development-toolset), but then also reapply the `%` symbol to such faces without merging both sides together (e.g. with _Import Fixup_), you'll have overlapping double sided faces.
+
+![](radiosity_growth.jpg "The red surfaces are render-only and double sided, and are also overlapping. Each plane is actually 4 faces, 2 per side as indicated by normal vectors.")
+
 ## Exception: !point_is_coplanar || _realcmp(transformed_point.z, 0.f, k_real_epsilon * 2)
 In full this error appears as:
 
@@ -263,6 +273,12 @@ EXCEPTION halt in e:\jenkins\workspace\mcch1codebuild\mcc\main\h1\code\h1a2\sour
 
 This likely has the same cause as [above](#exception-bitmap-format-type-valid-height-format-bitmap-type-2d-height); you have a smooth continuous area which should form a single lightmap chart but is too big to fit in a bitmap page.
 
+## Error: edge has more than four triangles
+```
+radiosity error: edge has more than four triangles (see red in error geometry)
+```
+This error is caused by render-only geometry overlapping with too many duplicate faces in the same location. Remove accidental duplicates. If you are stacking up faces for visual effect, then space planes apart with a small gap.
+
 ## Warning: Clusters have no background sound or sound environment
 During radiosity you may see this warning logged:
 
@@ -286,7 +302,6 @@ If you encounter any of these errors, please contact a c20 maintainer so example
 
 The following error messages were found in `tool.exe` but could not be reproduced in experiments:
 
-* **Edge has more than four triangles (red)**: Attempting to cause this results in "couldn't update edge" errors instead.
 * **Error: Edge is too short (red)**: Creating very short edges leads to degenerate face errors instead.
 * **Warning: Found duplicate triangle building connected geometry (orange)**: Attempting to recreate only causes "couldn't update edge" errors. If you encounter this, probably something is wrong with your JMS exporter.
 
