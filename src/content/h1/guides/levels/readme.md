@@ -10,6 +10,7 @@ childOrder:
   - bsp-troubleshooting
   - portals-and-clusters
   - advanced
+  - reflection-cubemaps
   - additional
 redirects:
   - /h1/guides/map-making/level-creation/blender-level-modeling
