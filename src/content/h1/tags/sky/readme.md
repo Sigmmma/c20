@@ -29,16 +29,6 @@ The model of a skybox can be rigged and animated with an overlay (JMO) [model_an
 
 You can also animate the sky's shaders for things like sliding cloud textures or a twinkling star effect.
 
-# Ray of Buddha
-
-{% figure src="buddha.jpg" %}
-Sunlight shining through an alpha-tested texture
-{% /figure %}
-
-The "Ray of Buddha" effect is a glowing disk of light that simulates light beams when obstructed by the BSP and objects within it (even by alpha-tested transparent textures like foliage). This effect will appear automatically for any [sky light](#tag-field-lights) which has a lens flare referenced. Halo supports multiple Rays of Buddha drawing simultaneously if there are multiple sky lights with lens flares. It will always render over any other part of the skybox.
-
-The referenced [lens_flare](~) tag itself is not responsible for this effect but rather creates the faint circular rings of light across the screen. The appearance of Ray of Buddha is hard-coded into the engine and you cannot change its size or colour.
-
 # Related debug globals
 The following are related [debug globals](~scripting#external-globals) that you can enter into the [developer console](~developer-console) for troubleshooting.
 

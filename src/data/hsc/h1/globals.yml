@@ -3351,9 +3351,11 @@ external_globals:
         ```hsc
         (rasterizer_ray_of_buddha [boolean])
         ```
-        Toggles the [sky's](~sky) "god rays" effect.
+        Toggles the [lens flare](~lens_flare) "god rays" effect, present on
+        sky lights or lens flares explicitly set to _sun_.
     tags:
       - sky
+      - lens_flare
   - slug: rasterizer_refresh_rate
     info:
       en: |-

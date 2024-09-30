@@ -406,6 +406,10 @@ type_defs:
           tag_classes:
             - bitmap
           non_null: true
+        comments:
+          en: |
+            Used by `sun_glow_*` FX shaders when rendering
+            [_Ray of Buddha_](~lens_flare#ray-of-buddha).
       - type: pad
         size: 60
       - name: default_2d

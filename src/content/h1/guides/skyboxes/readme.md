@@ -200,7 +200,7 @@ In addition to the values we've set so far, we need some lights to cast directio
 
 | Field | Value | Purpose
 |-------|-------|--------
-| _lens flare_ | `sky\sky_a30\skydusk0\sun` | Gives the light a visible [lens_flare](~) in the sky as well as a [Ray of Buddha](~sky#ray-of-buddha) effect.
+| _lens flare_ | `sky\sky_a30\skydusk0\sun` | Gives the light a visible [lens_flare](~) in the sky as well as a [Ray of Buddha](~lens_flare#ray-of-buddha) effect.
 | _affects exteriors_ | Checked | Allows this light to affect outdoor clusters for lightmaps.
 | _color_ | A light yellow-orange | Colours the light emitted by this light. Usually this will be your sunlight colour.
 | _power_ | `1.5` | Think of this as the brightness of the light. A value around `1.1` to `1.7` is typical for sunlight.

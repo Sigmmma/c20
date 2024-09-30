@@ -39,6 +39,18 @@ type_defs:
     size: 2
     bits:
       - name: sun
+        comments:
+          en: |
+            If set, gives this lens flare a [Ray of Buddha](~h1/tags/lens_flare#ray-of-buddha)
+            effect. This flag is already implied for any lens flare referenced by a
+            [sky light](~tags/sky/#tag-field-lights) and does not need to be set,
+            but this can be enabled for other types of lens flare usages.
+      - name: no_occlusion_test
+        comments:
+          en: |
+            If enabled, skips checking if this lens flare is occluded. It will
+            render regardless of any obstructions in the way like BSP. This also
+            prevents flares like the sun from fading out when they go off-screen.
   LensFlareRotationFunction:
     class: enum
     size: 2
@@ -175,18 +187,35 @@ type_defs:
 
             This also controls how far the test square is moved depending on the
             _occlusion offset direction_.
+
+            This field also interacts with the _Ray of Buddha_ effect, controlling
+            its radius when the _sun_ flag is set. However if this radius is set
+            to exactly `50` then the _sun_ flag will be implied and _Ray of Buddha_
+            will render too.
       - name: occlusion_offset_direction
         type: LensFlareOcclusionOffsetDirection
+        comments:
+          en: |
+            Controls which direction the lens flare is offset. Ignored by the
+            _Ray of Buddha_ effect if this tag's _sun_ flag is set, which always
+            uses a _marker forward_ offset.
       - type: pad
         size: 2
       - name: near_fade_distance
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            The distance where the lens flare begins to fade out.
       - name: far_fade_distance
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            The distance where the lens flare becomes invisible. Distance-based
+            fading is disabled when set to `0`.
       - name: bitmap
         type: TagDependency
         meta:
@@ -214,10 +243,18 @@ type_defs:
         type: float
         meta:
           default: 1
+        comments:
+          en: |
+            Scales the lens flare's first reflection horizontally by this factor.
+            Ignored and assumed `1` if this is set to `0`.
       - name: vertical_scale
         type: float
         meta:
           default: 1
+        comments:
+          en: |
+            Scales the lens flare's first reflection vertically by this factor.
+            Ignored and assumed `1` if this is set to `0`.
       - type: pad
         size: 28
       - name: reflections

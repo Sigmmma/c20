@@ -64,10 +64,15 @@ type_defs:
             - lens_flare
         comments:
           en: >
-            If provided, this light will appear in the sky with a
-            [Ray of Buddha](~h1/tags/sky#ray-of-buddha) and a [lens_flare](~).
-            Otherwise the light source itself will be invisible (but still casts
-            light for lightmaps).
+            If provided, this light will appear in the sky with a [lens_flare](~).
+            If the flare's [occlusion radius](~lens_flare#tag-field-occlusion-radius)
+            is set to exactly `50`, the flare will also render the
+            [_Ray of Buddha_](~lens_flare#ray-of-buddha) effect regardless of if
+            the referenced lens flare's [_sun_](~lens_flare#tag-field-flags-sun)
+            flag is set.
+            
+            If this reference is left blank then the light source itself will be
+            invisible (but still casts light for lightmaps).
       - name: lens_flare_marker_name
         type: TagString
         comments:

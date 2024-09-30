@@ -36,7 +36,7 @@ This texture is likely too large for your needs and should be scaled down before
 Use your preferred 2D software (e.g. GIMP or Krita) to resize the image to `256 x 192` or `128 x 96` pixels.
 
 {% alert %}
-Even with `rasterizer_lens_flares` enabled, the [ray of Buddha effect](~sky#ray-of-buddha) does not render in cubemap screenshots. You may need to paint the sun directly into your cubemap texture.
+Even with `rasterizer_lens_flares` enabled, the [ray of Buddha effect](~lens_flare#ray-of-buddha) does not render in cubemap screenshots so the sun will not appear as bright. You may need to paint the sun directly into your cubemap texture.
 {% /alert %}
 
 # Importing the bitmap
