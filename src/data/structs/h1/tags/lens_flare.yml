@@ -42,15 +42,15 @@ type_defs:
         comments:
           en: |
             If set, gives this lens flare a [Ray of Buddha](~h1/tags/lens_flare#ray-of-buddha)
-            effect. This flag is already implied for any lens flare referenced by a
-            [sky light](~tags/sky/#tag-field-lights) and does not need to be set,
-            but this can be enabled for other types of lens flare usages.
+            effect. This flag is already implied for any lens flare with occlusion
+            radius of `50` (typically used by [sky lights](~tags/sky/#tag-field-lights)).
       - name: no_occlusion_test
         comments:
           en: |
             If enabled, skips checking if this lens flare is occluded. It will
             render regardless of any obstructions in the way like BSP. This also
-            prevents flares like the sun from fading out when they go off-screen.
+            prevents reflections from fading out when the flare's origin goes
+            off-screen.
   LensFlareRotationFunction:
     class: enum
     size: 2
