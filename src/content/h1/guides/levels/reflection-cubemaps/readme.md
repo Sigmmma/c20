@@ -16,7 +16,6 @@ You can use the `screenshot_cubemap` feature included in the MCC tools to genera
 Next, prepare the scene by deleting or hide any dynamic objects which you don't want to appear in reflections such as vehicles. In Sapien, make sure you've selected the _Mission_ folder in the _Hierarchy view_ so [placeholders](~placeholder) aren't visible. You will also need to set some [globals](~scripting#external-globals) in the [console](~developer-console) to ensure the cubemap is seamless:
 
 ```console
-game_speed_value 0 ;stop skybox and other textures from animating
 rasterizer_environment_fog_screen 0 ;doesnt tile
 rasterizer_lens_flares 0 ;hide sun lens flares
 ```
@@ -112,7 +111,6 @@ Camera points are normally used for cutscenes but we'll use them to quickly move
 (script static void cubes
     ;perform any setup needed here
     (object_destroy c_shield)
-    (set game_speed_value 0)
     (set rasterizer_environment_fog_screen 0)
     (set rasterizer_lens_flares 0)
     ;start moving the camera and taking screenshots
@@ -130,7 +128,6 @@ Camera points are normally used for cutscenes but we'll use them to quickly move
     (cube cube_ex_a cube_ex_a)
     ;restore state
     (object_create c_shield)
-    (set game_speed_value 1)
     (set rasterizer_environment_fog_screen 1)
     (set rasterizer_lens_flares 1)
     (camera_control 0)

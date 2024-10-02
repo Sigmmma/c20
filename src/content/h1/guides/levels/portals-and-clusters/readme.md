@@ -12,7 +12,7 @@ Rat Race's portals visible with `debug_pvs 1`.
 
 [_Portals_](~scenario_structure_bsp#portals) are invisible "doorways" that divide a level's space into a series of closed room-like _clusters_, and are placed by artists when modeling the level in their 3D software.
 
-[Portal rendering][wiki] is a common decades-old techique which Halo has adapted for its mixed indoor/outdoor levels. Imagine your home's interior as a 3D model with various rooms with doorways between them. How would you render a viewpoint from a given room?
+[Portal rendering][wiki] is a common decades-old techique which Halo has adapted for its mixed indoor/outdoor levels. Imagine your home's interior as a 3D model with various rooms and doorways between them. How would you render a viewpoint from a given room?
 
 1. You could render just the faces belonging to the current room, but you would miss parts of an adjacent visible room.
 2. You could render all the faces in the house to make sure, but this isn't performant.
