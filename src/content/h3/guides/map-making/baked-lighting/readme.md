@@ -9,14 +9,20 @@ keywords:
 
 Here we will cover adding a sky and light baking.
 
-![](unlit_scene.png "unlit scene.")
+<img src="non_light_mapped.png" alt="drawing" width="45%"/>  <img src="light_mapped.png" alt="drawing" width="45%"/>
 
-By default a level will be unlit, and without a sky. Objects will be black because there is no light in the scene.  Halo has both static baked lighting, and dynamic lighting.  Here we will cover baked lighting.
+By default a scenario will be unlit, and without a sky. 
+Objects will be black because there is no light in the scene.  
+Here we will cover baked lighting.
 
 # Choose a sky for the scene.
 
+
+<img src="unlit_scene.png" alt="no sky" width="46%"/>  <img src="lit_unbaked_scene.png" alt="with sky" width="50%"/>
+
+
 1. Select the "Skies" folder and click "New instance"\
-<img src="choose_sky.png" alt="drawing" width="50%"/>
+<img src="choose_sky.png" alt="drawing" width="30%"/>
 
 2. Select the new instance (called NONE) which was created.  
 <img src="new_sky_instance.png" alt="drawing" width="50%"/>
@@ -26,14 +32,13 @@ By default a level will be unlit, and without a sky. Objects will be black becau
 
 4. Add a sky from one of the multiplayer levels, open the a sky folder of one of the multiplayer maps.<br> ![](sky_folder.png "new sky instance.")
 
-5. Select the .scenery file.<br>  ![](sky_file.png ".scenery file")
+5. Select the .scenery file.<br> <img src="sky_file.png" alt=".scenery file" width="40%"/>
 
 6. Now reset the map to see the change applied.<br> ![](map_reset.png "map reset")
 
-![](lit_unbaked_scene.png "lit but unbaked scene.")
 <br><br>
 
-# Baked the outdoor light
+# Baked outdoor light
 
 To bake light on a bsp, we use the python script in the H3EK folder called ``calc_lm_farm_local``.
 Sapien will often close when light is being baked, so be sure to save the scene beforehand.
@@ -57,6 +62,9 @@ The available ```<quality>``` inputs are:
 - super_low
 - draft
 - debug
+
+It is best to start with ```draft``` or ```low`` until the final design of the level is finalized
+because the process can take a long time.
 
 <br><br>
 
@@ -114,4 +122,5 @@ The proper input should have been
 
 # Other tips
 
-- If the lightmapper is still failing, you can try deleting the ```faux``` folder in H3EK.
+- If the lightmapper is still failing, one possible solution is deleting the ```faux``` folder in H3EK and re-baking again.
+- Copy the lightmap command to notepad to avoid typing it out repeatedly.
