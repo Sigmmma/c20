@@ -7,18 +7,18 @@ keywords:
 ---
 # Basic Lighting
 
-Here we will cover adding a sky and light baking.
+Here we will cover adding a sky to a scenario and then lightmapping a bsp of that scenario.
 
-<img src="non_light_mapped.png" alt="drawing" width="45%"/>  <img src="light_mapped.png" alt="drawing" width="45%"/>
+<img src="non_light_mapped.jpg" alt="drawing" width="45%"/>  <img src="light_mapped.jpg" alt="drawing" width="45%"/>
 
 By default a scenario will be unlit, and without a sky. 
-Objects will be black because there is no light in the scene.  
-Here we will cover baked lighting.
+Objects will not be lit realistically because there is no light in the scene.  
 
 # Choose a sky for the scene.
 
+Because the sky affects the light in a scene, before lightmapping a scenario bsp we must choose a sky.
 
-<img src="unlit_scene.png" alt="no sky" width="46%"/>  <img src="lit_unbaked_scene.png" alt="with sky" width="50%"/>
+<img src="unlit_scene.jpg" alt="no sky" width="46%"/>  <img src="lit_unbaked_scene.jpg" alt="with sky" width="50%"/>
 
 
 1. Select the "Skies" folder and click "New instance"\
@@ -63,19 +63,20 @@ The available ```<quality>``` inputs are:
 - draft
 - debug
 
-It is best to start with ```draft``` or ```low`` until the final design of the level is finalized
-because the process can take a long time.
+It is best to start with ```draft``` or ```low``` until the final design of the level mesh is finalized
+because the lightmapping process can take a long time.
 
 <br><br>
 
 # Baked indoor lights
 
-Use create a new material, check off ```Halo Material Properties``` and adjust the Halo Scene properties.  Try a power around 25 to start.
-![](flourescent_light.png "flourescenet_light")
+1. Create a new material and assign it to an object or some faces of the object.
+2. Check off ```Halo Material Properties``` and adjust the Halo Scene properties.  Try a power around 25 to start.
+3. Re-bake the bsp and view the result.
 
-Re-bake the bsp and view the result.
+![](flourescent_light.jpg "flourescenet_light")
 
-You can also use ordinary Blender lights such as point lights.
+note: You can also use ordinary Blender lights such as point lights.
 
 # Troubleshooting
 
@@ -99,7 +100,7 @@ Solution: Delete any objects using instanced geometry which are outside the boun
 
 ## Scenario file name not found
 
-The python script could not find the file.
+Cause: The python script could not find the file.
 
 ```
 K:\SteamLibrary\steamapps\common\H3EK>python calc_lm_farm_local.py levels\multi\rataz_b\mydesert1  mydesert1  draft
@@ -116,9 +117,9 @@ LIGHTMAPPER FAILED: scenario [levels\multi\rataz_b\mydesert1] failed to loadTrac
 subprocess.CalledProcessError: Command '['tool_fast', 'faux_data_sync', 'levels\\multi\\rataz_b\\mydesert1', 'mydesert1']' returned non-zero exit status 4294967295.
 ```
 
-The proper input should have been
+Solution: The proper input should have been
 ```python calc_lm_farm_local.py levels\multi\rataz_b\rataz_b mydesert1 draft```
-<img src="wrong_filename.png" alt="drawing" width="70%"/>
+<img src="wrong_filename.png" alt="drawing" width="50%"/>
 
 # Other tips
 
