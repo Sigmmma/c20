@@ -323,7 +323,7 @@ Don't overuse alerts. If something's important, consider prioritizing that infor
 {% /alert %}
 
 ## Images and videos
-Images (.png and .jpg) and videos (.mp4) can be placed in a page folder and used from its `readme.md`. Any standard markdown image will be rendered as a clickable figure:
+Images (.png and .jpg) and videos (.mp4) can be placed in a page folder and used from its `readme.md`. We prefer .jpg with about 80-90% quality, but .png can be used if lossless images are needed. Any standard markdown image will be rendered as a clickable figure:
 
 ```md
 ![343 Guilty Spark floating in The Library](343.jpg "We must continue. This way please.")

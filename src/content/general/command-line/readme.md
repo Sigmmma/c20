@@ -26,6 +26,10 @@ tool build-cache-file levels\test\tutorial\tutorial
 
 The arguments then tell Tool what to do, and are documented per-game (e.g. [H1 Tool](~h1-tool)). Programs and each argument are always separated by spaces. If a single argument contains spaces you need to wrap it with quotes: `"..."`.
 
+{% alert %}
+You don't need to type out commands you want to repeat. Use the {% key "Up" /%} and {% key "Down" /%} keys to navigate your command prompt's history.
+{% /alert %}
+
 ## Navigation
 Use the `dir` command to list files in the current directory, and `cd <path>` to navigate to a different one. The parent directory can be referred to using `..`. Sub-directories are always separated with backslashes.
 
