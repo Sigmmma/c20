@@ -12,12 +12,30 @@ Halo 3 Sapien includes a decal system to decorate maps without baking the detail
 
 # Usage
 
-1. In Sapien, click the Decals folder to select it. <br>![](decals_folder.png)
+1. In Sapien, click the Decals folder to select it. 
 
-2. Click edit types <br> ![](edit_types.png)
+    ![](decals_folder.png)
 
-3. Add a decal system <br>![](edit_types_decal_system.png)
-4. Add a decal from a map.  sd3 multiplayer maps have a good selection of decals. <br>![](add_decal.png)
-5. In the scene view, rightclick a wall to place a decal. <br>![](rightclick_scene.jpg)
-6. Choose from the properties dropdown which decal it should be. <br>![](pick-decal.png)
-7. Click and drag the blue handle to rotate decals. <br>![](rotate_decal.jpg)
+2. Click edit types. 
+
+    ![](edit_types.png)
+
+3. Add a decal system. 
+
+    ![](edit_types_decal_system.png)
+
+4. Add a decal from a map.  sd3 multiplayer maps have a good selection of decals. 
+
+    ![](add_decal.png)
+
+5. In the scene view, rightclick a wall to place a decal.
+
+    ![](rightclick_scene.jpg)
+    
+6. Choose from the properties dropdown which decal it should be. 
+
+    ![](pick-decal.png)
+
+7. Click and drag the blue handle to rotate decals. 
+
+    ![](rotate_decal.jpg)
