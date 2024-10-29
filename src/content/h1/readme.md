@@ -99,10 +99,11 @@ This branch of the H1 engine is certainly the "most advanced" and definitive. It
 
 With the introduction of the Saber3d engine also came new file formats:
 
-* The **ipak** holds all the texture information for the game. This includes classic textures as well.
+* The **ipak** holds all the texture information for the game. This includes classic textures as well. (Although classic textures are included in the ipak, MCC now loads them from the bitmaps.map)
 * The **imeta** holds entries for the ipak. This links textures in the ipak to the level.
 * The **fmeta** is designed to link dependent files together.
 * The **s3dpak** is an archive file holding the files needed for the Saber engine.
+  * The **template** files inside the s3dpak contain anniversary model data.
 
 There are some differences between the PC/MCC and Xbox 360 versions; most of the assets have been rearranged to optimize things for their respective platforms.
 
