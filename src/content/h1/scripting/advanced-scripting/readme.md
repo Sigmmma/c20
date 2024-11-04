@@ -190,4 +190,44 @@ The following script then gets a object's distance to each of these flags and ca
 
 The function `objects_distance_to_flag` technically accepts an object list, but you can pass it a single object like `(player0)` and it will be cast to a list for you. Use cases for a script like this might include testing player positions against complex [distance functions][sdf] rather than scenario trigger volumes, determining _how far_ a player has entered a given volume, or knowing of an object is north/south/east/west of another moving object by comparing coordinates.
 
+## Detecting game mode
+There is no script function to directly detect the [game mode](~game-modes), but we can create a custom [equipment](~) set to spawn for each game mode which has a damaging fire effect. If we place a series of named bipeds at the same locations as these equipment spawns then we can detect damage to those bipeds via scripts to find out the game mode.
+
+Firstly, create an [item_collection](~) and [equipment](~):
+
+![](damage_emitter_equipment.jpg)
+
+The equipment uses the model `scenery\emitters\burning_flame\burning_flame.gbxmodel` and effect `scenery\emitters\burning_flame\effects\burning.effect` attached to the `smoker` marker.
+
+Hide some bipeds in your level named `king_detector`, `oddball_detector`, `race_detector`, and `ctf_detector`. Slayer can be assumed in the absense of any damage to these bipeds. Make sure they're placed far enough away from each other that the fire effect won't damage multiple:
+
+![](detector_bipeds.jpg)
+
+Now place the damage emitter equipment spawns on each biped. Make sure to set _type 0_ to the corresponding game mode for that biped:
+
+![](damage_emitters.jpg)
+
+The game mode detection should be slightly delayed from startup since it takes a moment for the items to spawn and damage the bipeds. In your level's script, you'll need something like this:
+
+```hsc
+(global short detected_game_mode 0)
+
+(script startup detect_game_mode
+  (sleep 30)
+  (set detected_game_mode
+    (cond
+      ((< (unit_get_shield king_detector) 1) 1)
+      ((< (unit_get_shield oddball_detector) 1) 2)
+      ((< (unit_get_shield race_detector) 1) 3)
+      ((< (unit_get_shield ctf_detector) 1) 4)
+    )
+  )
+)
+```
+
+Now when your level loads, the bipeds will burn according to the game mode. Once the biped dies its shield value will go to `-1` which still satisfied the condition.
+
+![](burning_biped.jpg)
+
+
 [sdf]: https://iquilezles.org/articles/distfunctions/
