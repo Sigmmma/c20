@@ -1,7 +1,7 @@
 ---
 title: Advanced techniques
 thanks:
-  Conscars: GPS implementation
+  Conscars: GPS and game mode detection
 ---
 The set of [HaloScript](~scripting) functions covers most reasonable needs for singleplayer scripting. However, modders being modders means this sometimes isn't enough and creative solutions are needed.
 
@@ -210,22 +210,21 @@ Now place the damage emitter equipment spawns on each biped. Make sure to set _t
 The game mode detection should be slightly delayed from startup since it takes a moment for the items to spawn and damage the bipeds. In your level's script, you'll need something like this:
 
 ```hsc
-(global short detected_game_mode 0)
-
 (script startup detect_game_mode
   (sleep 30)
-  (set detected_game_mode
+  (print
     (cond
-      ((< (unit_get_shield king_detector) 1) 1)
-      ((< (unit_get_shield oddball_detector) 1) 2)
-      ((< (unit_get_shield race_detector) 1) 3)
-      ((< (unit_get_shield ctf_detector) 1) 4)
+      ((< (unit_get_shield king_detector) 1) "game is king")
+      ((< (unit_get_shield oddball_detector) 1) "game is oddball")
+      ((< (unit_get_shield race_detector) 1) "game is race")
+      ((< (unit_get_shield ctf_detector) 1) "game is ctf")
+      (true "game is slayer")
     )
   )
 )
 ```
 
-Now when your level loads, the bipeds will burn according to the game mode. Once the biped dies its shield value will go to `-1` which still satisfied the condition.
+Now when your level loads, a biped will burn according to the game mode. Once the biped dies its shield value will go to `-1` which still satisfies the condition. You can test different game modes in Standalone using `game_variant <mode>` before running `map_name`.
 
 ![](burning_biped.jpg)
 
