@@ -1,5 +1,5 @@
 import {useEffect, useRef, useState} from "preact/hooks";
-import MiniSearch from "minisearch";
+import MiniSearch, { SearchOptions } from "minisearch";
 import {useLocalize} from "../Locale/Locale";
 
 const localizations = {
@@ -15,14 +15,13 @@ const localizations = {
   searchNoResults: {
     en: "No results found for",
   },
-  limitToChildPaths: {
-    en: "Child pages only",
+  filterToSection: {
+    en: (section) => `Limit search to ${section}`,
   },
 };
 
 type State = {
-  filterChildPaths: boolean;
-  firstSearchDone: boolean;
+  filterToSection: boolean;
   query: string;
   searchResults: any[];
   selectedResultIndex: number;
@@ -31,6 +30,7 @@ type State = {
 export type SearchProps = {
   searchIndex?: MiniSearch;
   initialQuery?: string;
+  currentSection: string;
   onSearchFocused?: (focused: boolean) => void;
 };
 
@@ -39,8 +39,7 @@ export default function Search(props: SearchProps) {
   //save a reference to the DOM element which gets rendered, so we can focus it later
   const inputRef = useRef<HTMLInputElement | null>(null);
   const [state, setState] = useState<State>({
-    filterChildPaths: false,
-    firstSearchDone: false,
+    filterToSection: true,
     query: props.initialQuery ?? "",
     searchResults: [],
     selectedResultIndex: 0
@@ -109,23 +108,31 @@ export default function Search(props: SearchProps) {
     }
   };
 
-  const handleChange = (query: string, filterChildPaths: boolean) => {
+  const handleChange = (query: string, filterToSection: boolean) => {
     if (props.searchIndex) {
-      let searchResults = props.searchIndex.search(query);
+      const options: SearchOptions = {
+        filter: (result) => {
+          if (filterToSection && !result.id.startsWith(props.currentSection)) {
+            return false;
+          }
+          return true;
+        }
+      };
+
+      let searchResults = props.searchIndex.search(query, options);
 
       //if no results, try suggested search instead
       if (searchResults.length == 0) {
         const suggestions = props.searchIndex.autoSuggest(query);
         if (suggestions.length > 0) {
           const suggestedTerms = suggestions[0].suggestion.split(" ");
-          searchResults = props.searchIndex.search(suggestedTerms[suggestedTerms.length - 1]);
+          searchResults = props.searchIndex.search(suggestedTerms[suggestedTerms.length - 1], options);
         }
       }
-
-      if (filterChildPaths) {
-        searchResults = state.searchResults.filter(result =>
-          result.id.startsWith(window.location.pathname)
-        );
+      
+      //if no results, try without filters
+      if (searchResults.length == 0) {
+        searchResults = props.searchIndex.search(query);
       }
 
       //sort by if the query is a substring of the page title
@@ -142,20 +149,15 @@ export default function Search(props: SearchProps) {
       updateState({
         query,
         searchResults,
-        filterChildPaths,
-        selectedResultIndex: 0,
-		    firstSearchDone: true,
+        filterToSection,
+        selectedResultIndex: 0
       });
     }
   };
 
-  //if (!state.firstSearchDone && is404Page) {
-  //  handleChange(state.query, state.filterChildPaths);
-  //}
-
-  const clearInput = () => handleChange("", state.filterChildPaths);
-  const handleInput = (e) => handleChange(e.target.value, state.filterChildPaths);
-  const handleFilter = () => handleChange(state.query, !state.filterChildPaths);
+  const clearInput = () => handleChange("", state.filterToSection);
+  const handleInput = (e) => handleChange(e.target.value, state.filterToSection);
+  const handleFilter = () => handleChange(state.query, !state.filterToSection);
   const isNonEmptyQuery = state.query && state.query != "";
 
   return <>
@@ -176,10 +178,12 @@ export default function Search(props: SearchProps) {
           <b>{localize("searchResults")}</b>
           <button className="clear-button" onClick={clearInput}>{localize("close")} <span className="desktop-only">[Esc]</span></button>
         </div>
-        <div className="results-toggle-child-pages">
-          <input type="checkbox" id="filter-results" onClick={handleFilter} checked={state.filterChildPaths}/>
-          <label htmlFor="filter-results">{localize("limitToChildPaths")}</label>
-        </div>
+        {props.currentSection != "/" &&
+          <div className="results-toggle-child-pages">
+            <input type="checkbox" id="filter-results" onClick={handleFilter} checked={state.filterToSection}/>
+            <label htmlFor="filter-results">{localize("filterToSection")(props.currentSection)}</label>
+          </div>
+        }
         {state.searchResults.length > 0 ? (
           <ul className="link-list">
             {state.searchResults.map((result, i) => {

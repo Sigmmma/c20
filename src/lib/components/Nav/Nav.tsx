@@ -28,14 +28,20 @@ function renderPageTree(currPageId: string, pageTree: NavTree, expandedPages: ob
   return (
     <ol>
       {pageTree.map(({link, children}) => {
+        const isTopLevel = link.pageId.lastIndexOf("/") == 0;
         const isParent = (currPageId + "/").startsWith(link.pageId + "/");
         const isCurrent = currPageId == link.pageId;
-        const showPlus = !isParent && children.length > 0;
+        const showPlus = !isTopLevel && !isParent && children.length > 0;
         const isExpanded = isParent || expandedPages[link.pageId];
+
+        const liClasses: string[] = [];
+        if (isParent || isCurrent) liClasses.push("active");
+        liClasses.push(isTopLevel ? "top-level" : "nested");
+        
         const pageItem = (
-          <div className="nav-tree-item">
+          <div className="nav-tree-label">
             <a className="item-link" href={link.url} aria-current={isCurrent ? "location" : undefined}>
-              <Icon name={link.icon}/>
+              {!isTopLevel && <Icon name={link.icon}/>}
               {link.title}
             </a>
             {showPlus &&
@@ -46,7 +52,7 @@ function renderPageTree(currPageId: string, pageTree: NavTree, expandedPages: ob
           </div>
         );
         return (
-          <li>
+          <li className={liClasses.join(" ")}>
             {pageItem}
             {isExpanded && renderPageTree(currPageId, children, expandedPages, setExpandedPages)}
           </li>
@@ -85,6 +91,7 @@ export default function Nav(props: NavProps) {
       </header>
       <div className="nav-search">
         <Search
+          currentSection={props.pageId == "/" ? "/" : "/" + props.pageId.split("/")[1]}
           onSearchFocused={props.onSearchFocused}
           searchIndex={props.searchIndex}
         />
