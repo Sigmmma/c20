@@ -12,7 +12,7 @@
     height: 100vh;
     position: sticky;
     top: 0;
-    overflow-y: auto;
+    overflow-y: scroll;
     width: 26em;
     min-width: 256px;
     scrollbar-color: transparent transparent;
@@ -71,13 +71,43 @@
           
       ol, ul {
         list-style: none;
-        padding-left: 1em;
-      }
-    
-      & > ol, & > ul {
+        border-left: none;
         padding-left: 0;
-        & > li {
-          border-left: none;
+      }
+
+      li {
+        padding: 0;
+        margin: 0;
+      }
+
+      li.nested {
+        ul, ol {
+          padding-left: 1em;
+          li {
+            border-left: 1px solid var(--border-color);
+          }
+        }
+      }
+
+      li.top-level {
+        border-top: 1px solid var(--border-color);
+        &:first-child {
+          border-top: none;
+        }
+
+        & > .nav-tree-label a {
+          color: var(--fg-faded);
+          padding: 8px 8px;
+          border-radius: 0;
+        }
+
+        &.active > .nav-tree-label a {
+          color: var(--fg);
+        }
+
+        & > ol {
+          padding-top: var(--padding-sm);
+          padding-bottom: var(--padding-md);
         }
       }
 
@@ -86,7 +116,7 @@
         min-width: 1em;
       }
 
-      .nav-tree-item {
+      .nav-tree-label {
         display: flex;
         align-items: center;
         flex-direction: row;
@@ -116,15 +146,9 @@
         }
       }
     
-      li {
-        padding: 0;
-        margin: 0;
-        border-left: 1px solid var(--border-color);
-      }
-    
       a {
         display: block;
-        border-radius: 0 $border-radius $border-radius 0;
+        border-radius: $border-radius;
         padding: 4px 8px;
         transition: padding $transition-time-interactive;
         cursor: pointer;
