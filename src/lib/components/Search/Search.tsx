@@ -4,7 +4,7 @@ import {useLocalize} from "../Locale/Locale";
 
 const localizations = {
   searchPlaceholder: {
-    en: "Search all pages... [S]",
+    en: (section) =>`Search ${section}... [S]`,
   },
   searchResults: {
     en: "Search results",
@@ -165,7 +165,7 @@ export default function Search(props: SearchProps) {
       ref={inputRef}
       className={`search-input ${isNonEmptyQuery ? "nonempty" : ""}`}
       type="text"
-      placeholder={localize("searchPlaceholder")}
+      placeholder={localize("searchPlaceholder")(props.currentSection == "/" || !state.filterToSection ? "all pages" : props.currentSection)}
       disabled={!props.searchIndex}
       value={state.query}
       onInput={handleInput}

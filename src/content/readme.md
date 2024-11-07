@@ -29,41 +29,11 @@ Everyone makes mods for different reasons, be it rebalancing the sandbox, learni
 
 # What's new?
 {% alert type="success" %}
-**March 2024:** c20 received a facelift and has new and revised information, mainly for H1:
+**November 2024:** Search is now limited to the current site section by default (e.g. /h3). We also have a few recently added guides:
+* [H3 decal placement guide](~h3/guides/map-making/decals)
+* [H3 Blender level guide - Light baking](~h3/guides/map-making/baked-lighting)
+* [H1 Reflection cubemaps](~h1/guides/levels/reflection-cubemaps)
 {% /alert %}
-
-* Tools:
-  * [Combined HEK and H1A tools](~h1-ek) under common pages, with callouts on differences.
-  * Listed [obsolete tools](~obsolete) in once place to cut down on junk pages.
-  * Documentd [Deathstar deprotector](~deathstar).
-  * Centralized [mod tools installation](~general/mod-tools#installation).
-* Tags:
-  * Added [actor type definitions](~actor#actor-type-definitions).
-  * Explained [shader_model change color](~h1/tags/shader/shader_model#change-color).
-  * Added descriptions for various tag fields.
-  * Added explanation of [aim assist](~h1/tags/object/item/weapon#aim-assist).
-* Scripting:
-  * Updated some examples on the [scripting](~h1/scripting) page to be clearer.
-  * Added a page with [advanced scripting techniques](~advanced-scripting).
-  * Added [more limits](~h1/scripting/limits) and better described existing ones.
-  * Documented the [Halo Script Preprocessor](~halo-script-preprocessor).
-  * Added descriptions for some [functions](~h1/scripting#other-functions) and [globals](~h1/scripting#external-globals).
-* Engine:
-  * Listed all `game_variant` [options](~game-modes) for testing MP modes in Standalone.
-  * Updated descriptions of [game state](~game-state), added glow datum.
-  * Described [AI props](~ai#props) and [AI actions](~ai#actions).
-* Guides:
-  * Flatter page organization.
-  * Reworked some content into a ["My first box level" guide](~h1/guides/levels/box-level).
-  * Moved [Blender setup and tips](~blender) to the Blender page, same for the [Toolset](~halo-asset-blender-development-toolset).
-  * Added a [map porting overview](~porting-maps).
-  * Added troubleshooting of ["waiting for space to clear"](~player-spawns#troubleshooting-waiting-for-space-to-clear).
-* Other:
-  * Added an overview of the [sealed world rules](~bsp-troubleshooting#sealed-world-rules).
-  * Moved the [scale and unit conversions page](~scale) and improved descriptions of units.
-  * Improved descriptions for [H1 materials and symbols](~h1-materials).
-  * General editing to be less Custom Edition-centric, be more clear, fix typos, add cross-references, etc.
-  * Mobile-friendly interface with swipe gesture support.
 
 # Getting started
 New to modding? Check out the [general information section](~general). Each other section in the sidebar will allow you to explore game-specific guides and reference materials.
