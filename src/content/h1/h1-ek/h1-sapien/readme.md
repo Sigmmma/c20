@@ -124,6 +124,20 @@ Some of these shortcuts are only used in certain windows or editor modes.
 * In the hierarchy view, pressing a key will cycle through all folders that start with that character. For example, pressing {% key "A" /%} while having the "Missions" folder expanded will immediately take you to the "AI" folder.
 * {% key "N" /%}: This hotkey will snap a selected object to the normal of the ground below it. **This hotkey is broken in HEK Sapien and can cause it to crash when restarted**, also causing editor icons and name overlays to disappear for the session. This problem was fixed in H1A Sapien.
 
+## Selected Object Movement
+* {% key "Right Arrow" /%}: Move item -0.02 x
+* {% key "Left Arrow" /%}: Move item +0.02 x
+* {% key "Down Arrow" /%}: Move item -0.02 y
+* {% key "Up Arrow" /%}: Move item +0.02 y
+* {% key "Shift + Up Arrow" /%}: Move item -0.02 z
+* {% key "Shift + Down Arrow" /%}: Move item +0.02 z
+* {% key "Control + Down Arrow" /%}: Rotate item -10 r
+* {% key "Control + Up Arrow" /%}: Rotate item +10 r
+* {% key "Control + Right Arrow" /%}: Rotate item -10 p
+* {% key "Control + Left Arrow" /%}: Rotate item +10 p
+* {% key "Control + Shift + Left Arrow" /%}: Rotate item -10 y
+* {% key "Control + Shift + Right Arrow" /%}: Rotate item +10 y
+
 ## Encounters and AI
 * {% key "Middle mouse + F1" /%}: Selects the spawned actor in the center of the game view.
 * {% key "Middle mouse + F2" /%} Select next encounter. You can also use the console command `ai_select <encounter>`.
