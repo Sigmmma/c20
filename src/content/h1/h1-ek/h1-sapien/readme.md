@@ -165,6 +165,7 @@ These hotkeys apply in scripted camera mode.
   * Flycam
 * {% key "Caps lock" /%}: Start/stop animation recording.
 * {% key "Shift + Q" /%}: Exits a posessed unit while in scripted camera mode.
+These are the default values, they can be in the Tool window under Object positioning.
 
 See main page: [recorded-animations](~)
 
