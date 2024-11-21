@@ -41,6 +41,8 @@ tool export-fmod-banks "reports\reports_00\sounds_report_sizes.csv" pc sfx -bank
 ```
 ![](d.png "")
 
+## Finishing up
+
 Once your FMOD sound banks have been rebuilt, you should be able to hear the sounds you've imported! A report `.csv` is generated in the "fmod" folder next to the original exported sounds `.csv` which contains information about the FMOD hashes and such.
 
 If you get any more FMOD errors you should be able to keep importing sounds and you would just have to repeat the steps from this guide, all the sounds imported (regardless if you got an error or not) should work after properly rebuilding your FMOD sound banks.
