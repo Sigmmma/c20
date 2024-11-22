@@ -230,6 +230,12 @@ This error does not show up in [WRL files](~wrl), but it is usually easy to find
 
 ![](weatherpoly_sides.mp4)
 
+## The transparent plasma shader cannot be used in the environment
+```
+### The transparent plasma shader sandbox\bsptest\shaders\bsptest_stp cannot be used in the environment.
+```
+This error prevents structure import from completing and indicates you're using a [shader_transparent_plasma](~) in the BSP, which is not supported. If this is unintentional, check your material names to make sure they're unique to your level and not unintentionally matching with a similarly named plasma shader.
+
 # Radiosity problems
 ## Degenerate triangle or triangle with bad UVs (blue)
 A _degenerate triangle_ error encountered during [radiosity](~h1-tool#lightmaps) is due to a triangle being degenerate in UV space (texture coordinates). In other words, the triangle has zero surface area in UV space because all 3 vertices are in a line or the same location so the triangle's texture will appear extremely stretched. This by itself isn't a problem for radiosity, but when the corresponding material has the [_simple parameterization_](~shader#tag-field-shader-flags-simple-parameterization) flag enabled you will encounter this error, since that flag forces radiosity to use texture UV coordinates as the basis for lightmap UVs and lightmap UVs must not be degenerate.
