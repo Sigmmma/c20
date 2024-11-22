@@ -285,6 +285,14 @@ radiosity error: edge has more than four triangles (see red in error geometry)
 ```
 This error is caused by render-only geometry overlapping with too many duplicate faces in the same location. Remove accidental duplicates. If you are stacking up faces for visual effect, then space planes apart with a small gap.
 
+## Error: there are no lightmapped triangles on the map
+```
+radiosity error: there are no lightmapped triangles on the map
+-nan(ind)
+EXCEPTION halt in c:\mcc\main\h1\code\h1a2\sources\structures\radiosity\radiosity.c,#701: valid_radiosity_in(in)
+```
+Your BSP is composed entirely of non-lightmapped triangles like `+sky`, collision-only (`@`), or transparent shaders. Include some renderable materials using [shader_environment](~).
+
 ## Warning: Clusters have no background sound or sound environment
 During radiosity you may see this warning logged:
 
