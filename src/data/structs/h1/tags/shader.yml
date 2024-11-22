@@ -78,6 +78,13 @@ type_defs:
         type: ColorRGB
       - name: tint_color
         type: ColorRGB
+        comments:
+          en: |
+            Tints the light passing through this surface during [radiosity](~lightmaps),
+            resulting in coloured shadows. Black completely blocks light and white is
+            totally transparent. Tinting is supported on all shader types that can
+            be used in the BSP, but is only applicable when the transparent (`#`)
+            or double-sided (`%`) BSP [material symbols](~h1-materials#material-symbols) are set.
       - name: physics_flags
         type: ShaderPhysicsFlags
         meta:

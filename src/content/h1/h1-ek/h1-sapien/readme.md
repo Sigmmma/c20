@@ -30,6 +30,7 @@ thanks:
   InfernoPlus: Sound gain crash solution
   GAIGHER: Multi-core crash solution
   aLTis: Relight detail object collections tip
+  Shigure: Confirming fix for firing positions outside BSP
 ---
 **Sapien** is an interactive [scenario](~) and [BSP](~scenario_structure_bsp) editor used for populating levels with objects and AI encounters,
 configuring BSP [cluster data](~scenario_structure_bsp#clusters-and-cluster-data) like wind and sound environments, running [radiosity](#radiosity), compiling [scripts](~scripting), and more. It includes a [scripting console](~developer-console) and runs many of the same systems as Halo like AI and scripting, allowing you to preview encounters and inspect the game world with debug settings.
