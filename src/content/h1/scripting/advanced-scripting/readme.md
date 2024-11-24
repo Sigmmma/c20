@@ -80,14 +80,14 @@ fib 6 ; crash/fatal due to stack overflow
 You can create a [modulo/modulus operator](https://en.wikipedia.org/wiki/Modulo) with a static script and a global. The global is necessary because it forces a [cast](~general/scripting#value-type-casting) from `real` to `short`.
 
 ```hsc
-(global short mod_buffer 0)
+(global short modulo_tmp 0)
 
-(script static short (mod (short x) (short y))
-  (set mod_buffer (/ x y))
-  (- x (* mod_buffer y))
+(script static short (modulo (short x) (short y))
+  (set modulo_tmp (/ x y))
+  (- x (* modulo_tmp y))
 )
 
-(mod 10 3) ; returns 1
+(modulo 10 3) ; returns 1
 ```
 
 ## Square root

@@ -99,7 +99,7 @@ If you've never heard of a stack in the context of computer programming before,
 
 Notably, nesting function calls will consume additional stack memory. It is very, very easy to exceed the limits of this memory if you have enough nested statements. The maximum number of nested statements is somewhere between 10 and 16 levels deep, depending on if you're invoking static scripts, if you're invoking methods with parameters, and other things.
 
-Avoid unncessary expressions; for example `(+ 1 (+ 2 3))` can be simplified to `(+ 1 2 3)` and `begin` isn't necessary to wrap a single expression or at the top-level of a script.
+Avoid unnecessary expressions; for example `(+ 1 (+ 2 3))` can be simplified to `(+ 1 2 3)` and `begin` isn't necessary to wrap a single expression or at the top-level of a script.
 
 ```hsc
 ; Nested statements are statements like these, where many

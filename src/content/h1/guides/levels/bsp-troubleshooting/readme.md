@@ -230,6 +230,12 @@ This error does not show up in [WRL files](~wrl), but it is usually easy to find
 
 ![](weatherpoly_sides.mp4)
 
+## The transparent plasma shader cannot be used in the environment
+```
+### The transparent plasma shader sandbox\bsptest\shaders\bsptest_stp cannot be used in the environment.
+```
+This error prevents structure import from completing and indicates you're using a [shader_transparent_plasma](~) in the BSP, which is not supported. If this is unintentional, check your material names to make sure they're unique to your level and not unintentionally matching with a similarly named plasma shader.
+
 # Radiosity problems
 ## Degenerate triangle or triangle with bad UVs (blue)
 A _degenerate triangle_ error encountered during [radiosity](~h1-tool#lightmaps) is due to a triangle being degenerate in UV space (texture coordinates). In other words, the triangle has zero surface area in UV space because all 3 vertices are in a line or the same location so the triangle's texture will appear extremely stretched. This by itself isn't a problem for radiosity, but when the corresponding material has the [_simple parameterization_](~shader#tag-field-shader-flags-simple-parameterization) flag enabled you will encounter this error, since that flag forces radiosity to use texture UV coordinates as the basis for lightmap UVs and lightmap UVs must not be degenerate.
@@ -278,6 +284,14 @@ This likely has the same cause as [above](#exception-bitmap-format-type-valid-he
 radiosity error: edge has more than four triangles (see red in error geometry)
 ```
 This error is caused by render-only geometry overlapping with too many duplicate faces in the same location. Remove accidental duplicates. If you are stacking up faces for visual effect, then space planes apart with a small gap.
+
+## Error: there are no lightmapped triangles on the map
+```
+radiosity error: there are no lightmapped triangles on the map
+-nan(ind)
+EXCEPTION halt in c:\mcc\main\h1\code\h1a2\sources\structures\radiosity\radiosity.c,#701: valid_radiosity_in(in)
+```
+Your BSP is composed entirely of non-lightmapped triangles like `+sky`, collision-only (`@`), or transparent shaders. Include some renderable materials using [shader_environment](~).
 
 ## Warning: Clusters have no background sound or sound environment
 During radiosity you may see this warning logged:

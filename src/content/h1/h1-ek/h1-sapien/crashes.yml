@@ -73,4 +73,4 @@ crashes:
   - error: >-
       EXCEPTION halt in e:\jenkins\workspace\mcch1code-release\mcc\release\h1\code\h1a2\sources\ai\actor_firing_position.c,#1431: (test_surface_index >= 0) && (test_surface_index < collision_bsp->surfaces.count)
     solution: >-
-      The cause is not exactly known, but it is known that removing certain firing positions fixes this. Judging by the error message you may have a firing position outside the BSP. Check for any that you might suspect, then delete and recreate them.
+      This error happens when firing positions cannot detect a BSP surface, possibly from being outside the BSP. This may have happened if the BSP has changed shape since they were placed. Switch through each of your BSPs and look for firing positions in the _Hierarchy view_ with a red X beside them. Remove then recreate these firing positions.

@@ -525,6 +525,8 @@ type_defs:
       - name: metal thick
       - name: rubber
       - name: glass
+        comments:
+          en: Required for [breakable surfaces](~h1-materials#material-symbols) using the `-` symbol.
       - name: force field
       - name: grunt
       - name: hunter armor

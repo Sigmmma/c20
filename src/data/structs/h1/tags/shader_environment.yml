@@ -21,7 +21,10 @@ type_defs:
             Causes the shader to become _alpha tested_, using the bump map's
             alpha channel as the transparency mask. Where the alpha channel is darker than 50% grey this
             shader will not be drawn, and otherwise is fully opaque. This is
-            commonly used for foliage and grates.
+            commonly used for foliage and grates. Note that these surfaces will
+            still appear fully opaque to lightmaps and completely
+            block light unless marked [render-only](~h1-materials#material-symbols) (`!`)
+            to cast no shadows.
       - name: bump_map_is_specular_mask
       - name: true_atmospheric_fog
       - name: use_alternate_bump_attenuation
