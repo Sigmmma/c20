@@ -90,6 +90,12 @@ You can create a [modulo/modulus operator](https://en.wikipedia.org/wiki/Modulo)
 (modulo 10 3) ; returns 1
 ```
 
+If your divisor `n` is a power of 2, e.g. `16`, you can use H1A's `bitwise_and` with `n - 1` for a simpler modulo:
+
+```hsc
+(bitwise_and 20 15) ; equivalent to 20 % 16 = 4
+```
+
 ## Square root
 If you need a square root, it requires an approximation since there is no built-in way to calculate it. For positive values of `x`, we can use _Heron's Method_ to iteratively refine an estimate until a desired accuracy is reached:
 
