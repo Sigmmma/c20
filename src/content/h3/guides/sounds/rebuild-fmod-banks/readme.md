@@ -13,7 +13,7 @@ This guide assumes you are importing your sounds into a custom FMOD sound bank.
 {% /alert %}
 
 {% alert type="danger" %}
-You do not need to re-build your FMOD sound banks after every import. You can import as many sounds as you'd like and you'd only rebuild your FMOD sound banks once you're done importing your sounds.
+You do not need to rebuild your FMOD sound banks after every import. You can import as many sounds as you'd like and you'd only rebuild your FMOD sound banks once you're done importing your sounds.
 {% /alert %}
 
 # Introduction
@@ -33,7 +33,7 @@ tool report-sounds "sound"
 ```
 ![](b.png "")
 
-After the command is run, a `sounds_report_sizes.csv` file will be generated in the `reports\reports_00` folder. Make sure to run this command everytime you want to re-build your FMOD sound banks so that the `sounds_report_sizes.csv` file stays up-to-date with your newly imported sounds, if you have any.
+After the command is run, a `sounds_report_sizes.csv` file will be generated in the `reports\reports_00` folder. Make sure to run this command everytime you want to rebuild your FMOD sound banks so that the `sounds_report_sizes.csv` file stays up-to-date with your newly imported sounds, if you have any.
 
 ![](c.png "")
 
