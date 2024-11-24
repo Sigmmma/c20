@@ -1,5 +1,5 @@
 ---
-title: H3 ODST sound guides
+title: H3 sound guides
 stub: true
 ---
 
