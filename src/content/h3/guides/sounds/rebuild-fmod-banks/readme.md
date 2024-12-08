@@ -19,7 +19,7 @@ You do not need to rebuild your FMOD sound banks after every import. You can imp
 # Introduction
 This guide will teach you how to rebuild all of your FMOD sound banks without having to go through the process of reimporting every single sound. This is especially useful if you're running into any FMOD errors such as `sound:fmod: FSBank error! (7) An operating system based file error was encountered.. Are you missing the encoder DLL iny our bin directory?` when importing sounds.
 
-This guide is also compatible with the [H3ODSTEK](../../../../h3odst/h3odst-ek).
+This guide is also compatible with the [H3ODSTEK](../../../../h3odst/h3odst-ek) and [HREK](../../../../hr/hr-ek).
 
 ![](a.png "Example of Tool throwing an FMOD error after importing a new sound")
 # Setup
