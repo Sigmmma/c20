@@ -2,6 +2,8 @@
 title: Advanced techniques
 thanks:
   Conscars: GPS and game mode detection
+  num0005: Documenting `while-looping` for H1+
+  Bungie: Inventing while-looping in the H2 command scripts
 ---
 The set of [HaloScript](~scripting) functions covers most reasonable needs for singleplayer scripting. However, modders being modders means this sometimes isn't enough and creative solutions are needed.
 
@@ -32,7 +34,7 @@ This page features some example static scripts which use parameters, so be aware
 H1 HaloScript doesn't have local variables, so it's sometimes useful to create globals for scripts to set/get during their execution. This can avoid having to recalculate the same expressions repeatedly, or lets you force a cast to a different data type. Various examples on this page use globals this way.
 
 # Control
-## Looping
+## For-Looping
 HaloScript does not natively support loops, but you can use `continuous` scripts and an incrementing global to emulate one with the caveat that iterations are spread across game ticks. Since continuous scripts are executed once per tick and the game's tick rate is 30 Hz, this means a continuous script which needs to iterate over 60 items will take 2s to complete.
 
 ```hsc
@@ -49,6 +51,33 @@ HaloScript does not natively support loops, but you can use `continuous` scripts
   (if (>= player_index (list_count (players)))
     (set player_index 0)
   )
+)
+```
+
+## While-Looping
+Another approach to looping in HaloScript is to use `sleep_until` to construct a blocking while loop. The `sleep_until` function takes as its first argument a boolean value which can be the result of an expression including one with side effects, while the second argument controls how often the loop block is executed.
+By creating a block of functions using `begin` we can use it as a continious while-loop with a execution rate (in ticks) and exit condition we can decide on.
+In most cases this is not a clear improvement over just using a `continuous` script but in some situations it can be easier to work with - for instance when scripting complex AI behaviour, especially in later games that use `command scripts`.
+
+```hsc
+(global boolean exit_loop false)
+(script dormant our_function
+  ; loop until exit_loop is true
+  (sleep_until 
+    (begin ; open a multi-expression block 
+      (print "this is printed every two seconds")
+      ; check something or do something
+      (if (<= (ai_living_count reinforcements) 3) (ai_place reinforcements))
+      ; final statement inside the begin must be our exit condition
+      ; in this case a simple variable
+      exit_loop
+    )
+    60 ; run every 60 ticks (2 seconds)
+  )
+
+  ; script can now continue on to do other stuff
+  (ai_kill reinforcements)
+  (print "Cleaned up remaining reinforcements")
 )
 ```
 
