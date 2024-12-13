@@ -74,3 +74,7 @@ crashes:
       EXCEPTION halt in e:\jenkins\workspace\mcch1code-release\mcc\release\h1\code\h1a2\sources\ai\actor_firing_position.c,#1431: (test_surface_index >= 0) && (test_surface_index < collision_bsp->surfaces.count)
     solution: >-
       This error happens when firing positions cannot detect a BSP surface, possibly from being outside the BSP. This may have happened if the BSP has changed shape since they were placed. Switch through each of your BSPs and look for firing positions in the _Hierarchy view_ with a red X beside them. Remove then recreate these firing positions.
+  - error: >-
+      EXCEPTION halt in c:\mcc\main\h1\code\h1a2\sources\tag_files\tag_groups.c,#4440: #2 is not a valid scenario_detail_object_collection_palette_block index in [#0,#2)
+    solution: >-
+      You've possibly painted detail objects into the BSP and saved the BSP tag using Sapien, but not yet saved the scenario tag. This will result in Standalone not being able to find the palette entry.

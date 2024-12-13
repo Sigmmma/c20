@@ -13,25 +13,53 @@ type_defs:
     size: 2
     options:
       - name: screen_facing
+        comments:
+          en: |
+            The detail objects always face the viewer directly, even when
+            standing above them. **This type does not render in H1A**.
       - name: viewer_facing
+        comments:
+          en: |
+            The detail objects stand vertically but always spin to face toward
+            the viewer. This type is ideal for grass.
   DetailObjectCollectionTypeFlags:
     class: bitfield
     size: 1
     bits:
       - name: unused_a
+        meta:
+          unused: true
       - name: unused_b
+        meta:
+          unused: true
       - name: interpolate_color_in_hsv
+        comments:
+          en: |
+            Determines if random colour variation is interpolated in HSV space
+            instead of RGB. This results in colours transitioning through
+            intermediate hues like a rainbow.
       - name: more_colors
+        comments:
+          en: If set, HSV interpolation goes the "long way" around.
   DetailObjectCollectionObjectType:
     class: struct
     assert_size: 96
     fields:
       - name: name
         type: TagString
+        comments:
+          en: A name which makes this type easy to identify when painting in Sapien.
       - name: sequence_index
         type: uint8
+        comments:
+          en: |
+            Sets the sequence from the sprite plate used for this type, since
+            bitmaps can contain multiple [_sequences_](~bitmap#sequences) each with multiple _sprites_.
+            Sprite plates with a single sequence should just use index `0`.
       - name: flags
         type: DetailObjectCollectionTypeFlags
+        comments:
+          en: Flags altering the appearance of the detail object.
       - name: first_sprite_index
         type: uint8
         meta:
@@ -45,28 +73,69 @@ type_defs:
         meta:
           min: 0
           max: 1
+        comments:
+          en: |
+            Fraction of detail object colour to use instead of the base map
+            colour in the environment. A value of `0` means the detail objects
+            colours are fully multiplied by the sampled colour of the base map
+            they are painted over, while a value of `1` means they will be
+            unaffected by the environment and look like the sprite bitmap. This
+            setting doesn't affect sampling of lightmaps.
+            
+            Changing this setting requires [relighting detail objects](#colour-and-lighting).
       - type: pad
         size: 8
       - name: near_fade_distance
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            Sets the distance from the camera's view plane where the detail
+            objects start to fade out. Detail objects closer than this will be
+            opaque.
       - name: far_fade_distance
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            Sets the distance from the camera's view plane where the detail
+            objects fade out completely. This should usually be no higher than 8,
+            since only detail objects belong to cells within 8 units are rendered.
       - name: size
         type: float
         meta:
           unit: world units per pixel
+        comments:
+          en: |
+            Sets the size of a pixel of the detail object. For example, a
+            sprite that is 16 pixels tall at a scale of `0.004` will be
+            `16 * 0.004 = 0.064` world units tall ingame.
       - type: pad
         size: 4
       - name: minimum_color
         type: ColorRGB
+        comments:
+          en: |
+            Sets the start of the colour variation range. Set to white for no colour variation.
+            Halo will sample a random value from this range to multiply against the detail object
+            texture. The interpolation can be done in either RGB or HSV space depending on
+            [the flags](#tag-field-types-flags-interpolate-color-in-hsv).
       - name: maximum_color
         type: ColorRGB
+        comments:
+          en: |
+            Sets the end of the colour variation range. Set to white for no colour
+            variation.
       - name: ambient_color
         type: ColorARGBInt
+        comments:
+          en: |
+            Sets the ambient light colour of the detail objects, which is multiplied
+            against the texure when rendering. This takes precedence
+            over the sampled lightmap colour depending on the alpha value,
+            with `0` being lightmap only and `255` being this ambient colour only.
       - type: pad
         size: 4
   DetailObjectCollection:
@@ -82,10 +151,31 @@ type_defs:
     fields:
       - name: collection_type
         type: DetailObjectCollectionType
+        comments:
+          en: Sets how the detail objects are oriented.
       - type: pad
         size: 2
       - name: global_z_offset
         type: float
+        meta:
+          unit: world units
+        comments:
+          en: |
+            Sets a Z offset added to loaded detail objects to either raise them
+            above the ground or lower them into it, e.g. with a small negative value
+            to compensate for an empty border in the texture. This can be changed
+            without having to repaint. You do not need to set a Z offset to raise
+            sprites so their bottom edge touches the ground; the game already does this.
+            The Z offset is just for fine-tuning height.
+
+            Note that Sapien does not account for this modified Z height when resaving
+            the BSP tag, causing detail objects to be **shifted vertically**. If you
+            wish to avoid this, ensure your sprites are painted to the bottom of the
+            texture and set this value to `0`.
+
+            Historial tag extractors like the MEK have also not accounted for this
+            offset when extracting the BSP tag, resulting in incorrect detail object
+            locations. Ensure you're using an up-to-date extractor like [Invader](~invader-extract).
       - type: pad
         size: 44
       - name: sprite_plate
@@ -94,6 +184,13 @@ type_defs:
           tag_classes:
             - bitmap
           non_null: true
+        comments:
+          en: |
+            A reference to a [bitmap](~) which contains sprites for the detail object.
+            This bitmap **must have _sprites_ type** or the game will crash. The bitmap
+            can contain multiple sequences, indexed by each detail object type's
+            [sequence index](#tag-field-types-sequence-index). The alpha channel
+            of the sprite determines its transparency.
       - name: types
         type: Block
         type_args:

@@ -156,7 +156,11 @@ These hotkeys apply in scripted camera mode.
 See main page: [recorded-animations](~)
 
 ## Detail objects painting
-* {% key "Shift + Right Click" /%}: Erases all detail objects in a highlighted cell.
+With detail objects added to their palette, you can use the _Tool window_ to adjust painting settings and paint within the _Game window_.
+
+* {% key "Left Click" /%}: Paints detail objects around the cursor.
+* {% key "Right Click" /%}: Erases detail objects around the cursor.
+* {% key "Shift + Right Click" /%}: Erases all detail objects in the red-highlighted [cell](~detail_object_collection#cells).
 * {% key "Shift + Control + Right Click" /%}: As above, but also deleted the cell itself.
 * {% key "Shift + Control + L" /%}: Relight detail objects (useful after updating [lightmaps](~)).
 
@@ -230,7 +234,7 @@ When Sapien crashes, check `debug.txt` for hints. Most problems are due to inval
   dataPath="crashes/crashes"
   wrapPre=true
   columns=[
-    {name: "Error", key: "error", format: "codeblock"},
+    {name: "Error", key: "error", format: "code"},
     {name: "Solution", key: "solution", style: "width:50%"}
   ]
 /%}

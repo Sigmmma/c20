@@ -685,53 +685,59 @@ type_defs:
     class: struct
     assert_size: 32
     fields:
-      - name: no_name
+      - name: cell_x
         type: int16
-      - name: no_name_1
+      - name: cell_y
         type: int16
-      - name: no_name_2
+      - name: cell_z
         type: int16
-      - name: no_name_3
+      - name: offset_z
         type: int16
-      - name: no_name_4
+      - name: valid_layers_flags
         type: int32
-      - name: no_name_5
+      - name: start_index
         type: int32
-      - name: no_name_6
+        comments:
+          en: An index into _instances_ where this cell's individual detail objects start.
+      - name: count_index
         type: int32
+        comments:
+          en: An index into _counts_. The indexed element determines how many detail objects belong to this cell.
       - type: pad
         size: 12
   ScenarioStructureBSPGlobalDetailObject:
     class: struct
     assert_size: 6
     fields:
-      - name: no_name
+      - name: position_x
         type: int8
-      - name: no_name_1
+      - name: position_y
         type: int8
-      - name: no_name_2
+      - name: position_z
         type: int8
-      - name: no_name_3
+      - name: data
         type: int8
-      - name: no_name_4
+      - name: color
         type: int16
   ScenarioStructureBSPGlobalDetailObjectCount:
     class: struct
     assert_size: 2
     fields:
-      - name: no_name
+      - name: count
         type: int16
+        comments:
+          en: The number of detail object instances in the cell.
   ScenarioStructureBSPGlobalZReferenceVector:
     class: struct
     assert_size: 16
     fields:
-      - name: no_name
+      - name: z_reference_i
         type: float
-      - name: no_name_1
+      - name: z_reference_j
         type: float
-      - name: no_name_2
+      - name: z_reference_k
         type: float
-      - name: no_name_3
+      - name: z_reference_l
         type: float
   ScenarioStructureBSPDetailObjectData:
     class: struct
@@ -745,18 +751,32 @@ type_defs:
           T: ScenarioStructureBSPGlobalDetailObjectCell
         meta:
           hek_max_count: 262144
+        comments:
+          en: |
+            [Cells](~detail_object_collection#cells) organize detail objects
+            instances into 8x8 world unit groups.
       - name: instances
         type: Block
         type_args:
           T: ScenarioStructureBSPGlobalDetailObject
         meta:
           hek_max_count: 2097152
+        comments:
+          en: |
+            Contains all individual detail objects. Cells index into this block
+            with to get the list of detail objects in that cell.
       - name: counts
         type: Block
         type_args:
           T: ScenarioStructureBSPGlobalDetailObjectCount
         meta:
           hek_max_count: 8388608
+        comments:
+          en: |
+            Contains counts of detail object instances for each cell. This block is indexed by
+            each cell's _count index_. It's not clear why this layer of indirection
+            exists. Cells with identical instance counts do not share
+            count elements.
       - name: z_reference_vectors
         type: Block
         type_args:
@@ -1136,6 +1156,8 @@ type_defs:
           T: ScenarioStructureBSPDetailObjectData
         meta:
           hek_max_count: 1
+        comments:
+          en: Storage location for [detail_object_collection](~) painted onto this BSP.
       - name: runtime_decals
         type: Block
         type_args:

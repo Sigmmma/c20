@@ -7,7 +7,7 @@ thanks:
   gbMichelle: >-
     Researching how shadow maps work, extreme distance and particle limits
     testing
-  Conscars: Extreme distance limits testing
+  Conscars: Extreme distance limits and detail objects testing
 ---
 {% figure src="wireframe.jpg" %}
 Using `rasterizer_wireframe 1` demonstrates Halo's portal-based occlusion culling.
@@ -89,6 +89,11 @@ _Most_ of these issues have now been corrected in DX11 renderer in MCC.
   * Some specular lighting may be missing, which makes dynamic lights appear smaller in radius (e.g. flashlight).
   * Bump map shadows are only visible when dynamic lights are nearby, but should be visible at all times using [lightmap data](~lightmaps) for light direction and tint.
   * The "normal" _type_ may incorrectly mask primary and secondary detail maps when an alpha is present in the base map, visible in b40 exterior tech wall.
+
+# H1A regressions
+Althoug the H1A MCC renderer is much improved over the original Gearbox port to PC, some new issues exist:
+
+* [Detail objects](~detail_object_collection) with the _screen facing_ type do not render. This affects the fungal pods in c10.
 
 # Troubleshooting
 Some PC hardware configurations may cause problems with the renderer, specifically transparent shaders stretching/exploding, and mirror reflections exploding. If you are experiencing this, try forcing 1 core affinity for the game process.

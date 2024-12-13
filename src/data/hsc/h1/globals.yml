@@ -1664,6 +1664,8 @@ external_globals:
         vertices needed if we assume each projected decal region must be
         converted into quads.
   - slug: debug_detail_objects
+    tags:
+      - detail_object_collection
     info:
       en: |-
         ```hsc
