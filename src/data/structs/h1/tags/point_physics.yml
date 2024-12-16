@@ -7,10 +7,14 @@ type_defs:
     bits:
       - name: flamethrower_particle_collision
       - name: collides_with_structures
+        comments:
+          en: The points will collide with [scenario_structure_bsp](~) and [model_collision_geometry](~).
       - name: collides_with_water_surface
       - name: uses_simple_wind
       - name: uses_damped_wind
       - name: no_gravity
+        comments:
+          en: The points will be unaffected by gravity.
   PointPhysics:
     class: struct
     meta:

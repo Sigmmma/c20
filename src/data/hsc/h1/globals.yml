@@ -2108,6 +2108,7 @@ external_globals:
   - slug: debug_point_physics
     tags:
       - point_physics
+      - antenna
     info:
       en: |-
         ```hsc
@@ -2118,6 +2119,10 @@ external_globals:
         [flags](~flag), [antenna](~), [contrails](~contrail), [particles](~particle),
         and [particle_systems](~particle_system). It can help to enable `framerate_throttle`
         for these markers to render consistently.
+
+        Red markers indicate point_physics with the
+        [_collides with structures_](~point_physics#tag-field-flags-collides-with-structures)
+        flag, which are more computationally expensive.
   - slug: debug_pvs
     tags:
       - portals

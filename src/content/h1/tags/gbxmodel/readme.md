@@ -26,7 +26,7 @@ Each [part](#tag-field-geometries-parts) of a model can reference a different [s
 Nodes can be thought of as the model's "skeleton" and can be animated to move parts of the model. Each vertex can be influenced by up to 2 nodes. H1A and H1CE 1.10 allow up to 63 model nodes. Older versions of H1CE and H1X allow 48.
 
 # Markers
-Markers are simple named points with orientation attached to a model. Since they are parented by nodes, they can be animated. Markers can be used for a variety of purposes, such as attaching objects together with scripts (e.g. Pelicans carrying Warthogs), attaching widgets like [antenna](~), or firing [projectiles](~projectile) from in the case of weapons.
+Markers are simple named points with orientation attached to a model. Since they are parented by nodes, they can be animated. Markers can be used for a variety of purposes, such as attaching objects together with scripts (e.g. Pelicans carrying Warthogs), attaching widgets like [antenna](~), or firing [projectiles](~projectile) from in the case of weapons. You can view object markers with `render_model_markers 1`.
 
 This tag only contains the marker data but other tags usually determine how they are used. However, certain marker names have special behaviour in-engine:
 

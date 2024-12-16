@@ -16,22 +16,66 @@ type_defs:
     fields:
       - name: spring_strength_coefficient
         type: Fraction
+        comments:
+          en: |
+            Scales the tag-level _spring strength coefficient_, allowing for an
+            antenna which varies stiffness over its length. For most antennas
+            with uniform spring strength this should just be `1` for each vertex.
+
+            Note that this field controls the spring strength of the **previous**
+            segment's base point. For example:
+
+            * For vertex index `0` this field has no effect.
+            * For vertex index `1` this field affects the joint at the model marker.
+            * For vertex index `2` this field affects the joint at the start of the second segment.
+            * There is no way to scale the strength at the base of the final segment.
       - type: pad
         size: 24
       - name: angles
         type: Euler2D
+        comments:
+          en: |
+            Adds a "bend" to the antenna at this point, with yaw determining
+            the radial angle and pitch determing the amount of bend away from straight.
+            Note that the yaw is not adjusted for the object's current "forward"
+            direction and is instead global.
       - name: length
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            Sets the length of this segment. The bitmap is scaled proportionally,
+            so doubling the length doubles the width. The length must not be `0`
+            or [an assertion](#limits) will be raised during sprite rendering,
+            even if the sequence index doesn't exist or alpha is `0`.
       - name: sequence_index
         type: Index
+        comments:
+          en: |
+            Sets the sequence from the antenna bitmap used for this segment.
+            This allows the antenna to have a different texture for different
+            parts of its length. For example, the Warthog antenna has an unused
+            second sequence (index `1`) which would add a red dot to the end.
+            If the sequence doesn't exist then the segment will be invisible.
       - type: pad
         size: 2
       - name: color
         type: ColorARGB
+        comments:
+          en: |
+            Sets a colour for this segment which is multiplied against the
+            bitmap (including alpha). For uncoloured antennas you should set
+            this to white with full alpha (`1` for every subfield).
       - name: lod_color
         type: ColorARGB
+        comments:
+          en: |
+            Described by Guerilla as "color at this vertex for the low-LOD line primitives".
+            However, stock tags do not make use of this field (all zero alpha)
+            and antenna never revert to a line primitive regardless of
+            _cutoff/falloff pixels_ values, at least in CE and H1A. This may be
+            an Xbox-only feature or was never implemented.
       - type: pad
         size: 40
       - name: offset
@@ -53,24 +97,61 @@ type_defs:
     fields:
       - name: attachment_marker_name
         type: TagString
+        comments:
+          en: |
+            The [model marker](~gbxmodel#markers) name this antenna is attached to.
+            If the model has multiple markers with this name, **only one** will have
+            the antenna. If this field is blank or the marker does not exist then
+            the antenna will be attached to the object's root node.
       - name: bitmaps
         type: TagDependency
         meta:
           tag_classes:
             - bitmap
+        comments:
+          en: |
+            A sprites bitmap containing segments of the antenna. The bitmap can
+            contain multiple sequences which you can index with the vertex _sequence index_
+            to give different parts of the antenna different appearances. The
+            alpha channel controls transparency of the segment.
       - name: physics
         type: TagDependency
         meta:
           tag_classes:
             - point_physics
+        comments:
+          en: |
+            Physics settings for each vertex of the antenna. See
+            [antenna physics](#antenna-physics).
       - type: pad
         size: 80
       - name: spring_strength_coefficient
         type: Fraction
+        comments:
+          en: |
+            Strength of the spring. Larger values make the string stronger,
+            with `1` being totally rigid and `0` being rope-like with no
+            stiffness at all.
       - name: falloff_pixels
         type: float
+        comments:
+          en: |
+            Assumed to be the on-screen size where antennas begin to fade out,
+            but doesn't seem to work correctly. In H1A and CE, setting this
+            value over 100 results in the antenna being partially faded out but
+            not by distance/on screen size. This may have worked on Xbox but
+            testing is needed to confirm that.
+            
+            You should set this value to `100` like stock tags.
       - name: cutoff_pixels
         type: float
+        comments:
+          en: |
+            Assumed to be the on-screen size where antennas fade out entirely
+            or transition to low-LOD line primitives. Again, this doesn't seem
+            to work correctly in H1A and MCC.
+
+            You should set this to `60` like stock tags.
       - name: length
         type: float
         meta:
@@ -81,3 +162,12 @@ type_defs:
         type: Block
         type_args:
           T: AntennaVertex
+        meta:
+          hek_max_count: 20
+        comments:
+          en: |
+            Vertices represent the start of each antenna segment and define the
+            segment's springiness, angle, length, and appearance. The first element
+            in the block is the part of the antenna attached to the marker and
+            the final element is where it ends. This block must have at least 2
+            elements (or the antenna won't exist), and can contain up to 20.
