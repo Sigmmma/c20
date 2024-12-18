@@ -28,7 +28,7 @@ Antennas with _point_physics_ flags [_collides with structures_](~point_physics#
 Antenna physics are only simulated when on-screen (based on the [bounding sphere](~object#tag-field-bounding-radius) of the object they're a widget on). This is particularly noticeable when a low but non-zero [_spring strength coefficient_](#tag-field-spring-strength-coefficient) is used, since the antenna will wiggle when reappearing on screen before coming to a rest state again.
 
 # Limits
-The [game state](~game-state) has limited space for simulated antennas (12 in legacy, 24 in H1A). Extra antennas in the map will not be rendered.
+The [game state](~game-state#datum-arrays) has limited space for simulated antennas (12 in legacy, 24 in H1A). Extra antennas in the map will not be rendered.
 
 Antenna segments should not be 0-length or else an assertion will be hit:
 ```

@@ -290,7 +290,7 @@ type_defs:
             * Setting the shadow map size for [dynamic object shadows](~object#shadows-and-lighting).
             * Selecting an appropriate [LOD](~gbxmodel#level-of-detail).
             * Skipping [collision](~model_collision_geometry) checks.
-            * Skipping simulation of [antenna](~) widgets on the object when off-screen.
+            * Skipping simulation of [antenna](~) and [flag](~) widgets on the object when off-screen.
             * Determining if spawn points are blocked by an object.
             * The interaction radius of [device_control](~).
             * The default activation radius of automatic door [device_machine](~) if unset.

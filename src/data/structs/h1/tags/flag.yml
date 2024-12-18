@@ -11,16 +11,30 @@ type_defs:
     size: 2
     options:
       - name: flat
+        comments:
+          en: A simple straight edge, used by the game's stock flag.
       - name: concave_triangular
+        comments:
+          en: A triangular cutout forms two points at the corners.
       - name: convex_triangular
+        comments:
+          en: The trailing edge's corners are cut off, forming an arrow.
       - name: trapezoid_short_top
+        comments:
+          en: The trailing edge is cut at an angle with the top edge short.
       - name: trapezoid_short_bottom
+        comments:
+          en: The trailing edge is cut at an angle with the bottom edge short.
   FlagAttachedEdgeShape:
     class: enum
     size: 2
     options:
       - name: flat
+        comments:
+          en: A simple straight edge, used by the game's stock flag.
       - name: concave_triangular
+        comments:
+          en: The edge will have a triangular cutout between attachment points.
   FlagAttachmentPoint:
     class: struct
     assert_size: 52
@@ -29,12 +43,23 @@ type_defs:
         type: int16
         meta:
           unit: vertices
+        comments:
+          en: |
+            The number of cells between this attachment point and the next.
+            The final attachment point should use the value `0`. For example,
+            a flag with 3 attachment points and _height_ of `9` vertices should
+            use attachment point heights of `4`, `4`, and `0` respectively.
       - type: pad
         size: 2
       - type: pad
         size: 16
       - name: marker_name
         type: TagString
+        comments:
+          en: |
+            Name of the model marker where this point attaches. If the name
+            is empty or the marker does not exist then the point will attach
+            to the object's root node.
   Flag:
     class: struct
     meta:
@@ -49,40 +74,74 @@ type_defs:
         type: IsUnusedFlag
       - name: trailing_edge_shape
         type: FlagTrailingEdgeShape
+        comments:
+          en: The shape of the trailing edge.
       - name: trailing_edge_shape_offset
         type: int16
         meta:
           unit: vertices
+        comments:
+          en: |
+            Determines the number of vertices the trailing edge shape is offset.
+            A value `0` places the shape exactly on the trailing edge. Positive
+            values will push it off the edge of the flag while negative values
+            will move it inwards.
       - name: attached_edge_shape
         type: FlagAttachedEdgeShape
+        comments:
+          en: |
+            The shape of the attached edge. This will appear between each pair
+            of attachment points.
       - type: pad
         size: 2
       - name: width
         type: int16
         meta:
           unit: vertices
+        comments:
+          en: |
+            Flag size from attached to trailing edge. This counts the number of
+            vertices (cells+1), not the number of cells.
       - name: height
         type: int16
         meta:
           unit: vertices
+        comments:
+          en: |
+            Flag size along the direction of attachment. This counts the number of
+            vertices (cells+1), not the number of cells. This value should be 1
+            higher than the sum of all attachment points'
+            [_height to next attachment_](#tag-field-attachment-points-height-to-next-attachment)
+            or else the flag will not appear. This must also be an odd number
+            or else the flag will not appear or be streteched to the world origin (0, 0, 0).
       - name: cell_width
         type: float
         meta:
           unit: world units
+        comments:
+          en: Width of the cell between each pair of vertices.
       - name: cell_height
         type: float
         meta:
           unit: world units
+        comments:
+          en: Height of the cell between each pair of vertices.
       - name: red_flag_shader
         type: TagDependency
         meta:
           tag_classes:
             - shader
+        comments:
+          en: |
+            The appearance of the flag when used for red team
+            (netgame flag [team index](~scenario#tag-field-netgame-flags-usage-id) `0`).
       - name: physics
         type: TagDependency
         meta:
           tag_classes:
             - point_physics
+        comments:
+          en: The physics to use for each vertex of the flag.
       - name: wind_noise
         type: float
         meta:
@@ -94,9 +153,17 @@ type_defs:
         meta:
           tag_classes:
             - shader
+        comments:
+          en: |
+            The appearance of the flag when used for blue team
+            (netgame flag [team index](~scenario#tag-field-netgame-flags-usage-id) `1`).
       - name: attachment_points
         type: Block
         type_args:
           T: FlagAttachmentPoint
         meta:
           hek_max_count: 4
+        comments:
+          en: |
+            A series of attachment points for the flag's attached edge. There must
+            be at least 2 attachment points or the flag will be ignored.

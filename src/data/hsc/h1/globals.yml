@@ -2109,6 +2109,7 @@ external_globals:
     tags:
       - point_physics
       - antenna
+      - flag
     info:
       en: |-
         ```hsc
