@@ -28,7 +28,7 @@ Flags are not simulated when off-screen (based on the [bounding sphere](~object#
 Along the _attachment edge_ of the flag you can define a series of 2-4 attachment points at a model marker. The flag's height will span these attachment points and be fixed in place at each of them, with a configurable number of cells between the attachment points. The markers used don't need to be unique; it would be possible for the leading edge to form a loop by reusing a marker for the first and final attachment points. The game requires that the sum of all attachment points' [_height to next attachment_](#tag-field-attachment-points-height-to-next-attachment) is 1 less than [_height_](#tag-field-height). The final attachment point should use height `0`.
 
 {% figure src="attachments.jpg" inline=true %}
-A 9x9 cell flag with 3 attachment points at markers `flag top` (A), `flag bottom` (B), and `left hand cyborg` (C). A and B have _height to next attachment_ set to `4`.
+A 9x9 vertex flag with 3 attachment points at markers `flag top` (A), `flag bottom` (B), and `left hand cyborg` (C). A and B have _height to next attachment_ set to `4`.
 {% /figure %}
 
 # Shapes
