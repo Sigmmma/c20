@@ -1,6 +1,6 @@
 ---
 title: H3 Guerilla
-stub: true
+stub: false
 about: 'tool:H3-Guerilla'
 img: h3-guerilla.jpg
 caption: A screenshot of Guerilla

@@ -1,6 +1,6 @@
 ---
 title: Halo 2 Anniversary MP Mod Tools
-stub: true
+stub: false
 about: 'tool:H4-EK'
 info: |
   * Release date: December 2022

@@ -1,6 +1,6 @@
 ---
 title: Halo 2 Vista Editing Kit (2007)
-stub: true
+stub: false
 about: 'tool:H2V-EK'
 img: h2ek.jpg
 caption: >-

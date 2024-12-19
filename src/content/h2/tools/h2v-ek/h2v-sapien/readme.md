@@ -1,6 +1,6 @@
 ---
 title: H2V Sapien (2007)
-stub: true
+stub: false
 about: 'tool:H2V-Sapien'
 img: netgame_equipment_04_large.jpg
 caption: H2V Sapien being used to place item spawns in `example.scenario`

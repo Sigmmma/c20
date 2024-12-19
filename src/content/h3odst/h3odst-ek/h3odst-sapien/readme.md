@@ -1,6 +1,6 @@
 ---
 title: H3 ODST Sapien
-stub: true
+stub: false
 about: 'tool:H3ODST-Sapien'
 img: h3odst-sapien.jpg
 caption: Sapien being used to edit zones in `sc100.scenario`

@@ -1,6 +1,6 @@
 ---
 title: H2V Tool (2007)
-stub: true
+stub: false
 about: 'tool:H2V-Tool'
 img: h2tool.jpg
 caption: Using H2V Tool in CMD to view the command list

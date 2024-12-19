@@ -1,6 +1,6 @@
 ---
 title: Pathfinding
-stub: true
+stub: false
 ---
 Halo 2 uses an automatically generated pathfinding mesh using the collision mesh of the BSP as the base.
 It takes this mesh and adds scenery and instance geometry collision meshes. It then removes any faces that have a slope greater than 45 degrees (and therefore not considered walkable) and then optimises the mesh so it's only made up of convex sectors and uses the minimum number of sectors possible. This is a rather complicated process and somewhat fragile - it will fail if the BSP has any open edges. See figures 1-4 for examples.

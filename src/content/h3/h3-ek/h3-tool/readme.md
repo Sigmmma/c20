@@ -1,6 +1,6 @@
 ---
 title: H3 Tool
-stub: true
+stub: false
 about: 'tool:H3-Tool'
 img: h3-tool.jpg
 caption: Using H3-Tool in CMD to view the command list

@@ -1,6 +1,6 @@
 ---
 title: H2 Tool (2021)
-stub: true
+stub: false
 about: 'tool:H2-Tool'
 img: h2tool.jpg
 caption: Using H2 Tool in CMD to view the command list
