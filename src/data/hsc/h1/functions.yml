@@ -5283,17 +5283,19 @@ functions:
       en: |-
         ```hsc
         (<boolean> vehicle_test_seat <vehicle> <string> <unit>)
-        (vehicle_test_seat banshee_mp_1 "driver" (player0))
+        (vehicle_test_seat example_ghost "G-driver" (player0))
         ```
-        Tests whether the named seat has a specified unit in it
+        Tests whether the named seat has a specified unit in it.
+        This accepts a seat label which is not case sensitive.
   - slug: vehicle_test_seat_list
     info:
       en: |-
         ```hsc
         (<boolean> vehicle_test_seat_list <vehicle> <string> <object_list>)
-        (vehicle_test_seat_list ghost_mp_2 "driver" (players))
+        (vehicle_test_seat_list warthog5 "W-driver" (players))
         ```
-        Tests whether the named seat has an object in the object list
+        Tests whether the named seat has an object in the object list.
+        This accepts a seat label which is not case sensitive.
   - slug: vehicle_unload
     info:
       en: >-
@@ -5301,12 +5303,13 @@ functions:
 
         (<short> vehicle_unload <unit> <string>)
 
-        (vehicle_unload hog w-driver)
+        (vehicle_unload hog "W-driver")
 
         ```
 
         Makes units get out of a vehicle from the substring-specified seats (e.g.
-        "CD-passenger". Empty string matches all seats).
+        "CD-passenger". Empty string matches all seats). The seat label is not
+        case sensitive.
   - slug: version
     info:
       en: |-
