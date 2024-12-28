@@ -9,7 +9,7 @@ imports:
     - Point2D
     - TagEngineId
     - Point2DInt
-    - TagID
+    - ID
 type_defs:
   BitmapType:
     class: enum
@@ -251,10 +251,16 @@ type_defs:
         meta:
           cache_only: true
         endianness: little
-      - type: pad
-        size: 4
-      - type: pad
-        size: 4
+      - name: hardware_format
+        type: ptr32
+        comments:
+          en: Direct3D resource
+        meta:
+          cache_only: true
+      - name: base_address
+        type: ptr32
+        meta:
+          cache_only: true
         comments:
           en: >-
             this appears to be a pointer specific to the tool editing it; it

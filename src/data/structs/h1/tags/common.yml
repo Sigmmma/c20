@@ -10,10 +10,15 @@ type_defs:
   Fraction:
     class: alias
     type: float
+  # Index as used in tag defs
   Index:
     class: alias
     type: uint16
   TagID:
+    class: alias
+    type: uint32
+  # Like Tag ID but for arbitrary non-tag datum like scripts, sounds, textures
+  ID:
     class: alias
     type: uint32
   TagEngineId:

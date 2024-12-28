@@ -11,6 +11,7 @@ thanks:
   Jakey: Sharing knowledge on child scenarios
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+  Aerocatia: Trigger volume types reversing
 ---
 **Scenarios** are the main "root" tag representing a playable level. It is essential for defining all gameplay elements such as AI encounters, item spawns, multiplayer flags, [scenery](~) locations, and other objects. It may reference one or multiple [scenario_structure_bsp](~). Level scripts, cinematics, and trigger volumes are also defined in this tag.
 

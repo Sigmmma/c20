@@ -11,6 +11,7 @@ thanks:
   Jesse: Misc info
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+  smx: Tip on internal fields
 ---
 **Bitmaps** tags store textures used for the environment, objects, cube maps, sprites, effects, menus, and more. Don't be confused by the name; this is not a `.bmp` file and it cannot be directly opened in [image editing software](~art-tools#texturing). The purpose of the tag is to store metadata about a texture and its image data, possibly compressed in a format like [DXT1][s3], ready for the engine and GPU to use. It can also store multiple images in a single tag.
 

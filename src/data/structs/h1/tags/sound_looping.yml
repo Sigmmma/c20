@@ -165,8 +165,8 @@ type_defs:
         type: float
         count: 2
         endianness: little
-      - name: unknown_int
-        type: uint32
+      - name: runtime_scripting_sound
+        type: TagID
         meta:
           cache_only: true
         endianness: little

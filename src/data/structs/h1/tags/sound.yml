@@ -7,7 +7,7 @@ imports:
     - Block
     - TagString
     - Index
-    - TagID
+    - ID
     - TagDataOffset
 type_defs:
   SoundFlags:
@@ -227,17 +227,24 @@ type_defs:
         type: float
         meta:
           cache_only: true
-        endianness: little
-      - name: unknown_ffffffff_0
+      - name: used_permutations
         type: uint32
         meta:
           cache_only: true
-        endianness: little
-      - name: unknown_ffffffff_1
-        type: uint32
+        comments:
+          en: engine internal bitfield, set to `0xFFFFFFFF` on cache build
+      - name: last_permutation_index
+        type: Index
         meta:
           cache_only: true
-        endianness: little
+        comments:
+          en: set to null index on cache build
+      - name: next_permutation_index
+        type: Index
+        meta:
+          cache_only: true
+        comments:
+          en: set to null index on cache build
       - name: permutations
         type: Block
         type_args:
@@ -387,18 +394,26 @@ type_defs:
 
             uses entire size of samples for ADPCM (multiply by 130 / 36 *
             channel count to get sample count)
-      - type: pad
-        size: 8
-      - name: unknown_ffffffff_0
+      - name: cumulative_promotion_length
         type: uint32
         meta:
           cache_only: true
-        endianness: little
-      - name: unknown_ffffffff_1
+      - name: last_promotion_time
         type: uint32
         meta:
           cache_only: true
-        endianness: little
+      - name: scripted_sound_remaining_time
+        type: uint32
+        meta:
+          cache_only: true
+        comments:
+          en: set to `0xFFFFFFFF` on cache build
+      - name: scripted_sound_index
+        type: ID
+        meta:
+          cache_only: true
+        comments:
+          en: set to null id on cache build
       - name: pitch_ranges
         type: Block
         type_args:

@@ -65,7 +65,7 @@ type_defs:
         meta:
           cache_only: true
         endianness: little
-      - name: unknown_two
+      - name: specular_radius_multiplier
         type: float
         meta:
           cache_only: true

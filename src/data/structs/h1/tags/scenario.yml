@@ -750,8 +750,8 @@ type_defs:
     class: struct
     assert_size: 96
     fields:
-      - name: unknown
-        type: uint16
+      - name: type
+        type: ScenarioTriggerVolumeType
         endianness: little
       - type: pad
         size: 2
@@ -759,24 +759,21 @@ type_defs:
         type: TagString
         comments:
           en: The name of the volume which can be used in scripts.
-      - name: float_1
+      - name: parameters
         type: float
-      - name: float_2
-        type: float
-      - name: float_3
-        type: float
-      - name: float_4
-        type: float
-      - name: float_5
-        type: float
-      - name: float_6
-        type: float
-      - name: float_7
-        type: float
-      - name: float_8
-        type: float
-      - name: float_9
-        type: float
+        count: 3
+        meta:
+          hidden: true
+        comments:
+          en: appears to be zero
+      - name: rotation_vector_forward
+        type: Vector3D
+        comments:
+          en: One of two vectors used to derive this volume's rotation matrix.
+      - name: rotation_vector_up
+        type: Vector3D
+        comments:
+          en: One of two vectors used to derive this volume's rotation matrix.
       - name: starting_corner
         type: Point3D
         comments:
@@ -2112,6 +2109,24 @@ type_defs:
       - name: left
       - name: right
       - name: center
+  ScenarioTriggerVolumeType:
+    class: enum
+    size: 2
+    options:
+      - name: fixed
+        comments:
+          en: |
+            Indicates that this trigger volume is a simple axis-aligned bounding
+            box. This seems to be an older type unused by stock tags;
+            Sapien will upgrade it to rotational but the game can still test
+            against it.
+      - name: rotational
+        comments:
+          en: |
+            The "normal" trigger volume type which supports rotation; the
+            test point is transformed by the inverse of the rotation matrix
+            derived from the trigger volume's forward and up vectors before
+            comparison with the corner bounds.
   ScenarioCutsceneTitleFlags:
     class: bitfield
     size: 4
