@@ -60,7 +60,7 @@ These material names are hard-coded into the [tools](~h2-tool) and have special 
 | `+media` | Reserved special material that has many uses and can be used in conjunction with the special shader symbols to define its use and behavior. For example, it can be used with the `$` fog plane shader symbol to make `+media$`, which can be applied to faces to construct a fog plane used to define a volumetric [fog](~) region (assigned using [Sapien](~h2-sapien)).
 
 # Material symbols
-Material symbols are added to the **start** or **end** of the material name and give the surface certain attributes or behaviours in-engine.
+Material symbols are added to the **end** of the material name and give the surface certain attributes or behaviours in-engine.
 
 | Symbol | Usage
 |--------|------

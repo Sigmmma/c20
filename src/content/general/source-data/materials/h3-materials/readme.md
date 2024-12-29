@@ -62,7 +62,7 @@ These material names are hard-coded into the [tools](~h3-tool) and have special 
 | `+slip_surface` | Surfaces that use this material will be used as slip surfaces. Used in design tags
 
 # Material symbols
-Material symbols are added to the **start** or **end** of the material name and give the surface certain attributes or behaviours in-engine.
+Material symbols are added to the **end** of the material name and give the surface certain attributes or behaviours in-engine.
 
 | Symbol | Usage
 |--------|------

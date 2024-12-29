@@ -38,7 +38,7 @@ These material names are hard-coded into Tool and have special meaning when crea
 | `+unused` | Indicates that the surface is unused for rendering or collision purposes, and is only used in conjunction with the material symbol `$` like `+unused$` to define [fog planes](~/h1/tags/scenario_structure_bsp#fog-planes) when there's no other suitable material to put the symbol on (like a water surface). An example of `+unused$` in use would be like _Gephyrophobia's_ fog. Using this special material with other symbols has no effect.
 
 # Material symbols
-Material symbols are added to the **start** or **end** of the material name and give the surface certain attributes or behaviours in-engine.
+Material symbols are added to the **end** of the material name and give the surface certain attributes or behaviours in-engine.
 
 | Symbol | Usage
 |--------|------
