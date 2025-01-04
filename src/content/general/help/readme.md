@@ -25,7 +25,7 @@ If you do have an unidentified problem, try applying the following general metho
 * Study stock or [extracted tags](~invader-extract) to see how Bungie and other modders accomplished something. Think about how tags might interact, e.g. through matching animation labels or object functions.
 * Have you kept any backups of your game files or tags that you can restore to a working state? Consider what has changed between then and now to narrow down the cause.
 * Reproduce the problem in isolation. Create a test map which reproduces your problem while ruling out any other causes. Try to eliminate each possibility until you're left with one probable cause.
-* Check `reports\debug.txt`. Tools like [Sapien and Standalone](~mod-tools#tools-overview) produce logs where you can get more information about crashes.
+* Check `reports\debug.txt`. Tools like [Sapien and Standalone](~mod-tools#tools-overview) produce logs where you can get more information about crashes. Learn to [read these messages](~blam#how-to-read-exception-messages) for clues.
 * With Halo's long history of modding, odds are someone has had a similar problem. Try searching for past discussions on community websites and [Discord channels][discord].
 * Look for information related to a previous game. Many features come from earlier iterations of the engine.
 

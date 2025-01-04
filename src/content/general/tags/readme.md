@@ -32,6 +32,11 @@ A _tag path_ is like a URL for a tag; it corresponds to where you find a tag und
 
 Many tag groups can _reference_ other tags to take advantage of common assets, like different [effects](~h1/tags/effect) referencing the same [particle](~h1/tags/particle). These references can be set when editing tags in Guerilla or Sapien and are stored using tag paths. Don't forget to update references to a tag if you need to move or rename it. Broken references will prevent your level from loading or building!
 
+# Blocks and elements
+Tags sometimes need to contain lists of information/data, such as all the _seats_ for a vehicle. In Guerilla you will see these as expandable regions that allow the addition, duplication, or removal of items within. These lists are called _blocks_ and their items called _elements_.
+
+Elements within a block are sometimes referred to by an [_index_](https://en.wikipedia.org/wiki/Index_notation#In_computing) number, which [start at 0](https://en.wikipedia.org/wiki/Zero-based_numbering). For example, the first element is at index `0`, the second at `1`, and the last of `8` elements is at index `7`. You may sometimes need to refer to block elements in one tag from another tag using an index field when using Guerilla. It is invalid to use indices which do not exist in the block.
+
 # Tag loading
 The tag files in your `tags` folder (also called _loose tags_) are not used by the game as-is. The game instead uses _processed_ versions of these tags, e.g. by precalculating additional fields or replacing tag references with more efficient indices or pointers. The goal is to convert a tag intended for editing into a tag efficiently used by the engine.
 
