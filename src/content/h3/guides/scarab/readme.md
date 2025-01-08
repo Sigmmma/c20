@@ -1,29 +1,18 @@
 ---
 title: Scarab usage
 about: guide
+img: gnr.jpg
 keywords:
   - giant
   - scarab
   - ai
 thanks:
   Rataz: Writing this guide
-  RejectedShotGun: Streaming while adding a scarab to a map.
+  RejectedShotGun: Streaming while adding a scarab to a map
 ---
+This guide provides general info on how to set up the scarab in a custom scenario. The Scarab is a fun opponent to add to custom scenarios, but requires more steps to set up than other AI characters.
 
-General info on how to set up the scarab in a custom scenario.
-
-# Scarab
-
-The Scarab is a fun opponent to add to custom scenarios. It reqiures more steps to set up than other ai characters.
-
-
-# AI Scarab setup
-
-## Importing the Scarab.
-
-Two different tags must be imported to have a working scarab.
-
-### Summary
+# Overview
 
 1. Add giant tag.
 2. Add character tag.
@@ -32,12 +21,14 @@ Two different tags must be imported to have a working scarab.
 5. Create a squad with scarab as the character, and set the initial zone to the giants zone.
 6. Optionally put gunners on the plasma turrets using scripting.
 
+# Importing the Scarab
+Two different tags must be included in Sapien to have a working scarab: the scarab [giant](~) and its [character](~).
 
-### Import the giant tag
+## Import the giant tag
 
-1.  Edit Types 
+1. Edit Types 
 
-    ![](edit_types.png)
+   ![](edit_types.png)
 
 2. Select `giant`
 
@@ -55,7 +46,7 @@ Two different tags must be imported to have a working scarab.
 
     ![](add_giant3.png)
 
-### Import the character tag
+## Import the character tag
 
 1. Edit Types
 
@@ -65,7 +56,7 @@ Two different tags must be imported to have a working scarab.
 
     ![](add_scarab_character.png)
 
-3. Find the scarab ai folder
+3. Find the scarab AI folder
 
     ![](scarab_character_path.png)
 
@@ -74,7 +65,7 @@ Two different tags must be imported to have a working scarab.
     ![](add_scarab_character2.png)
 
 
-## Create a giants zone
+# Create a giants zone
 
 1. Selecting the Zones folder.
 2. Click New Instance.
@@ -87,16 +78,16 @@ Two different tags must be imported to have a working scarab.
 2. Set the zone to be a `giants zone`.
 
     ![](giants_zone.png)
-    
-
-## Create giant hints
 
 
-4. Under AI/Hints, Select `Giant sector hints`
+# Create giant hints
+
+
+4. Open _AI > Hints > Giant sector hints_ in the Hierarchy window.
     
     ![](giant_sector_hints.png)
 
-6. Right click in the scene view to place points to mark out an area where the scarab is allowed to walk.  
+6. Right click in the scene view to place points to mark out an area where the scarab is allowed to walk.
 
     ![](area2.jpg)
 
@@ -105,21 +96,21 @@ Two different tags must be imported to have a working scarab.
 
     ![](area_drag.jpg)
 
-7. Place a couple `Giant rail hints` within the giant sector hints area using rightclick.
+7. Place a couple _Giant rail hints_ within the giant sector hints area using right click.
 
     ![](railhints.png)
 
     ![](railhints2.jpg)
 
-8. Click `Generate All Pathfinding`.
+8. Click _Scenarios > Generate all pathfinding data_
 
     ![](generate_pathfinding.png)
 
-9. Click Scenarios -> Map reset.
+9. Click _Scenarios > Map reset_.
 
-## Set up a squad
+# Set up a squad
 
-1. Select Squads folder.
+1. Select _Squads_ folder.
 
     ![](squads_folder.png)
 
@@ -127,17 +118,17 @@ Two different tags must be imported to have a working scarab.
 
     ![](squad_new_instance.png)
 
-3. Select `Fire Teams`
+3. Select _Fire teams_
 
     ![](sel_fireteam.png)
 
-4. Set the fireteam `normal diff count` to 1.
+4. Set the fireteam _normal diff count_ to `1`.
 
-5. Select `Starting points`.
+5. Select _Starting points_.
 
     ![](sel_startingpoints.png)
 
-6. Place a startingpoint by rightclicking in the scene view.
+6. Place a starting point by right clicking in the scene view.
 
     ![](place_startingpoint.jpg)
 
@@ -147,7 +138,7 @@ Two different tags must be imported to have a working scarab.
 
 8. Select the squad and rename it something memorable like `scarab squad`.
 
-9. Set the scarab squad's `initial zone` to the giants zone created earlier in this guide.
+9. Set the scarab squad's _initial zone_ to the giants zone created earlier in this guide.
     
     ![](set_scarab_zone.png)
 
@@ -155,13 +146,13 @@ Two different tags must be imported to have a working scarab.
 
     ![](place_squad.png)
 
-11. Use `ctrl+q` to spawn in and the Scarab will attack and walk around.
+11. Use {% key "Ctrl + Q" /%} to spawn in and the Scarab will attack and walk around.
 
 
 ## Adding side gunners.
 
-1. Add 3 more starting points to the squad and increase Normal Diff Count to 4.
-2. On the new starting points, set the character type to Brute or Grunt
+1. Add 3 more starting points to the squad and increase _Normal diff count_ to `4`.
+2. On the new starting points, set the character type to Brute or Grunt.
 
     ![](gunner_settings.png)
 
@@ -169,26 +160,21 @@ Two different tags must be imported to have a working scarab.
 
     ![](gunner_starting_pts.png)
 
-4. Use `vehicle_load_magic` and `object_get_turret` in a script to put the gunners on the turrets.  An example script is provided below.  The script assumes that the squad is called `scarab_squad`
+4. Use `vehicle_load_magic` and `object_get_turret` in a script to put the gunners on the turrets. An example script is provided below. The script assumes that the squad is called `scarab_squad`.
 
+```hsc
+(script startup my_mission
+  (print "Mission begin")
+  (place_scarab)
+)
 
-    ```
-    (script startup mymission
-        (print "Mission begin")
-        (placeScarab)
-    )
+(script static void place_scarab
+  ; Place the squad
+  (ai_place scarab_squad)
 
-    (script static void placeScarab
-
-      ;Place the squad
-      (ai_place scarab_squad)
-
-
-      ;Put gunners on the turrets
-      (vehicle_load_magic (object_get_turret (ai_get_object scarab_squad/starting_locations_0)  0) "turret_g" (ai_actors scarab_squad/gnr1))
-      (vehicle_load_magic (object_get_turret (ai_get_object scarab_squad/starting_locations_0)  1) "turret_g" (ai_actors scarab_squad/gnr2))
-      (vehicle_load_magic (object_get_turret (ai_get_object scarab_squad/starting_locations_0)  2) "turret_g" (ai_actors scarab_squad/gnr3))
-    )
-    ```
-
-![](gnr.jpg)
+  ; Put gunners on the turrets
+  (vehicle_load_magic (object_get_turret (ai_get_object scarab_squad/starting_locations_0) 0) "turret_g" (ai_actors scarab_squad/gnr1))
+  (vehicle_load_magic (object_get_turret (ai_get_object scarab_squad/starting_locations_0) 1) "turret_g" (ai_actors scarab_squad/gnr2))
+  (vehicle_load_magic (object_get_turret (ai_get_object scarab_squad/starting_locations_0) 2) "turret_g" (ai_actors scarab_squad/gnr3))
+)
+```
