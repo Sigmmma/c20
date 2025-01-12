@@ -29,6 +29,7 @@ hljs.registerLanguage("yml", yamlLang);
 hljs.registerLanguage("hlsl", clikeLang);
 hljs.registerLanguage("plaintext", plaintextLang);
 hljs.registerLanguage("c#", cSharpLang);
+hljs.registerLanguage("cs", cSharpLang);
 hljs.registerLanguage("sh", shellLang);
 hljs.registerLanguage("xml", xmlLang);
 hljs.registerLanguage("js", jsLang);

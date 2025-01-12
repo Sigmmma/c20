@@ -95,7 +95,7 @@ If you use GitHub actions you can switch to the developer command prompt using `
 
 
 # Initialising ManagedBlam for Halo 3
-This process differs slightly from the Reach+ ManagedBlam version exemplified on this page https://c20.reclaimers.net/hr/API/. ManagedBlam *must* be running in order for code to be able to open and edit tag files.
+This process differs slightly from the Reach+ ManagedBlam version exemplified on [this page](/hr/API/). ManagedBlam *must* be running in order for code to be able to open and edit tag files.
 The line required to start ManagedBlam is `ManagedBlamSystem.InitializeProject()` - this must be run before any tag reading/manipulation code, with a reference to your H3EK root folder as the second argument:
 ```cs
 string h3ek = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\H3EK"

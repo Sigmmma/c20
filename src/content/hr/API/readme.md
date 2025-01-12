@@ -16,7 +16,7 @@ Halo Reach replaced the legacy [MFC-based][mfc] Guerilla content editor with the
 This is a wrapper around core Halo engine (aka "blam") functionality. You can use this to work with Halo Reach tag files and not worry about maintaining compatibility with official tools. For more details on this API and how to use it outside of Foundation see [this page](~managed-blam).
 
 Sample code for loading a tag file and introspecting it.
-```c#
+```cs
 namespace Sample
 {
     class Program
