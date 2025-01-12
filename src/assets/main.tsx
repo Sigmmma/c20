@@ -1,12 +1,10 @@
 import * as preact from "preact";
 import { IconName } from "../lib/components/Icon/names";
 import Locale from "../lib/components/Locale/Locale";
-import ThemeSelector from "../lib/components/PageWrapper/ThemeSelector";
 import UnitConverter from "../lib/components/UnitConverter/UnitConverter";
 import DataTableFilter from "../lib/components/DataTable/DataTableFilter";
-import Nav from "../lib/components/Nav/Nav";
 import MiniSearch from "minisearch";
-import { th } from "@markdoc/markdoc/dist/src/schema";
+import PageWrapper from "../lib/components/PageWrapper/PageWrapper";
 
 //todo
 //const is404Page = !!document.head.querySelector('[itemprop = Is404]');
@@ -41,7 +39,6 @@ const intersectionObserver = new IntersectionObserver(entries => {
     .map(it => it.target.id)
     .find(it => it != "");
   if (scrolledToHeadingId && scrolledToHeadingId != currentHeadingId) {
-    console.log(scrolledToHeadingId);
     document.querySelector(`.toc a[href$=${currentHeadingId}]`)?.classList.remove("highlight");
     document.querySelector(`.toc a[href$=${scrolledToHeadingId}]`)?.classList.add("highlight");
     currentHeadingId = scrolledToHeadingId;
@@ -53,51 +50,6 @@ const intersectionObserver = new IntersectionObserver(entries => {
 document.querySelectorAll(".article-main h1, .article-main h2, .table-wrapper > table.struct > tbody > tr.field-type-Block > td.field-name > span").forEach(heading => {
   intersectionObserver.observe(heading);
 });
-
-
-const wrapper = document.querySelector(".wrapper");
-const wrapperStateClasses = ["menu-view", "body-view", "toc-view"];
-let wrapperState = 1;
-
-function setWrapperState(newState: number) {
-  wrapperState = Math.max(0, Math.min(newState, wrapperStateClasses.length - 1));
-  wrapperStateClasses.forEach((className, i) => {
-    if (i == wrapperState) {
-      wrapper!.classList.add(className);
-    } else {
-      wrapper!.classList.remove(className);
-    }
-  });
-}
-
-const swipeThreshold = 60;
-const body = document.querySelector("body");
-let startX: number | undefined = undefined;
-let startY: number | undefined = undefined;
-body!.addEventListener("touchstart", (e) => {
-  startX = e.touches[0].clientX;
-  startY = e.touches[0].clientX;
-}, false);
-body!.addEventListener("touchmove", (e) => {
-  if (startX === undefined || startY === undefined) return;
-  const diffX = e.touches[0].clientX - startX;
-  const diffY = e.touches[0].clientY - startY;
-
-  // if (Math.abs(diffY) > Math.abs(diffX)) return;
-
-  if (diffX > swipeThreshold) {
-    console.log("Swiped right");
-    setWrapperState(wrapperState - 1);
-    startX = undefined;
-    startY = undefined;
-  } else if (diffX < -swipeThreshold) {
-    console.log("Swiped left");
-    setWrapperState(wrapperState + 1);
-    startX = undefined;
-    startY = undefined;
-  }
-}, false);
-
 
 //flash heading matching URL hash
 function hashFlash() {
@@ -120,14 +72,6 @@ function hashFlash() {
 }
 window.addEventListener("hashchange", hashFlash, false);
 hashFlash();
-
-document.querySelectorAll(".wrapper-toc a").forEach((a: HTMLAnchorElement) => {
-  a.addEventListener("click", (e) => {
-    setWrapperState(1);
-  });
-});
-
-
 
 //theme stuff
 const themes: {name: string, syntax: string, icon: IconName}[] = [
@@ -161,14 +105,6 @@ const miniSearchConfig = {
   }
 };
 
-const handleMenuToggled = () => {
-  setWrapperState(wrapperState != 0 ? 0 : 1);
-};
-
-const handleTocToggled = () => {
-  setWrapperState(wrapperState != 2 ? 2 : 1);
-};
-
 const searchIndexPromise = fetch(`/assets/search-index_${lang}.json`)
   .then(res => res.text())
   .then(indexJson => MiniSearch.loadJSON(indexJson, miniSearchConfig));
@@ -176,22 +112,26 @@ const pageTreePromise = fetch(`/assets/page-tree_${lang}.json`)
   .then(res => res.json());
 
 Promise.all([searchIndexPromise, pageTreePromise]).then(([searchIndex, pageTree]) => {
-  const navMount = document.getElementById("nav-mountpoint")!;
-  const pageId = navMount.dataset.pageid!;
+  const mountpoint = document.getElementById("wrapper-mountpoint")!;
+  const wrapperChild = document.getElementById("wrapper-child")!;
+  wrapperChild.remove(); //prevent being modified by preact render
+  const {navHeadings, pageId} = JSON.parse(mountpoint.dataset.bootstrap!);
   preact.render(
     <Locale.Provider value={lang}>
-      <Nav
+      <PageWrapper
         pageId={pageId}
+        navHeadings={navHeadings}
+        pageTree={pageTree}
+        searchIndex={searchIndex}
         themes={themes}
         initialTheme={savedTheme}
         onThemeSelected={handleThemeSelected}
-        searchIndex={searchIndex}
-        pageTree={pageTree}
-        onSearchFocused={(focused) => setWrapperState(focused ? 0 : 1)}
-        onMenuToggled={handleMenuToggled}
-        onTocToggled={handleTocToggled}
-      />
+      >
+        <div id="wrapper-child-holder" ref={el => {
+          el?.appendChild?.(wrapperChild)
+        }}/>
+      </PageWrapper>
     </Locale.Provider>,
-    navMount!
+    mountpoint
   );
 });

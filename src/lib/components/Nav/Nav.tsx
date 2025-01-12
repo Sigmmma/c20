@@ -15,9 +15,10 @@ export type NavProps = {
   onThemeSelected?: (string) => void;
   searchIndex?: MiniSearch;
   pageTree?: NavTree;
-  onSearchFocused?: (focused: boolean) => void;
-  onMenuToggled?: () => void;
-  onTocToggled?: () => void;
+  wrapperState: number;
+  onMenuToggled: () => void;
+  onTocToggled: () => void;
+  onSearchFocused: (focused: boolean) => void;
 };
 
 function toggle(pageId: string, expandedPages: object): object {
@@ -82,10 +83,10 @@ export default function Nav(props: NavProps) {
             />
           }
           <button className="nobg mobile-only" id="toggle-menu" title={localize("menu")} onClick={props.onMenuToggled}>
-            <Icon name="search"/>
+            <Icon name={props.wrapperState == 0 ? "file-text" : "search"}/>
           </button>
           <button className="nobg mobile-only" id="toggle-toc" title={localize("toc")} onClick={props.onTocToggled}>
-            <Icon name="list"/>
+            <Icon name={props.wrapperState == 2 ? "file-text" : "list"}/>
           </button>
         </div>
       </header>

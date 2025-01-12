@@ -168,50 +168,59 @@ export default function renderPage(input: RenderInput): RenderOutput {
   const thisPagePath = input.pageId;
 
   const {metaboxProps, keywords} = getAboutContent(ctx, front);
+
+  const pageWrapperBootstrapJson = JSON.stringify({
+    pageId: ctx.pageId,
+    navHeadings: navHeadings
+  });
   
   const htmlDoc = "<!DOCTYPE html>\n" + renderToString(
-    <Ctx.Provider value={ctx}>
-      <Locale.Provider value={ctx.lang}>
-        <HtmlDoc
-          title={front?.title}
-          baseUrl={input.baseUrl}
-          noSearch={front?.noSearch}
-          ogDescription={createPlaintextPreview(bodyPlaintext)}
-          ogImg={front?.img}
-          ogOtherLangs={Object.keys(navOtherLangs)}
-          ogTags={front?.keywords}
-          preloadJson={input.preloadJson}
-          localizedPath={thisPageLocalizedPath}
-          path={thisPagePath}
-        >
+    <Locale.Provider value={ctx.lang}>
+      <HtmlDoc
+        title={front?.title}
+        baseUrl={input.baseUrl}
+        noSearch={front?.noSearch}
+        ogDescription={createPlaintextPreview(bodyPlaintext)}
+        ogImg={front?.img}
+        ogOtherLangs={Object.keys(navOtherLangs)}
+        ogTags={front?.keywords}
+        preloadJson={input.preloadJson}
+        localizedPath={thisPageLocalizedPath}
+        path={thisPagePath}
+      >
+        <div id="wrapper-mountpoint" data-bootstrap={pageWrapperBootstrapJson}>
           <PageWrapper
-            title={front?.title}
+            pageId={ctx.pageId}
             pageTree={input.pageTree}
             navHeadings={navHeadings}
           >
-            <Article
-              stub={front?.stub}
-              title={front?.title}
-              navParents={navParents}
-              otherLangs={navOtherLangs}
-              metabox={metaboxProps}
-            >
-              <Md content={content}/>
-              {front?.thanks &&
-                <ThanksList thanks={front.thanks}/>
-              }
+            <div id="wrapper-child">
+              <Ctx.Provider value={ctx}>
+                <Article
+                  stub={front?.stub}
+                  title={front?.title}
+                  navParents={navParents}
+                  otherLangs={navOtherLangs}
+                  metabox={metaboxProps}
+                >
+                  <Md content={content}/>
+                  {front?.thanks &&
+                    <ThanksList thanks={front.thanks}/>
+                  }
 
-              {input.debug &&
-                <pre style={{color: "green"}}>
-                  {bodyPlaintext}
-                </pre>
-              }
-            </Article>
+                  {input.debug &&
+                    <pre style={{color: "green"}}>
+                      {bodyPlaintext}
+                    </pre>
+                  }
+                </Article>
+              </Ctx.Provider>
+            </div>
           </PageWrapper>
-          <script src="/assets/main.js"></script>
-        </HtmlDoc>
-      </Locale.Provider>
-    </Ctx.Provider>
+        </div>
+        <script src="/assets/main.js"></script>
+      </HtmlDoc>
+    </Locale.Provider>
   );
 
   const searchDoc = front?.noSearch ? null : {

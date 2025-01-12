@@ -1,30 +1,63 @@
-import {type PageLink, type NavTree} from "../../content";
+import {type NavTree} from "../../content";
 import {type ComponentChildren} from "preact";
+import { useState } from "preact/hooks";
 import TableOfContents, {type NavHeading} from "../Article/TableOfContents";
 import Nav from "../Nav/Nav";
-import { useCtx } from "../Ctx/Ctx";
+import { IconName } from "../Icon/names";
+import MiniSearch from "minisearch";
+
+const wrapperStateClasses = ["menu-view", "body-view", "toc-view"];
 
 export type PageWrapperProps = {
-  title?: string;
+  pageId: string;
   navHeadings?: NavHeading[];
   pageTree?: NavTree;
+  searchIndex?: MiniSearch;
+  themes?: {name: string, icon: IconName}[];
+  initialTheme?: string;
+  onThemeSelected?: (string) => void;
   children?: ComponentChildren;
 };
 
 export default function PageWrapper(props: PageWrapperProps) {
-  const ctx = useCtx();
-  const pageId = ctx?.pageId ?? "/";
+  const [wrapperState, setWrapperState] = useState<number>(1);
+
+  const onMenuToggled = () => {
+    setWrapperState(wrapperState != 0 ? 0 : 1);
+  };
+
+  const onTocToggled = () => {
+    setWrapperState(wrapperState != 2 ? 2 : 1);
+  };
+
+  const onSearchFocused = (focused) => {
+    setWrapperState(focused ? 0 : 1);
+  };
+
+  const onTocHeadingClicked = () => {
+    setWrapperState(1);
+  }
+
   return (
-    <div className="wrapper body-view">
-      <div id="nav-mountpoint" data-pageid={pageId}>
-        <Nav
-          pageId={pageId}
-          pageTree={props.pageTree}
-        />
-      </div>
+    <div className={`wrapper ${wrapperStateClasses[wrapperState] ?? "body-view"}`}>
+      <Nav
+        pageId={props.pageId}
+        pageTree={props.pageTree}
+        wrapperState={wrapperState}
+        onMenuToggled={onMenuToggled}
+        onTocToggled={onTocToggled}
+        onSearchFocused={onSearchFocused}
+        themes={props.themes}
+        initialTheme={props.initialTheme}
+        onThemeSelected={props.onThemeSelected}
+        searchIndex={props.searchIndex}
+      />
       <div className="wrapper-toc">
         {props.navHeadings && props.navHeadings.length > 0 &&
-          <TableOfContents headings={props.navHeadings}/>
+          <TableOfContents
+            headings={props.navHeadings}
+            onHeadingClicked={onTocHeadingClicked}
+          />
         }
       </div>
       <main role="main" className="wrapper-body">
