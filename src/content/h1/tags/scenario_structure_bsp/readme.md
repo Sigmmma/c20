@@ -15,7 +15,7 @@ keywords:
   - bsp
 thanks:
   MosesOfEgypt: Tag structure research
-  Conscars: Collision BSP structure and phantom BSP research
+  Conscars: Collision BSP, phantom BSP, and lens flare research
   Galap: Researching the effect of cluster sky index on lighting
   Hari: Collision BSP compilation reversing
   Kavawuvi: Invader tag definitions
@@ -98,20 +98,31 @@ It is important that you still create weather polyhedra even if you have portals
 
 Within the tag, the polyhedra are represented as a center point, bounding radius, and up to 16 planes which enclose a volume. Therefore your polyhedra technically don't need to be _sealed_ volumes because they are limited to their bounding radius. A polyhedron can be created with as little as 1 plane.
 
+# Lens flare markers
+
+{% figure src="lens-flare-markers.jpg" %}
+In a10, lens flare markers were generated for fluorescent lights.
+{% /figure %}
+
+When a BSP shader references a [lens_flare](~), _lens flare markers_ are automatically created and stored in the BSP tag during each [structure import](~h1-tool#structure) or updated with [structure-lens-flares](~h1-tool#structure-lens-flares). These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
+
+A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens flares. However, there is a much lower limit to how many the game will draw at a given time, exactly how many is unknown.
+
+## Marker placement
+{% figure src="flares_placement.jpg" %}
+Lens flare placements shown in red with `rasterizer_lens_flares_occlusion_debug 1`.
+{% /figure %}
+
+Tool evenly spaces BSP lens flare markers within the [2D convex hull](https://en.wikipedia.org/wiki/Convex_hull) of each set of connected [coplanar](https://en.wikipedia.org/wiki/Coplanarity) faces sharing the same shader. This means if you create relatively complex shapes for lens flares to be placed within, lens flares may end up outside those faces. An example would be a lighting ring bordering a room's floor. Tool will fill the entire room's floor with BSP lens flares, not just within the faces of the border lights.
+
+You can prevent this from happening by either keeping lens flare generating geometry separated or convex, or duplicating the shader and alternating which shader is used for each segment of the lighting strip.
+
+The rotational alignment of the lens flares is not well defined. They are sometimes axis-aligned and sometimes rotated at an angle.
+
 # Lightmaps
 _Lightmaps_ are the visual representation of the BSP, and are stored in a separate representation from its collision data. The lightmaps data includes the renderable triangles and a precalculated radiosity bitmap.
 
 _See main page: [Lightmaps](~)._
-
-# Lens flare markers
-
-{% figure src="lens-flare-markers.jpg" %}
-In a10, lens flare markers were generated for fluorescent lights
-{% /figure %}
-
-When a BSP shader references a [lens_flare](~), _lens flare markers_ are automatically created and stored in the BSP tag during initial [structure import](~h1-tool#structure) or updated with [structure-lens-flares](~h1-tool#structure-lens-flares). These are used to give lights a "glowy" appearance. If the shader has a _lens flare spacing_ of `0`, a single lens flare is placed on the surface. Otherwise, the lens flares are evenly spaced within the surface according to the spacing value (world units).
-
-A BSP can contain up to 65535 lens flare markers, and up to 256 types of lens flares. However, there is a much lower limit to how many the game will draw at a given time, exactly how many is unknown.
 
 # Collision artifacts
 ## Phantom BSP

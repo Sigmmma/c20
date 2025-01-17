@@ -94,6 +94,9 @@ type_defs:
     size: 2
     bits:
       - name: coplanar
+        comments:
+          en: |
+            Indicates that the faces in this material are [coplanar](https://en.wikipedia.org/wiki/Coplanarity).
       - name: fog_plane
   ScenarioStructureBSPMaterial:
     class: struct
@@ -119,32 +122,60 @@ type_defs:
         type: int32
       - name: centroid
         type: Point3D
+        comments:
+          en: |
+            For _coplanar_ materials, the centroid is the world-space
+            coordinates of their center. It's unknown how this is calculated.
+        meta:
+          unit: world units
       - name: ambient_color
         type: ColorRGB
+        comments:
+          en: For lightmapped materials (_bitmap_ index >= 0), always set to RGB `(0.2, 0.2, 0.2)` when radiosity is run. Otherwise zeroed.
       - name: distant_light_count
         type: uint16
+        comments:
+          en: For lightmapped materials (_bitmap_ index >= 0), always set to `2` when radiosity is run. Otherwise zeroed.
       - type: pad
         size: 2
       - name: distant_light_0_color
         type: ColorRGB
+        comments:
+          en: For lightmapped materials (_bitmap_ index >= 0), always set to RGB `(1, 1, 1)` when radiosity is run. Otherwise zeroed.
       - name: distant_light_0_direction
         type: Vector3D
+        comments:
+          en: For lightmapped materials (_bitmap_ index >= 0), always set to IJK `(-0.577, -0.577, -0.577)` when radiosity is run. Otherwise zeroed.
       - name: distant_light_1_color
         type: ColorRGB
+        comments:
+          en: For lightmapped materials (_bitmap_ index >= 0), always set to RGB `(0.4, 0.5, 0.5)` when radiosity is run. Otherwise zeroed.
       - name: distant_light_1_direction
         type: Vector3D
+        comments:
+          en: For lightmapped materials (_bitmap_ index >= 0), always set to IJK `(0, 0, 1)` when radiosity is run. Otherwise zeroed.
       - type: pad
         size: 12
       - name: reflection_tint
         type: ColorARGB
+        comments:
+          en: For lightmapped materials (_bitmap_ index >= 0), always set to ARGB `(0.5, 1, 1, 1)` when radiosity is run. Otherwise zeroed.
       - name: shadow_vector
         type: Vector3D
+        comments:
+          en: For lightmapped materials (_bitmap_ index >= 0), always set to IJK `(0, 0, -1)` when radiosity is run. Otherwise zeroed.
       - name: shadow_color
         type: ColorRGB
+        comments:
+          en: For lightmapped materials (_bitmap_ index >= 0), always set to RGB `(0, 0, 0)` when radiosity is run. Otherwise zeroed.
       - name: plane
         type: Plane3D
+        comments:
+          en: For _coplanar_ materials, the world-space plane definition of its faces. Otherwise zeroed.
       - name: breakable_surface
         type: Index
+        comments:
+          en: Index into the _breakable surfaces_ block if this surface is breakable. Otherwise `-1`.
       - type: pad
         size: 2
       - name: rendered_vertices_type
