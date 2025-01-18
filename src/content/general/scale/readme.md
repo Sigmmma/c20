@@ -18,3 +18,5 @@ Therefore this is the scale we use for conversions below. As an example, the H1 
 Enter values into the boxes below to see their conversions, or select a preset.
 
 {% unitConverter /%}
+
+See also more [H1-specific player movement measurements](~h1/guides/levels/additional#player-movement-measurements).

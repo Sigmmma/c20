@@ -5,6 +5,7 @@ keywords:
   - exporter
 thanks:
   General_101: Writing this guide
+  xScruffyDaSasquatchx: Player movement measurements
 redirects:
   - /h1/guides/map-making/level-creation/blender-level-modeling/blender-level-creation-additional-info
 ---
@@ -59,5 +60,28 @@ Once the option is enabled all markers in the BSP will be rendered on screen. Sp
 
 # Multiple BSPs
 It is common for singleplayer maps to have multiple BSPs. This helps manage game resources and avoid BSP limits for long missions. To accomplish this, place multiple JMS files in the same `models` folder for the level. Each JMS will be compiled into it's own unique [BSP tag](~scenario_structure_bsp) for your [scenario](~) to use. Do not attempt to use multiple BSPs in an MP scenario unless you are trying to achieve a scripted day/night setting and each BSP is geometrically identical.
+
+# Player movement measurements
+Some values below come from trial and error testing and may not be exact.
+
+| Measurement | Value |
+|-------------|-------|
+| Player width (Hallway width min) | 0.4wu/4ft/40jms
+| Player height standing (Hallway height min) | 0.7wu/7ft/70jms
+| Player height crouching (Vent height min) | 0.5wu/5ft/50jms (don't actually make hallways and vents this tiny!)
+| Step height max standing | 0.06wu/0.6ft/6jms
+| Step height max moving | 0.12wu/1.2ft/12jms (make railings taller than this!)
+| Jump height max standing | 0.71wu/7.1ft/71jms
+| Jump height max moving | 0.79wu/7.9ft/79jms
+| Jump distance moving | ~2.75wu/~27.5ft/~275jms
+| Crouch jump height max standing | 0.9wu/9ft/90jms
+| Crouch jump height max moving | 0.98wu/9.8ft/98jms
+| Grenade jump height standing | ~1.6wu/~16ft/~160jms
+| Grenade jump + crouch jump height standing | ~1.7wu/~17ft/~170jms
+| Weapon through ceiling max moving | 0.49wu/4.9ft/49jms
+| Health pack through wall max moving | 0.38wu/3.8ft/38jms
+| Max walkable slope angle | 45 degrees
+
+See also general [scale and unit conversions information](~scale).
 
 [wiki-polyhedron]: https://en.wikipedia.org/wiki/Convex_polytope
