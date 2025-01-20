@@ -15,16 +15,16 @@ childOrder:
   - reclaimer-python
   - wrl-to-obj-converter
 ---
-The **Mozz Editing Kit**, previously called the **Moses Editing Kit** or **Mo's Editing Kit** (MEK), is an [open source][mek-repo] and cross-platform Python-based toolset which offers alternatives to and supplements the tools of the [HEK](~custom-edition#halo-editing-kit). 
+The **Mozz Editing Kit**, previously called the **Moses Editing Kit** or **Mo's Editing Kit** (MEK), is an [open source][mek-repo] and cross-platform Python-based toolset which offers alternatives to and supplements the tools of the [HEK](~custom-edition#halo-editing-kit) and MCC mod tools.
 
-Being pre-MCC, it only supports Custom Edition and should not be used with MCC tags. However, unlike [invader](~) it does support [OpenSauce tags](~opensauce#new-tag-groups).
-
-The MEK is still used for some of its unique features:
+Some key features of the MEK include:
+* Supporting [OpenSauce tags](~opensauce#new-tag-groups).
 * [Map deprotection](~maps#protected-maps).
 * Exporting and importing [tag blocks](~tags#blocks), saving time when copying data across tags.
+* Tag extraction.
 
-{% alert type="danger" %}
-The MEK project unmaintained and has known issues. Consider using alternatives like [Invader](~) and the updated [H1A-EK](~h1-ek) for MCC.
+{% alert type="info" %}
+The MEK was originally a pre-MCC project only supporting Custom Edition, however it received renewed development in 2024 and 2025 to add features, fix old bugs, upgrade dependencies, and support MCC differences. Ensure you're using the [latest test version](https://discord.com/channels/228263208299790338/577227356918513665/1330790947704803368) (link may be outdated).
 {% /alert %}
 
 # Refinery
