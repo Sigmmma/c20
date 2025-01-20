@@ -69,6 +69,8 @@ For levels it's recommended to apply any transforms present on your level geomet
 
 ![](apply_transforms.jpg)
 
+You can also lock the object transforms in the _Object properties_ panel so they cannot be accidentally scaled, rotated, or moved.
+
 ## Parenting objects
 Hold {% key "Ctrl" /%} and click objects in the viewport or outliner to multi-select. The last object you selected is considered the active object (highlighted yellow) and will be the parent of all other objects you have selected (highlighted orange) when parenting to object.
 
