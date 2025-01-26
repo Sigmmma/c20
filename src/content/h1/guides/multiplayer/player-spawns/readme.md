@@ -1,8 +1,11 @@
 ---
 title: Player spawns
 ---
+**Spawn points**, or **player starting points**, are locations in the level where players will spawn throughout a multiplayer game.
 
-# How Does the Player Spawn System Work?
+Use [Sapien](~h1-sapien) to place them, selecting the _Player starting points_ folder of the _Hierarchy view_. Right click within the level to place the spawn points. Don't forget to set at least one of the types to a multiplayer gametype; `none` is reserved for singleplayer spawns.
+
+# How does the player spawn system work?
 
 The player spawn point selection logic in Halo: Combat Evolved is relatively straightforward. This is how it is described in the [Official Halo PC Editing Resource (Bungie)](http://nikon.bungie.org/misc/hek_tutorial/references/general/general_ld_info.html):
 
@@ -10,13 +13,13 @@ The player spawn point selection logic in Halo: Combat Evolved is relatively str
 
 In other words, a dead player will generally respawn at the spawn point closest to a living teammate. Therefore, in matches with smaller teams (for example, in 2v2 gametypes), living players have significantly greater individual influence over their teammate's spawn location. This is commonly exploited in competitive 2v2 Team Slayer (among other gametypes), in both offensive and defensive strategies.  
 
-With a good understanding of a map's spawn points, an attacking player can predict an enemy's next spawn, or even deliberately keep an enemy alive to raise the chances of an unfavorable spawn. A defending player can use the same map knowledge to spawn their teammate in a safe or otherwise advantageous location. A player can stand within 1 world unit (3.048m or 10 ft) of a spawn point to block it, preventing their teammate from spawning there. An enemy player can block a spawn from further away, with the chance to block increasing starting from a distance of 5 world units (15.24m or 50 ft). 
-&nbsp;  
+With a good understanding of a map's spawn points, an attacking player can predict an enemy's next spawn, or even deliberately keep an enemy alive to raise the chances of an unfavorable spawn. A defending player can use the same map knowledge to spawn their teammate in a safe or otherwise advantageous location. A player can stand within 1 [world unit](~scale) (3.048m or 10 ft) of a spawn point to block it, preventing their teammate from spawning there. An enemy player can block a spawn from further away, with the chance to block increasing starting from a distance of 5 world units (15.24m or 50 ft). 
+
 {% alert type="info"%}
 NOTE: Spawn point selection occurs a brief moment before the player spawns in
 {% /alert %}
 
-## Random Spawns
+## Random spawns
 
 If there are no living teammates within 6 world units (18.288m or 60 feet) of any spawn points, the player will be granted a random spawn (simply known as a "random" among competitive players). Of course, this is always true during a free-for-all match, but it is also important for level designers to consider how this quirk applies to team-based matches. Over the years, the competitive 2v2 metagame has evolved to the point where players have memorized the "randoms" on popular maps. The knowledge of each map's "spawn tricks" is exploited to great effect at the top levels of play.
 
@@ -28,33 +31,31 @@ These shaded areas covering much of the playable area in Hang 'Em High represent
 
 It has also been discovered that there is a very small probability of what is referred to as a "random random." This is attributed to unexpected random spawns that cannot be explained using the basic spawn logic described above. In reality, there is a very small chance that any spawn in the map can be randomly selected, except those which are 100% blocked by another player. It is extremely rare to be granted a "random random" spawn, and as such, experienced level designers do not generally consider this phenomenon when evaluating spawn point placements in a map.
 
-# Placing Spawn Points
+# Placing spawn points
 {% figure src="prisoner_spawns.jpg" alt="Prisoner spawn points" %}
 Player starting locations (spawn points) at "back wall" shown for all gametypes on Prisoner
 {% /figure %}
 
 Proper spawn placement is a fundamental element of balance and a major contributor to a map's replay value. While there is no exact science to spawn placement, there are a few tried-and-true principles to bear in mind. The spawn selection logic is directly related to the density of points placed, their locations, and even which gametypes they should apply for. For example, if spawn points are packed together too densely in a given location, it can be almost impossible for players to break out of a cycle of spawning and dying (commonly referred to as a "spawn trap"). With fewer spawn points, there is a higher likelihood of one or more being blocked or out of range, therefore increasing the chances of a random spawn. In a similar sense, note that spawns can be influenced through walls and floors/ceilings, so spawn points can be placed deliberately to raise the chances of a dead player being granted a safe spawn in an adjacent room.  
 
-Be sure to use the Type dropdown selections for each Player Starting Location as a means of balancing spawns separately for Slayer, CTF, King of the Hill, etc. It is highly recommended to avoid simply using the same spawn points across all gametypes.  
-&nbsp;  
-&nbsp;
+Be sure to use the Type dropdown selections for each Player Starting Location as a means of balancing spawns separately for Slayer, CTF, King of the Hill, etc. It is highly recommended to avoid simply using the same spawn points across all gametypes.
 
-# Advanced Spawn Point Placement
+# Advanced spawn point placement
 
 The single most useful tool for any level designer wishing to fine-tune the spawn point placements in their map for competitive play is: good testers. It is of vital importance to listen to player feedback and study how the map is played. This can be easier said than done. Only the most dilligent players will fully reverse engineer the spawn points, and fewer still will be able to identify the "random" spawn zones in a level. However, it is exactly this type of emergent gameplay that provides a level with replay value. Because of this predicament, it can be difficult to get spawn point placements right, although it is easier now than ever thanks to some new community tools.  
 
 
 ## Halo Asset Blender Development Toolset
 
-The [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) now allows level designers to import and export elements of a scenario tag in and out of a Blender scene. This means that Player Starting Locations can now be placed in Blender, allowing for a greater degree of precision over Sapien's primitive interface.  
+The [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) now allows level designers to import and export elements of a [scenario tag](~scenario) in and out of a Blender scene. This means that Player Starting Locations can now be placed in Blender, allowing for a greater degree of precision over Sapien's primitive interface.
 
 {% figure src="spawn_placement_blender.jpg" alt="Spawn point placement in Blender" inline=true %}
 Spawn points can now be placed in Blender with greater precision
 {% /figure %}
 
-In order to ensure you set up the Player Starting Location objects correctly in Blender, it is recommended to start by importing a scenario tag that already contains at least one spawn point. Then, review the gametype properites ("Type" dropdown menu selections in Sapien) by selecting the Player Starting Location object in Blender and navigating to Object Properties > Halo Object Properties > Halo Tag View. The object can then be duplicated and all resulting new objects should be renamed sequentially for consistency with other tools such as Sapien and Guerilla (for example: Player Starting Locations_1, Player Starting Locations_2, etc).  
+In order to ensure you set up the Player Starting Location objects correctly in Blender, it is recommended to start by importing a scenario tag that already contains at least one spawn point. Then, review the gametype properites ("Type" dropdown menu selections in Sapien) by selecting the Player Starting Location object in Blender and navigating to _Object Properties > Halo Object Properties > Halo Tag View_. The object can then be duplicated and all resulting new objects should be renamed sequentially for consistency with other tools such as Sapien and Guerilla (for example: `Player Starting Locations_1`, `Player Starting Locations_2`, etc).  
 
-A new scenario tag can now be created via export in Blender (File menu > Export > Halo Scenario). Before the scenario tag can be loaded in Sapien to validate the placements, first open it in Guerilla, scroll to the very bottom and fix the empty Structure BSP path (for reference: see any of the scenario tags included with the H1EK, or any scenario tag created naturally via Tool's `structure` command).
+A new scenario tag can now be created via export in Blender (_File menu > Export > Halo Scenario_). Before the scenario tag can be loaded in Sapien to validate the placements, first open it in [Guerilla](~h1-guerilla), scroll to the very bottom and fix the empty Structure BSP path (for reference: see any of the scenario tags included with the H1EK, or any scenario tag created naturally via Tool's `structure` command).
 
 ## H1 Spawn Tools
 
