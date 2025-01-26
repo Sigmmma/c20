@@ -14,6 +14,7 @@ childOrder:
   - aether
   - deathstar
   - halo-script-preprocessor
+  - h1-spawn-tools
   - obsolete
 redirects:
   - /h1/tools
