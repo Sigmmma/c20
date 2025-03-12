@@ -40,13 +40,21 @@ Unlike later games, H1 Sapien does not include a full player simulation mode and
 This page covers both H1A and [HEK](~custom-edition#halo-editing-kit) versions of Sapien, which generally work the same but have [some differences](~h1-ek#sapien).
 
 # Configuration
-Similar to how [Custom Edition](~custom-edition) and [Standalone](~h1-standalone-build) automatically run [console](~developer-console) commands at startup from `init.txt`, you can also create `editor_init.txt` for Sapien. Include console commands, one per line, in this file and Sapien will run them at startup. You can comment-out lines with a semicolon. For example:
+Similar to how [Custom Edition](~custom-edition) and [Standalone](~h1-standalone-build) automatically run [console](~developer-console) commands at startup from `init.txt`, you can also create `editor_init.txt` for Sapien. Include console commands, one per line, in this file and Sapien will run them at startup. You can comment-out lines with a semicolon.
+
+For example, enabling `debug_objects 1` in H1A Sapien has some different defaults than HEK Sapien. You may wish to change these defaults for each startup:
 
 ```inittxt
 ;restore default debug_objects appearance from HEK Sapien for H1A Sapien
 debug_objects_collision_models 1
 debug_objects_bounding_spheres 1
 debug_objects_root_node 0
+```
+
+Or if you prefer not to see the green lines on the BSP when the camera goes outside it, you can disable it:
+
+```inittxt
+debug_structure_automatic 0
 ```
 
 These lines will also be present in your console's history so you can use this to preload commonly used toggles.
