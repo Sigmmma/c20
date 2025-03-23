@@ -138,6 +138,22 @@ You can attempt to pass the limit using H1A Tool's `-noassert` option, but will 
 
 ![](max_bsp_depth.mp4)
 
+## Exception: result.vertex_count!=NONE
+
+```
+building intermediate geometry...
+building collision geometry...
+reducing collision geometry...
+building collision bsp...
+reducing collision bsp...
+EXCEPTION halt in c:\mcc\main\h1\code\h1a2\sources\structures\leaf_map.c,#260: result.vertex_count!=NONE
+...
+```
+
+This exception is rare, but from a reported example seems to have the same cause as [BSP depth exceeded](#exception-global-plane-count-maximum-bsp3d-depth). Your level's shape is likely near worst-case for building a collision tree, containing rounded or spherical sections which cannot be optimally split up by choosing a dividing plane from any surface in the level. You will need to remove or simplify such features, or add geometry to serve as dividing plane hints.
+
+![](bsp_hint_plane.jpg "Adding the circled plane (% symbol) allowed this level to progress past the exception.")
+
 ## Couldn't allocate subcluster
 This error means you have too many triangles in a cluster (>16k). Simplify your level geometry or add portals to divide triangles among more clusters.
 

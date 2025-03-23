@@ -1,5 +1,7 @@
 ---
 title: Player spawns
+thanks:
+  stunt_man: Spawn system and balancing guide
 ---
 **Spawn points**, or **player starting points**, are locations in the level where players will spawn throughout a multiplayer game.
 
