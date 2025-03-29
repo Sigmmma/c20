@@ -3111,15 +3111,13 @@ functions:
       - portals
   - slug: object_pvs_set_object
     info:
-      en: >-
+      en: |-
         ```hsc
-
         (<void> object_pvs_set_object <object>)
-
         ```
-
         Sets the specified object as the special place that activates everything
-        it sees.
+        it sees. Make sure to use `object_pvs_clear` before switching BSPs or you'll trigger
+        the assertion `EXCEPTION halt in c:\mcc\qfe1\h1\code\h1a2\sources\structures\structure_bsp_definitions.c,#39: cluster_index>=0 && cluster_index<structure_bsp->clusters.count`
     tags:
       - portals
   - slug: object_set_collideable
@@ -3590,6 +3588,8 @@ functions:
         (player_enable_input false)
         ```
         Toggle player input. The player can still free-look, but nothing else.
+        If the player unit has been attached to an AI encounter, the AI will
+        "take over" control if this is disabled.
   - slug: players
     info:
       en: |-
