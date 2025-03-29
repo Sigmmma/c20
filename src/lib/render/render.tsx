@@ -160,7 +160,6 @@ export default function renderPage(input: RenderInput): RenderOutput {
   const content = transform(input.ast, ctx, input.front);
   
   const navParents = getPageParents(input.pageIndex, input.pageId, input.lang);
-  // const navRelated = getPageRelated(input.pageIndex, input.pageId, input.lang);
   const navOtherLangs = getPageOtherLangs(input.pageIndex, input.pageId, input.lang);
   const navHeadings = getNavHeadings(front, ctx, content);
   const bodyPlaintext = renderPlaintext(ctx, content);

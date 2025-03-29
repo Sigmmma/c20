@@ -7,10 +7,6 @@ caption: A screenshot of Guerilla
 keywords:
   - tag-editor
   - h2guerilla
-related:
-  - /h1/h1a-ek/h1a-guerilla
-  - /h2/tools/h2v-ek/h2v-guerilla
-  - /h3/h3-ek/h3-guerilla
 ---
 {% alert %}
 This is an article about the H2 Guerilla for use with MCC. For the legacy H2V Guerilla for [Halo 2 Vista](~h2) see [H2V Guerilla](~h2v-guerilla).

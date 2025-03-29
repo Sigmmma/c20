@@ -14,9 +14,6 @@ keywords:
 redirects:
   - /h1/tools/hek/tool
   - /h1/tools/h1a-ek/h1a-tool
-related:
-  - /h2/tools/h2-ek/h2-tool
-  - /h3/h3-ek/h3-tool
 thanks:
   num0005: Documenting H1A commands and updating documentation for other commands.
   gbMichelle: Hardcoded tag patch reversing

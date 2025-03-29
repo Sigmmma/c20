@@ -12,8 +12,6 @@ keywords:
   - radiosity
   - max
   - maya
-related:
-  - /h1/tags/scenario_structure_bsp/lightmaps
 thanks:
   Reindeer: Porting Aether documentation from ModaWiki
   aLTis: Finding a fix for frozen marker importing

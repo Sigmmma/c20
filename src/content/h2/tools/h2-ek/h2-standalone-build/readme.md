@@ -7,9 +7,6 @@ keywords:
   - test
   - cache
   - h2a
-related:
-  - /h1/h1a-ek/h1a-standalone-build
-  - /h3/h3-ek/h3-standalone-build
 ---
 The [Halo 2 Anniversary Editing Kit](~H2-EK) includes a **standalone build** of that game (**halo2_tag_test.exe**). This build doesn't include network functionality and it intended for testing single-player maps. It includes AI debugging code not included in other published builds of the engine.
 [Using custom content paths](~mod-tools#using-custom-content-paths) is supported.
