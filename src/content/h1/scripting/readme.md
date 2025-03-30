@@ -18,6 +18,7 @@ thanks:
   InfernoPlus: Flipped vehicle test
   Krevil: Modulus operator
   MattDratt: AI following the player tutorial
+  aLTis: Scripting tips
 redirects:
   - /h1/engine/scripting
 childOrder:

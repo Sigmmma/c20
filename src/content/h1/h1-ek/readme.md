@@ -21,10 +21,6 @@ keywords:
   - hek
   - h1aek
   - h1a-ek
-related:
-  - /h1/tools/hek
-  - /h3/h3-ek
-  - /h2/tools/h2-ek
 childOrder:
   - h1-guerilla
   - h1-sapien

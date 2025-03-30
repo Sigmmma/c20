@@ -6,8 +6,6 @@ img: excession.jpg
 info: |
   * [Steam store](steam://store/1695795)
   * [Official documentation](https://learn.microsoft.com/en-us/halo-master-chief-collection/excession/excessionoverview)
-related:
-  - /general/tools/excession
 ---
 
 **Excession** is the official mod uploader for MCC which allows you to publish your work to the Steam workshop. It is used for for all games in the MCC and is a separate download from the [mod tools](~mod-tools). It's not something you need to use until you're ready to publish your mod.

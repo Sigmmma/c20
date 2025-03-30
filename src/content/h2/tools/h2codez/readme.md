@@ -11,11 +11,6 @@ keywords:
   - Patch
   - OSS
   - H2EK
-related:
-  - /h2/tools/h2v-ek
-  - /h2/tools/h2v-ek/h2v-tool
-  - /h2/tools/h2v-ek/h2v-sapien
-  - /h2/tools/h2v-ek/h2v-guerilla
 ---
 **H2Codez** is a mod for the legacy [Halo 2 Vista Editing Kit](~h2v-ek) (H2V-EK) that aims to restore some of its missing or damaged functionality.
 

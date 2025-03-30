@@ -109,13 +109,6 @@ keywords:
   - skeleton
   - character
 
-# Related pages show up in the page's sidebar. You must provide the related
-# pages as their full folder path starting with a "/". A related page link
-# will NOT automatically be added in the opposite direction.
-related:
-  - /h1/tags/object/unit/biped
-  - /h1/tags/actor_variant
-
 # This image will be shown in the page's info box (aka "metabox") and in
 # previews when pasting the page into Discord or social media. The image file
 # should be in the same folder as the readme.md file and should represents

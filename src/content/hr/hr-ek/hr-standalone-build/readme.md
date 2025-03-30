@@ -7,8 +7,6 @@ keywords:
   - test
   - cache
   - hr
-related:
-  - /h1/h1a-ek/h1a-standalone-build
 ---
 The [Halo Reach Editing Kit](~HR-EK) includes a **standalone build** of that game (**reach_tag_test.exe**). This build doesn't include network functionality and it intended for testing single-player maps. It includes AI debugging code not included in other published builds of the engine.
 

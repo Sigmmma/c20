@@ -6,8 +6,6 @@ img: h3-guerilla.jpg
 caption: A screenshot of Guerilla
 keywords:
   - tag-editor
-related:
-  - /h1/h1a-ek/h1a-guerilla
 ---
 **H3 Guerilla** (`guerilla.exe`) is part of the [Halo 3 Editing Kit](~h3-ek), is a visual [tag](~tags) editor. Although it can visualize [bitmaps](~bitmap) and is primarily focused on editing and viewing the structured fields which comprise tags. It does not offer ingame previews or interactive placement of [objects](~object), which is [Sapien's](~H3-Sapien) role.
 

@@ -5,10 +5,6 @@ keywords:
   - FBX
   - Model
   - Animation
-related:
-  - /h1/h1a-ek/h1a-tool
-  - /h2/tools/h2-ek/h2-tool
-  - /h3/h3-ek/h3-tool
 redirects:
   - /h1/h1a-ek/using-fbx-in-h1a
 ---

@@ -7,10 +7,6 @@ caption: Sapien being used to place scenery in `coagulation.scenario`
 keywords:
   - scenario
   - h2sapien
-related:
-  - /h1/h1a-ek/h1a-sapien
-  - /h2/tools/h2v-ek/h2v-sapien
-  - /h3/h3-ek/h3-sapien
 ---
 {% alert %}
 This is an article about the H2 Sapien for use with MCC. For the legacy H2V Sapien for [Halo 2 Vista](~h2) see [H2V Sapien](~h2v-sapien).

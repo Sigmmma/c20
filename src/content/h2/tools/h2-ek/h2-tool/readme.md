@@ -9,10 +9,6 @@ keywords:
   - lightmap
   - cli
   - h2tool
-related:
-  - /h1/h1a-ek/h1a-tool
-  - /h2/tools/h2v-ek/h2v-tool
-  - /h3/h3-ek/h3-tool
 ---
 {% alert %}
 This is an article about the H2 Tool for use with MCC. For the legacy H2V Tool for [Halo 2 Vista](~h2) see [H2V Tool](~h2v-tool).
