@@ -47,23 +47,21 @@ Weapons are intended to fire instances of the [projectile](~) tag or [crate](~) 
 | force enable equipment tossing | Unknown/Needs additional research
 | non- lunge melee dash disabled | Disables lunge movement when enacting a melee on a target using the dedicated melee key
 
-maximum alternate shots loaded: Unknown/Needs additional research
-
-turn on time: The time in seconds it takes from the weapon being readied for the function 'turned_on' to transition from 0 to 1
-
-ready time: Unknown/Needs additional research
-
-ready effect: [sound](~) / [effect](~) - Unknown/Needs additional research
-
-ready damage effect: [damage_effect](~) / [damage_response_definition](~) - Unknown/Needs additional research
+| Fields | Description
+|-------|----------
+| maximum alternate shots loaded | Unknown/Needs additional research
+| turn on time | The time in seconds it takes from the weapon being readied for the function 'turned_on' to transition from 0 to 1
+| ready time | Unknown/Needs additional research
+| ready effect | [sound](~) / [effect](~) - Unknown/Needs additional research
+| ready damage effect | [damage_effect](~) / [damage_response_definition](~) - Unknown/Needs additional research
 
 | Secondary trigger mode | Description
 |-------|----------
-|normal | Unknown/Needs additional research
-|slaved to primary | Unknown/Needs additional research
-|inhibits primary | Unknown/Needs additional research
-|loads alternate ammunition | Unknown/Needs additional research
-|loads multiple primary ammunition | Unknown/Needs additional research
+| normal | Unknown/Needs additional research
+| slaved to primary | Unknown/Needs additional research
+| inhibits primary | Unknown/Needs additional research
+| loads alternate ammunition | Unknown/Needs additional research
+| loads multiple primary ammunition | Unknown/Needs additional research
 
 # Heat
 
@@ -71,61 +69,76 @@ ready damage effect: [damage_effect](~) / [damage_response_definition](~) - Unkn
 For values of 0 to 1 these represent percentages, so 0.2 = 20%
 {% /alert %}
 
-heat recovery threshold: From 0 to 1 determines at what level of heat the weapon is allowed to fire again after being overheated
-
-overheated threshold: From 0 to 1 determines at what level of heat the weapon becomes overheated, needs to be higher than the recovery threshold
-
-heat detonation threshold: From 0 to 1 determines when the weapon is allowed to explode after surpassing the given value of heat
-
-heat detonation fraction: From 0 to 1 determines the chance the weapon explodes when it's heat has surpassed the detonation threshold and it is fired
-
-heat loss per second: From 0 to 1 determines how much heat the weapon loses while it is not being fired, or in- between firing
-
-heat illumination: From 0 to 1 determines how much the illumination function is raised as the weapon gains heat
-
-overheated heat loss per second: From 0 to 1 determines how much heat the weapon loses while it is in the overheated state, this state ends when the heat level reaches the recovery threshold
-
-overheated: [sound](~) / [effect](~) -  Effect or sound played when weapon enters overheated state
-
-overheated damage effect: [damage_effect](~) / [damage_response_definition](~) -  Damage or damage response played when weapon enters overheated state
-
-detonation: [sound](~) /  [effect](~) -  The sound or effect that plays upon weapon detonation due to heat conditions
-
-detonation damage effect: [damage_effect](~) / [damage_response_definition](~) -  The damage or damage response played when the weapon detonates due to heat conditions
-
-player melee damage: [damage_effect](~) -  Unknown/Needs additional research
-
-player melee response: [damage_effect](~) / [damage_response_definition](~) -  Unknown/Needs additional research
+| Fields | Description
+|-------|----------
+| heat recovery threshold | From 0 to 1 determines at what level of heat the weapon is allowed to fire again after being overheated
+| overheated threshold | From 0 to 1 determines at what level of heat the weapon becomes overheated, needs to be higher than the recovery threshold
+| heat detonation threshold | From 0 to 1 determines when the weapon is allowed to explode after surpassing the given value of heat
+| heat detonation fraction | From 0 to 1 determines the chance the weapon explodes when it's heat has surpassed the detonation threshold and it is fired
+| heat loss per second | From 0 to 1 determines how much heat the weapon loses while it is not being fired, or in- between firing
+| heat illumination | From 0 to 1 determines how much the illumination function is raised as the weapon gains heat
+| overheated heat loss per second | From 0 to 1 determines how much heat the weapon loses while it is in the overheated state, this state ends when the heat level reaches the recovery threshold
+| overheated | [sound](~) / [effect](~) -  Effect or sound played when weapon enters overheated state
+| overheated damage effect | [damage_effect](~) / [damage_response_definition](~) -  Damage or damage response played when weapon enters overheated state
+| detonation | [sound](~) /  [effect](~) -  The sound or effect that plays upon weapon detonation due to heat conditions
+| detonation damage effect | [damage_effect](~) / [damage_response_definition](~) -  The damage or damage response played when the weapon detonates due to heat conditions
+| player melee damage | [damage_effect](~) -  Unknown/Needs additional research
+| player melee response | [damage_effect](~) / [damage_response_definition](~) -  Unknown/Needs additional research
 
 # Melee
 
 *melee damage parameters*
 
-damage pyramid angles: Unknown/Needs additional research
+| Fields | Description
+|-------|----------
+| damage pyramid angles | Unknown/Needs additional research
+| damage pyramid depth | When initiating a melee attack, the damage itself is thrown this far out, can be farther than the melee lunge range
 
-damage pyramid depth: When initiating a melee attack, the damage itself is thrown this far out, can be farther than the melee lunge range
+*melee combo damage*
+
+{% alert %}
+It is currently understood that only the energy sword can initiate a clang, and only on another energy sword when lunging at each other
+{% /alert %}
+
+| Fields | Description
+|-------|----------
+|1st hit melee damage | [damage_effect](~) - Damage effect played on a target hit by the melee key melee
+|1st hit melee response | [damage_effect](~) / [damage_response_definition](~) - damage response played on the player when hitting a target
+|2nd hit melee damage | [damage_effect](~) - Unused
+|2nd hit melee response | [damage_effect](~) / [damage_response_definition](~) - Unused
+|3rd hit melee damage | [damage_effect](~) - Unused
+|3rd hit melee response | [damage_effect](~) / [damage_response_definition](~) - Unused
+|lunge melee damage | [damage_effect](~) - Damage effect played on a target hit by melee weapon lunge attack
+|lunge melee response | [damage_effect](~) / [damage_response_definition](~) - Damage response played on the player when hitting a target with a lunge attack
+|empty melee damage | [damage_effect](~) - Damage effect used for melee weapons when the weapon flag 'use empty melee on empty' is enabled
+|empty melee response | [damage_effect](~) / [damage_response_definition](~) - Damage response played on player for empty melee on melee weapons using the 'use empty melee on empty' weapon flag
+|clang melee damage | /TagDependency: damage_effect/ Damage effect played on targets hit by a clang attack"
+|clang melee response | /TagDependency: damage_effect, damage_response_definition/ Damage response played on players engaging in a melee clash against each other
+|clang effect | [sound](~) / [effect](~) - Effect played on players who engage in a melee clash against each other
+|melee damage reporting type| Dropdown selector for various weapon and vehicle types, unknown/unused effects
+
+{% figure src="weaponmeleetypes.png" %}
+Pictured: A list of all availale weapon melee damage types
+{% /figure %}
 
 # Zoom
 
-magnification levels: Value determining how many levels of zoom this weapon provides, 2 is soft limit for compatible [chud_definition](~) tags
-
-magnification range: A set of values for min and max, for a weapon with more than 1 zoom level the min is used for the first level of zoom and the max is used for the last level of zoom, if a single zoom level is set the min zoom value is used
+| Fields | Description
+|-------|----------
+| magnification levels | Value determining how many levels of zoom this weapon provides, 2 is soft limit for compatible [chud_definition](~) tags
+| magnification range | A set of values for min and max, for a weapon with more than 1 zoom level the min is used for the first level of zoom and the max is used for the last level of zoom, if a single zoom level is set the min zoom value is used
 
 # Weapon aim assist
 
-autoaim angle: Angle in which projectiles from this weapon are magnetized towards targets within autoaim range
-
-autoaim range: Maximum range of red reticle and in which projectiles can be magnetized towards targets
-
-autoaim falloff range: At what range does the strength of projectile magnetism begin to fall off before the maximum distance
-
-magnetism angle: Angle in which the game applies aim assist to controllers when aiming over a target within magnetism range
-
-magnetism range: Maximum range in which the game will apply aim assist to controllers aiming over a target
-
-magnetism falloff range: Range in which the strength of aim assist for controllers begins to fall off before maximum distance
-
-deviation angle: Funtions the same as autoaim angle, but ignores the 'strict deviation angle' weapon flag
+| Fields | Description
+|-------|----------
+| autoaim angle | Angle in which projectiles from this weapon are magnetized towards targets within autoaim range
+| autoaim range | Maximum range of red reticle and in which projectiles can be magnetized towards targets
+| autoaim falloff range | At what range does the strength of projectile magnetism begin to fall off before the maximum distance
+| magnetism angle | Angle in which the game applies aim assist to controllers when aiming over a target within magnetism range
+| magnetism range | Maximum range in which the game will apply aim assist to controllers aiming over a target
+| magnetism falloff range | Range in which the strength of aim assist for controllers begins to fall off before maximum distance
+| deviation angle | Funtions the same as autoaim angle, but ignores the 'strict deviation angle' weapon flag
 
 # Movement
 
@@ -140,21 +153,68 @@ movement penalty values work as percentages in increments of 0.1, incorrect valu
 | when zoomed | movement is penalized only when zoomed
 | when zoomed or reloading | movement is penalized except when reloading
 
-forward movement penalty: Value of 0 to 1 as a fraction of player forward and backward speed lost when movement is penalized
-
-sideways movement penalty: Value 0 to 1 as a fraction of player sideways speed lost when movement is penalized
+| Fields | Description
+|-------|----------
+| forward movement penalty | Value of 0 to 1 as a fraction of player forward and backward speed lost when movement is penalized
+| sideways movement penalty | Value 0 to 1 as a fraction of player sideways speed lost when movement is penalized
 
 # AI targeting parameters
 
 ai scariness: This value defines how much scariness this weapon contributes against other AI characters, allowing it to trigger certain behaviors like retreating or taking cover. see the [character](~) tag for more info about how AI scariness is calculated and what thresholds are used for certain behaviors.
 
+# Miscellaneous
+
+| Fields | Description
+|-------|----------
+| weapon power-on time | When the power key is used, this value determines how long the 'power' function takes to fully turn on
+| weapon power-off time | When the power key is used, this value determines how long the 'power' function takes to fully turn of"
+| weapon power-on effect | [sound](~) / [effect](~) - The sound or effect played on the weapon when switching the power on using the power key
+| weapon power-off effect | [sound](~) / [effect](~) - The sound or effect played on the weapon when switching the power off using the power key
+| age heat recovery penalty | A value from that represent how much of the weapons heat recovery value lost as the weapon gains age, includes overheat and non-overheat heat recovery, unknown parameters
+| age rate of fire penalty | A value that represent how much of the weapons rate of fire lost as the weapon gains age, unknown parameters
+| age misfire start | A value from 0 to 1 that represents the age value a weapon must reach to begin misfiring
+| age misfire chance | A value from 0 to 1 that represents the chance a weapon can misfire once it has passed the 'age misfire start' value
+| pickup sound | [sound](~) - Sound played on weapon when picked up
+| zoom-in sound | [sound](~) - Sound played on weapon when zooming in, including to other zoom levels
+| zoom-out sound | [sound](~) - Sound played on weapon when zooming out, including to other zoom levels
+| active camo ding | A value that defines how much active camo is lost when firing this weapon, assumed in percentile per shot
+| active camo regrowth rate | A value that defines how fast active camo is regained after firing this weapon, unknown parameters
+| handle node | Unknown/Needs additional research
+
 # Weapon Lables
 
-weapon class: A string value that defines the weapon class this weapon belongs to, is used in [model_animation_graphs](model_animation_graph)
+| Fields | Description
+|-------|----------
+| weapon class | A string value that defines the weapon class this weapon belongs to, is used in [model_animation_graphs](model_animation_graph)
+| weapon name | A string value that defines the weapon type this weapon belongs to, is used in [model_animation_graphs](model_animation_graph)
+| multiplayer weapon type | A dropdown of various multiplayer objective items such as the flag or oddball that can be used to interact with other items for objectives during gameplay
 
-weapon name: A string value that defines the weapon type this weapon belongs to, is used in [model_animation_graphs](model_animation_graph)
+# More miscellaneous
 
-multiplayer weapon type - Dropdown of various multiplayer objective items such as the flag or oddball that can be used to interact with other items for objectives during gameplay
+*weapon type*
+
+{% alert %}
+Despite using the 'no tracking' option, the needler still possesses tracking abilities, this may be due to the weapon type
+{% /alert %}
+
+| Fields | Description
+|-------|----------
+| undefined | No unique effect
+| shotgun | Allows usage of continuous and partial reload animations
+| needler | Unknown, possibly allows projectile tracking despite no tracking type specified
+| plasma pistol | Unknown
+| plasma rifle | Unknown
+| rocket launcher | Needed for latch-rocketlauncher trigger type to allow locking onto targets with human tracking
+| energy blade | Unknown, possibly allows melee clang?
+| splazer | Unknown
+
+*tracking type*
+
+| Fields | Description
+|-------|----------
+| no tracking | No tracking of any type allowed for this weapon
+| human tracking | Allows tracking of targets whose model and biped tags defines targets with human tracking flags enabled
+| plasma tracking | Allows tracking of targets whose model and biped tags defines targets with plasma tracking flags enabled
 
 # Interface
 
@@ -162,14 +222,14 @@ multiplayer weapon type - Dropdown of various multiplayer objective items such a
 First entry of this block is for spartan bipeds, second entry is for elite bipeds and this is regardless of campaign or multiplayer
 {% /alert %}
 
-*first person*
+*first person (and chud)*
 
-first person model: [render_model](~) - The render model to be used in first person for this weapon and biped type
+| Fields | Description
+|-------|----------
+| first person model | [render_model](~) - The render model to be used in first person for this weapon and biped type
+| first person animations | [model_animation_graph](~) - The animation graph to be used on this weapon for this biped type
+| chud interface | [chud_definition](~) - The UI tag to be used for this weapon, applies regardless of camera mode of the weapon
 
-first person animations: [model_animation_graph](~) - The animation graph to be used on this weapon for this biped type
----
-chud interface: [chud_definition](~) - The UI tag to be used for this weapon, applies regardless of camera mode of the weapon
----
 # Magazines
 
 {% alert %}
@@ -181,29 +241,20 @@ First entry into this block will be the primary magazine, second entry will be s
 | wastes rounds when reloaded | When the weapon is reloaded, any round left in the magazine are deleted
 | every round must be chambered | Unknown, likely used with the shotgun weapon type dropdown to force chambering each shot
 
-rounds recharged: Number of rounds restored every second into the magazine, applies regardless of if the weapon is currently equipped
-
-rounds total initial: Number of rounds the weapon starts with, will fill the magazine first then overflow into reserve ammunition
-
-rounds total maximum: Number of total rounds the weapon can carry, including magazine and then defines the size of the reserve pool
-
-rounds loaded maximum: Number of rounds the magazine can hold, once depleted needs reloading
-
-runtime rounds inventory maximum: Unknown/Needs additional research
-
-reload time: Unknown/Needs additional research
-
-rounds reloaded: Number of rounds removed from reserve ammunition and placed into the magazine after a reload
-
-chamber time: Unknown/Needs additional research
-
-reloading effect: [sound](~) / [effect](~) - Sound or effect played once the reload key is pressed, if an effect duration is not set then the effect will play for 1 tick
-
-reloading damage effect: [damage_effect](~) - Unknown/Needs additional research
-
-chambering effect: [sound](~) / [effect](~) - Unknown/Needs additional research
-
-chambering damage effect: [damage_effect](~) - Unknown/Needs additional research
+| Fields | Description
+|-------|----------
+| rounds recharged | Number of rounds restored every second into the magazine, applies regardless of if the weapon is currently equipped
+| rounds total initial | Number of rounds the weapon starts with, will fill the magazine first then overflow into reserve ammunition
+| rounds total maximum | Number of total rounds the weapon can carry, including magazine and then defines the size of the reserve pool
+| rounds loaded maximum | Number of rounds the magazine can hold, once depleted needs reloading
+| runtime rounds inventory maximum | Unknown/Needs additional research
+| reload time | Unknown/Needs additional research
+| rounds reloaded | Number of rounds removed from reserve ammunition and placed into the magazine after a reload
+| chamber time | Unknown/Needs additional research
+| reloading effect | [sound](~) / [effect](~) - Sound or effect played once the reload key is pressed, if an effect duration is not set then the effect will play for 1 tick
+| reloading damage effect | [damage_effect](~) - Unknown/Needs additional research
+| chambering effect | [sound](~) / [effect](~) - Unknown/Needs additional research
+| chambering damage effect | [damage_effect](~) - Unknown/Needs additional research
 
 ## Magazines (ammo packs)
 
@@ -211,9 +262,10 @@ chambering damage effect: [damage_effect](~) - Unknown/Needs additional research
 In order to allow these items to be picked up, they must be defined in the [biped tag](biped) of the unit you are playing as
 {% /alert %}
 
-rounds: The number of rounds input into the weapon when the below equipment tag is picked up
-
-equipment: [equipment](~) - The equipment tag that once the player runs over will input the above value of rounds into the weapon
+| Fields | Description
+|-------|----------
+| rounds | The number of rounds input into the weapon when the below equipment tag is picked up
+| equipment | [equipment](~) - The equipment tag that once the player runs over will input the above value of rounds into the weapon
 
 # New triggers
 
@@ -223,9 +275,9 @@ First entry into this block becomes the primary trigger, second entry becomes th
 
 | Input | Description
 |-------|----------
-|right trigger | Uses right trigger key
-|left trigger | Uses left trigger key: will also trigger binoculars, zoom or boost if those are the same keybind so make sure to disable them
-|melee attack | Uses the melee attack key, used for vehicles like the banshee so that left trigger can be the boost key
+| right trigger | Uses right trigger key
+| left trigger | Uses left trigger key: will also trigger binoculars, zoom or boost if those are the same keybind so make sure to disable them
+| melee attack | Uses the melee attack key, used for vehicles like the banshee so that left trigger can be the boost key
 
 | Behavior | Description
 |-------|----------
@@ -242,7 +294,7 @@ First entry into this block becomes the primary trigger, second entry becomes th
 Pictured: An example of the main part of the trigger block
 {% /figure %}
 
-| Barrel assigner | Description
+| Barrel assignment | Description
 |-------|----------
 | primary barrel | The first (primary) or second (secondary) barrel assigned for this current trigger
 | secondary barrel | The first (primary) or second (secondary) barrel assigned for this current trigger
@@ -253,11 +305,41 @@ Prediction properties located here and in the barrel block effect networking for
 
 | Prediction | Description
 |-------|----------
-|none | Unsure, generally used for single-shot or burst fire weapons using the latch trigger type
-|spew | Unsure, generally used for automatic weapons using the spew trigger type and not firing multiple shots per fire
-|charge | Unsure, generally used for weapons using latch-autofire or charge trigger types
+| none | Unsure, generally used for single-shot or burst fire weapons using the latch trigger type
+| spew | Unsure, generally used for automatic weapons using the spew trigger type and not firing multiple shots per fire
+| charge | Unsure, generally used for weapons using latch-autofire or charge trigger types
 
-# Weapon firerate bonus info
+| Autofire | Description
+|-------|----------
+autofire time | Unknown: presumably how much controller triggers must be depressed to begin action behavior, also used for latch-autofire to determine time until charging begins after latching
+autofire throw | Unknown, presumably how much controller triggers must be depressed to end action behavior
+
+*Secondary/Primary Action*
+
+{% alert %}
+Secondary action seems to be when starting the autofire behavior and primary action seems to be when ending it
+{% /alert %}
+
+| Selection | Description
+|-------|----------
+| fire | Fires the trigger
+| charge | Charges the trigger
+| track | Unknown/Unused
+| fire other | Unknown/Needs additional research
+
+## Charging
+
+WIP!
+
+# Barrels
+
+WIP!
+
+## Firing
+
+WIP!
+
+## Weapon firerate bonus info
 
 {% figure src="rps&frt.png" %}
 Pictured: An example of rate of fire and fire recovery time
@@ -267,45 +349,45 @@ When using the **rate of fire** field in the weapons barrel block, you are given
 
 When using the **fire recovery ** field in the weapons barrel block, you are given a single value (in seconds) to enter, this value is able to accept 60 tick engine values, there is a built- in 2 tick base delay *plus* a second minimum delay of 2 ticks so the fastest possible rate of fire achievable with fire recovery delay is **12** rounds per second with a value of 0.
 
-# First- person movement control (Misc)
+## Error (spread/bloom)
 
-runtime power on velocity: Unknown and expert mode
+WIP!
 
-runtime power off velocity: Unknown and expert mode
+## Projectile
 
-max movement acceleration: Unknown
+WIP!
 
-max movement velocity: Unknown
+## Misc and recoil
 
-max turning acceleration: Unknown
+WIP!
 
-max turning velocity: Unknown
+## Firing effects
 
-deployed vehicle: [vehicle](~) Unknown
+WIP!
 
-tossed weapon: [weapon](~) When a unit holding the parent weapon is killed, this weapon replaces the one they were holding and falls to the ground
+# First-person movement control (Misc)
 
-age effect: [effect](~) The effect played when a weapon becomes depleted
-
-aged material effects: [material_effects](~) This replaces the normal materiel effect of the weapon when it has become depleted
-
-external aging amount: Amount of age as a percentage applied to weapon, used for melee weapons that lack a barrel and trigger
-
-campaign external aging amount: Same as above but for campaign only, above applies to multiplayer
-
-first person weapon offset: A series of 3 values what determine the weapon offset:
-- _i: depth from camera, positive is farther from camera_
-- _I: horizontal axis from camera, positive moves to the left_
-- _k: verticle axis from camera, positive moves upward_
-
-first person weapon offset override: Same as above but is only used for centered crosshairs
-
-first person scope size: Unknown
-
-support third person camera range: Requires support weapon flag, prevents camera from being moved past the set values along the vertical axis in third person camera view
-
-weapon zoom time: Time in seconds the weapon takes to fully zoom in, the function is linear based on the time
-
-weapon ready- for- use time: Time in seconds the weapon is unable to be used for after being readied, used for melee weapons
-
-unit stow anchor name: The name of the render model marker this weapon attaches to when stowed
+| Fields | Description
+|-------|----------
+| runtime power on velocity | Unknown and expert mode
+| runtime power off velocity | Unknown and expert mode
+| max movement acceleration | Unknown
+| max movement velocity | Unknown
+| max turning acceleration | Unknown
+| max turning velocity | Unknown
+| deployed vehicle | [vehicle](~) - Unknown
+| tossed weapon | [weapon](~) - When a unit holding the parent weapon is killed, this weapon replaces the one they were holding and falls to the ground
+| age effect | [effect](~) - The effect played when a weapon becomes depleted
+| aged material effects | [material_effects](~) - This replaces the normal materiel effect of the weapon when it has become depleted
+| external aging amount | Amount of age as a percentage applied to weapon, used for melee weapons that lack a barrel and trigger
+| campaign external aging amount | Same as above but for campaign only, above applies to multiplayer
+| first person weapon offset | A series of 3 values that determine the first person weapon offset on screen:
+| ^ i | depth from camera, positive is farther from the camera
+| ^^ I | horizontal axis from camera, positive moves to the left
+| ^^^ k | verticle axis from camera, positive moves upwards
+| first person weapon offset override | Same as above but is only used for centered crosshairs
+| first person scope size | Unknown
+| support third person camera range | Requires support weapon flag, prevents camera from being moved past the set values along the vertical axis in third person camera view
+| weapon zoom time | Time in seconds the weapon takes to fully zoom in, the function is linear based on the time
+| weapon ready- for- use time | Time in seconds the weapon is unable to be used for after being readied, used for melee weapons
+| unit stow anchor name | The name of the render model marker this weapon attaches to when stowed
