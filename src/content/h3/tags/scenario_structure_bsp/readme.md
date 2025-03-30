@@ -8,10 +8,6 @@ caption: 'The first BSP of 100_citadel, shown without a sky rendered.'
 keywords:
   - bsp
   - h3
-related:
-  - /h3/tags/scenario_structure_lighting_info
-  - /h3/tags/scenario_structure_lighting_resource
-  - /h3/tags/scenario_structure_lightmap
 thanks:
   FaberTheCatgirl: Adding Limits to Wiki.
   R93_Sniper: Posting Limits to Discord.
@@ -19,6 +15,11 @@ thanks:
 The **BSP** tag contains geometry/structure data about a level and can be thought of as the "foundation" model without any dynamic objects or scenery decorations. Campaign missions tend to be comprised of multiple BSPs for each large section, while multiplayer maps use just one.
 
 BSPs are modeled in 3D software like [Blender](~).
+
+## Related tags
+* [scenario_structure_lighting_info](~)
+* [scenario_structure_lighting_resource](~)
+* [scenario_structure_lightmap](~)
 
 # Zone sets
 Unlike Halo 1 and 2, Halo 3 can have multiple BSPs loaded at a time. Combinations of BSPs are called _zone sets_ and are set up in the [scenario](~) tag using [Guerilla](~h3-guerilla). Zone sets may be created for gameplay purposes, cinematics, or debugging. You can switch between BSPs and zone sets using {% key "Ctrl+B" /%} in [Sapien](~h3-sapien).

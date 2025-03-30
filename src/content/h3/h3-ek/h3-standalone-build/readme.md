@@ -7,8 +7,6 @@ keywords:
   - test
   - cache
   - h3
-related:
-  - /h1/h1a-ek/h1a-standalone-build
 thanks:
   AKlinth: Pointing out that the debug menu is undocumented.
 ---

@@ -1,10 +1,6 @@
 ---
 title: BSP troubleshooting
 about: guide
-related:
-  - /h1/tags/scenario_structure_bsp
-  - /h1/h1a-ek/h1a-tool
-  - /h1/source-data/wrl
 thanks:
   Hari: Reverse engineering the cause of T-junction warnings
   EmmanuelCD: Subcluster limits

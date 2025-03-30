@@ -35,7 +35,6 @@ export type PageFrontMatter = {
   noSearch?: boolean;
   keywords?: string[];
   stub?: boolean;
-  related?: string[];
   redirects?: PageId[];
   childOrder?: string[];
 };
@@ -260,8 +259,3 @@ export function getPageParents(pageIndex: PageIndex, pageId: PageId, lang: Lang)
   }
   return parents;
 };
-
-// export function getPageRelated(pageIndex: PageIndex, pageId: PageId, lang: Lang): PageLink[] {
-//   const pageData = pageIndex[pageId][lang] ?? pageIndex[pageId]["en"];
-//   return pageData.front.related?.map(other => createPageLink(pageIndex, other, lang)!) ?? [];
-// };

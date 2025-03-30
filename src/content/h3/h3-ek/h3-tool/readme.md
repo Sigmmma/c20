@@ -8,9 +8,6 @@ keywords:
   - tool
   - lightmap
   - cli
-related:
-  - /h1/h1-ek/h1-tool
-  - /h2/tools/h2-ek/h2-tool
 thanks:
   "Abstract Ingenuity": Documentation about verbs for compilation of animation data
 ---

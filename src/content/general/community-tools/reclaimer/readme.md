@@ -5,8 +5,6 @@ img: reclaimer.jpg
 caption: >-
   Reclaimer being used to view a Halo 3 [render_model](~h3/tags/render_model)
   tag.
-related:
-  - /general/tools/reclaimer
 info: |-
   * [Download releases](https://github.com/Gravemind2401/Reclaimer/releases)
   * [Source code](https://github.com/Gravemind2401/Reclaimer)

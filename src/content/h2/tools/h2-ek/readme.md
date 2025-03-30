@@ -9,10 +9,6 @@ info: |
 keywords:
   - h2ek
   - h2-ek
-related:
-  - /h1/h1a-ek
-  - /h2/tools/h2v-ek
-  - /h3/h3-ek
 ---
 {% alert %}
 After downloading the Halo 2 Editing Kit, please read `README_MODDING.txt`. You **must** extract **both** `tags.zip` and `data.zip` to the root of the mod tools folder.

@@ -8,8 +8,6 @@ keywords:
   - tool
   - lightmap
   - cli
-related:
-  - /h1/h1a-ek/h1a-tool
 ---
 **Halo 3 ODST Tool** (**tool.exe**), is a [command-line](~) utility used to compile data into [tags](~), and tags into [maps](~map). It was released as a part of the [Halo 3 ODST Editing Kit](~h3odst-ek) by 343 Industries in 2022.
 

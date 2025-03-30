@@ -6,8 +6,6 @@ caption: A look at the UI on startup
 info: |
   * [Github](https://github.com/TheGuardians/TagTool)
   * [Appveyor](https://ci.appveyor.com/project/Beatthezombie/tagtool/branch/master)
-related:
-  - /general/tools/tagtool
 ---
 **TagTool** is a command-line tool designed to aid in the research and modification of Halo Online Cache Files. But is also Compatible with Halo 3, ODST and partial support for Halo Reach as well. 
 

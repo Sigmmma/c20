@@ -5,8 +5,6 @@ img: dome_done.jpg
 caption: A preview of the sky we will create.
 thanks:
   Conscars: Writing this guide
-related:
-  - /h1/tags/sky
 ---
 This guide will explain the process of creating custom **skyboxes** for Halo 1. These are models which depict the sky or backdrop scene of a level and are not part of the playable space (the [BSP](~scenario_structure_bsp)).
 
