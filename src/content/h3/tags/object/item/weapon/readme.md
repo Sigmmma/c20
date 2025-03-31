@@ -1,40 +1,40 @@
 --- 
 title: weapon
-stub: true
-noSearch: true
+stub: false
+noSearch: false
 img: weapon.png
 caption: Various items all classified as weapons
 about: 'tag:h3/weapon'
 --- 
-**Weapons** are most commonly seen as the wieldable items dropped by AI and found in the environment. However, they are also used for items like the CTF flag, oddball, and weapons attached to [vehicles](~vehicle) or [bipeds](~biped).
+**Weapons** are most commonly seen as the wieldable items dropped by AI and found in the environment. However, they are also used for items like the CTF flag, oddball, and weapons attached to [vehicles](~vehicle) or [bipeds](~biped). 
 
 Weapons are intended to fire instances of the [projectile](~) tag or [crate](~) tag. Thrown grenades are not a type of weapon, but rather a projectile referenced by [globals](~).
 
-# General weapon
+# Flags
 
 | Weapon flags | Description
 |-------|----------
-| must be readied | Prevents weapon from being used, attempting to attack with weapon will force drop it, unknown how to set to ready state
-| doesn't count towards maximum | Weapon does not count towards 2 weapon soft limit, allowing weapon to become a third or fourth weapon on the player
+| must be readied | Prevents weapon from being used, attempting to attack with weapon will force drop it.
+| doesn't count towards maximum | Allows weapon to become a third or fourth weapon for the player
 | aim assists only when zoomed | Disables bullet magnetism and red reticle when unzoomed
-| prevents grenade throwing | Prevents grenade throwing.... unknown else behavior
+| prevents grenade throwing | Prevents grenade throwing while weapon is equiped and held, unknown else behavior
 | prevents melee attack | Disables melee attacks with weapon
-| detonates when dropped | When this weapon is not being held by a unit or model it explodes, uses the parent item tag for detonation values and references
+| detonates when dropped | When this weapon is not being held by a unit or model it explodes, uses the parent [item](~) tag for detonation values and references
 | cannot fire at max age | Causes weapon to be unable to be fired once it reaches max age
 | secondary trigger overrides grenades | If the secondary trigger key is also bound to grenade throw, this flag forces no grenade throw
 | support weapon | Removes grenade and equipment chud icons, causes weapon to be dropped when a melee attack is performed and disables grenade throwing
 | AIs use melee damage | Causes AI characters to use the melee damage of the weapon instead of their biped melee damage value
 | forces no binoculars | Disables binoculars on weapon, binoculars are separate from weapon zoom
-| loop fp firing animation | Unknown, Loops first person firing animation?
-| prevents crouching | Prevents user from crouching while this weapon is equipped, only applies to players
+| loop fp firing animation | Unknown
+| prevents crouching | Prevents players from crouching while this weapon is equipped, not applicable to AI
 | cannot fire while boosting | Weapon is not allowed to fire while unit is boosting, used for weapons on vehicles with a boost
 | use empty melee on empty | Used on melee weapons to force empty melee animation when weapon has reached max age
 | uses 3rd person camera | Forces third person camera when weapon is equipped
-| can be dual wielded | Allows current weapon to accept dual wielding weapons
+| can be dual wielded | Allows this weapon to be dual wielded with other weapons with this flag
 | can only be dual wielded | Weapon can only be picked up when holding another dual wield weapon to duel wield with
 | melee only | Weapon becomes a melee weapon, primary trigger becomes melee attack
 | can't fire if parent dead | Unknown/Needs additional research
-| weapon ages with each kill | Seems to apply to melee weapons only, causes age to be incurred upon killing an enemy
+| weapon ages with each kill | Seems to apply to melee weapons only, causes age to be increased when killing an enemy
 | weapon uses old dual fire error code | When dual wielding and firing a single weapon, use single weapon error value, without flag means use dual wield error value regardless of firing both weapons at the same time or not
 | allows unaimed lunge | Allows melee weapons to play lunge melee animation even when not in range of a target to lunge at
 | cannot be used by player | Weapon cannot be picked up by player, if held is dropped
@@ -87,20 +87,20 @@ For values of 0 to 1 these represent percentages, so 0.2 = 20%
 
 # Melee
 
-*melee damage parameters*
-
-| Fields | Description
+| Melee damage parameters | Description
 |-------|----------
 | damage pyramid angles | Unknown/Needs additional research
 | damage pyramid depth | When initiating a melee attack, the damage itself is thrown this far out, can be farther than the melee lunge range
-
-*melee combo damage*
 
 {% alert %}
 It is currently understood that only the energy sword can initiate a clang, and only on another energy sword when lunging at each other
 {% /alert %}
 
-| Fields | Description
+{% figure src="meleedamagetypes.png" %}
+Pictured: A list of all availale weapon melee damage types
+{% /figure %}
+
+| Melee combo damage | Description
 |-------|----------
 |1st hit melee damage | [damage_effect](~) - Damage effect played on a target hit by the melee key melee
 |1st hit melee response | [damage_effect](~) / [damage_response_definition](~) - damage response played on the player when hitting a target
@@ -112,14 +112,10 @@ It is currently understood that only the energy sword can initiate a clang, and 
 |lunge melee response | [damage_effect](~) / [damage_response_definition](~) - Damage response played on the player when hitting a target with a lunge attack
 |empty melee damage | [damage_effect](~) - Damage effect used for melee weapons when the weapon flag 'use empty melee on empty' is enabled
 |empty melee response | [damage_effect](~) / [damage_response_definition](~) - Damage response played on player for empty melee on melee weapons using the 'use empty melee on empty' weapon flag
-|clang melee damage | /TagDependency: damage_effect/ Damage effect played on targets hit by a clang attack"
-|clang melee response | /TagDependency: damage_effect, damage_response_definition/ Damage response played on players engaging in a melee clash against each other
+|clang melee damage | [damage_effect](~) - Damage effect played on targets hit by a clang attack
+|clang melee response | [damage_effect](~) / [damage_response_definition](~) - Damage response played on players engaging in a melee clash against each other
 |clang effect | [sound](~) / [effect](~) - Effect played on players who engage in a melee clash against each other
 |melee damage reporting type| Dropdown selector for various weapon and vehicle types, unknown/unused effects
-
-{% figure src="weaponmeleetypes.png" %}
-Pictured: A list of all availale weapon melee damage types
-{% /figure %}
 
 # Zoom
 
@@ -181,23 +177,21 @@ ai scariness: This value defines how much scariness this weapon contributes agai
 | active camo regrowth rate | A value that defines how fast active camo is regained after firing this weapon, unknown parameters
 | handle node | Unknown/Needs additional research
 
-# Weapon Lables
+# Weapon Labels
 
 | Fields | Description
 |-------|----------
-| weapon class | A string value that defines the weapon class this weapon belongs to, is used in [model_animation_graphs](model_animation_graph)
-| weapon name | A string value that defines the weapon type this weapon belongs to, is used in [model_animation_graphs](model_animation_graph)
+| weapon class | A string value that corresponds to a **weapon class** entry in [model_animation_graphs](model_animation_graph) of the unit holding this weapon, needed for units to be able to hold this weapon
+| weapon name | A string value that corresponds to a **weapon type** entry in [model_animation_graphs](model_animation_graph) of the unit holding this weapon, needed to define the animations a unit can use with this weapon
 | multiplayer weapon type | A dropdown of various multiplayer objective items such as the flag or oddball that can be used to interact with other items for objectives during gameplay
 
 # More miscellaneous
-
-*weapon type*
 
 {% alert %}
 Despite using the 'no tracking' option, the needler still possesses tracking abilities, this may be due to the weapon type
 {% /alert %}
 
-| Fields | Description
+| Weapoon type | Description
 |-------|----------
 | undefined | No unique effect
 | shotgun | Allows usage of continuous and partial reload animations
@@ -208,9 +202,7 @@ Despite using the 'no tracking' option, the needler still possesses tracking abi
 | energy blade | Unknown, possibly allows melee clang?
 | splazer | Unknown
 
-*tracking type*
-
-| Fields | Description
+| Tracking type | Description
 |-------|----------
 | no tracking | No tracking of any type allowed for this weapon
 | human tracking | Allows tracking of targets whose model and biped tags defines targets with human tracking flags enabled
@@ -314,13 +306,11 @@ Prediction properties located here and in the barrel block effect networking for
 autofire time | Unknown: presumably how much controller triggers must be depressed to begin action behavior, also used for latch-autofire to determine time until charging begins after latching
 autofire throw | Unknown, presumably how much controller triggers must be depressed to end action behavior
 
-*Secondary/Primary Action*
-
 {% alert %}
 Secondary action seems to be when starting the autofire behavior and primary action seems to be when ending it
 {% /alert %}
 
-| Selection | Description
+| Secondary/Primary action | Description
 |-------|----------
 | fire | Fires the trigger
 | charge | Charges the trigger
@@ -329,15 +319,68 @@ Secondary action seems to be when starting the autofire behavior and primary act
 
 ## Charging
 
-WIP!
+| Overcharged action | Description
+|-------|----------
+| none | No action
+| explode | Deletes the weapon from the players inventory and uses item tag detonation properties
+| discharge | Fires the overcharge normally
+
+| Fields | Description
+|-------|----------
+| charging time | The time taken to charge try the trigger to full charge
+| charged time | After fully charged, how long the trigger can stay charged until performing it's overcharged action
+| cancelled trigger throw | Unknown
+| charged illumination | From 0 to 1 what value of illumination as a percentage is given off as the weapon reaches full charge
+| spew time | Unknown, Unused
+| charging effect | [sound](~) / [effect](~) - The Sound or effect played on the weapon as it charges
+| charging damage effect | [damage_effect](~) / [damage_response_definition](~) - The damage or damage response played when the weapon begins charging, only plays 1 time at charge start
+| charging continuous damage response | [damage_response_definition](~) - The response played on the player as the weapon is being charged, and as it remains charged
+| charged drain rate | The amount of weapon age drained in percent per second as the charge is held past the charge time duration
+| discharge effect | [sound](~) / [effect](~) - The sound or effect played on the weapon once the overcharge has been released
+| discharge damage effect | [damage_effect](~) / [damage_response_definition](~) - The damage or damage response played when the weapon is discharging, only plays 1 time at time of discharge (firing), seems redundant due an entry for this property in firing effects
+| lock-on hold time | The time in seconds the weapon stays locked onto a human-tracking target once aquired
+| lock-on aquire time | The time in seconds it takes for the weapon to lock onto a human-tracking target
+| lock-on grace time | The time in seconds to continue acquire progress on target even when target is no longer in red reticle, once this time has passed without being refreshed all acquire progress is reset
 
 # Barrels
 
-WIP!
+| Flags | Description
+|-------|----------
+| tracks fired projectile | Allows projectiles to track targets on weapons used by the player, AI seem to ignore this flag's presence
+| random firing effects | Unknown/Needs additional research
+| can fire with partial ammo | Normally when a weapon does not have enough ammo in the magazine to fulfill a barrel fire, the weapon will force reload, this flag allows the weapon to still be used and fire the normal number of shots regardless of incomplete ammo requirement
+| projectiles use weapon origin | Only applicable to players, causes weapon to fire projectiles from the third person weapon trigger markers, rather than the player camera
+| ejects during chamber | Unknown/Unused/Causes 3rd person shotgun ejection port to not open after chambering
+| use error when unzoomed | Causes barrel error values to only be applied when not zoomed with the weapon, zero error when zoomed
+| projectile vector cannot be adjusted | Forces projectiles to emit from the 3rd person weapon trigger marker, in the exact direction the marker is pointing, regardless of player aim or bullet magnetism. Also disables all weapon projectile tracking for all users.
+| projectiles have identical error | Unknown/Needs additional research
+| projectiles fire parallel | Unknown/Needs additional research
+| can't fire when others firing | Presumably prevents this barrel from firing while another barrel is firing
+| can't fire when others recovering | Prevents this barrel from firing while another barrel is still recovering with its fire recovery time
+| don't clear fire bit after recovering | Enabling this flag disallows soft recovery fraction for latch weapons while also disabling the ability for spew weapons to use the value of **1** for shots per fire
+| staggers fire across multiple markers | Causes weapon to cycle projectile emission point from multiple trigger markers, alternates between 2 markers but for more than 2 markers it seems to pick at random
+| fires locked projectiles | Forces AI actors using this barrel to only track when targeting a human-tracking type unit, else they self-guide projectiles, unknown otherwise
+| can fire at maximum age | This barrel will continue to be able to fire despite the weapon age being at 0
+| use 1 firing effect per burst | Weapon will only play it's firing effect a single time, all shots after either in a burst or spew will not have a firing effect
+| ignore tracked object | Unknown/Needs additional research
 
 ## Firing
 
-WIP!
+| Fields | Description
+|-------|----------
+| rounds per second | Two values that determine the rate at which projectiles are fired when in spew or during a burst, invalid values are rounded down to nearest valid in gameplay
+| acceleration time | Time taken in seconds for the weapon to transition the rounds per second value from the first value to the last value at a constant rate of value change once the weapon starts firing (rate of fire itself may not change due to invalid values but they are still used to fill time)
+| deacceleration time | Time taken in seconds for the weapon to transition the rounds per second value from the last value to the first value at a constant rate of value change once the weapon stops firing (rate of fire itself may not change due to invalid values but they are still used to fill time)
+| barrel spin scale | Scales the "barrel_spin" function by a mutiplicative value from 0 to 1, 0 is equal to 1 as the barrel fires
+| blurred rate of fire | Unknown/Needs additional research
+| shots per fire | The number of shots produced when this weapon is fired, spew weapons normally use a value of 0, but the trigger type forces them to fire 2 times
+| fire recovery time | Value in seconds that defines how long the weapon must wait after firing a shot before another shot can be fired, adheres to limitations based on tick rate so some values may not work and will round up to nearest correct value
+| soft recovery fraction | A value from 0 to 1 that defines how much of the fire recovery time you can input a fire request and the game saves and plays it when the fire recovery ends, even if the player has stopped the fire request input
+| magazine | This selection is a dropdown that gives a selection of magazine blocks opened to be used for rounds per fire: NONE, Primary and Secondary
+| rounds per shot | The number of rounds to be expended from the associated magazine by this barrel when fired
+| minimum rounds loaded | The number of rounds needed to fire this weapon, after firing the weapon and going below this value a reload is forced, ignores firing with partial ammo flag
+| rounds between tracers | Value that feeds into a projectile function called "tracer" that sets the function to zero for the duration of the number of shots of the value found here (A value here of 1 means the tracer function turns fully on and then fully off after every shot, repeating)
+| optional barrel marker name | Overrides the default trigger marker name with whatever is entered here to use as the barrel marker for projectile origin (when not being fired from player or biped camera)
 
 ## Weapon firerate bonus info
 
@@ -347,23 +390,110 @@ Pictured: An example of rate of fire and fire recovery time
 
 When using the **rate of fire** field in the weapons barrel block, you are given a set of 2 bound values to enter, due to limitations implemented by 343 to retain 30 tick engine behavior you may only enter values compatible with 30 tick engines. **0.46875** is the lowest possible value allowed due to the *idle_ticks* timer only being a max value of 127, thus this value has the weapon fire on the 128th tick. To find all other compatible values, do 30 divided by a *whole* number between 1 and 64. Invalid values will round *down* to the nearest valid (Example: 16 will behave as 15).
 
-When using the **fire recovery ** field in the weapons barrel block, you are given a single value (in seconds) to enter, this value is able to accept 60 tick engine values, there is a built- in 2 tick base delay *plus* a second minimum delay of 2 ticks so the fastest possible rate of fire achievable with fire recovery delay is **12** rounds per second with a value of 0.
+When using the **fire recovery** field in the weapons barrel block, you are given a single value (in seconds) to enter, this value is able to accept 60 tick engine values, there is a built- in 2 tick base delay *plus* a second minimum delay of 2 ticks so the fastest possible rate of fire achievable with fire recovery delay is **12** rounds per second with a value of 0.
+
+## Prediction and noise
+
+| Prediction type | Description
+|-------|----------
+| none | Unknown, used by the rocket launcher
+| continuous | Unknown, mostly used for spew type weapons
+| instant | Unknown, mostly used for latch type weapons for burst and semi-auto
+
+| Firing noise | Description
+|-------|----------
+| silent | Unknown, sound is silent to AI
+| medium | Unknown, sound is medium loudness to AI
+| loud | Unknown, sound is loud to AI
+| shout | Unknown, sound is shout loudless to AI
+| quiet | Unknown, sound is quiet to AI
 
 ## Error (spread/bloom)
 
-WIP!
+| Single weapon error | Description
+|-------|----------
+| acceleration time | Time in seconds taken for the weapon to go from minimum error and min error pitch rate to maximum error and full error pitch rate when the weapon starts firing (single wield only)
+| deacceleration time | Time in seconds taken for the weapon to go from maximum error and full error pitch rate to minimum error and min error pitch rate when the weapon stops firing (single wield only)
+| damage error | A set of two values that determines firing error when the model tag for this weapon is in a damage state with the flag that damages primary/second weapon enabled, chooses randomly between the 2 values
+| min error look pitch rate | The max rate of aiming allowed when this weapon is at minimum error (130 is referenced as full power)
+| full error look pitch rate | The max rate of aiming allowed when this weapon is at maximum error (130 is referenced as full power)
+| look pitch error power | Unknown, seems to partially scale the error look pitch rate change rate
+
+| Dual weapon error | Description
+|-------|----------
+| acceleration time | Time in seconds taken for the weapon to go from minimum error and min error pitch rate to maximum error and full error pitch rate when the weapon starts firing (dual wield only)
+| deacceleration time | Time in seconds taken for the weapon to go from maximum error and full error pitch rate to minimum error and min error pitch rate when the weapon stops firing (dual wield only)
+| minimum error | The minimum error this weapon is allowed to have when dual wielded, will never have less than this amount of error under any condition (dual wield only)
+| error angle | Two bound values that determine weapon error, first value is upon first firing and second value is after the acceleration time has passed, will return to first value during deacceleration time (dual wield only)
+| dual wield damage scale | From 0 to 1, determines the damage done by this weapon when being fired as part of dual wield, 0 equals 1 (0.1 equals 10% of full normal damage)
 
 ## Projectile
 
-WIP!
+| Distribution function | Description
+|-------|----------
+| point | Projectile spread is offset from the exact crosshair point, around it, typical weapon spread/bloom behavior and uses projectiles per shot and error values
+| horizontal fan | Uses projectiles per shot and distribution angle to fan out projectiles in either a horizontal fan or a vertical fan, fan direction is based on where the biped is aiming
+
+| Fields | Description
+|-------|----------
+| projectiles per shot | Number of projectiles fired at the exact same moment
+| distribution angle | Requires fan distribution function and projectiles per shot to be above 1, sets how wide the fans are (values above 1 tend to spray the fans so far they end up behind the biped)
+| minimum error | The minimum error this weapon is allowed to have when dual wielded, will never have less than this amount of error under any condition (single wield only)
+| error angle | Two bound values that determine weapon error, first value is upon first firing and second value is after the acceleration time has passed, will return to first value during deacceleration time (single wield only)
+
+{% alert %}
+This has a dropdown for 3 different block entries: single wield, dual right and dual left
+{% /alert %}
+ 
+| First person offset | 3 different value entries for coordinates away from the player camera in which projectiles will deviate from as their origin point
+|-------|----------
+| **X** | with positive being forward from the camera 
+| **Y** | with positive being up on the vertical axis 
+| **Z** |with positive being to the left on the horizontal axis
+
+| Fields | Description
+|-------|----------
+| damage effect reporting type | Dropdown selector for various weapon and vehicle types, unknown/unused effects
+| projectile | [projectile](~) - Projectile tag fired from the weapon when the weapon is fired
+| optional secondary projectile | [projectile](~) - Projectile tag fired from the weapon when the weapon is fired: when a spew weapon or burst fire weapon is fired, all projectiles after the first (or first two with spew) become the secondary projectile
+| damage effect | [damage_effect](~) - The damage created at the projectile origin point, use damage effects with an area of effect for best result, does not hurt the entity firing the weapon
+| crate projectile | [crate](~) - Causes the weapon to fire this crate tag object when the weapon fires from a firing action, uses the velocity of the value below
+| crate projectile speed | The velocity in WU at which the crate projectile is fired out
 
 ## Misc and recoil
 
-WIP!
+
+| Fields | Description
+|-------|----------
+| ejection port recovery time | Unknown/Needs additional research
+| illumination recovery time | How long in seconds it takes for the "illumination" function to transition from 1 to 0 after a shot has been fired
+| heat generated per round | The amount of heat added to the weapon when it has been fired, per shot
+| age generated per round: | The age amount deducted from a weapon when it has been fired, from 100%
+| campaign age generated per round | The age amount deducted from a weapon when it has been fired, from 100%, for campaign only
+| overload time | Unknown/needs additional research
+| angle shot per shot | Two value entries that define how much recoil the weapon experiences when it is fired, transitions from the first value to the second value through acceleration when firing and deacceleration when not firing
+| acceleration time | Time taken when you begin firing the weapon to transition from min angle to max angle per shot
+| deacceleration time | Time taken when you stop firing the weapon to transition from max angle to min angle per shot
+| angle change function | Dropdown with variety of options that detail how the function transitions the recoil from min to max during acceleration
 
 ## Firing effects
 
-WIP!
+| Firing effects | Description
+|-------|----------
+| shot count lower bound | Unknown/needs additional research
+| shot count upper bound | Unknown/needs additional research
+| firing effect | [sound](~) / [effect](~) - The sound or effect played on the weapon when it is firing
+| misfire effect | [sound](~) / [effect](~) - The sound or effect played on the weapon when it is firing
+| empty effect | [sound](~) / [effect](~) - The sound or effect played on the weapon when it is firing but has no ammunition
+| optional secondary firing effect | [sound](~) / [effect](~) - Unknown/requires additional research
+| firing damage | [damage_effect](~) / [damage_response_definition](~) - The damage or damage response played on the player firing the current weapon
+| misfire damage | [damage_effect](~) / [damage_response_definition](~) - Unknown/requires additional research
+| empty damage | [damage_effect] / [damage_response_definition](~) - Unknown/requires additional research
+| optional secondary firing damage | [damage_effect](~) / [damage_response_definition](~) - Unknown/requires additional research
+| firing rider damage | [damage_effect](~) / [damage_response_definition](~) - The damage or damage response played on other vehicle rider players when the gunner player fires the current weapon
+| misfire rider damage | [damage_effect](~) / [damage_response_definition](~) - Unknown/requires additional research
+| empty rider damage | [damage_effect](~) / [damage_response_definition](~) - Unknown/requires additional research
+| optional secondary firing rider damage | [damage_effect](~) / [damage_response_definition](~) - Unknown/requires additional research
 
 # First-person movement control (Misc)
 
