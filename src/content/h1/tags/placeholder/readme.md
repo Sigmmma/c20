@@ -5,6 +5,7 @@ img: placeholder.jpg
 caption: 'The object placement marker in [Sapien](~h1-sapien) is a placeholder.'
 keywords:
   - place
+  - plac
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research

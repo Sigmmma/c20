@@ -10,6 +10,8 @@ thanks:
   Conscars: Testing collision behaviour
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - ssce
 ---
 Sound scenery are a type of object, typically invisible, used to play localized ambient [looping sounds](~sound_looping). They can be found along shorelines and rivers, at the base of waterfalls, and near noisy machinery. These objects complement the "background" [sound_environment](~) used for [BSP clusters](~scenario_structure_bsp#clusters-and-cluster-data).
 

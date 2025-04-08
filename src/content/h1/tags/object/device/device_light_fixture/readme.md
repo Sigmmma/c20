@@ -6,6 +6,7 @@ img: device.jpg
 caption: Light fixtures used decoratively in _Assault on the Control Room_
 keywords:
   - device
+  - lifi
 thanks:
   zatarita: Per-object settings tip
   Kavawuvi: Invader tag definitions

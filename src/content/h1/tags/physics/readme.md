@@ -7,6 +7,8 @@ thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Mass point node testing
+keywords:
+  - phys
 ---
 **Physics** tags characterize the dynamic physics and propulsion of [vehicles](~vehicle). They are essentially a collection of spherical _mass points_. Since vehicles can have both [model_collision_geometry](~) and physics, each tag is used in different situations:
 

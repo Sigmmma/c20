@@ -8,6 +8,7 @@ caption: >
   by their actor variant, but rather [permutations](~gbxmodel#permutations).
 keywords:
   - actor
+  - actv
 thanks:
   Jakey: >-
     Providing descriptions for all tag fields, further researching Rosy's

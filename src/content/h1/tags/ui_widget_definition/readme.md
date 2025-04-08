@@ -6,6 +6,8 @@ thanks:
   Jakey: Bounds scaling workaround
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - DeLa
 ---
 ...
 

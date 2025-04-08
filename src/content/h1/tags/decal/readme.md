@@ -6,8 +6,10 @@ caption: 'Painted signs, bullet holes, and blood splats are all decal instances.
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
-  Conscars: Testing functions and globals, tag fields, decal geometry
+  Conscars: 'Testing functions and globals, tag fields, decal geometry'
   Ifafudafi: Explaining chain decals and radius scaling
+keywords:
+  - deca
 ---
 The **decal** system is responsible for rendering bullet holes, blood splatter, explosion marks, and other flat textures applied over over [BSP](~scenario_structure_bsp) surfaces (decals cannot appear on [objects](~object)). Decal tags describe the appearance and lifetime of these effects.
 

@@ -5,6 +5,8 @@ about: 'tag:h1/unicode_string_list'
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - ustr
 ---
 # Text symbols
 These symbols can be used in your text files to get specific results. Although there is overlap with [hud_message_text symbols](~hud_message_text#text-symbols), this list is not the same. Examples include displaying the necessary key to press for an action and creating a new line in a sentence:

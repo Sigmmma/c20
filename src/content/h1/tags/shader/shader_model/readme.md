@@ -8,6 +8,7 @@ caption: >-
 keywords:
   - model
   - gbxmodel
+  - soso
 thanks:
   t3h lag: Explaining multipurpose map channels
   Jakey: >-

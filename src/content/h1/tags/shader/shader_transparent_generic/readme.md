@@ -6,6 +6,7 @@ caption: The energy field of the Spirit dropship uses this shader type in H1A an
 keywords:
   - shader_transparent_chicago
   - shader_transparent_chicago_extended
+  - sotr
 thanks:
   MosesOfEgypt: Tag structure research
   Kavawuvi: Invader tag definitions

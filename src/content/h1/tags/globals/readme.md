@@ -11,6 +11,8 @@ thanks:
   gbMichelle: Active camo tint and distortion testing
   Jakey: Active camo rasterizer settings documentation
   Kavawuvi: Invader tag definitions
+keywords:
+  - matg
 ---
 The **globals** tag contains settings for player control, difficulty, grenade types, rasterizer data, the HUD, materials types, and more. In other words, things that only need to be defined once and are rarely edited.
 

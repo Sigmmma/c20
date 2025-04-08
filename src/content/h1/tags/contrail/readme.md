@@ -8,6 +8,8 @@ thanks:
   gbMichelle: Limits
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - cont
 ---
 Contrails describe the trail effects which commonly follow [projectiles](~projectile), or emit from [model](~gbxmodel) markers like the Banshee's wingtips. They reference a [bitmap](~) to be rendered at repeated intervals and can be affected by [wind](~) and gravity using [point_physics](~).
 

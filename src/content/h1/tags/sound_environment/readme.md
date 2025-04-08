@@ -5,6 +5,8 @@ about: 'tag:h1/sound_environment'
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - snde
 ---
 A sound environment determines the accoustic qualities of a [cluster](~scenario_structure_bsp#clusters-and-cluster-data) like reverberation. This is what makes spaces sound open, confined, or echoey.
 

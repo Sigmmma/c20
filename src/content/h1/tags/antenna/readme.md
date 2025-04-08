@@ -7,6 +7,8 @@ thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Tag field testing
+keywords:
+  - ant!
 ---
 **Antennas** describe a series of springy vertices rendered with a [bitmap](~) texture. As an object [_widget_](~object#tag-field-widgets), they attach to [model markers](~gbxmodel#markers). They are only used on the Warthog and Scorpion vehicles, but during Halo's development they were also present on the player [biped](~).
 

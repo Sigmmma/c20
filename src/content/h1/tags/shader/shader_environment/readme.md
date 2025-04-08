@@ -3,13 +3,15 @@ title: shader_environment
 about: 'tag:h1/shader_environment'
 img: shader_environment.jpg
 caption: >
-  Some uses of shader_environment showing features like
-  blending between two detail maps (grass and stone), specular reflections,
-  bump mapping, and alpha testing (foliage).
+  Some uses of shader_environment showing features like blending between two
+  detail maps (grass and stone), specular reflections, bump mapping, and alpha
+  testing (foliage).
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Notes on bump mapping and alpha testing
+keywords:
+  - senv
 ---
 **shader_environment** is intended for opaque and alpha-tested surfaces and is typically used for the majority of shaders in level [BSPs](~scenario_structure_bsp), though it can also be used on [gbxmodels](~gbxmodel). A key feature of this shader is its ability to blend between two detail maps, making it ideal for outdoor ground shaders. It also supports cube maps, bump maps, detail maps, and masked specularity.
 

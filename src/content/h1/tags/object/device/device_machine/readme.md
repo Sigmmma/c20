@@ -6,6 +6,7 @@ img: c20-elevator.jpg
 caption: c20's elevators are a large device_machine
 keywords:
   - device
+  - mach
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research

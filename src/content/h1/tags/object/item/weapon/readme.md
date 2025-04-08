@@ -8,6 +8,8 @@ thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
   t3h m00kz: Aim assist vs magnetism explanation
+keywords:
+  - weap
 ---
 **Weapons** are most commonly seen as the wieldable items dropped by enemies and found in the environment. However, they are also used for items like the CTF flag, oddball, and weapons attached to [vehicles](~vehicle).
 

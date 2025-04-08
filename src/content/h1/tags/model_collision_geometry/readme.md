@@ -8,6 +8,8 @@ thanks:
   lag supreme: Visualization of phantom BSP in covie crates
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - coll
 ---
 Model collision geometry tags contain collision data for an [object](~). This is in contrast to [model/gbxmodel](~gbxmodel) tags, which mostly contain the renderable data. Collision meshes tend to be less detailed than render meshes, and are used to check collisions _within_ the object's [bounding radius](~object#tag-field-bounding-radius).
 

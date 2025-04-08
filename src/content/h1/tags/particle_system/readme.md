@@ -9,6 +9,8 @@ caption: >-
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - pctl
 ---
 A particle system describes the creation and evolution of particles, most commonly for explosions.
 

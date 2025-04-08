@@ -17,10 +17,7 @@ import R from "ramda";
     if (attributes.about && attributes.about.startsWith("tag:")) {
       const pt = [...attributes.about.split(":")[1].split("/"), "id"];
       const tagId = R.path(pt, data.tags);
-      if (tagId.length != 4) {
-        throw new Error("bad tagId length");
-      }
-      if (attributes.keywords && !attributes.keywords.includes(tagId)) {
+      if (tagId && tagId.length > 0 && (!attributes.keywords || !attributes.keywords.includes(tagId))) {
         attributes.keywords = (attributes.keywords ?? []).concat(tagId);
         const newFm = yaml.dump(attributes);
         const text = `---\n${newFm.trim()}\n---\n${body.trim()}\n`;
