@@ -81,5 +81,10 @@ function getMetaboxProps(lang: Lang, ctx: RenderContext | undefined, props: Info
       metaboxProps.sections!.push(...getWorkflowSections(lang, ctx, aboutArg));
     }
   }
+  if (props.children) {
+    metaboxProps.sections!.push({
+      body: props.children,
+    });
+  }
   return metaboxProps;
 }
