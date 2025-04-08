@@ -1,24 +1,16 @@
-import Metabox, {MetaboxProps} from "../Metabox/Metabox";
 import Stub from "../Article/Stub";
 import Breadcrumbs from "./Breadcrumbs";
 import {useCtx} from "../Ctx/Ctx";
 import {REPO_URL, LICENSE_URL} from "../../utils/external-urls";
-import {Lang} from "../../utils/localization";
 import {ComponentChildren} from "preact";
 import {type PageLink} from "../../content";
 import {useLocalize} from "../Locale/Locale";
 import Icon from "../Icon/Icon";
 import { addBreaks } from "../../utils/strings";
 
-const langNames = {
-  en: "English",
-  es: "Español"
-};
-
 const localizations = {
   edit: {
     en: "Edit",
-    es: "Editar"
   },
   reportWiki: {
     en: "Report a wiki issue",
@@ -28,11 +20,9 @@ const localizations = {
   },
   goTop: {
     en: "Go to top",
-    es: "Ir arriba"
   },
   license: {
     en: (link) => <span>This text is available under the {link} license</span>,
-    es: (link) => <span>Este texto está disponible bajo la licencia CC {link}</span>,
   },
 };
 
@@ -40,15 +30,13 @@ export type ArticleProps = {
   stub?: boolean;
   title?: string;
   navParents?: PageLink[];
-  metabox?: MetaboxProps;
-  otherLangs: Record<Lang, PageLink>;
   children?: ComponentChildren;
 };
 
 export default function Article(props: ArticleProps) {
   const ctx = useCtx();
   const {localize} = useLocalize(localizations);
-  const editPageUrl = ctx ? `${REPO_URL}/edit/master/src/content${ctx.pageId}/readme${ctx.lang == "en" ? "" : "_" + ctx.lang}.md` : undefined;
+  const editPageUrl = ctx ? `${REPO_URL}/edit/master/src/content${ctx.pageId}/readme.md` : undefined;
   const newIssueUrl = `${REPO_URL}/issues/new?title=${encodeURIComponent("[" + props.title + "] - <Your issue here>")}&body=${encodeURIComponent("<!---" + localize("issue") + "-->")}`;
 
   return (
@@ -63,9 +51,6 @@ export default function Article(props: ArticleProps) {
           <div className="title-line">
             <h1 className="page-title">{addBreaks(props.title, <wbr/>)}</h1>
             <div className="title-extra">
-              {props.otherLangs && Object.entries(props.otherLangs).length > 0 && Object.entries(props.otherLangs).map(([otherLang, otherLink]) =>
-                <a href={otherLink.url} title={otherLink.title}>{langNames[otherLang] ?? otherLang} /</a>
-              )}
               {editPageUrl &&
                 <a href={editPageUrl} title={localize("edit")}><Icon name="edit"/></a>
               }
@@ -73,9 +58,6 @@ export default function Article(props: ArticleProps) {
             </div>
           </div>
         </div>
-        {props.metabox &&
-          <Metabox title={props.title} {...props.metabox}/>
-        }
         {props.stub &&
           <Stub/>
         }

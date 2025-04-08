@@ -1,5 +1,5 @@
 import * as R from "ramda";
-import {MdSrc} from "../Md/markdown";
+import {MdSrc} from "../../markdown/markdown";
 import Icon, {type IconName} from "../Icon/Icon";
 import {ComponentChildren, VNode} from "preact";
 import Md from "../Md/Md";
@@ -20,7 +20,7 @@ export type MetaboxProps = {
   sections?: MetaboxSectionProps[];
 };
 
-export default function Metabox(props: MetaboxProps) {
+export default function MetaBox(props: MetaboxProps) {
   const hasSections = props.sections && props.sections.length > 0;
   const empty = !hasSections && R.pipe(
     R.pick(["img", "caption", "info"]),

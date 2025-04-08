@@ -3,12 +3,12 @@ import express from "express";
 import path from "path";
 import buildConfig from "../build-config.json";
 // SPOOPY BUG: do not reorder the next two lines!!!!!
-import renderPage from "./lib/render/render";
+import renderPage from "./lib/render";
 import {buildPageTree, getPageBaseDir, getPageMdSrcPath, loadPageIndex} from "./lib/content";
 import {loadYamlTree} from "./lib/utils/files";
 import {type BuildOpts} from "./build";
-import {parse} from "./lib/components/Md/markdown";
-import { buildSearchIndex, SearchDoc } from "./lib/search";
+import {parse} from "./lib/markdown/markdown";
+import { buildSearchIndexJson, SearchDoc } from "./lib/search";
 import { buildRedirects } from "./lib/redirects";
 import loadStructuredData from "./data";
 import { renderViz } from "./lib/resources";
@@ -19,8 +19,6 @@ const buildOpts: BuildOpts = {
   outputDir: buildConfig.paths.dist,
   noThumbs: !!process.env.C20_NO_THUMBNAILS,
 };
-
-const reqs: any[] = [];
 
 export default function runServer(onDemand: boolean) {
   const port = process.env.C20_PORT ? Number(process.env.C20_PORT) : 8080;
@@ -41,45 +39,39 @@ export default function runServer(onDemand: boolean) {
       res.send(svg);
     });
     
-    app.get("/assets/search-index_:lang(\\w{2}).json", async (req, res, next) => {
-      const lang = req.params.lang.toLowerCase();
-      console.log(`Building search index: ${lang}`);
+    app.get("/assets/search-index.json", async (req, res, next) => {
+      console.log("Building search index");
       const pageIndex = await loadPageIndex(buildOpts.contentDir);
-      const searchDocs: SearchDoc[] = Object.entries(pageIndex).map(([pageId, pageDataByLang]): SearchDoc => {
-        const pageData = pageDataByLang[lang];
+      const searchDocs: SearchDoc[] = Object.entries(pageIndex).map(([pageId, pageData]): SearchDoc => {
         return {
-          lang,
           path: pageId,
           keywords: pageData.front.keywords?.join(" ") ?? "",
           title: pageData.front.title ?? "",
           text: "", //render plaintext? or keep it fast during dev?
         };
       });
-      const json = buildSearchIndex(searchDocs)[lang];
+      const json = buildSearchIndexJson(searchDocs);
       res.header("Content-Type", "application/json; charset=UTF-8");
       res.send(json);
     });
 
-    app.get("/assets/page-tree_:lang(\\w{2}).json", async (req, res, next) => {
-      const lang = req.params.lang.toLowerCase();
-      console.log(`Building page tree: ${lang}`);
+    app.get("/assets/page-tree.json", async (req, res, next) => {
+      console.log("Building page tree");
       const pageIndex = await loadPageIndex(buildOpts.contentDir);
-      const pageTree = buildPageTree(pageIndex, "/", lang);
+      const pageTree = buildPageTree(pageIndex, "/");
       const json = JSON.stringify(pageTree);
       res.header("Content-Type", "application/json; charset=UTF-8");
       res.send(json);
     });
     
     app.get("/:page([-/_a-zA-Z0-9]+)?", async (req, res, next) => {
-      // const lang = req.params.lang?.toLowerCase() ?? "en";
-      const lang = "en";
       const pageId = req.params.page ?
         `/${req.params.page.endsWith("/") ? req.params.page.replace(/\/+$/, "") : req.params.page}` :
         "/";
       
       console.log(`Rendering ${pageId}`);
       const baseDir = getPageBaseDir(pageId, buildOpts);
-      const mdSrcPath = getPageMdSrcPath(baseDir, lang);
+      const mdSrcPath = getPageMdSrcPath(baseDir);
 
       const dataPromise = loadStructuredData();
       const localDataPromise = loadYamlTree(baseDir, {nonRecursive: true});
@@ -97,18 +89,17 @@ export default function runServer(onDemand: boolean) {
       const {ast, frontmatter} = parse(mdSrc, mdSrcPath);
 
       const renderOutput = renderPage({
+        lang: "en",
         baseUrl: buildOpts.baseUrl,
         noThumbs: true,
         preloadJson: false,
-        debug: !!process.env.C20_DEBUG || req.query.debug,
         pageId,
-        lang,
         ast,
         front: frontmatter,
         localData: await localDataPromise,
         globalData: await dataPromise,
         pageIndex: await pageIndexPromise,
-        pageTree: buildPageTree(await pageIndexPromise, "/", lang),
+        pageTree: buildPageTree(await pageIndexPromise, "/"),
       });
     
       res.header("Content-Type", "text/html; charset=UTF-8");

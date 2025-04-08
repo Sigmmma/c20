@@ -6,10 +6,11 @@ todo.txt
 /src/content/**/todo.md
 /src/content/**/todo
 *.swp
-oxipng.exe
 .DS_Store
 hs_doc*.txt
 *.code-workspace
+.idea
 /ffmpeg.exe
+oxipng.exe
 /src/utility_scripts/jpegtran-static.exe
 /src/utility_scripts/jpegtran-static_old.exe

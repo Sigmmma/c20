@@ -1,8 +1,5 @@
 ---
 title: actor
-about: 'tag:h1/actor'
-img: actors.jpg
-caption: Actors with various `ai_render_*` globals enabled, showcasing their internal state. 
 thanks:
   justinpyne: Explaining the _friend avoid dist_ field
   Kavawuvi: Invader tag definitions
@@ -13,7 +10,15 @@ thanks:
   Kornman: Providing actor type definition structure
   Conscars: Reversing actor type definitions
   zatarita: Reversing actor type definitions
+keywords:
+  - actr
 ---
+{% infoBox
+  about="tag:h1/actor"
+  img="actors.jpg"
+  caption="Actors with various `ai_render_*` globals enabled, showcasing their internal state."
+/%}
+
 **Actor** definitions configure core AI behaviours, including which decisions they make and how, irrespective of the character's appearance or rank-specific alterations (which is what [actor_variant](~) is for).
 
 # Actor type definitions

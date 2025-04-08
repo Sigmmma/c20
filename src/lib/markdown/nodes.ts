@@ -1,8 +1,9 @@
 import {type NodeType, type Schema, Tag} from "@markdoc/markdoc";
-import { linkables } from "../../utils/external-urls";
-import {addBreaks, slugify} from "../../utils/strings";
-import {type RenderContext} from "../Ctx/Ctx";
-import renderPlaintext from "./plaintext";
+import { linkables } from "../utils/external-urls";
+import {addBreaks, slugify} from "../utils/strings";
+import {type RenderContext} from "../components/Ctx/Ctx";
+import renderPlaintext from "../components/Md/plaintext";
+import {Lang} from "../utils/localization";
 
 const wbr = new Tag("wbr");
 
@@ -47,6 +48,7 @@ const nodes: Partial<Record<NodeType, Schema>> = {
     },
     transform(node, config) {
       const ctx = (config as any).ctx as RenderContext;
+      const lang = (config as any).lang as Lang;
       const attributes = node.transformAttributes(config);
       const children = node.transformChildren(config);
       let href = attributes.href;
@@ -55,7 +57,7 @@ const nodes: Partial<Record<NodeType, Schema>> = {
       try {
         if (href?.startsWith("~")) {
           let [idTail, headingId] = href.slice(1).split("#");
-          if (idTail == "") idTail = slugify(children.map(c => renderPlaintext(ctx, c) ?? "").join(""), true);
+          if (idTail == "") idTail = slugify(children.map(c => renderPlaintext(ctx, lang, c) ?? "").join(""), true);
           if (headingId == "") headingId = undefined;
           const {title: foundTitle, url} = ctx.resolvePage(idTail, headingId);
           href = url;
@@ -94,10 +96,12 @@ const nodes: Partial<Record<NodeType, Schema>> = {
       level: {type: Number, required: true, default: 1}
     },
     transform(node, config) {
+      const ctx = (config as any).ctx as RenderContext;
+      const lang = (config as any).lang as Lang;
       const attributes = node.transformAttributes(config);
       const children = node.transformChildren(config);
 
-      const plaintext = children.map(c => renderPlaintext((config as any).ctx, c) ?? "").join("");
+      const plaintext = children.map(c => renderPlaintext(ctx, lang, c) ?? "").join("");
       const id = attributes.id ?? slugify(plaintext);
 
       return new Tag(

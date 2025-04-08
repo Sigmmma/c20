@@ -1,7 +1,7 @@
 import path from "path";
 import {loadYamlTree} from "../lib/utils/files";
 import { Lang } from "../lib/utils/localization";
-import { MdSrc } from "../lib/components/Md/markdown";
+import { MdSrc } from "../lib/markdown/markdown";
 const loadWorkflows = require("./workflows");
 const loadTags = require("./tags");
 

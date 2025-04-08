@@ -4,9 +4,10 @@ import {type RenderContext, useCtx} from "../Ctx/Ctx";
 import {Jump} from "../Heading/Heading";
 import CodeBlock from "../CodeBlock/CodeBlock";
 import renderMdPlaintext from "../Md/plaintext";
-import {parse, transform} from "../Md/markdown";
+import {parse, transform} from "../../markdown/markdown";
 import Md from "../Md/Md";
 import voll from "voll";
+import {Lang} from "../../utils/localization";
 
 const AUTO_INDEX_THRESHOLD = 100;
 
@@ -47,14 +48,14 @@ function getRowId(tableId: string, props: DataTableProps, row: object, index: nu
   return slugify(`${tableId}-${getRowSlug(props, row, index)}`)!;
 }
 
-function renderCellPlaintext(ctx, col, content): string {
+function renderCellPlaintext(ctx: RenderContext, lang: Lang, col, content): string {
   const format = col.format ?? "text";
   if (content === undefined || content === null) {
     return "";
   } else if (format === "text") {
     const {ast, frontmatter} = parse(content);
-    const mdContent = transform(ast, ctx, frontmatter);
-    return renderMdPlaintext(ctx, mdContent)?.trim() ?? "";
+    const mdContent = transform(ast, ctx, lang, frontmatter);
+    return renderMdPlaintext(ctx, lang, mdContent)?.trim() ?? "";
   } else if (format == "indexedValue") {
     return col.values?.[content] ?? "";
   } else if (format === "code") {
@@ -107,14 +108,14 @@ function renderCell(ctx, col, content) {
   }
 }
 
-export function renderPlaintext(ctx: RenderContext | undefined, props: DataTableProps): string | undefined {
+export function renderPlaintext(ctx: RenderContext | undefined, lang: Lang, props: DataTableProps): string | undefined {
   if (!ctx) return undefined;
   const {rows} = gatherRows(ctx, props);
   const headerRendered = props.columns.map(col => col.name).join(" ");
   const rowsRendered = rows.map(row =>
     props.columns.map(col => {
       const rowContent = R.path(col.key.split("/"), row);
-      const cell = renderCellPlaintext(ctx, col, rowContent);
+      const cell = renderCellPlaintext(ctx, lang, col, rowContent);
       return cell;
     }).join(" ")
   ).join("\n");

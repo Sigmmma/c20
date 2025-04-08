@@ -1,4 +1,4 @@
-import {type MdSrc} from "../Md/markdown";
+import {type MdSrc} from "../../markdown/markdown";
 import {slugify} from "../../utils/strings";
 import Heading from "../Heading/Heading";
 import Md from "../Md/Md";

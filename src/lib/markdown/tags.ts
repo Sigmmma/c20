@@ -1,7 +1,7 @@
 import {Tag, type Schema} from "@markdoc/markdoc";
-import {alertTypes} from "../Alert/Alert";
-import {iconNames} from "../Icon/names";
-import {onlyTypes} from "../RelatedHsc/RelatedHsc";
+import {alertTypes} from "../components/Alert/Alert";
+import {iconNames} from "../components/Icon/names";
+import {onlyTypes} from "../components/RelatedHsc/RelatedHsc";
 
 // These are the custom markdoc "tags" we suppport, and the components they map to
 const tags: Record<string, Schema> = {
@@ -167,6 +167,23 @@ const tags: Record<string, Schema> = {
       noClear: {
         type: Boolean,
       }
+    },
+  },
+  infoBox: {
+    render: "InfoBox",
+    attributes: {
+      about: {
+        type: String,
+      },
+      img: {
+        type: String,
+      },
+      caption: {
+        type: String,
+      },
+      info: {
+        type: String,
+      },
     },
   },
   dataTable: {

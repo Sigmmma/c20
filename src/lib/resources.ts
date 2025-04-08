@@ -1,4 +1,4 @@
-import {getPageBaseDir, pageIdToLogical, tryLocalizedPath, type PageIndex} from "./content";
+import {getPageBaseDir, pageIdToLogical, formatUrlPath, type PageIndex} from "./content";
 import path from "path";
 import fs from "fs";
 import Viz from "@viz-js/viz";
@@ -65,7 +65,7 @@ async function processFile(srcPath: string, outputDir: string) {
 }
 
 export default async function buildResources(pageIndex: PageIndex, buildOpts: BuildOpts) {
-  await Promise.all(Object.entries(pageIndex).map(async ([pageId, pageDataByLang]) => {
+  await Promise.all(Object.entries(pageIndex).map(async ([pageId, pageData]) => {
     const baseDir = getPageBaseDir(pageId, buildOpts);
     const srcFiles = await fs.promises.readdir(baseDir, {encoding: "utf8"});
     const outputDir = path.join(buildOpts.outputDir, ...pageIdToLogical(pageId));

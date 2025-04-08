@@ -1,43 +1,35 @@
 import * as R from "ramda";
-import {type RenderContext} from "../../components/Ctx/Ctx";
-import DetailsList from "../../components/DetailsList/DetailsList";
-import {type MetaboxSectionProps} from "../../components/Metabox/Metabox";
-import Wat from "../../components/Wat/Wat";
-import {localizer} from "../../utils/localization";
-import { addBreaks } from "../../utils/strings";
+import {RenderContext} from "../Ctx/Ctx";
+import DetailsList from "../DetailsList/DetailsList";
+import {MetaboxSectionProps} from "./MetaBox";
+import Wat from "../Wat/Wat";
+import {Lang, localizer} from "../../utils/localization";
+import {addBreaks} from "../../utils/strings";
 
 const localizations = {
   authors: {
     en: "Author(s)",
-    es: "Autores/Autoras"
   },
   similar: {
     en: "Similar to",
-    es: "Similar a"
   },
   tool: {
     en: "Tool",
-    es: "Herramienta"
   },
   resource: {
     en: "Resource",
-    es: "Recurso"
   },
   workflows: {
     en: "Workflows",
-    es: "Flujos de trabajo"
   },
   deprecatedWorkflows: {
     en: "Deprecated workflows",
-    es: "Flujos de trabajo obsoletos"
   },
   edit: {
     en: "Edit",
-    es: "Editar"
   },
   editWith: {
     en: "Edit with",
-    es: "Editar con"
   },
   diff: {
     en: "Compare",
@@ -47,27 +39,21 @@ const localizations = {
   },
   buildTypes: {
     en: "Published build type(s)",
-    es: "Tipo(s) de compilación publicados"
   },
   bidiUsingThis: {
     en: (item) => <>{item} to/from</>,
-    es: (item) => <>{item} a/de</>,
   },
   bidiOfThis: {
     en: (other) => <>To/from {other} with</>,
-    es: (other) => <>A/de {other} con</>,
   },
   flowTo: {
     en: (other) => <>To {other} with</>,
-    es: (other) => <>A {other} con</>,
   },
   flowFrom: {
     en: (other) => <>From {other} with</>,
-    es: (other) => <>De {other} con</>,
   },
   flowUsing: {
     en: (other) => <>{other} to</>,
-    es: (other) => <>{other} a</>,
   }
 };
 
@@ -180,12 +166,8 @@ const workflowsList = (ctx, localize, item) => {
   );
 };
 
-export type WorkflowsProps = {
-  itemName: string;
-};
-
-export default function getWorkflowSections(ctx: RenderContext | undefined, itemName: string): MetaboxSectionProps[] {  
-  const localize = localizer(localizations, ctx?.lang ?? "en");
+export default function getWorkflowSections(lang: Lang, ctx: RenderContext | undefined, itemName: string): MetaboxSectionProps[] {
+  const localize = localizer(localizations, lang);
   const item = ctx?.data?.workflows?.getWorkflowItem(itemName);
   const sections: MetaboxSectionProps[] = [];
 

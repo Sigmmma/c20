@@ -2,7 +2,7 @@ import Icon, { IconName } from "../Icon/Icon";
 import {useLocalize} from "../Locale/Locale";
 import {DISCORD_URL} from "../../utils/external-urls";
 import localizations from "./localizations";
-import { NavTree } from "../../content";
+import { PageTree } from "../../content";
 import MiniSearch from "minisearch";
 import Search from "../Search/Search";
 import { useState } from "preact/hooks";
@@ -14,7 +14,7 @@ export type NavProps = {
   initialTheme?: string;
   onThemeSelected?: (string) => void;
   searchIndex?: MiniSearch;
-  pageTree?: NavTree;
+  pageTree?: PageTree;
   wrapperState: number;
   onMenuToggled: () => void;
   onTocToggled: () => void;
@@ -25,7 +25,7 @@ function toggle(pageId: string, expandedPages: object): object {
   return {...expandedPages, [pageId]: !expandedPages[pageId]};
 }
 
-function renderPageTree(currPageId: string, pageTree: NavTree, expandedPages: object, setExpandedPages: (newVal: object) => void) {
+function renderPageTree(currPageId: string, pageTree: PageTree, expandedPages: object, setExpandedPages: (newVal: object) => void) {
   return (
     <ol>
       {pageTree.map(({link, children}) => {

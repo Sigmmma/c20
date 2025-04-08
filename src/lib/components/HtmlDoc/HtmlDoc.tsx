@@ -1,6 +1,5 @@
 import {type ComponentChildren} from "preact";
 import {type Lang} from "../../utils/localization";
-import {useCtx} from "../Ctx/Ctx";
 import {useLocalize} from "../Locale/Locale";
 
 export type HtmlDocProps = {
@@ -8,9 +7,9 @@ export type HtmlDocProps = {
   noSearch?: boolean;
   preloadJson?: boolean;
   baseUrl: string;
+  lang: Lang;
   ogDescription?: string;
   ogTags?: string[];
-  ogOtherLangs?: Lang[];
   ogImg?: string;
   path: string;
   localizedPath: string;
@@ -30,20 +29,15 @@ const localizations = {
 
 export default function HtmlDoc(props: HtmlDocProps) {
   const {localize} = useLocalize(localizations);
-  const ctx = useCtx();
-  const lang = ctx?.lang ?? "en";
   
   const ogImgAbsoluteUrl = props.ogImg ?
     `${props.baseUrl}${props.path}/${props.ogImg}` :
     `${props.baseUrl}/assets/librarian.png`;
 
   return (
-    <html lang={lang}>
+    <html lang={props.lang}>
       <head>
         <meta charSet="utf-8"/>
-        {/* {page.Page404 &&
-          <meta itemProp="Is404" content='true'/>
-        } */}
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
         {props.noSearch ? (
@@ -57,9 +51,6 @@ export default function HtmlDoc(props: HtmlDocProps) {
         <meta property="og:site_name" content={localize("siteName")}/>
         <meta property="og:type" content="website"/>
         <meta property="og:locale" content={localize("locale")}/>
-        {props.ogOtherLangs?.map(otherLang =>
-          <meta key={otherLang} property="og:locale:alternate" content={localizations.locale[otherLang] ?? otherLang}/>
-        )}
         {props.ogTags && props.ogTags.map(tag =>
           <meta property="og:article:tag" content={tag}/>
         )}
@@ -71,8 +62,8 @@ export default function HtmlDoc(props: HtmlDocProps) {
         <title>{props.title ? `${props.title} - c20` : "c20"}</title>
         <base href={props.path.endsWith("/") ? props.path : `${props.path}/`}/>
         {props.preloadJson && <>
-          <link rel="preload" type="application/json" as="fetch" href={`/assets/search-index_${lang}.json`}/>
-          <link rel="preload" type="application/json" as="fetch" href={`/assets/page-tree_${lang}.json`}/>
+          <link rel="preload" type="application/json" as="fetch" href={`/assets/search-index.json`}/>
+          <link rel="preload" type="application/json" as="fetch" href={`/assets/page-tree.json`}/>
         </>}
         <link rel="icon" type="image/png" href="/assets/librarian.png"/>
         <link rel="stylesheet" href="/assets/style.css"/>

@@ -1,27 +1,25 @@
 import path from "path";
 import fs from "fs";
-import {type BuildOpts} from "../build";
-import type {PageId, PageIndex} from "./content";
+import {BuildOpts} from "../build";
+import {PageId, PageIndex} from "./content";
 
 type Redirects = Record<PageId, PageId>;
 
 export function buildRedirects(pageIndex: PageIndex): Redirects {
   const result = {};
-  Object.entries(pageIndex).forEach(([pageId, pageDataByLang]) => {
-    Object.entries(pageDataByLang).forEach(([lang, pageData]) => {
-      pageData.front.redirects?.forEach(redirect => {
-        if (pageIndex[redirect]) {
-          throw new Error(`Page '${pageId}' (${lang}) has a redirect from '${redirect}', but that page exists`);
-        }
-        if (result[redirect]) {
-          throw new Error(`Both '${pageId}' (${lang}) and '${result[redirect]}' redirect from '${redirect}'`);
-        }
-        result[redirect] = pageId;
-      });
+  Object.entries(pageIndex).forEach(([pageId, pageData]) => {
+    pageData.front.redirects?.forEach(redirect => {
+      if (pageIndex[redirect]) {
+        throw new Error(`Page '${pageId}' has a redirect from '${redirect}', but that page exists`);
+      }
+      if (result[redirect]) {
+        throw new Error(`Both '${pageId}' and '${result[redirect]}' redirect from '${redirect}'`);
+      }
+      result[redirect] = pageId;
     });
   });
   return result;
-};
+}
 
 /*
  * Read:
@@ -52,7 +50,7 @@ export async function buildAndWriteRedirects(pageIndex: PageIndex, buildOpts: Bu
         ReplaceKeyPrefixWith: toPageId.substring(1),
       }
     }))
-  };
+  }
   const json = JSON.stringify(bucketWebsiteConfig);
   const outputPath = path.join(buildOpts.outputDir, "bucket-website.json");
   await fs.promises.mkdir(buildOpts.outputDir, {recursive: true});

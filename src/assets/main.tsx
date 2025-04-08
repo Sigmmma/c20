@@ -1,17 +1,10 @@
 import * as preact from "preact";
 import { IconName } from "../lib/components/Icon/names";
-import Locale from "../lib/components/Locale/Locale";
+import {Locale} from "../lib/components/Locale/Locale";
 import UnitConverter from "../lib/components/UnitConverter/UnitConverter";
 import DataTableFilter from "../lib/components/DataTable/DataTableFilter";
 import MiniSearch from "minisearch";
 import PageWrapper from "../lib/components/PageWrapper/PageWrapper";
-
-//todo
-//const is404Page = !!document.head.querySelector('[itemprop = Is404]');
-//is404Page ? window.location.pathname.split("/").reverse().join(" ") : ''
-// if (is404Page) {
-//   document.querySelector('[id=missing-page]').innerText = "(" + window.location.pathname + ")";
-// }
 
 const lang = document.querySelector("html")?.lang ?? "en";
 
@@ -105,10 +98,10 @@ const miniSearchConfig = {
   }
 };
 
-const searchIndexPromise = fetch(`/assets/search-index_${lang}.json`)
+const searchIndexPromise = fetch(`/assets/search-index.json`)
   .then(res => res.text())
   .then(indexJson => MiniSearch.loadJSON(indexJson, miniSearchConfig));
-const pageTreePromise = fetch(`/assets/page-tree_${lang}.json`)
+const pageTreePromise = fetch(`/assets/page-tree.json`)
   .then(res => res.json());
 
 Promise.all([searchIndexPromise, pageTreePromise]).then(([searchIndex, pageTree]) => {

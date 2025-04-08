@@ -1,8 +1,9 @@
 import {createElement, Fragment, VNode} from "preact";
 import Markdoc, {type RenderableTreeNodes, type RenderableTreeNode} from "@markdoc/markdoc";
-import {parse, transform, type MdSrc} from "./markdown";
+import {parse, transform, type MdSrc} from "../../markdown/markdown";
 import {useCtx} from "../Ctx/Ctx";
 import {components} from "./components";
+import {useLocalize} from "../Locale/Locale";
 
 //preact works as a ReactShape
 const react = {createElement, Fragment} as any;
@@ -24,10 +25,11 @@ function unwrapParagraph(nodes: RenderableTreeNode[], inline?: boolean): Rendera
 export default function Md(props: MdProps) {
   if (!props.src && !props.content) return null;
   const ctx = useCtx();
+  const {lang} = useLocalize();
   let content = props.content;
   if (!content && props.src) {
     const {ast, frontmatter} = parse(props.src);
-    content = transform(ast, ctx, frontmatter);
+    content = transform(ast, ctx, lang, frontmatter);
   }
   const contentToRender = (!content || typeof(content) == "string") ?
     content :

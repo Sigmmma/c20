@@ -1,4 +1,4 @@
-import {type NavTree} from "../../content";
+import {type PageTree} from "../../content";
 import {type ComponentChildren} from "preact";
 import { useState } from "preact/hooks";
 import TableOfContents, {type NavHeading} from "../Article/TableOfContents";
@@ -11,7 +11,7 @@ const wrapperStateClasses = ["menu-view", "body-view", "toc-view"];
 export type PageWrapperProps = {
   pageId: string;
   navHeadings?: NavHeading[];
-  pageTree?: NavTree;
+  pageTree?: PageTree;
   searchIndex?: MiniSearch;
   themes?: {name: string, icon: IconName}[];
   initialTheme?: string;

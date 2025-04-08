@@ -4,13 +4,14 @@ import {type DataTableProps, renderPlaintext as renderDataTablePlaintext} from "
 import {type StructTableProps, renderPlaintext as renderStructTablePlaintext} from "../StructTable/StructTable";
 import {type RelatedHscProps, renderPlaintext as renderRelatedHscPlaintext} from "../RelatedHsc/RelatedHsc";
 import {type TagStructProps, renderPlaintext as renderTagStructPlaintext} from "../StructTable/TagStruct";
-import {parse, transform, type MdSrc} from "./markdown";
+import {parse, transform, type MdSrc} from "../../markdown/markdown";
+import {Lang} from "../../utils/localization";
 
 const padded = (children) => `${children}\n\n`; 
 const block = (children) => `${children}\n`;
 const margin = (children) => `${children} `;
 
-type Renderer = (children: string, attributes: Record<string, any>, ctx: RenderContext | undefined) => string | undefined;
+type Renderer = (children: string, attributes: Record<string, any>, ctx: RenderContext | undefined, lang: Lang) => string | undefined;
 const renderers: Record<string, Renderer> = {
   p: padded,
   h1: block,
@@ -28,50 +29,49 @@ const renderers: Record<string, Renderer> = {
   ol: block,
   //custom tags and nodes
   Heading: block,
-  Key: (children, attributes, ctx) => {
+  Key: (children, attributes, ctx, lang) => {
     return attributes.input;
   },
-  ThanksIndex: (children, attributes, ctx) => {
+  ThanksIndex: (children, attributes, ctx, lang) => {
     return ctx ? padded(ctx.allThanks?.join("\n")) : undefined;
   },
-  CodeBlock: (children, attributes, ctx) => {
+  CodeBlock: (children, attributes, ctx, lang) => {
     return block(attributes.code);
   },
-  DataTable: (children, attributes, ctx) => {
-    return padded(renderDataTablePlaintext(ctx, attributes as DataTableProps));
+  DataTable: (children, attributes, ctx, lang) => {
+    return padded(renderDataTablePlaintext(ctx, lang, attributes as DataTableProps));
   },
-  RelatedHsc: (children, attributes, ctx) => {
-    return padded(renderRelatedHscPlaintext(ctx, attributes as RelatedHscProps));
+  RelatedHsc: (children, attributes, ctx, lang) => {
+    return padded(renderRelatedHscPlaintext(lang, ctx, attributes as RelatedHscProps));
   },
-  StructTable: (children, attributes, ctx) => {
-    return padded(renderStructTablePlaintext(ctx, attributes as StructTableProps));
+  StructTable: (children, attributes, ctx, lang) => {
+    return padded(renderStructTablePlaintext(lang, ctx, attributes as StructTableProps));
   },
-  TagStruct: (children, attributes, ctx) => {
-    return padded(renderTagStructPlaintext(ctx, attributes as TagStructProps));
+  TagStruct: (children, attributes, ctx, lang) => {
+    return padded(renderTagStructPlaintext(lang, ctx, attributes as TagStructProps));
   },
-};
+}
 
-function render(node: RenderableTreeNode, ctx: RenderContext | undefined, depth: number): string {
+function render(node: RenderableTreeNode, ctx: RenderContext | undefined, lang: Lang, depth: number): string {
   if (!node) {
     return "";
   } else if (typeof node == "object") {
     const {name, attributes = {}, children = []} = node;
-    // console.log("  ".repeat(depth) + name);
     const renderer = renderers[name] ?? (children => children);
-    return renderer(children.map(c => render(c, ctx, depth + 1)).join(""), attributes, ctx) ?? "";
+    return renderer(children.map(c => render(c, ctx, lang, depth + 1)).join(""), attributes, ctx, lang) ?? "";
   } else if (Array.isArray(node)) {
-    return node.map(n => render(n, ctx, depth + 1)).join("\n");
+    return node.map(n => render(n, ctx, lang, depth + 1)).join("\n");
   }
   return node;
 }
 
-export default function renderPlaintext(ctx: RenderContext | undefined, node?: RenderableTreeNode): string | undefined {
-  return node ? render(node, ctx, 0) : undefined;
-};
+export default function renderPlaintext(ctx: RenderContext | undefined, lang: Lang, node?: RenderableTreeNode): string | undefined {
+  return node ? render(node, ctx, lang, 0) : undefined;
+}
 
-export function renderPlaintextFromSrc(ctx: RenderContext | undefined, mdSrc: MdSrc): string | undefined {
+export function renderPlaintextFromSrc(ctx: RenderContext | undefined, lang: Lang, mdSrc: MdSrc): string | undefined {
   if (!mdSrc) return undefined;
   const {frontmatter, ast} = parse(mdSrc);
-  const content = transform(ast, ctx, frontmatter);
-  return renderPlaintext(ctx, content);
-};
+  const content = transform(ast, ctx, lang, frontmatter);
+  return renderPlaintext(ctx, lang, content);
+}

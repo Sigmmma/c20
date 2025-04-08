@@ -157,13 +157,6 @@ noSearch: true
 redirects:
   - /h1/old/page
   - /h1/another/old/page
-
-# You probably don't need to use this. Some pages contain headings which are
-# directly referenced by code in this project. This config allows other page
-# languages page to provide a stable ID alias for headings that's translated
-# during autolink resolution.
-headingRefs:
-  group-ids: id-de-motor
 ```
 
 ## Markdown basics

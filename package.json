@@ -44,6 +44,7 @@
     "viz.js": "^2.1.2"
   },
   "dependencies": {
+    "front-matter": "^4.0.2",
     "voll": "^1.2.6"
   }
 }

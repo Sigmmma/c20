@@ -1,9 +1,11 @@
 import Markdoc, {type Node, RenderableTreeNode, ValidateError} from "@markdoc/markdoc";
+import fm, {FrontMatterResult} from "front-matter";
 import yaml from "js-yaml";
 import tagsConfig from "./tags";
 import nodesConfig from "./nodes";
-import {type RenderContext} from "../Ctx/Ctx";
-export {default as renderPlaintext} from "./plaintext";
+import {type RenderContext} from "../components/Ctx/Ctx";
+import {Lang} from "../utils/localization";
+export {default as renderPlaintext} from "../components/Md/plaintext";
 
 export type MdSrc = string;
 
@@ -20,6 +22,10 @@ export type ParseResult<F> = {
   frontmatter?: F;
 };
 
+export function parseSplit<F=any>(mdSrc: MdSrc): FrontMatterResult<F> {
+  return fm(mdSrc);
+}
+
 export function parse<F=any>(mdSrc: MdSrc, fileName?: string): ParseResult<F> {
   const ast = Markdoc.parse(mdSrc, fileName);
   const frontmatter = ast.attributes.frontmatter ?
@@ -28,12 +34,13 @@ export function parse<F=any>(mdSrc: MdSrc, fileName?: string): ParseResult<F> {
   return {ast, frontmatter};
 }
 
-export function transform<F=any>(ast: Node, ctx: RenderContext | undefined, frontmatter?: F): RenderableTreeNode | undefined {
+export function transform<F=any>(ast: Node, ctx: RenderContext | undefined, lang: Lang, frontmatter?: F): RenderableTreeNode | undefined {
   const config = {
     variables: {
       ...frontmatter
     },
     ctx,
+    lang,
     tags: tagsConfig,
     nodes: nodesConfig,
   };

@@ -1,27 +1,15 @@
 import path from "path";
 import fs from "fs";
 import * as R from "ramda";
-import {parse} from "./components/Md/markdown";
-import {findPaths, parseLangSuffix} from "./utils/files";
+import {parse} from "./markdown/markdown";
+import {findPaths} from "./utils/files";
 import {commonLength } from "./utils/strings";
-import {type Node} from "@markdoc/markdoc";
-import {type MdSrc} from "./components/Md/markdown";
-import {type Lang} from "./utils/localization";
-import {type BuildOpts} from "../build";
-import { IconName } from "./components/Icon/names";
+import {Node} from "@markdoc/markdoc";
+import {MdSrc} from "./markdown/markdown";
+import {BuildOpts} from "../build";
+import {IconName} from "./components/Icon/names";
 
 export type PageId = string;
-
-const iconMappings: Record<string, IconName> = {
-  stub: "file",
-  article: "file-text",
-  tool: "tool",
-  resource: "file-text",
-  tag: "share-2",
-  tags: "share-2",
-  guide: "book-open",
-  scripts: "terminal",
-};
 
 export type PageFrontMatter = {
   title?: string;
@@ -31,7 +19,6 @@ export type PageFrontMatter = {
   icon?: IconName;
   info?: MdSrc;
   thanks?: Record<string, MdSrc>;
-  headingRefs?: Record<string, string>;
   noSearch?: boolean;
   keywords?: string[];
   stub?: boolean;
@@ -54,71 +41,77 @@ export type PageData = {
   ast: Node;
 };
 
-export type NavTree = {link: PageLink, children: NavTree}[];
+export interface PageFileInfo {
+  mdFilePath: string;
+  logicalPath: string[];
+  logicalPathTail: string;
+  pageId: PageId;
+}
 
-export type PageIndex = Record<PageId, Record<Lang, PageData>>;
+export type PageTree = {link: PageLink, children: PageTree}[];
+
+export type PageIndex = Record<PageId, PageData>;
 
 export function logicalToPageId(logicalPath: string[]): PageId {
   return "/" + logicalPath.join("/");
-};
+}
 
 export function pageIdToLogical(pageId: PageId): string[] {
   return pageId.split("/").filter(s => s != "");
-};
+}
 
 export function getPageBaseDir(pageId: PageId, buildOpts: BuildOpts): string {
   return path.join(buildOpts.contentDir, ...pageIdToLogical(pageId));
-};
-
-export function getPageMdSrcPath(baseDir: string, lang: Lang): string {
-  return path.join(baseDir, lang == "en" ? "readme.md" : `readme_${lang}.md`);
-};
-
-function pageIdToUrl(pageId: PageId, lang: Lang, headingId?: string): string {
-  const path = lang == "en" ? pageId : `${pageId}/${lang}.html`;
-  return headingId ? `${path}#${headingId}` : path;
 }
 
-export function getPageIcon(front: PageFrontMatter | undefined): IconName {
-  const [aboutType, aboutArg] = (front?.about?.split(":") ?? []) as [string?, string?];
-  const iconType = (front?.icon ?? aboutType ?? (front?.stub ? "stub" : "article"));
-  return iconMappings[iconType] ?? iconType;
+export function getPageMdSrcPath(baseDir: string): string {
+  return path.join(baseDir, "readme.md");
 }
 
-//build cross-page APIs and helpers used during rendering
-export async function loadPageIndex(contentDir: string): Promise<PageIndex> {
-  //we're going to build a map of page ids => page metadata
-  const pages: Record<PageId, Record<Lang, PageData>> = {};
-
-  //find all page.yml files under the content root -- each will become a page
-  const mdFiles = await findPaths(path.join(contentDir, "**", "readme*.md"));
-
-  //load all page files
-  await Promise.all(mdFiles.map(async (mdFilePath) => {
+export async function discoverPageFiles(contentDir: string): Promise<PageFileInfo[]> {
+  const mdFiles = await findPaths(path.join(contentDir, "**", "readme.md"));
+  return mdFiles.map(mdFilePath => {
     const {dir: dirPath, name: fileName} = path.parse(mdFilePath);
     const contentDirDepth = path.normalize(contentDir).split(path.sep).length;
     const logicalPath = path.normalize(dirPath).split(path.sep).slice(contentDirDepth);
     const pageId = logicalToPageId(logicalPath);
     const logicalPathTail = logicalPath[logicalPath.length - 1];
-    const lang = parseLangSuffix(fileName) ?? "en";
 
-    const mdSrc = await fs.promises.readFile(mdFilePath, "utf8");
-    const {ast, frontmatter: front} = parse<PageFrontMatter>(mdSrc, mdFilePath);
+    return {
+      mdFilePath,
+      logicalPath,
+      logicalPathTail,
+      pageId,
+    };
+  });
+}
 
-    if (front) {
-      if (!pages[pageId]) pages[pageId] = {};
-      pages[pageId][lang] = {
-        front,
-        ast,
-        logicalPath,
-        logicalPathTail,
-      };
-    }
+export async function loadPageFile(pageFile: PageFileInfo): Promise<PageData> {
+  const mdSrc = await fs.promises.readFile(pageFile.mdFilePath, "utf8");
+  const {ast, frontmatter: front} = parse<PageFrontMatter>(mdSrc, pageFile.mdFilePath);
+  return {
+    front: front ?? {title: pageFile.logicalPathTail},
+    ast,
+    logicalPath: pageFile.logicalPath,
+    logicalPathTail: pageFile.logicalPathTail,
+  };
+}
+
+//build cross-page APIs and helpers used during rendering
+export async function loadPageIndex(contentDir: string): Promise<PageIndex> {
+  //we're going to build a map of page ids => page metadata
+  const pages: Record<PageId, PageData> = {};
+  const pageFiles = await discoverPageFiles(contentDir);
+
+  //load all page files
+  await Promise.all(pageFiles.map(async (pageFile) => {
+    pages[pageFile.pageId] = await loadPageFile(pageFile);
   }));
 
+  //check for pages that don't have a direct parent
   const missing = {};
   Object.entries(pages).forEach(([pageId, page]) => {
-    const parentPage = [...page["en"].logicalPath];
+    const parentPage = [...page.logicalPath];
     parentPage.pop();
     const parentId = logicalToPageId(parentPage);
     if (parentId != "/" && parentId != "/utility" && !pages[parentId] && !missing[parentId]) {
@@ -128,9 +121,9 @@ export async function loadPageIndex(contentDir: string): Promise<PageIndex> {
   });
 
   return pages;
-};
+}
 
-export function resolvePageGlobal(pageIndex: PageIndex, lang: Lang, fromPageId: PageId, idTail: string, headingId?: string): PageLink | undefined {
+export function resolvePageGlobal(pageIndex: PageIndex, fromPageId: PageId, idTail: string, headingId?: string): PageLink | undefined {
   //normalize the ID tail
   if (!idTail.startsWith("/")) {
     idTail = "/" + idTail;
@@ -156,19 +149,19 @@ export function resolvePageGlobal(pageIndex: PageIndex, lang: Lang, fromPageId: 
     const commonFirst = commonLength(firstChoice, fromPageId);
     const commonSecond = commonLength(secondChoice, fromPageId);
     if (commonFirst > commonSecond) {
-      return createPageLink(pageIndex, firstChoice, lang, headingId);
+      return createPageLink(pageIndex, firstChoice, headingId);
     } else {
       console.warn(`Path tail '${idTail}' is ambiguous from page '${fromPageId}':\n${candidatePageIds.join("\n")}`);
       return undefined;
     }
   }
-  return createPageLink(pageIndex, candidatePageIds[0], lang, headingId);
-};
+  return createPageLink(pageIndex, candidatePageIds[0], headingId);
+}
 
-export function getAllThanks(pageIndex: PageIndex, lang: Lang): string[] {
+export function getAllThanks(pageIndex: PageIndex): string[] {
   const allThanksSet = new Set<string>();
-  for (let pageDataByLang of Object.values(pageIndex)) {
-    const thanks = pageDataByLang[lang]?.front?.thanks;
+  for (let pageData of Object.values(pageIndex)) {
+    const thanks = pageData?.front?.thanks;
     if (thanks) {
       Object.keys(thanks).forEach(recipient => {
         allThanksSet.add(recipient);
@@ -179,83 +172,68 @@ export function getAllThanks(pageIndex: PageIndex, lang: Lang): string[] {
   const allThanks = [...allThanksSet];
   allThanks.sort((a, b) => a.localeCompare(b));
   return allThanks;
-};
-
-export function tryLocalizedPath(pageIndex: PageIndex, pageId: PageId, lang: Lang, headingId?: string) {
-  const pageDataByLang = pageIndex[pageId];
-  const usedLang = pageDataByLang[lang] ? lang : "en";
-  const pageData = pageDataByLang[usedLang];
-  const localizedHeadingId = R.pathOr(headingId, ["headingRefs", headingId], pageData.front);
-  return pageIdToUrl(pageId, usedLang, localizedHeadingId);
-};
-
-function tryLocalizedTitle(pageIndex: PageIndex, pageId: PageId, lang: Lang): string {
-  const pageDataByLang = pageIndex[pageId];
-  return (pageDataByLang[lang] ?? pageDataByLang["en"])?.front?.title ?? "Untitled";
 }
 
-function createPageLink(pageIndex: PageIndex, pageId: string, lang: Lang, headingId?: string): PageLink | undefined {
+export function formatUrlPath(pageId: PageId, headingId?: string) {
+  return headingId ? `${pageId}#${headingId}` : pageId;
+}
+
+function getDisplayTitle(pageIndex: PageIndex, pageId: PageId): string {
+  const pageData = pageIndex[pageId];
+  return pageData?.front?.title ?? pageData.logicalPathTail;
+}
+
+export function createPageLink(pageIndex: PageIndex, pageId: string, headingId?: string): PageLink | undefined {
   if (!pageIndex[pageId]) return undefined;
   return {
-    title: tryLocalizedTitle(pageIndex, pageId, lang),
-    url: tryLocalizedPath(pageIndex, pageId, lang, headingId),
-    logicalPathTail: pageIndex[pageId][lang].logicalPathTail,
-    icon: pageIndex[pageId][lang].front.stub ? "file" : "file-text",
+    title: getDisplayTitle(pageIndex, pageId),
+    url: formatUrlPath(pageId, headingId),
+    logicalPathTail: pageIndex[pageId].logicalPathTail,
+    icon: pageIndex[pageId].front.stub ? "file" : "file-text",
     pageId,
   };
 }
 
-export function getPageOtherLangs(pageIndex: PageIndex, pageId: string, lang: Lang): Record<Lang, PageLink> {
-  const others = {};
-  Object.entries(pageIndex[pageId]).forEach(([otherLang, otherPageData]) => {
-    if (otherLang != lang) {
-      others[otherLang] = createPageLink(pageIndex, pageId, otherLang);
-    }
-  });
-  return others;
-};
-
-export function buildPageTree(pageIndex: PageIndex, pageId: string, lang: Lang): NavTree {
-  const children = getPageChildren(pageIndex, pageId, lang)
+export function buildPageTree(pageIndex: PageIndex, pageId: string): PageTree {
+  const children = getPageChildren(pageIndex, pageId)
     .filter(child => !child.pageId.startsWith("/utility"));
   return children.map(child => ({
     link: child,
-    children: buildPageTree(pageIndex, child.pageId, lang)
+    children: buildPageTree(pageIndex, child.pageId)
   }));
-};
+}
 
-export function getPageChildren(pageIndex: PageIndex, pageId: string, lang: Lang): PageLink[] {
+export function getPageChildren(pageIndex: PageIndex, pageId: string): PageLink[] {
   const children: PageLink[] = [];
   Object.entries(pageIndex)
-    .filter(([cPageId]) => cPageId.startsWith(pageId))
-    .forEach(([cPageId, cPageDataByLang]) => {
+    .filter(([cPageId, cPageData]) => cPageId.startsWith(pageId))
+    .forEach(([cPageId, cPageData]) => {
       const cLogical = pageIdToLogical(cPageId);
-      if (cLogical.length == 0) return;
-      if (logicalToPageId(cLogical.slice(0, -1)) == pageId) {
-        children.push(createPageLink(pageIndex, cPageId, lang)!);
+      if (cLogical.length > 0 && logicalToPageId(cLogical.slice(0, -1)) == pageId) {
+        children.push(createPageLink(pageIndex, cPageId)!);
       }
     });
   return R.sortWith(
     [
       R.ascend((c: PageLink) => {
-        const index = pageIndex[pageId][lang].front.childOrder?.indexOf(c.logicalPathTail);
+        const index = pageIndex[pageId].front.childOrder?.indexOf(c.logicalPathTail);
         return (index === undefined || index < 0) ? 1000 : index;
       }),
       R.ascend((c: PageLink) => c.logicalPathTail)
     ],
     children
   );
-};
+}
 
-export function getPageParents(pageIndex: PageIndex, pageId: PageId, lang: Lang): PageLink[] {
+export function getPageParents(pageIndex: PageIndex, pageId: PageId): PageLink[] {
   const parents: PageLink[] = [];
   const parentLogicalPath = pageIdToLogical(pageId);
   while (parentLogicalPath.pop()) {
     const parentId = logicalToPageId(parentLogicalPath);
     const parent = pageIndex[parentId];
     if (parent) {
-      parents.unshift(createPageLink(pageIndex, parentId, lang)!);
+      parents.unshift(createPageLink(pageIndex, parentId)!);
     }
   }
   return parents;
-};
+}

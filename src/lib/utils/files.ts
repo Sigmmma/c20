@@ -62,7 +62,3 @@ export async function loadYamlTree<T=object>(baseDir: string, opts?: LoadTreeOpt
 
   return result as T;
 };
-
-export function parseLangSuffix(fileName: string): Lang | undefined {
-  return fileName.match(/^.*_(\w{2})$/)?.[1]?.toLowerCase();
-}
