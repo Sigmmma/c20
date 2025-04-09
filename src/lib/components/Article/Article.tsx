@@ -27,7 +27,6 @@ const localizations = {
 };
 
 export type ArticleProps = {
-  stub?: boolean;
   title?: string;
   navParents?: PageLink[];
   children?: ComponentChildren;
@@ -58,9 +57,6 @@ export default function Article(props: ArticleProps) {
             </div>
           </div>
         </div>
-        {props.stub &&
-          <Stub/>
-        }
         {props.children}
         <footer className="article-footer">
           <p>

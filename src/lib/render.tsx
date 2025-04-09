@@ -14,6 +14,8 @@ import {type NavHeading} from "./components/Article/TableOfContents";
 import {type PageFrontMatter, type PageIndex, type PageLink, resolvePageGlobal, getPageParents, getAllThanks, formatUrlPath, type PageTree, getPageChildren} from "./content";
 import {type SearchDoc} from "./search";
 import {Lang} from "./utils/localization";
+import Stub from "./components/Article/Stub";
+import InfoBox from "./components/InfoBox/InfoBox";
 
 export const PREVIEW_LENGTH_CHARS = 100;
 
@@ -132,10 +134,13 @@ export default function renderPage(input: RenderInput): RenderOutput {
             <div id="wrapper-child">
               <Ctx.Provider value={ctx}>
                 <Article
-                  stub={front?.stub}
                   title={front?.title}
                   navParents={navParents}
                 >
+                  <InfoBox {...front}/>
+                  {front?.stub &&
+                    <Stub/>
+                  }
                   <Md content={content}/>
                   {front?.thanks &&
                     <ThanksList thanks={front.thanks}/>
@@ -150,12 +155,11 @@ export default function renderPage(input: RenderInput): RenderOutput {
     </Locale.Provider>
   );
 
-  const gatheredKeywords = []; //todo: gather keywords from render
   const searchDoc: SearchDoc = {
     text: bodyPlaintext ?? "",
     path: thisPagePath,
     title: front?.title ?? "",
-    keywords: [...gatheredKeywords, ...(front?.keywords ?? [])].join(" "),
+    keywords: front?.keywords?.join(" ") ?? "",
   };
 
   return {htmlDoc, searchDoc};

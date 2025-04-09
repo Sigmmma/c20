@@ -1,7 +1,5 @@
 ---
 title: antenna
-stub: false
-noSearch: false
 about: 'tag:h2/antenna'
 keywords:
   - ant_

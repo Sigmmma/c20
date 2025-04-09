@@ -50,6 +50,9 @@ export interface InfoBoxProps {
 export default function InfoBox(props: InfoBoxProps) {
   const ctx = useCtx();
   const {lang} = useLocalize();
+  if (Object.values(props).filter(v => v).length == 0) {
+    return null;
+  }
   const metaboxProps = getMetaboxProps(lang, ctx, props);
   return <MetaBox {...metaboxProps}/>;
 }

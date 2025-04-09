@@ -15,11 +15,11 @@ export async function findPaths(globPattern: string): Promise<string[]> {
       }
     });
   });
-};
+}
 
 export async function loadYamlFile<T=any>(filePath: string): Promise<T> {
   return yaml.load(await fs.promises.readFile(filePath, "utf8"));
-};
+}
 
 type LoadTreeOpts = {flat?: boolean, nonRecursive?: boolean};
 
@@ -39,7 +39,7 @@ export async function loadTextTree<T=object>(baseDir: string): Promise<T> {
   }));
 
   return result as T;
-};
+}
 
 export async function loadYamlTree<T=object>(baseDir: string, opts?: LoadTreeOpts): Promise<T> {
   let result = {};
@@ -61,4 +61,4 @@ export async function loadYamlTree<T=object>(baseDir: string, opts?: LoadTreeOpt
   }));
 
   return result as T;
-};
+}

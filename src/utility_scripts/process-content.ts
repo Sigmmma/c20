@@ -14,15 +14,20 @@ import R from "ramda";
     console.log(pageFile.mdFilePath);
     const mdSrc = await fs.promises.readFile(pageFile.mdFilePath, "utf8");
     const {attributes, body} = parseSplit<PageFrontMatter>(mdSrc);
-    if (attributes.about && attributes.about.startsWith("tag:")) {
-      const pt = [...attributes.about.split(":")[1].split("/"), "id"];
-      const tagId = R.path(pt, data.tags);
-      if (tagId && tagId.length > 0 && (!attributes.keywords || !attributes.keywords.includes(tagId))) {
-        attributes.keywords = (attributes.keywords ?? []).concat(tagId);
-        const newFm = yaml.dump(attributes);
-        const text = `---\n${newFm.trim()}\n---\n${body.trim()}\n`;
-        fs.writeFileSync(pageFile.mdFilePath, text, "utf8");
-      }
+    let dirty = false;
+    if (attributes.stub === false) {
+      delete attributes.stub;
+      dirty = true;
+    }
+    if (attributes.noSearch === true) {
+      delete attributes.noSearch;
+      attributes.stub = true;
+      dirty = true;
+    }
+    if (dirty) {
+      const newFm = yaml.dump(attributes);
+      const text = `---\n${newFm.trim()}\n---\n${body.trim()}\n`;
+      fs.writeFileSync(pageFile.mdFilePath, text, "utf8");
     }
   }
 })();

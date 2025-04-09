@@ -29,7 +29,7 @@ async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: Bui
     const localData = loadYamlTree(baseDir, {nonRecursive: true});
 
     //render the page to HTML and also gather search index data
-    const renderOutput = renderPage({
+    const {htmlDoc, searchDoc} = renderPage({
       lang: "en",
       baseUrl: buildOpts.baseUrl,
       noThumbs: buildOpts.noThumbs,
@@ -44,9 +44,9 @@ async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: Bui
     });
 
     await fs.promises.mkdir(outputDir, {recursive: true});
-    await fs.promises.writeFile(outputFileName, renderOutput.htmlDoc, "utf8");
-    if (!pageData.front.noSearch && renderOutput.searchDoc) {
-      searchDocs.push(renderOutput.searchDoc);
+    await fs.promises.writeFile(outputFileName, htmlDoc, "utf8");
+    if (!pageData.front.noSearch && searchDoc) {
+      searchDocs.push(searchDoc);
     }
   }));
 
