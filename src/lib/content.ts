@@ -157,22 +157,6 @@ export function resolvePageGlobal(pageIndex: PageIndex, fromPageId: PageId, idTa
   return createPageLink(pageIndex, candidatePageIds[0], headingId);
 }
 
-export function getAllThanks(pageIndex: PageIndex): string[] {
-  const allThanksSet = new Set<string>();
-  for (let pageData of Object.values(pageIndex)) {
-    const thanks = pageData?.front?.thanks;
-    if (thanks) {
-      Object.keys(thanks).forEach(recipient => {
-        allThanksSet.add(recipient);
-      });
-    }
-  }
-  //convert Set to an array and sort alphabetically
-  const allThanks = [...allThanksSet];
-  allThanks.sort((a, b) => a.localeCompare(b));
-  return allThanks;
-}
-
 export function formatUrlPath(pageId: PageId, headingId?: string) {
   return headingId ? `${pageId}#${headingId}` : pageId;
 }

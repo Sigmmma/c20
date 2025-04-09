@@ -11,7 +11,6 @@ export type RenderContext = {
   noThumbs?: boolean;
 
   //non-local
-  allThanks?: string[];
   resolvePage: (idTail: string, headingId?: string) => PageLink;
   children: PageLink[];
   data: any;

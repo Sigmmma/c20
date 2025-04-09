@@ -18,7 +18,7 @@ Pages are not publicly editable, but anyone can:
 * Create a [pull request](https://github.com/Sigmmma/c20). Each page has an edit button which will take you to GitHub for basic edits.
 * [Become an editor](#becoming-an-editor) and contribute directly.
 
-Editors will review and incorporate information into the wiki. Don't worry if writing isn't your strong suit. We'll ensure your tips are properly included and you're [credited](#contributor-list) for them.
+Editors will review and incorporate information into the wiki. Don't worry if writing isn't your strong suit. We'll ensure your tips are properly included and you're credited for them.
 
 ## Becoming an editor
 Interested in curating pages? Go to **#role-selection** in our Discord and select the "Wiki Contributor" role. We expect that you'll be able to:
@@ -133,8 +133,8 @@ info: |
 stub: true
 
 # Please credit anyone who helped create this page or was a source for its
-# information. Thanked individuals are listed at the bottom of a page and in
-# the summary on this page. Use quotes if the person's name contains spaces.
+# information. Thanked individuals are listed at the bottom of a page.
+# Use quotes if the person's name contains spaces.
 thanks:
   PersonName: Explaining how actors work
   "Person Name": Writing this guide
@@ -498,7 +498,6 @@ These features are only used for a few specific cases:
 
 * Create a block of color with a hex code using `{% color "#FF56B9" /%}`. [Used here](~hard-coded-data#multiplayer-armor-colors).
 * The [scale page](~scale) uses `{% unitConverter /%}`.
-* This page uses `{% thanksIndex /%}` to list [all contributors](#contributor-list) from all pages.
 * You can comment out some markdown by surrounding it with `{% comment %}..{% /comment %}`.
 * A list of child pages can be created with `{% childList /%}`.
 
@@ -569,15 +568,8 @@ Intrinsic types do not need to be defined:
 * Pointer types (require type argument): ptr32, ptr64.
 * Variable-size types (require size argument): pad, UTF-8, UTF-16.
 
-
-# Contributor list
-The primary maintainer of c20 is Conscars, with technical and content contributions from num0005, General-101, Krevil, gbMichelle, Mimickal (Donut), and [more](https://github.com/Sigmmma/c20/graphs/contributors).
-
-We extend a thanks to the developers involved in Halo over the years, including Bungie, Gearbox Software, Hired Gun, Certain Affinity, Saber Interactive, and 343 Industries.
-
-Most of the community's knowledge comes from the hard work of modders who have researched, reverse engineered, experimented, and documented over the years. Our current understanding is built on a mountain of documents, forum posts, tutorials, and conversations. While we can't include everyone, we would at least like to thank the following people for their roles either writing or being a source for c20:
-
-{% thanksIndex /%}
+# Contributors
+The primary maintainer of c20 is Conscars, with technical and content contributions from num0005, General-101, Krevil, gbMichelle, Mimickal (Donut), and [more](https://github.com/Sigmmma/c20/graphs/contributors). Much of the information on this site comes from the dedicated community of modders who have shared their knowledge in documents, forum posts, tutorials, and chats. Where known, we have included these acknowledgements on each page. We also extend a thanks to the developers involved in Halo over the years, including Bungie, Gearbox Software, Hired Gun, Certain Affinity, Saber Interactive, and 343 Industries/Halo Studios.
 
 [sigmmma]: https://github.com/Sigmmma
 [yaml]: https://en.wikipedia.org/wiki/YAML

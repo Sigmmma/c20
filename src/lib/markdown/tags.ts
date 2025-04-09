@@ -100,10 +100,6 @@ const tags: Record<string, Schema> = {
       }
     }
   },
-  thanksIndex: {
-    render: "ThanksIndex",
-    selfClosing: true,
-  },
   tagStruct: {
     render: "TagStruct",
     selfClosing: true,

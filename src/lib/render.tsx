@@ -1,7 +1,7 @@
 import PageWrapper from "./components/PageWrapper/PageWrapper";
 import * as R from "ramda";
 import renderToString from "preact-render-to-string";
-import Ctx, {type RenderContext} from "./components/Ctx/Ctx";
+import Ctx, {RenderContext} from "./components/Ctx/Ctx";
 import Article from "./components/Article/Article";
 import HtmlDoc from "./components/HtmlDoc/HtmlDoc";
 import Md from "./components/Md/Md";
@@ -9,10 +9,10 @@ import {transform, renderPlaintext} from "./markdown/markdown";
 import ThanksList from "./components/Article/ThanksList";
 import findHeadings from "./components/Md/headings";
 import {Locale} from "./components/Locale/Locale";
-import {type Node, type RenderableTreeNode} from "@markdoc/markdoc";
-import {type NavHeading} from "./components/Article/TableOfContents";
-import {type PageFrontMatter, type PageIndex, type PageLink, resolvePageGlobal, getPageParents, getAllThanks, formatUrlPath, type PageTree, getPageChildren} from "./content";
-import {type SearchDoc} from "./search";
+import {Node, RenderableTreeNode} from "@markdoc/markdoc";
+import {NavHeading} from "./components/Article/TableOfContents";
+import {PageFrontMatter, PageIndex, PageLink, resolvePageGlobal, getPageParents, formatUrlPath, PageTree, getPageChildren} from "./content";
+import {SearchDoc} from "./search";
 import {Lang} from "./utils/localization";
 import Stub from "./components/Article/Stub";
 import InfoBox from "./components/InfoBox/InfoBox";
@@ -79,7 +79,6 @@ export default function renderPage(input: RenderInput): RenderOutput {
     pageId: input.pageId,
     title: front?.title,
     //non-local
-    allThanks: getAllThanks(input.pageIndex),
     children: getPageChildren(input.pageIndex, input.pageId),
     resolvePage: (idTail: string, headingId?: string): PageLink => {
       const page = resolvePageGlobal(input.pageIndex, input.pageId, idTail, headingId);

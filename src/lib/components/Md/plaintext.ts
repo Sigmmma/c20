@@ -32,9 +32,6 @@ const renderers: Record<string, Renderer> = {
   Key: (children, attributes, ctx, lang) => {
     return attributes.input;
   },
-  ThanksIndex: (children, attributes, ctx, lang) => {
-    return ctx ? padded(ctx.allThanks?.join("\n")) : undefined;
-  },
   CodeBlock: (children, attributes, ctx, lang) => {
     return block(attributes.code);
   },
