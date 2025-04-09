@@ -147,10 +147,6 @@ childOrder:
   - h1
   - h2
 
-# Excludes the page from the search index. Use this for pages which are
-# incomplete or people won't need to search for.
-noSearch: true
-
 # An optional list of page IDs that should be redirected to this page instead.
 # Use this when content is moved between pages or pages are moved to new URLs.
 # We're limited to 50 total redirects across the site, so use sparingly.

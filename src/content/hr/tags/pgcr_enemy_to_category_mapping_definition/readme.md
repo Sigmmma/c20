@@ -1,7 +1,6 @@
 ---
 title: pgcr_enemy_to_category_mapping_definition
 stub: true
-noSearch: true
 about: 'tag:hr/pgcr_enemy_to_category_mapping_definition'
 ---
-  ...
+...

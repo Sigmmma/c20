@@ -15,17 +15,13 @@ import R from "ramda";
     const mdSrc = await fs.promises.readFile(pageFile.mdFilePath, "utf8");
     const {attributes, body} = parseSplit<PageFrontMatter>(mdSrc);
     let dirty = false;
-    if (attributes.stub === false) {
-      delete attributes.stub;
-      dirty = true;
-    }
-    if (attributes.noSearch === true) {
-      delete attributes.noSearch;
-      attributes.stub = true;
-      dirty = true;
-    }
+
     if (dirty) {
-      const newFm = yaml.dump(attributes);
+      const newFm = yaml.dump(attributes, {
+        lineWidth: 120,
+        noRefs: true,
+        quotingType: '"',
+      });
       const text = `---\n${newFm.trim()}\n---\n${body.trim()}\n`;
       fs.writeFileSync(pageFile.mdFilePath, text, "utf8");
     }

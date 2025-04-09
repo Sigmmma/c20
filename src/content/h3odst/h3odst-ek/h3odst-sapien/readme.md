@@ -1,6 +1,5 @@
 ---
 title: H3 ODST Sapien
-stub: false
 about: 'tool:H3ODST-Sapien'
 img: h3odst-sapien.jpg
 caption: Sapien being used to edit zones in `sc100.scenario`
@@ -21,4 +20,3 @@ It's pretty much identical to [Halo 3 Sapien](~H3-Sapien) so please refer to tha
 * AI Zones and Areas now have a new properties window which enables the automatic generation of firing positions.
 * Resources can now be split or merged per bsp using the Scenarios menu.
 * Trigger Volumes are able to change between being bounding boxes or sectors which allow more complex shapes.
-

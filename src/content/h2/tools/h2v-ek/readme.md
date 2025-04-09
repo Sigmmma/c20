@@ -1,11 +1,8 @@
 ---
 title: Halo 2 Vista Editing Kit (2007)
-stub: false
 about: 'tool:H2V-EK'
 img: h2ek.jpg
-caption: >-
-  [Sapien](~h2v-sapien), [Guerilla](~h2v-guerilla), and [Tool](~h2v-tool)
-  running on modern Windows systems
+caption: '[Sapien](~h2v-sapien), [Guerilla](~h2v-guerilla), and [Tool](~h2v-tool) running on modern Windows systems'
 info: |
   * Release date: 2007
 keywords:

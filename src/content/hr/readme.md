@@ -1,6 +1,5 @@
 ---
 title: Halo Reach
-stub: false
 keywords:
   - hr
   - halo

@@ -1,6 +1,5 @@
 ---
 title: Halo Reach Managed API
-stub: false
 keywords:
   - hr
   - halo

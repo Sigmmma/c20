@@ -117,7 +117,7 @@ export default function renderPage(input: RenderInput): RenderOutput {
         lang={input.lang}
         title={front?.title}
         baseUrl={input.baseUrl}
-        noSearch={front?.noSearch}
+        noIndex={front?.stub}
         ogDescription={createPlaintextPreview(bodyPlaintext)}
         ogImg={front?.img}
         ogTags={front?.keywords}

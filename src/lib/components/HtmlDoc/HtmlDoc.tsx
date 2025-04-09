@@ -4,7 +4,7 @@ import {useLocalize} from "../Locale/Locale";
 
 export type HtmlDocProps = {
   title?: string;
-  noSearch?: boolean;
+  noIndex?: boolean;
   preloadJson?: boolean;
   baseUrl: string;
   lang: Lang;
@@ -40,7 +40,7 @@ export default function HtmlDoc(props: HtmlDocProps) {
         <meta charSet="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
-        {props.noSearch ? (
+        {props.noIndex ? (
           <meta name="robots" content="noindex"/>
         ) : (
           <meta name="robots" content="index, follow"/>

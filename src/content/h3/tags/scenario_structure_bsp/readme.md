@@ -1,7 +1,6 @@
 ---
 title: scenario_structure_bsp
 stub: true
-noSearch: true
 about: 'tag:h3/scenario_structure_bsp'
 img: bsp.jpg
 caption: 'The first BSP of 100_citadel, shown without a sky rendered.'

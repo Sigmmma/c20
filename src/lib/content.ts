@@ -19,7 +19,6 @@ export type PageFrontMatter = {
   icon?: IconName;
   info?: MdSrc;
   thanks?: Record<string, MdSrc>;
-  noSearch?: boolean;
   keywords?: string[];
   stub?: boolean;
   redirects?: PageId[];

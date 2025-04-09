@@ -1,6 +1,5 @@
 ---
 title: H3 Sapien
-stub: false
 about: 'tool:H3-Sapien'
 img: h3-sapien.jpg
 caption: Sapien being used to edit spawn points in `guardian.scenario`

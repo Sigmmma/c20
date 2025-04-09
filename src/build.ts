@@ -45,7 +45,7 @@ async function renderPages(pageIndex: PageIndex, globalData: any, buildOpts: Bui
 
     await fs.promises.mkdir(outputDir, {recursive: true});
     await fs.promises.writeFile(outputFileName, htmlDoc, "utf8");
-    if (!pageData.front.noSearch && searchDoc) {
+    if (!pageData.front.stub && searchDoc) {
       searchDocs.push(searchDoc);
     }
   }));

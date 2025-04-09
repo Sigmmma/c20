@@ -8,7 +8,7 @@ export async function buildSitemap(pageIndex: PageIndex, buildOpts: BuildOpts) {
   const urls: string[] = [];
 
   Object.entries(pageIndex).forEach(([pageId, pageData]) => {
-    if (!pageData.front.stub && !pageData.front.noSearch) {
+    if (!pageData.front.stub) {
       urls.push(`${baseUrl}${formatUrlPath(pageId)}`);
     }
   });

@@ -1,6 +1,5 @@
 ---
 title: H2 scripting
-stub: false
 keywords:
   - script
   - hsc

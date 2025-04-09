@@ -1,6 +1,5 @@
 ---
 title: H2 Sapien (2021)
-stub: false
 about: 'tool:H2-Sapien'
 img: h2-sapien.jpg
 caption: Sapien being used to place scenery in `coagulation.scenario`

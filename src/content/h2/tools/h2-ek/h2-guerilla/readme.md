@@ -1,6 +1,5 @@
 ---
 title: H2 Guerilla (2021)
-stub: false
 about: 'tool:H2-Guerilla'
 img: h2-guerilla.jpg
 caption: A screenshot of Guerilla
