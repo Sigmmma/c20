@@ -11,14 +11,15 @@ keywords:
   - carbine
   - rifle
   - cannon
+  - launcher
 thanks:
   odchylanie_uderzenia: writing and research
 --- 
 **Weapons** are most commonly seen as the wieldable items dropped by AI and found in the environment. However, they are also used for items like the CTF flag, oddball, and weapons attached to [vehicles](~vehicle) or [bipeds](~biped). 
 
-Weapons are intended to fire instances of the [projectile](~) tag or [crate](~) tag. Thrown grenades are not a type of weapon, but rather a [projectile](~) referenced by [globals](~).
+Weapons are intended to fire instances of the [projectile](~) tag or [crate](~) tag. Thrown grenades are not a type of weapon, but rather a [projectile referenced by globals](~globals).
 
-Weapons through their parent [object](~) tag can be assigned a render mesh, collision box, animation set and physics shape. 
+Weapons through their parent [object](~) tag can be assigned a [render mesh](~render_model), [collision box](~collision_model), [animation set](~model_animation_graph) and [physics shape](~physics_model). 
 
 # Flags
 
@@ -94,9 +95,9 @@ This section is responsible for various properties and responses to weapon heat,
 | heat loss per second | real | From 0 to 1 determines how much heat the weapon loses while it is not being fired, or in- between firing
 | heat illumination | real | From 0 to 1 determines how much the illumination function is raised as the weapon gains heat
 | overheated heat loss per second | real | From 0 to 1 determines how much heat the weapon loses while it is in the overheated state, this state ends when the heat level reaches the recovery threshold
-| overheated | [sound](~) / [effect](~) | Effect or sound played when weapon enters overheated state
-| overheated damage effect | [damage_effect](~) / [damage_response_definition](~) | Damage or damage response played when weapon enters overheated state
-| detonation | [sound](~) /  [effect](~) | The sound or effect that plays upon weapon detonation due to heat conditions
+| overheated | [sound](~) / [effect](~) | Effect or sound played when weapon enters overheated state or explodes due to trigger overcharge
+| overheated damage effect | [damage_effect](~) / [damage_response_definition](~) | Damage or damage response played when weapon enters overheated state or explodes due to trigger overcharge
+| detonation | [sound](~) /  [effect](~) | The sound or effect that plays upon weapon detonation due to heat conditions or trigger explode
 | detonation damage effect | [damage_effect](~) / [damage_response_definition](~) | The damage or damage response played when the weapon detonates due to heat conditions
 | player melee damage | [damage_effect](~) | Unknown/Needs additional research
 | player melee response | [damage_effect](~) / [damage_response_definition](~) | Unknown/Needs additional research
@@ -146,7 +147,11 @@ This section defines weapon zoom properties, zooming increases the range of [aim
 
 # Weapon aim assist
 
-This section defines weapon assist features to make target aquisition easier, especially for controller. **autoaim** is more commonly known as *bullet magnetism* and is where your projectiles deviate towards targets without input from the player, making the ability to hit targets easier. **magnetism** is more commonly known as *aim assist* where your reticle is gently pulled onto targets without player input, this makes target aquisition and tracking much easier.  
+{% alert %}
+For **melee** weapons the lunge range is set as the autoaim range & falloff range, lunge range however is *effectively* capped at a value of 5.2 for the autoaim fields, past this the lunge is either disabled or is inconsistent
+{% /alert %}
+
+This section defines weapon assist features to make target aquisition easier, especially for controller. **autoaim** is more commonly known as *bullet magnetism* and is where your projectiles deviate towards targets without input from the player, making the ability to hit targets easier. **magnetism** is more commonly known as *aim assist* where your reticle is gently pulled onto targets without player input, this makes target aquisition and tracking much easier.
 
 | Fields | Data type | Description
 |-------|----------|--------------
@@ -180,7 +185,7 @@ Movement penalty values work as percentages in increments of 0.1, incorrect valu
 
 # AI targeting parameters
 
-ai scariness: This value defines how much scariness this weapon contributes against other AI characters, allowing it to trigger certain behaviors like retreating or taking cover. see the [character](~) tag for more info about how AI scariness is calculated and what thresholds are used for certain behaviors.
+ai scariness (real): This value defines how much scariness this weapon contributes against other AI characters, allowing it to trigger certain behaviors like retreating or taking cover. see the [character](~) tag for more info about how AI scariness is calculated and what thresholds are used for certain behaviors.
 
 # Miscellaneous
 
@@ -341,8 +346,8 @@ Prediction properties effect networking for non-host players
 
 | Autofire | Data type | Description
 |-------|----------|--------------
-autofire time | real | Unknown: presumably how much controller triggers must be depressed to begin action behavior, also used for latch-autofire to determine time until charging begins after latching
-autofire throw | real | Unknown, presumably how much controller triggers must be depressed to end action behavior
+| autofire time | real | Unknown: presumably how much controller triggers must be depressed to begin action behavior, also used for latch-autofire to determine time until charging begins after latching
+| autofire throw | real | Unknown, presumably how much controller triggers must be depressed to end action behavior
 
 {% alert %}
 Secondary action seems to be when starting the autofire behavior and primary action seems to be when ending it
@@ -362,7 +367,7 @@ This subsection defines advanced trigger properties in relation to weapon chargi
 | Overcharged action | Description
 |-------|----------
 | none | No action
-| explode | Deletes the weapon from the players inventory and uses [item](~) tag detonation properties
+| explode | Deletes the weapon from the players inventory and uses [heat](~weapon#heat) detonation properties, will trigger when "charged time" passes or when the trigger is released during the time period of "charged time"
 | discharge | Fires the overcharge normally
 
 | Fields | Tag/data type | Description
@@ -432,7 +437,7 @@ Defines **how** the current barrel fires.
 Pictured: An example of rate of fire and fire recovery time
 {% /figure %}
 
-When using the __rate of fire__ field in the weapons barrel block, you are given a set of 2 bound values to enter, due to limitations implemented by 343 to retain 30 tick engine behavior you may only enter values compatible with 30 tick engines. __0.4687 is the lowest possible value allowed__ due to the idle_ticks timer only being a max value of 127, thus this value has the weapon fire on the 128th tick. __To find all other compatible values, do 30 divided by a *whole* number between 1 and 64.__ Invalid values will round *down* to the nearest valid (Example: 16 will behave as 15).
+When using the __rate of fire__ field in the weapons barrel block, you are given a set of 2 bound values to enter, due to limitations implemented by 343 to retain 30 tick engine behavior you may only enter values compatible with 30 tick engines. __0.46875 is the lowest possible value allowed__ due to the idle_ticks timer only being a max value of 127, thus this value has the weapon fire on the 128th tick. __To find all other compatible values, do 30 divided by a *whole* number between 1 and 64.__ Invalid values will round *down* to the nearest valid (Example: 16 will behave as 15).
 
 When using the __fire recovery time__ field in the weapons barrel block, you are given a single value (in seconds) to enter, this value is able to accept 60 tick engine values, there is a built- in 2 tick base delay *plus* a second minimum delay of 2 ticks so the __fastest possible rate of fire achievable with fire recovery time is 12 rounds per second__ with a value of 0.
 
@@ -466,9 +471,9 @@ Generally most players prefer their weapons to not be laser accurate, this secti
 |-------|----------|--------------
 | acceleration time | real | Time in seconds taken for the weapon to go from minimum error and min error pitch rate to maximum error and full error pitch rate when the weapon starts firing (single wield only)
 | deacceleration time | real | Time in seconds taken for the weapon to go from maximum error and full error pitch rate to minimum error and min error pitch rate when the weapon stops firing (single wield only)
-| damage error | real | A set of two values that determines firing error when the model tag for this weapon is in a damage state with the flag that damages primary/second weapon enabled, chooses randomly between the 2 values
-| min error look pitch rate | angle | The max rate of aiming allowed when this weapon is at minimum error (130 is referenced as full power)
-| full error look pitch rate | angle | The max rate of aiming allowed when this weapon is at maximum error (130 is referenced as full power)
+| damage error | real | A set of two values that determines firing error when the [model](~) tag for this weapon is in a damage state with the flag that damages primary/secondary weapon enabled, chooses randomly between the 2 values: **this is not normal weapon error, that is located further down**
+| min error look pitch rate | angle | The max rate of aiming/looking allowed when this weapon is at minimum error (130 is referenced as full power)
+| full error look pitch rate | angle | The max rate of aiming/looking allowed when this weapon is at maximum error (130 is referenced as full power)
 | look pitch error power | real | Unknown, seems to partially scale the error look pitch rate change rate
 
 | Dual weapon error | Data types | Description
@@ -478,10 +483,6 @@ Generally most players prefer their weapons to not be laser accurate, this secti
 | minimum error | angle | The minimum error this weapon is allowed to have when dual wielded, will never have less than this amount of error under any condition (dual wield only)
 | error angle | angle | Two bound values that determine weapon error, first value is upon first firing and second value is after the acceleration time has passed, will return to first value during deacceleration time (dual wield only)
 | dual wield damage scale | real | From 0 to 1, determines the damage done by this weapon when being fired as part of dual wield, 0 equals 1 (0.1 equals 10% of full normal damage)
-
-## Projectile
-
-What good is a gun if it shoots nothing? this section defines **what** the weapon fires.
 
 | Distribution function | Description
 |-------|----------
@@ -493,7 +494,7 @@ What good is a gun if it shoots nothing? this section defines **what** the weapo
 | projectiles per shot | short | Number of projectiles fired at the exact same moment
 | distribution angle | real | Requires fan distribution function and projectiles per shot to be above 1, sets how wide the fans are (values above 1 tend to spray the fans so far they end up behind the biped)
 | minimum error | angle | The minimum error this weapon is allowed to have when dual wielded, will never have less than this amount of error under any condition (single wield only)
-| error angle | angle | Two bound values that determine weapon error, first value is upon first firing and second value is after the acceleration time has passed, will return to first value during deacceleration time (single wield only)
+| error angle | angle | Two bound values that determine weapon error, first value is upon first firing and second value is after the acceleration time has passed, will return to first value during deacceleration time (single wield only), both values function as a "0 degrees to X degrees" rather than using both values and choosing between them at random
 
 {% alert %}
 This has a dropdown for 3 different block entries: single wield, dual right and dual left
@@ -504,6 +505,10 @@ This has a dropdown for 3 different block entries: single wield, dual right and 
 | **X** | with positive being forward from the camera 
 | **Y** | with positive being up on the vertical axis 
 | **Z** | with positive being to the left on the horizontal axis
+
+## Projectile
+
+What good is a gun if it shoots nothing? this section defines **what** the weapon fires.
 
 | Fields | Tags/data types | Description
 |-------|----------|--------------
