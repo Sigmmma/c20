@@ -66,6 +66,16 @@ type_defs:
       - name: u_animation_source
         type: FunctionOut
       - name: u_animation_function
+          default: 1
+          comments:
+          en: >
+            The u and v animation functions default to 1, which results in
+            effectively an additional map_u_offset and map_v_offset of 1. 
+            This causes some counterintuitive side effects. The u_clamped and v_clamped
+            flags will not work properly, stretching the corner pixel across the entire canvas
+            The rotation animation functions will behave unexpectedly as well, with 1 added to
+            the rotation_animation_center coordinates. It is recommended to set the function to 0
+            if these features are being used.
         type: WaveFunction
       - name: u_animation_period
         type: float
