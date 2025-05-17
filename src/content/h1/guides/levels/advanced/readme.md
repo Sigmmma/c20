@@ -86,7 +86,7 @@ It should look something like this. Make sure the option labeled _Show Tool Sett
 From here we will change a few settings. You can choose to ignore these suggestions if you would rather have them enabled.
 
 1. You can disable symmetry for brush strokes. The symmetry option here will mirror your changes on the axis of your choosing. Can be a bit annoying when the work you're doing shouldn't be mirrored so go ahead and change this. For our setup we will disable symmetry completely. By default you should only have to click the X button to do this.
-![](1O.png)
+![](1O.jpg)
 2. Set the axis that your sculpt goes in. You can lock all changes you make to a particular axis. In this case we will go with Z since we are making some hills.
 ![](1P.jpg)
 3. You can set the direction of your sculpt to be positive or negative. In terms of directions this would mean either up or down respectively if you were doing changes locked to the Z axis.
@@ -436,7 +436,7 @@ While having your cursor over the 3D viewport press the {% key "X" /%} key to br
 
 Once that's all done you can go into edge select mode and press the {% key "Print Screen" /%} key to run "Select Non Manifold".
 
-![](3U.png)
+![](3U.jpg)
 
 If the only things that light up match the image then you're good. Otherwise try running the laid out steps again until it matches.
 
@@ -542,7 +542,7 @@ Run a smart UV unwrap on the ladder plane UVs so that they resemble something li
 
 Scale the light plane UVs so that they resemble something like this:
 
-![](4O.png)
+![](4O.jpg)
 
 Scale the teleporter plane UVs so that they resemble something like this:
 

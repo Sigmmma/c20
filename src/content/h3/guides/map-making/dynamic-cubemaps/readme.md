@@ -23,15 +23,15 @@ For level geometry, the cubemap that gets used is determined by which cubemap po
 For shaders to display dynamic cubemaps, you must set the ***environment_mapping*** option at the top of the shader tag to ***dynamic***. Otherwise it'll display the default cubemap.
 {% /alert %}
 
-![](A.png "A Covenant environment with cubemaps disabled, no reflections.")
-![](B.png "A Covenant environment with cubemaps enabled, now showing reflections.")
+![](A.jpg "A Covenant environment with cubemaps disabled, no reflections.")
+![](B.jpg "A Covenant environment with cubemaps enabled, now showing reflections.")
 
 # Setup
 
 ## Placing cubemap points
 Cubemap point placement is done through Sapien, to place down points you will need to navigate to _Scenario > Structure Data_ and click on the _Cubemaps_ folder in the **_Hierarchy view_** window, once inside you should now be able to right click inside of the _Game window_ and place down cubemap points which will then appear in the _Hierarchy view_.
 
-![](C.png "A cubemap point which has been placed down.")
+![](C.jpg "A cubemap point which has been placed down.")
 
 ### Cubemap resolution
 By default any placed cubemap points will be 16x16 in resolution, but you can change that by clicking the cubemap point in either the _Hierarchy view_ window or the _Game window_ and changing the **_cubemap resolution_** option in the **_Properties palette_** window.
@@ -90,7 +90,7 @@ If you have multiple BSPs setup in your scenario, make sure to assign the correc
 ## Fixing highly-compressed cubemaps
 Occasionally (and for currently unknown reasons), tool may produce cubemaps that look incredibly low quality, with bad colour compression. See
 this example:
-![](K.png "Horrible compression artifacting.")
+![](K.jpg "Horrible compression artifacting.")
 
 This can be fixed, but only *before* cubemap generation.
 1. Before you use the `cubemap_dynamic_generate` cubemap command, open the debug menu with the {% key "Home" /%} key.
@@ -101,11 +101,11 @@ This can be fixed, but only *before* cubemap generation.
 6. Now exit out of the debug menu (use {% key "Home" /%} or {% key "End" /%}) and continue with the rest of the process as normal.
 
 Once you have finished re-generating and re-importing the cubemaps, they should be much better quality! See the following example:
-![](L.png "Note the huge difference in colour quality, especially in the clouds.")
+![](L.jpg "Note the huge difference in colour quality, especially in the clouds.")
 
 # End result
 
 After you've completed all steps, you should now have a level setup with dynamic cubemaps!
 
-![](H.png "Masterchief inside of a Covenant environment without dynamic cubemaps setup.")
-![](J.png "Masterchief inside of a Covenant environment with dynamic cubemaps setup.")
+![](H.jpg "Masterchief inside of a Covenant environment without dynamic cubemaps setup.")
+![](J.jpg "Masterchief inside of a Covenant environment with dynamic cubemaps setup.")

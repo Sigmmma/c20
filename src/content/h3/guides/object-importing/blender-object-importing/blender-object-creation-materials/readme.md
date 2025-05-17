@@ -37,20 +37,20 @@ NB: ***Texturing/shading in blender has no effect on in-game models for Halo.***
 {% /alert %}
 ## Adding textures
 1. Select the Cube object in the Outliner, and navigate to the materials tab. If you have been following along, you should already have a material named `material` applied to the object:
-  ![](A.png "Navigate to the materials tab.")
+  ![](A.jpg "Navigate to the materials tab.")
 2. Rename the material to `wood`.
 3. [Add a new material](https://youtu.be/2yOOzN0zJfQ) named `concrete` to the Cube object.
 4. Now we need to assign the textures that you have downloaded to these materials. Make sure `Use Nodes` is checked in the `Surface` section of the material.
 5. [Assign an image texture node](https://youtu.be/2yOOzN0zJfQ?t=60) to both of these materials, making sure to navigate to and select the right texture for the right materials. `concrete_seamless_texture_6820` is for the `concrete` material, and `parquet_seamless_texture_4264` is for the `wood` material.
 
 You should now have two materials on the Cube object, both with different textures assigned. Check that your materials tab looks similar to this:
-![](B.png "Material setup on the object.")
+![](B.jpg "Material setup on the object.")
 
 ## Assigning materials to faces
 In Blender, material assignment is done per face on a mesh. As such, we can apply different materials to different faces on our Cube mesh, to vary the look and make it more complex.
 
 You may be wondering why nothing appeared to change when you added the textures to the materials - this is because we are still in `Solid Viewport Shading` mode. To see the textures on our object, we must switch to `Material Preview Viewport Shading` mode. This can be done by pressing {% key "Z" /%} and switching the mode, or by pressing the viewport shading buttons in the top right of the 3D viewport. You can read more about this [here](https://docs.blender.org/manual/en/latest/editors/3dview/display/shading.html). Once you have done this, your Cube will look like this:
-![](C.png "Material Preview mode.")
+![](C.jpg "Material Preview mode.")
 
 After taking a look around the model, you will notice that all sides are using the `wood` material, and our `concrete` material is going completely unused. We will now assign the `concrete` material to all but the top face of the model.
 1. Select the Cube object.
@@ -77,10 +77,10 @@ This is the default UV Editing workspace. The left window is the UV Editor, and 
 Using the information shown in the video, follow these steps:
 1. In the 3D Viewport, select only the top (wood) face of the object. You should see the texture appear in the UV window, along with a small square representing the area of the texture that the face is sampling the pixels of. We want to increase the size of this square so that the face covers a much larger texture area.
 2. Hover over the UV editing window and press {% key "S" /%} to scale the face. Press {% key "10" /%} to scale by 10x in the `X` and `Y` axes, and press {% key "Enter" /%} to confirm. You should see that the wood texture on the object is now smaller, and the tiling is more apparent. This will look much nicer in-game compared to the UV mapping we had before.
-  ![](F.png "Scaled wooden face UVs.")
+  ![](F.jpg "Scaled wooden face UVs.")
 3. In the 3D Viewport, select only the bottom concrete face of the object. You will notice the texture appears quite pixelated, despite the texture file itself being quite high-res. This is because the UV map for the face isn't large enough.
 4. In the UV editing window, press {% key "N" /%} to open the sidebar if it is not open already, and on the `Image` tab, set the UV Vertex for both X and Y to `0.5`. This will centralize the UV in the center of the texture.
-  ![](G.png "UV Vertex to 0.5")
+  ![](G.jpg "UV Vertex to 0.5")
 5. Next, press {% key "S" /%} to scale the face, and then type {% key "3" /%} to scale by 3x in the `X` and `Y` axes, making the texture appear much nicer on the bottom face.
 6. Lastly, we need to sort out the stretching on the concrete textures on the sides of the model. In the 3D Viewport, spin around the model and select only the 4 side faces (remember that you can hold down {% key "Shift" /%} to select multiple faces).
 7. Press the UV pill menu, select `Smart UV Project`. Set the `Angle Limit` to 66 degrees. Keep the other options at 0, make sure `Correct Aspect` is checked, and `Scale to Bounds` is *un*checked. Hit OK.
@@ -90,9 +90,9 @@ Using the information shown in the video, follow these steps:
 10. Finally, press {% key "S" /%}, {% key "X" /%}, {% key "10" /%}, then hit {% key "Enter" /%} to scale the UVs by 10x on the `X` axis.
 
 This is the end of the UV mapping section, and hopefully your object's textures look much nicer as per the images below. You can now return to the `Layout` workspace tab. If you are confident with UV mapping or simply want to play around more, feel free to further edit the UVs to your liking, it won't affect any future parts of the tutorial.
-![](I.png "Top View")
-![](J.png "Side View")
-![](K.png "Bottom View")
+![](I.jpg "Top View")
+![](J.jpg "Side View")
+![](K.jpg "Bottom View")
 
 # Updating the render model in-game
 1. Now that we have successfully added two materials to our custom platform and fixed up the UVs, we need to re-export from Blender to `.JMS` so that we can bring our updated model into Halo 3. If you have forgotten how to do this, read through the steps again in the [previous tutorial](~blender-object-creation-render#exporting-from-blender). As this is the second time we are exporting, you won't need to create a `render` folder again. Simply overwrite the existing `custom_platform.JMS` file.
@@ -148,8 +148,8 @@ Unfortunately, adding new shader files does not mean they get automatically pick
 2. Just like earlier, run the `tool render` command to re-import our render model `.JMS` file. For this tutorial, use `tool render objects\scenery\custom_platform draft`.
 
 If you don't have it open already, open Sapien and place down your custom platform scenery object! It should now have all of the textures correctly applied to it. If you can't remember how to add or place objects in Sapien, review [this part](~blender-object-creation-render#checking-out-the-object-in-sapien) of the previous tutorial. Your model should hopefully look something like this:
-![](P.png "Topside in-game")
-![](Q.png "Underside in-game")
+![](P.jpg "Topside in-game")
+![](Q.jpg "Underside in-game")
 
 Not a bad looking first model! If something has gone wrong and you would like to check my source files and tags, feel free to grab the files from the link at the [top of the page](~blender-object-creation-materials#file-list)
 

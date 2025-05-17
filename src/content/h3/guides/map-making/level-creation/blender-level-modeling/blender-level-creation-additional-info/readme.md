@@ -193,7 +193,7 @@ There are four aspects to this name so lets break this down.
 
 Seams connect BSPs together. Surfaces that are set as a seam surface will connect to another seam surface if the two surfaces are identical (including triangulation) and occupy the same space. The easiest way to do this in Blender is to use the magnetic snapping tool set to edge mode and sliding the surfaces together on an axis. A seam can only connect two BSPs.
 
-![](example_seams_blender.png "You can use the magnet tool to easily align seams")
+![](example_seams_blender.jpg "You can use the magnet tool to easily align seams")
 
 A seam can be made by creating a material called `+seam:example_seams_1`
 
@@ -222,4 +222,4 @@ Create a zone set called `all` and check all the `bsp zone flags`. Save your sce
 
 In Sapien, zone sets can be switched by pressing `Ctrl+B` or going to `Edit > Switch Zone Set...`
 
-![](example_seams_sapien.png "This is the end result in Sapien")
+![](example_seams_sapien.jpg "This is the end result in Sapien")

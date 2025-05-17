@@ -87,7 +87,7 @@ You can even create slanted or upside-down fog planes as long as they follow the
 
 # Weather polyhedra
 
-{% figure src="weather-polys-aotcr.png" %}
+{% figure src="weather-polys-aotcr.jpg" %}
 Weather polys extracted from _Assault on the Control Room_.
 {% /figure %}
 
