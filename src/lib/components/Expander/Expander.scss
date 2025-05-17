@@ -1,0 +1,36 @@
+@import "../../../assets/_constants.scss";
+
+.expander {
+  border: 1px solid var(--border-color);
+  border-radius: $border-radius;
+  margin-bottom: var(--padding-md);
+
+  summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--padding-md);
+    padding: var(--padding-md);
+    list-style: none;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &:hover {
+      background-color: var(--bg-overlay);
+    }
+  }
+
+  .expander-title {
+    display: flex;
+    align-items: center;
+    gap: var(--padding-sm);
+  }
+
+  .expander-body {
+    display: flow-root;
+    border-top: 1px solid var(--border-color);
+    padding: 0 var(--padding-md);
+  }
+}

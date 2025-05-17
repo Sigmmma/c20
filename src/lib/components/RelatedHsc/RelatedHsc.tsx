@@ -1,4 +1,4 @@
-import {RenderContext, useCtx} from "../Ctx/Ctx";
+import {RenderContext} from "../Ctx/Ctx";
 import DataTable, {type DataTableProps, renderPlaintext as renderDataTablePlaintext} from "../DataTable/DataTable";
 import {useLocalize} from "../Locale/Locale";
 import {Lang, localizer} from "../../utils/localization";
@@ -29,7 +29,7 @@ export type RelatedHscProps = {
   noClear?: boolean;
 };
 
-function buildDataTableProps(lang: Lang, ctx: RenderContext, props: RelatedHscProps): DataTableProps {
+function buildDataTableProps(lang: Lang, props: RelatedHscProps): DataTableProps {
   let dataPath: string[] = [];
   const localize = localizer(localizations, lang);
   let columnName: keyof typeof localizations = "both";
@@ -65,13 +65,11 @@ function buildDataTableProps(lang: Lang, ctx: RenderContext, props: RelatedHscPr
 }
 
 export default function RelatedHsc(props: RelatedHscProps) {
-  const ctx = useCtx();
   const {lang} = useLocalize();
-  if (!ctx) return null;
-  return <DataTable {...buildDataTableProps(lang, ctx, props)}/>;
-};
+  return <DataTable {...buildDataTableProps(lang, props)}/>;
+}
 
 export function renderPlaintext(lang: Lang, ctx: RenderContext | undefined, props: RelatedHscProps): string | undefined {
   if (!ctx) return undefined;
-  return renderDataTablePlaintext(ctx, lang, buildDataTableProps(lang, ctx, props));
+  return renderDataTablePlaintext(ctx, lang, buildDataTableProps(lang, props));
 }

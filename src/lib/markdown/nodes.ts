@@ -1,9 +1,10 @@
 import {type NodeType, type Schema, Tag} from "@markdoc/markdoc";
-import { linkables } from "../utils/external-urls";
+import {linkables} from "../utils/external-urls";
 import {addBreaks, slugify} from "../utils/strings";
 import {type RenderContext} from "../components/Ctx/Ctx";
 import renderPlaintext from "../components/Md/plaintext";
 import {Lang} from "../utils/localization";
+import {resolvePageGlobal} from "../content/pages";
 
 const wbr = new Tag("wbr");
 
@@ -59,9 +60,9 @@ const nodes: Partial<Record<NodeType, Schema>> = {
           let [idTail, headingId] = href.slice(1).split("#");
           if (idTail == "") idTail = slugify(children.map(c => renderPlaintext(ctx, lang, c) ?? "").join(""), true);
           if (headingId == "") headingId = undefined;
-          const {title: foundTitle, url} = ctx.resolvePage(idTail, headingId);
-          href = url;
-          title = foundTitle;
+          const foundPage = resolvePageGlobal(ctx.pageIndex, ctx.pageId, idTail, headingId);
+          href = foundPage?.url ?? "#";
+          title = foundPage?.title ?? "";
         } else if (linkables[href]) {
           href = linkables[href];
         }

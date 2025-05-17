@@ -1,0 +1,43 @@
+.article-main {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: start;
+  margin: 0 auto;
+
+  .inline-toc {
+    display: none;
+  }
+
+  @include tablet {
+    .toc-column {
+      display: none;
+    }
+    .inline-toc {
+      display: block;
+    }
+  }
+
+  .content-column {
+    max-width: 80em;
+    padding: 0 var(--padding-lg);
+
+    @include mobile {
+      padding: 0 var(--padding-md);
+    }
+  }
+
+  .toc-column {
+    position: sticky;
+    top: 0;
+    overflow-y: auto;
+    width: 26em;
+    min-width: 12em;
+    padding: var(--padding-sm) var(--padding-md);
+    scrollbar-color: transparent transparent;
+
+    &:hover {
+      scrollbar-color: var(--bg-inset) transparent;
+    }
+  }
+}

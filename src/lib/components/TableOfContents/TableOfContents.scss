@@ -1,6 +1,13 @@
-@import "../../../assets/_constants.scss";
+@import "../../../assets/constants";
 
-.toc {
+.toc.inline {
+  ol, ul {
+    list-style: disc;
+    padding-left: 1em;
+  }
+}
+
+.toc.sidebar {
   transition: opacity $transition-time-interactive;
   opacity: 0.5;
 

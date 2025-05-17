@@ -1,14 +1,14 @@
 import fs from "fs";
 import path from "path";
 import {BuildOpts} from "../build";
-import {formatUrlPath, PageIndex} from "./content";
+import {formatUrlPath, PageIndex} from "./content/pages";
 
 export async function buildSitemap(pageIndex: PageIndex, buildOpts: BuildOpts) {
   const {outputDir, baseUrl} = buildOpts;
   const urls: string[] = [];
 
   Object.entries(pageIndex).forEach(([pageId, pageData]) => {
-    if (!pageData.front.stub) {
+    if (!pageData.stub) {
       urls.push(`${baseUrl}${formatUrlPath(pageId)}`);
     }
   });

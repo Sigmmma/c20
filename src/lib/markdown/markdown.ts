@@ -52,9 +52,3 @@ export function transform<F=any>(ast: Node, ctx: RenderContext | undefined, lang
   const content = Markdoc.transform(ast, config) ?? undefined;
   return content;
 }
-
-// export function renderMdDoc(mdSrc) {
-//   const {content, frontmatter} = parseMdDoc(mdSrc);
-//   // const html = Markdoc.renderers.html(content);
-//   return {frontmatter, node};
-// }

@@ -1,15 +1,13 @@
 import path from "path";
 import fs from "fs";
 import {BuildOpts} from "../build";
-import {PageId, PageIndex} from "./content";
+import {PageId, ParsedPage} from "./content/pages";
 
-type Redirects = Record<PageId, PageId>;
-
-export function buildRedirects(pageIndex: PageIndex): Redirects {
+export function buildRedirects(parsedPages: Record<PageId, ParsedPage>): Record<PageId, PageId> {
   const result = {};
-  Object.entries(pageIndex).forEach(([pageId, pageData]) => {
-    pageData.front.redirects?.forEach(redirect => {
-      if (pageIndex[redirect]) {
+  Object.entries(parsedPages).forEach(([pageId, parsedPage]) => {
+    parsedPage.front.redirects?.forEach(redirect => {
+      if (parsedPages[redirect]) {
         throw new Error(`Page '${pageId}' has a redirect from '${redirect}', but that page exists`);
       }
       if (result[redirect]) {
@@ -31,9 +29,9 @@ export function buildRedirects(pageIndex: PageIndex): Redirects {
  * So lets say you want to redirect `web/main` -> `web/old` and `web/main/abc` -> `web/new/dfe`.
  * You will need to setup the rules `web/main` -> `web/old` and `web/old/abc` -> `web/new/dfe`.
  */
-export async function buildAndWriteRedirects(pageIndex: PageIndex, buildOpts: BuildOpts) {
+export async function buildAndWriteRedirects(parsedPages: Record<PageId, ParsedPage>, buildOpts: BuildOpts) {
   const hostName = new URL(buildOpts.baseUrl).host;
-  const redirects = buildRedirects(pageIndex);
+  const redirects = buildRedirects(parsedPages);
   const bucketWebsiteConfig = {
     ErrorDocument: {
       Key: "utility/404/index.html",

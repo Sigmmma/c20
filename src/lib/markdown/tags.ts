@@ -1,7 +1,7 @@
 import {Tag, type Schema} from "@markdoc/markdoc";
-import {alertTypes} from "../components/Alert/Alert";
 import {iconNames} from "../components/Icon/names";
 import {onlyTypes} from "../components/RelatedHsc/RelatedHsc";
+import {alertTypes} from "../components/Alert/Alert";
 
 // These are the custom markdoc "tags" we suppport, and the components they map to
 const tags: Record<string, Schema> = {

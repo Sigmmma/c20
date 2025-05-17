@@ -73,7 +73,7 @@ $transition-time-interactive: 0.1s;
 }
 
 @mixin tablet {
-  @media all and (max-width: 70em) {
+  @media all and (max-width: 75em) {
     & {
       @content;
     }

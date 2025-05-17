@@ -1,5 +1,11 @@
 @import "_constants";
 
+@font-face {
+  font-family: ConvectionRegular;
+  src: local("Convection"), url("/assets/ConvectionRegular.ttf");
+  font-weight: normal;
+}
+
 :root {
   --bg: #{$bg-dark};
   --fg: #{$fg-dark};
@@ -34,151 +40,20 @@ html[data-theme="light"] {
   }
 }
 
-html[data-theme="holiday"] {
-  --bg: #{darken(green, 10%)};
-  --fg: #fff;
-  --fg-faded: #ccc;
-  --fg-strong: #fff;
-  --bg-overlay: #{darken(green, 5%)};
-  --bg-inset: #{darken(green, 15%)};
-  --bg-sidebar: #{darken(red, 35%)};
-  --border-color: green;
-  --fg-link: red;
-
-  .c20-logo::before {
-    filter: invert(100%);
-  }
-
-  body {
-    background: url("/assets/plaid.jpg") #888;
-    background-blend-mode: multiply;
-  }
-  h1, h2, h3, body {
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
-  }
-  cursor: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='48' viewport='0 0 100 100' style='fill:black;font-size:24px;'><text y='50%'>🎄</text></svg>") 16 8, auto;
-}
-
-//firefox can use scrollbar-color but it looks fine as-is
-//webkit scrollbars are ugly:
-*::-webkit-scrollbar {
-  width: 14px;
-}
-*::-webkit-scrollbar-track {
-  background: var(--bg-overlay);
-}
-*::-webkit-scrollbar-thumb {
-  background-color: var(--fg-faded);
-  border-radius: 20px;
-  border: 2px solid var(--bg-overlay);
-}
-
-@font-face {
-  font-family: ConvectionRegular;
-  src: local("Convection"), url("/assets/ConvectionRegular.ttf");
-  font-weight: normal;
-}
-
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  color: var(--fg);
-  background: var(--bg);
-  font-family: $font-family;
-  font-size: $font-size;
-}
-
-* {
-  box-sizing: border-box;
-}
-
-ol, ul {
-  padding-left: 2em;
-}
-
-ul {
-  list-style: disc;
-}
-
-img, video {
-  display: block;
-  width: 100%;
-}
-
-abbr:hover {
-  cursor: help;
-}
-
-a {
-  color: var(--fg-link);
-  text-decoration: none;
-  &:hover {
-    text-decoration: underline;
-  }
-  abbr:hover {
-    cursor: pointer;
-  }
-}
-
-small {
-  color: var(--fg-faded);
-}
-
-hr {
-  border: none;
-  border-bottom: 1px solid var(--border-color);;
-}
-
-.content-faded {
-  color: var(--fg-faded);
-}
-.content-tool {
-  background: $bg-tool;
-}
-.content-tool-minor {
-  background: $bg-tool-minor;
-}
-.content-tag {
-  background: $bg-tag;
-}
-.content-tag-minor {
-  background: $bg-tag-minor;
-}
-.content-tag-minor.field-unused {
-  background: var(--bg);
-}
-.content-guide {
-  background: $bg-guide;
-}
-
-:target {
-  scroll-margin-top: 100px;
-}
-
+@import "_global";
 @import "_forms";
 @import "_tables";
+@import "_utility";
 @import "../lib/components/Alert/Alert.scss";
 @import "../lib/components/Tabs/Tabs.scss";
-@import "../lib/components/Article/Article.scss";
+@import "../lib/components/Expander/Expander.scss";
+@import "../lib/components/Breadcrumbs/Breadcrumbs.scss";
+@import "../lib/components/ArticleMain/ArticleMain.scss";
+@import "../lib/components/ArticleBody/ArticleBody.scss";
+@import "../lib/components/ArticleFooter/ArticleFooter.scss";
+@import "../lib/components/TableOfContents/TableOfContents.scss";
 @import "../lib/components/UnitConverter/UnitConverter.scss";
 @import "../lib/components/Icon/Icon.scss";
 @import "../lib/components/Search/Search.scss";
 @import "../lib/components/CodeBlock/CodeBlock.scss";
 @import "../lib/components/PageWrapper/PageWrapper.scss";
-
-.mobile-only {
-  display: none;
-  @include mobile {
-    display: unset;
-  }
-}
-
-//mobile view
-@media all and (max-width: 55em) {
-  .desktop-only {
-    display: none;
-  }
-}

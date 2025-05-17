@@ -1,0 +1,13 @@
+@import "../../../assets/constants";
+
+.article-footer {
+  padding: var(--padding-sm) 0;
+  display: flow-root;
+  border-top: 0;
+  color: var(--fg-faded);
+
+  a {
+    color: var(--fg-faded);
+    text-decoration: underline;
+  }
+}

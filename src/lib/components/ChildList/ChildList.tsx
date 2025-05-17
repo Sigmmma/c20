@@ -1,12 +1,17 @@
-import { useCtx } from "../Ctx/Ctx";
+import {useCtx} from "../Ctx/Ctx";
+import {formatUrlPath} from "../../content/pages";
 
 export default function ChildList(props: {}) {
   const ctx = useCtx();
-  if (!ctx?.children) return null;
+  if (!ctx) return null;
+
+  const children = ctx.pageIndex[ctx.pageId].children;
+  if (!children) return null;
+
   return (
     <ul>
-      {ctx.children.map(child =>
-        <li><a href={child.url}>{child.title}</a></li>
+      {children.map(childPageId =>
+        <li><a href={formatUrlPath(childPageId)}>{ctx.pageIndex[childPageId].title}</a></li>
       )}
     </ul>
   );

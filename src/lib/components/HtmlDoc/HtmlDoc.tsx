@@ -12,7 +12,6 @@ export type HtmlDocProps = {
   ogTags?: string[];
   ogImg?: string;
   path: string;
-  localizedPath: string;
   children?: ComponentChildren;
 };
 
@@ -54,7 +53,7 @@ export default function HtmlDoc(props: HtmlDocProps) {
         {props.ogTags && props.ogTags.map(tag =>
           <meta property="og:article:tag" content={tag}/>
         )}
-        <meta property="og:url" content={`${props.baseUrl}${props.localizedPath}`}/>
+        <meta property="og:url" content={`${props.baseUrl}${props.path}`}/>
         {props.ogDescription &&
           <meta property="og:description" content={props.ogDescription}/>
         }
@@ -63,7 +62,7 @@ export default function HtmlDoc(props: HtmlDocProps) {
         <base href={props.path.endsWith("/") ? props.path : `${props.path}/`}/>
         {props.preloadJson && <>
           <link rel="preload" type="application/json" as="fetch" href={`/assets/search-index.json`}/>
-          <link rel="preload" type="application/json" as="fetch" href={`/assets/page-tree.json`}/>
+          <link rel="preload" type="application/json" as="fetch" href={`/assets/page-index.json`}/>
         </>}
         <link rel="icon" type="image/png" href="/assets/librarian.png"/>
         <link rel="stylesheet" href="/assets/style.css"/>

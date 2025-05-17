@@ -1,0 +1,33 @@
+@import "_constants";
+
+.mobile-only {
+  display: none;
+  @include mobile {
+    display: unset;
+  }
+}
+
+.tablet-only {
+  display: none;
+  @include tablet {
+    display: unset;
+  }
+}
+
+//mobile view
+@media all and (max-width: 55em) {
+  .desktop-only {
+    display: none;
+  }
+}
+
+//need to generalize this later
+.card {
+  border: 1px solid var(--border-color);
+  border-radius: $border-radius;
+  background: var(--bg-overlay);
+  display: flow-root;
+  padding: var(--padding-md);
+  background-blend-mode: exclusion;
+  background-position: center;
+}

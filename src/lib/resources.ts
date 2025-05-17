@@ -1,10 +1,11 @@
-import {getPageBaseDir, pageIdToLogical, formatUrlPath, type PageIndex} from "./content";
+import {pageIdToLogical, PageId} from "./content/pages";
 import path from "path";
 import fs from "fs";
 import Viz from "@viz-js/viz";
 import {exec} from "child_process";
 import vizRenderOpts from "viz.js/full.render.js";
 import {type BuildOpts} from "../build";
+import {getPageBaseDir} from "./content/content-files";
 
 if (typeof btoa === 'undefined') {
   global["btoa"] = function btoa(str) {
@@ -64,8 +65,8 @@ async function processFile(srcPath: string, outputDir: string) {
   }
 }
 
-export default async function buildResources(pageIndex: PageIndex, buildOpts: BuildOpts) {
-  await Promise.all(Object.entries(pageIndex).map(async ([pageId, pageData]) => {
+export default async function buildResources(pageIds: PageId[], buildOpts: BuildOpts) {
+  await Promise.all(pageIds.map(async (pageId) => {
     const baseDir = getPageBaseDir(pageId, buildOpts);
     const srcFiles = await fs.promises.readdir(baseDir, {encoding: "utf8"});
     const outputDir = path.join(buildOpts.outputDir, ...pageIdToLogical(pageId));

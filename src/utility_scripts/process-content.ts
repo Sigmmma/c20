@@ -1,10 +1,11 @@
-import {discoverPageFiles, loadPageIndex, PageFrontMatter} from "../lib/content";
 import buildConfig from "../../build-config.json";
 import {parseSplit} from "../lib/markdown/markdown";
 import fs from "fs";
 import yaml from "js-yaml";
 import loadStructuredData from "../data";
 import R from "ramda";
+import {discoverPageFiles, loadParsedPages} from "../lib/content/content-files";
+import {PageFrontMatter} from "../lib/content/pages";
 
 (async function () {
   const data = await loadStructuredData();

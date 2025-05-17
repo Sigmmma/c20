@@ -1,19 +1,15 @@
 import {createContext} from "preact";
 import {useContext} from "preact/hooks";
-import {type PageLink} from "../../content";
+import {PageIndex} from "../../content/pages";
 
 export type RenderContext = {
   //local
   pageId: string;
-  title?: string;
-
+  pageTitle?: string;
   //global
-  noThumbs?: boolean;
-
-  //non-local
-  resolvePage: (idTail: string, headingId?: string) => PageLink;
-  children: PageLink[];
+  pageIndex: PageIndex;
   data: any;
+  noThumbs?: boolean;
 };
 
 const Ctx = createContext<RenderContext | undefined>(undefined);

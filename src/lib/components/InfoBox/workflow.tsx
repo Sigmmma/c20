@@ -5,6 +5,7 @@ import {MetaboxSectionProps} from "./MetaBox";
 import Wat from "../Wat/Wat";
 import {Lang, localizer} from "../../utils/localization";
 import {addBreaks} from "../../utils/strings";
+import {resolvePageGlobal} from "../../content/pages";
 
 const localizations = {
   authors: {
@@ -58,13 +59,13 @@ const localizations = {
 };
 
 const workflowItemAnchor = (ctx, itemName) => {
-  const item = ctx.data.workflows.getWorkflowItem(itemName, ctx);
+  const item = ctx.data.workflows.getWorkflowItem(itemName);
   itemName = addBreaks(itemName, <wbr/>);
   if (item.url) {
     return <a href={item.url}>{itemName}</a>;
   }
-  const target = ctx.resolvePage(item.page, item.heading);
-  return <a href={target.url}>{itemName}</a>;
+  const target = resolvePageGlobal(ctx.pageIndex, ctx.pageId, item.page, item.heading);
+  return target ? <a href={target.url}>{itemName}</a> : itemName;
 };
 
 function workflowType(flow) {
@@ -185,7 +186,7 @@ export default function getWorkflowSections(lang: Lang, ctx: RenderContext | und
     sections.push({body:
       <p>
         <DetailsList
-          summary={<>{localize("buildTypes")}<Wat href={ctx?.resolvePage("blam", "build-types").url}/></>}
+          summary={<>{localize("buildTypes")}<Wat idTail="blam" headingId="build-types"/></>}
           items={item.buildTypes}
         />
       </p>

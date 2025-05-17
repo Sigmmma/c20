@@ -1,4 +1,4 @@
-module.exports = {
+export default {
   //primitives
   byte: {size: 1},
   bool: {size: 1},

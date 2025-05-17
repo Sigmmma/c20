@@ -4,6 +4,7 @@ import DetailsList from "../DetailsList/DetailsList";
 import {MetaboxSectionProps} from "./MetaBox";
 import {Lang, localizer} from "../../utils/localization";
 import {addBreaks} from "../../utils/strings";
+import {resolvePageGlobal} from "../../content/pages";
 
 const localizations = {
   tagStructureHeading: {
@@ -32,8 +33,8 @@ const localizations = {
 };
 
 const tagAnchor = (ctx: RenderContext, tagName: string) => {
-  const tagPage = ctx.resolvePage(tagName);
-  return <a href={tagPage.url}>{addBreaks(tagName, <wbr/>)}</a>;
+  const tagPage = resolvePageGlobal(ctx.pageIndex, ctx.pageId, tagName);
+  return tagPage ? <a href={tagPage.url}>{addBreaks(tagName, <wbr/>)}</a> : tagName;
 };
 
 export default function getTagSections(lang: Lang, ctx: RenderContext | undefined, tag: any): MetaboxSectionProps[] {

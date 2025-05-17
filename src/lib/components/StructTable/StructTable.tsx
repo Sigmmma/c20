@@ -12,8 +12,43 @@ import Wat from "../Wat/Wat";
 import {type FoundHeading} from "../Md/headings";
 import {LocalizeHook, useLocalize} from "../Locale/Locale";
 import {Lang} from "../../utils/localization";
+import {resolvePageGlobal} from "../../content/pages";
 
 type Localizations = typeof localizations;
+
+export type StructTableProps = {
+  entryModule: string;
+  entryType: string;
+  noEmbed?: string[];
+
+  showOffsets?: boolean;
+  noRootExtend?: boolean;
+  noRootComments?: boolean;
+  skipPadding?: boolean;
+  simpleTypes?: boolean;
+  id?: string;
+};
+
+export default function StructTable(props: StructTableProps) {
+  const ctx = useCtx();
+  if (!ctx) return null;
+
+  const initialImports = {[props.entryModule]: [props.entryType]};
+  const modules = ctx.data.structs;
+  const typeDefs = buildTypeDefs(initialImports, modules);
+  const instantiatedType = instantiateType(typeDefs, {type: props.entryType}, null, {noRootExtend: props.noRootExtend});
+
+  // const searchTerms: string[] = [];
+  // const headings: any = [];
+  const seenTypes = {};
+  const pathId = [props.id ?? props.entryType];
+  const localizeHook = useLocalize(localizations);
+  return (
+    <div className="table-wrapper">
+      {renderTypeAsTable(seenTypes, typeDefs, ctx, props, instantiatedType, pathId, localizeHook)}
+    </div>
+  );
+}
 
 function processMeta(meta: Record<string, any> | undefined | null): Record<string, any> {
   meta = {...meta};
@@ -75,8 +110,8 @@ function renderStructFieldType(ctx: RenderContext, props: StructTableProps, fiel
     return (
       <DetailsList summary={typeCode} maxOpen={4} items={field.meta.tag_classes.map(tagName => {
         if (tagName == "*") return "(any)";
-        const tagPage = ctx.resolvePage(tagName);
-        return <a href={tagPage.url}>{tagName}</a>;
+        const tagPage = resolvePageGlobal(ctx.pageIndex, ctx.pageId, tagName);
+        return tagPage ? <a href={tagPage.url}>{tagName}</a> : tagName;
       })}/>
     );
   }
@@ -269,19 +304,6 @@ function renderTypeAsTable(seenTypes, typeDefs, ctx: RenderContext, props: Struc
   </>;
 }
 
-export type StructTableProps = {
-  entryModule: string;
-  entryType: string;
-  noEmbed?: string[];
-
-  showOffsets?: boolean;
-  noRootExtend?: boolean;
-  noRootComments?: boolean;
-  skipPadding?: boolean;
-  simpleTypes?: boolean;
-  id?: string;
-};
-
 //note that this doesnt render fields in a depth-first order, it just needs to work for search
 export function renderPlaintext(lang: Lang, ctx: RenderContext | undefined, props: StructTableProps): string {
   if (!ctx) return "";
@@ -336,25 +358,4 @@ export function headings(ctx: RenderContext | undefined, props: StructTableProps
     });
   }
   return headings;
-}
-
-export default function StructTable(props: StructTableProps) {
-  const ctx = useCtx();
-  if (!ctx) return null;
-
-  const initialImports = {[props.entryModule]: [props.entryType]};
-  const modules = ctx.data.structs;
-  const typeDefs = buildTypeDefs(initialImports, modules);
-  const instantiatedType = instantiateType(typeDefs, {type: props.entryType}, null, {noRootExtend: props.noRootExtend});
-
-  // const searchTerms: string[] = [];
-  // const headings: any = [];
-  const seenTypes = {};
-  const pathId = [props.id ?? props.entryType];
-  const localizeHook = useLocalize(localizations);
-  return (
-    <div className="table-wrapper">
-      {renderTypeAsTable(seenTypes, typeDefs, ctx, props, instantiatedType, pathId, localizeHook)}
-    </div>
-  );
 }

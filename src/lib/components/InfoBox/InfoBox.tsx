@@ -60,7 +60,7 @@ export default function InfoBox(props: InfoBoxProps) {
 function getMetaboxProps(lang: Lang, ctx: RenderContext | undefined, props: InfoBoxProps): MetaboxProps {
   const [aboutType, aboutArg] = (props.about?.split(":") ?? []) as [string?, string?];
   let metaboxProps: Partial<MetaboxProps> = {
-    title: ctx?.title,
+    title: ctx?.pageTitle,
     img: props.img,
     caption: props.caption,
     info: props.info,

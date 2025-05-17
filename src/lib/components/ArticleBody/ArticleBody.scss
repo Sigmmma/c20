@@ -1,0 +1,114 @@
+@import "../../../assets/_constants.scss";
+
+.article-body {
+  width: 100%;
+  display: flow-root;
+  font-size: $font-size-article;
+
+  .page-title {
+    border-bottom: 1px solid var(--border-color);;
+    margin-bottom: var(--padding-md);
+
+    .title-line {
+      display: flex;
+      align-content: space-between;
+      align-items: center;
+
+      h1 {
+        margin: 0;
+        font-size: 2.2em;
+        border-bottom: none;
+        flex-grow: 1;
+      }
+
+      .title-extra {
+        display: flex;
+        align-content: space-between;
+        align-items: center;
+        color: var(--fg-faded);
+
+        a {
+          color: var(--fg-faded);
+          text-decoration: underline;
+        }
+
+        & > * {
+          padding-left: var(--padding-md);
+        }
+      }
+    }
+  }
+
+  .metabox, figure, aside {
+    min-width: 15em;
+    float: right;
+    clear: right;
+    width: 35%;
+    //max-width: 24em;
+    background: var(--bg-overlay);
+    border: 1px solid var(--border-color);
+    border-bottom-width: 0;
+    border-radius: $border-radius;
+    overflow: hidden;
+    margin: 0 0 var(--padding-md) var(--padding-md);
+    
+    .header .feather {
+      margin-right: 0.5em;
+    }
+
+    figcaption, .caption{
+      font-style: italic;
+    }
+    section, figcaption {
+      display: flow-root;
+      border-bottom: 1px solid var(--border-color);;
+      padding: 0 var(--padding-md);
+    }
+    section.img {
+      // display: flex;
+      padding: 0;
+      // flex-direction: column;
+      // align-items: center;
+    }
+    section.header {
+      text-align: center;
+    }
+    img {
+      padding: 0;
+    }
+
+    &:not(.inline) {
+      img {
+        width: 100%;
+      }
+    }
+
+    &.inline {
+      float: none;
+      clear: none;
+      margin-left: 0;
+      margin-right: 0;
+      width: fit-content;
+    }
+
+    @include mobile-xs {
+      float: none;
+      clear: none;
+      margin-left: 0;
+      margin-right: 0;
+      width: auto;
+      max-width: none;
+    }
+  }
+
+  img, video {
+    width: auto;
+    max-width: 100%;
+    // max-height: 400px;
+    transition: filter $transition-time-interactive;
+  }
+
+  a:hover img, a:hover video {
+    filter: brightness(110%);
+  }
+}

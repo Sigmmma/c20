@@ -1,10 +1,11 @@
 import * as preact from "preact";
-import { IconName } from "../lib/components/Icon/names";
+import {IconName} from "../lib/components/Icon/names";
 import {Locale} from "../lib/components/Locale/Locale";
 import UnitConverter from "../lib/components/UnitConverter/UnitConverter";
 import DataTableFilter from "../lib/components/DataTable/DataTableFilter";
 import MiniSearch from "minisearch";
 import PageWrapper from "../lib/components/PageWrapper/PageWrapper";
+import {PageIndex} from "../lib/content/pages";
 
 const lang = document.querySelector("html")?.lang ?? "en";
 
@@ -32,8 +33,8 @@ const intersectionObserver = new IntersectionObserver(entries => {
     .map(it => it.target.id)
     .find(it => it != "");
   if (scrolledToHeadingId && scrolledToHeadingId != currentHeadingId) {
-    document.querySelector(`.toc a[href$=${currentHeadingId}]`)?.classList.remove("highlight");
-    document.querySelector(`.toc a[href$=${scrolledToHeadingId}]`)?.classList.add("highlight");
+    document.querySelector(`.toc-column .toc a[href$=${currentHeadingId}]`)?.classList.remove("highlight");
+    document.querySelector(`.toc-column .toc a[href$=${scrolledToHeadingId}]`)?.classList.add("highlight");
     currentHeadingId = scrolledToHeadingId;
   }
 }, {
@@ -70,7 +71,6 @@ hashFlash();
 const themes: {name: string, syntax: string, icon: IconName}[] = [
   {name: "dark", syntax: "/assets/night-owl.css", icon: "moon"},
   {name: "light", syntax: "/assets/github.css", icon: "sun"},
-  // {name: "holiday", syntax: "/assets/night-owl.css", icon: "gift"},
 ];
 const savedTheme = window.localStorage.getItem("theme") ?? "dark";
 function handleThemeSelected(theme: string) {
@@ -98,23 +98,22 @@ const miniSearchConfig = {
   }
 };
 
-const searchIndexPromise = fetch(`/assets/search-index.json`)
+const searchIndexPromise: Promise<MiniSearch> = fetch(`/assets/search-index.json`)
   .then(res => res.text())
   .then(indexJson => MiniSearch.loadJSON(indexJson, miniSearchConfig));
-const pageTreePromise = fetch(`/assets/page-tree.json`)
+const pageIndexPromise: Promise<PageIndex> = fetch(`/assets/page-index.json`)
   .then(res => res.json());
 
-Promise.all([searchIndexPromise, pageTreePromise]).then(([searchIndex, pageTree]) => {
+Promise.all([searchIndexPromise, pageIndexPromise]).then(([searchIndex, pageIndex]) => {
   const mountpoint = document.getElementById("wrapper-mountpoint")!;
   const wrapperChild = document.getElementById("wrapper-child")!;
   wrapperChild.remove(); //prevent being modified by preact render
-  const {navHeadings, pageId} = JSON.parse(mountpoint.dataset.bootstrap!);
+  const {pageId} = JSON.parse(mountpoint.dataset.bootstrap!);
   preact.render(
     <Locale.Provider value={lang}>
       <PageWrapper
         pageId={pageId}
-        navHeadings={navHeadings}
-        pageTree={pageTree}
+        pageIndex={pageIndex}
         searchIndex={searchIndex}
         themes={themes}
         initialTheme={savedTheme}

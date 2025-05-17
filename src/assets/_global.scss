@@ -1,0 +1,206 @@
+//firefox can use scrollbar-color but it looks fine as-is
+//webkit scrollbars are ugly:
+*::-webkit-scrollbar {
+  width: 14px;
+}
+*::-webkit-scrollbar-track {
+  background: var(--bg-overlay);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: var(--fg-faded);
+  border-radius: 20px;
+  border: 2px solid var(--bg-overlay);
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: var(--fg);
+  background: var(--bg);
+  font-family: $font-family;
+  font-size: $font-size;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+ol, ul {
+  padding-left: 2em;
+}
+
+ul {
+  list-style: disc;
+}
+
+img, video {
+  display: block;
+  width: 100%;
+}
+
+abbr:hover {
+  cursor: help;
+}
+
+a {
+  color: var(--fg-link);
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+  abbr:hover {
+    cursor: pointer;
+  }
+}
+
+small {
+  color: var(--fg-faded);
+}
+
+hr {
+  border: none;
+  border-bottom: 1px solid var(--border-color);;
+}
+
+details {
+  li & {
+    margin: 0;
+  }
+  margin: var(--padding-md) 0;
+  summary {
+    cursor: pointer;
+  }
+
+  summary h1,
+  summary h2,
+  summary h3,
+  summary h4,
+  summary h5,
+  summary h6 {
+    display: inline-block;
+    margin: 0;
+  }
+}
+
+li::marker, ol::marker {
+  color: var(--fg-faded);
+}
+
+a.header-anchor {
+  color: inherit;
+  text-decoration: none;
+  &:after {
+    padding: 0 0.5em;
+    content: '#';
+    color: var(--fg-faded);
+    opacity: 0.5;
+    transition: opacity $transition-time-interactive;
+  }
+  &:hover:after {
+    opacity: 1;
+  }
+}
+
+h1 {font-size: 1.50em;}
+h2 {font-size: 1.33em;}
+h3 {font-size: 1.17em;}
+h4 {font-size: 1.00em;}
+h5 {font-size: 0.83em;}
+h6 {font-size: 0.75em;}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-family-headers;
+  color: var(--fg-strong);
+  &:hover a.header-anchor, &.destination a.header-anchor {
+    opacity: 1;
+  }
+  &.clear {
+    clear: both;
+  }
+}
+
+.destination {
+  transition: all $transition-time ease-in;
+  position: relative;
+  &::after {
+    position: absolute;
+    content: attr(data-note) ' ☞';
+    z-index: 10;
+    left: -200px;
+    width: 200px;
+    font-size: 20px;
+    line-height: 0;
+    top: 50px;
+    text-align: right;
+    transform: rotate(-20deg);
+  }
+  color: #E66533;
+  // text-shadow: 0 0 var(--padding-sm) var(--fg-strong), 0 0 var(--padding-md) $logo-color;
+}
+
+h1 {
+  display: flow-root;
+  border-bottom: 1px solid var(--border-color);
+  padding-bottom: 10px;
+  color: var(--fg-strong);
+}
+
+h1, h2 {
+  // font-weight: normal;
+  font-weight: bold;
+  margin-top: var(--padding-lg);
+}
+
+strong {
+  color: var(--fg-strong);
+}
+
+blockquote {
+  display: flow-root;
+  font-style: italic;
+  background: var(--bg-inset);
+  border-radius: $border-radius;
+  padding: 0 var(--padding-sm);
+  margin-left: 0;
+}
+
+kbd {
+  font-family: $font-family-code;
+  font-size: $font-size-code;
+  padding: 0 0.5em;
+  background: var(--bg-inset);
+  border-radius: 4px;
+  font-weight: bold;
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 0 -1px var(--bg-overlay), 0 2px 0 var(--border-color);;
+  white-space: nowrap;
+}
+
+.content-faded {
+  color: var(--fg-faded);
+}
+.content-tool {
+  background: $bg-tool;
+}
+.content-tool-minor {
+  background: $bg-tool-minor;
+}
+.content-tag {
+  background: $bg-tag;
+}
+.content-tag-minor {
+  background: $bg-tag-minor;
+}
+.content-tag-minor.field-unused {
+  background: var(--bg);
+}
+.content-guide {
+  background: $bg-guide;
+}
+
+:target {
+  scroll-margin-top: 100px;
+}
