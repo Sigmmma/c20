@@ -39,7 +39,6 @@ export type NavProps = {
   pageIndex?: PageIndex;
   wrapperState: number;
   onMenuToggled: () => void;
-  onTocClicked: () => void;
   onSearchFocused: (focused: boolean) => void;
 };
 
@@ -69,9 +68,6 @@ export default function Nav(props: NavProps) {
           <button className="nobg mobile-only" id="toggle-menu" title={localize("menu")} aria-label={localize("menu")} onClick={props.onMenuToggled}>
             <Icon name={props.wrapperState == 0 ? "file-text" : "search"}/>
           </button>
-          <a className="button nobg tablet-only" id="toggle-toc" title={localize("toc")} aria-label={localize("toc")} href="#toc" onClick={props.onTocClicked}>
-            <Icon name={props.wrapperState == 2 ? "file-text" : "list"}/>
-          </a>
         </div>
       </header>
       <div className="nav-search">

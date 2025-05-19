@@ -28,10 +28,6 @@ export default function PageWrapper(props: PageWrapperProps) {
     setWrapperState(focused ? 0 : 1);
   };
 
-  const onTocClicked = () => {
-    setWrapperState(1);
-  };
-
   return (
     <div className={`page-wrapper ${wrapperStateClasses[wrapperState] ?? "body-view"}`}>
       <Nav
@@ -41,7 +37,6 @@ export default function PageWrapper(props: PageWrapperProps) {
         wrapperState={wrapperState}
         onMenuToggled={onMenuToggled}
         onSearchFocused={onSearchFocused}
-        onTocClicked={onTocClicked}
         themes={props.themes}
         initialTheme={props.initialTheme}
         onThemeSelected={props.onThemeSelected}

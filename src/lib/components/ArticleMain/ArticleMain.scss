@@ -19,7 +19,7 @@
   }
 
   .content-column {
-    max-width: 80em;
+    max-width: min(100%, 80em);
     padding: 0 var(--padding-lg);
 
     @include mobile {
