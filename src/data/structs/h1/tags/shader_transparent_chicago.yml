@@ -178,8 +178,9 @@ type_defs:
             either not render or render incorrectly.
 
             **Warning**: Using a shader with extra layers on an [object](~) with
-            _transparent self occlusion_ enabled causes [Sapien to
-            crash](~h1-sapien#crashes).
+            _transparent self occlusion_ enabled may cause Sapien and Standalone to
+            [crash](~h1-sapien#crashes) if there are too many overlapping faces from
+            the viewing angle.
       - name: maps
         type: Block
         type_args:

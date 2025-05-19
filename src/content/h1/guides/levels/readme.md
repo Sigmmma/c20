@@ -16,6 +16,12 @@ redirects:
   - /h1/guides/map-making/level-creation/blender-level-modeling
   - /h1/guides/map-making/level-creation
   - /h1/guides/map-making
+keywords:
+  - modeling
+  - level
+  - bsp
+  - scenario
+  - blender
 ---
 This series of guides will cover the creation of custom levels, including modeling, lighting, adding weather and sounds, and populating them with decorative objects like [scenery](~). Once a level is completed, it can serve as the stage for a [custom singleplayer mission](~singleplayer) or [multiplayer map](~multiplayer).
 

@@ -2413,6 +2413,14 @@ functions:
         Gets ticks elapsed since the start of the game (when the map loaded).
         This is not authoritative game time in the case of multiplayer since
         clients can join at different times.
+  - slug: game_time_authoritative
+    info:
+      en: |-
+        ```hsc
+        (<long> game_time_authoritative)
+        ```
+        Gets ticks elapsed since the start of the game (relative to the sim authority).
+    context: H1A only
   - slug: game_variant
     info:
       en: |-
@@ -3267,6 +3275,14 @@ functions:
         (<real> objects_distance_to_object <object_list> <object>)
         ```
         returns minimum distance from any of the specified objects to the specified destination object. (returns -1 if either of the objects does not exist)
+    context: H1A only
+  - slug: objects_distance_to_position
+    info:
+      en: |-
+        ```hsc
+        (<real> objects_distance_to_position <object_list> <real> <real> <real>)
+        ```
+        returns minimum distance from any of the specified objects to the specified position. (returns -1 if there are no objects to check)
     context: H1A only
   - slug: objects_dump_memory
     info:

@@ -4,7 +4,7 @@ stub: true
 about: 'tag:h1/shader_transparent_chicago'
 thanks:
   Kavawuvi: Invader tag definitions
-  MosesOfEgypt: Tag structure research
+  MosesOfEgypt: Tag structure research, extra layers crash debugging
 keywords:
   - schi
 ---
