@@ -8,10 +8,10 @@ keywords:
   - help
   - wiki
 ---
-**The Reclaimers Library** is an [open source](https://github.com/Sigmmma/c20) wiki created by modders for modders. It has a primary team of volunteer editors who incorporate new information from their own research or from community tips. This page details how you can contribute, and how to write pages as an editor.
+**The Reclaimers Library** is an [open source](https://github.com/Sigmmma/c20) wiki created by modders for modders. It has a team of volunteer editors who add new information from their own testing or from community tips. This page details how you can contribute, and how to write pages as an editor.
 
 # How to contribute
-Pages are not publicly editable, but anyone can:
+Pages are not yet directly editable online, but anyone can:
 
 * Join our [Discord server](https://discord.com/invite/tVduNg9Ztb) and submit information to the **#wiki-dump** channel.
 * Submit information or requests in a [GitHub issue](https://github.com/Sigmmma/c20/issues).
