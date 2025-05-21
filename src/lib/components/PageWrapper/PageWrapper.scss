@@ -10,10 +10,15 @@
   }
 
   .wrapper-body {
+    left: 0;
     order: 1;
     overflow-y: scroll;
     height: 100vh;
     flex-grow: 1;
+  }
+
+  .wrapper-nav {
+    z-index: 200;
   }
 
   @include mobile {
@@ -39,7 +44,7 @@
       left: 0;
       width: 100vw;
       height: 55px;
-      z-index: 100000;
+      z-index: 300;
     }
 
     &.menu-view {
@@ -50,9 +55,9 @@
         box-shadow: 0px 0px 20px rgba(black, 0.8);
       }
 
-      .wrapper-body {
-        left: 100vw;
-      }
+      //.wrapper-body {
+      //  left: 100vw;
+      //}
     }
 
     &.body-view {
@@ -60,9 +65,9 @@
         left: -100vw;
       }
 
-      .wrapper-body {
-        left: 0;
-      }
+      //.wrapper-body {
+      //  left: 0;
+      //}
     }
   }
 }

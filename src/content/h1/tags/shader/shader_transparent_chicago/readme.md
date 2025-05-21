@@ -4,7 +4,8 @@ stub: true
 about: 'tag:h1/shader_transparent_chicago'
 thanks:
   Kavawuvi: Invader tag definitions
-  MosesOfEgypt: Tag structure research, extra layers crash debugging
+  MosesOfEgypt: Research on tag structure research, extra layers crash, rotation coordinate offset
+  Galap: Rotation coordinate offset writeup
 keywords:
   - schi
 ---

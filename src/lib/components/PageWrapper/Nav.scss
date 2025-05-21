@@ -6,8 +6,9 @@
   position: sticky;
   top: 0;
   overflow-y: scroll;
-  width: min(100%, 60em);
-  min-width: 20em;
+  min-width: 24em;
+  width: 24em;
+  max-width: 24em;
   scrollbar-color: transparent transparent;
 
   &:hover {

@@ -9,6 +9,7 @@ $fg-faded-dark: #5B858B;
 $fg-strong-dark: mix($bg-dark-mix, #fff, 25%);
 $bg-overlay-dark: lighten($bg-dark-mix, 5%);
 $bg-inset-dark: rgba(#000, 0.2);
+$bg-sidebar-dark: darken($bg-dark-mix, 5%);
 $border-color-dark: lighten($bg-dark-mix, 10%);
 $fg-link-dark: #16A3B6;
 
@@ -19,6 +20,7 @@ $fg-faded-light: mix($fg-light, $bg-light, 60%);
 $fg-strong-light: darken($fg-light, 35%);
 $bg-overlay-light: lighten($bg-light, 4%);
 $bg-inset-light: rgba(#000, 0.05);
+$bg-sidebar-light: darken($bg-light, 5%);
 $border-color-light: darken($bg-light, 15%);
 $fg-link-light: #0038bb;
 

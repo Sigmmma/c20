@@ -14,7 +14,7 @@
   --fg-strong: #{$fg-strong-dark};
   --bg-overlay: #{$bg-overlay-dark};
   --bg-inset: #{$bg-inset-dark};
-  --bg-sidebar: #{$bg-inset-dark};
+  --bg-sidebar: #{$bg-sidebar-dark};
   --border-color: #{$border-color-dark};
   --fg-link: #{$fg-link-dark};
   --padding-xl: #{$padding-xl-desktop};
@@ -31,7 +31,7 @@ html[data-theme="light"] {
   --fg-strong: #{$fg-strong-light};
   --bg-overlay: #{$bg-overlay-light};
   --bg-inset: #{$bg-inset-light};
-  --bg-sidebar: #{$bg-inset-light};
+  --bg-sidebar: #{$bg-sidebar-light};
   --border-color: #{$border-color-light};
   --fg-link: #{$fg-link-light};
 
