@@ -307,6 +307,10 @@ The main componenent of how a player interacts with a weapon, trigger properties
 First entry into this block becomes the primary trigger, second entry becomes the secondary trigger
 {% /alert %}
 
+| Trigger flags               | Description
+|-----------------------------|------------
+| autofire single action only | Unknown/Needs additional research
+
 | Input | Description
 |-------|----------
 | right trigger | Uses right trigger key

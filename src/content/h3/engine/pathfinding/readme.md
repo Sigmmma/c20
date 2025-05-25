@@ -1,10 +1,7 @@
 ---
 title: Pathfinding
-stub: true
-noSearch: false
 img: pathfinding.jpg
 caption: Various elements of pathfinding like hints and firing points
-about: 
 keywords:
   - AI
   - navmesh
