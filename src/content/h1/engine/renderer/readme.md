@@ -3,7 +3,7 @@ title: Renderer
 keywords:
   - render
 thanks:
-  Jakey: Renderer regressions
+  Jakey, ConnorDawn: Renderer regressions
   gbMichelle: >-
     Researching how shadow maps work, extreme distance and particle limits
     testing
@@ -93,7 +93,7 @@ _Most_ of these issues have now been corrected in DX11 renderer in MCC.
 # H1A regressions
 Althoug the H1A MCC renderer is much improved over the original Gearbox port to PC, some new issues exist:
 
-* [Detail objects](~detail_object_collection) with the _screen facing_ type do not render. This affects the fungal pods in c10.
+* [Detail objects](~detail_object_collection) with the _screen facing_ type do not render. This affects the fungus detail object in c10, grass_small in a30, and d20_rocks_and_grass on d20.
 
 # Troubleshooting
 Some PC hardware configurations may cause problems with the renderer, specifically transparent shaders stretching/exploding, and mirror reflections exploding. If you are experiencing this, try forcing 1 core affinity for the game process.
