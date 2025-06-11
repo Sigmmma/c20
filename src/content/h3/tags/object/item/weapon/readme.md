@@ -154,7 +154,7 @@ This section defines weapon assist features to make target aquisition easier, es
 
 | Fields | Data type | Description
 |-------|----------|--------------
-| autoaim angle | angle | Angle in which projectiles from this weapon are magnetized towards targets within autoaim range
+| autoaim angle | angle | Angle in which projectiles from this weapon are magnetized towards targets within autoaim range, max value must be less than 90 degrees
 | autoaim range | real | Maximum range of red reticle and in which projectiles can be magnetized towards targets
 | autoaim falloff range | real | At what range does the strength of projectile magnetism begin to fall off before the maximum distance
 | magnetism angle | angle | Angle in which the game applies aim assist to controllers when aiming over a target within magnetism range
@@ -309,7 +309,7 @@ First entry into this block becomes the primary trigger, second entry becomes th
 
 | Trigger flags               | Description
 |-----------------------------|------------
-| autofire single action only | Unknown/Needs additional research
+| autofire single action only | Unknown/needs additional research
 
 | Input | Description
 |-------|----------
@@ -420,7 +420,7 @@ Defines **how** the current barrel fires.
 
 | Fields | Data type | Description
 |-------|----------|--------------
-| rounds per second | real | Two values that determine the rate at which projectiles are fired when in spew or during a burst, invalid values are rounded down to nearest valid in gameplay, **values under 10 for weapons with an entry in the "shots per fire" field do not sync in multiplayer correctly**
+| rounds per second | real | Two values that determine the rate at which projectiles are fired when in spew or during a burst, invalid values are rounded down to nearest valid in gameplay, **values under 10 for weapons with an entry >1 in the "shots per fire" field do not sync in multiplayer correctly**
 | acceleration time | real | Time taken in seconds for the weapon to transition the rounds per second value from the first value to the last value at a constant rate of value change once the weapon starts firing (rate of fire itself may not change due to invalid values but they are still used to fill time)
 | deacceleration time | real | Time taken in seconds for the weapon to transition the rounds per second value from the last value to the first value at a constant rate of value change once the weapon stops firing (rate of fire itself may not change due to invalid values but they are still used to fill time)
 | barrel spin scale | real | Scales the "barrel_spin" function by a mutiplicative value from 0 to 1, 0 is equal to 1 as the barrel fires
@@ -440,9 +440,9 @@ Defines **how** the current barrel fires.
 Pictured: An example of rate of fire and fire recovery time
 {% /figure %}
 
-When using the __rate of fire__ field in the weapons barrel block, you are given a set of 2 bound values to enter, due to limitations implemented by 343 to retain 30 tick engine behavior you may only enter values compatible with 30 tick engines. __0.46875 is the lowest possible value allowed__ due to the idle_ticks timer only being a max value of 127, thus this value has the weapon fire on the 128th tick. __To find all other compatible values, do 30 divided by a *whole* number between 1 and 64.__ Invalid values will round *down* to the nearest valid (Example: 16 will behave as 15).
+When using the __rounds per second__ field in the weapons barrel block, you are given a set of 2 bound values to enter, due to limitations implemented by 343 to retain 30 tick engine behavior you may only enter values compatible with 30 tick engines. __0.46875 is the lowest possible value allowed__ due to the idle_ticks timer only allowing a max of 127 ticks, thus this value has the weapon fire on the 128th tick. __To find all other compatible values, do 30 divided by a *whole* number between 1 and 64.__ Invalid values will round *down* to the nearest valid (Example: 16 will behave as 15).
 
-When using the __fire recovery time__ field in the weapons barrel block, you are given a single value (in seconds) to enter, this value is able to accept 60 tick engine values, there is a built- in 2 tick base delay *plus* a second minimum delay of 2 ticks so the __fastest possible rate of fire achievable with fire recovery time is 12 rounds per second__ with a value of 0.
+When using the __fire recovery time__ field in the weapons barrel block, you are given a single value (in seconds) to enter, this value is able to accept 60 tick engine values, there is a built-in 2 tick base delay *plus* a second minimum delay of 2 ticks so the __fastest possible rate of fire achievable with fire recovery time is 12 rounds per second__ with a value of 0.
 
 ## Prediction and noise
 

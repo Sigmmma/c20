@@ -45,13 +45,13 @@ These are general purpose flags that change the behavior of the projectile, more
 | has super combining explosion | Enables supercombine functions on the projectile when attaching to targets
 | damage scales based on distance | Causes the **impact** damage to be scaled by the "air damage range" bounds values, needs more research
 | travels instantaneously | Upon the projectile being fired from a weapon, its velocity is quadrupled for the first tick of creation, after the first tick it moves at it's assigned speed
-| steering adjusts orientation | Unknown, generally causes the projectile when self-guiding onto a target to perform erratic sharp turns on near misses
-| don't noise up steering | WIP
-| can track behind itself | WIP
+| steering adjusts orientation | Unknown, generally causes the projectile when self-guiding onto a target to perform erratic sharp turns on near misses, needs additional research
+| don't noise up steering | Unknown, needs additional research
+| can track behind itself | Unknown, needs additional research
 | ROBOTRON STEERING | When tracking a target, the projectile will perform corkscrew motions, needs more research
 | affected by phantom volumes | Projectile can interact with phantom volumes, rather than passing through them with no effect
-| expensive chubby test | WIP
-| notifies target units | WIP
+| expensive chubby test | Unknown, needs additional research
+| notifies target units | When firing a locked tracking projectile, notify the target, this means playing a sound to the player to indicate they are being persued by a tracking projectile
 | use ground detonation when attached | Uses the ground detonation field when this projectile is attached to [bipeds](~biped), otherwise uses the airborne detonation
 | AI minor tracking threat | Used in conjunction with the [AI](~character) tag to allow AI to react to this projectile via diving and dodging away from projectiles
 | dangerous when inactive | Unknown, needs additional research
@@ -131,7 +131,7 @@ Defines properties when this projectile is planted onto boarded targets, all tag
 |-------|----------|--------------
 | boarding detonation time | real | Time taken in seconds for the projectile to detonate after being planted while boarding
 | boarding detonation damage | [damage_effect](~) | Damage effect spawned on the projectile after the above fields time has passed
-| boaring attached detonation damage | [damage_effect](~) | Unknown/Needs additional research
+| boarding attached detonation damage | [damage_effect](~) | Unknown/Needs additional research
 
 # Physics
 
@@ -147,8 +147,8 @@ AI velocity scale is broken and **does not** scale the velocity of projectiles d
 |-------|----------|--------------
 | air gravity scale  | real | This value defines how much drop the projectile experiences during flight, higher numbers mean more drop
 | air damage range | real | A set of two values that define how the associated [damage](~damage_effect) is scaled, using the "damage lower bound" value for the air range past the latter bound value, behavior of this field is bugged for the former bound value and "damage upper bound" however.
-| water gravity scale | real | 
-| water damage range | real | 
+| water gravity scale | real | Needs additional research
+| water damage range | real | Needs additional research
 | initial velocity | real | The velocity of the projectile when first spawned
 | final velocity | real | The velocity of the projectile after it has passed through it's "acceleration range"
 | ai velocity scale (normal) | real | Scale on the projectiles velocity when fired by AI on normal
@@ -172,11 +172,11 @@ This section defines how the projectile reacts when it comes into contact with s
 | Default response | Data type | Description
 |-------|----------|--------------
 | impact (detonate) | enum | Projectile is deleted when it comes into direct contact with the material
-| fizzle | enum | 
+| fizzle | enum | Appears to behave the same as impact
 | overpenetrate | enum | Projectile passes through through this material but only on objects and **not** map geometry
 | attach | enum | Projectile attaches to specified material, waiting the duration of the "timer" value in the detonation section
 | bounce | enum | Projectile bounces off of the specified material, bounce properties are specified further below
-| bounce (dud) | enum | 
+| bounce (dud) | enum | Same as above, but the projectile no longer deals impact damage after the bounce, will steal deal detonation damage.
 | fizzle (bounce) | enum | 
 
 material name (string): string name of the material you are specifying the behavior for, materials are specified in the [globals](~)
@@ -205,11 +205,11 @@ Parallel and perpendicular friction act as a bounds where the closer to impact a
 |-------|----------|--------------
 | scale effects by | enum | Angle **or** damage, unknown
 | angular noise | angle | Unknown, presumably the maximum number of degrees the projectile can be randomly offset by when bouncing off a surface (in addition to the natural offset from the bounce itself)
-| velocity noise | real | Unknown, presumable the the velocity of the projectile changed randomly when bouncing off a surface (in addition to velocity lost from parallel and perpendicular friction values)
+| velocity noise | real | Unknown, presumably the the velocity of the projectile changed randomly when bouncing off a surface (in addition to velocity lost from parallel and perpendicular friction values)
 | initial friction | real | Unknown, needs additional research
 | maximum distance | real | Unknown, needs additional research
-| parallel friction | real | The fraction of projectile velocity lost when bouncing off a surface at a parallel angle
-| perpendicular friction | real | The fraction of projectile velocity lost when bouncing off a surface at a perpendicular angle
+| parallel friction | real | The fraction of projectile velocity lost when bouncing off a surface at a parallel (closer to 0 degree) angle
+| perpendicular friction | real | The fraction of projectile velocity lost when bouncing off a surface at a perpendicular (closer to 90 degree) angle
 
 # Brute Grenade
 

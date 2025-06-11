@@ -41,15 +41,23 @@ The lowest level of the AI pathfinding system for gameplay purposes, AI use thes
 Pictured from left to right: corner left, bunker and corner right, vectors of firing points facing south
 {% /figure %}
 
-| posture flags | Description
+| Posture flags | Description
 |-------|----------
-| corner_left | allows AI to perch along walls facing to the right of this firing points vector, uses corner_cover_left and cover_open_left animations
-| corner_right | allows AI to perch along walls facing to the left of this firing points vector, uses corner_cover_right and cover_open right animations
-| bunker | allows AI to bunker on this firing point when accounting for an enemy presence in front of this firing points vector, uses bunker_cover and bunker_open animation
+| corner_left | allows AI to perch along walls facing to the right of this firing points vector, uses "corner_cover_left" and "cover_open_left" animations
+| corner_right | allows AI to perch along walls facing to the left of this firing points vector, uses "corner_cover_right" and "cover_open right" animations
+| bunker | allows AI to bunker on this firing point when accounting for an enemy presence in front of this firing points vector, uses "bunker_cover" and "bunker_open" animation
 
 # Pathfinding polices
 
-The main setting you control as a map maker is the pathfinding policy used by  objects.
+The main setting you control as a map maker is the pathfinding policy used by objects such as [crates](~) or [scenery](~).
+
+| Policy type | Description
+|-------|----------
+| Default | Uses the default pathfinding type that the object itself has, scenery usually uses cut-out while crates use dynamic
+| Dynamic | This policy is typically used on objects that can move around the map, allowing AI to constantly update their pathfinding around and on this object, used for crates and device machines
+| Cut-out | This item is cut-out of the pathfinding mesh entirely, being a "dead zone" of sorts that AI will navigate around
+| Static | Similar to dynamic but for non-moving objects, stitches them into the pathfinding mesh so AI can navigate around, ontop and through them
+| None | This item is ignored entirely for AI pathfinding calculations, AI will not attempt to navigate around this object
 
 # Hints
 
@@ -80,6 +88,10 @@ Pictured: How correctly set up well and flood hints are seen from the view of th
 | railing  | Treat this hint as a vault in which AI will try to vault over the obstacle using their vault animations
 | vault  | Unknown/needs additional research
 
-## Debugging
+## Object hints
+
+Objects such as [crates](~) have the ability to use dynamic hints such as vaulting, mounting and hoisting, these are defined by markers on the [render_model](~)
+
+# Debugging
 
 When spawning in AI, you may notice certain issues with them, among these are colored triangles above their heads: green means no objective set or no firing points available within the current task of that AI, yellow can appear if there's a rather limited number of firing points for the number of AI in the task, or if the AI cannot pathfind to the firing points.
