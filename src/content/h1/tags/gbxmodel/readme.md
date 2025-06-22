@@ -7,10 +7,11 @@ caption: >-
   shader references, and more.
 keywords:
   - model
+  - mod2
 thanks:
   Fubih: Regions render order tip
   gbMichelle: Node limits and reversing hard-coded markers
-  Kavawuvi: Invader tag definitions, filthy part index research
+  Kavawuvi: 'Invader tag definitions, filthy part index research'
   MosesOfEgypt: Tag structure research
   Kolshgamer: Common marker name
   Galap: Base map UV scale research

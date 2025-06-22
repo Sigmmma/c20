@@ -1,0 +1,23 @@
+@import "../../../assets/constants";
+
+.breadcrumbs {
+  margin: var(--padding-md) 0;
+  min-height: 1px;
+
+  ol {
+    list-style: none;
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  li {
+    display: inline-block;
+    &::after {
+      content: '›';
+      display: inline-block;
+      font-weight: bold;
+      font-size: 1rem;
+      margin: 0 var(--padding-sm);
+    }
+  }
+}

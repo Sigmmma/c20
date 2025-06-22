@@ -1,7 +1,14 @@
 ---
 title: weapon
 stub: true
-noSearch: true
 about: 'tag:hr/weapon'
+keywords:
+  - gun
+  - pistol
+  - carbine
+  - cannon
+  - sword
+  - rifle
+  - launcher
 ---
-  ...
+...

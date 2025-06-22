@@ -24,7 +24,11 @@ type_defs:
       - name: unfiltered
       - name: alpha_replicate
       - name: u_clamped
+        comments:
+          en: Texture coordinates outside the U 0-1 range will be clamped to the edges. See [_u animation function_](#tag-field-maps-u-animation-function) for caveats.
       - name: v_clamped
+        comments:
+          en: Texture coordinates outside the V 0-1 range will be clamped to the edges. See [_u animation function_](#tag-field-maps-u-animation-function) for caveats.
   ShaderTransparentChicagoMap:
     class: struct
     assert_size: 220
@@ -67,6 +71,17 @@ type_defs:
         type: FunctionOut
       - name: u_animation_function
         type: WaveFunction
+        meta:
+          default: one
+        comments:
+          en: >
+            Horizontal animation function. The u and v animation functions default to 1, which results in
+            effectively an additional _map u offset_ and _map v offset_ of 1. 
+            This causes some counterintuitive side effects. The [_u clamped_](#tag-field-maps-flags-u-clamped) and _v clamped_
+            flags will not work properly, stretching the corner pixel across the entire canvas
+            The rotation animation functions will behave unexpectedly as well, with 1 added to
+            the [_rotation animation center_](#tag-field-maps-rotation-animation-center) coordinates.
+            It is recommended to set the function to 0 if these features are being used.
       - name: u_animation_period
         type: float
         meta:
@@ -83,6 +98,10 @@ type_defs:
         type: FunctionOut
       - name: v_animation_function
         type: WaveFunction
+        meta:
+          default: one
+        comments:
+          en: Vertical animation function. See [_u animation function_](#tag-field-maps-u-animation-function) for caveats.
       - name: v_animation_period
         type: float
         meta:
@@ -113,6 +132,10 @@ type_defs:
           default: 360
       - name: rotation_animation_center
         type: Point2D
+        comments:
+          en: >
+            Coordinates for the center of map rotation. Note that these coordinates may be offset unintuitively if
+            [_u animation function_](#tag-field-maps-u-animation-function) and _v animation function_ are not _zero_.
   ShaderTransparentChicagoExtraFlags:
     class: bitfield
     size: 4
@@ -178,8 +201,9 @@ type_defs:
             either not render or render incorrectly.
 
             **Warning**: Using a shader with extra layers on an [object](~) with
-            _transparent self occlusion_ enabled causes [Sapien to
-            crash](~h1-sapien#crashes).
+            _transparent self occlusion_ enabled may cause Sapien and Standalone to
+            [crash](~h1-sapien#crashes) if there are too many overlapping faces from
+            the viewing angle.
       - name: maps
         type: Block
         type_args:

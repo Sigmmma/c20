@@ -92,7 +92,7 @@ Blender's viewport is no different and has a configurable clipping range. Howeve
 
 Blender's clipping distances can be adjusted in the View settings pane (press {% key "N" /%} and select the View tab). A x100 range of `1 m` to `100 000 m` in Blender is roughly equivalent to Halo's. Remember, the greater the _range_ between the start and end clipping distances, the more Z-fighting you'll get in the viewport, so don't just set the end distance to some huge number. The exception is when working on H1 skybox models, which are modeled at very large scales and need [higher start and end distances](~skyboxes#blender-scene-setup).
 
-![](clipping.png "Note that each workspace has its own clip settings.")
+![](clipping.jpg "Note that each workspace has its own clip settings.")
 
 {% alert type="danger" %}
 For level modeling it's important to configure clip distances instead of just using using _world units_ export scale in the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset). Scaling vertex coordinates during export can amplify [floating point imprecisions](https://en.wikipedia.org/wiki/Floating-point_arithmetic#Accuracy_problems) and increase the likelihood of "nearly coplanar face" warnings from [Tool](~h1-tool) and potentially cause [phantom BSP](~h1/tags/scenario_structure_bsp#phantom-bsp).
@@ -119,7 +119,7 @@ Did you know you can change the default Blender scene? Make changes like setting
 ## Unit measurement
 All units given in this site's guides expect that your Blender instance is set to use metric units, which is the default, so if you haven't changed this then it's likely already set to metric. For Halo's purposes we will not be taking this unit literally; a length of "70m" is just _70 JMS units_ (the height of the player when standing) which you can [convert to real-world units here](~scale).
 
-![](units.png "Units are found under the Scene Properties tab.")
+![](units.jpg "Units are found under the Scene Properties tab.")
 
 # External tutorials
 If you prefer video tutorials for some of the above operations, see the series by General_101:

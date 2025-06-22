@@ -1,0 +1,61 @@
+@import "../../../assets/constants";
+
+.toc.inline {
+  ol, ul {
+    list-style: disc;
+    padding-left: 1em;
+  }
+}
+
+.toc.sidebar {
+  transition: opacity $transition-time-interactive;
+  opacity: 0.5;
+
+  &:hover {
+    opacity: 1.0;
+  }
+
+  ol, ul {
+    list-style: none;
+    padding-left: 1em;
+  }
+
+  & > ol, & > ul {
+    padding-left: 0;
+  }
+
+  li {
+    padding: 0;
+    margin: 0;
+    border-left: 1px solid var(--border-color);
+  }
+
+  a {
+    display: block;
+    border-radius: 0 $border-radius $border-radius 0;
+    padding: 4px 8px;
+    transition: padding $transition-time-interactive;
+    cursor: pointer;
+    color: var(--fg);
+
+    &:hover {
+      padding-left: 12px;
+      padding-right: 4px;
+      text-decoration: none;
+    }
+  }
+
+  a:hover, li[aria-current="location"]:first-child a, a.highlight {
+    background: var(--bg-overlay);
+  }
+
+  @include mobile {
+    opacity: 1.0;
+
+    details {
+      & > ol, & > ul {
+        padding-left: 0;
+      }
+    }
+  }
+}

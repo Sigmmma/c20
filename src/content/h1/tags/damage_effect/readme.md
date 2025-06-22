@@ -10,6 +10,8 @@ thanks:
   King Feraligatr: Testing EMP effect on shields
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - jpt!
 ---
 The **damage effect** tag determines the results of damage application in a wide range of use cases, including but not limited to: projectile impacts, detonations, melee attacks, falling, and vehicle collisions. They can be part of an [effect](~).
 

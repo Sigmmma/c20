@@ -8,6 +8,8 @@ thanks:
   Neo: Researching global `sound_gain_under_dialog`
   InfernoPlus: Discovering scripted player dialog class does not play when dead
   smx: Tip on internal fields
+keywords:
+  - snd!
 ---
 ...
 

@@ -1,8 +1,8 @@
 ---
 title: antenna
-stub: false
-noSearch: false
 about: 'tag:h2/antenna'
+keywords:
+  - ant_
 ---
 The **antenna** tag is essentially the same as its [Halo 1 counterpart](~h1/tags/antenna). It is used to display a simple springy antenna attached to object markers, such as on the Warthog.
 

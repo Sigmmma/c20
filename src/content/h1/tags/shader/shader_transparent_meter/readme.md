@@ -7,6 +7,8 @@ caption: The plasma pistol overheat meter uses shader_transparent_meter.
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - smet
 ---
 ...
 

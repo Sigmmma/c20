@@ -43,10 +43,10 @@ To create an Armature, do the following:
 
 1. Press {% key "Shift+A" /%} to open the Add menu
 2. Select Armature from the list  
-  ![](A.png "Add an Armature from the Add menu")
+  ![](A.jpg "Add an Armature from the Add menu")
 
 For now, this is all we need to do with the Armature. The Armature can remain named the default, or you can rename it if you so wish.
-  ![](B.png "Your scene should look like this")
+  ![](B.jpg "Your scene should look like this")
 
 
 # Creation of a simple model
@@ -56,7 +56,7 @@ For the purposes of this tutorial, the model we will be creating shall be extrem
 
 1. Press {% key "Shift+A" /%} to open the Add menu
 2. Select Mesh, then Cube to add a new cube to the scene
-  ![](C.png "Add a simple cube to the scene")
+  ![](C.jpg "Add a simple cube to the scene")
 3. You should now see a basic cube in the center of your scene
 
 ## Matching Halo scale
@@ -71,7 +71,7 @@ To determine how big objects need to be in Blender, the addon you installed earl
 3. As Halo scale is so large, you will likely have to use your mouse scroll wheel to zoom out of the scene until the Spartan model is well within view
 
 Your scene should now hopefully look like this:
-![](E.png "Master Chief has arrived in the scene")
+![](E.jpg "Master Chief has arrived in the scene")
 
 As you can see, we need to scale the cube up quite a bit to fit a full-grown Spartan!
 1. Select your Cube object
@@ -81,14 +81,14 @@ As you can see, we need to scale the cube up quite a bit to fit a full-grown Spa
 5. The exact input required would be: {% key "S" /%},{% key "Shift+Z" /%},{% key "60" /%},{% key "Enter" /%}
 
 The cube in your scene should now look something like this, which for now will serve us quite well as a basic platform object
-![](F.png "Scaled up cube")
+![](F.jpg "Scaled up cube")
 
 # Application of materials
 Halo Materials can be quite a tricky topic to understand for newcomers, and so it is HIGHLY recommended that the [Materials Overview](~materials) page be read at some point before the texturing page. However, this information won't be required for this section, as we are not applying any custom textures for now. However, it is good practice to apply a material now, as we will be using it later.
 
 ## Creating new materials
 1. Select the cube object and navigate to the materials tab.
-	![](G.png "The Material Properties Tab in Blender")  
+	![](G.jpg "The Material Properties Tab in Blender")  
 2. [Add a material](https://youtu.be/2yOOzN0zJfQ) named `material` to your cube object. We will rename this at a later stage. Keep the color default, as it is common practice for only physics and collision meshes to use solid colors to stand out.
 
 For now, this material is simply a placeholder. As we will not yet be importing any custom textures into Halo 3, the cube will simply use the default/missing "DaVinci" texture that Halo assigns to faces with no texture.

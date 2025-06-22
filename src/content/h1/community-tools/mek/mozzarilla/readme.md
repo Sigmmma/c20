@@ -1,7 +1,7 @@
 ---
 title: Mozzarilla
 about: 'tool:Mozzarilla'
-img: screenshot.png
+img: screenshot.jpg
 caption: 'Screenshot of the MEK tool Mozzarilla, a replacement for [Guerilla](~h1-guerilla)'
 info: |
   * [Source](https://github.com/Sigmmma/mozzarilla)

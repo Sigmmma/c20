@@ -4,6 +4,7 @@ stub: true
 about: 'tag:h1/model'
 keywords:
   - gbxmodel
+  - mode
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research

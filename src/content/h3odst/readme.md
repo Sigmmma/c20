@@ -1,6 +1,5 @@
 ---
 title: Halo 3 ODST
-stub: false
 keywords:
   - h3odst
   - halo

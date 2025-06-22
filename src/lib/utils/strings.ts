@@ -9,7 +9,7 @@ export function slugify(title?: string, allowUnderscore?: boolean): string | und
     .split(" ")
     .filter(part => part.length > 0)
     .join("-") : undefined;
-};
+}
 
 //returns length of common prefix of two strings
 export function commonLength(strA: string, strB: string): number {
@@ -19,7 +19,7 @@ export function commonLength(strA: string, strB: string): number {
     len++;
   }
   return len;
-};
+}
 
 export function addBreaks<T>(content: string | undefined, replacement: T): (string | T)[] {
   if (!content) return [];
@@ -38,4 +38,4 @@ export function addBreaks<T>(content: string | undefined, replacement: T): (stri
     //collapse multi-node tokens
     R.flatten,
   )(content);
-};
+}

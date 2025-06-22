@@ -8,6 +8,8 @@ thanks:
   gbMichelle: Discovering that base maps do not tile
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - swat
 ---
 **Water shaders** are characterized by their use of layered animated _ripple maps_, tint colours, and reflectance.
 

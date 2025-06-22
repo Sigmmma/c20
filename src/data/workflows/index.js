@@ -190,10 +190,10 @@ async function loadWorkflows() {
   )(await loadYamlTree(__dirname, {flat: true}));
 
   return {
-    getWorkflowItem: (itemName, ctx) => {
+    getWorkflowItem: (itemName) => {
       let result = items[itemName];
       if (!result) {
-        throw new Error(`Could not find workflow item with name ${itemName} (from ${ctx ? ctx.pageId : "unknown"})`);
+        throw new Error(`Could not find workflow item with name ${itemName}`);
       }
       if (!result.url && !result.page) {
         throw new Error(`The workflow item ${itemName} does not exist or is missing page/url attribute`);

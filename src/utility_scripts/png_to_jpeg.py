@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 import os
 import numpy
+from PIL import Image
 import matplotlib.pyplot as plt
 
 """
 png_to_jpeg.py: find and replace large PNG files that don't have an alpha channel with compressed JPEG files. References to the files are fixed automatically.
-Requires: imagemagick, numpy, matplotlib
+Requires: Pillow, numpy, matplotlib
 Author: num0005
 """
 
@@ -36,8 +37,8 @@ for subdir, dirs, files in os.walk(os.path.join("..", "content")):
         ext = os.path.splitext(file)[-1].lower()
         if ext == ".png":
             file_path = os.path.join(subdir, file)
-            if os.path.getsize(file_path) < 50 * 1024:
-                print(F"{file_path} < 50 KiB, skipping compression")
+            if os.path.getsize(file_path) < 20 * 1024:
+                print(F"{file_path} < 20 KiB, skipping compression")
                 continue
             
             jpeg_name = os.path.splitext(file)[0] + ".jpg"
@@ -52,7 +53,8 @@ for subdir, dirs, files in os.walk(os.path.join("..", "content")):
                 continue
                 
             print(F"Compressing {file_path} to jpeg")
-            os.system(F"convert \"{file_path}\" \"{jpeg_path}\"")
+            png_image = Image.open(file_path)
+            png_image.convert("RGB").save(jpeg_path, quality=80)
             
             if not FileExists(jpeg_path):
                 print(F"Failed to convert {file} to jpeg!")
@@ -69,17 +71,12 @@ for subdir, dirs, files in os.walk(os.path.join("..", "content")):
             
             total_reduction += size_change
             files_compressed += 1 
-            
-            yml_file_name = os.path.join(subdir, "page.yml")
-            readme_file_name = os.path.join(subdir, "readme.md")
-            
+
             print(F"Finding and fixing references.")
-            if FileExists(yml_file_name):
-                ReplaceInFile(yml_file_name, file, jpeg_name)
-            
+            readme_file_name = os.path.join(subdir, "readme.md")
             if FileExists(readme_file_name):
                 ReplaceInFile(readme_file_name, file, jpeg_name)
-            print(F"Deletintg old png")
+            print(F"Deleting old png")
             os.remove(file_path)
 
 

@@ -8,6 +8,8 @@ thanks:
   crow: Renderer issue workaround
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - spla
 ---
 **Plasma shaders** are used for energy shield effects. They are mostly referenced as the _modifier shader_ of an [object](~) like a [biped](~), though the Sentinel biped instead references it via its [gbxmodel](~) (presumably because it uses a custom shape).
 

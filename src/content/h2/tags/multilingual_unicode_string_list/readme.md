@@ -1,7 +1,6 @@
 ---
 title: Multilingual Unicode String List
 stub: true
-noSearch: true
 about: 'resource:h2/multilingual_unicode_string_list'
 keywords:
   - string

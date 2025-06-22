@@ -3,7 +3,6 @@ import {slugify} from "../../utils/strings";
 import localizations from "./localizations";
 import Hex, {format as formatHex} from "../Hex/Hex";
 import {RenderContext, useCtx} from "../Ctx/Ctx";
-import {type LocalizeFn} from "../../utils/localization";
 import {type VNode} from "preact";
 import {Jump} from "../Heading/Heading";
 import Md from "../Md/Md";
@@ -11,10 +10,45 @@ import DetailsList from "../DetailsList/DetailsList";
 import {renderPlaintextFromSrc} from "../Md/plaintext";
 import Wat from "../Wat/Wat";
 import {type FoundHeading} from "../Md/headings";
-import {useLocalize} from "../Locale/Locale";
+import {LocalizeHook, useLocalize} from "../Locale/Locale";
+import {Lang} from "../../utils/localization";
+import {resolvePageGlobal} from "../../content/pages";
 
-type LocalizerKey = keyof typeof localizations;
-type Localizer = LocalizeFn<LocalizerKey>;
+type Localizations = typeof localizations;
+
+export type StructTableProps = {
+  entryModule: string;
+  entryType: string;
+  noEmbed?: string[];
+
+  showOffsets?: boolean;
+  noRootExtend?: boolean;
+  noRootComments?: boolean;
+  skipPadding?: boolean;
+  simpleTypes?: boolean;
+  id?: string;
+};
+
+export default function StructTable(props: StructTableProps) {
+  const ctx = useCtx();
+  if (!ctx) return null;
+
+  const initialImports = {[props.entryModule]: [props.entryType]};
+  const modules = ctx.data.structs;
+  const typeDefs = buildTypeDefs(initialImports, modules);
+  const instantiatedType = instantiateType(typeDefs, {type: props.entryType}, null, {noRootExtend: props.noRootExtend});
+
+  // const searchTerms: string[] = [];
+  // const headings: any = [];
+  const seenTypes = {};
+  const pathId = [props.id ?? props.entryType];
+  const localizeHook = useLocalize(localizations);
+  return (
+    <div className="table-wrapper">
+      {renderTypeAsTable(seenTypes, typeDefs, ctx, props, instantiatedType, pathId, localizeHook)}
+    </div>
+  );
+}
 
 function processMeta(meta: Record<string, any> | undefined | null): Record<string, any> {
   meta = {...meta};
@@ -24,24 +58,24 @@ function processMeta(meta: Record<string, any> | undefined | null): Record<strin
   return meta;
 }
 
-function renderComments(ctx: RenderContext, part, localize: Localizer) {
+function renderComments(ctx: RenderContext, part, localize: LocalizeHook<Localizations>) {
   const meta = Object.entries(processMeta(part.meta))
-    .filter(([k]) => localize(`meta_${k}` as LocalizerKey, true));
+    .filter(([k]) => localize.localize(`meta_${k}` as any, true));
   return <>
     {meta.length > 0 &&
       <ul className="field-metas">
         {meta.map(([k, v]) =>
-          <li className="field-meta">{localize(`meta_${k}` as LocalizerKey)}{v !== true ? `: ${v}` : ""}</li>
+          <li className="field-meta">{localize.localize(`meta_${k}` as any)}{v !== true ? `: ${v}` : ""}</li>
         )}
       </ul>
     }
-    {part.comments && part.comments[ctx.lang] &&
-      <Md src={part.comments[ctx.lang]}/>
+    {part.comments && part.comments[localize.lang] &&
+      <Md src={part.comments[localize.lang]}/>
     }
   </>;
 }
 
-function renderStructFieldType(ctx: RenderContext, props: StructTableProps, field, fieldOffset, instantiatedType, localize: Localizer) {
+function renderStructFieldType(ctx: RenderContext, props: StructTableProps, field, fieldOffset, instantiatedType, localize: LocalizeHook<Localizations>) {
   const {typeDef, totalSize, singleSize, variableSize, count, type_args, typeName} = instantiatedType;
   let typeStr: string = typeName;
   if (typeDef.class == "bitfield" || typeDef.class == "enum") {
@@ -76,14 +110,14 @@ function renderStructFieldType(ctx: RenderContext, props: StructTableProps, fiel
     return (
       <DetailsList summary={typeCode} maxOpen={4} items={field.meta.tag_classes.map(tagName => {
         if (tagName == "*") return "(any)";
-        const tagPage = ctx.resolvePage(tagName);
-        return <a href={tagPage.url}>{tagName}</a>;
+        const tagPage = resolvePageGlobal(ctx.pageIndex, ctx.pageId, tagName);
+        return tagPage ? <a href={tagPage.url}>{tagName}</a> : tagName;
       })}/>
     );
   }
   if (field.meta && field.meta.index_of) {
     const targetHeadingId = slugify(`${props.id ?? props.entryType}-${field.meta.index_of}`);
-    return <>{typeCode}<a title={localize("seeIndex")} href={`#${targetHeadingId}`}>→</a></>;
+    return <>{typeCode}<a title={localize.localize("seeIndex")} href={`#${targetHeadingId}`}>→</a></>;
   }
   return typeCode;
 }
@@ -100,13 +134,13 @@ function renderFieldName(fieldName: string | undefined, pathId: string[]): VNode
   );
 }
 
-function renderStructAsTable(seenTypes, typeDefs, props: StructTableProps, ctx: RenderContext, instantiatedType, pathId: string[], localize: Localizer) {
+function renderStructAsTable(seenTypes, typeDefs, props: StructTableProps, ctx: RenderContext, instantiatedType, pathId: string[], localize: LocalizeHook<Localizations>) {
   const widths = 50 / (props.showOffsets ? 3 : 2);
   let offset = 0;
 
   if (instantiatedType.typeDef.fields.length == 0) {
     return (
-      <p><em>{localize("emptyStruct")}</em></p>
+      <p><em>{localize.localize("emptyStruct")}</em></p>
     );
   }
 
@@ -114,12 +148,12 @@ function renderStructAsTable(seenTypes, typeDefs, props: StructTableProps, ctx: 
     <table className="type-def struct">
       <thead>
         <tr>
-          <th style={`width:${widths}%`}>{localize("field")}</th>
+          <th style={`width:${widths}%`}>{localize.localize("field")}</th>
           {props.showOffsets &&
-            <th style={`width:${widths}%`}>{localize("offset")}</th>
+            <th style={`width:${widths}%`}>{localize.localize("offset")}</th>
           }
-          <th style={`width:${widths}%`}>{localize("type")}</th>
-          <th>{localize("comments")}</th>
+          <th style={`width:${widths}%`}>{localize.localize("type")}</th>
+          <th>{localize.localize("comments")}</th>
         </tr>
       </thead>
       <tbody>
@@ -191,14 +225,14 @@ function renderStructAsTable(seenTypes, typeDefs, props: StructTableProps, ctx: 
   );
 }
 
-function renderBitfieldAsTable(ctx: RenderContext, instantiatedType, pathId: string[], localize: Localizer) {
+function renderBitfieldAsTable(ctx: RenderContext, instantiatedType, pathId: string[], localize: LocalizeHook<Localizations>) {
   return (
     <table className="type-def bitfield">
       <thead>
         <tr>
-          <th style="width:25%">{localize("flag")}</th>
-          <th style="width:25%">{localize("mask")}</th>
-          <th>{localize("comments")}</th>
+          <th style="width:25%">{localize.localize("flag")}</th>
+          <th style="width:25%">{localize.localize("mask")}</th>
+          <th>{localize.localize("comments")}</th>
         </tr>
       </thead>
       <tbody>
@@ -206,10 +240,11 @@ function renderBitfieldAsTable(ctx: RenderContext, instantiatedType, pathId: str
           const rowClasses = [
             ...(bit.meta ? Object.entries(bit.meta).map(([k]) => `field-meta-${k}`) : []),
           ];
+          const hexVal = (0x1 << i) >>> 0;
           return (
             <tr className={rowClasses.join(" ")}>
               <td>{renderFieldName(bit.name, [...pathId, bit.name])}</td>
-              <td><Hex value={0x1 << i >>> 0}/></td>
+              <td><Hex value={hexVal}/></td>
               <td>{renderComments(ctx, bit, localize)}</td>
             </tr>
           );
@@ -219,14 +254,14 @@ function renderBitfieldAsTable(ctx: RenderContext, instantiatedType, pathId: str
   );
 }
 
-function renderEnumAsTable(ctx: RenderContext, instantiatedType, pathId: string[], localize: Localizer) {
+function renderEnumAsTable(ctx: RenderContext, instantiatedType, pathId: string[], localize: LocalizeHook<Localizations>) {
   return (
     <table className="type-def enum">
       <thead>
         <tr>
-          <th style="width:25%">{localize("option")}</th>
-          <th style="width:25%">{localize("value")}</th>
-          <th>{localize("comments")}</th>
+          <th style="width:25%">{localize.localize("option")}</th>
+          <th style="width:25%">{localize.localize("value")}</th>
+          <th>{localize.localize("comments")}</th>
         </tr>
       </thead>
       <tbody>
@@ -247,7 +282,7 @@ function renderEnumAsTable(ctx: RenderContext, instantiatedType, pathId: string[
   );
 }
 
-function renderTypeAsTable(seenTypes, typeDefs, ctx: RenderContext, props: StructTableProps, instantiatedType, pathId: string[], localize: Localizer) {
+function renderTypeAsTable(seenTypes, typeDefs, ctx: RenderContext, props: StructTableProps, instantiatedType, pathId: string[], localize: LocalizeHook<Localizations>) {
   // addSearchTermsForTypeDef(instantiatedType.typeDef);
   return <>
     {!props.noRootComments || pathId.length > 1 &&
@@ -269,46 +304,33 @@ function renderTypeAsTable(seenTypes, typeDefs, ctx: RenderContext, props: Struc
   </>;
 }
 
-export type StructTableProps = {
-  entryModule: string;
-  entryType: string;
-  noEmbed?: string[];
-
-  showOffsets?: boolean;
-  noRootExtend?: boolean;
-  noRootComments?: boolean;
-  skipPadding?: boolean;
-  simpleTypes?: boolean;
-  id?: string;
-};
-
 //note that this doesnt render fields in a depth-first order, it just needs to work for search
-export function renderPlaintext(ctx: RenderContext | undefined, props: StructTableProps): string {
+export function renderPlaintext(lang: Lang, ctx: RenderContext | undefined, props: StructTableProps): string {
   if (!ctx) return "";
   const lines: string[] = [];
   const modules = ctx.data.structs;
   walkTypeDefs(props.entryType, props.entryModule, modules, props, (typeDef) => {
     if (typeDef.comments) {
-      lines.push(renderPlaintextFromSrc(ctx, typeDef.comments[ctx.lang]) ?? "")
+      lines.push(renderPlaintextFromSrc(ctx, lang, typeDef.comments[lang]) ?? "")
     }
     if (typeDef.class == "struct") {
       typeDef.fields.forEach(f => {
         if (f.name) {
-          lines.push(`${f.name.split("_").join(" ")} ${renderPlaintextFromSrc(ctx, f.comments?.[ctx.lang]) ?? ""}`);
+          lines.push(`${f.name.split("_").join(" ")} ${renderPlaintextFromSrc(ctx, lang, f.comments?.[lang]) ?? ""}`);
         }
       });
     } else if (typeDef.class == "enum") {
       typeDef.options.forEach(o => {
-        lines.push(`${o.name.split("_").join(" ")} ${renderPlaintextFromSrc(ctx, o.comments?.[ctx.lang]) ?? ""}`);
+        lines.push(`${o.name.split("_").join(" ")} ${renderPlaintextFromSrc(ctx, lang, o.comments?.[lang]) ?? ""}`);
       });
     } else if (typeDef.class == "bitfield") {
       typeDef.bits.forEach(b => {
-        lines.push(`${b.name.split("_").join(" ")} ${renderPlaintextFromSrc(ctx, b.comments?.[ctx.lang]) ?? ""}`);
+        lines.push(`${b.name.split("_").join(" ")} ${renderPlaintextFromSrc(ctx, lang, b.comments?.[lang]) ?? ""}`);
       });
     }
   });
   return lines.join("\n");
-};
+}
 
 export function headings(ctx: RenderContext | undefined, props: StructTableProps): FoundHeading[] {
   if (!ctx) return [];
@@ -336,25 +358,4 @@ export function headings(ctx: RenderContext | undefined, props: StructTableProps
     });
   }
   return headings;
-};
-
-export default function StructTable(props: StructTableProps) {
-  const ctx = useCtx();
-  if (!ctx) return null;
-
-  const initialImports = {[props.entryModule]: [props.entryType]};
-  const modules = ctx.data.structs;
-  const typeDefs = buildTypeDefs(initialImports, modules);
-  const instantiatedType = instantiateType(typeDefs, {type: props.entryType}, null, {noRootExtend: props.noRootExtend});
-
-  // const searchTerms: string[] = [];
-  // const headings: any = [];
-  const seenTypes = {};
-  const pathId = [props.id ?? props.entryType];
-  const {localize} = useLocalize(localizations);
-  return (
-    <div className="table-wrapper">
-      {renderTypeAsTable(seenTypes, typeDefs, ctx, props, instantiatedType, pathId, localize)}
-    </div>
-  );
-};
+}

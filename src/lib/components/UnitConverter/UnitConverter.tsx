@@ -66,10 +66,10 @@ export default function UnitConverter(props: {}) {
       </div>
     </div>
   );
-};
+}
 
 export function UnitConverterMountpoint(props: {}) {
   return (
     <div id="unit-converter-mountpoint"></div>
   );
-};
+}

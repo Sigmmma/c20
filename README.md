@@ -7,17 +7,16 @@
 This repo contains the source content and build scripts for the Reclaimers Library (https://c20.reclaimers.net). It aims to document the immense tribal knowledge of the Halo modding community and covers game engine details, the Halo Editing Kit, community tools, and guides for map-making.
 
 ## Contributing
-The library is not directly editable by its readers. This allows the editing team to verify information before it's added. However, we want and need the community's help filling in gaps. If you want to submit information or join the editing team, see the [Contributing page](https://c20.reclaimers.net/contributing).
+The library is not yet directly editable online, but there are still various paths to contribute:
+
+1. Submitting tips in **#wiki-dump** in [our Discord](https://discord.reclaimers.net) or as [GitHub issues](https://github.com/Sigmmma/c20/issues), for other editors to add.
+2. Submitting small edits as pull requests via GitHub.
+3. Forking the project, developing it locally with previews, and submitting larger content pull requests.
+
+Content is written in a combination of [Markdoc-flavoured markdown](https://markdoc.dev) and YAML files for structured data like tag layouts. For more information, see the [Contributing page](https://c20.reclaimers.net/contributing).
 
 ## Development
-The codebase is essentially a [static site](https://en.wikipedia.org/wiki/Static_web_page) generator. We use [Gulp](https://gulpjs.com/) as the build task runner, with various tasks to process stylesheets ([Sass](https://sass-lang.com/)), render pages, bundle JS ([esbuild](https://esbuild.github.io/)), and copy assets. All build results go into a `dist` folder that is ready to serve.
-
-Content is written in a combination of [Markdoc-flavoured markdown](https://markdoc.dev) and YAML files for structured data, which are rendered to HTML using [Preact](https://preactjs.com/) in TypeScript. Pages are also rendered in plaintext form and bundled into a client-side search index using [Minisearch](https://lucaong.github.io/minisearch/).
-
-### Building and testing
-In order to see content as it will appear online, you can run c20 in development mode. As a pre-requisite this project requires installing at least [Node.js v14+](https://nodejs.org/en/) and [Git LFS](https://git-lfs.github.com/).
-
-If you have installed Git LFS _after_ checking out the project already, you'll need to run `git lfs install` and `git lfs pull` to download the objects. If you forget to do this the build will fail because `ffmpeg` will be unable to read video files as videos ("Invalid data found when processing input").
+If you intend to make code changes to c20, or want to write larger content additions with previews, you can fork and clone the repo locally with [Git](https://git-scm.com/downloads). You'll need [Node.js](https://nodejs.org/en/) installed to run the site locally. If you're unfamiliar with Git and command line usage, you probably want to stick to one of the other contributing paths.
 
 Once those are installed, clone the project and run these shell commands to get the site running locally:
 
@@ -46,17 +45,6 @@ aws s3 sync --delete ./dist s3://reclaimers-wiki-files/
 ```
 
 Because of cache TTLs, content may not appear updated immediately. An invalidation can be run in CloudFront to force updates but it will not affect clients unless they clear their browser cache. Live content can be seen by directly viewing the [S3 hosting origin][s3-origin].
-
-### Technical goals
-An explicit choice was made to avoid typical managed or self-hosted Wiki platforms for this library and instead build a static site generator with custom features for Halo. The main tenets are:
-
-* No API or dynamic content: the site should be easy to host and test locally with any HTTP server capable of serving files, and is easily cached on a CDN. No compute needed means low hosting costs. Even the search index is client-side.
-* Respect the time of the editors. Wiki features should empower them to write faster and easier. Nobody will write if it's a chore.
-* Semantic HTML: Page structures are document-like and use the right elements for the job to maintain accessibility.
-* Mobile-friendly: Pages should be responsive and readable on mobile.
-* The website should make minimum use of client side JavaScript unless there are interactive features needed.
-
-Non-goals are user accounts, live editing, and on-site discussion pages. We use the pull request model and Discord discussions to ensure new information is vetted.
 
 ## License
 C20's codebase is licensed under version 3.0 of the GNU General Public License. A copy of its text can be found in COPYING.

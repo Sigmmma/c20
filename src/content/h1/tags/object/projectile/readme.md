@@ -14,6 +14,13 @@ thanks:
   FD: Explaining "combine initial velocity with parent velocity"
   Conscars: Testing collision radius
   xScruffyDaSasquatchx: Explaining noise volumes for AI perception
+keywords:
+  - proj
+  - bullet
+  - bolt
+  - rocket
+  - blast
+  - grenade
 ---
 **Projectiles** are a type of object that can be fired from [weapon](~) triggers and thrown as grenades. They can have render models and various attachments, and are capable of bouncing, detonations, different responses by impacted material, ballistic trajectories, and various other settings.
 

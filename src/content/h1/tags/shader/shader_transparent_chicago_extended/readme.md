@@ -7,6 +7,8 @@ thanks:
   Jakey: Explaining purpose of this tag
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - scex
 ---
 **Transparent chicago extended shaders** are essentially identical to [shader_transparent_chicago](~), but have an additional 2-stage block used when video hardware does not support more than 2 maps in a shader (which can be simulated with [arguments](~arguments#graphics-options)). There is no reason to use this shader type over _shader_transparent_chicago_ on modern systems.
 

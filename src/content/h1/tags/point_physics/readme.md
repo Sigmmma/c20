@@ -9,6 +9,8 @@ caption: >-
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - pphy
 ---
 **Point physics** control how [particles](~particle), [particle systems](~particle_system), [weather](~weather_particle_system), [flags](~flag), [contrails](~contrail), and [antenna](~) interact with the environment. This includes wind, water, density, and collisions with the [BSP](~scenario_structure_bsp). Essentially anything that can be suspended in the atmosphere or water is simulated this way.
 

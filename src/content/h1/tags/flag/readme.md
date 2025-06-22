@@ -7,6 +7,8 @@ thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Tag field testing
+keywords:
+  - flag
 ---
 The **flag** tag describes the behaviour and appearance of a cloth-like material. As a type of _widget_, flags can be attached to objects like [weapons](~weapon) using [model markers](~gbxmodel#markers). They are not limited to weapons and can even be attached to [bipeds](~biped), however the game only supports rendering 2 flags.
 

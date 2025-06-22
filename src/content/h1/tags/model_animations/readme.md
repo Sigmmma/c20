@@ -7,6 +7,7 @@ caption: 'Assault rifle reload animation extracted with [Bluestreak](~).'
 keywords:
   - model
   - animation
+  - antr
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research

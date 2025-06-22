@@ -1,5 +1,5 @@
 import * as R from "ramda";
-const INTRINSIC_TYPE_DEFS = require("./intrinsics");
+import INTRINSIC_TYPE_DEFS from "./intrinsics";
 
 function processGenerics(genericParams, type_args) {
   if (!type_args) return genericParams;

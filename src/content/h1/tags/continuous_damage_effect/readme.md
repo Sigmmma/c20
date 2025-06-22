@@ -7,6 +7,8 @@ thanks:
   Sparky: Reversing this tag structure
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - cdmg
 ---
 **Continuous damage effects** create camera shake and controller vibration for players within a radius of a [sound_looping](~). They are similar to a [damage_effect](~) but more limited in what they can do. This tag is unused by any of the stock game's maps and may have been leftover from earlier in development.
 

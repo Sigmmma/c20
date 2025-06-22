@@ -7,6 +7,8 @@ caption: Level objectives are one use of this tag.
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - 'hmt '
 ---
 This tag is specifically for messages that appear on your HUD, including level-specific messages like objectives and global generic interaction messages for vehicles, pickups, and devices. It is created by importing [HMT files](~hmt) with [Tool](~h1-tool#hud-messages).
 

@@ -2,11 +2,15 @@
 title: detail_object_collection
 about: 'tag:h1/detail_object_collection'
 img: grasses.jpg
-caption: 'Sprite grass is created using detail object collections in [Sapien](~h1-sapien).'
+caption: >-
+  Sprite grass is created using detail object collections in
+  [Sapien](~h1-sapien).
 thanks:
   Conscars: Testing tag fields
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - dobc
 ---
 **Detail objects** are 2D sprites which can be painted onto the BSP using [Sapien](~h1-sapien). They are used to add grass and other small details which fade in/out by distance. They can also take on the colour tint of the [shader_environment](~) base map where painted.
 

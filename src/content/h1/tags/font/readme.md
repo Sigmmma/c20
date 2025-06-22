@@ -5,6 +5,8 @@ about: 'tag:h1/font'
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - font
 ---
 ...
 

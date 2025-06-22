@@ -8,6 +8,8 @@ caption: >-
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - scen
 ---
 **Scenery** are non-moving objects placed within maps that are not part of the [BSP](~scenario_structure_bsp). Some examples of scenery include boulders, trees, crashed pelicans, and smoke emitters. Scenery objects can be added to a palette in [Sapien](~h1-sapien) and placed many times throughout the level, with each scenery implicitly belonging to a particular BSP.
 

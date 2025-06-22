@@ -61,7 +61,7 @@ Feeling nostalgic? HMT is still on [HaloMaps](http://hce.halomaps.org/index.cfm?
 As with SparkEdit, we can now use [invader](~) to reliably extract tags from maps, edit them using official tools and/or invader, and rebuild them for the same target engine.
 
 ## HHT
-{% figure src="hht.png" %}
+{% figure src="hht.jpg" %}
 HHT's inferface.
 {% /figure %}
 **Halo Hacker Tools** by CLius-Enixile was a comparable tool to HMT supporting Halo Trial. Details on it are scarce, but it's another tags-in-map editor.
@@ -69,7 +69,7 @@ HHT's inferface.
 Like the others it has been replaced by the extract, edit, and rebuild workflow using [invader](~) and the modern official mod tools.
 
 ## Eschaton
-{% figure src="eschaton.png" %}
+{% figure src="eschaton.jpg" %}
 Eschaton's interface.
 {% /figure %}
 

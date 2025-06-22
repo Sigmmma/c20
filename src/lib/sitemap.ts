@@ -1,18 +1,16 @@
 import fs from "fs";
 import path from "path";
-import {type BuildOpts} from "../build";
-import {tryLocalizedPath, type PageIndex} from "./content";
+import {BuildOpts} from "../build";
+import {formatUrlPath, PageIndex} from "./content/pages";
 
 export async function buildSitemap(pageIndex: PageIndex, buildOpts: BuildOpts) {
   const {outputDir, baseUrl} = buildOpts;
   const urls: string[] = [];
 
-  Object.entries(pageIndex).forEach(([pageId, pageDataByLang]) => {
-    Object.entries(pageDataByLang).forEach(([lang, pageData]) => {
-      if (!pageData.front.stub && !pageData.front.noSearch) {
-        urls.push(`${baseUrl}${tryLocalizedPath(pageIndex, pageId, lang)}`);
-      }
-    });
+  Object.entries(pageIndex).forEach(([pageId, pageData]) => {
+    if (!pageData.stub) {
+      urls.push(`${baseUrl}${formatUrlPath(pageId)}`);
+    }
   });
 
   const sitemap = urls.join("\n");
@@ -23,4 +21,4 @@ export async function buildSitemap(pageIndex: PageIndex, buildOpts: BuildOpts) {
     fs.promises.writeFile(path.join(outputDir, "sitemap.txt"), sitemap, "utf8"),
     fs.promises.writeFile(path.join(outputDir, "robots.txt"), robots, "utf8")
   ]);
-};
+}

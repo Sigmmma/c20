@@ -7,6 +7,8 @@ thanks:
   1SDAN: Listing canonical character dialogue tags
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - udlg
 ---
 The **dialogue** tag group gives [units](~unit) situational sounds, like when they take damage, see allies die, or are startled. Dialogue usage is not just limited to AI bipeds; it's responsible for the player's death sounds and can even be referenced for vehicles, though not all situations apply. Dialogue is an important part of Halo's game design and helps communicate the internal state of characters to the player.
 

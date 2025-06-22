@@ -1,6 +1,5 @@
 ---
 title: H3 Tool
-stub: false
 about: 'tool:H3-Tool'
 img: h3-tool.jpg
 caption: Using H3-Tool in CMD to view the command list
@@ -9,7 +8,7 @@ keywords:
   - lightmap
   - cli
 thanks:
-  "Abstract Ingenuity": Documentation about verbs for compilation of animation data
+  Abstract Ingenuity: Documentation about verbs for compilation of animation data
 ---
 **H3-Tool** (**tool.exe**), is a [command-line](~) utility used to compile data into [tags](~), and tags into [maps](~map). It was released as a part of the [Halo 3 Editing Kit](~h3-ek) by 343 Industries in 2021.
 

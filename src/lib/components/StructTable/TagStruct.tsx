@@ -1,6 +1,7 @@
 import {type RenderContext, useCtx} from "../Ctx/Ctx";
 import {type FoundHeading} from "../Md/headings";
 import StructTable, {type StructTableProps, renderPlaintext as renderStructTablePlaintext, headings as structTableHeadings} from "./StructTable";
+import {Lang} from "../../utils/localization";
 
 export type TagStructProps = {
   tag: string;
@@ -30,16 +31,16 @@ export default function TagStruct(props: TagStructProps) {
   ) : null;
 };
 
-export function renderPlaintext(ctx: RenderContext | undefined, props: TagStructProps): string | undefined {
+export function renderPlaintext(lang: Lang, ctx: RenderContext | undefined, props: TagStructProps): string | undefined {
   const [game, tagName] = props.tag.split("/");
   const tag = ctx?.data?.tags?.[game]?.[tagName];
   if (!tag) return undefined;
-  return renderStructTablePlaintext(ctx, buildTableProps(tag));
-};
+  return renderStructTablePlaintext(lang, ctx, buildTableProps(tag));
+}
 
 export function headings(ctx: RenderContext | undefined, props: TagStructProps): FoundHeading[] {
   const [game, tagName] = props.tag.split("/");
   const tag = ctx?.data?.tags?.[game]?.[tagName];
   if (!tag) return [];
   return structTableHeadings(ctx, buildTableProps(tag));
-};
+}

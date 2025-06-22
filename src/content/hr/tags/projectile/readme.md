@@ -1,7 +1,12 @@
 ---
 title: projectile
 stub: true
-noSearch: true
 about: 'tag:hr/projectile'
+keywords:
+  - bullet
+  - bolt
+  - rocket
+  - blast
+  - grenade
 ---
-  ...
+...

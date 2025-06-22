@@ -6,6 +6,8 @@ thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
   smx: Tip on internal fields
+keywords:
+  - lsnd
 ---
 ...
 

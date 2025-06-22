@@ -5,6 +5,8 @@ about: 'tag:h1/tag_collection'
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+keywords:
+  - tagc
 ---
 ...
 

@@ -6,6 +6,7 @@ keywords:
   - device
   - panel
   - button
+  - ctrl
 thanks:
   s3anyboy: Interaction radius tip
   Kavawuvi: Invader tag definitions

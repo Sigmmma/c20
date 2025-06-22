@@ -5,6 +5,7 @@ keywords:
   - exporter
 thanks:
   General_101: Writing this guide
+  Zadeinator: Water fading tip
 ---
 # File List
 | File Link                                                                                                           | Description
@@ -107,8 +108,8 @@ Start by opening the `scenario_structure_bsp` in Guerilla and scrolling to the b
 * rotate offset - Does not seem to do anything. Leave at `0`
 * center - Does not seem to do anything. Leave at `0`
 * extents - Does not seem to do anything. Leave at `0`
-* fog near - Does not seem to do anything. Leave at `0`
-* fog far - Does not seem to do anything. Leave at `0`
+* fog near - Sets the distance where the water starts fading to the _horizon color_. Leave at `0` to disable.
+* fog far - Sets the distance where the water ends fading to the _horizon color_. Leave at `0` to disable.
 * dynamic height bias - Makes geometry render over the plane. Leave at `0`
 
 ![](water.jpg "Doesn't it look like you could jump right in?")

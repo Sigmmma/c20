@@ -9,6 +9,8 @@ thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Tag field testing
+keywords:
+  - lens
 ---
 **Lens flares** are a visual effect used to emulate glowing light sources, glare, and camera [lens flares][wiki-flare]. They can be used in 3 ways:
 

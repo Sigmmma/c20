@@ -3,8 +3,8 @@ title: scenario_structure_bsp
 about: 'tag:h1/scenario_structure_bsp'
 img: bsp-debug.jpg
 caption: >-
-  Blood Gulch's BSP surfaces and clusters visualized in [Sapien](~h1-sapien) using
-  `debug_structure 1` and `debug_pvs 1`
+  Blood Gulch's BSP surfaces and clusters visualized in [Sapien](~h1-sapien)
+  using `debug_structure 1` and `debug_pvs 1`
 keywords:
   - lightmap
   - radiosity
@@ -13,9 +13,10 @@ keywords:
   - weather
   - polyhedra
   - bsp
+  - sbsp
 thanks:
   MosesOfEgypt: Tag structure research
-  Conscars: Collision BSP, phantom BSP, and lens flare research
+  Conscars: 'Collision BSP, phantom BSP, and lens flare research'
   Galap: Researching the effect of cluster sky index on lighting
   Hari: Collision BSP compilation reversing
   Kavawuvi: Invader tag definitions
@@ -86,7 +87,7 @@ You can even create slanted or upside-down fog planes as long as they follow the
 
 # Weather polyhedra
 
-{% figure src="weather-polys-aotcr.png" %}
+{% figure src="weather-polys-aotcr.jpg" %}
 Weather polys extracted from _Assault on the Control Room_.
 {% /figure %}
 

@@ -1,6 +1,5 @@
 ---
 title: Halo 3
-stub: false
 keywords:
   - h3
   - halo

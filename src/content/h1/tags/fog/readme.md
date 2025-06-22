@@ -5,6 +5,7 @@ img: fog.jpg
 caption: A fog plane exists under Gephyrophobia's bridge
 keywords:
   - plane
+  - 'fog '
 thanks:
   Jakey: Known fog issues in S7 MCC
   Kavawuvi: Invader tag definitions

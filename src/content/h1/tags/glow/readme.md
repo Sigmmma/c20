@@ -8,6 +8,8 @@ thanks:
   MosesOfEgypt: Tag structure research
   Conscars: Testing behaviour of tag fields and glow path creation
   Kornman: Limits and how path construction works in glow updates
+keywords:
+  - glw!
 ---
 **Glow** tags are an [object widget](~object#tag-field-widgets) used to create a particle-based glowing effect, where camera-facing sprite particles travel along and/or emit from a path defined by markers in the [gbxmodel](~). This tag is capable of much more complex effects than used in the energy sword, though has some known issues too.
 

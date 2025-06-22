@@ -1,28 +1,21 @@
 import {createContext} from "preact";
 import {useContext} from "preact/hooks";
-import {type PageLink} from "../../content";
-import {Lang, LocalizeFn, Localizations, localizer} from "../../utils/localization";
+import {PageIndex} from "../../content/pages";
 
 export type RenderContext = {
   //local
-  lang: Lang;
   pageId: string;
-  title?: string;
-
+  pageTitle?: string;
   //global
-  noThumbs?: boolean;
-
-  //non-local
-  allThanks?: string[];
-  resolvePage: (idTail: string, headingId?: string) => PageLink;
-  children: PageLink[];
+  pageIndex: PageIndex;
   data: any;
+  noThumbs?: boolean;
 };
 
 const Ctx = createContext<RenderContext | undefined>(undefined);
 
 export function useCtx(): RenderContext | undefined {
   return useContext(Ctx);
-};
+}
 
 export default Ctx;

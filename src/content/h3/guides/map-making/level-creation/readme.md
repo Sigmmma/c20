@@ -2,7 +2,10 @@
 title: H3 level creation hub
 keywords:
   - modeling
-  - exporter
+  - level
+  - bsp
+  - scenario
+  - blender
 thanks:
   General_101: Writing this page.
 ---

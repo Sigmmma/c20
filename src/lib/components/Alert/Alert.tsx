@@ -5,11 +5,11 @@ import {IconName} from "../Icon/names";
 export const alertTypes = ["info", "danger", "success"] as const;
 export type AlertType = (typeof alertTypes)[number];
 
-export type AlertProps = {
+export interface AlertProps {
   type?: AlertType;
   icon?: IconName;
   children: ComponentChildren;
-};
+}
 
 export default function Alert(props: AlertProps) {
   return (

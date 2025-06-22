@@ -1,6 +1,5 @@
 ---
 title: H2 Tag File Layout
-stub: false
 icon: tag
 keywords:
   - tag
@@ -9,10 +8,9 @@ keywords:
   - layout
   - Pytolith
 thanks:
-  num0005: Documented the tag file format for Halo 2 MCC, and published comprehensive dumped layouts.
+  num0005: 'Documented the tag file format for Halo 2 MCC, and published comprehensive dumped layouts.'
   Opensauce Developers: Opensauce tag reader which documented pre-MCC tag layouts for Halo 2.
 ---
-
 Halo 2 **tags** use a more complicated layout on-disk layout for tag files in order to support several tag versioning features Halo 1 did not support which allowed the developers to more easily add new tag fields during development without throwing away old work or having to manually upgrade all assets already created.
 
 Each tag block can have multiple *"layout versions"* which can be completely different from each other. Additionally tag files themselves went through several iterations, resulting in some older tags storing data differently even when using the same layout version - this is referred to as *"engine version"*. It's important to note there is **in theory** no limit on what engine and layout versions combinations are possible in one tag, even if in practice as the stock tools always save a tag as the latest engine and layout version there are some limits on what a reader might need to handle.

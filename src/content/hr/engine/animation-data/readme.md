@@ -1,6 +1,5 @@
 ---
 title: Reach Animation data
-stub: false
 keywords:
   - jma
   - jmm

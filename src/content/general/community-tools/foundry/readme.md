@@ -1,7 +1,6 @@
 ---
 title: Foundry
 img: banner.jpg
-stub: false
 info: |
   * [Source code and download](https://github.com/ILoveAGoodCrisp/Foundry-Halo-Blender-Creation-Kit)
 ---

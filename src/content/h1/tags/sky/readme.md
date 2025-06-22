@@ -1,12 +1,14 @@
 ---
 title: sky
-about: tag:h1/sky
+about: 'tag:h1/sky'
 img: sky.jpg
 caption: >-
   The skybox is a fully 3D object at a much larger scale than the
   [BSP](~scenario_structure_bsp) itself
 thanks:
   Galap: Researching the purpose of _affects interiors_
+keywords:
+  - 'sky '
 ---
 The **sky** tag, often called a **skybox**, models the environment outside the [BSP](~scenario_structure_bsp). It contains radiosity parameters that affect [lightmaps](~) like ambient light and directional lights, defines general atmospheric fog (not to be confused with [planar fog](~fog)), and can have a 3D model that draws behind level geometry.
 
