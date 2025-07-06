@@ -1,8 +1,6 @@
 ---
 title: projectile
-stub: true
-noSearch: false
-img: rocket.png
+img: rocket.jpg
 caption: A projectile (rocket) flying through the air
 about: 'tag:h3/projectile'
 keywords:
@@ -24,11 +22,11 @@ Projectile movement is simulated during each game tick (smallest unit of simulat
 
 The trace collision test takes advantage of other objects' bounding radii and the collision BSP structures found in [collision models](~collision_model) and [scenario structure bsps](~scenario_structure_bsp). If any collision is detected, it is handled accordingly (e.g. applying effects, damage or playing sound).
 
-If no collision is detected, the projectile is moved to its next position at the end of the trace line. The process continues, tick by tick, until the projectile collides or detonates at its maximum range
+If no collision is detected, the projectile is moved to its next position at the end of the trace line. The process continues, tick by tick, until the projectile collides or detonates at its maximum range.
 
-A sufficiently high velocity projectile is effectively hitscan if it can cross a playable space within a single tick, with the game being simulated at 60 ticks per second. Otherwise, ballistic leading will be required to hit a moving target.
+A projectile with sufficiently high velocity behaves like a hitscan, since it will be able to cross a playable space within a single tick, with the game being simulated at 60 ticks per second. Should the projectile not be fast enough to hitscan the playable space, leading on targets may be required.
 
-Projectiles receive a boost to the distance hitscanned on their spawn tick, this boost is very strong at low velocities like 2, but as velocity increases the boost is reduced until it becomes negligible.
+Projectiles receive a boost to the distance hitscanned on their spawn tick, this boost is very strong at low velocities such as 2, but as velocity increases the boost is reduced until it becomes negligible, like at 700.
 
 Projectile vectors can be changed from all sources of [damage](~damage_effect) when a [collision model](~collision_model) is present by using the "instantaneous acceleration" value, this includes melee, explosions, normal rounds, and other projectiles colliding mid-air. When no collision is present only area of effect damage can effect projectiles
 
@@ -96,7 +94,7 @@ Is it not currently understood what defines a floor from a wall or ceiling, so f
 | maximum range | real | Projectile detonates after having travelled this distance in world units
 | bounce maximum range | real | Unknown, needs additional research
 | detonation noise | enum | Same as "impact noise" but applied on projectile detonation instead
-| super det. projectile count | short | Number of projectiles attached to a target needed to trigger super-combine behavior, needs supercombining flag enabled
+| super det. projectile count | short | More than this number of projectiles attached to a target needed to trigger super-combine behavior, needs supercombining flag enabled
 | super det. time | real | Time after the above field where the super-combine effect is triggered
 | detonation started | [effect](~) | Effect played on the projectile during it's detonation timer countdown
 | detonation effect (airborne) | [effect](~) | Effect played on the projectile when it detonates in the air
@@ -104,10 +102,10 @@ Is it not currently understood what defines a floor from a wall or ceiling, so f
 | detonation damage | [damage_effect](~) | Damage effect spawned when the projectile detonates
 | attached detonation damage | [damage_effect](~) | Damage effect spawned on the target when this projectile is attached to them
 | super detonation | [effect](~) | The effect played when a super-combine is triggered from this projectile attaching to a target
-| super detonation damage | [damage_effect](~) | The damage effect spawned around the target the super-combine is being triggered on
+| super detonation damage | [damage_effect](~) | The damage effect spawned on the target the super-combine is being triggered on
 | detonation sound | [sound](~) | Sound played when the projectile detonates
 | damage reporting type | enum | A dropdown list of various weapon types: unknown use
-| super attached detonation damage | [damage_effect](~) | The damage effect spawned on the target the super-combine is being triggered on
+| super attached detonation damage | [damage_effect](~) | The damage effect spawned on the target the super-combine is being triggered on, cannot harm other units
 | material effect radius | real | Unknown/Needs additional research
 
 # Flyby/impact
@@ -123,7 +121,7 @@ projectiles set to detonate when hitting targets will still apply impact damage 
 | flyby sound | [sound](~) | Sound played near targets this projectile narrowly misses
 | impact effect | [effect](~) | Effect played on all items and geometry when this projectile impacts them
 | object impact effect | [effect](~) | Effect played only on objects such as [crates](~crate) or [scenery](~) when this projectile impacts them
-| impact damage | [damage_effect](~) | Damage effect played on target the project impacts
+| impact damage | [damage_effect](~) | Damage effect played on target the projectile impacts
 
 # Boarding fields
 
@@ -142,7 +140,7 @@ This section defines the general properties about the projectile and how it trav
 {% alert %}
 AI velocity scale is broken and **does not** scale the velocity of projectiles down below 1, however AI targeting and leading still acts as if it is and as such AI will overlead targets and miss: **scales above 1 work as intended**
 
-**Forwards and backwards momentum from the player will be added onto the projectiles default velocity vector** (positive or negative), however projectiles can not inherent momentum to move backwards when their velocity is a positive value or 0, while **projectiles with a negative value can inherent momentum in for both vectors**
+**Forwards and backwards momentum from the player will be added onto the projectiles default velocity vector** (positive or negative). However projectiles cannot inherit momentum that results in backward motion when their velocity is a positive value or 0. **Only projectiles with a negative velocity can inherit momentum to move in both vectors**
 {% /alert %}
 
 | Fields | Data type | Description
@@ -189,7 +187,7 @@ potential response (enum): Same as the default response, but is the first place 
 |-------|----------
 | only against units (except giants) | Run potential response if velocity and angle conditions pass when making contact with [bipeds](~biped) or [vehicles](~vehicle)
 | never against units (except giants) | Never run potential response if projectile makes contact with [bipeds](~biped) or [vehicles](~vehicle)
-| never against wuss players | 
+| never against wuss players | Unknown, needs testing
 
 | Fields | Data type | Description
 |-------|----------|--------------
@@ -236,11 +234,11 @@ projection offset (real): Unknown, needs additional research
 
 # Conical Spread
 
-{% figure src="distribution0.png" %}
+{% figure src="distribution0.jpg" %}
 Pictured: 15 projectiles with a spread angle of 5 degrees and a distribution exponent of 0
 {% /figure %}
 
-{% figure src="distribution1.2.png" %}
+{% figure src="distribution1.2.jpg" %}
 Pictured: Now with the distribution exponent set to 1.2 with no other changes
 {% /figure %}
 

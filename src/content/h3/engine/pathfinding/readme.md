@@ -1,10 +1,7 @@
 ---
 title: Pathfinding
-stub: true
-noSearch: false
-img: pathfinding.png
+img: pathfinding.jpg
 caption: Various elements of pathfinding like hints and firing points
-about: 
 keywords:
   - AI
   - navmesh
@@ -13,7 +10,7 @@ keywords:
   - jump hints
 thanks:
   odchylanie_uderzenia: writing and research
---- 
+---
 When a level is imported, depending on the conditions of the level, the ability for the AI to find a navigable path along the geometry is effected. For example small gaps that players would ignore may cause AI to be unable to transition the platforms between the gap, thus a jump hint would be needed so the AI can bridge the jump.
 
 A notable cause of pathfinding failure on new levels can be from open edges, levels in early itertations of the blam engine rely on collision supplied from BSP calculations, as such levels much be entirely sealed: like a balloon, any holes in this balloon will cause pathfinding failure.
@@ -24,7 +21,7 @@ While your level may be sealed and pathfinding can take place, this is fundament
 
 ## Zones
 
-The highest level of the AI pathfinding system for gameplay purposes, [objectives](~) will reference these so that their tasks can reference the areas of that zone, squads can reference an initial zone to navigate around (assuming their objective doesn't move them to a different zone).
+The highest level of the AI pathfinding system for gameplay purposes, [objectives](~) will reference these so that their [tasks](~objectives#tasks) can reference the areas of that zone, squads can reference an initial zone to navigate around (assuming their objective doesn't move them to a different zone).
 
 ## Areas
 
@@ -40,8 +37,8 @@ The intended method is to assign a zone to an objective, then all tasks will be 
 
 The lowest level of the AI pathfinding system for gameplay purposes, AI use these individual points as spots they can fire from or move between and these firing points can be set with various properties.
 
-{% figure src="postures.png" %}
-Pictured from left to right: corner left, bunker and corner right, vectors of firing points facing south
+{% figure src="postures.jpg" %}
+Pictured from left to right: corner right, bunker and corner left, vectors of firing points facing north
 {% /figure %}
 
 | Posture flags | Description
@@ -52,11 +49,11 @@ Pictured from left to right: corner left, bunker and corner right, vectors of fi
 
 # Pathfinding polices
 
-The main setting you control as a map maker is the pathfinding policy used by objects such as [crates](~) or [scenery](~).
+The main setting you control as a map maker is the pathfinding policy used by objects such as [crates](~crate) or [scenery](~). [vehicles](~vehicle) and [bipeds](~biped) use dynamic pathfinding to allow AI to navigate around them, as these objects themselves can move and change orientation.
 
 | Policy type | Description
 |-------|----------
-| Default | Uses the default pathfinding type that the object itself has, scenery usually uses cut-out while crates use dynamic
+| Default | Uses the default pathfinding type that the object itself has, [scenery](~) usually uses cut-out while [crates](~crate) use dynamic
 | Dynamic | This policy is typically used on objects that can move around the map, allowing AI to constantly update their pathfinding around and on this object, used for crates and device machines
 | Cut-out | This item is cut-out of the pathfinding mesh entirely, being a "dead zone" of sorts that AI will navigate around
 | Static | Similar to dynamic but for non-moving objects, stitches them into the pathfinding mesh so AI can navigate around, ontop and through them
@@ -70,7 +67,7 @@ Most hints will have two general flags:
 - bidirectional : AI can use this hint going fowards and backwards across it, some exceptions apply
 - closed : Unknown/needs additional research
 
-{% figure src="wellhint.png" %}
+{% figure src="wellhint.jpg" %}
 Pictured: How correctly set up well and flood hints are seen from the view of the well hint selection, note how the well hints draw paths that enter and exit the flood hint
 {% /figure %}
 
@@ -93,7 +90,7 @@ Pictured: How correctly set up well and flood hints are seen from the view of th
 
 ## Object hints
 
-Objects such as [crates](~) have the ability to use dynamic hints such as vaulting, mounting and hoisting, these are defined by markers on the [render_model](~)
+Objects such as [crates](~crate) have the ability to use dynamic hints such as vaulting, mounting and hoisting, these are defined by markers on the [render_model](~)
 
 # Debugging
 

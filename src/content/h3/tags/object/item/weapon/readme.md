@@ -1,8 +1,6 @@
 --- 
 title: weapon
-stub: false
-noSearch: false
-img: weapon.png
+img: weapon.jpg
 caption: Various items all classified as weapons
 about: 'tag:h3/weapon'
 keywords:
@@ -181,7 +179,7 @@ Movement penalty values work as percentages in increments of 0.1, incorrect valu
 | Fields | Data type | Description
 |-------|----------|--------------
 | forward movement penalty | real | Value of 0 to 1 as a fraction of player forwards and backwards speed lost when their movement is penalized
-| sideways movement penalty | real | Value 0 to 1 as a fraction of player sideways speed lost when their movement is penalized
+| sideways movement penalty | real | Value of 0 to 1 as a fraction of player sideways speed lost when their movement is penalized
 
 # AI targeting parameters
 
@@ -233,7 +231,7 @@ Despite using the "no tracking" option, the needler still possesses tracking abi
 | needler | Unknown, possibly allows projectile tracking despite no tracking type specified
 | plasma pistol | Unknown
 | plasma rifle | Unknown
-| rocket launcher | Needed for latch-rocketlauncher trigger type to allow locking onto targets with human tracking
+| rocket launcher | Unknown
 | energy blade | Unknown, possibly allows melee clang
 | splazer | Unknown
 
@@ -459,10 +457,10 @@ Prediction properties effect networking for non-host players, if set up incorrec
 
 | Firing noise | Description
 |-------|----------
-| silent | Unknown, sound is silent to AI
+| silent | Unknown, sound is silent to AI, the lowest sound level
 | medium | Unknown, sound is medium loudness to AI
 | loud | Unknown, sound is loud to AI
-| shout | Unknown, sound is shout loudness to AI
+| shout | Unknown, sound is shout loudness to AI, the highest sound level
 | quiet | Unknown, sound is quiet to AI
 
 ## Error (spread/bloom)
