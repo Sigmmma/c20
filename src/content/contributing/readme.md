@@ -128,8 +128,8 @@ info: |
   * Lines
 
 # Marking a page as a "stub" adds an alert to its header that it's a work in
-# progress and also prevents the page from being added to the sitemap (used by
-# search bots). Once a page has reached a useful state, remove this flag.
+# progress and also prevents the page from being added to search and the sitemap
+# (used by search bots). Once a page has reached a useful state, remove this flag.
 stub: true
 
 # Please credit anyone who helped create this page or was a source for its

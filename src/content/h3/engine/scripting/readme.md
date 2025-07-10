@@ -1,6 +1,5 @@
 ---
 title: H3 scripting
-stub: true
 keywords:
   - script
   - hsc

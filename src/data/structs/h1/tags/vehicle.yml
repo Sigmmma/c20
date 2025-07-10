@@ -37,9 +37,23 @@ type_defs:
       - name: human_jeep
       - name: human_boat
       - name: human_plane
+        comments:
+          en: |
+            Aircraft capable of VTOL and forward flight like the Pelican.
+            Affected by the BSP [_vehicle floor_ and _vehicle ceiling_](~scenario_structure_bsp#tag-field-vehicle-floor).
       - name: alien_scout
+        comments:
+          en: |
+            Hovering and strafing-capable like the Ghost.
       - name: alien_fighter
+        comments:
+          en: |
+            Flying vehicle like the Banshee.
+            Affected by the BSP [_vehicle floor_ and _vehicle ceiling_](~scenario_structure_bsp#tag-field-vehicle-floor).
       - name: turret
+        comments:
+          en: |
+            Stationary turret like the Shade.
   VehicleFunctionIn:
     class: enum
     size: 2

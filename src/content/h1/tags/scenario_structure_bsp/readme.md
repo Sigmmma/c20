@@ -16,7 +16,7 @@ keywords:
   - sbsp
 thanks:
   MosesOfEgypt: Tag structure research
-  Conscars: 'Collision BSP, phantom BSP, and lens flare research'
+  Conscars: Collision BSP, phantom BSP, vehicle floor/ceiling, and lens flare research
   Galap: Researching the effect of cluster sky index on lighting
   Hari: Collision BSP compilation reversing
   Kavawuvi: Invader tag definitions
