@@ -7,8 +7,8 @@ keywords:
   - bullet
   - bolt
   - rocket
+  - shell
   - blast
-  - grenade
   - bomb
 thanks:
   odchylanie_uderzenia: writing and research
@@ -22,11 +22,11 @@ Projectile movement is simulated during each game tick (smallest unit of simulat
 
 The trace collision test takes advantage of other objects' bounding radii and the collision BSP structures found in [collision models](~collision_model) and [scenario structure bsps](~scenario_structure_bsp). If any collision is detected, it is handled accordingly (e.g. applying effects, damage or playing sound).
 
-If no collision is detected, the projectile is moved to its next position at the end of the trace line. The process continues, tick by tick, until the projectile collides or detonates at its maximum range
+If no collision is detected, the projectile is moved to its next position at the end of the trace line. The process continues, tick by tick, until the projectile collides or detonates at its maximum range.
 
-A sufficiently high velocity projectile is effectively hitscan if it can cross a playable space within a single tick, with the game being simulated at 60 ticks per second. Otherwise, ballistic leading will be required to hit a moving target.
+A projectile with sufficiently high velocity behaves like a hitscan, since it will be able to cross a playable space within a single tick, with the game being simulated at 60 ticks per second. Should the projectile not be fast enough to hitscan the playable space, leading on targets may be required.
 
-Projectiles receive a boost to the distance hitscanned on their spawn tick, this boost is very strong at low velocities like 2, but as velocity increases the boost is reduced until it becomes negligible.
+Projectiles receive a boost to the distance hitscanned on their spawn tick, this boost is very strong at low velocities such as 2, but as velocity increases the boost is reduced until it becomes negligible, like at 700.
 
 Projectile vectors can be changed from all sources of [damage](~damage_effect) when a [collision model](~collision_model) is present by using the "instantaneous acceleration" value, this includes melee, explosions, normal rounds, and other projectiles colliding mid-air. When no collision is present only area of effect damage can effect projectiles
 
@@ -45,20 +45,20 @@ These are general purpose flags that change the behavior of the projectile, more
 | has super combining explosion | Enables supercombine functions on the projectile when attaching to targets
 | damage scales based on distance | Causes the **impact** damage to be scaled by the "air damage range" bounds values, needs more research
 | travels instantaneously | Upon the projectile being fired from a weapon, its velocity is quadrupled for the first tick of creation, after the first tick it moves at it's assigned speed
-| steering adjusts orientation | Unknown, generally causes the projectile when self-guiding onto a target to perform erratic sharp turns on near misses
-| don't noise up steering | WIP
-| can track behind itself | WIP
+| steering adjusts orientation | Unknown, generally causes the projectile when self-guiding onto a target to perform erratic sharp turns on near misses, needs additional research
+| don't noise up steering | Unknown, needs additional research
+| can track behind itself | Unknown, needs additional research
 | ROBOTRON STEERING | When tracking a target, the projectile will perform corkscrew motions, needs more research
 | affected by phantom volumes | Projectile can interact with phantom volumes, rather than passing through them with no effect
-| expensive chubby test | WIP
-| notifies target units | WIP
+| expensive chubby test | Unknown, needs additional research
+| notifies target units | When firing a locked tracking projectile, notify the target, this means playing a sound to the player to indicate they are being persued by a tracking projectile
 | use ground detonation when attached | Uses the ground detonation field when this projectile is attached to [bipeds](~biped), otherwise uses the airborne detonation
 | AI minor tracking threat | Used in conjunction with the [AI](~character) tag to allow AI to react to this projectile via diving and dodging away from projectiles
 | dangerous when inactive | Unknown, needs additional research
 | AI stimulus when attached | Triggers special AI behaviors like fleeing or berserking when this projectile attaches to them
 | OverPeneDetonation | Allows projectile to deal detonation damage when overpenetrating targets
 | no impact effects on bounce | "impact effect" is disabled on bounce behavior
-| RC1 overpenetration fixes | Unknown/Needs additional research
+| RC1 overpenetration fixes | Unknown/Needs additional research, causes the [light_volume_system](~) of projectiles to be frozen in mid-air when the projectile reaches max range
 
 {% alert %}
 Is it not currently understood what defines a floor from a wall or ceiling, so far through testing a plane with an angle of 0 to 61 degrees is considered a floor and 90 degrees a wall
@@ -94,7 +94,7 @@ Is it not currently understood what defines a floor from a wall or ceiling, so f
 | maximum range | real | Projectile detonates after having travelled this distance in world units
 | bounce maximum range | real | Unknown, needs additional research
 | detonation noise | enum | Same as "impact noise" but applied on projectile detonation instead
-| super det. projectile count | short | Number of projectiles attached to a target needed to trigger super-combine behavior, needs supercombining flag enabled
+| super det. projectile count | short | More than this number of projectiles attached to a target needed to trigger super-combine behavior, needs supercombining flag enabled
 | super det. time | real | Time after the above field where the super-combine effect is triggered
 | detonation started | [effect](~) | Effect played on the projectile during it's detonation timer countdown
 | detonation effect (airborne) | [effect](~) | Effect played on the projectile when it detonates in the air
@@ -102,10 +102,10 @@ Is it not currently understood what defines a floor from a wall or ceiling, so f
 | detonation damage | [damage_effect](~) | Damage effect spawned when the projectile detonates
 | attached detonation damage | [damage_effect](~) | Damage effect spawned on the target when this projectile is attached to them
 | super detonation | [effect](~) | The effect played when a super-combine is triggered from this projectile attaching to a target
-| super detonation damage | [damage_effect](~) | The damage effect spawned around the target the super-combine is being triggered on
+| super detonation damage | [damage_effect](~) | The damage effect spawned on the target the super-combine is being triggered on
 | detonation sound | [sound](~) | Sound played when the projectile detonates
 | damage reporting type | enum | A dropdown list of various weapon types: unknown use
-| super attached detonation damage | [damage_effect](~) | The damage effect spawned on the target the super-combine is being triggered on
+| super attached detonation damage | [damage_effect](~) | The damage effect spawned on the target the super-combine is being triggered on, cannot harm other units
 | material effect radius | real | Unknown/Needs additional research
 
 # Flyby/impact
@@ -121,7 +121,7 @@ projectiles set to detonate when hitting targets will still apply impact damage 
 | flyby sound | [sound](~) | Sound played near targets this projectile narrowly misses
 | impact effect | [effect](~) | Effect played on all items and geometry when this projectile impacts them
 | object impact effect | [effect](~) | Effect played only on objects such as [crates](~crate) or [scenery](~) when this projectile impacts them
-| impact damage | [damage_effect](~) | Damage effect played on target the project impacts
+| impact damage | [damage_effect](~) | Damage effect played on target the projectile impacts
 
 # Boarding fields
 
@@ -131,7 +131,7 @@ Defines properties when this projectile is planted onto boarded targets, all tag
 |-------|----------|--------------
 | boarding detonation time | real | Time taken in seconds for the projectile to detonate after being planted while boarding
 | boarding detonation damage | [damage_effect](~) | Damage effect spawned on the projectile after the above fields time has passed
-| boaring attached detonation damage | [damage_effect](~) | Unknown/Needs additional research
+| boarding attached detonation damage | [damage_effect](~) | Unknown/Needs additional research
 
 # Physics
 
@@ -140,15 +140,15 @@ This section defines the general properties about the projectile and how it trav
 {% alert %}
 AI velocity scale is broken and **does not** scale the velocity of projectiles down below 1, however AI targeting and leading still acts as if it is and as such AI will overlead targets and miss: **scales above 1 work as intended**
 
-**Forwards and backwards momentum from the player will be added onto the projectiles default velocity vector** (positive or negative), however projectiles can not inherent momentum to move backwards when their velocity is a positive value or 0, while **projectiles with a negative value can inherent momentum in for both vectors**
+**Forwards and backwards momentum from the player will be added onto the projectiles default velocity vector** (positive or negative). However projectiles cannot inherit momentum that results in backward motion when their velocity is a positive value or 0. **Only projectiles with a negative velocity can inherit momentum to move in both vectors**
 {% /alert %}
 
 | Fields | Data type | Description
 |-------|----------|--------------
 | air gravity scale  | real | This value defines how much drop the projectile experiences during flight, higher numbers mean more drop
 | air damage range | real | A set of two values that define how the associated [damage](~damage_effect) is scaled, using the "damage lower bound" value for the air range past the latter bound value, behavior of this field is bugged for the former bound value and "damage upper bound" however.
-| water gravity scale | real | 
-| water damage range | real | 
+| water gravity scale | real | Needs additional research
+| water damage range | real | Needs additional research
 | initial velocity | real | The velocity of the projectile when first spawned
 | final velocity | real | The velocity of the projectile after it has passed through it's "acceleration range"
 | ai velocity scale (normal) | real | Scale on the projectiles velocity when fired by AI on normal
@@ -172,11 +172,11 @@ This section defines how the projectile reacts when it comes into contact with s
 | Default response | Data type | Description
 |-------|----------|--------------
 | impact (detonate) | enum | Projectile is deleted when it comes into direct contact with the material
-| fizzle | enum | 
+| fizzle | enum | Appears to behave the same as impact
 | overpenetrate | enum | Projectile passes through through this material but only on objects and **not** map geometry
 | attach | enum | Projectile attaches to specified material, waiting the duration of the "timer" value in the detonation section
 | bounce | enum | Projectile bounces off of the specified material, bounce properties are specified further below
-| bounce (dud) | enum | 
+| bounce (dud) | enum | Same as above, but the projectile no longer deals impact damage after the bounce, will steal deal detonation damage.
 | fizzle (bounce) | enum | 
 
 material name (string): string name of the material you are specifying the behavior for, materials are specified in the [globals](~)
@@ -187,7 +187,7 @@ potential response (enum): Same as the default response, but is the first place 
 |-------|----------
 | only against units (except giants) | Run potential response if velocity and angle conditions pass when making contact with [bipeds](~biped) or [vehicles](~vehicle)
 | never against units (except giants) | Never run potential response if projectile makes contact with [bipeds](~biped) or [vehicles](~vehicle)
-| never against wuss players | 
+| never against wuss players | Unknown, needs testing
 
 | Fields | Data type | Description
 |-------|----------|--------------
@@ -205,11 +205,11 @@ Parallel and perpendicular friction act as a bounds where the closer to impact a
 |-------|----------|--------------
 | scale effects by | enum | Angle **or** damage, unknown
 | angular noise | angle | Unknown, presumably the maximum number of degrees the projectile can be randomly offset by when bouncing off a surface (in addition to the natural offset from the bounce itself)
-| velocity noise | real | Unknown, presumable the the velocity of the projectile changed randomly when bouncing off a surface (in addition to velocity lost from parallel and perpendicular friction values)
+| velocity noise | real | Unknown, presumably the the velocity of the projectile changed randomly when bouncing off a surface (in addition to velocity lost from parallel and perpendicular friction values)
 | initial friction | real | Unknown, needs additional research
 | maximum distance | real | Unknown, needs additional research
-| parallel friction | real | The fraction of projectile velocity lost when bouncing off a surface at a parallel angle
-| perpendicular friction | real | The fraction of projectile velocity lost when bouncing off a surface at a perpendicular angle
+| parallel friction | real | The fraction of projectile velocity lost when bouncing off a surface at a parallel (closer to 0 degree) angle
+| perpendicular friction | real | The fraction of projectile velocity lost when bouncing off a surface at a perpendicular (closer to 90 degree) angle
 
 # Brute Grenade
 
@@ -229,6 +229,7 @@ Parallel and perpendicular friction act as a bounds where the closer to impact a
 | attach acc damping | real | Unknown, needs additional research
 
 # Firebomb Grenade
+
 projection offset (real): Unknown, needs additional research
 
 # Conical Spread
