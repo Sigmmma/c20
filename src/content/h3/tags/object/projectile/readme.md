@@ -58,7 +58,7 @@ These are general purpose flags that change the behavior of the projectile, more
 | AI stimulus when attached | Triggers special AI behaviors like fleeing or berserking when this projectile attaches to them
 | OverPeneDetonation | Allows projectile to deal detonation damage when overpenetrating targets
 | no impact effects on bounce | "impact effect" is disabled on bounce behavior
-| RC1 overpenetration fixes | Unknown/Needs additional research
+| RC1 overpenetration fixes | Unknown/Needs additional research, causes the [light_volume_system](~) of projectiles to be frozen in mid-air when the projectile reaches max range
 
 {% alert %}
 Is it not currently understood what defines a floor from a wall or ceiling, so far through testing a plane with an angle of 0 to 61 degrees is considered a floor and 90 degrees a wall
