@@ -33,6 +33,8 @@ game_variant ctf
 map_name levels\test\bloodgulch\bloodgulch
 ```
 
+The game mode will be active for all subsequent uses of `map_name`. If you have previously set a game variant and want to return to singleplayer, use `game_variant none` before loading a scenario.
+
 Objectives like the CTF flags, oddball spawns, and hill boundaries depend on [scenario netgame flags](~scenario#tag-field-netgame-flags) placed using [Sapien](~h1-sapien).
 
 The UI localizations for these game variants are found in `ui\default_multiplayer_game_setting_names.unicode_string_list`.

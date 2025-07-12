@@ -2428,10 +2428,13 @@ functions:
         (<void> game_variant <string>)
         (game_variant ctf)
         (game_variant team_oddball)
+        (game_variant none)
         ```
         Sets the multiplayer game engine, which will take effect the next time
-        the map is loaded with `map_name`. See [game modes](~game-modes)
-        for available engines.
+        the map is loaded with `map_name` and apply to all subsequent map loads.
+        See [game modes](~game-modes) for available engines. You can reset the
+        desired game mode to singleplayer by providing a string which is not a
+        valid game mode, e.g. `none`.
   - slug: game_won
     info:
       en: >-
