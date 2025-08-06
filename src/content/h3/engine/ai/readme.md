@@ -1,13 +1,18 @@
 ---
 title: AI system
 img: generic_fight.jpg
-caption: Halo's AI system at work direction a fireteam of marines against a pack of brutes
+caption: Halo's AI system at work directing a fireteam of marines against a pack of brutes
 keywords:
   - AI
   - Characters
 thanks:
   odchylanie_uderzenia: writing and research
 ---
+In the Halo franchise, AI units have always been referred to as [actors](~actor) or [characters](~character), this is intentional on Bungie's end as the AI are not just static units for the player to mow down, but instead active participants in the gameplay and story.
+
+Each and every AI unit contains their own individual knowledge model of the world, they store information such as the 3 senses (visual, audio, touch) and almost never cheat, using this information they create their own view of the world and it's entities. They then use the world info to process decisions, such as who to shoot, where to move to to find a target, what's a good spot for cover against this specific target and so on and so forth, information is also handled by each AI in accordance with relevance.
+
+In accordance with Bungie's design, AI are designed to accomendate the immediate short-term gameplay loop, able to move and shoot and act and emote to keep the player engaged for short periods of time with zero developer influence, however for longer periods of time the designers used systems to guide the AI to give the illusion of intelligence and further purpose. These systems would take the form of the AI orders systems in [Halo: Combat Evolved](~h1) and [Halo 2](~h2), and the [objective](~objectives) system found in [Halo 3](~h3), [ODST](~h3odst) and [Halo: Reach](~hr).
 
 # Vocalization
 
@@ -16,6 +21,18 @@ AI in halo have the ability to vocalize and emote based on actions performed, vi
 # Perception
 
 AI in Halo, outside of scripting and specific task flags, do not have the ability to see through walls, they must be able to actually see their targets or hear them, AI hearing and visual specifics are set in the [character](~) tag as well as in [projectile](~) and [weapon](~) weapon tags for firing and detonation/impact sound levels.
+
+Sound levels in as defined by tags like [weapons](~weapon) and [projectiles](~projectile) act as a sort of bounds that fall within the hearing distance value in the [character](~) tag, for example an AI with a hearing range of 20 WU will hear a "medium" sound at ~7 WU, but if the hearing range was increased to 40 WU, the AI would instead be able to hear a "medium" sound out to 14 WU.
+
+AI sharing a squad will update squadmates about the location of hostiles, sometimes even without dialoug. Things that can/will cause a target location update:
+- Seeing a target directly
+- hearing a target fire a non-silent weapon
+- hearing a projectile detonate (like grenades), this can sometimes be traced back to the target who threw them with the [sense_target](~style) flag, otherwise update target to the detonation point of the projectile itself
+- An ally shoots at a target, even if we have no line of sight on this target
+- Taking damage, even if we have no line of sight from who did the damage to us, unless it's a grenade; that requires [sense_target](~style), this is not limited to squads or tasks
+- Entering search mode
+- Prediction of target hiding can allow some updates based on predicting where the target may go when hiding, usually for only a few moments after losing contact when in search mode, requires [sense_target](~style)
+
 
 # Leadership
 
@@ -37,7 +54,7 @@ Pictured: From the AI globals section of the globals, we can see the various act
 Pictured: In this example, the brute shown has a scariness value of 4 and his carbine adds 5, versus 7 for the masterchief biped and 10 for the sniper rifle, resulting in the brute perceiving a scariness of 8 from his target
 {% /figure %}
 
-Scariness is calculated by taking the scare value of the AI's biped and adding the scariness of the weapon they are holding, and then comparing it against their targets biped + weapon. 
+Scariness is calculated by taking the scare value of the AI's biped and adding the scariness of the weapon they are holding, and then comparing it against their targets biped/character and their held weapon. 
 
 Should the resulting scariness favor the other party by a specified value in the [character](~) tag then certain AI behaviors may be triggered, such as fleeing for grunts or other behaviors like covering. 
 
@@ -58,9 +75,9 @@ AI set to the player team will never fall below combat status 3, otherwise the l
 | 4 | Searching for a target
 | 5 | Location of enemy known (unsure about this versus 6, also may apply if allies know where the enemy is but not this unit)
 | 6 | Location of enemy certain (unsure)
-| 7 | Enemy who can be seen (unsure about this versus 8, maybe applies to tasks that give AI magic sight)
-| 8 | Direct line-of-sight on a target
-| 9 | Someone in squad is taking fire from a target
+| 7 | Direct line-of-sight on a target
+| 8 | Target has direct line-of-sight on this AI or is *close* to the target
+| 9 | This AI is taking fire from a target or is *very close* to the target
 
 # Organization
 
@@ -76,4 +93,7 @@ An AI without a valid [objective and/or valid task](~objectives) will have a gre
 
 # Limitations
 
-AI cannot move while throwing grenades, but they can throw a grenade and then initiate a jump and finish throwing the grenade while airborne, AI cannot melee while moving, outside of the movement the animation itself provides, AI cannot shoot or melee while jumping (jumppack brute leaps are a type of jump).
+AI cannot move while throwing grenades, but they can throw a grenade and then initiate a leap and finish throwing the grenade while airborne. AI cannot melee while moving, outside of the movement the animation itself provides. 
+AI cannot shoot or melee while jumping (jumppack brute leaps are a type of jump).
+Information such as location of enemies is not passed between squads, even if they are right next to each other, however that information will be passed along if the squads share a task together.
+AI under normal circumstances do not use the melee damage assigned in [weapon](~) tags, instead they use the melee [damage](~damage_effect) assigned in the AI's [biped](~)

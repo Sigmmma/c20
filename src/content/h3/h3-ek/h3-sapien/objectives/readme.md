@@ -35,7 +35,10 @@ When changing the order of tasks, with a task selected hold cntrl and then use y
 
 ## Flags
 
-
+| Flag | Description
+|-------|----------
+| Suppress Combat | AI units with the "engage sync" flag enabled in their [style](~) tag will not engage targets unless attacked first, will watch and aim at targets however
+| DISABLE | Disables this task entirely
 
 ## Area types
 
