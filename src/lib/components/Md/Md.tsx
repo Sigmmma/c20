@@ -1,5 +1,5 @@
 import {createElement, Fragment, VNode} from "preact";
-import Markdoc, {RenderableTreeNodes, RenderableTreeNode} from "@markdoc/markdoc";
+import Markdoc, {RenderableTreeNodes, RenderableTreeNode, Tag} from "@markdoc/markdoc";
 import {parse, transform, MdSrc} from "../../markdown/markdown";
 import {useCtx} from "../Ctx/Ctx";
 import {useLocalize} from "../Locale/Locale";
@@ -31,7 +31,7 @@ export type MdProps = {
 function unwrapParagraph(nodes: RenderableTreeNode[], inline?: boolean): RenderableTreeNodes {
   if (nodes.length == 1 && inline) {
     const node = nodes[0];
-    return (!node || typeof(node) == "string") ? node : node.children ?? null;
+    return node && Tag.isTag(node) ? (node.children ?? null) : node;
   }
   return nodes;
 }
@@ -45,9 +45,9 @@ export default function Md(props: MdProps) {
     const {ast, frontmatter} = parse(props.src);
     content = transform(ast, ctx, lang, frontmatter);
   }
-  const contentToRender = (!content || typeof(content) == "string") ?
-    content :
-    unwrapParagraph(content.children, props.inline); //skip <article>
+  const contentToRender = content && Tag.isTag(content) ?
+    unwrapParagraph(content.children, props.inline) :  //skip <article>
+    content;
 
   const components = {
     Alert,

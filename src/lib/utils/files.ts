@@ -1,20 +1,16 @@
 import path from "path";
-import glob from "glob";
+// import glob from "glob";
 import yaml from "js-yaml";
 import fs from "fs";
+import {glob} from "node:fs/promises";
 import * as R from "ramda";
-import {type Lang} from "./localization";
 
 export async function findPaths(globPattern: string): Promise<string[]> {
-  return new Promise((resolve, reject) => {
-    glob(globPattern, (err, files) => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(files);
-      }
-    });
-  });
+  const results: string[] = [];
+  for await (const entry of glob(globPattern)) {
+    results.push(entry);
+  }
+  return results;
 }
 
 export async function loadYamlFile<T=any>(filePath: string): Promise<T> {

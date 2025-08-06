@@ -1,3 +1,5 @@
+@use "constants";
+
 //firefox can use scrollbar-color but it looks fine as-is
 //webkit scrollbars are ugly:
 *::-webkit-scrollbar {
@@ -20,8 +22,8 @@ html, body {
 body {
   color: var(--fg);
   background: var(--bg);
-  font-family: $font-family;
-  font-size: $font-size;
+  font-family: constants.$font-family;
+  font-size: constants.$font-size;
 }
 
 * {
@@ -97,7 +99,7 @@ a.header-anchor {
     content: '#';
     color: var(--fg-faded);
     opacity: 0.5;
-    transition: opacity $transition-time-interactive;
+    transition: opacity constants.$transition-time-interactive;
   }
   &:hover:after {
     opacity: 1;
@@ -112,7 +114,7 @@ h5 {font-size: 0.83em;}
 h6 {font-size: 0.75em;}
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $font-family-headers;
+  font-family: constants.$font-family-headers;
   color: var(--fg-strong);
   &:hover a.header-anchor, &.destination a.header-anchor {
     opacity: 1;
@@ -123,7 +125,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .destination {
-  transition: all $transition-time ease-in;
+  transition: all constants.$transition-time ease-in;
   position: relative;
   &::after {
     position: absolute;
@@ -162,14 +164,14 @@ blockquote {
   display: flow-root;
   font-style: italic;
   background: var(--bg-inset);
-  border-radius: $border-radius;
+  border-radius: constants.$border-radius;
   padding: 0 var(--padding-sm);
   margin-left: 0;
 }
 
 kbd {
-  font-family: $font-family-code;
-  font-size: $font-size-code;
+  font-family: constants.$font-family-code;
+  font-size: constants.$font-size-code;
   padding: 0 0.5em;
   background: var(--bg-inset);
   border-radius: 4px;
@@ -183,22 +185,22 @@ kbd {
   color: var(--fg-faded);
 }
 .content-tool {
-  background: $bg-tool;
+  background: constants.$bg-tool;
 }
 .content-tool-minor {
-  background: $bg-tool-minor;
+  background: constants.$bg-tool-minor;
 }
 .content-tag {
-  background: $bg-tag;
+  background: constants.$bg-tag;
 }
 .content-tag-minor {
-  background: $bg-tag-minor;
+  background: constants.$bg-tag-minor;
 }
 .content-tag-minor.field-unused {
   background: var(--bg);
 }
 .content-guide {
-  background: $bg-guide;
+  background: constants.$bg-guide;
 }
 
 :target {

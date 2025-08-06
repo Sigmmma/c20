@@ -89,7 +89,7 @@ Directly editing tags in memory is a fast way to preview changes, but using [Sta
 ## LM_Tool
 {% figure src="lm-time.jpg" %}
 LM_Tool outperforms legacy HEK Tool in lightmapping, but is slower than H1A Tool with `-noassert` enabled.
-{% /alert %}
+{% /figure %}
 **LM_Tool** by gbMichelle is a modified version of HEK [Tool](~h1-tool) which improves the speed of [lightmaps](~) generation (radiosity) by disabling some runtime debug checks. It can _only_ be used for radiosity; all other functions are disabled. See its [development thread](https://opencarnage.net/index.php?/topic/7751-lm_tool-a-version-of-tool-specifically-for-speeding-up-lightmaps/#comment-98219) for more history.
 
 The updated [H1A Tool](~h1-tool) supports a `-noassert` flag that, with its other lightmapping optimizations, greatly outperforms LM_Tool and is now the fastest lightmapping solution.

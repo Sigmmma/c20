@@ -1,4 +1,4 @@
-@import "../../../assets/constants";
+@use "../../../assets/constants";
 
 .site-nav {
   background: var(--bg-sidebar);
@@ -37,10 +37,10 @@
 
     .c20-logo {
       position: relative;
-      font-family: $font-family-headers;
+      font-family: constants.$font-family-headers;
       padding-left: 40px;
       line-height: 36px;
-      font-size: $font-size-logo;
+      font-size: constants.$font-size-logo;
       text-decoration: none;
       font-weight: bold;
       color: var(--fg);
@@ -132,7 +132,7 @@
       margin: 0;
       border: none;
       background: none;
-      border-radius: $border-radius;
+      border-radius: constants.$border-radius;
       box-shadow: none;
 
       &:hover {
@@ -142,9 +142,9 @@
 
     a {
       display: block;
-      border-radius: $border-radius;
+      border-radius: constants.$border-radius;
       padding: 4px 8px;
-      transition: padding $transition-time-interactive;
+      transition: padding constants.$transition-time-interactive;
       cursor: pointer;
       color: var(--fg);
 

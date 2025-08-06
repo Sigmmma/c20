@@ -1,5 +1,5 @@
 import gulp from "gulp";
-import del from "del";
+import {deleteAsync} from "del";
 import sass from "sass";
 import fs from "fs";
 import path from "path";
@@ -10,25 +10,20 @@ import esbuild from "esbuild";
 
 //the dist directory may contain outdated content, so start clean
 function clean() {
-  return del(paths.dist);
+  return deleteAsync(paths.dist);
 }
 
 //build the stylesheet from SASS
 function assetStyles() {
-  return new Promise((resolve, reject) => {
-    sass.render({file: paths.srcStyleEntry, outputStyle: "compressed"}, (err, res) => {
-      if (err) {
-        reject(err);
-      } else {
-        fs.mkdirSync(paths.distAssets, {recursive: true});
-        fs.writeFileSync(path.join(paths.distAssets, "style.css"), res.css, "utf8");
-        resolve(undefined);
-      }
-    });
+  return sass.compileAsync(paths.srcStyleEntry, {
+    style: "compressed",
+  }).then((res) => {
+    fs.mkdirSync(paths.distAssets, {recursive: true});
+    fs.writeFileSync(path.join(paths.distAssets, "style.css"), res.css, "utf8");
   });
 }
 
-function scriptBundle(watch: boolean, devMode: boolean) {
+function scriptBundle(devMode: boolean) {
   return function scriptBundle() {
     return esbuild.build({
       entryPoints: [paths.srcScriptEntry],
@@ -39,25 +34,19 @@ function scriptBundle(watch: boolean, devMode: boolean) {
       // todo: can we check what are our users actually using?
       // target: ["edge16", "chrome58", "firefox57", "safari11", "ios"],
       platform: "browser",
-      watch: watch ? {
-        onRebuild(error, result) {
-          if (error) console.error("JS build failed:", error);
-          else console.log("JS build succeeded:", result);
-        },
-      } : undefined,
     });
   }
 }
 
 //copies any static image or font assets over to the dist directory
 function staticAssets() {
-  return gulp.src(paths.srcStaticAssets)
+  return gulp.src(paths.srcStaticAssets, {encoding: false})
     .pipe(gulp.dest(paths.dist));
 }
 
 //any assets which come from our dependencies can be copied over too
 function vendorAssets() {
-  return gulp.src(paths.vendorAssets)
+  return gulp.src(paths.vendorAssets, {encoding: false})
     .pipe(gulp.dest(paths.distAssets));
 }
 
@@ -74,6 +63,7 @@ async function content() {
 function watchSources() {
   gulp.watch([paths.srcStaticAssets], staticAssets);
   gulp.watch([paths.srcStylesAny], assetStyles);
+  gulp.watch([paths.srcScriptsAny], scriptBundle(true));
   runServer(true);
 }
 
@@ -83,8 +73,8 @@ function runStaticServer() {
 
 //composite tasks
 const assets = gulp.parallel(staticAssets, assetStyles, vendorAssets);
-const buildAll = gulp.series(clean, gulp.parallel(assets, content, scriptBundle(false, false)));
-const dev = gulp.series(clean, assets, gulp.parallel(scriptBundle(true, true), watchSources));
+const buildAll = gulp.series(clean, gulp.parallel(assets, content, scriptBundle(false)));
+const dev = gulp.series(clean, assets, gulp.parallel(scriptBundle(true), watchSources));
 const buildAndServe = gulp.series(buildAll, runStaticServer);
 
 //tasks which can be invoked from CLI with `npx gulp <taskname>`

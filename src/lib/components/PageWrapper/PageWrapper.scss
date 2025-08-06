@@ -1,6 +1,6 @@
-@import "../../../assets/_constants.scss";
+@use "../../../assets/constants";
 
-@import "./Nav";
+@use "./Nav";
 
 .page-wrapper {
   display: flex;
@@ -21,7 +21,7 @@
     z-index: 200;
   }
 
-  @include mobile {
+  @include constants.mobile {
     overflow: hidden;
     position: relative;
     display: block;
@@ -34,7 +34,7 @@
       width: 100vw;
       height: calc(100vh - 55px);
       position: absolute;
-      transition: left $transition-time, width $transition-time;
+      transition: left constants.$transition-time, width constants.$transition-time;
     }
 
     .nav-bar {

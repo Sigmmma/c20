@@ -1,8 +1,8 @@
-@import "../../../assets/_constants.scss";
+@use "../../../assets/constants";
 
 .expander {
   border: 1px solid var(--border-color);
-  border-radius: $border-radius;
+  border-radius: constants.$border-radius;
   margin-bottom: var(--padding-md);
 
   summary {

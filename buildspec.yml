@@ -5,20 +5,13 @@ env:
 phases:
   install:
     runtime-versions:
-      nodejs: 14.x
+      nodejs: 24
     commands:
       - apt update
       - apt install -y ffmpeg
-      - cd /tmp/
-      - curl -OJL https://github.com/git-lfs/git-lfs/releases/download/v2.13.3/git-lfs-linux-amd64-v2.13.3.tar.gz
-      - tar xzf git-lfs-linux-amd64-v2.13.3.tar.gz
-      - ./install.sh
-      - mkdir -p /root/lfs
       - cd $CODEBUILD_SRC_DIR
   pre_build:
     commands:
-      - git config lfs.storage /root/lfs
-      - git lfs pull
       - npm ci
   build:
     commands:
@@ -31,5 +24,4 @@ phases:
 cache:
   paths:
     # paths which will be cached between builds
-    - '/root/lfs/**/*'
     - '/root/.npm/**/*'

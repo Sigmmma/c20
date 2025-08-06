@@ -1,4 +1,4 @@
-@import "../../../assets/constants";
+@use "../../../assets/constants";
 
 .toc.inline {
   ol, ul {
@@ -8,7 +8,7 @@
 }
 
 .toc.sidebar {
-  transition: opacity $transition-time-interactive;
+  transition: opacity constants.$transition-time-interactive;
   opacity: 0.5;
 
   &:hover {
@@ -32,9 +32,9 @@
 
   a {
     display: block;
-    border-radius: 0 $border-radius $border-radius 0;
+    border-radius: 0 constants.$border-radius constants.$border-radius 0;
     padding: 4px 8px;
-    transition: padding $transition-time-interactive;
+    transition: padding constants.$transition-time-interactive;
     cursor: pointer;
     color: var(--fg);
 
@@ -49,7 +49,7 @@
     background: var(--bg-overlay);
   }
 
-  @include mobile {
+  @include constants.mobile {
     opacity: 1.0;
 
     details {

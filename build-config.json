@@ -16,6 +16,7 @@
     "srcScriptEntry": "./src/assets/main.tsx",
     "srcStyleEntry": "./src/assets/style.scss",
     "srcStylesAny": "./src/**/*.scss",
+    "srcScriptsAny": "./src/**/*.(js|jsx|ts|tsx|json)",
     "vendorAssets": [
       "./node_modules/feather-icons/dist/feather-sprite.svg",
       "./node_modules/highlight.js/styles/night-owl.css",

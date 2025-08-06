@@ -1,15 +1,15 @@
-@import "_constants";
+@use "constants";
 
 .mobile-only {
   display: none;
-  @include mobile {
+  @include constants.mobile {
     display: unset;
   }
 }
 
 .tablet-only {
   display: none;
-  @include tablet {
+  @include constants.tablet {
     display: unset;
   }
 }
@@ -24,7 +24,7 @@
 //need to generalize this later
 .card {
   border: 1px solid var(--border-color);
-  border-radius: $border-radius;
+  border-radius: constants.$border-radius;
   background: var(--bg-overlay);
   display: flow-root;
   padding: var(--padding-md);

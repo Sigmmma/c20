@@ -67,7 +67,7 @@ const tags: Record<string, Schema> = {
     transform(node, config) {
       const {selectedIndex, id} = node.transformAttributes(config);
       const tabs = node.transformChildren(config)
-        .filter(child => child && typeof(child) !== "string" && child.name === "Tab")
+        .filter(child => child && Tag.isTag(child) && child.name === "Tab")
         .map((child: Tag) => ({
           label: child.attributes.label,
           body: child.children,

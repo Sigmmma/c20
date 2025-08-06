@@ -1,8 +1,8 @@
-@import "../../../assets/_constants.scss";
+@use "../../../assets/constants";
 
 .search-input {
   margin: 0;
-  transition: width $transition-time;
+  transition: width constants.$transition-time;
   width: 100%;
 
   &.nonempty {
@@ -15,7 +15,7 @@
 .search-results {
   margin-top: 0;
   background: var(--bg-overlay);
-  border-radius: 0 0 $border-radius $border-radius;
+  border-radius: 0 0 constants.$border-radius constants.$border-radius;
   border: 1px solid var(--border-color);
   border-top: none;
   display: flow-root;
@@ -48,7 +48,7 @@
     border-top: 1px solid var(--border-color);
 
     &.selected {
-      background: $bg-info;
+      background: constants.$bg-info;
     }
 
     a {

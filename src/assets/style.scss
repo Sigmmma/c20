@@ -1,4 +1,9 @@
-@import "_constants";
+@use "constants";
+@use "global";
+@use "forms";
+@use "tables";
+@use "utility";
+@use "../lib/components";
 
 @font-face {
   font-family: ConvectionRegular;
@@ -7,53 +12,35 @@
 }
 
 :root {
-  --bg: #{$bg-dark};
-  --fg: #{$fg-dark};
-  --fg-code: #{$fg-code-dark};
-  --fg-faded: #{$fg-faded-dark};
-  --fg-strong: #{$fg-strong-dark};
-  --bg-overlay: #{$bg-overlay-dark};
-  --bg-inset: #{$bg-inset-dark};
-  --bg-sidebar: #{$bg-sidebar-dark};
-  --border-color: #{$border-color-dark};
-  --fg-link: #{$fg-link-dark};
-  --padding-xl: #{$padding-xl-desktop};
-  --padding-lg: #{$padding-lg-desktop};
-  --padding-md: #{$padding-md-desktop};
-  --padding-sm: #{$padding-sm-desktop};
+  --bg: #{constants.$bg-dark};
+  --fg: #{constants.$fg-dark};
+  --fg-code: #{constants.$fg-code-dark};
+  --fg-faded: #{constants.$fg-faded-dark};
+  --fg-strong: #{constants.$fg-strong-dark};
+  --bg-overlay: #{constants.$bg-overlay-dark};
+  --bg-inset: #{constants.$bg-inset-dark};
+  --bg-sidebar: #{constants.$bg-sidebar-dark};
+  --border-color: #{constants.$border-color-dark};
+  --fg-link: #{constants.$fg-link-dark};
+  --padding-xl: #{constants.$padding-xl-desktop};
+  --padding-lg: #{constants.$padding-lg-desktop};
+  --padding-md: #{constants.$padding-md-desktop};
+  --padding-sm: #{constants.$padding-sm-desktop};
 }
 
 html[data-theme="light"] {
-  --bg: #{$bg-light};
-  --fg: #{$fg-light};
-  --fg-code: #{$fg-code-light};
-  --fg-faded: #{$fg-faded-light};
-  --fg-strong: #{$fg-strong-light};
-  --bg-overlay: #{$bg-overlay-light};
-  --bg-inset: #{$bg-inset-light};
-  --bg-sidebar: #{$bg-sidebar-light};
-  --border-color: #{$border-color-light};
-  --fg-link: #{$fg-link-light};
+  --bg: #{constants.$bg-light};
+  --fg: #{constants.$fg-light};
+  --fg-code: #{constants.$fg-code-light};
+  --fg-faded: #{constants.$fg-faded-light};
+  --fg-strong: #{constants.$fg-strong-light};
+  --bg-overlay: #{constants.$bg-overlay-light};
+  --bg-inset: #{constants.$bg-inset-light};
+  --bg-sidebar: #{constants.$bg-sidebar-light};
+  --border-color: #{constants.$border-color-light};
+  --fg-link: #{constants.$fg-link-light};
 
   .c20-logo::before {
     filter: brightness(0%);
   }
 }
-
-@import "_global";
-@import "_forms";
-@import "_tables";
-@import "_utility";
-@import "../lib/components/Alert/Alert.scss";
-@import "../lib/components/Tabs/Tabs.scss";
-@import "../lib/components/Expander/Expander.scss";
-@import "../lib/components/Breadcrumbs/Breadcrumbs.scss";
-@import "../lib/components/ArticleMain/ArticleMain.scss";
-@import "../lib/components/ArticleBody/ArticleBody.scss";
-@import "../lib/components/ArticleFooter/ArticleFooter.scss";
-@import "../lib/components/TableOfContents/TableOfContents.scss";
-@import "../lib/components/UnitConverter/UnitConverter.scss";
-@import "../lib/components/Icon/Icon.scss";
-@import "../lib/components/Search/Search.scss";
-@import "../lib/components/CodeBlock/CodeBlock.scss";
-@import "../lib/components/PageWrapper/PageWrapper.scss";

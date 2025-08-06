@@ -31,8 +31,8 @@ export default function runServer(onDemand: boolean) {
   if (onDemand) {
     app.use(express.static(buildOpts.contentDir));
     
-    app.get("/:path([-/_a-zA-Z0-9]+).svg", async (req, res, next) => {
-      const dotFilePath = path.join(buildOpts.contentDir, `${req.params.path}.dot`);
+    app.get("/*svgpath.svg", async (req, res, next) => {
+      const dotFilePath = path.join(buildOpts.contentDir, req.path.replace(".svg", ".dot"));
       console.log(`Rendering dot file ${dotFilePath}`);
       const vizSrc = await fs.promises.readFile(dotFilePath, "utf8");
       const svg = await renderViz(vizSrc);
@@ -65,10 +65,8 @@ export default function runServer(onDemand: boolean) {
       res.send(json);
     });
     
-    app.get("/:page([-/_a-zA-Z0-9]+)?", async (req, res, next) => {
-      const pageId = req.params.page ?
-        `/${req.params.page.endsWith("/") ? req.params.page.replace(/\/+$/, "") : req.params.page}` :
-        "/";
+    app.use(async (req, res, next) => {
+      const pageId = req.path === "/" ? "/" : `${req.path.endsWith("/") ? req.path.replace(/\/+$/, "") : req.path}`;;
       
       console.log(`Rendering ${pageId}`);
       const baseDir = getPageBaseDir(pageId, buildOpts);
@@ -107,12 +105,10 @@ export default function runServer(onDemand: boolean) {
     });
   }
 
-  app.get("/:page([-/_a-zA-Z0-9]+)?", async (req, res, next) => {
+  app.use(async (req, res, next) => {
     const parsedPages = await loadParsedPages(buildOpts.contentDir);
     const redirects = buildRedirects(parsedPages);
-    const pageId = req.params.page ?
-      `/${req.params.page.endsWith("/") ? req.params.page.replace(/\/+$/, "") : req.params.page}` :
-      "/";
+    const pageId = req.path === "/" ? "/" : `${req.path.endsWith("/") ? req.path.replace(/\/+$/, "") : req.path}`;
     const redirect = redirects[pageId];
     if (redirect) {
       console.log(`Using redirect from '${pageId}' to ${redirect}`);

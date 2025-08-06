@@ -1,27 +1,30 @@
+
+@use "sass:color";
+
 // $bg-dark: #23292f;
 // $bg-dark: #051618;
 // $bg-dark: #0e1d1f;
 $bg-dark: #0f1718;
 $bg-dark-mix: #0e1d1f;
-$fg-dark:  mix($bg-dark-mix, #fff, 35%);
+$fg-dark:  color.mix($bg-dark-mix, #fff, 35%);
 $fg-code-dark: #60c99d;
 $fg-faded-dark: #5B858B;
-$fg-strong-dark: mix($bg-dark-mix, #fff, 25%);
-$bg-overlay-dark: lighten($bg-dark-mix, 5%);
+$fg-strong-dark: color.mix($bg-dark-mix, #fff, 25%);
+$bg-overlay-dark: color.adjust($bg-dark-mix, $lightness: 5%, $space: hsl);
 $bg-inset-dark: rgba(#000, 0.2);
-$bg-sidebar-dark: darken($bg-dark-mix, 5%);
-$border-color-dark: lighten($bg-dark-mix, 10%);
+$bg-sidebar-dark: color.adjust($bg-dark-mix, $lightness: -5%, $space: hsl);
+$border-color-dark: color.adjust($bg-dark-mix, $lightness: 10%, $space: hsl);
 $fg-link-dark: #16A3B6;
 
 $bg-light: #eeeeeb;
 $fg-light: #111;
 $fg-code-light: #005934;
-$fg-faded-light: mix($fg-light, $bg-light, 60%);
-$fg-strong-light: darken($fg-light, 35%);
-$bg-overlay-light: lighten($bg-light, 4%);
+$fg-faded-light: color.mix($fg-light, $bg-light, 60%);
+$fg-strong-light: color.adjust($fg-light, $lightness: -35%, $space: hsl);
+$bg-overlay-light: color.adjust($bg-light, $lightness: 4%, $space: hsl);
 $bg-inset-light: rgba(#000, 0.05);
-$bg-sidebar-light: darken($bg-light, 5%);
-$border-color-light: darken($bg-light, 15%);
+$bg-sidebar-light: color.adjust($bg-light, $lightness: -5%, $space: hsl);
+$border-color-light: color.adjust($bg-light, $lightness: -15%, $space: hsl);
 $fg-link-light: #0038bb;
 
 $bg-info: rgba(105, 107, 255, 0.2);

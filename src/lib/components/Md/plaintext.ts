@@ -1,4 +1,4 @@
-import {type RenderableTreeNode} from "@markdoc/markdoc";
+import {Tag, type RenderableTreeNode} from "@markdoc/markdoc";
 import {type RenderContext} from "../Ctx/Ctx";
 import {type DataTableProps, renderPlaintext as renderDataTablePlaintext} from "../DataTable/DataTable";
 import {type StructTableProps, renderPlaintext as renderStructTablePlaintext} from "../StructTable/StructTable";
@@ -52,14 +52,14 @@ const renderers: Record<string, Renderer> = {
 function render(node: RenderableTreeNode, ctx: RenderContext | undefined, lang: Lang, depth: number): string {
   if (!node) {
     return "";
-  } else if (typeof node == "object") {
+  } else if (Tag.isTag(node)) {
     const {name, attributes = {}, children = []} = node;
     const renderer = renderers[name] ?? (children => children);
     return renderer(children.map(c => render(c, ctx, lang, depth + 1)).join(""), attributes, ctx, lang) ?? "";
   } else if (Array.isArray(node)) {
     return node.map(n => render(n, ctx, lang, depth + 1)).join("\n");
   }
-  return node;
+  return String(node);
 }
 
 export default function renderPlaintext(ctx: RenderContext | undefined, lang: Lang, node?: RenderableTreeNode): string | undefined {

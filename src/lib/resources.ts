@@ -3,7 +3,6 @@ import path from "path";
 import fs from "fs";
 import Viz from "@viz-js/viz";
 import {exec} from "child_process";
-import vizRenderOpts from "viz.js/full.render.js";
 import {type BuildOpts} from "../build";
 import {getPageBaseDir} from "./content/content-files";
 

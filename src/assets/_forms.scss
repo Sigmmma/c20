@@ -1,9 +1,9 @@
-@import "_constants";
+@use "constants";
 
 button, a.button {
   background: var(--bg-overlay);
   color: var(--fg);
-  border-radius: $border-radius;
+  border-radius: constants.$border-radius;
   border: 1px solid var(--border-color);;
   padding: var(--padding-sm) 1em;
   margin: var(--padding-sm) 0;
@@ -47,24 +47,24 @@ progress, meter {
 input {
   margin: var(--padding-sm) 0;
   display: block;
-  border-radius: $border-radius;
+  border-radius: constants.$border-radius;
   border: 1px solid var(--border-color);;
   background: var(--bg-inset);
   padding: var(--padding-sm);
-  font-size: $font-size;
+  font-size: constants.$font-size;
   color: var(--fg);
   box-shadow: 0px 2px 2px rgba(black, 0.1) inset;
 
   &:focus {
     outline-offset: -2px;
     outline-width: 2px;
-    box-shadow: 0px 0px var(--padding-sm) rgba($bg-info, 0.6) inset;
+    box-shadow: 0px 0px var(--padding-sm) rgba(constants.$bg-info, 0.6) inset;
   }
 
   &:disabled {
     cursor: not-allowed;
     background: var(--bg);
-    transition: background $transition-time;
+    transition: background constants.$transition-time;
     &:hover {
       background: var(--bg-overlay);
     }

@@ -1,4 +1,4 @@
-import {type RenderableTreeNode} from "@markdoc/markdoc";
+import {Tag, type RenderableTreeNode} from "@markdoc/markdoc";
 import {type RenderContext} from "../Ctx/Ctx";
 import {headings as tagStructHeadings, TagStructProps} from "../StructTable/TagStruct";
 import {headings as structTableHeadings, StructTableProps} from "../StructTable/StructTable";
@@ -53,7 +53,7 @@ export default function findHeadings(ctx: RenderContext, node?: RenderableTreeNo
 function find(node: RenderableTreeNode, ctx: RenderContext, results: FoundHeading[]) {
   if (!node) {
     return;
-  } else if (typeof node == "object") {
+  } else if (Tag.isTag(node)) {
     const {name, attributes = {}, children = []} = node;
     const finder = finders[name];
     if (finder) finder(children, attributes, results, ctx);

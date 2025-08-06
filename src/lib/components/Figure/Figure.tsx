@@ -15,7 +15,7 @@ export default function Figure(props: FigureProps) {
       {props.src.endsWith(".mp4") ? (() => {
         const poster = props.src.replace(".mp4", ".thumb_1.jpg");
         return (
-          <video alt={props.alt} controls preload={ctx?.noThumbs ? "auto" : "none"} poster={ctx?.noThumbs ? undefined : poster}>
+          <video aria-label={props.alt} controls preload={ctx?.noThumbs ? "auto" : "none"} poster={ctx?.noThumbs ? undefined : poster}>
             <source src={props.src} type="video/mp4"/>
           </video>
         );

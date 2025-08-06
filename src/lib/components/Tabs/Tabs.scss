@@ -1,4 +1,4 @@
-@import "../../../assets/_constants.scss";
+@use "../../../assets/constants";
 
 .tabs {
   input[type="radio"] {
@@ -13,12 +13,12 @@
     border-right-width: 0;
     background: var(--bg-overlay);
 
-    @include mobile {
+    @include constants.mobile {
       display: block;
       border-right-width: 1px;
       
       &:first-of-type {
-        border-top-right-radius: $border-radius;
+        border-top-right-radius: constants.$border-radius;
       }
   
       &:last-of-type {
@@ -27,24 +27,24 @@
     }
 
     &:first-of-type {
-      border-top-left-radius: $border-radius;
+      border-top-left-radius: constants.$border-radius;
     }
 
     &:last-of-type {
-      border-top-right-radius: $border-radius;
+      border-top-right-radius: constants.$border-radius;
       border-right-width: 1px;
     }
   }
 
   .tab-body {
     border: 1px solid var(--border-color);
-    border-radius: 0 $border-radius $border-radius $border-radius;
+    border-radius: 0 constants.$border-radius constants.$border-radius constants.$border-radius;
     padding: 0 var(--padding-md);
     margin-bottom: var(--padding-md);
     display: none;
 
-    @include mobile {
-      border-radius: 0 0 $border-radius $border-radius;
+    @include constants.mobile {
+      border-radius: 0 0 constants.$border-radius constants.$border-radius;
     }
   }
 

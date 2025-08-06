@@ -26,6 +26,7 @@ hljs.registerLanguage("md", markdoc);
 hljs.registerLanguage("cmd", cmd);
 
 hljs.registerLanguage("yml", yamlLang);
+hljs.registerLanguage("c", clikeLang);
 hljs.registerLanguage("hlsl", clikeLang);
 hljs.registerLanguage("plaintext", plaintextLang);
 hljs.registerLanguage("c#", cSharpLang);
@@ -46,7 +47,7 @@ export default function highlight(code: string, language?: string) {
     language = "plaintext";
   }
   //without trim, the console lang goes into an endless loop :D
-  return hljs.highlight(language, code.trim()).value;
+  return hljs.highlight(code.trim(), {language}).value;
 };
 
 export function getSupportedLanguages(): string[] {

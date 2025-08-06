@@ -62,8 +62,6 @@ Firstly, a page requires a `readme.md` file for its body content and metadata. T
 * `src/content/h1/guides/my-cool-tutorial/readme.md`
 * `src/content/h1/tags/shader/shader_transparent_chicago/readme.md`
 
-You can also create a `readme_es.md` if you want to translate a page to Spanish, for example.
-
 These files contain the main body content of each page and are where most content will be written. The following sections will describe how to write it.
 
 ## Page metadata
@@ -156,7 +154,7 @@ redirects:
 ```
 
 ## Markdown basics
-After the metadata is the main body of the page, which we write in Markdown format. You may be familiar with basic forms of it in Discord or Reddit, but c20 uses a more powerful version with custom extensions tailored to our needs. You can read more about it [here][mdbasic].
+After the metadata is the main body of the page, which we write in Markdown format. You may be familiar with basic forms of it in Discord or Reddit, but c20 uses a version with custom extensions tailored to our needs. See [markdown basics][mdbasic] to get familiar.
 
 Paragraphs should be written as single lines of text (enable word wrap in your text editor), and separate each paragraph with an empty line. You can make text italic by surrounding it with `*` or bold with `**`, for example: `**this is important!**`. We do not support inline HTML in our Markdown files.
 

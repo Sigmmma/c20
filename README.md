@@ -9,14 +9,14 @@ This repo contains the source content and build scripts for the Reclaimers Libra
 ## Contributing
 The library is not yet directly editable online, but there are still various paths to contribute:
 
-1. Submitting tips in **#wiki-dump** in [our Discord](https://discord.reclaimers.net) or as [GitHub issues](https://github.com/Sigmmma/c20/issues), for other editors to add.
+1. Easiest: Submitting tips in **#wiki-dump** in [our Discord](https://discord.reclaimers.net) or as [GitHub issues](https://github.com/Sigmmma/c20/issues), for other editors to add.
 2. Submitting small edits as pull requests via GitHub.
 3. Forking the project, developing it locally with previews, and submitting larger content pull requests.
 
-Content is written in a combination of [Markdoc-flavoured markdown](https://markdoc.dev) and YAML files for structured data like tag layouts. For more information, see the [Contributing page](https://c20.reclaimers.net/contributing).
+Content is written in a combination of Markdown and YAML files for structured data like tag layouts. For more information, see the [Contributing page](https://c20.reclaimers.net/contributing).
 
 ## Development
-If you intend to make code changes to c20, or want to write larger content additions with previews, you can fork and clone the repo locally with [Git](https://git-scm.com/downloads). You'll need [Node.js](https://nodejs.org/en/) installed to run the site locally. If you're unfamiliar with Git and command line usage, you probably want to stick to one of the other contributing paths.
+If you intend to make code changes to c20, or want to write larger content additions with previews, you can fork and clone the repo locally with [Git](https://git-scm.com/downloads). You'll need [Node.js 22+](https://nodejs.org/en/) installed to run the site locally. If you're unfamiliar with Git and command line usage, you probably want to stick to one of the other contributing paths.
 
 Once those are installed, clone the project and run these shell commands to get the site running locally:
 

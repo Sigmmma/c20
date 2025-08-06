@@ -1,11 +1,11 @@
-@import "../../../assets/_constants.scss";
+@use "../../../assets/constants";
 
 pre, code {
   color: var(--fg-code);
-  font-family: $font-family-code;
-  font-size: $font-size-code;
+  font-family: constants.$font-family-code;
+  font-size: constants.$font-size-code;
   background: var(--bg-inset);
-  border-radius: $border-radius;
+  border-radius: constants.$border-radius;
   font-variant-ligatures: none; //stops Fira Code from turning != etc into ligatures
 }
 
@@ -14,29 +14,29 @@ code {
 
   &.language-console > .hljs-console-line > .hljs-name:first-child:before {
     content: "halo( ";
-    transition: opacity $transition-time;
+    transition: opacity constants.$transition-time;
     color: fuchsia;
   }
 
   &.language-consoleh1a > .hljs-console-line > .hljs-name:first-child:before {
     content: "h1( ";
-    transition: opacity $transition-time;
+    transition: opacity constants.$transition-time;
     color: fuchsia;
   }
 
   &.language-consoleh2a > .hljs-console-line > .hljs-name:first-child:before {
     content: "halo( ";
-    transition: opacity $transition-time;
+    transition: opacity constants.$transition-time;
     color: fuchsia;
   }
 
   &.language-consoleh3 > .hljs-console-line > .hljs-name:first-child:before {
     content: "halo( ";
-    transition: opacity $transition-time;
+    transition: opacity constants.$transition-time;
     color: fuchsia;
   }
 
-  @include mobile {
+  @include constants.mobile {
     word-break: break-all;
   }
 

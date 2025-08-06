@@ -1,4 +1,4 @@
-@import "_constants";
+@use "constants";
 
 .table-wrapper {
   overflow-x: auto;
@@ -14,7 +14,7 @@
   gap: var(--padding-sm);
   align-items: center;
 
-  @include mobile {
+  @include constants.mobile {
     flex-direction: column;
     align-items: baseline;
   }
@@ -65,18 +65,18 @@ table {
 table.type-def {
   background: var(--bg);
   box-shadow: none;
-  transition: box-shadow $transition-time;
+  transition: box-shadow constants.$transition-time;
 
   & {
     margin-bottom: 0;
   }
 
   tr.field-type-TagDependency {
-    background: $bg-tag-minor;
+    background: constants.$bg-tag-minor;
   }
 
   tr.field-type-ptr32, tr.field-type-ptr64, tr.field-type-TagDataOffset {
-    background: $bg-info;
+    background: constants.$bg-info;
   }
 
   tr.field-type-Block {
@@ -87,7 +87,7 @@ table.type-def {
   }
 
   & &:hover {
-    box-shadow: 0 0 0 2px rgba($logo-color, 0.35);
+    box-shadow: 0 0 0 2px rgba(constants.$logo-color, 0.35);
   }
 
   .embedded-type {
@@ -128,7 +128,7 @@ table.type-def {
 
 .field-meta {
   display: inline-block;
-  border-radius: $border-radius;
+  border-radius: constants.$border-radius;
   border: 1px solid var(--fg);
   padding: 0 0.2em;
 }
