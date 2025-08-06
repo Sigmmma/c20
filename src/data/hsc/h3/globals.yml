@@ -2345,6 +2345,8 @@ external_globals:
         ```hsc
         (debug_objects_vehicle_physics [boolean])
         ```
+
+        When enabled alongside "debug_objects", will display friction point data and gear system data for vehicles
   - slug: debug_objects_mass
     info:
       en: |-
@@ -3551,6 +3553,8 @@ external_globals:
         ```hsc
         (ai_render_all_actors [boolean])
         ```
+
+        Enables rendering of AI debug information for all AI units
   - slug: ai_render_inactive_actors
     info:
       en: |-
@@ -4373,6 +4377,8 @@ external_globals:
         ```hsc
         (ai_render_combat_status [boolean])
         ```
+
+        Displays the combat status value of AI units, needs "ai_render_all_actors" enabled
   - slug: ai_render_decisions
     info:
       en: |-
@@ -4421,6 +4427,8 @@ external_globals:
         ```hsc
         (ai_render_tracked_props [boolean])
         ```
+
+        When enabled with "ai_render_all_actors", displays target data of AI units, such as the scariness and awareness of targets
   - slug: ai_render_tracked_props_all
     info:
       en: |-

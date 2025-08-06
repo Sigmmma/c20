@@ -28,25 +28,25 @@ These are general purpose flags that change the behavior of the weapon, more spe
 |-------|----------
 | must be readied | Prevents weapon from being used, attempting to attack with weapon will force drop it.
 | doesn't count towards maximum | Allows weapon to become a third or fourth weapon for the player
-| aim assists only when zoomed | Disables bullet magnetism and red reticle when unzoomed
+| aim assists only when zoomed | Disables bullet magnetism, red reticle and aim magnetism when unzoomed
 | prevents grenade throwing | Prevents grenade throwing while weapon is equiped and held, unknown else behavior
 | prevents melee attack | Disables melee attacks with weapon
-| detonates when dropped | When this weapon is not being held by a unit or model it explodes, uses the parent [item](~) tag for detonation values and references
+| detonates when dropped | When this weapon is not being held by a [unit](~) or model it explodes, uses the parent [item](~) tag for detonation values and references
 | cannot fire at max age | Causes weapon to be unable to be fired once it reaches max age
 | secondary trigger overrides grenades | If the secondary trigger key is also bound to grenade throw, this flag forces no grenade throw
-| support weapon | Removes grenade and equipment chud icons, causes weapon to be dropped when a melee attack is performed and disables grenade throwing
-| AIs use melee damage | Causes AI characters to use the melee damage of the weapon instead of their biped melee damage value
+| support weapon | Causes weapon to be dropped when a melee attack is performed and disables grenade throwing
+| AIs use melee damage | Causes [AI](~) to use the melee damage of the weapon instead of their biped melee damage value
 | forces no binoculars | Disables binoculars on weapon, binoculars are separate from weapon zoom
 | loop fp firing animation | Unknown
 | prevents crouching | Prevents players from crouching while this weapon is equipped, not applicable to AI
-| cannot fire while boosting | Weapon is not allowed to fire while unit is boosting, used for weapons on vehicles with a boost
+| cannot fire while boosting | Weapon is not allowed to fire while unit is boosting, used for weapons on [vehicles](~vehicle) with a boost
 | use empty melee on empty | Used on melee weapons to force empty melee animation when weapon has reached max age
 | uses 3rd person camera | Forces third person camera when weapon is equipped
 | can be dual wielded | Allows this weapon to be dual wielded with other weapons with this flag
-| can only be dual wielded | Weapon can only be picked up when holding another dual wield weapon to duel wield with
+| can only be dual wielded | Weapon can *only* be picked up when holding another dual wield weapon to duel wield with
 | melee only | Weapon becomes a melee weapon, primary trigger becomes melee attack
 | can't fire if parent dead | Unknown/Needs additional research
-| weapon ages with each kill | Seems to apply to melee weapons only, causes age to be increased when killing an enemy
+| weapon ages with each kill | Seems to apply to melee weapons only, causes age to be incurred when killing an enemy
 | weapon uses old dual fire error code | When dual wielding and firing a single weapon, use single weapon error value, without flag means use dual wield error value regardless of firing both weapons at the same time or not
 | allows unaimed lunge | Allows melee weapons to play lunge melee animation even when not in range of a target to lunge at
 | cannot be used by player | Weapon cannot be picked up by player, if held is dropped
@@ -55,7 +55,7 @@ These are general purpose flags that change the behavior of the weapon, more spe
 
 | Secondary flags | Description
 |-------|----------
-| magnetizes only when zoomed | Disables aim assist when unzoomed
+| magnetizes only when zoomed | Disables aim magnetism when unzoomed
 | force enable equipment tossing | Unknown/Needs additional research
 | non- lunge melee dash disabled | Disables lunge movement when enacting a melee on a target
 
@@ -446,7 +446,7 @@ When using the __fire recovery time__ field in the weapons barrel block, you are
 
 ## Prediction and noise
 
-Defines network and noise properties for the current barrel.
+Defines network and noise properties for the current barrel. Sound properties seem to not be a static value but instead are relative to the AI's hearing distance value in the [character](~) tag.
 
 {% alert type="danger" %}
 Prediction properties effect networking for non-host players, if set up incorrectly non-host players' weapons will not work correctly
@@ -460,8 +460,8 @@ Prediction properties effect networking for non-host players, if set up incorrec
 
 | Firing noise | Description
 |-------|----------
-| silent | Unknown, sound is silent to AI, the lowest sound level
-| medium | Unknown, sound is medium loudness to AI
+| silent | Needs additional research, sound is silent to AI, the lowest sound level
+| medium | Needs additional research, this sound is heard at 35% of the AI's hearing distance
 | loud | Unknown, sound is loud to AI
 | shout | Unknown, sound is shout loudness to AI, the highest sound level
 | quiet | Unknown, sound is quiet to AI
