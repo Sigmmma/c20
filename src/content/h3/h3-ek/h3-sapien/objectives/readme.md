@@ -33,12 +33,51 @@ Tasks represent the actual orders the AI is given, for example, telling the AI w
 
 When changing the order of tasks, with a task selected hold cntrl and then use your arrow keys to move the task, left and right may be used to nest and un-nest tasks within parent tasks (child tasks will have higher priority than parent tasks).
 
-## Flags
+| Task color/text color | Description
+|-------|----------
+| Red overlay | Task is using the 'invalid' flag
+| Light grey overlay | Task is using the 'single use' flag
+| Dark grey overlay | Task is using the 'gate' flag
+| Green outline | Task is using the 'LATCH ON' flag
+| Red outline | Task is using the 'LATCH OFF' flag
+| Red task name | Task is currently invalid due to conditions not being met, or the condition script failing to compile
+| Blue condition text | Condition script has been edited but not yet compiled
+| Red condition text | Condition script is invalid, needs to be corrected
+
+## Flags and inhibitors
 
 | Flag | Description
 |-------|----------
+| LATCH ON | Once this task's conditions are met, this task will stay enabled and will not disable, even if the conditions are not met
+| LATCH OFF | Once this task's conditions are no longer met, this task will disable and will not re-enable, even if the conditions are met
+| Gate | Task is marked as invalid to AI, AI will never enter this task, good option to use with parent tasks so only the children are open to AI
+| Single Use | Once this task has been emptied of all AI after being entered, this task disables and stays disabled
 | Suppress Combat | AI units with the "engage sync" flag enabled in their [style](~) tag will not engage targets unless attacked first, will watch and aim at targets however
+| Active Camo | AI who enter this task become cloaked, and will not decloak unless they exit the task or die
+| Blind |
+| Deaf |
+| Braindead |
+| Magic Player Sight | Any AI who enter this task will be given the ability to see the player through all walls, seems to have a range limit to be activated, but once activated does not deactivate
 | DISABLE | Disables this task entirely
+
+| Groups | Description
+|-------|----------
+| Cover  | Prevents AI from initiaing cover behavior when inside this task
+| Retreat |
+| Vehicles |
+| Grenades | Prevents AI from throwing grenades when inside this task
+| Berserk | Prevents AI from initiating berserk behavior when inside this task, does not prevent melee or melee charge behavior
+| Equipment |
+| Pureform Ranged |
+| Pureform Tank |
+| Pureform Stalker |
+
+| Difficulty | Description
+|-------|----------
+| Easy | Disables task on easy
+| Normal | Disables task on normal
+| Heroic | Disables task on heroic
+| Legendary | Disables task on legndary
 
 ## Area types
 

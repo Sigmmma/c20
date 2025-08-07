@@ -3554,7 +3554,7 @@ external_globals:
         (ai_render_all_actors [boolean])
         ```
 
-        Enables rendering of AI debug information for all AI units
+        Enables rendering of AI debug information for all AI units, displays current firing points in use by AI
   - slug: ai_render_inactive_actors
     info:
       en: |-
@@ -4359,6 +4359,8 @@ external_globals:
         ```hsc
         (ai_render_behavior_stack [boolean])
         ```
+
+        When used with 'ai_render_all_actors', displays the current part of the behavior tree the AI is currently using
   - slug: ai_render_behavior_stack_all
     info:
       en: |-
@@ -4391,6 +4393,8 @@ external_globals:
         ```hsc
         (ai_render_decisions_all [boolean])
         ```
+
+        Appears to perform the same function as "ai_render_behavior_stack", but organized horizontally instead of vertically
   - slug: ai_render_command_scripts
     info:
       en: |-
@@ -4415,6 +4419,8 @@ external_globals:
         ```hsc
         (ai_debug_perception_data [boolean])
         ```
+
+        Renders game data about the number of props being registered by AI units, both calls about unique props and about the same prop from multiple AI units, props include players, squads, bodies and vehicles
   - slug: ai_debug_combat_status
     info:
       en: |-
@@ -4428,7 +4434,7 @@ external_globals:
         (ai_render_tracked_props [boolean])
         ```
 
-        When enabled with "ai_render_all_actors", displays target data of AI units, such as the scariness and awareness of targets
+        When enabled with "ai_render_all_actors", displays target data of AI units, such as the scariness, importance and visual clarity of their targets
   - slug: ai_render_tracked_props_all
     info:
       en: |-
