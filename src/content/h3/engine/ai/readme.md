@@ -33,6 +33,12 @@ AI sharing a squad will update squadmates about the location of hostiles, someti
 - Entering search mode
 - Prediction of target hiding can allow some updates based on predicting where the target may go when hiding, usually for only a few moments after losing contact when in search mode, requires [sense_target](~style)
 
+AI also have the ability to track multiple items or targets at once, it appears the limits are as follows:
+- Each task can track up to 20 props at once
+- Each AI unit can track up to 20 props at once
+- Each AI unit can track up to 4 targets at once
+Props appear to consist of vehicles, units, grenades and projectiles
+So if you have an encounter with say, 2 dummy bipeds and 2 empty turrets, and then you spawned in two squads of two units each, each in a different task; you would end up with 8 props, 16 prop references and 8 target tracks.
 
 # Leadership
 

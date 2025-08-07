@@ -196,8 +196,8 @@ This section contains a mix-match of various properties with various effects.
 | weapon power-off time | real | When the power key is used, this value determines how long the "power" function takes to fully turn of"
 | weapon power-on effect | [sound](~) / [effect](~) | The sound or effect played on the weapon when switching the power on using the power key
 | weapon power-off effect | [sound](~) / [effect](~) | The sound or effect played on the weapon when switching the power off using the power key
-| age heat recovery penalty | real | A value from that represent how much of the weapons heat recovery value lost as the weapon gains age, includes overheat and non-overheat heat recovery, unknown parameters
-| age rate of fire penalty | real | A value that represent how much of the weapons rate of fire lost as the weapon gains age, unknown parameters
+| age heat recovery penalty | real | A value that represent how much of the weapons heat recovery value lost as the weapon gains age, includes overheat and non-overheat heat recovery, a value of 1 means the heat loss is halved, 3 is quartered
+| age rate of fire penalty | real | A value that represent how much of the weapons rate of fire lost as the weapon gains age, a value of 1 means the final rate of fire is halved, 3 is quartered
 | age misfire start | real | A value from 0 to 1 that represents the age value a weapon must reach to begin misfiring
 | age misfire chance | real | A value from 0 to 1 that represents the chance a weapon can misfire once it has passed the "age misfire start" value
 | pickup sound | [sound](~) | Sound played on weapon when picked up
@@ -321,7 +321,7 @@ First entry into this block becomes the primary trigger, second entry becomes th
 |-------|----------
 | spew |When trigger is pressed the weapon will continuously fire the barrel, under normal circumstances will fire in bursts of 2
 | latch | When pressed the barrel is fired and then halts until the trigger is let go and repressed
-| latch-autofire | Functions like latch until the trigger is held down for the period of time specified in **autofire time**, then begins charging and will fire once the trigger is released
+| latch-autofire | Functions like latch until the trigger is held down for the period of time specified in **autofire time**, then begins charging and will fire once the trigger is released, forces plasma tracking to only enable on targets who are currently shielded, is also linked to the plasma track widget flag in the weapon [interface](~chud_definition) tag
 | charge | Appears to function similar to latch-autofire, but better suited to weapons with a single barrel for charging behavior only
 | latch-zoom | Same as latch but allows a second barrel to be used when the weapon is zoomed
 | latch-rocketlauncher | Same as latch but is needed to also allow target locking onto human tracked targets by holding the trigger on the target and then releasing the trigger to fire once locked on
