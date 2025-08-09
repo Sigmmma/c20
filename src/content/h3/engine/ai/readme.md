@@ -37,8 +37,8 @@ AI also have the ability to track multiple items or targets at once, it appears 
 - Each task can track up to 20 props at once
 - Each AI unit can track up to 20 props at once
 - Each AI unit can track up to 4 targets at once
-Props appear to consist of vehicles, units, grenades and projectiles
-So if you have an encounter with say, 2 dummy bipeds and 2 empty turrets, and then you spawned in two squads of two units each, each in a different task; you would end up with 8 props, 16 prop references and 8 target tracks.
+
+Props appear to consist of vehicles, units, grenades and projectiles. Say you had an encounter with 2 dummy bipeds and 2 empty turrets, and then you spawned in two squads of two units each, each in a different task, then you would end up with 8 props, 16 prop references and 8 target tracks.
 
 # Leadership
 

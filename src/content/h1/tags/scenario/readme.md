@@ -1,6 +1,5 @@
 ---
 title: scenario
-stub: true
 about: 'tag:h1/scenario'
 img: scenario.jpg
 caption: >-
