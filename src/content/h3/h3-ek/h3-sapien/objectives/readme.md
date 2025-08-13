@@ -19,7 +19,9 @@ AI units that lack an objective or a valid task are displayed with a green arrow
 
 # Creation
 
-When creating a new objective, you will be met with a new sapien UI, using this UI you may name your objective and set a default zone, and then from there you may create brand new tasks to fill the objective, or alter prior existing ones
+Within the hierarchy view window in [Sapien](~h3/h3-ek/h3-sapien) under AI you will see a tab for Objectives, clicking this tab you can then click the "New Instance" button to create a brand new blank objective, keep in mind adding a new objective will delete all AI.
+
+When creating a new objective, you will be met with a new Sapien UI, using this UI you may name your objective and set a default zone, and then from there you may create brand new tasks to fill the objective, or alter prior existing ones
 
 {% figure src="obj_new_ui.jpg" %}
 Pictured: The UI displayed when creating a new objective, and the box popup when assigning a default zone
@@ -44,7 +46,7 @@ When changing the order of tasks, with a task selected hold cntrl and then use y
 | Blue condition text | Condition script has been edited but not yet compiled
 | Red condition text | Condition script is invalid, needs to be corrected
 
-## Flags and inhibitors
+# Flags and inhibitors
 
 | Flag | Description
 |-------|----------
@@ -54,23 +56,23 @@ When changing the order of tasks, with a task selected hold cntrl and then use y
 | Single Use | Once this task has been emptied of all AI after being entered, this task disables and stays disabled
 | Suppress Combat | AI units with the "engage sync" flag enabled in their [style](~) tag will not engage targets unless attacked first, will watch and aim at targets however
 | Active Camo | AI who enter this task become cloaked, and will not decloak unless they exit the task or die
-| Blind |
-| Deaf |
-| Braindead |
+| Blind | Needs testing
+| Deaf | Needs testing
+| Braindead | Needs testing
 | Magic Player Sight | Any AI who enter this task will be given the ability to see the player through all walls, seems to have a range limit to be activated, but once activated does not deactivate
 | DISABLE | Disables this task entirely
 
 | Groups | Description
 |-------|----------
 | Cover  | Prevents AI from initiaing cover behavior when inside this task
-| Retreat |
-| Vehicles |
+| Retreat | Needs testing
+| Vehicles | Needs testing
 | Grenades | Prevents AI from throwing grenades when inside this task
 | Berserk | Prevents AI from initiating berserk behavior when inside this task, does not prevent melee or melee charge behavior
-| Equipment |
-| Pureform Ranged |
-| Pureform Tank |
-| Pureform Stalker |
+| Equipment | Needs testing
+| Pureform Ranged | Needs testing
+| Pureform Tank | Needs testing
+| Pureform Stalker | Needs testing
 
 | Difficulty | Description
 |-------|----------
@@ -78,6 +80,8 @@ When changing the order of tasks, with a task selected hold cntrl and then use y
 | Normal | Disables task on normal
 | Heroic | Disables task on heroic
 | Legendary | Disables task on legndary
+
+# Conditions and extras
 
 ## Area types
 
