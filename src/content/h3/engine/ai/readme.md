@@ -22,6 +22,8 @@ Style tags are assigned in the character tag, think of the character tag as the 
 
 Because of this setup, you can create distinct and unique behavior sets for all types of units, for example: brutes in vanilla have the retreat behavior disabled in the their style tag.
 
+AI also feature "acting" behavior, this allows the level designer to specify the AI to perform animation loops that are purely cosmetic, such as eating or peeing, AI will also sometimes play a reload animation when they hide behind cover.
+
 # Vocalization
 
 AI in halo have the ability to vocalize and emote based on actions performed, via the [ai_dialogue_globals](~) tag and it's assosiated source files you can assign certain animations or voice lines to play based on AI actions, such as calling and throwing a grenade, reporting a fallen ally, announcing the entrance of the arbiter and raising your fist in anger, ect ect.
@@ -107,12 +109,16 @@ An AI without a valid [objective and/or valid task](~objectives) will have a gre
 
 # Limitations
 
-- AI cannot move while throwing grenades, but they can throw a grenade and then initiate a leap and finish throwing the grenade while airborne. 
+AI cannot move while throwing grenades, but they can throw a grenade and then initiate a leap and finish throwing the grenade while airborne. 
 
-- AI cannot melee while moving, outside of the movement the animation itself provides.
+AI cannot see through transparent materials, like glass or shield walls.
 
-- AI cannot shoot or melee while jumping (jumppack brute leaps are a type of jump).
+AI do not consume ammo, thus will never need to reload magazine based weapons, however they can overheat weapons using heat and weapons that drain battery while an overcharge is held will drain for AI and eventually leave the AI with a useless weapon.
 
-- Information such as location of enemies is not passed between squads, even if they are right next to each other, however that information will be passed along if the squads share a task together.
+AI cannot melee while moving, outside of the movement the animation itself provides.
 
-- AI under normal circumstances do not use the melee damage assigned in [weapon](~) tags, instead they use the melee [damage](~damage_effect) assigned in the AI's [biped](~)
+AI cannot shoot or melee while jumping (jumppack brute leaps are a type of jump).
+
+Information such as location of enemies is not passed between squads, even if they are right next to each other, however that information will be passed along if the squads share a task together.
+
+AI under normal circumstances do not use the melee damage assigned in [weapon](~) tags, instead they use the melee [damage](~damage_effect) assigned in the AI's [biped](~)
