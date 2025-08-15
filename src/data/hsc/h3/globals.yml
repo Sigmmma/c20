@@ -4173,6 +4173,8 @@ external_globals:
         ```hsc
         (ai_render_clump_props_all [boolean])
         ```
+
+        When enabled, displays clump and prop data for AI squads
   - slug: ai_render_clump_dialogue
     info:
       en: |-

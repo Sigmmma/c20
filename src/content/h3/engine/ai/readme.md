@@ -14,6 +14,16 @@ Each and every AI unit contains their own individual knowledge model of the worl
 
 In accordance with Bungie's design, AI are designed to accomendate the immediate short-term gameplay loop, able to move and shoot and act and emote to keep the player engaged for short periods of time with zero developer influence, however for longer periods of time the designers used systems to guide the AI to give the illusion of intelligence and further purpose. These systems would take the form of the AI orders systems in [Halo: Combat Evolved](~h1) and [Halo 2](~h2), and the [objective](~objectives) system found in [Halo 3](~h3), [ODST](~h3odst) and [Halo: Reach](~hr).
 
+# Behavior
+
+AI in Halo 3 utilize 2 tags to function, the [character](~) tag and the [style](~) tag, these 2 tags are not-optional. The Style tag represents the toggle for each individual behavior itself within the code, allowing the user to choose what behaviors the AI the AI is allowed to do, such as covering, berserking, grenading, using equipement, cloaking and many more behaviors.
+
+Style tags are assigned in the character tag, think of the character tag as the brain for the AI itself, defining values on how to interpret behaviors, such as "When should I cover?" and "How long should I cover" compared to the style tag which is just "Am I allowed to use cover behavior at all?".
+
+Because of this setup, you can create distinct and unique behavior sets for all types of units, for example: brutes in vanilla have the retreat behavior disabled in the their style tag.
+
+AI also feature "acting" behavior, this allows the level designer to specify the AI to perform animation loops that are purely cosmetic, such as eating or peeing, AI will also sometimes play a reload animation when they hide behind cover.
+
 # Vocalization
 
 AI in halo have the ability to vocalize and emote based on actions performed, via the [ai_dialogue_globals](~) tag and it's assosiated source files you can assign certain animations or voice lines to play based on AI actions, such as calling and throwing a grenade, reporting a fallen ally, announcing the entrance of the arbiter and raising your fist in anger, ect ect.
@@ -91,7 +101,7 @@ AI are spawned in as part of a squad, which is then composed of fireteams, each 
 
 # Combat
 
-When an AI enters combat their reaction time and if they can fire their weapon at this range is determined value values in the [character](~) tag, should the AI perform a dodge, be stunned, hard pinged or engage in a movement hint of some type, their accuracy bounds and firing pattern will be reset. 
+When an AI enters combat their reaction time and if they can fire their weapon at this range is determined value values in the [character](~) tag, should the AI perform a dodge, be stunned, hard pinged or engage in a movement hint of some type, their accuracy bounds and firing pattern will be reset to their initial values. 
 
 Based on certain scenarios the AI can engage in many behaviors to aide them in battle and appearing lifelike, this can include action such as a drawn out wide-spanning search for a hidden target, lobbing a grenade at cover where an enemy is suspected, suppressing fire on cover where a target was just seen entering, shooting dead bodies, checking on dead allies and giving each other orders (such as throwing grenades or starting a search with the ordered AI). 
 
@@ -99,7 +109,16 @@ An AI without a valid [objective and/or valid task](~objectives) will have a gre
 
 # Limitations
 
-AI cannot move while throwing grenades, but they can throw a grenade and then initiate a leap and finish throwing the grenade while airborne. AI cannot melee while moving, outside of the movement the animation itself provides. 
+AI cannot move while throwing grenades, but they can throw a grenade and then initiate a leap and finish throwing the grenade while airborne. 
+
+AI cannot see through transparent materials, like glass or shield walls.
+
+AI do not consume ammo, thus will never need to reload magazine based weapons, however they can overheat weapons using heat and weapons that drain battery while an overcharge is held will drain for AI and eventually leave the AI with a useless weapon.
+
+AI cannot melee while moving, outside of the movement the animation itself provides.
+
 AI cannot shoot or melee while jumping (jumppack brute leaps are a type of jump).
+
 Information such as location of enemies is not passed between squads, even if they are right next to each other, however that information will be passed along if the squads share a task together.
+
 AI under normal circumstances do not use the melee damage assigned in [weapon](~) tags, instead they use the melee [damage](~damage_effect) assigned in the AI's [biped](~)
