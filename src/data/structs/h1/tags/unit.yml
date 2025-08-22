@@ -50,6 +50,14 @@ type_defs:
       - name: ignored_by_autoaiming
       - name: shields_fry_infection_forms
       - name: integrated_light_cntrls_weapon
+        comments:
+          en: >
+            If enabled, the unit's flashlight will also control any flashlight
+            on the weapon they're holding. This is used by marines so that their
+            assault rifle flashlights function. If enabled for the cyborg biped,
+            both the armour-integrated light _and_ the assault rifle flashlight
+            will be turn on with the flashlight function, but the rifle's won't
+            have a dynamic light.
       - name: integrated_light_lasts_forever
   UnitDefaultTeam:
     class: enum

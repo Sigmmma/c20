@@ -17,7 +17,26 @@ type_defs:
       - name: no_specular
       - name: don't_light_own_object
       - name: supersize_in_first_person
+        comments:
+          en: >
+            Guerilla describes this flag as: "For dynamic lights, light every
+            environment surface if this light is on the gun of the current window".
+            What this means is that the game will render the flashlight shader
+            on all BSP faces in view, rather than just those within the light
+            radius. This does not affect the visual appearance of the light, just
+            how many faces it renders on. It's unclear why this would be beneficial,
+            but it's enabled for the cyborg flashlight. Its effect on rendered dynamic
+            light triangles can be observed with `rasterizer_stats 2`.
       - name: first_person_flashlight
+        comments:
+          en: >
+            Causes the flashlight to align with the rotation of the first person
+            weapon's flashlight marker when seen from first person. When this
+            light is seen from third person, such as another player's flashlight,
+            it will be aligned with their armour's integrated flashlight. If the
+            player is holding a weapon without a flashlight marker, like the oddball
+            or flag, or is zoomed in, the first person flashlight will align with
+            armour light.
       - name: don't_fade_active_camouflage
   Light:
     class: struct

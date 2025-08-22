@@ -5187,9 +5187,10 @@ functions:
       en: |-
         ```hsc
         (<void> unit_set_seat <unit> <string>)
-        (unit_set_seat (player0) "driver")
+        (unit_set_seat (player0) "alert")
         ```
-        This unit will assume the named seat
+        This unit will assume the named seat, which forces them into a certain
+        pose if the unit supports it (e.g. 'alert', 'stand', 'crouch', 'noncombat').
   - slug: unit_solo_player_integrated_night_vision_is_active
     info:
       en: >-

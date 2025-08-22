@@ -2982,7 +2982,7 @@ external_globals:
         (rasterizer_environment_diffuse_lights [boolean])
         ```
         Toggles the rendering of [_dynamic_ light](~light#tag-field-flags-dynamic)
-        illumination on the BSP.
+        diffuse illumination on the BSP. Does not affect specular highlights.
   - slug: rasterizer_environment_diffuse_textures
     tags:
       - lightmaps
