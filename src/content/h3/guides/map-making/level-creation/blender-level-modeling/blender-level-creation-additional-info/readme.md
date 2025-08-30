@@ -103,9 +103,14 @@ There are three aspects to this material name
 Once that is done go ahead and give the water plane four UV channels. The purpose of each UV channel are as follows:
 
 * UV_0 - Used by the visual part of our mesh for displaying the texture.
-* UV_1 - Used to mask the color of our water. Move your UV coordinates in the positive Y direction to make the water color more pronounced.
-* UV_2 - ???
-* UV_3 - ???
+* UV_1 - Used to mask the strength of displacement from the waves and the color of our water. Move your UV coordinates in the positive X direction to increase the displacement strength, and in the positive Y direction to make the water color more pronounced.
+* UV_2 - Unknown. Possibly unused in the MCC version of the H3 engine, but it still needs to exist on the water mesh for the shader to read the correct UV indices.
+* UV_3 - Used by the global shape texture. Unwrap this channel inside the 0-1 space.
+
+## Global Shape Texture
+The `global shape texture` is used as a mask for certain water characteristics. Using this texture, you can mask the strength of wave displacement, the strength of wave choppiness, and the opacity of the foam texture by painting in the R, G, and B channels of the image, respectively.
+
+![](example_water_global_shape.jpg "Example global shape texture from riverworld")
 
 This ends everything we need to create in our `structure` ASS file. We can export our current scene and move on the the `structure-design` ASS file in the physical section.
 
