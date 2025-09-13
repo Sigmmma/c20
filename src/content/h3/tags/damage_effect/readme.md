@@ -11,7 +11,7 @@ thanks:
   odchylanie_uderzenia: Writing and research
   Mimickal: Proof-reading and suggestions
 ---
-Damage effect tags (internally known as ``jpt!``) are responsible for almost all sources of pain and death within the Halo 3 engine, besides hard values they contain many options for side effects and unique properties.
+Damage effect tags (internally known as `jpt!`) are responsible for almost all sources of pain and death within the Halo 3 engine, besides hard values they contain many options for side effects and unique properties.
 
 {% alert %}
 Halo 3 does not support negative damage, nor negative damage modifiers.
