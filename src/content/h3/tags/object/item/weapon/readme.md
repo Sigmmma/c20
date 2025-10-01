@@ -460,11 +460,11 @@ Prediction properties effect networking for non-host players, if set up incorrec
 
 | Firing noise | Description
 |-------|----------
-| silent | Needs additional research, sound is silent to AI, the lowest sound level
-| medium | Needs additional research, this sound is heard at 35% of the AI's hearing distance
-| loud | Unknown, sound is loud to AI
-| shout | Unknown, sound is shout loudness to AI, the highest sound level
-| quiet | Unknown, sound is quiet to AI
+| silent | Needs additional research, this sound is never heard by AI
+| medium | Needs additional research, this sound is heard within 45% of the AI's hearing distance
+| loud | Needs additional research, this sound is heard within all of the AI's hearing distance
+| shout | Needs additional research, this sound is heard within 80% of the AI's hearing distance
+| quiet | Needs additional research, this sound is heard within 20% of the AI's hearing distance
 
 ## Error (spread/bloom)
 

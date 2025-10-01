@@ -64,12 +64,12 @@ When changing the order of tasks, with a task selected hold cntrl and then use y
 
 | Groups | Description
 |-------|----------
-| Cover  | Prevents AI from initiaing cover behavior when inside this task
-| Retreat | Needs testing
+| Cover  | Prevents AI from initiating cover behavior when inside this task
+| Retreat | Prevents AI from initiating retreat/flee behavior when inside this task
 | Vehicles | Needs testing
 | Grenades | Prevents AI from throwing grenades when inside this task
 | Berserk | Prevents AI from initiating berserk behavior when inside this task, does not prevent melee or melee charge behavior
-| Equipment | Needs testing
+| Equipment | Prevents AI from using or deploying equipment when inside this task
 | Pureform Ranged | Needs testing
 | Pureform Tank | Needs testing
 | Pureform Stalker | Needs testing
