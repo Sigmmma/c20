@@ -3924,7 +3924,7 @@ functions:
         ```hsc
         (<void> game_can_use_flashlights <boolean>)
         ```
-        allows or disallows the user of player flashlights
+        Disables the flashlight timer
   - slug: game_save_and_quit
     info:
       en: |-
