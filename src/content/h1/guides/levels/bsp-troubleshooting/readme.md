@@ -26,9 +26,11 @@ Use this guide to understand how to avoid problems _before_ you start modeling a
 A classic BSP rules cheat sheet.
 {% /figure %}
 
-Halo generally requires your BSP to be one or multiple completely sealed volumes with no intersecting faces, open edges (holes), 0-area faces, or other _non-manifold_ surfaces. There are some exceptions for certain types of surfaces which require [material symbols](~h1-materials), but the main "balloon" of the level still needs to follow these rules. It should also not be too geometrically complex or large.
+Halo generally requires your BSP to be one or multiple completely sealed volumes with no intersecting faces, open edges (holes), 0-area faces, or other _non-manifold_ surfaces. There are some exceptions for certain types of surfaces which require [material symbols](~h1-materials), but the main "balloon" of the level still needs to follow these rules.
 
 The normals of the faces used to create the level geometry must face inwards towards the playable area of the level. The normals determine not just the viewing direction but also which direction the surface is collideable from.
+
+It should also not be too geometrically complex or large. Avoid super-small details and edge lengths smaller than roughly the Chief's hand; at these scales, JMS unit rounding means edges can collapse into points and cause import problems.
 
 For most types of problems Tool generates a [WRL](~) file that can be imported back into your 3D software to find the sources of the problems, usually found in either the root of your editing kit or adjacent to the JMS file you're importing; the location and name depends on the Tool version and verb used, so see [Tool verbs](~h1-tool#verbs) for help. You should attempt to fix all errors and warnings in your map. Many of these errors can also show up when compiling [model_collision_geometry](~) and the solutions will be the same.
 
@@ -166,6 +168,14 @@ Finding the cause of this error is difficult since a WRL is not generated. Our b
 {% figure inline=true src="dividing_edge_vertex_index.jpg" %}
 This material assigns a distinct colour to each face direction with high sensitivity, so coplanar faces will share the same colour while nearly coplanar faces will have different colours. Temporarily assign faces to a material with this shader node setup to help spot the issue.
 {% /figure %}
+
+## Exception: #-1 is not a valid structure_bsp_cluster_block index in [#0,#0)
+
+```
+EXCEPTION halt in c:\mcc\main\h1\code\h1a2\sources\tag_files\tag_groups.c,#4440: #-1 is not a valid structure_bsp_cluster_block index in [#0,#0)
+```
+
+This exception occurs from the level being too small, possibly in combination with other problems in the level like degenerate or overlapping faces. Create a [scale reference](~scale) for comparison and increase the level's scale. Address any errors that come up from the next import's WRL. Also ensure you don't have any super-fine details as they will collapse to points on import and cause problems like this.
 
 # Portal problems
 Be sure to follow the [portal placement rules](~portals-and-clusters#placement-rules) or you may encounter these types of issues:

@@ -22,6 +22,15 @@ type_defs:
     bits:
       - name: alpha_tested
       - name: decal
+        comments:
+          en: |
+            Makes the shader render with a slight depth bias toward the camera
+            to prevent [Z-fighting](https://en.wikipedia.org/wiki/Z-fighting).
+            Use this flag for light planes that will be placed at very small
+            offsets from the surface behind them. Avoid using shaders with this
+            flag where they're placed behind greates or embedded within geometric
+            details, as it will sometimes sort incorrectly against them when viewed
+            at a distance.
       - name: two_sided
       - name: first_map_is_in_screenspace
       - name: draw_before_water
