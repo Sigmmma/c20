@@ -321,11 +321,11 @@ First entry into this block becomes the primary trigger, second entry becomes th
 |-------|----------
 | spew |When trigger is pressed the weapon will continuously fire the barrel, under normal circumstances will fire in bursts of 2
 | latch | When pressed the barrel is fired and then halts until the trigger is let go and repressed
-| latch-autofire | Functions like latch until the trigger is held down for the period of time specified in **autofire time**, then begins charging and will fire once the trigger is released, forces plasma tracking to only enable on targets who are currently shielded, is also linked to the plasma track widget flag in the weapon [interface](~chud_definition) tag
-| charge | Appears to function similar to latch-autofire, but better suited to weapons with a single barrel for charging behavior only
+| latch-autofire | Functions like latch until the trigger is held down for the period of time specified in **autofire time**, then begins charging the second barrel and will fire once the trigger is released, forces plasma tracking to only enable on targets who are currently shielded, is also linked to the plasma track widget flag in the weapon [interface](~chud_definition) tag
+| charge | Functions similar to latch-autofire, but does not wait for the **autofire time** and will begin charging the secondary barrel the moment the trigger is pressed, should the secondary barrel not fully charge, fire the primary instead.
 | latch-zoom | Same as latch but allows a second barrel to be used when the weapon is zoomed
 | latch-rocketlauncher | Same as latch but is needed to also allow target locking onto human tracked targets by holding the trigger on the target and then releasing the trigger to fire once locked on
-| spew-charge | Functions like spew for a period of time specified in charging time before charging the second barrel
+| spew-charge | Functions like spew for the period of time specified in charging time before charging the secondary barrel
 | sword-charge | Unknown, seems to function like latch-autofire but triggers a melee while releasing the charge
 
 {% figure src="maintrigger.png" %}
