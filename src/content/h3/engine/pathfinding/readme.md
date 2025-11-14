@@ -28,7 +28,7 @@ The highest level of the AI pathfinding system for gameplay purposes, [objective
 | Zone properties | Description
 |-------|----------
 | Manual bsp index | Allows the level designer to bypass the automatic bsp assignment for a zone, defaults to *on*
-| Giants zone | Marks the zone for use with [Scarab units](~h3/guides/scarab#overview)
+| Giants zone | Marks the zone for use with [Scarab units](~h3/guides/units/scarab#overview)
 | Manual bsp | Lets you set what BSP this zone should be assigned to
 
 ## Areas
@@ -121,7 +121,7 @@ Pictured: How correctly set up well and flood hints are seen from the view of th
 | flight | Using right click draw a path of points in which flying AI can use to fly around an area without the use of firing positions, close with left click
 | cookie cutter | Using right click you create a box that you can alter the dimensions of, inhibits *all* pathfinding through the area of the cookie cutter box
 | flood | Using right click you draw an enclosed area that certain AI will climb on or off, seal this area with left click, typically used for drones or flood pureforms to climb on, walk around and attack from walls, needs well hints
-| giant | Consists of two sub-types: sector hints and rail hints, sector hints are used to define the area in which scarabs will pathfind (Used *with* scarab zones) and rail hints are used for the scarab to transition between different sectors, use right click to create vertices in the sector or the starting position of the rail and left click to seal the sector or end the rail, **see [the scarab usage guide ](~h3/guides/scarab) for more info about setting up scarab units for gameplay.**
+| giant | Consists of two sub-types: sector hints and rail hints, sector hints are used to define the area in which scarabs will pathfind (Used *with* scarab zones) and rail hints are used for the scarab to transition between different sectors, use right click to create vertices in the sector or the starting position of the rail and left click to seal the sector or end the rail, **see [the scarab usage guide ](~h3/guides/units/scarab) for more info about setting up scarab units for gameplay.**
 
 | Jump hint flags | Description
 |-------|----------
