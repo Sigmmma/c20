@@ -40,6 +40,7 @@ AI sharing a squad will update squadmates about the location of hostiles, someti
 - hearing a projectile detonate (like grenades), this can sometimes be traced back to the target who threw them with the [sense_target](~style) flag, otherwise update target to the detonation point of the projectile itself
 - An ally shoots at a target, even if we have no line of sight on this target
 - Taking damage, even if we have no line of sight from who did the damage to us, unless it's a grenade; that requires [sense_target](~style), this is not limited to squads or tasks
+- An ally taking damage within hearing distance, including death.
 - Entering search mode
 - Prediction of target hiding can allow some updates based on predicting where the target may go when hiding, usually for only a few moments after losing contact when in search mode, requires [sense_target](~style)
 
