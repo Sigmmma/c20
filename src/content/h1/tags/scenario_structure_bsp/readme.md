@@ -97,7 +97,7 @@ To create them, simply model outwardly facing convex volumes where all faces use
 
 It is important that you still create weather polyhedra even if you have portals separating inside and outside spaces. Simply not assigning weather to the clusters which are under cover is not enough to prevent rain from appearing there. This is because the game renders weather based on the camera's current cluster, so if the player is outside a building looking in through a doorway they will still see rain indoors because the camera is currently located outside. Conversely, if the cluster within the building has no weather assigned then players will not see rain outdoors when looking out the doorway from inside. The solution is still assigning weather to covered clusters, then masking those areas with large weather polyhedra. This can be seen in the example figure.
 
-Within the tag, the polyhedra are represented as a center point, bounding radius, and up to 16 planes which enclose a volume. Therefore your polyhedra technically don't need to be _sealed_ volumes because they are limited to their bounding radius. A polyhedron can be created with as little as 1 plane.
+[Within the tag](#tag-field-weather-polyhedra), the polyhedra are represented as a center point, bounding radius, and up to 16 planes which enclose a volume. Therefore your polyhedra technically don't need to be _sealed_ volumes because they are limited to their bounding radius. A polyhedron can be created with as little as 1 plane.
 
 # Lens flare markers
 

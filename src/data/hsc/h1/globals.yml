@@ -2108,6 +2108,7 @@ external_globals:
   - slug: debug_point_physics
     tags:
       - point_physics
+      - weather_particle_system
       - antenna
       - flag
     info:
@@ -2116,14 +2117,16 @@ external_globals:
         (debug_point_physics [boolean])
         ```
         Renders green or red markers wherever [point_physics](~) are being
-        simulated, except for the [weather_particle_system](~). This includes
-        [flags](~flag), [antenna](~), [contrails](~contrail), [particles](~particle),
-        and [particle_systems](~particle_system). It can help to enable `framerate_throttle`
-        for these markers to render consistently.
+        simulated. This includes [flags](~flag), [antenna](~), [contrails](~contrail), [particles](~particle),
+        and [particle_systems](~particle_system). For [weather_particle_system](~),
+        markers are only shown in their [simulation cube](~weather_particle_system#simulation-cube)
+        and while the `weather` global not disabled.
 
         Red markers indicate point_physics with the
         [_collides with structures_](~point_physics#tag-field-flags-collides-with-structures)
         flag, which are more computationally expensive.
+
+        It can help to enable `framerate_throttle` for these markers to render consistently.
   - slug: debug_pvs
     tags:
       - portals
@@ -2263,14 +2266,18 @@ external_globals:
         ```
         Unknown purpose.
   - slug: debug_sprites
+    tags:
+      - weather_particle_system
+      - particle_system
+      - particle
     info:
       en: |-
         ```hsc
         (debug_sprites [boolean])
         ```
-        Renders 2D sprite effects like particles as simple white triangle
-        outlines instead of with textures. This also displays some sprite
-        statistics at the top of the screen.
+        Renders 2D sprite effects like [particles](~particle) and [weather_particle_system](~)
+        with white triangle outlines. This also displays some sprite statistics
+        at the top of the screen (coverage and big sprites count).
   - slug: debug_structure
     tags:
       - scenario_structure_bsp
@@ -2726,6 +2733,8 @@ external_globals:
         (player_spawn_count)
         ```
   - slug: profile_display
+    tags:
+      - particle
     info:
       en: |-
         ```hsc
@@ -3446,7 +3455,7 @@ external_globals:
         | Mode | Description |
         |------|-------------|
         | `0`  | Off (default).
-        | `1`  | Some unknown counts which always read 0.
+        | `1`  | Some unknown counts which usually read 0, though `fast` increases when [flags](~flag) are on-screen.
         | `2`  | Vertices, triangles, and primitives counts for various model and environment features and effects.
         | `3`  | GPU profiling for each stage of rendering. Uknown if this still works.
         | `4`  | Memory usage for dynamic vertices, shadow buffers, and more.

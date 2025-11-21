@@ -8,10 +8,32 @@ type_defs:
       - name: flamethrower_particle_collision
       - name: collides_with_structures
         comments:
-          en: The points will collide with [scenario_structure_bsp](~) and [model_collision_geometry](~).
+          en: |
+            The points will collide with [scenario_structure_bsp](~) and [model_collision_geometry](~).
+            Does not apply to [weather_particle_system](~).
       - name: collides_with_water_surface
       - name: uses_simple_wind
+        comments:
+          en: |
+            If enabled, base wind will not be weakened by local variation weight.
+            Guerilla describes this field as "the wind on this point won't have
+            high-frequency variations", however this does not match tested behaviour.
+            
+            Instead, setting this flag causes the particle to treat the wind's
+            [_local variation weight_](~wind#tag-field-local-variation-weight)
+            differently. For example, if the weight was `0.5` and this flag is
+            disabled, then particles will receive 50% influence from base wind
+            and 50% influence from [local variation](~wind#local-variation).
+            With this flag enabled, they will receive 100% influence from base
+            wind plus an additional 50% influence from local variation.
+
+            An additional effect of this flag is that local varation will be
+            scaled by the weather palette entry's wind magnitude.
       - name: uses_damped_wind
+        comments:
+          en: |
+            If enabled, wind is scaled by the wind tag's [_damping_](~wind#tag-field-damping)
+            factor.
       - name: no_gravity
         comments:
           en: The points will be unaffected by gravity.
@@ -49,8 +71,23 @@ type_defs:
         type: float
         meta:
           unit: grams per milliliter
+        comments:
+          en: |
+            Controls the density of the particle, causing it to either rise or fall
+            relative to the air or water, unless _no gravity_ is enabled. A density
+            of `0.0011` is equal to air, so particles will float in place. The
+            greater the density, the greater the particle mass too ([which depends
+            on radius](#effects-of-particle-radius)).
       - name: air_friction
         type: float
+        comments:
+          en: |
+            A friction coefficient when particles move through the air. This affects
+            how much they are blown by [wind](~) and also their resistance
+            to falling under gravity. A value of `0` means they will experience
+            no friction and fall as if there's no atmosphere, accelerating to great
+            speeds. The exact value you use should be tested, because it depends
+            on the density and radius of your particle.
       - name: water_friction
         type: float
       - name: surface_friction
