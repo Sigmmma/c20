@@ -654,9 +654,9 @@ type_defs:
             if the wind tag specifies a [_velocity_](~wind#tag-field-velocity) of
             2 wu/s, and this magnitude is 3, then the overall wind speed will be 6
             wu/s. This number can be negative to reverse the wind direction, though
-            it's clearer to change the direction vector above. This also does not
-            affect the wind's [local variation](~wind#local-variation) which is
-            added atop global wind and scaled by the wind tag's speed range.
+            it's clearer to change the direction vector above. This also scales
+            the wind's [local variation](~wind#local-variation) but only
+            when acting on particles with _use simple wind_ point_physics.
       - type: pad
         size: 4
       - name: wind_scale_function
