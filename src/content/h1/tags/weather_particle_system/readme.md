@@ -41,9 +41,9 @@ Use the [acceleration parameters](#tag-field-particle-types-acceleration-magnitu
 ![](acceleration.gif "Particles with similar acceleration parameters to c10's beetles. There is no wind in this scenario.")
 
 # Added motion
-The game adds fixed motion to weather particles each rendered frame, unrelated to wind (global or local variation) or acceleration. The direction is "random" and unique to each particle, unchanging after creation. However, the algorithm the game is using for this introduces some likely unintended bias in the direction. The first 128 particles created have a general +x -y +z direction, similar to the bias in [wind local variation](~wind#local-variation). At 256 particles, some particles now move in the -x direction too. At the limit of 512, there is a good distribution of horizontal directions but the particles still move upwards on average.
+The game adds fixed motion to weather particles each rendered frame, unrelated to wind (global or local variation) or acceleration. Added motion is not "true motion" for the purposes of [particle orientation](#tag-field-particle-types-render-direction-source-from-velocity), so you may see velocity-oriented particles unaligned with their apparent direction of movement.
 
-The bias is noticeable at high framerates, but not at 30 FPS. When you open the [console](~developer-console) in [Standalone](~h1-standalone-build), which pauses the simulation, this added motion is apparent.
+The direction is "random" and unique to each particle, unchanging after creation. However, the algorithm the game is using for this introduces some likely unintended bias in the direction. The first 128 particles created have a general +x -y +z direction, similar to the bias in [wind local variation](~wind#local-variation). At 256 particles, some particles now move in the -x direction too. At the limit of 512, there is a good distribution of horizontal directions but the particles still move upwards on average. The bias is noticeable at high framerates, but not at 30 FPS. When you open the [console](~developer-console) in [Standalone](~h1-standalone-build), which pauses the simulation, this added motion is apparent.
 
 ![](added_motion.gif "128 weather particles showing a bias in added motion, at 1000 FPS.")
 
