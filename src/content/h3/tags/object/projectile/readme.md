@@ -203,7 +203,7 @@ Parallel and perpendicular friction act as a bounds where the closer to impact a
 
 | Fields | Data type | Description
 |-------|----------|--------------
-| scale effects by | enum | Angle **or** damage, unknown
+| scale effects by | enum | Angle **or** damage, unknown effects
 | angular noise | angle | Unknown, presumably the maximum number of degrees the projectile can be randomly offset by when bouncing off a surface (in addition to the natural offset from the bounce itself)
 | velocity noise | real | Unknown, presumably the the velocity of the projectile changed randomly when bouncing off a surface (in addition to velocity lost from parallel and perpendicular friction values)
 | initial friction | real | Unknown, needs additional research
@@ -233,13 +233,9 @@ projection offset (real): Unknown, needs additional research
 
 # Conical Spread
 
-{% figure src="distribution0.jpg" %}
-Pictured: 15 projectiles with a spread angle of 5 degrees and a distribution exponent of 0
-{% /figure %}
+![Perfect distribution](distribution0.jpg "15 projectiles with a spread angle of 5 degrees and a distribution exponent of 0")
 
-{% figure src="distribution1.2.jpg" %}
-Pictured: Now with the distribution exponent set to 1.2 with no other changes
-{% /figure %}
+![Skewed distribution](distribution1.2.jpg "Now with the distribution exponent set to 1.2 with no other changes")
 
 This section can be used for weapons that fire a high volume of projectiles in a single shot, like shotguns: it defines the size and spread of the entire blast and allows more control compared to the error fields in the [weapon](~weapon#error-spread-bloom) tag.
 

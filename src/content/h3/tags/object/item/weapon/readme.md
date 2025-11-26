@@ -110,10 +110,6 @@ Melee attacks for the player are not natural to the player unit themself, but ra
 | damage pyramid angles | euler | Two values that define the angles the melee attack is thrown out/Needs additional research
 | damage pyramid depth | real | When initiating a melee attack, the damage itself is thrown this far out, can be farther than the melee lunge range
 
-{% figure src="meleedamagetypes.png" %}
-Pictured: A list of all availale weapon melee damage types
-{% /figure %}
-
 {% alert %}
 It is currently understood that only the energy sword can initiate a clang, and only on another energy sword when lunging at each other
 {% /alert %}
@@ -134,6 +130,8 @@ It is currently understood that only the energy sword can initiate a clang, and 
 |clang melee response | [damage_effect](~) / [damage_response_definition](~) | Damage response played on players engaging in a melee clash against each other
 |clang effect | [sound](~) / [effect](~) | Effect played on players who engage in a melee clash against each other
 |melee damage reporting type | enum | Dropdown selector for various weapon and vehicle types, unknown/unused effects
+
+![Melee damage reporting types](meleedamagetypes.png "A list of all availale weapon melee damage types")
 
 # Zoom
 
@@ -247,7 +245,7 @@ Despite using the "no tracking" option, the needler still possesses tracking abi
 This section defines what UI tags to use to display things like the reticle and ammo and other elements.
 
 {% alert %}
-First entry of this block is for spartan bipeds, second entry is for elite bipeds and this is regardless of campaign or multiplayer
+First entry of this block is for biped type 0 and 2 (spartans), and the second entry is for biped type 1,3 and 4 (elites) and this is regardless of game mode selection
 {% /alert %}
 
 *first person (and chud)*
@@ -328,9 +326,7 @@ First entry into this block becomes the primary trigger, second entry becomes th
 | spew-charge | Functions like spew for the period of time specified in charging time before charging the secondary barrel
 | sword-charge | Unknown, seems to function like latch-autofire but triggers a melee while releasing the charge
 
-{% figure src="maintrigger.png" %}
-Pictured: An example of the main part of the trigger block
-{% /figure %}
+![The trigger block](maintrigger.png "An example of the main part of the trigger block")
 
 | Barrel assignment | Description
 |-------|----------
@@ -412,7 +408,7 @@ Triggers are tied to barrels, barrels themselves are the most important part of 
 | fires locked projectiles | Forces AI actors using this barrel to only track when targeting a human-tracking type unit, else they self-guide projectiles, unknown otherwise
 | can fire at maximum age | This barrel will continue to be able to fire despite the weapon age being at 0
 | use 1 firing effect per burst | Weapon will only play it's firing effect a single time, all shots after either in a burst or spew will not have a firing effect
-| ignore tracked object | Unknown/Needs additional research
+| ignore tracked object | Disables the tracking of this projectile, useful for reusing a tracking projectile on a non-tracking enabled barrel, plasma tracking projectiles with *tracks fired projectile* seem to override this flag and still track targets
 
 ## Firing
 
@@ -436,13 +432,11 @@ Defines **how** the current barrel fires.
 
 ## Weapon firerate bonus info
 
-{% figure src="rps-frt.png" %}
-Pictured: An example of rate of fire and fire recovery time
-{% /figure %}
+![Weapon firerate information](rps-frt.jpg "Example of the rounds per second and fire recovery time fields")
 
-When using the __rounds per second__ field in the weapons barrel block, you are given a set of 2 bound values to enter, due to limitations implemented by 343 to retain 30 tick engine behavior you may only enter values compatible with 30 tick engines. __0.46875 is the lowest possible value allowed__ due to the idle_ticks timer only allowing a max of 127 ticks, thus this value has the weapon fire on the 128th tick. __To find all other compatible values, do 30 divided by a *whole* number between 1 and 64.__ Invalid values will round *down* to the nearest valid (Example: 16 will behave as 15).
+When using the __rounds per second__ field in the weapons barrel block you are given a set of 2 bound values to enter. Due to limitations implemented by 343 to retain 30 tick engine behavior you may only enter values compatible with 30 tick timings. __0.46875 is the lowest possible value allowed__ due to the idle_ticks timer only allowing a max of 127 ticks, thus this value has the weapon fire on the 128th tick. __To find all other compatible values, do 30 divided by a *whole* number between 1 and 64__, Invalid values will round *down* to the nearest valid (Example: 16 will behave as 15).
 
-When using the __fire recovery time__ field in the weapons barrel block, you are given a single value (in seconds) to enter, this value is able to accept 60 tick engine values, there is a built-in 2 tick base delay *plus* a second minimum delay of 2 ticks so the __fastest possible rate of fire achievable with fire recovery time is 12 rounds per second__ with a value of 0.
+When using the __fire recovery time__ field in the weapons barrel block, you are given a single value (in seconds) to enter. This value is able to accept 60 tick engine values but has a built-in 2 tick base delay *plus* a second minimum delay of 2 ticks so the __fastest possible rate of fire achievable with fire recovery time is 12 rounds per second__ with a value of 0.
 
 ## Prediction and noise
 
@@ -461,10 +455,10 @@ Prediction properties effect networking for non-host players, if set up incorrec
 | Firing noise | Description
 |-------|----------
 | silent | Needs additional research, this sound is never heard by AI
-| medium | Needs additional research, this sound is heard within 45% of the AI's hearing distance
+| medium | Needs additional research, this sound is heard within ~45% of the AI's hearing distance
 | loud | Needs additional research, this sound is heard within all of the AI's hearing distance
-| shout | Needs additional research, this sound is heard within 80% of the AI's hearing distance
-| quiet | Needs additional research, this sound is heard within 20% of the AI's hearing distance
+| shout | Needs additional research, this sound is heard within ~80% of the AI's hearing distance
+| quiet | Needs additional research, this sound is heard within ~20% of the AI's hearing distance
 
 ## Error (spread/bloom)
 

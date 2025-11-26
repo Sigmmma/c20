@@ -109,19 +109,18 @@ Most hints will have two general flags:
 - bidirectional : AI can use this hint going fowards and backwards across it, some exceptions apply
 - closed : Unknown/needs additional research
 
-{% figure src="wellhint.jpg" %}
-Pictured: How correctly set up well and flood hints are seen from the view of the well hint selection, note how the well hints draw paths that enter and exit the flood hint
-{% /figure %}
 
-| Hint type | Description
-|-------|----------
-| well | Using right click you draw a path for certain AI to take to jump on or off flood hint sectors, closing the path with left click
-| jump | Using right and left click you draw a set of vectors (starting from the top two points) that detmermines a direction for AI to take jumps in, can also be used for for vaulting, a section below will detail additional flags
-| climb | Using right and left click draw a verticle path from which AI will attempt to climb up using their hoist animations
-| flight | Using right click draw a path of points in which flying AI can use to fly around an area without the use of firing positions, close with left click
-| cookie cutter | Using right click you create a box that you can alter the dimensions of, inhibits *all* pathfinding through the area of the cookie cutter box
-| flood | Using right click you draw an enclosed area that certain AI will climb on or off, seal this area with left click, typically used for drones or flood pureforms to climb on, walk around and attack from walls, needs well hints
-| giant | Consists of two sub-types: sector hints and rail hints, sector hints are used to define the area in which scarabs will pathfind (Used *with* scarab zones) and rail hints are used for the scarab to transition between different sectors, use right click to create vertices in the sector or the starting position of the rail and left click to seal the sector or end the rail, **see [the scarab usage guide ](~h3/guides/units/scarab) for more info about setting up scarab units for gameplay.**
+## Well hint
+
+![Correct well hints](wellhint.jpg "How correctly set up well and flood hints are seen from the view of the well hint selection, note how the well hints draw paths that enter and exit the flood hint")
+
+Using right click you draw a path for certain AI to take to jump on or off flood hint sectors, closing the path with left click.
+
+## Jump hint
+
+![Corrct jump hints](jumphint.jpg "Note how the middle two hints are bi-directional and have a two-way yellow arrow, while the outside hints are single direction only")
+
+Using right and left click you draw a set of vectors (starting from the top two points) that detmermines a direction for AI to take jumps in, can also be used for for vaulting, a section below will detail additional flags.
 
 | Jump hint flags | Description
 |-------|----------
@@ -129,6 +128,38 @@ Pictured: How correctly set up well and flood hints are seen from the view of th
 | vehicle only  | Unknown/needs additional research
 | railing  | Treat this hint as a vault in which AI will try to vault over the obstacle using their vault animations
 | vault  | Unknown/needs additional research
+
+![vault hint example](vjumphint.jpg "An example of a vault hint, the obstacle is flanked at both ends by the hint which makes the red fenceline encase the obstacles width")
+
+## Climb hint
+
+![Correct climb hints](climbhint.jpg "Note how climb hints are constructed with only two points, with the white line showing a perfect verticle climb with no deviation")
+
+Using right and left click draw a verticle path from which AI will attempt to climb up using their hoist animations, place starting point near the base of the climb with the end point slightly inland from the exit of the climb, depending on the height of the hint AI will either use hoist step, hoist crouch or hoist stand functions.
+
+## Flight hint
+
+![A correct flight hint](flighthint.jpg "Note how the hint is constructed with multiple points that can be moved around")
+
+Using right click draw a path of points in which flying AI can use to fly around an area without the use of firing positions, close with left click.
+
+## Cookie Cutter hint
+
+![A cookie cutter hint](cchint.jpg "Best practice is to make sure the cookie cutter overshoots geometry you want to block off, such as sinking through the floor by a tiny bit")
+
+Using right click you create a box that you can alter the dimensions of, inhibits *all* pathfinding through the area of the cookie cutter box.
+
+## Flood hint
+
+![Correct flood hints](floodhint.jpg "How correctly set up well and flood hints are seen from the view of the flood hint selection, note how the flood hint creates an enclosed space that well hints then draw a path into")
+
+Using right click you draw an enclosed area that certain AI will climb on or off, seal this area with left click, typically used for drones or flood pureforms to climb on, walk around and attack from walls, needs [well](~pathfinding#well-hint) hints.
+
+## Giant hint
+
+![Correct giant hints](gianthint.jpg "How correctly set up sector and rail hints are seen from the view of the sector selection, note how the rail (yellow) hints draw a path between the sector hints")
+
+Consists of two sub-types: sector hints and rail hints, sector hints are used to define the area in which scarabs will pathfind (Used *with* scarab zones) and rail hints are used for the scarab to transition between different sectors, use right click to create vertices in the sector or the starting position of the rail and left click to seal the sector or end the rail, **see [the scarab usage guide ](~h3/guides/units/scarab) for more info about setting up scarab units for gameplay.**
 
 ## Object hints
 
