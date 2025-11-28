@@ -1805,14 +1805,19 @@ external_globals:
         ```hsc
         (debug_no_frustum_clip [boolean])
         ```
-        Disables portal-based occlusion culling for objects and parts of the BSP
-        (use `rasterizer_wireframe 1` to see this).
-        This isn't about clipping to the whole view frustum but rather _portal diminished frustrums_;
-        in addition to the [PVS](~scenario_structure_bsp#potentially-visible-set),
-        the game seems to cull objects and the BSP by whether object bounding
-        spheres and possibly subclusters are visible through portals.
-        The use of `debug_pvs` at the same time makes the behaviour of this
-        unpredictable.
+        Disables portal-based occlusion culling for objects and BSP faces
+        (use `rasterizer_wireframe 1` to see this). In addition to the
+        [PVS](~scenario_structure_bsp#potentially-visible-set), which determines
+        the set of clusters which are potentially visible, groups of faces and
+        objects within those clusters can still be culled further using the
+        limited view from the camera's location through the series of portals
+        leading to those clusters (a portal-diminished frustum). The game uses
+        object bounding spheres for this and likely subcluster bounding boxes.
+        
+        Disabling this type of culling does not cause the game to ignore the PVS
+        and it will still cull entire clusters if no portals to them are
+        on-screen. To force the game to render all clusters and subclusters in
+        the PVS, enable `structures_use_pvs_for_vs`.
   - slug: debug_object_garbage_collection
     info:
       en: |-
@@ -2127,15 +2132,6 @@ external_globals:
         flag, which are more computationally expensive.
 
         It can help to enable `framerate_throttle` for these markers to render consistently.
-  - slug: debug_pvs
-    tags:
-      - portals
-    info:
-      en: |-
-        ```hsc
-        (debug_pvs <boolean>)
-        ```
-        Alias of `debug_portals`, but with a mandatory argument.
   - slug: debug_portals
     tags:
       - portals
@@ -2145,7 +2141,10 @@ external_globals:
         ```hsc
         (debug_portals [boolean])
         ```
-        Draws structure BSP portals as red outlines.
+        Draws BSP portals as red outlines. You may wish to pair this
+        with `rasterizer_wireframe 1` to help you understand how portals result
+        in culling parts of the BSP from rendering. The related function
+        `debug_pvs` will enable/disable this global and `structures_use_pvs_for_vs`.
   - slug: debug_recording
     info:
       en: |-
@@ -3755,11 +3754,28 @@ external_globals:
         (speed_hack_log_level)
         ```
   - slug: structures_use_pvs_for_vs
+    tags:
+      - scenario_structure_bsp
+      - portals
     info:
       en: |-
         ```hsc
         (structures_use_pvs_for_vs)
         ```
+        If enabled, forces the renderer to fully render all clusters and
+        subclusters in the [potentially visible set](~scenario_structure_bsp#potentially-visible-set)
+        (PVS) without any culling of occluded faces, and even
+        if portals into those clusters are off-screen. Pair with
+        `rasterizer_wireframe 1` to see the effects. Use this to debug which
+        clusters are in the PVS of the camera's cluster, which can help you
+        understand why a cluster is considered [indoor or outdoor](~scenario_structure_bsp#indoor-vs-outdoor-clusters).
+        When this debug option is enabled, objects may sometimes disappear
+        while in view.
+
+        This global differs from the related `debug_no_frustum_clip`, which
+        disables subcluster culling by portal-diminished frustrums but still
+        allows for entire clusters to be culled when no portals into them are
+        visible.
   - slug: stun_enable
     info:
       en: |-

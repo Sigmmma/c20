@@ -73,7 +73,7 @@ The _potentially visible set_ (PVS) data is precomputed when a BSP is compiled a
 
 Tool also takes into account the indoor sky's [_indoor fog opaque distance_](~sky#tag-field-outdoor-fog-opaque-distance) and [_indoor fog maximum density_](~sky#tag-field-indoor-fog-maximum-density) when computing the PVS. If the density is `1.0` (fully opaque) then Tool knows that indoor clusters cannot see beyond the opaque distance even if there are clusters within a line of sight. Tool logs the indoor maximum world units when the BSP is imported (if there a sky referenced).
 
-In addition to using the static PVS, the game may dynamically cull objects and parts of clusters using [portal frustums](~scripting#external-globals-debug-no-frustum-clip).
+In addition to using the static PVS, the game may dynamically cull objects and parts of clusters using [portal frustums](~scripting#external-globals-debug-no-frustum-clip) or other criteria. To disable this behaviour, set `structures_use_pvs_for_vs` to `true` (this causes inconsistent object rendering though).
 
 # Potentially audible set
 Like the PVS, the [_potentially audible set_](#tag-field-sound-pas-data) (PAS) data encodes which clusters can hear sounds from other clusters. This allows the engine to cull sounds without having to perform a costlier [obstruction check](~sound-system#sound-obstruction). It is unknown what criteria make clusters potentially audible.

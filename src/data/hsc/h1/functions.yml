@@ -1982,12 +1982,18 @@ functions:
         Dumps memory leaks from the specified source file
     context: Gearbox only
   - slug: debug_pvs
+    tags:
+      - scenario_structure_bsp
+      - portals
     info:
       en: |-
         ```hsc
         (<void> debug_pvs <boolean>)
         ```
-        displays the current pvs.
+        Calling this function with `true` enables both the `debug_portals` and
+        `structures_use_pvs_for_vs` globals, which has the effect of
+        enabling portal borders and rendering all faces in the PVS. Call with
+        `false` to disable these globals.
   - slug: debug_sounds_distances
     info:
       en: >-
