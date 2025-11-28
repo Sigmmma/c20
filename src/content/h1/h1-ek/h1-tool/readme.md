@@ -607,6 +607,10 @@ Structure compilation converts the raw polygon and materials data from the JMS i
 
 Multiple JMS files can be placed in a level's `models` directory for multiple BSPs (used for large singleplayer levels). Each JMS will be imported into a separate structure BSP and added to the scenario. Scripts and trigger volumes can then be used to switch between the BSPs.
 
+{% alert type="danger" %}
+Never cancel/kill the `tool structure` process before it completes (e.g. with {% key "Ctrl+C" /%} in the command prompt). This can result in an [incomplete BSP tag being written](~bsp-troubleshooting#error-0x00000026-reached-the-end-of-the-file) and the loss of any data from the previous BSP tag which is not recoverable from the JMS, such as weather and sound palettes, detail objects, and cluster properties.
+{% /alert %}
+
 [OpenSauce](~) scenarios can cause Tool to freeze if not using OS_Tool. Import the BSP using a dummy stock scenario as a workaround.
 
 ### Phantom BSP fix
