@@ -249,5 +249,5 @@ The math for determining the range for the bonus projectiles will be to take you
 |-------|----------|--------------
 | yaw count | short | This value and the "pitch count" value are multiplied together to get the total number of projectiles created for conical spread, unknown if any other effects
 | pitch count | short | See above
-| distribution exponent | real | Defines the distribution of projectiles within the "spread" angle, a value of 0 means all projectiles are set along the max of the spread value, higher velues make this distribution closer to center
+| distribution exponent | real | Defines the distribution of projectiles within the "spread" angle, a value of 0 means all projectiles are set along the max of the spread value, higher values make this distribution closer to center
 | spread | angle | Defines the max spread in degrees from center
