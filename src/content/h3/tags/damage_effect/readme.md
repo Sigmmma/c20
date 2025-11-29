@@ -61,7 +61,7 @@ Flags used for special properties to be applied to this damage effect when hitti
 | Flag | Description
 |-------|----------
 | does not hurt owner | needs additional research
-| can cause headshots | When this melee or projectile attack hits a [model](~) damage section with the 'headshottable' flag enabled and the region is unshielded, the unit will instantly be killed, regardless of remaining health or shields
+| can cause headshots | When this melee or projectile attack hits a [model](~) damage section with the 'headshottable' flag enabled and the region is unshielded, the unit will instantly be killed, regardless of remaining health or shields. Will also enable tracking projectiles to specifically track the headshot region of a target
 | pings resistant units | Unknown/needs additional research
 | does not hurt friends | Unknown/needs additional research
 | does not ping units | needs additional research
