@@ -45,7 +45,7 @@ type_defs:
       pre_compile: true
     comments:
       en: >-
-        Controls how simulated points points physically interact with the environment.
+        Controls how simulated points physically interact with the environment.
     assert_size: 64
     fields:
       - name: flags

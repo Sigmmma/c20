@@ -49,7 +49,7 @@ Because of cache TTLs, content may not appear updated immediately. An invalidati
 ## License
 C20's codebase is licensed under version 3.0 of the GNU General Public License. A copy of its text can be found in COPYING.
 
-The content of its pages, including articles, guides, images, tag descriptions, and other rendered metadata are available under the under the [CC BY-SA 3.0 license][cc-license].
+The content of its pages, including articles, guides, images, tag descriptions, and other rendered metadata are available under the [CC BY-SA 3.0 license][cc-license].
 
 [s3-origin]: http://reclaimers-c20.s3-website-us-east-1.amazonaws.com/
 [cc-license]: https://creativecommons.org/licenses/by-sa/3.0/
