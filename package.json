@@ -29,7 +29,7 @@
     "@viz-js/viz": "^3.16.0",
     "del": "^8.0.0",
     "esbuild": "^0.25.8",
-    "express": "^5.1.0",
+    "express": "^5.2.0",
     "feather-icons": "^4.29.2",
     "front-matter": "^4.0.2",
     "gulp": "^5.0.1",
