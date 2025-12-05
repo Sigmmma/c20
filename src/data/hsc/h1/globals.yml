@@ -1595,7 +1595,11 @@ external_globals:
         ```
         Shows debug information about the camera in the top left corner, including:
         - 3D coordinates in world units
-        - BSP leaf and cluster indices
+        - BSP leaf indices
+        - Cluster indices, e.g. `(#2 [2])`. If the camera leaves the BSP then the
+          first index will be `-1` while the second index tracks the last known
+          valid cluster. This is what allows the game to keep rendering part of
+          the BSP while the camera is outside it.
         - Ground point coordinates and BSP surface index (point directly below the camera on the ground)
         - Facing direction (yaw angle)
         - Tag path of the shader pointed at by the camera. The surface must be collideable and this feature cannot be configured with collision debug flags.

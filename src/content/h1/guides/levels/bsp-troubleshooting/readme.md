@@ -9,6 +9,7 @@ thanks:
   miriem: Providing a reproducible case of the dividing_edge problem
   Ludus: Finding that nearly coplanar portals causes errors
   Galap: Providing a reproducible case of radiosity counting up
+  Roj: Providing a reproducible case of "Found duplicate triangle building connected geometry"
 redirects:
   - /h1/guides/map-making/level-creation/bsp-troubleshooting
 ---
@@ -205,7 +206,10 @@ This warning is pretty much what it sounds like -- a portal is completely outsid
 ![](portal_outside_bsp.mp4)
 
 ## Warning: Portal doesn't divide any space (green)
-If you are seeing this warning you likely have other issues with your portals that need addressing first, such as portals outside the BSP or unearthed edges. This warning could not be reproduced in isolation even when placing portal planes outside the BSP, or coincident with its boundary or seamsealer.
+Usually if you are seeing this warning you likely have other issues with your portals that need addressing first, such as portals outside the BSP or unearthed edges. This warning can also show up in isolation if your portal planes are extremely narrow, less than ~8 JMS units.
+
+## Warning: Found duplicate triangle building connected geometry (orange)
+This results from having duplicated/overlapping portal geometry. You may have accidentally duplicated the faces of your portals, or imported portals from a BSP tag using the [Halo Asset Blender Development Toolset](~general/community-tools/halo-asset-blender-development-toolset) without cleaning them up after. Import the WRL to see which portals are affected. You can select the duplicate set of faces by placing your cursor over the portal in face edit mode, and hitting {% key "L" /%} to select linked (connected faces). In the tool options that appear, select "Normal" if it's not already selected. This should result in selecting just of the two sets of duplicate faces at the portal, which you can confirm by moving. Delete the selection and move on to any other affected portals. If your portals are a separate object, merging vertices by distance will also resolve this.
 
 ## Warning: this structure_bsp needs to be reimported for new, faster visibility
 This warning is logged when loading a level in Sapien, not when you import a structure or run lightmaps. It indicates some kind of problem with the [PVS](~scenario_structure_bsp#potentially-visible-set) and your level will probably be invisible despite having run lightmaps. This warning should not be taken literally; at some time during Halo's development a new method of cluster visibility was developed and this message would have told artists to reimport their BSPs. With today's tools it just means that visibility data is invalid somehow.
@@ -350,7 +354,7 @@ If you encounter any of these errors, please contact a c20 maintainer so example
 The following error messages were found in `tool.exe` but could not be reproduced in experiments:
 
 * **Error: Edge is too short (red)**: Creating very short edges leads to degenerate face errors instead.
-* **Warning: Found duplicate triangle building connected geometry (orange)**: Attempting to recreate only causes "couldn't update edge" errors. If you encounter this, probably something is wrong with your JMS exporter.
+
 
 [blender-tool-settings]: https://docs.blender.org/manual/en/latest/modeling/meshes/tools/tool_settings.html#transform
 [wiki-convex]: https://en.wikipedia.org/wiki/Convex_polytope
