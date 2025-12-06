@@ -203,7 +203,7 @@ Parallel and perpendicular friction act as a bounds where the closer to impact a
 
 | Fields | Data type | Description
 |-------|----------|--------------
-| scale effects by | enum | Angle **or** damage, unknown
+| scale effects by | enum | Angle **or** damage, unknown effects
 | angular noise | angle | Unknown, presumably the maximum number of degrees the projectile can be randomly offset by when bouncing off a surface (in addition to the natural offset from the bounce itself)
 | velocity noise | real | Unknown, presumably the the velocity of the projectile changed randomly when bouncing off a surface (in addition to velocity lost from parallel and perpendicular friction values)
 | initial friction | real | Unknown, needs additional research
@@ -233,23 +233,21 @@ projection offset (real): Unknown, needs additional research
 
 # Conical Spread
 
-{% figure src="distribution0.jpg" %}
-Pictured: 15 projectiles with a spread angle of 5 degrees and a distribution exponent of 0
-{% /figure %}
+![Perfect distribution](distribution0.jpg "15 projectiles with a spread angle of 5 degrees and a distribution exponent of 0")
 
-{% figure src="distribution1.2.jpg" %}
-Pictured: Now with the distribution exponent set to 1.2 with no other changes
-{% /figure %}
+![Skewed distribution](distribution1.2.jpg "Now with the distribution exponent set to 1.2 with no other changes")
 
-{% alert %}
-Conical spread only works when the "travels instantaneously" flag is enabled and a value other than 0 is set for "maximum range"
-{% /alert %}
+This section can be used for weapons that fire a high volume of projectiles in a single shot, like shotguns: it defines the size and spread of the entire blast and allows more control compared to the error fields in the [weapon](~weapon#error-spread-bloom) tag.
 
-This section can be used for weapons that fire a high volume of projectiles in a single shot, like shotguns: it defines the spread of the entire blast and the distribution of shots within the blast to allow more variability (how tight the grouping can be) compared to the error fields in the [weapon](~weapon#error-spread-bloom) tag
+Conical spread requires the "travels instantaneously" flag to be enabled and for the projectile velocity to be of suffiencitly high enough velocity to reach any target (map geo included) in a single tick *within* a desired range, this range is determined by the projectile velocity and still follows the ["maximum range" field](~projectile#detonation).
+
+The bonus projectiles of conical spread will *only* be created if they can reach a target instantly, otherwise they will not spawn at all, regardless of this, the initial projectile will still be spawned. It will adhere to conical spreads spread fields.
+
+The math for determining the range for the bonus projectiles will be to take your projectile velocity and divide it by the games tick rate (60) and then to double the value by 2 because of the "travels instantaneously" flag mentioned earlier, this final value is the distance the bonus projectiles can reach within a single tick.
 
 | Fields | Data type | Description
 |-------|----------|--------------
 | yaw count | short | This value and the "pitch count" value are multiplied together to get the total number of projectiles created for conical spread, unknown if any other effects
 | pitch count | short | See above
-| distribution exponent | real | Defines the distribution of projectiles within the "spread" angle, a value of 0 means all projectiles are set along the max of the spread value, higher velues make this distribution closer to center
+| distribution exponent | real | Defines the distribution of projectiles within the "spread" angle, a value of 0 means all projectiles are set along the max of the spread value, higher values make this distribution closer to center
 | spread | angle | Defines the max spread in degrees from center
