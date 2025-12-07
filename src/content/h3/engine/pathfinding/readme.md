@@ -167,4 +167,4 @@ Objects such as [crates](~crate) have the ability to use dynamic hints such as v
 
 # Debugging
 
-When spawning in AI, you may notice certain issues with them, among these are colored triangles above their heads: green means no firing positions available to that AI, yellow can appear if there's a rather limited number of firing positions for the number of AI in the task, or if the AI cannot pathfind to the assigned firing positions. There is also a red triangle but it is very rare and will need additional research and replicable methods of attainment to know it's effects.
+When spawning in AI, you may notice certain issues with them, among these are colored triangles above their heads: green means no firing positions available to that AI. Yellow can appear if there's a rather limited number of firing positions for the number of AI in the task, or if the AI cannot pathfind to the assigned firing positions. Finally a red triangle can appear if the AI lacks the idle and alert [style](~) behaviors when in those states [(assumed combat status 1 and 2)](~ai#combat-status-and-alertness), but there may be more conditions it can appear under that are not yet known.

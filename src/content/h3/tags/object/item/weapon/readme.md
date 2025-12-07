@@ -497,7 +497,7 @@ Generally most players prefer their weapons to not be laser accurate, this secti
 This has a dropdown for 3 different block entries: single wield, dual right and dual left
 {% /alert %}
  
-| First person offset | 3 different value entries for coordinates away from the player camera in which projectiles will deviate from as their origin point
+| First person offset | 3 different value entries for coordinates away from the player camera in which projectiles will deviate from their origin point, use small values such as 0.05
 |-------|----------
 | **X** | with positive being forward from the camera 
 | **Y** | with positive being up on the vertical axis 
@@ -573,7 +573,7 @@ Random properties for the weapon that bungie stuffed at the bottom of the tag.
 | aged material effects | [material_effects](~) | This replaces the normal materiel effect of the weapon when it has become depleted
 | external aging amount | real | Amount of age as a percentage applied to weapon, used for melee weapons that lack a barrel and trigger
 | campaign external aging amount | real | Same as above but for campaign only, above applies to multiplayer
-| first person weapon offset | vector | A series of 3 values that determine the first person weapon offset on screen:
+| first person weapon offset | vector | A series of 3 values that determine the first person weapon offset on screen, use small values (IE 0.05):
 | ^ i | real | depth from camera, positive is farther from the camera
 | ^^ I | real | horizontal axis from camera, positive moves to the left
 | ^^^ k | real | verticle axis from camera, positive moves upwards
