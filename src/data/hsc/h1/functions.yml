@@ -1575,6 +1575,8 @@ functions:
         ```
         Drops all vehicles on player
   - slug: cheat_all_weapons
+    tags:
+      - weapon
     info:
       en: |-
         ```hsc
@@ -3541,6 +3543,8 @@ functions:
         Returns `true` if any player has hit the zoom button since the last call
         to `(player_action_test_reset)`
   - slug: player_add_equipment
+    tags:
+      - weapon
     info:
       en: >-
         ```hsc
@@ -4981,6 +4985,8 @@ functions:
         Starts a custom animation playing on a unit at a specific frame index (interpolates
         into animation if next to last parameter is `true`).
   - slug: unit_doesnt_drop_items
+    tags:
+      - weapon
     info:
       en: >-
         ```hsc
@@ -5067,6 +5073,8 @@ functions:
         Returns the total number of grenades for the given unit, or 0 if the unit
         does not exist.
   - slug: unit_has_weapon
+    tags:
+      - weapon
     info:
       en: >-
         ```hsc
@@ -5079,6 +5087,8 @@ functions:
 
         Returns `true` if the <unit> has <object> as a weapon, `false` otherwise
   - slug: unit_has_weapon_readied
+    tags:
+      - weapon
     info:
       en: >-
         ```hsc

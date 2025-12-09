@@ -1276,6 +1276,7 @@ external_globals:
   - slug: collision_debug_flag_objects_weapons
     tags:
       - physics-engine
+      - weapon
     info:
       en: |-
         ```hsc
@@ -2723,6 +2724,8 @@ external_globals:
         (player_autoaim)
         ```
   - slug: player_magnetism
+    tags:
+      - weapon
     info:
       en: |-
         ```hsc
@@ -3817,6 +3820,8 @@ external_globals:
         (sv_tk_ban)
         ```
   - slug: temporary_hud
+    tags:
+      - weapon
     info:
       en: |-
         ```hsc
