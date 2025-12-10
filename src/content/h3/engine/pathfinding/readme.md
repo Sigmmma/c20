@@ -114,7 +114,7 @@ Most hints will have two general flags:
 
 ![Correct well hints](wellhint.jpg "How correctly set up well and flood hints are seen from the view of the well hint selection, note how the well hints draw paths that enter and exit the flood hint")
 
-Using right click you draw a path for certain AI to take to jump on or off flood hint sectors, closing the path with left click.
+Using right click you draw a path for certain AI to take to jump on or off walls or ceilings that contain [flood hint sectors](~pathfinding#flood-hint), closing the path with left click.
 
 ## Jump hint
 
@@ -133,9 +133,9 @@ Using right and left click you draw a set of vectors (starting from the top two 
 
 ## Climb hint
 
-![Correct climb hints](climbhint.jpg "Note how climb hints are constructed with only two points, with the white line showing a perfect verticle climb with no deviation")
+![Correct climb hints](climbhint.jpg "Note how climb hints are constructed with only two points, with the white line showing a perfect vertical climb with no deviation")
 
-Using right and left click draw a verticle path from which AI will attempt to climb up using their hoist animations, place starting point near the base of the climb with the end point slightly inland from the exit of the climb, depending on the height of the hint AI will either use hoist step, hoist crouch or hoist stand functions.
+Using right and left click draw a vertical path from which AI will attempt to climb up. Depending on the height of the hint AI will either use hoist step, hoist crouch or hoist stand animations. Place starting point near the base of the climb with the end point slightly inland from the exit of the climb for best results.
 
 ## Flight hint
 
