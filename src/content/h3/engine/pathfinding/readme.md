@@ -153,7 +153,7 @@ Using right click you create a box that you can alter the dimensions of, inhibit
 
 ![Correct flood hints](floodhint.jpg "How correctly set up well and flood hints are seen from the view of the flood hint selection, note how the flood hint creates an enclosed space that well hints then draw a path into")
 
-Using right click you draw an enclosed area that certain AI will climb on or off, seal this area with left click, typically used for drones or flood pureforms to climb on, walk around and attack from walls, needs [well](~pathfinding#well-hint) hints.
+Using right click you draw an enclosed area that certain AI will climb on or off, seal this area with left click, typically used for drones or flood pureforms to climb on, walk around and attack from walls, needs [well](~pathfinding#well-hint) hints. For AI to move around on ceilings and walls they will need "climb" mode animations, while wall clinging and perching needs the "perch_wall_left(or right)" mode animations.
 
 ## Giant hint
 
