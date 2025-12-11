@@ -6,6 +6,7 @@ caption: Some bipeds scripted to run along a path during c10's intro
 thanks:
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+  Aerocatia: NTSC player physics research
 keywords:
   - bipd
 ---
@@ -35,6 +36,19 @@ Autoaim pills are part of the [autoaim system](~weapon#autoaim) which causes [pr
 You can enable `debug_objects` and `debug_objects_biped_autoaim_pills` to visualize autoaim pills.
 
 [wiki-capsule]: https://en.wikipedia.org/wiki/Capsule_(geometry)
+
+# NTSC vs PAL physics
+Halo CE for the Xbox was originally released under two different analog TV standards: NTSC in the Americas and PAL in Europe. The NTSC version ran at 30 FPS, while PAL ran at 25 FPS. Since the simulation tick rate was tied to the frame rate, this meant time in the PAL edition would run slower than the NTSC version. To compensate, the developers increased speeds and firing rates across a variety of tags, including [player speed in globals](~globals#tag-field-player-information).
+
+This tag's [_unit uses old ntsc player physics_](#tag-field-biped-flags-unit-uses-old-ntsc-player-physics) flag was a hack added for the PAL edition and remained in the engine through the PC port, H1A, and MCC. It causes the engine to override the player globals values with the following hard-coded values:
+
+* _walking speed_: `0.512`
+* _run forward speed_: `2.25`
+* _run backward speed_: `2.0`
+* _run sideways speed_: `2.0`
+* _run acceleration_: `0.32`
+
+These values are identical to the globals in all non-PAL versions of the game. The flag only has a visible effect on the Xbox PAL version due to the difference in globals there, and is only used on the `cyborg_cinematic.biped`. This is presumably to fix recorded animations which assumed NTSC physics.
 
 # Structure and fields
 

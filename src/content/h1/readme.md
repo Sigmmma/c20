@@ -41,7 +41,7 @@ Today, most modding of H1 is focused on [H1A MCC](#mcc-pc-and-xbox-one-343-indus
 # Editions and versions
 
 {% figure src="games.svg" %}
-Evolution of the Halo 1 editions and versions, colour-coded by platform or major revision
+Evolution of the Halo 1 editions and versions, colour-coded by platform or major revision.
 {% /figure %}
 
 ## Xbox (Bungie, 2001)
