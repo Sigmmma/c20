@@ -61,7 +61,7 @@ async function renderPages(parsedPages: Record<PageId, ParsedPage>, pageIndex: P
 
     await fs.promises.mkdir(outputDir, {recursive: true});
     await fs.promises.writeFile(outputFileName, htmlDoc, "utf8");
-    if (!parsedPage.front.stub && searchDoc) {
+    if (searchDoc) {
       searchDocs.push(searchDoc);
     }
   }));
