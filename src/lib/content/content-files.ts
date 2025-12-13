@@ -28,7 +28,7 @@ export async function discoverPageFiles(contentDir: string): Promise<PageFileInf
 }
 
 export async function loadParsedPage(pageFile: PageFileInfo): Promise<ParsedPage> {
-  const mdSrc = await fs.promises.readFile(pageFile.mdFilePath, "utf8");
+  const  mdSrc = await fs.promises.readFile(pageFile.mdFilePath, "utf8");
   const {ast, frontmatter: front} = parse<PageFrontMatter>(mdSrc, pageFile.mdFilePath);
   return {
     front: front ?? {},

@@ -88,7 +88,7 @@ handleThemeSelected(savedTheme);
 
 const miniSearchConfig = {
   idField: "path",
-  fields: ["title", "text"],
+  fields: ["title", "text", "keywords"],
   storeFields: ["title"],
   searchOptions: {
     //customize tokenizer to allow underscores in token

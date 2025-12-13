@@ -1,8 +1,9 @@
 import fs from "fs";
 import path from "path";
+import * as R from "ramda";
 // SPOOPY BUG: do not reorder the next two lines!!!!!
-import renderPage from "./lib/render";
-import {buildPageIndex, pageIdToLogical, type PageIndex, PageId, ParsedPage} from "./lib/content/pages";
+import renderPage, {createPlaintextPreview} from "./lib/render";
+import {buildPageIndex, pageIdToLogical, type PageIndex, PageId, ParsedPage, formatUrlPath} from "./lib/content/pages";
 import {loadYamlTree} from "./lib/utils/files";
 import {buildSearchIndexJson, SearchDoc} from "./lib/search";
 import buildResources from "./lib/resources";
@@ -10,6 +11,8 @@ import {buildSitemap} from "./lib/sitemap";
 import {buildAndWriteRedirects} from "./lib/redirects";
 import loadStructuredData from "./data";
 import {getPageBaseDir, loadParsedPages} from "./lib/content/content-files";
+import {renderPlaintext, transform} from "./lib/markdown/markdown";
+import {RenderContext} from "./lib/components/Ctx/Ctx";
 
 export type BuildOpts = {
   contentDir: string;
@@ -43,21 +46,43 @@ async function renderPages(parsedPages: Record<PageId, ParsedPage>, pageIndex: P
     const baseDir = getPageBaseDir(pageId, buildOpts);
     const outputDir = path.join(buildOpts.outputDir, ...pageIdToLogical(pageId));
     const outputFileName = path.join(outputDir, "index.html");
-    const localData = loadYamlTree(baseDir, {nonRecursive: true});
+    const localDataPromise = loadYamlTree(baseDir, {nonRecursive: true});
+
+    const lang = "en";
+    const ctx: RenderContext = {
+      pageId: pageId,
+      pageTitle: parsedPage.front?.title,
+      pageIndex: pageIndex,
+      data: R.mergeDeepRight(globalData, await localDataPromise),
+      noThumbs: buildOpts.noThumbs,
+    };
+
+    //transform uses lang because headings and links need plaintext rendering for slugs, and md could contain localizable tags
+    const content = transform(parsedPage.ast, ctx, lang, parsedPage.front);
+    const bodyPlaintext = renderPlaintext(ctx, lang, content);
+    const ogDescription = createPlaintextPreview(bodyPlaintext);
+
+    const searchDoc: SearchDoc = {
+      path: formatUrlPath(pageId),
+      title: parsedPage.front?.title ?? "",
+      keywords: parsedPage.front?.keywords?.join(" ") ?? "",
+      text: bodyPlaintext ?? "",
+    };
 
     //render the page to HTML and also gather search index data
-    const {htmlDoc, searchDoc} = renderPage({
-      lang: "en",
+    const htmlDoc = renderPage({
+      lang,
       baseUrl: buildOpts.baseUrl,
       noThumbs: buildOpts.noThumbs,
       preloadJson: true,
-      pageId: pageId,
-      ast: parsedPage.ast,
+      pageId,
       front: parsedPage.front,
-      localData: await localData,
+      content,
+      ogDescription,
+      localData: await localDataPromise,
       globalData,
       pageIndex,
-    });
+    }, ctx);
 
     await fs.promises.mkdir(outputDir, {recursive: true});
     await fs.promises.writeFile(outputFileName, htmlDoc, "utf8");

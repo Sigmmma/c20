@@ -7,6 +7,7 @@ caption: |-
   Second edition.
 keywords:
   - script
+  - scripts
   - hsc
   - bsl
 thanks:
