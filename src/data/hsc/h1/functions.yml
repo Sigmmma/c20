@@ -87,9 +87,9 @@ functions:
       en: |
         ```hsc
         (<boolean> < <number> <number>)
-        (> 4 8)
+        (< 4 8)
         ; returns: true
-        (> 8 4)
+        (< 8 4)
         ; returns: false
         ```
         Returns true if the first number is smaller than the second.
