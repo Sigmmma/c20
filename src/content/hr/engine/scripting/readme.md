@@ -4,7 +4,6 @@ stub: true
 keywords:
   - script
   - hsc
-  - bsl
 ---
 Like earlier games, Halo Reach supports **scripting** with [HaloScript](~general/scripting).
 

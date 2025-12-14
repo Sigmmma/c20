@@ -3,7 +3,6 @@ title: H2 scripting
 keywords:
   - script
   - hsc
-  - bsl
 thanks:
   Zadeinator: Notes on weather functions time arguments
 ---

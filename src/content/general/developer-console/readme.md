@@ -5,7 +5,6 @@ caption: The console prompt open with a command entered
 keywords:
   - script
   - hsc
-  - bsl
   - devmode
   - console
 thanks:

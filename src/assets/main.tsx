@@ -94,7 +94,7 @@ const miniSearchConfig = {
     //customize tokenizer to allow underscores in token
     tokenize: (str: string) => str.split(/[\s\-\."'!?,;:\[\]\(\)\|\\><]+/),
     boost: {title: 2, keywords: 3},
-    fuzzy: 0.2,
+    fuzzy: 0.1,
   }
 };
 
