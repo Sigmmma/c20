@@ -411,6 +411,7 @@ Medium sized tables or those that require multiple lines per cell can use [Markd
 * Row 2 Cell 1
 *
   Row 2 cell 2 line 1
+
   Row 2 cell 2 line 2
 {% /table %}
 ```
