@@ -559,27 +559,88 @@ Generally when a weapon fires it produces a flash and smoke at the end of the ba
 
 Random properties for the weapon that bungie stuffed at the bottom of the tag.
 
-| Fields | Tags/data type | Description
-|-------|----------|--------------
-| runtime power on velocity | real | Unknown and expert mode
-| runtime power off velocity | real | Unknown and expert mode
-| max movement acceleration | real | Unknown
-| max movement velocity | real | Unknown
-| max turning acceleration | real | Unknown
-| max turning velocity | real | Unknown
-| deployed vehicle | [vehicle](~) | Unknown
-| tossed weapon | [weapon](~) | When a unit holding the parent weapon is killed, this weapon replaces the one they were holding and falls to the ground
-| age effect | [effect](~) | The effect played when a weapon becomes depleted
-| aged material effects | [material_effects](~) | This replaces the normal materiel effect of the weapon when it has become depleted
-| external aging amount | real | Amount of age as a percentage applied to weapon, used for melee weapons that lack a barrel and trigger
-| campaign external aging amount | real | Same as above but for campaign only, above applies to multiplayer
-| first person weapon offset | vector | A series of 3 values that determine the first person weapon offset on screen, use small values (IE 0.05):
-| ^ i | real | depth from camera, positive is farther from the camera
-| ^^ I | real | horizontal axis from camera, positive moves to the left
-| ^^^ k | real | verticle axis from camera, positive moves upwards
-| first person weapon offset override | vector | Same as above but is only used for centered crosshairs
-| first person scope size | vector | Unknown
-| support third person camera range | real | Requires ["support weapon" flag](~weapon#flags), prevents camera from being moved past the set values along the vertical axis in third person camera view
-| weapon zoom time | real | Time in seconds the weapon takes to fully zoom in, the function is linear based on the time
-| weapon ready- for- use time | real | Time in seconds the weapon is unable to be used for after being readied, used for melee weapons
-| unit stow anchor name | string | The name of the render model marker this weapon attaches to when stowed
+{% table %}
+* Fields
+* Tags/Data type
+* Description
+---
+* runtime power on velocity
+* real
+* Unknown and expert mode
+---
+* runtime power off velocity
+* real
+* Unknown and expert mode
+---
+* max movement acceleration
+* real
+* unknown
+---
+* max movement velocity
+* real
+* unknown
+---
+* max turning acceleration
+* real
+* unknown
+---
+* max turning velocity
+* real
+* unknown
+---
+* deployed vehicle
+* [vehicle](~)
+* unknown
+---
+* tossed weapon
+* [weapon](~)
+* When a unit holding the parent weapon is killed, this weapon replaces the one they were holding and falls to the ground
+---
+* age effect
+* [effect](~)
+* The effect played when a weapon becomes depleted
+---
+* aged material effects
+* [material_effects](~)
+* This replaces the normal materiel effect of the weapon when it has become depleted
+---
+* external aging amount
+* real
+* Amount of age as a percentage applied to weapon when attacking, used for melee weapons that lack a barrel and trigger, for multiplayer
+---
+* campaign external aging amount
+* real
+* Same as above but for campaign only
+---
+* first person weapon offset
+* vector3D
+* 
+    A series of 3 values that determine the first person weapon offset on screen, use small values (IE 0.05)
+  - I: depth from camera, positive is farther from the camera                                                         
+  - J: horizontal axis from camera, positive moves to the left
+  - K: vertical axis from camera, positive moves upwards
+---
+* first person weapon offset override
+* vector
+* Same as above but is only used for the centered crosshairs option in MCC
+---
+* first person scope size
+* vector
+* unknown
+---
+* support third person camera range
+* real
+* Requires ["support weapon" flag](~weapon#flags), prevents camera from being moved past the set values along the vertical axis in third person camera view
+---
+* weapon zoom time
+* real
+* Time in seconds the weapon takes to fully zoom in, the function is linear based on the time
+---
+* weapon ready-for-use time
+* real
+* Time in seconds the weapon is unable to be used for after being readied, used for melee weapons
+---
+* unit stow anchor name
+* string
+* The name of the render model marker this weapon attaches to when stowed
+{% /table %}
