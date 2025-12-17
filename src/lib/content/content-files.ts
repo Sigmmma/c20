@@ -27,14 +27,10 @@ export async function discoverPageFiles(contentDir: string): Promise<PageFileInf
   });
 }
 
-export async function loadParsedPage(pageFile: PageFileInfo): Promise<ParsedPage> {
-  const  mdSrc = await fs.promises.readFile(pageFile.mdFilePath, "utf8");
-  const {ast, frontmatter: front} = parse<PageFrontMatter>(mdSrc, pageFile.mdFilePath);
-  return {
-    front: front ?? {},
-    ast,
-    logicalPath: pageFile.logicalPath,
-  };
+export async function loadParsedPage(mdFilePath: string): Promise<ParsedPage> {
+  const  mdSrc = await fs.promises.readFile(mdFilePath, "utf8");
+  const {ast, frontmatter: front} = parse<PageFrontMatter>(mdSrc, mdFilePath);
+  return {front: front ?? {}, ast};
 }
 
 //build cross-page APIs and helpers used during rendering
@@ -45,13 +41,13 @@ export async function loadParsedPages(contentDir: string): Promise<Record<PageId
 
   //load all page files
   await Promise.all(pageFiles.map(async (pageFile) => {
-    parsedPages[pageFile.pageId] = await loadParsedPage(pageFile);
+    parsedPages[pageFile.pageId] = await loadParsedPage(pageFile.mdFilePath);
   }));
 
   //check for pages that don't have a direct parent
   const missing = {};
   Object.entries(parsedPages).forEach(([pageId, page]) => {
-    const parentPage = [...page.logicalPath];
+    const parentPage = pageIdToLogical(pageId);
     parentPage.pop();
     const parentId = logicalToPageId(parentPage);
     if (parentId != "/" && parentId != "/utility" && !parsedPages[parentId] && !missing[parentId]) {

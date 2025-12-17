@@ -1,20 +1,17 @@
 import fs from "fs";
 import express from "express";
 import path from "path";
-import * as R from "ramda";
 import buildConfig from "../build-config.json";
 // SPOOPY BUG: do not reorder the next two lines!!!!!
-import renderPage, {createPlaintextPreview} from "./lib/render";
-import {buildPageIndex, formatUrlPath, pageIdToLogical} from "./lib/content/pages";
+import renderPage from "./lib/render";
+import {buildPageIndex, formatUrlPath} from "./lib/content/pages";
 import {loadYamlTree} from "./lib/utils/files";
 import {type BuildOpts} from "./build";
-import {renderPlaintext, transform} from "./lib/markdown/markdown";
 import {buildSearchIndexJson, SearchDoc} from "./lib/search";
 import {buildRedirects} from "./lib/redirects";
 import loadStructuredData from "./data";
 import {renderViz} from "./lib/resources";
 import {getPageBaseDir, getPageMdSrcPath, loadParsedPage, loadParsedPages} from "./lib/content/content-files";
-import {RenderContext} from "./lib/components/Ctx/Ctx";
 
 const buildOpts: BuildOpts = {
   baseUrl: buildConfig.baseUrl,
@@ -79,39 +76,19 @@ export default function runServer(onDemand: boolean) {
       const parsedPagesPromise = loadParsedPages(buildOpts.contentDir);
       const pageIndex = buildPageIndex(await parsedPagesPromise);
 
-      const parsedPage = await loadParsedPage({
-        mdFilePath: mdSrcPath,
-        logicalPath: pageIdToLogical(pageId),
-        pageId,
-      });
+      const parsedPage = await loadParsedPage(mdSrcPath);
 
-      const lang = "en";
-      const ctx: RenderContext = {
-        pageId: pageId,
-        pageTitle: parsedPage.front?.title,
-        pageIndex: pageIndex,
-        data: R.mergeDeepRight(await globalDataPromise, await localDataPromise),
-        noThumbs: buildOpts.noThumbs,
-      };
-
-      //transform uses lang because headings and links need plaintext rendering for slugs, and md could contain localizable tags
-      const content = transform(parsedPage.ast, ctx, lang, parsedPage.front);
-      const bodyPlaintext = renderPlaintext(ctx, lang, content);
-      const ogDescription = createPlaintextPreview(bodyPlaintext);
-
-      const htmlDoc = renderPage({
-        lang,
+      const {htmlDoc} = renderPage({
+        lang: "en",
         baseUrl: buildOpts.baseUrl,
-        noThumbs: true,
-        preloadJson: false,
+        preloadJson: true,
+        noThumbs: buildOpts.noThumbs,
         pageId,
-        front: parsedPage.front,
-        content,
-        ogDescription,
+        parsedPage,
         localData: await localDataPromise,
         globalData: await globalDataPromise,
         pageIndex,
-      }, ctx);
+      });
     
       res.header("Content-Type", "text/html; charset=UTF-8");
       res.send(htmlDoc);
