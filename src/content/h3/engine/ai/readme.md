@@ -37,12 +37,12 @@ Sound levels in as defined by tags like [weapons](~weapon) and [projectiles](~pr
 AI sharing a squad will update squadmates about the location of hostiles, sometimes even without dialogue. Things that can/will cause a target location update:
 - Seeing a target directly
 - hearing a target fire a non-silent weapon
-- hearing a projectile detonate (like grenades), this can sometimes be traced back to the target who threw them with the [sense_target](~style) flag, otherwise update target to the detonation point of the projectile itself
+- hearing a projectile detonate (like grenades), this can sometimes be traced back to the target who threw them with the _[sense_target](~style)_ flag, otherwise update target to the detonation point of the projectile itself
 - An ally shoots at a target, even if we have no line of sight on this target
-- Taking damage, even if we have no line of sight from who did the damage to us, unless it's a grenade; that requires [sense_target](~style), this is not limited to squads or tasks
+- Taking damage, even if we have no line of sight from who did the damage to us, unless it's a grenade; that requires _[sense_target](~style)_, this is not limited to squads or tasks
 - An ally taking damage within hearing distance, including death.
 - Entering search mode
-- Prediction of target hiding can allow some updates based on predicting where the target may go when hiding, usually for only a few moments after losing contact when in search mode, requires [sense_target](~style)
+- Prediction of target hiding can allow some updates based on predicting where the target may go when hiding, usually for only a few moments after losing contact when in search mode, requires _[sense_target](~style)_
 
 AI also have the ability to track multiple items or targets at once, it appears the limits are as follows:
 - Each task can track up to 20 props at once

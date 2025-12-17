@@ -106,21 +106,21 @@ The main setting you control as a map maker is the pathfinding policy used by ob
 Hints are used by the scenario editor to allow more fine tuning of the AI navigation when interacting with the level geometry, examples include things like cookie cutters to block pathfinding entirely or climb hints to allow AI to climb walls that are normally impassable. Hints can be viewed using `ai_render_hints 1`.
 
 Most hints will have two general flags:
-- bidirectional : AI can use this hint going fowards and backwards across it, some exceptions apply
-- closed : Unknown/needs additional research
+- _bidirectional_ : AI can go fowards and backwards across this hint, some exceptions apply
+- _closed_ : Unknown/needs additional research
 
 
 ## Well hint
 
 ![Correct well hints](wellhint.jpg "How correctly set up well and flood hints are seen from the view of the well hint selection, note how the well hints draw paths that enter and exit the flood hint")
 
-Using right click you draw a path for certain AI to take to jump on or off walls or ceilings that contain [flood hint sectors](~pathfinding#flood-hint), closing the path with left click.
+Well hints are used by AI to leap onto walls or ceilings inside flood hints. Using right click you draw a path for certain AI to take to jump on or off walls or ceilings that contain [flood hint sectors](~pathfinding#flood-hint), closing the path with left click.
 
 ## Jump hint
 
 ![Corrct jump hints](jumphint.jpg "Note how the middle two hints are bi-directional and have a two-way yellow arrow, while the outside hints are single direction only")
 
-Using right and left click you draw a set of vectors (starting from the top two points) that detmermines a direction for AI to take jumps in, can also be used for for vaulting, a section below will detail additional flags.
+Jump hints are used for allowing the AI to take jumps over obstacles or drops. Using right and left click you draw a set of vectors (starting from the top two points) that detmermine the direction for AI to take jumps in, can also be used for for vaulting, a section below will detail additional flags.
 
 | Jump hint flags | Description
 |-------|----------
@@ -135,25 +135,25 @@ Using right and left click you draw a set of vectors (starting from the top two 
 
 ![Correct climb hints](climbhint.jpg "Note how climb hints are constructed with only two points, with the white line showing a perfect vertical climb with no deviation")
 
-Using right and left click draw a vertical path from which AI will attempt to climb up. Depending on the height of the hint AI will either use hoist step, hoist crouch or hoist stand animations. Place starting point near the base of the climb with the end point slightly inland from the exit of the climb for best results.
+Climb hints mark a vertical path AI can use to climb up and over an obstacle. Depending on the height of the hint AI will either use hoist step, hoist crouch or hoist stand animations. Using right and left click draw a vertical path from which AI will attempt to climb up. Place starting point near the base of the climb with the end point slightly inland from the exit of the climb for best results.
 
 ## Flight hint
 
 ![A correct flight hint](flighthint.jpg "Note how the hint is constructed with multiple points that can be moved around")
 
-Using right click draw a path of points in which flying AI can use to fly around an area without the use of firing positions, close with left click.
+Flight hints can be used by flying AI to fly in a set path without the use of firing positions. Using right click draw a path of points, close with left click.
 
 ## Cookie Cutter hint
 
 ![A cookie cutter hint](cchint.jpg "Best practice is to make sure the cookie cutter overshoots geometry you want to block off, such as sinking through the floor by a tiny bit")
 
-Using right click you create a box that you can alter the dimensions of, inhibits *all* pathfinding through the area of the cookie cutter box.
+Cookie cutters inhibit *all* pathfinding through them. Using right click you create a box that you can alter the dimensions of by clicking and dragging a side or by using the properties window.
 
 ## Flood hint
 
 ![Correct flood hints](floodhint.jpg "How correctly set up well and flood hints are seen from the view of the flood hint selection, note how the flood hint creates an enclosed space that well hints then draw a path into")
 
-Using right click you draw an enclosed area that certain AI will climb on or off, seal this area with left click, typically used for drones or flood pureforms to climb on, walk around and attack from walls, needs [well](~pathfinding#well-hint) hints. For AI to move around on ceilings and walls they will need "climb" mode animations, while wall clinging and perching needs the "perch_wall_left(or right)" mode animations.
+Flood hints are typically used for drones or flood pureforms to climb on, walk around and attack from walls, needs [well](~pathfinding#well-hint) hints. Using right click to place points you draw an enclosed area, seal this area with left click. For AI to move around on ceilings and walls they will need "climb" mode animations, while wall clinging and perching needs the "perch_wall_left(or right)" mode animations.
 
 ## Giant hint
 

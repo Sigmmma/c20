@@ -61,8 +61,9 @@ Some symbols are specific when used in conjunction with instanced geometry
 
 | Symbol | Description
 |------- | -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| `+`    | Static pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol it will generate static pathfinding for the mesh.
-| `-`    | None pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol ignore the object while generating the pathfinding mesh (note AI will not attempt to walk around these meshes).
+| ` `    | *Cut-out* pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of **no symbol** it will generate the pathfinding mesh with this object cut out (AI will walk around this object)
+| `+`    | *Static* pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol it will generate static pathfinding for the mesh.
+| `-`    | _None_ pathfinding prefix. Used in conjunction with the instance object prefix to tell tool how to handle pathfinding for this object. In the case of this symbol ignore the object while generating the pathfinding mesh (note AI will not attempt to walk around these meshes).
 | `?`    | Light object per vertex. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will set the geo to use per vertex for lightmap policy.
 | `!`    | Light object per pixel. Used in conjunction with the instance object prefix to tell tool how to handle lighting for this object. In the case of this symbol it will set the geo to use per pixel for lightmap policy.
 | `*`    | Render only prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to use only render geometry.

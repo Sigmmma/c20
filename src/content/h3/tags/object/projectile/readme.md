@@ -30,7 +30,7 @@ Projectiles receive a boost to the distance hitscanned on their spawn tick, this
 
 Projectile vectors can be changed from all sources of [damage](~damage_effect) when a [collision model](~collision_model) is present by using the "instantaneous acceleration" value, this includes melee, explosions, normal rounds, and other projectiles colliding mid-air. When no collision is present only area of effect damage can effect projectiles
 
-Introduced in H2, the "travels instantaneously" flag is used extensively by many weapons and makes projectiles reach short range targets in a much smaller amount of time, requiring less leading.
+Introduced in H2, the _travels instantaneously_ flag is used extensively by many weapons and makes projectiles reach short range targets in a much smaller amount of time, requiring less leading.
 
 
 # Flags
@@ -94,7 +94,7 @@ Is it not currently understood what defines a floor from a wall or ceiling, so f
 | maximum range | real | Projectile detonates after having travelled this distance in world units
 | bounce maximum range | real | Unknown, needs additional research
 | detonation noise | enum | Same as "impact noise" but applied on projectile detonation instead
-| super det. projectile count | short | More than this number of projectiles attached to a target needed to trigger super-combine behavior, needs supercombining flag enabled
+| super det. projectile count | short | More than this number of projectiles attached to a target needed to trigger super-combine behavior, needs _has super combining explosion_ flag enabled
 | super det. time | real | Time after the above field where the super-combine effect is triggered
 | detonation started | [effect](~) | Effect played on the projectile during it's detonation timer countdown
 | detonation effect (airborne) | [effect](~) | Effect played on the projectile when it detonates in the air
@@ -239,15 +239,13 @@ projection offset (real): Unknown, needs additional research
 
 This section can be used for weapons that fire a high volume of projectiles in a single shot, like shotguns: it defines the size and spread of the entire blast and allows more control compared to the error fields in the [weapon](~weapon#error-spread-bloom) tag.
 
-Conical spread requires the "travels instantaneously" flag to be enabled and for the projectile velocity to be of suffiencitly high enough velocity to reach any target (map geo included) in a single tick *within* a desired range, this range is determined by the projectile velocity and still follows the ["maximum range" field](~projectile#detonation).
+Conical spread requires the _travels instantaneously_ flag to be enabled and for the projectile velocity to be of suffiencitly high enough velocity to reach any target (map geo included) in a single tick *within* a desired range, this range is determined by the projectile velocity and still follows the ["maximum range" field](~projectile#detonation). The bonus projectiles of conical spread will *only* be created if they can reach a target instantly, otherwise they will not spawn at all, regardless of this, the initial projectile will still be spawned. Initial *and* bonus projectiles adhere to the spread fields detailed in this section if values other than zero are entered for the yaw and pitch fields.
 
-The bonus projectiles of conical spread will *only* be created if they can reach a target instantly, otherwise they will not spawn at all, regardless of this, the initial projectile will still be spawned. It will adhere to conical spreads spread fields.
-
-The math for determining the range for the bonus projectiles will be to take your projectile velocity and divide it by the games tick rate (60) and then to double the value by 2 because of the "travels instantaneously" flag mentioned earlier, this final value is the distance the bonus projectiles can reach within a single tick.
+The math for determining the range for the bonus projectiles will be to take your projectile velocity and divide it by the games tick rate (60) and then to double the value by 2 because of the _travels instantaneously_ flag mentioned earlier, this final value is the distance the bonus projectiles can reach within a single tick.
 
 | Fields | Data type | Description
 |-------|----------|--------------
 | yaw count | short | This value and the "pitch count" value are multiplied together to get the total number of projectiles created for conical spread, unknown if any other effects
 | pitch count | short | See above
 | distribution exponent | real | Defines the distribution of projectiles within the "spread" angle, a value of 0 means all projectiles are set along the max of the spread value, higher values make this distribution closer to center
-| spread | angle | Defines the max spread in degrees from center
+| spread | angle | Defines the max spread in degrees from center for conical spread bonus projectiles

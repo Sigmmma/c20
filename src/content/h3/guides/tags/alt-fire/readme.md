@@ -32,7 +32,7 @@ Can be set up the same way as latch autofire, but ignores the autofire time fiel
 
 ![The setup for charge](charge.jpg "Note the charging time")
 
-## Spew Charge
+## Spew charge
 
 As common as the spartan laser itself, this unique trigger type is only used for that specific weapon, but generally it's an automatic fire weapon that fires it's first barrel while charging it's second, once the second barrel finishes charging it then takes over firing as a semi-auto or burst attack.
 

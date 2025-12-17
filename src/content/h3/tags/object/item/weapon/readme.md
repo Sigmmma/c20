@@ -158,7 +158,7 @@ This section defines weapon assist features to make target aquisition easier, es
 | magnetism angle | angle | Angle in which the game applies aim assist to controllers when aiming over a target within magnetism range
 | magnetism range | real | Maximum range in which the game will apply aim assist to controllers aiming over a target
 | magnetism falloff range | real | Range in which the strength of aim assist for controllers begins to fall off before maximum distance
-| deviation angle | angle | Funtions the same as "autoaim angle", but ignores the ["strict deviation angle" weapon flag](~weapon#flags)
+| deviation angle | angle | Funtions the same as "autoaim angle", but ignores the _[strict deviation angle](~weapon#flags)_ flag
 
 # Movement
 
@@ -392,7 +392,7 @@ Triggers are tied to barrels, barrels themselves are the most important part of 
 
 | Flags | Description
 |-------|----------
-| tracks fired projectile | Allows projectiles to track targets on weapons used by the player, AI seem to ignore this flags presence
+| tracks fired projectile | Allows projectiles to track targets on weapons used by the player, AI seem to ignore this flag
 | random firing effects | Unknown/Needs additional research
 | can fire with partial ammo | Normally when a weapon does not have enough ammo in the magazine to fulfill a barrel fire, the weapon will force reload, this flag allows the weapon to still be used and fire the normal number of shots regardless of incomplete ammo requirement
 | projectiles use weapon origin | Only applicable to players, causes weapon to fire projectiles from the third person weapon trigger markers, rather than the player camera
@@ -630,7 +630,7 @@ Random properties for the weapon that bungie stuffed at the bottom of the tag.
 ---
 * support third person camera range
 * real
-* Requires ["support weapon" flag](~weapon#flags), prevents camera from being moved past the set values along the vertical axis in third person camera view
+* Requires _[support weapon](~weapon#flags)_ flag, prevents camera from being moved past the set values along the vertical axis in third person camera view
 ---
 * weapon zoom time
 * real
