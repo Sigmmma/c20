@@ -34,14 +34,15 @@ AI in Halo, outside of scripting and specific task flags, do not have the abilit
 
 Sound levels in as defined by tags like [weapons](~weapon) and [projectiles](~projectile) act as a sort of bounds that fall within the hearing distance value in the [character](~) tag, for example an AI with a hearing range of 20 WU will hear a "medium" sound at ~9 WU, but if the hearing range was increased to 40 WU, the AI would instead be able to hear a "medium" sound out to ~18 WU, this topic needs further research as results are not entirely 1 to 1 reproducable and factors such as the direction the AI is facing and their alertness may play a part.
 
-AI sharing a squad will update squadmates about the location of hostiles, sometimes even without dialog. Things that can/will cause a target location update:
+AI sharing a squad will update squadmates about the location of hostiles, sometimes even without dialogue. Things that can/will cause a target location update:
 - Seeing a target directly
 - hearing a target fire a non-silent weapon
-- hearing a projectile detonate (like grenades), this can sometimes be traced back to the target who threw them with the [sense_target](~style) flag, otherwise update target to the detonation point of the projectile itself
+- hearing a projectile detonate (like grenades), this can sometimes be traced back to the target who threw them with the _[sense_target](~style)_ flag, otherwise update target to the detonation point of the projectile itself
 - An ally shoots at a target, even if we have no line of sight on this target
-- Taking damage, even if we have no line of sight from who did the damage to us, unless it's a grenade; that requires [sense_target](~style), this is not limited to squads or tasks
+- Taking damage, even if we have no line of sight from who did the damage to us, unless it's a grenade; that requires _[sense_target](~style)_, this is not limited to squads or tasks
+- An ally taking damage within hearing distance, including death.
 - Entering search mode
-- Prediction of target hiding can allow some updates based on predicting where the target may go when hiding, usually for only a few moments after losing contact when in search mode, requires [sense_target](~style)
+- Prediction of target hiding can allow some updates based on predicting where the target may go when hiding, usually for only a few moments after losing contact when in search mode, requires _[sense_target](~style)_
 
 AI also have the ability to track multiple items or targets at once, it appears the limits are as follows:
 - Each task can track up to 20 props at once
@@ -62,13 +63,9 @@ AI use a level-specific navmesh to move around the environment, this is set up v
 
 # Danger and scariness
 
-{% figure src="danger_values.jpg" %}
-Pictured: From the AI globals section of the globals, we can see the various actions that contribute to the danger value an AI perceives
-{% /figure %}
+![Global danger values](danger_values.jpg "From the AI globals section of the globals, we can see the various actions that contribute to the danger value an AI perceives")
 
-{% figure src="scare_value_8.jpg" %}
-Pictured: In this example, the brute shown has a scariness value of 4 and his carbine adds 5, versus 7 for the masterchief biped and 10 for the sniper rifle, resulting in the brute perceiving a scariness of 8 from his target
-{% /figure %}
+![Scaring the brute](scare_value_8.jpg "In this example, the brute shown has a scariness value of 4 and his carbine adds 5, versus 7 for the masterchief biped and 10 for the sniper rifle, resulting in the brute perceiving a scariness of 8 from his target")
 
 Scariness is calculated by taking the scare value of the AI's biped and adding the scariness of the weapon they are holding, and then comparing it against their targets biped/character and their held weapon. 
 

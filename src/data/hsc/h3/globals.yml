@@ -437,6 +437,8 @@ external_globals:
         ```hsc
         (chud_debug_crosshair [boolean])
         ```
+
+        When enabled, displays weapon autoaim circle (blue) and current max error at 0.5 WU circle (yellow) 
   - slug: chud_debug_metagame
     info:
       en: |-

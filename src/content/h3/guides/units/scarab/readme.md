@@ -9,6 +9,8 @@ keywords:
 thanks:
   Rataz: Writing this guide
   RejectedShotGun: Streaming while adding a scarab to a map
+redirects:
+ - /h3/guides/scarab
 ---
 This guide provides general info on how to set up the scarab in a custom scenario. The Scarab is a fun opponent to add to custom scenarios, but requires more steps to set up than other AI characters.
 

@@ -28,7 +28,7 @@ The highest level of the AI pathfinding system for gameplay purposes, [objective
 | Zone properties | Description
 |-------|----------
 | Manual bsp index | Allows the level designer to bypass the automatic bsp assignment for a zone, defaults to *on*
-| Giants zone | Marks the zone for use with [Scarab units](~h3/guides/scarab#overview)
+| Giants zone | Marks the zone for use with [Scarab units](~h3/guides/units/scarab#overview)
 | Manual bsp | Lets you set what BSP this zone should be assigned to
 
 ## Areas
@@ -106,22 +106,21 @@ The main setting you control as a map maker is the pathfinding policy used by ob
 Hints are used by the scenario editor to allow more fine tuning of the AI navigation when interacting with the level geometry, examples include things like cookie cutters to block pathfinding entirely or climb hints to allow AI to climb walls that are normally impassable. Hints can be viewed using `ai_render_hints 1`.
 
 Most hints will have two general flags:
-- bidirectional : AI can use this hint going fowards and backwards across it, some exceptions apply
-- closed : Unknown/needs additional research
+- _bidirectional_ : AI can go fowards and backwards across this hint, some exceptions apply
+- _closed_ : Unknown/needs additional research
 
-{% figure src="wellhint.jpg" %}
-Pictured: How correctly set up well and flood hints are seen from the view of the well hint selection, note how the well hints draw paths that enter and exit the flood hint
-{% /figure %}
 
-| Hint type | Description
-|-------|----------
-| well | Using right click you draw a path for certain AI to take to jump on or off flood hint sectors, closing the path with left click
-| jump | Using right and left click you draw a set of vectors (starting from the top two points) that detmermines a direction for AI to take jumps in, can also be used for for vaulting, a section below will detail additional flags
-| climb | Using right and left click draw a verticle path from which AI will attempt to climb up using their hoist animations
-| flight | Using right click draw a path of points in which flying AI can use to fly around an area without the use of firing positions, close with left click
-| cookie cutter | Using right click you create a box that you can alter the dimensions of, inhibits *all* pathfinding through the area of the cookie cutter box
-| flood | Using right click you draw an enclosed area that certain AI will climb on or off, seal this area with left click, typically used for drones or flood pureforms to climb on, walk around and attack from walls, needs well hints
-| giant | Consists of two sub-types: sector hints and rail hints, sector hints are used to define the area in which scarabs will pathfind (Used *with* scarab zones) and rail hints are used for the scarab to transition between different sectors, use right click to create vertices in the sector or the starting position of the rail and left click to seal the sector or end the rail, **see [the scarab usage guide ](~h3/guides/scarab) for more info about setting up scarab units for gameplay.**
+## Well hint
+
+![Correct well hints](wellhint.jpg "How correctly set up well and flood hints are seen from the view of the well hint selection, note how the well hints draw paths that enter and exit the flood hint")
+
+Well hints are used by AI to leap onto walls or ceilings inside flood hints. Using right click you draw a path for certain AI to take to jump on or off walls or ceilings that contain [flood hint sectors](~pathfinding#flood-hint), closing the path with left click.
+
+## Jump hint
+
+![Corrct jump hints](jumphint.jpg "Note how the middle two hints are bi-directional and have a two-way yellow arrow, while the outside hints are single direction only")
+
+Jump hints are used for allowing the AI to take jumps over obstacles or drops. Using right and left click you draw a set of vectors (starting from the top two points) that detmermine the direction for AI to take jumps in, can also be used for for vaulting, a section below will detail additional flags.
 
 | Jump hint flags | Description
 |-------|----------
@@ -130,10 +129,42 @@ Pictured: How correctly set up well and flood hints are seen from the view of th
 | railing  | Treat this hint as a vault in which AI will try to vault over the obstacle using their vault animations
 | vault  | Unknown/needs additional research
 
+![vault hint example](vjumphint.jpg "An example of a vault hint, the obstacle is flanked at both ends by the hint which makes the red fenceline encase the obstacles width")
+
+## Climb hint
+
+![Correct climb hints](climbhint.jpg "Note how climb hints are constructed with only two points, with the white line showing a perfect vertical climb with no deviation")
+
+Climb hints mark a vertical path AI can use to climb up and over an obstacle. Depending on the height of the hint AI will either use hoist step, hoist crouch or hoist stand animations. Using right and left click draw a vertical path from which AI will attempt to climb up. Place starting point near the base of the climb with the end point slightly inland from the exit of the climb for best results.
+
+## Flight hint
+
+![A correct flight hint](flighthint.jpg "Note how the hint is constructed with multiple points that can be moved around")
+
+Flight hints can be used by flying AI to fly in a set path without the use of firing positions. Using right click draw a path of points, close with left click.
+
+## Cookie Cutter hint
+
+![A cookie cutter hint](cchint.jpg "Best practice is to make sure the cookie cutter overshoots geometry you want to block off, such as sinking through the floor by a tiny bit")
+
+Cookie cutters inhibit *all* pathfinding through them. Using right click you create a box that you can alter the dimensions of by clicking and dragging a side or by using the properties window.
+
+## Flood hint
+
+![Correct flood hints](floodhint.jpg "How correctly set up well and flood hints are seen from the view of the flood hint selection, note how the flood hint creates an enclosed space that well hints then draw a path into")
+
+Flood hints are typically used for drones or flood pureforms to climb on, walk around and attack from walls, needs [well](~pathfinding#well-hint) hints. Using right click to place points you draw an enclosed area, seal this area with left click. For AI to move around on ceilings and walls they will need "climb" mode animations, while wall clinging and perching needs the "perch_wall_left(or right)" mode animations.
+
+## Giant hint
+
+![Correct giant hints](gianthint.jpg "How correctly set up sector and rail hints are seen from the view of the sector selection, note how the rail (yellow) hints draw a path between the sector hints")
+
+Consists of two sub-types: sector hints and rail hints, sector hints are used to define the area in which scarabs will pathfind (Used *with* scarab zones) and rail hints are used for the scarab to transition between different sectors, use right click to create vertices in the sector or the starting position of the rail and left click to seal the sector or end the rail, **see [the scarab usage guide ](~h3/guides/units/scarab) for more info about setting up scarab units for gameplay.**
+
 ## Object hints
 
 Objects such as [crates](~crate) have the ability to use dynamic hints such as vaulting, mounting and hoisting, these are defined by markers on the [render_model](~)
 
 # Debugging
 
-When spawning in AI, you may notice certain issues with them, among these are colored triangles above their heads: green means no objective set or no firing positions available within the current task of that AI, yellow can appear if there's a rather limited number of firing positions for the number of AI in the task, or if the AI cannot pathfind to the assigned firing positions. There is also a red triangle but it is very rare and will need additional research and replicable methods of attainment to know it's effects.
+When spawning in AI, you may notice certain issues with them, among these are colored triangles above their heads: green means no firing positions available to that AI. Yellow can appear if there's a rather limited number of firing positions for the number of AI in the task, or if the AI cannot pathfind to the assigned firing positions. Finally a red triangle can appear if the AI lacks the idle and alert [style](~) behaviors when in those states [(assumed combat status 1 and 2)](~ai#combat-status-and-alertness), but there may be more conditions it can appear under that are not yet known.

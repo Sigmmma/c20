@@ -1,9 +1,9 @@
 ---
 title: HR scripting
-stub: true
 keywords:
   - script
   - hsc
+  - scripting
 ---
 Like earlier games, Halo Reach supports **scripting** with [HaloScript](~general/scripting).
 

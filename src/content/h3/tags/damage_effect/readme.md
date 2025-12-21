@@ -33,7 +33,7 @@ Halo 3 does not support negative damage, nor negative damage modifiers.
 |-------|----------
 | none | No side effects from this damage effect on targets
 | harmless | Unknown/needs additional research
-| lethal to the unsuspecting | Causes this damage effect to instantly kill units from behind, unless the [biped](~) flag 'not instantly killed from behind' is enabled
+| lethal to the unsuspecting | Causes this damage effect to instantly kill units from behind, unless the [biped](~) flag _not instantly killed from behind_ is enabled
 | emp | needs additional research
 
 These effects are either unknown or need additional research.
@@ -61,7 +61,7 @@ Flags used for special properties to be applied to this damage effect when hitti
 | Flag | Description
 |-------|----------
 | does not hurt owner | needs additional research
-| can cause headshots | When this melee or projectile attack hits a [model](~) damage section with the 'headshottable' flag enabled and the region is unshielded, the unit will instantly be killed, regardless of remaining health or shields
+| can cause headshots | When this melee or projectile attack hits a [model](~) damage section with the _headshottable_ flag enabled and the region is unshielded, the unit will instantly be killed, regardless of remaining health or shields. Will also enable tracking projectiles to specifically track the headshot region of a target
 | pings resistant units | Unknown/needs additional research
 | does not hurt friends | Unknown/needs additional research
 | does not ping units | needs additional research
@@ -95,7 +95,7 @@ Pictured: The entire fields section
 | Fields | Data type | Description
 |-------|----------|--------------
 | AOE core radius | real | The radius in WU that this damage effect can travel through map geometry, [scenery](~) and [crates](~crate), still abides by the radius fields to define actual range of effect
-| damage lower bound | real | The damage done to a target for detonation, melee or [effect](~)-bound damage when effecting a target just within the second radius bounds value. Is unused for impact damage unless the projectile flag ['damage scales based on distance'](~projectile#flags) is enabled, then this value of damage will be applied when hitting a target past the latter bound of the ['air damage range' field](~projectile#physics)
+| damage lower bound | real | The damage done to a target for detonation, melee or [effect](~)-bound damage when effecting a target just within the second radius bounds value. Is unused for impact damage unless the projectile flag _[damage scales based on distance](~projectile#flags)_ is enabled, then this value of damage will be applied when hitting a target past the latter bound of the ['air damage range' field](~projectile#physics)
 | damage upper bound | real | 2 values that the game picks between for the damage done to a target on impact, or within the first radius bounds value for detonation, melee or [effect](~)-bound damage
 | dmg inner cone angle | real | needs additional research
 | dmg outer cone angle | real | needs additional research

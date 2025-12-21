@@ -110,10 +110,6 @@ Melee attacks for the player are not natural to the player unit themself, but ra
 | damage pyramid angles | euler | Two values that define the angles the melee attack is thrown out/Needs additional research
 | damage pyramid depth | real | When initiating a melee attack, the damage itself is thrown this far out, can be farther than the melee lunge range
 
-{% figure src="meleedamagetypes.png" %}
-Pictured: A list of all availale weapon melee damage types
-{% /figure %}
-
 {% alert %}
 It is currently understood that only the energy sword can initiate a clang, and only on another energy sword when lunging at each other
 {% /alert %}
@@ -134,6 +130,8 @@ It is currently understood that only the energy sword can initiate a clang, and 
 |clang melee response | [damage_effect](~) / [damage_response_definition](~) | Damage response played on players engaging in a melee clash against each other
 |clang effect | [sound](~) / [effect](~) | Effect played on players who engage in a melee clash against each other
 |melee damage reporting type | enum | Dropdown selector for various weapon and vehicle types, unknown/unused effects
+
+![Melee damage reporting types](meleedamagetypes.png "A list of all availale weapon melee damage types")
 
 # Zoom
 
@@ -160,7 +158,7 @@ This section defines weapon assist features to make target aquisition easier, es
 | magnetism angle | angle | Angle in which the game applies aim assist to controllers when aiming over a target within magnetism range
 | magnetism range | real | Maximum range in which the game will apply aim assist to controllers aiming over a target
 | magnetism falloff range | real | Range in which the strength of aim assist for controllers begins to fall off before maximum distance
-| deviation angle | angle | Funtions the same as "autoaim angle", but ignores the ["strict deviation angle" weapon flag](~weapon#flags)
+| deviation angle | angle | Funtions the same as "autoaim angle", but ignores the _[strict deviation angle](~weapon#flags)_ flag
 
 # Movement
 
@@ -247,7 +245,7 @@ Despite using the "no tracking" option, the needler still possesses tracking abi
 This section defines what UI tags to use to display things like the reticle and ammo and other elements.
 
 {% alert %}
-First entry of this block is for spartan bipeds, second entry is for elite bipeds and this is regardless of campaign or multiplayer
+First entry of this block is for biped type 0 and 2 (spartans), and the second entry is for biped type 1,3 and 4 (elites) and this is regardless of game mode selection
 {% /alert %}
 
 *first person (and chud)*
@@ -321,16 +319,14 @@ First entry into this block becomes the primary trigger, second entry becomes th
 |-------|----------
 | spew |When trigger is pressed the weapon will continuously fire the barrel, under normal circumstances will fire in bursts of 2
 | latch | When pressed the barrel is fired and then halts until the trigger is let go and repressed
-| latch-autofire | Functions like latch until the trigger is held down for the period of time specified in **autofire time**, then begins charging and will fire once the trigger is released, forces plasma tracking to only enable on targets who are currently shielded, is also linked to the plasma track widget flag in the weapon [interface](~chud_definition) tag
-| charge | Appears to function similar to latch-autofire, but better suited to weapons with a single barrel for charging behavior only
+| latch-autofire | Functions like latch until the trigger is held down for the period of time specified in **autofire time**, then begins charging the second barrel and will fire once the trigger is released, forces plasma tracking to only enable on targets who are currently shielded, is also linked to the plasma track widget flag in the weapon [interface](~chud_definition) tag
+| charge | Functions similar to latch-autofire, but does not wait for the **autofire time** and will begin charging the secondary barrel the moment the trigger is pressed, should the secondary barrel not fully charge, fire the primary instead.
 | latch-zoom | Same as latch but allows a second barrel to be used when the weapon is zoomed
 | latch-rocketlauncher | Same as latch but is needed to also allow target locking onto human tracked targets by holding the trigger on the target and then releasing the trigger to fire once locked on
-| spew-charge | Functions like spew for a period of time specified in charging time before charging the second barrel
+| spew-charge | Functions like spew for the period of time specified in charging time before charging the secondary barrel
 | sword-charge | Unknown, seems to function like latch-autofire but triggers a melee while releasing the charge
 
-{% figure src="maintrigger.png" %}
-Pictured: An example of the main part of the trigger block
-{% /figure %}
+![The trigger block](maintrigger.png "An example of the main part of the trigger block")
 
 | Barrel assignment | Description
 |-------|----------
@@ -396,7 +392,7 @@ Triggers are tied to barrels, barrels themselves are the most important part of 
 
 | Flags | Description
 |-------|----------
-| tracks fired projectile | Allows projectiles to track targets on weapons used by the player, AI seem to ignore this flags presence
+| tracks fired projectile | Allows projectiles to track targets on weapons used by the player, AI seem to ignore this flag
 | random firing effects | Unknown/Needs additional research
 | can fire with partial ammo | Normally when a weapon does not have enough ammo in the magazine to fulfill a barrel fire, the weapon will force reload, this flag allows the weapon to still be used and fire the normal number of shots regardless of incomplete ammo requirement
 | projectiles use weapon origin | Only applicable to players, causes weapon to fire projectiles from the third person weapon trigger markers, rather than the player camera
@@ -412,7 +408,7 @@ Triggers are tied to barrels, barrels themselves are the most important part of 
 | fires locked projectiles | Forces AI actors using this barrel to only track when targeting a human-tracking type unit, else they self-guide projectiles, unknown otherwise
 | can fire at maximum age | This barrel will continue to be able to fire despite the weapon age being at 0
 | use 1 firing effect per burst | Weapon will only play it's firing effect a single time, all shots after either in a burst or spew will not have a firing effect
-| ignore tracked object | Unknown/Needs additional research
+| ignore tracked object | Disables the tracking of this projectile, useful for reusing a tracking projectile on a non-tracking enabled barrel, plasma tracking projectiles with *tracks fired projectile* seem to override this flag and still track targets
 
 ## Firing
 
@@ -436,13 +432,11 @@ Defines **how** the current barrel fires.
 
 ## Weapon firerate bonus info
 
-{% figure src="rps-frt.png" %}
-Pictured: An example of rate of fire and fire recovery time
-{% /figure %}
+![Weapon firerate information](rps-frt.jpg "Example of the rounds per second and fire recovery time fields")
 
-When using the __rounds per second__ field in the weapons barrel block, you are given a set of 2 bound values to enter, due to limitations implemented by 343 to retain 30 tick engine behavior you may only enter values compatible with 30 tick engines. __0.46875 is the lowest possible value allowed__ due to the idle_ticks timer only allowing a max of 127 ticks, thus this value has the weapon fire on the 128th tick. __To find all other compatible values, do 30 divided by a *whole* number between 1 and 64.__ Invalid values will round *down* to the nearest valid (Example: 16 will behave as 15).
+When using the __rounds per second__ field in the weapons barrel block you are given a set of 2 bound values to enter. Due to limitations implemented by 343 to retain 30 tick engine behavior you may only enter values compatible with 30 tick timings. __0.46875 is the lowest possible value allowed__ due to the idle_ticks timer only allowing a max of 127 ticks, thus this value has the weapon fire on the 128th tick. __To find all other compatible values, do 30 divided by a *whole* number between 1 and 64__, Invalid values will round *down* to the nearest valid (Example: 16 will behave as 15).
 
-When using the __fire recovery time__ field in the weapons barrel block, you are given a single value (in seconds) to enter, this value is able to accept 60 tick engine values, there is a built-in 2 tick base delay *plus* a second minimum delay of 2 ticks so the __fastest possible rate of fire achievable with fire recovery time is 12 rounds per second__ with a value of 0.
+When using the __fire recovery time__ field in the weapons barrel block, you are given a single value (in seconds) to enter. This value is able to accept 60 tick engine values but has a built-in 2 tick base delay *plus* a second minimum delay of 2 ticks so the __fastest possible rate of fire achievable with fire recovery time is 12 rounds per second__ with a value of 0.
 
 ## Prediction and noise
 
@@ -461,10 +455,10 @@ Prediction properties effect networking for non-host players, if set up incorrec
 | Firing noise | Description
 |-------|----------
 | silent | Needs additional research, this sound is never heard by AI
-| medium | Needs additional research, this sound is heard within 45% of the AI's hearing distance
+| medium | Needs additional research, this sound is heard within ~45% of the AI's hearing distance
 | loud | Needs additional research, this sound is heard within all of the AI's hearing distance
-| shout | Needs additional research, this sound is heard within 80% of the AI's hearing distance
-| quiet | Needs additional research, this sound is heard within 20% of the AI's hearing distance
+| shout | Needs additional research, this sound is heard within ~80% of the AI's hearing distance
+| quiet | Needs additional research, this sound is heard within ~20% of the AI's hearing distance
 
 ## Error (spread/bloom)
 
@@ -503,7 +497,7 @@ Generally most players prefer their weapons to not be laser accurate, this secti
 This has a dropdown for 3 different block entries: single wield, dual right and dual left
 {% /alert %}
  
-| First person offset | 3 different value entries for coordinates away from the player camera in which projectiles will deviate from as their origin point
+| First person offset | 3 different value entries for coordinates away from the player camera in which projectiles will deviate from their origin point, use small values such as 0.05
 |-------|----------
 | **X** | with positive being forward from the camera 
 | **Y** | with positive being up on the vertical axis 
@@ -565,27 +559,88 @@ Generally when a weapon fires it produces a flash and smoke at the end of the ba
 
 Random properties for the weapon that bungie stuffed at the bottom of the tag.
 
-| Fields | Tags/data type | Description
-|-------|----------|--------------
-| runtime power on velocity | real | Unknown and expert mode
-| runtime power off velocity | real | Unknown and expert mode
-| max movement acceleration | real | Unknown
-| max movement velocity | real | Unknown
-| max turning acceleration | real | Unknown
-| max turning velocity | real | Unknown
-| deployed vehicle | [vehicle](~) | Unknown
-| tossed weapon | [weapon](~) | When a unit holding the parent weapon is killed, this weapon replaces the one they were holding and falls to the ground
-| age effect | [effect](~) | The effect played when a weapon becomes depleted
-| aged material effects | [material_effects](~) | This replaces the normal materiel effect of the weapon when it has become depleted
-| external aging amount | real | Amount of age as a percentage applied to weapon, used for melee weapons that lack a barrel and trigger
-| campaign external aging amount | real | Same as above but for campaign only, above applies to multiplayer
-| first person weapon offset | vector | A series of 3 values that determine the first person weapon offset on screen:
-| ^ i | real | depth from camera, positive is farther from the camera
-| ^^ I | real | horizontal axis from camera, positive moves to the left
-| ^^^ k | real | verticle axis from camera, positive moves upwards
-| first person weapon offset override | vector | Same as above but is only used for centered crosshairs
-| first person scope size | vector | Unknown
-| support third person camera range | real | Requires ["support weapon" flag](~weapon#flags), prevents camera from being moved past the set values along the vertical axis in third person camera view
-| weapon zoom time | real | Time in seconds the weapon takes to fully zoom in, the function is linear based on the time
-| weapon ready- for- use time | real | Time in seconds the weapon is unable to be used for after being readied, used for melee weapons
-| unit stow anchor name | string | The name of the render model marker this weapon attaches to when stowed
+{% table %}
+* Fields
+* Tags/Data type
+* Description
+---
+* runtime power on velocity
+* real
+* Unknown and expert mode
+---
+* runtime power off velocity
+* real
+* Unknown and expert mode
+---
+* max movement acceleration
+* real
+* unknown
+---
+* max movement velocity
+* real
+* unknown
+---
+* max turning acceleration
+* real
+* unknown
+---
+* max turning velocity
+* real
+* unknown
+---
+* deployed vehicle
+* [vehicle](~)
+* unknown
+---
+* tossed weapon
+* [weapon](~)
+* When a unit holding the parent weapon is killed, this weapon replaces the one they were holding and falls to the ground
+---
+* age effect
+* [effect](~)
+* The effect played when a weapon becomes depleted
+---
+* aged material effects
+* [material_effects](~)
+* This replaces the normal materiel effect of the weapon when it has become depleted
+---
+* external aging amount
+* real
+* Amount of age as a percentage applied to weapon when attacking, used for melee weapons that lack a barrel and trigger, for multiplayer
+---
+* campaign external aging amount
+* real
+* Same as above but for campaign only
+---
+* first person weapon offset
+* vector3D
+* 
+    A series of 3 values that determine the first person weapon offset on screen, use small values (IE 0.05)
+  - I: depth from camera, positive is farther from the camera                                                         
+  - J: horizontal axis from camera, positive moves to the left
+  - K: vertical axis from camera, positive moves upwards
+---
+* first person weapon offset override
+* vector
+* Same as above but is only used for the centered crosshairs option in MCC
+---
+* first person scope size
+* vector
+* unknown
+---
+* support third person camera range
+* real
+* Requires _[support weapon](~weapon#flags)_ flag, prevents camera from being moved past the set values along the vertical axis in third person camera view
+---
+* weapon zoom time
+* real
+* Time in seconds the weapon takes to fully zoom in, the function is linear based on the time
+---
+* weapon ready-for-use time
+* real
+* Time in seconds the weapon is unable to be used for after being readied, used for melee weapons
+---
+* unit stow anchor name
+* string
+* The name of the render model marker this weapon attaches to when stowed
+{% /table %}
