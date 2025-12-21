@@ -604,11 +604,20 @@ type_defs:
     fields:
       - name: name
         type: TagString
+        comments:
+          en: |
+            Gives a name to this palette entry so it can be easily recognized
+            when assigning weather to clusters.
       - name: particle_system
         type: TagDependency
         meta:
           tag_classes:
             - weather_particle_system
+        comments:
+          en: |
+            References the [weather_particle_system](~) tag used by the
+            palette entry, which controls the appearance and behaviour of
+            weather particles such as snow or rain.
       - type: pad
         size: 4
       - name: particle_system_scale_function
@@ -620,14 +629,42 @@ type_defs:
         meta:
           tag_classes:
             - wind
+        comments:
+          en: |
+            References the [wind](~) tag used by the palette entry, which
+            controls the base speed and directional variability of the wind.
       - name: wind_direction
         type: Vector3D
+        comments:
+          en: |
+            Controls the direction of wind in the assigned cluster.
+            The `i`, `j`, and `k` components correspond to the `x` and `y` and
+            `z` world axes, with positive values meaning the wind moves in the
+            positive world axis direction. For example, a wind vector of `1 1 0`
+            blows at the angle between the +x and +y directions,
+            while `0 0 -1` blows straight down (-z). This vector is [normalized](https://en.wikipedia.org/wiki/Unit_vector)
+            by the engine, so larger numbers do not increase the speed (magnitude)
+            of the wind; the direction `2 4 0` is the same as `1 2 0`.
+            If this vector is `0 0 0` then the game will use `1 0 0` as the default.
       - name: wind_magnitude
         type: float
+        comments:
+          en:
+            Scales the base wind speed of the palette entry's wind tag. For example,
+            if the wind tag specifies a [_velocity_](~wind#tag-field-velocity) of
+            2 wu/s, and this magnitude is 3, then the overall wind speed will be 6
+            wu/s. This number can be negative to reverse the wind direction, though
+            it's clearer to change the direction vector above. This also scales
+            the wind's [local variation](~wind#local-variation) but only
+            when acting on particles with _use simple wind_ point_physics.
       - type: pad
         size: 4
       - name: wind_scale_function
         type: TagString
+        comments:
+          en: |
+            It's unknown how to use this field, or if it's even used by the
+            engine. Various string values seem to have no effect on the wind.
       - type: pad
         size: 44
   ScenarioStructureBSPWeatherPolyhedronPlane:
@@ -638,6 +675,8 @@ type_defs:
     fields:
       - name: plane
         type: Plane3D
+        comments:
+          en: The plane, defined in terms of a normal vector and distance from the polyhedron center.
   ScenarioStructureBSPWeatherPolyhedron:
     class: struct
     assert_size: 32
@@ -646,8 +685,16 @@ type_defs:
     fields:
       - name: bounding_sphere_center
         type: Point3D
+        comments:
+          en: The world space location of the weather polyhedron's center point.
       - name: bounding_sphere_radius
         type: float
+        comments:
+          en: |
+            The radius around the center point where the polyhedron has an
+            effect. A polyhedron's plane culling will apply _globally_ if its
+            bounding sphere is within range of the current weather_particle_system's
+            [_fade out end distance_](~weather_particle_system#tag-field-particle-types-fade-out-end-distance).
       - type: pad
         size: 4
       - name: planes
@@ -656,6 +703,12 @@ type_defs:
           T: ScenarioStructureBSPWeatherPolyhedronPlane
         meta:
           hek_max_count: 16
+        comments:
+          en: |
+            A series of planes which define the shape of the volume. A weather
+            particle is displayed if it's on the back side of any of these planes.
+            If no planes are present then no particles are displayed if the polyhedron
+            is in range.
   ScenarioStructureBSPPathfindingSurface:
     class: struct
     assert_size: 1
@@ -1141,12 +1194,26 @@ type_defs:
           T: ScenarioStructureBSPWeatherPalette
         meta:
           hek_max_count: 32
+        comments:
+          en: |
+            Weather properties combining wind and weather particles which can be
+            assigned to clusters. Levels typically have separate entries
+            for indoor and outdoor locations so the amount of wind will vary.
+            Any applicable weather particle systems may need to be assigned to
+            both indoor and outdoor palette entries, with [weather polyhedra](#weather-polyhedra)
+            used to mask weather from indoor locations.
       - name: weather_polyhedra
         type: Block
         type_args:
           T: ScenarioStructureBSPWeatherPolyhedron
         meta:
           hek_max_count: 32
+        comments:
+          en: |
+            Convex polyhedral volumes where weather particle systems will not
+            render. These should not be edited by hand, but rather by assigning
+            the [material name](~h1-materials#special-materials) `+weatherpoly`
+            to these volumes when modeling your level.
       - type: pad
         size: 24
       - name: pathfinding_surfaces

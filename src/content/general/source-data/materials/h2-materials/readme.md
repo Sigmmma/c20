@@ -94,19 +94,19 @@ Material symbols are added to the **start** or **end** of the material name and 
 |--------|------
 | `lm` | **Lightmap Resolution Scale**. Decreased lightmap sizes reduces the memory used and can speed up the lighting process. The effects of this can easily be seen when viewing a level that has been lit with H2Tool using the Checkerboard option for lighting).
 | `lp` | **Lightmap Power Scale**. Scales the intensity of light given off by the marked surface.
-| `hl` | **Lightmap Half-Life**.
+| `hl` | **Lightmap Half-Life**. Scales the length of the light ray.
 | `ds` | **Lightmap Diffuse Scale**. Scales how much light the marked surface can reflect.
 
 ```
 city metal_roof lm:2.5
 city metal_roof lp:5
-city metal_roof hl:1
+city metal_roof hl:2
 city metal_roof ds:0.5
 ```
 
 Let's break down the examples above one by one.
 
 1. In the first example we are looking for a shader tag named metal_roof from the city collection. Any surfaces using this material would have their generated lightmap resolution multiplied by 2.5 making shadows much sharper
-2. In the first example we are looking for a shader tag named metal_roof from the city collection. Any surfaces using this material that would have any emissive values multiplied by 5 making them much brighter 
-3. In the first example we are looking for a shader tag named metal_roof from the city collection. Any surfaces using this material would do something.
+2. In the first example we are looking for a shader tag named metal_roof from the city collection. Any surfaces using this material would have any emissive values multiplied by 5 making them much brighter 
+3. In the first example we are looking for a shader tag named metal_roof from the city collection. Any surfaces using this material would have its light ray distance multiplied by 2, allowing light to reach further distances.
 4. In the first example we are looking for a shader tag named metal_roof from the city collection. Any surfaces using this material would cut reflected light by half.

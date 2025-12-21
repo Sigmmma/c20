@@ -31,8 +31,23 @@ type_defs:
     size: 2
     options:
       - name: screen_facing
+        comments:
+          en: |
+            Particles will face directly toward the viewer, ideal for effects like
+            smoke and snow.
       - name: parallel_to_direction
+        comments:
+          en: |
+            Particles will be oriented along the direction of movement, facing
+            the camera but only rotating around the axis of movement. This type
+            is ideal for particles with trails like rain and sparks. In the
+            sprite texture, right is the forward direction.
       - name: perpendicular_to_direction
+        comments:
+          en: |
+            Particles will be oriented perpendicular to the direction of movement,
+            so will be seen face-on when the particle is moving toward or away
+            from the camera.
   ParticleShaderFlags:
     class: bitfield
     size: 2
@@ -45,7 +60,11 @@ type_defs:
     size: 2
     options:
       - name: with_primary
+        comments:
+          en: Positioned relative to each particle.
       - name: with_screen_space
+        comments:
+          en: Positioned relative to the screen.
       - name: zsprite
   Particle:
     class: struct

@@ -23,16 +23,55 @@ type_defs:
           T: float
         comments:
           en: >
-            Upper and lower bounds for wind speed. Technically, this is not a
-            true "velocity" because it is not a vector; wind direction is set in
-            the BSP's weather palettes.
+            Upper and lower bounds for base wind speed and [local variation](#local-variation)
+            speed. Technically, this is not a true "velocity" because it is not a vector;
+            wind direction is set in the [BSP's weather palettes](~scenario_structure_bsp#tag-field-weather-palette-wind-direction)
+            using Sapien. This wind speed may also be scaled by the palette
+            entry's [wind magnitude](~scenario_structure_bsp#tag-field-weather-palette-wind-magnitude)
+            and slowed by the [_damping_](#tag-field-damping) factor below for
+            particles using [_damped wind_](point_physics/#tag-field-flags-uses-damped-wind),
+            however this affects just the base wind speed and not how this
+            range scales local variation.
       - name: variation_area
         type: Euler2D
+        meta:
+          unit: degrees
+        comments:
+          en: |
+            Sets the horizontal (y) and vertical (p) angle ranges that wind
+            will vary within. For example, a yaw of `90` means the wind
+            direction can vary up to 45 degrees to the left or right of its
+            [base direction](~scenario_structure_bsp#tag-field-weather-palette-wind-direction).
+            Set these to `0` if you don't want any variation. Note that
+            _weather_particle_system_ particles always have a small amount of
+            built-in random velocity which is not caused by wind variation.
+            These can be 360 degrees to allow the wind to come from any direction.
       - name: local_variation_weight
         type: float
+        comments:
+          en: |
+            Sets the strength of local variation. The behaviour of this
+            field depends on whether particles use [_simple wind_](~point_physics#tag-field-flags-uses-simple-wind).
+            By default, this acts as a blending ratio between full base wind (`0`)
+            and full local variation (`1`). However, particles using simple wind
+            will have a scaled local variation added atop unmodified base wind.
       - name: local_variation_rate
         type: float
+        comments:
+          en: |
+            Determines the frequency of local variation changes. Lower values in
+            the range of `0` to `1` tend to look most realistic, with higher values
+            causing too much vibration. This rate is **framerate-dependent** so
+            local variation will appear to vibrate more on higher FPS machines.
       - name: damping
         type: float
+        comments:
+          en: |
+            Scale wind influence on _point_physics_ using the [_damped wind_](point_physics/#tag-field-flags-uses-damped-wind)
+            flag. A value of `0` means don't slow damped particles at all, while
+            `1` means completely stop them. This allows certain types of
+            _point_physics_ entities to react more weakly to the wind. Keep this
+            in the 0-1 range; beyond that damped weather particles start to
+            separate into bands or travel backwards.
       - type: pad
         size: 36

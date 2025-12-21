@@ -489,8 +489,14 @@ type_defs:
     size: 2
     options:
       - name: none
+        comments:
+          en: The faces do not fade by viewing angle.
       - name: fade when perpendicular
+        comments:
+          en: The faces fade out when viewed edge-on.
       - name: fade when parallel
+        comments:
+          en: The faces fade out when viewed flat to the camera.
   FunctionOut:
     class: enum
     size: 2
@@ -610,6 +616,10 @@ type_defs:
     size: 2
     bits:
       - name: unfiltered
+        comments:
+          en: |
+            Texture sampling is [unfiltered](https://en.wikipedia.org/wiki/Texture_filtering#Nearest-neighbor_interpolation),
+            resulting in aliasing at a distance and a blocky pixelated look up close.
   ColorInterpolationFlags:
     class: bitfield
     size: 4

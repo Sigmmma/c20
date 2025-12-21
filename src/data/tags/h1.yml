@@ -415,7 +415,7 @@ point_physics:
   structModule: h1/tags/point_physics
   id: pphy
   description:
-    en: Controls how simulated points points physically interact with the environment.
+    en: Controls how simulated points physically interact with the environment.
 equipment:
   structName: Equipment
   structModule: h1/tags/equipment

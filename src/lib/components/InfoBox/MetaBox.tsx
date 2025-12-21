@@ -44,7 +44,7 @@ export default function MetaBox(props: MetaboxProps) {
       </section>
       {props.img &&
         <section className="img">
-          <a href={props.img}><img src={props.img} alt=""/></a>
+          <a target="_blank" href={props.img}><img src={props.img} alt=""/></a>
         </section>
       }
       {props.caption &&

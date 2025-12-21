@@ -3,7 +3,6 @@ title: HR scripting
 keywords:
   - script
   - hsc
-  - bsl
   - scripting
 ---
 Like earlier games, Halo Reach supports **scripting** with [HaloScript](~general/scripting).

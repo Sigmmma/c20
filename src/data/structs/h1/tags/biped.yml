@@ -35,6 +35,11 @@ type_defs:
       - name: has_no_dying_airborne
       - name: random_speed_increase
       - name: unit_uses_old_ntsc_player_physics
+        comments:
+          en: |
+            Causes the game to use hard-coded [NTSC speed and acceleration globals](#ntsc-vs-pal-physics)
+            for player physics, used in the original Xbox PAL release on `cyborg_cinematic.biped`.
+            This flag can be ignored in modern modding setups.
   BipedFunctionIn:
     class: enum
     size: 2

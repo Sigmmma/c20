@@ -5763,21 +5763,21 @@ functions:
         ```hsc
         (<void> weather_start <real>)
         ```
-        <time>
+        Starts weather fading in over the given number of seconds (<time>).
   - slug: weather_stop
     info:
       en: |-
         ```hsc
         (<void> weather_stop <real>)
         ```
-        <time>
+        <time> (measured in seconds)
   - slug: weather_change_intensity
     info:
       en: |-
         ```hsc
         (<void> weather_change_intensity <real> <real>)
         ```
-        <time> <intensity>
+        <time> (measured in seconds) <intensity>
   - slug: cinematic_clone_players_weapon
     info:
       en: |-

@@ -34,7 +34,7 @@ export function buildSearchIndexJson(searchDocs: SearchDoc[]): string {
     },
     searchOptions: {
       boost: {title: 3, keywords: 2},
-      fuzzy: 0.2
+      fuzzy: 0.1
     }
   });
 

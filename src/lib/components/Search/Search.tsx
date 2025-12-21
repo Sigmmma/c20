@@ -1,6 +1,7 @@
 import {useEffect, useRef, useState} from "preact/hooks";
 import MiniSearch, { SearchOptions } from "minisearch";
 import {useLocalize} from "../Locale/Locale";
+import {pageIdToLogical} from "../../content/pages";
 
 const localizations = {
   searchPlaceholder: {
@@ -19,6 +20,8 @@ const localizations = {
     en: (section) => `Limit search to ${section}`,
   },
 };
+
+const normalize = (s) => s.toLowerCase().replace(/\W/g, "");
 
 type State = {
   filterToSection: boolean;
@@ -137,7 +140,6 @@ export default function Search(props: SearchProps) {
 
       //sort by if the query is a substring of the page title
       searchResults.sort((a, b) => {
-        const normalize = (s) => s.toLowerCase().replace(/\W/g, "");
         const queryNormalized = normalize(query);
         const aIncludes = normalize(a.title).includes(queryNormalized);
         const bIncludes = normalize(b.title).includes(queryNormalized);
@@ -189,12 +191,22 @@ export default function Search(props: SearchProps) {
             {state.searchResults.map((result, i) => {
               //render each search result, ensuring that the user's selected one gets highlighted by CSS:
               const isSelected = i == state.selectedResultIndex;
-              const pathPrefix = result.id.slice(1).split("/").slice(0, -1).join("/");
+              const logicalPageId = pageIdToLogical(result.id);
+              const pathPrefix = logicalPageId.length > 1 ? logicalPageId[0] : undefined;
+              const normalizedTitle = normalize(result.title);
+
+              let matchedHead = !!(result.queryTerms as string[]).find(queryTerm => normalizedTitle.includes(normalize(queryTerm)))
+              Object.entries(result.match).forEach(([term, fields]: [string, string[]]) => {
+                if (fields.includes("title") || fields.includes("keywords")) {
+                  matchedHead = true;
+                }
+              });
+
               return (
                 <li className={isSelected ? "selected" : ""}>
                   <a href={result.id}>
-                    {result.title}
-                    {pathPrefix != "" && <span className="path-prefix"> ({pathPrefix})</span>}
+                    {matchedHead ? <b>{result.title}</b> : result.title}
+                    {pathPrefix !== undefined && <span className="path-prefix"> ({pathPrefix})</span>}
                     {isSelected && <kbd className="desktop-only">⬍ Enter</kbd>}
                   </a>
                 </li>

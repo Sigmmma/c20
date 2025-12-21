@@ -9,6 +9,7 @@ thanks:
   miriem: Providing a reproducible case of the dividing_edge problem
   Ludus: Finding that nearly coplanar portals causes errors
   Galap: Providing a reproducible case of radiosity counting up
+  Roj: Providing a reproducible case of "Found duplicate triangle building connected geometry"
 redirects:
   - /h1/guides/map-making/level-creation/bsp-troubleshooting
 ---
@@ -197,13 +198,18 @@ Another reason this error can show up is when portal planes are made of nearly c
 ![](portal_two_closed_spaces.mp4)
 ![](portal_two_closed_spaces_2.mp4)
 
+If you have ruled out the prior issues, try slightly moving or changing the triangulation of problem portals. It is possible for previously valid portals to become invalid when other unrelated changes are made to the BSP, which can alter how the BSP is subdivided into its tree structure. This seems to affect the portal process but it's not understood how exactly.
+
 ## Warning: Portal outside the BSP (magenta)
 This warning is pretty much what it sounds like -- a portal is completely outside the BSP and therefore serves no purpose. You can delete it or move it into the BSP:
 
 ![](portal_outside_bsp.mp4)
 
 ## Warning: Portal doesn't divide any space (green)
-If you are seeing this warning you likely have other issues with your portals that need addressing first, such as portals outside the BSP or unearthed edges. This warning could not be reproduced in isolation even when placing portal planes outside the BSP, or coincident with its boundary or seamsealer.
+Usually if you are seeing this warning you likely have other issues with your portals that need addressing first, such as portals outside the BSP or unearthed edges. This warning can also show up in isolation if your portal planes are extremely narrow, less than ~8 JMS units.
+
+## Warning: Found duplicate triangle building connected geometry (orange)
+This results from having duplicated/overlapping portal geometry. You may have accidentally duplicated the faces of your portals, or imported portals from a BSP tag using the [Halo Asset Blender Development Toolset](~general/community-tools/halo-asset-blender-development-toolset) without cleaning them up after. Import the WRL to see which portals are affected. You can select the duplicate set of faces by placing your cursor over the portal in face edit mode, and hitting {% key "L" /%} to select linked (connected faces). In the tool options that appear, select "Normal" if it's not already selected. This should result in selecting just of the two sets of duplicate faces at the portal, which you can confirm by moving. Delete the selection and move on to any other affected portals. If your portals are a separate object, merging vertices by distance will also resolve this.
 
 ## Warning: this structure_bsp needs to be reimported for new, faster visibility
 This warning is logged when loading a level in Sapien, not when you import a structure or run lightmaps. It indicates some kind of problem with the [PVS](~scenario_structure_bsp#potentially-visible-set) and your level will probably be invisible despite having run lightmaps. This warning should not be taken literally; at some time during Halo's development a new method of cluster visibility was developed and this message would have told artists to reimport their BSPs. With today's tools it just means that visibility data is invalid somehow.
@@ -324,12 +330,21 @@ During radiosity you may see this warning logged:
 
 It is totally harmless and just means you have not assigned [background sounds](~sound_looping) and [sound environments](~sound_environment) to all of your [clusters](~scenario_structure_bsp#clusters-and-cluster-data). This step is done in Sapien and is recommended but optional for your map.
 
-# JMS problems
+# File problems
 ## Error: reached end of file during parse
 This means the JMS file was incomplete or improperly formatted. Tool expected it to have more data but the file ended. You should never see this error unless the JMS exporter addon/script you are using has a bug, in which case you should upgrade it to the latest version or use a different JMS exporter. This error has been known to occur with some 3ds Max scripts.
 
 ## Error: model file has wrong version number
 Your JMS file was exported for the wrong game version (e.g. Halo 2). If using the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset), pay attention to the export settings and choose Halo CE.
+
+## error 0x00000026 Reached the end of the file
+```
+file_read('tags\levels\test\<your_bsp>\<your_bsp>.scenario_structure_bsp') error 0x00000026 'Reached the end of the file. '
+couldn't read #38496 bytes from offset #80761 in local tag 'tags\levels\test\<your_bsp>\<your_bsp>.scenario_structure_bsp'
+couldn't read elements for plane block
+```
+
+If you see many errors like this while importing a BSP with `tool structure`, it means the existing BSP tag was incomplete/malformed. This can happen if you cancelled the previous `tool structure` command before it finished, e.g. if you saw a warning logged and killed the command with {% key "Ctrl+C" /%} in the command prompt. Unfortunately this means you lost any BSP data which cannot be reproduced from JMS, such as detail objects, palettes for weather, fog, sound environments, and their assignments to clusters. You will need to set these up again on the newly imported BSP using Sapien. In the future, allow `tool structure` to run to completion even if you see warnings logged.
 
 # Unknown causes
 {% alert %}
@@ -339,7 +354,7 @@ If you encounter any of these errors, please contact a c20 maintainer so example
 The following error messages were found in `tool.exe` but could not be reproduced in experiments:
 
 * **Error: Edge is too short (red)**: Creating very short edges leads to degenerate face errors instead.
-* **Warning: Found duplicate triangle building connected geometry (orange)**: Attempting to recreate only causes "couldn't update edge" errors. If you encounter this, probably something is wrong with your JMS exporter.
+
 
 [blender-tool-settings]: https://docs.blender.org/manual/en/latest/modeling/meshes/tools/tool_settings.html#transform
 [wiki-convex]: https://en.wikipedia.org/wiki/Convex_polytope
