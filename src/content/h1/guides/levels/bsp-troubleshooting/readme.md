@@ -234,6 +234,12 @@ Consider combining together your fog planes into a singular plane. If this is no
 ![](two_fog_planes_2.mp4)
 ![](multiple_cluster_data.mp4)
 
+## Exception: #6432 is not a valid structure_bsp_fog_plane_block index in [#0,#3)
+```
+EXCEPTION halt in c:\mcc\main\h1\code\h1a2\sources\tag_files\tag_groups.c,#4440: #6432 is not a valid structure_bsp_fog_plane_block index in [#0,#3)
+```
+The indices in your message may be different than above. This error is not well understood but results from overly complex fog plane geometry, such as the reconstructed fog planes that come from importing BSP tags into Blender using the addon. Like portals, fog planes get "chopped" by Tool to fit the convex shape of the level geometry they intersect. Bringing this shape back into Blender is not an accurate representation of the original exported fog plane and may not work when rebuilding the BSP. The solution is to simplify the fog plane shape. Reduce it to a simple quad or low-poly flat shape that cuts through the part of the level where fog should be visible. Avoid extending the geometry to the point where it intersects with clusters the original fog plane didn't.
+
 ## Warning: Cluster can see multiple skies
 According to the [material naming conventions](~materials), you can reference multiple skies in a BSP by including a sky index in the sky material name, e.g. `+sky0`, `+sky1`, `+sky2`, etc. Similar to how a cluster cannot see multiple fog planes, a cluster cannot see multiple skies either. This warning will happen when you have a cluster with a mix of e.g. `+sky0` and `+sky1` faces or a cluster where both are potentially visible.
 
