@@ -3695,6 +3695,8 @@ external_globals:
         ```hsc
         (ai_render_emotions [boolean])
         ```
+
+        When used with "ai_render_all_actors", displays AI danger perception
   - slug: ai_render_audibility
     info:
       en: |-
