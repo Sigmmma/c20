@@ -65,8 +65,12 @@ type_defs:
         type: Index
       - name: surface_reference_count
         type: uint16
+        comments:
+          en: The number of surfaces.
       - name: surface_references
         type: int32
+        comments:
+          en: Index into the [_leaf surfaces_](#tag-field-leaf-surfaces) block.
   ScenarioStructureBSPSurfaceReference:
     class: struct
     assert_size: 8
@@ -75,8 +79,14 @@ type_defs:
     fields:
       - name: surface
         type: int32
+        comments:
+          en: |
+            Index into the [_surfaces_](#tag-field-surfaces) block. This value
+            may change after radiosity is run, as surfaces may be reordered.
       - name: node
         type: int32
+        comments:
+          en: Index into the [_nodes_](#tag-field-nodes) block.
   ScenarioStructureBSPSurface:
     class: struct
     assert_size: 6
@@ -85,10 +95,16 @@ type_defs:
     fields:
       - name: vertex0_index
         type: Index
+        comments:
+          en: The triangle's first vertex index.
       - name: vertex1_index
         type: Index
+        comments:
+          en: The triangle's second vertex index.
       - name: vertex2_index
         type: Index
+        comments:
+          en: The triangle's third vertex index.
   ScenarioStructureBSPMaterialFlags:
     class: bitfield
     size: 2
@@ -149,7 +165,7 @@ type_defs:
       - name: distant_light_1_color
         type: ColorRGB
         comments:
-          en: For lightmapped materials (_bitmap_ index >= 0), always set to RGB `(0.4, 0.5, 0.5)` when radiosity is run. Otherwise zeroed.
+          en: For lightmapped materials (_bitmap_ index >= 0), always set to RGB `(0.4, 0.4, 0.5)` when radiosity is run. Otherwise zeroed.
       - name: distant_light_1_direction
         type: Vector3D
         comments:
@@ -194,17 +210,13 @@ type_defs:
             The number of rendered vertices for this material, found at
             _rendered vertices offset_. This count is always equal to [_lightmap
             vertices count_](#tag-field-lightmaps-materials-lightmap-vertices-count)
-            when the bitmap index is not `-1`.
+            when the bitmap index is not `-1`. The number of vertices may increase
+            after lightmaps are generated, as Tool may need to introduce lightmap
+            UV seams.
       - name: rendered_vertices_offset
         type: uint32
         comments:
-          en: |-
-            An offset to an array of rendered vertices, each 56 bytes:
-            * Position
-            * Normal
-            * Binormal
-            * Tangent
-            * UV
+          en: Always `0`.
       - name: unknown_pointer
         type: ptr32
         meta:
@@ -235,16 +247,14 @@ type_defs:
         comments:
           en: >
             The number of lightmap vertices for this material, found at
-            _lightmap vertices offset_. This count is always equal to [_rendered
-            vertices count_](#tag-field-lightmaps-materials-rendered-vertices-count)
-            when the bitmap index is not `-1`.
+            _lightmap vertices offset_. For lit materials, this count is always
+            equal to [_rendered vertices count_](#tag-field-lightmaps-materials-rendered-vertices-count)
+            when the bitmap index is not `-1`. Otherwise for unlit materials this
+            will be `0`.
       - name: lightmap_vertices_offset
         type: uint32
         comments:
-          en: |-
-            An offset to an array of lightmap vertices, each 20 bytes:
-            * Incident radiosity vector, used for dynamic object shadows and environmental bump mapping)
-            * UV coordinate in lightmap page indicated by bitmap index.
+          en: Always `0`.
       - type: pad
         size: 4
       - name: lightmap_vertices_index_pointer
@@ -259,10 +269,42 @@ type_defs:
         type: TagDataOffset
         meta:
           ignore_cached: true
+        comments:
+          en: |-
+            A data block storing uncompressed rendered and lightmap vertices.
+            Both vertex types are stored in the same continuous block beginning
+            with all rendered vertices, each 56 bytes:
+
+            * Position
+            * Normal
+            * Binormal
+            * Tangent
+            * Texture UV
+
+            This is followed by all lightmap vertices, each 20 bytes:
+
+            * Incident radiosity vector (used for dynamic object shadows and environmental bump mapping)
+            * Lightmap UV (for lightmap page indicated by [_bitmap_ index](#tag-field-lightmaps-bitmap))
       - name: compressed_vertices
         type: TagDataOffset
         meta:
           ignore_cached: true
+        comments:
+          en: |-
+            A data block storing compressed rendered and lightmap vertices.
+            Both vertex types are stored in the same continuous block beginning
+            with all rendered vertices, each 32 bytes:
+
+            * Position (uncompressed Vector3D)
+            * Normal (encoded in a 32-bit integer)
+            * Binormal (encoded in a 32-bit integer)
+            * Tangent (encoded in a 32-bit integer)
+            * Texture UV (uncompressed Vector2D)
+
+            This is followed by all lightmap vertices, each 8 bytes:
+
+            * Incident radiosity vector (encoded in a 32-bit integer)
+            * Lightmap UV (encoded in a 32-bit integer)
   ScenarioStructureBSPLightmap:
     class: struct
     assert_size: 32
@@ -333,6 +375,10 @@ type_defs:
     fields:
       - name: index
         type: int32
+        comments:
+          en: |
+            The index of a [_surface_](#tag-block-surfaces) in this subcluster.
+            This value may change after radiosity is run if surfaces are reordered.
   ScenarioStructureBSPSubcluster:
     class: struct
     assert_size: 36
@@ -1119,12 +1165,30 @@ type_defs:
           T: ScenarioStructureBSPSurface
         meta:
           hek_max_count: 131072
+        comments:
+          en: |
+            A list of renderable triangles, represented as vertex indices. The
+            indices are used to look up vertex information within the vertex data
+            referenced by [lightmap materials](#tag-field-lightmaps-materials).
       - name: lightmaps
         type: Block
         type_args:
           T: ScenarioStructureBSPLightmap
         meta:
           hek_max_count: 128
+        comments:
+          en: |
+            Each lightmap contains a set of renderable triangles, which may be
+            mapped to a single bitmap index (or "page") of the referenced
+            [_lightmaps bitmaps_](#tag-field-lightmaps-bitmaps).
+            On initial structure import this will contain just two lightmaps
+            with `-1` bitmap index: the first containing all lightmapped materials
+            and the second containing all materials using transparent shaders,
+            which will not be lightmapped. If no transparent shaders are present
+            the final entry still exists, but has no _materials_.
+            After radiosity is run and Tool has segmented the level into charts,
+            the first entry is typically split into multiple independent
+            lightmaps with distinct atlases.
       - type: pad
         size: 12
       - name: lens_flares
@@ -1135,8 +1199,7 @@ type_defs:
           hek_max_count: 256
         comments:
           en: >-
-            Lists the available lens flares used by this BSP's _lens flare
-            markers_.
+            Lists the types of lens flares used by this BSP's _lens flare markers_.
       - name: lens_flare_markers
         type: Block
         type_args:
