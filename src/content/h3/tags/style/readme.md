@@ -9,7 +9,9 @@ keywords:
 thanks:
   odchylanie_uderzenia: writing and research
 ---     
+In Halo 3, all AI behaviors are hard-coded, but Bungie needed a way to dynamically determine which of these behaviors (which may contradict each other) are active on specific units, this need gave us the style tag.
 
+The style tag allows us to enable or disable behaviors entirely, allowing us to customize [character](~) tags with their own style tags to make each unit type distinct from each other.
 
 # General
 | General flags | Index | Description
@@ -30,6 +32,9 @@ thanks:
 | combat | 13 | Requires research
 
 # Broken
+
+Behaviors relating to the underlings in a squad when their leader is killed
+
 | Broken flags | Index | Description
 |-------|-------|---------
 | BROKEN | 14 | Requires research
@@ -105,6 +110,9 @@ thanks:
 | coverme_investigate | 64 | Requires research
 
 # Self-Defense
+
+Behaviors relating to cover and self-preservation when fighting a foe, closely tied to the cover properties in the [character](~)
+
 | Self-defense flags | Index | Description
 |-------|-------|---------
 | SELF-DEFENSE | 65 | Requires research
@@ -113,7 +121,7 @@ thanks:
 | cover peek | 68 | When enabled, allows AI units to use cover stances that let them peek around cover to fire while partially protected
 | avoid | 69 | Requires research
 | evasion_impulse | 70 | Requires research
-| dive_impulse | 71 | Requires research
+| dive_impulse | 71 | When enabled, allows AI to perform a dive animation to avoid danger such as grenades, if disabled simply try to walk/run from the danger instead
 | danger cover impulse | 72 | Requires research
 | danger crouch impulse | 73 | Requires research
 | proximity_melee | 74 | When enabled and a target gets within our [_proximity melee distance_](~character) while we are trying to back away or get into cover, smack them
@@ -125,11 +133,14 @@ thanks:
 | shield_depleted_cover | 80 | Requires research
 
 # Retreat
+
+behaviors relating to how AI determines when to retreat from a foe, closely tied to the retreat properties in the [character](~) tag
+
 | Retreat flags | Index | Description
 |-------|-------|---------
 | RETREAT | 81 | Unknown, perhaps no function
 | retreat | 82 | Enables/disables all retreat behavior
-| retreat_grenade | 83 | Enables this AI to throw a grenade right before beginning a retreat, uses [_retreat grenade chance_](~character) value, needs additional research
+| retreat_grenade | 83 | Enables AI to throw a grenade right before beginning a retreat, uses [_retreat grenade chance_](~character) value, needs additional research
 | flee | 84 | When enabled and a retreat stimulus is received, lower weapons and run away
 | cower | 85 | Requires research
 | low_shield_retreat | 86 | Requires research
@@ -143,6 +154,9 @@ thanks:
 | overheated_weapon_retreat | 94 | Requires research
         
 # Ambush
+
+Behaviors related to the AI being able to engage an enemy they are fleeing from under special circumstances
+
 | Ambush flags | Index | Description
 |-------|-------|---------
 | AMBUSH | 95 | Requires research
@@ -153,6 +167,9 @@ thanks:
 | nowhere_to_run_ambush | 100 | Enables AI to cease fleeing from a target if they reach a dead-end, and instead turn around and attack
         
 # Vehicle
+
+Behaviors related to vehicle combat and usage
+
 | Vehicle flags | Index | Description
 |-------|-------|---------
 | VEHICLE | 101 | Requires research
@@ -181,6 +198,9 @@ thanks:
 | vehicle_engage_wander_impulse | 124 | Requires research
 
 # Postcombat
+
+Behaviors used when combat has ceased and the AI returns to idle/active 
+
 | Postcombat flags | Index | Description
 |-------|-------|---------
 | POSTCOMBAT | 125 | Requires research
@@ -223,6 +243,9 @@ thanks:
 | scatter | 146 | Requires research
 
 # Combatforms
+
+Behaviors relating to flood combatforms
+
 | Combatform flags | Index | Description
 |-------|-------|---------
 | COMBATFORMS | 147 | Requires research
@@ -246,6 +269,9 @@ thanks:
 | guardian_isolation_surge | 157 | Requires research
 
 # Pureforms
+
+Behaviors related to flood pureforms, including their ability to morph into different [characters](~character) on the fly based on the current combat situation
+
 | Pureform flags | Index | Description
 |-------|-------|---------
 | PUREFORMS | 158 | Requires research

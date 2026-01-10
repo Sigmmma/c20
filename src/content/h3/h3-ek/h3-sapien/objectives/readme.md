@@ -83,6 +83,30 @@ When changing the order of tasks, with a task selected hold cntrl and then use y
 
 # Conditions and extras
 
+| Movement | Description
+| ------- | -------
+| default | AI will default to walking, unless they are already alert, then they will run
+| walk | AI will walk into this task with weapons stowed in combat status 1 (Assuming they haven't been alerted prior)
+| run | AI will run into this task while in combat status 3
+| crouch | AI will crouch into this task while in combat status 3
+
+| Follow | Description
+| ------- | -------
+| none | Units in this task will not follow anyone
+| player | Makes units in this task follow the player throughout areas in this task
+| squad | Make units in this task follow the _follow squad_ option below throughout areas in this task
+| lead player | Needs additional research
+
+Follow squad: This field allows you to set one of the squads in the scenario, note that self-following squads will crash sapien
+
+Follow radius | real | Unknown, a radius in which to follow the target
+
+Entry script | string | The script to run when this task is entered
+
+Command script | string | Allows you to set a command script that will be fired when a squad enters this task, on all the units of the squad that enters
+
+Exhaustion script | string | The script to run when this task has become invalid due to a condition
+
 ## Area types
 
 | Area type | Description
