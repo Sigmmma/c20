@@ -29,7 +29,11 @@ Everyone makes mods for different reasons, be it rebalancing the sandbox, learni
 
 # What's new?
 {% alert type="success" %}
-**November 2025:** We now have comprehensive docs on H1's [wind](~h1/tags/wind), [point_physics](~h1/tags/point_physics), and [weather_particle_system](~h1/tags/weather_particle_system) tags.
+**January 2026:** Check out the new documentation for Halo 3:
+* [weapon](~h3/tags/object/item/weapon)
+* [projectile](~h3/tags/object/projectile)
+* [damage_effect](~h3/tags/damage_effect)
+* [alternate fire](~h3/guides/tags/alt-fire)
 {% /alert %}
 
 # Getting started
