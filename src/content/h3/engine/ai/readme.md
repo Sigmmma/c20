@@ -73,9 +73,11 @@ Should the resulting scariness favor the other party by a specified value in the
 
 Danger is a set of values defined in the [globals](~) with preset actions that return a value, the AI can then use these values to determine actions such as fleeing, covering or evading.
 
+AI will not register a danger value increase from silently fired projectiles, even if they are modeled and passing less than a WU away, the AI will only register increased danger if they hear the projectile being fired.
+
 # Combat status and alertness
 
-AI in Halo 3 have levels of status that determine their action set and what they are currently doing or are going to do, we call these combat status' and their are 9 levels.
+AI in Halo 3 have levels of status that determine their action set and what they are currently doing or are going to do, we call these combat status' and there are 9 levels.
 
 AI set to the player team will never fall below combat status 3, otherwise the lowest possible is determined by the global AI style tags for bunkering, assaulting and normal, these 3 styles are applied per task in [AI objectves](~objectives#tasks).
 
@@ -102,7 +104,7 @@ When an AI enters combat their reaction time and if they can fire their weapon a
 
 Based on certain scenarios the AI can engage in many behaviors to aide them in battle and appearing lifelike, this can include action such as a drawn out wide-spanning search for a hidden target, lobbing a grenade at cover where an enemy is suspected, suppressing fire on cover where a target was just seen entering, shooting dead bodies, checking on dead allies and giving each other orders (such as throwing grenades or starting a search with the ordered AI). 
 
-An AI without a valid [objective and/or valid task](~objectives) will have a green triangle over their head.
+An AI without a valid [objective and/or valid task](~objectives) or a set default [zone](~pathfinding#zones) will have a green triangle over their head.
 
 # Limitations
 
