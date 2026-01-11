@@ -53,6 +53,9 @@ type_defs:
       - name: sniper
       - name: melee
       - name: flame
+        comments:
+          en: |
+            Prevents objects from creating AOE effects (blood splats).
       - name: mounted_weapon
       - name: vehicle
       - name: plasma
@@ -319,6 +322,11 @@ type_defs:
         type: DamageEffectSideEffect
       - name: damage_category
         type: DamageEffectCategory
+        comments:
+          en: |
+            Sets a damage category which mainly affects AI communication/dialog,
+            but can have secondary effects depending on the category (falling,
+            flame, and vehicle).
       - name: damage_flags
         type: DamageEffectDamageFlags
       - name: damage_aoe_core_radius

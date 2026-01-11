@@ -58,7 +58,7 @@ The glass shader with bump-mapped reflections renders incorrectly in Custom Edit
 
 When Halo was ported to PC by Gearbox in 2003 many visual bugs were introduced. Among the challenges were updating H1X's shaders and rendering code to work with DirectX 9 and unlocked framerates in an engine which previously assumed 30 FPS always. The renderer also needed to be adapted for the range of user hardware for the PC port.
 
-_Most_ of these issues have now been corrected in DX11 renderer in MCC.
+_Most_ of these issues have now been corrected in DX11 renderer in MCC or by [Chimera](~) for Custom Edition.
 
 * H1X's [shader_transparent_generic](~) tags were converted to [shader_transparent_chicago](~) (or extended) tags which are less sophisticated.
 * The _detail after reflection_ flag of [shader_model](~) is working in reverse of how it should. Enabling the flag should cause detail maps to apply after specularity/cubemaps. The client mod [Chimera](~) has a built-in fix which is disabled for Halo Custom Edition (but enabled in Retail) except in the Vaporeon builds.
@@ -89,6 +89,7 @@ _Most_ of these issues have now been corrected in DX11 renderer in MCC.
   * Some specular lighting may be missing, which makes dynamic lights appear smaller in radius (e.g. flashlight).
   * Bump map shadows are only visible when dynamic lights are nearby, but should be visible at all times using [lightmap data](~lightmaps) for light direction and tint.
   * The "normal" _type_ may incorrectly mask primary and secondary detail maps when an alpha is present in the base map, visible in b40 exterior tech wall.
+  * The "environment specular lightmap" and "environment specular light" pixel shader effects do not clamp to the [-1, 1] range beyond Xbox's shader model 1.1, which results in incorrect specular appearance on some surfaces in PC and H1A. This is fixed by [Chimera](~).
 
 # H1A regressions
 Althoug the H1A MCC renderer is much improved over the original Gearbox port to PC, some new issues exist:
