@@ -112,7 +112,7 @@ type_defs:
       - name: coplanar
         comments:
           en: |
-            Indicates that the faces in this material are [coplanar](https://en.wikipedia.org/wiki/Coplanarity).
+            Indicates that the surfaces in this material are [coplanar](https://en.wikipedia.org/wiki/Coplanarity).
       - name: fog_plane
   ScenarioStructureBSPMaterial:
     class: struct
@@ -128,14 +128,32 @@ type_defs:
           tag_classes:
             - shader
           non_null: true
+        comments:
+          en: |
+            Tag reference to the shader which is rendered for this material.
       - name: shader_permutation
         type: Index
+        comments:
+          en: |
+            Controls the permutation index of bitmaps referenced by the above
+            shader. This will affect which reflection cubemap permutation is used
+            if it has multiple, such as the Elite's cubemap. Defaults to `0`.
       - name: flags
         type: ScenarioStructureBSPMaterialFlags
       - name: surfaces
         type: int32
+        comments:
+          en: |
+            Indicates the starting index of the [_surfaces_](#tag-field-surfaces)
+            block where this material's surfaces are located. These surfaces
+            will contain vertex indices for the vertex data pointed to by this
+            material.
       - name: surface_count
         type: int32
+        comments:
+          en: |
+            The number of surfaces following the above offset which belong to this
+            material.
       - name: centroid
         type: Point3D
         comments:
@@ -345,6 +363,8 @@ type_defs:
         meta:
           tag_classes:
             - lens_flare
+        comments:
+          en: Tag reference to a lens flare.
   ScenarioStructureBSPLensFlareMarker:
     class: struct
     assert_size: 16
@@ -389,18 +409,27 @@ type_defs:
         type: Bounds
         type_args:
           T: float
+        comments:
+          en: X axis bounds for the surfaces in this subcluster.
       - name: world_bounds_y
         type: Bounds
         type_args:
           T: float
+        comments:
+          en: Y axis bounds for the surfaces in this subcluster.
       - name: world_bounds_z
         type: Bounds
         type_args:
           T: float
+        comments:
+          en: Z axis bounds for the surfaces in this subcluster.
       - name: surface_indices
         type: Block
         type_args:
           T: ScenarioStructureBSPSubclusterSurfaceIndex
+        comments:
+          en: |
+            Indices of renderable surfaces (triangles) present in this subcluster.
   ScenarioStructureBSPClusterSurfaceIndex:
     class: struct
     assert_size: 4
@@ -517,6 +546,11 @@ type_defs:
           T: ScenarioStructureBSPClusterSurfaceIndex
         meta:
           hek_max_count: 32768
+          unused: true
+        comments:
+          en: |
+            Always empty, appears unused by the game. This was likely replaced by
+            subcluster surfaces indices at some point in development.
       - name: mirrors
         type: Block
         type_args:
@@ -763,6 +797,12 @@ type_defs:
     fields:
       - name: data
         type: int8
+        comments:
+          en: |
+            Has the value `0` if the collision surface cannot be used for
+            pathfinding (e.g. too steep), and `64` otherwise. It's unknown if
+            this is a bitfield and if other values may appear depending
+            on the surface type.
   ScenarioStructureBSPPathfindingEdge:
     class: struct
     assert_size: 1
@@ -1183,9 +1223,10 @@ type_defs:
             [_lightmaps bitmaps_](#tag-field-lightmaps-bitmaps).
             On initial structure import this will contain just two lightmaps
             with `-1` bitmap index: the first containing all lightmapped materials
-            and the second containing all materials using transparent shaders,
-            which will not be lightmapped. If no transparent shaders are present
-            the final entry still exists, but has no _materials_.
+            (shader_environment and shader_transparent_glass) and the second
+            containing all other shaders which will not be lightmapped (transparent
+            generics and chicagos). The final entry will always exist but may have no
+            _materials_.
             After radiosity is run and Tool has segmented the level into charts,
             the first entry is typically split into multiple independent
             lightmaps with distinct atlases.
@@ -1285,12 +1326,19 @@ type_defs:
           T: ScenarioStructureBSPPathfindingSurface
         meta:
           hek_max_count: 131072
+        comments:
+          en: |
+            This block has equal length to [collision _surfaces_](#tag-field-collision-bsp-surfaces),
+            and specifies which corresponding surfaces can be used for pathfinding by AI.
       - name: pathfinding_edges
         type: Block
         type_args:
           T: ScenarioStructureBSPPathfindingEdge
         meta:
           hek_max_count: 262144
+          unused: true
+        comments:
+          en: Always empty, likely unused by the game.
       - name: background_sound_palette
         type: Block
         type_args:
