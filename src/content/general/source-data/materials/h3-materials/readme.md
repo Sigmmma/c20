@@ -52,17 +52,17 @@ These material names are hard-coded into the [tools](~h3-tool) and have special 
 
 | Name | Usage
 |------|------
-| `+sky`, `+sky0`, `+sky1`, ... | Applied to surfaces to render the skybox. You can add the index of the sky in the [scenario skies block](~h3/tags/scenario#tag-field-skies) if your scenario has multiple skies. Since each [cluster](~h3/tags/scenario_structure_bsp#clusters-and-cluster-data) can only reference [one sky](~h3/tags/scenario_structure_bsp#tag-field-clusters-sky), you must ensure that all sky faces within a cluster use the same index.
+| `+sky`, `+sky0`, `+sky1`, ... | Applied to surfaces to render the skybox. You can add the index of the sky in the [scenario skies block](~h3/tags/scenario#tag-field-skies) if your scenario has multiple skies. Since each [cluster](~h3/tags/scenario_structure_bsp#clusters-and-cluster-data) can only reference [one sky](~h3/tags/scenario_structure_bsp#tag-field-clusters-sky), you must ensure that all sky faces within a cluster use the same index. See [This guide for additional information](~h3/guides/map-making/level-creation/blender-level-modeling/blender-level-creation-additional-info#multiple-skies)
 | `+portal` | Applied to faces that are used to define general portals used in the visibility solution or rendering occlusion for the level. Because they split the level into [clusters](~h3/tags/scenario_structure_bsp#clusters-and-cluster-data), they are also used to define areas of different sound environments or weather.
 | `+weatherpoly` | Used on the faces of simply [convex shapes](https://en.wikipedia.org/wiki/Polyhedron#Convex_polyhedra) to generate [weather polyhedra](~h3/tags/scenario_structure_bsp#weather-polyhedra). This has been deprecated and no longer functions.
 | `<` | **Portal (One-Way)**. Portal can only be seen through in a single direction.
 | `+seamsealer` | Applied to temporary geometry to "seal" the level. Most commonly used to seal holes or other open edged areas of the level during construction and testing. These faces functionally behave the same as `+sky` -- they must still form sealed connections with the open edges that they close and the sky renders through them. Seamsealer is collideable and deletes projectiles just like `+sky`.
 | `+media` | Reserved special material. Seems to have been deprecated in Halo 3.
 | `+unused` | Reserved special material that has many uses and can be used in conjunction with the special shader symbols to define its use and behavior.
-| `+seam` | ???
-| `+soft_ceiling` | Surfaces that use this material will be used as soft ceilings. Used in design tags
-| `+soft_kill` | Surfaces that use this material will be used as soft kill barriers. Used in design tags
-| `+slip_surface` | Surfaces that use this material will be used as slip surfaces. Used in design tags
+| `+seam` | Planes using this material are used to transition between BSP's, the surface must fully seal the level geo and match the edges of the BSP with the normals facing inwards, both BSP's seals must match in position and orientation (same geometry for both of them), both seals must have the same name to be paired (Name example: +seam:myfunnybsp), [a detailed how-to guide can be found here](~h3/guides/map-making/level-creation/blender-level-modeling/blender-level-creation-additional-info#seams)
+| `+soft_ceiling` | Surfaces that use this material will be used as soft ceilings. Used in design tags and [acts as an invisible barrier](~h3/guides/map-making/level-creation/blender-level-modeling/blender-level-creation-additional-info#soft-ceilings)
+| `+soft_kill` | Surfaces that use this material will be used as soft kill barriers. Used in design tags and [kills the player if they enter it](~h3/guides/map-making/level-creation/blender-level-modeling/blender-level-creation-additional-info#soft-kill)
+| `+slip_surface` | Surfaces that use this material will be used as slip surfaces. Used in design tags and [slides the player back](~h3/guides/map-making/level-creation/blender-level-modeling/blender-level-creation-additional-info#slip-surface)
 
 # Material symbols
 Material symbols are added to the **end** of the material name and give the surface certain attributes or behaviours in-engine.
@@ -100,7 +100,7 @@ Material symbols are added to the **start** or **end** of the material name and 
 
 | Symbol | Usage
 |--------|------
-| `lm` | **Lightmap Resolution Scale**. Decreased lightmap sizes reduces the memory used and can speed up the lighting process. The effects of this can easily be seen when viewing a level that has been lit with H2Tool using the Checkerboard option for lighting).
+| `lm` | **Lightmap Resolution Scale**. This symbol tells the lightmapper how much to scale the lightmap priority for this surface in relation to other surfaces, for example having a single surface use a scale of 0.1 means that specific surface will only receive 10% of the lightmap focus in relation to other surfaces with no scale, causing this surface to appear low resolution in lighting (especially if another plane is set to receive extra priority), a good option to use on far away out-of-bounds areas or dimly lit areas so that more resolution can be given to areas near the playspace or in bright light.
 | `lp` | **Lightmap Power Scale**. Scales the intensity of light given off by the marked surface.
 | `hl` | **Lightmap Half-Life**. ???
 | `ds` | **Lightmap Diffuse Scale**. Scales how much light the marked surface can reflect.

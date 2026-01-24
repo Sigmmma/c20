@@ -43,7 +43,7 @@ Avoid using trailing digits on non-sky material names, or you'll get tool warnin
 You may be aware of weather polyhedra from previous games. This was a feature that allowed map designers to prevent weather effects from appearing in a certain section of level. I regret to inform you that this is not a feature in Halo 3. It seems to have been deprecated during the switch from weather tags to atmosphere parameters.
 
 # Multiple BSPs
-It is common for singleplayer maps to have multiple BSPs. This helps manage game resources and avoid BSP limits for long missions. To accomplish this, place multiple `ASS` files in the same `structure` folder for the level. Each ASS will be compiled into it's own unique BSP tag for your scenario to use. Do not attempt to use multiple BSPs in an MP scenario.
+It is common for singleplayer maps to have multiple BSPs. This helps manage game resources and avoid BSP limits for long missions. To accomplish this, place multiple `ASS` files in the same `structure` folder for the level. Each ASS will be compiled into it's own unique BSP tag for your scenario to use. Do not attempt to use multiple BSPs in an MP scenario. Using the special [seam material](~h3-materials#special-materials) you can create the transition point between 2 BSP's. See the guide at the bottom of this page for detailed information
 
 # Object/Material Symbols
 Object symbols are characters that go at the start of the object name.

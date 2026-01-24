@@ -125,7 +125,7 @@ Behaviors relating to cover and self-preservation when fighting a foe, closely t
 | danger cover impulse | 72 | Requires research
 | danger crouch impulse | 73 | Requires research
 | proximity_melee | 74 | When enabled and a target gets within our [_proximity melee distance_](~character) while we are trying to back away or get into cover, smack them
-| proximity_self_preservation | 75 | When enabled, causes AI to avoid targets when they get within their [_proximity self-preserve_](~character) distance
+| proximity_self_preservation | 75 | When enabled, causes AI to avoid and take cover from targets when they get within their [_proximity self-preserve_](~character) distance
 | unreachable_enemy_cover | 76 | Requires research
 | unassailable_enemy_cover | 77 | Requires research
 | scary_target_cover | 78 | Requires research
@@ -220,7 +220,7 @@ Behaviors used when combat has ceased and the AI returns to idle/active
 | Idle flags | Index | Description
 |-------|-------|---------
 | IDLE | 133 | Unknown, perhaps no function
-| idle | 134 | Enables/disables all further idle behaviors when the AI is not active
+| idle | 134 | Enables all further idle behaviors when the AI is not in [active combat status](~ai#combat-status-and-alertness)
 | wander behavior | 135 | Idle AI will wander between firing points, uses idle animation mode
 | flight_wander | 136 | Requires research
 | patrol | 137 | Allows idle AI to use the patrol system to navigate between point sets regardless of assigned zone/area
