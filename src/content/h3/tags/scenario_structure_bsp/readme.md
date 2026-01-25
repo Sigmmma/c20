@@ -1,12 +1,12 @@
 ---
 title: scenario_structure_bsp
-stub: true
 about: 'tag:h3/scenario_structure_bsp'
 img: bsp.jpg
 caption: 'The first BSP of 100_citadel, shown without a sky rendered.'
 keywords:
   - bsp
   - h3
+  - structure
 thanks:
   FaberTheCatgirl: Adding Limits to Wiki.
   R93_Sniper: Posting Limits to Discord.

@@ -28,7 +28,7 @@ Shows some basic information about the tag, seems designed to integrate with sou
 
 # Main window
 ## Basic tag management
-- _File > New_ - Opens a dialog for creating a new empty tag, keep in mind that many tags are not meant to be created like this but are instead meant to be created using [Tool](~h2-tool).
+- _File > New_ - Opens a dialog for creating a new empty tag, keep in mind that many tags are not meant to be created like this but are instead meant to be created using [Tool](~h3-tool).
 - _File > Open_ - Lets you select an existing tag using the windows file selection UI, useful if you know the partial tag name since you can use windows search.
 - _File > Close_ - Self explanatory, closes the currently active tag (one who's window is in the foreground).
 - _File > Save_ - Save the currently active tag.

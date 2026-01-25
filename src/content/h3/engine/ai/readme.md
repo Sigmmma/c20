@@ -8,7 +8,7 @@ keywords:
 thanks:
   odchylanie_uderzenia: writing and research
 ---
-In the Halo franchise, AI units have always been referred to as [actors](~actor) or [characters](~character), this is intentional on Bungie's end as the AI are not just static units for the player to mow down, but instead active participants in the gameplay and story.
+In the Halo franchise, AI units have been referred to as [actors (H1)](~actor) or [characters (H3)](~character), this is intentional on Bungie's end as the AI are not just static units for the player to mow down, but instead active participants in the gameplay and story.
 
 Each and every AI unit contains their own individual knowledge model of the world, they store information such as the 3 senses (visual, audio, touch) and almost never cheat, using this information they create their own view of the world and it's entities. They then use the world info to process decisions, such as who to shoot, where to move to to find a target, what's a good spot for cover against this specific target and so on and so forth, information is also handled by each AI in accordance with relevance.
 

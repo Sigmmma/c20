@@ -3,10 +3,15 @@ title: H3 Blender level guide - Additional info
 keywords:
   - modeling
   - exporter
+  - water
+  - material symbols
+  - object symbols
+  - symbols
 thanks:
   General_101: Writing this guide
   MercyMoon: Writing the Seams sections
   Crisp: Adding additional information on instanced geometry
+  ShmeeGrim: Adding additional information about water
 ---
 # File List
 | File Link                                                                                                           | Description
@@ -40,7 +45,7 @@ You may be aware of weather polyhedra from previous games. This was a feature th
 # Multiple BSPs
 It is common for singleplayer maps to have multiple BSPs. This helps manage game resources and avoid BSP limits for long missions. To accomplish this, place multiple `ASS` files in the same `structure` folder for the level. Each ASS will be compiled into it's own unique BSP tag for your scenario to use. Do not attempt to use multiple BSPs in an MP scenario.
 
-# Object Symbols
+# Object/Material Symbols
 Object symbols are characters that go at the start of the object name.
 
 | Symbol | Description
@@ -66,6 +71,8 @@ Some symbols are specific when used in conjunction with instanced geometry
 | `<`    | Excluded from lightprobes prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to be excluded from lightprobes.
 | `\|`    | Decal spacing prefix. Used in conjunction with the instance object prefix to tell tool how this object should be treated. In the case of this symbol it will set the geo to use decal spacing.
 | `@`    | Instanced Geometry collision prefix. Used as a prefix for a child object of an instanced geometry object. In the case of this symbol it will override the collision of the parent object with its own collision mesh (note that you do not need the % prefix when using this).
+
+Material symbols are located on the [H3 Materials page](~h3-materials#material-symbols).
 
 # Portals
 Portals are plane objects that cut through geometry to divide it into sections called clusters. This is either usually to enhance performance or section off a part of a level in order to set specific environment sounds or effects in that area. Portals are defined by the special material name `+portal`. Portals can also intersect without needing to be connected unlike CE. This makes it extremely simple to just generate a set of grid portals to quickly test high poly geometry before making better portals. See the `Portals Example Blend` and [Materials Overview](~materials) for examples.
