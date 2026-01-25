@@ -4,15 +4,14 @@ import path from "path";
 import buildConfig from "../build-config.json";
 // SPOOPY BUG: do not reorder the next two lines!!!!!
 import renderPage from "./lib/render";
-import {buildPageIndex} from "./lib/content/pages";
+import {buildPageIndex, formatUrlPath} from "./lib/content/pages";
 import {loadYamlTree} from "./lib/utils/files";
 import {type BuildOpts} from "./build";
-import {parse} from "./lib/markdown/markdown";
 import {buildSearchIndexJson, SearchDoc} from "./lib/search";
 import {buildRedirects} from "./lib/redirects";
 import loadStructuredData from "./data";
 import {renderViz} from "./lib/resources";
-import {getPageBaseDir, getPageMdSrcPath, loadParsedPages} from "./lib/content/content-files";
+import {getPageBaseDir, getPageMdSrcPath, loadParsedPage, loadParsedPages} from "./lib/content/content-files";
 
 const buildOpts: BuildOpts = {
   baseUrl: buildConfig.baseUrl,
@@ -42,12 +41,12 @@ export default function runServer(onDemand: boolean) {
     
     app.get("/assets/search-index.json", async (req, res, next) => {
       console.log("Building search index");
-      const pageIndex = await loadParsedPages(buildOpts.contentDir);
-      const searchDocs: SearchDoc[] = Object.entries(pageIndex).map(([pageId, pageData]): SearchDoc => {
+      const parsedPages = await loadParsedPages(buildOpts.contentDir);
+      const searchDocs: SearchDoc[] = Object.entries(parsedPages).map(([pageId, parsedPage]): SearchDoc => {
         return {
-          path: pageId,
-          keywords: pageData.front.keywords?.join(" ") ?? "",
-          title: pageData.front.title ?? "",
+          path: formatUrlPath(pageId),
+          title: parsedPage.front.title ?? "",
+          keywords: parsedPage.front.keywords?.join(" ") ?? "",
           text: "", //render plaintext? or keep it fast during dev?
         };
       });
@@ -66,42 +65,33 @@ export default function runServer(onDemand: boolean) {
     });
     
     app.use(async (req, res, next) => {
-      const pageId = req.path === "/" ? "/" : `${req.path.endsWith("/") ? req.path.replace(/\/+$/, "") : req.path}`;;
+      const pageId = req.path === "/" ? "/" : `${req.path.endsWith("/") ? req.path.replace(/\/+$/, "") : req.path}`;
       
       console.log(`Rendering ${pageId}`);
       const baseDir = getPageBaseDir(pageId, buildOpts);
       const mdSrcPath = getPageMdSrcPath(baseDir);
 
-      const dataPromise = loadStructuredData();
+      const globalDataPromise = loadStructuredData();
       const localDataPromise = loadYamlTree(baseDir, {nonRecursive: true});
       const parsedPagesPromise = loadParsedPages(buildOpts.contentDir);
-      const mdSrcPromise = fs.promises.readFile(mdSrcPath, "utf-8");
+      const pageIndex = buildPageIndex(await parsedPagesPromise);
 
-      let mdSrc
-      try {
-        mdSrc = await mdSrcPromise;
-      } catch (err) {
-        next();
-        return;
-      }  
-      
-      const {ast, frontmatter} = parse(mdSrc, mdSrcPath);
+      const parsedPage = await loadParsedPage(mdSrcPath);
 
-      const renderOutput = renderPage({
+      const {htmlDoc} = renderPage({
         lang: "en",
         baseUrl: buildOpts.baseUrl,
-        noThumbs: true,
-        preloadJson: false,
+        preloadJson: true,
+        noThumbs: buildOpts.noThumbs,
         pageId,
-        ast,
-        front: frontmatter,
+        parsedPage,
         localData: await localDataPromise,
-        globalData: await dataPromise,
-        pageIndex: buildPageIndex(await parsedPagesPromise),
+        globalData: await globalDataPromise,
+        pageIndex,
       });
     
       res.header("Content-Type", "text/html; charset=UTF-8");
-      res.send(renderOutput.htmlDoc);
+      res.send(htmlDoc);
     });
   }
 

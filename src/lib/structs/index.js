@@ -30,7 +30,7 @@ export function buildTypeDefs(initialImports, modules) {
     }
   }
   return typeDefs;
-};
+}
 
 /* responsible for resolving aliases, calculating type, and replacing type args
  */
@@ -104,8 +104,8 @@ export function walkTypeDefs(structName, structModule, structModules, opts, cb) 
   }
 
   walkStructInner({type: structName}, null, true);
-};
+}
 
 export function instantiateType(typeDefs, typeParams, parentTypeArgs, opts) {
   return instantiateTypeInner(typeDefs, typeParams, parentTypeArgs, opts, true);
-};
+}

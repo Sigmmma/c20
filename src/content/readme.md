@@ -29,10 +29,11 @@ Everyone makes mods for different reasons, be it rebalancing the sandbox, learni
 
 # What's new?
 {% alert type="success" %}
-**November 2024:** Search is now limited to the current site section by default (e.g. /h3). We also have a few recently added guides:
-* [H3 decal placement guide](~h3/guides/map-making/decals)
-* [H3 Blender level guide - Light baking](~h3/guides/map-making/baked-lighting)
-* [H1 Reflection cubemaps](~h1/guides/levels/reflection-cubemaps)
+**January 2026:** Check out the new documentation for Halo 3:
+* [weapon](~h3/tags/object/item/weapon)
+* [projectile](~h3/tags/object/projectile)
+* [damage_effect](~h3/tags/damage_effect)
+* [alternate fire](~h3/guides/tags/alt-fire)
 {% /alert %}
 
 # Getting started

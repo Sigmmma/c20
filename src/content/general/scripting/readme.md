@@ -7,7 +7,6 @@ keywords:
   - globals
   - scripting
   - commands
-  - bsl
 thanks:
   Crisp: 'Engine differences, script parameter info, object type mask info'
 redirects:

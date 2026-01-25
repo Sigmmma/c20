@@ -43,3 +43,14 @@ The UI localizations for these game variants are found in `ui\default_multiplaye
 The CTF engine is responsible for controlling CTF and Assault games.
 
 During initialization of a CTF game, all player spawn points are validated. If a spawn point is closer to the enemy team's flag than its own team's flag (or vice versa for Assault), its team index is set to `3` which prevents it from being used. If a level artist accidentally places the CTF flags in the wrong bases it can result in all spawn points being disabled and players being forever stuck ["waiting for space to clear"](~player-spawns#troubleshooting-waiting-for-space-to-clear) rather than spawning.
+
+# King of the Hill
+Hills must be defined of a single, or 3-8 hill flags. If defined by just 2, you will encounter the following exception in Standalone:
+
+```
+EXCEPTION halt in c:\mcc\main\h1\code\h1a2\sources\game\game_engine_king.c,#402: king_globals.hill_point_count != 0
+```
+
+In Crazy King, the initial hill will be the neural hill with _team index_ `0`, then each time the hill moves a random hill is chosen. The game is not guaranteed to cycle through all hill locations.
+
+When testing your hill placements in Crazy King, you can increase game speed with `game_speed_value 4` for example so you don't have to wait so long for the hill to move (normally 1 minute).

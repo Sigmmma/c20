@@ -3,7 +3,8 @@ title: H2 scripting
 keywords:
   - script
   - hsc
-  - bsl
+thanks:
+  Zadeinator: Notes on weather functions time arguments
 ---
 Like earlier games, Halo 2 supports **scripting** with [HaloScript](~general/scripting). Since H2 documentation is an ongoing work-in-progress, please refer to the more complete [H1 scripting page](~h1/scripting) for info on common functions.
 

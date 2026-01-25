@@ -14,7 +14,7 @@ function buildTableProps(tag): StructTableProps {
     noRootComments: true,
     skipPadding: true,
     simpleTypes: true,
-    noEmbed: ["TagDependency", "ColorRGB", "TagString"],
+    noEmbed: ["TagDependency", "ColorRGB", "ColorARGB", "TagString", "Point3D", "Vector3D", "Vector2D", "Quaternion"],
     id: "tag-field",
     noRootExtend: true,
   };

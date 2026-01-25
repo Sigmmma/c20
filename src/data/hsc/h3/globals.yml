@@ -437,6 +437,8 @@ external_globals:
         ```hsc
         (chud_debug_crosshair [boolean])
         ```
+
+        When enabled, displays weapon autoaim circle (blue) and current max error at 0.5 WU circle (yellow) 
   - slug: chud_debug_metagame
     info:
       en: |-
@@ -3693,12 +3695,16 @@ external_globals:
         ```hsc
         (ai_render_emotions [boolean])
         ```
+
+        When used with "ai_render_all_actors", displays AI danger perception
   - slug: ai_render_audibility
     info:
       en: |-
         ```hsc
         (ai_render_audibility [boolean])
         ```
+
+        When used with "ai_render_all_actors", displays unknown data about audio in reference to AI units
   - slug: ai_render_aiming_vectors
     info:
       en: |-
@@ -3741,6 +3747,8 @@ external_globals:
         ```hsc
         (ai_render_vitality [boolean])
         ```
+
+        When used with "ai_render_all_actors", displays shield and health of AI as a value from 0 to 1 
   - slug: ai_render_evaluations
     info:
       en: |-
@@ -3783,6 +3791,8 @@ external_globals:
         ```hsc
         (ai_render_shooting [boolean])
         ```
+
+        When used with 'ai_render_all_actors', displays AI weapon behavior such as current weapon status, accuracy percentage and burst and burst delay timers, as well as the current rate of fire the AI is imputting
   - slug: ai_render_trigger
     info:
       en: |-
@@ -4382,7 +4392,7 @@ external_globals:
         (ai_render_combat_status [boolean])
         ```
 
-        Displays the combat status value of AI units, needs "ai_render_all_actors" enabled
+        When used with "ai_render_all_actors", displays combat status value of AI units
   - slug: ai_render_decisions
     info:
       en: |-

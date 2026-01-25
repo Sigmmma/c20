@@ -7,8 +7,8 @@ caption: |-
   Second edition.
 keywords:
   - script
+  - scripts
   - hsc
-  - bsl
 thanks:
   kornman00: >-
     Writing the original [Blam Scripting Language Bible](http://www.modacity.net/docs/bslbible/), explaining garbage collection

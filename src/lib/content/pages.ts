@@ -24,10 +24,9 @@ export type PageFrontMatter = {
 export type ParsedPage = {
   front: PageFrontMatter;
   ast: Node;
-  logicalPath: string[];
 };
 
-export type PageData = {
+export type PageInfo = {
   title: string;
   stub?: boolean;
   children?: PageId[];
@@ -39,7 +38,7 @@ export type PageLink = {
   icon: IconName;
 };
 
-export type PageIndex = Record<PageId, PageData>;
+export type PageIndex = Record<PageId, PageInfo>;
 
 export function logicalToPageId(logicalPath: string[]): PageId {
   return "/" + logicalPath.join("/");
@@ -102,12 +101,12 @@ export function createPageLink(pageIndex: PageIndex, pageId: string, headingId?:
   };
 }
 
-export function buildPageIndex(parsedPages: Record<PageId, ParsedPage>): Record<PageId, PageData> {
+export function buildPageIndex(parsedPages: Record<PageId, ParsedPage>): Record<PageId, PageInfo> {
   return filterMapObject(parsedPages, (parsedPage, pageId) => {
     if (!pageId.startsWith("/utility")) {
-      const logicalPathTail = parsedPage.logicalPath[parsedPage.logicalPath.length - 1];
+      const logicalPathTail = pageIdToLogical(pageId).at(-1);
       return {
-        title: parsedPage.front.title ?? logicalPathTail,
+        title: parsedPage.front.title ?? logicalPathTail ?? "untitled",
         stub: parsedPage.front.stub,
         children: getPageChildren(parsedPages, pageId),
       };

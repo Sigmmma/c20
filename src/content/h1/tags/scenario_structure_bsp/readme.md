@@ -62,9 +62,9 @@ Clusters are sealed volumes of a BSP separated by portal planes. They are used b
 Note that it may still be desirable to reference weather for indoor clusters if there are outdoor areas visible from them, otherwise snow and rain particles will abruptly disappear. To mask weather in such clusters, use [weather polyhedra](#weather-polyhedra).
 
 ## Indoor vs. outdoor clusters
-Clusters are either _outdoor/exterior_ or _indoor/interior_. When a cluster contains [`+sky` faces](~h1-materials) it is an outdoor cluster and has a [sky index](#tag-field-clusters-sky) of `0` or greater. Furthermore, any cluster from which an outdoor cluster is [potentially visible](#potentially-visible-set) will also be an outdoor cluster. The material `+seamsealer` does not contribute to a cluster becoming outdoor so is typically used in BSP transition areas.
+Clusters are either _outdoor/exterior_ or _indoor/interior_. When a cluster contains [`+sky` faces](~h1-materials) it is an outdoor cluster and has a [sky index](#tag-field-clusters-sky) of `0` or greater. Furthermore, any clusters with [potentially visibility](#potentially-visible-set) of the cluster containing sky faces will become outdoor clusters too. The material `+seamsealer` does not contribute to a cluster becoming outdoor so is typically used in BSP transition areas.
 
-An indoor cluster is one where none of its potentially visible clusters are outdoor. These clusters have a sky index of `-1` instead and use the indoor parameters of sky index `0` (the first sky), which always has the special role of doubling as the "indoor sky". For example, indoor clusters will use use its [_indoor fog color_](~sky#tag-field-indoor-fog-color) rather than its [_outdoor fog color_](~sky#tag-field-outdoor-fog-color).
+All other clusters are indoor. These have a sky index of `-1` instead and use the indoor parameters of sky index `0` (the first sky). For example, indoor clusters will use use its [_indoor fog color_](~sky#tag-field-indoor-fog-color) rather than its [_outdoor fog color_](~sky#tag-field-outdoor-fog-color). The indoor parameters of any other skies are unused.
 
 When the game transitions between indoor and outdoor clusters the fog colour fades based on cumulative camera movement, not time. This effect can be seen easily in Danger Canyon: load it in [Sapien](~h1-sapien) and fly the camera through the hallways while `debug_pvs 1` and `rasterizer_wireframe 1` are enabled.
 
@@ -73,7 +73,7 @@ The _potentially visible set_ (PVS) data is precomputed when a BSP is compiled a
 
 Tool also takes into account the indoor sky's [_indoor fog opaque distance_](~sky#tag-field-outdoor-fog-opaque-distance) and [_indoor fog maximum density_](~sky#tag-field-indoor-fog-maximum-density) when computing the PVS. If the density is `1.0` (fully opaque) then Tool knows that indoor clusters cannot see beyond the opaque distance even if there are clusters within a line of sight. Tool logs the indoor maximum world units when the BSP is imported (if there a sky referenced).
 
-In addition to using the static PVS, the game may dynamically cull objects and parts of clusters using [portal frustums](~scripting#external-globals-debug-no-frustum-clip).
+In addition to using the static PVS, the game may dynamically cull objects and parts of clusters using [portal frustums](~scripting#external-globals-debug-no-frustum-clip) or other criteria. To disable this behaviour, set `structures_use_pvs_for_vs` to `true` (this causes inconsistent object rendering though).
 
 # Potentially audible set
 Like the PVS, the [_potentially audible set_](#tag-field-sound-pas-data) (PAS) data encodes which clusters can hear sounds from other clusters. This allows the engine to cull sounds without having to perform a costlier [obstruction check](~sound-system#sound-obstruction). It is unknown what criteria make clusters potentially audible.
@@ -97,7 +97,7 @@ To create them, simply model outwardly facing convex volumes where all faces use
 
 It is important that you still create weather polyhedra even if you have portals separating inside and outside spaces. Simply not assigning weather to the clusters which are under cover is not enough to prevent rain from appearing there. This is because the game renders weather based on the camera's current cluster, so if the player is outside a building looking in through a doorway they will still see rain indoors because the camera is currently located outside. Conversely, if the cluster within the building has no weather assigned then players will not see rain outdoors when looking out the doorway from inside. The solution is still assigning weather to covered clusters, then masking those areas with large weather polyhedra. This can be seen in the example figure.
 
-Within the tag, the polyhedra are represented as a center point, bounding radius, and up to 16 planes which enclose a volume. Therefore your polyhedra technically don't need to be _sealed_ volumes because they are limited to their bounding radius. A polyhedron can be created with as little as 1 plane.
+[Within the tag](#tag-field-weather-polyhedra), the polyhedra are represented as a center point, bounding radius, and up to 16 planes which enclose a volume. Therefore your polyhedra technically don't need to be _sealed_ volumes because they are limited to their bounding radius. A polyhedron can be created with as little as 1 plane.
 
 # Lens flare markers
 

@@ -25,7 +25,7 @@ Some versions of [3ds Max](~3dsmax) (at least 2010) require the 32-bit version i
 WRL files are technically [VRML files][vrml]. The following is only relevant if you plan to write a WRL parser.
 
 ## Version 1
-Halo 1 Tool creates WRL 1.0 files, identified by their first line `#VRML 1.0 ascii`. Blender cannot natively import this version, so you must use the toolset addon. The files consist of a list of `Separator` nodes, one for each error found by Tool. Any program which aims to parse this file format should consider whitespace to be flexible.
+Halo 1 Tool creates WRL 1.0 files, identified by their first line `#VRML 1.0 ascii`. The files consist of a list of `Separator` nodes, one for each error found by Tool. Any program which aims to parse this file format should consider whitespace to be flexible.
 
 ```vrml
 #VRML 1.0 ascii

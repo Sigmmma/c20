@@ -126,8 +126,9 @@ info: |
   * Lines
 
 # Marking a page as a "stub" adds an alert to its header that it's a work in
-# progress and also prevents the page from being added to search and the sitemap
-# (used by search bots). Once a page has reached a useful state, remove this flag.
+# progress and also prevents the page from being index by search engines like
+# Google. This does not prevent the page from being searchable in c20.
+# Once a page has reached a useful state, remove this flag.
 stub: true
 
 # Please credit anyone who helped create this page or was a source for its
@@ -410,6 +411,7 @@ Medium sized tables or those that require multiple lines per cell can use [Markd
 * Row 2 Cell 1
 *
   Row 2 cell 2 line 1
+
   Row 2 cell 2 line 2
 {% /table %}
 ```

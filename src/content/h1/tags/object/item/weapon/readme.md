@@ -26,6 +26,8 @@ _Aim assist_ includes three distinct features which are customizable on a per-we
 * **Magnetism**: Only applicable to controllers where it causes the player's view to slightly "follow" enemy units. This is disabled in H1PC by default, but can be enabled for controllers with `player_magnetism 1`.
 * **Vehicle weapon deviation**: Only applicable to vehicle weapons where the player's viewing angle can be out of alignment with the weapon's own forward angle. For example, the Warthog turret cannot rotate as fast as the player can turn their camera. In this situation the game allows projectiles to be deviated towards the player's viewing direction rather than firing straight forward from the weapon, up to a maximum [deviation angle](#tag-field-deviation-angle).
 
+You can disable aim assist when unzoomed using the flag [_aim assists only when zoomed_](#tag-field-weapon-flags-aim-assists-only-when-zoomed).
+
 Enable these globals to see aim assist in action:
 
 ```console
@@ -33,6 +35,9 @@ debug_objects 1
 debug_objects_biped_autoaim_pills 1
 temporary_hud 1
 ```
+
+# Related HaloScript
+{% relatedHsc game="h1" tagFilter="weapon" /%}
 
 # Structure and fields
 

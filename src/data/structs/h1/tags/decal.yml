@@ -38,6 +38,14 @@ type_defs:
       - name: animation_loop
       - name: preserve_aspect
       - name: disabled_in_remastered_by_blood_setting
+      - name: sprite_scale_bug_fix
+        meta:
+          non_standard: true
+        comments:
+          en: |
+            This is a flag only supported by [Invader](~). It corrects the
+            invalid scale bug for decals using sprite maps, so that _radius_
+            properly scales the decal.
   DecalType:
     class: enum
     size: 2
@@ -116,11 +124,13 @@ type_defs:
           T: float
         comments:
           en: |-
-            Sets the world units scale for 16px of decal. For example, a value
-            of `1` world unit means that a 16x16px decal will be a 1x1wu square
-            in-game, and a 32x32px decal will be 2x2wu, etc. `0` defaults to
-            `0.125`. The ingame radius caps out at approximately 16 world units
-            even if the tag value is set higher.
+            If the If the [_map_](#tag-field-map) type is _2D textures_, scales
+            the actual decal radius. If its type is _sprites_, instead sets the
+            world units scale for 16px of decal (due to a game bug). For example,
+            a value of `1` world unit means that a 16x16px decal will be a 1x1wu
+            square in-game, and a 32x32px decal will be 2x2wu, etc. `0` defaults
+            to `0.125`. The ingame radius caps out at approximately 16 world
+            units even if the tag value is set higher.
       - type: pad
         size: 12
       - name: intensity
@@ -225,6 +235,17 @@ type_defs:
         size: 20
       - name: maximum_sprite_extent
         type: float
+        meta:
+          unit: pixels
+          read_only: true
+        comments:
+          en: |
+            This is a runtime field. It's always set to 16 by the game if the
+            decal [_map_](#tag-field-map) type is [_sprites_](~bitmap#tag-field-type-sprites),
+            which is a bug that has been present since Xbox. The type _2D textures_
+            does not have this problem. This bug results in the scale of decals
+            changing depending on the bitmap type. See the effect this has on
+            [_radius_](#tag-field-radius).
       - type: pad
         size: 4
       - type: pad
