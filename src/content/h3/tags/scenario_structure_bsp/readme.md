@@ -32,7 +32,7 @@ _Clusters_ are spaces in the BSP which are separated by portals. This is both do
 
 * Acoustics: A combination of [sound_environment](~) and [sound_looping](~).
 * Weather
-* Atmosphere
+* Atmosphere: Atmosphere settings for the sky defined by [sky_atm_parameters](~)
 * CameraFX: Post-processing screen effects defined by [camera_fx_settings](~) with some cluster overrides.
 
 # Limits
