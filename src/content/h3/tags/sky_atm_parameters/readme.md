@@ -67,8 +67,8 @@ The Scattering field is where you will define the thickness of the atmosphere wi
 | Sea Level | In world units, set it to the lowest point of the scenario.
 | Rayleigh Height Scale | In world units, height above sea level where atmosphere is 30% thick.
 | Mie Height Scale | In world units, height above sea level where atmosphere is 30% thick.
-| Rayleigh Multiplier | Affects scattering of light by small particles in the atmosphere. Increasing this value will make the sky appear more blue.
-| Mie Multiplier | Affects scattering of light by large particles in the atmopshere. Increasing this value will make the color tint from the sun more pronounced.
+| Rayleigh Multiplier | Affects scattering of light by small particles in the atmosphere.
+| Mie Multiplier | Affects scattering of light by large particles in the atmopshere.
 | Sun Phase Function | Scaled from 0-1, controls how focused light scattering is relative to the sun direction. 0 scatters light uniformly throughout the atmosphere, values closer to 1 focuses the scattering closer to the sun.
 | Desaturation | Increase this to reduce the reddening effect.
 | Distance Bias | Push the fog away from the player camera, or pull it in.
