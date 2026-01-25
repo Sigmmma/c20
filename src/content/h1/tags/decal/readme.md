@@ -8,6 +8,7 @@ thanks:
   MosesOfEgypt: Tag structure research
   Conscars: 'Testing functions and globals, tag fields, decal geometry'
   Ifafudafi: Explaining chain decals and radius scaling
+  Aerocatia: Explaining sprite map radius bug
 keywords:
   - deca
 ---

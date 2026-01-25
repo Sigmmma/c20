@@ -75,7 +75,9 @@ A _tag block_ field is essentially a list of smaller data structures within a ta
 Some older unofficial tools refer to blocks as _reflexives_, a term considered outdated and comes from early [halo-map-tools](~obsolete#hmt) modding.
 
 ## Group IDs
-To identity tag types in-engine and within tag data, Halo uses compact fixed-size (4 character) identifiers rather than the longer tag names/extensions seen in the [HEK](~custom-edition#halo-editing-kit). Some examples include `bitm` for [bitmap](~bitmap), `snd!` for [sound](~), and `DeLa` for [ui_widget_definition](~). These identifiers are case-sensitive and may be padded with trailing spaces.
+To identify tag types in-engine and within tag data, Halo uses compact fixed-size (4 character) identifiers rather than the longer tag names/extensions seen in the [HEK](~custom-edition#halo-editing-kit). Some examples include `bitm` for [bitmap](~bitmap), `snd!` for [sound](~), and `DeLa` for [ui_widget_definition](~). These identifiers are case-sensitive and may be padded with trailing spaces.
+
+You don't typically need to know these IDs beyond reverse engineering or using older community map-editing tools that group tags by these IDs. They can also appear backwards in some contexts due to being encoded as little-endian integers.
 
 ## Unused tags and fields
 The types of tags and their structures changed during the game's development. Evidence of this can be seen in Halo's engine, the HEK's tools and tags, and official maps.

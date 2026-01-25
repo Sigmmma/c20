@@ -309,6 +309,11 @@ type_defs:
             be more than 256 unique breakable surfaces in a BSP.
       - name: material
         type: Index
+        comments:
+          en: |
+            Index into this tag's materials block
+            (_collision materials_ for structure BSPs and _materials_ for model_collision_geometry).
+            This can be `-1` if the surface has no material, such as `+sky` faces.
   ModelCollisionGeometryBSPEdge:
     class: struct
     assert_size: 24

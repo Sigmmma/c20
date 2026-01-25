@@ -65,8 +65,12 @@ type_defs:
         type: Index
       - name: surface_reference_count
         type: uint16
+        comments:
+          en: The number of surfaces.
       - name: surface_references
         type: int32
+        comments:
+          en: Index into the [_leaf surfaces_](#tag-field-leaf-surfaces) block.
   ScenarioStructureBSPSurfaceReference:
     class: struct
     assert_size: 8
@@ -75,8 +79,14 @@ type_defs:
     fields:
       - name: surface
         type: int32
+        comments:
+          en: |
+            Index into the [_surfaces_](#tag-field-surfaces) block. This value
+            may change after radiosity is run, as surfaces may be reordered.
       - name: node
         type: int32
+        comments:
+          en: Index into the [_nodes_](#tag-field-nodes) block.
   ScenarioStructureBSPSurface:
     class: struct
     assert_size: 6
@@ -85,10 +95,16 @@ type_defs:
     fields:
       - name: vertex0_index
         type: Index
+        comments:
+          en: The triangle's first vertex index.
       - name: vertex1_index
         type: Index
+        comments:
+          en: The triangle's second vertex index.
       - name: vertex2_index
         type: Index
+        comments:
+          en: The triangle's third vertex index.
   ScenarioStructureBSPMaterialFlags:
     class: bitfield
     size: 2
@@ -96,7 +112,7 @@ type_defs:
       - name: coplanar
         comments:
           en: |
-            Indicates that the faces in this material are [coplanar](https://en.wikipedia.org/wiki/Coplanarity).
+            Indicates that the surfaces in this material are [coplanar](https://en.wikipedia.org/wiki/Coplanarity).
       - name: fog_plane
   ScenarioStructureBSPMaterial:
     class: struct
@@ -112,14 +128,32 @@ type_defs:
           tag_classes:
             - shader
           non_null: true
+        comments:
+          en: |
+            Tag reference to the shader which is rendered for this material.
       - name: shader_permutation
         type: Index
+        comments:
+          en: |
+            Controls the permutation index of bitmaps referenced by the above
+            shader. This will affect which reflection cubemap permutation is used
+            if it has multiple, such as the Elite's cubemap. Defaults to `0`.
       - name: flags
         type: ScenarioStructureBSPMaterialFlags
       - name: surfaces
         type: int32
+        comments:
+          en: |
+            Indicates the starting index of the [_surfaces_](#tag-field-surfaces)
+            block where this material's surfaces are located. These surfaces
+            will contain vertex indices for the vertex data pointed to by this
+            material.
       - name: surface_count
         type: int32
+        comments:
+          en: |
+            The number of surfaces following the above offset which belong to this
+            material.
       - name: centroid
         type: Point3D
         comments:
@@ -149,7 +183,7 @@ type_defs:
       - name: distant_light_1_color
         type: ColorRGB
         comments:
-          en: For lightmapped materials (_bitmap_ index >= 0), always set to RGB `(0.4, 0.5, 0.5)` when radiosity is run. Otherwise zeroed.
+          en: For lightmapped materials (_bitmap_ index >= 0), always set to RGB `(0.4, 0.4, 0.5)` when radiosity is run. Otherwise zeroed.
       - name: distant_light_1_direction
         type: Vector3D
         comments:
@@ -194,17 +228,13 @@ type_defs:
             The number of rendered vertices for this material, found at
             _rendered vertices offset_. This count is always equal to [_lightmap
             vertices count_](#tag-field-lightmaps-materials-lightmap-vertices-count)
-            when the bitmap index is not `-1`.
+            when the bitmap index is not `-1`. The number of vertices may increase
+            after lightmaps are generated, as Tool may need to introduce lightmap
+            UV seams.
       - name: rendered_vertices_offset
         type: uint32
         comments:
-          en: |-
-            An offset to an array of rendered vertices, each 56 bytes:
-            * Position
-            * Normal
-            * Binormal
-            * Tangent
-            * UV
+          en: Always `0`.
       - name: unknown_pointer
         type: ptr32
         meta:
@@ -235,16 +265,14 @@ type_defs:
         comments:
           en: >
             The number of lightmap vertices for this material, found at
-            _lightmap vertices offset_. This count is always equal to [_rendered
-            vertices count_](#tag-field-lightmaps-materials-rendered-vertices-count)
-            when the bitmap index is not `-1`.
+            _lightmap vertices offset_. For lit materials, this count is always
+            equal to [_rendered vertices count_](#tag-field-lightmaps-materials-rendered-vertices-count)
+            when the bitmap index is not `-1`. Otherwise for unlit materials this
+            will be `0`.
       - name: lightmap_vertices_offset
         type: uint32
         comments:
-          en: |-
-            An offset to an array of lightmap vertices, each 20 bytes:
-            * Incident radiosity vector, used for dynamic object shadows and environmental bump mapping)
-            * UV coordinate in lightmap page indicated by bitmap index.
+          en: Always `0`.
       - type: pad
         size: 4
       - name: lightmap_vertices_index_pointer
@@ -259,10 +287,42 @@ type_defs:
         type: TagDataOffset
         meta:
           ignore_cached: true
+        comments:
+          en: |-
+            A data block storing uncompressed rendered and lightmap vertices.
+            Both vertex types are stored in the same continuous block beginning
+            with all rendered vertices, each 56 bytes:
+
+            * Position
+            * Normal
+            * Binormal
+            * Tangent
+            * Texture UV
+
+            This is followed by all lightmap vertices, each 20 bytes:
+
+            * Incident radiosity vector (used for dynamic object shadows and environmental bump mapping)
+            * Lightmap UV (for lightmap page indicated by [_bitmap_ index](#tag-field-lightmaps-bitmap))
       - name: compressed_vertices
         type: TagDataOffset
         meta:
           ignore_cached: true
+        comments:
+          en: |-
+            A data block storing compressed rendered and lightmap vertices.
+            Both vertex types are stored in the same continuous block beginning
+            with all rendered vertices, each 32 bytes:
+
+            * Position (uncompressed Vector3D)
+            * Normal (encoded in a 32-bit integer)
+            * Binormal (encoded in a 32-bit integer)
+            * Tangent (encoded in a 32-bit integer)
+            * Texture UV (uncompressed Vector2D)
+
+            This is followed by all lightmap vertices, each 8 bytes:
+
+            * Incident radiosity vector (encoded in a 32-bit integer)
+            * Lightmap UV (encoded in a 32-bit integer)
   ScenarioStructureBSPLightmap:
     class: struct
     assert_size: 32
@@ -303,6 +363,8 @@ type_defs:
         meta:
           tag_classes:
             - lens_flare
+        comments:
+          en: Tag reference to a lens flare.
   ScenarioStructureBSPLensFlareMarker:
     class: struct
     assert_size: 16
@@ -333,6 +395,10 @@ type_defs:
     fields:
       - name: index
         type: int32
+        comments:
+          en: |
+            The index of a [_surface_](#tag-block-surfaces) in this subcluster.
+            This value may change after radiosity is run if surfaces are reordered.
   ScenarioStructureBSPSubcluster:
     class: struct
     assert_size: 36
@@ -343,18 +409,27 @@ type_defs:
         type: Bounds
         type_args:
           T: float
+        comments:
+          en: X axis bounds for the surfaces in this subcluster.
       - name: world_bounds_y
         type: Bounds
         type_args:
           T: float
+        comments:
+          en: Y axis bounds for the surfaces in this subcluster.
       - name: world_bounds_z
         type: Bounds
         type_args:
           T: float
+        comments:
+          en: Z axis bounds for the surfaces in this subcluster.
       - name: surface_indices
         type: Block
         type_args:
           T: ScenarioStructureBSPSubclusterSurfaceIndex
+        comments:
+          en: |
+            Indices of renderable surfaces (triangles) present in this subcluster.
   ScenarioStructureBSPClusterSurfaceIndex:
     class: struct
     assert_size: 4
@@ -471,6 +546,11 @@ type_defs:
           T: ScenarioStructureBSPClusterSurfaceIndex
         meta:
           hek_max_count: 32768
+          unused: true
+        comments:
+          en: |
+            Always empty, appears unused by the game. This was likely replaced by
+            subcluster surfaces indices at some point in development.
       - name: mirrors
         type: Block
         type_args:
@@ -604,11 +684,20 @@ type_defs:
     fields:
       - name: name
         type: TagString
+        comments:
+          en: |
+            Gives a name to this palette entry so it can be easily recognized
+            when assigning weather to clusters.
       - name: particle_system
         type: TagDependency
         meta:
           tag_classes:
             - weather_particle_system
+        comments:
+          en: |
+            References the [weather_particle_system](~) tag used by the
+            palette entry, which controls the appearance and behaviour of
+            weather particles such as snow or rain.
       - type: pad
         size: 4
       - name: particle_system_scale_function
@@ -620,14 +709,42 @@ type_defs:
         meta:
           tag_classes:
             - wind
+        comments:
+          en: |
+            References the [wind](~) tag used by the palette entry, which
+            controls the base speed and directional variability of the wind.
       - name: wind_direction
         type: Vector3D
+        comments:
+          en: |
+            Controls the direction of wind in the assigned cluster.
+            The `i`, `j`, and `k` components correspond to the `x` and `y` and
+            `z` world axes, with positive values meaning the wind moves in the
+            positive world axis direction. For example, a wind vector of `1 1 0`
+            blows at the angle between the +x and +y directions,
+            while `0 0 -1` blows straight down (-z). This vector is [normalized](https://en.wikipedia.org/wiki/Unit_vector)
+            by the engine, so larger numbers do not increase the speed (magnitude)
+            of the wind; the direction `2 4 0` is the same as `1 2 0`.
+            If this vector is `0 0 0` then the game will use `1 0 0` as the default.
       - name: wind_magnitude
         type: float
+        comments:
+          en:
+            Scales the base wind speed of the palette entry's wind tag. For example,
+            if the wind tag specifies a [_velocity_](~wind#tag-field-velocity) of
+            2 wu/s, and this magnitude is 3, then the overall wind speed will be 6
+            wu/s. This number can be negative to reverse the wind direction, though
+            it's clearer to change the direction vector above. This also scales
+            the wind's [local variation](~wind#local-variation) but only
+            when acting on particles with _use simple wind_ point_physics.
       - type: pad
         size: 4
       - name: wind_scale_function
         type: TagString
+        comments:
+          en: |
+            It's unknown how to use this field, or if it's even used by the
+            engine. Various string values seem to have no effect on the wind.
       - type: pad
         size: 44
   ScenarioStructureBSPWeatherPolyhedronPlane:
@@ -638,6 +755,8 @@ type_defs:
     fields:
       - name: plane
         type: Plane3D
+        comments:
+          en: The plane, defined in terms of a normal vector and distance from the polyhedron center.
   ScenarioStructureBSPWeatherPolyhedron:
     class: struct
     assert_size: 32
@@ -646,8 +765,16 @@ type_defs:
     fields:
       - name: bounding_sphere_center
         type: Point3D
+        comments:
+          en: The world space location of the weather polyhedron's center point.
       - name: bounding_sphere_radius
         type: float
+        comments:
+          en: |
+            The radius around the center point where the polyhedron has an
+            effect. A polyhedron's plane culling will apply _globally_ if its
+            bounding sphere is within range of the current weather_particle_system's
+            [_fade out end distance_](~weather_particle_system#tag-field-particle-types-fade-out-end-distance).
       - type: pad
         size: 4
       - name: planes
@@ -656,6 +783,12 @@ type_defs:
           T: ScenarioStructureBSPWeatherPolyhedronPlane
         meta:
           hek_max_count: 16
+        comments:
+          en: |
+            A series of planes which define the shape of the volume. A weather
+            particle is displayed if it's on the back side of any of these planes.
+            If no planes are present then no particles are displayed if the polyhedron
+            is in range.
   ScenarioStructureBSPPathfindingSurface:
     class: struct
     assert_size: 1
@@ -664,6 +797,12 @@ type_defs:
     fields:
       - name: data
         type: int8
+        comments:
+          en: |
+            Has the value `0` if the collision surface cannot be used for
+            pathfinding (e.g. too steep), and `64` otherwise. It's unknown if
+            this is a bitfield and if other values may appear depending
+            on the surface type.
   ScenarioStructureBSPPathfindingEdge:
     class: struct
     assert_size: 1
@@ -1066,12 +1205,31 @@ type_defs:
           T: ScenarioStructureBSPSurface
         meta:
           hek_max_count: 131072
+        comments:
+          en: |
+            A list of renderable triangles, represented as vertex indices. The
+            indices are used to look up vertex information within the vertex data
+            referenced by [lightmap materials](#tag-field-lightmaps-materials).
       - name: lightmaps
         type: Block
         type_args:
           T: ScenarioStructureBSPLightmap
         meta:
           hek_max_count: 128
+        comments:
+          en: |
+            Each lightmap contains a set of renderable triangles, which may be
+            mapped to a single bitmap index (or "page") of the referenced
+            [_lightmaps bitmaps_](#tag-field-lightmaps-bitmaps).
+            On initial structure import this will contain just two lightmaps
+            with `-1` bitmap index: the first containing all lightmapped materials
+            (shader_environment and shader_transparent_glass) and the second
+            containing all other shaders which will not be lightmapped (transparent
+            generics and chicagos). The final entry will always exist but may have no
+            _materials_.
+            After radiosity is run and Tool has segmented the level into charts,
+            the first entry is typically split into multiple independent
+            lightmaps with distinct atlases.
       - type: pad
         size: 12
       - name: lens_flares
@@ -1082,8 +1240,7 @@ type_defs:
           hek_max_count: 256
         comments:
           en: >-
-            Lists the available lens flares used by this BSP's _lens flare
-            markers_.
+            Lists the types of lens flares used by this BSP's _lens flare markers_.
       - name: lens_flare_markers
         type: Block
         type_args:
@@ -1141,12 +1298,26 @@ type_defs:
           T: ScenarioStructureBSPWeatherPalette
         meta:
           hek_max_count: 32
+        comments:
+          en: |
+            Weather properties combining wind and weather particles which can be
+            assigned to clusters. Levels typically have separate entries
+            for indoor and outdoor locations so the amount of wind will vary.
+            Any applicable weather particle systems may need to be assigned to
+            both indoor and outdoor palette entries, with [weather polyhedra](#weather-polyhedra)
+            used to mask weather from indoor locations.
       - name: weather_polyhedra
         type: Block
         type_args:
           T: ScenarioStructureBSPWeatherPolyhedron
         meta:
           hek_max_count: 32
+        comments:
+          en: |
+            Convex polyhedral volumes where weather particle systems will not
+            render. These should not be edited by hand, but rather by assigning
+            the [material name](~h1-materials#special-materials) `+weatherpoly`
+            to these volumes when modeling your level.
       - type: pad
         size: 24
       - name: pathfinding_surfaces
@@ -1155,12 +1326,19 @@ type_defs:
           T: ScenarioStructureBSPPathfindingSurface
         meta:
           hek_max_count: 131072
+        comments:
+          en: |
+            This block has equal length to [collision _surfaces_](#tag-field-collision-bsp-surfaces),
+            and specifies which corresponding surfaces can be used for pathfinding by AI.
       - name: pathfinding_edges
         type: Block
         type_args:
           T: ScenarioStructureBSPPathfindingEdge
         meta:
           hek_max_count: 262144
+          unused: true
+        comments:
+          en: Always empty, likely unused by the game.
       - name: background_sound_palette
         type: Block
         type_args:

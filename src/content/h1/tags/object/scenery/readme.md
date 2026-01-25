@@ -19,7 +19,7 @@ While scenery and their collision models can be animated, they do not have physi
 While thousands of scenery can be placed in a [scenario](~), the unmodified game engine only supports rendering at most 256 at any given time. This limit can be increased to 512 using OpenSauce.
 
 # Shadows
-Because these objects are non-moving, they cast shadows in [lightmaps](~scenario_structure_bsp). A scenery's [collision](~model_collision_geometry) is used to cast shadows rather than its [gbxmodel](~gbxmodel). Scenery can also be forced to use dynamic shadow mapping; see [object lighting](~object#shadows-and-lighting).
+Because these objects are non-moving, they cast shadows in [lightmaps](~). A scenery's [collision](~model_collision_geometry) is used to cast shadows rather than its [gbxmodel](~gbxmodel). Scenery can also be forced to use dynamic shadow mapping; see [object lighting](~object#shadows-and-lighting).
 
 # Structure and fields
 

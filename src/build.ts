@@ -43,25 +43,23 @@ async function renderPages(parsedPages: Record<PageId, ParsedPage>, pageIndex: P
     const baseDir = getPageBaseDir(pageId, buildOpts);
     const outputDir = path.join(buildOpts.outputDir, ...pageIdToLogical(pageId));
     const outputFileName = path.join(outputDir, "index.html");
-    const localData = loadYamlTree(baseDir, {nonRecursive: true});
+    const localDataPromise = loadYamlTree(baseDir, {nonRecursive: true});
 
-    //render the page to HTML and also gather search index data
     const {htmlDoc, searchDoc} = renderPage({
       lang: "en",
       baseUrl: buildOpts.baseUrl,
-      noThumbs: buildOpts.noThumbs,
       preloadJson: true,
-      pageId: pageId,
-      ast: parsedPage.ast,
-      front: parsedPage.front,
-      localData: await localData,
+      noThumbs: buildOpts.noThumbs,
+      pageId,
+      parsedPage,
+      localData: await localDataPromise,
       globalData,
       pageIndex,
     });
 
     await fs.promises.mkdir(outputDir, {recursive: true});
     await fs.promises.writeFile(outputFileName, htmlDoc, "utf8");
-    if (!parsedPage.front.stub && searchDoc) {
+    if (searchDoc) {
       searchDocs.push(searchDoc);
     }
   }));

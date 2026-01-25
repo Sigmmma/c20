@@ -3,7 +3,6 @@ title: H3 scripting
 keywords:
   - script
   - hsc
-  - bsl
 ---
 Like earlier games, Halo 3 supports **scripting** with [HaloScript](~general/scripting).
 

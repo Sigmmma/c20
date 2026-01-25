@@ -89,15 +89,15 @@ export default function Nav(props: NavProps) {
 }
 
 function renderPageTree(currPageId: PageId, rootPageId: PageId, pageIndex: PageIndex, expandedPages: Record<PageId, boolean>, toggle: (pageId: PageId) => void) {
-  const rootPageData = pageIndex[rootPageId];
+  const rootPageInfo = pageIndex[rootPageId];
   return (
     <ol>
-      {rootPageData.children?.map((childPageId) => {
-        const childPageData = pageIndex[childPageId];
+      {rootPageInfo.children?.map((childPageId) => {
+        const childPageInfo = pageIndex[childPageId];
         const isTopLevel = childPageId.lastIndexOf("/") == 0;
         const isParent = (currPageId + "/").startsWith(childPageId + "/");
         const isCurrent = currPageId == childPageId;
-        const showPlus = !isTopLevel && !isParent && (childPageData.children?.length ?? 0) > 0;
+        const showPlus = !isTopLevel && !isParent && (childPageInfo.children?.length ?? 0) > 0;
         const isExpanded = isParent || expandedPages[childPageId];
         const link = createPageLink(pageIndex, childPageId)!;
 

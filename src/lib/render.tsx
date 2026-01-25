@@ -1,41 +1,69 @@
-import PageWrapper from "./components/PageWrapper/PageWrapper";
 import * as R from "ramda";
+import PageWrapper from "./components/PageWrapper/PageWrapper";
 import renderToString from "preact-render-to-string";
 import Ctx, {RenderContext} from "./components/Ctx/Ctx";
 import HtmlDoc from "./components/HtmlDoc/HtmlDoc";
-import {transform, renderPlaintext} from "./markdown/markdown";
 import {Locale} from "./components/Locale/Locale";
-import {type Node} from "@markdoc/markdoc";
-import {PageIndex, formatUrlPath, PageFrontMatter} from "./content/pages";
-import {SearchDoc} from "./search";
+import {PageIndex, formatUrlPath, ParsedPage, PageFrontMatter} from "./content/pages";
 import {Lang} from "./utils/localization";
 import ArticleMain from "./components/ArticleMain/ArticleMain";
+import {SearchDoc} from "./search";
+import {renderPlaintext, transform} from "./markdown/markdown";
+import {RenderableTreeNode} from "@markdoc/markdoc";
 
 export const PREVIEW_LENGTH_CHARS = 100;
 
-export type RenderOutput = {
-  htmlDoc: string;
-  searchDoc: null | SearchDoc;
-};
-
-export type RenderInput = {
-  //global
+export type RenderInputs = {
+  //static
   lang: Lang;
   baseUrl: string;
   preloadJson?: boolean;
   noThumbs?: boolean;
   //local
   pageId: string;
-  ast: Node;
-  front: PageFrontMatter;
+  parsedPage: ParsedPage;
   localData?: any;
-  //non-local:
+  //global
   globalData: any;
   pageIndex: PageIndex;
 };
 
+export default function renderPage(inputs: RenderInputs): {htmlDoc: string, searchDoc: SearchDoc} {
+  const ctx: RenderContext = {
+    pageId: inputs.pageId,
+    pageTitle: inputs.parsedPage.front?.title,
+    pageIndex: inputs.pageIndex,
+    data: R.mergeDeepRight(inputs.globalData, inputs.localData),
+    noThumbs: inputs.noThumbs,
+  };
+
+  //transform uses lang because headings and links need plaintext rendering for slugs, and md could contain localizable tags
+  const content = transform(inputs.parsedPage.ast, ctx, inputs.lang, inputs.parsedPage.front);
+  const bodyPlaintext = renderPlaintext(ctx, inputs.lang, content);
+  const ogDescription = createPlaintextPreview(bodyPlaintext);
+
+  const searchDoc: SearchDoc = {
+    path: formatUrlPath(inputs.pageId),
+    title: inputs.parsedPage.front?.title ?? "",
+    keywords: inputs.parsedPage.front?.keywords?.join(" ") ?? "",
+    text: bodyPlaintext ?? "",
+  };
+
+  //render the page to HTML and also gather search index data
+  const htmlDoc = renderPageHtml(ctx, {
+    lang: inputs.lang,
+    baseUrl: inputs.baseUrl,
+    preloadJson: inputs.preloadJson,
+    front: inputs.parsedPage.front,
+    content,
+    ogDescription,
+  });
+
+  return {htmlDoc, searchDoc};
+}
+
 //trim the plaintext preview to a maximum length
-export function createPlaintextPreview(plaintext?: string): string | undefined {
+function createPlaintextPreview(plaintext?: string): string | undefined {
   if (plaintext && !plaintext.startsWith("...")) {
     plaintext = plaintext.length > PREVIEW_LENGTH_CHARS ?
       `${plaintext.substring(0, PREVIEW_LENGTH_CHARS)}...` :
@@ -45,51 +73,45 @@ export function createPlaintextPreview(plaintext?: string): string | undefined {
   return undefined;
 }
 
-export default function renderPage(input: RenderInput): RenderOutput {  
-  const {front} = input;
+type HtmlRenderInputs = {
+  lang: Lang;
+  baseUrl: string;
+  preloadJson?: boolean;
+  front: PageFrontMatter;
+  content: RenderableTreeNode | undefined;
+  ogDescription?: string;
+};
 
-  const ctx: RenderContext = {
-    pageId: input.pageId,
-    pageTitle: front?.title,
-    pageIndex: input.pageIndex,
-    data: R.mergeDeepRight(input.globalData, input.localData),
-    noThumbs: input.noThumbs,
-  };
-
-  //transform uses lang because headings and links need plaintext rendering for slugs, and md could contain localizable tags
-  const content = transform(input.ast, ctx, input.lang, input.front);
-  const bodyPlaintext = renderPlaintext(ctx, input.lang, content);
-  const thisPagePath = formatUrlPath(input.pageId);
-
+function renderPageHtml(ctx: RenderContext, inputs: HtmlRenderInputs): string {
   const pageWrapperBootstrapJson = JSON.stringify({
-    pageId: input.pageId,
+    pageId: ctx.pageId,
   });
   
-  const htmlDoc = "<!DOCTYPE html>\n" + renderToString(
-    <Locale.Provider value={input.lang}>
+  return "<!DOCTYPE html>\n" + renderToString(
+    <Locale.Provider value={inputs.lang}>
       <HtmlDoc
-        lang={input.lang}
-        title={front?.title}
-        baseUrl={input.baseUrl}
-        noIndex={front?.stub}
-        ogDescription={createPlaintextPreview(bodyPlaintext)}
-        ogImg={front?.img}
-        ogTags={front?.keywords}
-        preloadJson={input.preloadJson}
-        path={thisPagePath}
+        lang={inputs.lang}
+        title={inputs.front?.title}
+        baseUrl={inputs.baseUrl}
+        noIndex={inputs.front?.stub}
+        ogDescription={inputs.ogDescription}
+        ogImg={inputs.front?.img}
+        ogTags={inputs.front?.keywords}
+        preloadJson={inputs.preloadJson}
+        path={formatUrlPath(ctx.pageId)}
       >
         <div id="wrapper-mountpoint" data-bootstrap={pageWrapperBootstrapJson}>
           <PageWrapper
-            pageId={input.pageId}
-            pageIndex={input.pageIndex}
+            pageId={ctx.pageId}
+            pageIndex={ctx.pageIndex}
           >
             <div id="wrapper-child">
               <Ctx.Provider value={ctx}>
                 <ArticleMain
-                  pageId={input.pageId}
-                  pageIndex={input.pageIndex}
-                  front={front}
-                  content={content}
+                  pageId={ctx.pageId}
+                  pageIndex={ctx.pageIndex}
+                  front={inputs.front}
+                  content={inputs.content}
                 />
               </Ctx.Provider>
             </div>
@@ -99,13 +121,4 @@ export default function renderPage(input: RenderInput): RenderOutput {
       </HtmlDoc>
     </Locale.Provider>
   );
-
-  const searchDoc: SearchDoc = {
-    text: bodyPlaintext ?? "",
-    path: thisPagePath,
-    title: front?.title ?? "",
-    keywords: front?.keywords?.join(" ") ?? "",
-  };
-
-  return {htmlDoc, searchDoc};
-};
+}

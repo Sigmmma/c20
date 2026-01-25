@@ -869,12 +869,20 @@ type_defs:
             the teleporter facing North would exit facing East.
       - name: hill_flag
         comments:
-          en: >
-            Defines the boundaries of a King mode hill. Each hill should be
-            placed as a series of 3-8 hill flags with the same _team index_,
-            with index `0` being the default for non-moving hill mode. At least
-            two hills should be placed to support moving hill mode. The _facing_
-            field is not used.
+          en: |
+            Defines the location of a King of the Hill game mode hill. The
+            _team index_ should increment for each kill, with index `0` being the
+            initial neutral hill. At least two hills should be placed to properly
+            support moving-hill (Crazy King) mode, though this is not required.
+            
+            Each hill can be placed using either a single netgame flag, in which
+            case it will be a 2x2 world unit square, or 3-8 netgame flags sharing
+            the same _team index_ to define a custom boundary. Note that the
+            actual resulting hill shape will be the [convex hull](https://en.wikipedia.org/wiki/Convex_hull)
+            of the points, so you cannot create non-convex shapes. A hill made of
+            2 points is invalid and causes an exception.
+            
+            The _facing_ field is not used.
   ScenarioNetgameFlags:
     class: struct
     assert_size: 148

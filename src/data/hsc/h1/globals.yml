@@ -1276,6 +1276,7 @@ external_globals:
   - slug: collision_debug_flag_objects_weapons
     tags:
       - physics-engine
+      - weapon
     info:
       en: |-
         ```hsc
@@ -1595,7 +1596,11 @@ external_globals:
         ```
         Shows debug information about the camera in the top left corner, including:
         - 3D coordinates in world units
-        - BSP leaf and cluster indices
+        - BSP leaf indices
+        - Cluster indices, e.g. `(#2 [2])`. If the camera leaves the BSP then the
+          first index will be `-1` while the second index tracks the last known
+          valid cluster. This is what allows the game to keep rendering part of
+          the BSP while the camera is outside it.
         - Ground point coordinates and BSP surface index (point directly below the camera on the ground)
         - Facing direction (yaw angle)
         - Tag path of the shader pointed at by the camera. The surface must be collideable and this feature cannot be configured with collision debug flags.
@@ -1805,14 +1810,19 @@ external_globals:
         ```hsc
         (debug_no_frustum_clip [boolean])
         ```
-        Disables portal-based occlusion culling for objects and parts of the BSP
-        (use `rasterizer_wireframe 1` to see this).
-        This isn't about clipping to the whole view frustum but rather _portal diminished frustrums_;
-        in addition to the [PVS](~scenario_structure_bsp#potentially-visible-set),
-        the game seems to cull objects and the BSP by whether object bounding
-        spheres and possibly subclusters are visible through portals.
-        The use of `debug_pvs` at the same time makes the behaviour of this
-        unpredictable.
+        Disables portal-based occlusion culling for objects and BSP faces
+        (use `rasterizer_wireframe 1` to see this). In addition to the
+        [PVS](~scenario_structure_bsp#potentially-visible-set), which determines
+        the set of clusters which are potentially visible, groups of faces and
+        objects within those clusters can still be culled further using the
+        limited view from the camera's location through the series of portals
+        leading to those clusters (a portal-diminished frustum). The game uses
+        object bounding spheres for this and likely subcluster bounding boxes.
+        
+        Disabling this type of culling does not cause the game to ignore the PVS
+        and it will still cull entire clusters if no portals to them are
+        on-screen. To force the game to render all clusters and subclusters in
+        the PVS, enable `structures_use_pvs_for_vs`.
   - slug: debug_object_garbage_collection
     info:
       en: |-
@@ -2108,6 +2118,7 @@ external_globals:
   - slug: debug_point_physics
     tags:
       - point_physics
+      - weather_particle_system
       - antenna
       - flag
     info:
@@ -2116,23 +2127,16 @@ external_globals:
         (debug_point_physics [boolean])
         ```
         Renders green or red markers wherever [point_physics](~) are being
-        simulated, except for the [weather_particle_system](~). This includes
-        [flags](~flag), [antenna](~), [contrails](~contrail), [particles](~particle),
-        and [particle_systems](~particle_system). It can help to enable `framerate_throttle`
-        for these markers to render consistently.
+        simulated. This includes [flags](~flag), [antenna](~), [contrails](~contrail), [particles](~particle),
+        and [particle_systems](~particle_system). For [weather_particle_system](~),
+        markers are only shown in their [simulation cube](~weather_particle_system#simulation-cube)
+        and while the `weather` global not disabled.
 
         Red markers indicate point_physics with the
         [_collides with structures_](~point_physics#tag-field-flags-collides-with-structures)
         flag, which are more computationally expensive.
-  - slug: debug_pvs
-    tags:
-      - portals
-    info:
-      en: |-
-        ```hsc
-        (debug_pvs <boolean>)
-        ```
-        Alias of `debug_portals`, but with a mandatory argument.
+
+        It can help to enable `framerate_throttle` for these markers to render consistently.
   - slug: debug_portals
     tags:
       - portals
@@ -2142,7 +2146,10 @@ external_globals:
         ```hsc
         (debug_portals [boolean])
         ```
-        Draws structure BSP portals as red outlines.
+        Draws BSP portals as red outlines. You may wish to pair this
+        with `rasterizer_wireframe 1` to help you understand how portals result
+        in culling parts of the BSP from rendering. The related function
+        `debug_pvs` will enable/disable this global and `structures_use_pvs_for_vs`.
   - slug: debug_recording
     info:
       en: |-
@@ -2263,14 +2270,18 @@ external_globals:
         ```
         Unknown purpose.
   - slug: debug_sprites
+    tags:
+      - weather_particle_system
+      - particle_system
+      - particle
     info:
       en: |-
         ```hsc
         (debug_sprites [boolean])
         ```
-        Renders 2D sprite effects like particles as simple white triangle
-        outlines instead of with textures. This also displays some sprite
-        statistics at the top of the screen.
+        Renders 2D sprite effects like [particles](~particle) and [weather_particle_system](~)
+        with white triangle outlines. This also displays some sprite statistics
+        at the top of the screen (coverage and big sprites count).
   - slug: debug_structure
     tags:
       - scenario_structure_bsp
@@ -2713,6 +2724,8 @@ external_globals:
         (player_autoaim)
         ```
   - slug: player_magnetism
+    tags:
+      - weapon
     info:
       en: |-
         ```hsc
@@ -2726,6 +2739,8 @@ external_globals:
         (player_spawn_count)
         ```
   - slug: profile_display
+    tags:
+      - particle
     info:
       en: |-
         ```hsc
@@ -3446,7 +3461,7 @@ external_globals:
         | Mode | Description |
         |------|-------------|
         | `0`  | Off (default).
-        | `1`  | Some unknown counts which always read 0.
+        | `1`  | Some unknown counts which usually read 0, though `fast` increases when [flags](~flag) are on-screen.
         | `2`  | Vertices, triangles, and primitives counts for various model and environment features and effects.
         | `3`  | GPU profiling for each stage of rendering. Uknown if this still works.
         | `4`  | Memory usage for dynamic vertices, shadow buffers, and more.
@@ -3746,11 +3761,28 @@ external_globals:
         (speed_hack_log_level)
         ```
   - slug: structures_use_pvs_for_vs
+    tags:
+      - scenario_structure_bsp
+      - portals
     info:
       en: |-
         ```hsc
         (structures_use_pvs_for_vs)
         ```
+        If enabled, forces the renderer to fully render all clusters and
+        subclusters in the [potentially visible set](~scenario_structure_bsp#potentially-visible-set)
+        (PVS) without any culling of occluded faces, and even
+        if portals into those clusters are off-screen. Pair with
+        `rasterizer_wireframe 1` to see the effects. Use this to debug which
+        clusters are in the PVS of the camera's cluster, which can help you
+        understand why a cluster is considered [indoor or outdoor](~scenario_structure_bsp#indoor-vs-outdoor-clusters).
+        When this debug option is enabled, objects may sometimes disappear
+        while in view.
+
+        This global differs from the related `debug_no_frustum_clip`, which
+        disables subcluster culling by portal-diminished frustrums but still
+        allows for entire clusters to be culled when no portals into them are
+        visible.
   - slug: stun_enable
     info:
       en: |-
@@ -3788,6 +3820,8 @@ external_globals:
         (sv_tk_ban)
         ```
   - slug: temporary_hud
+    tags:
+      - weapon
     info:
       en: |-
         ```hsc

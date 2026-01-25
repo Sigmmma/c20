@@ -28,14 +28,46 @@ type_defs:
         meta:
           unused: true
       - name: must_be_readied
+        comments:
+          en: |
+            When picked up by the player, this weapon will always take precedence
+            over any other weapons the player has. The flag and oddball use this.
+            While the weapon is held, the player is unable to switch to other
+            weapons they have equipped though they can drop the weapon by
+            pressing the trigger (the weapon will not fire even if it has triggers)
+            or by throwing a grenade, even if the weapon has _prevents grenade throwing_
+            and/or _secondary trigger overrides grenades_ enabled.
+
+            This flag works with weapons that do not have _doesn't count toward maximum_
+            enabled, which you pick it up by holding the action key. If the player
+            spawns with this weapon but it is not their primary, they will be
+            forcibly switched to this weapon after a very brief delay.
+
+            This flag means "readied" like active or selected, where the weapon
+            could be tested with the script function `unit_has_weapon_readied`.
+            It does NOT mean the weapon must play its ready animation before
+            it can be used.
       - name: doesn't_count_toward_maximum
         comments:
-          en: >
+          en: |
             Used for weapons like the oddball and flag which technically count
-            as a third carried weapon, despite the game having a soft limit of 2
-            held weapons (scripts and mods aside).
+            as a third or fourth carried weapons, despite the game having a soft
+            limit of 2 held weapons (scripts and mods aside). When the player
+            walks over this weapon they will pick it up automatically.
       - name: aim_assists_only_when_zoomed
+        comments:
+          en: |
+            Disables [aim assist](#aim-assist) when the weapon is not zoomed in,
+            which encourages players to zoom in and nerfs "no-scoping".
+            This is used for the Sniper Rifle.
       - name: prevents_grenade_throwing
+        comments:
+          en: |
+            When enabled, the player cannot throw grenades while this weapon is
+            readied. The HUD grenade count will be hidden, though the player can
+            still switch grenade types. If the weapon _must be readied_ then
+            this flag has no effect; the weapon will be dropped and the grenade
+            will be thrown.
       - name: must_be_picked_up
         meta:
           unused: true
@@ -51,6 +83,11 @@ type_defs:
             gun and energy sword explode when the enemies who carry them die.
       - name: cannot_fire_at_maximum_age
       - name: secondary_trigger_overrides_grenades
+        comments:
+          en: |
+            Using the secondary trigger button (throw grenade) fires the
+            second entry in the _triggers_ block. This flag requires that
+            _prevents grenade throwing_ is also enabled.
       - name: obsolete_does_not_depower_active_camo_in_multilplayer
         meta:
           unused: true

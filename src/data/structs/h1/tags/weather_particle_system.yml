@@ -24,14 +24,43 @@ type_defs:
     size: 4
     bits:
       - name: interpolate_colors_in_hsv
+        comments:
+          en: |
+            When the game gives particles a random color between the _color lower bound_
+            and _color upper bound_, it will interpolate in HSV space rather than RGB.
+            This results in intermediate hues being represented rather than the
+            muddy mix that sometimes comes from blending in RGB.
       - name: along_long_hue_path
+        comments:
+          en: |
+            When _interpolate colors in hsv_ is enabled, this causes the hue
+            interpolation to go the longer direction. For example, if blue
+            and green are bounds then purple, red, orange, and yellow will be
+            present.
       - name: random_rotation
+        comments:
+          en: |
+            Particles spawn with random rotation, allowing for more visual
+            variation despite using the same sprite. This applies no matter
+            the [_render mode_](#tag-field-particle-types-render-mode).
   WeatherParticleSystemRenderDirectionSource:
     class: enum
     size: 2
     options:
       - name: from_velocity
+        comments:
+          en: |
+            Particles sprites are oriented relative to their velocity vector.
+            This is generally what you want, even for particles with acceleration.
+            The random hard-coded motion added to weather particles
       - name: from_acceleration
+        comments:
+          en: |
+            Particle sprites are oriented relative to their [acceleration](#particle-acceleration)
+            vectors, making it look like the sprite is pointing in the direction
+            it's trying to move. This should only be used when _acceleration turning rate_
+            is low or else the rotation of sprites will be very jittery. The
+            flying insect particles for c10 _don't_ use this setting.
   WeatherParticleSystemParticleType:
     class: struct
     assert_size: 604
@@ -40,40 +69,80 @@ type_defs:
     fields:
       - name: name
         type: TagString
+        comments:
+          en: |
+            A name for the particle type. This can be anything and is only
+            used to make identifying the type in Guerilla easier.
       - name: flags
         type: WeatherParticleSystemParticleTypeFlags
+        comments:
+          en: Boolean settings for this particle type.
       - name: fade_in_start_distance
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            The distance at which particles begin to fade in. This should be
+            fairly close to the camera/player, but avoid having no fade at all
+            or a distance of 0 since it can distracting for particles to come very
+            close to the camera.
       - name: fade_in_end_distance
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            The fade in distance where particles have reached full opacity.
       - name: fade_out_start_distance
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            The distance where distant particles begin to fade out.
       - name: fade_out_end_distance
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            The distance where distant particles fully fade out. This determines
+            the dimensions of the particle type's [simulation cube](#simulation)
+            and affects the [maximum achievable particle density](#limits).
       - name: fade_in_start_height
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            A world-space Z height where particles begin to fade in.
+            Think of this as the lower bound. If you want the weather to be
+            present throughout the level, set this and the _fade in end height_
+            to some large negative number like `-500`.
       - name: fade_in_end_height
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            A world-space Z height where particles reach full opacity.
       - name: fade_out_start_height
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            A world-space Z height where particles begin to fade out again.
       - name: fade_out_end_height
         type: float
         meta:
           unit: world units
+        comments:
+          en: |
+            A world-space Z height where particles fully fade out. If you want the
+            weather to be present throughout the level, set this and the
+            _fade out start height_ to some large positive number like `500`.
       - type: pad
         size: 96
       - name: particle_count
@@ -82,21 +151,69 @@ type_defs:
           unit: particles per cubic world unit
         type_args:
           T: float
+        comments:
+          en: |
+            Sets the density of particles for this type. All particle types
+            must share the 512 particle budget, so arbitrarily high densities
+            [cannot be achieved](#limits) for a given _fade out end distance_.
       - name: physics
         type: TagDependency
         meta:
           tag_classes:
             - point_physics
+        comments:
+          en: |
+            A reference to a [point_physics](~) which controls physical properties
+            of the weather particles, such as their density, air friction, and more.
       - type: pad
         size: 16
       - name: acceleration_magnitude
         type: Bounds
         type_args:
           T: float
+        comments:
+          en: |
+            The amount of "forward" acceleration for each particle, used for particles
+            that can accelerate on their own like c10's flying insects. Particles
+            will be initialized with a random acceleration in this range. The
+            particles' _point_physics_ should have some [_air friction_](~point_physics#tag-field-air-friction)
+            to avoid the particles accelerating indefinitely. Set the min/max
+            to `0` if you don't want the particles to accelerate on their own
+            (e.g. wind and rain).
+
+            However, if you intend to have acceleration and it changes with
+            _acceleration_change_rate_, **ensure the minimum magnitude is non-zero**.
+            For some reason, once particles randomly reach an acceleration of 0,
+            they get stuck there and will not change back to higher values in
+            the range, resulting in all acceleration eventually stopping in the
+            weather particle system. This happens sooner at higher FPS.
       - name: acceleration_turning_rate
         type: Fraction
+        comments:
+          en: |
+            Controls how quickly the particles change their forward direction.
+            Setting this to `0` means they will always accelerate in the same
+            direction, while numbers like `0.2` cause the particles to change
+            direction and "wander". Turning is unaffected by the particle's
+            visual _rotation rate_ field.
+            
+            This rate is framerate-dependent so particles will turn faster
+            at higher FPS. This may result in particles not wandering as desired
+            since they do not point in a given direction for long enough. Values
+            up to `0.5` are recommended when targeting non-Xbox platforms so
+            the turning is noticeble.
       - name: acceleration_change_rate
         type: float
+        comments:
+          en: |
+            Sets the rate of change in the amount of _acceleration magnitude_,
+            between the bounds specified. If set to `0` the particles will
+            only have the acceleration they were initialized with, while a value
+            like `0.2` means they will sometimes speed up or slow down.
+
+            Like the turning rate, this is framerate-dependent. Values higher
+            than `0.5` at high FPS result in the acceleration changing too
+            frequently for noticeable speed changes in the particles.
       - type: pad
         size: 32
       - name: particle_radius
@@ -105,24 +222,49 @@ type_defs:
           unit: world units
         type_args:
           T: float
+        comments:
+          en: |
+            Scales the size of the particles, with the size being chosen randomly
+            from this range. This is not purely a visual setting
+            but affects the mass and surface area of the simulated particle,
+            [and therefore how it moves](~point_physics#effects-of-particle-radius).
       - name: animation_rate
         type: Bounds
         meta:
           unit: frames per second
         type_args:
           T: float
+        comments:
+          en: |
+            If the _sprite bitmap_ has sequences, this determines the framerate
+            bounds of the animation. Avoid negative values, which cause flickering in the particles.
       - name: rotation_rate
         type: Bounds
         meta:
           unit: degrees per second
         type_args:
           T: Angle
+        comments:
+          en: |
+            Sets the rotation rate of sprites, which will randomly be in either
+            clockwise or counter-clockwise direction. This applies no matter
+            the [_render mode_](#tag-field-particle-types-render-mode), and does
+            not affect [acceleration](#particle-acceleration) if present.
       - type: pad
         size: 32
       - name: color_lower_bound
         type: ColorARGB
+        comments:
+          en: |
+            Lower bound for random particle color interpolation. The colors are
+            multiplied against the sprite texture, and the alpha controls
+            opacity of the particle. Set these colors to white if you don't want
+            any color variation.
       - name: color_upper_bound
         type: ColorARGB
+        comments:
+          en: |
+            Upper bound for random particle color interpolation.
       - name: sprite_size
         type: float
         meta:
@@ -136,10 +278,22 @@ type_defs:
           tag_classes:
             - bitmap
           non_null: true
+        comments:
+          en: |
+            A bitmap used for the particles, which must be
+            [_sprites_](~bitmap#tag-field-type-sprites) type. This bitmap
+            can contain multiple [sequences](~bitmap#sequences) for
+            random variation and animated particles.
       - name: render_mode
         type: ParticleOrientation
+        comments:
+          en: Sets the orientation of particle sprites.
       - name: render_direction_source
         type: WeatherParticleSystemRenderDirectionSource
+        comments:
+          en: |
+            Determines the direction to use for directional sprite orientations
+            (parallel and perpendicular).
       - type: pad
         size: 36
       - name: not_broken
@@ -151,10 +305,23 @@ type_defs:
         type: ParticleShaderFlags
       - name: framebuffer_blend_function
         type: FramebufferBlendFunction
+        comments:
+          en: |
+            Sets how the particle will blend against the background. You'll
+            usually want _alpha blend_ for solid particles like snow, or _add_
+            for glowing particles like embers. For _alpha blend_ make sure your
+            sprite bitmap has an alpha channel.
       - name: framebuffer_fade_mode
         type: FramebufferFadeMode
+        comments:
+          en: |
+            Sets how sprites fade based on viewing angle. For directional orientations,
+            _fade when perpendicular_ can help avoid seeing the sprite as a spinning
+            2d plane when viewed edge-on.
       - name: map_flags
         type: IsUnfilteredFlag
+        comments:
+          en: Flag controlling if the texture is filtered.
       - type: pad
         size: 28
       - name: bitmap
@@ -162,14 +329,35 @@ type_defs:
         meta:
           tag_classes:
             - bitmap
+        comments:
+          en: |
+            Secondary map reference used to color the particles, by multiply.
+            This map's UV coordinates can be animated along each axis and rotated,
+            with the fields working as you would expect from a shader tag.
       - name: anchor
         type: ParticleAnchor
+        comments:
+          en: |
+            Determines how the secondary map is positioned. If _with primary_,
+            the sprite is multiplied atop each weather particle and follows its
+            _render mode_ orientation. The _zsprite_ setting has unknown usage
+            and may not apply to weather particles.
       - name: flags_1
         type: IsUnfilteredFlag
+        comments:
+          en: Flag controlling if the texture is filtered.
       - name: u_animation_source
         type: FunctionOut
+        comments:
+          en: |
+            Function source for U animation. It's unclear what this would be
+            connected to and may be unused.
       - name: u_animation_function
         type: WaveFunction
+        comments:
+          en: |
+            An animation function which allows the secondary bitmap to scroll in
+            the U axis.
       - name: u_animation_period
         type: float
         meta:
@@ -182,8 +370,16 @@ type_defs:
           unit: repeats
       - name: v_animation_source
         type: FunctionOut
+        comments:
+          en: |
+            Function source for U animation. It's unclear what this would be
+            connected to and may be unused.
       - name: v_animation_function
         type: WaveFunction
+        comments:
+          en: |
+            An animation function which allows the secondary bitmap to scroll in
+            the V axis.
       - name: v_animation_period
         type: float
         meta:
@@ -225,6 +421,8 @@ type_defs:
     fields:
       - name: flags
         type: IsUnusedFlag
+        meta:
+          unused: true
       - type: pad
         size: 32
       - name: particle_types
@@ -233,3 +431,13 @@ type_defs:
           T: WeatherParticleSystemParticleType
         meta:
           hek_max_count: 8
+        comments:
+          en: |
+            A list of particle types that are present in this weather system.
+            As an example, the c10 swamp weather uses one type for rain and
+            two types for flying insects. Note that the first particle type
+            may use up the [512 weather particle budget](#limits) if it's too dense, and
+            other types will not render.
+
+            Particle types with identical fields will not spawn at the same locations,
+            so this cannot be used to combine sprites in different orientations.

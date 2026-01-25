@@ -10,6 +10,7 @@ thanks:
   King Feraligatr: Testing EMP effect on shields
   Kavawuvi: Invader tag definitions
   MosesOfEgypt: Tag structure research
+  Aerocatia: Explaining damage category field
 keywords:
   - jpt!
 ---

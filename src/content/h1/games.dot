@@ -5,10 +5,10 @@ digraph G {
   subgraph h1x {
     node [style=filled color="#8fcc86"]
     h1x_pre [label="Unknown pre-release build"]
-    h1x_1749 [label="H1X beta 1749\nBuild: 01.08.15.1749"]
-    h1x_ntsc_beta [label="H1X NTSC beta\nBuild: 01.09.25.2247\nCache version: 5"]
-    h1x_ntsc_retail [label="H1X NTSC retail release\nBuild: 01.10.12.2276\nCache version: 5"]
-    h1x_pal_retail [label="H1X PAL retail release\nBuild: 01.01.14.2342\nCache version: 5"]
+    h1x_1749 [label="H1X beta 1749\nBuild: 01.08.15.1749 (2001)"]
+    h1x_2247 [label="H1X beta 2247\nBuild: 01.09.25.2247 (2001)\nCache version: 5"]
+    h1x_ntsc_retail [label="H1X NTSC retail release\nBuild: 01.10.12.2276 (2001)\nCache version: 5"]
+    h1x_pal_retail [label="H1X PAL retail release\nBuild: 01.01.14.2342 (2002)\nCache version: 5"]
   }
 
   #mods
@@ -21,9 +21,9 @@ digraph G {
 
   subgraph h1pc {
     node [style=filled color="#c8cc86"];
-    pc_beta1 [label="H1PC beta\nBuild: 01.05.22.0268"];
-    pc_beta2 [label="H1PC beta \"1.5\"\nBuild: 01.07.30.0452\nCache version: 7"];
-    pc_beta3 [label="H1PC marketing beta \"1.8\"\nBuild: 01.08.05.0452 \nCache version: 7"];
+    pc_beta1 [label="H1PC beta\nBuild: 01.05.22.0268 (2003)"];
+    pc_beta2 [label="H1PC beta \"1.5\"\nBuild: 01.07.30.0452 (2003)\nCache version: 7"];
+    pc_beta3 [label="H1PC marketing beta \"1.8\"\nBuild: 01.08.05.0452 (2003)\nCache version: 7"];
     pc_gold [label="H1PC gold master\nBuild: 01.00.00.0563\nCache version: 7"];
     pc_100 [label="H1PC 1.00 retail release\nBuild: 01.00.00.0564\nCache version: 7"];
     pc_101 [label="H1PC 1.01"];
@@ -70,15 +70,14 @@ digraph G {
   #other games
   node [style=filled color="#88afaf"];
   h2 [label="Halo 2"];
-  odst [label="Halo 3 ODST"];
 
   h1x_pre -> h1x_1749;
-  h1x_1749 -> h1x_ntsc_beta;
-  h1x_ntsc_beta -> h1x_ntsc_retail;
+  h1x_1749 -> h1x_2247;
+  h1x_2247 -> h1x_ntsc_retail;
   h1x_ntsc_retail -> h1x_pal_retail;
 
   # gearbox pc line
-  h1x_pre -> pc_beta1 [label="Code"];
+  h1x_pal_retail -> pc_beta1 [label="Code"];
   pc_beta1 -> pc_beta2;
   h1x_ntsc_retail -> pc_beta2 [label="Some tags"];
   pc_beta2 -> pc_beta3;
@@ -137,6 +136,5 @@ digraph G {
   h1x_ntsc_retail -> h1a_pc_s7 [label="Tags"];
   h2 -> h1a_pc_s7 [label="Code"];
   h2 -> h1a_pc_live [label="Modding features"];
-  #odst -> h1a_pc_live [label="Netcode"];
   h1a_pc_s7 -> h1a_pc_live;
 }

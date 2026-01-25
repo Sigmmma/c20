@@ -87,9 +87,9 @@ functions:
       en: |
         ```hsc
         (<boolean> < <number> <number>)
-        (> 4 8)
+        (< 4 8)
         ; returns: true
-        (> 8 4)
+        (< 8 4)
         ; returns: false
         ```
         Returns true if the first number is smaller than the second.
@@ -1575,6 +1575,8 @@ functions:
         ```
         Drops all vehicles on player
   - slug: cheat_all_weapons
+    tags:
+      - weapon
     info:
       en: |-
         ```hsc
@@ -1982,12 +1984,18 @@ functions:
         Dumps memory leaks from the specified source file
     context: Gearbox only
   - slug: debug_pvs
+    tags:
+      - scenario_structure_bsp
+      - portals
     info:
       en: |-
         ```hsc
         (<void> debug_pvs <boolean>)
         ```
-        displays the current pvs.
+        Calling this function with `true` enables both the `debug_portals` and
+        `structures_use_pvs_for_vs` globals, which has the effect of
+        enabling portal borders and rendering all faces in the PVS. Call with
+        `false` to disable these globals.
   - slug: debug_sounds_distances
     info:
       en: >-
@@ -3535,6 +3543,8 @@ functions:
         Returns `true` if any player has hit the zoom button since the last call
         to `(player_action_test_reset)`
   - slug: player_add_equipment
+    tags:
+      - weapon
     info:
       en: >-
         ```hsc
@@ -4975,6 +4985,8 @@ functions:
         Starts a custom animation playing on a unit at a specific frame index (interpolates
         into animation if next to last parameter is `true`).
   - slug: unit_doesnt_drop_items
+    tags:
+      - weapon
     info:
       en: >-
         ```hsc
@@ -5061,6 +5073,8 @@ functions:
         Returns the total number of grenades for the given unit, or 0 if the unit
         does not exist.
   - slug: unit_has_weapon
+    tags:
+      - weapon
     info:
       en: >-
         ```hsc
@@ -5073,6 +5087,8 @@ functions:
 
         Returns `true` if the <unit> has <object> as a weapon, `false` otherwise
   - slug: unit_has_weapon_readied
+    tags:
+      - weapon
     info:
       en: >-
         ```hsc
