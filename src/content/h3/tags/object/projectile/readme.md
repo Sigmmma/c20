@@ -73,11 +73,16 @@ Is it not currently understood what defines a floor from a wall or ceiling, so f
 
 | Impact noise | Description
 |-------|----------
-| silent | Unknown/Needs additional research
-| medium | Unknown/Needs additional research
-| loud | Unknown/Needs additional research
-| shout | Unknown/Needs additional research
-| quiet | Unknown/Needs additional research
+| silent | AI can never hear this projectile detonating/impacting
+| medium | AI can only hear this projectile within a medium percentage of their hearing range
+| loud | AI can only hear this projectile within a large percentage inside their hearing range
+| shout | AI will always be able to hear this projectile detonating/impacting within their hearing range
+| quiet | AI can only hear this projectile within a short percentrage of their hearing range
+
+{% alert %}
+Impact noise does not appear to be functional, and instead projectiles will use the *detonation noise* field instead for AI noise levels
+{% /alert %}
+
 
 | Fields | Description
 |-------|----------
@@ -93,7 +98,7 @@ Is it not currently understood what defines a floor from a wall or ceiling, so f
 | minimum velocity | real | Projectile detonates when falling below this velocity
 | maximum range | real | Projectile detonates after having travelled this distance in world units
 | bounce maximum range | real | Unknown, needs additional research
-| detonation noise | enum | Same as "impact noise" but applied on projectile detonation instead
+| detonation noise | enum | Same as "impact noise" but applied on projectile detonation and impact, requires the projectile to have a *danger radius* value set
 | super det. projectile count | short | More than this number of projectiles attached to a target needed to trigger super-combine behavior, needs _has super combining explosion_ flag enabled
 | super det. time | real | Time after the above field where the super-combine effect is triggered
 | detonation started | [effect](~) | Effect played on the projectile during it's detonation timer countdown

@@ -266,7 +266,7 @@ First entry into this block will be the primary magazine, second entry will be s
 
 | Magazine flags | Description
 |-------|----------
-| wastes rounds when reloaded | When the weapon is reloaded, any round left in the magazine are deleted
+| wastes rounds when reloaded | When the weapon is reloaded, any rounds left in the magazine are deleted
 | every round must be chambered | Unknown, likely used with the shotgun weapon type dropdown to force chambering each shot
 
 | Fields | Tags/data type | Description
@@ -322,7 +322,7 @@ First entry into this block becomes the primary trigger, second entry becomes th
 | latch-autofire | Functions like latch until the trigger is held down for the period of time specified in **autofire time**, then begins charging the second barrel and will fire once the trigger is released, forces plasma tracking to only enable on targets who are currently shielded, is also linked to the plasma track widget flag in the weapon [interface](~chud_definition) tag
 | charge | Functions similar to latch-autofire, but does not wait for the **autofire time** and will begin charging the secondary barrel the moment the trigger is pressed, should the secondary barrel not fully charge, fire the primary instead.
 | latch-zoom | Same as latch but allows a second barrel to be used when the weapon is zoomed
-| latch-rocketlauncher | Same as latch but is needed to also allow target locking onto human tracked targets by holding the trigger on the target and then releasing the trigger to fire once locked on
+| latch-rocketlauncher | Same as latch but allows target locking onto human tracked targets by holding the trigger on the target and then releasing the trigger to fire once locked on
 | spew-charge | Functions like spew for the period of time specified in charging time before charging the secondary barrel
 | sword-charge | Unknown, seems to function like latch-autofire but triggers a melee while releasing the charge
 
@@ -403,7 +403,7 @@ Triggers are tied to barrels, barrels themselves are the most important part of 
 | projectiles fire parallel | Unknown/Needs additional research
 | can't fire when others firing | Presumably prevents this barrel from firing while another barrel is firing
 | can't fire when others recovering | Prevents this barrel from firing while another barrel is still recovering with its fire recovery time
-| don't clear fire bit after recovering | Enabling this flag disallows soft recovery fraction for latch weapons while also disabling the ability for spew weapons to use the value of **1** for "shots per fire"
+| don't clear fire bit after recovering | This flag acts as toggle on the game allowing your fire inputs to be "saved" during the fire recovery fraction, enabling means save fire inputs during the recovery fraction while disabling means fire input gets set to negative once the recovery fraction ends, even if still holding the trigger. Also disables the ability for spew weapons to use the value of **1** for "shots per fire"
 | staggers fire across multiple markers | Causes weapon to cycle projectile emission point from multiple trigger markers, alternates between 2 markers but for more than 2 markers it seems to pick at random
 | fires locked projectiles | Forces AI actors using this barrel to only track when targeting a human-tracking type unit, else they self-guide projectiles, unknown otherwise
 | can fire at maximum age | This barrel will continue to be able to fire despite the weapon age being at 0
@@ -417,16 +417,16 @@ Defines **how** the current barrel fires.
 | Fields | Data type | Description
 |-------|----------|--------------
 | rounds per second | real | Two values that determine the rate at which projectiles are fired when in spew or during a burst, invalid values are rounded down to nearest valid in gameplay, **values under 10 for weapons with an entry >1 in the "shots per fire" field do not sync in multiplayer correctly**
-| acceleration time | real | Time taken in seconds for the weapon to transition the rounds per second value from the first value to the last value at a constant rate of value change once the weapon starts firing (rate of fire itself may not change due to invalid values but they are still used to fill time)
-| deacceleration time | real | Time taken in seconds for the weapon to transition the rounds per second value from the last value to the first value at a constant rate of value change once the weapon stops firing (rate of fire itself may not change due to invalid values but they are still used to fill time)
+| acceleration time | real | Time taken in seconds for the barrel to transition the rounds per second value from the first value to the last value at a constant rate once the barrel starts firing (rate of fire itself may not change due to invalid values but they are still used to fill time)
+| deacceleration time | real | Time taken in seconds for the barrel to transition the rounds per second value from the last value to the first value at a constant rate once the barrel stops firing (rate of fire itself may not change due to invalid values but they are still used to fill time)
 | barrel spin scale | real | Scales the "barrel_spin" function by a mutiplicative value from 0 to 1, 0 is equal to 1 as the barrel fires
 | blurred rate of fire | real | Unknown/Needs additional research
-| shots per fire | short | The number of shots produced when this weapon is fired, spew weapons normally use a value of 0, but the trigger type forces them to fire 2 times
-| fire recovery time | real | Value in seconds that defines how long the weapon must wait after firing a shot before another shot can be fired, adheres to limitations based on tick rate so some values may not work and will round up to nearest correct value
+| shots per fire | short | The number of rounds this barrel will fire, spew weapons normally use a value of 0, but the trigger type forces them to fire 2 times
+| fire recovery time | real | Value in seconds that defines how long the barrel must wait after firing a shot before another shot can be fired, adheres to limitations based on tick rate so some values may not work and will round up to nearest correct value
 | soft recovery fraction | real | A value from 0 to 1 that defines how much of the fire recovery time you can input a fire request and the game saves and plays it when the fire recovery ends, even if the player has stopped the fire request input
-| magazine | index | This selection is a dropdown that gives a selection of magazine blocks opened to be used for rounds per fire: NONE, Primary and Secondary
-| rounds per shot | short | The number of rounds to be expended from the associated magazine by this barrel when fired
-| minimum rounds loaded | short | The number of rounds needed to fire this weapon, after firing the weapon and going below this value a reload is forced, ignores firing with partial ammo flag
+| magazine | index | This selection is a dropdown that gives a selection of open magazine blocks to be used for *rounds per shot*: NONE, Primary or Secondary
+| rounds per shot | short | The number of rounds to be expended from the associated magazine by this barrel when this barrel is fired
+| minimum rounds loaded | short | The number of rounds needed to fire this barrel, after firing the barrel and going below this value a reload is forced, ignores firing with partial ammo flag
 | rounds between tracers | short | Value that feeds into a projectile function called "tracer" that sets the function to zero for the duration of the number of shots of the value found here (A value here of 1 means the tracer function turns fully on and then fully off after every shot)
 | optional barrel marker name | string | Overrides the default trigger marker name with whatever is entered here to use as the barrel marker for projectile origin (when not being fired from player or biped camera)
 
@@ -436,7 +436,33 @@ Defines **how** the current barrel fires.
 
 When using the __rounds per second__ field in the weapons barrel block you are given a set of 2 bound values to enter. Due to limitations implemented by 343 to retain 30 tick engine behavior you may only enter values compatible with 30 tick timings. __0.46875 is the lowest possible value allowed__ due to the idle_ticks timer only allowing a max of 127 ticks, thus this value has the weapon fire on the 128th tick. __To find all other compatible values, do 30 divided by a *whole* number between 1 and 64__, Invalid values will round *down* to the nearest valid (Example: 16 will behave as 15).
 
-When using the __fire recovery time__ field in the weapons barrel block, you are given a single value (in seconds) to enter. This value is able to accept 60 tick engine values but has a built-in 2 tick base delay *plus* a second minimum delay of 2 ticks so the __fastest possible rate of fire achievable with fire recovery time is 12 rounds per second__ with a value of 0.
+When using the __fire recovery time__ field in the weapons barrel block, you are given a single value (in seconds) to enter. This value is converted into ticks via unknown logic but has a built-in 2 tick base delay *plus* a second minimum delay of 2 ticks so the __fastest possible rate of fire achievable with fire recovery time is 12 rounds per second__ with a value of 0. When using fire recovery keep in mind that if the value you use falls into the next bracket then each time you fire a small amount of the delay you were missing will get alloted to an overflow pool, that once filled will make the next firing recovery 1 tick longer (example: fire recovery of 0.49 will cause the first firing delay to only be 4 ticks, but every firing delay after will be 5 ticks due to the overflow), however this pool seems to be disabled if a recovery fraction value is used.
+
+Common fire recovery time lookup table:
+
+| Fire recovery time value | number of ticks between shots | Effective rounds per second
+|-------|----------
+| 0 to 0.033 | 4 | 12
+| 0.034 to 0.066 | 6 | ~8.57
+| 0.034* | 4 | 12
+| 0.05* | 5 | 10
+| 0.067* | 6 | ~8.57
+| 0.084* | 7 | 7.5
+| 0.067 to 0.099 | 8 | ~6.66
+| 0.1 to 0.133 | 10 | ~5.45
+| 0.1* | 8 | ~6.66
+| 0.134 to 0.19 | 12 | 5
+| 0.2 | 14 | ~4.28
+| 0.27 | 19 | ~3.15
+| 0.28 | 20 | 3
+| 0.5 | 33 | ~1.81
+| 1 | 63 | ~0.95
+
+*soft recovery fraction is 0
+
+{% alert %}
+Fire recovery time will wait the full duration of ticks before letting you fire, so a value of 0.066 means you will fire on the 7th tick, while a rounds per second value of 10 will have the weapon wait 5 ticks before firing on the 6th
+{% /alert %}
 
 ## Prediction and noise
 
@@ -466,20 +492,21 @@ Generally most players prefer their weapons to not be laser accurate, this secti
 
 | Single weapon error | Data type | Description
 |-------|----------|--------------
-| acceleration time | real | Time in seconds taken for the weapon to go from minimum error and min error pitch rate to maximum error and full error pitch rate when the weapon starts firing (single wield only)
-| deacceleration time | real | Time in seconds taken for the weapon to go from maximum error and full error pitch rate to minimum error and min error pitch rate when the weapon stops firing (single wield only)
+| acceleration time | real | Time in seconds taken for the barrel to go from minimum error and min error pitch rate to maximum error and full error pitch rate when the weapon starts firing (single wield only)
+| deacceleration time | real | Time in seconds taken for the barrel to go from maximum error and full error pitch rate to minimum error and min error pitch rate when the weapon stops firing (single wield only)
 | damage error | real | A set of two values that determines firing error when the [model](~) tag for this weapon is in a damage state with the flag that damages primary/secondary weapon enabled, chooses randomly between the 2 values: **this is not normal weapon error, that is located further down**
-| min error look pitch rate | angle | The max rate of aiming/looking allowed when this weapon is at minimum error (130 is referenced as full power)
-| full error look pitch rate | angle | The max rate of aiming/looking allowed when this weapon is at maximum error (130 is referenced as full power)
+| min error look pitch rate | angle | The max rate of aiming/looking allowed when this barrel is at minimum error (130 is referenced as full power)
+| full error look pitch rate | angle | The max rate of aiming/looking allowed when this barrel is at maximum error (130 is referenced as full power)
 | look pitch error power | real | Unknown, seems to partially scale the error look pitch rate change rate
 
 | Dual weapon error | Data types | Description
 |-------|----------|--------------
-| acceleration time | real | Time in seconds taken for the weapon to go from minimum error and min error pitch rate to maximum error and full error pitch rate when the weapon starts firing (dual wield only)
-| deacceleration time | real | Time in seconds taken for the weapon to go from maximum error and full error pitch rate to minimum error and min error pitch rate when the weapon stops firing (dual wield only)
-| minimum error | angle | The minimum error this weapon is allowed to have when dual wielded, will never have less than this amount of error under any condition (dual wield only)
-| error angle | angle | Two bound values that determine weapon error, first value is upon first firing and second value is after the acceleration time has passed, will return to first value during deacceleration time (dual wield only)
-| dual wield damage scale | real | From 0 to 1, determines the damage done by this weapon when being fired as part of dual wield, 0 equals 1 (0.1 equals 10% of full normal damage)
+| acceleration time | real | Time in seconds taken for the barrel to go from minimum error and min error pitch rate to maximum error and full error pitch rate when the barrel starts firing (dual wield only)
+| deacceleration time | real | Time in seconds taken for the barrel to go from maximum error and full error pitch rate to minimum error and min error pitch rate when the barrel stops firing (dual wield only)
+| minimum error | angle | The minimum error this barrel has when dual wielded, will never have less than this amount of error under any condition (dual wield only)
+| error angle | angle | Two bound values that determine barel error, first value is upon first firing and second value is after the acceleration time has passed, will return to first value during deacceleration time (dual wield only), both values function as a "0 degrees to X degrees" rather than using both values and choosing between them at random
+
+| dual wield damage scale | real | From 0 to 1, determines the damage done by projectiles from this barrel when being fired as part of dual wield, 0 equals 1 (0.1 equals 10% of full normal damage)
 
 | Distribution function | Description
 |-------|----------
@@ -488,10 +515,10 @@ Generally most players prefer their weapons to not be laser accurate, this secti
 
 | Fields | Data types | Description
 |-------|----------|--------------
-| projectiles per shot | short | Number of projectiles fired at the exact same moment
+| projectiles per shot | short | Number of projectiles fired at the exact same moment, does not consume additional ammo
 | distribution angle | real | Requires fan distribution function and projectiles per shot to be above 1, sets how wide the fans are (values above 1 tend to spray the fans so far they end up behind the biped)
-| minimum error | angle | The minimum error this weapon is allowed to have when dual wielded, will never have less than this amount of error under any condition (single wield only)
-| error angle | angle | Two bound values that determine weapon error, first value is upon first firing and second value is after the acceleration time has passed, will return to first value during deacceleration time (single wield only), both values function as a "0 degrees to X degrees" rather than using both values and choosing between them at random
+| minimum error | angle | The minimum error this barrel has when single wielded, will never have less than this amount of error under any condition (single wield only)
+| error angle | angle | Two bound values that determine current barrel error, first value is upon first firing and second value is after the acceleration time has passed, will return to first value during deacceleration time (single wield only), both values function as a "0 degrees to X degrees" rather than using both values and choosing between them at random
 
 {% alert %}
 This has a dropdown for 3 different block entries: single wield, dual right and dual left
@@ -525,13 +552,13 @@ This section contains a mix-match of properties for the current barrel, includin
 |-------|----------|--------------
 | ejection port recovery time | real | Unknown/Needs additional research
 | illumination recovery time | real | How long in seconds it takes for the "illumination" function to transition from 1 to 0 after a shot has been fired
-| heat generated per round | real | The amount of heat added to the weapon when it has been fired, per shot
-| age generated per round | real | The age amount deducted from a weapon when it has been fired, from 100%
-| campaign age generated per round | real | The age amount deducted from a weapon when it has been fired, from 100%, for campaign only
+| heat generated per round | real | The amount of heat added to the weapon when this barrel has been fired, 0.1 = 10%
+| age generated per round | real | The age amount deducted from a weapon when this barrel has been fired, 0.5 = 50% of total
+| campaign age generated per round | real | The age amount deducted from a weapon when this barrel has been fired, for campaign only
 | overload time | real | Unknown/needs additional research
-| angle shot per shot | angle | Two value entries that define how much recoil the weapon experiences when it is fired, transitions from the first value to the second value through acceleration when firing and deacceleration when not firing
-| acceleration time | real | Time taken when you begin firing the weapon to transition from min angle to max angle per shot
-| deacceleration time | real | Time taken when you stop firing the weapon to transition from max angle to min angle per shot
+| angle shot per shot | angle | Two value entries that define how much recoil the weapon experiences when this barrel is fired, transitions from the first value to the second value through acceleration when firing and deacceleration when not firing
+| acceleration time | real | Time taken when you begin firing this barrel to transition from min angle to max angle per shot
+| deacceleration time | real | Time taken when you stop firing this barrel to transition from max angle to min angle per shot
 | angle change function | short | Dropdown with variety of options that detail how the function transitions the recoil from min to max during acceleration
 
 ## Firing effects
