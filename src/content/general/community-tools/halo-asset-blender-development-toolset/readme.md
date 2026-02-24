@@ -6,6 +6,8 @@ keywords:
   - exporter
   - jms
   - blender
+  - plugin
+  - addon
 info: |-
   * [Download releases](https://github.com/General-101/Halo-Asset-Blender-Development-Toolset/releases)
   * [Source code and README](https://github.com/General-101/Halo-Asset-Blender-Development-Toolset)

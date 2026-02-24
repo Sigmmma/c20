@@ -142,7 +142,7 @@ h1/sound_scenery:
   page: h1/tags/sound_scenery
 h1/spheroid:
   page: h1/tags
-  heading: unused-tags
+  heading: unused-groups
 h1/string_list:
   page: h1/tags/string_list
 h1/tag_collection:

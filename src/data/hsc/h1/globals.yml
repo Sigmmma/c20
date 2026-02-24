@@ -2199,7 +2199,7 @@ external_globals:
         ```hsc
         (debug_sound [boolean])
         ```
-        [Sound](~) sources will be labeled in 3D with their [tag path](~tags#tag-path)
+        [Sound](~) sources will be labeled in 3D with their [tag path](~intro#tag-references-and-paths)
         and a their minimum and maximum distances shown as red and yellow spheres, respectively.
   - slug: debug_sound_cache
     tags:

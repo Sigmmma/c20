@@ -20,7 +20,7 @@ Welcome to the H1 guides hub! Here you'll find guides ranging from basic map-mak
 These are common things you should do or know, regardless of the guide you're following:
 
 * Install either the [HEK](~custom-edition#installation) or [H1A mod tools](~h1-ek#getting-started) and follow their post-installation steps.
-* Read the [general help content](~general) to understand the difference between [data](~general/source-data) and [tags](~general/tags), and [how the mod tools are used](~general/mod-tools).
+* Read the [general help content](~general) to understand the difference between [data](~general/source-data) and [tags](~general/intro), and [how the mod tools are used](~general/mod-tools).
 * Know [how to ask for help](~help#asking-for-help).
 
 # External tutorials

@@ -16,13 +16,17 @@ Examples of errors include open edges, degenerate faces, leaky portals, and near
 
 The WRL file is usually placed in the same directory of the model that Tool is importing, under `data`, though sometimes it can be output to the mod tools root directory.
 
-WRL comes in two versions, 1.0 for Halo 1 and 2.0 for Halo 2+. Both versions can be imported to Blender using the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset). WRL files aren't as important in H2+ since Tool allows geometry to be imported with errors and you can see them in Sapien.
+WRL comes in two versions, 1.0 for Halo 1 and 2.0 for Halo 2+. Both versions can be imported to Blender using the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) or by [3ds Max](~3dsmax) natively. WRL files aren't as important in H2+ since Tool allows geometry to be imported with errors and you can see them in Sapien.
 
 # Compatibility
 Some versions of [3ds Max](~3dsmax) (at least 2010) require the 32-bit version in order to import WRL files. [Blender](~) only natively support VRMLs _2.0_, not _1.0_, so the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) should be used for a consistent experience.
 
 # Format description
-WRL files are technically [VRML files][vrml]. The following is only relevant if you plan to write a WRL parser.
+{% alert %}
+The following is only relevant for tools developers who need to write a WRL parser.
+{% /alert %}
+
+WRL files are technically [VRML files][vrml]. Only a subset of VRML features are used. 
 
 ## Version 1
 Halo 1 Tool creates WRL 1.0 files, identified by their first line `#VRML 1.0 ascii`. The files consist of a list of `Separator` nodes, one for each error found by Tool. Any program which aims to parse this file format should consider whitespace to be flexible.

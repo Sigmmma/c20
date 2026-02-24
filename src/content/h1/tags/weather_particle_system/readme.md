@@ -53,7 +53,7 @@ Speculating, this motion may have been added as a cheap way to avoid noticeable 
 * When the player is within a dense [fog](~) with a nearby _opaque distance_, weather particles will stop drawing even if set for the cluster containing fog. Ensure the _opaque distance_ is sufficiently far away if weather particles in fog are desired.
 * Some features of this tag are framerate-dependent. See tag fields.
 * The added motion bias, described earlier.
-* Changing acceleration eventually gets stuck at 0 if 0 is the minmum bound.
+* Changing acceleration eventually gets stuck at 0 if 0 is the minimum bound.
 
 # Related HaloScript
 {% relatedHsc game="h1" tagFilter="weather_particle_system" /%}

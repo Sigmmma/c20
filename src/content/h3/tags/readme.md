@@ -5,7 +5,7 @@ about: 'resource:h3/tags'
 ---
 Halo 3's tags are similar to [Halo 2's](~h2/tags), but there are many more types.
 
-# Tags list
+# List of tag groups
 
 {% dataTable
   dataPath="tags/h3"

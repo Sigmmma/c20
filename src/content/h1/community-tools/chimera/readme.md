@@ -15,7 +15,7 @@ info: |
   * [Vaporeon builds](http://vaporeon.io/hosted/halo/chimera/)
   * [Sources](https://github.com/Kavawuvi/chimera)
 ---
-**Chimera** is a game client modification for Halo Custom Edition, PC "Retail", and Trial which extends limits, addresses some [renderer issues](~renderer#gearbox-regressions), and applies dozens of fixes and quality of life improvements like [map downloads](~sharing#halonet). See its [features list][github-feat] for more information.
+**Chimera** is a game client modification for Halo Custom Edition, PC "Retail", and Trial which extends limits, addresses [renderer issues](~renderer#gearbox-regressions), and applies dozens of fixes and quality of life improvements like [map downloads](~sharing#halonet). See its [features list][github-feat] for more information.
 
 # Installation
 1. Back up your game's original `Strings.dll`. Renaming it to `strings-old.dll` works.

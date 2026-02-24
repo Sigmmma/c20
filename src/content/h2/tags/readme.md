@@ -7,7 +7,7 @@ thanks:
 ---
 Halo 2's tags are similar to [Halo 1's](~h1/tags), but there are many more types.
 
-# Tags list
+# List of tag groups
 
 {% dataTable
   dataPath="tags/h2"

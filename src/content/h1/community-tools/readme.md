@@ -7,19 +7,15 @@ childOrder:
   - chimera
   - hac2
   - opensauce
-  - bluestreak
-  - cad-animation-exporter
-  - halo-physics-importer
-  - chimp
+  - haloce-max-toolkit
   - aether
-  - deathstar
   - halo-script-preprocessor
   - h1-spawn-tools
   - obsolete
 redirects:
   - /h1/tools
 ---
-Halo 1 in particular has many community-made tools which complement or replace functions of the official mod tools. It's not usually necessary for beginners to to use them, but they can unlock advanced workflows or save time.
+Halo 1 in particular has many community-made tools which complement or replace functions of the official mod tools. It's not usually necessary for beginners to use them, but they can unlock advanced workflows or save time.
 
 # General tips
 Some golden rules for using community-made tools are:
@@ -41,8 +37,4 @@ Projects which aim to replace or improve upon functions of the official modding 
 ## 3D creation plugins
 The cross-game [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) is an essential add-on for Blender and covers most needs for importing and exporting 3D assets. It's usually preferable to the [FBX](~) pipeline.
 
-Plugins for [3ds Max](~3dsmax) are all old and unmaintained at this time:
-* [Bluestreak](~),
-* [CAD animation exporter](~cad-animation-exporter),
-* [Chimp](~),
-* [Halo physics importer](~halo-physics-importer).
+For users of [3ds Max](~3dsmax), the [Halo CE Max Toolkit](~haloce-max-toolkit) is a well maintained project replacing the legacy suite of scripts like [Bluestreak](~obsolete#bluestreak), the [CAD animation exporter](~obsolete#cad-animation-exporter), [Chimp](~obsolete#chimp), and the [Halo physics importer](~obsolete#halo-physics-importer).

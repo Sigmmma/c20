@@ -9,12 +9,16 @@ thanks:
   Vaporeon: Sharing bitmap corruption example for Arsenic; invader-info tip
   "Modders of Halo Xfire Clan": Screenshots of old tools
   Dennis: Found malware in tool_pro
-  gbMichelle: 'Writing the [hex edit guide](https://pastebin.com/rNVVjyus)'
+  gbMichelle: 'Writing the [hex edit guide](https://pastebin.com/rNVVjyus), providing Bluestreak variants to compare'
+  Siliconmaster: Documenting Bluestreak's history of versions and spinoffs
+  Conscars: Comparing Bluestreak versions for functional differences
+  Spiral: Providing Bluestreak variants to compare
+  TheGhost: Max exporter feature comparisons
 ---
 This page lists old community-made tools which **should not be used anymore** because they have known issues and/or a newer recommended approach exists. With the long history of Halo 1 PC modding, over time our understanding of the engine and tags has grown and new community-made tools phased out older ones.
 
 {% alert type="danger" %}
-Despite their age, these tools are pervasive in outdated tutorials and forum posts found via search engines and people still ask about them to this day. This page exists for archival purposes and to inform people of alternatives. Do not use the tools listed here.
+Despite their age, these tools are pervasive in outdated tutorials and forum posts found via search engines. This page exists for archival purposes and to inform people of alternatives. Do not use the tools listed here.
 {% /alert %}
 
 # Tag extractors
@@ -30,6 +34,92 @@ Because HEK+ was widely used in the past to extract tags for inclusion in new ma
 Another function of HEK+ was [map protection](~maps#protected-maps). This was a form of controlled data corruption that still allows Halo to use the map, but breaks tag extractors and map editors so other modders can't use your content. These days, mappers usually expect to share and remix tags freely with attribution. [Refinery](~) has defeated this map protection scheme and can be used to extract maps protected with HEK+, but the extracted tags will be disorganized due to the loss of tag path data.
 
 # Plugins
+## Bluestreak
+{% figure src="biped.jpg" %}
+A biped model imported with rigging data intact.
+{% /figure %}
+**Project Bluestreak** is a suite of import and export scripts for [3ds Max](~3dsmax) v5+ and [Gmax](~3dsmax#older-max-versions) v1.2, created by TheGhost and later modified by others. It contains the GBXModel Importer, JMS (Model) Exporter and Animation Importer and supported more capabilities than both [Chimp](~obsolete#chimp) and [Blitzkrieg](~). Although it still works with newer versions of 3ds Max, it has bugs and has been improved upon by the [Halo CE Max Toolkit](~haloce-max-toolkit) project.
+
+**If you plan on still using the Bluestreak JMS exporter, [download the recommended v1-0-4](../obsolete/JMS_Exporter_v1-0-4.ms).** From Max's menu, use _MAXScript > Run Script_ to select a [downloaded .ms file](http://ghost.halomaps.org/bluestreak/). Further usage instructions can be found embedded as comments within the MaxScript files themselves.
+
+### JMS exporter history
+Bluestreak was widely used in Custom Edition modding, and modders created many unofficial variants of it after the original's release in 2006. These spinoffs added capabilities like multiple [region](~gbxmodel#regions) support and fixed bugs.
+
+However, as there was no centralized effort to maintain Bluestreak, later variants are sometimes divergent or even regressive in terms of features. Here are the known unique variants of the exporter:
+
+{% table %}
+* Version/variant
+* Date
+* Created/modified by
+* Description
+---
+* JMS_Exporter_v1-0-0
+* 2006
+* TheGhost
+* First public release.
+---
+* JMS_Exporter_v1-0-1
+* 2006
+* TheGhost
+* Fixed a section of code that was incompatible with gmax, causing export errors for rigged models. Available for download [here](http://ghost.halomaps.org/bluestreak/jms/).
+---
+* JMS_Exporter_v1-0-2
+* 2008
+* CtrlAltDestroy
+* Spinoff of v1-0-1. Supports regions and sets marker radius to 2.0. Source thread [here](http://www.modacity.net/forums/archive/index.php/t-10588.html).
+---
+* JMS_Exporter_v1-0-3
+* 2008
+* ChokingVictim
+* Spinoff of v1-0-2. Supports regions and sets marker radius from Max file. Source thread [here](http://www.modacity.net/forums/archive/index.php/t-10588.html).
+---
+* JMS_Exporter_v1-0-3b
+* 2009
+* bobbysoon
+* Spinoff of v1-0-3. Replaced new-line characters with tabs to considerably speed up exporting. Also adds a configurable checksum export option (not fully functional). Source thread [here](http://www.modacity.net/forums/archive/index.php/t-10588.html).
+---
+* JMS_Exporter_v1-0-4 DeadHamster
+* ?
+* DeadHamster
+* This version can be identified by a `<3 DeadHamster` comment in the header. It is based on v1-0-3, so lacks the configurable checksums and tab character optimization of v1-0-3b. The only difference is that it doubles the radius of all markers exported (it is not clear why).
+---
+* JMS_Exporter_v1-0-4
+* ?
+* ?
+*
+This version includes the tab character speed increase of v1-0-3b, but lacks its configurable checksums (likely because it didn't work). Unlike the DeadHamster variant this "1-0-4" does not double the marker radius. It includes some attempts to make the code more readable and can be identified by an `aboutString` near the start of the script. The author is unknown, but it has been hosted in [Kornman's archive][korn104] since 2017.
+
+**This script is our recommendation if you plan to use Bluestreak still**.
+---
+* H1_Jms_Exporter_1.0.4.e
+* Sometime before 2014
+* ?
+* This was used to build [TSC:E][tsce] originally. While it contains the speed upgrades that bobbysoon introduced, **do not use this script**. Since then has been confirmed to skip "benign" BSP errors (this is very bad) that led to at least one TSC:E BSP having unfixable portal errors. General_101 also confirmed that this script writes some values that tool defaults to 0 as "undefined".
+---
+* JMS_Exporter_1-0-2-r
+* 2017
+* rododo93
+* Spinoff of v1-0-2. Sets marker radius from Max file. This is functionally the same as v1-0-3, but sets checksum to `3251` rather than `0`. It does not include bobbysoon's tab character speedup. Originally released [here](https://opencarnage.net/index.php?/topic/6823-updated-jms-exporter/).
+{% /table %}
+
+## CAD animation exporter
+{% figure src="anim-exporter.jpg" %}
+The exporter supported all animation types.
+{% /figure %}
+The **CAD animation exporter** by CtrlAltDestroy was a [3ds Max](~3dsmax) and [Gmax](~3dsmax#older-max-versions) plugin allowing all types of [animations](~animation-data) to be exported from a rigged scene. It featured IK (inverse kinematics) support, biped support, and batch exporting from multiple scenes. The script was originally written for 3ds Max 7 in 2008 and is now improved upon by the [Halo CE Max Toolkit](~haloce-max-toolkit) project.
+
+If you wish to install it ([.mse](http://hce.halomaps.org/index.cfm?fid=3627) and [.ms](cad_animationExporter_compact_-_Modified.ms)), from Max's menu use _MAXScript > Run Script_ to select the extracted `.mse` script, or the unencrypted `.ms`. The "compact" script is for use in Gmax only.
+
+## Chimp
+**Chimp** by Jason Zimmer was a MAXScript plugin for [3ds Max](~3dsmax) and Gmax which allows the export of [JMS](~) files, and the import of [WRL](~) files. Its last version was 1.6 in 2004. This exporter did not support the exporting of vertex weights, [bipeds](~biped), nodes and markers for [vehicles](~vehicle) or [weapons](~weapon), or proper vertex normals, making it suitable for static objects like [scenery](~) or [BSPs](~scenario_structure_bsp) only.
+
+The plugin may still be found online ([Mod DB](https://www.moddb.com/games/halo-2/downloads/chimp-plugin-for-gmax)) but is superseded by the [Halo CE Max Toolkit](~haloce-max-toolkit).
+
+## Halo Physics Importer
+The **Halo Physics Importer** by rec0's allowed [mass points](~physics#mass-points) to be imported into [3ds Max](~3dsmax). It did not retain [node](~gbxmodel#nodes) hierarchies and was mainly intended for visualization and learning rather than for re-exporting to [JMS](~). You should now use the [Halo CE Max Toolkit](~haloce-max-toolkit) to import physics properly.
+
+The old plugin may be downloaded [on Halomaps](http://hce.halomaps.org/index.cfm?fid=1669) still. From [Guerilla](~h1-guerilla), use the `File > Export` option to save the tag in text format. From Max, use `MaxScript > Run script` to run the importer and select the text file.
+
 ## Blender .gbxmodel Importer
 {% figure src="bi2.jpg" %}
 A pelican model imported to Blender 2.7.
@@ -117,11 +207,23 @@ If you need these increased defaults, use [invader-build](~). It supports these 
 **Harbinger** by Altimit01, Like Pearl, could convert Custom Edition maps to run in H1PC (aka Retail). The same recommendation about rebuilding maps from tags applies here.
 
 ## Arsenic
-**Arsenic** was a tool used to convert custom CE maps to xbox. It apparently introduces some bitmap corruption and has backwards model LOD cutoffs. Tags extracted from maps using Arsenic will be in a [processed state](~general/tags#tag-loading) and are not suitable for editing. These days it is better to use a combination of [invader](~) and the MCC mod tools to create custom maps for xbox.
+**Arsenic** was a tool used to convert custom CE maps to xbox. It apparently introduces some bitmap corruption and has backwards model LOD cutoffs. Tags extracted from maps using Arsenic will be in a [processed state](~general/blam#tag-loading) and are not suitable for editing. These days it is better to use a combination of [invader](~) and the MCC mod tools to create custom maps for xbox.
 
 # Deprotectors
 ## Emergence
 **Emergence** by Modzy was a deprotector able to defeat some forms of map protection. Little is known about this tool or if it's still available anywhere. [Refinery](~) is also capable of map deprotection.
+
+## Deathstar
+**Deathstar** by Aerocatia is a map deprotector used to defeat [map protection](~maps#protected-maps) in some legacy Custom Edition maps, allowing tag extraction. It is generally avoided because it creates a messy extract, with the [MEK](~) offering better results.
+
+However, in the event that the MEK cannot deprotect a map you may still wish to try Deathstar. Download the [latest release](https://github.com/Aerocatia/deathstar/releases) ZIP file, e.g. `deathstar_1.0a13.zip`, and unzip it to find `deathstar.exe`. Deathstar is a [command-line](~) program so you need to run it from a command prompt:
+
+```cmd
+deathstar --deprotect <map> [maps...] # Deprotect map at path.
+deathstar --zteam <map> # Only remove zteam protection.
+deathstar --name <map> [maps...] # Rename all tags to generic names.
+deathstar --preview <map> # Removes zteam protection without saving map.
+```
 
 # Other
 ## Saber Editing Toolkit
@@ -140,3 +242,6 @@ You should always attempt to fix phantom BSP by firstly resolving any [nearly co
 I couldn't find information on this tool, but know it's some type of map editor created around 2016 by a "Deleted User". It must have been released at some point because there's at least 1 case of someone asking how to use it in Discord. Just don't use it.
 
 [book]: https://archive.org/details/blackartofhalomo0000cawo
+[korn104]: https://github.com/HaloMods/HaloContentToolScripts/blob/master/Halo1/JMS_Exporter_v1-0-4.ms
+[tsce]: https://tsce.info/index.html
+[hek-tut]: http://nikon.bungie.org/misc/hek_tutorial/

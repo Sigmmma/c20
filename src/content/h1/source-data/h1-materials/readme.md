@@ -1,5 +1,5 @@
 ---
-title: H1 materials
+title: Materials
 img: materials.jpg
 caption: >-
   An example of some material names used for a level
@@ -10,6 +10,8 @@ thanks:
     tutorial](https://www.haloce.org/HEK_Tutorial/main/credits.html) which
     documents many of these conventions
   Conscars: Seamsealer effects on cluster type, material symbol testing
+redirects:
+  - /general/source-data/materials/h1-materials
 ---
 Tool uses a material naming convention to assign shaders and give special properties to parts of your model. Halo 1's convention is simpler than later games. This convention applies to both 3ds Max and Blender use.
 

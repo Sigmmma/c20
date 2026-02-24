@@ -7,7 +7,7 @@
 This repo contains the source content and build scripts for the Reclaimers Library (https://c20.reclaimers.net). It aims to document the immense tribal knowledge of the Halo modding community and covers game engine details, the Halo Editing Kit, community tools, and guides for map-making.
 
 ## Contributing
-The library is not yet directly editable online, but there are still various paths to contribute:
+The library is not directly editable online, but there are still various paths to contribute:
 
 1. Easiest: Submitting tips in **#wiki-dump** in [our Discord](https://discord.reclaimers.net) or as [GitHub issues](https://github.com/Sigmmma/c20/issues), for other editors to add.
 2. Submitting small edits as pull requests via GitHub.

@@ -1,33 +1,35 @@
 ---
-title: Command-line
+title: Command-line basics
 img: cmd.jpg
 caption: cmd.exe on Windows 7
 keywords:
   - cli
 ---
-Basic **command-line** skills are helpful in Halo modding. [Tool](~mod-tools#tools-overview) and some community tools like [Invader](~) are used via a command-line interface. In a CLI, you type commands into a shell window which runs programs and displays their output. CLIs may seem a bit intimidating compared to GUIs, but they allow you to easily share commands and output as text and run them in [scripts](#scripting) for repetitive tasks.
+Basic **command-line interface** (CLI) skills are helpful in Halo modding. [Tool](~mod-tools#tools-overview) and some community tools like [Invader](~) are CLI programs, where you type commands into a command prompt which runs them and displays their output. CLIs may seem a bit intimidating compared to GUIs, but they allow you to easily share commands and output as text and run them in [scripts](#scripting) for repetitive tasks.
 
 Most people use [Command Prompt](#command-prompt) (`cmd.exe`), but you can also use [PowerShell](#powershell). If you wish to avoid CLIs then you can use the community-made [Osoyoos](~) launcher for wrapping Tool functions.
 
 # Command Prompt
 ## Opening
-Much like an Explorer window, Command Prompt always has a _current directory_ (also called _working directory_). For most purposes you'll want the current directory to be one of your mod tools installations, where `tool.exe` is found. The easiest way to open Command Prompt this way is to navigate to your mod tools installation in Explorer ([Steam can do it](~mod-tools#installation)) and type `cmd` into the navigation bar. Alternatively, some modders copy `C:\Windows\System32\cmd.exe` into their mod tools directory and launch it from there. You can confirm that the correct current directory is shown at the start of the prompt line.
+Much like an Explorer window, Command Prompt always has a _current directory_ (also called _working directory_). For most purposes you'll want the current directory to be one of your mod tools installations, where `tool.exe` is found. The easiest way to open Command Prompt this way is to navigate to your mod tools installation in Explorer ([Steam can do it](~mod-tools#installation)) and type `cmd` into the navigation bar. Alternatively, some modders copy `C:\Windows\System32\cmd.exe` into their mod tools directory and launch it from there.
 
 {% figure src="explorer.jpg" alt="Explorer's location bar selected" inline=true %}
 Replace this text with `cmd` and hit {% key "Enter" /%} to launch Command Prompt.
 {% /figure %}
 
+You can confirm that the correct current directory is shown at the start of the prompt line.
+
 ## Running programs
-Commands are entered in the form `<program> <arguments>`. Command Prompt will first look in the current directory for the program you want to run, and the `.exe` extension is optional. To run [Tool](~mod-tools#tools-overview) commands, type them into the prompt and hit {% key "Enter" /%}. For example, to build the tutorial map for H1:
+Run commands by entering the name of the program to run, followed by any _arguments_ it accepts. Command Prompt will first look in the current directory for the program you want to run, and the `.exe` extension is optional. To run [Tool](~mod-tools#tools-overview) commands, type them into the prompt and hit {% key "Enter" /%}. For example, to build the tutorial map for H1:
 
 ```dos
 tool build-cache-file levels\test\tutorial\tutorial
 ```
 
-The arguments then tell Tool what to do, and are documented per-game (e.g. [H1 Tool](~h1-tool)). Programs and each argument are always separated by spaces. If a single argument contains spaces you need to wrap it with quotes: `"..."`.
+The arguments tell Tool what to do, and are documented per-game (e.g. [H1 Tool](~h1-tool)). Programs and each argument are always separated by spaces. If a single argument contains spaces you need to wrap it with quotes: `"..."`.
 
 {% alert %}
-You don't need to type out commands you want to repeat. Use the {% key "Up" /%} and {% key "Down" /%} keys to navigate your command prompt's history.
+Use the {% key "Up" /%} and {% key "Down" /%} keys to navigate your command prompt's history and easily re-run commands.
 {% /alert %}
 
 ## Navigation
@@ -44,7 +46,7 @@ cd ..\data
 If you need to switch to a different physical drive, enter the drive letter followed by a colon like: `D:`. You can always open an Explorer window at the working directory by entering `explorer`.
 
 ## Scripting
-You can automate a series of frequently run commands by putting them as multiple lines in a `.bat` file, which you can create with notepad. Suppose you were quickly iterating on your level's [BSP](~h1/tags/scenario_structure_bsp) and created a file `import_level.bat`:
+You can automate a series of frequently run commands by putting them as multiple lines in a `.bat` file, which you can create with Notepad. Suppose you were quickly iterating on your level's [BSP](~h1/tags/scenario_structure_bsp) and created a file `import_level.bat`:
 
 ```dos
 REM Comment lines begin with "REM ".

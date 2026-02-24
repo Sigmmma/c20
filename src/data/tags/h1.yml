@@ -513,7 +513,7 @@ weapon_collection?:
   description:
     en: |-
       This group ID can still be found in leftover references in some stock scenario tags,
-      but the tag itself no longer exists. It was probably replaced by [item_collection](~).
+      but the tag group itself no longer exists. It was probably replaced by [item_collection](~).
       Scenarios which are exported to text format and re-imported using HEK [Guerilla](~h1-guerilla)
       may cause HEK Sapien to crash due to this unrecognized tag class. H1A Guerilla is
       immune to this issue.

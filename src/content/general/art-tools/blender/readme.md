@@ -22,10 +22,10 @@ thanks:
 ---
 **Blender** is a free and open-source 3D modeling, animating, and rendering toolset. It's now widely used for Halo modding workflows, which traditionally relied on [3ds Max](~3dsmax). With community-made plugins like [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) and [Foundry](~) you can export the [source data](~) formats needed to create tags.
 
-Note that older pre-2.8 versions of Blender are completely unsupported. Community plugins are regularly updated and track modern versions of Blender. Be sure to regularly update Blender and your plugins to get new features and bug fixes.
+Note that older versions of Blender, especially pre-2.8, may be unsupported by community plugins which are regularly updated and track modern versions of Blender. Be sure to regularly update Blender and your plugins to get new features and bug fixes.
 
 # Learning resources
-Blender has far more capabilities than we need for just Halo modding. You will mostly just need to learn polygon modeling, basic materials, UV unwrapping, rigging, or animation depending on your goals.
+Blender has many features, but you will only need to learn a subset of them to create Halo models. Depending on your goals, this may include polygon modeling, basic materials, UV unwrapping, rigging, or animation.
 
 * [Official reference manual](https://docs.blender.org/manual/en/latest/)
 * [Official tutorials](https://www.blender.org/support/tutorials/)

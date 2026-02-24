@@ -1,5 +1,6 @@
 Deathstar:
-  page: deathstar
+  page: obsolete
+  heading: deathstar
   authors:
     - Aerocatia
   workflows:

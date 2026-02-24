@@ -63,7 +63,7 @@ python calc_lm_farm_local.py <scenario> <bsp_name> <quality> [light_group]
 ```
 
 The arguments are:
-* **scenario**: A scenario [tag path](~/general/tags#tag-paths-and-references). This is the path to a scenario tag _within_ the `tags` folder, and without the `.scenario` extension.
+* **scenario**: A scenario [tag path](~intro#tag-references-and-paths). This is the path to a scenario tag _within_ the `tags` folder, and without the `.scenario` extension.
 * **bsp_name**: The name of the BSP to light, since a scenario can have multiple BSPs. You can use `all` to light all BSPs in the scenario.
 * **quality**: Lighting quality; higher takes longer. Valid values are:
   * `high`

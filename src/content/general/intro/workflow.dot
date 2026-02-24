@@ -1,0 +1,16 @@
+digraph G {
+  rankdir = LR;
+
+  data [label="Source data"];
+  tags [label="Tags"];
+  map [label="Maps"];
+
+  data -> tags [label="Import"];
+  tags -> tags [label="Create and edit"];
+  tags -> map [label="Build"];
+  map -> map [label="Edit(3)", style="dashed"];
+
+  map -> tags [label="Extract(2)", style="dashed"];
+  tags -> data [label="Extract(1)", style="dashed"];
+  map -> data [label="Extract(4)", style="dashed"];
+}

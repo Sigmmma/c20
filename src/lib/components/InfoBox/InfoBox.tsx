@@ -74,7 +74,7 @@ function getMetaboxProps(lang: Lang, ctx: RenderContext | undefined, props: Info
       if (!tagName) throw new Error(`Incorrectly formatted about:tag ${aboutArg}`);
       const tag = ctx?.data?.tags?.[game]?.[tagName];
       if (tag?.id) {
-        metaboxProps.title = <>{addBreaks(tagName, <wbr/>)} (<code>{tag.id}</code><Wat idTail="h1/tags" headingId="group-ids"/>)</>;
+        metaboxProps.title = <>{addBreaks(tagName, <wbr/>)} (<code>{tag.id}</code><Wat idTail="general/intro" headingId="tag-groups"/>)</>;
         metaboxProps.sections!.push(...getTagSections(lang, ctx, tag));
       }
     } else {

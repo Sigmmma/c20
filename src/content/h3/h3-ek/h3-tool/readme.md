@@ -10,7 +10,7 @@ keywords:
 thanks:
   Abstract Ingenuity: Documentation about verbs for compilation of animation data
 ---
-**H3-Tool** (**tool.exe**), is a [command-line](~) utility used to compile data into [tags](~), and tags into [maps](~map). It was released as a part of the [Halo 3 Editing Kit](~h3-ek) by 343 Industries in 2021.
+**H3-Tool** (**tool.exe**), is a [command-line](~) utility used to compile data into [tags](~intro#tags), and tags into [maps](~map). It was released as a part of the [Halo 3 Editing Kit](~h3-ek) by 343 Industries in 2021.
 
 # Tips
 * If an invalid command is typed into tool then tool will print a list of commands that have the same starting character as what was typed in. This means that if we type `tool s` into command prompt then tool will only output commands that start with the letter s.

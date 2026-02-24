@@ -12,7 +12,7 @@ The relationship of these units to real-world units is up to debate, but the [or
 
 > As a reference, the Master Chief is approximately 7 feet tall. This makes the \[3ds max\] unit scale approximately 10 units = 1 foot or about 1 unit = 1.2 inches.
 
-Therefore this is the scale we use for conversions below. As an example, the H1 cyborg biped's [physics pill height](~h1/tags/object/unit/biped#tag-field-standing-collision-height) is `0.7` world units tall when standing. This means you can create a cube `0.7 * 100 = 70` units tall in your 3D software for an idea of how big the player is. The size of common objects like vehicles and characters remains more or less the same between games, but there are differences in player height, jump height, and speed.
+Therefore this is the scale we use for conversions below. As an example, the H1 cyborg biped's [physics pill height](~h1/tags/object/unit/biped#tag-field-standing-collision-height) is `0.7` world units tall when standing. This means you can create a cube `0.7 * 100 = 70` units tall in your 3D software for an idea of how big the player is. The sizes of common objects like vehicles and characters remain more or less the same between games, but there are differences in player height, jump height, and speed.
 
 # Unit converter
 Enter values into the boxes below to see their conversions, or select a preset.
