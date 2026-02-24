@@ -7,8 +7,6 @@ keywords:
   - JSON
 thanks:
   Crisp: Writing this page
-redirects:
-  - /hr/asset-json-files
 ---
 JSON files are automatically generated when the user first runs `fbx-to-gr2` on an fbx file. If a JSON file already exists, the recreate_json argument can be used to rebuild this.
 

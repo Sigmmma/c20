@@ -11,8 +11,6 @@ keywords:
 thanks:
   TheChunkierBean: Writing this page
   TheGrimDealer: Help with Adobe Substance research
-redirects:
-  - /h3/pbr-shaders
 ---
 
 ![](A.jpg "It's like talking to a brick wall")
