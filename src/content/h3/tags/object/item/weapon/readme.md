@@ -436,25 +436,28 @@ Defines **how** the current barrel fires.
 
 When using the __rounds per second__ field in the weapons barrel block you are given a set of 2 bound values to enter. Due to limitations implemented by 343 to retain 30 tick engine behavior you may only enter values compatible with 30 tick timings. __0.46875 is the lowest possible value allowed__ due to the idle_ticks timer only allowing a max of 127 ticks, thus this value has the weapon fire on the 128th tick. __To find all other compatible values, do 30 divided by a *whole* number between 1 and 64__, Invalid values will round *down* to the nearest valid (Example: 16 will behave as 15).
 
-When using the __fire recovery time__ field in the weapons barrel block, you are given a single value (in seconds) to enter. This value is converted into ticks via unknown logic but has a built-in 2 tick base delay *plus* a second minimum delay of 2 ticks so the __fastest possible rate of fire achievable with fire recovery time is 12 rounds per second__ with a value of 0. When using fire recovery keep in mind that if the value you use falls into the next bracket then each time you fire a small amount of the delay you were missing will get alloted to an overflow pool, that once filled will make the next firing recovery 1 tick longer (example: fire recovery of 0.49 will cause the first firing delay to only be 4 ticks, but every firing delay after will be 5 ticks due to the overflow), however this pool seems to be disabled if a recovery fraction value is used.
+When using the __fire recovery time__ field in the weapons barrel block, you are given a single value (in seconds) to enter. This value is converted into ticks via unknown logic but has a built-in 2 tick base delay *plus* a second minimum delay of 2 ticks so the __fastest possible rate of fire achievable with fire recovery time is 12 rounds per second__ with a value of 0. When using fire recovery keep in mind that if the value you use falls into the next bracket then each time you fire a small amount of the delay you were missing will get alloted to an overflow pool, that once filled will make the next firing recovery 1 tick longer (example: fire recovery of 0.49 will cause the first firing delay to only be 4 ticks, but most firing delays after will be 5 ticks due to the overflow). This system is rather convoluted and confusing, best practice is to do your own calculations via taking 60 (engine tick rate) and dividing it by your fire recovery time to see how many ticks the engine will wait, and what the overflow will be.
 
 Common fire recovery time lookup table:
 
-| Fire recovery time value | number of ticks between shots | Effective rounds per second
+| Fire recovery time value | Number of ticks between shots without overflow | Effective rounds per second
 |-------|----------
 | 0 to 0.033 | 4 | 12
 | 0.034 to 0.066 | 6 | ~8.57
 | 0.034* | 4 | 12
+| 0.049 | 5 | 10
 | 0.05* | 5 | 10
 | 0.067* | 6 | ~8.57
 | 0.084* | 7 | 7.5
 | 0.067 to 0.099 | 8 | ~6.66
 | 0.1 to 0.133 | 10 | ~5.45
 | 0.1* | 8 | ~6.66
-| 0.134 to 0.19 | 12 | 5
-| 0.2 | 14 | ~4.28
-| 0.27 | 19 | ~3.15
-| 0.28 | 20 | 3
+| 0.134 to 0.19 | 12 | ~4.61
+| 0.2 | 14 | 4
+| 0.27 | 19 | 3
+| 0.28 | 20 | ~2.85
+| 0.33 | 22 | ~2.6
+| 0.34 | 22 | ~2.6
 | 0.5 | 33 | ~1.81
 | 1 | 63 | ~0.95
 
