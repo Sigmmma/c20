@@ -5,7 +5,7 @@ img: woohoo.jpg
 caption: Woohoo!
 thanks:
   1SDAN: Listing canonical character dialogue tags
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - udlg

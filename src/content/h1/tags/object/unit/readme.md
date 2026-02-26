@@ -4,7 +4,7 @@ about: 'tag:h1/unit'
 img: unit.jpg
 caption: 'A [biped](~) unit driving a [vehicle](~) unit'
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - unit

@@ -4,7 +4,7 @@ about: 'tag:h1/flag'
 img: flag.jpg
 caption: CTF flags are the only use of flag tags in Halo 1.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Tag field testing
 keywords:

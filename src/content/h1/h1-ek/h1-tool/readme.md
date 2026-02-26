@@ -19,7 +19,7 @@ thanks:
   gbMichelle: Hardcoded tag patch reversing
   MosesOfEgypt: Explanation of radiosity passes
   General_101: Documenting tool commands (legacy and some H1A)
-  Kavawuvi: Warning about Tool only using marker from superhigh LOD
+  SnowyMouse: Warning about Tool only using marker from superhigh LOD
   Vaporeon: Explaining how invader-build treats the Jason Jones opt-out flag
 ---
 **H1A Tool** (**tool.exe**), is a [command-line](~) utility used to import [source data](~source-data) into [tags](~), and build tags into [maps](~maps).

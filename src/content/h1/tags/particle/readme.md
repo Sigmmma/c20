@@ -5,7 +5,7 @@ about: 'tag:h1/particle'
 img: particle.jpg
 caption: Bullet impact sparks are an example of particles.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - part

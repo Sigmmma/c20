@@ -61,7 +61,7 @@ When Halo was ported to PC by Gearbox in 2003 many visual bugs were introduced. 
 _Most_ of these issues have now been corrected in DX11 renderer in MCC or by [Chimera](~) for Custom Edition.
 
 * H1X's [shader_transparent_generic](~) tags were converted to [shader_transparent_chicago](~) (or extended) tags which are less sophisticated.
-* The _detail after reflection_ flag of [shader_model](~) is working in reverse of how it should. Enabling the flag should cause detail maps to apply after specularity/cubemaps. The client mod [Chimera](~) has a built-in fix which is disabled for Halo Custom Edition (but enabled in Retail) except in the Vaporeon builds.
+* The _detail after reflection_ flag of [shader_model](~) is working in reverse of how it should. Enabling the flag should cause detail maps to apply after specularity/cubemaps. The client mod [Chimera](~) has a built-in fix.
 * The reflections of [projectile](~) _widgets_ like [light_volumes](~light_volume) in mirrored surfaces are misaligned. _Attachments_ like [contrails](~contrail) are not affected, nor are vehicle widgets. This works correctly on Xbox and MCC only.
 * The [fog](~) screen layers effect for simulated volumetric fog does not render at all and fog planes do not render over the skybox.
 * HUD shield meters are missing their flash effect when drained.

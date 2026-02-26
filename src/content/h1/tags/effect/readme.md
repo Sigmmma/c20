@@ -3,7 +3,7 @@ title: effect
 stub: true
 about: 'tag:h1/effect'
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - effe

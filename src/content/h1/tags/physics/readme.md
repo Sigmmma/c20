@@ -4,7 +4,7 @@ about: 'tag:h1/physics'
 img: warthog-physics.jpg
 caption: The mass points of a Warthog.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Mass point node testing
 keywords:

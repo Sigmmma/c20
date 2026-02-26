@@ -4,7 +4,7 @@ stub: true
 about: 'tag:h1/ui_widget_definition'
 thanks:
   Jakey: Bounds scaling workaround
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - DeLa

@@ -4,7 +4,7 @@ about: 'tag:h1/biped'
 img: bipeds.jpg
 caption: Some bipeds scripted to run along a path during c10's intro
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Aerocatia: NTSC player physics research
 keywords:

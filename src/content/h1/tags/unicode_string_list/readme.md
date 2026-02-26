@@ -3,7 +3,7 @@ title: unicode_string_list
 stub: true
 about: 'tag:h1/unicode_string_list'
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - ustr

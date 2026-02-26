@@ -4,7 +4,7 @@ about: 'tag:h1/decal'
 img: decals.jpg
 caption: 'Painted signs, bullet holes, and blood splats are all decal instances.'
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: 'Testing functions and globals, tag fields, decal geometry'
   Ifafudafi: Explaining chain decals and radius scaling

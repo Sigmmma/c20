@@ -7,7 +7,7 @@ caption: >-
   [Sapien](~h1-sapien).
 thanks:
   Conscars: Testing tag fields
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - dobc

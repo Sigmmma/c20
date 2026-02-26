@@ -3,7 +3,7 @@ title: color_table
 stub: true
 about: 'tag:h1/color_table'
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - colo

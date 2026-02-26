@@ -8,7 +8,7 @@ keywords:
 thanks:
   gbMichelle: H1A/MCC lineage information
   Hasuku: Xbox modding lineage
-  Kavawuvi: Engine versions, H1A BSP data base address
+  SnowyMouse: Engine versions, H1A BSP data base address
   Vaporeon: Analyzing marketing beta
   Neo: Providing the marketing beta
   zatarita: >-

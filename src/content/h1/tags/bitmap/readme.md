@@ -9,7 +9,7 @@ thanks:
     Information on formats, bitmap types, usage, compilation, errors, sprite
     sheets, and proofreading
   Jesse: Misc info
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   smx: Tip on internal fields
 keywords:

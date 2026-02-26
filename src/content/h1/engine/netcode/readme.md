@@ -1,7 +1,7 @@
 ---
 title: Netcode
 thanks:
-  Kavawuvi: Grenade underflow tip
+  SnowyMouse: Grenade underflow tip
   Vuthakral: Low damage sync tip
   gbMichelle: Grenade and projectile synchronization
 ---

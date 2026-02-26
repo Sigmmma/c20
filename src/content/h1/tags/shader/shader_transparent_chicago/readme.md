@@ -3,7 +3,7 @@ title: shader_transparent_chicago
 stub: true
 about: 'tag:h1/shader_transparent_chicago'
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Research on tag structure research, extra layers crash, rotation coordinate offset
   Galap: Rotation coordinate offset writeup
 keywords:

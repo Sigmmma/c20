@@ -5,7 +5,7 @@ about: 'tag:h1/light_volume'
 img: light-vol.jpg
 caption: A plasma rifle bolt with contrail removed for clarity.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - mgs2

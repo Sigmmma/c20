@@ -9,7 +9,7 @@ keywords:
   - lifi
 thanks:
   zatarita: Per-object settings tip
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 ---
 **Light fixtures** are a type of static object whose dynamic [light](~) can be enabled or disabled dynamically (e.g. by script or by [device_control](~)). They can also just be used to decorate and illuminate [lightmaps](~lightmaps), although their effect on baked lighting cannot be toggled dynamically. Their intensity and falloff/cutoff angles can be set per-object when placed in [Sapien](~h1-sapien).

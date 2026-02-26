@@ -6,7 +6,7 @@ caption: >-
   Trees, boulders, landing beacons, and covenant crates are all instances of
   scenery
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - scen

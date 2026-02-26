@@ -3,7 +3,7 @@ title: grenade_hud_interface
 stub: true
 about: 'tag:h1/grenade_hud_interface'
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - grhi

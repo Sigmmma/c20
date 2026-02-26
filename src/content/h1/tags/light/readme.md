@@ -7,7 +7,7 @@ caption: >-
   Lights attached to [objects](~object) can illuminate their surroundings with
   dynamic or static lighting.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   smx: Tip on internal fields
 keywords:

@@ -5,7 +5,7 @@ about: 'tag:h1/device'
 img: device_machine/c20-elevator.jpg
 caption: Elevators and controls are common devices in Halo.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - devi

@@ -5,7 +5,7 @@ about: 'tag:h1/hud_message_text'
 img: hmt.jpg
 caption: Level objectives are one use of this tag.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - 'hmt '

@@ -5,7 +5,7 @@ img: cortana.jpg
 caption: Cortana is an example of a model using this shader type.
 thanks:
   Jakey: Explaining purpose of this tag
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - scex

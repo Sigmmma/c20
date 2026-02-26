@@ -4,7 +4,7 @@ img: weather.gif
 caption: Inclement weather.
 about: 'tag:h1/weather_particle_system'
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Testing and documenting tag features
 keywords:

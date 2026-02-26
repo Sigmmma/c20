@@ -9,7 +9,7 @@ keywords:
   - sotr
 thanks:
   MosesOfEgypt: Tag structure research
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
 ---
 The **shader_transparent_generic** tag is a powerful transparent shader used for jackal shields, teleporters, control panels, Cortana, and more.
 

@@ -8,7 +8,7 @@ thanks:
   Masterz1337: Context on OpenSauce capabilities
   Jakey: Tag data limit info
   gbMichelle: How maps are loaded into memory
-  Kavawuvi: >-
+  SnowyMouse: >-
     [Documenting](https://opencarnage.net/index.php?/topic/6693-halo-map-file-structure-revision-21/)
     the map file structure, base addresses, and [Invader
     code](https://github.com/SnowyMouse/invader) for reference

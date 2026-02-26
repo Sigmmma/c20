@@ -5,7 +5,7 @@ about: 'tag:h1/shader_transparent_glass'
 img: glass.jpg
 caption: The Warthog's windscreen uses a glass shader.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - sgla

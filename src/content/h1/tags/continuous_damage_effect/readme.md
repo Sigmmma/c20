@@ -5,7 +5,7 @@ img: cdmg.jpg
 caption: 'Extreme camera shake from a nearby [sound_scenery](~) affecting the player.'
 thanks:
   Sparky: Reversing this tag structure
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - cdmg

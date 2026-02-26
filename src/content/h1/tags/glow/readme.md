@@ -4,7 +4,7 @@ about: 'tag:h1/glow'
 img: glow.jpg
 caption: The gold Elite's energy sword is the only use of glow tags in Halo 1.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Testing behaviour of tag fields and glow path creation
   Kornman: Limits and how path construction works in glow updates

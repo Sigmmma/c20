@@ -6,7 +6,7 @@ caption: |
   Lens flares are present here on the sky light, and used by light attachments
   for the player's flashlight and Plasma Pistol.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Tag field testing
 keywords:

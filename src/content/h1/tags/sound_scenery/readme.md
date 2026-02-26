@@ -8,7 +8,7 @@ caption: >-
 thanks:
   Neo: Discovering the music bug
   Conscars: Testing collision behaviour
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - ssce

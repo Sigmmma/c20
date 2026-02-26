@@ -5,7 +5,7 @@ icon: tag
 img: control-panels.jpg
 caption: Tags offer a lot of control, but there's also a lot to learn. Try to focus on one area at a time if you're new.
 thanks:
-  Kavawuvi: Information about invalid tags and tag headers
+  SnowyMouse: Information about invalid tags and tag headers
   Vaporeon: Information about modified stun values in Custom Edition
   Mimickal: Information about tag headers
 ---

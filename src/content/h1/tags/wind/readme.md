@@ -4,7 +4,7 @@ about: 'tag:h1/wind'
 img: wind.gif
 caption: Flags and other point_physics are affected by a level's assigned wind.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Testing and documenting tag features
 keywords:

@@ -23,4 +23,4 @@ Invader's tools if you are not using _Six Shooter_ and _invader-edit-qt_.
 # Included tools
 {% childList /%}
 
-[invader-repo]: https://github.com/Kavawuvi/invader
+[invader-repo]: https://github.com/SnowyMouse/invader

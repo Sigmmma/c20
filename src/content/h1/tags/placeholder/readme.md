@@ -7,7 +7,7 @@ keywords:
   - place
   - plac
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 ---
 The **placeholder** tag is a simple [object](~) exclusively used by the [Sapien](~h1-sapien) editor for interactive markers (not to be confused with [model markers](~gbxmodel#markers)), also called **gizmos**. Placeholders can reference a [gbxmodel](~) for their appearance.

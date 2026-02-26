@@ -4,7 +4,7 @@ about: 'tag:h1/item'
 img: powerups.jpg
 caption: Powerups are an example of items.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - item

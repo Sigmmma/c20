@@ -9,7 +9,7 @@ keywords:
   - animation
   - antr
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 ---
 ...
