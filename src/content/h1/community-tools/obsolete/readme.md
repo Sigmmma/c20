@@ -31,7 +31,7 @@ HEK+ was last updated in 2006 and is still available for download at [HaloMaps.o
 
 Because HEK+ was widely used in the past to extract tags for inclusion in new maps, the tags in those maps can contain invalid data. For example, [weapon](~) zoom levels always extracts as 256 and sounds may be corrupted. Use the modern tag extractor [invader-extract](~) instead. Even if those tags are now extracted using [invader-extract](~) that invalid data needs to be corrected. Invader will warn you about bad tag data and you can use [invader-bludgeon](~) to help correct it.
 
-Another function of HEK+ was [map protection](~maps#protected-maps). This was a form of controlled data corruption that still allows Halo to use the map, but breaks tag extractors and map editors so other modders can't use your content. These days, mappers usually expect to share and remix tags freely with attribution. [Refinery](~) has defeated this map protection scheme and can be used to extract maps protected with HEK+, but the extracted tags will be disorganized due to the loss of tag path data.
+Another function of HEK+ was [map protection](~maps#protected-maps). This was a form of controlled data corruption that still allows Halo to use the map, but breaks tag extractors and map editors so other modders can't use your content. These days, mappers usually expect to share and remix tags freely with attribution. [Refinery](~) has defeated this map protection scheme and can be used to extract maps protected with HEK+. With recent changes to Refinery, extracted tags will be organized using heuristics to work around the loss of tag path data in the map.
 
 # Plugins
 ## Bluestreak
@@ -108,7 +108,7 @@ The exporter supported all animation types.
 {% /figure %}
 The **CAD animation exporter** by CtrlAltDestroy was a [3ds Max](~3dsmax) and [Gmax](~3dsmax#older-max-versions) plugin allowing all types of [animations](~animation-data) to be exported from a rigged scene. It featured IK (inverse kinematics) support, biped support, and batch exporting from multiple scenes. The script was originally written for 3ds Max 7 in 2008 and is now improved upon by the [Halo CE Max Toolkit](~haloce-max-toolkit) project.
 
-If you wish to install it ([.mse](http://hce.halomaps.org/index.cfm?fid=3627) and [.ms](cad_animationExporter_compact_-_Modified.ms)), from Max's menu use _MAXScript > Run Script_ to select the extracted `.mse` script, or the unencrypted `.ms`. The "compact" script is for use in Gmax only.
+If you wish to install it ([.mse](http://hce.halomaps.org/index.cfm?fid=3627) and [.ms](cad_animationExporter_compact_-_Modified.ms)), from Max's menu use _MAXScript > Run Script_ to select the extracted `.mse` script, or the unencrypted `.ms`. The "compact" script lacks the ability to batch export and has a smaller UI.
 
 ## Chimp
 **Chimp** by Jason Zimmer was a MAXScript plugin for [3ds Max](~3dsmax) and Gmax which allows the export of [JMS](~) files, and the import of [WRL](~) files. Its last version was 1.6 in 2004. This exporter did not support the exporting of vertex weights, [bipeds](~biped), nodes and markers for [vehicles](~vehicle) or [weapons](~weapon), or proper vertex normals, making it suitable for static objects like [scenery](~) or [BSPs](~scenario_structure_bsp) only.
