@@ -6,7 +6,7 @@ img: mtleffect.jpg
 caption: Tread marks and slip particles are caused by material effects.
 thanks:
   Masterz1337: Explaining why to use the sound field
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - foot

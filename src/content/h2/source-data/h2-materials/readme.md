@@ -1,9 +1,17 @@
 ---
-title: H2 materials
-img: materials.jpg
-caption: >-
-  An example of some material names used for a level
-  [BSP](~h2/tags/scenario_structure_bsp) in [Blender](~).
+title: Materials
+keywords:
+  - materials
+  - symbols
+  - fog plane
+  - clipping
+  - playerclip
+  - portal
+  - ladder
+  - breakable
+  - shader collection
+redirects:
+  - /general/source-data/materials/h2-materials
 ---
 **Halo 2** saw some much needed improvements to material processing. The user can now define a directory to search for a shader in a directory. The amount of flags was expanded and some new properties were added to help with lightmap settings. 
 

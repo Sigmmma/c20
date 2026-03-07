@@ -8,7 +8,7 @@ keywords:
   - 'fog '
 thanks:
   Jakey: Known fog issues in S7 MCC
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 ---
 **Fog** tags describe the colour and density properties of fog which can be applied to BSP [_fog planes_](~scenario_structure_bsp#fog-planes) using [Sapien](~h1-sapien).

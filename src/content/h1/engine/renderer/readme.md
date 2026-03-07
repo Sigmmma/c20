@@ -58,13 +58,13 @@ The glass shader with bump-mapped reflections renders incorrectly in Custom Edit
 
 When Halo was ported to PC by Gearbox in 2003 many visual bugs were introduced. Among the challenges were updating H1X's shaders and rendering code to work with DirectX 9 and unlocked framerates in an engine which previously assumed 30 FPS always. The renderer also needed to be adapted for the range of user hardware for the PC port.
 
-_Most_ of these issues have now been corrected in DX11 renderer in MCC or by [Chimera](~) for Custom Edition.
+_Most_ of these issues have now been corrected in DX11 renderer in MCC or by [Chimera](~) for Custom Edition. Chimera maintains an internal list of map-specific overrides for maps known to rely on the broken visuals for their intended style.
 
 * H1X's [shader_transparent_generic](~) tags were converted to [shader_transparent_chicago](~) (or extended) tags which are less sophisticated.
-* The _detail after reflection_ flag of [shader_model](~) is working in reverse of how it should. Enabling the flag should cause detail maps to apply after specularity/cubemaps. The client mod [Chimera](~) has a built-in fix which is disabled for Halo Custom Edition (but enabled in Retail) except in the Vaporeon builds.
+* The _detail after reflection_ flag of [shader_model](~) is working in reverse of how it should. Enabling the flag should cause detail maps to apply after specularity/cubemaps.
 * The reflections of [projectile](~) _widgets_ like [light_volumes](~light_volume) in mirrored surfaces are misaligned. _Attachments_ like [contrails](~contrail) are not affected, nor are vehicle widgets. This works correctly on Xbox and MCC only.
 * The [fog](~) screen layers effect for simulated volumetric fog does not render at all and fog planes do not render over the skybox.
-* HUD shield meters are missing their flash effect when drained.
+* HUD shield meters are missing their flash effect when drained; general blending, fade to colour, and other aspects do not work correctly. MCC has Xbox blending behind a flag (default is CEA-specific blending), Chimera does it always with the flag only defining channel order.
 * Monochrome bitmaps and p8 bump map formats are unsupported.
 * Custom Edition skips rendering some effects when they are not loaded yet, such as the engine lens flares in a10's intro or initial bullet hole decals. This is to prevent stuttering since some raw data must be loaded from map files if it is not already in the asset cache.
 * Transparent shaders have a host of appearance and sorting problems:

@@ -11,7 +11,7 @@ keywords:
 **The Reclaimers Library** is an [open source](https://github.com/Sigmmma/c20) wiki created by modders for modders. It has a team of volunteer editors who add new information from their own testing or from community tips. This page details how you can contribute, and how to write pages as an editor.
 
 # How to contribute
-Pages are not yet directly editable online, but anyone can:
+Pages are not directly editable online, but anyone can:
 
 * Join our [Discord server](https://discord.com/invite/tVduNg9Ztb) and submit information to the **#wiki-dump** channel.
 * Submit information or requests in a [GitHub issue](https://github.com/Sigmmma/c20/issues).
@@ -419,7 +419,7 @@ Medium sized tables or those that require multiple lines per cell can use [Markd
 ## Data tables
 For large and data-driven tables we support generating tables from YAML files. All data under `src/data` is exposed to this feature, as well as any data in `.yml` files adjacent to your `readme.md`. Data tables allow you to iterate over any object or array within structured data and extract arbitrary columns from keys within, formatting them in a few common ways.
 
-The [H1 tags list](~h1/tags#tags-list) reads `src/data/tags/h1.yml` and looks like this:
+The [H1 tags list](~h1/tags#list-of-tag-groups) reads `src/data/tags/h1.yml` and looks like this:
 
 ```md
 {% dataTable

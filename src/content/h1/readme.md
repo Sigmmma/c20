@@ -8,7 +8,7 @@ keywords:
 thanks:
   gbMichelle: H1A/MCC lineage information
   Hasuku: Xbox modding lineage
-  Kavawuvi: Engine versions, H1A BSP data base address
+  SnowyMouse: Engine versions, H1A BSP data base address
   Vaporeon: Analyzing marketing beta
   Neo: Providing the marketing beta
   zatarita: >-
@@ -36,7 +36,7 @@ Halo's box art
 Halo 1 uses Bungie's proprietary [Blam!](~blam) engine, which also formed the basis of later games in the series. PC versions of the game support a variety of command line/shortcut [arguments](~) to configure and toggle features.
 
 # Modding
-Today, most modding of H1 is focused on [H1A MCC](#mcc-pc-and-xbox-one-343-industries-2014-2021) and [Halo Custom Edition](~custom-edition). Regardless of the target engine, the recommended approach is to use the [MCC mod tools](~h1-ek) for [tag](~general/tags) authoring and optionally [invader](~) to extract tags and build maps for other targets.
+Today, most modding of H1 is focused on [H1A MCC](#mcc-pc-and-xbox-one-343-industries-2014-2021) and [Halo Custom Edition](~custom-edition). Regardless of the target engine, the recommended approach is to use the [MCC mod tools](~h1-ek) for [tag](~general/intro#tags) authoring and optionally [invader](~) to extract tags and build maps for other targets.
 
 # Editions and versions
 

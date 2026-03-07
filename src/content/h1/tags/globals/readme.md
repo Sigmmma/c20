@@ -10,7 +10,7 @@ thanks:
   MosesOfEgypt: Tag structure research
   gbMichelle: Active camo tint and distortion testing
   Jakey: Active camo rasterizer settings documentation
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
 keywords:
   - matg
 ---

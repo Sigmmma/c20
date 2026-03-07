@@ -6,7 +6,7 @@ caption: >-
   Point physics usages shown as red and green markers within a [flag](~) and
   [particles](~particle).
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Testing and documenting tag features
 keywords:

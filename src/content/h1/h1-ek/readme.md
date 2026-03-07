@@ -316,7 +316,7 @@ The new CE mod tools were released with season 7 of MCC ([patch notes](https://s
 * Fields which reference a block element by index, shown as a drop-down, now update their appearance in real time as the referenced block is edited. For example, when a referenced element is deleted the field will immediately show "BAD INDEX: #". When the name of a referenced block element is changed, the label in the drop-down is updated in real time too.
 * Some unused UI options have been removed.
 * Guerilla now enforces [sound](~) tag gain modifiers are within a valid `0.0` to  `1.0` range.
-* When tags are loaded for editing, tag references with an unknown [group ID](~tags#group-ids) are now clamped to NONE. This fixes cases like the leftover [weapon_collection](~tags#unused-tags) reference in the Bloodgulch scenario from causing downstream problems.
+* When tags are loaded for editing, tag references with an unknown [group ID](~tags#group-ids) are now clamped to NONE. This fixes cases like the leftover [weapon_collection](~tags#unused-groups) reference in the Bloodgulch scenario from causing downstream problems.
 * _Save as_ now makes copies of read-only tags editable without having to reopen the tag.
 * Hover-over tooltips for flags after unused sections are no longer off-by-one, e.g. multiplayer spawn flags for vehicles.
 * Fixed a crash from changing a "go to" command list atom _modifier_ field in the [scenario](~) tag.

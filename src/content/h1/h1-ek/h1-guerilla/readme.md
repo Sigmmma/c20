@@ -32,7 +32,7 @@ Using _File > Save/Load Workspace_, you can save and reload a file which contain
 Any tag files marked "read-only" on your filesystem (with Right click > _Properties_) will be shown greyed-out when opened with Guerilla as a reminder that you can't edit these tags. Note that doing a _Save As_ with a read-only tag will create a writable file, but will still appear greyed out in HEK Sapien until reopened.
 
 # Import and Export
-_File > Export_ will dump tag fields to a text file which can be imported with _File > Import_. This could be useful for programmatic inspection or integrations with `git diff`. You should not export from H1A Guerilla and then import into HEK Guerilla because it can omit information. The import process is currently unsupported in H1A Guerilla and will crash it, while the import process in HEK Guerilla may crash when importing an exported scenario text file that still contains [defunct](~tags#unused-tags) `wpcl` reference types (at least Blood Gulch has this).
+_File > Export_ will dump tag fields to a text file which can be imported with _File > Import_. This could be useful for programmatic inspection or integrations with `git diff`. You should not export from H1A Guerilla and then import into HEK Guerilla because it can omit information. The import process is currently unsupported in H1A Guerilla and will crash it, while the import process in HEK Guerilla may crash when importing an exported scenario text file that still contains [defunct](~tags#unused-groups) `wpcl` reference types (at least Blood Gulch has this).
 
 # Known issues
 * The "Show HUD" window for [unit_hud_interface](~) tags does not work as intended.

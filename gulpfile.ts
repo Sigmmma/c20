@@ -31,8 +31,6 @@ function scriptBundle(devMode: boolean) {
       bundle: true,
       minify: !devMode,
       sourcemap: devMode ? "inline" : false,
-      // todo: can we check what are our users actually using?
-      // target: ["edge16", "chrome58", "firefox57", "safari11", "ios"],
       platform: "browser",
     });
   }

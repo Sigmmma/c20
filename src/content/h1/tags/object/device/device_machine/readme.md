@@ -8,7 +8,7 @@ keywords:
   - device
   - mach
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   kornman00: Automatic door behaviour
 ---

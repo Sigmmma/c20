@@ -6,7 +6,7 @@ img: plasma.jpg
 caption: Plasma shaders can be dynamically offset from their surface.
 thanks:
   crow: Renderer issue workaround
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - spla

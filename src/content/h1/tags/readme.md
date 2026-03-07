@@ -5,26 +5,25 @@ icon: tag
 img: control-panels.jpg
 caption: Tags offer a lot of control, but there's also a lot to learn. Try to focus on one area at a time if you're new.
 thanks:
-  Kavawuvi: Information about invalid tags and tag headers
+  SnowyMouse: Information about invalid tags and tag headers
   Vaporeon: Information about modified stun values in Custom Edition
   Mimickal: Information about tag headers
 ---
-**Tags** are the resources which represent all assets and entities in the game. While the core mechanics are implemented in game code, nearly everything else is customized using tags. They come in many different types (called tag _classes_ or _groups_), each with a predefined structure and data fields. Tags can depend on other tags by [reference](#tag-references-and-paths), and are reusable between maps.
+**Tags** are structured data files used to define instances of the game's resources, like [vehicles](~vehicle), [weapons](~weapon), [bitmaps](~bitmap) and more. When working with tags you should understand the basics like [tag groups, references, paths, and blocks](~intro#tags).
 
-A playable level is represented by a [scenario](~) tag and all of its dependencies, which can include the [vehicles](~vehicle) which may spawn, any [scenery](~) placed, and any [level textures](~bitmap). Bundles of tags required for a level are typically compiled into an optimized [map cache file](~maps), though certain builds of the Halo engine are capable of loading tags on-demand directly from the `tags` folder (e.g. Sapien or debug builds of Halo).
+Playable [maps](~) are built from [scenario](~) tags and all of their direct and indirect dependencies, plus [globals](~) and its dependencies. Certain builds of the Halo engine are capable of loading tags directly from the `tags` folder (e.g. Sapien or Standalone).
 
-Halo's tags are a binary format that must be edited with purpose-built tools like the [H1A-EK](~h1-ek), [MEK](~), or [Invader](~).
+For H1, you can edit tags with purpose-built tools like the [H1A-EK](~h1-ek), [MEK](~), or [Invader](~). Use `invader-refactor` if you need to move tags and want to avoid tedious reference updates.
 
 # Differences between editions
-Each edition of the game has a slightly different tag set in its maps. Be aware of this when extracting tags with [Refinery](~) or [invader-extract](~) or mixing tags.
+Each edition of H1 has slight differences to the tag set in its maps. Be aware of this when extracting tags with [Refinery](~) or [invader-extract](~) or mixing tags:
 
 * Some tag classes have fields which only apply in certain editions, for example H1A's [actor metagame type](~actor_variant#tag-field-metagame-type).
-* PC retail and Custom Edition are based on a slightly older version of Xbox tags, with the most famous difference being Keyes' uniform.
-* Gearbox replaced [model](~) with [gbxmodel](~) during the Xbox to PC port, and replaced instances of [shader_transparent_generic](~) with [shader_transparent_chicago](~) or other transparent shader classes.
+* PC retail and Custom Edition include some older versions of assets compared to Xbox, with the most famous difference being Keyes' uniform. This is restored in MCC.
+* Gearbox replaced [model](~) with [gbxmodel](~) during the Xbox to PC port, and replaced instances of [shader_transparent_generic](~) with [shader_transparent_chicago](~) or other transparent shader classes. MCC restores [shader_transparent_generic](~) use.
 * Gearbox made several changes to [damage_effect](~) stuns in Custom Edition tags only.
-* H1A in MCC restores [shader_transparent_generic](~) functionality and Keyes' uniform.
 
-# Tags list
+# List of tag groups
 
 {% dataTable
   dataPath="tags/h1"
@@ -41,8 +40,8 @@ Each edition of the game has a slightly different tag set in its maps. Be aware 
   ]
 /%}
 
-## Unused tags
-The following tags are leftover from earlier in Halo's development and are unused or removed entirely from current versions. The tags are listed here for informational purposes only, and you will not need to use them.
+## Unused groups
+The following tag groups are leftover from earlier in Halo's development and are unused or removed entirely from current versions. The tags are listed here in case you see references to them, but they can otherwise be ignored.
 
 {% dataTable
   dataPath="tags/h1"
@@ -60,25 +59,6 @@ The following tags are leftover from earlier in Halo's development and are unuse
 /%}
 
 # Tag structure
-## Tag references and paths
-A _tag path_ is like a URL for a tag. References from one tag file to another are stored as tag paths with an accompanying [group ID](#group-ids) for the type. For example, the path `levels\test\tutorial\tutorial` and group ID `sbsp` is how the tutorial [scenario](~) references its [BSP](~scenario_structure_bsp). Tag paths are assumed relative to a `tags` directory, but are not literal filesystem paths since they don't contain an extension.
-
-Be careful when moving or renaming tag files; you may create "dead links" in other tags that referenced them. Either correct the broken references after moving tags, or use [invader-refactor](~invader) to move tags safely.
-
-When tags are compiled into a map, references are converted into pre-calculated pointers. An array of tag paths are still retained in the map but is not used by the game.
-
-Tag paths also appear in arguments to [Tool](~h1-tool) and scripting.
-
-## Blocks
-A _tag block_ field is essentially a list of smaller data structures within a tag. An example is the [scenario](~) tag containing a block of vehicle spawns points. In visual tag editors, blocks appear as a list of elements which are often editable by adding or removing elements. A block field internally consists of an item count and a pointer to an array of structures of the expected type.
-
-Some older unofficial tools refer to blocks as _reflexives_, a term considered outdated and comes from early [halo-map-tools](~obsolete#hmt) modding.
-
-## Group IDs
-To identify tag types in-engine and within tag data, Halo uses compact fixed-size (4 character) identifiers rather than the longer tag names/extensions seen in the [HEK](~custom-edition#halo-editing-kit). Some examples include `bitm` for [bitmap](~bitmap), `snd!` for [sound](~), and `DeLa` for [ui_widget_definition](~). These identifiers are case-sensitive and may be padded with trailing spaces.
-
-You don't typically need to know these IDs beyond reverse engineering or using older community map-editing tools that group tags by these IDs. They can also appear backwards in some contexts due to being encoded as little-endian integers.
-
 ## Unused tags and fields
 The types of tags and their structures changed during the game's development. Evidence of this can be seen in Halo's engine, the HEK's tools and tags, and official maps.
 
@@ -95,7 +75,6 @@ Invalid tags can often be corrected by resetting fields and re-saving the tag us
 Some tags contain unused space between fields called _padding_. Generally, any sort of data could be stored in these spaces without affecting the tags, and some community tools use this space to retain extra metadata.
 
 ## Header
-
 All tag files ("loose tags") have a common header structure. This header makes up the first 64 bytes of data, and contains the following fields. All primitive fields are big-endian.
 
 {% structTable

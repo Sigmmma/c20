@@ -67,7 +67,7 @@ type_defs:
         type: float
         comments:
           en: |
-            Scale wind influence on _point_physics_ using the [_damped wind_](point_physics/#tag-field-flags-uses-damped-wind)
+            Scale wind influence on _point_physics_ using the [_damped wind_](~point_physics#tag-field-flags-uses-damped-wind)
             flag. A value of `0` means don't slow damped particles at all, while
             `1` means completely stop them. This allows certain types of
             _point_physics_ entities to react more weakly to the wind. Keep this

@@ -8,7 +8,7 @@ thanks:
   Conscars: Checking multiplayer headshot flag and radii behaviour
   gbMichelle: Reverse engineering the damage formula
   King Feraligatr: Testing EMP effect on shields
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Aerocatia: Explaining damage category field
 keywords:

@@ -4,7 +4,7 @@ about: 'tag:h1/antenna'
 img: antenna.jpg
 caption: Antennas seen on Scorpions and Warthogs.
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Tag field testing
 keywords:

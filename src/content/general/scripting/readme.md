@@ -1,5 +1,5 @@
 ---
-title: Scripting
+title: Scripting basics
 keywords:
   - hsc
   - scripts

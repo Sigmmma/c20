@@ -4,7 +4,7 @@ about: 'tag:h1/equipment'
 img: equipment.jpg
 caption: Some examples of equipment in c10
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - eqip

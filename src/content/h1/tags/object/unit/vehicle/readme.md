@@ -5,7 +5,7 @@ about: 'tag:h1/vehicle'
 img: vehicles.jpg
 caption: Vehicles spawned using the command `cheat_all_vehicles`
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Vennobennu: Field documentation
   Galap: Finding use of _effect_ field

@@ -3,7 +3,7 @@ title: shader (abstract tag)
 stub: true
 about: 'tag:h1/shader'
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - shdr

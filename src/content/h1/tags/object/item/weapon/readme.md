@@ -5,7 +5,7 @@ img: weapons.jpg
 caption: Weapons spawned using the command `cheat_all_weapons`
 thanks:
   Jakey: Explaining weapon error fields
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   t3h m00kz: Aim assist vs magnetism explanation
 keywords:

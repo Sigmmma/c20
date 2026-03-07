@@ -1,12 +1,16 @@
 ---
-title: H3 materials
-img: materials.jpg
-caption: >-
-  An example of some material names used for a level
-  [BSP](~h3/tags/scenario_structure_bsp) in [Blender](~).
+title: Materials
 keywords:
-  - Materials
-  - Symbols
+  - materials
+  - symbols
+  - fog plane
+  - clipping
+  - playerclip
+  - portal
+  - ladder
+  - breakable
+redirects:
+  - /general/source-data/materials/h3-materials
 ---
 **Halo 3** expanded on the foundation set by **Halo 2**. Most of the settings that used to be set in the material name were instead moved to a sub menu in the material properties window. The amount of flags and lightmap settings were expanded on even further to allow a designer to fine tune their art.
 

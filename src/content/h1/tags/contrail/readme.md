@@ -6,7 +6,7 @@ img: contrail.jpg
 caption: Sentinel beams and assault rifle tracers are examples of contrails
 thanks:
   gbMichelle: Limits
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - cont

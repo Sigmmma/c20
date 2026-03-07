@@ -9,7 +9,7 @@ keywords:
   - ctrl
 thanks:
   s3anyboy: Interaction radius tip
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 ---
 ...

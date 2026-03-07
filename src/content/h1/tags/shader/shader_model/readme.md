@@ -14,7 +14,7 @@ thanks:
   Jakey: >-
     Discovering that self-illumination is added to diffuse light, not diffuse
     color
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Giraffe: Animation for change color masking
 ---

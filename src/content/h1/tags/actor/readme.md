@@ -5,7 +5,7 @@ img: actors.jpg
 caption: Actors with various `ai_render_*` globals enabled, showcasing their internal state.
 thanks:
   justinpyne: Explaining the _friend avoid dist_ field
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Vennobennu: Field documentation
   gbMichelle: Reversing actor type aliases

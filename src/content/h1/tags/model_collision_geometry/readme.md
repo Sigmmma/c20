@@ -6,7 +6,7 @@ caption: 'Collision geometry for many of Halo''s vehicles, scenery, and bipeds'
 thanks:
   Knight Artorias: Region and permutation limits
   lag supreme: Visualization of phantom BSP in covie crates
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - coll

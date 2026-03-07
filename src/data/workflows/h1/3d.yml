@@ -1,50 +1,20 @@
-Chimp:
-  page: chimp
+Halo CE Max Toolkit:
+  page: haloce-max-toolkit
   authors:
-    - Jason Zimmer
+    - "Mark Mc'Fuzz"
   workflows:
-    - from: wrl
-      to: Gmax
-    - from: wrl
-      to: 3ds Max
-    - from: Gmax
-      to: JMS
-    - from: 3ds Max
-      to: JMS
-CAD animation exporter:
-  page: cad-animation-exporter
-  authors:
-    - CtrlAltDestroy
-  similarTo: Bluestreak
-  workflows:
-    - from:
+    - between:
         - 3ds Max
-        - Gmax
-      to: Animation data
-Halo Physics Importer:
-  page: halo-physics-importer
-  authors:
-    - rec0
-  workflows:
+        - JMS
+    - between:
+        - 3ds Max
+        - Animation data
+    - between:
+        - 3ds Max
+        - h1/camera_track
     - from: h1/physics
       to: 3ds Max
-# todo: cover all Bluestreak use cases
-Bluestreak:
-  page: bluestreak
-  authors:
-    - TheGhost, various later contributors
-  workflows:
-    - from:
-        - Gmax
-        - 3ds Max
-      to: JMS
+    - from: h1/model_collision_geometry
+      to: 3ds Max
     - from: h1/gbxmodel
-      to:
-        - 3ds Max
-        - Gmax
-    - between:
-        - Animation data
-        - 3ds Max
-    - between:
-        - Animation data
-        - Gmax
+      to: 3ds Max

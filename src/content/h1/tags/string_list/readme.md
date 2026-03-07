@@ -3,7 +3,7 @@ title: string_list
 stub: true
 about: 'tag:h1/string_list'
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - 'str#'

@@ -19,7 +19,7 @@ thanks:
   Conscars: Collision BSP, phantom BSP, vehicle floor/ceiling, and lens flare research
   Galap: Researching the effect of cluster sky index on lighting
   Hari: Collision BSP compilation reversing
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   Ifafudafi: Discovering that PAS data is unused in H1CE
 ---
 The **scenario structure BSP** tag, commonly just called the **BSP**, contains level geometry, weather data, material assignments, AI pathfinding information, [lightmaps](~), and other data structures. You can think of the BSP as the "stage" where the game takes place [objects](~object) are placed within it. Aside from sounds and [bitmaps](~bitmap), the BSP tends to be one of the largest tags in a map. Singleplayer [scenarios](~scenario) often use multiple BSPs which are switched between at loading zones.

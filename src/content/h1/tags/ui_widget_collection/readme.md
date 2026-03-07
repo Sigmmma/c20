@@ -3,7 +3,7 @@ title: ui_widget_collection
 stub: true
 about: 'tag:h1/ui_widget_collection'
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - Soul

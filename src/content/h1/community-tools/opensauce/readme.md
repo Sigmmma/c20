@@ -49,7 +49,7 @@ Crash reports can be found in `<DRIVE>:\Users<USER>\Documents\My Games\Halo CE\O
 Note that OpenSauce uses the filename `initc.txt` for [init scripts](~arguments#init-txt) instead.
 
 # New tag groups
-These extended [tag groups](~general/tags#tag-groups) may be found in .yelo maps and are only supported by the OpenSauce mod:
+These extended [tag groups](~general/intro#tag-groups) may be found in .yelo maps and are only supported by the OpenSauce mod:
 
 {% dataTable
   dataPath="tags/os"

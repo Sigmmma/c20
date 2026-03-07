@@ -7,7 +7,7 @@ caption: >-
   The flamethrower's fire begins bright and orange, and evolves to a smokey
   brown
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - pctl

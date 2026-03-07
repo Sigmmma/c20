@@ -2,6 +2,10 @@
 title: Excession
 keywords:
   - uploader
+  - upload
+  - release
+  - steam
+  - publish
 img: excession.jpg
 info: |
   * [Steam store](steam://store/1695795)

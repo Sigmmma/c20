@@ -66,7 +66,7 @@ Sapien silently fails to load all of the files if there are more than the limit.
 |--------------------------------------|-----|-----|
 |`MAXIMUM_HS_REFERENCES_PER_SCENARIO`  | 256 | 512 |
 
-Various HS functions take [tag paths](~general/tags#tag-paths-and-references) as arguments, for example spawning an [effect](~) at a cutscene flag:
+Various HS functions take [tag paths](~general/intro#tag-references-and-paths) as arguments, for example spawning an [effect](~) at a cutscene flag:
 
 ```hsc
 (effect_new "effects\coop teleport" teleporting_flag)

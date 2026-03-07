@@ -8,7 +8,7 @@ caption: >-
 thanks:
   Masterz1337: Encounters vs bipeds
   Jakey: Sharing knowledge on child scenarios
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Aerocatia: Trigger volume types reversing
 keywords:

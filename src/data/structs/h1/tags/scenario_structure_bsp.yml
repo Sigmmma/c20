@@ -158,8 +158,9 @@ type_defs:
         type: Point3D
         comments:
           en: |
-            For _coplanar_ materials, the centroid is the world-space
-            coordinates of their center. It's unknown how this is calculated.
+            For _coplanar_ materials, the centroid is the world-space coordinates
+            for the center of the material's axis-aligned bounding box. Otherwise
+            zeroed.
         meta:
           unit: world units
       - name: ambient_color

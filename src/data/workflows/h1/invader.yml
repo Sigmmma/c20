@@ -1,7 +1,7 @@
 invader_base:
   abstract: true
   authors:
-    - Kavawuvi
+    - SnowyMouse
     - Vaporeon
 Invader:
   page: invader

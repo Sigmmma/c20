@@ -6,7 +6,7 @@ caption: 'Various examples of objects, including projectiles, weapons, and units
 thanks:
   Jakey: Explaining modifier shaders.
   Satania: Explaining acceleration scale
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Connor Dawn: Explaining _cast shadow by default_
   Conscars: Shadow behaviour testing

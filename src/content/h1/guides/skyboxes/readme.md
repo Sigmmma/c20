@@ -29,7 +29,7 @@ If you are new to Halo modding and need a primer on the general asset-creation w
 To complete this guide you will need:
 
 * The [Halo Editing Kit](~custom-edition#halo-editing-kit) for Custom Edition or the [H1A Editing Kit](~h1-ek) for H1A in MCC (available on Steam).
-* 3D software like [Blender](~) or [3ds Max](~3dsmax). Blender is free software and you can export to JMS directly with the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) or use [H1A-Tool's FBX pipeline](~h1-tool#fbx-to-jms). Max users can also use the FBX pipeline or a JMS exporter like [Bluestreak](~).
+* 3D software like [Blender](~) or [3ds Max](~3dsmax). Blender is free software and you can export to JMS directly with the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) or use [H1A-Tool's FBX pipeline](~h1-tool#fbx-to-jms). Max users can also use the FBX pipeline or a JMS exporter like [Bluestreak](~obsolete#bluestreak).
 * 2D software like [Krita](~), [GIMP](~), or [Photoshop](~) for creating custom textures.
 
 This guide will specifically be using the H1A-EK, Blender, the Halo asset toolset, and Krita. The techniques are generally transferrable to 3ds Max (see [regions and FBX](~fbx#region-assignment)) and Photoshop if you use those. The process is also the same using either the [HEK](~custom-edition#halo-editing-kit) or [H1A-EK](~h1-ek).
@@ -143,7 +143,7 @@ Since we are using the Halo Asset Blender Development Toolset to export our JMS,
 4. Assign the region to the selected faces.
 
 {% alert %}
-If you are using the FBX export pipeline you'll instead need to assign regions by [combining them with material names](~fbx#region-assignment). 3ds Max users who are directly exporting to JMS with a legacy plugin like [Blitzkrieg](~) can use named selection sets (note that [Bluestreak](~) does not support regions).
+If you are using the FBX export pipeline you'll instead need to assign regions by [combining them with material names](~fbx#region-assignment). 3ds Max users who are directly exporting to JMS with a legacy plugin like [Blitzkrieg](~) can use named selection sets (note that [Bluestreak](~obsolete#bluestreak) does not support regions).
 {% /alert %}
 
 ![](region.mp4)

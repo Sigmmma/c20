@@ -10,8 +10,6 @@ The **mod tools**, also called the **editing kits**, are the official releases o
 
 Each game has its own set of mod tools which, although similar, follow the evolution of [Halo's engine](~blam) over time and include the resources specific to that game. These tools are updated versions of the same internal tools Bungie's artists and level designers originally used when developing Halo. You can use them to modify existing content or create entirely new content. A separately installed program, [Excession](~), publishes mods to the Steam workshop.
 
-Depending on your needs you will probably want more software, like [Blender](~) for creating 3D models and [Osoyoos](~) as a convenience launcher.
-
 # Installation
 {% figure src="steam_tools.jpg" %}
 Pictured: Location of the mod tools in the steam library.
@@ -22,60 +20,43 @@ Pictured: Location of the mod tools in the steam library.
 3. Download the tools using Steam: [H1][h1-dl], [H2][h2-dl], [H3][h3-dl], [ODST][odst-dl], [Reach][reach-dl].
 4. Once the tools are done downloading you can find them in your library in the "tools" section.
 5. Right click the entry for the mod tools, and select _Manage > Browse local files_ from the context menu. This will open the folder where the tools are installed.
-6. Run the `<game> (Extract).bat` file - this script will extract all the assets the tools rely on like shader sources and [tags](~).
+6. Run the `<game> (Extract).bat` file - this script will extract all the assets the tools rely on like shader sources and [tags](~intro#tags).
 
-It's recommended that you pin the installation folder to explorer or create a shortcut to it. You will need frequent access to these files and it's easier to run the tools from explorer than through Steam's launcher.
+Pin the installation folder in Explorer's quick access or create a shortcut to it, since you will need frequent access to these files and it's easier to run the tools from explorer than through Steam's launcher.
 
 You should also add your mod tools folders to the Windows Defender exclusions list. Tools like Sapien and Standalone will load faster.
 
 ## Installing updates
-Steam updates will not overwrite your tags. Instead, the tags `7z` archive will be updated with any content changes. Sometimes it may be necessary for updates to provide new versions of stock tags.
+Steam updates to the tools are unlikely to occur again now that development has halted, but they will not overwrite your tags. Instead, the included `.7z` archive will be updated with any needed stock content changes.
 
 1. Back up any stock tags you modified.
-2. Re-run `Extract (<game>).bat` and replace all files.
+2. Re-run the extraction `.bat` file and replace all files.
 
 # Tools overview
 The following tools come with each game's mod tools, sometimes with [build type](~blam#build-types) variants:
 
-* **Tool** (tool.exe) is a [command-line](~) utility. Use it to import [source data](~source-data) into [tag](~tags) format and build distributable map files.
+* **Tool** (tool.exe) is a [command-line](~) utility. Use it to import [source data](~source-data) into [tag](~intro#tags) format and build distributable map files.
 * **Guerilla**, and later **Foundation**, are tag data editors. Use them to modify and create tags.
 * **Sapien** is a visual [scenario](~h1/tags/scenario) and [scenario_structure_bsp](~h1/tags/scenario_structure_bsp) editor, sort of like Forge. It's used to populate levels with objects, place multiplayer objectives, set up AI encounters, and assign environmental effects like weather. It is not used to model levels.
-* **Standalone** (halo_tag_test.exe) is a [build](~blam#build-types) of Halo which loads from tags rather than maps. Use it to rapidly test and debug levels without having to build them for MCC.
+* **Standalone** or **Tag Test** (halo_tag_test.exe) is a [build](~blam#build-types) of Halo which loads from tags rather than maps. Use it to rapidly test and debug levels without having to build them for MCC.
 * **[ManagedBlam.dll](~managed-blam)** is a library present for H3+ which allows programmers creating custom tools to work with tag data compatibly.
 
-Another tool, [Excession](~), is not part of the mod tools but is needed to publish mods to the Steam workshop.
+Another tool, [Excession](~), is installed separately and is needed to publish mods to the Steam workshop. Depending on your needs you will probably want more software, like [Blender](~) for creating 3D models and [Osoyoos](~) as a convenience launcher.
+
 
 # Files overview
 The mod tools come with a lot of files and folders, but some important ones are:
 
-* The **`data`** folder is where you put [source data](~source-data) that you want to import into tag format, like textures, models, and animations. You create these files using external software, like [Blender](~) for 3D assets. The layout of folders under here will match the layout under `tags`:
+* The **`data`** folder is where you put [source data](~source-data) that you want to convert ("import") into tag format, like textures, models, and animations. You create these files using external software, like [Blender](~) for 3D assets. The layout of folders here will match the layout under `tags`:
 * The **`tags`** folder is where you find tag resources for the game's stock content. These resources are enough to rebuild stock levels and can serve as examples for your modding or the basis of a remix. You will create custom tags under this folder too.
-* The **`maps`** folder may not exist initially, but is where Tool puts [maps](~maps) built from your tags when requested.
-
-# Workflow
-Playable levels in Halo are represented as [map](~maps) files. The goal is to create new custom maps with your desired changes or custom content. The content pipeline is mainly one-directional:
-
-1. Artists create assets which are converted ("imported") into [tag](~tags) format;
-2. Tags are created, edited, and tested with the mod tools;
-3. Finally, maps are built from the tags and released.
-
-{% figure src="workflow.svg" inline=true %}
-The intended workflow is from left to right.
-{% /figure %}
-
-Other workflows are possible but with caveats:
-
-* (\*) Tags can't always be reversed/extracted back into source data. Depending on the game and tag type, Tool embeds copies of source data within the imported tag called _import info_, but this data isn't always present. In other cases, the process of importing data to a tag is _lossy_ and the original source data cannot be perfectly reconstructed.
-* (\*\*) Extracting tags from maps is currently only possible with H1 using [invader-extract](~). Older tag extractors for H1 like Refinery and HEK+ are not recommended because they don't properly reverse all [processing](~tags#tag-loading) and may introduce invalid data to extracted tags.
-* (\*\*\*) Directly editing maps is possible with [community tools](~), however it is more limited in what's possible and prone to error. This is a practice that predates the mod tools and it's easier now to just rebuild maps from edited tags, although it's not always possible if the author of a map doesn't share their tags.
-* (\*\*\*\*) Ripping models and textures from map files can be done with [Reclaimer](~). Again, it's not always possible to perfectly reproduce source data.
-
-With some exceptions, the mod tools don't come with source data for stock content, just tags. If you extract tags from H1 maps you will also only end up with their tags. Usually this is enough to edit and rebuild your own variant of the maps, but sometimes bringing assets back into source data form will let you make deeper changes.
-
-A _map cache file_ is just a way to package the tags needed for a level into an efficient format, but tags are still the core resources. Modders should consider tags to be an output of their modding efforts, not just maps, especially to share creations with other modders. Backup your tags and source data and you won't need to resort to extraction to recover data.
+* The **`maps`** folder may not exist initially, but is where Tool puts [maps](~intro#maps) built from your tags when requested.
 
 # Using custom content paths
-The [H1A-EK](~h1-ek) and [H2-EK](~) tools support overriding content paths, with some caveats. This is an advanced workflow for special circumstances, like keeping multiple large projects separated. H3-EK currently doesn't support this and neither do legacy editing kits (HEK and H2V).
+{% alert %}
+This is an advanced workflow you likely won't need. Beginners can skip this section.
+{% /alert %}
+
+The [H1A-EK](~h1-ek) and [H2-EK](~) tools support overriding content paths so you can work on multiple isolated projects. H3-EK doesn't support this and neither do legacy editing kits (HEK and H2V).
 
 * The data directory can be set using the `-data_dir <path>` argument.
 * The tags directory can similarly be set using the `-tags_dir <path>` argument.

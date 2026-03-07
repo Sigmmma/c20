@@ -14,7 +14,7 @@ thanks:
     Providing descriptions for all tag fields, further researching Rosy's
     discovery
   Rosy: Discovering actors drop 100% charge weapons on no-grenade deaths
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 ---
 An **actor variant** specializes an [actor](~) by defining their use of weapons, grenades, their health, their color, and what equipment they drop. While the _actor_ tag defines common behaviour of an AI type and rank, the _actor variant_ adds additional variety in their appearance and weapon use.

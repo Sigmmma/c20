@@ -8,7 +8,7 @@ caption: >-
 thanks:
   gbMichelle: Movement
   Mimickal: Explaining bounce timer
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Vennobennu: Field documentation
   FD: Explaining "combine initial velocity with parent velocity"

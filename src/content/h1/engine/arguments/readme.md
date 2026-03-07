@@ -2,8 +2,6 @@
 title: Startup arguments and init.txt
 thanks:
   nToss: Information on timedemo and vidmode
-redirects:
-  - /h1/arguments
 ---
 [Halo Custom Edition's](~custom-edition) and [Standalone's](~h1-standalone-build) startup can be customized through the combination of arguments and console scripting. Using these options allows you to quickly configure Halo for various testing or server hosting scenarios.
 

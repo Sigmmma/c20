@@ -7,7 +7,7 @@ caption: >
   detail maps (grass and stone), specular reflections, bump mapping, and alpha
   testing (foliage).
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
   Conscars: Notes on bump mapping and alpha testing
 keywords:

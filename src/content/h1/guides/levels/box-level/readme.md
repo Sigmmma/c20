@@ -322,7 +322,7 @@ tool lightmaps "levels\test\example\example" example 0 0.3
 ```
 
 The arguments are:
-1. A [tag path](~general/tags#tag-paths-and-references) to your scenario.
+1. A [tag path](~general/intro#tag-references-and-paths) to your scenario.
 2. The name of the BSP you want to light.
 3. Quality, either `0` (draft) or `1` (final). Keep it draft for now.
 4. Stop threshold. This ranges between `0` and `1` and tells Tool to stop radiosity when the amount of "in flight" light reduces to this level. Values closer to `0` result in more accurate lighting but takes longer.

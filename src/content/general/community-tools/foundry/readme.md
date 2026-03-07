@@ -3,6 +3,10 @@ title: Foundry
 img: banner.jpg
 info: |
   * [Source code and download](https://github.com/ILoveAGoodCrisp/Foundry-Halo-Blender-Creation-Kit)
+keywords:
+  - plugin
+  - addon
+  - blender
 ---
 Foundry is a [Blender](~) addon that facilitates a complete 3D asset import pipeline for Halo Reach, Halo 4, and Halo 2 Anniversary Multiplayer. By integrating with the mod tools, Foundry allows you to easily transform your Blender creations into game-ready Halo assets.
 

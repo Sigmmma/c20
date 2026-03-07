@@ -21,7 +21,7 @@ There are several tools and mods for the base game or external programs that use
 * [Assembly](~assembly) - A cache editing tool for various titles in the Halo series. Users can use this tool to make permanent edits to cache files and poke changes in real time. While not traditional workflow for map creation, it is a powerful tool that can be used to create interesting experiences. 
 * [TagTool](~tagtool) - A cache editing tool designed to allow *porting* of tag data between different versions and builds of the Blam engine, as well as importing brand new content.
 
-Like all Halo games [tags](~) play a large role in modding.
+Like all Halo games [tags](~intro#tags) play a large role in modding.
 
 ## MCC (PC and Xbox One, 343 Industries, 2015-Current day)
 Halo: The Master Chief collection (MCC) is actively maintained by [343 Industries][343i] for both PC and Xbox One. It brings the Halo series under a single [Game as a Service][gaas], including unified matchmaking and progression experiences. The PC port uses [Unreal Engine][unreal] as a menu and input layer over the respective engines of each included Halo game.

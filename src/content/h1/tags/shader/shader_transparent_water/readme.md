@@ -6,7 +6,7 @@ img: water.jpg
 caption: A water shader used in _Death Island_
 thanks:
   gbMichelle: Discovering that base maps do not tile
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - swat

@@ -5,7 +5,7 @@ about: 'resource:hr/tags'
 ---
 Halo Reach's tags are similar to [Halo 3's](~h3/tags), but there are many more types.
 
-# Tags list
+# List of tag groups
 
 {% dataTable
   dataPath="tags/hr"

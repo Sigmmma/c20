@@ -3,7 +3,7 @@ title: virtual_keyboard
 stub: true
 about: 'tag:h1/virtual_keyboard'
 thanks:
-  Kavawuvi: Invader tag definitions
+  SnowyMouse: Invader tag definitions
   MosesOfEgypt: Tag structure research
 keywords:
   - vcky

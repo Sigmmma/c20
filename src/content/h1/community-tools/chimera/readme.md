@@ -9,13 +9,11 @@ img: chimera.jpg
 redirects:
   - /h1/tools/chimera
 info: |
-  * [Release
-  thread](https://opencarnage.net/index.php?/topic/6916-chimera-download-source-code-and-discord/)
   * [Discord server](https://discord.gg/ZwQeBE2)
-  * [Vaporeon builds](http://vaporeon.io/hosted/halo/chimera/)
-  * [Sources](https://github.com/Kavawuvi/chimera)
+  * [Releases](https://github.com/SnowyMouse/chimera/releases)
+  * [Sources](https://github.com/SnowyMouse/chimera)
 ---
-**Chimera** is a game client modification for Halo Custom Edition, PC "Retail", and Trial which extends limits, addresses some [renderer issues](~renderer#gearbox-regressions), and applies dozens of fixes and quality of life improvements like [map downloads](~sharing#halonet). See its [features list][github-feat] for more information.
+**Chimera** is a game client modification for Halo Custom Edition, PC "Retail", and Trial which extends limits, addresses [renderer issues](~renderer#gearbox-regressions), and applies dozens of fixes and quality of life improvements like [map downloads](~sharing#halonet). See its [features list][github-feat] for more information.
 
 # Installation
 1. Back up your game's original `Strings.dll`. Renaming it to `strings-old.dll` works.
@@ -27,5 +25,5 @@ Current vesions of Chimera are incompatible with [OpenSauce](~) and [HAC2](~). A
 
 Chimera works on Windows 7+ and on Linux with Wine 4+.
 
-[github-feat]: https://github.com/Kavawuvi/chimera#features
+[github-feat]: https://github.com/SnowyMouse/chimera#features
 [581]: https://opencarnage.net/applications/core/interface/file/attachment.php?id=922
