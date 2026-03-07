@@ -153,8 +153,8 @@ This section defines weapon assist features to make target aquisition easier, es
 | Fields | Data type | Description
 |-------|----------|--------------
 | autoaim angle | angle | Angle in which projectiles from this weapon are magnetized towards targets within autoaim range, max value must be less than 90 degrees
-| autoaim range | real | Maximum range of red reticle and in which projectiles can be magnetized towards targets
-| autoaim falloff range | real | At what range does the strength of projectile magnetism begin to fall off before the maximum distance
+| autoaim range | real | Maximum range at which projectiles can be magnetized towards targets
+| autoaim falloff range | real | The range at which the projectile magnetism begin to fall off before the maximum distance, also defines maximum red reticle distance
 | magnetism angle | angle | Angle in which the game applies aim assist to controllers when aiming over a target within magnetism range
 | magnetism range | real | Maximum range in which the game will apply aim assist to controllers aiming over a target
 | magnetism falloff range | real | Range in which the strength of aim assist for controllers begins to fall off before maximum distance
