@@ -16,5 +16,7 @@ Halo CE Max Toolkit:
       to: 3ds Max
     - from: h1/model_collision_geometry
       to: 3ds Max
+    - from: h1/scenario_structure_bsp
+      to: 3ds Max
     - from: h1/gbxmodel
       to: 3ds Max

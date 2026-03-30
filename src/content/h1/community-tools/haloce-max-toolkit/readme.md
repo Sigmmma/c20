@@ -5,7 +5,7 @@ img: banner.jpg
 caption: ''
 info: |
   * [Source code](https://github.com/markmcfuzz/HaloCE-Max-Toolkit)
-  * [Releases](https://github.com/markmcfuzz/HaloCE-Max-Toolkit/releases/tag/v4.2.2)
+  * [Releases](https://github.com/markmcfuzz/HaloCE-Max-Toolkit/releases)
   * [Documentation](https://github.com/markmcfuzz/HaloCE-Max-Toolkit/wiki)
 keywords:
   - max

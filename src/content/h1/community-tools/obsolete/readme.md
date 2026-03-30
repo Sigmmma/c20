@@ -127,7 +127,7 @@ A pelican model imported to Blender 2.7.
 The **Blender .gbxmodel importer** by Fulsam was an add-on for Blender 2.7 to import [gbxmodel](~) tags. It was made obsolete by the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset), which supports importing model tags into modern versions of Blender. The addon is still available for download [here](https://haloce3.com/downloads/applications/blender-gbxmodel-importer-v0-5-1/).
 
 ## Blendkrieg
-**Blendkrieg** by gbMichelle was an add-on for Blender 3.0+ to import [JMS](~), [model](~), and [gbxmodel](~). The project was incomplete and made obsolete by the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset), which can now reliably import these formats into Blender. The source code for Blendkrieg is available on [GitHub](https://github.com/Sigmmma/Blendkrieg/tree/anim-bones).
+**Blendkrieg** by gbMichelle was an add-on for Blender 3.0+ to import [JMS](~), [model](~), and [gbxmodel](~). The project was incomplete and made obsolete by the [Halo Asset Blender Development Toolset](~halo-asset-blender-development-toolset) and [Halo CE Max Toolkit](~haloce-max-toolkit), which can now reliably import these formats into Blender and Max. The source code for Blendkrieg is available on [GitHub](https://github.com/Sigmmma/Blendkrieg/tree/anim-bones).
 
 # Map editors
 ## SparkEdit

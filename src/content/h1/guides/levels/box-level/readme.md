@@ -301,7 +301,7 @@ The first argument, `"levels\test\example"`, is the path your level's data folde
 If all went well, you now have a BSP tag at `tags\levels\test\example\example.scenario_structure_bsp`. However this is also the step where people often first run into trouble:
 
 * Tool has prompted you to select a shader type. This means you have faces in your level assigned to a material whose name did not match with any existing shader tags. You probably missed assigning some faces or named the materials incorrectly.
-* Tool logs warnings or errors about geometry errors because the level doesn't follow the [sealed world rules](~bsp-troubleshooting#sealed-world-rules) or has other issues. This indicates a mistake in modeling the level or bad level size. Tool generates a [WRL](~wrl) file which you can import back into Blender to [troubleshoot](~bsp-troubleshooting).
+* Tool logs warnings or errors about geometry errors because the level doesn't follow the [sealed world rules](~bsp-troubleshooting#sealed-world-rules) or has other issues. This indicates a mistake in modeling the level or bad level size. Tool generates a [WRL](~wrl) file which you can import back into Blender or Max to [troubleshoot](~bsp-troubleshooting).
 
 If your level did not have a pre-existing [scenario](~) tag, which is our case, Tool also generated one at `tags\levels\test\example\example.scenario` with the BSP already referenced.
 

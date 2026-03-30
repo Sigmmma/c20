@@ -74,6 +74,7 @@ To avoid this issue you can:
 * Avoid sculpting tools, which produce a lot of slight angles in dense geometry;
 * Model with simple, low-poly shapes.
 * Keep the level's size reasonable. Far from the origin, imprecision can contribute to non-planarity.
+* If using 3ds Max, the [Halo CE Max Toolkit](~haloce-max-toolkit) includes a utility to colour faces by their angle, making it easier to spot nearly coplanar ones.
 
 In some cases having nearly coplanar faces is unavoidable. When faces are axis-aligned it is easy to make them coplanar, but when they are meant to be at an 45-degree or other angle you may encounter the nearly coplanar warning due to a loss of precision in the [JMS](~) format, which is only capable of storing up to 6 digits to the right of the decimal points (e.g. `123.123456`). This will result in vertices on angled surfaces going slightly out of alignment. In this case check for phantom BSP around the area identified in the WRL file. If any is found, you may be able to clear it up with simple triangulation changes or other minor alterations in the vicinity.
 
@@ -164,7 +165,7 @@ EXCEPTION halt in .\import_collision_bsp\build_collision_bsp.c,#1529: dividing_e
 
 This is a very rare problem caused by nearly coplanar surfaces and/or rounding error. Nearly coplanar faces usually result in [a warning](#warning-nearly-coplanar-faces-red-and-green) and are easily identified with the WRL file. For an unknown reason, sometimes they instead cause an assertion exception like the above. We've only encountered a couple cases of this error, so we can't rule out other potential causes like improper level scale which may also contribute to imprecision.
 
-Finding the cause of this error is difficult since a WRL is not generated. Our best advice is to ensure that any sets of faces which should be planar are indeed planar. You can also try setting up a Blender material like below which accentuates faces which aren't coplanar with their neighbours.
+Finding the cause of this error is difficult since a WRL is not generated. Our best advice is to ensure that any sets of faces which should be planar are indeed planar. You can also try setting up a Blender material like below which accentuates faces which aren't coplanar with their neighbours. The [Halo CE Max Toolkit](~haloce-max-toolkit) also includes a similar utility.
 
 {% figure inline=true src="dividing_edge_vertex_index.jpg" %}
 This material assigns a distinct colour to each face direction with high sensitivity, so coplanar faces will share the same colour while nearly coplanar faces will have different colours. Temporarily assign faces to a material with this shader node setup to help spot the issue.

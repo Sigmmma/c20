@@ -143,7 +143,7 @@ Bungie was aware of this artifact and implemented a feature to help spot it (`co
 2. Fix any "nearly coplanar" warnings in your source model by scaling affected faces to 0 along their normal axis or using alignment. Since Tool slightly rounds vertex coordinates when compiling BSPs, sometimes this warning cannot be resolved for surfaces which are not axis-aligned.
 2. There is an element of chance to phantom BSP appearing which depends on how your geometry is recursively subdivided to form a BSP tree. Modifying unrelated parts of your level like adding portals or moving vertices can sometimes affect how the level is subdivided and make phantom BSP disappear or appear in new places.
 3. Using H1A Tool's [fix-phantom-bsp option](~h1-tool#phantom-bsp-fix) to compile your BSP will prevent _most_ phantom BSP at the cost of slightly increasing the tag size. There have been reports that this may not resolve all phantom BSP.
-4. If you do not have access to source JMS, and are trying to fix a BSP tag, you will need to import the tag into Blender and rework the model to make it export-ready and free of nearly coplanar surfaces.
+4. If you do not have access to source JMS, and are trying to fix a BSP tag, you will need to import the tag into [Blender](~halo-asset-blender-development-toolset) or [3ds Max](~haloce-max-toolkit) and rework the model to make it export-ready and free of nearly coplanar surfaces.
 
 On a technical level, cases of phantom BSP are [dividing planes](#tag-field-collision-bsp-bsp3d-nodes-plane) where a child index is `-1`, but the space on that side of the plane is not actually _completely_ outside the level. The artifact is bounded by all parent dividing planes.
 
