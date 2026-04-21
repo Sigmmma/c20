@@ -121,3 +121,24 @@ AI cannot shoot or melee while jumping (jumppack brute leaps are a type of jump)
 Information such as location of enemies is not passed between squads, even if they are right next to each other, however that information will be passed along if the squads share a task together.
 
 AI under normal circumstances do not use the melee damage assigned in [weapon](~) tags, instead they use the melee [damage](~damage_effect) assigned in the AI's [biped](~)
+
+# Debugging
+
+Using various commands we can visualize current AI actions, as well use visual icons to debug potential issues.
+
+| Icon (floating triangle) | Description
+|------| ----------
+| Green | No firing positions available, make sure an initial zone or objective is set
+| Yellow | AI has too few firing positions available in this task or cannot pathfind to their firing positions
+| Red | AI lacks the alert and idle state style flags or animation modes, needs additional research
+
+Common commands that may be helpful for generalized debugging.
+
+| Command | Type | Description
+|------| ----------
+| ai_render_all_actors | boolean | Needed for further commands, also renders usable firing positions and current target firing position
+| ai_render_behavior_stack | boolean | Renders a vertical list of current AI behavior tree actions
+| ai_render_tracked_props | boolean | Renders the current scariness value this AI perceives from another unit (note this will render *all* units at once, so the value will be impossible to read if more than one AI is tracking a single target)
+| ai_render_targets | boolean | Renders a line from AI units onto their current target (or where they *think* their target is)
+| ai_debug_emotions | boolean | Renders the current danger level this AI unit is experiencing
+| ai_render_shooting | boolean | Renders data about how the AI is using their current weapon, like accuracy and rate of fire

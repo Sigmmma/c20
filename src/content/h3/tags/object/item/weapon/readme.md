@@ -51,13 +51,13 @@ These are general purpose flags that change the behavior of the weapon, more spe
 | allows unaimed lunge | Allows melee weapons to play lunge melee animation even when not in range of a target to lunge at
 | cannot be used by player | Weapon cannot be picked up by player, if held is dropped
 | hold fp firing animation | Unknown/Needs additional research
-| strict deviation angle | Disables bullet magnetism while keeping red reticle
+| strict deviation angle | Enables the ["deviation angle"](~weapon#weapon-aim-assist) field to be enforced when using values less than the ["autoaim angle"](~weapon#weapon-aim-assist), generally this flag and the deviation angle fields are ignored for non-vehicle weapons
 
 | Secondary flags | Description
 |-------|----------
 | magnetizes only when zoomed | Disables aim magnetism when unzoomed
 | force enable equipment tossing | Unknown/Needs additional research
-| non- lunge melee dash disabled | Disables lunge movement when enacting a melee on a target
+| non-lunge melee dash disabled | Disables lunge movement when enacting a melee on a target
 
 | Fields | Tag/data type | Description
 |-------|----------|--------------
@@ -158,7 +158,7 @@ This section defines weapon assist features to make target aquisition easier, es
 | magnetism angle | angle | Angle in which the game applies aim assist to controllers when aiming over a target within magnetism range
 | magnetism range | real | Maximum range in which the game will apply aim assist to controllers aiming over a target
 | magnetism falloff range | real | Range in which the strength of aim assist for controllers begins to fall off before maximum distance
-| deviation angle | angle | Funtions the same as "autoaim angle", but ignores the _[strict deviation angle](~weapon#flags)_ flag
+| deviation angle | angle | Seems to act as a limit on how far projectiles can be magnetized from point of aim towards a target, values less than the "autoaim angle" require the _[strict deviation angle](~weapon#flags)_ flag
 
 # Movement
 
