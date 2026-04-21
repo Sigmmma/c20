@@ -158,12 +158,12 @@ AI velocity scale is broken and **does not** scale the velocity of projectiles d
 | final velocity | real | The velocity of the projectile after it has passed through it's "acceleration range"
 | ai velocity scale (normal) | real | Scale on the projectiles velocity when fired by AI on normal
 | ai velocity scale (legendary) | real | Scale on the  projectile velocity when fired by AI on legendary, heroic is the average of both this and the normal difficulty value
-| guided angular velocity (lower) | real | The amount of tracking the projectile has when below it's "acceleration range" value, scales towards the upper value during the "acceleration range"
-| guided angular velocity (upper) | angle | The amount of tracking the projectile has when over it's "acceleration range" value
-| guided angular velocity at rest | angle | Amount of tracking the projectile has when it first begins to track a target, needs additional research
-| acceleration range | real | A set of two values that determines at how manu WU's into the projectiles flight it should begin changing velocity, and at what range to have completed this transition
+| guided angular velocity (lower) | angle | The lowest amount of tracking this projectile can randomly pick once it reaches it's minimum acceleration range, needs additional research
+| guided angular velocity (upper) | angle | The highest amount of tracking this projectile can randomly pick once it reaches it's minimum accleration range, needs additional research
+| guided angular velocity at rest | angle | Amount of tracking the projectile has before it reaches the minimum acceleration range before transitioning into the upper and lower values, needs additional research
+| acceleration range | real | A set of two values that determines at how many WU's into the projectiles flight it should begin changing velocity, and at what range to have completed this transition
 | targeted leading fraction | fraction | A value from 0 to 1 that determines how much leading a tracking projectile will attempt when tracking a moving target
-| guided projectile (outer range) error radius| real | A value that determines the magnitude by which a tracking projectile will **track away** from it's target, this magnitude is scaled by the angular velocity values, once this max magnitude has been reached, normal projectile tracking **torwards target** begins: assuming the projectile is close enough to begin tracking, needs additional research
+| guided projectile (outer range) error radius| real | A value that determines the radius by which a tracking projectile will **track near** it's target without hitting them, this range is scaled by the angular velocity values and target range, once this max range has been reached, normal projectile tracking **torwards target** begins: assuming the projectile is close enough to begin tracking, needs additional research
 | autoaim aiming max lead time | real | Unknown, needs additional research
 
 # Material Responses
