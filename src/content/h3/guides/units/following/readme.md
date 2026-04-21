@@ -25,12 +25,12 @@ Within sapien, scroll down to the AI section and click on objectives, click "new
 Open your new objective and assign it a default zone, give it a name you will recognize later and click "add" to create a new task
 ![View of the objective window](taskmake.jpg "Objectives are composed of tasks")
 
-Clicking on the task will allow you to edit properties such as it's name and allow clicking areas to assign them to this task
+Clicking on the task will allow you to edit properties such as its name and allow clicking areas to assign them to this task
 ![Window view of the task and its assigned areas](tasksetup.jpg "Tasks are composed of areas")
 
 # The task
-Within your new task, set the follow policy to your desired option and assign a follow radius (assumed in world units), remember; AI are not following a target between firing positions, but rather *between areas* inside the task
+Within your new task, set the follow policy to your desired option and assign a follow radius (assumed in world units). Remember, AI are not following a target between firing positions, but rather *between areas* inside the task
 ![Window view of task properties](taskprop.jpg "Who will the AI follow?")
 
 # The result
-In sapien under the AI section you can now go to your AI squad and assign them the new objective and task you just made, now save the scenario (ctrl + S), do a map reset (ctrl + R) and then place your AI squad down and observe your results
+In sapien under the AI section, you can now go to your AI squad and assign them the new objective and task you just made. Save the scenario (ctrl + S), do a map reset (ctrl + R) and place your AI squad down. Observe your results
