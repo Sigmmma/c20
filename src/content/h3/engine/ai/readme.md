@@ -77,7 +77,7 @@ AI will not register a danger value increase from silently fired projectiles, ev
 
 # Combat status and alertness
 
-AI in Halo 3 have levels of status that determine their action set and what they are currently doing or are going to do, we call these combat status' and there are 9 levels.
+AI in Halo 3 have levels of statuses that determine their action sets and what they are currently doing or are going to do, we call this the "combat status" and there are 9 levels.
 
 AI set to the player team will never fall below combat status 3, otherwise the lowest possible is determined by the global AI style tags for bunkering, assaulting and normal, these 3 styles are applied per task in [AI objectves](~objectives#tasks).
 
