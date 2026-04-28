@@ -142,3 +142,4 @@ Common commands that may be helpful for generalized debugging.
 | ai_render_targets | boolean | Renders a line from AI units onto their current target (or where they *think* their target is)
 | ai_debug_emotions | boolean | Renders the current danger level this AI unit is experiencing
 | ai_render_shooting | boolean | Renders data about how the AI is using their current weapon, like accuracy and rate of fire
+| ai_render_status_flags | boolean | Renders data about current behavior flags being set, useful for debugging if an AI is berserking
