@@ -9,6 +9,7 @@ const jsLang = require("highlight.js/lib/languages/javascript");
 const dosLang = require("highlight.js/lib/languages/dos");
 const clikeLang = require("highlight.js/lib/languages/c");
 const yamlLang = require("highlight.js/lib/languages/yaml");
+const rustLang = require("highlight.js/lib/languages/rust");
 const {consoleLang, hscLang} = require("./hsc");
 const vrmlLang = require("./vrml");
 import markdoc from "./markdoc";
@@ -27,6 +28,7 @@ hljs.registerLanguage("cmd", cmd);
 
 hljs.registerLanguage("yml", yamlLang);
 hljs.registerLanguage("c", clikeLang);
+hljs.registerLanguage("rs", rustLang);
 hljs.registerLanguage("hlsl", clikeLang);
 hljs.registerLanguage("plaintext", plaintextLang);
 hljs.registerLanguage("c#", cSharpLang);

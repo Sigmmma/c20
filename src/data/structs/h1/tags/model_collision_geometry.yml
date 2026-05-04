@@ -278,8 +278,7 @@ type_defs:
         comments:
           en: >
             Indicates if the surface is breakable. The surface must also have
-            a breakable surface index below.bit there cannot be more than 256
-            unique breakable surfaces in a BSP.
+            a [_breakable surface_ index](#tag-field-collision-bsp-surfaces-breakable-surface) below.
   ModelCollisionGeometryBSPSurface:
     class: struct
     assert_size: 12

@@ -1258,6 +1258,20 @@ type_defs:
           hek_max_count: 8192
       - name: cluster_data
         type: TagDataOffset
+        comments:
+          en: |
+            Contains the [cluster PVS](#potentially-visible-set), a symmetric lookup table of inter-cluster visibility.
+            The data structure can be thought of as a sequence of "rows", one per cluster. Each row is a wide bitfield
+            indicating which other clusters are visible, with the row length being the lowest multiple of 32 bits able
+            to hold the number of clusters in the BSP. For example, to test if cluster `a` can see cluster `b`:
+            ```rs
+            let row_size = num_clusters.div_ceil(32) * 4;
+            let col_index = b / 8;
+            let mask: u8 = 1 << (b % 8);
+            let visible = (data[a * row_size + col_index] & mask) != 0;
+            ```
+            For example, Timberland has 133 clusters. This means it needs 20 bytes per row (`5 * 32 = 160` bits).
+            At 20 bytes per cluster row, this gives `133 * 20 = 2660` total bytes of PVS data.
       - name: cluster_portals
         type: Block
         type_args:
