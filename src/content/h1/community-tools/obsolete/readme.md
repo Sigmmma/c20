@@ -173,7 +173,7 @@ You can use [invader-info](~) to determine if a map file's CRC32 checksum doesn'
 Directly editing tags in memory is a fast way to preview changes, but using [Standalone](~h1-standalone-build) and reloading a map after tag edits is nearly as fast.
 
 ## Prometheus
-**Prometheus** by the HaloDev team (Nick, Grenadiac, MonoxideC, CLuis, JamesD, Kornman, Talin64, rec0, ViperNeo) was a next-generation map editor aiming to support all editions of Halo 1 and Halo 2, building on the legacy of tools like SparkEdit and HMT. However, the project was never completed. Source code is available on [GitHub](https://github.com/HaloMods/Prometheus). A preview of this tool was featured in [_The Black Art of Halo Mods_][book].
+**Prometheus** by the HaloDev team (Nick, Grenadiac, MonoxideC, CLuis, JamesD, Kornman, Talin64, rec0, ViperNeo) was a next-generation map editor aiming to support all editions of Halo 1 and Halo 2, building on the legacy of tools like SparkEdit and HMT. However, the project was never completed. Source code is available on [GitHub](https://github.com/HaloMods/Prometheus). A preview of this tool was featured in [_The Black Art of Halo Mods_](https://www.proxeninc.net/Halo/Guides/BlackArtofHaloMods.pdf).
 
 # HEK mods
 ## LM_Tool
