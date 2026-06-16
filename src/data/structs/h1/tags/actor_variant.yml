@@ -240,8 +240,10 @@ type_defs:
         type: Angle
         comments:
           en: >-
-            Adds error on top of the weapon's own error. This makes actors fire
-            inaccurately.
+                Error angle in degrees for projectiles fired by the actor. A value of 0
+                will cause the actor to use the weapon's error values instead (i.e. the
+                projectile spread behavior will be the same as it is when the player is
+                using the weapon.
       - name: first_burst_delay_time
         type: Bounds
         meta:
