@@ -6,9 +6,8 @@ caption: >-
   [BSP](~h1/tags/scenario_structure_bsp) in [Blender](~).
 thanks:
   Halo PC End User Editing Kit Development Team: >-
-    Writing the original [HEK
-    tutorial](https://www.haloce.org/HEK_Tutorial/main/credits.html) which
-    documents many of these conventions
+    Writing the original [HEK tutorial](https://files.reclaimers.net/mirror/HEK_Tutorial/)
+    which documents many of these conventions
   Conscars: Seamsealer effects on cluster type, material symbol testing
 redirects:
   - /general/source-data/materials/h1-materials
