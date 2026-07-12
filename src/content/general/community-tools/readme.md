@@ -9,6 +9,7 @@ childOrder:
   - tagtool
   - shared-maps
   - baboon
+  - fontpackager
 ---
 Beyond just the official [mod tools](~) and any [art tools](~) you might need, there are a variety of community-made tools that have become de-factor standards or enable new workflows.
 
