@@ -3278,7 +3278,7 @@ functions:
         ```hsc
         (<void> ai_force_active <ai> <boolean>)
         ```
-        forces an encounter to remain active (i.e. not freeze in place) even if there are no players nearby
+        forces an encounter to remain active (i.e. not freeze in place) even if there are no players nearby, will also re-activate AI who have been made braindead
     net_safe_raw: unknown, assumed unsafe
   - slug: ai_force_active_by_unit
     info:
