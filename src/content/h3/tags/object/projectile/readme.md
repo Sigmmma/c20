@@ -93,7 +93,7 @@ Impact noise does not appear to be functional, and instead projectiles will use 
 | Fields | Tag/data type | Description
 |-------|----------|--------------
 | arming time | real | Projectile cannot detonate before this time: like preventing projectiles from blowing each other up too fast
-| danger radius | real | AI will try to avoid this projectile from this far away in WU
+| danger radius | real | AI will try to avoid this projectile from this far away in WU, when set to a non-zero value for attaching projectiles will trigger AI to use their "enemy stuck by grenade" dialoug when landing hits on a target
 | timer | real | A set of two values in seconds that the projectile will pick randomly between to wait before detonation, timer starts according to the "detonation timer starts" selection
 | minimum velocity | real | Projectile detonates when falling below this velocity
 | maximum range | real | Projectile detonates after having travelled this distance in world units

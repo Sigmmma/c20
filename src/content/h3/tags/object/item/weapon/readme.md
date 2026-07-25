@@ -91,7 +91,7 @@ This section is responsible for various properties and responses to weapon heat,
 | overheated threshold | real | From 0 to 1 determines at what level of heat the weapon becomes overheated, needs to be higher than the recovery threshold
 | heat detonation threshold | real | From 0 to 1 determines when the weapon is allowed to explode after surpassing the given value of heat
 | heat detonation fraction | real | From 0 to 1 determines the chance the weapon explodes when it's heat has surpassed the detonation threshold and it is fired
-| heat loss per second | real | From 0 to 1 determines how much heat the weapon loses while it is not being fired, or in- between firing
+| heat loss per second | real | From 0 to 1 determines how much heat the weapon loses while it is not being fired, or in-between firing
 | heat illumination | real | From 0 to 1 determines how much the illumination function is raised as the weapon gains heat
 | overheated heat loss per second | real | From 0 to 1 determines how much heat the weapon loses while it is in the overheated state, this state ends when the heat level reaches the recovery threshold
 | overheated | [sound](~) / [effect](~) | Effect or sound played when weapon enters overheated state or explodes due to trigger overcharge
@@ -441,7 +441,7 @@ When using the __fire recovery time__ field in the weapons barrel block, you are
 Common fire recovery time lookup table:
 
 | Fire recovery time value | Number of ticks between shots without overflow | Effective rounds per second
-|-------|----------
+|-------|--------|------
 | 0 to 0.033 | 4 | 12
 | 0.034 to 0.066 | 6 | ~8.57
 | 0.034* | 4 | 12
