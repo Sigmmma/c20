@@ -649,7 +649,40 @@ Lightmapping using the launcher should be more or less the same as lightmapping 
 
 ## Manually lightmapping using the command line
 
-The `faux_lightmap` and `faux_checkerboard` commands are meant to handle local single instance lightmaps but they are sadly currently broken. In principle you can invoke the same commands the launcher and the script invoke manually but this isn't recommended. In the interest of brevity it will not be discussed here - read the Python script if you are interested in how it works, it should be easy to understand as it's quite short.
+The `faux_lightmap` and `faux_checkerboard` commands are meant to handle local single instance lightmaps but they are sadly currently broken. In principle you can invoke the same commands the launcher and the script invoke manually but this isn't recommended. When running lightmaps manually make sure you use the command line for tool, instead of through guerilla as guerilla-invoked tool is sadly broken for this purpose.
+
+- scenario: path to your scenario starting past the tags folder (example: levels\multi\riverworld\riverworld)
+
+- bsp-name: name of the scenario structure bsp of the scenario you want to light (example: riverworld)
+
+- Client-index: which client do you want to open for this specific process, keep in mind this is linked to the client-count
+
+- Client-count: the total number of clients you want to spin up for this job (example: 8)
+
+- id: a number id for this job, can be whatever you want (example: 24112)
+
+- faux\id: path to this id folder from the faux folder inside your H3EK directory (example: faux\24112)
+
+```sh
+tool faux_data_sync <scenario> <bsp-name>
+tool faux_farm_begin <scenario> <bsp-name> <quality> <id>
+tool faux_farm_dillum <faux\id> <client-index> <client-count>
+tool faux_farm_dillum_merge <faux\id> <client-count>
+tool faux_farm_pcast <faux\id> <client-index> <client-count>
+tool faux_farm_pcast_merge <faux\id> <client-count>
+tool faux_farm_radest <faux\id> <client-index> <client-count>
+tool faux_farm_radest_merge <faux\id> <client-count>
+tool faux_farm_extillum <faux\id> <client-index> <client-count>
+tool faux_farm_extillum_merge <faux\id> <client-count>
+tool faux_farm_fgather <faux\id> <client-index> <client-count>
+tool faux_farm_fgather_merge <faux\id> <client-count>
+tool faux_farm_finish <faux\id>
+tool faux-build-linear-textures-with-intensity-from-quadratic <scenario> <bsp-name>
+tool faux-compress-scenario-bitmaps-dxt5 <scenario> <bsp-name>
+tool faux-farm-compression-merge <scenario> <bsp-name>
+```
+
+Note you can run the non-merge commands multiple times with different client indexes to spin up more than 1 client to speed up lightmapping, just open another instance of the command prompt and do the same command but with a different index, make sure your client count was set high enough to allow the number of instances you want.
 
 ## Disk usage
 

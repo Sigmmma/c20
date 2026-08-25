@@ -81,18 +81,18 @@ AI in Halo 3 have levels of statuses that determine their action sets and what t
 
 AI set to the player team will never fall below combat status 3, otherwise the lowest possible is determined by the global AI style tags for bunkering, assaulting and normal, these 3 styles are applied per task in [AI objectves](~objectives#tasks).
 
-| Status | Description
-|-------|----------
-| 0 | Braindead, asleep
-| 1 | idle
-| 2 | Active but not in combat
-| 3 | Active but no current targets (as far as the AI knows)
-| 4 | Searching for a target, AI is in search behavior and will search last known position of a target
-| 5 | Location of enemy known (unsure about this versus 6, also may apply if allies know where the enemy is but not this unit)
-| 6 | Location of enemy certain, usually the first status an AI drops to when they lose line-of-sight on a target, will quickly decay and drop to status 4
-| 7 | Direct line-of-sight on a target
-| 8 | Target has direct line-of-sight on this AI (and the AI is aware of the target) and/or AI is within 12 world units of the target
-| 9 | This AI is taking fire from a target or is within 2 world units to the target
+| Status | Name | Description
+|-------|------|-------
+| 0 | ai_combat_status_asleep | Braindead, asleep
+| 1 | ai_combat_status_idle | idle
+| 2 | ai_combat_status_alert| Active but not in combat
+| 3 | ai_combat_status_active | Active but no current targets (as far as the AI knows)
+| 4 | ai_combat_status_uninspected | Searching for a target, AI is in search behavior and will search last known position of a target
+| 5 | ai_combat_status_definite | Location of enemy known (unsure about this versus 6, also may apply if allies know where the enemy is but not this unit)
+| 6 | ai_combat_status_certain | Location of enemy certain, usually the first status an AI drops to when they lose line-of-sight on a target, will quickly decay and drop to status 4
+| 7 | ai_combat_status_visible | Direct line-of-sight on a target
+| 8 | ai_combat_status_clear_los | Target has direct line-of-sight on this AI (and the AI is aware of the target) and/or AI is within 12 world units of the target
+| 9 | ai_combat_status_dangerous | This AI is taking fire from a target or is within 2 world units to the target
 
 # Organization
 

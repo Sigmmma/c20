@@ -438,7 +438,7 @@ external_globals:
         (chud_debug_crosshair [boolean])
         ```
 
-        When enabled, displays weapon autoaim circle (blue) and current max error at 0.5 WU circle (yellow) 
+        When enabled, displays weapon autoaim circle (blue) and current max error at half-size (yellow) 
   - slug: chud_debug_metagame
     info:
       en: |-
@@ -595,6 +595,8 @@ external_globals:
         ```hsc
         (cheat_chevy [boolean])
         ```
+
+        When enabled, all vehicles are invincible and take no damage from any source, driver and passengers will still take transfer damage
   - slug: effects_corpse_nonviolent
     info:
       en: |-
@@ -3817,6 +3819,8 @@ external_globals:
         ```hsc
         (ai_render_speech [boolean])
         ```
+
+        When enabled, will display vocaliation entries for AI when they converse
   - slug: ai_render_leadership
     info:
       en: |-
@@ -4439,6 +4443,8 @@ external_globals:
         ```hsc
         (ai_debug_combat_status [boolean])
         ```
+
+        Renders the combat status of AI units, as well as the highest prop class this unit has registered
   - slug: ai_render_tracked_props
     info:
       en: |-
@@ -4543,6 +4549,8 @@ external_globals:
         ```hsc
         (ai_render_firing_position_info [boolean])
         ```
+
+        When used with "ai_render_all_actors", overlays firing positions in different colors, unknown parameters
   - slug: ai_inspect_avoidance_failure
     info:
       en: |-

@@ -421,7 +421,7 @@ Defines **how** the current barrel fires.
 | deacceleration time | real | Time taken in seconds for the barrel to transition the rounds per second value from the last value to the first value at a constant rate once the barrel stops firing (rate of fire itself may not change due to invalid values but they are still used to fill time)
 | barrel spin scale | real | Scales the "barrel_spin" function by a mutiplicative value from 0 to 1, 0 is equal to 1 as the barrel fires
 | blurred rate of fire | real | Unknown/Needs additional research
-| shots per fire | short | The number of rounds this barrel will fire, spew weapons normally use a value of 0, but the trigger type forces them to fire 2 times
+| shots per fire | short | The number of rounds this barrel will fire, spew weapons normally use a value of 0, but the trigger type forces them to fire 2 times, using a value >0 causes spew weapons to fire bursts of this number of shots after the fire recovery time (using rounds per second for the burst)
 | fire recovery time | real | Value in seconds that defines how long the barrel must wait after firing a shot before another shot can be fired, adheres to limitations based on tick rate so some values may not work and will round up to nearest correct value
 | soft recovery fraction | real | A value from 0 to 1 that defines how much of the fire recovery time you can input a fire request and the game saves and plays it when the fire recovery ends, even if the player has stopped the fire request input
 | magazine | index | This selection is a dropdown that gives a selection of open magazine blocks to be used for *rounds per shot*: NONE, Primary or Secondary
@@ -455,7 +455,10 @@ Common fire recovery time lookup table:
 | 0.134 to 0.19 | 12 | ~4.61
 | 0.2 | 14 | 4
 | 0.27 | 19 | 3
+| 0.27* | 18 | ~3.15
+| 0.28* | 18 | ~3.15
 | 0.28 | 20 | ~2.85
+| 0.2834 | 19 | 3
 | 0.33 | 22 | ~2.6
 | 0.34 | 22 | ~2.6
 | 0.5 | 33 | ~1.81
@@ -464,7 +467,7 @@ Common fire recovery time lookup table:
 *soft recovery fraction is 0
 
 {% alert %}
-Fire recovery time will wait the full duration of ticks before letting you fire, so a value of 0.066 means you will fire on the 7th tick, while a rounds per second value of 10 will have the weapon wait 5 ticks before firing on the 6th
+Fire recovery time will wait the full duration of ticks before letting you fire, so a value of 0.066 means you will fire on the 7th tick after waiting for 6, while a rounds per second value of 10 will have the weapon wait 5 ticks before firing on the 6th
 {% /alert %}
 
 ## Prediction and noise
