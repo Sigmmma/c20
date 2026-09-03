@@ -427,7 +427,7 @@ Defines **how** the current barrel fires.
 | magazine | index | This selection is a dropdown that gives a selection of open magazine blocks to be used for *rounds per shot*: NONE, Primary or Secondary
 | rounds per shot | short | The number of rounds to be expended from the associated magazine by this barrel when this barrel is fired
 | minimum rounds loaded | short | The number of rounds needed to fire this barrel, after firing the barrel and going below this value a reload is forced, ignores firing with partial ammo flag
-| rounds between tracers | short | Value that feeds into a projectile function called "tracer" that sets the function to zero for the duration of the number of shots of the value found here (A value here of 1 means the tracer function turns fully on and then fully off after every shot)
+| rounds between tracers | short | Value that feeds into a projectile function called "tracer" that sets the function to zero for the duration of the number of shots of the value found here (A value here of 1 means the tracer function turns fully on and then fully off after every shot), using this for attached effects on projectiles seems depreciated
 | optional barrel marker name | string | Overrides the default trigger marker name with whatever is entered here to use as the barrel marker for projectile origin (when not being fired from player or biped camera)
 
 ## Weapon firerate bonus info
