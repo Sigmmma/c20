@@ -102,8 +102,8 @@ Pictured: The entire fields section
 | active camouflage damage | real | needs additional research
 | stun | real | Defines the % of stun to apply to a player in MP for movement and aiming stun purposes, per individual instance of damage
 | maximum stun | real | Defines the maximum % of stun a player being effected by this damage can achieve, functional upper limit defined by the [globals](~) tag
-| stun time | real | needs additional research
-| instantaneous acceleration | real | needs additional research
+| stun time | real | needs additional research, assumed amount of stun time this instance of damage will apply for, independant of other stun time timers.
+| instantaneous acceleration | real | The amount of knockback force this damage effect will apply, needs additional research
 | rider direct damage scale | real | The ratio of damage dealt to vehicle occupants when they are hit by a [projectile](~) impact containing this damage effect, ratio example: 0.6 = 60%
 | rider maximum transfer damage | real | The ratio of damage dealt to vehicle occupants when nearby parts of a vehicle are hit (according to the [model](~) tag damage seat transfer radius), damage is passed through *this* transfer ratio first and then through the damage seat scale in the vehicles [model](~) tag, before finally being passed onto the unit
 | rider minimum transfer damage | real | The ratio of damage dealt to vehicle occupants when any part of the vehicle not within the [damage seat transfer radius](~model) is hit, uses this ratio first, then the vehicle damage seat scale before passing the final damage onto the rider

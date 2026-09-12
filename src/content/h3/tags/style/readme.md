@@ -28,7 +28,7 @@ The style tag allows us to enable or disable behaviors entirely, allowing us to 
 | destroy_obstacle | 9 | Requires research
 | perch | 10 | Requires research
 | cover_friend | 11 | Requires research 
-| blind_panic | 12 | When enabled, AI will panic and run around in terror when stuck with any attaching projectile with the [_AI stimulus when attached_ flag](~projectile#flags),
+| blind_panic | 12 | When enabled, AI will panic and run around in terror when stuck with any attaching projectile with the [_AI stimulus when attached_ flag](~projectile#flags), needs additional research
 | combat | 13 | Requires research
 
 # Broken
@@ -72,7 +72,7 @@ Behaviors relating to the underlings in a squad when their leader is killed
 # Berserk 
 | Berserk flags | Index | Description
 |-------|-------|---------
-| BERSERK | 41 | Requires research
+| BERSERK | 41 | Requires research, when enabled will disable shield_depleted_berserk unless the perimeter flag is enabled
 | shield_depleted_berserk | 42 | When enabled, forces AI to berserk upon shield depletion
 | last_man_berserk | 43 | When enabled, the last man standing in a squad will berserk
 | stuck_with_grenade_berserk | 44 | When enabled, AI will berserk when stuck with any attaching projectile with the [_AI stimulus when attached_ flag](~projectile#flags), make sure the _blind_panic_ flag is disabled

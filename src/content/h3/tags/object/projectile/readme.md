@@ -86,7 +86,7 @@ Impact noise does not appear to be functional, and instead projectiles will use 
 
 | Fields | Description
 |-------|----------
-| collision radius (real) | Unknown/Needs additional research
+| collision radius (real) | Causes this projectile to call an additional check to collide with [units](~unit) when within this radius, very inconsistent behavior, needs more research
 
 # Detonation
 

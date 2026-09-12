@@ -165,7 +165,7 @@ debug_structure_slip_surfaces 1
 ```
 
 ## Soft ceilings
-Objects that are set as soft ceilings will produce invisible barriers that prevent users from walking past the facing normal. If a user somehow ends up on the other side of one then walking near one will allow the user back into the play space. The format for these are as follows:
+Objects that are set as soft ceilings will produce invisible barriers that prevent users from walking past the facing normal. If a user somehow ends up on the other side of one then walking near one will allow the user back into the play space. When used in the same blend file as the level itself, ensure these are separate objects still parented to the level root. The format for these are as follows:
 
 `+soft_ceiling:main_barrier`
 
@@ -202,7 +202,7 @@ There are four aspects to this name so lets break this down.
 
 [wiki-polyhedron]: https://en.wikipedia.org/wiki/Convex_polytope
 
-## Seams
+# Seams
 
 Seams connect BSPs together. Surfaces that are set as a seam surface will connect to another seam surface if the two surfaces are identical (including triangulation) and occupy the same space. The easiest way to do this in Blender is to use the magnetic snapping tool set to edge mode and sliding the surfaces together on an axis. A seam can only connect two BSPs.
 
@@ -225,7 +225,7 @@ Now the `example_seams.structure_seams` file can be referenced in the scenario u
 
 ![](example_seams_scenario.png "Your structure seams should be in your scenario")
 
-### Zone Sets
+## Zone Sets
 
 Now that seams have been added to the scenario, you must create `zone sets`. Zone sets specify which bsps will be loaded as a player progresses and can be triggered through scripting and trigger volumes. For example, if the player starts in `zone_set_a` that has `bsp_j` and `bsp_k` loaded, and the player progresses to `zone_set_b` that has `bsp_k` and `bsp_l` loaded, `zone_set_a` will switch to `zone_set_b`. There are also zone sets that have all bsps marked to be loaded at once for debugging purposes.
 
