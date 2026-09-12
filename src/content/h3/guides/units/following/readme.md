@@ -9,7 +9,7 @@ keywords:
 thanks:
   odchylanie_uderzenia: writing and research
 ---
-This guide provides general info on how to set up AI to follow you around a level, this guide assumes you have basic understanding of navigating [sapien](~), [pathfinding](~) and the [objective](~) system, as having these is very useful.
+This guide provides general info on how to set up AI to follow you around a level, this guide assumes you have basic understanding of navigating [sapien](~H3-sapien), [pathfinding](~) and the [objective](~objectives) system, as having these is very useful.
 
 # The squad
 Within sapien scroll down to the AI section, click on the squads option and then click `New instance`
