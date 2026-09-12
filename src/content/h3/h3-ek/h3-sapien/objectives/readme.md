@@ -142,7 +142,7 @@ name (string): The name of this task
 | capacity | int | The forced number of units in a squad in order to enter this task, if a squad does not fall within the bounds, it cannot enter this task (killing units does work to reduce the squad size)
 | max body count | int | This task becomes inactive after this number of units inside the task have died
 | style | enum | Use the objective UI to set this, allows you to set the preferred global style tag for AI who enter this task, vanilla uses `normal`, `bunkering` and `assaulting`
-| min strength | real | This task will become inactive when a squad that enters it loses enough total vitality to surpass this threshold (0.5 = 50% of max vitality) 
+| min strength | real | This task will become inactive when a squad that enters it loses enough total body vitality to surpass this threshold (0.5 = 50% of max body vitality), shields and regions that absorb damage will not count towards this ratio, only base body vitality 
 
 ## Areas
 
