@@ -110,6 +110,10 @@ When changing the order of tasks, with a task selected hold {% key "Ctrl+Arrow K
 | Squad group filter | Selection | This field accepts a created squad-group entry to filter entry into this task
 | Dialogue Type | Enum | A selection of pre-defined dialogue responses that a unit will play when it enters this task
 
+{% alert type="info" %}
+When directing a task into follow behavior, note that following is between areas and not between firing points
+{% /alert %}
+
 # Pureform distribution
 
 | Field | Data type | Description
@@ -136,9 +140,9 @@ name (string): The name of this task
 | filter flag | flag | This flag detetmines if the filter flag below is actually in effect
 | filter | enum | Sets a pre-defined filter that blocks anything *but* the filter target, if a squad contains a foridden unit the entire squad is locked out
 | capacity | int | The forced number of units in a squad in order to enter this task, if a squad does not fall within the bounds, it cannot enter this task (killing units does work to reduce the squad size)
-| max body count | This task becomes inactive after this number of units inside the task have died
+| max body count | int | This task becomes inactive after this number of units inside the task have died
 | style | enum | Use the objective UI to set this, allows you to set the preferred global style tag for AI who enter this task, vanilla uses `normal`, `bunkering` and `assaulting`
-| min strength | real | This task will become inactive when a squad that enters it loses enough members to fall below this percentage of
+| min strength | real | This task will become inactive when a squad that enters it loses enough total vitality to surpass this threshold (0.5 = 50% of max vitality) 
 
 ## Areas
 
