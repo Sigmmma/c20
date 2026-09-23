@@ -7,8 +7,11 @@ keywords:
   - tool
   - lightmap
   - cli
+  - cmd
 thanks:
   Abstract Ingenuity: Documentation about verbs for compilation of animation data
+  odchylanie_uderzenia: Documenting some shader verbs
+  camden.smallwood: Information on verbs and their function
 ---
 **H3-Tool** (**tool.exe**), is a [command-line](~) utility used to compile data into [tags](~intro#tags), and tags into [maps](~map). It was released as a part of the [Halo 3 Editing Kit](~h3-ek) by 343 Industries in 2021.
 
@@ -664,6 +667,7 @@ The `faux_lightmap` and `faux_checkerboard` commands are meant to handle local s
 - faux\id: path to this id folder from the faux folder inside your H3EK directory (example: faux\24112)
 
 ```sh
+# Run these commands in this order
 tool faux_data_sync <scenario> <bsp-name>
 tool faux_farm_begin <scenario> <bsp-name> <quality> <id>
 tool faux_farm_dillum <faux\id> <client-index> <client-count>
@@ -771,6 +775,62 @@ Use this verb to import first-person animations without compression.
 # fp-model-animations-uncompressed <source-directory> <character-directory> <weapon-directory>
 tool fp-model-animations-uncompressed "objects\characters\masterchief\fp\weapons\rifle\fp_assault_rifle" "objects\characters\masterchief\fp" "objects\weapons\rifle\assault_rifle\fp_assault_rifle"
 ```
+
+# Generate Shared Shaders
+This command compiles shared shaders, setting up the global vertex and pixel shader tags
+
+```sh
+# generate-shared-shaders <debug-(optional)> <pdb-path-(optional)> <platform> <render-method-definition>
+tool generate-shared-shaders "win shaders\shader"
+```
+
+# Generate Specified Template
+This command compiles a specified template only, very useful for quick edits and fixes without generating *all* templates (which takes very long and is hard to debug issues for)
+
+You can find the template name by opening your shader tag while holding {% key "Alt" /%}, scroll down to **postprocess** and your template will be listed. You can also manually math out your template name by counting the index option of each category (Example being the 3rd option in the albedo category would be index number 2, since we start with number 0)
+
+Category list:
+- albedo
+- bump_mapping
+- alpha_test
+- specular_mask
+- material_model
+- environment_mapping
+- self_illumination
+- blend_mode
+- parrallax
+- misc
+- distortion
+- soft_fade
+- misc_attr_animation
+
+
+```sh
+# generate-shared-shaders <debug-(optional)> <pdb-path-(optional)> <platform> <render-method-definition> <template-name>
+tool generate-shared-shaders "win shaders\shader _3_1_0_1_17_2_0_0_0_0_0_0_0"
+```
+
+# Generate Templates
+This command compiles batches of templates to be used for shaders, compiling a template caches it so the shader does not need to be compiled at runtime, will also run `generate-shared-shaders` as well
+
+```sh
+# generate-templates <platform> <render-method-definition>
+tool generate-templates "win shaders\shader"
+```
+
+## Method Definition Types
+- shader
+- halogram
+- terrain
+- foliage
+- water
+- custom
+- decal
+- cortana
+- particle
+- contrail
+- light_volume
+- beam
 
 # Import Bitmap Folder as Single Tag
 This command compiles multiple .tif files from a folder into a single .bitmap tag.
@@ -982,19 +1042,27 @@ Structure compilation converts the raw polygon and materials data from the ASS i
 
 Multiple ASS files can be placed in a level's `structure` directory for multiple BSPs (used for large singleplayer levels). Each ASS will be compiled into a separate structure BSP and added to the scenario.
 
+# Write out for hlsl files
+This command recompiles hlsl files from their source files in the `H3EK/source/rasterizer/hlsl` directory if they have been altered from the existing tag data
+
+```sh
+# structure <ass-file>
+tool write-out-hlsl-include-files
+```
+
 # Broken and development commands
 Not all commands work or are of any use to anyone anymore. They are listed here for completeness but shouldn't be used.
 
-- `faux-unit-tests` - [Unit tests](unit-testing) for the lightmapping process. Currently these fail for an unknown reason but even if they succeeded they wouldn't be useful for end users.
+- `faux-unit-tests` - [Unit tests][unit-testing] for the lightmapping process. Currently these fail for an unknown reason but even if they succeeded they wouldn't be useful for end users.
 - `dump-tag-table` - Broken/doesn't do anything. Intended use is unknown.
 - `cubemap-farm-new` - This command does not work. Was intended to run a farm setup for generating cubemaps to be used by dynamic cubemap enabled shaders.
 - `crash` - Intentionally induces a crash to test the crash reporting subsystem. Crash types: `test_fatal_error`, `assert`, `now` and `halt`
 - `progress-quest` - Doesn't do anything other than display a progress bar.
 - `old-physics` - Doesn't do anything at all.
 - `convert-tag-files-pilot` - Doesn't work anymore as it tries to use a removed backend.
-- `analyze-dvd-cache-files` - H3 no longer runs of a DVD.
+- `analyze-dvd-cache-files` - H3 no longer runs off a DVD.
 - `build-cache-file-verify-dvd-layouts` - ...
-- `analyze-shader` - Is meant to analyse shader performance but it doesn't work since it was designed for [Xenon](xenon).
+- `analyze-shader` - Is meant to analyse shader performance but it doesn't work since it was designed for [Xenon][xenon].
 - `analyze-shaders` - Runs out of 32-bit addressable memory and crashes.
 - `faux_checkerboard`- is meant to compile checkboard quality lightmaps but it crashes for unknown reasons.
 - `export-structure-mesh` - This command has not been updated for DX11. Avoid this command.
@@ -1388,6 +1456,15 @@ tool create-custom-network-variant-file
 tool create-network-hopper-file
 ```
 
+## Data Access Unit Tests
+Outputs a `gamestate.txt` file containing information about (assumed) current game state data, not very useful
+
+```sh
+# data-access-unit-tests
+tool data-access-unit-tests
+```
+
+
 ## Dump cache resource gestalt
 ???
 
@@ -1469,6 +1546,9 @@ tool export-xenon-bitmap-pfm
 
 * bitmap-tag - ???
 * output-path-prefix - ???
+
+# Faux Verbs
+These aren't super useful to know unless you want to run lightmapping manually, in which case refer to the [lightmapping guide](~#baking-lightmaps-faux)
 
 ## Faux build linear textures-with intensity from quadratic
 ???

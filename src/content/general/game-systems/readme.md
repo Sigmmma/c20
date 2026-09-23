@@ -12,7 +12,7 @@ This page will serve as a home for general concepts and systems shared across ga
 
 # Data types
 
-This guide provides general info on data types commonly used in tag editing and [scripting](~general/scripting) within the halo mod tools, intended to serve as an introduction and explain the logic behind each type.
+This section provides general info on data types commonly used in tag editing and [scripting](~general/scripting) within the halo mod tools, intended to serve as an introduction and explain the logic behind each type.
 
 ![Example image of some types of data](examplereal.jpg "In blue is real, yellow is real as a fraction and in red is string")
 
@@ -67,3 +67,17 @@ Some fields will ask for a string entry, this is where you can type normal words
 ## Void
 
 When declaring a script you may be asked for a return type upon script completion, in some cases `short` or `real` may be used, or you may choose to have no return type, in the case of the last option this is done by declaring a `void` return.
+
+# Autoaim
+
+This section will contain information related to how the Blam engine handles bullet magnetism (internally called autoaim), note that there are differences between each engine and this is only a *general* overview.
+
+## Weapons
+Autoaim is determined by the weapon being held, as [weapon tags](~h3/tags/object/item/weapon#weapon-aim-assist) will define angles and ranges by which autoaim is enabled and at what level of strength it should be acting at, determined by your camera position to another unit. This logic will cause the [projectiles](~h3/tags/object/projectile) fired from your weapon to have their spawn angle changed. if autoaim is at full strength they will changed so that their spawn angle will take them directly towards a target, otherwise it will be dragged towards them relative to strength until falling off entirely and not effecting projectiles at all.
+
+![Example image of H3 weapon tag autoaim fields](exampleaa.jpg "")
+
+## Bipeds
+[Bipeds](~h1/tags/units/biped) are what autoaim is used on, for Combat Evolved this is represented by a pill shape over the biped in which projectiles will be dragged towards the pelvis and head nodes. Every game after insteads use render model markers (now becoming target markers), from these, spheres are created with strength and size data pulled from the [model](~h3/tags/object/model) tag, projectiles are magnetized towards these spheres. H2+ also allows certain target markers to be marked as headshottable, making projectiles that can headshot have priority towards these markers.
+
+![Example image of H3 model tag targets](examplemt.jpg "")

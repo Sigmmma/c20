@@ -1,0 +1,14 @@
+entry_type: Item
+imports:
+  h3/tags/object:
+    - Object
+    - ObjectFunctionIn
+  h3/tags/common:
+    - Index
+    - TagDependency
+type_defs:
+  Item:
+    class: struct
+    fields:
+      - name: test
+        type: uint8
