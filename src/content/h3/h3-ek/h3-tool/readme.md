@@ -806,8 +806,8 @@ Category list:
 
 
 ```sh
-# generate-shared-shaders <debug-(optional)> <pdb-path-(optional)> <platform> <render-method-definition> <template-name>
-tool generate-shared-shaders "win shaders\shader _3_1_0_1_17_2_0_0_0_0_0_0_0"
+# generate-specified-template <debug-(optional)> <pdb-path-(optional)> <platform> <render-method-definition> <template-name>
+tool generate-specified-template "win shaders\shader _3_1_0_1_17_2_0_0_0_0_0_0_0"
 ```
 
 # Generate Templates
@@ -831,6 +831,14 @@ tool generate-templates "win shaders\shader"
 - contrail
 - light_volume
 - beam
+
+# Generate Templates Partial
+This command compiles batches of templates to be used for shaders, however, unlike the base command instead of selecting a whole method type you define a template name within a method type.*All* templates that contain the entered string will be compiled.
+
+```sh
+# generate-templates-partial <render-method-definition> <platform> <template>
+tool generate-templates-partial "shaders\shader win _3_1_0_1_3"
+```
 
 # Import Bitmap Folder as Single Tag
 This command compiles multiple .tif files from a folder into a single .bitmap tag.
