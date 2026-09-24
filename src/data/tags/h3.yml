@@ -1,160 +1,724 @@
 # ids have not been checked, so ignore for now
 ai_dialogue_globals:
+  structName: Stub
+  structModule: h3/stub
   #id: adlg
+  parentName: 
+  description:
+    en: >
+      Unfinished
 ai_mission_dialogue:
+  structName: Stub
+  structModule: h3/stub
   #id: mdlg
+  parentName: 
+  description:
+    en: >
+      Unfinished
 antenna:
+  structName: Stub
+  structModule: h3/stub
   #id: ant_
+  parentName: 
+  description:
+    en: >
+      Unfinished
 area_screen_effect:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 beam_system:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 bink:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 biped:
-  #id: bipd
+  structName: Stub
+  structModule: h3/stub
   parentName: unit
+  #id: bipd
+  description:
+    en: >
+      Basic "body" for AI units to inhabit
 bitmap:
+  structName: Stub
+  structModule: h3/stub
   #id: bitm
+  parentName: 
+  description:
+    en: >
+      Unfinished
 breakable_surface:
+  structName: Stub
+  structModule: h3/stub
   #id: bsdt
+  parentName: 
+  description:
+    en: >
+      Unfinished
 cache_file_resource_gestalt:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 cache_file_resource_layout_table:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 cache_file_sound:
+  structName: Stub
+  structModule: h3/stub
   #id: shit
+  parentName: 
+  description:
+    en: >
+      Unfinished
 camera_fx_settings:
+  structName: Stub
+  structModule: h3/stub
   description:
     en: >
       Post-processing screen effects like bloom and exposure that can be
       assigned to a [BSP cluster](~scenario_structure_bsp#clusters).
 camera_track:
+  structName: Stub
+  structModule: h3/stub
   #id: trak
+  parentName: 
+  description:
+    en: >
+      Unfinished
 cellular_automata:
+  structName: Stub
+  structModule: h3/stub
   #id: devo
+  parentName: 
+  description:
+    en: >
+      Unfinished
 cellular_automata2d:
+  structName: Stub
+  structModule: h3/stub
   #id: whip
+  parentName: 
+  description:
+    en: >
+      Unfinished
 character:
+  structName: Stub
+  structModule: h3/stub
   #id: char_
+  parentName: 
+  description:
+    en: >
+      Unfinished
 chocolate_mountain_new:
+  structName: Stub
+  structModule: h3/stub
   #id: gldf
+  parentName: 
+  description:
+    en: >
+      Unfinished
 chud_animation_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 chud_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 chud_globals_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 cinematic:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 cinematic_scene:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 cloth:
+  structName: Stub
+  structModule: h3/stub
   #id: clwd
+  parentName: 
+  description:
+    en: >
+      Unfinished
 collision_damage:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 collision_model:
+  structName: Stub
+  structModule: h3/stub
   #id: coll
+  parentName: 
+  description:
+    en: >
+      Unfinished
 color_table:
+  structName: Stub
+  structModule: h3/stub
   #id: colo
+  parentName: 
+  description:
+    en: >
+      Unfinished
 compute_shader:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 contrail_system:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 cortana_effect_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 crate:
+  structName: Stub
+  structModule: h3/stub
   #id: bloc
   parentName: obje
+  description:
+    en: >
+      Unfinished
 creature:
+  structName: Stub
+  structModule: h3/stub
   #id: crea
+  parentName: 
+  description:
+    en: >
+      Unfinished
 damage_effect:
+  structName: Stub
+  structModule: h3/stub
   #id: jpt_
+  parentName: 
+  description:
+    en: >
+      Unfinished
 damage_response_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 decal_system:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 decorator_set:
+  structName: Stub
+  structModule: h3/stub
   #id: DECR
+  parentName: 
+  description:
+    en: >
+      Unfinished
 detail_object_collection:
+  structName: Stub
+  structModule: h3/stub
   #id: dobc
+  parentName: 
+  description:
+    en: >
+      Unfinished
 device_control:
+  structName: Stub
+  structModule: h3/stub
   #id: ctrl
   parentName: devi
+  description:
+    en: >
+      Unfinished
 device_machine:
+  structName: Stub
+  structModule: h3/stub
   #id: mach
-  parentName: devi
+  parentName: devi 
+  description:
+    en: >
+      Unfinished
 device_terminal:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 device:
+  structName: Stub
+  structModule: h3/stub
   #id: devi
   parentName: obje
+  description:
+    en: >
+      Unfinished
 dialogue:
+  structName: Stub
+  structModule: h3/stub
   #id: udlg
+  parentName: 
+  description:
+    en: >
+      Unfinished
 effect:
+  structName: Stub
+  structModule: h3/stub
   #id: effe
+  parentName: 
+  description:
+    en: >
+      Unfinished
 effect_globals:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 effect_scenery:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 equipment:
+  structName: Stub
+  structModule: h3/stub
   #id: eqip
   parentName: item
+  description:
+    en: >
+      Unfinished
 flock:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 fluid_dynamics:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 fragment:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 game_engine_settings_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 giant:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 global_pixel_shader:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 global_vertex_shader:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 globals:
+  structName: Stub
+  structModule: h3/stub
   #id: matg
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_bitmap_widget_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_button_key_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_datasource_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_group_widget_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_list_widget_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_model_widget_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_screen_widget_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_skin_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_text_widget_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_widget_animation_collection_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_widget_animation_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_widget_color_animation_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_widget_font_animation_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_widget_position_animation_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_widget_rotation_animation_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_widget_scale_animation_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_widget_sprite_animation_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 gui_widget_texture_coordinate_animation_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 hlsl_include:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 item_collection:
+  structName: Stub
+  structModule: h3/stub
   #id: itmc
+  parentName: 
+  description:
+    en: >
+      Unfinished
 item:
+  structName: Stub
+  structModule: h3/stub
   #id: item
   parentName: obje
+  description:
+    en: >
+      Unfinished
 leaf_system:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 lens_flare:
+  structName: Stub
+  structModule: h3/stub
   #id: lens
+  parentName: 
+  description:
+    en: >
+      Unfinished
 light:
+  structName: Stub
+  structModule: h3/stub
   #id: ligh
+  parentName: 
+  description:
+    en: >
+      Unfinished
 light_volume_system:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 material_effects:
+  structName: Stub
+  structModule: h3/stub
   #id: foot
+  parentName: 
+  description:
+    en: >
+      Unfinished
 meter:
+  structName: Stub
+  structModule: h3/stub
   #id: metr
+  parentName: 
+  description:
+    en: >
+      Unfinished
 model:
+  structName: Stub
+  structModule: h3/stub
   #id: hlmt
+  parentName: 
+  description:
+    en: >
+      Unfinished
 model_animation_graph:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 mouse_cursor_definition:
+  structName: Stub
+  structModule: h3/stub
   #id: mcsr
+  parentName: 
+  description:
+    en: >
+      Unfinished
 muffin:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
   description:
     en: >
       Describes the animated growths that appear on a biped's body as it
       transitions into a flood form.
 multilingual_unicode_string_list:
+  structName: Stub
+  structModule: h3/stub
   #id: unic
+  parentName: 
+  description:
+    en: >
+      Unfinished
 multiplayer_globals:
+  structName: Stub
+  structModule: h3/stub
   #id: mulg
+  parentName: 
+  description:
+    en: >
+      Unfinished
 multiplayer_scenario_description:
+  structName: Stub
+  structModule: h3/stub
   #id: mply
+  parentName: 
+  description:
+    en: >
+      Unfinished
 multiplayer_variant_settings_interface_definition:
+  structName: Stub
+  structModule: h3/stub
   #id: goof
+  parentName: 
+  description:
+    en: >
+      Unfinished
 new_cinematic_lighting:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 object:
+  structName: Object
+  structModule: h3/tags/object
   #id: obje
+  parentName: 
+  description:
+    en: >
+      Unfinished
 particle:
+  structName: Stub
+  structModule: h3/stub
   #id: prt3
+  parentName: 
+  description:
+    en: >
+      Unfinished
 particle_model:
+  structName: Stub
+  structModule: h3/stub
   #id: PRTM
+  parentName: 
+  description:
+    en: >
+      Unfinished
 particle_physics:
+  structName: Stub
+  structModule: h3/stub
   #id: pmov
+  parentName: 
+  description:
+    en: >
+      Unfinished
 patchy_fog:
+  structName: Stub
+  structModule: h3/stub
   #id: fpch
+  parentName: 
+  description:
+    en: >
+      Unfinished
 performance_throttles:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 physics_model:
+  structName: Stub
+  structModule: h3/stub
   #id: phmo
   description:
     en: >
@@ -162,141 +726,616 @@ physics_model:
       collides with players and the environment. Typically
       a simplified, blocked-out version of the render mesh.
 physics:
+  structName: Stub
+  structModule: h3/stub
   #id: phys
+  parentName: 
+  description:
+    en: >
+      Unfinished
 pixel_shader:
+  structName: Stub
+  structModule: h3/stub
   #id: pixl
+  parentName: 
+  description:
+    en: >
+      Unfinished
 planar_fog:
+  structName: Stub
+  structModule: h3/stub
   #id: fog
+  parentName: 
+  description:
+    en: >
+      Unfinished
 point_physics:
+  structName: Stub
+  structModule: h3/stub
   #id: pphy
+  parentName: 
+  description:
+    en: >
+      Unfinished
 projectile:
+  structName: Stub
+  structModule: h3/stub
   #id: proj
   parentName: obje
+  description:
+    en: >
+      Unfinished
 rasterizer_cache_file_globals:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 rasterizer_globals:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 render_method_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 render_method_option:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 render_method_template:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 render_model:
+  structName: Stub
+  structModule: h3/stub
   #id: mode
+  parentName: 
+  description:
+    en: >
+      Unfinished
 render_skins_object_globals:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 render_water_ripple:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sandbox_text_value_pair_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario:
+  structName: Stub
+  structModule: h3/stub
   #id: scnr
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_ai_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srai
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_bipeds_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srbipd
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_cinematics_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srcine
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_cluster_data_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srclut
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_comments_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srcmmt
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_creature_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srcrea
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_cubemap_resource:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_decals_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srdeca
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_decorators_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srdcrs
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_devices_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srdgrp
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_effect_scenery_resource:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_equipment_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: sreqip
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_faux_data:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_hs_source_file:
+  structName: Stub
+  structModule: h3/stub
   #id: srhscf
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_lightmap:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_lightmap_bsp_data:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_lights_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srligh
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_required_resource:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_scenery_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srscen
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_sky_references_resource:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_sound_scenery_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srssce
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_structure_bsp:
+  structName: Stub
+  structModule: h3/stub
   #id: sbsp
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_structure_lighting_info:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_structure_lighting_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srsslt
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_structure_lightmap:
+  structName: Stub
+  structModule: h3/stub
   #id: ltmp
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_trigger_volumes_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srtrgr
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_vehicles_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srvehi
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenario_weapons_resource:
+  structName: Stub
+  structModule: h3/stub
   #id: srweap
+  parentName: 
+  description:
+    en: >
+      Unfinished
 scenery:
+  structName: Stub
+  structModule: h3/stub
   #id: scen
   parentName: obje
+  description:
+    en: >
+      Unfinished
 shader:
+  structName: Stub
+  structModule: h3/stub
   #id: shad
+  parentName: 
+  description:
+    en: >
+      Unfinished
 shader_cortana:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 shader_custom:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 shader_decal:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 shader_foliage:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 shader_halogram:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 shader_skin:
+parentName: 
+  description:
+    en: >
+      Unfinished
 shader_terrain:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 shader_water:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 shared_cache_file_layout:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 shield_impact:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sky_atm_parameters:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sound:
+  structName: Stub
+  structModule: h3/stub
   #id: snd_
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sound_cache_file_gestalt:
+  structName: Stub
+  structModule: h3/stub
   #id: ugh_
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sound_classes:
+  structName: Stub
+  structModule: h3/stub
   #id: sncl
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sound_dialogue_constants:
+  structName: Stub
+  structModule: h3/stub
   #id: spk_
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sound_effect_collection:
+  structName: Stub
+  structModule: h3/stub
   #id: sfx_
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sound_effect_template:
+  structName: Stub
+  structModule: h3/stub
   #id: _fx_
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sound_environment:
+  structName: Stub
+  structModule: h3/stub
   #id: snde
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sound_global_propagation:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sound_looping:
+  structName: Stub
+  structModule: h3/stub
   #id: lsnd
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sound_mix:
+  structName: Stub
+  structModule: h3/stub
   #id: snmx
+  parentName: 
+  description:
+    en: >
+      Unfinished
 sound_scenery:
+  structName: Stub
+  structModule: h3/stub
   #id: ssce
+  parentName: 
+  description:
+    en: >
+      Unfinished
 stereo_system:
+  structName: Stub
+  structModule: h3/stub
   #id: BooM
+  parentName: 
+  description:
+    en: >
+      Unfinished
 structure_design:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 structure_seams:
+  structName: Stub
+  structModule: h3/stub
   description:
     en: >
       Defines the geometry between seam-connected [BSPs](~scenario_structure_bsp).
 style:
+  structName: Stub
+  structModule: h3/stub
   #id: styl
+  parentName: 
+  description:
+    en: >
+      Unfinished
 text_value_pair_definition:
+  structName: Stub
+  structModule: h3/stub
   #id: sily
+  parentName: 
+  description:
+    en: >
+      Unfinished
 unit:
+  structName: Stub
+  structModule: h3/stub
   #id: unit
   parentName: obje
+  description:
+    en: >
+      Unfinished
 user_interface_globals_definition:
+  structName: Stub
+  structModule: h3/stub
   #id: wgtz
+  parentName: 
+  description:
+    en: >
+      Unfinished
 user_interface_shared_globals_definition:
+  structName: Stub
+  structModule: h3/stub
   #id: wigl
+  parentName: 
+  description:
+    en: >
+      Unfinished
 user_interface_sounds_definition:
+  structName: Stub
+  structModule: h3/stub
+  parentName: 
+  description:
+    en: >
+      Unfinished
 vehicle:
+  structName: Stub
+  structModule: h3/stub
   #id: vehi
   parentName: unit
+  description:
+    en: >
+      Unfinished
 vehicle_collection:
+  structName: Stub
+  structModule: h3/stub
   #id: vehc
+  parentName: 
+  description:
+    en: >
+      Unfinished
 vertex_shader:
+  structName: Stub
+  structModule: h3/stub
   #id: vrtx
+  parentName: 
+  description:
+    en: >
+      Unfinished
 weapon:
-  #id: weap
+  structName: Weapon
+  structModule: h3/tags/weapon
   parentName: item
+  #id: weap
+  description:
+    en: >
+      An equipable item that fires projectiles
 wind:
+  structName: Stub
+  structModule: h3/stub
   #id: wind
+  parentName: 
+  description:
+    en: >
+      Unfinished

@@ -1,0 +1,21 @@
+entry_type: Weapon
+imports:
+  h3/tags/item:
+    - Item
+  h3/tags/common:
+    - TagString
+    - TagDependency
+    - Fraction
+    - Angle
+    - Block
+    - PredictedResource
+    - Index
+    - Point3D
+  h3/tags/object:
+    - ObjectNoise
+type_defs:
+  Weapon:
+    class: struct
+    fields:
+      - name: test
+        type: uint8

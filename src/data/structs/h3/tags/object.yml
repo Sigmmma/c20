@@ -1,0 +1,34 @@
+entry_type: Object
+imports:
+  h3/tags/common:
+    - Point3D
+    - TagDependency
+    - Index
+    - Block
+    - TagString
+    - FunctionOut
+    - FunctionNameNullable
+    - FunctionScaleBy
+    - WaveFunction
+    - Fraction
+    - FunctionType
+    - FunctionBoundsMode
+    - ColorInterpolationFlags
+    - ColorRGB
+    - PredictedResource
+type_defs:
+  Object:
+    class: enum
+    size: 2
+    options:
+      - name: biped
+      - name: vehicle
+      - name: weapon
+      - name: equipment
+      - name: crate
+      - name: projectile
+      - name: scenery
+      - name: device_machine
+      - name: device_control
+      - name: sound_scenery
+      - name: effect_scenery

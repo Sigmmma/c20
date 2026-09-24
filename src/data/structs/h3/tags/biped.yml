@@ -1,0 +1,11 @@
+entry_type: Biped
+imports:
+  h3/tags/unit:
+    - Unit
+  h3/tags/common:
+    - Angle
+    - TagDependency
+    - Index
+    - Block
+    - TagString
+type_defs:

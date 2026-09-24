@@ -1,0 +1,15 @@
+entry_type: Unit
+imports:
+  h3/tags/object:
+    - Object
+    - ObjectNoise
+  h3/tags/common:
+    - TagDependency
+    - Angle
+    - TagString
+    - Block
+    - Point3D
+    - Fraction
+    - GrenadeType
+    - Vector3D
+    - Index
