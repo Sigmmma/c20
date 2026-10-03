@@ -4,6 +4,7 @@
 
 from argparse import ArgumentParser
 from dataclasses import dataclass
+from pathlib import Path
 import re
 from sys import stderr
 from typing import Optional
@@ -120,7 +121,7 @@ def parse_file(hs_doc_file: str) -> tuple[list[Entry], list[Entry]]:
 
     return doc_functions, doc_globals
 
-def serialize_to_yaml(output_file: str, top_key: str, entries: list[Entry]) -> None:
+def serialize_to_yaml(output_file: Path, top_key: str, entries: list[Entry]) -> None:
     output_data = {
         top_key: list(map(lambda entry: {
             'slug': entry.slug,
@@ -145,6 +146,10 @@ if __name__ == '__main__':
     )
     parser.add_argument('hs_doc')
     parser.add_argument(
+        '-o', '--out-dir',
+        help='Output files to this directory.',
+    )
+    parser.add_argument(
         '-h', '--help',
         help='Print this help text and exit.',
         action='help',
@@ -158,5 +163,15 @@ if __name__ == '__main__':
     args = parser.parse_args()
 
     doc_functions, doc_globals = parse_file(args.hs_doc)
-    serialize_to_yaml('functions.yml', 'functions', doc_functions)
-    serialize_to_yaml('globals.yml', 'external_globals', doc_globals)
+
+    output_dir = Path(args.out_dir or '').resolve()
+    output_dir.mkdir(exist_ok=True)
+
+    func_file = output_dir / 'functions.yml'
+    glob_file = output_dir / 'globals.yml'
+    serialize_to_yaml(func_file, 'functions', doc_functions)
+    serialize_to_yaml(glob_file, 'external_globals', doc_globals)
+
+    print('Output files to')
+    print(func_file)
+    print(glob_file)
