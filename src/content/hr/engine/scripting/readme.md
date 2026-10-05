@@ -35,6 +35,7 @@ Since HR documentation will be an ongoing work-in-progress, please refer to the 
   dataPath="hsc/hr/globals/external_globals"
   linkCol=true
   linkSlugKey="slug"
+    rowSortKey="slug"
   columns=[
     {name: "Global", key: "info/en"}
   ]

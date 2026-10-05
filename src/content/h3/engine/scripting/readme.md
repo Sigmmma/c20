@@ -28,20 +28,25 @@ Functions related to the usage of trigger volumes, trigger volumes are created i
 {% relatedHsc game="h3" only="functions" id="control-functions" tagFilter="volume" /%}
 
 ## Zone Set
-Functions related to the control and logic of zone sets, these are created in [guerilla](~h3-ek/h3-guerilla)
+Functions related to the control and logic of zone sets, zone sets are created in the [scenario tag](~scenario) in [guerilla](~h3-ek/h3-guerilla)
 {% relatedHsc game="h3" only="functions" id="control-functions" tagFilter="zone_set" /%}
 
-## Everything else
+## Everything Else
 {% relatedHsc game="h3" only="functions" id="control-functions" tagFilter="NOT control AND NOT math AND NOT comp AND NOT logic AND NOT volume AND NOT zone_set" /%}
 
 # External globals
 
 ## AI Globals
-Functions related to the usage of trigger volumes, trigger volumes are created in [sapien](~)
+Global commands related to [AI](~engine/ai) debugging and rendering
 {% relatedHsc game="h3" only="globals" id="external-globals" tagFilter="AI" /%}
 
-## Everything Else
-Functions related to the usage of trigger volumes, trigger volumes are created in [sapien](~)
-{% relatedHsc game="h3" only="globals" id="external-globals" tagFilter="NOT AI" /%}
+## Networking
+Global commands related to network simulation and debugging
+{% relatedHsc game="h3" only="globals" id="external-globals" tagFilter="net" /%}
 
+## Cheats
+Globals to enable/disable cheats
+{% relatedHsc game="h3" only="globals" id="external-globals" tagFilter="cheat" /%}
 
+## All Other Globals
+{% relatedHsc game="h3" only="globals" id="external-globals" tagFilter="NOT AI AND NOT cheat AND NOT net" /%}

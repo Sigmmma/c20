@@ -339,9 +339,9 @@ Prediction properties effect networking for non-host players
 
 | Prediction | Description
 |-------|----------
-| none | Unsure, generally used for single-shot or burst fire weapons using the latch trigger type
-| spew | Unsure, generally used for automatic weapons using the spew trigger type and not firing multiple shots per fire
-| charge | Unsure, generally used for weapons using latch-autofire or charge trigger types
+| none | No sync of trigger state, relies on barrel prediction for the projectile sync
+| spew | Syncs the trigger state so other machines can keep their copy of `continous` prediction type barrel firing automatically
+| charge | Syncs the charging state so clients can see the charge up, projectile synced via barrel prediction
 
 | Autofire | Data type | Description
 |-------|----------|--------------
@@ -480,9 +480,9 @@ Prediction properties effect networking for non-host players, if set up incorrec
 
 | Prediction type | Description
 |-------|----------
-| none | Unknown, used by the rocket launcher
-| continuous | Unknown, mostly used for spew type weapons for automatic fire
-| instant | Unknown, mostly used for latch type weapons for burst and semi-auto
+| none | Host creates the projectile and syncs it to clients, needs more research, used by the rocket launcher
+| continuous | Every machine fires this barrel on it's own from the synced `spew` trigger prediction type, used for automatic weapons
+| instant | Every machine creates a copy per-shot and host's does damage, used for burst weapons generally
 
 | Firing noise | Description
 |-------|----------
