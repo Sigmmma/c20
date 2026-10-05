@@ -6,8 +6,7 @@ keywords:
   - pelican
   - pathfinding
   - points
-thanks:
-  Lalsy: Writing this page.
+
 ---
 
 One of the most common ways of entry for new AI squads is via a dropship, be it a Pelican or a Phantom. 
