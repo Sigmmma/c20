@@ -6,6 +6,7 @@ keywords:
   - level
   - scenario
   - pathfinding
+stub: true
 ---
 
 To create a custom campaign that contains AI, you will be implementing encounters, squads and bipeds. Below are some steps in creating your perfect encounter.
@@ -32,7 +33,10 @@ AI typically carry weapons with them too. To be able to assign weapons to AI, se
 
 After having selected all the necessary tags for your first combat scene, start by creating AI squads.
 
-In the hierarchy window, expand until you see the `AI > Squads` folder. Click on `New Instance` to
+In the hierarchy window, expand until you see the `AI > Squads` folder. Click on `New Instance` to create a few new instances. We are going with one human squad and one covenant squad.
+As soon as you create and select a squad, the properties palette will update and you can alter any details of the squads.
+
+Note the team sections and select the correct teams for both of the squads. Be aware that any difference in teams marks opposing squads as enemies! To create common allegiances (Such as `covenant` and `prophet`) we will have to [script](~).
 
 # Basic AI Squad
 
