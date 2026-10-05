@@ -11,7 +11,7 @@ keywords:
 thanks:
   odchylanie_uderzenia: writing and research
 ---
-When AI is placed into a level, they are entirely without purpose and direction, giving them a [pathfinding](~) setup will allow them to move around, but they will likely not move around much outside of engaging in basic combat, in order to give the illusion of purpose and intelligence, as well as to give them direction; we use the objective system to set up tasks for AI to fill.
+When AI is placed into a level, they are entirely without purpose and direction, giving them a [pathfinding](~) setup will allow them to move around, but they will likely not move around much outside of engaging in basic combat, in order to give the illusion of purpose and intelligence, as well as to give them direction; we use the objective system to set up **tasks** for AI to fill.
 
 The objective system works on priority, as such AI will *always attempt* to move to a higher priority task and fill them. The AI fills tasks on the squad level, thus squads cannot be split up to fill different tasks and will only enter a task that can fit the entire squad.
 
@@ -31,7 +31,7 @@ The box saying `Add` is what will be used for adding new tasks, you can fill out
 
 # Tasks
 
-Tasks represent the actual orders the AI is given, for example, telling the AI what firing position zones they are allowed to use and in what configuration, what attitude they should take as well as various properties and scripting variables.
+Tasks represent the actual orders the AI is given, for example, telling the AI what firing position areas they are allowed to use and in what configuration, what attitude they should take as well as various properties and scripting variables.
 
 When changing the order of tasks, with a task selected hold {% key "Ctrl+Arrow Keys" /%} to move the task, left and right may be used to nest and un-nest tasks within parent tasks (child tasks will have higher priority than parent tasks) while up and down move the task higher and lower in priority (or swap the parent and child relationship between tasks)
 

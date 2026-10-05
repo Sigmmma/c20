@@ -25,7 +25,7 @@ Halo 3 does not support negative damage, nor negative damage modifiers.
 | cutoff scale | fraction | Unknown/needs additional research
 | effect flags | flag | -
 | don't scale damage by distance | - | Always use 'damage upper bound' if a target is anywhere within the radius. Does not apply to [projectile impact damage](~projectile#flyby-impact).
-| area damage players only | - | 
+| area damage players only | - | Needs additional research
 
 # Damage
 
@@ -77,7 +77,7 @@ Flags used for special properties to be applied to this damage effect when hitti
 | force hard ping if body damage | This damage will always trigger a hard ping animation when inflicted upon the base health of a unit. Cannot trigger hard pings if the material hit does 0 damage due to modifiers
 | does not hurt players | needs additional research
 | does not overcombine | Unknown/needs additional research
-| enables special death | Enables a target to play a special instant response (set up in its [model(~)] tag) when killed by this damage effect. For example, the Ghost has a slow, wind-up detonation when killed by normal weapons, but explodes instantly when killed by the rocket launcher.
+| enables special death | Enables a target to play a special instant response (set up in its [model](~) tag) when killed by this damage effect. For example, the Ghost has a slow, wind-up detonation when killed by normal weapons, but explodes instantly when killed by the rocket launcher.
 | cannot cause betrayals | Unknown/needs additional research
 | uses old EMP behavior | Unknown/needs additional research
 | ignores damage resistance | Unknown/needs additional research
@@ -97,25 +97,25 @@ Pictured: The entire fields section
 | AOE core radius | real | The radius in WU that this damage effect can travel through map geometry, [scenery](~) and [crates](~crate), still abides by the radius fields to define actual range of effect
 | damage lower bound | real | The damage done to a target for detonation, melee or [effect](~)-bound damage when effecting a target just within the second radius bounds value. Is unused for impact damage unless the projectile flag _[damage scales based on distance](~projectile#flags)_ is enabled, then this value of damage will be applied when hitting a target past the latter bound of the ['air damage range' field](~projectile#physics)
 | damage upper bound | real | 2 values that the game picks between for the damage done to a target on impact, or within the first radius bounds value for detonation, melee or [effect](~)-bound damage
-| dmg inner cone angle | real | needs additional research
-| dmg outer cone angle | real | needs additional research
-| active camouflage damage | real | needs additional research
-| stun | real | Defines the % of stun to apply to a player in MP for movement and aiming stun purposes, per individual instance of damage
-| maximum stun | real | Defines the maximum % of stun a player being effected by this damage can achieve, functional upper limit defined by the [globals](~) tag
+| dmg inner cone angle | real | needs additional research, when this damage effect effects a target within this angle from it's origin, deal the `damage upper bound` value, damage will begin to falloff from this angle before reaching minimum damage at the outer cone angle
+| dmg outer cone angle | real | needs additional research, when this damage effect effects a target within this angle from its origin, deal the `damage lower bound` value
+| active camouflage damage | real | needs additional research, assumed value of 0-1 representing the percentage of active camoflage lost when a target is inflicted with this damage effect, percentage example: 0.2 = 20%
+| stun | real | A value of 0-1 that defines the percentage of stun to apply to a player in MP for movement and aiming stun purposes, per individual instance of damage
+| maximum stun | real | A value of 0-1 that defines the maximum percentage of stun a player being effected by this damage can achieve, functional upper limit defined by the [globals](~) tag
 | stun time | real | needs additional research, assumed amount of stun time this instance of damage will apply for, independant of other stun time timers.
 | instantaneous acceleration | real | The amount of knockback force this damage effect will apply, needs additional research
 | rider direct damage scale | real | The ratio of damage dealt to vehicle occupants when they are hit by a [projectile](~) impact containing this damage effect, ratio example: 0.6 = 60%
 | rider maximum transfer damage | real | The ratio of damage dealt to vehicle occupants when nearby parts of a vehicle are hit (according to the [model](~) tag damage seat transfer radius), damage is passed through *this* transfer ratio first and then through the damage seat scale in the vehicles [model](~) tag, before finally being passed onto the unit
 | rider minimum transfer damage | real | The ratio of damage dealt to vehicle occupants when any part of the vehicle not within the [damage seat transfer radius](~model) is hit, uses this ratio first, then the vehicle damage seat scale before passing the final damage onto the rider
-| general damage | string | This string tells the game to apply this damage type to this damage effect, damage types define material modifiers such as bonus damage to human health or a damage reduction against brute shields
-| specific damage | string | This string tells the game to apply this damage type in addition to the general damage, used as a bonus modifier calculated *after* the general damage. For example a 'sniper' damage type could have a 2x bonus against vehicle materials, thus when used as a specific damage with a general damage that has a 1x modifier on vehicles, you would still get the 2x bonus on vehicles from the specific damage
-| custom response label | string | In a [model](~) you can set up responses to play when a part of a unit reaches a certain health threshold due to damage using labels defined here. An example being the ability to set units on fire, the flamethrower or firebomb has the "fire" response label, which then triggers an [instant response](~model) to create a fire effect onto that unit once they've reach a defined % of health due to that damage
+| general damage | string | This string tells the game to apply this damage type to this damage effect, damage types define material modifiers such as bonus damage to human health or a damage reduction against brute shields, damage types are defined in the [globals](~)
+| specific damage | string | This string tells the game to apply this damage type in addition to the general damage, used as a bonus modifier calculated *after* the general damage. For example a 'sniper' damage type could have a 2x bonus against vehicle materials, thus when used as a specific damage *with* a general damage type that has a 2x modifier on vehicles, you would get a 4x bonus on vehicles from the multiplication
+| custom response label | string | In a [model](~) you can set up responses to play when a part of a unit reaches a certain health threshold due to damage using labels defined here. An example being the ability to set units on fire, the flamethrower or firebomb has the "fire" response label, which then triggers an [instant response](~model) to create a fire effect onto that unit once they've reach a defined percentage of health due to that damage
 | AI stun radius | real | When this damage effect is triggered via [projectile](~) detonation, this radius in world units defines how far from the detonation point the 'AI stun bounds' value extends to
 | AI stun bounds | real | Thess values defines how much 'stun" an AI unit is subjected to from this attack, based on range from impact if an AOE attack, if this stun value is greater than or equal to the [character](~) tags 'stun threshold' value, the AI unit enters their 'stunned' behavior and animation state, an example being grunts holding their head and stumbling around
 | shake radius | real | When this damage effect is triggered via [projectile](~) detonation, this radius defines how far from the detonation point a screen shake effect is played on players, if both [radius fields](~damage_effect#top-fields-flags) have the same value however, AOE attacks will use this field for their range with no damage falloff
 | EMP radius | real | needs additional research, causes this damage effect when used from detonation and within this damage effects radius bounds to get applied to both shield health and body health on targets
-| AOE spike radius | real | When used for AOE damage effects, this will act as a smaller radius within the entire AOE that triggers the below value damage boost. An example would be an explosive projectile having a max radius of 5 world units and a spike radius of 1 world unit, should a target be hit by the AOE within 1 world unit of the detonation origin, trigger the damage bump
-| AOE spike damage bump | real | When this damage effect effects a target via AOE and the target is within the above fields radius, add this much additional damage
+| AOE spike radius | real | When used for AOE damage effects, this will act as a smaller radius within the entire AOE that triggers the `AOE spike damage bump` value damage boost. An example would be an explosive projectile having a max radius of 5 world units and a spike radius of 1 world unit, should a target be hit by the AOE within 1 world unit of the detonation origin, trigger and add the damage bump to the base damage
+| AOE spike damage bump | real | When this damage effect effects a target via AOE and the target is within the `AOE spike radius` radius value, add this much additional damage
 
 damage response | [damage_response_definition](~) | This field is used to reference the tag that controls screen shake/motion and controller haptics when a target is hit by this damage effect instance.
 

@@ -324,7 +324,7 @@ First entry into this block becomes the primary trigger, second entry becomes th
 | latch-zoom | Same as latch but allows a second barrel to be used when the weapon is zoomed
 | latch-rocketlauncher | Same as latch but allows target locking onto human tracked targets by holding the trigger on the target and then releasing the trigger to fire once locked on
 | spew-charge | Functions like spew for the period of time specified in charging time before charging the secondary barrel
-| sword-charge | Unknown, seems to function like latch-autofire but triggers a melee while releasing the charge
+| sword-charge | Seems to function like latch-autofire, firing the weapon barrel if failing to complete the charge, otherwise do a melee attack, doing a lunge attack if within red reticle and max lunge range of a target, otherwise doing a basic melee attack
 
 ![The trigger block](maintrigger.png "An example of the main part of the trigger block")
 
@@ -339,9 +339,9 @@ Prediction properties effect networking for non-host players
 
 | Prediction | Description
 |-------|----------
-| none | Unsure, generally used for single-shot or burst fire weapons using the latch trigger type
-| spew | Unsure, generally used for automatic weapons using the spew trigger type and not firing multiple shots per fire
-| charge | Unsure, generally used for weapons using latch-autofire or charge trigger types
+| none | No sync of trigger state, relies on barrel prediction for the projectile sync
+| spew | Syncs the trigger state so other machines can keep their copy of `continous` prediction type barrel firing automatically
+| charge | Syncs the charging state so clients can see the charge up, projectile synced via barrel prediction
 
 | Autofire | Data type | Description
 |-------|----------|--------------
@@ -480,9 +480,9 @@ Prediction properties effect networking for non-host players, if set up incorrec
 
 | Prediction type | Description
 |-------|----------
-| none | Unknown, used by the rocket launcher
-| continuous | Unknown, mostly used for spew type weapons for automatic fire
-| instant | Unknown, mostly used for latch type weapons for burst and semi-auto
+| none | Host creates the projectile and syncs it to clients, needs more research, used by the rocket launcher
+| continuous | Every machine fires this barrel on it's own from the synced `spew` trigger prediction type, used for automatic weapons
+| instant | Every machine creates a copy per-shot and host's does damage, used for burst weapons generally
 
 | Firing noise | Description
 |-------|----------
@@ -494,7 +494,7 @@ Prediction properties effect networking for non-host players, if set up incorrec
 
 ## Error (spread/bloom)
 
-Generally most players prefer their weapons to not be laser accurate, this section defines what random error properties the weapon uses when firing the current barrel.
+Generally, most players prefer their weapons to not be laser accurate, this section defines what random error properties the weapon uses when firing the current barrel.
 
 | Single weapon error | Data type | Description
 |-------|----------|--------------
