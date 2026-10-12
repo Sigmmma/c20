@@ -16,47 +16,84 @@ keywords:
 thanks:
   ReVaas: 'Research and in-game testing (tag test, H2EK disassembly)'
 ---
-**Weapons** are the items held and fired by [units](~unit). The tag is broadly similar to its [Halo 3 counterpart](~h3/tags/object/item/weapon), which is better documented. This page currently focuses on Halo 2's dual wielding and barrel error (spread) behavior, which differs from Halo 3 in important ways.
+**Weapons** are the items held and fired by [units](~unit). The tag is broadly similar to its [Halo 3 counterpart](~h3/tags/object/item/weapon), which is better documented. This page currently covers the settings that control **accuracy (error)** and **dual wielding**, which work differently from Halo 3.
 
-# Dual wielding
-A weapon can be dual wielded when it has the _can be dual wielded_ flag. In retail, Bungie's dual weapons are the SMG, magnum, needler, plasma pistol, plasma rifle, and brute plasma rifle, but the flag works on any weapon, such as the sniper rifle, as long as the first person [animation graph](~model_animation_graph) has a `dual` weapon class. The HUD for dual wielding is set up in the weapon's [new_hud_definition](~) (see [single and dual widgets](~new_hud_definition#single-and-dual-wielding-widgets)).
+# Key terms
+* **Error** is how inaccurate a weapon is. Each shot leaves the barrel at a random angle away from the center of the reticle. The bigger the error angle, the wider the spread.
+* **Single wielding** means holding one weapon. **Dual wielding** means holding a weapon in each hand.
+* Every barrel has two sets of error settings: one for single wielding and one for dual wielding (the _dual weapon error_ group). When a shot is fired, the game decides how much of each set to use (see [when the dual settings are used](#when-the-dual-settings-are-used)).
 
-## Barrel error fields
-Each barrel has three groups of error fields after _firing noise_. Several of them have identical names in Guerilla, so they are easy to mix up:
+# Weapon flags
+Only the flags that were researched are listed here.
 
-| Group | Fields | Used for
-|-------|--------|---------
-| error | acceleration time, deceleration time, damage error | How fast single wield error ramps up and down. _Damage error_ is only used when the weapon's model is in a damaged state.
-| dual weapon error | acceleration time, deceleration time, minimum error, error angle, dual wield damage scale | The dual wield values (see below).
-| projectile | distribution function, projectiles per shot, distribution angle, minimum error, error angle | The normal (single wield) spread, plus how projectiles are distributed.
+| Flag | What it does
+|------|-------------
+| can be dual wielded | Lets the player hold this weapon in either hand together with another dual wieldable weapon. It works on any weapon (for example the sniper rifle), but the weapon's first person [animation graph](~model_animation_graph) needs a `dual` weapon class, and its [HUD](~new_hud_definition) needs widgets for dual wielding.
+| weapon uses old dual fire error code | Makes the weapon always use its **dual weapon error** settings while it is dual wielded, even when only one of the two weapons is fired. Without this flag (the default, and what all of Bungie's dual weapons use), the dual settings are only used when both weapons are fired at almost the same moment. Note this is the opposite of how [Halo 3's flag](~h3/tags/object/item/weapon#flags) is described. **Not yet tested in game.**
 
-## How error is calculated
-The following was found by disassembling the H2EK's `halo2_tag_test.exe` (MCC H2EK, 2025 build).
+# Barrel error settings
+These are found in each element of the _barrels_ block, after _firing noise_. They are in three groups, and several fields in different groups have the **same name** in Guerilla, so check which group you are editing.
 
-Every shot calculates a **dual blend** value from 0 (pure single wield values) to 1 (pure dual weapon error values):
+## Error group
+The first group. It controls how quickly the single wield error grows and shrinks.
 
-* By default, the blend is how recently the unit's **other** weapon fired. When a hand fires, a counter for that hand is set to a hard-coded **0.3 seconds**, which counts down every tick. The blend is the remaining time divided by 0.3, so it is 1 right after the other weapon fires and fades to 0 over 0.3 seconds. This is why dual wield error only applies when both weapons are fired at almost the same time. No tag field changes this window.
-* With the weapon flag _weapon uses old dual fire error code_, the blend is simply **1 whenever the weapon is dual wielded** and 0 otherwise, so the dual values are always used, even when firing only one weapon. None of Bungie's dual weapons use this flag. Note this is the opposite of how [Halo 3's flag](~h3/tags/object/item/weapon#flags) is described.
+| Field | What it does
+|-------|-------------
+| acceleration time | Seconds of continuous firing for the error to grow from the lower _error angle_ to the upper _error angle_ (single wielding). 0 means it changes instantly.
+| deceleration time | Seconds without firing for the error to shrink back from the upper to the lower _error angle_ (single wielding). 0 means it changes instantly.
+| damage error | Not regular weapon error. Guerilla describes it as "the range of angles (in degrees) that a damaged weapon will skew fire", used when the weapon's model is in a damaged state.
 
-The blend is then used to mix the two groups. Dual values **replace** single values; they are not added on top:
+## Dual weapon error group
+The second group. These settings are used **instead of** the single wield settings when the dual settings apply (see [when the dual settings are used](#when-the-dual-settings-are-used)).
 
-* error angle (both bounds) = single and dual _error angle_ mixed by the blend. If a dual bound is 0 the single bound is used instead, so leaving the dual group at 0 (like the magnum) means "same as single wield".
-* the barrel's current error (0 to 1) picks a value between the lower and upper bound. It rises while firing and falls when idle, at a rate mixed between the _error_ group and _dual weapon error_ group acceleration/deceleration times. A time of 0 means the change is practically instant. If both bounds are equal these times have no effect.
-* minimum error = single and dual _minimum error_ mixed by the blend.
-* With the barrel flag _use error when unzoomed_, no error is applied while the unit is zoomed in.
+| Field | What it does
+|-------|-------------
+| acceleration time | Like the error group's _acceleration time_, but for dual wielding.
+| deceleration time | Like the error group's _deceleration time_, but for dual wielding. It does **not** make the dual error last longer after firing; it only changes how fast the error moves between the two _error angle_ values.
+| minimum error | The smallest error a shot can have when dual wielding, in degrees.
+| error angle | Two values in degrees: the error when you start firing, and the error after firing for the _acceleration time_. **If a value is 0, the single wield value is used instead**, so leaving this at 0, 0 (like Bungie's magnum) means dual wielding is as accurate as single wielding.
+| dual wield damage scale | Multiplies the damage of each shot when the dual settings apply. For example 0.75 (the SMG) means 75% damage. **0 appears to mean no damage**, not "unchanged", so set it to 1 if you want normal damage. **Not yet tested in game**; Bungie's magnum and plasma pistol use 0, so check this before relying on it.
+
+## Projectile group
+The third group. Only the error fields were researched.
+
+| Field | What it does
+|-------|-------------
+| minimum error | The smallest error a shot can have when single wielding, in degrees.
+| error angle | The **single wield** spread. Two values in degrees: the error when you start firing, and the error after firing for the error group's _acceleration time_. If both values are the same (the sniper rifle uses 0.5, 0.5), the acceleration and deceleration times make no difference.
+
+## Barrel flags
+| Flag | What it does
+|------|-------------
+| use error when unzoomed | No error is applied while the player is zoomed in, so the weapon is perfectly accurate when scoped. Used by the sniper rifle.
+
+# When the dual settings are used
+Each time a dual wielded weapon fires, the game decides how much of the single and dual settings to use:
+
+* **Default (no flag):** the dual settings are only used if the **other** weapon fired in the last **0.3 seconds**. Right after the other weapon fires the dual settings are fully used, and over the next 0.3 seconds they fade back to the single settings. In practice this means dual wield error only shows up when both triggers are pulled at nearly the same time. This 0.3 seconds is built into the game and cannot be changed in the tag.
+* **With _weapon uses old dual fire error code_:** the dual settings are always fully used while the weapon is dual wielded.
+* **Single wielding:** the single settings are always used.
+
+The same rule decides how much of the _dual wield damage scale_ is applied.
 
 {% alert %}
-The _weapon uses old dual fire error code_ behavior comes from the disassembly and has not been tested in game yet. The default "only when both weapons fire at nearly the same time" behavior matches what was seen in tag test; the exact 0.3 second value comes from the disassembly.
+The default behavior (dual error only when both weapons fire together) was seen in tag test. The _weapon uses old dual fire error code_ behavior and the _dual wield damage scale_ behavior come from the disassembly and have not been tested in game yet.
 {% /alert %}
 
-## Dual wield damage scale
-_Dual wield damage scale_ uses the same blend: projectile damage is multiplied by a mix of 1 and the dual wield damage scale. A scale of 0.75 (the SMG) means 75% damage when the blend is 1. No code was found that treats 0 as "unchanged", so a value of 0 would mean no damage when the blend is 1. If you enable _weapon uses old dual fire error code_ on a weapon whose scale is 0, set the scale to 1 to keep normal damage.
+# How this was researched
+The information above was found by testing in tag test and by reading the game's code:
 
-{% alert %}
-Damage scale behavior comes from the disassembly and has not been tested in game yet. Bungie's magnum and plasma pistol use a scale of 0, so check it in game before relying on it.
-{% /alert %}
+1. **Comparing tags.** `tool.exe export-tag-to-xml` was used to export Bungie's weapon tags (sniper rifle, SMG, magnum, needler, plasma pistol, plasma rifle, brute plasma rifle) to XML, to compare their settings and see which flags Bungie used.
+2. **Testing in tag test.** Values were changed in Guerilla and tested in `halo2_tag_test.exe`. This showed that the dual weapon error group only had an effect when both weapons were fired at almost the same moment.
+3. **Disassembling tag test.** To find out why, `halo2_tag_test.exe` (MCC H2EK, 2025 build) was disassembled, which turns the program back into readable machine instructions. This was done with the free [Capstone](https://www.capstone-engine.org/) disassembler from Python. The program has no debug symbols, but it still contains Bungie's debug text, such as the source file name `weapons.cpp` and the name of the random number generator used for weapon spread (`weapon-random-error`). Following those led to the code that fires a barrel. From there it was traced:
+   * which tag fields the spread calculation reads, and how the single and dual values are mixed,
+   * where the _weapon uses old dual fire error code_ flag is checked,
+   * where each hand's "fired recently" timer is set (to 0.3 seconds) and counted down,
+   * how the acceleration and deceleration times are turned into rates when the tag loads (a time of 0 becomes an almost instant change),
+   * how the _dual wield damage scale_ is applied to the projectile.
+4. **Checking against the tags.** The field positions found in the code were matched to the field positions in the tag files, to be sure each value belongs to the Guerilla field named on this page.
 
-## Example: making a dual wielded weapon less accurate
+# Example: making a dual wielded weapon less accurate
 To make the sniper rifle twice as inaccurate when dual wielded, without changing single wield accuracy (single _error angle_ 0.5, 0.5):
 
 1. Set the _dual weapon error_ group's _error angle_ to 1, 1.
