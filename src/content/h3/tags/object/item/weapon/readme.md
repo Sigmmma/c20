@@ -340,7 +340,7 @@ Prediction properties effect networking for non-host players
 | Prediction | Description
 |-------|----------
 | none | No sync of trigger state, relies on barrel prediction for the projectile sync
-| spew | Syncs the trigger state so other machines can keep their copy of `continous` prediction type barrel firing automatically
+| spew | Syncs the trigger state so other machines can keep their copy of the weapon's `continuous` barrel prediction firing automatically
 | charge | Syncs the charging state so clients can see the charge up, projectile synced via barrel prediction
 
 | Autofire | Data type | Description
@@ -481,8 +481,8 @@ Prediction properties effect networking for non-host players, if set up incorrec
 | Prediction type | Description
 |-------|----------
 | none | Host creates the projectile and syncs it to clients, needs more research, used by the rocket launcher
-| continuous | Every machine fires this barrel on it's own from the synced `spew` trigger prediction type, used for automatic weapons
-| instant | Every machine creates a copy per-shot and host's does damage, used for burst weapons generally
+| continuous | Every machine fires this barrel independently according to the synced `spew` trigger prediction type, used for automatic weapons
+| instant | Every machine creates a copy of the projectile per-shot but the host's copy does the damage, used for burst weapons generally
 
 | Firing noise | Description
 |-------|----------
@@ -494,37 +494,44 @@ Prediction properties effect networking for non-host players, if set up incorrec
 
 ## Error (spread/bloom)
 
-Generally, most players prefer their weapons to not be laser accurate, this section defines what random error properties the weapon uses when firing the current barrel.
+Generally, most players prefer their weapons to not be laser accurate, this section defines what random error properties the weapon uses when firing the current barrel. Note that terms like spread and bloom are not used when referring to weapon accuracy, and instead the term **"error" is used to define projectile deviation from point of aim.**
 
 | Single weapon error | Data type | Description
 |-------|----------|--------------
 | acceleration time | real | Time in seconds taken for the barrel to go from minimum error and min error pitch rate to maximum error and full error pitch rate when the weapon starts firing (single wield only)
 | deacceleration time | real | Time in seconds taken for the barrel to go from maximum error and full error pitch rate to minimum error and min error pitch rate when the weapon stops firing (single wield only)
-| damage error | real | A set of two values that determines firing error when the [model](~) tag for this weapon is in a damage state with the flag that damages primary/secondary weapon enabled, chooses randomly between the 2 values: **this is not normal weapon error, that is located further down**
+| damage error | real | A set of two values that determine a firing error angle when the [model](~) tag for this weapon is in a damage state with the flag `damages primary trigger` (or secondary) is enabled, chooses randomly between the 2 values and sticks to the value chosen, never changing angle for any shot afterwards: **this is not normal weapon error, that is called `error angle`**, acts additionally to normal weapon error
 | min error look pitch rate | angle | The max rate of aiming/looking allowed when this barrel is at minimum error (130 is referenced as full power)
 | full error look pitch rate | angle | The max rate of aiming/looking allowed when this barrel is at maximum error (130 is referenced as full power)
 | look pitch error power | real | Unknown, seems to partially scale the error look pitch rate change rate
+
+For dual wielding properties, note the flag `weapon uses old dual fire error code` sets these properties to **always** be in effect when dual wielding, even if only 1 weapon is firing, disabling that flag means these properties are only in effect if both weapons are fired at the same time. 
 
 | Dual weapon error | Data types | Description
 |-------|----------|--------------
 | acceleration time | real | Time in seconds taken for the barrel to go from minimum error and min error pitch rate to maximum error and full error pitch rate when the barrel starts firing (dual wield only)
 | deacceleration time | real | Time in seconds taken for the barrel to go from maximum error and full error pitch rate to minimum error and min error pitch rate when the barrel stops firing (dual wield only)
 | minimum error | angle | The minimum error this barrel has when dual wielded, will never have less than this amount of error under any condition (dual wield only)
-| error angle | angle | Two bound values that determine barel error, first value is upon first firing and second value is after the acceleration time has passed, will return to first value during deacceleration time (dual wield only), both values function as a "0 degrees to X degrees" rather than using both values and choosing between them at random
+| error angle | angle | Two bound values that determine barrel error, first value is upon first firing and second value is after the acceleration time has passed, will return to first value during deacceleration time (dual wield only), both values function as a "0 degrees to X degrees" rather than using both values and choosing between them at random
+| dual wield damage scale | real | From 0 to 1, determines the damage done by projectiles from this barrel when being fired as part of dual wield, 0 clamps to a near 0% damage value (Example: 0.1 equals 10% of full normal damage)
 
-| dual wield damage scale | real | From 0 to 1, determines the damage done by projectiles from this barrel when being fired as part of dual wield, 0 equals 1 (0.1 equals 10% of full normal damage)
+Applies to both single and dual wield modes, note that `horizontal fan` is buggy and likely a leftover from before Combat Evolved.
 
 | Distribution function | Description
 |-------|----------
 | point | Projectile spread is offset from the exact crosshair point, around it, typical weapon spread/bloom behavior and uses projectiles per shot and error values
 | horizontal fan | Uses projectiles per shot and distribution angle to fan out projectiles in either a horizontal fan or a vertical fan, fan direction is based on where the biped is aiming
 
+Outside of `projectiles per shot` which applies to dual and single wield, these properties only apply to single wielded weapons.
+
 | Fields | Data types | Description
 |-------|----------|--------------
 | projectiles per shot | short | Number of projectiles fired at the exact same moment, does not consume additional ammo
-| distribution angle | real | Requires fan distribution function and projectiles per shot to be above 1, sets how wide the fans are (values above 1 tend to spray the fans so far they end up behind the biped)
+| distribution angle | real | Requires fan distribution function and projectiles per shot to be above 1, sets how wide the fans are (values above 1 tend to spray the fans out so far they end up behind the biped)
 | minimum error | angle | The minimum error this barrel has when single wielded, will never have less than this amount of error under any condition (single wield only)
 | error angle | angle | Two bound values that determine current barrel error, first value is upon first firing and second value is after the acceleration time has passed, will return to first value during deacceleration time (single wield only), both values function as a "0 degrees to X degrees" rather than using both values and choosing between them at random
+
+Projectile offset properties help make slow projectiles appear less "gamey" as you can set them to spawn closer to the weapon render, rather than spawning from the player camera away and from the barrel of the weapon.
 
 {% alert %}
 This has a dropdown for 3 different block entries: single wield, dual right and dual left

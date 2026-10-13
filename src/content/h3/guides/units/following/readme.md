@@ -1,25 +1,22 @@
 ---
 title: AI following guide
 about: guide
-img: 
-caption: 
+img: followme.jpg
+caption: Go! Go! Go!
 keywords:
-  - follow
+  - following
   - ai
+  - task
 thanks:
   odchylanie_uderzenia: writing and research
 ---
-This guide provides general info on how to set up AI to follow you around a level, this guide assumes you have basic understanding of navigating [sapien](~H3-sapien), [pathfinding](~) and the [objective](~objectives) system, as having these is very useful.
+This guide provides general info on how to set up AI to follow you around a level, this guide assumes you have basic understanding of navigating [sapien](~H3-sapien), [pathfinding](~), [AI spawning](~spawning) and the [objective](~objectives) system, as having these is very useful.
 
-# The squad
-Within sapien scroll down to the AI section, click on the squads option and then click `New instance`
-![Heirarchy view of adding a new squad entry](squadmake.jpg "Making a new squad")
-
-Now, within your new squad open it up to fireteams and add a new fireteam, configure this fireteam with whatever AI unit you want and place down starting positions by using *right click* in the game window.
-![Heirarchy view of navigating to fireteams and assigning starting positions](squadpresetup.jpg "Starting positions")
+This guide assumes you know how to set up and spawn AI, this is crucial as without the ability to spawn AI you cannot set up a system by which they can follow the player or another squad.
+![View of a basic squad](squadpresetup.jpg "Correct squad setup is essential")
 
 # The objectives
-Within sapien, scroll down to the AI section and click on objectives, click `New instance`
+After you have set up your squad within sapien, scroll down to the AI section and click on objectives, click `New instance`
 ![Heirarchy view of navigating to the objectives and making a new one](objmake.jpg "Creating goals for the AI")
 
 Open your new objective and assign it a default zone, give it a name you will recognize later and click `Add` to create a new task
