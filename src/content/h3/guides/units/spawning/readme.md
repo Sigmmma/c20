@@ -36,12 +36,12 @@ While the game window is selected (the window the game world appears in), press 
 ![Game window view of the console being opened](console.jpg "You have opened the console")
 
 # Spawning via Scripting
-After opening a text file you can use the (scripting system)[~scripting] to set up AI placement without your manual effort, this is how Bungie set up campaign levels and firefight levels in all of their games. Script editors should be encoded for UTF-8.
+After opening a text file you can use the [scripting system](~scripting) to set up AI placement without your manual effort, this is how Bungie set up campaign levels and firefight levels in all of their games. Script editors should be encoded for UTF-8.
 
-For a basic script we are going to make a continuously respawning squad script. First we need to declare our script type so we start with `(` to begin our statement, followed up by the term `script` to declare what this function is; a new script thread and finally we end off with your custom script name, it can be whatever you want but don't include spaces or capitals.
+For a basic script we are going to make a continuously respawning squad script. First we need to declare our script type so we start with `(` to begin our statement, followed up by the term `script` to declare what this function is; a new script thread, and finally we end off with your custom script name, it can be whatever you want but don't include spaces or capitals.
 ![View of a generic text editor, any will work as long as the encoding is UTF-8](scriptstart.jpg "All Halo 3 script statements are contained within parenthesis")
 
-Lets add a debug so we know our script is working, we will use the verb `print` to print a message to the screen in Sapien. Use the term `sleep` followed up by your message encased in quotation marks, place it on the line below the script declaration.
+Lets add a debug so we know our script is working, we will use the verb `print` to print a message to the screen in Sapien. Use the term `print` followed up by your message encased in quotation marks, place it on the line below the script declaration.
 
 Now we add statments to perform actions, for this example we will put the AI spawning on a 10 second timer. so we we will use the verb `sleep` followed up by a duration of game ticks (Halo 3 scripting emulates 30 ticks a second) so for 10 seconds we will use the value `300` for a final statement of (sleep 300), `Sleep` pauses the script thread in place for the duration specified.
 ![View of a generic text editor 2](scriptsleep.jpg "Keep it clean and readable")
