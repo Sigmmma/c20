@@ -19,21 +19,20 @@ The **model_animation_graph** tag (short: jmad) holds a model's animations and t
 * An **overlay** is played on top of the current animation, such as _moving_ (footstep sway) or _pitch_and_turn_ (looking around).
 * **Variants** (`var0`, `var1`, ...) are alternative versions of the same action; the game picks one of them.
 * The **weapon class** separates single wielding (`any`) from dual wielding (`dual`). Dual animations are named `first_person:dual:...`.
+* A **[rename.txt](~rename-txt)** is a small text file you put in the same `animations` folder as the animation files. Each line has the form `new action = existing animation`, for example `first_person fire_2 = first_person fire_1 var1`. When Tool compiles the graph it adds the new action and points it at the existing animation, so one animation is reused for two actions without copying the file.
 
 # How the game picks a first-person animation
 The graph's _modes_ block is a table: **mode** > **weapon class** > **weapon type** > **actions** and **overlays**. Each action or overlay has a _label_ (what the game asks for) and an _animation_ (what gets played).
 
-Usually the label matches the animation name: _fire_1_ plays `first_person:fire_1:var1`. But a label can point at a **different** animation. Bungie used this to reuse animations; for example the covenant carbine's _fire_2_ plays `first_person:fire_1:var1`. See [reused animations](#reused-animations).
+Usually the label matches the animation name: _fire_1_ plays `first_person:fire_1:var1`. But a label can point at a **different** animation. Bungie used this (through rename.txt) to reuse animations; for example the covenant carbine's _fire_2_ plays `first_person:fire_1:var1`. See [reused animations](#reused-animations).
 
 ## Firing: fire_1 and fire_2
 Which firing action the game asks for depends on the weapon's [barrel](~weapon#barrel-error-settings): the first barrel uses _fire_1_ and the second barrel uses _fire_2_. The covenant carbine's trigger fires through its **second** barrel, so firing the carbine asks for _fire_2_.
 
-{% alert %}
-This barrel rule is based on Bungie's graphs and weapon tags (the carbine and rocket launcher, whose triggers use their second barrel, are the ones mapping _fire_2_) and on a recompiled carbine firing with no animation when _fire_2_ was missing. The fix (restoring _fire_2_ with rename.txt) has not been tested in game yet.
-{% /alert %}
+Tested in tag test with the covenant carbine: recompiled without _fire_2_ it fired with no animation (the barrel didn't recoil, single or dual wielded); with _fire_2_ restored through rename.txt the barrel recoiled again in both. Bungie's graphs agree: the carbine and rocket launcher, whose triggers use their second barrel, are the ones that map _fire_2_.
 
 # Reused animations
-Bungie's first-person graphs contain actions that reuse another action's animation. They were made with a [rename.txt](~rename-txt) file next to the animation files. **The H2EK does not include Bungie's rename.txt files**, and Tool only builds the table from the files it is given, so **recompiling one of these graphs drops the mappings** unless you write the rename.txt yourself. For example, a recompiled covenant carbine has no _fire_2_ and fires with no animation at all.
+Bungie's first-person graphs contain actions that reuse another action's animation. They were made with a [rename.txt](~rename-txt) file (see [key terms](#key-terms)) next to the animation files. **The H2EK does not include Bungie's rename.txt files**, and Tool only builds the table from the files it is given, so **recompiling one of these graphs drops the mappings** unless you write the rename.txt yourself. For example, a recompiled covenant carbine has no _fire_2_ and fires with no animation at all.
 
 These are all the mappings in Bungie's Master Chief first-person graphs:
 
@@ -79,6 +78,6 @@ Other things to know when recompiling:
 # How this was researched
 1. **Bungie's originals.** All 18 of Bungie's Master Chief first-person graphs were taken from `H2EK.7z` and exported with `tool.exe export-tag-to-xml`, and their modes tables were compared with the animations they play. That gave the mappings table above.
 2. **A broken recompile.** After recompiling the covenant carbine, firing it showed no animation. Its exported animation data matched Bungie's retail animation exactly, and the compiled graph had the same bones and checksum, but its table had no _fire_2_. The carbine's weapon tag fires its trigger through barrel 2.
-3. **The fix.** Recompiling with a rename.txt (`first_person fire_2 = first_person fire_1 var1`) reproduced Bungie's single wield table exactly. Variant lines were tested and refused by Tool.
+3. **The fix.** Recompiling with a rename.txt (`first_person fire_2 = first_person fire_1 var1`, plus `first_person dual fire_2 = first_person dual fire_1 var0` for the new dual set) reproduced Bungie's single wield table exactly, and in tag test the carbine's barrel recoiled again when firing, single and dual wielded. Variant lines were tested and refused by Tool.
 4. **Weapon models.** The battle rifle, SMG and sniper rifle JMS files were rebuilt from their render_model tags and compared with Bungie's (same bone names, order and parents, positions within 0.0001). The beam rifle and carbine were then compiled in a sandbox with rebuilt JMS files, with and without geometry on every bone; the compiled animation headers were identical and the node list checksum matched the game's graph.
 5. **Frame counts** were compared between Bungie's graphs, the source files and the recompiled graphs for every animation of the carbine.
