@@ -40,7 +40,7 @@ Create a new Point Set, and place the points in Sapien with right-click. Create 
 The point set naming
 {% /figure %}
 
-![The path the pelican will take](2.png)
+![](2.png "The path the pelican will take")
 
 You can optionally place a "direction point". This can be used to turn the Pelican towards to, as the back of the Pelican is where the troops come out of.
 
@@ -72,7 +72,7 @@ Create the following script, making the point and squad names reflect your scena
 
 The pelican will start flying according to the path, and settle down at teh last point as the command script finishes.
 
-![The "landed" pelican](touchdown.gif)
+![](touchdown.gif "The "landed" pelican")
 
 # Setting up passengers
 
@@ -117,7 +117,7 @@ Setting up the script places the marines in the back of the pelican
 
 ```
 
-![Marines exiting the vehicle after the specified point has been hit](pelican_exit.png)
+![](pelican_exit.png "Marines exiting the vehicle after the specified point has been hit")
 
 # Differences in using a Phantom
 
@@ -125,7 +125,7 @@ There are only slight differences in using a Phantom instead of a Pelican. The s
 
 The biggest addition is using what is called *phantom power*. This is a physics element that allows AI to safely land on the ground when disembarking from the gravity lift.
 
-![It can be a hard landing for AI if the phantom power is off. On the right, physics markers indicating the additional landing block](phantom_exit.png)
+![](phantom_exit.png "It can be a hard landing for AI if the phantom power is off. On the right, physics markers indicating the additional landing block")
 
 Next to that, a phantom has three internal seat labels, marked `phantom_p_a` `phantom_p_b` and `phantom_p_c`. These all hold different animations for the Covenant so the exit is a bit more dynamic. 
 

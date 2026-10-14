@@ -1,5 +1,5 @@
 ---
-title: Basic AI encounter
+title: Basic AI encounters
 keywords:
   - ai
   - encounter
