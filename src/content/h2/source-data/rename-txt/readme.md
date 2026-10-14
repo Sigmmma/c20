@@ -8,6 +8,7 @@ keywords:
   - reuse
 thanks:
   "Abstract Ingenuity": Research and documentation
+  ReVaas: Limits and Bungie's first-person mappings
 ---
 
 The file `rename.txt` is for reusing animations under different names.
@@ -88,3 +89,13 @@ restoring old animation graph data...
 sorting graph entries...
 RESULTS 0 errors, 0 warnings
 ```
+
+# Limits
+A rename adds **one** animation to an action. A line that tries to add a variant, such as `first_person dual fire_2 var1 = first_person dual fire_1 var1`, is refused:
+```
+failed to add first_person:dual:fire_2:var1 into the animation graph as a rename of first_person:dual:fire_1:var1.
+```
+Map the action to one animation instead, for example `first_person dual fire_2 = first_person dual fire_1 var0`.
+
+# Bungie's rename.txt files
+The H2EK does not include the rename.txt files Bungie used for its graphs. When you recompile one of Bungie's [model_animation_graph](~) tags, the reused animations are dropped unless you write the rename.txt yourself. For example a recompiled covenant carbine loses _fire_2_ and fires with no animation. The mappings in Bungie's first-person graphs are listed on the [model_animation_graph page](~model_animation_graph#reused-animations).
