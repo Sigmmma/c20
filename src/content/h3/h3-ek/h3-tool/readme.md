@@ -1035,7 +1035,7 @@ tool sounds-single-mixed "sound_test" projectile_impact sfx
 * bank - Specify the fmod soundbank that should contain this sound. This is an optional argument
 
 # Structure
-A [ASS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag.
+An [ASS](~) file containing level geometry can be compiled into a [scenario_structure_bsp](~) tag.
 
 ```sh
 # structure <ass-file>
@@ -1054,7 +1054,7 @@ Multiple ASS files can be placed in a level's `structure` directory for multiple
 This command recompiles hlsl files from their source files in the `H3EK/source/rasterizer/hlsl` directory if they have been altered from the existing tag data
 
 ```sh
-# structure <ass-file>
+# write-out-hlsl-include-files
 tool write-out-hlsl-include-files
 ```
 
