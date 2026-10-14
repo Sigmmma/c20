@@ -55,29 +55,27 @@ A rename adds **one** animation per action. A line for a variant, such as `first
 {% /alert %}
 
 # Recompiling Bungie's first-person graphs
-[fp-model-animations](~h2-tool#fp-model-animations) needs three folders of source data:
+[fp-model-animations](~h2-tool#fp-model-animations) builds a first-person graph from source files in three places:
 
-| What | Where | In the H2EK?
-|------|-------|-------------
-| The animations | `data\<graph folder>\animations` | Only for the weapons whose animations you export yourself
-| The first-person arms model | `data\digsite\objects\characters\masterchief\fp\render\fp_arms.jms` | Yes
-| The first-person **weapon** model (JMS) | `data\<weapon folder>\render\*.JMS` | **Only the battle rifle, SMG and sniper rifle**
+| What | In the H2EK?
+|------|-------------
+| A source file for every animation (`data\<graph folder>\animations`) | Only a few samples (battle rifle, SMG and sniper rifle, in `data\digsite\...`)
+| The first-person arms model (`fp_arms.jms`) | Yes
+| The first-person weapon model (`data\<weapon folder>\render\*.JMS`) | Only for the battle rifle, SMG and sniper rifle
 
-Tool reads the weapon model to get the gun's bones (`frame gun`, `frame magazine` and so on). For the other weapons you have to provide one. The model's mesh does not affect the compiled animations, only its bones do:
+Tool builds the graph's actions from the files it is given (plus [rename.txt](~rename-txt)), so things Bungie set up through their own rename.txt files are lost unless you recreate them (see [reused animations](#reused-animations)).
 
-* The bones can be taken from the weapon's first-person [render_model](~) (_nodes_ block): use the order given by each node's _import node index_, keep the parents, and add up the _default translation_ and _default rotation_ of each node and its parents (model space), multiplied by 100 for JMS units. This reproduces Bungie's battle rifle, SMG and sniper rifle JMS files exactly.
-* With such a skeleton-only JMS (one small placeholder triangle) the compiled graph has the same bones and the same _node list checksum_ as Bungie's. Adding geometry to every gun bone, or using Bungie-style `frame gun` names, gave identical compiled animation headers.
+**Missing weapon models.** Tool only uses the weapon model for the gun's bones (`frame gun`, `frame magazine` and so on), not for its mesh. Those bones are also stored in the weapon's first-person [render_model](~) tag, so a weapon model containing just the bones can be rebuilt from it. A small script was used to do this for this research; for the three weapons that do come with a model, its output matched Bungie's files, and graphs compiled with the rebuilt models had the same bones as the game's. (To rebuild one: take the render_model's _nodes_ in the order of their _import node index_, keep their parents, add each node's _default translation_ and _default rotation_ to its parents' to get its position in the model, and multiply positions by 100 for the JMS file.)
 
 Other things to know when recompiling:
 
-* **Write the rename.txt** from the table above, or the weapon loses those actions.
-* **Each animation loses its last frame.** The compiled frame count is always one less than the source file's (a 7 frame source becomes 6 frames). Animations taken from Bungie's compiled graphs have Bungie's frame count, so recompiling them makes them one frame shorter than in the retail game unless you add a frame.
+* **Each animation loses its last frame.** The compiled frame count is always one less than the source file's (a 7 frame source becomes 6 frames). If your source files were converted from Bungie's compiled graphs, they have Bungie's frame count, so recompiling makes those animations one frame shorter than in the retail game unless you add a frame.
 * After compiling, Tool warns _"Animation '...' has changed. Its sound events must be checked."_ Check that sounds tied to frames (melee swings, reload clicks) still play at the right time.
 * Newly added _pitch_and_turn_ overlays come in without a _blend screen_; Bungie's point at blend screen 0. Without one the game doesn't play the look-around sway.
 
 # How this was researched
-1. **Bungie's originals.** All 18 of Bungie's Master Chief first-person graphs were taken from `H2EK.7z` and exported with `tool.exe export-tag-to-xml`, and their modes tables were compared with the animations they play. That gave the mappings table above.
-2. **A broken recompile.** After recompiling the covenant carbine, firing it showed no animation. Its exported animation data matched Bungie's retail animation exactly, and the compiled graph had the same bones and checksum, but its table had no _fire_2_. The carbine's weapon tag fires its trigger through barrel 2.
-3. **The fix.** Recompiling with a rename.txt (`first_person fire_2 = first_person fire_1 var1`, plus `first_person dual fire_2 = first_person dual fire_1 var0` for the new dual set) reproduced Bungie's single wield table exactly, and in tag test the carbine's barrel recoiled again when firing, single and dual wielded. Variant lines were tested and refused by Tool.
-4. **Weapon models.** The battle rifle, SMG and sniper rifle JMS files were rebuilt from their render_model tags and compared with Bungie's (same bone names, order and parents, positions within 0.0001). The beam rifle and carbine were then compiled in a sandbox with rebuilt JMS files, with and without geometry on every bone; the compiled animation headers were identical and the node list checksum matched the game's graph.
-5. **Frame counts** were compared between Bungie's graphs, the source files and the recompiled graphs for every animation of the carbine.
+1. **Bungie's graphs.** The original first-person graphs that come with the H2EK were exported to XML with Tool's [export-tag-to-xml](~h2-tool#export-tag-to-xml), and each action was compared with the animation it plays. That gave the mappings table above.
+2. **A broken recompile.** The covenant carbine's graph was recompiled with Tool. In tag test the carbine's barrel no longer recoiled when firing, single or dual wielded: its new graph had no _fire_2_, and its weapon tag fires through the second barrel.
+3. **The fix.** Adding `first_person fire_2 = first_person fire_1 var1` (and `first_person dual fire_2 = first_person dual fire_1 var0` for dual wielding) to rename.txt brought _fire_2_ back, matching Bungie's graph, and in tag test the barrel recoiled again. Lines that try to add variants were refused by Tool.
+4. **Weapon models.** Rebuilt weapon models were compared with Bungie's battle rifle, SMG and sniper rifle files (same bone names, order and parents; positions within 0.0001), and graphs compiled with rebuilt models were compared with the game's.
+5. **Frame counts** of every carbine animation were compared between Bungie's graph, the source files and the recompiled graph.
