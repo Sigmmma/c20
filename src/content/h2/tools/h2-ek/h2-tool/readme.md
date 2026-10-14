@@ -481,6 +481,8 @@ The source files can have different extensions. That depends on the type of anim
 
 Add [rename.txt](~rename-txt) to reuse animations as other animations, without copying and renaming files.
 
+The H2EK only includes the first-person weapon models (JMS) for the battle rifle, SMG and sniper rifle, and none of Bungie's rename.txt files. Before recompiling one of Bungie's first-person graphs, see [recompiling Bungie's first-person graphs](~model_animation_graph#recompiling-bungies-first-person-graphs).
+
 # Import damage table
 Imports `data\globals\armor_vs_damage.csv` to update the damage table block in [globals](~). The CSV (which can be exported from any spreadsheet software like Excel) uses Damage Groups as the columns, and Armor Modifiers as the rows, with each cell being the applicable Damage Multiplier.
 
