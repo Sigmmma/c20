@@ -82,7 +82,7 @@ Because it's difficult to set up all existing AI squads with all possible zones 
 ## Inside zones
 
 AI can switch areas inside a zone by having multiple *Primary Area Sets* that they switch between based on their follow strategy.
-In any active order, set up multiple area sets by clicking Add and selecting the correct area and zone. Set up the follow radius to something between 5 - 10 world units.
+In any active order, set up multiple area sets by clicking Add and selecting the correct area and zone. Set up the follow radius to something between 5 - 10 world units. Be sure to tick "Follow closest player" as well.
 
 ![](follow_in_zone.png "Having multiple primary areas allow AI to select whichever is needed")
 
