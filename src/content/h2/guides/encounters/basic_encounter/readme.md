@@ -6,7 +6,6 @@ keywords:
   - level
   - scenario
   - pathfinding
-stub: true
 ---
 
 # Setup

@@ -6,7 +6,6 @@ keywords:
   - level
   - scenario
   - pathfinding
-stub: true
 ---
 
 To populate your custom map for campaign purposes, you will be implementing AI, pathfinding and encounters. These pages will delve into setting up your first encounter.

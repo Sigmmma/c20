@@ -6,8 +6,15 @@ keywords:
   - level
   - scenario
   - pathfinding
-stub: true
 
 ---
 
-To create a custom campaign that contains AI, you will be implementing encounters, squads and bipeds. Below are some steps in creating your perfect encounter.
+
+Besides simply placing AI and have them fight in your missions, there's a plethora of options to make combat and encounters feel realistic. There's a few methods of interest that will be covered on this page.
+
+# Squad Orders
+
+# Squad Follow
+
+# Pathfinding Hints
+
