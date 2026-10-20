@@ -70,7 +70,7 @@ Create the following script, making the point and squad names reflect your scena
 )
 ```
 
-The pelican will start flying according to the path, and settle down at teh last point as the command script finishes.
+The pelican will start flying according to the path, and settle down at the last point as the command script finishes.
 
 ![](touchdown.gif "The "landed" pelican")
 

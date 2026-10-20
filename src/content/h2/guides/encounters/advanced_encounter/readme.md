@@ -21,7 +21,7 @@ One zone per encounter is sufficient for most missions. Each area should only en
 
 ![](1_real.png "Placing firing positions spread across multiple areas. The numbers indicate the Area entity")
 
-Both humand and covenant during an encounter can make use of the same zone and area. The split will happen in the form of Orders.
+Both human and covenant can make use of the same zone and area during an encounter. The split will happen in the form of Orders.
 
 # Orders
 
