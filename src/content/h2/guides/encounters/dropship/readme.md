@@ -6,6 +6,8 @@ keywords:
   - pelican
   - pathfinding
   - points
+thanks:
+  Lalsy: Writing this guide
 
 ---
 

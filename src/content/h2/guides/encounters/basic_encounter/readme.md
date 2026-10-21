@@ -6,6 +6,8 @@ keywords:
   - level
   - scenario
   - pathfinding
+thanks:
+  Lalsy: Writing this guide
 ---
 
 # Setup
