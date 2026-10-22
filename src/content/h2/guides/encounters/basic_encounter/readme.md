@@ -14,7 +14,7 @@ thanks:
 
 We start by setting up your scenario with all the relevant information, bipeds and characters for your encounter.
 
-Open a scenario of your choice and arrange your windows so that you have your game window, properties palette and your hierarchy window visible. 
+Open a scenario of your choice and arrange your windows so that you have your game window, properties palette and your hierarchy window visible.
 
 ![](1.png "The three required windows for basic scenario editing A) is the game window, showing a live version of the scenario in the H2 engine. B) is the properties palette which shows information about selected entities. C) contains all the objects and units placed in your level, grouped by type.")
 
@@ -41,7 +41,7 @@ Note the team sections and select the correct teams for both of the squads. Be a
 
 # Basic AI combat
 
-We will set up our first marine squad. 
+We will set up our first marine squad.
 
 Semantically, we make distinctions between *squad* (A group) and *actor* (singular entity in squad)
 
@@ -63,7 +63,7 @@ A quick rundown of the main properties of a squad that aren't self explanatory:
 Set the count to your preferred amount, as well as the character and the weapon type.
 
 Go to your Hierarchy View and ensure you are selecting the `Starting points`. Move to your Game View and using Right Click, place a view starting points.
-As soon as you have your squad set up, select it in the Properties palette again and Right Click > Place squads. You should see your marines in view now!  
+As soon as you have your squad set up, select it in the Properties palette again and Right Click > Place squads. You should see your marines in view now!
 
 ![](main_2.png)
 
@@ -131,7 +131,7 @@ Set, either on squad or on actor level the required vehicle (A warthog in this c
 
 Scripting for AI happens in two forms:
 
-* Plain scripts (usually prefixed with *ai_* or *unit_*)
+* Plain scripts (usually prefixed with `ai_` or `unit_`)
 * Command scripts; typical actions that apply specific to AI behavior
 
 ## Plain AI scripts

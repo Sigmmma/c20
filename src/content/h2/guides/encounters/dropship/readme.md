@@ -24,7 +24,7 @@ Open your scenario and by adding *pelican.vehicle* to your tag palette.
 Create two separate squads: One that will control the vehicle, the other a squad of Marines that will leave the Pelican. We will call them `pilot` and `passengers`.
 Note: You can also have one squad with separate actors, both as pilot and passengers. However, keeping them separate gives slightly more control and structure to your AI setup.
 
-For the pilot squad, put the `vehicle` field to `pelican` and `character` to `marine` and the squad size to 1. Put the spawn position somewhere off the main map (But within the BSP mesh). 
+For the pilot squad, put the `vehicle` field to `pelican` and `character` to `marine` and the squad size to 1. Put the spawn position somewhere off the main map (But within the BSP mesh).
 For the passenger squad, put `character` to `marine` and set squad size to any preferred size. Put the spawn position somewhere off the main map as well(But within the BSP mesh). These marines will be placed inside the Pelican via HaloScript.
 
 {% figure src="1.png" %}
@@ -74,7 +74,7 @@ Create the following script, making the point and squad names reflect your scena
 
 The pelican will start flying according to the path, and settle down at the last point as the command script finishes.
 
-![](touchdown.gif "The "landed" pelican")
+![](touchdown.gif "The \"landed\" pelican")
 
 # Setting up passengers
 
@@ -129,7 +129,7 @@ The biggest addition is using what is called *phantom power*. This is a physics 
 
 ![](phantom_exit.png "It can be a hard landing for AI if the phantom power is off. On the right, physics markers indicating the additional landing block")
 
-Next to that, a phantom has three internal seat labels, marked `phantom_p_a` `phantom_p_b` and `phantom_p_c`. These all hold different animations for the Covenant so the exit is a bit more dynamic. 
+Next to that, a phantom has three internal seat labels, marked `phantom_p_a` `phantom_p_b` and `phantom_p_c`. These all hold different animations for the Covenant so the exit is a bit more dynamic.
 
 Add the following to your script to make use of both:
 
