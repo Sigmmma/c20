@@ -2004,6 +2004,8 @@ functions:
         ```
         detaches the specified list of units from all AI.
   - slug: ai_place
+    tags:
+      - ai
     info:
       en: |-
         ```hsc
@@ -2011,6 +2013,8 @@ functions:
         ```
         places the specified squad on the map.
   - slug: ai_place
+    tags:
+      - ai
     info:
       en: |-
         ```hsc
@@ -2018,6 +2022,8 @@ functions:
         ```
         places the given number of members of the specified squad.
   - slug: ai_place_in_vehicle
+    tags:
+      - ai
     info:
       en: |-
         ```hsc
@@ -2025,6 +2031,8 @@ functions:
         ```
         places the specified squad (1st arg) on the map in the vehicles belonging to the specified vehicle squad (2nd arg).
   - slug: ai_cannot_die
+    tags:
+      - ai
     info:
       en: |-
         ```hsc
@@ -2046,6 +2054,8 @@ functions:
         ```
         Don't use this for anything other than bug 3926.  AI magically cancels vehicle oversteer.
   - slug: ai_kill
+    tags:
+      - ai
     info:
       en: |-
         ```hsc
@@ -2053,6 +2063,8 @@ functions:
         ```
         instantly kills the specified encounter and/or squad.
   - slug: ai_kill_silent
+    tags:
+      - ai
     info:
       en: |-
         ```hsc
@@ -2060,6 +2072,8 @@ functions:
         ```
         instantly and silently (no animation or sound played) kills the specified encounter and/or squad.
   - slug: ai_erase
+    tags:
+      - ai
     info:
       en: |-
         ```hsc
@@ -2067,6 +2081,8 @@ functions:
         ```
         erases the specified encounter and/or squad.
   - slug: ai_erase_all
+    tags:
+      - ai
     info:
       en: |-
         ```hsc
@@ -2074,6 +2090,8 @@ functions:
         ```
         erases all AI.
   - slug: ai_disposable
+    tags:
+      - ai
     info:
       en: |-
         ```hsc
@@ -2144,6 +2162,8 @@ functions:
         ```
         makes all or part of an encounter move to another encounter.
   - slug: ai_allegiance
+    tags:
+      - ai
     info:
       en: |-
         ```hsc
@@ -2536,6 +2556,8 @@ functions:
         ```
         Start the named scene, with the named command script on the named set of squads
   - slug: cs_run_command_script
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2543,6 +2565,8 @@ functions:
         ```
         Causes the specified actor(s) to start executing a command script immediately (discarding any other command scripts in the queue)
   - slug: cs_queue_command_script
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2550,6 +2574,8 @@ functions:
         ```
         Add a command script onto the end of an actor's command script queue
   - slug: cs_stack_command_script
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2557,6 +2583,8 @@ functions:
         ```
         Push a command script to the top of the actor's command script queue
   - slug: cs_run_joint_command_script
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2564,6 +2592,8 @@ functions:
         ```
         Causes the specified actor(s) to start executing a command script immediately (discarding any other command scripts in the queue)
   - slug: cs_run_joint_command_script
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2571,6 +2601,8 @@ functions:
         ```
         Causes the specified actor(s) to start executing a command script immediately (discarding any other command scripts in the queue)
   - slug: cs_command_script_running
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2578,6 +2610,8 @@ functions:
         ```
         Returns true if the ai is running the command script in question
   - slug: cs_command_script_queued
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2585,6 +2619,8 @@ functions:
         ```
         Returns true if the command script is in the ai's cs queue
   - slug: cs_number_queued
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2592,6 +2628,8 @@ functions:
         ```
         Returns the number of queued command scripts
   - slug: cs_switch
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2627,6 +2665,8 @@ functions:
         ```
         Transfer control of the command script to the given actor (queueing it)
   - slug: cs_fly_to
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2634,6 +2674,8 @@ functions:
         ```
         Flies the actor to the given point
   - slug: cs_fly_to
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2641,6 +2683,8 @@ functions:
         ```
         Flies the actor to the given point (within the given tolerance)
   - slug: cs_fly_to_and_face
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2648,6 +2692,8 @@ functions:
         ```
         Flies the actor to the given point and orients him in the appropriate direction
   - slug: cs_fly_to_and_face
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2655,6 +2701,8 @@ functions:
         ```
         Flies the actor to the given point and orients him in the appropriate direction (within the given tolerance)
   - slug: cs_fly_by
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2662,6 +2710,8 @@ functions:
         ```
         Flies the actor through the given point
   - slug: cs_fly_by
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2669,6 +2719,8 @@ functions:
         ```
         Flies the actor through the given point (within the given tolerance)
   - slug: cs_go_to
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
@@ -2676,6 +2728,8 @@ functions:
         ```
         Moves the actor to a specified point
   - slug: cs_go_to
+    tags:
+      - cs
     info:
       en: |-
         ```hsc
