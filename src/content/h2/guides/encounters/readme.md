@@ -6,6 +6,10 @@ keywords:
   - level
   - scenario
   - pathfinding
+childOrder:
+  - basic_encounter
+  - advanced_encounter
+  - dropship
 ---
 
 To populate your custom map for campaign purposes, you will be implementing AI, pathfinding and encounters. These pages will delve into setting up your first encounter.
