@@ -22,9 +22,9 @@ You place these device machines on the places where you want the insertion pods 
 
 Add the following *device_machine* tags: 
 
-* device_machine: *entry_pod_inserter* 
-* vehicle: *insertion_pod*
-* character: *elite* 
+* device_machine: *scenarios\objects\covenant\military\machines\entry_pod_inserter\entry_pod_inserter.device_machine* 
+* vehicle: *objects\vehicles\insertion_pod\insertion_pod.vehicle*
+* character: *objects\characters\elite\ai\elite.character* 
 
 
 Place the device_machines on the place where you want the insertion pods to end up.
@@ -48,11 +48,11 @@ A short explanation:
 * The sleep commands are purely there so that, if you have multiple insertion pods, they aren't exactly in sync for a better visual.`
 * The door is opened via damaging a specific section of the vehicle
 * At the end, the vehicle and device become separated again and and the device is cleaned up.
+* Specific effects are located in a scenarios folder: *effects\scenarios\solo\earthcity\e11_insertion_pod_impact* Please ensure your global effect corresponds to an existing location.
 
 Repeat/Expand this script for each of the insertion pods.
 
 ```
-; Copy this effect from the earthcity scenario, or substitute your own impact effect
 (global effect pod_effect "scenarios\XXXX\effects\insertion_pod_impact")
 
 (script static void place_pods
