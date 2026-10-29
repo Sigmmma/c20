@@ -12,6 +12,7 @@ thanks:
   MosesOfEgypt: Tag structure research
   Aerocatia: Trigger volume types reversing
   Conscars: Information about trigger volumes for switching BSPs
+  Elote: Information about trigger volumes for switching BSPs
 keywords:
   - scnr
 ---
