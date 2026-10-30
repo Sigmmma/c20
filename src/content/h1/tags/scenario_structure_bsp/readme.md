@@ -30,9 +30,10 @@ The term "BSP" stands for [Binary Space Partitioning][about-bsp], a technique wh
 After level geometry is exported to [JMS](~) format from your 3D software of choice, it can be compiled into a BSP tag using [Tool's structure verb](~h1-tool#structure).
 
 # BSP transitions
-While a [scenario](~) can reference multiple BSPs, Halo can only have [a single BSP loaded](~maps#map-loading) at a time. Transitions between BSPs can be scripted (`switch_bsp`), e.g. using trigger volumes. Objects in unloaded BSPs are not simulated.
+While a [scenario](~) tag can reference multiple BSPs, Halo can have [only one BSP loaded](~maps#map-loading) at a time. Transitions between BSPs can be [scripted](~scripting#functions-switch-bsp) or be done automatically after entering a special [trigger volume](~scenario#tag-field-trigger-volumes). Objects in unloaded BSPs are not simulated.
 
-Although multiple BSPs are intended for singleplayer maps and do not [synchronize](~netcode), some custom multiplayer maps have used nearly identical BSPs which only differ in lighting to add a day/night switch [scripted by a button](~ui_widget_definition#tag-field-event-handlers-script) in the escape menu.
+Although the use of multiple BSPs is intended for singleplayer maps, and transitions are not [synchronized](~netcode) in multiplayer mode, some custom multiplayer maps do have more than one BSP. It is possible to add [a button to the pause menu](~ui_widget_definition#tag-field-event-handlers-script) that switches between day and night versions of the level. The two BSPs would be nearly identical, except for the lighting.
+
 
 # Shaders
 The most commonly used [shader](~) type for BSPs is [shader_environment](~), suitable for most opaque surfaces and alpha-tested grates or billboard trees (as in _Timberland_). This shader type supports the blending between multiple detail maps, often used for ground maps with dirt and grass areas.
