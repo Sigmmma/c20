@@ -52,7 +52,7 @@ Dropship flight requires Command Scripts. (See [scripts](~)).
 
 Create the following script, making the point and squad names reflect your scenario.
 
-```
+```hsc
 (script command_script pelican_flight_script
 	(cs_enable_pathfinding_failsafe TRUE)
 	(cs_enable_targeting TRUE)
@@ -87,7 +87,7 @@ Setting up the script places the marines in the back of the pelican
 {% /figure %}
 
 
-```
+```hsc
 (script command_script pelican_flight_script
 
 	(cs_enable_pathfinding_failsafe TRUE)
@@ -133,7 +133,7 @@ Next to that, a phantom has three internal seat labels, marked `phantom_p_a` `ph
 
 Add the following to your script to make use of both:
 
-```
+```hsc
 (vehicle_load_magic (ai_vehicle_get_from_starting_location test/pilot) "phantom_p" (ai_actors test_grav)) --> Entering in phantom_p does a match for all seats containing the string. This includes A, B and C.
 
 (object_set_phantom_power (ai_vehicle_get ai_current_actor) true)

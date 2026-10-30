@@ -52,7 +52,7 @@ A short explanation:
 
 Repeat/Expand this script for each of the insertion pods.
 
-```
+```hsc
 (global effect pod_effect "scenarios\XXXX\effects\insertion_pod_impact")
 
 (script static void place_pods
