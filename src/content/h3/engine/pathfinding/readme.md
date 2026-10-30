@@ -15,7 +15,7 @@ AI in Halo 3, with some exceptions for dynamic objects like [crates](~crate) and
 
 When a level is imported, depending on the conditions of the level, the ability for the AI to find a navigable path along the geometry is effected. For example small gaps that players would ignore may cause AI to be unable to transition the platforms between the gap, thus a jump hint would be needed so the AI can bridge the jump.
 
-A notable cause of pathfinding failure on new levels can be from open edges, levels in early itertations of the blam engine rely on collision supplied from BSP calculations, as such levels much be entirely sealed: like a balloon, any holes in this balloon will cause pathfinding failure.
+A notable cause of pathfinding failure on new levels can be from open edges, levels in early itertations of the blam engine rely on collision supplied from BSP calculations, as such levels much be entirely sealed: like a balloon, **any holes in this balloon will cause pathfinding failure.**
 
 # Usage
 
@@ -59,35 +59,35 @@ Pictured from left to right: corner right, bunker and corner left, vectors of fi
 
 | Posture flags | Description
 |-------|----------
-| corner_left | allows AI to perch along walls facing to the right of this firing positions vector, uses "corner_cover_left" and "cover_open_left" animations
-| corner_right | allows AI to perch along walls facing to the left of this firing positions vector, uses "corner_cover_right" and "cover_open right" animations
-| bunker | allows AI to bunker on this firing position when accounting for an enemy presence in front of this firing positions vector, uses "bunker_cover" and "bunker_open" animation
+| corner_left | allows AI to perch along walls facing to the right of this firing positions vector, uses `corner_cover_left` and `cover_open_left` animations
+| corner_right | allows AI to perch along walls facing to the left of this firing positions vector, uses `corner_cover_right` and `cover_open right` animations
+| bunker | allows AI to bunker on this firing position when accounting for an enemy presence in front of this firing positions vector, uses `bunker_cover` and `bunker_open` animation
 
 # Creation
 
 Setting up pathfinding is very simple, assuming your level is proper and is lacking geometry errors that would inhibit pathfinding generation, you can start the creation of areas and zones by placing down firing positions.
 
-With [Sapien](~h3/h3-ek/h3-sapien) open, navigate in the main hierarchy window to the AI tab, under this AI tab you will find a *Zones* tab, click this and then click the "New Instance" button, this will create a brand new empty zone from which you can now edit.
+With [Sapien](~h3/h3-ek/h3-sapien) open, navigate in the main hierarchy window to the AI tab, under this AI tab you will find a *Zones* tab, click this and then click the `New Instance` button, this will create a brand new empty zone from which you can now edit.
 
 {% figure src="zone_created.jpg" %}
-Pictured: The hierarchy window in Sapien, showing the zones tab and the "New Instance" button
+Pictured: The hierarchy window in Sapien, showing the zones tab and the `New Instance` button
 {% /figure %}
 
 Now with your zone created, you can give it a name, set some flags and add some firing positions. With your zone still active you can navigate to the firing position tab and click it, now you are in firing position creation mode.
 
-Using right click in the game window you can place new firing positions. You can also use left click and drag firing positions to move them, clicking and selecting a firing position with an area assigned, and then making a new firing position will create it with the area of the previously selected firing position.
+Using right click in the *game window* you can place new firing positions. You can also use left click and drag firing positions to move them, clicking and selecting a firing position with an area assigned, and then making a new firing position will create it with the area of the previously selected firing position.
 
 {% figure src="create_fpos.jpg" %}
 Pictured: The hierarchy window in Sapien, showing the current zone selected and some new firing positions
 {% /figure %}
 
-After making your firing positions, you can click and drag to area select firing positions, or hold shift and click more to add, once you have gathered as many firing positions as you want, tap ctrl + N to assign all selected firing positions to a brand new unnamed area. From here you can create as many areas as you want, each new area will be assigned a new color and you can assign areas whatever name you want.
+After making your firing positions, you can click and drag to area select firing positions, or hold shift and click more to add, once you have gathered as many firing positions as you want, tap {% key "Ctrl+N" /%} to assign all selected firing positions to a brand new unnamed area. From here you can create as many areas as you want, each new area will be assigned a new color and you can assign areas whatever name you want.
 
 {% alert %}
 Hint: with a firing position selected, you can use the mouse scroll wheel to change it's area to one of the areas already in this zone
 {% /alert %}
 
-And lastly, once *any* changes or additions to hints or firing positions are made, make sure (re)generate pathfinding in Sapien using the "Generate all pathfinding data" button under the "Scenarios" tab in the top left
+And lastly, once *any* changes or additions to hints or firing positions are made, make sure (re)generate pathfinding in Sapien using the `Generate all pathfinding data` button under the `Scenarios` tab in the top left of Sapien/
 
 # Pathfinding policies
 
@@ -122,12 +122,14 @@ Well hints are used by AI to leap onto walls or ceilings inside flood hints. Usi
 
 Jump hints are used for allowing the AI to take jumps over obstacles or drops. Using right and left click you draw a set of vectors (starting from the top two points) that detmermine the direction for AI to take jumps in, can also be used for for vaulting, a section below will detail additional flags.
 
-| Jump hint flags | Description
+force jump height (enum): This selection acts as a filter for AI units, any AI unit who's [jump height](~character) is below the level set by this jump hint is forbidden from using it 
+
+| Control flags | Description
 |-------|----------
-| magic lift  | Unknown/needs additional research
+| magic lift  | Needs additional research, causes AI to view this jump hint as valid for their current path, even if they cannot make the jump
 | vehicle only  | Unknown/needs additional research
-| railing  | Treat this hint as a vault in which AI will try to vault over the obstacle using their vault animations
-| vault  | Unknown/needs additional research
+| railing  | Unknown/needs additional research
+| vault  | Treat this hint as a vault in which AI will try to vault over the obstacle using their vault animations
 
 ![vault hint example](vjumphint.jpg "An example of a vault hint, the obstacle is flanked at both ends by the hint which makes the red fenceline encase the obstacles width")
 
@@ -167,4 +169,4 @@ Objects such as [crates](~crate) have the ability to use dynamic hints such as v
 
 # Debugging
 
-When spawning in AI, you may notice certain issues with them, among these are colored triangles above their heads: green means no firing positions available to that AI. Yellow can appear if there's a rather limited number of firing positions for the number of AI in the task, or if the AI cannot pathfind to the assigned firing positions. Finally a red triangle can appear if the AI lacks the idle and alert [style](~) behaviors when in those states [(assumed combat status 1 and 2)](~ai#combat-status-and-alertness), but there may be more conditions it can appear under that are not yet known.
+When spawning in AI, you may notice certain issues with them, among these are colored triangles above their heads: green means no firing positions available to that AI. Yellow can appear if there's a rather limited number of firing positions for the number of AI in the task, or if the AI cannot pathfind to the assigned firing positions. Finally a red triangle can appear if the AI lacks the idle and alert [style](~) behaviors when in those states [(combat status 1 and 2)](~ai#combat-status-and-alertness), but there may be more conditions it can appear under that are not yet known.

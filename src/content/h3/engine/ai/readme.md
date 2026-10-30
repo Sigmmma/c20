@@ -92,7 +92,7 @@ AI set to the player team will never fall below combat status 3, otherwise the l
 | 6 | ai_combat_status_certain | Location of enemy certain, usually the first status an AI drops to when they lose line-of-sight on a target, will quickly decay and drop to status 4
 | 7 | ai_combat_status_visible | Direct line-of-sight on a target
 | 8 | ai_combat_status_clear_los | Target has direct line-of-sight on this AI (and the AI is aware of the target) and/or AI is within 12 world units of the target
-| 9 | ai_combat_status_dangerous | This AI is taking fire from a target or is within 2 world units to the target
+| 9 | ai_combat_status_dangerous | This AI is taking fire from a target, or a target that can see this AI is firing a weapon, or is within 2 world units to the target
 
 # Organization
 
@@ -124,13 +124,13 @@ AI under normal circumstances do not use the melee damage assigned in [weapon](~
 
 # Debugging
 
-Using various commands we can visualize current AI actions, as well use visual icons to debug potential issues.
+Using various commands we can visualize current AI actions, as well use visual icons to debug potential issues. The visual icons listed below require no special debugging commands.
 
 | Icon (floating triangle) | Description
 |------| ----------
 | Green | No firing positions available, make sure an initial zone or objective is set
 | Yellow | AI has too few firing positions available in this task or cannot pathfind to their firing positions
-| Red | AI lacks the alert and idle state style flags or animation modes, needs additional research
+| Red | AI lacks the `alert` and `idle` state style flags or animation modes, needs additional research
 
 Common commands that may be helpful for generalized debugging.
 
