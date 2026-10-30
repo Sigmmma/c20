@@ -425,6 +425,8 @@ external_globals:
         ```hsc
         (chud_debug_messages [boolean])
         ```
+
+        When enabled, forces gamestate chud messages to display debug text, requires simulating in multiplayer to avoid crashing
   - slug: chud_cortana_debug
     info:
       en: |-
