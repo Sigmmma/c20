@@ -129,7 +129,10 @@ The biggest addition is using what is called *phantom power*. This is a physics 
 
 ![](phantom_exit.png "It can be a hard landing for AI if the phantom power is off. On the right, physics markers indicating the additional landing block")
 
-Next to that, a phantom has three internal seat labels, marked `phantom_p_a` `phantom_p_b` and `phantom_p_c`. These all hold different animations for the Covenant so the exit is a bit more dynamic. 
+Next to that, a phantom has three internal seat labels, marked `phantom_p_a` `phantom_p_b` and `phantom_p_c`. 
+This allows the user to script different groups to be exited simultaneously. Most covenant hold three exit animations (a01, a02, and a03) in their animation_graphs, and they are reused for the phantom_a, phantom_b and phantom_c seat labels.
+
+Combining all this allows the exit animations to be slightly more dynamic. 
 
 Add the following to your script to make use of both:
 
