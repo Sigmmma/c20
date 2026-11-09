@@ -47,9 +47,9 @@ Create a few points so your camera has places to go. Based on your points names,
 	(camera_control true)
 	(camera_set p1 0)
 	(camera_set p2 100)
-  (sleep 100)
+    (sleep (camera_time))
 	(camera_set p3 100)
-  (sleep 100)
+    (sleep (camera_time))
 	(camera_control false)
 )
 ```
@@ -69,8 +69,9 @@ For starters, expand the script with the following:
 
 `(fade_out 1 1 1 0)`: Sets the screen to white as soon as the script runs (The final short value is the amount of ticks for fade duration)Runs a black fade effect from 0% to 100% black screen. 
 `(set cinematic_letterbox_style 1)`: Introduces letterboxing on your screen. Note: Aspect ratio dependent and might not be visible on your screen in Sapien.
-`	(camera_set_field_of_view 60 0)`: If preferred, the FOV of the camera can be set.
+`(camera_set_field_of_view 60 0)`: If preferred, the FOV of the camera can be set.
 `(fade_in 1 1 1 60)`: Slowly fades from white to image
+`(sleep (camera_time))` This sleeps for the duration the camera still needs for interpolating between two points.
 
 ```hsc
 (script static void intro
@@ -93,9 +94,9 @@ For starters, expand the script with the following:
 <!-- Camera tracks -->
 	(camera_set p1 0)
 	(camera_set p2 100)
-	(sleep 100)
+	(sleep (camera_time))
 	(camera_set p3 100)
-	(sleep 200)
+	(sleep (camera_time))
 
 <!-- End on p3 and fade into gameplay -->
 	(fade_out 1 1 1 60)
@@ -113,16 +114,52 @@ For starters, expand the script with the following:
 
 There is an abundance of effects you can use:
 
-* Bloom
-* Depth of field
-* Cross fades
-* Screen shake effects
-
-Some of the use the prefix `cinematic_screen_`, others might be player specific effects:
-
+## Cinematic lighting
 ```hsc
-	(player_effect_set_max_rotation 0 1 1)
-	(player_effect_start .5 3)
+(cinematic_lighting_set_primary_light -23 152 0.576471 0.513726 0.4)
+(cinematic_lighting_set_secondary_light 38 222 0.141176 0.141176 0.290196)
+(cinematic_lighting_set_ambient_light 0 0 0)
+(object_uses_cinematic_lighting pelican 1)
 ```
 
-This shakes the player's screen, simulating a tremor or earthquake-like effect.
+Cinematic lights are "invisible" lights that ooze atmosphere over your scene. It can be set with direction (pitch + yaw) and rgb values. Be sure to enable objects to use the cinematic lighting.
+![alt text](cine_light_1a.png)
+![alt text](cine_light_2a.png)
+
+## Bloom
+```hsc
+(cinematic_start)
+(rasterizer_bloom_override 1)
+(rasterizer_bloom_override_threshold .6)
+(rasterizer_bloom_override_brightness .5)
+```
+
+Bloom effects can be overridden for increased effect.
+
+## Depth of field
+```hsc
+(cinematic_start)
+(cinematic_screen_effect_start 1)
+(cinematic_screen_effect_set_depth_of_field 1.5 1 1 0 0 0 0)
+```
+
+Depth of Field introduces a bokeh blur effect on your camera. The game needs to be set to "cinematic" with `cinematic_start`, which allows you to set more screen effects.
+![alt text](cine_effect_dof.png)
+
+## Cross fades
+```hsc
+(cinematic_screen_effect_set_crossfade 1)
+(camera_set p2 0)
+```
+![alt text](cross_fade.png)
+A crossfade initiates a start of the fade effect for the set duration. During this time, you need to set another camera point for it to transition to. Think of it like this: The crossfade command iniates a ghost images that will disappear over *n* seconds.
+
+## Screen shake effects
+
+```hsc
+(player_effect_set_max_rotation 0 1 1)
+(player_effect_start .5 3)
+```
+
+Some of the use the prefix `cinematic_screen_`, others might be player specific effects:
+This shakes the player's screen, simulating a tremor or earthquake-like effect. Play around with options
