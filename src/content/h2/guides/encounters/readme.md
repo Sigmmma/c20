@@ -24,7 +24,7 @@ The second section covers the more intermediate possibilities in creating encoun
 
 # Vehicle insertion
 
-Halo 2's tried and true method of deploying reinforcements to the battlefield have always been via a Pelican or Phantom. This section explains in detail the necessary steps.
+Halo 2's method of choice for deploying reinforcements to the battlefield have usually been via a vehicle of some sort, be it an HEV pod, covenant drop pod or a Pelican/Phantom dropship. This section explains in detail the necessary steps on how to use them.
 
 [Creating drop-offs with dropships](~dropship)
 
