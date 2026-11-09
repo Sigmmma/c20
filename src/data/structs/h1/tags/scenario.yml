@@ -758,7 +758,13 @@ type_defs:
       - name: name
         type: TagString
         comments:
-          en: The name of the volume which can be used in scripts.
+          en: >-
+            The name of the volume which can be used in scripts. Volumes given a name 
+            in the form of `bsp x,y` are [special](#tag-field-bsp-switch-trigger-volumes). 
+            When entered by a player, the currently loaded [BSP](~scenario_structure_bsp) 
+            will be switched. For example, when a player inside [the first BSP](#tag-field-structure-bsps) 
+            enters `bsp 0,1` the second one becomes the currently loaded BSP. The switch 
+            happens automatically on contact.
       - name: parameters
         type: float
         count: 3
@@ -2526,9 +2532,10 @@ type_defs:
           max: 65534
         comments:
           en: >
-            Cuboid volumes which can be used in [scripts](~scripting) to test for the
-            presence an object: `(volume_test_object "volume_name" <object>)`.
-            An example use case is [kill volumes](~kill-volumes).
+            Cuboid volumes which can be used in [scripts](~scripting) to test for 
+            [the presence of an object](~scripting#functions-volume-test-object).
+            There are various use cases, including [kill volumes](~kill-volumes), 
+            triggers for events during missions, and vehicle teleporters.
       - name: recorded_animations
         type: Block
         type_args:
