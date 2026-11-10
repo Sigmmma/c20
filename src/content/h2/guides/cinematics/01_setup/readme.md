@@ -3,6 +3,7 @@ title: Setting up cinematic scenes
 keywords:
   - animation
   - cinematics
+  - effects
   - solo
 ---
 
