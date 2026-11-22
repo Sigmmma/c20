@@ -52,7 +52,7 @@ Dropship flight requires Command Scripts. (See [scripts](~)).
 
 Create the following script, making the point and squad names reflect your scenario.
 
-```
+```hsc
 (script command_script pelican_flight_script
 	(cs_enable_pathfinding_failsafe TRUE)
 	(cs_enable_targeting TRUE)
@@ -87,7 +87,7 @@ Setting up the script places the marines in the back of the pelican
 {% /figure %}
 
 
-```
+```hsc
 (script command_script pelican_flight_script
 
 	(cs_enable_pathfinding_failsafe TRUE)
@@ -129,11 +129,14 @@ The biggest addition is using what is called *phantom power*. This is a physics 
 
 ![](phantom_exit.png "It can be a hard landing for AI if the phantom power is off. On the right, physics markers indicating the additional landing block")
 
-Next to that, a phantom has three internal seat labels, marked `phantom_p_a` `phantom_p_b` and `phantom_p_c`. These all hold different animations for the Covenant so the exit is a bit more dynamic.
+Next to that, a phantom has three internal seat labels, marked `phantom_p_a` `phantom_p_b` and `phantom_p_c`. 
+This allows the user to script different groups to be exited simultaneously. Most covenant hold three exit animations (a01, a02, and a03) in their animation_graphs, and they are reused for the phantom_a, phantom_b and phantom_c seat labels.
+
+Combining all this allows the exit animations to be slightly more dynamic. 
 
 Add the following to your script to make use of both:
 
-```
+```hsc
 (vehicle_load_magic (ai_vehicle_get_from_starting_location test/pilot) "phantom_p" (ai_actors test_grav)) --> Entering in phantom_p does a match for all seats containing the string. This includes A, B and C.
 
 (object_set_phantom_power (ai_vehicle_get ai_current_actor) true)
