@@ -52,5 +52,9 @@ Finally we spawn the AI using the verb `ai_place` followed up by the name of you
 Then in Sapien to compile this script, first add the script using the `add mission script` button, then use the key combo {% key "Ctrl + Shift + C" /%} to compile this script, if no errors are found you are good to go and all you need to do is use {% key "Alt + G" /%} To Enable/Disable game scripts. After using the `add mission script` button this scenario will now always look for new files in this spot, so you can add new script files whenever you want, or edit the ones already inside, just make sure to compile after any changes.
 ![Sapien view of adding a new script directory](addscript.jpg "If compilation fails, go back and fix your script")
 
-# What's next
+# What's Next
 After this you may find that your AI is rather dumb and inactive, this is because they have no purpose or direction. We fix this by adding a [pathfinding setup](~pathfinding) which will build into an [objective setup](~objectives).
+
+# Debugging
+
+When spawning in AI, you may notice certain issues with them, among these are colored triangles above their heads: green and yellow are issues with their [pathfinding](~) and require set-up or correction, keep in mind [objectives](~) impact pathfinding. A red triangle can appear if the AI lacks the `idle` and `alert` [style](~) behaviors when in those states [(combat status 1 and 2)](~ai#combat-status-and-alertness), but there may be more conditions it can appear under that are not yet known.

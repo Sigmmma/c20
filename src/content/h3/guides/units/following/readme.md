@@ -15,7 +15,7 @@ This guide provides general info on how to set up AI to follow you around a leve
 This guide assumes you know how to set up and spawn AI, this is crucial as without the ability to spawn AI you cannot set up a system by which they can follow the player or another squad.
 ![View of a basic squad](squadpresetup.jpg "Correct squad setup is essential")
 
-# The objectives
+# The Objectives
 After you have set up your squad within sapien, scroll down to the AI section and click on objectives, click `New instance`
 ![Heirarchy view of navigating to the objectives and making a new one](objmake.jpg "Creating goals for the AI")
 
@@ -25,9 +25,9 @@ Open your new objective and assign it a default zone, give it a name you will re
 Clicking on the task will allow you to edit properties such as its name and allow clicking areas to assign them to this task
 ![Window view of the task and its assigned areas](tasksetup.jpg "Tasks are composed of areas")
 
-# The task
+# The Task
 Within your new task, set the follow policy to your desired option and assign a follow radius (assumed in world units). Remember, AI are not following a target between firing positions, but rather *between areas* inside the task
 ![Window view of task properties](taskprop.jpg "Who will the AI follow?")
 
-# The result
+# The Result
 In sapien under the AI section, you can now go to your AI squad and assign them the new objective and task you just made. Save the scenario {% key "Ctrl+S" /%}, do a map reset {% key "Ctrl+R" /%} and place your AI squad down. Observe your results.

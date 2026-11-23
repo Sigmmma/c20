@@ -425,6 +425,8 @@ external_globals:
         ```hsc
         (chud_debug_messages [boolean])
         ```
+
+        When enabled, forces gamestate chud messages to display debug text, requires simulating in multiplayer to avoid crashing
   - slug: chud_cortana_debug
     info:
       en: |-
@@ -4272,6 +4274,8 @@ external_globals:
         ```hsc
         (ai_render_paths [boolean])
         ```
+
+        When used with "ai_render_all_actors", displays pathfinding data for AI units such as path performance and path status
     tags:
       - AI
   - slug: ai_render_paths_selected_only
