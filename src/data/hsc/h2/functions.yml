@@ -672,6 +672,8 @@ functions:
         ```
         makes an object use the cinematic directional and ambient lights instead of sampling the lightmap.
   - slug: cinematic_lighting_set_primary_light
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -679,6 +681,8 @@ functions:
         ```
         sets the pitch, yaw, and color (red, green, blue) of the cinematic shadowing diffuse and specular directional light.
   - slug: cinematic_lighting_set_secondary_light
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -686,6 +690,8 @@ functions:
         ```
         sets the pitch, yaw, and color (red, green, blue) of the cinematic non-shadowing diffuse directional light.
   - slug: cinematic_lighting_set_ambient_light
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -3856,6 +3862,8 @@ functions:
         ```
         does a screen fade out to a particular color
   - slug: cinematic_start
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -3863,6 +3871,8 @@ functions:
         ```
         initializes game to start a cinematic (interruptive) cutscene
   - slug: cinematic_stop
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -3870,18 +3880,24 @@ functions:
         ```
         initializes the game to end a cinematic (interruptive) cutscene
   - slug: cinematic_skip_start_internal
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
         (<void> cinematic_skip_start_internal)
         ```
   - slug: cinematic_skip_stop_internal
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
         (<void> cinematic_skip_stop_internal)
         ```
   - slug: cinematic_show_letterbox
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -3889,6 +3905,8 @@ functions:
         ```
         sets or removes the letterbox bars
   - slug: cinematic_show_letterbox_immediate
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -3896,6 +3914,8 @@ functions:
         ```
         sets or removes the letterbox bars
   - slug: cinematic_set_title
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -3903,6 +3923,8 @@ functions:
         ```
         activates the chapter title
   - slug: cinematic_set_title_delayed
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -3910,6 +3932,8 @@ functions:
         ```
         activates the chapter title, delayed by <real> seconds
   - slug: cinematic_suppress_bsp_object_creation
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -3917,6 +3941,8 @@ functions:
         ```
         suppresses or enables the automatic creation of objects during cutscenes due to a bsp switch
   - slug: cinematic_subtitle
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -4774,6 +4800,8 @@ functions:
         ```
         sets a screen effect script value
   - slug: cinematic_screen_effect_start
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -4781,6 +4809,8 @@ functions:
         ```
         starts screen effect pass TRUE to clear
   - slug: cinematic_screen_effect_set_depth_of_field
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -4788,6 +4818,8 @@ functions:
         ```
         sets dof: <seperation dist>, <near blur lower bound> <upper bound> <time> <far blur lower bound> <upper bound> <time>
   - slug: cinematic_screen_effect_set_crossfade
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -4795,6 +4827,8 @@ functions:
         ```
         transition-time
   - slug: cinematic_screen_effect_set_crossfade2
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -4802,6 +4836,8 @@ functions:
         ```
         transition-time, exponent
   - slug: cinematic_screen_effect_stop
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -4809,18 +4845,24 @@ functions:
         ```
         returns control of the screen effects to the rest of the game
   - slug: cinematic_set_near_clip_distance
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
         (<void> cinematic_set_near_clip_distance <real>)
         ```
   - slug: cinematic_set_far_clip_distance
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
         (<void> cinematic_set_far_clip_distance <real>)
         ```
   - slug: cinematic_set_environment_map_attenuation
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -4828,6 +4870,8 @@ functions:
         ```
         interpolates environment-map attenuation (on flagged shaders) from <low> to <high> over <time>
   - slug: cinematic_set_environment_map_bitmap
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -4835,6 +4879,8 @@ functions:
         ```
         sets environment-map bitmap (on flagged shaders) instantly
   - slug: cinematic_reset_environment_map_bitmap
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -4842,6 +4888,8 @@ functions:
         ```
         resets environment-map bitmap (on flagged shaders) to default instantly
   - slug: cinematic_set_environment_map_tint
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -4849,6 +4897,8 @@ functions:
         ```
         perpendicular color: (red green blue brightness), parallel color: (red green blue brightness)... sets environment-map tint (on flagged shaders) instantly
   - slug: cinematic_reset_environment_map_tint
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -4856,6 +4906,8 @@ functions:
         ```
         resets environment-map tint (on flagged shaders) to default instantly
   - slug: cinematic_layer
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -4863,6 +4915,8 @@ functions:
         ```
         interpolates the value of <cinematic layer x> from current position to <value> over <time>
   - slug: cinematic_dynamic_reflections
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -5833,6 +5887,8 @@ functions:
         ```
         <time> (measured in seconds) <intensity>
   - slug: cinematic_clone_players_weapon
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -5840,6 +5896,8 @@ functions:
         ```
         clone the first player's most reasonable weapon and attach it to the specified object's marker
   - slug: cinematic_move_attached_objects
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -5879,6 +5937,8 @@ functions:
         ```
         don't use this, except in one place.
   - slug: cinematic_outro_start
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -5886,6 +5946,8 @@ functions:
         ```
         flag this cutscene as an outro cutscene
   - slug: cinematic_enable_ambience_details
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -6054,6 +6116,8 @@ functions:
         ```
         test confirmation dialog display
   - slug: cinematic_lightmap_shadow_disable
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -6061,6 +6125,8 @@ functions:
         ```
         turn off lightmap shadow in cinematics
   - slug: cinematic_lightmap_shadow_enable
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
@@ -6103,6 +6169,8 @@ functions:
         ```
         disables the code that constrains the max # active lights
   - slug: cinematic_start_movie
+    tags:
+      - cinematic
     info:
       en: |-
         ```hsc
