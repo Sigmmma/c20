@@ -87,7 +87,7 @@ After making your firing positions, you can click and drag to area select firing
 Hint: with a firing position selected, you can use the mouse scroll wheel to change it's area to one of the areas already in this zone
 {% /alert %}
 
-And lastly, once *any* changes or additions to hints or firing positions are made, make sure (re)generate pathfinding in Sapien using the `Generate all pathfinding data` button under the `Scenarios` tab in the top left of Sapien/
+And lastly, once *any* changes or additions to hints or firing positions are made, make sure (re)generate pathfinding in Sapien using the `Generate all pathfinding data` button under the `Scenarios` tab in the top left of Sapien.
 
 # Pathfinding policies
 
