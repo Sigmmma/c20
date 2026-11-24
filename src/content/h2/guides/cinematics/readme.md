@@ -23,7 +23,8 @@ In order to play something other than generic motion on a biped, it's required t
 
 Afterwards, a more advanced animation can be created by making use of anchors and constraints in Blender.
 
-[Creating custom cinematic animations](~02_animations)
+[Using custom cinematic animations](~02_animations)
+
 [Creating custom cinematic animations](~02b_animations_advanced)
 
 # Audio
