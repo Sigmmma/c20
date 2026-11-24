@@ -19,9 +19,7 @@ All the required basics for a simple cutscene are described in this guide.
 
 
 # Custom animations
-In order to play something other than generic motion on a biped, it's required to create a custom keyframe animation and import it into an in-game animation.
-
-Afterwards, a more advanced animation can be created by making use of anchors and constraints in Blender.
+In order to play something other than generic motion on a biped, it's required to use custom keyframe animations. The second guide covers creating your own custom animations, using anchors and constraints in Blender.
 
 [Using custom cinematic animations](~02_animations)
 

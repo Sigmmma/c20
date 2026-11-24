@@ -27,12 +27,12 @@ Create a Bezier Curve by clicking Add > Curve > Bezier Curve. Scale it up so it 
 
 The path of the curve will be the Pelican's flight path.
 
-![](image-5.png "Both objects in Blender")
+![](image-5.png "Both objects in Blender.")
 
 Next, enter Pose Mode and select the top-level bone of the vehicle's armature. Click Add Bone Constraint > Follow Path. Select the Bezier Curve in the Target, and change any settings to achieve the desired effect.
 
 
-![alt text](image-6.png "By setting the Bezier Curve as the target, the bone of the pelican will follow the path in your animation")
+![alt text](image-6.png "By setting the Bezier Curve as the target, the bone of the pelican will follow the path in your animation.")
 
 Click "Animate Path". If everything was properly done, you'll notice the vehicle instantly snapping to the curve and following it. If you desire a different length of the animation, you can edit the animation data in the *Curve's* settings (And not the constraint).
 
@@ -49,11 +49,11 @@ The control node of the armature allows you to move it around full without actua
 
 First, set up the scene by importing each of the required actors. Ensure both are on 0,0,0 world position, as this is the position the anchor in-game will take the place of.
 
-![alt text](image-2.png "Ensure the position of the armature is at the origin point (0,0,0)")
+![alt text](image-2.png "Ensure the position of the armature is at the origin point (0,0,0).")
 
 Enter Pose Mode and create an animation from this starting point. If you move your armature in Pose Mode and keep your origin anchored, the in-game anchor will understand the relative position of this animation. Create your animation.
 
-![alt text](image-3.png "This animation will be combined with the Pelican")
+![alt text](image-3.png "This animation will be combined with the Pelican.")
 
 # Advanced motion
 
@@ -71,7 +71,7 @@ Select the vehicle's root bone so both root bones will be connected to each othe
 
 You'll notice the actor will snap to the vehicle. You can hit Set / Clear Inverse to add an optional correction to the position data (If your animation needs to become part of the relative position of the vehicle). From here on, you can use the root bone to re-position your actor correctly.
 
-![](image-9.png "The actor will snap inside the vehicle, but might not be positioned correctly yet")
+![](image-9.png "The actor will snap inside the vehicle, but might not be positioned correctly yet.")
 
 
 {% alert%}
@@ -81,11 +81,11 @@ pelican:root_bone > container_armature > elite:root_bone. Your container armatur
 
 After all the needed corrections / and offsets, your actors should be inside the vehicle.
 
-![](image-10.png "Afterwards, this should be your end result")
+![](image-10.png "Afterwards, this should be your end result.")
 
 If every Constraint is currently enabled, you should see your animation played out while the vehicle is moving forward.
 
-![](image-11.png "Two different shots in time indicating successful motion")
+![](image-11.png "Two different shots in time indicating successful motion.")
 
 Export each actor's animation separately as JMM, and import them into a model_animation_graph with Tool. Make sure you import your animation *Uncompressed*. Compression will make the motion in-game jitter around.
 
@@ -120,7 +120,7 @@ In Sapien, a camera anchor is different from the animation anchor. They can be p
 If everything has been created properly, expand on the script with the following. (Don't forget that camera control can only be taken from a player, and not from Sapien's camera. To see the animation in Sapien, enter Player Simulation mode first.)
 
 The end result should look like this:
-![](image-14.png "Parent the Blender camera to the armature so you get a quick view what a camera angle might see")
+![](image-14.png "Parent the Blender camera to the armature so you get a quick view what a camera angle might see.")
 
 ```hsc 
 <!-- New -->
