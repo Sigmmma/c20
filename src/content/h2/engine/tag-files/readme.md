@@ -33,6 +33,17 @@ class EngineTag(_Enum):
     H2Latest = H2V4
 ```
 
+# File header
+MCC Halo 2 tag files start with a 64 byte header, followed by the tag's data. Known fields:
+
+| Offset | Size | Description
+|--------|------|------------
+| 36 | 4 | Tag group, as a reversed four character code (e.g. `paew` for `weap`, `tdhn` for `nhdt`)
+| 40 | 4 | Checksum: CRC-32 of everything after the 64 byte header, with all bits inverted (XOR `0xFFFFFFFF`), little endian
+| 60 | 4 | Engine version tag, also reversed (e.g. `!MLB` for `BLM!`, see above)
+
+When editing a tag file by hand (outside Guerilla), update the checksum after changing the data. Tags edited this way and saved with an updated checksum load normally in `tool.exe` and tag test.
+
 # Fields
 
 Most fields are just some scalar or vector [*value types*][value_and_ref_wiki], and are hence fairly self-documenting. A small number of types however are [*reference types*][value_and_ref_wiki] - which store their contents outside of the tag block *element* they are located in, or require some special handling depending on the engine version.
