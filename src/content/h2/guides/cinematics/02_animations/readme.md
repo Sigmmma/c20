@@ -11,7 +11,7 @@ During a cutscene, you can either play out regular biped controlled actions (Wal
 
 # Exporting custom animations
 
-This guide will not go in detail how to animate; it's a valuable skill that you can teach yourself. After having created an animation, you have a variety of options of exporting it. (See https://c20.reclaimers.net/general/source-data/animation-data/ )
+This guide will not go in detail how to animate; it's a valuable skill that you can teach yourself. After having created an animation, you have a variety of options of exporting it. (See [Animation Data](~general/source-data/animation-data))
 
 In the case of cinematic animations, you will need JMA. Export the file, and create a [Model Animation Graph](~model_animation_graph) tag that contains the specific animations for your bipeds. 
 

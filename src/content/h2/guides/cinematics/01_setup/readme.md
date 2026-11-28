@@ -69,11 +69,11 @@ At the end of the animation, you'll notice that as soon as camera control is giv
 To ensure a more visually pleasing cutscene takes place, Halo 2 has a wide array of effects that can help set the tone.
 For starters, expand the script with the following:
 
-`(fade_out 1 1 1 0)`: Sets the screen to white as soon as the script runs (The final short value is the amount of ticks for fade duration)Runs a black fade effect from 0% to 100% black screen. 
-`(set cinematic_letterbox_style 1)`: Introduces letterboxing on your screen. Note: Aspect ratio dependent and might not be visible on your screen in Sapien.
-`(camera_set_field_of_view 60 0)`: If preferred, the FOV of the camera can be set.
-`(fade_in 1 1 1 60)`: Slowly fades from white to image
-`(sleep (camera_time))` This sleeps for the duration the camera still needs for interpolating between two points.
+- `(fade_out 1 1 1 0)`: Sets the screen to white as soon as the script runs (The final short value is the amount of ticks for fade duration)Runs a black fade effect from 0% to 100% black screen. 
+- `(set cinematic_letterbox_style 1)`: Introduces letterboxing on your screen. Note: Aspect ratio dependent and might not be visible on your screen in Sapien.
+- `(camera_set_field_of_view 60 0)`: If preferred, the FOV of the camera can be set.
+- `(fade_in 1 1 1 60)`: Slowly fades from white to image
+- `(sleep (camera_time))` This sleeps for the duration the camera still needs for interpolating between two points.
 
 ```hsc
 (script static void intro
@@ -118,7 +118,7 @@ There is an abundance of effects you can use:
 
 ## Cinematic lighting
 
-Cinematic lights are "invisible" lights that ooze atmosphere over your scene. It can be set with direction (pitch + yaw) and rgb values. Be sure to enable objects to use the cinematic lighting.
+Cinematic lights are "invisible" spotlights that create atmospheric lights that override the regular lightmapped lighting in the map. With scripts, they can be enabled/disabled and set with a direction (pitch + yaw) and rgb values. Each object individually needs to be enabled.
 
 ```hsc
 (cinematic_lighting_set_primary_light -23 152 0.576471 0.513726 0.4)
