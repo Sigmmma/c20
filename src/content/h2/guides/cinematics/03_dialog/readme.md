@@ -42,7 +42,7 @@ Lip-syncing happens via phoneme animations and is applicable for most bipeds wit
 
 Simply creating a new sound tag is not sufficient for actors to move their mouth when dialog is played. 
 
-To create a sound tag that includes lip sync data, use the software "Impersonator Studio". This software generates an LTF file that, together with your .wav file, can generate a sound tag that includes the lip sync data.
+To create a sound tag that includes lip sync data, use the software "Impersonator Studio". The software can be found [here.](https://num0005.github.io/h2codez_docs/w/H2Tool/Sounds.html) It generates an LTF file that, together with your .wav file, can generate a sound tag that includes the lip sync data.
 
 Importing new sounds and playing them in-game is not enough to get lip syncing actors working.
 
