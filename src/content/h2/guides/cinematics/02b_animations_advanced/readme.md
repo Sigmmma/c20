@@ -32,11 +32,11 @@ The path of the curve will be the Pelican's flight path.
 Next, enter Pose Mode and select the top-level bone of the vehicle's armature. Click Add Bone Constraint > Follow Path. Select the Bezier Curve in the Target, and change any settings to achieve the desired effect.
 
 
-![alt text](image-6.png "By setting the Bezier Curve as the target, the bone of the pelican will follow the path in your animation.")
+![](image-6.png "By setting the Bezier Curve as the target, the bone of the pelican will follow the path in your animation.")
 
 Click "Animate Path". If everything was properly done, you'll notice the vehicle instantly snapping to the curve and following it. If you desire a different length of the animation, you can edit the animation data in the *Curve's* settings (And not the constraint).
 
-![alt text](image-7.png)
+![The pelican on top of the bezier curve](image-7.png)
 
 # Actor positioning
 Now, moving a vehicle is simple as it doesn't need that much animation when it's moving from point A to point B. Having your actors pose or play out an animation *while* in a vehicle is a different story.
@@ -49,11 +49,11 @@ The control node of the armature allows you to move it around full without actua
 
 First, set up the scene by importing each of the required actors. Ensure both are on 0,0,0 world position, as this is the position the anchor in-game will take the place of.
 
-![alt text](image-2.png "Ensure the position of the armature is at the origin point (0,0,0).")
+![](image-2.png "Ensure the position of the armature is at the origin point (0,0,0).")
 
 Enter Pose Mode and create an animation from this starting point. If you move your armature in Pose Mode and keep your origin anchored, the in-game anchor will understand the relative position of this animation. Create your animation.
 
-![alt text](image-3.png "This animation will be combined with the Pelican.")
+![](image-3.png "This animation will be combined with the Pelican.")
 
 # Advanced motion
 
